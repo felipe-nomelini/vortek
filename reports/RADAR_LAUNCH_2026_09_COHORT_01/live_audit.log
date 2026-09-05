@@ -1,0 +1,22 @@
+(node:528112) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/lib/ml/identity-normalization.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"evaluated":4,"total":65,"mlCalls":97}
+{"evaluated":8,"total":65,"mlCalls":206}
+{"evaluated":12,"total":65,"mlCalls":247}
+{"evaluated":16,"total":65,"mlCalls":377}
+{"evaluated":20,"total":65,"mlCalls":482}
+{"evaluated":24,"total":65,"mlCalls":550}
+{"evaluated":28,"total":65,"mlCalls":620}
+{"evaluated":32,"total":65,"mlCalls":657}
+{"evaluated":36,"total":65,"mlCalls":690}
+{"evaluated":40,"total":65,"mlCalls":725}
+{"evaluated":44,"total":65,"mlCalls":787}
+{"evaluated":48,"total":65,"mlCalls":814}
+{"evaluated":52,"total":65,"mlCalls":843}
+{"evaluated":56,"total":65,"mlCalls":872}
+{"evaluated":60,"total":65,"mlCalls":936}
+{"evaluated":64,"total":65,"mlCalls":940}
+{"evaluated":65,"total":65,"mlCalls":941}
+{"evaluated":65,"identities":{"IDENTIDADE_COHERENTE":28,"IDENTIDADE_INCONCLUSIVA":36,"IDENTIDADE_DIVERGENTE":1},"eligibleForFinalGate":["VTK018924","VTK005172","VTK018303","VTK012944","VTK012894","VTK017284","VTK018779","VTK017675","VTK018412","VTK018343","VTK018405","VTK018564","VTK018402","VTK018538","VTK018319","VTK017249","VTK002091","VTK019530","VTK017289","VTK017481","VTK017628","VTK018562","VTK017306","VTK026052","VTK018417","VTK023554","VTK018318","VTK018081"],"quoted":[{"sku":"VTK018924","margin":0.10001226069745854,"failure":null,"blocked":[]},{"sku":"VTK005172","margin":0.07006881758870319,"failure":null,"blocked":[]},{"sku":"VTK018303","margin":0.07000244977951985,"failure":null,"blocked":[]},{"sku":"VTK012944","margin":0.07004336797316096,"failure":null,"blocked":[]},{"sku":"VTK012894","margin":0.15000085252945491,"failure":null,"blocked":[]},{"sku":"VTK017284","margin":0.1500030963586822,"failure":null,"blocked":[]},{"sku":"VTK018779","margin":0.07002094184610427,"failure":null,"blocked":[]},{"sku":"VTK017675","margin":0.10001175686797037,"failure":null,"blocked":[]},{"sku":"VTK018412","margin":0.10001545236807541,"failure":null,"blocked":[]},{"sku":"VTK018343","margin":0.10001127522832338,"failure":null,"blocked":[]},{"sku":"VTK018405","margin":0.07007182761372706,"failure":null,"blocked":[]},{"sku":"VTK018564","margin":0.07005118438281156,"failure":null,"blocked":[]},{"sku":"VTK018402","margin":0.07002414625733012,"failure":null,"blocked":[]},{"sku":"VTK018538","margin":0.1000190253580844,"failure":null,"blocked":[]},{"sku":"VTK018319","margin":0.10003092145949287,"failure":null,"blocked":[]},{"sku":"VTK017249","margin":0.07009971721982439,"failure":null,"blocked":[]},{"sku":"VTK002091","margin":0.07004787008422711,"failure":null,"blocked":[]},{"sku":"VTK019530","margin":0.07001431297709923,"failure":null,"blocked":[]},{"sku":"VTK017289","margin":0.07007176023638666,"failure":null,"blocked":[]},{"sku":"VTK017481","margin":0.07012002526847758,"failure":null,"blocked":[]},{"sku":"VTK017628","margin":0.07009004623996105,"failure":null,"blocked":[]},{"sku":"VTK018562","margin":0.07006568658116985,"failure":null,"blocked":[]},{"sku":"VTK017306","margin":0.07006369426751592,"failure":null,"blocked":[]},{"sku":"VTK026052","margin":0.07005962521294719,"failure":null,"blocked":[]},{"sku":"VTK018417","margin":0.07023514851485149,"failure":null,"blocked":[]},{"sku":"VTK023554","margin":0.07004470938897168,"failure":null,"blocked":[]},{"sku":"VTK018318","margin":0.10000847170450694,"failure":null,"blocked":[]},{"sku":"VTK018081","margin":0.07000663570006635,"failure":null,"blocked":[]}]}

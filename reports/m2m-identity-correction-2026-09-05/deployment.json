@@ -1,0 +1,17 @@
+{
+  "commit": "a31cd43",
+  "container": "b0f7d84c9351",
+  "runtimeChecks": [
+    "{\"buildId\":\"bbct_OTq9JflW49zcwylT\",\"identityVersionInCreate\":false}",
+    "{\"path\":\"/api/radar\",\"status\":401}",
+    "{\"path\":\"/radar\",\"status\":307}"
+  ],
+  "exitCode": 0,
+  "compiledIdentity": {
+    "identityVersion": "M2M-IDENTITY-v2.1",
+    "chunks": [
+      "4265.js"
+    ]
+  },
+  "checkoutCommit": "a31cd43de789b1402dda49214b84c1a341b4b151"
+}

@@ -1,0 +1,3262 @@
+{
+  "cohort": "RADAR_LAUNCH_2026_09_COHORT_01",
+  "identityRuleVersion": "M2M-IDENTITY-v2.1",
+  "at": "2026-09-05T20:09:30.103Z",
+  "mlMutations": 0,
+  "calls": 156,
+  "requests": [
+    {
+      "endpoint": "/products/MLB78302520",
+      "at": "2026-09-05T20:09:22.802Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/products/MLB28877953",
+      "at": "2026-09-05T20:09:22.807Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/products/MLB41798496",
+      "at": "2026-09-05T20:09:22.800Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/products/MLB25806207",
+      "at": "2026-09-05T20:09:22.805Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/categories/MLB135679",
+      "at": "2026-09-05T20:09:22.985Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/categories/MLB428938",
+      "at": "2026-09-05T20:09:22.988Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/categories/MLB99957",
+      "at": "2026-09-05T20:09:22.989Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/categories/MLB5914",
+      "at": "2026-09-05T20:09:22.984Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/me",
+      "at": "2026-09-05T20:09:23.123Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/me",
+      "at": "2026-09-05T20:09:23.130Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/me",
+      "at": "2026-09-05T20:09:23.126Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/me",
+      "at": "2026-09-05T20:09:23.137Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_preferences",
+      "at": "2026-09-05T20:09:23.272Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_preferences",
+      "at": "2026-09-05T20:09:23.291Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_preferences",
+      "at": "2026-09-05T20:09:23.298Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_preferences",
+      "at": "2026-09-05T20:09:23.298Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=818&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.444Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=101.61&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:23.479Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=101.61&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.479Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=103.35&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.480Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=59.9&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:23.482Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=59.9&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.482Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=103.35&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:23.480Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=96.25&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:23.644Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=96.25&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.644Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.72&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:23.662Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.72&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.662Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=80.61&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:23.670Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=818&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:23.444Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=80.61&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.670Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=93.16&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:23.810Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.55&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:23.819Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=794.99&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:23.828Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=93.16&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.810Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.55&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.819Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=74.76&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.836Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=74.76&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:23.836Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.53&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.986Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.53&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:23.986Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=92.73&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:23.985Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=92.73&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.985Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.86&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:24.005Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.86&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.005Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=794.99&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:23.828Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=60.87&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:24.149Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=60.87&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.148Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=92.67&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.150Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=92.67&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:24.150Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.72&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:24.163Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.72&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.163Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=820.79&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:24.218Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=820.79&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.218Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.85&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:24.306Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=92.68&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:24.307Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.69&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.324Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.69&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:24.324Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=92.68&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.307Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=824.58&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:24.376Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=824.58&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.376Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.7&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:24.477Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.7&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.477Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=99.78&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:24.478Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=99.78&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.478Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.85&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.305Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=825.14&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.540Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=825.14&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:24.540Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=83.57&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:24.625Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=83.57&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.625Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=93.63&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:24.641Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=93.63&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.641Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.57&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.683Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.57&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:24.684Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=825.22&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:24.693Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=75.21&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.777Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=75.21&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:24.777Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=92.8&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.805Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=92.8&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:24.806Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.54&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:24.835Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.54&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.835Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.93&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.926Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.93&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:24.927Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=92.69&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:24.962Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=92.69&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.962Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=64.84&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:25.010Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=64.84&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.010Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=825.22&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:24.692Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.73&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.078Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.73&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:25.078Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=106.29&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.113Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=106.29&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:25.114Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=59.39&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.161Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=59.39&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:25.162Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=825.24&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.192Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=825.24&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:25.193Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=89.02&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:25.227Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=89.02&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.227Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=96.88&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:25.265Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=96.88&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.265Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.65&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.310Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.65&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+      "at": "2026-09-05T20:09:25.311Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=824.17&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.346Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=824.17&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:25.347Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=76.04&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:25.378Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=93.24&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:25.431Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=93.24&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.431Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=825.08&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:25.502Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=825.08&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.501Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=92.75&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.592Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=92.75&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "at": "2026-09-05T20:09:25.593Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=825.21&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:25.650Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=825.21&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.650Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=76.04&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.378Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=877.88&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.801Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=877.88&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:25.801Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=74.06&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.879Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=74.06&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:25.879Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=832.97&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:25.953Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.75&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:26.029Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.75&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:26.030Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=73.71&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:26.181Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=73.71&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "at": "2026-09-05T20:09:26.181Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=832.97&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:25.953Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=826.37&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:26.334Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=826.37&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:26.335Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=825.4&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:26.489Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=825.4&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:26.488Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=825.26&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:26.650Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=825.26&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+      "at": "2026-09-05T20:09:26.650Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/products/MLB38641933",
+      "at": "2026-09-05T20:09:26.831Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/categories/MLB45905",
+      "at": "2026-09-05T20:09:26.987Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/me",
+      "at": "2026-09-05T20:09:27.130Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_preferences",
+      "at": "2026-09-05T20:09:27.284Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=105.31&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:27.463Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=105.31&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:27.462Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=95.25&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:27.852Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=95.25&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:27.852Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=91.11&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:28.006Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=91.11&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:28.006Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=90.51&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:28.157Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=90.51&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:28.157Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=90.43&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:28.308Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=90.43&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:28.308Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=98.74&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:28.459Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=98.74&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:28.459Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=91.6&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:28.609Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=91.6&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:28.609Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=90.59&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:28.761Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=90.59&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:28.761Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=90.44&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:28.911Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=90.44&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:28.911Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=90.42&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:29.060Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=90.42&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:29.060Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=105.18&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:29.568Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=105.18&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:29.568Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=95.22&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+      "at": "2026-09-05T20:09:29.722Z",
+      "status": 200
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=95.22&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "at": "2026-09-05T20:09:29.722Z",
+      "status": 200
+    }
+  ],
+  "results": [
+    {
+      "sku": "VTK026044",
+      "produto_id": "9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+      "product": {
+        "id": "9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+        "sku": "VTK026044",
+        "nome": "Mouse Intelbras Msi50 Sem Fio Preto",
+        "marca": "INTELBRAS",
+        "estoque": 50,
+        "custo": 39.9,
+        "ml_fee": 0.15,
+        "ml_shipping": 0,
+        "custom_price": null,
+        "ml_status": "sem_anuncio",
+        "peso_liq": 0.104,
+        "peso_bruto": 0.104,
+        "largura": 7,
+        "altura": 11.5,
+        "profundidade": 4,
+        "gtin": "7899298724933",
+        "descricao": "Mouse Intelbras MSI50 Sem Fio Preto Código do produto: 4300907 O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória. Características » USB 2.0 » Conexão de 2.4GHz estável via Dongle » Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional » Click silencioso, garantindo maior satisfação ao usuário » Compatibilidade com sistemas operacionais » Produto leve e confortável » Autonomia de bateria prolongada » Alcance de até 10 metros sem barreira » Modo Standby » Botões de comando que garantem sua usabilidade *Imagens meramente ilustrativas.\n\nÁrea de alcance: Até 10m* Bateria inclusa: Sim - 1 x AA – 1.5 V Consumo máximo: 11 mA - 1.5 V Capacidade da bateria: 3000 mAh** Standby: Sim – 20s e 15 min Retorno do standby: 20s – Movimento | 15m - Click Plug & Play: Sim Click silencioso: Sim Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS® Botão ligar/desligar: Sim Conectividade: 2.4GHz Dongle: Sim - Embutido USB: 2.0 Int Connect: Sim – TSI 50 Indicação de nível de bateria: Não Material: ABS Peso: 83g (com bateria) Dimensões (L × A × P): 62 × 107 × 38 mm Temperatura de trabalho: 0° à 40° Sensor óptico: Vermelho com redução Resolução: Fixo - 1200 DPI Quantidade de botões: 3 (E+D+SCR) Scroll: Sim Superfície: Todas exceto vidro e superfícies translucidas*** Ambidestro: Sim Conteúdo da embalagem » 1x Mouse sem fio MSI 50 Preto » 1x Dongle Wireless » 1x Pilha AA *A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado. **A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh. ***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento.",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+          "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png",
+          "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png"
+        ],
+        "categoria": "Informatica/ Perifericos/ Mouse óptico",
+        "ml_item_id": null,
+        "created_at": "2026-08-16T11:00:23.694417+00:00",
+        "updated_at": "2026-09-05T19:23:25.841118+00:00",
+        "dslite_fornecedor_id": "133",
+        "dslite_produto_id": "391313",
+        "dslite_ultima_sync": "2026-09-05T19:23:25.487+00:00",
+        "fornecedor": "EVOLUSOM-PR",
+        "ncm": "84716053",
+        "cest": "21.031.00",
+        "origem_fiscal": "2",
+        "origem_uf": "PR",
+        "csosn": "101",
+        "ml_shipping_warning": null,
+        "oferta_preferencial_id": "57c6546f-4141-477a-aa2e-602712b0a36f",
+        "ativo": true,
+        "fornecedor_preferencial_manual": false
+      },
+      "offer": {
+        "id": "57c6546f-4141-477a-aa2e-602712b0a36f",
+        "produto_id": "9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+        "dslite_fornecedor_id": "133",
+        "fornecedor_nome": "EVOLUSOM-PR",
+        "dslite_produto_id": "391313",
+        "sku_fornecedor": "391313",
+        "custo": 39.9,
+        "estoque": 50,
+        "ativo": true,
+        "prioridade": 100,
+        "payment_mode": "prepaid_pix",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-09-05T19:23:25.487+00:00",
+        "created_at": "2026-08-16T11:00:23.70381+00:00",
+        "updated_at": "2026-09-05T19:23:25.5+00:00",
+        "sku_oferta": "391313",
+        "nome": "Mouse Intelbras Msi50 Sem Fio Preto",
+        "descricao": "Mouse Intelbras MSI50 Sem Fio Preto Código do produto: 4300907 O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória. Características » USB 2.0 » Conexão de 2.4GHz estável via Dongle » Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional » Click silencioso, garantindo maior satisfação ao usuário » Compatibilidade com sistemas operacionais » Produto leve e confortável » Autonomia de bateria prolongada » Alcance de até 10 metros sem barreira » Modo Standby » Botões de comando que garantem sua usabilidade *Imagens meramente ilustrativas.\n\nÁrea de alcance: Até 10m* Bateria inclusa: Sim - 1 x AA – 1.5 V Consumo máximo: 11 mA - 1.5 V Capacidade da bateria: 3000 mAh** Standby: Sim – 20s e 15 min Retorno do standby: 20s – Movimento | 15m - Click Plug & Play: Sim Click silencioso: Sim Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS® Botão ligar/desligar: Sim Conectividade: 2.4GHz Dongle: Sim - Embutido USB: 2.0 Int Connect: Sim – TSI 50 Indicação de nível de bateria: Não Material: ABS Peso: 83g (com bateria) Dimensões (L × A × P): 62 × 107 × 38 mm Temperatura de trabalho: 0° à 40° Sensor óptico: Vermelho com redução Resolução: Fixo - 1200 DPI Quantidade de botões: 3 (E+D+SCR) Scroll: Sim Superfície: Todas exceto vidro e superfícies translucidas*** Ambidestro: Sim Conteúdo da embalagem » 1x Mouse sem fio MSI 50 Preto » 1x Dongle Wireless » 1x Pilha AA *A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado. **A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh. ***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento.",
+        "marca": "INTELBRAS",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+          "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png",
+          "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png"
+        ],
+        "gtin": "7899298724933",
+        "ncm": "84716053",
+        "cest": "21.031.00"
+      },
+      "identity": {
+        "local": {
+          "gtin": "7899298724933",
+          "brand": "INTELBRAS",
+          "model": "msi50",
+          "partNumber": null,
+          "quantity": null,
+          "packaging": null,
+          "provenance": {
+            "model": {
+              "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+              "excerpt": "msi50"
+            },
+            "brand": {
+              "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+              "excerpt": "INTELBRAS; "
+            },
+            "gtin": {
+              "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+              "excerpt": "7899298724933"
+            }
+          },
+          "variation": "preto",
+          "brandEvidence": "Mouse Intelbras Msi50 Sem Fio Preto Mouse Intelbras MSI50 Sem Fio Preto Código do produto: 4300907 O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória. Características » USB 2.0 » Conexão de 2.4GHz estável via Dongle » Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional » Click silencioso, garantindo maior satisfação ao usuário » Compatibilidade com sistemas operacionais » Produto leve e confortável » Autonomia de bateria prolongada » Alcance de até 10 metros sem barreira » Modo Standby » Botões de comando que garantem sua usabilidade *Imagens meramente ilustrativas. Área de alcance: Até 10m* Bateria inclusa: Sim - 1 x AA – 1.5 V Consumo máximo: 11 mA - 1.5 V Capacidade da bateria: 3000 mAh** Standby: Sim – 20s e 15 min Retorno do standby: 20s – Movimento | 15m - Click Plug & Play: Sim Click silencioso: Sim Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS® Botão ligar/desligar: Sim Conectividade: 2.4GHz Dongle: Sim - Embutido USB: 2.0 Int Connect: Sim – TSI 50 Indicação de nível de bateria: Não Material: ABS Peso: 83g (com bateria) Dimensões (L × A × P): 62 × 107 × 38 mm Temperatura de trabalho: 0° à 40° Sensor óptico: Vermelho com redução Resolução: Fixo - 1200 DPI Quantidade de botões: 3 (E+D+SCR) Scroll: Sim Superfície: Todas exceto vidro e superfícies translucidas*** Ambidestro: Sim Conteúdo da embalagem » 1x Mouse sem fio MSI 50 Preto » 1x Dongle Wireless » 1x Pilha AA *A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado. **A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh. ***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento."
+        },
+        "remote": {
+          "gtin": null,
+          "brand": "Intelbras",
+          "model": "Mouse MSI 50",
+          "partNumber": null,
+          "packaging": null,
+          "quantity": null,
+          "saleUnits": null,
+          "variation": "Preto",
+          "provenance": {
+            "brand": {
+              "source": "/products/MLB78302520",
+              "excerpt": "BRAND: Intelbras"
+            },
+            "model": {
+              "source": "/products/MLB78302520",
+              "excerpt": "MODEL: Mouse MSI 50"
+            },
+            "variation": {
+              "source": "/products/MLB78302520",
+              "excerpt": "COLOR: Preto"
+            }
+          },
+          "critical": {
+            "VOLTAGE": null,
+            "LENGTH": null,
+            "SIZE": null,
+            "CAPACITY": null,
+            "CONNECTOR_TYPE": null,
+            "INPUT_CONNECTOR": null,
+            "OUTPUT_CONNECTOR": null,
+            "PINS_NUMBER": null
+          }
+        },
+        "source": "/products/MLB78302520"
+      },
+      "assessment": {
+        "identity": "IDENTIDADE_COHERENTE",
+        "comparisons": [
+          {
+            "field": "brand",
+            "local": "INTELBRAS",
+            "remote": "Intelbras",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "model",
+            "local": "msi50",
+            "remote": "Mouse MSI 50",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "variation",
+            "local": "preto",
+            "remote": "Preto",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          }
+        ],
+        "reasons": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA"
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1"
+      },
+      "catalog": {
+        "id": "MLB78302520",
+        "catalog_product_id": "MLB78302520",
+        "status": "active",
+        "pdp_types": [
+          "traditional"
+        ],
+        "domain_id": "MLB-COMPUTER_MICE",
+        "permalink": "",
+        "name": "Mouse sem Fio MSI50 Intelbras",
+        "family_name": "Intelbras MSI Mouse MSI 50 MSI50",
+        "type": "catalog_product",
+        "buy_box_winner": null,
+        "pickers": [
+          {
+            "picker_id": "COLOR",
+            "picker_name": "Cor",
+            "products": [
+              {
+                "product_id": "MLB78302520",
+                "picker_label": "Preto",
+                "picture_id": "975823-MLA115306548998_082026",
+                "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_975823-MLA115306548998_082026-I.jpg",
+                "tags": [
+                  "selected"
+                ],
+                "changes": [],
+                "permalink": "",
+                "product_name": "Intelbras MSI Mouse MSI 50 MSI50 - Preto",
+                "auto_completed": true,
+                "rgb_meta": "000000"
+              }
+            ],
+            "tags": [],
+            "attributes": [
+              {
+                "attribute_id": "COLOR",
+                "template": "",
+                "position": 1
+              }
+            ],
+            "value_name_delimiter": "",
+            "hide_extra_decoration": false,
+            "secondary_picker_name": ""
+          }
+        ],
+        "pictures": [
+          {
+            "id": "975823-MLA115306548998_082026",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_975823-MLA115306548998_082026-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 657,
+            "max_height": 850,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "806442-MLA116715235703_082026",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_806442-MLA116715235703_082026-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1001,
+            "max_height": 500,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          }
+        ],
+        "description_pictures": [],
+        "main_features": [
+          {
+            "text": "É sem fio.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Orientação da mão: ambidestro.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Com sensor óptico.",
+            "type": "key_value",
+            "metadata": {}
+          }
+        ],
+        "disclaimers": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "10366",
+            "value_name": "Intelbras",
+            "values": [
+              {
+                "id": "10366",
+                "name": "Intelbras"
+              }
+            ]
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "45251028",
+            "value_name": "MSI",
+            "values": [
+              {
+                "id": "45251028",
+                "name": "MSI"
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "87828630",
+            "value_name": "Mouse MSI 50",
+            "values": [
+              {
+                "id": "87828630",
+                "name": "Mouse MSI 50"
+              }
+            ]
+          },
+          {
+            "id": "ALPHANUMERIC_MODEL",
+            "name": "Modelo alfanumérico",
+            "value_id": "40905268",
+            "value_name": "MSI50",
+            "values": [
+              {
+                "id": "40905268",
+                "name": "MSI50"
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto"
+              }
+            ]
+          },
+          {
+            "id": "MAIN_COLOR",
+            "name": "Cor principal",
+            "value_id": "2450295",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "2450295",
+                "name": "Preto",
+                "meta": {
+                  "rgb": "000000"
+                }
+              }
+            ],
+            "meta": {
+              "rgb": "000000"
+            }
+          },
+          {
+            "id": "COMPUTER_MOUSE_TYPE",
+            "name": "Tipo de mouse",
+            "value_id": "192740",
+            "value_name": "Convencional",
+            "values": [
+              {
+                "id": "192740",
+                "name": "Convencional"
+              }
+            ]
+          },
+          {
+            "id": "SENSOR_TYPE",
+            "name": "Tipo de sensor",
+            "value_id": "109003",
+            "value_name": "Óptico",
+            "values": [
+              {
+                "id": "109003",
+                "name": "Óptico"
+              }
+            ]
+          },
+          {
+            "id": "WITH_BLUETOOTH",
+            "name": "Com Bluetooth",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "WITH_WIRE",
+            "name": "Com fio",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "IS_WIRELESS",
+            "name": "É sem fio",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "meta": {
+                  "value": true
+                }
+              }
+            ],
+            "meta": {
+              "value": true
+            }
+          },
+          {
+            "id": "HAND_ORIENTATION",
+            "name": "Orientação da mão",
+            "value_id": "2862903",
+            "value_name": "Ambidestro",
+            "values": [
+              {
+                "id": "2862903",
+                "name": "Ambidestro"
+              }
+            ]
+          },
+          {
+            "id": "MANUFACTURER",
+            "name": "Fabricante",
+            "value_id": "10366",
+            "value_name": "Intelbras",
+            "values": [
+              {
+                "id": "10366",
+                "name": "Intelbras"
+              }
+            ]
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "9022334",
+            "value_name": "83 g",
+            "values": [
+              {
+                "id": "9022334",
+                "name": "83 g"
+              }
+            ]
+          },
+          {
+            "id": "WITH_LIGHTS",
+            "name": "Com luzes",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "ACCESSORIES_INCLUDED",
+            "name": "Acessórios incluídos",
+            "value_id": "2296418",
+            "value_name": "Adaptador",
+            "values": [
+              {
+                "id": "2296418",
+                "name": "Adaptador"
+              }
+            ]
+          },
+          {
+            "id": "WIRELESS_TECHNOLOGY",
+            "name": "Tecnologia sem fio",
+            "value_id": "73460133",
+            "value_name": "Wireless 2.4",
+            "values": [
+              {
+                "id": "73460133",
+                "name": "Wireless 2.4"
+              }
+            ]
+          }
+        ],
+        "short_description": {
+          "type": "plaintext",
+          "content": ""
+        },
+        "parent_id": "MLB78302517",
+        "children_ids": [],
+        "settings": {
+          "content": "fixed",
+          "listing_strategy": "catalog_required",
+          "exclusive": false,
+          "with_enhanced_pictures": false,
+          "base_site_product_id": null,
+          "ttr": "2026-09-05T12:59:19.467475658"
+        },
+        "quality_type": "COMPLETE",
+        "release_info": null,
+        "presale_info": null,
+        "enhanced_content": null,
+        "tags": [],
+        "date_created": "2026-08-25T18:25:23Z",
+        "authorized_stores": null,
+        "last_updated": "2026-08-25T21:17:44Z",
+        "grouper_id": null,
+        "experiments": {}
+      },
+      "quote": {
+        "price": 73.7,
+        "cost": 39.9,
+        "offerId": "57c6546f-4141-477a-aa2e-602712b0a36f",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-05T19:23:25.5+00:00",
+        "fee": {
+          "amount": 9.58,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.480Z",
+          "evidence": "/sites/MLB/listing_prices?price=73.7&category_id=MLB5914&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "2847df81d40a9837786483a8081e8ded9a22fe7a4d2225cade70e87f425b2cdf"
+        },
+        "shipping": {
+          "amount": 12.95,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.480Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=73.7&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+          "contextKey": "2847df81d40a9837786483a8081e8ded9a22fe7a4d2225cade70e87f425b2cdf"
+        },
+        "variableCosts": {
+          "amount": null,
+          "source": "unknown",
+          "observedAt": null,
+          "evidence": null
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-05T20:09:22.619Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-05T20:09:23.480Z",
+        "policyVersion": "M2M-PRC-01-v1",
+        "band": {
+          "id": "BELOW_200",
+          "maxCents": 20000,
+          "floor": 0.05,
+          "target": 0.07,
+          "limit": 0.1
+        },
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 6.11,
+        "result": 5.16,
+        "margin": 0.0700135685210312,
+        "status": "estimated"
+      },
+      "quoteFailure": null,
+      "blocked": [],
+      "priorIdentity": "IDENTIDADE_INCONCLUSIVA",
+      "priorConflict": "PENDENCIA_VALIDACAO",
+      "observedAt": "2026-09-05T20:09:26.334Z"
+    },
+    {
+      "sku": "VTK018404",
+      "produto_id": "89d6e489-87fe-41ee-840c-d139b1ec134f",
+      "product": {
+        "id": "89d6e489-87fe-41ee-840c-d139b1ec134f",
+        "sku": "VTK018404",
+        "nome": "Calculadora De Mesa Truly 12 Dígitos - T882",
+        "marca": "TRULY",
+        "estoque": 4,
+        "custo": 54.9,
+        "ml_fee": 0.15,
+        "ml_shipping": 0,
+        "custom_price": null,
+        "ml_status": "sem_anuncio",
+        "peso_liq": 0.281,
+        "peso_bruto": 0.281,
+        "largura": 13,
+        "altura": 3,
+        "profundidade": 18,
+        "gtin": "4891223882001",
+        "descricao": "Faça cálculos precisos e rápidos com a Calculadora de Mesa 12 Dígitos T882 TRULY, com visor inclinável permitindo assim melhor visualização! *Imagens meramente ilustrativas.",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21d93b1.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21d9fc7.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21da661.jpg"
+        ],
+        "categoria": "Informatica/ Acessórios Para Informatica/ Calculadoras",
+        "ml_item_id": null,
+        "created_at": "2026-07-20T18:32:23.092114+00:00",
+        "updated_at": "2026-09-05T20:05:31.745298+00:00",
+        "dslite_fornecedor_id": "133",
+        "dslite_produto_id": "385225",
+        "dslite_ultima_sync": "2026-09-05T20:05:31.662+00:00",
+        "fornecedor": "EVOLUSOM-PR",
+        "ncm": "84701000",
+        "cest": null,
+        "origem_fiscal": "2",
+        "origem_uf": "PR",
+        "csosn": "101",
+        "ml_shipping_warning": null,
+        "oferta_preferencial_id": "fed1f1e5-7971-404d-af0f-7205bf3a7474",
+        "ativo": true,
+        "fornecedor_preferencial_manual": false
+      },
+      "offer": {
+        "id": "fed1f1e5-7971-404d-af0f-7205bf3a7474",
+        "produto_id": "89d6e489-87fe-41ee-840c-d139b1ec134f",
+        "dslite_fornecedor_id": "133",
+        "fornecedor_nome": "EVOLUSOM-PR",
+        "dslite_produto_id": "385225",
+        "sku_fornecedor": "385225",
+        "custo": 54.9,
+        "estoque": 4,
+        "ativo": true,
+        "prioridade": 100,
+        "payment_mode": "prepaid_pix",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-09-05T20:05:31.662+00:00",
+        "created_at": "2026-07-20T18:32:23.345495+00:00",
+        "updated_at": "2026-09-05T20:05:31.67+00:00",
+        "sku_oferta": "385225",
+        "nome": "Calculadora De Mesa Truly 12 Dígitos - T882",
+        "descricao": "Faça cálculos precisos e rápidos com a Calculadora de Mesa 12 Dígitos T882 TRULY, com visor inclinável permitindo assim melhor visualização! *Imagens meramente ilustrativas.",
+        "marca": "TRULY",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21d93b1.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21d9fc7.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21da661.jpg"
+        ],
+        "gtin": "4891223882001",
+        "ncm": "84701000",
+        "cest": null
+      },
+      "identity": {
+        "local": {
+          "gtin": "4891223882001",
+          "brand": "TRULY",
+          "model": "t882",
+          "partNumber": null,
+          "quantity": null,
+          "packaging": null,
+          "provenance": {
+            "model": {
+              "source": "supplier_offer:fed1f1e5-7971-404d-af0f-7205bf3a7474",
+              "excerpt": "t882"
+            },
+            "brand": {
+              "source": "supplier_offer:fed1f1e5-7971-404d-af0f-7205bf3a7474",
+              "excerpt": "TRULY; "
+            },
+            "gtin": {
+              "source": "supplier_offer:fed1f1e5-7971-404d-af0f-7205bf3a7474",
+              "excerpt": "4891223882001"
+            }
+          },
+          "variation": null,
+          "brandEvidence": "Calculadora De Mesa Truly 12 Dígitos - T882 Faça cálculos precisos e rápidos com a Calculadora de Mesa 12 Dígitos T882 TRULY, com visor inclinável permitindo assim melhor visualização! *Imagens meramente ilustrativas."
+        },
+        "remote": {
+          "gtin": null,
+          "brand": "Truly",
+          "model": "Truly T882",
+          "partNumber": null,
+          "packaging": null,
+          "quantity": null,
+          "saleUnits": null,
+          "variation": "Preto",
+          "provenance": {
+            "brand": {
+              "source": "/products/MLB25806207",
+              "excerpt": "BRAND: Truly"
+            },
+            "model": {
+              "source": "/products/MLB25806207",
+              "excerpt": "MODEL: Truly T882"
+            },
+            "variation": {
+              "source": "/products/MLB25806207",
+              "excerpt": "COLOR: Preto"
+            }
+          },
+          "critical": {
+            "VOLTAGE": null,
+            "LENGTH": null,
+            "SIZE": null,
+            "CAPACITY": null,
+            "CONNECTOR_TYPE": null,
+            "INPUT_CONNECTOR": null,
+            "OUTPUT_CONNECTOR": null,
+            "PINS_NUMBER": null
+          }
+        },
+        "source": "/products/MLB25806207"
+      },
+      "assessment": {
+        "identity": "IDENTIDADE_COHERENTE",
+        "comparisons": [
+          {
+            "field": "brand",
+            "local": "TRULY",
+            "remote": "Truly",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "model",
+            "local": "t882",
+            "remote": "Truly T882",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          }
+        ],
+        "reasons": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA"
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1"
+      },
+      "catalog": {
+        "id": "MLB25806207",
+        "catalog_product_id": "MLB25806207",
+        "status": "active",
+        "pdp_types": [
+          "traditional"
+        ],
+        "domain_id": "MLB-CALCULATORS",
+        "permalink": "",
+        "name": "Calculadora De Mesa Truly T882 12 Dígitos Cor Preto",
+        "family_name": "Truly Mesa Truly T882",
+        "type": "catalog_product",
+        "buy_box_winner": null,
+        "pickers": [
+          {
+            "picker_id": "COLOR",
+            "picker_name": "Cor",
+            "products": [
+              {
+                "product_id": "MLB25806207",
+                "picker_label": "Preto",
+                "picture_id": "968516-MLA99453718988_112025",
+                "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_968516-MLA99453718988_112025-I.jpg",
+                "tags": [
+                  "selected"
+                ],
+                "changes": [],
+                "permalink": "",
+                "product_name": "Truly Mesa Truly T882 - Preto",
+                "auto_completed": true
+              }
+            ],
+            "tags": [],
+            "attributes": [
+              {
+                "attribute_id": "COLOR",
+                "template": "",
+                "position": 1
+              }
+            ],
+            "value_name_delimiter": "",
+            "hide_extra_decoration": false,
+            "secondary_picker_name": ""
+          }
+        ],
+        "pictures": [
+          {
+            "id": "968516-MLA99453718988_112025",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_968516-MLA99453718988_112025-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 375,
+            "max_height": 500,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "635632-MLA99937702501_112025",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_635632-MLA99937702501_112025-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 456,
+            "max_height": 500,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "677757-MLA93505460411_092025",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_677757-MLA93505460411_092025-F.jpg",
+            "suggested_for_picker": [],
+            "max_width": 1000,
+            "max_height": 972,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          }
+        ],
+        "description_pictures": [],
+        "main_features": [
+          {
+            "text": "Calculadora de mesa com visor de 12 dígitos em cor preto.",
+            "type": "key_value",
+            "metadata": {}
+          }
+        ],
+        "disclaimers": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "2434327",
+            "value_name": "Truly",
+            "values": [
+              {
+                "id": "2434327",
+                "name": "Truly"
+              }
+            ]
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "6834319",
+            "value_name": "Mesa",
+            "values": [
+              {
+                "id": "6834319",
+                "name": "Mesa"
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "49170733",
+            "value_name": "Truly T882",
+            "values": [
+              {
+                "id": "49170733",
+                "name": "Truly T882"
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto"
+              }
+            ]
+          },
+          {
+            "id": "DISPLAY_DIGITS_NUMBER",
+            "name": "Quantidade de dígitos",
+            "value_id": "17969197",
+            "value_name": "12",
+            "values": [
+              {
+                "id": "17969197",
+                "name": "12"
+              }
+            ]
+          },
+          {
+            "id": "CALCULATOR_TYPE",
+            "name": "Tipo de calculadora",
+            "value_id": "6132076",
+            "value_name": "Básica",
+            "values": [
+              {
+                "id": "6132076",
+                "name": "Básica"
+              }
+            ]
+          },
+          {
+            "id": "FUNCTIONS_NUMBER",
+            "name": "Quantidade de funções",
+            "value_id": "7876938",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "7876938",
+                "name": "1"
+              }
+            ]
+          },
+          {
+            "id": "FUNCTIONS",
+            "name": "Funções",
+            "value_id": "25941946",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "25941946",
+                "name": "1"
+              }
+            ]
+          },
+          {
+            "id": "WITH_PRINTER",
+            "name": "Com impressora",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "1478",
+            "value_name": "240 g",
+            "values": [
+              {
+                "id": "1478",
+                "name": "240 g"
+              }
+            ]
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "121920",
+            "value_name": "20 cm",
+            "values": [
+              {
+                "id": "121920",
+                "name": "20 cm"
+              }
+            ]
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "570719",
+            "value_name": "14 cm",
+            "values": [
+              {
+                "id": "570719",
+                "name": "14 cm"
+              }
+            ]
+          }
+        ],
+        "short_description": {
+          "type": "plaintext",
+          "content": "A Calculadora de Mesa T882 da Truly é a ferramenta ideal para quem busca praticidade e eficiência em suas atividades diárias. Com 12 dígitos, ela permite realizar cálculos básicos de forma rápida e precisa, tornando-se uma excelente opção para uso em escritórios, escolas ou em casa. Seu design em preto é elegante e se adapta a qualquer ambiente, garantindo que você tenha um acessório funcional e estiloso.\n\nCom uma embalagem adicional que protege o produto, a T882 é compacta e leve, pesando apenas 240 g, o que facilita seu transporte e armazenamento. Suas dimensões de 20 cm de altura, 5 cm de comprimento e 14 cm de largura a tornam perfeita para mesas de trabalho ou estantes. A calculadora não possui impressora, mas sua simplicidade e eficiência a tornam uma escolha prática para quem precisa de um equipamento confiável.\n\nA Truly se destaca pela qualidade de seus produtos, e a Calculadora de Mesa T882 não é exceção. Com uma única função, ela é fácil de usar, ideal para quem não precisa de recursos complexos. Se você procura uma calculadora que atenda suas necessidades diárias sem complicações, a T882 é a escolha certa."
+        },
+        "parent_id": "MLB25806205",
+        "children_ids": [],
+        "settings": {
+          "content": "fixed",
+          "listing_strategy": "catalog_required",
+          "exclusive": false,
+          "with_enhanced_pictures": false,
+          "base_site_product_id": null,
+          "ttr": "2026-09-05T16:38:16.453428898"
+        },
+        "quality_type": "COMPLETE",
+        "release_info": null,
+        "presale_info": null,
+        "enhanced_content": null,
+        "tags": [],
+        "date_created": "2023-08-04T20:44:31Z",
+        "authorized_stores": null,
+        "last_updated": "2026-06-30T19:33:40Z",
+        "grouper_id": null,
+        "experiments": {}
+      },
+      "quote": {
+        "price": 92.68,
+        "cost": 54.9,
+        "offerId": "fed1f1e5-7971-404d-af0f-7205bf3a7474",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-05T20:05:31.67+00:00",
+        "fee": {
+          "amount": 10.66,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.479Z",
+          "evidence": "/sites/MLB/listing_prices?price=92.68&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "2e1748f682ddb0cac57635a82ad42b04b3f68de5a1e26f7f386e31acf6d7f81e"
+        },
+        "shipping": {
+          "amount": 12.95,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.479Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=92.68&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+          "contextKey": "2e1748f682ddb0cac57635a82ad42b04b3f68de5a1e26f7f386e31acf6d7f81e"
+        },
+        "variableCosts": {
+          "amount": null,
+          "source": "unknown",
+          "observedAt": null,
+          "evidence": null
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-05T20:09:22.619Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-05T20:09:23.479Z",
+        "policyVersion": "M2M-PRC-01-v1",
+        "band": {
+          "id": "BELOW_200",
+          "maxCents": 20000,
+          "floor": 0.05,
+          "target": 0.07,
+          "limit": 0.1
+        },
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 7.68,
+        "result": 6.49,
+        "margin": 0.07002589555459646,
+        "status": "estimated"
+      },
+      "quoteFailure": null,
+      "blocked": [],
+      "priorIdentity": "IDENTIDADE_INCONCLUSIVA",
+      "priorConflict": "PENDENCIA_VALIDACAO",
+      "observedAt": "2026-09-05T20:09:25.741Z"
+    },
+    {
+      "sku": "VTK005849",
+      "produto_id": "839725f6-1148-4b9d-baec-3516c2336d88",
+      "product": {
+        "id": "839725f6-1148-4b9d-baec-3516c2336d88",
+        "sku": "VTK005849",
+        "nome": "Esguicho Alumínio 30cm KE30A Azul Kepper",
+        "marca": "KEPPER",
+        "estoque": 7,
+        "custo": 29.9,
+        "ml_fee": 0.15,
+        "ml_shipping": 0,
+        "custom_price": null,
+        "ml_status": "sem_anuncio",
+        "peso_liq": 0.25,
+        "peso_bruto": 0.25,
+        "largura": 6,
+        "altura": 4,
+        "profundidade": 44,
+        "gtin": "729208118583",
+        "descricao": "O Esguicho Alumínio 30cm KE30A é uma ferramenta versátil e durável, ideal para diversas tarefas cotidianas de irrigação e limpeza. Equipado com um registro de abre/fecha, proporciona controle total sobre a pressão da água, permitindo ajustes precisos conforme a necessidade. O esguicho acompanha duas ponteiras: a ponteira Leque e a ponteira Jato. A ponteira Leque é perfeita para lavagem de carros, calçadas e rega de plantas, oferecendo um jato mais amplo e suave. Já a ponteira Jato é ideal para remover sujeiras mais resistentes e alcançar áreas de difícil acesso, proporcionando um jato de água mais concentrado e potente. Construído com materiais de alta qualidade, o KE30A é robusto e resistente, garantindo uma longa vida útil. Seja para uso doméstico ou profissional, este esguicho é a escolha certa para quem busca eficiência e praticidade em suas atividades de limpeza e irrigação.",
+        "imagens": [
+          "https://static.hayapek.com.br/produtos/83930/550/1.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/2.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/3.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/4.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/5.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/6.jpg"
+        ],
+        "categoria": "Materiais Eletricos / Ferramentas Manuais / Ferramentas Diversas",
+        "ml_item_id": null,
+        "created_at": "2026-05-11T20:17:09.113226+00:00",
+        "updated_at": "2026-09-05T19:54:32.185869+00:00",
+        "dslite_fornecedor_id": "133",
+        "dslite_produto_id": "387346",
+        "dslite_ultima_sync": "2026-09-05T19:54:31.956+00:00",
+        "fornecedor": "EVOLUSOM-PR",
+        "ncm": "8481.80.99",
+        "cest": null,
+        "origem_fiscal": "2",
+        "origem_uf": "PR",
+        "csosn": "101",
+        "ml_shipping_warning": null,
+        "oferta_preferencial_id": "0807a761-0456-414f-9f5d-087ec1f467d4",
+        "ativo": true,
+        "fornecedor_preferencial_manual": false
+      },
+      "offer": {
+        "id": "0807a761-0456-414f-9f5d-087ec1f467d4",
+        "produto_id": "839725f6-1148-4b9d-baec-3516c2336d88",
+        "dslite_fornecedor_id": "133",
+        "fornecedor_nome": "EVOLUSOM-PR",
+        "dslite_produto_id": "387346",
+        "sku_fornecedor": "387346",
+        "custo": 29.9,
+        "estoque": 7,
+        "ativo": true,
+        "prioridade": 100,
+        "payment_mode": "prepaid_pix",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-09-05T19:54:31.956+00:00",
+        "created_at": "2026-07-20T18:31:48.470049+00:00",
+        "updated_at": "2026-09-05T19:54:31.976+00:00",
+        "sku_oferta": "387346",
+        "nome": "Esguicho Kepper Em Alumínio 30cm Azul",
+        "descricao": "Esguicho de Alta Pressão - One Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência . Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço . Seja regando delicadas flores ou realizando uma limpeza poderosa , seu acabamento refinado e a alta pressão garantem durabilidade e desempenho . Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples . Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para qualquer tarefa de irrigação ou limpeza . Oferecemos 3 meses de garantia contra defeito de fabricação para assegurar a satisfação de nossos clientes. Economia de Água Inteligente Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos. Duas Ponteiras Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados. Durabilidade que Investe no Futuro Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo. Leve e Portátil Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea. Versatilidade para Atender Suas Necessidades Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa. Economia de Espaço Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. *Imagens meramente ilustrativas.",
+        "marca": "KEPPER",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+          "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png",
+          "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png"
+        ],
+        "gtin": "729208118583",
+        "ncm": "84818099",
+        "cest": null
+      },
+      "identity": {
+        "local": {
+          "gtin": "729208118583",
+          "brand": "KEPPER",
+          "model": "aluminio 30cm",
+          "partNumber": null,
+          "quantity": null,
+          "packaging": null,
+          "provenance": {
+            "model": {
+              "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+              "excerpt": "aluminio 30cm"
+            },
+            "brand": {
+              "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+              "excerpt": "KEPPER; "
+            },
+            "gtin": {
+              "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+              "excerpt": "729208118583"
+            }
+          },
+          "variation": "azul",
+          "brandEvidence": "Esguicho Kepper Em Alumínio 30cm Azul Esguicho de Alta Pressão - One Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência . Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço . Seja regando delicadas flores ou realizando uma limpeza poderosa , seu acabamento refinado e a alta pressão garantem durabilidade e desempenho . Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples . Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para qualquer tarefa de irrigação ou limpeza . Oferecemos 3 meses de garantia contra defeito de fabricação para assegurar a satisfação de nossos clientes. Economia de Água Inteligente Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos. Duas Ponteiras Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados. Durabilidade que Investe no Futuro Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo. Leve e Portátil Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea. Versatilidade para Atender Suas Necessidades Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa. Economia de Espaço Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. *Imagens meramente ilustrativas."
+        },
+        "remote": {
+          "gtin": null,
+          "brand": "Kepper",
+          "model": "Kepper Aluminio 30Cm Azul",
+          "partNumber": null,
+          "packaging": null,
+          "quantity": null,
+          "saleUnits": null,
+          "variation": "Azul",
+          "provenance": {
+            "brand": {
+              "source": "/products/MLB41798496",
+              "excerpt": "BRAND: Kepper"
+            },
+            "model": {
+              "source": "/products/MLB41798496",
+              "excerpt": "MODEL: Kepper Aluminio 30Cm Azul"
+            },
+            "variation": {
+              "source": "/products/MLB41798496",
+              "excerpt": "COLOR: Azul"
+            }
+          },
+          "critical": {
+            "VOLTAGE": null,
+            "LENGTH": null,
+            "SIZE": null,
+            "CAPACITY": null,
+            "CONNECTOR_TYPE": null,
+            "INPUT_CONNECTOR": null,
+            "OUTPUT_CONNECTOR": null,
+            "PINS_NUMBER": null
+          }
+        },
+        "source": "/products/MLB41798496"
+      },
+      "assessment": {
+        "identity": "IDENTIDADE_COHERENTE",
+        "comparisons": [
+          {
+            "field": "brand",
+            "local": "KEPPER",
+            "remote": "Kepper",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "model",
+            "local": "aluminio 30cm",
+            "remote": "Kepper Aluminio 30Cm Azul",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "variation",
+            "local": "azul",
+            "remote": "Azul",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          }
+        ],
+        "reasons": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA"
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1"
+      },
+      "catalog": {
+        "id": "MLB41798496",
+        "catalog_product_id": "MLB41798496",
+        "status": "active",
+        "pdp_types": [
+          "traditional"
+        ],
+        "domain_id": "MLB-GARDENING_IRRIGATION_GUNS",
+        "permalink": "",
+        "name": "Esguicho Kepper Em Aluminio 30cm Azul",
+        "family_name": "Esguicho Kepper Em Aluminio 30cm Azul",
+        "type": "catalog_product",
+        "buy_box_winner": null,
+        "pickers": [],
+        "pictures": [
+          {
+            "id": "970775-MLA96226555954_102025",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_970775-MLA96226555954_102025-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1200,
+            "max_height": 1177,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "851214-MLA112355596114_062026",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_851214-MLA112355596114_062026-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1024,
+            "max_height": 1024,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "865630-MLA112355190568_062026",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_865630-MLA112355190568_062026-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1024,
+            "max_height": 1024,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          }
+        ],
+        "description_pictures": [],
+        "main_features": [
+          {
+            "text": "Material leve e durável, ideal para uso prolongado.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Design ergonômico que proporciona conforto durante o uso.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Cor azul vibrante que se destaca em qualquer ambiente.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Comprimento de 30cm, perfeito para diversas aplicações.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Fácil de limpar e manter, garantindo praticidade.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Material leve e resistente, ideal para uso prolongado.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Design ergonômico que facilita o manuseio.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Cor vibrante que se destaca em qualquer ambiente.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Comprimento de 30 cm, perfeito para diversas aplicações.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Fácil de limpar e manter, garantindo durabilidade.",
+            "type": "key_value",
+            "metadata": {}
+          }
+        ],
+        "disclaimers": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "35763991",
+            "value_name": "Kepper",
+            "values": [
+              {
+                "id": "35763991",
+                "name": "Kepper"
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "50256876",
+            "value_name": "Kepper Aluminio 30Cm Azul",
+            "values": [
+              {
+                "id": "50256876",
+                "name": "Kepper Aluminio 30Cm Azul"
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52028",
+            "value_name": "Azul",
+            "values": [
+              {
+                "id": "52028",
+                "name": "Azul"
+              }
+            ]
+          },
+          {
+            "id": "INCLUDES_COUPLING",
+            "name": "Inclui acoplamento",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "meta": {
+                  "value": true
+                }
+              }
+            ],
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "short_description": {
+          "type": "plaintext",
+          "content": "Esguicho Kepper Em Aluminio 30Cm Azul\n\nEspecificação:\n\nEsguicho de Alta Pressão - Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência. Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço. Seja regando delicadas flores ou realizando uma limpeza poderosa, seu acabamento refinado e a alta pressão garantem durabilidade e desempenho. Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil - perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples. Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações.\n\nEconomia de Água Inteligente  \nDesenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos.\n\nDuas Ponteiras  \nAprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados.\n\nDurabilidade que Investe no Futuro  \nConstruímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo.\n\nLeve e Portátil  \nTransporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea.\n\nVersatilidade para Atender Suas Necessidades  \nSeja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa.\n\nEconomia de Espaço  \nNossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. \n\nImagens meramente ilustrativas."
+        },
+        "parent_id": null,
+        "children_ids": [],
+        "settings": {
+          "content": "fixed",
+          "listing_strategy": "catalog_required",
+          "exclusive": false,
+          "with_enhanced_pictures": false,
+          "base_site_product_id": null,
+          "ttr": "2026-09-07T08:59:39.96714838"
+        },
+        "quality_type": "COMPLETE",
+        "release_info": null,
+        "presale_info": null,
+        "enhanced_content": null,
+        "tags": [],
+        "date_created": "2024-10-11T11:38:42Z",
+        "authorized_stores": null,
+        "last_updated": "2026-01-06T22:16:21Z",
+        "grouper_id": null,
+        "experiments": {}
+      },
+      "quote": {
+        "price": 58.53,
+        "cost": 29.9,
+        "offerId": "0807a761-0456-414f-9f5d-087ec1f467d4",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-05T19:54:31.976+00:00",
+        "fee": {
+          "amount": 6.73,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.482Z",
+          "evidence": "/sites/MLB/listing_prices?price=58.53&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "768a13dba317f8083feae251af879aa597c9abe628754dece35d48d33c764cba"
+        },
+        "shipping": {
+          "amount": 12.95,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.482Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=58.53&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=4x6x44%2C250",
+          "contextKey": "768a13dba317f8083feae251af879aa597c9abe628754dece35d48d33c764cba"
+        },
+        "variableCosts": {
+          "amount": null,
+          "source": "unknown",
+          "observedAt": null,
+          "evidence": null
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-05T20:09:22.619Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-05T20:09:23.482Z",
+        "policyVersion": "M2M-PRC-01-v1",
+        "band": {
+          "id": "BELOW_200",
+          "maxCents": 20000,
+          "floor": 0.05,
+          "target": 0.07,
+          "limit": 0.1
+        },
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 4.85,
+        "result": 4.1,
+        "margin": 0.07004954724073124,
+        "status": "estimated"
+      },
+      "quoteFailure": null,
+      "blocked": [],
+      "priorIdentity": "IDENTIDADE_INCONCLUSIVA",
+      "priorConflict": "PENDENCIA_VALIDACAO",
+      "observedAt": "2026-09-05T20:09:25.464Z"
+    },
+    {
+      "sku": "VTK018798",
+      "produto_id": "d4fcf2ae-3fac-4db3-b5d6-d53881bb0c62",
+      "product": {
+        "id": "d4fcf2ae-3fac-4db3-b5d6-d53881bb0c62",
+        "sku": "VTK018798",
+        "nome": "Central Multimídia Roadstar Rs606br 7\" Mp6 Com Tv Digital",
+        "marca": "ROADSTAR BRASIL",
+        "estoque": 4,
+        "custo": 549.9,
+        "ml_fee": 0.15,
+        "ml_shipping": 0,
+        "custom_price": null,
+        "ml_status": "sem_anuncio",
+        "peso_liq": 1.04,
+        "peso_bruto": 1.04,
+        "largura": 15,
+        "altura": 15,
+        "profundidade": 23,
+        "gtin": "7898587424714",
+        "descricao": "Tela de 7\" Full Touch A multimídia MP5 RS-606BR Prime DTV possui botões com 7 cores de iluminação e tela de 7\" full touch com uma interface intuitiva e amigável. Conectividade Com a multimidia RS-606BR Prime DTV você não perderá mais seus programas preferidos, pois ela possui TV Digital integrada. Através da conexão Bluetooth você pode atender, ou efetuar, suas chamadas telefônicas e também reproduzir suas playlists de seu celular direto na RS-606BR Prime DTV. Espelhamento Você pode espelhar seu celular com sistema Android ou IOS* diretamente na tela da RS-606BR Prime DTV através do cabo USB. *Imagens meramente ilustrativas.",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190a294.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190c3c9.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190bba6.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190ada6.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190b491.jpg"
+        ],
+        "categoria": "Automotivo/ Cd / Mp3 / Dvd Player / Auto Radio/ Central Multimidia",
+        "ml_item_id": null,
+        "created_at": "2026-07-20T18:32:58.760928+00:00",
+        "updated_at": "2026-09-05T20:05:31.860574+00:00",
+        "dslite_fornecedor_id": "133",
+        "dslite_produto_id": "383493",
+        "dslite_ultima_sync": "2026-09-05T20:05:31.662+00:00",
+        "fornecedor": "EVOLUSOM-PR",
+        "ncm": "85272100",
+        "cest": "01.061.00",
+        "origem_fiscal": "2",
+        "origem_uf": "PR",
+        "csosn": "101",
+        "ml_shipping_warning": null,
+        "oferta_preferencial_id": "cc10276d-448b-41f7-b90f-bf06cd60af89",
+        "ativo": true,
+        "fornecedor_preferencial_manual": false
+      },
+      "offer": {
+        "id": "cc10276d-448b-41f7-b90f-bf06cd60af89",
+        "produto_id": "d4fcf2ae-3fac-4db3-b5d6-d53881bb0c62",
+        "dslite_fornecedor_id": "133",
+        "fornecedor_nome": "EVOLUSOM-PR",
+        "dslite_produto_id": "383493",
+        "sku_fornecedor": "383493",
+        "custo": 549.9,
+        "estoque": 4,
+        "ativo": true,
+        "prioridade": 100,
+        "payment_mode": "prepaid_pix",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-09-05T20:05:31.662+00:00",
+        "created_at": "2026-07-20T18:32:59.010276+00:00",
+        "updated_at": "2026-09-05T20:05:31.67+00:00",
+        "sku_oferta": "383493",
+        "nome": "Central Multimídia Roadstar Rs606br 7\" Mp6 Com Tv Digital",
+        "descricao": "Tela de 7\" Full Touch A multimídia MP5 RS-606BR Prime DTV possui botões com 7 cores de iluminação e tela de 7\" full touch com uma interface intuitiva e amigável. Conectividade Com a multimidia RS-606BR Prime DTV você não perderá mais seus programas preferidos, pois ela possui TV Digital integrada. Através da conexão Bluetooth você pode atender, ou efetuar, suas chamadas telefônicas e também reproduzir suas playlists de seu celular direto na RS-606BR Prime DTV. Espelhamento Você pode espelhar seu celular com sistema Android ou IOS* diretamente na tela da RS-606BR Prime DTV através do cabo USB. *Imagens meramente ilustrativas.",
+        "marca": "ROADSTAR BRASIL",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190a294.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190c3c9.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190bba6.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190ada6.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/8/383493_67d2cb190b491.jpg"
+        ],
+        "gtin": "7898587424714",
+        "ncm": "85272100",
+        "cest": "01.061.00"
+      },
+      "identity": {
+        "local": {
+          "gtin": "7898587424714",
+          "brand": "ROADSTAR BRASIL",
+          "model": "rs606br",
+          "partNumber": null,
+          "quantity": null,
+          "packaging": null,
+          "provenance": {
+            "model": {
+              "source": "supplier_offer:cc10276d-448b-41f7-b90f-bf06cd60af89",
+              "excerpt": "rs606br"
+            },
+            "brand": {
+              "source": "supplier_offer:cc10276d-448b-41f7-b90f-bf06cd60af89",
+              "excerpt": "ROADSTAR BRASIL; "
+            },
+            "gtin": {
+              "source": "supplier_offer:cc10276d-448b-41f7-b90f-bf06cd60af89",
+              "excerpt": "7898587424714"
+            }
+          },
+          "variation": null,
+          "brandEvidence": "Central Multimídia Roadstar Rs606br 7\" Mp6 Com Tv Digital Tela de 7\" Full Touch A multimídia MP5 RS-606BR Prime DTV possui botões com 7 cores de iluminação e tela de 7\" full touch com uma interface intuitiva e amigável. Conectividade Com a multimidia RS-606BR Prime DTV você não perderá mais seus programas preferidos, pois ela possui TV Digital integrada. Através da conexão Bluetooth você pode atender, ou efetuar, suas chamadas telefônicas e também reproduzir suas playlists de seu celular direto na RS-606BR Prime DTV. Espelhamento Você pode espelhar seu celular com sistema Android ou IOS* diretamente na tela da RS-606BR Prime DTV através do cabo USB. *Imagens meramente ilustrativas."
+        },
+        "remote": {
+          "gtin": null,
+          "brand": "Roadstar",
+          "model": "RS606BR - Universal",
+          "partNumber": null,
+          "packaging": null,
+          "quantity": null,
+          "saleUnits": null,
+          "variation": null,
+          "provenance": {
+            "brand": {
+              "source": "/products/MLB28877953",
+              "excerpt": "BRAND: Roadstar"
+            },
+            "model": {
+              "source": "/products/MLB28877953",
+              "excerpt": "MODEL: RS606BR - Universal"
+            }
+          },
+          "critical": {
+            "VOLTAGE": null,
+            "LENGTH": null,
+            "SIZE": null,
+            "CAPACITY": null,
+            "CONNECTOR_TYPE": null,
+            "INPUT_CONNECTOR": null,
+            "OUTPUT_CONNECTOR": null,
+            "PINS_NUMBER": null
+          }
+        },
+        "source": "/products/MLB28877953"
+      },
+      "assessment": {
+        "identity": "IDENTIDADE_COHERENTE",
+        "comparisons": [
+          {
+            "field": "brand",
+            "local": "ROADSTAR BRASIL",
+            "remote": "Roadstar",
+            "matches": true,
+            "basis": "documented_brand",
+            "evidence": "https://www.roadstarbrasil.com.br/"
+          },
+          {
+            "field": "model",
+            "local": "rs606br",
+            "remote": "RS606BR - Universal",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          }
+        ],
+        "reasons": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA"
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1"
+      },
+      "catalog": {
+        "id": "MLB28877953",
+        "catalog_product_id": "MLB28877953",
+        "status": "active",
+        "pdp_types": [
+          "traditional"
+        ],
+        "domain_id": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "permalink": "",
+        "name": "Central Multimídia 2din 7pol Espelha Bt Aux Usb Tv Digital",
+        "family_name": "Central Multimídia 2din 7pol Espelha Bt Aux Usb Tv Digital",
+        "type": "catalog_product",
+        "buy_box_winner": null,
+        "pickers": [],
+        "pictures": [
+          {
+            "id": "723175-MLA99762335951_112025",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_723175-MLA99762335951_112025-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1180,
+            "max_height": 1199,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "696373-MLU77962106955_072024",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_696373-MLU77962106955_072024-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1200,
+            "max_height": 1200,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "866764-MLU77961844389_072024",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_866764-MLU77961844389_072024-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1200,
+            "max_height": 1200,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "635584-MLU77962048717_072024",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_635584-MLU77962048717_072024-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1200,
+            "max_height": 1200,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          }
+        ],
+        "description_pictures": [],
+        "main_features": [
+          {
+            "text": "Tela touch de 7 polegadas.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Compatível com Bluetooth.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Possui entrada USB.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Função de TV digital.",
+            "type": "key_value",
+            "metadata": {}
+          },
+          {
+            "text": "Inclui controle remoto.",
+            "type": "key_value",
+            "metadata": {}
+          }
+        ],
+        "disclaimers": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "34585",
+            "value_name": "Roadstar",
+            "values": [
+              {
+                "id": "34585",
+                "name": "Roadstar"
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "50103564",
+            "value_name": "RS606BR - Universal",
+            "values": [
+              {
+                "id": "50103564",
+                "name": "RS606BR - Universal"
+              }
+            ]
+          },
+          {
+            "id": "DISPLAY_SIZE",
+            "name": "Tamanho da tela",
+            "value_id": "2399979",
+            "value_name": "7 \"",
+            "values": [
+              {
+                "id": "2399979",
+                "name": "7 \""
+              }
+            ]
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "7600402",
+            "value_name": "10 cm",
+            "values": [
+              {
+                "id": "7600402",
+                "name": "10 cm"
+              }
+            ]
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "8946725",
+            "value_name": "17.9 cm",
+            "values": [
+              {
+                "id": "8946725",
+                "name": "17.9 cm"
+              }
+            ]
+          },
+          {
+            "id": "WITH_GPS",
+            "name": "Com GPS",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "WITH_USB_PORT",
+            "name": "Com entrada USB",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "meta": {
+                  "value": true
+                }
+              }
+            ],
+            "meta": {
+              "value": true
+            }
+          },
+          {
+            "id": "WITH_BLUETOOTH",
+            "name": "Com Bluetooth",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "meta": {
+                  "value": true
+                }
+              }
+            ],
+            "meta": {
+              "value": true
+            }
+          },
+          {
+            "id": "WITH_TV_FUNCTION",
+            "name": "Com função de TV",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "meta": {
+                  "value": true
+                }
+              }
+            ],
+            "meta": {
+              "value": true
+            }
+          },
+          {
+            "id": "WITH_TOUCHSCREEN",
+            "name": "Com tela touch",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "meta": {
+                  "value": true
+                }
+              }
+            ],
+            "meta": {
+              "value": true
+            }
+          },
+          {
+            "id": "WITH_REMOTE_CONTROL",
+            "name": "Com controle remoto",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "meta": {
+                  "value": true
+                }
+              }
+            ],
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "short_description": {
+          "type": "plaintext",
+          "content": "A MULTIMÍDIA É UNIVERSAL MAS ELA NECESSITA DE UMA MOLDURA PARA FIXAÇÃO NO PAINEL DO CARRO. Multimidias exigem que os fios sejam cortados para funcionar. \n\nCom a multimidia RS-606BR Prime DTV você não perderá mais seus programas preferidos, pois ela possui TV Digital integrada. Através da conexão Bluetooth você pode atender, ou efetuar, suas chamadas telefônicas e também reproduzir suas playlists de seu celular direto na RS-606BR Prime DTV.\n\nA multimídia MP5 RS-606BR Prime DTV possui botões com 7 cores de iluminação e tela de 7\" full touch com uma interface intuitiva e amigável.\n\nVocê pode espelhar seu celular com sistema Android ou IOS* diretamente na tela da RS-606BR Prime DTV através do cabo USB.\n\nCaracterísticas:\nMarca: Roadstar. \nModelo: RS-606BR\n\nEspecificações técnicas:\n- Painel: Fixo com botões em 7 cores de iluminação (azul, azul claro, branco, amarelo, vermelho, roxo e verde)\n- Tela: Full Touch 7 polegadas Capacitiva\n- Rádio: FM com memória para 18 estações FM\n- TV: TV DIGITAL ISDB-T (acompanha antena)\n- Conexões: Bluetooth\n- Entradas frontais: Micro SD, Auxiliar e 1 USB\n- Entradas traseiras: 1 Vídeo Auxiliar, 1 Câmera de Ré, 1 Câmera Frontal e 1 Microfone Externo\n- Saídas: 2 RCA (Audio), 1 saída de SubWoofer e 1 RCA (Vídeo)\n- Tipo de Conector: ISO\n- Controle Remoto: SIM (Físico e por aplicativo)\n- Comando de Volante: SIM (em alguns modelos de carros poderá ser necessário o uso de interface)\n- Potência: 4 Canais de 50 Watts RMS\n\nConteúdo da Embalagem:\n- 1x Multimídia\n- 1x Manual de Instruções"
+        },
+        "parent_id": null,
+        "children_ids": [],
+        "settings": {
+          "content": "fixed",
+          "listing_strategy": "catalog_required",
+          "exclusive": false,
+          "with_enhanced_pictures": false,
+          "base_site_product_id": null,
+          "ttr": "2026-09-05T22:54:00.925909031"
+        },
+        "quality_type": "COMPLETE",
+        "release_info": null,
+        "presale_info": null,
+        "enhanced_content": null,
+        "tags": [],
+        "date_created": "2023-12-14T02:16:14Z",
+        "authorized_stores": null,
+        "last_updated": "2025-03-31T05:30:22Z",
+        "grouper_id": null,
+        "experiments": {}
+      },
+      "quote": {
+        "price": 825.24,
+        "cost": 549.9,
+        "offerId": "cc10276d-448b-41f7-b90f-bf06cd60af89",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-05T20:05:31.67+00:00",
+        "fee": {
+          "amount": 99.03,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.443Z",
+          "evidence": "/sites/MLB/listing_prices?price=825.24&category_id=MLB135679&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "712ec706f4550f96444d1fc41f82216a6b3e6fe721bcc45bc7138e9640996989"
+        },
+        "shipping": {
+          "amount": 25.45,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:23.443Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=825.24&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x15x23%2C1040",
+          "contextKey": "712ec706f4550f96444d1fc41f82216a6b3e6fe721bcc45bc7138e9640996989"
+        },
+        "variableCosts": {
+          "amount": null,
+          "source": "unknown",
+          "observedAt": null,
+          "evidence": null
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-05T20:09:22.619Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-05T20:09:23.443Z",
+        "policyVersion": "M2M-PRC-01-v1",
+        "band": {
+          "id": "FROM_200_TO_1000",
+          "maxCents": 100000,
+          "floor": 0.07,
+          "target": 0.1,
+          "limit": 0.15
+        },
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 68.33,
+        "result": 82.53,
+        "margin": 0.10000727061218555,
+        "status": "estimated"
+      },
+      "quoteFailure": null,
+      "blocked": [],
+      "priorIdentity": "IDENTIDADE_DIVERGENTE",
+      "priorConflict": "CONFLITO_CONFIRMADO",
+      "observedAt": "2026-09-05T20:09:26.802Z"
+    },
+    {
+      "sku": "VTK017877",
+      "produto_id": "386e518e-14a4-4c29-80f5-46a4ddc2065a",
+      "product": {
+        "id": "386e518e-14a4-4c29-80f5-46a4ddc2065a",
+        "sku": "VTK017877",
+        "nome": "Sensor De Estacionamento Roadstar Rs304br - Preto Brilhante",
+        "marca": "ROADSTAR BRASIL",
+        "estoque": 9,
+        "custo": 51.9,
+        "ml_fee": 0.15,
+        "ml_shipping": 0,
+        "custom_price": null,
+        "ml_status": "sem_anuncio",
+        "peso_liq": 0.396,
+        "peso_bruto": 0.396,
+        "largura": 9,
+        "altura": 6,
+        "profundidade": 16,
+        "gtin": "7898587424950",
+        "descricao": "Sensor de Estacionamento RS-304BR Preto Brilhante (Black Piano) Sensor com ajuste automático Liga automaticamente junto com o carro 4 capsulas blindadas 18mm com encaixe de silicone Sistema de engate rápido Detecção precisa de obstáculo Operção da chave do sistema: Monitor on/off, alarme, mudo *Imagens meramente ilustrativas.",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/387047_67d2cb29126ad.png",
+          "https://evolusom.com.br/media/catalog/product/3/8/387047_67d2cb29133a0.png"
+        ],
+        "categoria": "Automotivo/ Acessórios Automotivos/ Sensor De Estacionamento",
+        "ml_item_id": null,
+        "created_at": "2026-07-20T18:31:30.798566+00:00",
+        "updated_at": "2026-09-05T19:48:31.72192+00:00",
+        "dslite_fornecedor_id": "133",
+        "dslite_produto_id": "387047",
+        "dslite_ultima_sync": "2026-09-05T19:48:31.315+00:00",
+        "fornecedor": "EVOLUSOM-PR",
+        "ncm": "85437099",
+        "cest": "01.999.00",
+        "origem_fiscal": "2",
+        "origem_uf": "PR",
+        "csosn": "101",
+        "ml_shipping_warning": null,
+        "oferta_preferencial_id": "31e63ac0-a2fa-44d7-a9af-054d3cb53e93",
+        "ativo": true,
+        "fornecedor_preferencial_manual": false
+      },
+      "offer": {
+        "id": "31e63ac0-a2fa-44d7-a9af-054d3cb53e93",
+        "produto_id": "386e518e-14a4-4c29-80f5-46a4ddc2065a",
+        "dslite_fornecedor_id": "133",
+        "fornecedor_nome": "EVOLUSOM-PR",
+        "dslite_produto_id": "387047",
+        "sku_fornecedor": "387047",
+        "custo": 51.9,
+        "estoque": 9,
+        "ativo": true,
+        "prioridade": 100,
+        "payment_mode": "prepaid_pix",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-09-05T19:48:31.315+00:00",
+        "created_at": "2026-07-20T18:31:31.097875+00:00",
+        "updated_at": "2026-09-05T19:48:31.322+00:00",
+        "sku_oferta": "387047",
+        "nome": "Sensor De Estacionamento Roadstar Rs304br - Preto Brilhante",
+        "descricao": "Sensor de Estacionamento RS-304BR Preto Brilhante (Black Piano) Sensor com ajuste automático Liga automaticamente junto com o carro 4 capsulas blindadas 18mm com encaixe de silicone Sistema de engate rápido Detecção precisa de obstáculo Operção da chave do sistema: Monitor on/off, alarme, mudo *Imagens meramente ilustrativas.",
+        "marca": "ROADSTAR BRASIL",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/387047_67d2cb29126ad.png",
+          "https://evolusom.com.br/media/catalog/product/3/8/387047_67d2cb29133a0.png"
+        ],
+        "gtin": "7898587424950",
+        "ncm": "85437099",
+        "cest": "01.999.00"
+      },
+      "identity": {
+        "local": {
+          "gtin": "7898587424950",
+          "brand": "ROADSTAR BRASIL",
+          "model": "rs304br",
+          "partNumber": null,
+          "quantity": null,
+          "packaging": null,
+          "provenance": {
+            "model": {
+              "source": "supplier_offer:31e63ac0-a2fa-44d7-a9af-054d3cb53e93",
+              "excerpt": "rs304br"
+            },
+            "brand": {
+              "source": "supplier_offer:31e63ac0-a2fa-44d7-a9af-054d3cb53e93",
+              "excerpt": "ROADSTAR BRASIL; "
+            },
+            "gtin": {
+              "source": "supplier_offer:31e63ac0-a2fa-44d7-a9af-054d3cb53e93",
+              "excerpt": "7898587424950"
+            }
+          },
+          "variation": "preto",
+          "brandEvidence": "Sensor De Estacionamento Roadstar Rs304br - Preto Brilhante Sensor de Estacionamento RS-304BR Preto Brilhante (Black Piano) Sensor com ajuste automático Liga automaticamente junto com o carro 4 capsulas blindadas 18mm com encaixe de silicone Sistema de engate rápido Detecção precisa de obstáculo Operção da chave do sistema: Monitor on/off, alarme, mudo *Imagens meramente ilustrativas."
+        },
+        "remote": {
+          "gtin": null,
+          "brand": "Roadstar",
+          "model": "RS304BR BLACK",
+          "partNumber": "113517",
+          "packaging": null,
+          "quantity": null,
+          "saleUnits": null,
+          "variation": "Piano preto",
+          "provenance": {
+            "brand": {
+              "source": "/products/MLB38641933",
+              "excerpt": "BRAND: Roadstar"
+            },
+            "model": {
+              "source": "/products/MLB38641933",
+              "excerpt": "MODEL: RS304BR BLACK"
+            },
+            "partNumber": {
+              "source": "/products/MLB38641933",
+              "excerpt": "PART_NUMBER: 113517"
+            },
+            "variation": {
+              "source": "/products/MLB38641933",
+              "excerpt": "COLOR: Piano preto"
+            }
+          },
+          "critical": {
+            "VOLTAGE": null,
+            "LENGTH": null,
+            "SIZE": null,
+            "CAPACITY": null,
+            "CONNECTOR_TYPE": null,
+            "INPUT_CONNECTOR": null,
+            "OUTPUT_CONNECTOR": null,
+            "PINS_NUMBER": null
+          }
+        },
+        "source": "/products/MLB38641933"
+      },
+      "assessment": {
+        "identity": "IDENTIDADE_COHERENTE",
+        "comparisons": [
+          {
+            "field": "brand",
+            "local": "ROADSTAR BRASIL",
+            "remote": "Roadstar",
+            "matches": true,
+            "basis": "documented_brand",
+            "evidence": "https://www.roadstarbrasil.com.br/"
+          },
+          {
+            "field": "model",
+            "local": "rs304br",
+            "remote": "RS304BR BLACK",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "variation",
+            "local": "preto",
+            "remote": "Piano preto",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          }
+        ],
+        "reasons": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA"
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1"
+      },
+      "catalog": {
+        "id": "MLB38641933",
+        "catalog_product_id": "MLB38641933",
+        "status": "active",
+        "pdp_types": [
+          "traditional"
+        ],
+        "domain_id": "MLB-VEHICLE_PARKING_SENSORS",
+        "permalink": "",
+        "name": "Sensor De Ré Estacionamento 4 Pontos Black Piano Roadstar",
+        "family_name": "Roadstar RS304BR BLACK 113517",
+        "type": "catalog_product",
+        "buy_box_winner": null,
+        "pickers": [
+          {
+            "picker_id": "COLOR",
+            "picker_name": "Cor",
+            "products": [
+              {
+                "product_id": "MLB38641933",
+                "picker_label": "Piano preto",
+                "picture_id": "905827-MLA99868825987_112025",
+                "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_905827-MLA99868825987_112025-I.jpg",
+                "tags": [
+                  "selected"
+                ],
+                "changes": [],
+                "permalink": "",
+                "product_name": "Roadstar RS304BR BLACK 113517 - Piano preto",
+                "auto_completed": true
+              }
+            ],
+            "tags": [],
+            "attributes": [
+              {
+                "attribute_id": "COLOR",
+                "template": "",
+                "position": 1
+              }
+            ],
+            "value_name_delimiter": "",
+            "hide_extra_decoration": false,
+            "secondary_picker_name": ""
+          }
+        ],
+        "pictures": [
+          {
+            "id": "905827-MLA99868825987_112025",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_905827-MLA99868825987_112025-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1168,
+            "max_height": 1200,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "931670-MLA79520974227_092024",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_931670-MLA79520974227_092024-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1200,
+            "max_height": 990,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "685375-MLU77935439223_072024",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_685375-MLU77935439223_072024-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1196,
+            "max_height": 630,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          },
+          {
+            "id": "644096-MLA79278056468_092024",
+            "url": "https://http2.mlstatic.com/D_NQ_NP_644096-MLA79278056468_092024-F.jpg",
+            "suggested_for_picker": null,
+            "max_width": 1200,
+            "max_height": 1162,
+            "source_metadata": null,
+            "tags": [
+              "CAROUSEL"
+            ]
+          }
+        ],
+        "description_pictures": [],
+        "main_features": [
+          {
+            "text": "Cor Black Piano elegante para um visual sofisticado no seu veículo.",
+            "type": "key_value",
+            "metadata": {}
+          }
+        ],
+        "disclaimers": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "34585",
+            "value_name": "Roadstar",
+            "values": [
+              {
+                "id": "34585",
+                "name": "Roadstar"
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "39845616",
+            "value_name": "RS304BR BLACK",
+            "values": [
+              {
+                "id": "39845616",
+                "name": "RS304BR BLACK"
+              }
+            ]
+          },
+          {
+            "id": "PART_NUMBER",
+            "name": "Número de peça",
+            "value_id": "39845617",
+            "value_name": "113517",
+            "values": [
+              {
+                "id": "39845617",
+                "name": "113517"
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "13261004",
+            "value_name": "Piano preto",
+            "values": [
+              {
+                "id": "13261004",
+                "name": "Piano preto"
+              }
+            ]
+          },
+          {
+            "id": "WITH_DIGITAL_DISPLAY",
+            "name": "Com tela digital",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "WITH_CAMERA",
+            "name": "Com câmera",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "VEHICLE_TYPE",
+            "name": "Tipo de veículo",
+            "value_id": "11377043",
+            "value_name": "Carro/Caminhonete",
+            "values": [
+              {
+                "id": "11377043",
+                "name": "Carro/Caminhonete"
+              }
+            ]
+          },
+          {
+            "id": "WITH_BUZZER",
+            "name": "Com buzzer",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "meta": {
+                  "value": false
+                }
+              }
+            ],
+            "meta": {
+              "value": false
+            }
+          },
+          {
+            "id": "OEM",
+            "name": "Código OEM",
+            "value_id": "39845619",
+            "value_name": "113517",
+            "values": [
+              {
+                "id": "39845619",
+                "name": "113517"
+              }
+            ]
+          }
+        ],
+        "short_description": {
+          "type": "plaintext",
+          "content": "-----------------------------\n\nSensor de Estacionamento Black Piano 18.5mm Roadstar\n\nOs Sensores de estacionamento são acessórios que auxiliam na hora de estacionar, detectando a proximidade de paredes, veículos e objetos que estiverem atrás do veículo, oferecendo segurança e evitando colisões.\n\nEste sistema detecta a distância entre o carro e obstruções ao seu redor, através dos sensores de ultrassom instalados no para-choque traseiro. A distância será mostrada no display digital, com indicador de quatro cores e três tipos de som do alarme. O motorista poderá calcular a distância e evitar acidentes. Os sensores ligam automaticamente junto com o veículo e têm detecção precisa de obstáculos. Modelos discretos instalados no para-choque do automóvel.\n\nCom sensores projetados para durarem e resistirem a diversas condições de tempo e temperatura, as cápsulas dos sensores de estacionamento Roadstar foram desenvolvidas com tecnologia moderna, com detecção precisa dos obstáculos, são blindadas, de engate rápido e com encaixes de silicone que não deformam em altas temperaturas e não trincam em baixas temperaturas.\n\nO sensor de estacionamento ultrassônico Roadstar conta com sistema sonoro de três tipos de som, sendo acionado pela proximidade entre o veículo e o objeto que estiver atrás do mesmo. Quanto mais próximo o veículo estiver do objeto, mais intenso será o som emitido e quanto mais longe, menos será sua intensidade. O mesmo pode ser desativado pelo sistema ON/OFF.\n\nEspecificações Técnicas:\n\nCapsulas blindadas de 18.5mm com fixadores de silicone  \nFaixa de detecção de obstáculo: 200~30cm  \nSistema universal para qualquer carro  \nPodem haver variações de 1 a 2cm  \nDetecção precisa de obstáculos  \nPainel digital de fácil leitura  \nAlarme sonoro de proximidade  \nOperações: Monitor on/off, alarme, mudo  \nModelo discreto  \nNão possui regulagem bip  \n4 sensores de aproximação  \nFácil instalação  \nNa cor preto  \n\nTabela de Aplicação:\n\nUniversal  \n\nCompatível com todas as versões.\n\n-----------------------------  \n\nCódigo: 29167, referência: 113517  \n\nSensor de Estacionamento Ré 4 Pontos 18.5mm Black Piano Roadstar  \n\n-----------------------------"
+        },
+        "parent_id": "MLB38641932",
+        "children_ids": [],
+        "settings": {
+          "content": "fixed",
+          "listing_strategy": "catalog_required",
+          "exclusive": false,
+          "with_enhanced_pictures": false,
+          "base_site_product_id": null,
+          "ttr": "2026-09-05T16:12:23.723341103"
+        },
+        "quality_type": "COMPLETE",
+        "release_info": null,
+        "presale_info": null,
+        "enhanced_content": null,
+        "tags": [],
+        "date_created": "2024-07-25T03:34:52Z",
+        "authorized_stores": null,
+        "last_updated": "2026-02-02T13:40:51Z",
+        "grouper_id": null,
+        "experiments": {}
+      },
+      "quote": {
+        "price": 90.42,
+        "cost": 51.9,
+        "offerId": "31e63ac0-a2fa-44d7-a9af-054d3cb53e93",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-05T19:48:31.322+00:00",
+        "fee": {
+          "amount": 10.85,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:27.462Z",
+          "evidence": "/sites/MLB/listing_prices?price=90.42&category_id=MLB45905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "1d3f32619230ea429ca713b5e5acc5775139013792c5e99115fc5eac012201ef"
+        },
+        "shipping": {
+          "amount": 13.85,
+          "source": "ml_live",
+          "observedAt": "2026-09-05T20:09:27.462Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=90.42&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=6x9x16%2C396",
+          "contextKey": "1d3f32619230ea429ca713b5e5acc5775139013792c5e99115fc5eac012201ef"
+        },
+        "variableCosts": {
+          "amount": null,
+          "source": "unknown",
+          "observedAt": null,
+          "evidence": null
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-05T20:09:22.619Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-05T20:09:27.462Z",
+        "policyVersion": "M2M-PRC-01-v1",
+        "band": {
+          "id": "BELOW_200",
+          "maxCents": 20000,
+          "floor": 0.05,
+          "target": 0.07,
+          "limit": 0.1
+        },
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 7.49,
+        "result": 6.33,
+        "margin": 0.07000663570006635,
+        "status": "estimated"
+      },
+      "quoteFailure": null,
+      "blocked": [],
+      "priorIdentity": "IDENTIDADE_DIVERGENTE",
+      "priorConflict": "CONFLITO_CONFIRMADO",
+      "observedAt": "2026-09-05T20:09:30.103Z"
+    }
+  ]
+}

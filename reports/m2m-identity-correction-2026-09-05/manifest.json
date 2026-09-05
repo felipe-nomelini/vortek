@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-09-05T20:14:05.253277+00:00",
+  "identityRule": "M2M-IDENTITY-v2.1",
+  "status": "IMPLEMENTED_DEPLOYED_RECLASSIFIED",
+  "reviewed": 65,
+  "states": {
+    "SEM_CONFLITO": 32,
+    "PENDENCIA_VALIDACAO": 32,
+    "CONFLITO_CONFIRMADO": 1
+  },
+  "testsPassed": 92,
+  "jobId": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+  "deploymentCommit": "a31cd43",
+  "files": {
+    "00_RESUMO_EXECUTIVO.md": {
+      "sha256": "c27d3f721774737f692a71ad10a96ebaa49fdee2c47853470003d4454a21f93f",
+      "bytes": 2172
+    },
+    "01_AS_IS_TO_BE.csv": {
+      "sha256": "442672ea51b6dbe9248d806f927416465ea6863cc59a5a76a5bc6a907cfe2038",
+      "bytes": 21729
+    },
+    "02_CAUSA_E_REGRA.md": {
+      "sha256": "9e3a531b9cfbbd92ae0c24e491771f067e5897cd5f07d58904cd384b4eca21c8",
+      "bytes": 1851
+    },
+    "05_TESTES_E_EVIDENCIAS.md": {
+      "sha256": "349e9c4e94fed04f40c51b7adeea953a326a1669296e4c7604355bcf47fc4f91",
+      "bytes": 1095
+    },
+    "06_REPROCESSAMENTO_OPORTUNIDADES.csv": {
+      "sha256": "23a6a3beab0979e31f4f538eaf82e9d3f48b3de793803de944cfcc39b3d7d424",
+      "bytes": 794128
+    },
+    "06_REPROCESSAMENTO_OPORTUNIDADES.xlsx": {
+      "sha256": "724026e82fe762223ddebd7c1e1e795e21566430ffb75501d769c4dccab6b189",
+      "bytes": 2170019
+    },
+    "06_impacto.json": {
+      "sha256": "c7ae9159ce86569e20f71761b8862439de1e0075f05d701444d2d3957baaa02f",
+      "bytes": 847
+    },
+    "06_memorias.json": {
+      "sha256": "b0a2008f48fe8d9affca5b6202db04a8259ea4b5ef83b6af2a8ce4ae999127f4",
+      "bytes": 13725815
+    },
+    "07_PENDENCIAS_VALIDACAO.md": {
+      "sha256": "b332a3afce2c3dbb7b914bf50a008b518025a7537c6469c583db28db3d45870a",
+      "bytes": 851
+    },
+    "08_RISCOS_RESIDUAIS.md": {
+      "sha256": "8371ebbb37e6401496080a3c7194b59118bd3aa53f0ba73a2265f078cd8fc1ba",
+      "bytes": 1167
+    },
+    "apply.log": {
+      "sha256": "cecd79a296ca6dd0e9bd34aed9812e20b3c232c9ace3ef131879cb94cf5b51cf",
+      "bytes": 672
+    },
+    "baseline.txt": {
+      "sha256": "7fd01b41d3a2bff2c2c6699792425d98a67f58cc207aa613947a6566b2be667f",
+      "bytes": 1165
+    },
+    "build.log": {
+      "sha256": "4bcca5860d0d0c2786940ddc797e8d790a328ce8a5492b854a5fff64f6dc5069",
+      "bytes": 17293
+    },
+    "db_verification.json": {
+      "sha256": "a8698ac59c01ba2d5291cf9bfbb770de72688268c72a5beb7de3891c3632ba09",
+      "bytes": 310
+    },
+    "deployment.json": {
+      "sha256": "bf4218068ba9515c5316be37936b2b9561b4e16f173d6ddc1570264f4d3f24cd",
+      "bytes": 446
+    },
+    "idempotency.log": {
+      "sha256": "8dc97221ceb073f333e2b4c067fb19913a15f4421af9f06c2a2377c628a71854",
+      "bytes": 680
+    },
+    "reclassification_applied.json": {
+      "sha256": "132b72a9f18c44fe63ce6d66f91daf25ce66329ff35948feb467b8e4f26ff352",
+      "bytes": 349794
+    },
+    "reclassification_baseline.json": {
+      "sha256": "fb06c49cc3540218fa53797a703ff8786e58af17ecea73ce82fd08e5c75a87f8",
+      "bytes": 208686
+    },
+    "reclassification_preview.json": {
+      "sha256": "c05cc582b8a1550cd9078e200096014f30cec44592de74b682161d586a9232e4",
+      "bytes": 349794
+    },
+    "tests.log": {
+      "sha256": "66a8e93aa2f9eb6e41367c69954ac082bf8f3f77ea272f9375831f641ae48c36",
+      "bytes": 23524
+    },
+    "validate.log": {
+      "sha256": "bf92056c3e327e95a7e896025de85a95e412d520e4dcac5f6644b70de7ddc5fe",
+      "bytes": 171
+    }
+  }
+}

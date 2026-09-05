@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-09-05T20:14:05.253277+00:00",
+  "identityRule": "M2M-IDENTITY-v2.1",
+  "cohort": "RADAR_LAUNCH_2026_09_COHORT_01",
+  "status": "PENDENTE_COMPLETUDE_COMERCIAL",
+  "evaluated": 65,
+  "published": 0,
+  "eligibleIdentityConflict": 32,
+  "liveQuotes": 33,
+  "monitoringScheduled": 0,
+  "mlMutations": 0,
+  "accountRead": 5937,
+  "files": {
+    "00_RESUMO_EXECUTIVO.md": {
+      "sha256": "318f22b302c26497a48b96bf1d7e9588a22528985ce2ba969054d40e8435f095",
+      "bytes": 1254
+    },
+    "01_CANDIDATOS_AVALIADOS.csv": {
+      "sha256": "3ef89a81b6537251682a083ec36ea1cbc731ac48bbe610f9b9fbd251dd1198f0",
+      "bytes": 26383
+    },
+    "02_PUBLICADOS_CONFIRMADOS.csv": {
+      "sha256": "0ff2087681b4e7d9e2aa1384d8e2c20b08d3581ad2c5aeb4146facaff31e152d",
+      "bytes": 75
+    },
+    "03_EXCLUIDOS_GATE.csv": {
+      "sha256": "835248513f022e03a4d308689c971d765270ed06e8730a92e830748d7ce442b3",
+      "bytes": 8110
+    },
+    "04_MEMORIA_FINANCEIRA.csv": {
+      "sha256": "2f7ebe13bc155c132145e059d94caa1f5020a54c200be861c12d7a4170785124",
+      "bytes": 24908
+    },
+    "05_VALIDACAO_POS_PUBLICACAO.md": {
+      "sha256": "597edd9ce55162e35e99d1dbbf39bd5b7fe24b963261a5644b4a93c4393cfb79",
+      "bytes": 721
+    },
+    "06_PENDENCIAS_PARA_PESQUISA.md": {
+      "sha256": "8afbe90aed21524e7675e1c1ac325950ddccdf21d0d88c7d46d89f8a5fcd36d4",
+      "bytes": 961
+    },
+    "07_PLANO_MONITORAMENTO.md": {
+      "sha256": "0c24edad97ab0df7280d42a68fbfdab3ccd3e8232a800999b11c9cda9c83e1c3",
+      "bytes": 1048
+    },
+    "account_live.json": {
+      "sha256": "0e056e7c7690e4060673e4a093ff914f3ed10d7b358f6279f5a16e0fe16165f4",
+      "bytes": 22476974
+    },
+    "additional_quotes.log": {
+      "sha256": "8e9af54996d1687d2c8a0465287f8259b9db22bb8dabfa5f5cbb8de8806e238c",
+      "bytes": 1116
+    },
+    "baseline_initial.json": {
+      "sha256": "c184d5659250ceb57f404ae299ebdcfb9a5b336a6dddf7eb5226a8a00d0a0259",
+      "bytes": 1134986
+    },
+    "baseline_live.json": {
+      "sha256": "a467f325de444812afb844ac74041d3945affea3e11131d84a3359e1c6428644",
+      "bytes": 1391786
+    },
+    "category_attributes_live.json": {
+      "sha256": "1f9899230212a7ca818a80fbb0807c56b784b9d82502ea1cb74e3dd53a6d7889",
+      "bytes": 56358
+    },
+    "identity_supplements.json": {
+      "sha256": "1adc3aa40b7c41f21d11593a7921346356ffc30fd4edc22656e000e2781e90e7",
+      "bytes": 1453
+    },
+    "live_audit.log": {
+      "sha256": "19d22444b28cb4de43c1032fe79943528a347aff9e06bb6ebd65c2b0de58f32a",
+      "bytes": 3850
+    },
+    "quotes_additional.json": {
+      "sha256": "a33c0a7a4c1d80fa527cfb0ee507f1f2197bdf69e8c1bf88a8846ab2f07884cf",
+      "bytes": 138719
+    },
+    "supplier_specifications_live.json": {
+      "sha256": "83c4ca96559e83bb05e266c337a3bef1f6585db4b60fb8ae839aa3c772ae0d61",
+      "bytes": 1722
+    }
+  }
+}

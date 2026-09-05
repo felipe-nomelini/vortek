@@ -1,0 +1,36 @@
+{
+  "VTK017309": {
+    "offerId": "46360b88-ccf5-4d30-8be0-9f4f514aaaf9",
+    "gtin": "7898597133217",
+    "source": "https://www.evolusom.com.br/kit-cooler-fan-evus-fk-12p-rgb-380232",
+    "observedAt": "2026-09-05T19:56:14.860Z",
+    "facts": {
+      "critical": {
+        "PINS_NUMBER": "6"
+      },
+      "provenance": {
+        "PINS_NUMBER": {
+          "source": "https://www.evolusom.com.br/kit-cooler-fan-evus-fk-12p-rgb-380232",
+          "excerpt": "de entrada: 12V / 0,35A RPM: 1200 ± 10% Tipo de rolamento: rolamento hidráulico Cabo de 6 pinos Tempo de Vida: 40.000 horas Ruído: 25,6dBA Fluxo de Ar: 24,5CFM Pressão do AR: 2.0mmH2O Controladora: 10 portas / 6 pinos + 2 portas 4 pinos Controle remoto: 21 modos/bateria 2025"
+        }
+      }
+    }
+  },
+  "VTK018523": {
+    "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+    "gtin": "7892787019633",
+    "source": "https://www.evolusom.com.br/alto-falante-bravox-coaxial-cx50bk-5-polegadas-60-w-rms-4r-par-252568",
+    "observedAt": "2026-09-05T19:56:14.860Z",
+    "facts": {
+      "pendingReasons": [
+        "ESCOPO_POTENCIA_RMS_NAO_COMPROVADO"
+      ],
+      "provenance": {
+        "RMS_POWER": {
+          "source": "https://www.evolusom.com.br/alto-falante-bravox-coaxial-cx50bk-5-polegadas-60-w-rms-4r-par-252568",
+          "excerpt": "WRMS. Watts: 60; a ficha não explicita se o valor é por falante ou pelo par; catálogo ML informa 120 W."
+        }
+      }
+    }
+  }
+}

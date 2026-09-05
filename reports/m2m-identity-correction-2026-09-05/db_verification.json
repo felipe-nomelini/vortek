@@ -1,0 +1,17 @@
+{
+  "job": {
+    "id": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+    "status": "completo",
+    "processados": 65,
+    "total": 65,
+    "progresso": 100
+  },
+  "rows": 65,
+  "events": 65,
+  "states": {
+    "PENDENCIA_VALIDACAO": 32,
+    "SEM_CONFLITO": 32,
+    "CONFLITO_CONFIRMADO": 1
+  },
+  "allVersion": true
+}

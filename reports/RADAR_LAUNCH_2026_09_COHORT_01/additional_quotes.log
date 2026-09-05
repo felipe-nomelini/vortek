@@ -1,0 +1,7 @@
+(node:532102) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/lib/ml/identity-normalization.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"evaluated":4,"total":5,"mlCalls":128}
+{"evaluated":5,"total":5,"mlCalls":156}
+{"evaluated":5,"identities":{"IDENTIDADE_COHERENTE":5},"eligibleForFinalGate":["VTK026044","VTK018404","VTK005849","VTK018798","VTK017877"],"quoted":[{"sku":"VTK026044","margin":0.0700135685210312,"failure":null,"blocked":[]},{"sku":"VTK018404","margin":0.07002589555459646,"failure":null,"blocked":[]},{"sku":"VTK005849","margin":0.07004954724073124,"failure":null,"blocked":[]},{"sku":"VTK018798","margin":0.10000727061218555,"failure":null,"blocked":[]},{"sku":"VTK017877","margin":0.07000663570006635,"failure":null,"blocked":[]}]}
