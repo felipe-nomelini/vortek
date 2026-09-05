@@ -41,6 +41,11 @@ export type PricingExperimentGroup = {
   stopped_at?: string | null;
   stop_reason?: string | null;
   safety_pause_attempts?: number;
+  last_safety_checked_at?: string | null;
+  latest_safety_result?: number | null;
+  latest_cost?: number | null;
+  latest_fee_amount?: number | null;
+  latest_shipping_amount?: number | null;
 };
 
 export type PricingExperimentState = {

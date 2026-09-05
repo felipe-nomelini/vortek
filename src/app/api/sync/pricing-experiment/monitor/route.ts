@@ -15,6 +15,7 @@ export const revalidate = 0;
 export const maxDuration = 300;
 
 const CHECKPOINT_BATCH_SIZE = 25;
+const SAFETY_BATCH_SIZE = 25;
 const MAX_SAFETY_PAUSE_ATTEMPTS = 3;
 const DATABASE_BATCH_SIZE = 100;
 
@@ -58,6 +59,79 @@ function standardPrice(payload: any): number | null {
   });
   const value = Number(row?.amount);
   return Number.isFinite(value) && value > 0 ? Math.round(value * 100) / 100 : null;
+}
+
+function numberOrNull(value: unknown): number | null {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function flattenFeeRows(payload: any): any[] {
+  const rows: any[] = [];
+  const visit = (value: any) => {
+    if (Array.isArray(value)) value.forEach(visit);
+    else if (value && typeof value === 'object') {
+      if ('sale_fee_amount' in value || 'sale_fee_details' in value) rows.push(value);
+      else Object.values(value).forEach(visit);
+    }
+  };
+  visit(payload);
+  return rows;
+}
+
+function feeAmount(payload: any, listingType: string): number | null {
+  const rows = flattenFeeRows(payload);
+  const row = rows.find((candidate) => String(candidate.listing_type_id || '') === listingType) || rows[0];
+  const amount = numberOrNull(row?.sale_fee_amount);
+  return amount !== null && amount >= 0 ? Math.round(amount * 100) / 100 : null;
+}
+
+function shippingAmount(payload: any): number | null {
+  const amount = numberOrNull(payload?.coverage?.all_country?.list_cost);
+  return amount !== null && amount >= 0 ? Math.round(amount * 100) / 100 : null;
+}
+
+async function liveGroupEconomics(group: PricingExperimentGroup, currentCost: number) {
+  const results: Array<{ result: number; fee: number; shipping: number }> = [];
+  for (const mlItemId of group.ml_item_ids) {
+    const [itemResponse, priceResponse] = await Promise.all([
+      fetchMLResult<any>(`/items/${encodeURIComponent(mlItemId)}`),
+      fetchMLResult<any>(`/items/${encodeURIComponent(mlItemId)}/prices`),
+    ]);
+    if (!itemResponse.ok || !priceResponse.ok) throw new Error(`Estado ML indisponível para ${mlItemId}`);
+    const item = itemResponse.data || {};
+    const observedPrice = standardPrice(priceResponse.data);
+    if (String(item.status || '') !== 'active') throw new Error(`Anúncio ${mlItemId} não está ativo`);
+    if (observedPrice === null || Math.abs(observedPrice - group.experimental_price) >= 0.01) {
+      throw new Error(`Preço experimental divergente em ${mlItemId}`);
+    }
+    const feeQuery = new URLSearchParams({
+      price: String(observedPrice), category_id: String(item.category_id || ''),
+      currency_id: String(item.currency_id || 'BRL'), listing_type_id: String(item.listing_type_id || ''),
+      logistic_type: String(item.shipping?.logistic_type || 'not_specified'),
+      shipping_mode: String(item.shipping?.mode || 'not_specified'),
+    });
+    const shippingQuery = new URLSearchParams({
+      item_id: mlItemId, item_price: String(observedPrice), listing_type_id: String(item.listing_type_id || ''),
+      mode: String(item.shipping?.mode || 'me2'), condition: String(item.condition || 'new'),
+      logistic_type: String(item.shipping?.logistic_type || 'drop_off'),
+      free_shipping: String(item.shipping?.free_shipping === true), verbose: 'true',
+    });
+    const [feeResponse, shippingResponse] = await Promise.all([
+      fetchMLResult<any>(`/sites/MLB/listing_prices?${feeQuery}`),
+      fetchMLResult<any>(`/users/${encodeURIComponent(String(item.seller_id || ''))}/shipping_options/free?${shippingQuery}`),
+    ]);
+    const currentFee = feeResponse.ok ? feeAmount(feeResponse.data, String(item.listing_type_id || '')) : null;
+    const currentShipping = shippingResponse.ok ? shippingAmount(shippingResponse.data) : null;
+    if (currentFee === null || currentShipping === null) throw new Error(`Tarifa ou frete ML indisponível para ${mlItemId}`);
+    const result = pricingExperimentUnitResult({
+      price: observedPrice, cost: currentCost, feeAmount: currentFee,
+      shippingAmount: currentShipping, taxRate: group.tax_rate,
+    });
+    if (result === null) throw new Error(`Economia inválida para ${mlItemId}`);
+    results.push({ result, fee: currentFee, shipping: currentShipping });
+  }
+  return results.sort((left, right) => left.result - right.result)[0];
 }
 
 function visitTotal(payload: any): number {
@@ -149,18 +223,36 @@ export async function POST(request: Request) {
   }
   const productById = new Map(products.map((product) => [String(product.id), product]));
   let safetyPaused = 0;
+  let safetyChecked = 0;
   const safetyFailures: any[] = [];
 
-  for (const group of activeGroups) {
+  const safetyGroups = [...activeGroups].sort((left, right) => {
+    const leftProduct = productById.get(left.product_id);
+    const rightProduct = productById.get(right.product_id);
+    const leftCostChanged = Math.abs(Number(leftProduct?.custo) - Number(left.cost)) >= 0.01;
+    const rightCostChanged = Math.abs(Number(rightProduct?.custo) - Number(right.cost)) >= 0.01;
+    if (leftCostChanged !== rightCostChanged) return leftCostChanged ? -1 : 1;
+    return new Date(left.last_safety_checked_at || 0).getTime() - new Date(right.last_safety_checked_at || 0).getTime();
+  }).slice(0, SAFETY_BATCH_SIZE);
+
+  for (const group of safetyGroups) {
     const product = productById.get(group.product_id);
     if (!product) continue;
-    const currentPrice = Number(product.custom_price || group.experimental_price);
     const currentCost = Number(product.custo);
-    const result = pricingExperimentUnitResult({
-      price: currentPrice, cost: currentCost, feeAmount: group.fee_amount,
-      shippingAmount: Number(product.ml_shipping ?? group.shipping_amount), taxRate: group.tax_rate,
-    });
-    if (result === null || result >= 0) continue;
+    let economics: { result: number; fee: number; shipping: number };
+    try {
+      economics = await liveGroupEconomics(group, currentCost);
+      safetyChecked += 1;
+      group.last_safety_checked_at = nowIso();
+      group.latest_safety_result = economics.result;
+      group.latest_cost = currentCost;
+      group.latest_fee_amount = economics.fee;
+      group.latest_shipping_amount = economics.shipping;
+    } catch (error: any) {
+      safetyFailures.push({ pricing_group_id: group.pricing_group_id, error: error?.message || 'Evidência financeira indisponível' });
+      continue;
+    }
+    if (economics.result >= 0) continue;
     const attempts = Number(group.safety_pause_attempts || 0);
     if (attempts >= MAX_SAFETY_PAUSE_ATTEMPTS) continue;
     group.safety_pause_attempts = attempts + 1;
@@ -168,7 +260,7 @@ export async function POST(request: Request) {
     if (pause.allPaused) {
       group.status = 'paused_loss';
       group.stopped_at = nowIso();
-      group.stop_reason = `ALERTA_CRITICO_PREJUIZO_EXPERIMENTO: resultado_unitario=${result.toFixed(2)}`;
+      group.stop_reason = `ALERTA_CRITICO_PREJUIZO_EXPERIMENTO: resultado_unitario=${economics.result.toFixed(2)}`;
       safetyPaused += 1;
     } else {
       safetyFailures.push({ pricing_group_id: group.pricing_group_id, attempts: group.safety_pause_attempts, remote: pause.remote });
@@ -179,9 +271,9 @@ export async function POST(request: Request) {
     }
     await sendWhatsappAlert({
       type: 'critical_error', severity: 'critical', title: 'Prejuízo em experimento de pricing',
-      message: `Grupo ${group.pricing_group_id}: resultado unitário estimado ${result.toFixed(2)}. ${pause.allPaused ? 'Anúncios pausados.' : 'Pausa não confirmada.'}`,
+      message: `Grupo ${group.pricing_group_id}: resultado unitário estimado ${economics.result.toFixed(2)}. ${pause.allPaused ? 'Anúncios pausados.' : 'Pausa não confirmada.'}`,
       dedupeKey: `pricing-experiment-loss:${group.pricing_group_id}:${group.safety_pause_attempts}`,
-      payload: { pricing_group_id: group.pricing_group_id, sku: group.sku, result, pause_confirmed: pause.allPaused },
+      payload: { pricing_group_id: group.pricing_group_id, sku: group.sku, result: economics.result, pause_confirmed: pause.allPaused },
     });
   }
 
@@ -218,11 +310,12 @@ export async function POST(request: Request) {
   await saveHighMarginPricingExperiment(client, state);
   return NextResponse.json({
     sucesso: checkpointFailures.length === 0 && safetyFailures.length === 0,
-    processados: checkpointsCompleted + safetyPaused,
-    total: due.length + safetyPaused,
+    processados: checkpointsCompleted + safetyChecked,
+    total: due.length + safetyGroups.length,
     checkpoint_due: due.length,
     checkpoints_completed: checkpointsCompleted,
     safety_paused: safetyPaused,
+    safety_checked: safetyChecked,
     errors: [...checkpointFailures, ...safetyFailures],
   }, { status: checkpointFailures.length || safetyFailures.length ? 207 : 200 });
 }
