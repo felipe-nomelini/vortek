@@ -83,6 +83,7 @@
     "test:ml-quantity-pricing": "node --test tests/ml-quantity-pricing.test.js",
     "test:api-auth": "node --test tests/mobile-auth-token.test.js tests/permissions.test.js",
     "test:integration-config": "node --test tests/integration-config-secrets.test.js",
+    "test:bentevi-integrations": "node --test tests/bnt-cfg-07-integrations.test.js tests/integration-config-secrets.test.js tests/config-admin-core.test.js tests/configuracoes-ui-responsibilities.test.js tests/bnt-cfg-05-mercado-livre.test.js tests/bnt-cfg-06-notifications.test.js tests/mercadopago-hayamax-retirement.test.js tests/mercadopago-account-money.test.js tests/ml-sale-concretization.test.js tests/bentevi-company-fiscal.test.js tests/bnt-msg-01-templates.test.js",
     "test:config-admin-core": "node --test tests/config-admin-core.test.js tests/configuracoes-ui-responsibilities.test.js",
     "test:bentevi-company-fiscal": "node --test tests/bentevi-company-fiscal.test.js tests/config-admin-core.test.js tests/configuracoes-ui-responsibilities.test.js",
     "test:bentevi-ml-config": "node --test tests/bnt-cfg-05-mercado-livre.test.js tests/config-admin-core.test.js tests/configuracoes-ui-responsibilities.test.js tests/integration-config-secrets.test.js",

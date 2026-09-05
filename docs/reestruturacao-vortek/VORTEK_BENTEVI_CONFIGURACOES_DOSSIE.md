@@ -424,6 +424,22 @@ Produção permanece bloqueada: delta de migrations, ativação Evolusom, contin
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
+### Entrega `BNT-CFG-07 — Integrações`
+
+Implementação local concluída em 05/09/2026, após o gate de paridade. A aba lista dez integrações agrupadas em Operação, Fiscal, Financeiro, Comunicação e Serviços técnicos. DSLite/Brasil NFe/Mercado Pago possuem drawer; Mercado Livre, feeds e canais preservam os responsáveis existentes. Salvar e cancelar são explícitos, e remoção de credenciais informa a possível continuidade do valor no servidor.
+
+**Decisão de escopo aprovada:** WAHA, SMTP, Push, GitHub, OpenRouter e Firecrawl recebem apenas painel de estado. A edição de suas credenciais e parâmetros pelo ERP permanece evolução futura pendente, sem autorizar migração para tabela genérica nem bloquear o aceite visual desta entrega. Esta decisão delimita a proposta mais ampla das seções 5.9 e 8; não significa que esses parâmetros já sejam editáveis.
+
+O resumo diferencia cadastro de evidência de conexão. A API administrativa retorna flags e origens, não secrets nem erros brutos. Credenciais fiscais continuam com precedência ERP → runtime; Mercado Pago mantém runtime → ERP, bloqueando edição ineficaz. O estado `conectado` deixa de ser entrada do PATCH e passa a ser determinado pelos testes no servidor, com concorrência controlada por `updated_at`. Horário de teste é explicitamente evidência desta sessão, não uma interpretação do horário do cadastro.
+
+Testes DSLite limitados ao destino oficial de homologação. Teste Brasil NFe usa `ObterNotasFiscais`, ambiente `2`, saídas do dia em America/Sao_Paulo e identificador reservado, sem emitir, importar ou devolver documentos. GET do painel não testa provedores. Não foram criados testes remotos para MP/runtime, jobs, tabelas ou migrations.
+
+Validação local: `npm run test:bentevi-integrations` (72 testes), `npm run validate` e build passaram. Um teste histórico Hayamax foi atualizado para não confundir a função aposentada com `getMercadoPagoPaymentForMlSale`, já existente no HEAD antes da entrega. Homologação/publicação e aceite são acompanhados no checklist; não avançar automaticamente ao pricing.
+
+Referências: [DSLite oficial](https://documenter.getpostman.com/view/5316990/RWaRNkaA), [consultas Brasil NFe](https://brasilnfe.com.br/api/consultas), [Ant Design 5](https://5x.ant.design/components/descriptions/). Rollback de aplicação: reverter somente os commits desta entrega em `dev` e publicar pelo webhook DEV, preservando credenciais e auditoria. Não há rollback de schema.
+
+### Continuidade da política de pricing
+
 Depois de `BNT-PARITY-GATE` e da aprovação de `BNT-CFG-07`, a sequência passa a seguir `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. `BNT-PRICING-V2-00` documentará o desenho executável; as ações `01` a `15`, incluindo `08A`, implementarão uma mudança por vez; `BNT-CFG-08` e `BNT-CFG-09` consumirão os contratos estabilizados; e `BNT-PRICING-V2-16` bloqueará qualquer autonomia até comprovação de segurança.
 
 As faixas atualmente expostas por `BNT-CFG-03` permanecem como fotografia do motor vigente até sua substituição controlada. Elas não devem coexistir como um segundo motor após a transição. Mudanças automáticas de preço permanecem `REQUIRES_CONFIRMATION` por padrão.

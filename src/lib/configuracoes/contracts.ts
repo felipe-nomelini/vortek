@@ -80,7 +80,7 @@ export const CONFIGURATION_DEFINITIONS = {
   "integracoes.url": { domain: "integracoes", label: "URL da integração", classification: "EDITAVEL_CONTROLADO" },
   "integracoes.access_token": { domain: "integracoes", label: "Token de acesso", classification: "SECRET_WRITE_ONLY" },
   "integracoes.refresh_token": { domain: "integracoes", label: "Token de renovação", classification: "SECRET_WRITE_ONLY" },
-  "integracoes.conectado": { domain: "integracoes", label: "Estado da conexão", classification: "EDITAVEL_CONTROLADO" },
+  "integracoes.conectado": { domain: "integracoes", label: "Estado da conexão", classification: "STATUS_SOMENTE_LEITURA" },
   "integracoes.mercadolivre.client_id": { domain: "mercado_livre_anuncios", label: "Client ID do Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
   "integracoes.mercadolivre.client_secret": { domain: "mercado_livre_anuncios", label: "Client secret do Mercado Livre", classification: "SECRET_WRITE_ONLY" },
   "integracoes.mercadolivre.oauth_tokens": { domain: "mercado_livre_anuncios", label: "Tokens OAuth do Mercado Livre", classification: "SECRET_WRITE_ONLY" },
@@ -380,7 +380,6 @@ export const integrationConfigurationSchema = z.discriminatedUnion("tipo", [
     values: requireAtLeastOneField(z.object({
       url: integrationUrlSchema.optional(),
       access_token: credentialSchema.optional(),
-      conectado: z.boolean().optional(),
     })),
   }).strict(),
   z.object({
@@ -389,14 +388,12 @@ export const integrationConfigurationSchema = z.discriminatedUnion("tipo", [
       url: integrationUrlSchema.optional(),
       access_token: credentialSchema.optional(),
       refresh_token: credentialSchema.optional(),
-      conectado: z.boolean().optional(),
     })),
   }).strict(),
   z.object({
     tipo: z.literal("mercadopago"),
     values: requireAtLeastOneField(z.object({
       access_token: credentialSchema.optional(),
-      conectado: z.boolean().optional(),
     })),
   }).strict(),
 ]);

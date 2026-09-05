@@ -5,7 +5,9 @@ const test = require("node:test");
 
 const {
   toIntegrationConfigDto,
-} = require("../src/lib/integration-config-dto.ts");
+} = require("./helpers/load-integration-module")("src/lib/integration-config-dto.ts", {
+  "./integration-configuration": require("../src/lib/integration-configuration.ts"),
+});
 
 const root = path.resolve(__dirname, "..");
 
@@ -55,7 +57,7 @@ test("GET e PATCH aplicam o mesmo DTO seguro", () => {
     "utf8",
   );
 
-  assert.match(route, /integracoes: \(data \|\| \[\]\)\.map\(\(row\) =>/);
+  assert.match(route, /integracoes: rows\.filter/);
   assert.match(route, /integracao: toIntegrationConfigDto\(data/);
   assert.equal(route.match(/toIntegrationConfigDto\(/g)?.length, 2);
   assert.doesNotMatch(route, /integracoes: data \|\| \[\]/);
@@ -89,7 +91,8 @@ test("cliente não lê secrets existentes e testes usam configuração server-si
   assert.match(integrationsTab, /refresh_token_configurado/);
   assert.doesNotMatch(integrationsTab, /mercadolivre/);
   for (const source of [dsliteRoute, brasilNfeRoute]) {
-    assert.match(source, /createServiceClient\(\)/);
+    assert.match(source, /testSavedIntegration/);
     assert.doesNotMatch(source, /request\.json\(/);
   }
+  assert.match(fs.readFileSync(path.join(root, "src/services/integration-connection-test.ts"), "utf8"), /requireAdminUser|createServiceClient/);
 });

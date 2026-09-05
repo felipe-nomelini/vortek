@@ -20,6 +20,7 @@ type IntegracaoTipo = IntegracaoRow["tipo"];
 
 export type MLFailureCategory =
   "expected_operational" | "retryable" | "auth_fatal" | "error";
+import { FATAL_REFRESH_ERROR_CODES } from "@/lib/integration-configuration";
 export type MLAuthState = "ok" | "degraded" | "reauth_required";
 
 export interface MLRequestError {
@@ -42,12 +43,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const REFRESH_WAIT_MS = 700;
 const REFRESH_WAIT_ATTEMPTS = 8;
 const AUTH_FATAL_COOLDOWN_MS = 10 * 60 * 1000;
-const FATAL_REFRESH_ERROR_CODES = [
-  "invalid_grant",
-  "invalid_client",
-  "unauthorized_client",
-  "unauthorized_application",
-];
+// Shared with the read-only integration overview; OAuth remains owned by this service.
 let inflightForcedRefresh: Promise<string | null> | null = null;
 let authBlockedUntilMs = 0;
 let verifiedAccessToken: string | null = null;

@@ -16,12 +16,13 @@ test('relatório Mercado Pago importa somente evidência financeira bruta', () =
   assert.doesNotMatch(syncRoute, /topup|HAYAMAX|Hayamax/);
 });
 
-test('remove webhook, consulta de pagamento e SDK sem afetar o relatório', () => {
+test('remove webhook, consulta de pagamento Hayamax e SDK sem afetar relatório ou venda ML', () => {
   const service = read('src/services/mercadopago.ts');
   const packageJson = JSON.parse(read('package.json'));
 
   assert.equal(fs.existsSync(path.join(root, 'src/app/api/webhooks/mercadopago/route.ts')), false);
-  assert.doesNotMatch(service, /MercadoPagoConfig|getMercadoPagoClient|getMercadoPagoPayment/);
+  assert.doesNotMatch(service, /MercadoPagoConfig|getMercadoPagoClient\b|getMercadoPagoPayment\b/);
+  assert.match(service, /getMercadoPagoPaymentForMlSale/);
   assert.match(service, /createAccountMoneyReport/);
   assert.match(service, /downloadAccountMoneyReport/);
   assert.equal(packageJson.dependencies.mercadopago, undefined);

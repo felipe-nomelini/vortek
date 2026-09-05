@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** planejar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`. `BNT-PARITY-GATE` concluído para a sequência DEV, com aceite explícito do encaminhamento das lacunas de pricing à V2. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação remota.
+**Próxima ação obrigatória:** homologar e aprovar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`. Implementação e validação local concluídas; publicação acompanhada na seção própria abaixo. Depois da aprovação visual, planejar `BNT-PRICING-V2-00`. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação remota.
 
 ---
 
@@ -210,7 +210,7 @@ Regras de uso:
 - [ ] Preparar e ensaiar `DELTA_PROMOCAO` de migrations novas antes do release; preservar históricos distintos e dependências da colisão de estoque.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [x] Executar `BNT-PARITY-GATE`, conferir os commits e registrar o aceite das lacunas classificadas antes de liberar a sequência DEV.
-- [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
+- [ ] Aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` (implementação e validação local concluídas após o gate).
 - [ ] Executar `BNT-PRICING-V2-00 — Dossiê AS_IS → TO_BE e contratos` somente após aprovação de `BNT-CFG-07`.
 - [ ] Executar `BNT-PRICING-V2-01` a `BNT-PRICING-V2-15`, incluindo `BNT-PRICING-V2-08A`, uma ação por vez e na ordem definida no plano canônico.
 - [ ] Executar `BNT-CFG-08` somente depois de os alertas e indicadores de pricing necessários estarem estabilizados.
@@ -3293,3 +3293,23 @@ O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tive
 - [ ] produção permaneceu operacional durante toda a execução.
 
 Quando estes critérios estiverem concluídos, fazer uma revisão final das auditorias e registrar qualquer item formalmente reclassificado antes de declarar o Item 17 encerrado.
+
+---
+
+## Evidência BNT-CFG-07 — Integrações (05/09/2026)
+
+**Estado:** implementação local validada; publicação e aprovação visual pendentes.
+
+- [x] painel com dez integrações agrupadas; drawer DSLite, Brasil NFe e Mercado Pago;
+- [x] Mercado Livre, feeds e canais preservam suas áreas responsáveis;
+- [x] runtime somente leitura por decisão explícita; edição pelo ERP permanece evolução futura;
+- [x] origem efetiva das credenciais, secrets write-only, salvamento explícito e auditoria sanitizada;
+- [x] testes decididos pelo servidor, concorrência por `updated_at`, destinos permitidos e consultas exclusivamente de homologação;
+- [x] GET sem chamadas externas; falha de leitura distinta de desconexão; nenhuma migration ou credencial alterada;
+- [x] 72 testes direcionados, lint, typecheck e build;
+- [ ] publicação e smoke test do artefato em `dev.bentevi.shop`;
+- [ ] aprovação visual do responsável.
+
+Paridade: `main` permaneceu em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de`, sem novo delta antes desta entrega. O teste histórico Hayamax passou a distinguir a função aposentada da consulta legítima `getMercadoPagoPaymentForMlSale`, já existente no HEAD anterior.
+
+Próxima ação após aprovação: planejar `BNT-PRICING-V2-00`. Não iniciar automaticamente. Produção, novas autonomias e ativação operacional Evolusom não são liberadas por esta entrega.

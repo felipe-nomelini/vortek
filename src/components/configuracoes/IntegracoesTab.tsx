@@ -1,500 +1,186 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Button, Card, Col, Input, Modal, Row, Space, Spin, Tag, Typography } from "antd";
+import Link from "next/link";
+import { Alert, Button, Descriptions, Drawer, Empty, Input, Modal, Space, Spin, Tag, Typography } from "antd";
+import { ReloadOutlined, SettingOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import type { MessageInstance } from "antd/es/message/interface";
-import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
+import type { IntegrationConfigDto } from "@/lib/integration-config-dto";
+import { INTEGRATION_STATE_LABELS, type IntegrationSummary, type IntegrationTestResult } from "@/lib/integration-configuration";
+import styles from "./IntegracoesTab.module.css";
 
-const { Text } = Typography;
+type Overview = { integracoes: IntegrationConfigDto[]; resumo: IntegrationSummary[] };
+type SecretField = "access_token" | "refresh_token";
+const originLabels = { erp: "Cadastro do ERP", runtime: "Servidor", default: "Padrão do provedor", missing: "Não configurado" };
+const stateColors = { missing: "default", incomplete: "gold", configured: "default", validated: "green", reconnect: "orange", error: "red" };
 
-type SecretFieldName = "access_token" | "refresh_token";
-
-const secretStatusField: Record<SecretFieldName, string> = {
-  access_token: "access_token_configurado",
-  refresh_token: "refresh_token_configurado",
-};
-
-function getErrorMessage(error: unknown, fallback: string) {
-  return error instanceof Error ? error.message : fallback;
+async function readResponse(response: Response) {
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.erro || data.message || "Não foi possível concluir a operação.");
+  return data;
 }
 
-function SecretCredentialField({
-  placeholder,
-  value,
-  configured,
-  saving,
-  onChange,
-  onSave,
-  onRemove,
-}: {
-  placeholder: string;
-  value: string;
-  configured: boolean;
-  saving: boolean;
-  onChange: (value: string) => void;
-  onSave: () => void;
-  onRemove: () => void;
+function SecretCredentialField({ label, value, configured, runtimeConfigured, disabled, onChange, onRemove }: {
+  label: string; value: string; configured: boolean; runtimeConfigured: boolean; disabled: boolean;
+  onChange: (value: string) => void; onRemove: () => void;
 }) {
-  return (
-    <div>
-      <Space.Compact style={{ width: "100%" }}>
-        <Input
-          placeholder={placeholder}
-          type="password"
-          autoComplete="new-password"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          style={configuracoesInputStyle}
-        />
-        <Button
-          size="small"
-          onClick={onSave}
-          loading={saving}
-          disabled={!value.trim()}
-        >
-          Salvar
-        </Button>
-      </Space.Compact>
-      <Space size={4} style={{ marginTop: 4 }}>
-        <Tag color={configured ? "green" : "default"} style={{ margin: 0 }}>
-          {configured ? "Configurado" : "Não configurado"}
-        </Tag>
-        {configured ? (
-          <Button type="link" danger size="small" onClick={onRemove}>
-            Remover
-          </Button>
-        ) : null}
-      </Space>
+  return <div className={styles.field}>
+    <label>{label}</label>
+    <Input.Password aria-label={label} value={value} disabled={disabled} autoComplete="new-password"
+      placeholder="Preencha somente para substituir" onChange={(event) => onChange(event.target.value)} />
+    <div className={styles.fieldHint}>
+      <span>{configured ? "Valor cadastrado no ERP" : "Sem valor cadastrado no ERP"}{runtimeConfigured ? " · Também configurado no servidor" : ""}</span>
+      {configured && <Button danger size="small" type="link" disabled={disabled} onClick={onRemove}>Remover valor cadastrado</Button>}
     </div>
-  );
+  </div>;
 }
 
-export default function IntegracoesTab({
-  messageApi,
-}: {
-  messageApi: MessageInstance;
-}) {
+export default function IntegracoesTab({ messageApi }: { messageApi: MessageInstance }) {
+  const [data, setData] = useState<Overview | null>(null);
   const [loading, setLoading] = useState(true);
-  const [testingIntegration, setTestingIntegration] = useState<string | null>(null);
-  const [savingSecret, setSavingSecret] = useState<string | null>(null);
-  const [dslite, setDslite] = useState({
-    url: "",
-    token: "",
-    tokenConfigured: false,
-    conectado: false,
-  });
-  const [brasilNfe, setBrasilNfe] = useState({
-    token: "",
-    userToken: "",
-    tokenConfigured: false,
-    userTokenConfigured: false,
-    url: "",
-    conectado: false,
-  });
+  const [error, setError] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [testing, setTesting] = useState(false);
+  const [url, setUrl] = useState("");
+  const [secrets, setSecrets] = useState({ access_token: "", refresh_token: "" });
+  const [results, setResults] = useState<Record<string, IntegrationTestResult>>({});
+  const selected = data?.resumo.find((item) => item.tipo === selectedId);
+  const record = data?.integracoes.find((item) => item.tipo === selectedId);
+  const dirty = Boolean(secrets.access_token.trim() || secrets.refresh_token.trim() || url !== (record?.url || ""));
+  const busy = saving || testing;
 
-  useEffect(() => {
-    const load = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch("/api/integracoes/config");
-        const data = await response.json().catch(() => ({}));
-        if (!response.ok) {
-          messageApi.error(data?.erro || "Falha ao carregar integrações");
-          return;
-        }
-
-        for (const integration of data.integracoes || []) {
-          if (integration.tipo === "dslite") {
-            setDslite({
-              url: integration.url || "",
-              token: "",
-              tokenConfigured: Boolean(integration.access_token_configurado),
-              conectado: Boolean(integration.conectado),
-            });
-          }
-          if (integration.tipo === "brasilnfe") {
-            setBrasilNfe({
-              token: "",
-              userToken: "",
-              tokenConfigured: Boolean(integration.access_token_configurado),
-              userTokenConfigured: Boolean(
-                integration.refresh_token_configurado,
-              ),
-              url: integration.url || "",
-              conectado: Boolean(integration.conectado),
-            });
-          }
-        }
-      } catch {
-        messageApi.error("Falha ao carregar integrações");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    void load();
-  }, [messageApi]);
-
-  const saveIntegracao = useCallback(
-    async (tipo: string, values: Record<string, unknown>) => {
-      const response = await fetch("/api/integracoes/config", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tipo, values }),
-      });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(data?.erro || "Falha ao salvar integração");
-      }
-      return (data.integracao || {}) as Record<string, unknown>;
-    },
-    [],
-  );
-
-  const saveCredential = useCallback(
-    async (input: {
-      tipo: string;
-      field: SecretFieldName;
-      value: string;
-      label: string;
-      onSaved: (configured: boolean) => void;
-    }) => {
-      const value = input.value.trim();
-      if (!value) return;
-      setSavingSecret(`${input.tipo}:${input.field}`);
-      try {
-        const integration = await saveIntegracao(input.tipo, {
-          [input.field]: value,
-        });
-        input.onSaved(Boolean(integration[secretStatusField[input.field]]));
-        messageApi.success(`${input.label} salva`);
-      } catch (error) {
-        messageApi.error(
-          getErrorMessage(error, `Falha ao salvar ${input.label}`),
-        );
-      } finally {
-        setSavingSecret(null);
-      }
-    },
-    [messageApi, saveIntegracao],
-  );
-
-  const removeCredential = useCallback(
-    (input: {
-      tipo: string;
-      field: SecretFieldName;
-      label: string;
-      onRemoved: () => void;
-    }) => {
-      Modal.confirm({
-        title: `Remover ${input.label}?`,
-        content: "A integração deixará de usar esta credencial.",
-        okText: "Remover",
-        okButtonProps: { danger: true },
-        cancelText: "Cancelar",
-        async onOk() {
-          try {
-            await saveIntegracao(input.tipo, { [input.field]: null });
-            input.onRemoved();
-            messageApi.success(`${input.label} removida`);
-          } catch (error) {
-            messageApi.error(
-              getErrorMessage(error, `Falha ao remover ${input.label}`),
-            );
-            throw error;
-          }
-        },
-      });
-    },
-    [messageApi, saveIntegracao],
-  );
-
-  const testarDslite = async () => {
-    if (!dslite.url || !dslite.tokenConfigured) {
-      messageApi.warning("Configure e salve a URL e o Token");
-      return;
-    }
-    setTestingIntegration("dslite");
+  const load = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
-      await saveIntegracao("dslite", { url: dslite.url });
-      const response = await fetch("/api/integracoes/teste/dslite", {
-        method: "POST",
-      });
-      const data = await response.json().catch(() => ({}));
-      const conectado = Boolean(response.ok && data?.ok);
-      setDslite((current) => ({ ...current, conectado }));
-      await saveIntegracao("dslite", { conectado });
-      if (!conectado) {
-        messageApi.error(data?.erro || "Falha ao validar DSLite");
-        return;
-      }
-      messageApi.success(data?.message || "Conexão DSLite validada!");
-    } catch (error) {
-      setDslite((current) => ({ ...current, conectado: false }));
-      messageApi.error(getErrorMessage(error, "Falha ao validar DSLite"));
-    } finally {
-      setTestingIntegration(null);
-    }
+      const payload = await readResponse(await fetch("/api/integracoes/config", { cache: "no-store" })) as Overview;
+      setData(payload);
+      return payload;
+    } catch {
+      setError("Não foi possível carregar as integrações. Os estados não estão disponíveis.");
+      return null;
+    } finally { setLoading(false); }
+  }, []);
+
+  useEffect(() => { void load(); }, [load]);
+
+  const clearDraft = () => { setSecrets({ access_token: "", refresh_token: "" }); setUrl(record?.url || ""); };
+  const open = (item: IntegrationSummary) => {
+    setSelectedId(item.tipo);
+    setUrl(data?.integracoes.find((row) => row.tipo === item.tipo)?.url || "");
+    setSecrets({ access_token: "", refresh_token: "" });
+  };
+  const close = () => {
+    if (busy) return;
+    if (dirty) {
+      Modal.confirm({ title: "Descartar alterações não salvas?", okText: "Descartar", cancelText: "Continuar editando", onOk: () => { clearDraft(); setSelectedId(null); } });
+    } else { clearDraft(); setSelectedId(null); }
+  };
+  const save = async (values: Record<string, unknown>) => {
+    if (!selected || busy) return;
+    setSaving(true);
+    try {
+      await readResponse(await fetch("/api/integracoes/config", {
+        method: "PATCH", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tipo: selected.tipo, values }),
+      }));
+      setSecrets({ access_token: "", refresh_token: "" });
+      setResults({});
+      const refreshed = await load();
+      setUrl(refreshed?.integracoes.find((row) => row.tipo === selected.tipo)?.url || "");
+      messageApi.success("Configuração salva. Execute o teste para verificar a conexão.");
+    } catch (err) {
+      // The endpoint explicitly reports partial persistence; never retain typed secrets after a failed save.
+      setSecrets({ access_token: "", refresh_token: "" });
+      setResults({});
+      await load();
+      messageApi.error(err instanceof Error ? err.message : "Falha ao salvar.");
+    } finally { setSaving(false); }
+  };
+  const saveDraft = () => {
+    const values: Record<string, unknown> = {};
+    if (url !== (record?.url || "")) values.url = url.trim() || null;
+    for (const field of ["access_token", "refresh_token"] as const) if (secrets[field].trim()) values[field] = secrets[field].trim();
+    if (Object.keys(values).length) void save(values);
+  };
+  const remove = (field: SecretField) => Modal.confirm({
+    title: "Remover o valor cadastrado no ERP?",
+    content: "Se houver uma credencial no servidor, ela poderá continuar sendo utilizada. Isto não revoga a credencial no provedor.",
+    okText: "Remover", cancelText: "Cancelar", okButtonProps: { danger: true },
+    onOk: () => save({ [field]: null }),
+  });
+  const testConnection = async () => {
+    if (!selected || busy || dirty) return;
+    setTesting(true);
+    try {
+      const response = await fetch(`/api/integracoes/teste/${selected.tipo}`, { method: "POST" });
+      const result = await response.json().catch(() => ({}));
+      if (typeof result.ok !== "boolean" || typeof result.checkedAt !== "string") throw new Error(result.erro || "Falha ao registrar o diagnóstico.");
+      setResults((current) => ({ ...current, [selected.tipo]: result as IntegrationTestResult }));
+    } catch (err) {
+      setResults((current) => ({ ...current, [selected.tipo]: { ok: false, code: "request_failed", message: err instanceof Error ? err.message : "Falha ao testar.", checkedAt: new Date().toISOString() } }));
+    } finally { setTesting(false); }
   };
 
-  const testarBrasilNfe = async () => {
-    if (!brasilNfe.tokenConfigured) {
-      messageApi.warning("Configure e salve o Token da Brasil NFe");
-      return;
-    }
-    setTestingIntegration("brasilnfe");
-    try {
-      await saveIntegracao("brasilnfe", { url: brasilNfe.url || null });
-      const response = await fetch("/api/integracoes/teste/brasilnfe", {
-        method: "POST",
-      });
-      const data = await response.json().catch(() => ({}));
-      const conectado = Boolean(response.ok && data?.ok);
-      setBrasilNfe((current) => ({ ...current, conectado }));
-      await saveIntegracao("brasilnfe", { conectado });
-      if (!conectado) {
-        messageApi.error(data?.erro || "Falha ao validar Brasil NFe");
-        return;
-      }
-      messageApi.success(data?.message || "Conexão Brasil NFe validada!");
-    } catch (error) {
-      setBrasilNfe((current) => ({ ...current, conectado: false }));
-      messageApi.error(getErrorMessage(error, "Falha ao validar Brasil NFe"));
-    } finally {
-      setTestingIntegration(null);
-    }
-  };
-
-  const integrations = [
-    {
-      key: "dslite",
-      nome: "DSLite",
-      conectado: dslite.conectado,
-      cor: "#fa8c16",
-      fields: (
-        <>
-          <Input
-            placeholder="URL da API"
-            value={dslite.url}
-            onChange={(event) =>
-              setDslite((current) => ({ ...current, url: event.target.value }))
-            }
-            onBlur={() => saveIntegracao("dslite", { url: dslite.url })}
-            style={configuracoesInputStyle}
-          />
-          <SecretCredentialField
-            placeholder="Token de Acesso"
-            value={dslite.token}
-            configured={dslite.tokenConfigured}
-            saving={savingSecret === "dslite:access_token"}
-            onChange={(value) =>
-              setDslite((current) => ({ ...current, token: value }))
-            }
-            onSave={() =>
-              saveCredential({
-                tipo: "dslite",
-                field: "access_token",
-                value: dslite.token,
-                label: "Token da DSLite",
-                onSaved: (configured) =>
-                  setDslite((current) => ({
-                    ...current,
-                    token: configured ? "" : current.token,
-                    tokenConfigured: configured,
-                  })),
-              })
-            }
-            onRemove={() =>
-              removeCredential({
-                tipo: "dslite",
-                field: "access_token",
-                label: "Token da DSLite",
-                onRemoved: () =>
-                  setDslite((current) => ({
-                    ...current,
-                    token: "",
-                    tokenConfigured: false,
-                  })),
-              })
-            }
-          />
-        </>
-      ),
-      action: { label: "Testar Conexão", onClick: testarDslite },
-    },
-    {
-      key: "brasilnfe",
-      nome: "Brasil NFe",
-      conectado: brasilNfe.conectado,
-      cor: "#13c2c2",
-      fields: (
-        <>
-          <SecretCredentialField
-            placeholder="Token da Empresa"
-            value={brasilNfe.token}
-            configured={brasilNfe.tokenConfigured}
-            saving={savingSecret === "brasilnfe:access_token"}
-            onChange={(value) =>
-              setBrasilNfe((current) => ({ ...current, token: value }))
-            }
-            onSave={() =>
-              saveCredential({
-                tipo: "brasilnfe",
-                field: "access_token",
-                value: brasilNfe.token,
-                label: "Token da Brasil NFe",
-                onSaved: (configured) =>
-                  setBrasilNfe((current) => ({
-                    ...current,
-                    token: configured ? "" : current.token,
-                    tokenConfigured: configured,
-                  })),
-              })
-            }
-            onRemove={() =>
-              removeCredential({
-                tipo: "brasilnfe",
-                field: "access_token",
-                label: "Token da Brasil NFe",
-                onRemoved: () =>
-                  setBrasilNfe((current) => ({
-                    ...current,
-                    token: "",
-                    tokenConfigured: false,
-                  })),
-              })
-            }
-          />
-          <SecretCredentialField
-            placeholder="User Token (opcional)"
-            value={brasilNfe.userToken}
-            configured={brasilNfe.userTokenConfigured}
-            saving={savingSecret === "brasilnfe:refresh_token"}
-            onChange={(value) =>
-              setBrasilNfe((current) => ({ ...current, userToken: value }))
-            }
-            onSave={() =>
-              saveCredential({
-                tipo: "brasilnfe",
-                field: "refresh_token",
-                value: brasilNfe.userToken,
-                label: "User Token da Brasil NFe",
-                onSaved: (configured) =>
-                  setBrasilNfe((current) => ({
-                    ...current,
-                    userToken: configured ? "" : current.userToken,
-                    userTokenConfigured: configured,
-                  })),
-              })
-            }
-            onRemove={() =>
-              removeCredential({
-                tipo: "brasilnfe",
-                field: "refresh_token",
-                label: "User Token da Brasil NFe",
-                onRemoved: () =>
-                  setBrasilNfe((current) => ({
-                    ...current,
-                    userToken: "",
-                    userTokenConfigured: false,
-                  })),
-              })
-            }
-          />
-          <Input
-            placeholder="URL Base (opcional)"
-            value={brasilNfe.url}
-            onChange={(event) =>
-              setBrasilNfe((current) => ({
-                ...current,
-                url: event.target.value,
-              }))
-            }
-            onBlur={() =>
-              saveIntegracao("brasilnfe", { url: brasilNfe.url })
-            }
-            style={configuracoesInputStyle}
-          />
-        </>
-      ),
-      action: { label: "Testar conexão", onClick: testarBrasilNfe },
-    },
-  ];
-
-  return (
+  return <section className={styles.root} aria-label="Integrações">
+    <div className={styles.header}>
+      <div><Typography.Title level={4}>Integrações</Typography.Title><Typography.Text type="secondary">Conexões, configuração e próximos passos — sem confundir cadastro com disponibilidade.</Typography.Text></div>
+      <Button icon={<ReloadOutlined />} loading={loading} disabled={busy || dirty} onClick={() => { setResults({}); void load(); }}>Atualizar estados</Button>
+    </div>
+    {error && <Alert type="error" showIcon message="Estados indisponíveis" description={error} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}
     <Spin spinning={loading}>
-      <Row gutter={[16, 16]}>
-        {integrations.map((integration) => (
-          <Col xs={24} lg={12} key={integration.key}>
-            <Card
-              styles={{ body: { padding: 16 } }}
-              style={{
-                ...configuracoesCardStyle,
-                height: "100%",
-                borderColor: integration.conectado
-                  ? integration.cor
-                  : "#303030",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: 16,
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div
-                    style={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: 6,
-                      background: integration.conectado
-                        ? integration.cor
-                        : "#555",
-                    }}
-                  />
-                  <Text
-                    style={{
-                      color: "#e0e0e0",
-                      fontWeight: 600,
-                      fontSize: 15,
-                    }}
-                  >
-                    {integration.nome}
-                  </Text>
-                </div>
-                <Tag
-                  color={integration.conectado ? "green" : "default"}
-                  style={{ margin: 0 }}
-                >
-                  {integration.conectado ? "Conectado" : "Desconectado"}
-                </Tag>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8,
-                  marginBottom: 16,
-                }}
-              >
-                {integration.fields}
-              </div>
-              <Button
-                size="small"
-                type="primary"
-                onClick={integration.action.onClick}
-                loading={testingIntegration === integration.key}
-                style={{ width: "100%" }}
-              >
-                {integration.action.label}
-              </Button>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      {!error && !data && !loading && <Empty description="Nenhuma integração disponível" />}
+      {!error && data && Array.from(new Set(data.resumo.map((item) => item.group))).map((group) => <section key={group} className={styles.group}>
+        <h3>{group}</h3>
+        {data.resumo.filter((item) => item.group === group).map((item) => {
+          const state = results[item.tipo] ? results[item.tipo].ok ? "validated" : "error" : item.state;
+          return <div key={item.tipo} className={styles.row}>
+            <div><strong>{item.name}</strong><p>{item.purpose}</p></div>
+            <div className={styles.state}><Tag color={stateColors[state]}>{INTEGRATION_STATE_LABELS[state]}</Tag>
+              {item.restriction && <small>{item.restriction}</small>}
+            </div>
+            {item.href ? <Link href={item.href}><Button icon={<ArrowRightOutlined />}>{item.action}</Button></Link>
+              : <Button icon={<SettingOutlined />} onClick={() => open(item)}>{item.action}</Button>}
+          </div>;
+        })}
+      </section>)}
     </Spin>
-  );
+    <Drawer title={selected?.name} open={Boolean(selected)} onClose={close} width={620} destroyOnHidden
+      extra={selected?.editable ? <Space><Button disabled={busy} onClick={clearDraft}>Cancelar</Button><Button type="primary" disabled={!dirty || busy || Boolean(error)} loading={saving} onClick={saveDraft}>Salvar alterações</Button></Space> : undefined}>
+      {selected && <div className={styles.details}>
+        <p>{selected.purpose}</p>
+        {selected.restriction && <Alert type="info" showIcon message={selected.restriction} />}
+        {record && <Descriptions size="small" column={1} items={[
+          { key: "token", label: "Credencial efetiva", children: originLabels[record.effective.tokenOrigin] },
+          ...(selected.tipo === "brasilnfe" ? [{ key: "user", label: "User token efetivo", children: originLabels[record.effective.userTokenOrigin] }] : []),
+          ...(selected.tipo !== "mercadopago" ? [{ key: "url", label: "URL efetiva", children: record.effective.url || "Não configurada ou não permitida" }, { key: "origin", label: "Origem da URL", children: originLabels[record.effective.urlOrigin] }] : []),
+          { key: "updated", label: "Atualização do cadastro", children: record.updated_at ? new Date(record.updated_at).toLocaleString("pt-BR") : "Sem registro" },
+          ...(record.fiscalEnvironment ? [{ key: "fiscal", label: "Ambiente de emissão", children: record.fiscalEnvironment }, { key: "return", label: "Ambiente de devolução", children: record.returnEnvironment }] : []),
+        ]} />}
+        {selected.editable && <>
+          {selected.tipo !== "mercadopago" && <div className={styles.field}><label htmlFor="integration-url">URL cadastrada no ERP</label>
+            <Input id="integration-url" value={url} disabled={busy} placeholder={selected.tipo === "dslite" ? "https://api.master.dev.dslite.com.br" : "https://api.brasilnfe.com.br/services/"}
+              onChange={(event) => setUrl(event.target.value)} />
+            <small>{selected.tipo === "dslite" ? "Informe somente a origem, sem /v1. Os testes usam exclusivamente homologação." : "Em branco, utiliza a configuração do servidor ou o padrão do provedor."}</small>
+          </div>}
+          <SecretCredentialField label={selected.tipo === "brasilnfe" ? "Token da empresa" : "Token de acesso"}
+            value={secrets.access_token} configured={Boolean(record?.access_token_configurado)} runtimeConfigured={Boolean(record?.runtime.tokenConfigured)} disabled={busy}
+            onChange={(value) => setSecrets((current) => ({ ...current, access_token: value }))} onRemove={() => remove("access_token")} />
+          {selected.tipo === "brasilnfe" && <SecretCredentialField label="User token (opcional)"
+            value={secrets.refresh_token} configured={Boolean(record?.refresh_token_configurado)} runtimeConfigured={Boolean(record?.runtime.userTokenConfigured)} disabled={busy}
+            onChange={(value) => setSecrets((current) => ({ ...current, refresh_token: value }))} onRemove={() => remove("refresh_token")} />}
+        </>}
+        {["dslite", "brasilnfe"].includes(selected.tipo) && <div>
+          <Button loading={testing} disabled={!selected.testable || dirty || saving || Boolean(error)} onClick={testConnection}>Testar conexão em homologação</Button>
+          <p className={styles.hint}>{dirty ? "Salve as alterações antes de testar." : "O teste consulta dados; não cria pedidos, não emite notas e não importa documentos."}</p>
+          {results[selected.tipo] && <Alert showIcon type={results[selected.tipo].ok ? "success" : "error"} message={results[selected.tipo].message}
+            description={`Consulta desta sessão: ${new Date(results[selected.tipo].checkedAt).toLocaleString("pt-BR")}`} />}
+        </div>}
+        {selected.tipo === "dslite" && <Link href="/configuracoes?tab=operacao" onClick={() => setSelectedId(null)}>Gerenciar feeds por fornecedor em Operação →</Link>}
+        {selected.tipo === "mercadopago" && <Alert type="info" message="Esta configuração atende aos relatórios financeiros existentes. Salvar não valida o token nem ativa jobs, pagamentos ou conta-saldo." />}
+        {selected.group === "Serviços técnicos" && <Alert type="info" message="Somente estado da configuração" description="Credenciais e parâmetros continuam no servidor. A edição pelo ERP será tratada em uma etapa própria." />}
+      </div>}
+    </Drawer>
+  </section>;
 }

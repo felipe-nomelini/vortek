@@ -1,5 +1,6 @@
 import { createServiceClient } from '@/lib/supabase';
 import { getValidMLToken } from '@/services/integration';
+import { resolveIntegrationConfiguration } from '@/lib/integration-configuration';
 
 export {
   parseMercadoPagoAccountMoneyCsv,
@@ -34,7 +35,7 @@ export async function getMercadoPagoAccessToken() {
     .maybeSingle();
 
   if (error) throw new Error(`Falha ao ler integração Mercado Pago: ${error.message}`);
-  return String(data?.access_token || '').trim();
+  return resolveIntegrationConfiguration('mercadopago', data || {}, process.env).token.value;
 }
 
 async function mercadoPagoRequestWithToken<T>(

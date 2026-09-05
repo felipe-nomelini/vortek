@@ -8,6 +8,13 @@ import {
 } from "@/lib/configuracoes/contracts";
 import { toIntegrationConfigDto } from "@/lib/integration-config-dto";
 import { recordConfigurationAudit } from "@/services/configuration-audit";
+import { integrationSummaries, integrationUrlAllowed, resolveIntegrationConfiguration } from "@/lib/integration-configuration";
+
+export const dynamic = "force-dynamic";
+
+function json(body: unknown, status = 200) {
+  return NextResponse.json(body, { status, headers: { "Cache-Control": "no-store" } });
+}
 
 const SELECTED_FIELDS =
   "tipo,client_id,client_secret,redirect_uri,url,access_token,refresh_token,conectado,last_refresh_error,last_refresh_error_code,token_expires_at,updated_at" as const;
@@ -32,14 +39,15 @@ export async function GET() {
   const { data, error } = await serviceClient
     .from("integracoes")
     .select(SELECTED_FIELDS)
-    .neq("tipo", "mercadolivre")
     .order("tipo");
 
-  if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-  return NextResponse.json({
-    integracoes: (data || []).map((row) =>
-      toIntegrationConfigDto(row as Record<string, unknown>),
+  if (error) return json({ erro: "Falha ao carregar integrações" }, 500);
+  const rows = data || [];
+  return json({
+    integracoes: rows.filter((row) => row.tipo !== "mercadolivre").map((row) =>
+      toIntegrationConfigDto(row as Record<string, unknown>, process.env),
     ),
+    resumo: integrationSummaries(rows, process.env),
   });
 }
 
@@ -57,25 +65,31 @@ export async function PATCH(request: Request) {
     );
   }
   const { tipo, values: payload } = parsed.data;
+  if ("url" in payload && payload.url && !integrationUrlAllowed(tipo, payload.url)) {
+    return json({ erro: "URL não permitida. Utilize o endereço oficial da integração, sem credenciais ou parâmetros." }, 422);
+  }
+  if (tipo === "mercadopago" && resolveIntegrationConfiguration(tipo, {}, process.env).token.origin === "runtime") {
+    return json({ erro: "A credencial do servidor prevalece. Altere-a no runtime." }, 409);
+  }
 
   const serviceClient = createServiceClient();
   const { data: previous, error: previousError } = await serviceClient
     .from("integracoes")
     .select(SELECTED_FIELDS)
     .eq("tipo", tipo)
-    .single();
+    .maybeSingle();
   if (previousError) {
-    return NextResponse.json({ erro: previousError.message }, { status: 500 });
+    return json({ erro: "Falha ao carregar a configuração atual" }, 500);
   }
 
-  const { data, error } = await serviceClient
-    .from("integracoes")
-    .update(payload)
-    .eq("tipo", tipo)
-    .select(SELECTED_FIELDS)
-    .single();
+  const updates = { ...payload, conectado: false, updated_at: new Date().toISOString() };
+  const write = previous
+    ? serviceClient.from("integracoes").update(updates).eq("tipo", tipo).eq("updated_at", previous.updated_at)
+    : serviceClient.from("integracoes").insert({ tipo, ...updates });
+  const { data, error } = await write.select(SELECTED_FIELDS).maybeSingle();
 
-  if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+  if (error) return json({ erro: "Não foi possível salvar a integração. Atualize os dados antes de tentar novamente." }, 500);
+  if (!data) return json({ erro: "A configuração mudou durante a edição. Atualize antes de salvar." }, 409);
   try {
     await recordConfigurationAudit(
       serviceClient,
@@ -83,7 +97,8 @@ export async function PATCH(request: Request) {
       Object.entries(payload).map(([field, value]) => ({
         key: AUDIT_KEYS[field as keyof typeof AUDIT_KEYS],
         targetId: tipo,
-        before: previous[field as keyof typeof previous],
+        before: field === "url" && previous?.url && !integrationUrlAllowed(tipo, previous.url)
+          ? "URL anterior fora dos destinos permitidos" : previous?.[field as keyof NonNullable<typeof previous>] ?? null,
         after: value,
         action: field === "conectado"
           ? (value ? "enabled" : "disabled")
@@ -97,7 +112,7 @@ export async function PATCH(request: Request) {
       { status: 500 },
     );
   }
-  return NextResponse.json({
-    integracao: toIntegrationConfigDto(data as Record<string, unknown>),
+  return json({
+    integracao: toIntegrationConfigDto(data as Record<string, unknown>, process.env),
   });
 }

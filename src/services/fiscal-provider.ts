@@ -1,6 +1,7 @@
 import { BrasilNFe } from "brasilnfe";
 import { z } from "zod";
 import { createServiceClient } from "@/lib/supabase";
+import { resolveIntegrationConfiguration } from "@/lib/integration-configuration";
 import { extractCfopsFromXml } from "@/lib/fiscal/cfop";
 import {
   buildBrasilNfeIdentifierLookupPayload,
@@ -157,13 +158,10 @@ export async function getBrasilNfeClient() {
     .limit(1)
     .maybeSingle();
 
-  const token = data?.access_token || process.env.BRASILNFE_TOKEN || "";
-  const userToken =
-    data?.refresh_token || process.env.BRASILNFE_USER_TOKEN || undefined;
-  const baseUrl =
-    data?.url ||
-    process.env.BRASILNFE_BASE_URL ||
-    "https://api.brasilnfe.com.br/services/";
+  const config = resolveIntegrationConfiguration("brasilnfe", data || {}, process.env);
+  const token = config.token.value;
+  const userToken = config.userToken.value || undefined;
+  const baseUrl = config.url.value;
 
   if (!token) {
     throw new Error("Token da integração Brasil NFe não configurado");
