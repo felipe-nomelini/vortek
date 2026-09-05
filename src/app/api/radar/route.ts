@@ -1,3 +1,4 @@
+import { requireAdminUser } from '@/lib/auth/admin';
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 export const dynamic = 'force-dynamic';
@@ -25,4 +26,13 @@ export async function GET(request: Request) {
     const valid = new Set(current.data.map((e: any) => e.id));
     const byId = new Map(evaluations.data.map((e: any) => [e.id, { ...e, valid: valid.has(e.id) }]));
     return NextResponse.json({ rows: result.data.map((r: any) => ({ ...r, economics: byId.get(r.evaluation_id), target: byId.get(r.target_evaluation_id), floor: byId.get(r.floor_evaluation_id), breakEven: byId.get(r.break_even_evaluation_id) })), total: result.count, autonomy: 'AUTO_OBSERVE', publication: 'REQUIRES_CONFIRMATION' });
+}
+
+export async function PATCH(request: Request) {
+  const auth = await requireAdminUser(await createClient());
+  if (!auth.ok) return auth.response;
+  const body = await request.json().catch(() => ({}));
+  const response = await (createServiceClient() as any).rpc('review_radar_candidate', {p_id:body.id,p_expected_stage:body.expectedStage,p_stage:body.stage,p_actor:auth.user.id,p_reason:body.reason});
+  if (response.error) return NextResponse.json({error:response.error.message},{status:409});
+  return NextResponse.json({success:true,mlMutations:0});
 }

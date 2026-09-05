@@ -119,13 +119,15 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
                     ids[scenario] = await persistPricingEvaluation(client, { ...resolved, memory, scenario, itemId: liveItem?.id, groupId: listings[0]?.pricingGroupId, jobId });
             const economy = memories.competitive ?? memories.target;
             const assessment = assessOpportunityConflicts({ identity, listings, listingSearchComplete: linksComplete, economy, buyBox: !!competitivePrice, eligibleOffer: product.ativo === true && !!resolved.offer });
-            const sold = await client.from('pedido_itens').select('id', { count: 'exact', head: true }).eq('produto_id', product.id);
+            const sold = await client.from('pedido_itens').select('id,pedidos!inner(situacao)').eq('seller_sku', product.sku).not('pedidos.situacao','in','(cancelado,recusado,pendente,aberto)').limit(1);
             if (sold.error)
                 throw new Error(sold.error.message);
-            const demand: DemandState = (sold.count ?? 0) > 0 ? 'HISTORICO_PROPRIO' : prior?.evidence?.demand ?? 'SEM_EVIDENCIA_DE_DEMANDA';
+            const demand: DemandState = (sold.data?.length ?? 0) > 0 ? 'HISTORICO_PROPRIO' : prior?.evidence?.demand ?? 'SEM_EVIDENCIA_DE_DEMANDA';
             const stock = Number(resolved.offer?.estoque ?? 0);
             const complete = !!product.ncm && Array.isArray(product.imagens) && product.imagens.length > 0 && assessment.identity === 'IDENTIDADE_COHERENTE';
             const classification = radarClassification(assessment, demand, stock, complete);
+                if (prior && ['REJEITADO','VALIDADO','PUBLICADO_EXPERIMENTO'].includes(prior.stage) && prior.input_fingerprint===inputHash) classification.stage=prior.stage;
+                else if (prior && ['VALIDADO','PUBLICADO_EXPERIMENTO'].includes(prior.stage)) classification.stage='REVISAR';
             const priority = radarPriority({ assessment, demand, stock, publicationComplete: complete, competitivePrice, contribution: economy?.result ?? null });
             return { produto_id: product.id, candidate_key: `product:${product.id}`, sku: product.sku, catalog_product_id: catalogId, pricing_group_id: listings[0]?.pricingGroupId ?? null, stage: classification.stage, queue: classification.queue, conflict_state: assessment.state, assessment, evidence: { ...prior?.evidence, product: product.nome, supplier: resolved.offer?.fornecedor_nome, cost: resolved.offer?.custo, identity, competitivePrice, demand, coverageComplete: linksComplete, observedAt: startedAt }, priority, recommendation: classification.recommendation, evaluation_id: ids.competitive ?? ids.current ?? ids.target ?? null, target_evaluation_id: ids.target ?? null, floor_evaluation_id: ids.floor ?? null, break_even_evaluation_id: ids.break_even ?? null, input_fingerprint: inputHash, stock, demand_rank: priority.demandRank, contribution: economy?.result ?? null };
         }));

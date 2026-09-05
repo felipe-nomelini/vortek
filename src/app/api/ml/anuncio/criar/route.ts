@@ -1778,6 +1778,8 @@ export async function POST(req: Request) {
       });
     }
 
+    const radarUpdate = await (supabase as any).from('radar_oportunidades').update({stage:'PUBLICADO_EXPERIMENTO',queue:'JA_ANUNCIADOS',processed_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('produto_id',produto.id);
+    if(radarUpdate.error)warnings.push('Publicação confirmada; atualização da etapa do Radar pendente.');
     return NextResponse.json({
       success: steps.anuncio.ok,
       steps,
