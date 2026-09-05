@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-10 — Deduplicação do alerta de nova venda`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-09` concluídas; aplicação bloqueante | Executar `BNT-PARITY-10` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-10` concluídas; aplicação bloqueante | Executar `BNT-PARITY-11` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -196,6 +196,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-10` antes de `BNT-PARITY-09` estar integralmente validada.
 - [x] Executar somente `ML-BULK-01 — Migração das consultas múltiplas do Mercado Livre` antes de retomar a fila de paridade.
 - [x] Não reintroduzir `/items?ids=` nem criar fallback para o contrato legado.
+- [x] Executar somente `BNT-PARITY-10 — Deduplicação do alerta de nova venda`.
+- [x] Não avançar para `BNT-PARITY-11` antes de validar `BNT-PARITY-10` em homologação.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2855,14 +2857,14 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### `BNT-PARITY-10 — Deduplicação do alerta de nova venda`
 
-**Situação:** implementação e validação local concluídas; publicação em homologação pendente.
+**Situação:** concluída e publicada em homologação em `2026-09-05`.
 
 - [x] portar a regra produtiva `95941f1` de `NTF-03`: alerta somente para `inserted + paid`;
 - [x] compartilhar o gate de origem entre WhatsApp e Push;
 - [x] preservar dedupe dos canais e o fluxo separado de sincronização/hidratação;
 - [x] testar inserção paga, atualização/reentrega, ação ausente, status não pago e ligação dos dois canais;
 - [x] executar regressões direcionadas, validate, build e verificação de secrets;
-- [ ] confirmar publicação e SHA ativo somente no `vortek-erp-dev`.
+- [x] confirmar publicação e SHA ativo somente no `vortek-erp-dev`.
 
 **Causa corrigida:** o webhook DEV iniciava WhatsApp para qualquer pedido `paid`, inclusive atualizações; somente o Push verificava inserção. `shouldAlertNewSaleFromWebhook` exige a inserção confirmada pela persistência e pagamento, antes de chamar qualquer canal. O transporte preserva suas proteções existentes; atualização de stub pendente continua delegada à hidratação.
 
@@ -2870,7 +2872,9 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter o commit desta ação em `dev` e publicar novamente apenas o `vortek-erp-dev`; não há migration ou dado a reverter.
 
-**Próxima ação após homologação:** `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`.
+**Homologação:** commit `4e2471b45f91028cc8a1692cc09c770be08d83af` enviado para `origin/dev`. A action Easypanel `cmtogrivz000307tc5jfo8712` terminou com `Success`; o serviço `local_vortek-erp-dev` confirmou esse `GIT_SHA` e a task `7ut9llh0b44d` entrou em execução. Login e health de `dev.bentevi.shop` responderam HTTP `200`. Os canais foram validados com simulação, sem enviar mensagens reais.
+
+**Próxima ação:** `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`.
 
 #### Classificação obrigatória
 

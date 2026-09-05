@@ -197,7 +197,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `JOB-04` | Push outbox | falha → até 5 tentativas; disponibilidade adiada por tentativa em minutos | entregue não repete | notificações | igual e configurável por canal | `EQUIVALENTE` | `push-notifications.ts` |
 | `NTF-01` | webhook ML | responder rapidamente e consultar recurso indicado | recurso atual vence payload da notificação | pedidos/perguntas/claims | fluxo assíncrono/hidratação preservado | `EQUIVALENTE` | contrato oficial Notifications |
 | `NTF-02` | BNT-MSG-01 | evento → template tipado Bentevi; dados essenciais e ação | template central vence mensagem local | WhatsApp/Push/e-mail | exclusiva DEV | `SUBSTITUÍDA` | manter identidade Bentevi |
-| `NTF-03` | commit `95941f1` | alerta de nova venda somente se persistência=`inserted` e order=`paid` | update/notificação duplicada não alerta | WhatsApp e Push | gate de origem compartilhado; dedupe de transporte preservado | `EQUIVALENTE` | `BNT-PARITY-10` implementada e validada localmente; homologação pendente |
+| `NTF-03` | commit `95941f1` | alerta de nova venda somente se persistência=`inserted` e order=`paid` | update/notificação duplicada não alerta | WhatsApp e Push | gate de origem compartilhado; dedupe de transporte preservado | `EQUIVALENTE` | `BNT-PARITY-10` concluída; regressões de decisão/canais e homologação do commit `4e2471b` |
 | `NTF-04` | commit `dc60a2b` | etiqueta por destinatário → message ID e confirmação persistidos por chave | destinatário já confirmado não reenvia no retry | WhatsApp etiqueta | DEV voltou a idempotência única, não por destinatário | `INCORPORAR` | ação `BNT-PARITY-11` |
 | `NTF-05` | commit `dc60a2b` | Evolusom oficial → destinatário principal + contato adicional, sem duplicar número | contato operacional vigente deve ser confirmado | WhatsApp etiqueta | regra e valor não existem em DEV | `DECISÃO NECESSÁRIA` | confirmar contato sem registrá-lo neste documento; então ação própria |
 | `NTF-06` | etiqueta WhatsApp | download aguarda até 60 s, consulta a cada 5 s; fila retenta em 1/5/15/30 min | erro não-retryable encerra | WhatsApp/jobs | igual | `EQUIVALENTE` | `whatsapp-label-job.ts` |
@@ -264,7 +264,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | 7 | `BNT-PARITY-07 — Venda concretizada pelo ML` **(concluída)** | `ORD-10` | P1 | migration nova, helper puro, auditoria e transições testadas |
 | 8 | `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade` **(concluída)** | `ML-04` | P1 | remove só bloqueio automático resolvido; preserva manual |
 | 9 | `BNT-PARITY-09 — Estágio real do refresh de catálogo` **(concluída)** | `ML-06` | P2 | falha registra estágio corrente |
-| 10 | `BNT-PARITY-10 — Deduplicação do alerta de nova venda` | `NTF-03` | P1 | WhatsApp apenas em `inserted + paid` |
+| 10 | `BNT-PARITY-10 — Deduplicação do alerta de nova venda` **(concluída)** | `NTF-03` | P1 | WhatsApp e Push apenas em `inserted + paid` |
 | 11 | `BNT-PARITY-11 — Idempotência de etiqueta por destinatário` | `NTF-04` | P1 | retry não reenvia destinatário já confirmado |
 | 12 | `BNT-PARITY-12 — Contrato do webhook Easypanel` | `OPS-01` | P1 | POST JSON `{}` validado por teste sem deploy |
 | 13 | `BNT-PARITY-13 — Reconciliação do histórico de migrations` | `DB-01` | P0 release | mapa formal e migrations novas; nenhum histórico reescrito |
