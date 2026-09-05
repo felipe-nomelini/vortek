@@ -85,11 +85,19 @@ SKU: ...
 
 Usar quebras de linha e bullets. Não prometer função, compatibilidade, certificação ou desempenho sem evidência.
 
-Atualizar descrição existente com:
+Para anúncio próprio fora de catálogo, atualizar descrição existente com:
 
 ```text
 PUT /items/{ITEM_ID}/description?api_version=2
 ```
+
+### Anúncio de catálogo
+
+Em `catalog_listing=true`, título, descrição e ficha são conteúdo do catálogo ML. Conferir o produto vivo e o vínculo após criação; não enviar POST/PUT de descrição. O ML rejeita edição com `Description is not modifiable on catalog listing item`. O endpoint de descrição do item pode retornar 404 mesmo quando `/products/{catalog_product_id}` contém a descrição: consultar o produto, sem interpretar esse 404 como anúncio incompleto.
+
+Revisar contradições materiais no conteúdo do catálogo antes do POST. O texto personalizado preparado pelo ERP não substitui conteúdo de catálogo. Fonte: [Buscador de produtos — conteúdo de catálogo](https://developers.mercadolivre.com.br/buscador-de-produtos).
+
+O frete vivo por dimensões anterior à criação pode diferir do frete vivo por `item_id`. A leitura econômica posterior é obrigatória; se ficar abaixo do piso, pausar, diagnosticar e corrigir sob autorização registrada antes de ativar. Registrar preço anterior/novo e ambas as memórias; nunca repetir POST de criação.
 
 ## Imagens
 

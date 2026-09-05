@@ -33,3 +33,19 @@ test('checkpoints distinguem D7, D15 e D30 sem atribuir demanda inexistente',()=
  assert.equal(m.exports.radarCheckpointClassification(30,0),'AUDITORIA_EXPOSICAO_QUALIDADE');
  assert.equal(m.exports.radarCheckpointClassification(30,100),'TRAFEGO_OBSERVADO');
 });
+test('descrição de catálogo é conferida na fonte, incluindo ausência documentada; erro de leitura nunca passa',()=>{
+ const {catalogDescriptionMatches}=require('../scripts/run-radar-launch-cohort.cjs');
+ const catalog={short_description:{content:'Descrição ML'}};
+ assert.equal(catalogDescriptionMatches(catalog,{ok:true,data:{plain_text:'Descrição ML'}}),true);
+ assert.equal(catalogDescriptionMatches(catalog,{ok:true,data:{plain_text:'Outro produto'}}),false);
+ assert.equal(catalogDescriptionMatches(catalog,{ok:false,status:404}),true);
+ assert.equal(catalogDescriptionMatches({short_description:{content:''}},{ok:false,status:404}),true);
+ assert.equal(catalogDescriptionMatches({},{ok:false,status:503}),false);
+});
+test('atributo multivalorado usa IDs, não espaços na representação do ML, sem aceitar valores faltantes',()=>{
+ const a={id:'MICROPHONE_RECOMMENDED_USES',value_name:'Podcast, Vídeo',values:[{id:'1',name:'Podcast'},{id:'2',name:'Vídeo'}]};
+ const p={...payload,attributes:[...payload.attributes,a]};
+ const r={...item,attributes:[...item.attributes,{...a,value_name:'Podcast,Vídeo',values:[...a.values].reverse()}]};
+ assert.equal(readbackChecks(p,r,1).ok,true);
+ assert.equal(readbackChecks(p,{...r,attributes:[...item.attributes,{...a,values:a.values.slice(0,1)}]},1).ok,false);
+});
