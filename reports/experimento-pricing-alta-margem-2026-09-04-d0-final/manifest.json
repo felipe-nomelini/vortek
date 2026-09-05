@@ -1,0 +1,96 @@
+{
+  "experiment_id": "PRICING_EXPERIMENT_HIGH_MARGIN_ZERO_TRAFFIC_2026_09",
+  "mode": "APPLY",
+  "started_at": "2026-09-05T00:54:37.677Z",
+  "finished_at": "2026-09-05T01:12:44.942Z",
+  "parameters": {
+    "source_groups": 430,
+    "visits_150d_max": 5,
+    "recurring_sales_min_orders": 2,
+    "freshness_minutes": 30,
+    "tax_rate": 0.082799,
+    "tax_rate_source": "conservative_estimate",
+    "quantity_pricing": "excluded"
+  },
+  "counts": {
+    "source": 430,
+    "eligible": 320,
+    "changed": 320,
+    "changed_this_run": 317,
+    "excluded": 110,
+    "failures": 0
+  },
+  "counters": {
+    "ml_get": 6846,
+    "ml_put": 464,
+    "dslite_get": 165,
+    "db_select": 447,
+    "db_update": 634,
+    "db_insert": 1,
+    "db_upsert": 319
+  },
+  "safety": {
+    "automatic_price_protection": true,
+    "no_schema_change": true,
+    "no_write_retry": true
+  },
+  "post_execution_validation": {
+    "validated_at": "2026-09-05T01:28:25Z",
+    "groups_active": 320,
+    "items_active_and_price_matched": 467,
+    "price_or_status_mismatches": 0,
+    "temporary_false_positive_pauses": 23,
+    "temporary_pauses_restored": 23,
+    "minimum_live_result_restored_groups": 1.03,
+    "monitor_live_batch_checked": 25,
+    "monitor_live_batch_paused": 0
+  },
+  "official_sources": [
+    "https://developers.mercadolivre.com.br/pt_br/usuarios-e-aplicativos/atualiza-tuas-publicacoes",
+    "https://developers.mercadolivre.com.br/pt_br/api-de-precos",
+    "https://developers.mercadolivre.com.br/pt_br/automatizacoes-de-precos",
+    "https://supabase.com/docs/reference/javascript/upsert"
+  ],
+  "files": [
+    {
+      "name": "00_RESUMO_EXECUTIVO.md",
+      "sha256": "b0741bd77a1740d640091d11323a445fddb72d7e3a75c1ff001f907ed7870c7c",
+      "bytes": 1230
+    },
+    {
+      "name": "01_COORTE_EXPERIMENTAL.csv",
+      "sha256": "e534eacf66c7e2ae70e20e29081a82a3cba088a7d513bca3f63910532f4b153f",
+      "bytes": 105383
+    },
+    {
+      "name": "02_EXECUCOES_SUCESSO.csv",
+      "sha256": "14181e023ee4fe26e295b0b83f9572eefe286c462e86eeccd87b858873958044",
+      "bytes": 145302
+    },
+    {
+      "name": "03_EXCLUIDOS_TRAVAS.csv",
+      "sha256": "81fc0197b527706113faffd7d1bec204cb6d1dbc11e0a56ff219e16ba747f62f",
+      "bytes": 38597
+    },
+    {
+      "name": "04_FALHAS_EXECUCAO.csv",
+      "sha256": "9a5935ade3932091c4736490e8f9a53df006e8ff147eefe0626dc0b4df6a219c",
+      "bytes": 74
+    },
+    {
+      "name": "05_PARES_CATALOGO_SINCRONIZADOS.csv",
+      "sha256": "02d00fe1665003068518aa541130d375d701e9aed76fde7fe4f22837023ccc73",
+      "bytes": 15481
+    },
+    {
+      "name": "06_MEMORIA_FINANCEIRA.csv",
+      "sha256": "74521349efcc4b5d25a689d082435444970b527114546d763fc7753cd742fa4f",
+      "bytes": 52498
+    },
+    {
+      "name": "07_PLANO_MONITORAMENTO_30D.md",
+      "sha256": "37b68c031147597cd1b95d912530d40286ce80ee2f32142fa1976cf3447cf213",
+      "bytes": 616
+    }
+  ]
+}
