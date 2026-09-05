@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** homologar e aprovar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`. Implementação e validação local concluídas; publicação acompanhada na seção própria abaixo. Depois da aprovação visual, planejar `BNT-PRICING-V2-00`. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação remota.
+**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`, publicada em homologação no commit `77781c5`. Depois da aprovação visual, planejar `BNT-PRICING-V2-00`. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
 
 ---
 
@@ -3298,7 +3298,7 @@ Quando estes critérios estiverem concluídos, fazer uma revisão final das audi
 
 ## Evidência BNT-CFG-07 — Integrações (05/09/2026)
 
-**Estado:** implementação local validada; publicação e aprovação visual pendentes.
+**Estado:** implementada e publicada em homologação; aguardando aprovação visual.
 
 - [x] painel com dez integrações agrupadas; drawer DSLite, Brasil NFe e Mercado Pago;
 - [x] Mercado Livre, feeds e canais preservam suas áreas responsáveis;
@@ -3307,9 +3307,13 @@ Quando estes critérios estiverem concluídos, fazer uma revisão final das audi
 - [x] testes decididos pelo servidor, concorrência por `updated_at`, destinos permitidos e consultas exclusivamente de homologação;
 - [x] GET sem chamadas externas; falha de leitura distinta de desconexão; nenhuma migration ou credencial alterada;
 - [x] 72 testes direcionados, lint, typecheck e build;
-- [ ] publicação e smoke test do artefato em `dev.bentevi.shop`;
+- [x] publicação e smoke test do artefato em `dev.bentevi.shop`;
 - [ ] aprovação visual do responsável.
 
 Paridade: `main` permaneceu em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de`, sem novo delta antes desta entrega. O teste histórico Hayamax passou a distinguir a função aposentada da consulta legítima `getMercadoPagoPaymentForMlSale`, já existente no HEAD anterior.
+
+**Publicação:** `77781c58b2c7a89167b3114438ab5f91b5e88ee5` enviado somente para `origin/dev`. Webhook oficial aceito com HTTP 200; ação Easypanel `cmtombpxx000507tc8ngp94av` concluída (`done`, 05/09/2026 16:52:09 UTC); serviço `local_vortek-erp-dev` confirmou o mesmo `GIT_SHA` e atualização `completed`. Bundle público novo retornou HTTP 200 com o conteúdo da interface. Login e health: 200; Configurações sem sessão: 307; GETs administrativos e POSTs de teste sem sessão: 401.
+
+**Limite da evidência:** renderização local do componente real com dados sintéticos, conferida em Chromium a 1440 e 390 px, dez linhas e sem transbordamento horizontal. Não equivale a aceite visual do responsável nem a testes autenticados de escrita ou de provedores no ambiente remoto. Nenhuma credencial foi criada/alterada, nenhum diagnóstico externo autenticado foi disparado e nenhum banco foi modificado nesta sessão. Mais 13 testes do contrato do webhook passaram localmente. O Supabase `.162` foi identificado por SSH como `supabase-dev`, sem acesso administrativo ao banco; a inspeção `.160` foi restrita ao serviço web DEV e à leitura do histórico de deploy do Easypanel, nunca ao banco produtivo.
 
 Próxima ação após aprovação: planejar `BNT-PRICING-V2-00`. Não iniciar automaticamente. Produção, novas autonomias e ativação operacional Evolusom não são liberadas por esta entrega.
