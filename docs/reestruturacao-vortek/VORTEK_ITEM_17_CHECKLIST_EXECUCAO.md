@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-05 — Reprocessamento idempotente da inativação`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01/02/03` concluídas; aplicação bloqueante | Executar `BNT-PARITY-04` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01/02/03/04` concluídas; aplicação bloqueante | Executar `BNT-PARITY-05` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -182,6 +182,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-03` antes de `BNT-PARITY-02` estar integralmente validada.
 - [x] Executar somente `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor`.
 - [x] Não avançar para `BNT-PARITY-04` antes de `BNT-PARITY-03` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor`.
+- [x] Não avançar para `BNT-PARITY-05` antes de `BNT-PARITY-04` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2679,6 +2681,28 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Validação:** 50 testes direcionados de inativação, capacidade, saldo interno, reservas, atividade, fornecedores e outbox passaram; `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration foi criada ou executada, nenhum banco foi alterado e nenhuma inativação real de fornecedor foi disparada.
 
 **Próxima ação:** `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor`.
+
+#### `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor`
+
+- [x] considerar para a transição somente anúncios confirmados com estado oficial `active`;
+- [x] substituir a exclusão permanente por atualização reversível para quantidade `0` e estado `paused`;
+- [x] preservar vínculos locais, IDs, snapshots e atividade manual do produto;
+- [x] não alterar antecipadamente o estado local do anúncio antes da confirmação e leitura posterior do Mercado Livre;
+- [x] cancelar outboxes destrutivos antigos ainda pendentes, em retry, processamento ou falha para todos os produtos impactados;
+- [x] deduplicar a nova pausa pelo outbox existente e registrar resultados separados de enfileiramento, reaproveitamento e descarte;
+- [x] permitir no worker a exceção para produto inativo somente quando origem, quantidade, estado e flags coincidirem integralmente com a pausa segura;
+- [x] atualizar a prévia e os dois modais de fornecedor para explicar pausa com estoque zero e preservação do vínculo;
+- [x] confirmar que nenhuma migration, reparo de dados ou inativação real é necessária no `supabase-dev`.
+
+**Causa corrigida:** a inativação de fornecedor ainda enfileirava `delete_listing:true`, removia os vínculos locais após a exclusão remota e marcava o produto como sem anúncio antes da confirmação. Isso aplicava uma operação irreversível a uma indisponibilidade de estoque potencialmente recuperável.
+
+**Resultado técnico:** produtos sem fornecedor alternativo e sem capacidade interna mantêm sua atividade manual e passam a zerar somente a projeção do fornecedor. Cada anúncio confirmado como `active` recebe uma operação idempotente de quantidade zero e estado pausado; anúncios já pausados, encerrados, em revisão ou sem estado ativo confirmado não recebem escrita. Exclusões antigas não concluídas são canceladas, e o worker só atravessa o bloqueio de produto inativo para esse contrato exato. O estado local continua sendo reconciliado pelo readback do worker após sucesso remoto.
+
+**Validação:** 59 testes direcionados de inativação, capacidade, saldo interno, atividade, fornecedores, worker e outbox passaram; `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration foi criada ou executada, nenhum banco foi alterado, nenhuma inativação real foi disparada e nenhuma chamada de escrita foi enviada ao Mercado Livre.
+
+**Risco residual:** exclusões permanentes já concluídas antes desta correção não são recriadas automaticamente; a ação impede novas exclusões nesse fluxo e não executa reparo histórico.
+
+**Próxima ação:** `BNT-PARITY-05 — Reprocessamento idempotente da inativação`.
 
 #### Classificação obrigatória
 

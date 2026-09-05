@@ -45,7 +45,7 @@ test('BNT-D15 mantém sincronização e mudança de estado observáveis e contex
   assert.match(page, /Modal\.useModal\(\)/);
   assert.match(page, /products_active/);
   assert.match(page, /supplier_offers_active/);
-  assert.match(page, /ml_delete_candidates/);
+  assert.match(page, /ml_pause_candidates/);
   assert.match(page, /Reativação bloqueada/);
   assert.match(page, /supplier\.activation_blocked/);
 });

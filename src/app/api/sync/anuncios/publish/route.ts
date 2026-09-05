@@ -18,6 +18,7 @@ import {
   classifyMlPublishFailure,
   mlNonModifiableBlockReason,
 } from '@/lib/ml/operational-listing';
+import { isSafeInactiveSupplierPause } from '@/lib/supplier-deactivation';
 
 export const maxDuration = 300;
 
@@ -509,7 +510,24 @@ export async function POST(request: Request) {
       const operations: PublishOperation[] = [];
 
       const rowProductId = String(row.produto_id || '').trim();
-      if (rowProductId && !activeProductIds.has(rowProductId) && !deleteListing) {
+      const applyMode = resolveApplyMode(row);
+      const outboxSource = String((row as any).source || '').trim().toLowerCase();
+      const desiredStatusRaw = String(row.desired_status || '').trim().toLowerCase();
+      const safeInactiveSupplierPause = isSafeInactiveSupplierPause({
+        source: outboxSource,
+        desiredStatus: desiredStatusRaw,
+        desiredQuantity: row.desired_quantity,
+        appliesPrice: applyMode.applyPrice,
+        appliesQuantityPricing: applyMode.applyQuantityPricing,
+        appliesQuantity: applyMode.applyQuantity,
+        appliesStatus: applyMode.applyStatus,
+      });
+      if (
+        rowProductId
+        && !activeProductIds.has(rowProductId)
+        && !deleteListing
+        && !safeInactiveSupplierPause
+      ) {
         await (client
           .from('anuncios_ml_outbox' as any)
           .update({
@@ -545,10 +563,6 @@ export async function POST(request: Request) {
           code: deletion.ok ? null : deletion.code,
         });
       } else {
-        const applyMode = resolveApplyMode(row);
-        const outboxSource = String((row as any).source || '').trim().toLowerCase();
-        const desiredStatusRaw = String(row.desired_status || '').trim().toLowerCase();
-
         if (outboxSource === 'pricing_strategy_reprice' && desiredStatusRaw === 'sem_anuncio') {
           await (client
             .from('anuncios_ml_outbox' as any)

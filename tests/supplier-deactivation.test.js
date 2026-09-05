@@ -5,11 +5,14 @@ const test = require('node:test');
 
 const {
   classifySupplierDeactivationProducts,
+  isActiveSupplierListingStatus,
+  isSafeInactiveSupplierPause,
 } = require('../src/lib/supplier-deactivation.ts');
 
 const root = process.cwd();
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
 const statusRoute = read('src/app/api/fornecedores/[id]/status/route.ts');
+const publishWorker = read('src/app/api/sync/anuncios/publish/route.ts');
 const supplierList = read('src/app/(app)/fornecedores/page.tsx');
 const supplierDetail = read('src/app/(app)/fornecedores/[id]/page.tsx');
 
@@ -34,23 +37,65 @@ test('classifica fornecedor alternativo, estoque interno e ausência de fonte se
   assert.deepEqual(result.withoutAvailableSource.map((product) => product.id), ['sem-fonte']);
 });
 
+test('considera candidato à pausa somente anúncio confirmado como ativo', () => {
+  assert.equal(isActiveSupplierListingStatus('active'), true);
+  assert.equal(isActiveSupplierListingStatus(' active '), true);
+  for (const status of ['paused', 'closed', 'under_review', 'ativo', '', null]) {
+    assert.equal(isActiveSupplierListingStatus(status), false);
+  }
+});
+
+test('libera produto inativo somente para a pausa segura e exata do fornecedor', () => {
+  const safePause = {
+    source: 'fornecedor_inativo_pause',
+    desiredStatus: 'pausado',
+    desiredQuantity: 0,
+    appliesPrice: false,
+    appliesQuantityPricing: false,
+    appliesQuantity: true,
+    appliesStatus: true,
+  };
+  assert.equal(isSafeInactiveSupplierPause(safePause), true);
+
+  for (const invalid of [
+    { ...safePause, source: 'fornecedor_inativo_alternativa' },
+    { ...safePause, desiredStatus: 'ativo' },
+    { ...safePause, desiredQuantity: 1 },
+    { ...safePause, desiredQuantity: null },
+    { ...safePause, desiredQuantity: '' },
+    { ...safePause, appliesPrice: true },
+    { ...safePause, appliesQuantityPricing: true },
+    { ...safePause, appliesQuantity: false },
+    { ...safePause, appliesStatus: false },
+  ]) assert.equal(isSafeInactiveSupplierPause(invalid), false);
+});
+
 test('rota usa capacidade canônica, preserva atividade manual e sincroniza estoque interno', () => {
   assert.match(statusRoute, /loadProductFulfillmentCapacities/);
   assert.match(statusRoute, /capacity\.internal > 0/);
   assert.match(statusRoute, /classifySupplierDeactivationProducts/);
   assert.match(statusRoute, /enfileirarSyncMlEstoqueInterno/);
-  assert.match(statusRoute, /mlDeleteCancelledInternalStock/);
-  assert.match(statusRoute, /produto preservado pela capacidade do estoque interno/);
+  assert.match(statusRoute, /staleDeleteOutboxCancelled/);
+  assert.match(statusRoute, /exclusão permanente substituída pela política reversível de pausa/);
   assert.match(statusRoute, /products_kept_only_by_internal_stock/);
   assert.match(statusRoute, /products_without_available_source/);
+  assert.match(statusRoute, /source: 'fornecedor_inativo_pause'/);
+  assert.match(statusRoute, /desiredStatus: 'pausado'/);
+  assert.match(statusRoute, /desiredQuantity: 0/);
+  assert.match(statusRoute, /delete_listing: false/);
+  assert.match(statusRoute, /ml_pause_candidates/);
+  assert.doesNotMatch(statusRoute, /source: 'fornecedor_inativo_delete',[\s\S]{0,260}delete_listing: true/);
   assert.doesNotMatch(statusRoute, /productsToInactivate|productsInactivated/);
   assert.doesNotMatch(statusRoute, /\.from\('produtos'\)[\s\S]{0,120}\.update\(\{ ativo: false/);
+  assert.match(publishWorker, /isSafeInactiveSupplierPause/);
+  assert.match(publishWorker, /&& !safeInactiveSupplierPause/);
 });
 
 test('confirmações explicam que estoque interno preserva a operação', () => {
   for (const page of [supplierList, supplierDetail]) {
     assert.match(page, /Mantidos pelo estoque interno/);
     assert.match(page, /Sem fonte disponível/);
-    assert.match(page, /sem fornecedor alternativo nem estoque interno/);
+    assert.match(page, /Anúncios a pausar/);
+    assert.match(page, /pausados com estoque zero, preservando o vínculo para retomada/);
   }
 });
