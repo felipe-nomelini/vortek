@@ -1,3 +1,5 @@
+import { loadPricingRuntime, resolvePricingProduct } from './pricing-context';
+import { ceilMoney } from './pricing';
 /**
  * Calcula o lucro real de um pedido do Mercado Livre.
  * Busca custos dos produtos no banco e frete na API do ML.
@@ -14,6 +16,7 @@ import {
 export interface OrderDetail {
   id: string | number;
   total_amount?: number;
+  date_created?: string;
   seller?: { id?: string | number | null };
   order_items?: Array<{
     item?: { id?: string; seller_sku?: string };
@@ -27,7 +30,8 @@ export interface OrderProfitResult {
   custoTotal: number;
   taxasTotal: number;
   frete: number;
-  imposto: number;
+  imposto: number | null;
+  taxStatus?: string;
   itensEncontrados: number;
   rastreio: string | null;
   freteDisponivel: boolean;
@@ -75,6 +79,10 @@ export async function calculateOrderProfit(
 
   let custoTotal = 0;
   let taxasTotal = 0;
+  let feesAvailable = true;
+  let variableCosts = 0;
+  let variableCostsAvailable = true;
+  const runtime = await loadPricingRuntime(serviceClient, detail.date_created ?? new Date().toISOString());
   let itensEncontrados = 0;
 
   if (itemIds.length > 0) {
@@ -169,10 +177,15 @@ export async function calculateOrderProfit(
         || (sku && offerSkuMap.get(sku));
       if (produto) {
         itensEncontrados++;
-        const custo = produto.custo || 0;
-        const taxa = item.sale_fee ?? produto.ml_fee ?? 0;
+        const resolved = await resolvePricingProduct(serviceClient, produto.id);
+        const custo = resolved.offer?.custo;
+        if (!(Number(custo)>0)) { itensEncontrados--; continue; }
+        const taxa = item.sale_fee;
+        if (!Number.isFinite(taxa) || Number(taxa)<0) feesAvailable=false;
+        const variable = runtime.variableCosts[produto.id];
+        if (!Number.isFinite(variable)) variableCostsAvailable=false; else variableCosts+=variable*qty;
         custoTotal += custo * qty;
-        taxasTotal += taxa * qty;
+        taxasTotal += (taxa ?? 0) * qty;
       }
     }
   }
@@ -213,14 +226,15 @@ export async function calculateOrderProfit(
 
   // 3. Calcular lucro
   const total = detail.total_amount || 0;
-  const imposto = total * 0.04;
+  const imposto = runtime.tax.rate===null?null:ceilMoney(total*runtime.tax.rate);
   const lucro = calculateFinalOrderProfit({
     total,
     productCost: custoTotal,
     saleFees: taxasTotal,
     sellerShippingCost: freteDisponivel ? frete : null,
     tax: imposto,
-    matchedItems: itensEncontrados,
+    variableCosts: variableCostsAvailable ? variableCosts : null,
+    matchedItems: feesAvailable && itensEncontrados===(detail.order_items?.length??0) ? itensEncontrados : 0,
   });
 
   return {
@@ -229,6 +243,7 @@ export async function calculateOrderProfit(
     taxasTotal,
     frete,
     imposto,
+    taxStatus: runtime.tax.status,
     itensEncontrados,
     rastreio,
     freteDisponivel,

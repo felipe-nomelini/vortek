@@ -1,3 +1,4 @@
+import { unitResult, ceilMoney } from '../../services/pricing.ts';
 import type { Database } from '@/types/database';
 
 export const HIGH_MARGIN_PRICING_EXPERIMENT_ID = 'PRICING_EXPERIMENT_HIGH_MARGIN_ZERO_TRAFFIC_2026_09';
@@ -121,8 +122,6 @@ export function pricingExperimentUnitResult(input: {
   shippingAmount: number;
   taxRate: number;
 }): number | null {
-  const values = [input.price, input.cost, input.feeAmount, input.shippingAmount, input.taxRate].map(Number);
-  if (values.some((value) => !Number.isFinite(value)) || values[0] <= 0 || values[1] < 0
-      || values[2] < 0 || values[3] < 0 || values[4] < 0 || values[4] >= 1) return null;
-  return Math.round((values[0] - values[1] - values[2] - values[3] - (values[0] * values[4])) * 100) / 100;
+  return unitResult({ revenue: input.price, cost: input.cost, fee: input.feeAmount,
+    shipping: input.shippingAmount, variableCosts: 0, tax: ceilMoney(input.price * input.taxRate) });
 }

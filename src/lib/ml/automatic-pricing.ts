@@ -1,155 +1,46 @@
-import { calculateSuggestedPrice } from '@/services/pricing';
-import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-import { resolveAutomaticPricingProductIds } from '@/lib/ml/automatic-pricing-selection';
-import {
-  activePricingExperimentSkus,
-  getHighMarginPricingExperiment,
-} from '@/lib/ml/pricing-experiment';
+import { commercialDiagnosis } from '../../services/pricing';
+import { evaluateProductPricing, loadPricingRuntime, persistPricingEvaluation, recordPricingEvent } from '../../services/pricing-context';
+import { resolveAutomaticPricingProductIds } from './automatic-pricing-selection';
+import { activePricingExperimentSkus, getHighMarginPricingExperiment } from './pricing-experiment';
 
 type ServiceClientLike = { from: (table: string) => any };
+export type CostSnapshot = { productId: string; previous: { custo: number }; next: { custo: number } };
+export type AutomaticPricingResult = { productsUpdated: number; outboxEnqueued: number; skipped: number; proposals?: number; errors: Array<{ productId: string; message: string }> };
 
-export type CostSnapshot = {
-  productId: string;
-  previous: { custo: number };
-  next: { custo: number };
-};
-
-export type AutomaticPricingResult = {
-  productsUpdated: number;
-  outboxEnqueued: number;
-  skipped: number;
-  errors: Array<{ productId: string; message: string }>;
-};
-
-/** Recalcula preço quando custo muda; kits podem forçar reconciliação da fonte vigente. */
-export async function enqueueAutomaticPricesForCostChanges(
-  client: ServiceClientLike,
-  snapshots: CostSnapshot[],
-  options: { forceProductIds?: string[] } = {},
-): Promise<AutomaticPricingResult> {
-  const result: AutomaticPricingResult = { productsUpdated: 0, outboxEnqueued: 0, skipped: 0, errors: [] };
-  const productIds = resolveAutomaticPricingProductIds(snapshots, options.forceProductIds);
-  if (productIds.length === 0) return result;
-
-  const [{ data: products, error: productsError }, { data: listings, error: listingsError }, experiment] = await Promise.all([
-    client
-      .from('produtos')
-      .select('id,sku,ativo,ml_item_id,ml_status,custo,custom_price,ml_fee,ml_shipping,ml_shipping_warning')
-      .in('id', productIds),
-    client
-      .from('anuncios_ml')
-      .select('produto_id,ml_item_id')
-      .in('produto_id', productIds),
-    getHighMarginPricingExperiment(client),
-  ]);
-  if (productsError) throw new Error(`Falha ao carregar produtos para preço automático: ${productsError.message}`);
-  if (listingsError) throw new Error(`Falha ao carregar anúncios para preço automático: ${listingsError.message}`);
-  const experimentSkus = activePricingExperimentSkus(experiment);
-
-  const targetsByProduct = new Map<string, Set<string>>();
-  for (const product of products || []) {
-    const productId = String(product.id || '');
-    const target = new Set<string>();
-    const itemId = String(product.ml_item_id || '').trim();
-    if (itemId) target.add(itemId);
-    targetsByProduct.set(productId, target);
-  }
-  for (const listing of listings || []) {
-    const productId = String(listing.produto_id || '');
-    const itemId = String(listing.ml_item_id || '').trim();
-    if (productId && itemId) (targetsByProduct.get(productId) || new Set<string>()).add(itemId);
-    if (productId && !targetsByProduct.has(productId)) targetsByProduct.set(productId, new Set(itemId ? [itemId] : []));
-  }
-
-  const itemIds = Array.from(new Set(Array.from(targetsByProduct.values()).flatMap((items) => Array.from(items))));
-  const skus = (products || []).map((product: any) => String(product.sku || '').trim()).filter(Boolean);
-  const [blockedItemsResponse, blockedSkusResponse] = await Promise.all([
-    itemIds.length > 0
-      ? client.from('ml_manual_blocklist').select('ml_item_id').eq('ativo', true).in('ml_item_id', itemIds)
-      : Promise.resolve({ data: [] }),
-    skus.length > 0
-      ? client.from('ml_manual_blocklist').select('sku').eq('ativo', true).in('sku', skus)
-      : Promise.resolve({ data: [] }),
-  ]);
-  if (blockedItemsResponse.error) {
-    throw new Error(`Falha ao consultar bloqueios manuais por anúncio: ${blockedItemsResponse.error.message}`);
-  }
-  if (blockedSkusResponse.error) {
-    throw new Error(`Falha ao consultar bloqueios manuais por SKU: ${blockedSkusResponse.error.message}`);
-  }
-  const blockedItems = blockedItemsResponse.data;
-  const blockedSkus = blockedSkusResponse.data;
-  const blockedItemSet = new Set((blockedItems || []).map((row: any) => String(row.ml_item_id || '').trim()));
-  const blockedSkuSet = new Set((blockedSkus || []).map((row: any) => String(row.sku || '').trim().toUpperCase()));
-
-  for (const product of products || []) {
-    const productId = String(product.id || '');
-    const targets = Array.from(targetsByProduct.get(productId) || []);
-    const normalizedSku = String(product.sku || '').trim().toUpperCase();
-    const cost = Number(product.custo || 0);
-    const warning = String(product.ml_shipping_warning || '').trim();
-    const publishable = product.ativo !== false && ['ativo', 'pausado'].includes(String(product.ml_status || ''));
-    if (!publishable || targets.length === 0 || cost <= 0 || cost > 2_000 || warning) {
-      result.skipped += 1;
-      continue;
-    }
-
-    // Durante o experimento o preço é deliberadamente estável. Esta verificação
-    // precisa ocorrer antes de alterar custom_price, não apenas antes do outbox.
-    if (experimentSkus.has(normalizedSku)) {
-      result.skipped += Math.max(1, targets.length);
-      continue;
-    }
-
-    let desiredPrice: number;
+/** M2M: eventos automáticos produzem propostas, sem alterar custom_price ou outbox. */
+export async function enqueueAutomaticPricesForCostChanges(client: ServiceClientLike, snapshots: CostSnapshot[], options: { forceProductIds?: string[] } = {}): Promise<AutomaticPricingResult> {
+  const result: AutomaticPricingResult = { productsUpdated: 0, outboxEnqueued: 0, skipped: 0, proposals: 0, errors: [] };
+  const ids = resolveAutomaticPricingProductIds(snapshots, options.forceProductIds);
+  if (!ids.length) return result;
+  const runtime = await loadPricingRuntime(client);
+  const protectedSkus = activePricingExperimentSkus(await getHighMarginPricingExperiment(client));
+  for (const productId of ids) {
     try {
-      desiredPrice = calculateSuggestedPrice({
-        cost,
-        shipping: Number(product.ml_shipping || 0),
-        mlFee: Number(product.ml_fee || 0.15),
-      }).suggestedPrice;
-    } catch (error: any) {
-      result.errors.push({ productId, message: error?.message || 'Falha ao calcular preço automático' });
-      continue;
-    }
-
-    const { error: updateError } = await client
-      .from('produtos')
-      .update({ custom_price: desiredPrice, updated_at: new Date().toISOString() })
-      .eq('id', productId);
-    if (updateError) {
-      result.errors.push({ productId, message: updateError.message });
-      continue;
-    }
-    result.productsUpdated += 1;
-
-    const skuBlocked = blockedSkuSet.has(normalizedSku);
-    for (const mlItemId of targets) {
-      if (skuBlocked || blockedItemSet.has(mlItemId)) {
-        result.skipped += 1;
-        continue;
+      const { data: product, error } = await client.from('produtos').select('id,sku,ativo,ml_item_id').eq('id', productId).single();
+      if (error) throw new Error(error.message);
+      if (!product.ativo || !product.ml_item_id || protectedSkus.has(product.sku)) { result.skipped++; continue; }
+      const current = await evaluateProductPricing(client,{productId,itemId:product.ml_item_id,runtime,requireLive:true});
+      if(!current.memory||current.memory.result===null)throw new Error('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
+      const currentId=await persistPricingEvaluation(client,{...current,memory:current.memory,scenario:'current',itemId:product.ml_item_id});
+      const listing=await client.from('anuncios_ml').select('vendidos,visitas').eq('ml_item_id',product.ml_item_id).maybeSingle();
+      if(listing.error)throw new Error(listing.error.message);
+      const diagnosis=commercialDiagnosis(current.memory,{sales:listing.data?.vendidos??null,visits:listing.data?.visitas??null,completeWindow:false});
+      if(diagnosis==='MARGEM_PREMIUM_VALIDADA_PELO_MERCADO'){
+        await recordPricingEvent(client,{event_type:'MAINTAIN',produto_id:productId,ml_item_id:product.ml_item_id,evaluation_id:currentId,pricing_source:'supplier_cost_change',actor:'job:automatic_pricing',reason:diagnosis,previous_price:current.memory.price,new_price:current.memory.price,rule_id:runtime.policy.version});
+        result.skipped++;continue;
       }
-      const queued = await enqueueMlPublishOutbox(client, {
-        produtoId: productId,
-        mlItemId,
-        desiredPrice,
-        source: 'dslite_price_automation',
-        dedupePending: true,
-        payload: {
-          apply_price: true,
-          apply_quantity_pricing: true,
-          apply_quantity: false,
-          apply_status: false,
-          base_price_for_quantity_pricing: desiredPrice,
-          previous_cost: Number(snapshots.find((snapshot) => snapshot.productId === productId)?.previous.custo || 0),
-          current_cost: cost,
-          calculated_at: new Date().toISOString(),
-        },
+      const evaluation = await evaluateProductPricing(client, { productId, itemId: product.ml_item_id, objective: 'target', runtime, requireLive: true });
+      if (!evaluation.memory) throw new Error(evaluation.failure ?? 'ECONOMIA_INCONCLUSIVA');
+      const evaluationId = await persistPricingEvaluation(client, { ...evaluation, memory: evaluation.memory, scenario: 'target', itemId: product.ml_item_id });
+      await recordPricingEvent(client, {
+        event_type: 'PROPOSED', produto_id: productId, ml_item_id: product.ml_item_id, evaluation_id: evaluationId,
+        pricing_source: 'supplier_cost_change', actor: 'job:automatic_pricing', reason: 'Mudança de custo; aguarda aprovação',
+        previous_price: evaluation.product.custom_price, new_price: evaluation.memory.price, rule_id: runtime.policy.version,
+        dedupe_key: `cost:${productId}:${evaluation.offer?.updated_at}:${runtime.policy.version}`,
+        payload: { autonomy: 'REQUIRES_CONFIRMATION', diagnostics: evaluation.memory.diagnostics },
       });
-      if (queued.ok) result.outboxEnqueued += 1;
-      else result.errors.push({ productId, message: queued.error });
-    }
+      result.proposals!++;
+    } catch (error: any) { result.errors.push({ productId, message: error?.message ?? 'Falha no pricing' }); }
   }
-
   return result;
 }

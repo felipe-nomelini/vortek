@@ -1,5 +1,6 @@
 "use client";
 
+import CanonicalPricingSettings from '@/components/CanonicalPricingSettings';
 import { Suspense, useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import {
@@ -220,9 +221,7 @@ function ConfiguracoesPageContent() {
           const provider = String(
             conf?.nfe_provider_default || "",
           ).toLowerCase();
-          setMargem(
-            typeof conf?.margem_lucro === "number" ? conf.margem_lucro : 30,
-          );
+          setPricingConfig(conf);
           setNotif({
             push: Boolean(conf?.notificacoes_push ?? false),
           });
@@ -565,7 +564,7 @@ function ConfiguracoesPageContent() {
     },
   ];
 
-  const [margem, setMargem] = useState(30);
+  const [pricingConfig, setPricingConfig] = useState<any>(null);
   const [notif, setNotif] = useState({ push: false });
 
   const togglePush = async (enabled: boolean) => {
@@ -619,7 +618,6 @@ function ConfiguracoesPageContent() {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          margem_lucro: margem,
           notificacoes_push: notif.push,
           nfe_provider_default: defaultNfeProvider,
         }),
@@ -635,7 +633,7 @@ function ConfiguracoesPageContent() {
     } finally {
       setSavingPreferencias(false);
     }
-  }, [defaultNfeProvider, margem, messageApi, notif.push]);
+  }, [defaultNfeProvider, messageApi, notif.push]);
 
   const integrations = [
     {
@@ -1204,35 +1202,7 @@ function ConfiguracoesPageContent() {
                 label: "⚙️ Preferências",
                 children: (
                   <Row gutter={[16, 16]}>
-                    <Col xs={24} md={8}>
-                      <div
-                        style={{
-                          color: "#a0a0a0",
-                          fontSize: 13,
-                          marginBottom: 6,
-                        }}
-                      >
-                        Margem de Lucro Padrão
-                      </div>
-                      <InputNumber
-                        suffix="%"
-                        value={margem}
-                        onChange={(v) => setMargem(v ?? 30)}
-                        style={{ ...inputStyle, width: "100%" }}
-                        min={0}
-                        max={100}
-                      />
-                      <Text
-                        style={{
-                          color: "#666",
-                          fontSize: 12,
-                          display: "block",
-                          marginTop: 4,
-                        }}
-                      >
-                        Usada no cálculo do preço sugerido
-                      </Text>
-                    </Col>
+                    <Col span={24}>{pricingConfig && <CanonicalPricingSettings initial={pricingConfig}/>}</Col>
                     <Col xs={24} md={8}>
                       <div
                         style={{

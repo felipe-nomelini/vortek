@@ -1350,7 +1350,7 @@ async function processOrder(params: {
   });
   const quantidadeItensPedido = Array.isArray(detail?.order_items) ? detail.order_items.length : 0;
   const custoProdutoPendente = quantidadeItensPedido > 0 && itensEncontrados < quantidadeItensPedido;
-  const lucroPendente = !freteDisponivel || custoProdutoPendente;
+  const lucroPendente = !freteDisponivel || custoProdutoPendente || lucro === null;
 
   // 8. Claim: usar dados da busca ou detalhe do pedido
   let mlClaimId: string | null = claimIdFromSearch;

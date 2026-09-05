@@ -6,7 +6,6 @@ import {
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined } from '@ant-design/icons';
-import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
@@ -254,33 +253,7 @@ function parseEditablePriceText(input: string): number | null {
 
 function computeDerived(item: Product | ProductMasterListItem): { displayPrice: number; profit: number | null } {
   const product = 'product' in item ? item.product : item;
-  const cost = 'preferredOffer' in item
-    ? Number(item.preferredOffer?.custo ?? item.product.cost)
-    : item.cost;
-  try {
-    const result = calculateSuggestedPrice({
-      cost,
-      shipping: product.mlShipping,
-      mlFee: product.mlFee,
-    });
-    const displayPrice = Math.round((product.customPrice ?? result.suggestedPrice) * 100) / 100;
-
-    // Sem anúncio vinculado: não exibimos lucro operacional.
-    if (product.mlStatus === 'sem_anuncio') {
-      return { displayPrice, profit: null };
-    }
-
-    const netProfit = calculateNetProfitAtPrice({
-      price: displayPrice,
-      cost,
-      shipping: product.mlShipping,
-      mlFee: product.mlFee,
-    });
-
-    return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
-  } catch {
-    return { displayPrice: Math.round((product.customPrice ?? cost) * 100) / 100, profit: null };
-  }
+  return { displayPrice: product.customPrice ?? product.suggestedPrice ?? Number.NaN, profit: product.pricingProfit ?? null };
 }
 
 const mlStatusColor: Record<MLStatus, string> = { ativo: 'green', pausado: 'orange', sem_anuncio: 'default' };
@@ -369,7 +342,7 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
   ];
 }
 
-function mapDBtoProduct(item: ProdutoRow): Product {
+function mapDBtoProduct(item: ProdutoRow & { pricing?: Product["pricing"]; display_price?: number | null; profit_value?: number | null }): Product {
   return {
     id: item.id,
     active: item.ativo !== false,
@@ -382,6 +355,9 @@ function mapDBtoProduct(item: ProdutoRow): Product {
     mlFee: item.ml_fee || 0.15,
     mlShipping: Number(item.ml_shipping ?? 0),
     customPrice: item.custom_price,
+    pricing: item.pricing,
+    suggestedPrice: item.display_price ?? item.pricing?.target?.price ?? null,
+    pricingProfit: item.profit_value ?? item.pricing?.current?.result ?? null,
     mlStatus: item.ml_status || 'sem_anuncio',
     netWeight: item.peso_liq || 0,
     grossWeight: item.peso_bruto || 0,
@@ -487,7 +463,7 @@ export default function ProductsPage() {
     result: null,
   });
 
-  const [stats, setStats] = useState({ total: 0, comEstoque: 0, semAnuncio: 0, lucroMedio: 0, receitaPotencial: 0 });
+  const [stats, setStats] = useState({ total: 0, comEstoque: 0, semAnuncio: 0, lucroMedio: null as number | null, receitaPotencial: 0 });
 
   useEffect(() => {
     const skuFromUrl = new URLSearchParams(window.location.search).get('search')?.trim() || '';
@@ -1010,6 +986,16 @@ export default function ProductsPage() {
 
     setMlModal(prev => ({ ...prev, loading: true }));
     try {
+      const simulationResponse = await fetch('/api/pricing/simulate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productId: mlModal.produtoId, categoryId: mlModal.selectedCategory, listingType: 'gold_pro', objective: 'target' }) });
+      const simulation = await simulationResponse.json();
+      if (!simulationResponse.ok || simulation.memory?.result === null) throw new Error(simulation.error || simulation.reason || 'Economia inconclusiva');
+      const accepted = await new Promise<boolean>(resolve => Modal.confirm({ title: 'Revisar preço de publicação',
+        content: <div><p>Preço no alvo: {formatCurrency(simulation.memory.price)}. Contribuição: {formatCurrency(simulation.memory.result)}.</p><p>{simulation.memory.reasons.join(' • ') || 'Fontes confirmadas'}</p><p>A aprovação reconhece as estimativas e pendências exibidas.</p></div>,
+        okText: 'Aprovar e criar anúncio', cancelText: 'Voltar', onOk: () => resolve(true), onCancel: () => resolve(false) }));
+      if (!accepted) return;
+      const approvalResponse = await fetch('/api/pricing/approve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ evaluationId: simulation.evaluationId, reason: 'Aprovação individual de publicação no alvo canônico', acknowledgeEstimates: true }) });
+      const approval = await approvalResponse.json();
+      if (!approvalResponse.ok) throw new Error(approval.error);
       const res = await fetch('/api/ml/anuncio/criar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1017,7 +1003,8 @@ export default function ProductsPage() {
           produtoId: mlModal.produtoId,
           categoriaId: mlModal.selectedCategory,
           listingType: 'gold_pro',
-          basePrice: mlModal.editablePrice,
+          basePrice: simulation.memory.price,
+          acknowledgeIdentityReview: true, pricingApprovalId: approval.approvalId,
           fiscal: mlModal.editableFiscal,
           description: mlModal.description,
           attributes: [...mlModal.editableAttributes, ...mlModal.optionalAttributes].map(attr => ({
@@ -1355,7 +1342,7 @@ export default function ProductsPage() {
         total: json.total || 0,
         comEstoque: json.comEstoque || 0,
         semAnuncio: json.semAnuncio || 0,
-        lucroMedio: json.lucroMedio || 0,
+        lucroMedio: json.lucroMedio ?? null,
         receitaPotencial: json.receitaPotencial || 0,
       });
     } catch (error: any) {
@@ -1771,7 +1758,7 @@ export default function ProductsPage() {
           </Col>
           <Col xs={12} md={6}>
             <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Receita Potencial</span>}
+              title={<span style={{ color: '#a0a0a0' }}>Receita com memória econômica</span>}
               value={formatCurrency(stats.receitaPotencial)}
               valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }}
             />
@@ -1783,7 +1770,7 @@ export default function ProductsPage() {
             <Statistic
               title={<span style={{ color: '#a0a0a0' }}>Lucro Médio</span>}
               value={formatCurrency(stats.lucroMedio)}
-              valueStyle={{ color: stats.lucroMedio >= 0 ? '#52c41a' : '#ff4d4f', fontWeight: 700, fontSize: 24 }}
+              valueStyle={{ color: (stats.lucroMedio ?? 0) >= 0 ? '#52c41a' : '#ff4d4f', fontWeight: 700, fontSize: 24 }}
             />
           </Col>
         </Row>
@@ -2186,36 +2173,7 @@ export default function ProductsPage() {
               );
             })()}
 
-            {/* Preços por Quantidade (Atacado) */}
-            {mlModal.product && (() => {
-              const basePrice = mlModal.editablePrice ?? 0;
-              const tiers = [
-                { qtd: 3, discount: 3, price: Math.round(basePrice * 0.97 * 100) / 100 },
-                { qtd: 5, discount: 4, price: Math.round(basePrice * 0.96 * 100) / 100 },
-                { qtd: 10, discount: 5, price: Math.round(basePrice * 0.95 * 100) / 100 },
-              ];
-              return (
-                <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
-                  <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Preços por Quantidade (B2B)</Title>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    {tiers.map((tier) => (
-                      <div key={tier.qtd} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ color: '#a0a0a0' }}>
-                          {tier.qtd} unidades
-                          <Tag color="green" style={{ marginLeft: 8, fontSize: 11 }}>-{tier.discount}%</Tag>
-                        </span>
-                        <span style={{ color: '#e0e0e0', fontWeight: 600, fontSize: 14 }}>
-                          {formatCurrency(tier.price)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <Text style={{ color: '#666', fontSize: 12, marginTop: 8, display: 'block' }}>
-                    Visíveis apenas para compradores do tipo business (B2B).
-                  </Text>
-                </div>
-              );
-            })()}
+            <Text type="secondary">Atacado requer simulação e aprovação separadas por quantidade.</Text>
 
             {/* Avisos */}
             {mlModal.product && (() => {

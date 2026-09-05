@@ -1,3 +1,9 @@
+import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { requireAdminUser } from '@/lib/auth/admin';
+import { createClient } from '@/lib/supabase';
+import { assessIdentity } from '@/lib/ml/opportunity-conflicts';
+import { identityFacts, supplierIdentityFacts } from '@/lib/ml/opportunity-identity';
+import { verifyPricingApproval } from '@/services/pricing-approval';
 import { NextResponse } from "next/server";
 
 export const maxDuration = 300;
@@ -6,16 +12,11 @@ import {
   createListing,
   getCategoryAttributes,
   searchItemBySellerSku,
-  setItemQuantityPricing,
   updateListingFiscalData,
   upsertListingDescription,
 } from "@/services/mercadolibre";
 import { fetchML, fetchMLResult } from "@/services/integration";
-import {
-  calculateExactMarginPrice,
-  calculateSuggestedPrice,
-  calculateTargetNetProfitPrice,
-} from "@/services/pricing";
+import { evaluateProductPricing, persistPricingEvaluation, recordPricingEvent, resolveNewListingQuoteContext } from '@/services/pricing-context';
 import { createServiceClient } from "@/lib/supabase";
 import {
   fiscalStrictSchema,
@@ -477,127 +478,18 @@ function roundMoney(value: number) {
 }
 
 async function calculateSafeListingPrice(params: {
-  produto: any;
-  categoriaId: string;
-  listingType: string;
-  requestedPrice?: number;
-  pricingMode?: string;
-  targetNetProfit?: number;
+  produto: any; categoriaId: string; listingType: string; requestedPrice?: number;
+  pricingMode?: string; targetNetProfit?: number;
 }) {
-  const cost = Number(params.produto.custo || 0);
-  const storedShipping = Number(params.produto.ml_shipping || 0);
-  const dimensions = [
-    Number(params.produto.altura || 0),
-    Number(params.produto.largura || 0),
-    Number(params.produto.profundidade || 0),
-  ];
-  const packageVolume = dimensions.reduce(
-    (total, value) => total * (Number.isFinite(value) && value > 0 ? value : 0),
-    1,
-  );
-  const highVolume =
-    Number(params.produto.peso_bruto || 0) > 10 ||
-    dimensions.some((value) => value > 100) ||
-    packageVolume > 100000;
-  const heuristicShipping =
-    cost > 400 || highVolume
-      ? 110
-      : cost < 50
-        ? 6.5
-        : cost <= 150
-          ? 25
-          : 55;
-  const usesEstimatedShipping = ["profitable_shelf_2", "target_net_profit"].includes(
-    String(params.pricingMode || ""),
-  );
-  const shipping =
-    usesEstimatedShipping && storedShipping <= 0
-      ? heuristicShipping
-      : storedShipping;
-  let mlFee = Number(params.produto.ml_fee || 0.15);
-  if (params.pricingMode === "target_net_profit") {
-    const targetNetProfit = Number(params.targetNetProfit);
-    if (!Number.isFinite(targetNetProfit) || targetNetProfit < 0) {
-      throw new Error("targetNetProfit inválido");
-    }
-    let fixedFee = 0;
-    let price = calculateTargetNetProfitPrice({
-      cost,
-      shipping,
-      mlFee,
-      targetNetProfit,
-      fixedFee,
-    });
-    for (let attempt = 0; attempt < 2; attempt += 1) {
-      const listingPrices = await fetchML<any>(
-        `/sites/MLB/listing_prices?price=${price}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
-      );
-      mlFee = extractMlFee(listingPrices) ?? mlFee;
-      fixedFee = extractMlFixedFee(listingPrices);
-      price = calculateTargetNetProfitPrice({
-        cost,
-        shipping,
-        mlFee,
-        targetNetProfit,
-        fixedFee,
-      });
-    }
-    return {
-      price,
-      mlFee,
-      fixedFee,
-      suggestedPrice: price,
-      adjusted: false,
-      pricingMode: params.pricingMode,
-      shipping,
-      shippingSource: storedShipping > 0 ? "erp" : "heuristic",
-      targetNetProfit,
-      taxRate: 0.04,
-    };
-  }
-  if (params.pricingMode === "profitable_shelf_2") {
-    const costTotal = cost + shipping;
-    const margin = costTotal < 50 ? 0.08 : 0.25;
-    let price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
-    const listingPrices = await fetchML<any>(
-      `/sites/MLB/listing_prices?price=${price}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
-    );
-    mlFee = extractMlFee(listingPrices) ?? mlFee;
-    price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
-    return {
-      price,
-      mlFee,
-      suggestedPrice: price,
-      adjusted: false,
-      pricingMode: params.pricingMode,
-      shipping,
-      shippingSource: storedShipping > 0 ? "erp" : "heuristic",
-      margin,
-      taxRate: 0.05,
-    };
-  }
-  const provisional = calculateSuggestedPrice({ cost, shipping, mlFee });
-  const listingPrices = await fetchML<any>(
-    `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
-  );
-  mlFee = extractMlFee(listingPrices) ?? mlFee;
-  const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
-  const suggestedPrice = Math.round(pricing.suggestedPrice * 100) / 100;
-  const requestedPrice = Number(params.requestedPrice || 0);
-  const hasRequestedPrice =
-    Number.isFinite(requestedPrice) && requestedPrice > 0;
-  const roundedRequested = hasRequestedPrice
-    ? Math.round(requestedPrice * 100) / 100
-    : 0;
-  const price = hasRequestedPrice
-    ? Math.max(roundedRequested, suggestedPrice)
-    : suggestedPrice;
-  return {
-    price,
-    mlFee,
-    suggestedPrice,
-    adjusted: hasRequestedPrice && roundedRequested < suggestedPrice,
-  };
+  if (params.pricingMode && params.pricingMode !== 'canonical') throw new Error('MODO_PRICING_APOSENTADO: use a política canônica');
+  const client = createServiceClient();
+  const context = await resolveNewListingQuoteContext(params.produto, params.categoriaId, params.listingType);
+  if (!context) throw new Error('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
+  const evaluation = await evaluateProductPricing(client, { productId: params.produto.id, context, objective: 'target', requireLive: true });
+  if (!evaluation.memory) throw new Error(evaluation.failure ?? 'ECONOMIA_INCONCLUSIVA');
+  const m = evaluation.memory;
+  return { price: m.price, suggestedPrice: m.price, adjusted: false, mlFee: m.fee.amount! / m.price,
+    shipping: m.shipping.amount!, shippingSource: m.shipping.source, margin: m.margin, memory: m, evaluation };
 }
 
 async function pauseCreatedListing(itemId: string) {
@@ -801,6 +693,9 @@ async function persistListingLink(params: {
 }
 
 export async function POST(req: Request) {
+  const auth = await requireAdminUser(await createClient());
+  if (!auth.ok) return auth.response;
+  let publicationLock: {domain:string;ownerToken:string}|null=null;
   try {
     const {
       produtoId,
@@ -815,6 +710,8 @@ export async function POST(req: Request) {
       pricingMode,
       familyName: requestedFamilyName,
       targetNetProfit,
+      pricingApprovalId,
+      acknowledgeIdentityReview,
     } = await req.json();
 
     if (!produtoId) {
@@ -830,6 +727,10 @@ export async function POST(req: Request) {
       );
     }
 
+    const domain = `publication:${produtoId}`;
+    const lock = await acquireDomainLock({domain,ownerTask:'manual_publication',ttlSeconds:300});
+    if (!lock.acquired) return NextResponse.json({error:'PUBLICACAO_EM_ANDAMENTO'}, {status:409});
+    publicationLock={domain,ownerToken:lock.ownerToken};
     const supabase = createServiceClient();
     const { data: produto } = await supabase
       .from("produtos")
@@ -942,6 +843,7 @@ export async function POST(req: Request) {
             ? produto.custom_price
             : undefined,
     });
+    await verifyPricingApproval(supabase, { approvalId: String(pricingApprovalId || ''), productId: produto.id, price: safePrice.price, context: safePrice.evaluation.context! });
     const displayPrice = safePrice.price;
     const initialPrice = roundMoney(displayPrice);
     if (safePrice.adjusted) {
@@ -949,17 +851,6 @@ export async function POST(req: Request) {
         `Preço ajustado automaticamente para R$ ${safePrice.suggestedPrice.toFixed(2)} para evitar frete/taxa desatualizados.`,
       );
     }
-    if (pricingMode === "profitable_shelf_2") {
-      warnings.push(
-        `Preço calculado pela Prateleira Lucrativa 2.0: frete ${safePrice.shippingSource}, DAS 5% e margem ${(Number(safePrice.margin || 0) * 100).toFixed(0)}%.`,
-      );
-    }
-    if (pricingMode === "target_net_profit") {
-      warnings.push(
-        `Preço calculado para lucro líquido alvo de R$ ${Number(targetNetProfit).toFixed(2)}: imposto 4%, frete ${safePrice.shippingSource} e tarifa ML vigente.`,
-      );
-    }
-
     const attrs = await getCategoryAttributes(categoriaId);
     if (!attrs || attrs.length === 0) {
       return NextResponse.json(
@@ -1519,14 +1410,9 @@ export async function POST(req: Request) {
     const saleTerms = normalizeMlSaleTerms(saleTermsInput);
 
     const imagens = produto.imagens || [];
-    const picturesSource =
-      imagens.length > 0 ? imagens : ["https://via.placeholder.com/400"];
-    const pictures = picturesSource.slice(0, 12);
-    if (imagens.length === 0)
-      warnings.push(
-        "Produto sem imagens locais. Será usada imagem placeholder.",
-      );
-    if (picturesSource.length > pictures.length)
+    if (!imagens.length) return NextResponse.json({error:'IMAGENS_REAIS_OBRIGATORIAS'}, {status:422});
+    const pictures = imagens.slice(0,12);
+    if (imagens.length > pictures.length)
       warnings.push(
         `Imagens limitadas a ${pictures.length} para respeitar o limite do Mercado Livre.`,
       );
@@ -1575,6 +1461,10 @@ export async function POST(req: Request) {
       },
     };
 
+    const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer,identityFacts(Array.from(attributesMap.values()))),remote:identityFacts(Array.from(attributesMap.values())),source:'formulario_publicacao_validado'});
+    if (finalIdentity.identity==='IDENTIDADE_DIVERGENTE') return NextResponse.json({error:'CONFLITO_IDENTIDADE_PUBLICACAO',identity:finalIdentity},{status:422});
+    if (finalIdentity.identity==='IDENTIDADE_INCONCLUSIVA' && acknowledgeIdentityReview!==true) return NextResponse.json({error:'PENDENCIA_VALIDACAO_IDENTIDADE',identity:finalIdentity},{status:422});
+    await recordPricingEvent(supabase,{event_type:'CREATE_REQUESTED',produto_id:produto.id,pricing_source:'publication',actor:auth.user.id,reason:'Criação no alvo aprovada após revisão de identidade',new_price:initialPrice,rule_id:safePrice.memory.policyVersion,payload:{approvalId:pricingApprovalId,identity:finalIdentity},dedupe_key:`create:${pricingApprovalId}`});
     let result;
     try {
       result = await createListing(listingPayload);
@@ -1770,137 +1660,26 @@ export async function POST(req: Request) {
     pricingCorrection.ml_shipping = roundMoney(Number(mlShipping || 0));
     pricingCorrection.ml_fee = roundMoney(Number(mlFee || 0));
 
-    if (pricingMode === "profitable_shelf_2") {
-      finalSuggestedPrice = initialPrice;
+    const finalEvaluation = await evaluateProductPricing(supabase, { productId: produto.id, itemId: result.id, price: initialPrice, requireLive: true });
+    if (finalEvaluation.memory) {
+      const evaluationId = await persistPricingEvaluation(supabase, { ...finalEvaluation, memory: finalEvaluation.memory, scenario: 'current', itemId: result.id });
+      await recordPricingEvent(supabase, { event_type: 'CREATED_READBACK', produto_id: produto.id, ml_item_id: result.id,
+        evaluation_id: evaluationId, pricing_source: 'publication', actor: 'publication', reason: 'Conferência após criação no alvo canônico',
+        previous_price: null, new_price: initialPrice, rule_id: finalEvaluation.runtime.policy.version,
+        payload: { approvalId:pricingApprovalId, memory_status: finalEvaluation.memory.status, diagnostics: finalEvaluation.memory.diagnostics } });
       pricingCorrection.final_price = initialPrice;
-    } else if (pricingMode === "target_net_profit") {
-      if (shippingResolution.mlShipping <= 0 && shippingResolution.warning) {
-        const pauseResult = await pauseCreatedListing(result.id);
-        if (pauseResult.ok) {
-          latestItem = (await getListingSnapshot(result.id)) || { ...latestItem, status: "paused" };
-          warnings.push("Anúncio pausado: frete real não pôde ser confirmado para validar o lucro alvo.");
-        } else {
-          warnings.push(`Frete não confirmado e pausa falhou: ${pauseResult.error || "erro desconhecido"}`);
-        }
-      } else {
-        try {
-          const livePricing = await fetchML<any>(
-            `/sites/MLB/listing_prices?price=${displayPrice}&category_id=${categoriaId}&listing_type_id=${listingType || "gold_pro"}`,
-          );
-          const liveFee = extractMlFee(livePricing) ?? Number(mlFee || 0.15);
-          const fixedFee = extractMlFixedFee(livePricing);
-          finalSuggestedPrice = calculateTargetNetProfitPrice({
-            cost: Number(produto.custo || 0),
-            shipping: Number(mlShipping || 0),
-            mlFee: liveFee,
-            targetNetProfit: Number(targetNetProfit),
-            fixedFee,
-          });
-          pricingCorrection.final_price = finalSuggestedPrice;
-          pricingCorrection.ml_fee = roundMoney(liveFee);
-          if (Math.abs(finalSuggestedPrice - initialPrice) >= 0.01) {
-            const priceUpdate = await updateCreatedListingPrice(result.id, finalSuggestedPrice);
-            if (!priceUpdate.ok) throw new Error(priceUpdate.error || `HTTP ${priceUpdate.status}`);
-            pricingCorrection.status = "corrected";
-            latestItem = { ...((await getListingSnapshot(result.id)) || latestItem), price: finalSuggestedPrice };
-          }
-        } catch (error: any) {
-          const pauseResult = await pauseCreatedListing(result.id);
-          if (pauseResult.ok) latestItem = (await getListingSnapshot(result.id)) || { ...latestItem, status: "paused" };
-          pricingCorrection.status = "pending";
-          pricingCorrection.error = error?.message || String(error);
-          warnings.push(`Anúncio pausado: preço final do lucro alvo não foi confirmado (${pricingCorrection.error}).`);
-        }
-      }
-    } else if (Number.isFinite(Number(mlShipping)) && Number(mlShipping) > 0) {
-      try {
-        const finalPricing = calculateSuggestedPrice({
-          cost: Number(produto.custo || 0),
-          shipping: Number(mlShipping || 0),
-          mlFee: Number(mlFee || 0.15),
-        });
-        finalSuggestedPrice = roundMoney(finalPricing.suggestedPrice);
-        pricingCorrection.final_price = finalSuggestedPrice;
-
-        if (Math.abs(finalSuggestedPrice - initialPrice) >= 0.01) {
-          const priceUpdate = await updateCreatedListingPrice(
-            result.id,
-            finalSuggestedPrice,
-          );
-          if (priceUpdate.ok) {
-            pricingCorrection.status = "corrected";
-            warnings.push(
-              `Preço corrigido automaticamente após frete real: R$ ${initialPrice.toFixed(2)} → R$ ${finalSuggestedPrice.toFixed(2)}.`,
-            );
-            latestItem = {
-              ...((await getListingSnapshot(result.id)) || latestItem),
-              price: finalSuggestedPrice,
-            };
-          } else {
-            const outbox = await enqueueMlPublishOutbox(supabase, {
-              produtoId: String(produto.id),
-              mlItemId: String(result.id),
-              desiredStatus: null,
-              desiredPrice: finalSuggestedPrice,
-              desiredQuantity: null,
-              source: "ml_listing_create_price_correction",
-              dedupePending: true,
-              payload: {
-                apply_status: false,
-                apply_price: true,
-                apply_quantity: false,
-                apply_quantity_pricing: true,
-                update_quantity_pricing: true,
-                initial_price: initialPrice,
-                final_price: finalSuggestedPrice,
-                ml_shipping: mlShipping,
-                ml_fee: mlFee,
-                error: priceUpdate.error || null,
-              },
-            });
-            pricingCorrection.status = "pending";
-            pricingCorrection.error =
-              priceUpdate.error ||
-              `HTTP ${priceUpdate.status || ""}`.trim() ||
-              "Falha ao atualizar preço no ML";
-            if (outbox.ok) pricingCorrection.outbox_id = outbox.outboxId;
-            warnings.push(
-              `Preço final calculado, mas atualização ficou pendente: ${pricingCorrection.error}`,
-            );
-          }
-        }
-      } catch (err: any) {
-        pricingCorrection.status = "pending";
-        pricingCorrection.error =
-          err?.message || "Falha ao recalcular preço final";
-        warnings.push(
-          `Não foi possível recalcular preço final após frete real: ${pricingCorrection.error}`,
-        );
+      if (finalEvaluation.memory.result === null || finalEvaluation.memory.diagnostics.length) {
+        pricingCorrection.status = 'pending';
+        pricingCorrection.error = 'REVISAR_ECONOMIA_POS_PUBLICACAO';
+        warnings.push('Economia após criação exige revisão; nenhuma correção cega de preço foi aplicada.');
       }
     } else {
-      pricingCorrection.status = "pending";
-      pricingCorrection.error = "Frete ML real não retornado após criação";
-      warnings.push(
-        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente.",
-      );
+      pricingCorrection.status = 'pending';
+      pricingCorrection.error = finalEvaluation.failure ?? 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL';
     }
 
-    const quantityPricingBasePrice =
-      pricingCorrection.final_price || finalSuggestedPrice || displayPrice;
-    const quantityPricingResult = await setItemQuantityPricing(
-      result.id,
-      quantityPricingBasePrice,
-    );
-    if (quantityPricingResult.ok) steps.atacado.ok = true;
-    else {
-      const errorMessage =
-        quantityPricingResult.error || "Falha ao atualizar preços de atacado";
-      steps.atacado = { ok: false, error: errorMessage };
-      warnings.push(
-        `Não foi possível configurar os preços de atacado neste momento. Motivo: ${errorMessage}`,
-      );
-    }
-
+    const quantityPricingResult = { ok: false };
+    steps.atacado = { ok: false, error: 'Atacado exige avaliação e aprovação próprias para cada quantidade.' };
     await persistListingLink({
       supabase,
       produto,
@@ -2015,33 +1794,11 @@ export async function POST(req: Request) {
       },
       quantity_pricing: quantityPricingResult.ok,
       pricing_correction: pricingCorrection,
-      pricing_policy:
-        pricingMode === "profitable_shelf_2"
-          ? {
-              mode: pricingMode,
-              das: 0.05,
-              margin: safePrice.margin,
-              shipping: safePrice.shipping,
-              shipping_source: safePrice.shippingSource,
-              ml_fee: safePrice.mlFee,
-              price: initialPrice,
-            }
-          : pricingMode === "target_net_profit"
-            ? {
-                mode: pricingMode,
-                tax_rate: 0.04,
-                target_net_profit: Number(targetNetProfit),
-                shipping: mlShipping,
-                shipping_source: shippingResolution.mlShipping > 0 ? "mercado_livre" : safePrice.shippingSource,
-                ml_fee: pricingCorrection.ml_fee ?? safePrice.mlFee,
-                initial_price: initialPrice,
-                final_price: pricingCorrection.final_price ?? initialPrice,
-              }
-          : null,
+      pricing_policy: { mode: 'canonical', memory: safePrice.memory, autonomy: 'REQUIRES_CONFIRMATION' },
       fiscal: fiscalErrors.length === 0 ? "ok" : fiscalErrors,
       fiscal_details: fiscalErrorDetails,
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
-  }
+  } finally { if (publicationLock) await releaseDomainLock(publicationLock); }
 }

@@ -1,8 +1,11 @@
+import { fetchMLResult } from '@/services/integration';
+import { normalizePriceToWin } from '@/lib/catalogo/no-catalogo';
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import type { Database } from '@/types/database';
 import { POST as refreshNoCatalogSnapshot } from '@/app/api/catalogo/no-catalogo/refresh/route';
-import { calculateBreakEvenPrice, calculateSuggestedPrice, getPricingStrategy } from '@/services/pricing';
+import { evaluateProductPricing, loadPricingRuntime } from '@/services/pricing-context';
+import { classifyCompetitiveEconomy } from '@/lib/ml/opportunity-conflicts';
 
 type SnapshotRow = Pick<
   Database['public']['Tables']['catalogo_ml_snapshot']['Row'],
@@ -36,7 +39,7 @@ interface AnaliseRow {
 }
 
 const TAXA_ML_DEFAULT = 0.15;
-const MARGEM_LUCRO_MINIMA_ANALISE = 0.05;
+
 const DELTA_PRECO_MINIMO_ANALISE = 0.005;
 const PAGE_SIZE = 1000;
 const SUPABASE_IN_CHUNK_SIZE = 100;
@@ -196,127 +199,37 @@ export async function POST(request: Request) {
   produtosQueryMs = Date.now() - produtosQueryStartedAt;
 
   const calculationStartedAt = Date.now();
-  const report: AnaliseRow[] = snapshotRows.map((row) => {
-    const precoAtual = round2(toFiniteNumber(row.price) || 0);
-    const priceToWin = toFiniteNumber(row.price_to_win);
-    const produto = row.produto_id ? produtoMap.get(row.produto_id) : null;
-
-    if (!row.produto_id || !produto) {
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || '',
-        sku_local: row.sku_local,
-        produto_id: row.produto_id || null,
-        preco_atual: precoAtual,
-        price_to_win: priceToWin !== null ? round2(priceToWin) : null,
-        preco_piso_sem_prejuizo: null,
-        preco_recomendado: null,
-        delta_preco: null,
-        lucro_unitario_estimado: null,
-        classe: 'dados_insuficientes',
-        motivo: 'produto_id_ausente_ou_sem_vinculo_local',
-      };
+  const runtime = await loadPricingRuntime(service);
+  const report: AnaliseRow[] = [];
+  for (let offset=0;offset<snapshotRows.length;offset+=4) {
+   await Promise.all(snapshotRows.slice(offset,offset+4).map(async row=>{
+    let memory = null;
+    let breakEven: number|null = null;
+    let competitive: number|null = null;
+    let failure = 'VINCULO_INCONCLUSIVO';
+    if (row.produto_id && Number(row.price_to_win) > 0) {
+      const live = await fetchMLResult<any>(`/items/${encodeURIComponent(row.ml_item_id)}/price_to_win?version=v2`);
+      competitive = live.ok ? normalizePriceToWin(live.data) : null;
+      if (competitive) {
+      const evaluation = await evaluateProductPricing(service, { productId: row.produto_id, itemId: row.ml_item_id, price: competitive, requireLive: true, runtime });
+      memory = evaluation.memory;
+      failure = evaluation.failure ?? memory?.reasons.join(';') ?? 'INCONCLUSIVO';
+      const floor = await evaluateProductPricing(service,{productId:row.produto_id,itemId:row.ml_item_id,objective:'break_even',requireLive:true,runtime});
+      breakEven=floor.memory?.price??null;
+      } else failure='INCONCLUSIVO_FONTE_ML_INDISPONIVEL';
     }
-
-    const taxaMl = toFiniteNumber(produto.ml_fee);
-    const frete = toFiniteNumber(produto.ml_shipping);
-    const custo = toFiniteNumber(produto.custo);
-
-    const taxaMlAplicada = taxaMl !== null ? taxaMl : TAXA_ML_DEFAULT;
-    const freteAplicado = frete !== null ? frete : 0;
-    const custoAplicado = custo !== null ? custo : 0;
-
-    let pisoSemPrejuizo: number | null = null;
-    let precoEstrategicoMinimo: number | null = null;
-    let estrategia: ReturnType<typeof getPricingStrategy> | null = null;
-    try {
-      pisoSemPrejuizo = calculateBreakEvenPrice({
-        cost: custoAplicado,
-        shipping: freteAplicado,
-        mlFee: taxaMlAplicada,
-      });
-      estrategia = getPricingStrategy(custoAplicado);
-      precoEstrategicoMinimo = calculateSuggestedPrice({
-        cost: custoAplicado,
-        shipping: freteAplicado,
-        mlFee: taxaMlAplicada,
-      }).suggestedPrice;
-    } catch {
-      pisoSemPrejuizo = null;
-      precoEstrategicoMinimo = null;
-      estrategia = null;
-    }
-
-    if (precoEstrategicoMinimo === null || priceToWin === null || priceToWin <= 0) {
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || produto.nome || '',
-        sku_local: row.sku_local || produto.sku || null,
-        produto_id: row.produto_id,
-        preco_atual: precoAtual,
-        price_to_win: priceToWin !== null ? round2(priceToWin) : null,
-        preco_piso_sem_prejuizo: pisoSemPrejuizo,
-        preco_recomendado: null,
-        delta_preco: null,
-        lucro_unitario_estimado: null,
-        classe: 'dados_insuficientes',
-        motivo: priceToWin === null || priceToWin <= 0 ? 'sem_preco_alvo_ml' : 'taxas_invalidas_para_calculo',
-      };
-    }
-
-    const priceToWinRounded = round2(priceToWin);
-
-    const deltaPriceToWin = round2(priceToWinRounded - precoAtual);
-    const lucroNoPriceToWin = round2(
-      priceToWinRounded - custoAplicado - freteAplicado - (priceToWinRounded * 0.04) - (priceToWinRounded * taxaMlAplicada),
-    );
-
-    if (priceToWinRounded >= precoEstrategicoMinimo) {
-      const recomendado = priceToWinRounded;
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || produto.nome || '',
-        sku_local: row.sku_local || produto.sku || null,
-        produto_id: row.produto_id,
-        preco_atual: precoAtual,
-        price_to_win: priceToWinRounded,
-        preco_piso_sem_prejuizo: pisoSemPrejuizo,
-        preco_recomendado: recomendado,
-        delta_preco: deltaPriceToWin,
-        lucro_unitario_estimado: lucroNoPriceToWin,
-        classe: 'ajustar_para_ganhar_sem_prejuizo',
-        motivo: 'price_to_win_atende_estrategia_minima',
-      };
-    }
-
-    const recomendado = precoEstrategicoMinimo;
-    return {
-      ml_item_id: row.ml_item_id,
-      permalink: row.permalink || null,
-      titulo: row.title || produto.nome || '',
-      sku_local: row.sku_local || produto.sku || null,
-      produto_id: row.produto_id,
-      preco_atual: precoAtual,
-      price_to_win: priceToWinRounded,
-      preco_piso_sem_prejuizo: pisoSemPrejuizo,
-      preco_recomendado: recomendado,
-      delta_preco: deltaPriceToWin,
-      lucro_unitario_estimado: lucroNoPriceToWin,
-      classe: 'nao_viavel_ganhar_sem_prejuizo',
-      motivo: `price_to_win_abaixo_da_estrategia_minima:margem_${Math.round((estrategia?.margin || 0) * 100)}:lucro_${estrategia?.minProfit || 0}`,
-    };
-  });
-
-  const filtered = report.filter((row) => {
-    const lucro = toFiniteNumber(row.lucro_unitario_estimado);
-    const precoBase = toFiniteNumber(row.preco_recomendado) || toFiniteNumber(row.price_to_win);
-    const delta = Math.abs(toFiniteNumber(row.delta_preco) || 0);
-    if (lucro === null || precoBase === null || precoBase <= 0) return false;
-    return delta >= DELTA_PRECO_MINIMO_ANALISE && lucro > 0 && (lucro / precoBase) >= MARGEM_LUCRO_MINIMA_ANALISE;
-  });
+    const state = classifyCompetitiveEconomy(memory, true);
+    const viable = state === 'VIAVEL_NO_ALVO' || state === 'VIAVEL_ACIMA_DO_PISO';
+    report.push({ ml_item_id: row.ml_item_id, permalink: row.permalink ?? null, titulo: row.title ?? '', sku_local: row.sku_local,
+      produto_id: row.produto_id, preco_atual: Number(row.price), price_to_win: competitive,
+      preco_piso_sem_prejuizo: breakEven, preco_recomendado: viable ? memory!.price : null,
+      delta_preco: viable ? round2(memory!.price - Number(row.price)) : null,
+      lucro_unitario_estimado: memory?.result ?? null,
+      classe: state === 'INCONCLUSIVO' ? 'dados_insuficientes' : viable ? 'ajustar_para_ganhar_sem_prejuizo' : 'nao_viavel_ganhar_sem_prejuizo',
+      motivo: state === 'INCONCLUSIVO' ? failure : state + ';REQUIRES_CONFIRMATION' });
+   }));
+  }
+  const filtered = report;
 
   const sorted = [...filtered].sort((a, b) => {
     const priorityDiff = classPriority(a.classe) - classPriority(b.classe);
@@ -342,7 +255,7 @@ export async function POST(request: Request) {
     snapshot_rows: snapshotRows.length,
     produto_ids: produtoIds.length,
     produtos_loaded: produtoMap.size,
-    min_profit_margin: MARGEM_LUCRO_MINIMA_ANALISE,
+    pricing_policy: runtime.policy,
     min_price_delta: DELTA_PRECO_MINIMO_ANALISE,
     report_rows_before_filter: report.length,
     returned_rows: sorted.length,

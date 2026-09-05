@@ -1,3 +1,4 @@
+import { unitResult } from '../../services/pricing.ts';
 export type MlShipmentCosts = {
   senders?: Array<{
     user_id?: string | number | null;
@@ -42,10 +43,11 @@ export function calculateFinalOrderProfit(input: {
   productCost: number;
   saleFees: number;
   sellerShippingCost: number | null;
-  tax: number;
+  tax: number | null;
+  variableCosts?: number | null;
   matchedItems: number;
 }): number | null {
-  if (input.matchedItems <= 0 || input.sellerShippingCost === null) return null;
+  if (input.matchedItems <= 0 || input.sellerShippingCost === null || input.tax === null || input.variableCosts === null) return null;
   if (![
     input.total,
     input.productCost,
@@ -54,11 +56,6 @@ export function calculateFinalOrderProfit(input: {
     input.tax,
   ].every(Number.isFinite)) return null;
 
-  return Number((
-    input.total
-    - input.productCost
-    - input.saleFees
-    - input.sellerShippingCost
-    - input.tax
-  ).toFixed(2));
+  return unitResult({ revenue: input.total, cost: input.productCost, fee: input.saleFees,
+    shipping: input.sellerShippingCost, tax: input.tax, variableCosts: input.variableCosts ?? 0 });
 }

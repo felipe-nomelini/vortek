@@ -7,7 +7,6 @@ import {
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
-import { calculateSuggestedPrice } from '@/services/pricing';
 
 type ExportRow = {
   sku: string;
@@ -63,7 +62,8 @@ const columns: Array<{
 ];
 
 function formatCurrency(value: number): string {
-  const fixed = Number(value || 0).toFixed(2);
+  if (!Number.isFinite(value)) return '-';
+  const fixed = Number(value).toFixed(2);
   const [integer, decimals] = fixed.split('.');
   return `R$ ${integer.replace(/\B(?=(\d{3})+(?!\d))/g, '.')},${decimals}`;
 }
@@ -83,24 +83,7 @@ function computeDerived(product: Record<string, any>, preferredOffer: Record<str
   suggestedPrice: number;
   profit: number | null;
 } {
-  const cost = Number(preferredOffer?.custo ?? product.custo ?? 0);
-  const shipping = Number(product.ml_shipping ?? 0);
-  const mlFee = Number(product.ml_fee ?? 0.15);
-
-  try {
-    const calculated = calculateSuggestedPrice({ cost, shipping, mlFee });
-    const suggestedPrice = Math.round(Number(product.custom_price ?? calculated.suggestedPrice) * 100) / 100;
-    if (String(product.ml_status || '') === 'sem_anuncio') {
-      return { suggestedPrice, profit: null };
-    }
-    const profit = suggestedPrice - cost - shipping - (suggestedPrice * 0.04) - (suggestedPrice * mlFee);
-    return { suggestedPrice, profit: Math.round(profit * 100) / 100 };
-  } catch {
-    return {
-      suggestedPrice: Math.round(Number(product.custom_price ?? cost) * 100) / 100,
-      profit: null,
-    };
-  }
+  return { suggestedPrice: product.custom_price ?? product.display_price ?? Number.NaN, profit: product.profit_value ?? null };
 }
 
 function mapRpcRow(item: RpcPage['data'][number]): ExportRow {

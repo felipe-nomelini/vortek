@@ -1,3 +1,6 @@
+import { evaluateProductPricing, loadPricingRuntime, persistPricingEvaluation } from '@/services/pricing-context';
+import { resolveMlPricingGroup } from '@/services/ml-pricing-group';
+import { fetchAllMlItemIds } from '@/services/ml-listing-scan';
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult, getMLAuthDiagnostics, type MLRequestResult } from '@/services/integration';
@@ -8,7 +11,6 @@ import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { getConfiguredMlShippingCost } from '@/lib/ml/shipping-cost';
-import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
@@ -302,75 +304,6 @@ async function fetchVisitsByItemId(
   return visitsByItemId;
 }
 
-async function fetchAllMlItemIds(sellerId: string | number): Promise<{
-  ok: boolean;
-  itemIds: string[];
-  pagesFetched: number;
-  retriesTransient: number;
-  error?: {
-    code: string;
-    category: string;
-    upstream_status: number | null;
-    trace_id: string | null;
-    message: string;
-    endpoint: string;
-    retries: number;
-  };
-}> {
-  const uniqueIds = new Set<string>();
-  let pagesFetched = 0;
-  let retriesTransient = 0;
-  let scrollId: string | null = null;
-
-  while (true) {
-    const requestPath: string = scrollId
-      ? `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
-      : `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}`;
-
-    const scanCheck: { result: MLRequestResult<any>; retries: number } = await fetchMLResultWithRetry<any>(requestPath);
-    retriesTransient += scanCheck.retries;
-    const scanResult: MLRequestResult<any> = scanCheck.result;
-
-    if (!scanResult.ok || !scanResult.data) {
-      return {
-        ok: false,
-        itemIds: [],
-        pagesFetched,
-        retriesTransient,
-        error: {
-          code: scanResult.error?.code || 'ml_items_scan_failed',
-          category: scanResult.error?.category || 'error',
-          upstream_status: scanResult.status,
-          trace_id: scanResult.error?.traceId || null,
-          message: scanResult.error?.message || 'Erro ao buscar anúncios completos no ML',
-          endpoint: '/users/{seller_id}/items/search?search_type=scan',
-          retries: scanCheck.retries,
-        },
-      };
-    }
-
-    pagesFetched += 1;
-    const payload: any = scanResult.data;
-    const results: any[] = Array.isArray(payload?.results) ? payload.results : [];
-    for (const rawId of results) {
-      const itemId = String(rawId || '').trim();
-      if (itemId) uniqueIds.add(itemId);
-    }
-
-    const nextScrollId: string = String(payload?.scroll_id || '').trim();
-    if (!nextScrollId || results.length === 0) {
-      return {
-        ok: true,
-        itemIds: Array.from(uniqueIds),
-        pagesFetched,
-        retriesTransient,
-      };
-    }
-
-    scrollId = nextScrollId;
-  }
-}
-
 export async function POST(request: Request) {
   const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key') || '';
@@ -378,6 +311,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Chave de API inválida' }, { status: 401 });
   }
 
+  const body = await request.json().catch(()=>({}));
+  const syncJobId = typeof body.syncJobId === 'string' ? body.syncJobId : null;
   const { searchParams } = new URL(request.url);
   const offset = Number(searchParams.get('offset') || 0);
   const limit = Math.max(1, Math.min(100, Number(searchParams.get('limit') || 100)));
@@ -437,7 +372,7 @@ export async function POST(request: Request) {
 
     const me = meResult.data;
 
-    const scan = await fetchAllMlItemIds(me.id);
+    const scan = await fetchAllMlItemIds(me.id, fetchMLResultWithRetry);
     if (!scan.ok) {
       if (scan.error?.category === 'auth_fatal') {
         const auth = await getMLAuthDiagnostics();
@@ -767,20 +702,8 @@ export async function POST(request: Request) {
           let configuredShippingPrice: number | null = null;
 
           if (configuredShippingChanged && !priceAutomationBlocked) {
-            try {
-              configuredShippingPrice = calculateSuggestedPrice({
-                cost: Number(produto.custo || 0),
-                shipping: configuredShipping,
-                mlFee: Number(pricing.mlFee ?? produto.ml_fee ?? 0.15),
-              }).suggestedPrice;
-              productPatch.custom_price = configuredShippingPrice;
-            } catch (error: any) {
-              warnings.push({
-                code: 'ml_configured_shipping_price_calculation_failed',
-                message: error?.message || 'Falha ao recalcular preço com frete configurado',
-                context: { mlItemId: String(item.id), produtoId },
-              });
-            }
+            // M2M: mudança de fonte não modifica preço publicado sem aprovação.
+            warnings.push({ code: 'pricing_approval_required', message: 'Frete atualizado; simular impacto antes de alterar preço.', context: { mlItemId: String(item.id), produtoId } });
           }
 
           if (Object.keys(productPatch).length > 0) {
@@ -1196,6 +1119,21 @@ export async function POST(request: Request) {
       }
     }
 
+    // Memória atual só é renovada quando entradas materiais mudaram ou evidências venceram.
+    const pricingRuntime = await loadPricingRuntime(serviceClient);
+    const current = await (serviceClient as any).from('current_pricing_evaluations').select('ml_item_id').in('ml_item_id',itemIds).eq('scenario','current');
+    if (current.error) throw new Error(current.error.message);
+    const fresh = new Set((current.data ?? []).map((e:any)=>e.ml_item_id));
+    const missing = await serviceClient.from('anuncios_ml').select('ml_item_id,produto_id').in('ml_item_id',itemIds);
+    if (missing.error) throw new Error(missing.error.message);
+    await runPool((missing.data ?? []).filter(row=>row.produto_id&&!fresh.has(row.ml_item_id)),CONCURRENCY,async(row)=>{
+      try {
+        const evaluation=await evaluateProductPricing(serviceClient,{productId:row.produto_id!,itemId:row.ml_item_id,requireLive:true,runtime:pricingRuntime});
+        const item=await fetchMLResult<any>(`/items/${encodeURIComponent(row.ml_item_id)}`);
+        const group=item.ok?await resolveMlPricingGroup(serviceClient,item.data):null;
+        if(evaluation.memory) await persistPricingEvaluation(serviceClient,{...evaluation,memory:evaluation.memory,scenario:'current',itemId:row.ml_item_id,groupId:group?.groupId,jobId:syncJobId});
+      } catch(error:any){warnings.push({code:'pricing_evaluation_pending',message:error.message,context:{itemId:row.ml_item_id}});}
+    });
     const nextOffset = offset + limit;
     const done = nextOffset >= total || itemIds.length < limit;
     let catalogRefreshTriggered = false;

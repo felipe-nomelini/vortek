@@ -9,7 +9,6 @@ import {
 } from 'antd';
 import { ArrowLeftOutlined, LoadingOutlined, SaveOutlined } from '@ant-design/icons';
 import { formatCurrency, currencyFormatter, currencyParser } from '@/lib/format';
-import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
 
@@ -66,6 +65,9 @@ function mapDBtoProduct(item: ProdutoRow & Record<string, any>): Product {
     mlFee: item.ml_fee || 0.15,
     mlShipping: Number(item.ml_shipping ?? 0),
     customPrice: item.custom_price,
+    pricing: item.pricing,
+    suggestedPrice: item.display_price ?? item.pricing?.target?.price ?? null,
+    pricingProfit: item.profit_value ?? item.pricing?.current?.result ?? null,
     mlStatus: item.ml_status_operacional || item.ml_status || 'sem_anuncio',
     netWeight: item.peso_liq || 0,
     grossWeight: item.peso_bruto || 0,
@@ -294,18 +296,8 @@ export default function ProductDetailPage() {
     );
   }
 
-  const displayPrice = product.customPrice ?? calculateSuggestedPrice({
-    cost: product.cost,
-    shipping: product.mlShipping,
-    mlFee: product.mlFee,
-  }).suggestedPrice;
-
-  const profit = calculateNetProfitAtPrice({
-    price: displayPrice,
-    cost: product.cost,
-    shipping: product.mlShipping,
-    mlFee: product.mlFee,
-  });
+  const displayPrice = product.customPrice ?? product.suggestedPrice ?? Number.NaN;
+  const profit = product.pricingProfit ?? null;
 
   const categoryItems = product.category
     ? product.category.split(' > ').map((name, i, arr) => ({
@@ -569,8 +561,8 @@ export default function ProductDetailPage() {
                 <span style={{ color: '#1677ff', fontWeight: 600, fontSize: 15 }}>{formatCurrency(displayPrice)}</span>
               </Col>
               <Col span={12}>
-                <div style={{ color: profit >= 0 ? '#52c41a' : '#ff4d4f', fontSize: 13 }}>Lucro</div>
-                <span style={{ color: profit >= 0 ? '#52c41a' : '#ff4d4f', fontWeight: 600, fontSize: 15 }}>
+                <div style={{ color: (profit ?? 0) >= 0 ? '#52c41a' : '#ff4d4f', fontSize: 13 }}>Lucro</div>
+                <span style={{ color: (profit ?? 0) >= 0 ? '#52c41a' : '#ff4d4f', fontWeight: 600, fontSize: 15 }}>
                   {formatCurrency(profit)}
                 </span>
               </Col>

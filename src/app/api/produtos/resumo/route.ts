@@ -66,6 +66,6 @@ export async function GET(request: Request) {
     comEstoque: Number(result.comEstoque || 0),
     semAnuncio: Number(result.semAnuncio || 0),
     receitaPotencial: Number(result.receitaPotencial || 0),
-    lucroMedio: Number(result.lucroMedio || 0),
+    lucroMedio: result.lucroMedio == null ? null : Number(result.lucroMedio),
   });
 }

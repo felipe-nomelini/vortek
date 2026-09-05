@@ -57,21 +57,6 @@ function round2(value: number): number {
   return Math.round(value * 100) / 100;
 }
 
-function computeListingProfit(item: any): number | null {
-  const precoMl = Number(item?.preco_ml ?? 0);
-  const custo = Number(item?.produtos?.custo ?? Number.NaN);
-  if (!Number.isFinite(precoMl) || precoMl <= 0 || !Number.isFinite(custo)) return null;
-
-  const mlFeeRate = Number(item?.produtos?.ml_fee ?? 0.15);
-  const shipping = Number(item?.produtos?.ml_shipping ?? 0);
-  return round2(
-    precoMl
-      - custo
-      - shipping
-      - (precoMl * 0.04)
-      - (precoMl * (Number.isFinite(mlFeeRate) ? mlFeeRate : 0.15)),
-  );
-}
 
 function compareNullableNumber(left: number | null, right: number | null): number {
   if (left === null && right === null) return 0;
@@ -302,12 +287,17 @@ export async function GET(request: Request) {
 
     if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
 
+    const itemIds = (data || []).map((item: any) => item.ml_item_id);
+    const memoryResponse = itemIds.length ? await (serviceClient as any).from('current_pricing_evaluations').select('ml_item_id,memory,evaluated_at').in('ml_item_id', itemIds).eq('scenario','current').order('evaluated_at', { ascending: false }) : { data: [] };
+    if (memoryResponse.error) return NextResponse.json({ erro: memoryResponse.error.message }, { status: 500 });
+    const memoryByItem = new Map<string, any>();
+    for (const row of memoryResponse.data || []) if (!memoryByItem.has(row.ml_item_id)) memoryByItem.set(row.ml_item_id, row.memory);
     const chunk = (data || []).map((item: any): ExportRow => ({
       ml_item_id: String(item.ml_item_id || ''),
       sku: String(item.sku || ''),
       titulo: String(item.titulo || ''),
       preco_ml: Number(item.preco_ml || 0),
-      lucro: computeListingProfit(item),
+      lucro: memoryByItem.get(item.ml_item_id)?.price === Number(item.preco_ml) ? memoryByItem.get(item.ml_item_id)?.result ?? null : null,
       vendidos: Number(item.vendidos || 0),
       visitas: Number(item.visitas || 0),
       qualidade: Number(item.qualidade || 0),

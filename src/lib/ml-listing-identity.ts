@@ -163,9 +163,8 @@ export function assessMlListingIdentity(
   const sameSku = Boolean(expectedSku) && normalizeSku(remoteSku) === expectedSku;
   const sameGtin = Boolean(expectedGtin) && normalizeGtin(remoteGtin) === expectedGtin;
   const onlyBrandConflict = conflicts.length === 1 && conflicts[0]?.field === "BRAND";
-  const canonicalBrand = sameSku && sameGtin && onlyBrandConflict && remoteBrand
-    ? String(remoteBrand).trim()
-    : null;
+  // M2M: SKU/GTIN não autorizam substituir marca materialmente divergente.
+  const canonicalBrand = null;
 
   return {
     conflicts,

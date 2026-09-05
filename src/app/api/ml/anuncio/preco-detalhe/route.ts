@@ -1,3 +1,4 @@
+import { evaluateProductPricing, persistPricingEvaluation } from '@/services/pricing-context';
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
@@ -18,20 +19,6 @@ function round2(value: number) {
   return Math.round(value * 100) / 100;
 }
 
-function calculateProfit(input: {
-  price: number;
-  cost: number;
-  shipping: number;
-  mlFee: number;
-}) {
-  return round2(
-    input.price
-      - input.cost
-      - input.shipping
-      - (input.price * 0.04)
-      - (input.price * input.mlFee),
-  );
-}
 
 function extractQuantityPricingTiers(raw: any): QuantityPricingTier[] {
   const source = Array.isArray(raw?.prices) ? raw.prices : Array.isArray(raw) ? raw : [];
@@ -211,11 +198,14 @@ export async function GET(request: Request) {
     }
   }
 
+  const evaluation = await evaluateProductPricing(service, { productId: produtoId, itemId: mlItemId, price, requireLive: true });
+  if (evaluation.memory) await persistPricingEvaluation(service, { ...evaluation, memory: evaluation.memory, scenario: 'current', itemId: mlItemId });
   return NextResponse.json({
     success: true,
     mlItemId,
     currentPrice: round2(price),
-    currentProfit: calculateProfit({ price, cost, shipping, mlFee }),
+    currentProfit: evaluation.memory?.result ?? null,
+    memory: evaluation.memory,
     quantityPricing: quantityResult.ok ? extractQuantityPricingTiers(quantityResult.data) : [],
     quantityPricingWarning: quantityResult.ok ? null : (quantityResult.error?.message || 'Não foi possível consultar preços de atacado no ML.'),
     calculator: { cost, shipping, mlFee },

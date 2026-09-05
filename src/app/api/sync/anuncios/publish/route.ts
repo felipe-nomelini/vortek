@@ -1,7 +1,7 @@
+import { recordPricingEvent } from '@/services/pricing-context';
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
-import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
@@ -417,6 +417,14 @@ export async function POST(request: Request) {
       const rowProductId = String(row.produto_id || '').trim();
       const outboxSource = String((row as any).source || '').trim().toLowerCase();
       const applyMode = resolveApplyMode(row);
+      if (applyMode.applyPrice || applyMode.applyQuantityPricing) {
+        await recordPricingEvent(client, { event_type:'PROPOSED',produto_id:rowProductId,ml_item_id:mlItemId,
+          pricing_source:outboxSource||'outbox',actor:'job:ml_publish',reason:'REQUIRES_CONFIRMATION',new_price:row.desired_price,
+          rule_id:'M2M-PRC-01-v1',dedupe_key:`outbox-review:${outboxId}`,payload:{outboxId,requires_confirmation:true} });
+        applyMode.applyPrice=false;applyMode.applyQuantityPricing=false;
+        warnings.push({code:'pricing_approval_required',message:'Proposta registrada; simular e aprovar em Anúncios.',context:{outboxId,mlItemId}});
+      }
+
       const safeInactiveSupplierPause = isSafeInactiveSupplierPause({
         source: outboxSource,
         desiredStatus: row.desired_status,
@@ -604,37 +612,6 @@ export async function POST(request: Request) {
             }
           }
 
-          if (applyMode.applyQuantityPricing) {
-            await updateProcessingMarker('quantity_pricing');
-            const basePrice = applyMode.basePriceForQuantityPricing
-              ?? (Number.isFinite(Number(pricePublishedValue)) ? Number(pricePublishedValue) : null)
-              ?? (Number.isFinite(Number(row.desired_price)) ? Number(row.desired_price) : null);
-
-            if (applyMode.applyPrice && !pricePublishedOk) {
-              operations.push({
-                op: 'quantity_pricing',
-                ok: false,
-                error: 'Falha ao publicar preço base antes do atacado',
-              });
-            } else if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) {
-              operations.push({
-                op: 'quantity_pricing',
-                ok: false,
-                error: 'Preço base inválido para publicar atacado',
-              });
-            } else {
-              const quantityPricingResult = await setItemQuantityPricing(mlItemId, Number(basePrice));
-              operations.push({
-                op: 'quantity_pricing',
-                ok: quantityPricingResult.ok,
-                error: quantityPricingResult.ok
-                  ? undefined
-                  : (quantityPricingResult.error || 'Falha ao publicar preços de atacado no ML'),
-                code: quantityPricingResult.code,
-              });
-            }
-          }
-
           if (applyMode.applyQuantity) {
             await updateProcessingMarker('quantity');
             const quantity = Math.max(0, Math.trunc(Number(row.desired_quantity)));
@@ -732,7 +709,7 @@ export async function POST(request: Request) {
         } else {
           const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
           const reconciledMlPrice = Number(itemStateResult.data?.price);
-          const hasDesiredPriceForReconcile = row.desired_price !== null && row.desired_price !== undefined;
+          const hasDesiredPriceForReconcile = applyMode.applyPrice && row.desired_price !== null && row.desired_price !== undefined;
           const desiredPrice = Number(row.desired_price);
 
           const produtoUpdate = row.produto_id

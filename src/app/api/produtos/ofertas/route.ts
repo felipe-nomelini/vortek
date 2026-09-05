@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
-import { calculateSuggestedPrice } from '@/services/pricing';
+import { loadPricingProjections, type ProductPricingProjection } from '@/services/pricing-projection';
 import { loadProdutoOfertaRows, type ProdutoOfertaListRow } from '@/lib/produto-ofertas';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import {
@@ -34,29 +34,12 @@ export async function GET(request: Request) {
   const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
   let internalStockProductIds = new Set<string>();
 
+  let projections = new Map<string, ProductPricingProjection>();
   function computeDerived(item: ProdutoOfertaListRow): { displayPrice: number; profit: number | null } {
-    try {
-      const result = calculateSuggestedPrice({
-        cost: item.custo || 0,
-        shipping: item.product.ml_shipping || 0,
-        mlFee: item.product.ml_fee || 0.15,
-      });
-      const displayPrice = Math.round((item.product.custom_price ?? result.suggestedPrice) * 100) / 100;
-
-      if (item.product.ml_status === 'sem_anuncio') {
-        return { displayPrice, profit: null };
-      }
-
-      const tax = displayPrice * 0.04;
-      const mlFeeAmount = displayPrice * (item.product.ml_fee || 0.15);
-      const netProfit = displayPrice - (item.custo || 0) - (item.product.ml_shipping || 0) - tax - mlFeeAmount;
-      return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
-    } catch {
-      return {
-        displayPrice: Math.round(((item.product.custom_price ?? item.custo) || 0) * 100) / 100,
-        profit: null,
-      };
-    }
+    const p = projections.get(item.productId);
+    const current = p && p.current?.offerId === item.offerId ? p.current : null;
+    const target = p && p.target?.offerId === item.offerId ? p.target : null;
+    return { displayPrice: item.product.custom_price ?? target?.price ?? Number.NaN, profit: current?.result ?? null };
   }
 
   function matchesFilters(item: ProdutoOfertaListRow): boolean {
@@ -166,6 +149,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ erro: error?.message || 'Falha ao carregar estoque interno' }, { status: 500 });
     }
   }
+  projections = await loadPricingProjections(serviceClient, rows.map(row => row.productId));
   const filteredRows = rows.filter(matchesFilters);
   sortRows(filteredRows);
 
@@ -179,7 +163,7 @@ export async function GET(request: Request) {
       const derived = computeDerived(item);
       acc.comEstoque += Number(item.estoque || 0) > 0 ? 1 : 0;
       acc.semAnuncio += item.product.ml_status === 'sem_anuncio' ? 1 : 0;
-      acc.receitaPotencial += derived.displayPrice * Number(item.estoque || 0);
+      if (Number.isFinite(derived.displayPrice)) acc.receitaPotencial += derived.displayPrice * Number(item.estoque || 0);
       if (derived.profit !== null) {
         acc.lucroSomado += derived.profit;
         acc.lucroCount += 1;

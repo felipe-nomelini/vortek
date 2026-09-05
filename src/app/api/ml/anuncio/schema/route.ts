@@ -5,7 +5,7 @@ import {
   getCategoryAttributes,
   predictCategory,
 } from "@/services/mercadolibre";
-import { calculateSuggestedPrice } from "@/services/pricing";
+import { evaluateProductPricing, resolveNewListingQuoteContext } from "@/services/pricing-context";
 import {
   DEFAULT_ML_WARRANTY_TIME,
   DEFAULT_ML_WARRANTY_TYPE_ID,
@@ -369,25 +369,9 @@ export async function POST(req: Request) {
     const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
     const saleTermsRaw = (categoryInfo?.sale_terms || []) as any[];
 
-    let suggestedPrice = 0;
-    try {
-      const cost = Number(produto.custo || 0);
-      const shipping = Number(produto.ml_shipping || 0);
-      let mlFee = Number(produto.ml_fee || 0.15);
-      const provisional = calculateSuggestedPrice({
-        cost,
-        shipping,
-        mlFee,
-      });
-      const listingPrices = await fetchML<any>(
-        `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${categoriaId}&listing_type_id=${listingType}`,
-      );
-      mlFee = extractMlFee(listingPrices) ?? mlFee;
-      const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
-      suggestedPrice = Number(produto.custom_price ?? pricing.suggestedPrice);
-    } catch {
-      suggestedPrice = Number(produto.custom_price ?? produto.custo ?? 0);
-    }
+    const quoteContext = await resolveNewListingQuoteContext(produto, categoriaId, listingType);
+    const canonicalPricing = quoteContext ? await evaluateProductPricing(supabase, { productId: produtoId, context: quoteContext, objective: 'target', requireLive: true }) : null;
+    const suggestedPrice = canonicalPricing?.memory?.price ?? null;
 
     const predictionByAttr = await predictionAttributes(categoriaId, produtoForMl);
 
@@ -560,7 +544,7 @@ export async function POST(req: Request) {
         conditional_required_attributes: Array.from(conditionalRequiredIds),
         prefill: {
           description: buildDescription(produtoForMl),
-          base_price: Math.round(suggestedPrice * 100) / 100,
+          base_price: suggestedPrice,
           listing_type: listingType,
           seller_id: me?.id || null,
         },

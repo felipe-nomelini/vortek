@@ -1,10 +1,10 @@
+import { evaluateProductPricing, persistPricingEvaluation } from '@/services/pricing-context';
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { sendWhatsappAlert } from '@/services/whatsapp-alerts';
 import {
   getHighMarginPricingExperiment,
-  pricingExperimentUnitResult,
   saveHighMarginPricingExperiment,
   type PricingExperimentCheckpoint,
   type PricingExperimentGroup,
@@ -66,72 +66,20 @@ function numberOrNull(value: unknown): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function flattenFeeRows(payload: any): any[] {
-  const rows: any[] = [];
-  const visit = (value: any) => {
-    if (Array.isArray(value)) value.forEach(visit);
-    else if (value && typeof value === 'object') {
-      if ('sale_fee_amount' in value || 'sale_fee_details' in value) rows.push(value);
-      else Object.values(value).forEach(visit);
-    }
-  };
-  visit(payload);
-  return rows;
-}
-
-function feeAmount(payload: any, listingType: string): number | null {
-  const rows = flattenFeeRows(payload);
-  const row = rows.find((candidate) => String(candidate.listing_type_id || '') === listingType) || rows[0];
-  const amount = numberOrNull(row?.sale_fee_amount);
-  return amount !== null && amount >= 0 ? Math.round(amount * 100) / 100 : null;
-}
-
-function shippingAmount(payload: any): number | null {
-  const amount = numberOrNull(payload?.coverage?.all_country?.list_cost);
-  return amount !== null && amount >= 0 ? Math.round(amount * 100) / 100 : null;
-}
-
-async function liveGroupEconomics(group: PricingExperimentGroup, currentCost: number) {
-  const results: Array<{ result: number; fee: number; shipping: number }> = [];
-  for (const mlItemId of group.ml_item_ids) {
-    const [itemResponse, priceResponse] = await Promise.all([
-      fetchMLResult<any>(`/items/${encodeURIComponent(mlItemId)}`),
-      fetchMLResult<any>(`/items/${encodeURIComponent(mlItemId)}/prices`),
-    ]);
-    if (!itemResponse.ok || !priceResponse.ok) throw new Error(`Estado ML indisponível para ${mlItemId}`);
-    const item = itemResponse.data || {};
-    const observedPrice = standardPrice(priceResponse.data);
-    if (String(item.status || '') !== 'active') throw new Error(`Anúncio ${mlItemId} não está ativo`);
-    if (observedPrice === null || Math.abs(observedPrice - group.experimental_price) >= 0.01) {
-      throw new Error(`Preço experimental divergente em ${mlItemId}`);
-    }
-    const feeQuery = new URLSearchParams({
-      price: String(observedPrice), category_id: String(item.category_id || ''),
-      currency_id: String(item.currency_id || 'BRL'), listing_type_id: String(item.listing_type_id || ''),
-      logistic_type: String(item.shipping?.logistic_type || 'not_specified'),
-      shipping_mode: String(item.shipping?.mode || 'not_specified'),
-    });
-    const shippingQuery = new URLSearchParams({
-      item_id: mlItemId, item_price: String(observedPrice), listing_type_id: String(item.listing_type_id || ''),
-      mode: String(item.shipping?.mode || 'me2'), condition: String(item.condition || 'new'),
-      logistic_type: String(item.shipping?.logistic_type || 'drop_off'),
-      free_shipping: String(item.shipping?.free_shipping === true), verbose: 'true',
-    });
-    const [feeResponse, shippingResponse] = await Promise.all([
-      fetchMLResult<any>(`/sites/MLB/listing_prices?${feeQuery}`),
-      fetchMLResult<any>(`/users/${encodeURIComponent(String(item.seller_id || ''))}/shipping_options/free?${shippingQuery}`),
-    ]);
-    const currentFee = feeResponse.ok ? feeAmount(feeResponse.data, String(item.listing_type_id || '')) : null;
-    const currentShipping = shippingResponse.ok ? shippingAmount(shippingResponse.data) : null;
-    if (currentFee === null || currentShipping === null) throw new Error(`Tarifa ou frete ML indisponível para ${mlItemId}`);
-    const result = pricingExperimentUnitResult({
-      price: observedPrice, cost: currentCost, feeAmount: currentFee,
-      shippingAmount: currentShipping, taxRate: group.tax_rate,
-    });
-    if (result === null) throw new Error(`Economia inválida para ${mlItemId}`);
-    results.push({ result, fee: currentFee, shipping: currentShipping });
+async function liveGroupEconomics(group: PricingExperimentGroup, _currentCost: number) {
+  const client = createServiceClient();
+  const results: Array<{result:number;fee:number;shipping:number;cost:number}> = [];
+  for (const itemId of group.ml_item_ids) {
+    const remote = await fetchMLResult<any>(`/items/${encodeURIComponent(itemId)}`);
+    if (!remote.ok || remote.data?.status !== 'active' || Math.abs(Number(remote.data.price)-group.experimental_price)>=0.01) throw new Error('ESTADO_EXPERIMENTAL_INCONCLUSIVO');
+    const evaluation = await evaluateProductPricing(client,{productId:group.product_id,itemId,price:Number(remote.data.price),requireLive:true});
+    if (!evaluation.memory || evaluation.memory.result === null) throw new Error('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
+    await persistPricingEvaluation(client,{...evaluation,memory:evaluation.memory,scenario:'current',itemId,groupId:group.pricing_group_id});
+    if (evaluation.memory.result < 0 && evaluation.memory.status !== 'available') throw new Error('PREJUIZO_ESTIMADO_REQUER_VALIDACAO');
+    results.push({result:evaluation.memory.result,fee:evaluation.memory.fee.amount!,shipping:evaluation.memory.shipping.amount!,cost:evaluation.memory.cost!});
   }
-  return results.sort((left, right) => left.result - right.result)[0];
+  if (!results.length) throw new Error('GRUPO_SEM_ANUNCIOS');
+  return results.sort((a,b)=>a.result-b.result)[0];
 }
 
 function visitTotal(payload: any): number {
@@ -239,13 +187,13 @@ export async function POST(request: Request) {
     const product = productById.get(group.product_id);
     if (!product) continue;
     const currentCost = Number(product.custo);
-    let economics: { result: number; fee: number; shipping: number };
+    let economics: { result: number; fee: number; shipping: number; cost: number };
     try {
       economics = await liveGroupEconomics(group, currentCost);
       safetyChecked += 1;
       group.last_safety_checked_at = nowIso();
       group.latest_safety_result = economics.result;
-      group.latest_cost = currentCost;
+      group.latest_cost = economics.cost;
       group.latest_fee_amount = economics.fee;
       group.latest_shipping_amount = economics.shipping;
     } catch (error: any) {

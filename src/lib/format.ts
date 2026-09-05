@@ -5,8 +5,8 @@ const currency = new Intl.NumberFormat('pt-BR', {
   currency: 'BRL',
 });
 
-export function formatCurrency(value: number): string {
-  return currency.format(value);
+export function formatCurrency(value: number | null): string {
+  return value === null || !Number.isFinite(value) ? "—" : currency.format(value);
 }
 
 export function formatPercent(value: number): string {

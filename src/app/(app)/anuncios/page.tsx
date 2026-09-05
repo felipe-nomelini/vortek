@@ -41,7 +41,7 @@ type QuantityPricingTier = {
 
 type PricingDetails = {
   currentPrice: number;
-  currentProfit: number;
+  currentProfit: number | null;
   quantityPricing: QuantityPricingTier[];
   quantityPricingWarning: string | null;
   calculator: { cost: number; shipping: number; mlFee: number };
@@ -69,18 +69,6 @@ const statusOptions = [
   { value: 'pausado', label: 'Pausado' },
 ];
 
-function calculateProfit(price: number, calculator: PricingDetails['calculator']) {
-  return Math.round((price - calculator.cost - calculator.shipping - (price * 0.04) - (price * calculator.mlFee)) * 100) / 100;
-}
-
-function buildWholesalePrices(price: number): QuantityPricingTier[] {
-  if (!Number.isFinite(price) || price <= 0) return [];
-  return [
-    { min_purchase_unit: 3, amount: price * 0.97 },
-    { min_purchase_unit: 5, amount: price * 0.96 },
-    { min_purchase_unit: 10, amount: price * 0.95 },
-  ].map((tier) => ({ ...tier, amount: Math.round(tier.amount * 100) / 100, currency_id: 'BRL' }));
-}
 
 function mapDBtoAnuncio(item: any): Anuncio {
   return {
@@ -315,6 +303,16 @@ export default function AnunciosPage() {
     setPriceModalSaving(true);
     setUpdatingActionItemId(record.id);
     try {
+      const simulationResponse = await fetch('/api/pricing/simulate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productId: record.produtoId, itemId: record.id, price: targetPrice }) });
+      const simulation = await simulationResponse.json();
+      if (!simulationResponse.ok || !simulation.memory || simulation.memory.result === null) throw new Error(simulation.error || simulation.reason || 'Economia inconclusiva');
+      const accepted = await new Promise<boolean>(resolve => Modal.confirm({ title: 'Aprovar alteração de preço',
+        content: <div><p>Preço: {formatCurrency(simulation.memory.price)}. Contribuição: {formatCurrency(simulation.memory.result)}. Margem: {(simulation.memory.margin * 100).toFixed(2)}%.</p><p>{simulation.memory.reasons.join(' • ') || 'Fontes confirmadas'}</p><p>A aprovação reconhece as estimativas e pendências exibidas.</p></div>,
+        okText: 'Aprovar e aplicar', cancelText: 'Voltar', onOk: () => resolve(true), onCancel: () => resolve(false) }));
+      if (!accepted) return;
+      const approvalResponse = await fetch('/api/pricing/approve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ evaluationId: simulation.evaluationId, reason: 'Aprovação manual após revisão da simulação do anúncio', acknowledgeEstimates: true }) });
+      const approval = await approvalResponse.json();
+      if (!approvalResponse.ok) throw new Error(approval.error);
       const response = await fetch('/api/ml/anuncio/atualizar-preco', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -322,6 +320,7 @@ export default function AnunciosPage() {
           produtoId: record.produtoId,
           mlItemId: record.id,
           targetPrice,
+          approvalId: approval.approvalId,
           source: priceModal.mode === 'catalog' ? 'catalog_price_to_win' : 'default',
         }),
       });
@@ -672,11 +671,10 @@ export default function AnunciosPage() {
   };
 
   const targetPrice = Number(newPrice);
-  const nextProfit = priceModal.details && Number.isFinite(targetPrice) && targetPrice > 0
-    ? calculateProfit(targetPrice, priceModal.details.calculator)
-    : null;
+  const nextProfit: number | null = null; // O resultado do novo preço exige cotação do servidor.
+
   const nextWholesalePrices = Number.isFinite(targetPrice) && targetPrice > 0
-    ? buildWholesalePrices(targetPrice)
+    ? [] as QuantityPricingTier[]
     : [];
 
   return (
@@ -918,7 +916,7 @@ export default function AnunciosPage() {
                   </Col>
                   <Col span={12}>
                     <div style={{ color: '#a0a0a0', fontSize: 12 }}>Lucro unitário</div>
-                    <strong style={{ color: priceModal.details.currentProfit >= 0 ? '#52c41a' : '#ff4d4f' }}>
+                    <strong style={{ color: (priceModal.details.currentProfit ?? 0) >= 0 ? '#52c41a' : '#ff4d4f' }}>
                       {formatCurrency(priceModal.details.currentProfit)}
                     </strong>
                   </Col>

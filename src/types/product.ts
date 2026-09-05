@@ -1,6 +1,9 @@
 export type MLStatus = 'ativo' | 'pausado' | 'sem_anuncio';
 
 export interface Product {
+  pricing?: import('../services/pricing-projection').ProductPricingProjection;
+  suggestedPrice?: number | null;
+  pricingProfit?: number | null;
   id: string;
   active: boolean;
   sku: string;

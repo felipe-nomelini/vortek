@@ -1,3 +1,4 @@
+import { loadPricingProjections } from '@/services/pricing-projection';
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
@@ -43,7 +44,9 @@ export async function GET(
     const internalStock = Math.max(0, calcularSaldoEstoqueInterno(movementsResult.data || []));
     const supplierStock = Number(data.estoque || 0);
     const operationalListing = selectOperationalMlListing(listingsResult.data || []);
+    const projections = await loadPricingProjections(supabase, [data.id]);
     const resolvedData: any = {
+      pricing: projections.get(data.id) ?? { current: null, target: null },
       ...data,
       estoque_operacional: Math.max(supplierStock, internalStock),
       estoque_fornecedor: supplierStock,
@@ -82,6 +85,9 @@ export async function PATCH(
       return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
     }
 
+    if ('custom_price' in body && body.custom_price !== current.custom_price) {
+      return NextResponse.json({ error: 'Use a simulação e aprovação na tela de Anúncios para alterar preço.', code: 'PRICING_APPROVAL_REQUIRED' }, { status: 409 });
+    }
     // Mapear campos do frontend (camelCase) para o banco (snake_case)
     const updateData: Record<string, any> = {};
 
