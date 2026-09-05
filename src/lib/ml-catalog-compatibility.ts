@@ -94,7 +94,7 @@ function titleHandOrientation(value: unknown): "destro" | "canhoto" | null {
   return null;
 }
 
-function titlePackQuantity(value: unknown): number | null {
+export function titlePackQuantity(value: unknown): number | null {
   const text = normalize(value);
   const match = text.match(
     /^\s*(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?|tubos?|pacotes?|blisters?|encordoamentos?)\b|\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,4})\b|\b(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?)\b|\b(?:cartela|cart|car|blister|bli|pacote|pct|caixa|cx|dz|cem|tub)\s+(?:(?:com|de|c\/|\/|x)\s*)?(\d{1,4})\b|\b(?:c|ct)\s*\/\s*(\d{1,4})\b/,

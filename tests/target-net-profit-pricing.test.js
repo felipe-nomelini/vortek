@@ -3,13 +3,12 @@ const test = require('node:test');
 
 const {
   calculateTargetNetProfitPrice,
-  TARGET_NET_PROFIT_TAX_RATE,
 } = require('../src/services/pricing.ts');
 
-test('calcula preço para lucro líquido nominal com imposto de 4%', () => {
-  assert.equal(TARGET_NET_PROFIT_TAX_RATE, 0.04);
+test('cenário nominal explícito com alíquota informada, sem piso nominal global', () => {
   assert.equal(calculateTargetNetProfitPrice({
     cost: 28.1,
+    taxRate: 0.04,
     shipping: 6.5,
     mlFee: 0.165,
     targetNetProfit: 60.13,
@@ -19,26 +18,29 @@ test('calcula preço para lucro líquido nominal com imposto de 4%', () => {
 test('inclui tarifa fixa no preço do lucro alvo', () => {
   assert.equal(calculateTargetNetProfitPrice({
     cost: 50,
+    taxRate: 0.04,
     shipping: 10,
     mlFee: 0.15,
     fixedFee: 6,
     targetNetProfit: 20,
-  }), 106.17);
+  }), 106.18);
 });
 
 test('rejeita taxa ou valores inválidos', () => {
   assert.throws(() => calculateTargetNetProfitPrice({
     cost: -1,
+    taxRate: 0.04,
     shipping: 0,
     mlFee: 0.15,
     targetNetProfit: 20,
-  }), /Dados inválidos/);
+  }), /DADOS_ECONOMICOS_INVALIDOS/);
   assert.throws(() => calculateTargetNetProfitPrice({
     cost: 1,
+    taxRate: 0.04,
     shipping: 0,
     mlFee: 0.97,
     targetNetProfit: 20,
-  }), /inferior a 100%/);
+  }), /DENOMINADOR_ECONOMICO_INVALIDO/);
 });
 
 test('manifesto contém nove SKUs únicos e títulos válidos', () => {

@@ -1,14 +1,3 @@
-export interface PricingParams {
-  cost: number;
-  shipping: number;
-  mlFee: number;
-  margin?: number;
-}
-
-export interface PricingResult {
-  suggestedPrice: number;
-  tax: number;
-  mlFeeAmount: number;
-  marginAmount: number;
-  netProfit: number;
-}
+export type { PricingParams, PricingResult, EconomicInputs, EconomicMemory, EconomicAmount } from '../services/pricing.ts';
+export type { PricingPolicy, PriceBand } from '../services/pricing-policy.ts';
+export type { PricingTaxContext } from '../services/pricing-tax.ts';
