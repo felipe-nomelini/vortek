@@ -1,0 +1,253 @@
+reports/oportunidades-ml-2026-09-05/analise.cjs:505:function protectedEconomics(price, cost, shipping, feeAmount, taxRate) {
+reports/oportunidades-ml-2026-09-05/analise.cjs:582:        const economics=protectedEconomics(price,out.cost,q.shipping,q.feeAmount,taxRate);
+reports/oportunidades-ml-2026-09-05/analise.cjs:617:  assert.equal(protectedEconomics(100,65,10,6.72,.0828).passes,true);
+reports/oportunidades-ml-2026-09-05/analise.cjs:618:  assert.equal(protectedEconomics(100,65.01,10,6.72,.0828).passes,false);
+reports/oportunidades-ml-2026-09-05/analise.cjs:619:  assert.equal(protectedEconomics(100,0,10,6,.0828),null);
+reports/oportunidades-ml-2026-09-05/analise.cjs:620:  assert.equal(protectedEconomics(100,60,NaN,6,.0828),null);
+reports/oportunidades-ml-2026-09-05/analise.cjs:621:  assert.equal(protectedEconomics(100,60,-1,6,.0828),null);
+reports/oportunidades-ml-2026-09-05/analise.cjs:623:  assert.equal(protectedEconomics(100,60,10,5,.0828).profit,16.72);
+reports/oportunidades-ml-2026-09-05/analise.cjs:625:    const ec=protectedEconomics(price,price*.5,10,price*.15,.0828);
+reports/oportunidades-ml-2026-09-05/analise.cjs:648:      const q=f.suggested,ec=protectedEconomics(q.price,f.cost,q.shipping,q.feeAmount,revision.taxRate);
+reports/oportunidades-ml-2026-09-05/analise.cjs:656:    if(f.minimum)assert.ok(protectedEconomics(f.minimum.price,f.cost,f.minimum.shipping,f.minimum.feeAmount,revision.taxRate)?.passes);
+reports/oportunidades-ml-2026-09-05/analise.cjs:781:    quotes.push({dimensions,ship,fee,economics:protectedEconomics(139.83,66.4,q?.list_cost,f?.sale_fee_amount,.0828)});
+reports/oportunidades-ml-2026-09-05/analise.cjs:822:  const economics=protectedEconomics(payload.price,66.4,q.list_cost,f.sale_fee_amount,.0828);assert.ok(economics.margin>=.5);
+reports/oportunidades-ml-2026-09-05/analise.cjs:874:    const economics=protectedEconomics(price,product.custo,q.list_cost,f.sale_fee_amount,.0828);assert.ok(economics.margin>=(price===329.9?.5:.1));quotes.push({price,cost:product.custo,shipping:q.list_cost,fee:f.sale_fee_amount,taxRate:.0828,economics,ship,feeResponse:fee});
+reports/oportunidades-ml-2026-09-05/analise.cjs:902:module.exports = { validGtin, gtin, norm, protectedEconomics, ceilMoney, auth, ml, save, read };
+src/services/pricing.ts:3:const TAX_RATE = 0.05;
+src/services/pricing.ts:5:export const TARGET_NET_PROFIT_TAX_RATE = 0.04;
+src/services/pricing.ts:16:export function getPricingStrategy(cost: number): PricingStrategy {
+src/services/pricing.ts:26:export function calculateBreakEvenPrice(params: {
+src/services/pricing.ts:31:  const denominator = 1 - (TAX_RATE + params.mlFee);
+src/services/pricing.ts:38:export function calculateNetProfitAtPrice(params: {
+src/services/pricing.ts:44:  const tax = params.price * TAX_RATE;
+src/services/pricing.ts:50:export function calculateExactMarginPrice(params: {
+src/services/pricing.ts:56:  const denominator = 1 - TAX_RATE - params.mlFee - params.margin;
+src/services/pricing.ts:66:export function calculateTargetNetProfitPrice(params: {
+src/services/pricing.ts:74:  const taxRate = params.taxRate ?? TARGET_NET_PROFIT_TAX_RATE;
+src/services/pricing.ts:107:export function calculateSuggestedPrice(params: PricingParams): PricingResult {
+src/services/pricing.ts:109:  const strategy = getPricingStrategy(cost);
+src/services/pricing.ts:111:  const denominator = 1 - (TAX_RATE + mlFee);
+src/services/pricing.ts:122:  const tax = suggestedPrice * TAX_RATE;
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:64:      end as display_price
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:106:          coalesce(f.display_price, 0)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:109:          - (coalesce(f.display_price, 0) * 0.04)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:110:          - (coalesce(f.display_price, 0) * coalesce(f.ml_fee, 0.15))
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:112:      end as profit_value
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:122:        when v_price_field = 'suggestedPrice' then coalesce(p.display_price, 0)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:123:        else coalesce(p.profit_value, -999999999)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:130:          when v_price_field = 'suggestedPrice' then coalesce(p.display_price, 0)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:131:          else coalesce(p.profit_value, 999999999)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:148:      end as display_price
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:190:          coalesce(f.display_price, 0)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:193:          - (coalesce(f.display_price, 0) * 0.04)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:194:          - (coalesce(f.display_price, 0) * coalesce(f.ml_fee, 0.15))
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:196:      end as profit_value
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:206:        when v_price_field = 'suggestedPrice' then coalesce(p.display_price, 0)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:207:        else coalesce(p.profit_value, -999999999)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:214:          when v_price_field = 'suggestedPrice' then coalesce(p.display_price, 0)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:215:          else coalesce(p.profit_value, 999999999)
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:237:      case when v_sort_by = 'suggested_price' and v_sort_order = 'asc' then f.display_price end asc nulls last,
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:238:      case when v_sort_by = 'suggested_price' and v_sort_order = 'desc' then f.display_price end desc nulls last,
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:239:      case when v_sort_by = 'profit' and v_sort_order = 'asc' then f.profit_value end asc nulls last,
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:240:      case when v_sort_by = 'profit' and v_sort_order = 'desc' then f.profit_value end desc nulls last,
+supabase/migrations/20260611151210_produtos_search_rpc_optimize_page.sql:279:      to_jsonb(enriched) - 'offers_count' - 'preferred_offer' - 'display_price' - 'profit_value',
+scripts/audit-ml-adaptive-pricing.js:13:  calculateUnitEconomics,
+scripts/audit-ml-adaptive-pricing.js:170:  const unit = calculateUnitEconomics({
+scripts/audit-ml-adaptive-pricing.js:872:      ? calculateUnitEconomics({ price: selectedPrice.amount, cost, feeAmount: fee.amount, shippingAmount: shipping, taxRate: taxContext.appliedRate, quantity: selectedPrice.quantity })
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:116:      end as display_price
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:173:          coalesce(filtered.display_price, 0)
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:176:          - (coalesce(filtered.display_price, 0) * 0.04)
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:177:          - (coalesce(filtered.display_price, 0) * coalesce(filtered.ml_fee, 0.15))
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:179:      end as profit_value
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:189:        when v_price_field = 'suggestedPrice' then coalesce(produto.display_price, 0)
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:190:        else coalesce(produto.profit_value, -999999999)
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:197:          when v_price_field = 'suggestedPrice' then coalesce(produto.display_price, 0)
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:198:          else coalesce(produto.profit_value, 999999999)
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:220:      case when v_sort_by = 'suggested_price' and v_sort_order = 'asc' then produto.display_price end asc nulls last,
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:221:      case when v_sort_by = 'suggested_price' and v_sort_order = 'desc' then produto.display_price end desc nulls last,
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:222:      case when v_sort_by = 'profit' and v_sort_order = 'asc' then produto.profit_value end asc nulls last,
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:223:      case when v_sort_by = 'profit' and v_sort_order = 'desc' then produto.profit_value end desc nulls last,
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:269:              - 'display_price'
+supabase/migrations/20260804192052_fix_internal_stock_product_projection.sql:270:              - 'profit_value'
+supabase/migrations/20260611150456_produtos_search_rpc.sql:102:      end as display_price
+supabase/migrations/20260611150456_produtos_search_rpc.sql:165:          coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:168:          - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:169:          - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:171:      end as profit_value
+supabase/migrations/20260611150456_produtos_search_rpc.sql:177:        when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:182:              coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:185:              - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:186:              - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:197:          when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:202:                coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:205:                - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:206:                - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:229:      end as display_price
+supabase/migrations/20260611150456_produtos_search_rpc.sql:292:          coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:295:          - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:296:          - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:298:      end as profit_value
+supabase/migrations/20260611150456_produtos_search_rpc.sql:304:        when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:309:              coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:312:              - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:313:              - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:324:          when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:329:                coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:332:                - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:333:                - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:359:      case when v_sort_by = 'suggested_price' and v_sort_order = 'asc' then f.display_price end asc nulls last,
+supabase/migrations/20260611150456_produtos_search_rpc.sql:360:      case when v_sort_by = 'suggested_price' and v_sort_order = 'desc' then f.display_price end desc nulls last,
+supabase/migrations/20260611150456_produtos_search_rpc.sql:361:      case when v_sort_by = 'profit' and v_sort_order = 'asc' then f.profit_value end asc nulls last,
+supabase/migrations/20260611150456_produtos_search_rpc.sql:362:      case when v_sort_by = 'profit' and v_sort_order = 'desc' then f.profit_value end desc nulls last,
+supabase/migrations/20260611150456_produtos_search_rpc.sql:373:      to_jsonb(page_rows) - 'offers_count' - 'preferred_offer' - 'display_price' - 'profit_value',
+supabase/migrations/20260611150456_produtos_search_rpc.sql:441:      end as display_price
+supabase/migrations/20260611150456_produtos_search_rpc.sql:483:          coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:486:          - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:487:          - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:489:      end as profit_value
+supabase/migrations/20260611150456_produtos_search_rpc.sql:495:        when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:500:              coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:503:              - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:504:              - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:515:          when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:520:                coalesce(b.display_price, 0)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:523:                - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260611150456_produtos_search_rpc.sql:524:                - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260611150456_produtos_search_rpc.sql:536:    coalesce(sum(coalesce(display_price, 0) * coalesce(estoque, 0)), 0),
+supabase/migrations/20260611150456_produtos_search_rpc.sql:537:    coalesce(avg(profit_value) filter (where profit_value is not null), 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:121:      end as display_price
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:185:          coalesce(filtered.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:188:          - (coalesce(filtered.display_price, 0) * 0.04)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:189:          - (coalesce(filtered.display_price, 0) * coalesce(filtered.ml_fee, 0.15))
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:191:      end as profit_value
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:201:        when v_price_field = 'suggestedPrice' then coalesce(produto.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:202:        else coalesce(produto.profit_value, -999999999)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:209:          when v_price_field = 'suggestedPrice' then coalesce(produto.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:210:          else coalesce(produto.profit_value, 999999999)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:232:      case when v_sort_by = 'suggested_price' and v_sort_order = 'asc' then produto.display_price end asc nulls last,
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:233:      case when v_sort_by = 'suggested_price' and v_sort_order = 'desc' then produto.display_price end desc nulls last,
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:234:      case when v_sort_by = 'profit' and v_sort_order = 'asc' then produto.profit_value end asc nulls last,
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:235:      case when v_sort_by = 'profit' and v_sort_order = 'desc' then produto.profit_value end desc nulls last,
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:281:              - 'display_price'
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:282:              - 'profit_value'
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:371:      end as display_price
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:421:          coalesce(b.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:424:          - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:425:          - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:427:      end as profit_value
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:433:        when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:438:              coalesce(b.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:441:              - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:442:              - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:453:          when v_price_field = 'suggestedPrice' then coalesce(b.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:458:                coalesce(b.display_price, 0)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:461:                - (coalesce(b.display_price, 0) * 0.04)
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:462:                - (coalesce(b.display_price, 0) * coalesce(b.ml_fee, 0.15))
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:474:    coalesce(sum(coalesce(display_price, 0) * coalesce(estoque_operacional, 0)), 0),
+supabase/migrations/20260812153000_add_internal_supplier_product_filters.sql:475:    coalesce(avg(profit_value) filter (where profit_value is not null), 0)
+src/lib/ml/automatic-pricing.ts:1:import { calculateSuggestedPrice } from '@/services/pricing';
+src/lib/ml/automatic-pricing.ts:106:      desiredPrice = calculateSuggestedPrice({
+scripts/audit-internal-stock-2026-08.js:15:const TAX_RATE = 0.04;
+scripts/audit-internal-stock-2026-08.js:542:      ? Math.round(unit.sale_revenue_cents * TAX_RATE)
+src/lib/ml/catalog-cleanup.ts:1:export const CATALOG_CLEANUP_TAX_RATE = 0.04;
+src/lib/ml/catalog-cleanup.ts:36:    price - cost - shipping - (price * CATALOG_CLEANUP_TAX_RATE) - (price * mlFee),
+scripts/run-ml-p0-phase5b.js:245:    const priceForMargin = (cost + shipping + fixed) / (1 - percentage - 0.05 - targetMargin / 100);
+scripts/run-ml-p0-phase5b.js:247:    price = Math.ceil(Math.max(priceForMargin, priceForProfit) * 100) / 100;
+src/lib/ml/pricing-experiment.ts:117:export function pricingExperimentUnitResult(input: {
+scripts/repair-ml-vtk000456.js:26:const TAX_RATE = 0.04;
+scripts/repair-ml-vtk000456.js:93:  const tax = Math.round(price * TAX_RATE * 100) / 100;
+scripts/repair-ml-vtk000456.js:371:    const required = (Number(product.custo) + postQuote.values.shipping) / (1 - feeRate - TAX_RATE - PUT_TARGET_MARGIN);
+scripts/lib/ml-p0-phase6a.js:3:const TAX_RATE = 0.05;
+scripts/lib/ml-p0-phase6a.js:31:function financialAt({ price, commission, shipping, cost, taxRate = TAX_RATE }) {
+scripts/lib/ml-p0-phase6a.js:45:function nextProtectivePrice({ cost, shipping, commission, currentPrice, taxRate = TAX_RATE, safetyMargin = SAFETY_MARGIN }) {
+scripts/lib/ml-p0-phase6a.js:156:  TAX_RATE,
+src/app/api/produtos/exportar-pdf/route.ts:10:import { calculateSuggestedPrice } from '@/services/pricing';
+src/app/api/produtos/exportar-pdf/route.ts:91:    const calculated = calculateSuggestedPrice({ cost, shipping, mlFee });
+scripts/audit-active-ml-cross-validation.js:19:  getPricingStrategy,
+scripts/audit-active-ml-cross-validation.js:643:    const strategy = getPricingStrategy(cost);
+scripts/run-ml-p0-phase6a.js:12:  TAX_RATE,
+scripts/run-ml-p0-phase6a.js:303:  artifact(config.sku, 'protective-pricing.json', { tax_rate: TAX_RATE, target_margin_percent: 50, safety_target_percent: 50.5, cost, pre_item: preQuote });
+scripts/run-ml-p0-phase6a.js:363:  artifact(config.sku, 'protective-pricing.json', { tax_rate: TAX_RATE, target_margin_percent: 50, safety_target_percent: 50.5, cost, pre_item: preQuote, post_item: postQuote, approved: postQuote.financial?.margin_percent >= 50 });
+scripts/run-ml-p0-phase6a.js:430:  const summary = { phase: '6A', mode: 'SAFE_PUBLICATION_BATCH_SEQUENTIAL', generated_at: now(), authorized_skus: ALLOWED.map((row) => row.sku), processed: results.length, unprocessed: ALLOWED.slice(results.length).map((row) => row.sku), counts, stop_loss: stop, metrics, results, hold: HOLD, invariants: { max_ten: results.length <= 10, sequential: true, second_batch: false, no_quality_calls: true, no_description_calls: true, tax_rate: TAX_RATE, protective_margin_min_percent: TARGET_MARGIN * 100 } };
+scripts/run-ml-p0-phase6a.js:434:  writeJson(path.join(REPORT_DIR, 'batch-financial.json'), { generated_at: now(), target_margin_percent: 50, tax_rate: TAX_RATE, rows: financial });
+src/app/api/produtos/ofertas/route.ts:3:import { calculateSuggestedPrice } from '@/services/pricing';
+src/app/api/produtos/ofertas/route.ts:39:      const result = calculateSuggestedPrice({
+src/lib/ml/seo-reactivation.ts:1:export const SEO_REACTIVATION_TAX_RATE = 0.04;
+src/lib/ml/seo-reactivation.ts:85:    price - cost - shipping - (price * SEO_REACTIVATION_TAX_RATE) - (price * mlFee),
+scripts/run-ml-p0-phase6b.js:12:  TAX_RATE,
+scripts/run-ml-p0-phase6b.js:302:  artifact(config.sku, 'shipping.json', { dimensions, source: 'DSLITE_SUPPLIER_PACKAGE', pre_item: preQuote?.shipping_data || null, post_item: null }); artifact(config.sku, 'protective-pricing.json', { tax_rate: TAX_RATE, target_margin_percent: 50, safety_target_percent: 50.5, cost, pre_item: preQuote });
+scripts/run-ml-p0-phase6b.js:338:  artifact(config.sku, 'price-update.json', priceUpdate); artifact(config.sku, 'shipping.json', { dimensions, source: 'DSLITE_SUPPLIER_PACKAGE', pre_item: preQuote.shipping_data, post_item: postQuote.shipping_data || null }); artifact(config.sku, 'protective-pricing.json', { tax_rate: TAX_RATE, target_margin_percent: 50, safety_target_percent: 50.5, cost, pre_item: preQuote, post_item: postQuote, approved: postQuote.financial?.margin_percent >= 50 });
+scripts/run-ml-p0-phase6b.js:368:  const summary = { phase: '6B', mode: 'SAFE_PUBLICATION_BATCH_SEQUENTIAL', generated_at: now(), authorized_skus: ALLOWED.map((row) => row.sku), processed: results.length, unprocessed: ALLOWED.slice(results.length).map((row) => row.sku), counts, stop_loss: stop, metrics, results, hold: HOLD, invariants: { max_twenty: results.length <= 20, writes_sequential: true, no_sku_21: true, no_quality_calls: true, no_description_calls: true, no_competition_calls: true, tax_rate: TAX_RATE, protective_margin_min_percent: TARGET_MARGIN * 100 } };
+scripts/run-ml-p0-phase6b.js:372:  writeJson(path.join(REPORT_DIR, 'batch-financial.json'), { generated_at: now(), target_margin_percent: 50, tax_rate: TAX_RATE, rows: financial }); writeJson(path.join(REPORT_DIR, 'batch-metrics.json'), metrics); writeJson(path.join(REPORT_DIR, 'batch-api-errors.json'), { generated_at: now(), rows: blocks.filter((row) => ['BLOCK_API_CONTRACT', 'API_TRANSIENT_ERROR'].includes(row.result)) });
+scripts/lib/ml-active-cross-validation.js:97:function getPricingStrategy(cost) {
+scripts/lib/ml-active-cross-validation.js:319:  getPricingStrategy,
+scripts/lib/ml-p0-audit.js:162:  const priceForMargin = (Number(cost) + Number(shippingCost || 0)) / denominator;
+scripts/lib/ml-p0-audit.js:165:  const finalPrice = Math.ceil(Math.max(priceForMargin, priceForMinimumProfit) * 100) / 100;
+scripts/lib/ml-active-supplier-audit.js:1:const { calculateSuggestedPrice, getPricingStrategy } = require('../../src/services/pricing.ts');
+scripts/lib/ml-active-supplier-audit.js:369:    expected = calculateSuggestedPrice({
+scripts/lib/ml-active-supplier-audit.js:374:    expectedSource = 'calculateSuggestedPrice';
+scripts/lib/ml-active-supplier-audit.js:395:  const strategy = getPricingStrategy(cost);
+scripts/run-ml-p0-phase6c.js:11:  TAX_RATE,
+scripts/run-ml-p0-phase6c.js:382:  artifact(config.sku, 'protective-pricing.json', { tax_rate: TAX_RATE, target_final_percent: 50, target_pre_percent: targetPre * 100, cost, pre_item: prePlan });
+scripts/run-ml-p0-phase6c.js:383:  if (PHASE === '6E2') artifact(config.sku, 'protective-pricing-pre.json', { tax_rate: TAX_RATE, target_final_percent: 50, target_pre_percent: targetPre * 100, cost, pre_item: prePlan });
+scripts/run-ml-p0-phase6c.js:443:  artifact(config.sku, 'protective-pricing.json', { tax_rate: TAX_RATE, target_final_percent: 50, target_pre_percent: targetPre * 100, cost, pre_item: prePlan, post_item: postQuote, approved: postQuote.financial?.margin_percent >= 50 });
+scripts/run-ml-p0-phase6c.js:444:  if (PHASE === '6E2') artifact(config.sku, 'protective-pricing-post.json', { tax_rate: TAX_RATE, target_final_percent: 50, cost, post_item: postQuote, approved: postQuote.financial?.margin_percent >= 50 });
+scripts/run-ml-p0-phase6c.js:489:  writeJson(path.join(REPORT_DIR, 'batch-financial.json'), { generated_at: now(), target_margin_percent: 50, tax_rate: TAX_RATE, rows: financeRows, summary: { cost_total: total('cost'), price_total: total('protective_price'), commission_total: total('commission'), shipping_total: total('shipping'), tax_total: total('tax'), protected_profit_total: total('protected_profit'), min_margin: financeRows.length ? Math.min(...financeRows.map((row) => row.margin_percent)) : null, max_margin: financeRows.length ? Math.max(...financeRows.map((row) => row.margin_percent)) : null, mean_margin: financeRows.length ? roundMoney(financeRows.reduce((sum, row) => sum + Number(row.margin_percent), 0) / financeRows.length) : null } });
+scripts/lib/ml-adaptive-pricing-audit.js:68:function calculateUnitEconomics({ price, cost, feeAmount, shippingAmount, taxRate, quantity = 1, otherVariableCost = 0 }) {
+scripts/lib/ml-adaptive-pricing-audit.js:241:  calculateUnitEconomics,
+scripts/lib/ml-pricing-experiment.js:23:function priceForMargin({ cost, shippingAmount, feeRate, fixedFee = 0, taxRate, marginRate }) {
+scripts/lib/ml-pricing-experiment.js:35:    price = priceForMargin({ ...input, marginRate: band.target });
+scripts/lib/ml-pricing-experiment.js:123:  priceForMargin,
+scripts/run-ml-high-margin-pricing-experiment.js:15:  priceForMargin,
+scripts/run-ml-high-margin-pricing-experiment.js:28:const TAX_RATE = 0.082799;
+scripts/run-ml-high-margin-pricing-experiment.js:299:    const required = pricing.map((row) => priceForMargin({
+scripts/run-ml-high-margin-pricing-experiment.js:301:      taxRate: TAX_RATE, marginRate: band.target,
+scripts/run-ml-high-margin-pricing-experiment.js:310:        price: next, cost, feeRate: row.fee.rate, fixedFee: row.fee.fixed, shippingAmount: row.shipping, taxRate: TAX_RATE,
+scripts/run-ml-high-margin-pricing-experiment.js:462:    price: currentPrice, cost, feeRate: row.fee.rate, fixedFee: row.fee.fixed, shippingAmount: row.shipping, taxRate: TAX_RATE,
+scripts/run-ml-high-margin-pricing-experiment.js:508:    shipping_amount: target.ok ? target.pricing[experimentalWorstIndex].shipping : null, tax_rate: TAX_RATE,
+scripts/run-ml-high-margin-pricing-experiment.js:524:    traffic_threshold_150d: 5, tax_rate: TAX_RATE,
+scripts/run-ml-high-margin-pricing-experiment.js:531:      fee_amount: row.fee_amount, shipping_amount: row.shipping_amount, tax_rate: TAX_RATE,
+scripts/run-ml-high-margin-pricing-experiment.js:687:    parameters: { source_groups: 430, visits_150d_max: 5, recurring_sales_min_orders: 2, freshness_minutes: 30, tax_rate: TAX_RATE, tax_rate_source: 'conservative_estimate', quantity_pricing: 'excluded' },
+scripts/prepare-ml-anuncio-batches.js:47:function getPricingStrategy(cost) {
+scripts/prepare-ml-anuncio-batches.js:53:function calculateSuggestedPricePreview(product) {
+scripts/prepare-ml-anuncio-batches.js:57:  const strategy = getPricingStrategy(cost);
+scripts/prepare-ml-anuncio-batches.js:199:    const suggestedPricePreview = calculateSuggestedPricePreview(product);
+scripts/prepare-ml-anuncio-batches.js:213:      pricingStrategy: getPricingStrategy(Number(product.custo || 0)),
+src/app/api/anuncios/exportar-pdf/route.ts:60:function computeListingProfit(item: any): number | null {
+src/app/api/anuncios/exportar-pdf/route.ts:310:      lucro: computeListingProfit(item),
+src/app/api/anuncios/route.ts:28:function computeListingProfit(item: any): number | null {
+src/app/api/anuncios/route.ts:216:      lucro: computeListingProfit(item),
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:5:import { calculateBreakEvenPrice, calculateSuggestedPrice, getPricingStrategy } from '@/services/pricing';
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:39:const MARGEM_LUCRO_MINIMA_ANALISE = 0.05;
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:232:    let estrategia: ReturnType<typeof getPricingStrategy> | null = null;
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:234:      pisoSemPrejuizo = calculateBreakEvenPrice({
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:239:      estrategia = getPricingStrategy(custoAplicado);
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:240:      precoEstrategicoMinimo = calculateSuggestedPrice({
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:318:    return delta >= DELTA_PRECO_MINIMO_ANALISE && lucro > 0 && (lucro / precoBase) >= MARGEM_LUCRO_MINIMA_ANALISE;
+src/app/api/catalogo/no-catalogo/analise-preco/route.ts:345:    min_profit_margin: MARGEM_LUCRO_MINIMA_ANALISE,
+src/app/api/sync/pricing-experiment/monitor/route.ts:7:  pricingExperimentUnitResult,
+src/app/api/sync/pricing-experiment/monitor/route.ts:127:    const result = pricingExperimentUnitResult({
+src/app/api/sync/anuncios/route.ts:11:import { calculateSuggestedPrice } from '@/services/pricing';
+src/app/api/sync/anuncios/route.ts:771:              configuredShippingPrice = calculateSuggestedPrice({
+src/app/(app)/produtos/[id]/page.tsx:12:import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
+src/app/(app)/produtos/[id]/page.tsx:297:  const displayPrice = product.customPrice ?? calculateSuggestedPrice({
+src/app/(app)/produtos/[id]/page.tsx:303:  const profit = calculateNetProfitAtPrice({
+src/app/(app)/produtos/page.tsx:9:import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
+src/app/(app)/produtos/page.tsx:261:    const result = calculateSuggestedPrice({
+src/app/(app)/produtos/page.tsx:273:    const netProfit = calculateNetProfitAtPrice({
+src/app/api/ml/anuncio/atualizar-preco/route.ts:3:import { calculateSuggestedPrice } from '@/services/pricing';
+src/app/api/ml/anuncio/atualizar-preco/route.ts:87:        const calc = calculateSuggestedPrice({
+src/app/api/ml/anuncio/schema/route.ts:8:import { calculateSuggestedPrice } from "@/services/pricing";
+src/app/api/ml/anuncio/schema/route.ts:377:      const provisional = calculateSuggestedPrice({
+src/app/api/ml/anuncio/schema/route.ts:386:      const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
+src/app/api/ml/anuncio/criar/route.ts:15:  calculateExactMarginPrice,
+src/app/api/ml/anuncio/criar/route.ts:16:  calculateSuggestedPrice,
+src/app/api/ml/anuncio/criar/route.ts:17:  calculateTargetNetProfitPrice,
+src/app/api/ml/anuncio/criar/route.ts:524:    let price = calculateTargetNetProfitPrice({
+src/app/api/ml/anuncio/criar/route.ts:537:      price = calculateTargetNetProfitPrice({
+src/app/api/ml/anuncio/criar/route.ts:561:    let price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
+src/app/api/ml/anuncio/criar/route.ts:566:    price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
+src/app/api/ml/anuncio/criar/route.ts:579:  const provisional = calculateSuggestedPrice({ cost, shipping, mlFee });
+src/app/api/ml/anuncio/criar/route.ts:584:  const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
+src/app/api/ml/anuncio/criar/route.ts:1792:          finalSuggestedPrice = calculateTargetNetProfitPrice({
+src/app/api/ml/anuncio/criar/route.ts:1817:        const finalPricing = calculateSuggestedPrice({

@@ -1,0 +1,63 @@
+{
+  "at": "2026-09-05T18:13:54.928Z",
+  "sku": "VTK000004",
+  "itemId": "MLB6955942282",
+  "calls": 3,
+  "mlMutations": 0,
+  "memory": {
+    "price": 116.68,
+    "cost": 70.48,
+    "offerId": "4f3e6d27-826e-4418-ab5e-1ad6b132e355",
+    "supplierId": "108",
+    "costObservedAt": "2026-09-05T14:23:14.685+00:00",
+    "fee": {
+      "amount": 13.42,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T18:13:54.715Z",
+      "evidence": "/sites/MLB/listing_prices?price=116.68&category_id=MLB278076&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "3c4e830794851a1d4a33d642f50cb32382316034baa71cb116abad0c55a146ae"
+    },
+    "shipping": {
+      "amount": 14.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T18:13:54.715Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=116.68&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB6955942282",
+      "contextKey": "3c4e830794851a1d4a33d642f50cb32382316034baa71cb116abad0c55a146ae"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T18:13:54.384Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T18:13:54.715Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 9.67,
+    "result": 8.16,
+    "margin": 0.06993486458690436,
+    "status": "estimated"
+  },
+  "failure": null
+}

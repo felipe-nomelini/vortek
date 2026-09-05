@@ -1,0 +1,31 @@
+{
+  "asOf": "2026-09-05T15:16:37.457Z",
+  "universe": 1977,
+  "reviewed": 65,
+  "recoveredBelow10": 14,
+  "queues": {
+    "ALTA_PRIORIDADE": 0,
+    "PRONTOS_PARA_ANALISE": 0,
+    "REATIVACOES": 25,
+    "EXPLORATORIOS": 0,
+    "PENDENCIAS_IDENTIDADE": 54,
+    "REVISAR": 0,
+    "INCONCLUSIVOS": 1600,
+    "CONFLITOS": 295,
+    "ECONOMICAMENTE_INVIAVEIS": 0,
+    "JA_ANUNCIADOS": 3
+  },
+  "tax": {
+    "rate": 0.08279935223578168,
+    "status": "estimated",
+    "referenceMonth": "2026-09",
+    "source": "RBT12_AUDITADO",
+    "rbt12": 929727.18,
+    "observedAt": "2026-09-05T14:16:10.807Z",
+    "evidence": "oportunidades-ml-2026-09-05/base.json:tax",
+    "missingMonths": []
+  },
+  "mlRequests": 0,
+  "remoteMutations": 0,
+  "scope": "Reclassificação das evidências existentes; aprovação exige cotação viva e validação de pendências"
+}

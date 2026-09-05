@@ -1,0 +1,261 @@
+{
+  "task": "M2M-PRC-CFL-RAD",
+  "status": "implemented_and_deployed_commercial_homologation_pending",
+  "baseline_commit": "b6e1b17eba58f0ec80a3d16357ac7ab2409f56de",
+  "started_at": "2026-09-05T16:52:00.905298+00:00",
+  "input_hashes": {
+    "src/services/pricing.ts": "7dab03569e5ed60a43317bd6c686a7cf683a8e6d7c89f758a2b1cf69eba340c3",
+    "scripts/lib/ml-pricing-experiment.js": "5072f0f0fdca77389be4cbbe245ffc4957642e1b6a3a53306a27dd7fb6aad679",
+    "scripts/lib/ml-adaptive-pricing-audit.js": "dd9708021d5a60a0fdc1233ce8726468871f9a2284d5f1fc8fd78871fde87d6e",
+    "reports/oportunidades-ml-2026-09-05/oportunidades-ml.xlsx": "37a9423207368bdcc8930c0084e60ab1388de79f5f830b010a418dde0d0509d3"
+  },
+  "preexisting_changes_preserved": true,
+  "remote_mutations": [
+    "Full database backup on authorized self-hosted server",
+    "Applied and registered three migrations",
+    "Imported 1977 observations through fenced/idempotent RPC",
+    "Two bounded Radar canaries; canceled after verification",
+    "Live read-only ML verification and observation/group refresh",
+    "Official GitHub main push and Easypanel deployment"
+  ],
+  "tests": [
+    {
+      "command": "npm run test:m2m-pricing-radar",
+      "passed": 71,
+      "failed": 0
+    },
+    {
+      "command": "npm run validate",
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed"
+    },
+    {
+      "command": "tests/sql/m2m-pricing-radar.sql in transaction with ROLLBACK",
+      "status": "passed"
+    },
+    {
+      "command": "node --check modified legacy entrypoints and reprocessor",
+      "status": "passed"
+    }
+  ],
+  "updated_at": "2026-09-05T18:45:37.263329+00:00",
+  "implementation_commit": "c94f864c5990b75fa4703faae7d41b787797d66a",
+  "commits": [
+    {
+      "commit": "d57b8415fc58491a5ef830152e8d2f7fb37dedf0",
+      "subject": "feat(pricing): define canonical final-price economics and conflicts"
+    },
+    {
+      "commit": "deed6808d80cafb46b767c2dde9dded4546f2141",
+      "subject": "feat(pricing): persist immutable evaluations and fenced radar checkpoints"
+    },
+    {
+      "commit": "1d0488ed8b35606fecd2f79a6a0b76341e36535e",
+      "subject": "feat(pricing): resolve live sources and require bound price approvals"
+    },
+    {
+      "commit": "94bab470ce5c79c61267473941a36510f5e85dfd",
+      "subject": "refactor(pricing): migrate ERP consumers and stop implicit price writes"
+    },
+    {
+      "commit": "b2de03c197dd9050282c40735d9097dc87a3e732",
+      "subject": "feat(radar): add explainable queues and resumable observe-only job"
+    },
+    {
+      "commit": "d93af4655e6bec5a3d97508b22b6c47106f3623f",
+      "subject": "refactor(pricing): retire legacy commands and reprocess existing opportunities"
+    },
+    {
+      "commit": "63659f2f4c45af13df41d1518bb24391f71cfcca",
+      "subject": "test(pricing): add canonical pricing and radar regression gate"
+    },
+    {
+      "commit": "3955bac75c11eaa60862914369e7abde129911ac",
+      "subject": "docs(pricing): publish canonical rule catalog and live verification procedure"
+    },
+    {
+      "commit": "f76ca7f3bf0ff2520be96b1089d9a9dc482d3da9",
+      "subject": "fix(radar): use verified sales linkage and audit classification reviews"
+    },
+    {
+      "commit": "c94f864c5990b75fa4703faae7d41b787797d66a",
+      "subject": "test(pricing): verify approval invalidation and close legacy command entrypoints"
+    }
+  ],
+  "autonomy": {
+    "radar": "AUTO_OBSERVE",
+    "publication": "REQUIRES_CONFIRMATION",
+    "price_changes": "REQUIRES_CONFIRMATION"
+  },
+  "ml_publications": 0,
+  "ml_price_writes": 0,
+  "messages_sent_by_tools": 0,
+  "database": {
+    "host": "192.168.1.160",
+    "postgres_version": "15.8",
+    "migrations": [
+      "20260905190000",
+      "20260905191000",
+      "20260905192000"
+    ],
+    "backup": "/opt/supabase-vortek/backups/m2m-pricing-20260905/postgres-before.dump",
+    "backup_bytes": 410856560,
+    "backup_permissions": "600",
+    "radar_rows_at_final_audit": 2024,
+    "unique_candidates": 2024,
+    "evaluations": 1258,
+    "classification_events": 2027,
+    "dangling_evaluation_references": 0,
+    "audited_at": "2026-09-05T18:40:27.810995+00:00"
+  },
+  "reprocessing": {
+    "universe": 1977,
+    "reviewed": 65,
+    "recovered_from_universal_10_floor": 14,
+    "ml_requests": 0,
+    "import_job_id": "8f82a466-e22d-472d-ba13-2e8aba540147",
+    "idempotency": "already_imported",
+    "payload_sha256": "3b419f90a5bd8f75f8c891cc843726ed115915800cd048cb9ca2c0c556125694"
+  },
+  "production_canary": {
+    "job_id": "5c0184e5-48e5-4d92-8375-d7dac394d5cb",
+    "http_status": 200,
+    "processed": 50,
+    "checkpoint_saved": true,
+    "coverage_complete": false,
+    "canceled_after_test": true,
+    "full_nightly_cycle_exercised": false,
+    "build_id": "ZO1GE1BMHXQO3FOu2yu8L"
+  },
+  "pending": [
+    "Commercial and fiscal confirmation of candidates",
+    "Structured identity validation",
+    "First complete nightly cycle observation",
+    "Human visual dashboard review",
+    "Separate homologation before any autonomy expansion"
+  ],
+  "artifact_hashes": {
+    "00_RESUMO_EXECUTIVO.md": {
+      "sha256": "5808bbc85533ead10fdb55acecf5ce1aca6a7a5b67b6e770332ffc4eb0ef6dad",
+      "bytes": 2688
+    },
+    "01_AS_IS_TO_BE.md": {
+      "sha256": "cfa2b783a4ae450607a3fdca764bfa4be326bf1a180cf0d005e2a16b546c6d88",
+      "bytes": 1065
+    },
+    "02_POLITICA_PRICING_CANONICA.md": {
+      "sha256": "764b51355f4b008baec8474179b810b15a0d66a053aa09e102075a8221b447e5",
+      "bytes": 5394
+    },
+    "03_CONTRATO_FILTRO_CONFLITOS.md": {
+      "sha256": "0f9ee0567b27caf6cc8d10bfe75989d25a7139f77e74cbcb67d122e2feccdc38",
+      "bytes": 2159
+    },
+    "04_MATRIZ_CONSUMIDORES_PRICING.md": {
+      "sha256": "9499962cebe99688325f0a61c49edf2b739c40de065eb36760d78701d550c349",
+      "bytes": 2666
+    },
+    "05_TESTES_E_EVIDENCIAS.md": {
+      "sha256": "a8346c162b0f4655a1ec26971d690218f7af8deefa63163520bd66b1d594c0e8",
+      "bytes": 5680
+    },
+    "05_build.log": {
+      "sha256": "133efc289119d92db35ab23bf5f8962e3340e837951630653d02187f4b900c85",
+      "bytes": 17293
+    },
+    "05_estado_banco.log": {
+      "sha256": "5fa16effa4a8817c11af138d1aa253442c97bf8233e7f75d16182a724ce4101a",
+      "bytes": 1217
+    },
+    "05_implantacao_final.log": {
+      "sha256": "7815743509e6a039b4275b772720409f0c9726ff867d57217eca8de7dc02026d",
+      "bytes": 229
+    },
+    "05_live_smoke.json": {
+      "sha256": "c3fe0c10586ef514dbb5727b8052e53c461117fd9b7137bbbd3592ab2b43f9c9",
+      "bytes": 1993
+    },
+    "05_migration_audit.log": {
+      "sha256": "776eb730f64abf7d4c83ce10f7234e3d2ac43607f9ec2b08a28677e73917b1b5",
+      "bytes": 107
+    },
+    "05_migrations.log": {
+      "sha256": "45dba7c761e0f457bd39874e7e58f9cc6fc6acff08d7e18d08fccfa876df223a",
+      "bytes": 517
+    },
+    "05_radar_canary.log": {
+      "sha256": "80f2812adc5d3a457c2655aad06e245eed57ffc273631463be36254e2e42a706",
+      "bytes": 459
+    },
+    "05_sql_rollback.log": {
+      "sha256": "cdbdde994d347cf2df4a9e482ea6af3a2ced5e194e504268dbf75bfc98b011ab",
+      "bytes": 75
+    },
+    "05_testes.log": {
+      "sha256": "b6b86cf17c66afc185256ecfa085341740bbde38d1eccaa9355eb6ddff1dc475",
+      "bytes": 17336
+    },
+    "05_validate.log": {
+      "sha256": "bf92056c3e327e95a7e896025de85a95e412d520e4dcac5f6644b70de7ddc5fe",
+      "bytes": 171
+    },
+    "06_REPROCESSAMENTO_OPORTUNIDADES.csv": {
+      "sha256": "b80ceeb7779b0d34cc8e896f8dd88968109326023112cf8c805e6dd707cc49df",
+      "bytes": 748424
+    },
+    "06_REPROCESSAMENTO_OPORTUNIDADES.xlsx": {
+      "sha256": "7fb679401063337c6bf0227812deb8b066fbe6b34e3f954df3b219266ddb1673",
+      "bytes": 2059043
+    },
+    "06_idempotencia.log": {
+      "sha256": "51a4b044873fe6815a2254efe767489d47bf4192332ee42ff3fa69bfaec2b4b0",
+      "bytes": 89
+    },
+    "06_impacto.json": {
+      "sha256": "cbda555d494adf3f0cbff34a14ef023cd03611c1de047e1be533a1a81f8852bf",
+      "bytes": 846
+    },
+    "06_importacao.log": {
+      "sha256": "8d9e0228a45adb425582aba7f61a7686b63e7d4e2216b466f588faa754a6d4f1",
+      "bytes": 177
+    },
+    "06_memorias.json": {
+      "sha256": "3b419f90a5bd8f75f8c891cc843726ed115915800cd048cb9ca2c0c556125694",
+      "bytes": 10745011
+    },
+    "07_PENDENCIAS_VALIDACAO.md": {
+      "sha256": "a9ea9099bc64e1aa2eb2e9b60dcbecb9bd2ffbc67cdd9f74fecaa0e7b73dbb6e",
+      "bytes": 1248
+    },
+    "08_RISCOS_RESIDUAIS.md": {
+      "sha256": "331ef03a11b93951efee4a9fcdfa366af8c0fc41554b3144c11e7ca61b7ff488",
+      "bytes": 2778
+    },
+    "baseline-consumers.txt": {
+      "sha256": "cd6b4387be9f9741d5d831bde45243d838333d14fe8d6be7553833571d6bf373",
+      "bytes": 33789
+    },
+    "baseline-package.patch": {
+      "sha256": "c0cd3550bec34d6b1c6abbbf55111fa317ce7bd123f56219b7e0d8e9909675b7",
+      "bytes": 1077
+    },
+    "baseline-working-tree.txt": {
+      "sha256": "7fd01b41d3a2bff2c2c6699792425d98a67f58cc207aa613947a6566b2be667f",
+      "bytes": 1165
+    }
+  },
+  "deployment": {
+    "commit": "c94f864c5990b75fa4703faae7d41b787797d66a",
+    "build_id": "aIiL-_eggee9mHMTxMbA9",
+    "official_webhook_http_status": 200,
+    "radar_route_present": true,
+    "radar_page_present": true,
+    "unauthenticated_api_status": 401,
+    "preexisting_package_edits_excluded": true,
+    "canary_on_previous_runtime_identical_commit": "f76ca7f3bf0ff2520be96b1089d9a9dc482d3da9",
+    "final_changes": "Tests, legacy CLI entry guards, spreadsheet ordering; application runtime unchanged since successful canary"
+  }
+}

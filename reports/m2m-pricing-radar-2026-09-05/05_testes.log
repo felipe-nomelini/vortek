@@ -1,0 +1,464 @@
+
+> vortek@0.1.0 test:m2m-pricing-radar
+> node --test tests/m2m-pricing-conflicts.test.js tests/m2m-pricing-integration.test.cjs tests/preferred-offer.test.js tests/ml-order-profit.test.js tests/ml-pricing-experiment.test.js tests/automatic-pricing-force.test.js tests/target-net-profit-pricing.test.js tests/ml-listing-activation-guard.test.js tests/ml-catalog-pack-quantity.test.js tests/catalog-competition-status.test.js tests/m2m-pricing-approval.test.cjs
+
+TAP version 13
+# Subtest: mantém regra normal: preço automático apenas quando custo muda
+ok 1 - mantém regra normal: preço automático apenas quando custo muda
+  ---
+  duration_ms: 1.717726
+  type: 'test'
+  ...
+# Subtest: força reconciliação de preço do kit mesmo com custo já recalculado
+ok 2 - força reconciliação de preço do kit mesmo com custo já recalculado
+  ---
+  duration_ms: 0.460876
+  type: 'test'
+  ...
+# Subtest: mostra sem catálogo quando o anúncio não pertence ao catálogo
+ok 3 - mostra sem catálogo quando o anúncio não pertence ao catálogo
+  ---
+  duration_ms: 1.162376
+  type: 'test'
+  ...
+# Subtest: considera winning e sharing_first_place como ganhando
+ok 4 - considera winning e sharing_first_place como ganhando
+  ---
+  duration_ms: 1.803826
+  type: 'test'
+  ...
+# Subtest: distingue competindo dos demais estados perdedores
+ok 5 - distingue competindo dos demais estados perdedores
+  ---
+  duration_ms: 0.608545
+  type: 'test'
+  ...
+# (node:499728) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: aprovação vinculada às mesmas entradas pode prosseguir sem teto artificial de margem
+ok 6 - aprovação vinculada às mesmas entradas pode prosseguir sem teto artificial de margem
+  ---
+  duration_ms: 54.758822
+  type: 'test'
+  ...
+# Subtest: aprovação ausente ou já aplicada não autoriza outra escrita
+ok 7 - aprovação ausente ou já aplicada não autoriza outra escrita
+  ---
+  duration_ms: 34.009243
+  type: 'test'
+  ...
+# Subtest: mudança de custo ou preço anterior invalida aprovação
+ok 8 - mudança de custo ou preço anterior invalida aprovação
+  ---
+  duration_ms: 38.042628
+  type: 'test'
+  ...
+# Subtest: fonte inconclusiva e grupo divergente impedem aplicação
+ok 9 - fonte inconclusiva e grupo divergente impedem aplicação
+  ---
+  duration_ms: 37.697359
+  type: 'test'
+  ...
+# (node:499734) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fronteiras canônicas de preço final, inclusive centavos
+ok 10 - fronteiras canônicas de preço final, inclusive centavos
+  ---
+  duration_ms: 2.671418
+  type: 'test'
+  ...
+# Subtest: tributo precisa de competência e evidência; confirmado vence estimativa
+ok 11 - tributo precisa de competência e evidência; confirmado vence estimativa
+  ---
+  duration_ms: 1.508909
+  type: 'test'
+  ...
+# Subtest: RBT12 proporcionalizado e mês ausente não vira zero
+ok 12 - RBT12 proporcionalizado e mês ausente não vira zero
+  ---
+  duration_ms: 0.352103
+  type: 'test'
+  ...
+# Subtest: economia canônica discrimina ausência, zero confirmado e estimativa
+ok 13 - economia canônica discrimina ausência, zero confirmado e estimativa
+  ---
+  duration_ms: 1.191146
+  type: 'test'
+  ...
+# Subtest: 7,3% abaixo de 200 é viável no alvo, sem piso universal 10%
+ok 14 - 7,3% abaixo de 200 é viável no alvo, sem piso universal 10%
+  ---
+  duration_ms: 1.121567
+  type: 'test'
+  ...
+# Subtest: preço sugerido estabiliza e respeita alvo final com arredondamento fiscal
+ok 15 - preço sugerido estabiliza e respeita alvo final com arredondamento fiscal
+  ---
+  duration_ms: 1.952669
+  type: 'test'
+  ...
+# Subtest: solver consulta o preço retornado e cruza faixas
+ok 16 - solver consulta o preço retornado e cruza faixas
+  ---
+  duration_ms: 0.979012
+  type: 'test'
+  ...
+# Subtest: solver falha explicitamente quando fonte está indisponível
+ok 17 - solver falha explicitamente quando fonte está indisponível
+  ---
+  duration_ms: 0.220991
+  type: 'test'
+  ...
+# Subtest: regressão D0: cotação viva desfaz falso prejuízo stale
+ok 18 - regressão D0: cotação viva desfaz falso prejuízo stale
+  ---
+  duration_ms: 0.387012
+  type: 'test'
+  ...
+# Subtest: margem premium com venda é preservada; baixa funcional exige estratégia
+ok 19 - margem premium com venda é preservada; baixa funcional exige estratégia
+  ---
+  duration_ms: 0.580643
+  type: 'test'
+  ...
+# Subtest: marca/modelo contraditórios vencem GTIN igual
+ok 20 - marca/modelo contraditórios vencem GTIN igual
+  ---
+  duration_ms: 0.486616
+  type: 'test'
+  ...
+# Subtest: GTIN diferente só admite variação com evidência e atributos coerentes
+ok 21 - GTIN diferente só admite variação com evidência e atributos coerentes
+  ---
+  duration_ms: 0.179601
+  type: 'test'
+  ...
+# Subtest: kit e quantidade impedem automação, GTIN sozinho deixa pendência
+ok 22 - kit e quantidade impedem automação, GTIN sozinho deixa pendência
+  ---
+  duration_ms: 0.138994
+  type: 'test'
+  ...
+# Subtest: ativo, reativação e vínculo incompleto têm filas distintas
+ok 23 - ativo, reativação e vínculo incompleto têm filas distintas
+  ---
+  duration_ms: 0.286155
+  type: 'test'
+  ...
+# Subtest: ausência de demanda não cria conflito; Buy Box negativa bloqueia
+ok 24 - ausência de demanda não cria conflito; Buy Box negativa bloqueia
+  ---
+  duration_ms: 0.12401
+  type: 'test'
+  ...
+# (node:499745) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: integração tarifa total sem duplicar fixed_fee; frete vivo vence stale
+ok 25 - integração tarifa total sem duplicar fixed_fee; frete vivo vence stale
+  ---
+  duration_ms: 88.474799
+  type: 'test'
+  ...
+# Subtest: ML indisponível não confirma prejuízo por frete local
+ok 26 - ML indisponível não confirma prejuízo por frete local
+  ---
+  duration_ms: 28.267221
+  type: 'test'
+  ...
+# Subtest: fallback configurado é explícito e nunca sobrescreve fonte viva
+ok 27 - fallback configurado é explícito e nunca sobrescreve fonte viva
+  ---
+  duration_ms: 25.187534
+  type: 'test'
+  ...
+# Subtest: Radar, anúncio e simulador compartilham os mesmos valores e cotação final
+ok 28 - Radar, anúncio e simulador compartilham os mesmos valores e cotação final
+  ---
+  duration_ms: 23.778693
+  type: 'test'
+  ...
+# Subtest: solver detecta oscilação em cotação descontínua
+ok 29 - solver detecta oscilação em cotação descontínua
+  ---
+  duration_ms: 0.286212
+  type: 'test'
+  ...
+# Subtest: escolha de oferta impede fornecedor inativo de fornecer CMV
+ok 30 - escolha de oferta impede fornecedor inativo de fornecer CMV
+  ---
+  duration_ms: 17.314589
+  type: 'test'
+  ...
+# Subtest: observação ML válida vence fallback quando nova consulta falha
+ok 31 - observação ML válida vence fallback quando nova consulta falha
+  ---
+  duration_ms: 28.077012
+  type: 'test'
+  ...
+# Subtest: bloqueia catálogo de 20 pilhas para cartela local com 4 pilhas
+ok 32 - bloqueia catálogo de 20 pilhas para cartela local com 4 pilhas
+  ---
+  duration_ms: 5.94684
+  type: 'test'
+  ...
+# Subtest: aceita catálogo quando a quantidade física é a mesma
+ok 33 - aceita catálogo quando a quantidade física é a mesma
+  ---
+  duration_ms: 0.37981
+  type: 'test'
+  ...
+# Subtest: reconhece quantidade escrita como cartela e blister
+ok 34 - reconhece quantidade escrita como cartela e blister
+  ---
+  duration_ms: 0.4465
+  type: 'test'
+  ...
+# Subtest: não confunde códigos de modelo com quantidade
+ok 35 - não confunde códigos de modelo com quantidade
+  ---
+  duration_ms: 0.357425
+  type: 'test'
+  ...
+# Subtest: reconhece abreviações C/40 e 10 Un
+ok 36 - reconhece abreviações C/40 e 10 Un
+  ---
+  duration_ms: 0.350592
+  type: 'test'
+  ...
+# Subtest: bloqueia atributos que representam quantidade física diferente do título local
+ok 37 - bloqueia atributos que representam quantidade física diferente do título local
+  ---
+  duration_ms: 0.350224
+  type: 'test'
+  ...
+# Subtest: multiplica unidades por kit pela quantidade de kits
+ok 38 - multiplica unidades por kit pela quantidade de kits
+  ---
+  duration_ms: 0.524151
+  type: 'test'
+  ...
+# Subtest: fila valida identidade antes de ativar anúncio
+ok 39 - fila valida identidade antes de ativar anúncio
+  ---
+  duration_ms: 1.768258
+  type: 'test'
+  ...
+# Subtest: reativação direta também valida identidade antes de enviar active
+ok 40 - reativação direta também valida identidade antes de enviar active
+  ---
+  duration_ms: 0.289695
+  type: 'test'
+  ...
+# (node:499758) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: usa somente o custo final do vendedor informado pelo Mercado Livre
+ok 41 - usa somente o custo final do vendedor informado pelo Mercado Livre
+  ---
+  duration_ms: 0.618892
+  type: 'test'
+  ...
+# Subtest: aceita custo zero como custo final válido
+ok 42 - aceita custo zero como custo final válido
+  ---
+  duration_ms: 0.119548
+  type: 'test'
+  ...
+# Subtest: não inventa custo quando resposta de frete está incompleta
+ok 43 - não inventa custo quando resposta de frete está incompleta
+  ---
+  duration_ms: 0.12138
+  type: 'test'
+  ...
+# Subtest: não calcula lucro antes do custo final do frete
+ok 44 - não calcula lucro antes do custo final do frete
+  ---
+  duration_ms: 0.116522
+  type: 'test'
+  ...
+# Subtest: calcula lucro final com custo real do frete
+ok 45 - calcula lucro final com custo real do frete
+  ---
+  duration_ms: 0.169414
+  type: 'test'
+  ...
+# Subtest: não persiste lucro inválido quando a origem contém valor não finito
+ok 46 - não persiste lucro inválido quando a origem contém valor não finito
+  ---
+  duration_ms: 0.09876
+  type: 'test'
+  ...
+# (node:499769) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: faixas não têm lacunas nas fronteiras comerciais
+ok 47 - faixas não têm lacunas nas fronteiras comerciais
+  ---
+  duration_ms: 0.598412
+  type: 'test'
+  ...
+# Subtest: preço alvo estabiliza novamente quando cruza de faixa
+ok 48 - preço alvo estabiliza novamente quando cruza de faixa
+  ---
+  duration_ms: 0.530653
+  type: 'test'
+  ...
+# Subtest: até 5 visitas entra e 6 visitas é excluído
+ok 49 - até 5 visitas entra e 6 visitas é excluído
+  ---
+  duration_ms: 0.576334
+  type: 'test'
+  ...
+# Subtest: promoção, atacado e automação do ML são travas independentes
+ok 50 - promoção, atacado e automação do ML são travas independentes
+  ---
+  duration_ms: 0.160016
+  type: 'test'
+  ...
+# Subtest: classificações dos checkpoints seguem a ordem operacional
+ok 51 - classificações dos checkpoints seguem a ordem operacional
+  ---
+  duration_ms: 0.121834
+  type: 'test'
+  ...
+# Subtest: escrita do pricing group cobre origem e todos os espelhos uma única vez
+ok 52 - escrita do pricing group cobre origem e todos os espelhos uma única vez
+  ---
+  duration_ms: 0.097208
+  type: 'test'
+  ...
+# Subtest: troca fornecedor atual por alternativa ativa mais barata com estoque
+ok 53 - troca fornecedor atual por alternativa ativa mais barata com estoque
+  ---
+  duration_ms: 1.52434
+  type: 'test'
+  ...
+# Subtest: mantém fornecedor manual mesmo quando alternativa possui menor custo
+ok 54 - mantém fornecedor manual mesmo quando alternativa possui menor custo
+  ---
+  duration_ms: 0.285652
+  type: 'test'
+  ...
+# Subtest: mantém fornecedor manual sem estoque para refletir indisponibilidade escolhida
+ok 55 - mantém fornecedor manual sem estoque para refletir indisponibilidade escolhida
+  ---
+  duration_ms: 0.168334
+  type: 'test'
+  ...
+# Subtest: volta ao automático quando fornecedor manual fica inativo
+ok 56 - volta ao automático quando fornecedor manual fica inativo
+  ---
+  duration_ms: 0.182223
+  type: 'test'
+  ...
+# Subtest: não escolhe oferta sem estoque quando existe alternativa com estoque
+ok 57 - não escolhe oferta sem estoque quando existe alternativa com estoque
+  ---
+  duration_ms: 0.213781
+  type: 'test'
+  ...
+# Subtest: não trata custo zero como oferta válida
+ok 58 - não trata custo zero como oferta válida
+  ---
+  duration_ms: 0.182641
+  type: 'test'
+  ...
+# Subtest: não seleciona oferta inativa quando não existe fonte ativa
+ok 59 - não seleciona oferta inativa quando não existe fonte ativa
+  ---
+  duration_ms: 0.167409
+  type: 'test'
+  ...
+# Subtest: usa prioridade e estoque somente para desempate de custo
+ok 60 - usa prioridade e estoque somente para desempate de custo
+  ---
+  duration_ms: 0.215548
+  type: 'test'
+  ...
+# Subtest: reconcilia alternativa com estoque e custo menor mesmo sem mudança no XML
+ok 61 - reconcilia alternativa com estoque e custo menor mesmo sem mudança no XML
+  ---
+  duration_ms: 0.465988
+  type: 'test'
+  ...
+# Subtest: não reconcilia alternativa mais cara quando atual possui estoque
+ok 62 - não reconcilia alternativa mais cara quando atual possui estoque
+  ---
+  duration_ms: 0.450366
+  type: 'test'
+  ...
+# Subtest: reconcilia alternativa com estoque quando fornecedor atual está indisponível
+ok 63 - reconcilia alternativa com estoque quando fornecedor atual está indisponível
+  ---
+  duration_ms: 0.217821
+  type: 'test'
+  ...
+# Subtest: reconcilia alternativa com estoque quando fornecedor atual está inativo
+ok 64 - reconcilia alternativa com estoque quando fornecedor atual está inativo
+  ---
+  duration_ms: 0.140537
+  type: 'test'
+  ...
+# Subtest: reconcilia fornecedor atual quando snapshot está obsoleto
+ok 65 - reconcilia fornecedor atual quando snapshot está obsoleto
+  ---
+  duration_ms: 0.128889
+  type: 'test'
+  ...
+# Subtest: ignora alternativa inativa ou sem estoque quando atual está disponível
+ok 66 - ignora alternativa inativa ou sem estoque quando atual está disponível
+  ---
+  duration_ms: 0.131858
+  type: 'test'
+  ...
+# Subtest: preferência manual ignora reconciliação de alternativa mais barata
+ok 67 - preferência manual ignora reconciliação de alternativa mais barata
+  ---
+  duration_ms: 0.155124
+  type: 'test'
+  ...
+# (node:499818) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: cenário nominal explícito com alíquota informada, sem piso nominal global
+ok 68 - cenário nominal explícito com alíquota informada, sem piso nominal global
+  ---
+  duration_ms: 0.940559
+  type: 'test'
+  ...
+# Subtest: inclui tarifa fixa no preço do lucro alvo
+ok 69 - inclui tarifa fixa no preço do lucro alvo
+  ---
+  duration_ms: 0.237827
+  type: 'test'
+  ...
+# Subtest: rejeita taxa ou valores inválidos
+ok 70 - rejeita taxa ou valores inválidos
+  ---
+  duration_ms: 0.531631
+  type: 'test'
+  ...
+# Subtest: manifesto contém nove SKUs únicos e títulos válidos
+ok 71 - manifesto contém nove SKUs únicos e títulos válidos
+  ---
+  duration_ms: 1.468696
+  type: 'test'
+  ...
+1..71
+# tests 71
+# suites 0
+# pass 71
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 507.54284

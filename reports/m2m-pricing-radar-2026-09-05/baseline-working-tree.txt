@@ -1,0 +1,24 @@
+ M package.json
+?? reports/auditoria-anuncios-ativos-2026-09-03-final-v2.zip
+?? reports/auditoria-cruzada-anuncios-ativos-2026-09-04-final-v3.zip
+?? reports/auditoria-cruzada-anuncios-ativos-2026-09-04-final-v3/
+?? reports/auditoria-estoque-interno-2026-08.zip
+?? reports/auditoria-estoque-interno-2026-08/
+?? reports/auditoria-pricing-adaptativo-2026-09-04-final-v2.zip
+?? reports/auditoria-pricing-adaptativo-2026-09-04-final-v2/
+?? reports/auditoria-saneamento-margem-2026-09-04-final-v1.zip
+?? reports/auditoria-saneamento-margem-2026-09-04-final-v1/
+?? reports/oportunidades-ml-2026-09-05/
+?? scripts/audit-active-ml-cross-validation.js
+?? scripts/audit-active-ml-supplier-listings.js
+?? scripts/audit-internal-stock-2026-08.js
+?? scripts/audit-ml-adaptive-pricing.js
+?? scripts/lib/ml-active-cross-validation.js
+?? scripts/lib/ml-active-supplier-audit.js
+?? scripts/lib/ml-adaptive-pricing-audit.js
+?? scripts/lib/ml-margin-sanitization.js
+?? tests/internal-stock-august-2026-audit.test.js
+?? tests/ml-active-cross-validation.test.js
+?? tests/ml-active-supplier-audit.test.js
+?? tests/ml-adaptive-pricing-audit.test.js
+?? tests/ml-margin-sanitization.test.js

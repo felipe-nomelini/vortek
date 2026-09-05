@@ -1,0 +1,9 @@
+BEGIN
+SET
+DO
+   evidence   
+--------------
+ M2M_SQL_PASS
+(1 row)
+
+ROLLBACK

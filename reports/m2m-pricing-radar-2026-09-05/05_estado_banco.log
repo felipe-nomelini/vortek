@@ -1,0 +1,48 @@
+          audited_at           
+-------------------------------
+ 2026-09-05 18:40:27.810995+00
+(1 row)
+
+    version     |               name                
+----------------+-----------------------------------
+ 20260905190000 | m2m_canonical_pricing_radar
+ 20260905191000 | m2m_canonical_pricing_projections
+ 20260905192000 | m2m_radar_classification_audit
+(3 rows)
+
+ radar_rows | unique_candidates 
+------------+-------------------
+       2024 |              2024
+(1 row)
+
+         queue         | count 
+-----------------------+-------
+ CONFLITOS             |   295
+ INCONCLUSIVOS         |  1641
+ JA_ANUNCIADOS         |     9
+ PENDENCIAS_IDENTIDADE |    54
+ REATIVACOES           |    25
+(5 rows)
+
+ evaluations 
+-------------
+        1258
+(1 row)
+
+    event_type    | count 
+------------------+-------
+ RADAR_CLASSIFIED |  2027
+(1 row)
+
+                  id                  |  status   | cancelado 
+--------------------------------------+-----------+-----------
+ 331f5cbc-4f1e-412c-a0a2-fa94c83ce088 | cancelado | t
+ 5c0184e5-48e5-4d92-8375-d7dac394d5cb | cancelado | t
+ 8f82a466-e22d-472d-ba13-2e8aba540147 | completo  | f
+(3 rows)
+
+ dangling_evaluations 
+----------------------
+                    0
+(1 row)
+

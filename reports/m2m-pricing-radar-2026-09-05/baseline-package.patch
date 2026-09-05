@@ -1,0 +1,17 @@
+diff --git a/package.json b/package.json
+index 8d5db3e..c9ef330 100644
+--- a/package.json
++++ b/package.json
+@@ -62,6 +62,12 @@
+     "ml:p0:phase6e1": "node scripts/run-ml-p0-phase6e1.js",
+     "ml:p0:phase6e2": "node scripts/run-ml-p0-phase6e2.js",
+     "test:ml-p0-audit": "node --test tests/ml-p0-audit.test.js",
++    "test:ml-active-supplier-audit": "node --test tests/ml-active-supplier-audit.test.js",
++    "audit:ml-active-suppliers": "node scripts/audit-active-ml-supplier-listings.js",
++    "test:ml-adaptive-pricing-audit": "node --test tests/ml-adaptive-pricing-audit.test.js",
++    "audit:ml-adaptive-pricing": "node scripts/audit-ml-adaptive-pricing.js",
++    "test:ml-margin-sanitization": "node --test tests/ml-margin-sanitization.test.js",
++    "audit:ml-margin-sanitization": "node scripts/audit-ml-adaptive-pricing.js --analysis=margin-sanitization",
+     "test:ml-p0-sanitize": "node --test tests/ml-p0-sanitize.test.js",
+     "test:ml-p0-phase3": "node --test tests/ml-p0-phase3.test.js",
+     "test:ml-p0-phase4": "node --test tests/ml-p0-phase4.test.js",
