@@ -46,7 +46,7 @@ export type PricingExperimentGroup = {
 export type PricingExperimentState = {
   version: 1;
   experiment_id: typeof HIGH_MARGIN_PRICING_EXPERIMENT_ID;
-  status: 'active' | 'awaiting_director_decision' | 'closed';
+  status: 'executing' | 'active' | 'awaiting_director_decision' | 'closed';
   started_at: string;
   monitoring_until: string;
   traffic_threshold_150d: 5;

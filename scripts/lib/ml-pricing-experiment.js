@@ -107,12 +107,18 @@ function checkpointClassification({ checkpoint, visits, orders }) {
   return orders > 0 ? 'TRAFEGO_E_VENDA_OBSERVADOS' : 'MONITORAMENTO_NORMAL';
 }
 
+function groupWriteTargets(originMlItemId, mlItemIds) {
+  const origin = String(originMlItemId || '');
+  return [...new Set([origin, ...(mlItemIds || []).map(String)].filter(Boolean))];
+}
+
 module.exports = {
   CLEARANCE_SKUS,
   EXCLUDED_REAL_LOSS_SKUS,
   PRICE_BANDS,
   checkpointClassification,
   evaluateEligibility,
+  groupWriteTargets,
   priceBand,
   priceForMargin,
   resolvePreferredOffer,

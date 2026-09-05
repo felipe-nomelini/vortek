@@ -127,6 +127,9 @@ export async function POST(request: Request) {
   if (!state || state.status === 'closed' || !state.groups.length) {
     return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'experimento_inativo' });
   }
+  if (state.status === 'executing') {
+    return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'execucao_d0_em_andamento' });
+  }
 
   const activeGroups = state.groups.filter((group) => group.status === 'active' || group.status === 'awaiting_director_decision');
   if (!activeGroups.length) {

@@ -10,6 +10,7 @@ const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
 const {
   checkpointClassification,
   evaluateEligibility,
+  groupWriteTargets,
   priceBand,
   priceForMargin,
   resolvePreferredOffer,
@@ -29,10 +30,11 @@ const MAX_SOURCE_GROUPS = 430;
 const FRESHNESS_MINUTES = 30;
 const TRANSIENT = new Set([408, 409, 424, 425, 429, 500, 502, 503, 504]);
 const APPLY = process.argv.includes('--apply');
+const RESUME = process.argv.includes('--resume');
 const DRY_RUN = process.argv.includes('--dry-run') || !APPLY;
 const CONFIRM = String(process.argv.find((arg) => arg.startsWith('--confirm=')) || '').slice('--confirm='.length);
 const OUTPUT_NAME = APPLY
-  ? 'experimento-pricing-alta-margem-2026-09-04-d0'
+  ? (RESUME ? 'experimento-pricing-alta-margem-2026-09-04-d0-final' : 'experimento-pricing-alta-margem-2026-09-04-d0')
   : 'experimento-pricing-alta-margem-2026-09-04-d0-dry';
 const OUTPUT_DIR = path.join(ROOT, 'reports', OUTPUT_NAME);
 const counters = { ml_get: 0, ml_put: 0, dslite_get: 0, db_select: 0, db_update: 0, db_insert: 0, db_upsert: 0 };
@@ -77,6 +79,10 @@ function writeCsv(name, rows, headers) {
   fs.writeFileSync(path.join(OUTPUT_DIR, name), `${content}\n`);
 }
 function writeJson(name, value) { fs.writeFileSync(path.join(OUTPUT_DIR, name), `${JSON.stringify(value, null, 2)}\n`); }
+function readCsv(filePath) {
+  const workbook = XLSX.readFile(filePath, { raw: false });
+  return XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { defval: '' });
+}
 function elapsedMinutes(timestamp) { return (Date.now() - new Date(timestamp || 0).getTime()) / 60000; }
 function parseItemIds(value) {
   try {
@@ -105,6 +111,17 @@ function loadSource() {
     pricing_group_id: String(row.pricing_group_id || '').trim(),
     source_ml_item_ids: parseItemIds(row.ml_item_ids),
   }));
+}
+
+function loadPriorExecution() {
+  if (!RESUME) return { cohort: [], successes: [] };
+  const directory = path.join(ROOT, 'reports', 'experimento-pricing-alta-margem-2026-09-04-d0');
+  const cohortPath = path.join(directory, '01_COORTE_EXPERIMENTAL.csv');
+  const successPath = path.join(directory, '02_EXECUCOES_SUCESSO.csv');
+  if (!fs.existsSync(cohortPath) || !fs.existsSync(successPath)) {
+    throw new Error('Artefatos da execução parcial não foram encontrados para retomada');
+  }
+  return { cohort: readCsv(cohortPath), successes: readCsv(successPath) };
 }
 
 async function getMlIntegration(db) {
@@ -502,7 +519,7 @@ async function preflightGroup({ source, product, offers, dslitePriceStock, ads, 
 
 function runtimeState(groups, startedAt) {
   return {
-    version: 1, experiment_id: EXPERIMENT_ID, status: 'active', started_at: startedAt,
+    version: 1, experiment_id: EXPERIMENT_ID, status: 'executing', started_at: startedAt,
     monitoring_until: new Date(new Date(startedAt).getTime() + 30 * 86400000).toISOString(),
     traffic_threshold_150d: 5, tax_rate: TAX_RATE,
     groups: groups.map((row) => ({
@@ -568,14 +585,19 @@ async function readStandardPrices(ml, itemIds) {
 }
 
 async function verifyPrices(ml, group, expected) {
-  const delays = [0, 1500, 3000];
+  const stableReadsRequired = group.ml_item_ids.length > 1 ? 2 : 1;
+  const delays = group.ml_item_ids.length > 1 ? [0, 2000, 5000, 10000] : [0, 1500, 3000];
   let latest = null;
+  let stableReads = 0;
   for (const delayMs of delays) {
     if (delayMs) await new Promise((resolve) => setTimeout(resolve, delayMs));
     latest = await readStandardPrices(ml, group.ml_item_ids);
     if (group.ml_item_ids.every((id) => latest.get(id)?.response.ok && Math.abs(Number(latest.get(id)?.price) - expected) < 0.01)) {
-      return { ok: true, observed: Object.fromEntries(group.ml_item_ids.map((id) => [id, latest.get(id)?.price])) };
-    }
+      stableReads += 1;
+      if (stableReads >= stableReadsRequired) {
+        return { ok: true, observed: Object.fromEntries(group.ml_item_ids.map((id) => [id, latest.get(id)?.price])) };
+      }
+    } else stableReads = 0;
   }
   return { ok: false, observed: Object.fromEntries(group.ml_item_ids.map((id) => [id, latest?.get(id)?.price || null])) };
 }
@@ -586,20 +608,33 @@ async function putPrice(ml, itemId, price) {
   });
 }
 
+async function putGroupPrice(ml, group, price) {
+  const writes = [];
+  for (const itemId of groupWriteTargets(group.origin_ml_item_id, group.ml_item_ids)) {
+    const response = await putPrice(ml, itemId, price);
+    writes.push({ item_id: itemId, ok: response.ok, status: response.status, error: response.error, warnings: response.data?.warnings || [] });
+    if (!response.ok) break;
+  }
+  return writes;
+}
+
 async function executeGroup(db, ml, group) {
-  const write = await putPrice(ml, group.origin_ml_item_id, group.experimental_price);
-  const warnings = Array.isArray(write.data?.warnings) ? write.data.warnings : [];
+  const writes = await putGroupPrice(ml, group, group.experimental_price);
+  const writeOk = writes.length === groupWriteTargets(group.origin_ml_item_id, group.ml_item_ids).length
+    && writes.every((row) => row.ok);
+  const warnings = writes.flatMap((row) => Array.isArray(row.warnings) ? row.warnings : []);
   const verified = await verifyPrices(ml, group, group.experimental_price);
-  if (!write.ok || !verified.ok) {
+  if (!writeOk || !verified.ok) {
     let baseline = await verifyPrices(ml, group, group.current_price);
     if (!baseline.ok) {
-      const rollbackWrite = await putPrice(ml, group.origin_ml_item_id, group.current_price);
+      const rollbackWrites = await putGroupPrice(ml, group, group.current_price);
       baseline = await verifyPrices(ml, group, group.current_price);
-      if (!rollbackWrite.ok) baseline.ok = false;
+      if (rollbackWrites.some((row) => !row.ok)) baseline.ok = false;
     }
     return {
       ok: false, fatal: !baseline.ok,
-      error: write.error || 'Confirmação pós-escrita falhou', write_status: write.status,
+      error: writes.find((row) => !row.ok)?.error || 'Confirmação pós-escrita falhou',
+      write_status: Object.fromEntries(writes.map((row) => [row.item_id, row.status])),
       observed: verified.observed, rollback_confirmed: baseline.ok,
     };
   }
@@ -609,41 +644,48 @@ async function executeGroup(db, ml, group) {
     db.from('anuncios_ml').update({ preco_ml: group.experimental_price, updated_at: nowIso() }).in('ml_item_id', group.ml_item_ids),
   ]);
   if (productUpdate.error || adUpdate.error) {
-    const rollbackWrite = await putPrice(ml, group.origin_ml_item_id, group.current_price);
+    const rollbackWrites = await putGroupPrice(ml, group, group.current_price);
     const rollback = await verifyPrices(ml, group, group.current_price);
     counters.db_update += 2;
     const [productRollback, adRollback] = await Promise.all([
       db.from('produtos').update({ custom_price: group.current_price, updated_at: nowIso() }).eq('id', group.product_id),
       db.from('anuncios_ml').update({ preco_ml: group.current_price, updated_at: nowIso() }).in('ml_item_id', group.ml_item_ids),
     ]);
-    const rollbackOk = rollbackWrite.ok && rollback.ok && !productRollback.error && !adRollback.error;
+    const rollbackOk = rollbackWrites.every((row) => row.ok) && rollback.ok && !productRollback.error && !adRollback.error;
     return { ok: false, fatal: !rollbackOk, error: `Persistência local falhou; rollback ${rollbackOk ? 'confirmado' : 'não confirmado'}`, observed: rollback.observed };
   }
-  return { ok: true, write_status: write.status, observed: verified.observed, confirmed_at: nowIso(), warnings };
+  return {
+    ok: true, write_status: Object.fromEntries(writes.map((row) => [row.item_id, row.status])),
+    observed: verified.observed, confirmed_at: nowIso(), warnings,
+  };
 }
 
-function reportFiles({ sourceRows, preflight, successes, failures, startedAt, finishedAt }) {
+function reportFiles({ sourceRows, preflight, successes, failures, priorExecution, startedAt, finishedAt }) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: false });
-  const excluded = preflight.filter((row) => row.status !== 'ELEGIVEL');
+  const priorIds = new Set(priorExecution.cohort.map((row) => String(row.pricing_group_id)));
+  const excluded = preflight.filter((row) => row.status !== 'ELEGIVEL' && !priorIds.has(row.pricing_group_id));
   const successIds = new Set(successes.map((row) => row.pricing_group_id));
-  const cohort = APPLY
+  const currentCohort = APPLY
     ? preflight.filter((row) => successIds.has(row.pricing_group_id))
     : preflight.filter((row) => row.status === 'ELEGIVEL');
+  const cohort = [...priorExecution.cohort, ...currentCohort];
+  const allSuccesses = [...priorExecution.successes, ...successes];
+  const financialRows = [...priorExecution.cohort, ...preflight.filter((row) => row.current_price && !priorIds.has(row.pricing_group_id))];
   const avg = (rows, field) => rows.length ? round(rows.reduce((sum, row) => sum + Number(row[field] || 0), 0) / rows.length, 4) : 0;
-  fs.writeFileSync(path.join(OUTPUT_DIR, '00_RESUMO_EXECUTIVO.md'), `# Resumo executivo — experimento de pricing D0\n\n| Métrica | Resultado |\n|---|---:|\n| Universo inicial | ${sourceRows.length} |\n| Elegíveis após travas | ${preflight.filter((row) => row.status === 'ELEGIVEL').length} |\n| Alterados e confirmados | ${successes.length} |\n| Excluídos | ${excluded.length} |\n| Falhas de execução | ${failures.length} |\n| Sem alteração necessária | ${preflight.filter((row) => row.exclusion_reasons?.includes('SEM_REDUCAO_NECESSARIA')).length} |\n| Redução média | R$ ${round(avg(cohort, 'current_price') - avg(cohort, 'experimental_price')).toFixed(2)} |\n| Margem média anterior | ${avg(cohort, 'current_margin_pct').toFixed(4)}% |\n| Margem média experimental | ${avg(cohort, 'experimental_margin_pct').toFixed(4)}% |\n\nModo: **${APPLY ? 'EXECUÇÃO AUTORIZADA' : 'DRY-RUN'}**. Nenhum grupo com promoção, preço por quantidade ou automatização nativa do Mercado Livre foi alterado.\n`);
+  fs.writeFileSync(path.join(OUTPUT_DIR, '00_RESUMO_EXECUTIVO.md'), `# Resumo executivo — experimento de pricing D0\n\n| Métrica | Resultado |\n|---|---:|\n| Universo inicial | ${sourceRows.length} |\n| Elegíveis após travas | ${cohort.length} |\n| Alterados e confirmados | ${allSuccesses.length} |\n| Confirmados nesta execução | ${successes.length} |\n| Confirmados antes da retomada | ${priorExecution.successes.length} |\n| Excluídos | ${excluded.length} |\n| Falhas de execução pendentes | ${failures.length} |\n| Sem alteração necessária | ${excluded.filter((row) => row.exclusion_reasons?.includes('SEM_REDUCAO_NECESSARIA')).length} |\n| Redução média | R$ ${round(avg(cohort, 'current_price') - avg(cohort, 'experimental_price')).toFixed(2)} |\n| Margem média anterior | ${avg(cohort, 'current_margin_pct').toFixed(4)}% |\n| Margem média experimental | ${avg(cohort, 'experimental_margin_pct').toFixed(4)}% |\n\nModo: **${APPLY ? 'EXECUÇÃO AUTORIZADA' : 'DRY-RUN'}**. Nenhum grupo com promoção, preço por quantidade ou automatização nativa do Mercado Livre foi alterado.\n`);
   const cohortHeaders = ['sku','pricing_group_id','product_id','product_name','ml_item_ids','origin_ml_item_id','title','current_price','current_profit','current_margin_pct','experimental_price','experimental_profit','experimental_margin_pct','target_margin_pct','supplier_cost','fee_amount','shipping_amount','tax_rate','visits_30d','visits_90d','visits_150d','sales_30d','sales_90d','sales_150d','stock','price_to_win','catalog_synchronized_pair','sync_confirmed'];
   writeCsv('01_COORTE_EXPERIMENTAL.csv', cohort, cohortHeaders);
-  writeCsv('02_EXECUCOES_SUCESSO.csv', successes, ['sku','pricing_group_id','origin_ml_item_id','ml_item_ids','previous_price','applied_price','http_status','confirmed_at','observed_prices','warnings']);
+  writeCsv('02_EXECUCOES_SUCESSO.csv', allSuccesses, ['sku','pricing_group_id','origin_ml_item_id','ml_item_ids','previous_price','applied_price','http_status','confirmed_at','observed_prices','warnings']);
   writeCsv('03_EXCLUIDOS_TRAVAS.csv', excluded, ['sku','pricing_group_id','product_name','ml_item_ids','exclusion_reasons','current_price','current_margin_pct','visits_150d','sales_150d','has_promotion','has_quantity_pricing','has_ml_price_automation','evidence']);
   writeCsv('04_FALHAS_EXECUCAO.csv', failures, ['sku','pricing_group_id','error','fatal','write_status','observed','rollback_confirmed']);
   writeCsv('05_PARES_CATALOGO_SINCRONIZADOS.csv', cohort.filter((row) => row.catalog_synchronized_pair), ['sku','pricing_group_id','origin_ml_item_id','ml_item_ids','current_price','experimental_price','sync_confirmed']);
-  writeCsv('06_MEMORIA_FINANCEIRA.csv', preflight.filter((row) => row.current_price), ['sku','pricing_group_id','current_price','supplier_cost','fee_amount','shipping_amount','tax_rate','current_profit','current_margin_pct','experimental_price','experimental_profit','experimental_margin_pct','target_margin_pct','price_band']);
+  writeCsv('06_MEMORIA_FINANCEIRA.csv', financialRows, ['sku','pricing_group_id','current_price','supplier_cost','fee_amount','shipping_amount','tax_rate','current_profit','current_margin_pct','experimental_price','experimental_profit','experimental_margin_pct','target_margin_pct','price_band']);
   fs.writeFileSync(path.join(OUTPUT_DIR, '07_PLANO_MONITORAMENTO_30D.md'), `# Plano de monitoramento\n\nA task \`sync_ml_pricing_experiment_monitor\` executará de forma idempotente:\n\n- D+7: segurança e \`OBSERVACAO_SEM_TRAFEGO\` para zero visitas.\n- D+15: leitura intermediária e \`ALERTA_AMARELO_SEM_TRAFEGO\`.\n- D+30: auditoria formal e classificação final.\n\nSe o resultado unitário ficar negativo, o grupo será pausado e receberá \`ALERTA_CRITICO_PREJUIZO_EXPERIMENTO\`. Após D+30, o bloqueio de preço permanecerá até decisão da Diretoria.\n\nInício de referência: ${startedAt}. D+7: ${new Date(new Date(startedAt).getTime() + 7 * 86400000).toISOString()}; D+15: ${new Date(new Date(startedAt).getTime() + 15 * 86400000).toISOString()}; D+30: ${new Date(new Date(startedAt).getTime() + 30 * 86400000).toISOString()}.\n`);
   const names = ['00_RESUMO_EXECUTIVO.md','01_COORTE_EXPERIMENTAL.csv','02_EXECUCOES_SUCESSO.csv','03_EXCLUIDOS_TRAVAS.csv','04_FALHAS_EXECUCAO.csv','05_PARES_CATALOGO_SINCRONIZADOS.csv','06_MEMORIA_FINANCEIRA.csv','07_PLANO_MONITORAMENTO_30D.md'];
   const manifest = {
     experiment_id: EXPERIMENT_ID, mode: APPLY ? 'APPLY' : 'DRY_RUN', started_at: startedAt, finished_at: finishedAt,
     parameters: { source_groups: 430, visits_150d_max: 5, recurring_sales_min_orders: 2, freshness_minutes: 30, tax_rate: TAX_RATE, tax_rate_source: 'conservative_estimate', quantity_pricing: 'excluded' },
-    counts: { source: sourceRows.length, eligible: preflight.filter((row) => row.status === 'ELEGIVEL').length, changed: successes.length, excluded: excluded.length, failures: failures.length },
+    counts: { source: sourceRows.length, eligible: cohort.length, changed: allSuccesses.length, changed_this_run: successes.length, excluded: excluded.length, failures: failures.length },
     counters, safety: { automatic_price_protection: APPLY && successes.length > 0, no_schema_change: true, no_write_retry: true },
     official_sources: [
       'https://developers.mercadolivre.com.br/pt_br/usuarios-e-aplicativos/atualiza-tuas-publicacoes',
@@ -669,6 +711,21 @@ async function main() {
   if (!supabaseUrl || !serviceRole) throw new Error('Supabase self-hosted não configurado em .env.local');
   const db = createClient(supabaseUrl, serviceRole, { auth: { persistSession: false, autoRefreshToken: false } });
   global.__experimentDb = db;
+  let existingState = null;
+  if (APPLY) {
+    counters.db_select += 1;
+    const { data, error } = await db.from('sync_runtime_config').select('value').eq('key', CONFIG_KEY).maybeSingle();
+    if (error) throw new Error(`Falha ao verificar coorte existente: ${error.message}`);
+    if (data?.value) existingState = JSON.parse(String(data.value));
+    if (RESUME) {
+      if (!existingState || existingState.experiment_id !== EXPERIMENT_ID || !['active', 'executing'].includes(existingState.status)) {
+        throw new Error('Não existe coorte ativa compatível para retomada');
+      }
+    } else if (existingState?.status !== 'closed' && existingState) {
+      throw new Error(`Já existe uma coorte ${existingState.status || 'inválida'}; execução recusada`);
+    }
+  }
+  const priorExecution = loadPriorExecution();
   const integration = await getMlIntegration(db);
   const ml = createMl(integration.access_token);
   const me = await ml('/users/me?attributes=id,nickname');
@@ -713,20 +770,20 @@ async function main() {
     if ((index + 1) % 25 === 0) console.log(`Pré-validados ${index + 1}/${sourceRows.length}.`);
     return row;
   });
-  const eligible = preflight.filter((row) => row.status === 'ELEGIVEL');
+  const existingGroupIds = new Set((existingState?.groups || []).map((group) => String(group.pricing_group_id)));
+  const eligible = preflight.filter((row) => row.status === 'ELEGIVEL' && !existingGroupIds.has(row.pricing_group_id));
   const successes = [];
   const failures = [];
 
   if (APPLY && eligible.length) {
-    counters.db_select += 1;
-    const { data: existingState, error: existingStateError } = await db.from('sync_runtime_config')
-      .select('value').eq('key', CONFIG_KEY).maybeSingle();
-    if (existingStateError) throw new Error(`Falha ao verificar coorte existente: ${existingStateError.message}`);
-    if (existingState?.value) {
-      const parsed = JSON.parse(String(existingState.value));
-      if (parsed?.status !== 'closed') throw new Error(`Já existe uma coorte ${parsed?.status || 'inválida'}; execução recusada`);
-    }
-    let state = runtimeState(eligible, startedAt);
+    const nextState = runtimeState(eligible, startedAt);
+    let state = existingState ? {
+      ...existingState,
+      status: 'executing',
+      monitoring_until: nextState.monitoring_until,
+      groups: [...existingState.groups, ...nextState.groups],
+      updated_at: nowIso(),
+    } : nextState;
     await saveState(db, state);
     try {
       await neutralizePendingPriceOutboxes(db, eligible);
@@ -763,8 +820,9 @@ async function main() {
       if (index === 4 && failures.length) fatal = true;
     }
     const successSet = new Set(successes.map((row) => row.pricing_group_id));
-    state.groups = state.groups.filter((group) => successSet.has(group.pricing_group_id));
+    state.groups = state.groups.filter((group) => existingGroupIds.has(group.pricing_group_id) || successSet.has(group.pricing_group_id));
     if (!state.groups.length) state.status = 'closed';
+    else state.status = 'active';
     await saveState(db, state);
     counters.db_insert += 1;
     await db.from('jobs').insert({
@@ -774,7 +832,7 @@ async function main() {
     });
   }
 
-  const manifest = reportFiles({ sourceRows, preflight, successes, failures, startedAt, finishedAt: nowIso() });
+  const manifest = reportFiles({ sourceRows, preflight, successes, failures, priorExecution, startedAt, finishedAt: nowIso() });
   console.log(JSON.stringify({ output: OUTPUT_DIR, zip: `${OUTPUT_DIR}.zip`, ...manifest.counts, mode: manifest.mode }, null, 2));
 }
 

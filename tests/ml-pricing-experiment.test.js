@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const {
   checkpointClassification,
   evaluateEligibility,
+  groupWriteTargets,
   priceBand,
   stableTargetPrice,
 } = require('../scripts/lib/ml-pricing-experiment');
@@ -38,6 +39,7 @@ test('até 5 visitas entra e 6 visitas é excluído', () => {
   assert.equal(evaluateEligibility(base).eligible, true);
   assert.deepEqual(evaluateEligibility({ ...base, visits150: 6 }).reasons, ['EXCLUIDO_TRAFEGO_ACIMA_LIMITE']);
   assert.deepEqual(evaluateEligibility({ ...base, orders150: 2 }).reasons, ['MARGEM_PREMIUM_PRESERVADA']);
+  assert.deepEqual(evaluateEligibility({ ...base, productActive: false }).reasons, ['EXCLUIDO_PRODUTO_INATIVO']);
 });
 
 test('promoção, atacado e automação do ML são travas independentes', () => {
@@ -58,4 +60,11 @@ test('classificações dos checkpoints seguem a ordem operacional', () => {
   assert.equal(checkpointClassification({ checkpoint: 'D30', visits: 0, orders: 0 }), 'FALHA_DE_EXPOSICAO_PROVAVEL');
   assert.equal(checkpointClassification({ checkpoint: 'D30', visits: 30, orders: 0 }), 'TRAFEGO_SEM_CONVERSAO');
   assert.equal(checkpointClassification({ checkpoint: 'D30', visits: 30, orders: 2 }), 'EXPERIMENTO_COM_SUCESSO_FORTE');
+});
+
+test('escrita do pricing group cobre origem e todos os espelhos uma única vez', () => {
+  assert.deepEqual(
+    groupWriteTargets('MLB-REGULAR', ['MLB-CATALOGO', 'MLB-REGULAR', 'MLB-CATALOGO']),
+    ['MLB-REGULAR', 'MLB-CATALOGO'],
+  );
 });
