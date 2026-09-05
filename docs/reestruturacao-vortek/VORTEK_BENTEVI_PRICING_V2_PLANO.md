@@ -4,10 +4,10 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação:** em andamento; BNT-PRICING-V2-00 concluído documentalmente
+**Situação:** em andamento; M2M-PRC-01 / BNT-PRICING-V2-01 implementado como módulo puro, sem ativação operacional
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
-**Atualização em 05/09/2026:** gate de sequência DEV concluído com aceite das lacunas encaminhadas; `BNT-CFG-07` e seu refinamento tipográfico aprovados. O [dossiê BNT-PRICING-V2-00](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) foi produzido e validado, incluindo o delta adicional `b6e1b17..cffc64d`. Próximo passo: planejar `BNT-PRICING-V2-01`, sem execução automática. Nenhuma funcionalidade de pricing, escrita autônoma ou promoção foi liberada pela entrega documental.
+**Atualização em 05/09/2026:** a [ordem definitiva M2M da Diretoria](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md) prevalece sobre regras anteriores conflitantes. O responsável confirmou a preservação dos complementos compatíveis. V2-00 permanece como fotografia documental; V2-01 implementa somente política e estabilização puras. Próximo passo: planejar `M2M-PRC-02 / BNT-PRICING-V2-02`. Consumidores, publicadores e configuração de runtime ainda não foram migrados; nenhuma escrita autônoma ou promoção foi liberada.
 
 ---
 
@@ -29,7 +29,7 @@ A ordem bloqueante permanece; os passos 1 a 4 foram concluídos no nível aplic�
 2. resolver a decisão registrada e concluir `BNT-PARITY-GATE`;
 3. executar e aprovar `BNT-CFG-07`;
 4. executar `BNT-PRICING-V2-00`;
-5. executar uma única ação `BNT-PRICING-V2-N` por tarefa, de `01` a `15`, incluindo `08A`;
+5. executar uma única ação por tarefa na **fila unificada da seção 14**, com os identificadores M2M como correspondências, não tarefas duplicadas;
 6. executar `BNT-CFG-08`, consumindo os alertas e indicadores já estabilizados;
 7. executar `BNT-CFG-09`, incluindo agenda e saúde do job noturno;
 8. executar `BNT-PRICING-V2-16`;
@@ -67,7 +67,7 @@ As faixas são determinadas pelo **preço final**, não pelo custo:
 | Acima de R$ 1.000,00 | 10% | 15% | 20% |
 
 - **Piso:** mínimo operacional normal. Resultado abaixo do piso gera diagnóstico, não alteração cega.
-- **Alvo:** referência para preço novo, recomposição e experimento autorizado.
+- **Alvo:** referência para preço novo, publicação, simulação, recomposição e experimento autorizado.
 - **Limite de busca:** teto para a busca automática de aumento; não é margem máxima permitida.
 - Margem acima do limite com vendas deve ser preservada.
 
@@ -84,6 +84,8 @@ Os limites R$ 200,00, R$ 200,01, R$ 1.000,00 e R$ 1.000,01 são casos obrigatór
 
 Os pisos nominais de R$ 20, R$ 60 e R$ 150 deixam de governar o motor. A capacidade pode permanecer apenas como política opcional, tipada, auditável e desativada por padrão até nova homologação.
 
+Também retirar do caminho decisório a margem global legada e o piso universal de 10% para oportunidades. Não criar consumidores novos dos contratos antigos. Migrations/histórico não serão reescritos.
+
 ## 5. Economia unitária única
 
 A fórmula canônica é:
@@ -93,6 +95,8 @@ A fórmula canônica é:
 `margem_operacional = resultado_unitario / receita`
 
 Todo cálculo deve registrar a origem do custo, taxa, frete, tributo e preço. Fórmulas paralelas divergentes são proibidas.
+
+**Precedência definitiva:** taxa ML observada/viva válida vence fallback; frete/cotação ML viva vence local/fallback; custo vem de oferta elegível/preferencial ativa. Antes de pausar, bloquear publicação ou confirmar prejuízo por frete/tarifa, consultar ML vivo e recalcular. Fonte viva indisponível com dado local duvidoso gera `INCONCLUSIVO_FONTE_ML_INDISPONIVEL`, sem pausa automática. A implementação dessa revalidação pertence a `M2M-PRC-04`, após a economia central e o corte dos consumidores.
 
 Tributação deve preservar RBT12, alíquota efetiva, mínimo de 4% e PGDAS quando exigível, diferenciando sempre valores `estimated` e `confirmed`.
 
@@ -291,30 +295,40 @@ Coleções reais exigem tabelas tipadas. `sync_runtime_config` não pode virar a
 
 ## 14. Fila obrigatória
 
+Uma fila operacional; duas identificações na mesma linha representam **a mesma ação**. Os complementos preservados entram nas dependências, mantendo a ordem relativa M2M. Nenhuma equivalência de nome antecipa conclusão. Abaixo, 00 é fotografia e 01 é base pura já entregue; os demais itens permanecem pendentes.
+
 | Ordem | Ação | Prioridade | Entrega central |
 |---:|---|---|---|
 | 0 | `BNT-PRICING-V2-00` | P0 | Dossiê `AS_IS → TO_BE`, contratos, donos, consumidores, migrations e testes; nenhuma implementação funcional |
-| 1 | `BNT-PRICING-V2-01` | P0 | Faixas por preço final e convergência determinística |
-| 2 | `BNT-PRICING-V2-02` | P0 | Economia unitária única |
-| 3 | `BNT-PRICING-V2-03` | P0 | Retirar política antiga de custo/lucro mínimo do papel de motor |
-| 4 | `BNT-PRICING-V2-04` | P0 | Origem e audit trail do pricing |
-| 5 | `BNT-PRICING-V2-05` | P0 | Override manual explícito e lifecycle |
-| 6 | `BNT-PRICING-V2-06` | P1 | Liquidação interna |
-| 7 | `BNT-PRICING-V2-07` | P0 | Pricing groups e pares de catálogo |
-| 8 | `BNT-PRICING-V2-08` | P1 | Buy Box econômica |
-| 8A | `BNT-PRICING-V2-08A` | P1 | Diagnósticos de margem baixa, prejuízo, liquidação e margem premium |
-| 9 | `BNT-PRICING-V2-09` | P1 | Performance 30/90/150 separada da economia |
-| 10 | `BNT-PRICING-V2-10` | P1 | Experimentos |
-| 11 | `BNT-PRICING-V2-11` | P1 | Zero tráfego |
-| 12 | `BNT-PRICING-V2-12` | P0 operacional | Job noturno idempotente e observável |
-| 13 | `BNT-PRICING-V2-13` | P0 operacional | Alertas, confirmações, lifecycle e dedupe |
-| 14 | `BNT-PRICING-V2-14` | P1 | Centro acionável no Dashboard |
-| 15 | `BNT-PRICING-V2-15` | P1 | Configurações administrativas |
-| 16 | `BNT-PRICING-V2-16` | P0 release | Gate de autonomia |
+| 1 | `BNT-PRICING-V2-01` / `M2M-PRC-01` | P0 | Faixas finais e estabilização pura; sem ativação nos consumidores |
+| 2 | `BNT-PRICING-V2-02` / `M2M-PRC-02` | P0 | Economia unitária e memória únicas |
+| 3 | `BNT-PRICING-V2-03` / `M2M-PRC-03` | P0 | Retirar custo/lucro mínimo/margem global/piso universal de 10% do caminho decisório |
+| 4 | `M2M-PRC-04` | P0 | Precedência/revalidação ML viva e inconclusivo explícito |
+| 5 | `BNT-PRICING-V2-04` | P0 | Origem e audit trail do pricing |
+| 6 | `BNT-PRICING-V2-05` | P0 | Override manual explícito e lifecycle |
+| 7 | `BNT-PRICING-V2-06` | P1 | Liquidação interna |
+| 8 | `M2M-CFL-01` | P0 | Contrato canônico de conflitos independente do score |
+| 9 | `M2M-CFL-02` | P0 | Identidade, embalagem, kit e quantidade com evidência |
+| 10 | `BNT-PRICING-V2-07` / `M2M-CFL-03` | P0 | Anúncio existente, reativação, vínculo e grupos sincronizados |
+| 11 | `BNT-PRICING-V2-08` / `M2M-CFL-04` | P0 | Viabilidade competitiva e Buy Box econômica |
+| 12 | `BNT-PRICING-V2-08A` | P1 | Diagnósticos de margem baixa, prejuízo, liquidação e premium |
+| 13 | `BNT-PRICING-V2-09` | P1 | Performance 30/90/150 separada da economia |
+| 14 | `BNT-PRICING-V2-10` | P1 | Experimentos |
+| 15 | `BNT-PRICING-V2-11` | P1 | Zero tráfego |
+| 16 | `M2M-RAD-01` | P0 | Funil e priorização explicável nas seis dimensões |
+| 17 | `BNT-PRICING-V2-12` / `M2M-RAD-02` | P0 operacional | Uma rotina noturna de pricing/Radar com checkpoint, dedupe e cobertura |
+| 18 | `BNT-PRICING-V2-13` | P0 operacional | Alertas, confirmações, lifecycle e dedupe |
+| 19 | `BNT-PRICING-V2-14` / `M2M-RAD-03` | P0 | Dashboard, filas acionáveis e sete filas do Radar |
+| 20 | `BNT-PRICING-V2-15` | P1 | Configurações administrativas tipadas |
+| 21 | `M2M-RAD-04` | P0 | Reprocessar universo existente e candidatos revisados, sem pesquisa pesada |
+| 22 | `BNT-CFG-08` | P1 | Integrar Dashboard, TV e metas |
+| 23 | `BNT-CFG-09` | P1 | Integrar agenda e saúde operacional |
+| 24 | `BNT-PRICING-V2-16` / `M2M-GATE` | P0 release | Regressão, evidências, homologação e gate de autonomia |
+| 25 | `BNT-D20` | P1 | Composição visual final de Configurações |
 
 Cada ação terá critério de aceite, teste e evidência próprios. Não agrupar correções independentes. Migrations são novas, ensaiadas e aplicadas somente no `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura.
 
-**Contrato de transição definido em V2-00:** V2-01 entrega política/solver puro sem ligar escritores; V2-02 consolida economia/fontes/consumidores; V2-03 retira o legado do papel de motor, sem habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. O [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) contém os contratos C01–C08, decisões DEC-01–DEC-06, inventário de migrations e matriz de testes por ação. As decisões posteriores não bloqueiam planejar V2-01, mas bloqueiam as respectivas ativações.
+**Contrato de transição reconciliado com M2M:** V2-01 entregou política/solver puro sem ligar escritores; V2-02 consolida economia e contrato de memória; V2-03 migra consumidores e retira o legado do papel de motor; M2M-PRC-04 integra a revalidação das fontes ML. Não habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. O [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) contém C01–C10, decisões DEC-01–DEC-06, inventário de migrations e matriz de testes por ação. Pendências posteriores bloqueiam as respectivas ativações, não exigem decisão antecipada.
 
 ## 15. Gate de autonomia
 
@@ -406,3 +420,31 @@ As APIs oficiais sustentam o uso de `price_to_win` como informação competitiva
 **Complemento V2-00:** os 11 commits adicionais até `cffc64d` e os achados PRC-N01–PRC-N12 estão classificados na seção 4 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md). Isso atualiza o destino documental dos deltas, não comprova implantação, schema vivo ou homologação comercial da `main`. As três migrations novas daquele intervalo entram na reconciliação futura, sem replay nesta entrega.
 
 **Promoção:** `BNT-PARITY-FINAL` deve reconfirmar o SHA implantado e a existência de experimentos ativos/aguardando decisão, com continuidade ou encerramento autorizados e sem perder baseline, checkpoints ou travas. O relatório D0 não comprova o estado na data do release. Nenhum experimento produtivo será importado ou ativado em DEV para esta classificação.
+
+## 20. Incorporação definitiva M2M — contratos e entregáveis
+
+A transcrição integral está na [ordem da Diretoria](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md). Este plano e o dossiê mantêm o encaixe técnico; não são outra política comercial. As adições abaixo estão **pendentes de implementação**, exceto a seleção/estabilização pura PRC-01.
+
+- **CFL-01/02:** filtro independente de score com `SEM_CONFLITO`, `CONFLITO_CONFIRMADO`, `PENDENCIA_VALIDACAO`, `INCONCLUSIVO`. Comparar os atributos disponíveis e registrar motivos; GTIN isolado não supera contradição material. Variação legítima exige evidência. Kit/unidade/quantidade incompatível bloqueia automação, sem inventar dados ausentes.
+- **CFL-03:** consultar ativos, pausados, próprios, catálogo, pares e histórico. `JA_ANUNCIADO_ATIVO`, `REATIVACAO_CANDIDATA`, `NOVO_ANUNCIO_CANDIDATO` e `VINCULO_INCONCLUSIVO` são estados distintos; eliminar já anunciado do funil de **novo** anúncio não significa excluir/pausar o anúncio existente.
+- **CFL-04:** `VIAVEL_NO_ALVO`, `VIAVEL_ACIMA_DO_PISO`, `ABAIXO_DO_PISO_MAS_POSITIVO`, `PREJUIZO_NO_PRECO_COMPETITIVO` e `CONFLITO_ECONOMICO_DE_BUY_BOX`; abaixo do piso positivo vai à revisão, não a descarte automático. Abaixo de R$200, margem competitiva de 7,3% atende ao alvo da faixa. Confirmar origem viva antes de bloquear por frete/tarifa.
+- **RAD-01:** demanda (`SEM_EVIDENCIA_DE_DEMANDA`, `SINAL_INDIRETO`, `RANKING_ML`, `HISTORICO_PROPRIO`) prioriza, não define conflito; 404/ausência não prova falta de vendas. Exibir identidade, economia, demanda, competitividade, estoque e completude/qualidade separadamente. Funil e estados paralelos são os da seção 13 da ordem, sem promover automaticamente por score.
+- **RAD-02/03:** reusar scheduler e Dashboard. Sete filas mínimas: `PRONTOS_PARA_ANALISE`, `ALTA_PRIORIDADE`, `REATIVACOES`, `PENDENCIAS_IDENTIDADE`, `CONFLITOS`, `ECONOMICAMENTE_INVIAVEIS`, `EXPLORATORIOS`. Exibir todos os campos da seção 16 da ordem, inclusive origem/validade e recomendação; não duplicar a memória econômica ou o cadastro de alertas para cada consumidor.
+- **RAD-04:** localizar e identificar por hash/versão a planilha `oportunidades-ml.xlsx` e o universo revisado; esta entrega não afirma ter recebido o arquivo nem reprocessado 65 candidatos. Após implantação autorizada em DEV, reclassificar a base existente, identificar faltantes, separar reativações e medir impacto. Não executar o reprocessador histórico de produção, não pesquisar um novo universo pesado nem modificar ML.
+- **GATE:** testar as fronteiras e todos os casos de identidade/variação, embalagem, quantidade, anúncio existente, vínculo, reativação e catálogo; mesma memória no Radar/anúncio e mesmo preço no simulador; ML vivo desfaz falso prejuízo por dado stale. `AUTO_OBSERVE` para Radar; publicação permanece `REQUIRES_CONFIRMATION`, sem massa autônoma.
+
+### Entregáveis por ação — não gerar evidência fictícia
+
+| Artefato exigido | Ação responsável e fonte reutilizada |
+| --- | --- |
+| `00_RESUMO_EXECUTIVO.md` | M2M-GATE, consolidando resultados reais de cada ação |
+| `01_AS_IS_TO_BE.md` | M2M-GATE, síntese rastreável do dossiê e deltas por SHA |
+| `02_POLITICA_PRICING_CANONICA.md` | M2M-GATE, referência à ordem + evidência PRC-01/02/03/04, sem outra regra editável |
+| `03_CONTRATO_FILTRO_CONFLITOS.md` | M2M-CFL-01, evoluído com CFL-02/03/04 |
+| `04_MATRIZ_CONSUMIDORES_PRICING.md` | M2M-PRC-03, atualizando o inventário do dossiê |
+| `05_TESTES_E_EVIDENCIAS.md` | M2M-GATE, consolidando execuções por ação sem antecipar homologação |
+| `06_REPROCESSAMENTO_OPORTUNIDADES.xlsx` ou CSVs | M2M-RAD-04, somente após reprocessamento efetivo |
+| `07_PENDENCIAS_VALIDACAO.md`, `08_RISCOS_RESIDUAIS.md` | M2M-GATE, com pendências/rollback reais |
+| `manifest.json` | M2M-GATE: SHAs, hashes dos insumos/artefatos, cobertura, versões, ambiente e limites da evidência; sem secrets |
+
+Saídas finais serão reunidas em um diretório de relatório da execução M2M em DEV. A documentação canônica continua na base de reestruturação; os relatórios referenciam essas fontes, não criam motores ou políticas concorrentes.

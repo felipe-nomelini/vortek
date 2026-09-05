@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** planejar `BNT-PRICING-V2-01 — Faixas por preço final`, sem execução automática. `BNT-CFG-07` e o refinamento tipográfico foram aprovados; `BNT-PRICING-V2-00` foi concluído documentalmente com matriz AS_IS → TO_BE, contratos, deltas e testes de base. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
+**Próxima ação obrigatória:** planejar `M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única`, sem execução automática. A ordem definitiva M2M foi incorporada, preservando complementos compatíveis. `M2M-PRC-01 / BNT-PRICING-V2-01` implementou política/estabilização puras, ainda sem ativação nos consumidores. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
 
 ---
 
@@ -25,7 +25,7 @@ Antes de executar qualquer ação, consultar nesta ordem:
 6. código, schema, migrations, testes e configuração atuais;
 7. documentação oficial atual de qualquer tecnologia ou integração envolvida.
 
-Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página. Para `BNT-CFG-01` a `BNT-D20`, consultar ainda `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md`. Para qualquer ação `BNT-PRICING-V2-N`, consultar `VORTEK_BENTEVI_PRICING_V2_PLANO.md` e `VORTEK_BENTEVI_PRICING_V2_DOSSIE.md`, respeitando seu encaixe bloqueante.
+Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página. Para `BNT-CFG-01` a `BNT-D20`, consultar ainda `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md`. Para ações Pricing V2/M2M, consultar a ordem definitiva `VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md`, o plano `VORTEK_BENTEVI_PRICING_V2_PLANO.md` e o dossiê `VORTEK_BENTEVI_PRICING_V2_DOSSIE.md`, respeitando a fila unificada e os complementos compatíveis.
 
 Regras de uso:
 
@@ -65,7 +65,7 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 | Dossiê V2-00 concluído; implementação funcional pendente | Planejar `BNT-PRICING-V2-01` |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00 concluído; PRC-01/V2-01 implementado como módulo puro | Planejar `M2M-PRC-02 / BNT-PRICING-V2-02`; consumidores/Radar ainda pendentes |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -212,8 +212,9 @@ Regras de uso:
 - [x] Executar `BNT-PARITY-GATE`, conferir os commits e registrar o aceite das lacunas classificadas antes de liberar a sequência DEV.
 - [x] Aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`, incluindo refinamento dos cards e padronização tipográfica.
 - [x] Executar `BNT-PRICING-V2-00 — Dossiê AS_IS → TO_BE e contratos` após aprovação de `BNT-CFG-07`.
-- [ ] Planejar `BNT-PRICING-V2-01 — Faixas por preço final`, sem executar automaticamente a ação seguinte.
-- [ ] Executar `BNT-PRICING-V2-01` a `BNT-PRICING-V2-15`, incluindo `BNT-PRICING-V2-08A`, uma ação por vez e na ordem definida no plano canônico.
+- [x] Planejar e implementar `M2M-PRC-01 / BNT-PRICING-V2-01 — Faixas por preço final`, somente política/estabilização puras, sem ativação nos consumidores.
+- [ ] Planejar `M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única`.
+- [ ] Executar as ações restantes da fila unificada Pricing V2/M2M (seção 14 do plano), uma por tarefa e sem duplicar identificadores correspondentes.
 - [ ] Executar `BNT-CFG-08` somente depois de os alertas e indicadores de pricing necessários estarem estabilizados.
 - [ ] Executar `BNT-CFG-09` incluindo agenda, limites e saúde do job noturno já validado.
 - [ ] Executar `BNT-PRICING-V2-16 — Gate de autonomia` antes de permitir qualquer escrita autônoma de preço.
@@ -3076,34 +3077,41 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
-**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos no nível aplicável; V2-00 entregue documentalmente. O motor atual não foi alterado por esta entrega; próxima ação é planejar V2-01.
+**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos; V2-00 entregue documentalmente; V2-01/PRC-01 implementado no escopo puro aprovado. Consumidores ainda operam o contrato anterior; o corte é ação própria, não foi antecipado. Próxima ação: planejar V2-02/PRC-02.
 
 **Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
+
+**Precedência definitiva:** [ordem M2M da Diretoria](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md), incorporada integralmente; complementos anteriores compatíveis permanecem por confirmação do responsável. Correspondências abaixo são a mesma ação, não duas entregas independentes.
 
 **Objetivo:** substituir de forma controlada as faixas comerciais por custo por uma política baseada em preço final, economia unitária única, governança, pricing groups, performance, experimentos, alertas e autonomia graduada.
 
 #### Sequência bloqueante
 
 - [x] `BNT-PRICING-V2-00` — produzir matriz `AS_IS → TO_BE`, contratos, migrations previstas, donos, consumidores e testes, sem implementação funcional;
-- [ ] `BNT-PRICING-V2-01` — faixas por preço final;
-- [ ] `BNT-PRICING-V2-02` — economia unitária única;
-- [ ] `BNT-PRICING-V2-03` — retirar a política antiga de custo/lucro mínimo do papel de motor;
+- [x] `BNT-PRICING-V2-01` / `M2M-PRC-01` — faixas finais e estabilização pura, sem ativação nos consumidores;
+- [ ] `BNT-PRICING-V2-02` / `M2M-PRC-02` — economia unitária e memória únicas;
+- [ ] `BNT-PRICING-V2-03` / `M2M-PRC-03` — retirar custo/lucro nominal/margem global/piso universal de 10% do caminho decisório;
+- [ ] `M2M-PRC-04` — precedência/revalidação ML viva e `INCONCLUSIVO_FONTE_ML_INDISPONIVEL`;
 - [ ] `BNT-PRICING-V2-04` — origem e audit trail do pricing;
 - [ ] `BNT-PRICING-V2-05` — override manual explícito;
 - [ ] `BNT-PRICING-V2-06` — liquidação interna;
-- [ ] `BNT-PRICING-V2-07` — pricing groups e catálogo;
-- [ ] `BNT-PRICING-V2-08` — Buy Box econômica;
+- [ ] `M2M-CFL-01` — contrato de conflitos independente do score;
+- [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
+- [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos;
+- [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
 - [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem;
 - [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
 - [ ] `BNT-PRICING-V2-10` — experimentos;
 - [ ] `BNT-PRICING-V2-11` — zero tráfego;
-- [ ] `BNT-PRICING-V2-12` — job noturno idempotente e observável;
+- [ ] `M2M-RAD-01` — funil e priorização explicável, com demanda separada de conflito;
+- [ ] `BNT-PRICING-V2-12` / `M2M-RAD-02` — rotina única noturna de pricing/Radar, idempotente e observável;
 - [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe;
-- [ ] `BNT-PRICING-V2-14` — centro acionável no Dashboard;
+- [ ] `BNT-PRICING-V2-14` / `M2M-RAD-03` — Dashboard com filas acionáveis e sete filas do Radar;
 - [ ] `BNT-PRICING-V2-15` — configurações administrativas;
+- [ ] `M2M-RAD-04` — reprocessar universo da planilha e candidatos revisados, sem pesquisa externa pesada;
 - [ ] `BNT-CFG-08` — integrar Dashboard, TV e metas aos contratos estabilizados;
 - [ ] `BNT-CFG-09` — integrar agenda e saúde operacional do job noturno;
-- [ ] `BNT-PRICING-V2-16` — gate de autonomia;
+- [ ] `BNT-PRICING-V2-16` / `M2M-GATE` — regressão M2M, relatórios, manifest, homologação e gate de autonomia;
 - [ ] `BNT-D20` — composição visual final de Configurações.
 
 **Regras de transição:** não manter motores paralelos publicando preços; alteração automática permanece `REQUIRES_CONFIRMATION` por padrão; nenhuma migration sai do `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura; cada ação exige teste, evidência e rollback próprios.
@@ -3338,3 +3346,15 @@ Encaminhamento após aprovação: `BNT-PRICING-V2-00`, concluído na evidência 
 **Limites:** somente três documentos; sem migrations, código funcional, credenciais, alteração de preço/configuração, deploy, acesso a banco ou execução de scripts históricos. Nenhuma escrita em `main`/produção. As três novas migrations de `main` devem integrar a reconciliação futura, não foram aplicadas nem registradas por esta ação.
 
 **Pendências encaminhadas:** decisões comerciais, fiscais, fonte/validade, liquidação, experimentos e agenda nas ações donas do dossiê. Não impedem planejar V2-01; impedem ativar os comportamentos correspondentes sem seus aceites. Gate de autonomia e PARITY-FINAL continuam obrigatórios.
+
+## Evidência M2M-PRC-01 / BNT-PRICING-V2-01 — Política por preço final (05/09/2026)
+
+**Estado:** implementado e validado no escopo puro aprovado; **não ativado nos consumidores**. Próxima ação: planejar `M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única`.
+
+**Mudança:** ordem integral da Diretoria incorporada, plano e dossiê reconciliados com a fila M2M e complementos compatíveis. Módulo `src/services/pricing-policy.ts`, tipos em `src/types/pricing.ts` e suíte `tests/m2m-prc-01-final-price-policy.test.js`. Versão `M2M-PRC-01-v1`, bandas por centavos finais, piso/alvo/limite, validação, menor solução estável, ciclos e teto técnico de 12 iterações por candidata. Erro explícito sem preço substituto e sem reproduzir mensagem arbitrária do calculador. Nenhuma fórmula financeira nova ou dependência adicionada.
+
+**Validação executada:** 102 testes passaram, zero falhas: 26 novos + 76 de pricing/comercial/atividade/oferta/PxQ/tracking/outbox existentes. Execução dos casos via Node e `node:test` no mesmo processo; o runner `node --test` isolado neste ambiente reportou apenas o arquivo, por isso a contagem foi confirmada diretamente. `npm run validate` passou. Aviso pré-existente `MODULE_TYPELESS_PACKAGE_JSON` não bloqueou testes e não motivou alteração de configuração. Sem build/smoke visual por ser módulo puro sem ligação às rotas/UI/runtime.
+
+**Escopo preservado:** HEAD anterior `880bfca`, branch `dev` inicialmente limpa. Não mudou `src/services/pricing.ts` nem consumidores atuais, banco, migrations, configuração comercial, preço ou anúncio. Sem acesso autenticado a integrações, publicação em massa, deploy ou escrita produtiva. `AGENTS.md` intacto. A origem do cálculo central continua no domínio de pricing; integração econômica será PRC-02 e corte dos consumidores PRC-03.
+
+**Pendências reais:** economia/cotações, consumidores, trilha/proteções/confirmações, conflitos/Radar e reprocessamento da planilha continuam pendentes na fila unificada. Sucesso na estabilização de faixa não comprova margem econômica, dado vivo ou autorização de publicação. Os relatórios de implantação/reprocessamento/homologação serão gerados apenas nas ações correspondentes.

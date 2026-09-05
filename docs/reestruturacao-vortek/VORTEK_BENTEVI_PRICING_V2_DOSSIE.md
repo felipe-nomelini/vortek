@@ -2,6 +2,8 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
+**Atualização posterior — M2M-PRC-01:** a fotografia V2-00 abaixo foi preservada. A ordem definitiva recebida e a implementação pura V2-01 estão registradas na seção 11. Próxima ação atual: `M2M-PRC-02 / BNT-PRICING-V2-02`; prevalece a [ordem M2M](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md), com complementos compatíveis confirmados pelo responsável.
+
 ## 1. Escopo, autoridade e fotografia
 
 A política e a fila pertencem a [VORTEK_BENTEVI_PRICING_V2_PLANO.md](VORTEK_BENTEVI_PRICING_V2_PLANO.md). Este dossiê especifica o encaixe técnico, sem substituir essa fonte. A execução continua no [checklist do Item 17](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md). Os critérios `PRC-D01` a `PRC-D16` permanecem na seção 4.1 de [Paridade de regras](VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md); o complemento desta captura está na seção 4 abaixo.
@@ -83,7 +85,7 @@ Busca de evidência: `calculateSuggestedPrice`, `calculateExactMarginPrice`, `ca
 
 ## 3. Contratos TO_BE
 
-Todos os contratos abaixo são **propostos para implementação posterior**, não exports, tabelas ou endpoints existentes no DEV. A fila canônica é a fonte dos percentuais, níveis de autonomia e nomes dos diagnósticos.
+Na fotografia V2-00, todos os contratos abaixo eram **propostos para implementação posterior**. C01 foi posteriormente implementado apenas como seleção/estabilização pura (seção 11); C02–C08 e contratos do Radar continuam pendentes. A fila canônica é a fonte dos percentuais, níveis de autonomia e nomes dos diagnósticos.
 
 ### C01 — Política e solução por preço final (V2-01)
 
@@ -91,7 +93,7 @@ Entrada: política/versionamento, preço final em centavos BRL, objetivo `floor 
 
 Saída discriminada: solução com preço, faixa, objetivo, iterações e memória, ou falha explícita. Estados mínimos de erro: política inválida, dados ausentes/inválidos, denominador inviável, cotação incompatível e `PRECIFICACAO_NAO_CONVERGIU`.
 
-O solver deve estimar pela faixa candidata, verificar a faixa do preço resultante, recalcular ao cruzá-la e parar apenas quando faixa **e economia do preço final** forem consistentes. Detectar ciclos, limitar iterações e reavaliar após arredondamento. Explorar candidatos em ordem estável; se houver mais de uma solução válida, a proposta é selecionar a menor que cumpra o objetivo e a faixa, sem transformar isso em recomendação de reduzir preço vigente. O limite técnico e essa seleção serão fechados e testados no planejamento V2-01; os 12 passos da `main` não são requisito comercial homologado.
+O solver deve estimar pela faixa candidata, verificar a faixa do preço resultante, recalcular ao cruzá-la e parar apenas quando faixa **e economia do preço final** forem consistentes. Detectar ciclos, limitar iterações e reavaliar após arredondamento. Decisão técnica aprovada em V2-01: candidatos em ordem crescente, menor solução estável e limite de 12 iterações por candidato; isso não é recomendação de reduzir preço vigente nem parâmetro comercial. A implementação pura verifica o ponto fixo da faixa; cumprimento econômico da margem pertence ao calculador injetado, que será integrado e validado em PRC-02/04. A fotografia da `main` não foi importada como motor ou configuração de runtime.
 
 Valores monetários do contrato usam centavos; taxa mantém precisão separada. Proposta calculada deve subir ao próximo centavo quando necessário para cumprir o objetivo, seguida de recálculo do resultado. Não arredondar tarifa duas vezes nem substituir cotação oficial por percentual inferido. A regra de arredondamento do tributo projetado deve ficar explícita e testada em V2-02; não alterar arredondamento fiscal de documentos emitidos.
 
@@ -255,11 +257,11 @@ Rollback deve interromper a nova escrita/task e manter observação, dados e tri
 | DEC-01 | Modelo de custos variáveis e comprovação de zero, validade/contexto de cada fonte, arredondamento projetado e dados fiscais por competência | V2-02 antes de declarar economia executável; controles finais V2-15 |
 | DEC-02 | Amostra mínima, recorrência, critérios de margem funcional/premium, severidade financeira e coortes | V2-08A/09 antes de classificar por limiar não homologado |
 | DEC-03 | Horário/limites da janela noturna, volume e orçamento real de APIs; cobertura com falhas | V2-12/CFG-09 antes de habilitar rotina remota |
-| DEC-04 | Harmonizar `Safe Publication Mode` legado (proteção de 50%/frete) com precedência/autorização V2, sem restaurar markup ou corte comercial cego | V2-03/04 antes de liberar criação/ajuste pós-criação pela V2 |
+| DEC-04 | Direção comercial resolvida pela ordem definitiva: alvo canônico para publicação; proteção fixa de 50% não é motor alternativo. Revalidar ML antes de concluir por risco de frete/tarifa; inconclusivo não gera pausa automática | Retirada do caminho legado ainda pendente em V2-03/M2M-PRC-04, antes de liberar criação/ajuste pela V2 |
 | DEC-05 | Prazo de decisões, alçadas e limites econômicos/quantidades de liquidação; políticas dos experimentos | V2-06/10/13 antes de ativar exceções/experimentos ou escrita por decisão |
 | DEC-06 | Semântica de visitas/conversão por grupo e marco inicial D7/D15/D30 quando há pausas/falta de coleta | V2-09/11 antes dos indicadores/alertas correspondentes |
 
-Essas pendências não exigem decisões antecipadas nem bloqueiam planejar V2-01. No planejamento V2-01 devem ficar fechados algoritmo, limite técnico, arredondamento do preço e escolha entre soluções estáveis, com testes, mantendo integrações fora do escopo. Não copiar como política global 24h/02h/50/4 da `main`, cinco iterações/limiares/alíquota de experimento histórico ou prazo de estratégia de outro fluxo.
+As decisões técnicas de V2-01 foram fechadas conforme seção 11; as demais pendências continuam nas ações responsáveis, sem exigir decisão antecipada. Não copiar como política global 24h/02h/50/4 da `main`, cinco iterações/limiares/alíquota de experimento histórico ou prazo de estratégia de outro fluxo.
 
 ## 8. Matriz de aceite e regressões futuras
 
@@ -306,3 +308,37 @@ Consulta em 05/09/2026. O acesso direto a páginas do ML apresentou bloqueio/err
 - [PostgreSQL 15 — locks explícitos](https://www.postgresql.org/docs/15/explicit-locking.html): leitura direta; locks transacionais terminam com a transação e locks consultivos dependem de cooperação. Reusar lock do domínio e testar posse/concorrência não torna chamada ML parte da transação. A versão 15 é referência de compatibilidade histórica de produção, não prova da versão atual do DEV.
 
 **Conclusão:** escopo V2-00 entregue sem alteração funcional. Próximo passo: planejar **BNT-PRICING-V2-01 — Faixas por preço final**. Permanecem bloqueados escrita autônoma, promoção e os aceites comerciais/operacionais das ações posteriores.
+
+## 11. M2M definitivo e implementação PRC-01 / V2-01 — 05/09/2026
+
+**Fotografia anterior à implementação:** `dev` em `880bfca`, árvore limpa. Inspeção confirmou `calculateSuggestedPrice/getPricingStrategy` ainda por custo em `src/services/pricing.ts`, tipos legados em `src/types/pricing.ts` e testes RULE-02/CFG-03 vigentes. Não houve nova captura de `main`, banco ou sistema produtivo; PRC-D/PRC-N continuam referências datadas.
+
+**Fonte incorporada:** [ordem M2M integral](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md). Confirmado pelo responsável: prevalece nos conflitos e preserva os complementos compatíveis. A [seção 14 do plano](VORTEK_BENTEVI_PRICING_V2_PLANO.md) contém uma fila única, respeitando a ordem M2M com os complementos/dependências Bentevi; os identificadores correspondentes não são tarefas duplicadas.
+
+### Implementação e interfaces
+
+- `src/services/pricing-policy.ts`: `FINAL_PRICE_POLICY` imutável e versionada `M2M-PRC-01-v1`, `isFinalPricePolicy`, `getFinalPriceBand`, `resolveFinalPrice` e teto técnico de 12 iterações por candidato. Não há agenda, fallback financeiro, acesso a banco/rede ou comando de publicação.
+- `src/types/pricing.ts`: tipos readonly de política/faixa, objetivo (`floor | target | limit | break_even`), calculador e resultado discriminado de sucesso/falha. Contratos atuais dos consumidores não foram alterados.
+- `resolveFinalPrice` recebe política opcional (omissão usa a canônica; política inválida não usa fallback), objetivo e calculador puro síncrono. O calculador recebe faixa/objetivo/margem sobre receita e retorna centavos positivos seguros já arredondados para cumprir o objetivo. PRC-01 não duplica fórmula econômica nem presume cotação atual; PRC-02/04 integrarão a economia/cotação compatível.
+- Três candidatas em ordem crescente; recalcular ao cruzar faixa, detectar ciclo, escolher menor solução estável. Um ciclo em uma candidata não elimina outra solução estável; erro/valor inválido de cálculo interrompe a resolução inteira, mesmo após achar candidata estável. Saída sem sucesso não contém preço substituto.
+- Sucesso informa versão, objetivo, faixa, centavos e total de cálculos. Falhas: `POLITICA_PRICING_INVALIDA`, `OBJETIVO_PRICING_INVALIDO`, `PRECO_CANDIDATO_INVALIDO`, `CALCULO_CANDIDATO_FALHOU`, `PRECIFICACAO_NAO_CONVERGIU`. Mensagem arbitrária do callback não é reproduzida.
+- Não arredondar preços arbitrários na entrada: centavo fracionário/inseguro é inválido. A conversão/arredondamento econômico será do calculador central PRC-02. Com três faixas e callback determinístico, ciclos são detectados antes do teto de 12; não são necessárias 12 tentativas para provar impossibilidade.
+- Limite de busca é informação da política; o módulo não recebe preço vigente ou performance nem produz ação de redução. Não foi implementado ainda o diagnóstico completo de margem premium.
+
+### Complementos do Radar — especificados, não implementados
+
+O catálogo de contratos passa a incluir **C09 — filtro de conflitos/identidade/vínculo/economia** e **C10 — demanda, funil e priorização do Radar**, com os estados exatos nas seções 8–16 da ordem. Os donos são CFL-01/02/03/04 e RAD-01. Reativação não é novo anúncio; fonte ausente/404 de ranking não reprova; identidade incompleta não é divergência comprovada; GTIN não contorna contradição de kit/quantidade. O grupo exige prova de sincronismo. Estado competitivo abaixo do piso positivo exige revisão, não piso universal de 10%.
+
+C02 recebe a precedência viva e `INCONCLUSIVO_FONTE_ML_INDISPONIVEL` antes de bloqueio por frete/tarifa. C08 incorpora as sete filas do Radar, rotina única e reprocessamento futuro da planilha. As seis filas de decisão econômica já aprovadas continuam como complemento, sem duplicar alertas, economia ou cadastros. A ordem não autoriza publicação automática em massa.
+
+Os entregáveis exigidos `00` a `08` e `manifest.json` estão associados às ações na seção 20 do plano. Não foram geradas planilhas reclassificadas, relatórios de implantação, testes remotos ou evidências de homologação fictícias nesta entrega.
+
+### Validação e limites
+
+- 26 testes novos executados por `node tests/m2m-prc-01-final-price-policy.test.js`: fronteiras, centavos, política inválida/imutável, objetivos, cruzamentos, ciclos, menor solução, erro explícito, repetibilidade e isolamento do módulo.
+- `npm run validate` passou (ESLint + TypeScript). Testes de regressão anteriores e consistência documental registrados no checklist após execução.
+- Regressão conjunta confirmada: 102 testes passaram (26 novos + 76 existentes). Conferência documental: 19 links locais válidos, 24 seções numeradas da ordem integral e 13 ações M2M na mesma ordem no plano/checklist; somente V2-00 e PRC-01 concluídos no bloco. `git diff --check` passou.
+- Fontes técnicas lidas: [TypeScript — unions discriminadas](https://www.typescriptlang.org/docs/handbook/2/narrowing.html), [Node 22 — TypeScript e import type](https://nodejs.org/docs/latest-v22.x/api/typescript.html) e guia TypeScript instalado do Next.js. O módulo usa imports somente de tipos e é testado no Node existente, sem mudança de dependências ou tsconfig.
+- Sem build/deploy: módulo puro não ligado aos consumidores, sem alteração de rotas/UI/configuração de framework. Sem migration, banco, segredo ou escrita ML. `AGENTS.md` preservado. Reversão desta ação é retirada do módulo/tipos/testes novos e atualização documental; não há efeito financeiro remoto a compensar.
+
+**Resultado:** PRC-01/V2-01 implementado no escopo puro aprovado. **Ainda pendente:** integrar economia/cotações, migrar consumidores, governar escritas e implementar conflitos/Radar. Não afirmar que o sistema já opera integralmente pela nova política. Próxima ação: planejar **M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única**.
