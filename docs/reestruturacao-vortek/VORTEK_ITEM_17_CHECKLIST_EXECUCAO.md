@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`, publicada em homologação no commit `77781c5`. Depois da aprovação visual, planejar `BNT-PRICING-V2-00`. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
+**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`, refinada com cards e espaçamento das abas e publicada em homologação no commit `2583ad8`. Depois da aprovação visual, planejar `BNT-PRICING-V2-00`. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
 
 ---
 
@@ -3300,7 +3300,9 @@ Quando estes critérios estiverem concluídos, fazer uma revisão final das audi
 
 **Estado:** implementada e publicada em homologação; aguardando aprovação visual.
 
-**Refinamento solicitado pelo responsável:** espaçamento compartilhado de 24 px abaixo das oito abas; retirada da borda adicional da navegação e das linhas da lista; dez cards responsivos com logos oficiais locais, categoria, descrição, estado e ação. Orientação única substitui avisos runtime repetidos, sem remover restrições específicas nem mudar os contratos. 74 testes de integrações, 13 testes do deploy, validate e build passaram. Renderização local com CSS compilado a 1440/900/390 px confirmou 3/2/1 colunas, dez cards, gap de 24 px e ausência de overflow/imagens quebradas. Publicação do refinamento será registrada após confirmação do artefato DEV. Aprovação visual continua pendente.
+**Refinamento solicitado pelo responsável:** espaçamento compartilhado de 24 px abaixo das oito abas; retirada da borda adicional da navegação e das linhas da lista; dez cards responsivos com logos oficiais locais, categoria, descrição, estado e ação. Orientação única substitui avisos runtime repetidos, sem remover restrições específicas nem mudar os contratos. 74 testes de integrações, 13 testes do deploy, validate e build passaram. Renderização local com CSS compilado a 1440/900/390 px confirmou 3/2/1 colunas, dez cards, gap de 24 px e ausência de overflow/imagens quebradas. Aprovação visual continua pendente.
+
+**Publicação do refinamento:** commit `2583ad8eab462544a6068bf38f4cbe3a162f647f`, somente `origin/dev`; ação oficial Easypanel `cmton9a7r000607tc8kpng5bc` concluída (`done`, 05/09/2026 17:18:13 UTC). Container do serviço `local_vortek-erp-dev` confirmou o mesmo SHA. JS público `1w8av4pnqjzae.js` e CSS `12zy-7efpm5mr.css` retornaram 200 e contêm a nova interface, margem das abas e grade responsiva. Logos públicos Brasil NFe/MP, login e health: 200; Configurações sem sessão: 307; API administrativa sem sessão: 401. Screenshots locais com componentes reais, dados sintéticos e CSS compilado: `/tmp/bnt-cfg07-cards-compiled-{1440,900,390}.png` (artefatos temporários, não versionados). Não houve teste autenticado remoto de edição/provedores, alteração de credenciais, banco ou produção.
 
 - [x] painel com dez integrações agrupadas; drawer DSLite, Brasil NFe e Mercado Pago;
 - [x] Mercado Livre, feeds e canais preservam suas áreas responsáveis;
