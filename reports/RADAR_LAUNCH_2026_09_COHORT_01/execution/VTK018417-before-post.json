@@ -1,0 +1,347 @@
+{
+  "at": "2026-09-05T21:00:50.695Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391140",
+    "observedAt": "2026-09-05T21:00:46.834Z",
+    "product": {
+      "produtoid": "391140",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 10.7,
+      "preco_crossdocking": 10.7,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 10.7,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto",
+      "titulo_curto": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto",
+      "categoriaid": "117690",
+      "categoria_nome": "Eletronica/ Acessórios/ Acessórios",
+      "abc": null,
+      "ean11": "7899471892213",
+      "ncm": "92099200",
+      "descricao": "<p>Capotraste de alumínio para violão MXT MC-5001 Preto.</p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "Capotraste de Alumínio para Violão MXT MC-5001 Preto",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MXT",
+      "modelo": "",
+      "peso": 0.048,
+      "largura": 9,
+      "altura": 1,
+      "profundidade": 12.5,
+      "peso_embalagem": 0.048,
+      "largura_embalagem": 9,
+      "altura_embalagem": 1,
+      "profundidade_embalagem": 12.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 13,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-31 17:47:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-31 17:47:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 9,
+      "tempo_cross": 0,
+      "estoque_total": 9,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "MXT",
+        "remote": "MXT",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "mc-5001",
+        "remote": "MC-5001",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "variation",
+        "local": "preto",
+        "remote": "Preto",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "family_name": "Capotraste MXT MC-5001 alumínio preto para violão",
+    "category_id": "MLB271125",
+    "catalog_product_id": "MLB78766975",
+    "catalog_listing": true,
+    "price": 32.32,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018417/dd1b2e78747410ca2eed535d3a37992d08f036446a9017325aed28f1a53da248.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24280759",
+        "value_name": "MC-5001"
+      },
+      {
+        "id": "CAPO_TYPE",
+        "value_id": "27360424",
+        "value_name": "Metal"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7566493",
+        "value_name": "8 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7966600",
+        "value_name": "7 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "7818553",
+        "value_name": "8 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "13822632",
+        "value_name": "100 g"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "112648",
+        "value_name": "Metal"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENTS",
+        "value_name": "Contrabaixo, Guitarra elétrica, Violão",
+        "values": [
+          {
+            "id": "3565994",
+            "name": "Contrabaixo"
+          },
+          {
+            "id": "4180050",
+            "name": "Guitarra elétrica"
+          },
+          {
+            "id": "27739334",
+            "name": "Violão"
+          }
+        ]
+      },
+      {
+        "id": "WITH_SILICONE_PAD",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7899471892213"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK018417"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      }
+    ],
+    "seller_custom_field": "VTK018417",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Capotraste MXT MC-5001 alumínio preto para violão\n\n• Capotraste de alumínio na cor preta.\n• Modelo MC-5001, indicado para violão.\n\nDIMENSÕES DA EMBALAGEM\n12.5 × 9 × 1 cm; peso bruto 0.048 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK018417",
+  "memory": {
+    "price": 32.32,
+    "cost": 10.7,
+    "offerId": "bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:48:31.322+00:00",
+    "fee": {
+      "amount": 3.72,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T21:00:50.439Z",
+      "evidence": "/sites/MLB/listing_prices?price=32.32&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "b9246483f4592369e0a3ff932fd16ee075d9aa993001e3cbd007263bf24d2db2"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T21:00:50.439Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=32.32&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "contextKey": "b9246483f4592369e0a3ff932fd16ee075d9aa993001e3cbd007263bf24d2db2"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T21:00:50.354Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T21:00:50.439Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 2.68,
+    "result": 2.27,
+    "margin": 0.07023514851485149,
+    "status": "estimated"
+  },
+  "evaluationId": "f7776b46-7220-4b13-a59d-2080944db78c",
+  "approvalId": "99deccfb-fc73-49df-9758-5f0546c47da2",
+  "duplicates": [],
+  "quantity": 2
+}

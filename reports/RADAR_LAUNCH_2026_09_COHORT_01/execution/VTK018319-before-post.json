@@ -1,0 +1,406 @@
+{
+  "at": "2026-09-05T20:50:24.088Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/387946",
+    "observedAt": "2026-09-05T20:50:19.816Z",
+    "product": {
+      "produtoid": "387946",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 155.9,
+      "preco_crossdocking": 155.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 155.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+      "titulo_curto": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+      "categoriaid": "118406",
+      "categoria_nome": "Ferramentas/ Ferramentas Eletricas / Esmerilhadeira",
+      "abc": null,
+      "ean11": "7908414493698",
+      "ncm": "84672999",
+      "descricao": "<p><strong>Esmerilhadeira Angular 127v-700w para Disco 4-1/2 Polegadas, Empunhadura com 2 Posições Multi - FE048</strong></p>\r\n<p>Empunhadura (punho) removível com 2 posições que pode ser usado em ambos os lados para maior comodidade e controle durante as operações. Desenvolvida com velocidade de 12000RPM, potência de 700W e capacidade de disco 4-1/2’ 115mm. É compacta e pode ser usada até mesmo em lugares de difícil acesso e conta com dupla isolação, garantindo maior segurança ao operador.</p>\r\n<p><strong>Ideal para trabalhos como: </strong><br />Cortar<br />Lixar<br />Desbastar <br />Polir</p>\r\n<p> </p>\r\n<p> </p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p><strong>Cor</strong><br />Cinza<br /><strong>Material</strong><br />SiliconePlástico<br /><strong>Composição do Material</strong><br />Metal e plástico<br /><strong>Peso do produto</strong><br />1460g<br /><strong>Largura do produto</strong><br />10cm<br /><strong>Altura do produto</strong><br />26cm<br /><strong>Comprimento do produto</strong><br />10.5cm<br /><strong>Potência</strong><br />700W<br /><strong>Tensão</strong><br />127V<br /><strong>Medidor de Velocidade</strong><br />12000 RPM</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MULTILASER",
+      "modelo": "",
+      "peso": 1.506,
+      "largura": 15,
+      "altura": 35,
+      "profundidade": 25,
+      "peso_embalagem": 1.506,
+      "largura_embalagem": 15,
+      "altura_embalagem": 35,
+      "profundidade_embalagem": 25,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1435,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "08.019.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-26 13:47:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-26 13:47:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "MULTILASER",
+        "remote": "Multilaser",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "fe048",
+        "remote": "FE048",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "family_name": "Esmerilhadeira Multi FE048 700W 127V disco 115mm",
+    "category_id": "MLB188790",
+    "catalog_product_id": "MLB39329744",
+    "catalog_listing": true,
+    "price": 258.72,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018319/1454e795cd8520c6bba9b887bebecc086fbfaa903e346631541b5e97871d1df3.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "31163",
+        "value_name": "Multilaser"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "26443549",
+        "value_name": "FE048"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "40777194",
+        "value_name": "FE048"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "283165",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "MIN_ROTATION_SPEED",
+        "value_id": "7736464",
+        "value_name": "0 rpm"
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "value_id": "7917380",
+        "value_name": "12000 rpm"
+      },
+      {
+        "id": "SOUND_PRESSURE_LEVEL",
+        "value_id": "7898951",
+        "value_name": "89 dBA"
+      },
+      {
+        "id": "POWER",
+        "value_id": "96684",
+        "value_name": "700 W"
+      },
+      {
+        "id": "POWER_GRINDER_TYPE",
+        "value_id": "5285127",
+        "value_name": "Angular"
+      },
+      {
+        "id": "IS_MINI_POWER_GRINDER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "DISC_DIAMETER",
+        "value_id": "5285126",
+        "value_name": "115 mm"
+      },
+      {
+        "id": "SWITCH_TYPE",
+        "value_id": "1033083",
+        "value_name": "Tecla"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "6171164",
+        "value_name": "1.46 kg"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "28288144",
+        "value_name": "10.5 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "10791702",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "28288132",
+        "value_name": "26 cm"
+      },
+      {
+        "id": "WITH_PROGRESSIVE_START",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SPEED_REGULATION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "7736465",
+        "value_name": "2 m"
+      },
+      {
+        "id": "INCLUDES_DUST_SHROUD",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_DISC_PROTECTOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "8117352",
+        "value_name": "Manual"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7908414493698"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK018319"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_CUTTING_DEPTH",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK018319",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Esmerilhadeira Multi FE048 700W 127V disco 115mm\n\n• Alimentação: 127 V; potência: 700 W.\n• Rotação de 12000 rpm e disco de 115 mm.\n• Empunhadura removível com duas posições.\n\nDIMENSÕES DA EMBALAGEM\n25 × 15 × 35 cm; peso bruto 1.506 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK018319",
+  "memory": {
+    "price": 258.72,
+    "cost": 155.9,
+    "offerId": "6f20e543-6383-4a8f-a2dd-7697c757c67d",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:57:17.834+00:00",
+    "fee": {
+      "amount": 28.46,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:50:23.840Z",
+      "evidence": "/sites/MLB/listing_prices?price=258.72&category_id=MLB188790&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "ace082c49144c96448ed777ca030552df2c8dd7f38b69131c0cc0dc17ec8a0d1"
+    },
+    "shipping": {
+      "amount": 27.05,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:50:23.840Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=258.72&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=35x15x25%2C1506",
+      "contextKey": "ace082c49144c96448ed777ca030552df2c8dd7f38b69131c0cc0dc17ec8a0d1"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:50:23.750Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:50:23.840Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "FROM_200_TO_1000",
+      "maxCents": 100000,
+      "floor": 0.07,
+      "target": 0.1,
+      "limit": 0.15
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 21.43,
+    "result": 25.88,
+    "margin": 0.10003092145949287,
+    "status": "estimated"
+  },
+  "evaluationId": "b78b8a43-4c09-4d52-b6fb-4eaeab6db026",
+  "approvalId": "4b1c9140-49a6-499c-b144-40091f9f2a2e",
+  "duplicates": [],
+  "quantity": 2
+}

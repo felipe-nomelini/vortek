@@ -1,0 +1,22 @@
+{
+  "ok": false,
+  "status": 400,
+  "data": {
+    "cause": [
+      "item.description",
+      "item.catalog_listing"
+    ],
+    "message": "Description is not modifiable on catalog listing item",
+    "error": "validation_error",
+    "status": 400
+  },
+  "error": {
+    "cause": [
+      "item.description",
+      "item.catalog_listing"
+    ],
+    "message": "Description is not modifiable on catalog listing item",
+    "error": "validation_error",
+    "status": 400
+  }
+}

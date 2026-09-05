@@ -1,0 +1,804 @@
+{
+  "at": "2026-09-05T20:53:24.216Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/358403",
+    "observedAt": "2026-09-05T20:53:20.199Z",
+    "product": {
+      "produtoid": "358403",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 35.9,
+      "preco_crossdocking": 35.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 35.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "7",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cabo óptico Splitter Intelbras Plc 1x2 Sc/ Upc Xfs121 4830028",
+      "titulo_curto": "Cabo óptico Splitter Intelbras Plc 1x2 Sc/ Upc Xfs121 4830028",
+      "categoriaid": "118338",
+      "categoria_nome": "Redes E Provedores/ Passivos De Rede/ Splitter",
+      "abc": null,
+      "ean11": "7896637676854",
+      "ncm": "85176259",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Splitter PLC 1 × 2 conectorizado SC/UPC - XFS 121</b></p><br />\r\n<p>O splitter óptico PLC &ndash; Planar Lightwave Circuit &ndash; é um componente passivo utilizado <br />\r\n  para realizar a divisão do sinal óptico em uma rede de distribuição PON. A tecnologia PLC <br />\r\n  permite a divisão da potência de entrada igualmente entre todas as saídas. Com baixa <br />\r\n  perda de inserção e alta confiabilidade é ideal para atuar nos comprimentos de onda de <br />\r\n  1.260 a 1.650 nm. Conta com fibras de baixa sensibilidade a curvatura (G.657A) e é ideal <br />\r\n  para sistemas FTTH, redes HFC e comunicação de dados.</p><br />\r\n<p>- Ambiente de instalação interno<br><br />\r\n  - Baixa perda de inserção<br><br />\r\n  - Boa uniformidade canal a canal<br><br />\r\n  - Alta confiabilidade e estabilidade<br><br />\r\n  - Tamanho compacto</p><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\n<p>Comprimento de onda<br><br />\r\n  1260 a 1650 nm</p><br />\r\n<p>Fibra óptica<br><br />\r\n  G.657.A1 &ndash; Monomodo</p><br />\r\n<p>Perda de inserção<br><br />\r\n  &#8804; 4,0 dB</p><br />\r\n<p>Uniformidade<br><br />\r\n  &#8804; 0,6 dB</p><br />\r\n<p>P D L<br><br />\r\n  0,2 dB</p><br />\r\n<p>Diretividade<br><br />\r\n  &#8805; 55 dB</p><br />\r\n<p>Perda de retorno<br><br />\r\n  &#8805; 50 dB</p><br />\r\n<p>Temperatura de armazenamento<br><br />\r\n  -40 °C a 85 °C</p><br />\r\n<p>Temperatura de operação<br><br />\r\n  -5 °C a 75 °C</p><br />\r\n<p>Umidade relativa de operação<br><br />\r\n  0% a 95%</p><br />\r\n<p>Dimensões dos cabos<br><br />\r\n  Entrada 1,5m<br><br />\r\n  Saídas 0,6m<br><br />\r\n  Diâmetro dos cabos  0,9mm</p><br />\r\n<p>Tipo de conector <br><br />\r\n  SC</p><br />\r\n<p>Polimento<br><br />\r\n  UPC ou APC</p><br />\r\n<p>Perda por inserção (IL)<br><br />\r\n  &#8804; 0,3 dB &ndash; Classe III</p><br />\r\n<p>Perda de retorno (RL)<br><br />\r\n  Categoria C (UPC) &#8805; 50 dB<br><br />\r\n  Categoria D (APC) &#8805; 60 dB</p><br />\r\n<p>Durabilidade de conexão<br><br />\r\n  &#8805; 600</p><br />\r\n<p>Tipo de engate<br><br />\r\n  Push-pull</p><br />\r\n<p>Ferrolho<br><br />\r\n  Zircônia</p><br />\r\n<p>Dimensões do conector SC (L × A × P)<br><br />\r\n  9X8,2X60 mm<br><br />\r\n</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "INTELBRAS",
+      "modelo": "",
+      "peso": 0.052,
+      "largura": 15,
+      "altura": 2,
+      "profundidade": 25,
+      "peso_embalagem": 0.052,
+      "largura_embalagem": 15,
+      "altura_embalagem": 2,
+      "profundidade_embalagem": 25,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9ae0f8.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1427,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.056.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-01-28 18:27:35.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:58:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 199,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9ae0f8.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9aebea.jpg"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "INTELBRAS",
+        "remote": "Intelbras",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "xfs121",
+        "remote": "Xfs121",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "price": 70.08,
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017249/ac137bd405c1066a7396971fcc5a013abd044b9e40f421910cfb25dcb60a70c4.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017249/785e731a2d23cf0927a84d7b8a6b7fc6bd078ea0d07230cbcba40daaaf1a8a65.jpg"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "free_shipping": true,
+      "local_pick_up": false
+    },
+    "condition": "new",
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24287906",
+        "value_name": "Xfs121"
+      },
+      {
+        "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+        "value_id": "24287935",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_FIBERS_NUMBER",
+        "value_id": "24287914",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_FIBERS_NUMBER",
+        "value_id": "24287915",
+        "value_name": "2"
+      },
+      {
+        "id": "CONNECTORS_TYPES",
+        "value_id": "5774097",
+        "value_name": "SC"
+      },
+      {
+        "id": "CONNECTORS_POLISH_TYPES",
+        "value_id": "5774100",
+        "value_name": "UPC"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "40364777",
+        "value_name": "33421700160"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7896637676854"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017249"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SPLITTER_TYPE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "SPLITTING_RATIO",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "WITH_CONNECTORS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MIN_OPERATING_TEMPERATURE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_OPERATING_TEMPERATURE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "TOTAL_LENGTH",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "category_id": "MLB272149",
+    "currency_id": "BRL",
+    "family_name": "Splitter óptico Intelbras XFS121 PLC 1x2 SC UPC",
+    "catalog_listing": true,
+    "listing_type_id": "gold_special",
+    "available_quantity": 2,
+    "catalog_product_id": "MLB27047019",
+    "seller_custom_field": "VTK017249"
+  },
+  "description": "Splitter óptico Intelbras XFS121 PLC 1x2 SC UPC\n\n• Uma entrada e duas saídas, conector SC/UPC.\n• Fibra monomodo G.657.A1.\n• Cabos: entrada de 1,5 m e saídas de 0,6 m.\n• Uso em ambiente interno.\n\nDIMENSÕES DA EMBALAGEM\n25 × 15 × 2 cm; peso bruto 0.052 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK017249",
+  "memory": {
+    "price": 70.08,
+    "cost": 35.9,
+    "offerId": "bdf0cbe3-c9fb-47af-9eec-0b8a8f463b1d",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:15:29.403+00:00",
+    "fee": {
+      "amount": 8.41,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:24.008Z",
+      "evidence": "/sites/MLB/listing_prices?price=70.08&category_id=MLB272149&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "1cb32266af88b4d005cd89c9d9ce04f7afff5e4411de0936fd41e4a74e2b04c3"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:24.008Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=70.08&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=2x15x25%2C52",
+      "contextKey": "1cb32266af88b4d005cd89c9d9ce04f7afff5e4411de0936fd41e4a74e2b04c3"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:53:23.919Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:53:24.008Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [
+      "MARGEM_SUPERIOR_AO_LIMITE"
+    ],
+    "taxAmount": 5.81,
+    "result": 7.01,
+    "margin": 0.10002853881278538,
+    "status": "estimated"
+  },
+  "evaluationId": "9b829f4f-1645-4aaa-9ca6-6c992f5b5072",
+  "approvalId": "94202e5b-4eac-49be-a60c-b27736b0fa96",
+  "duplicates": [
+    {
+      "id": "MLB5192488569",
+      "site_id": "MLB",
+      "title": "Splitter Optico 1x2 Sc/upc Xfs121 Plc",
+      "family_name": "Intelbras Xfs121",
+      "family_id": 5106223502581135,
+      "seller_id": 3294514937,
+      "category_id": "MLB272149",
+      "user_product_id": "MLBU5088532811",
+      "official_store_id": null,
+      "price": 70.08,
+      "base_price": 70.08,
+      "original_price": null,
+      "inventory_id": null,
+      "currency_id": "BRL",
+      "initial_quantity": 2,
+      "available_quantity": 2,
+      "sold_quantity": 0,
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "name": "Tipo de garantia",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "2230279",
+              "name": "Garantia de fábrica",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "name": "Tempo de garantia",
+          "value_id": null,
+          "value_name": "12 meses",
+          "value_struct": {
+            "number": 12,
+            "unit": "meses"
+          },
+          "values": [
+            {
+              "id": null,
+              "name": "12 meses",
+              "struct": {
+                "number": 12,
+                "unit": "meses"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        }
+      ],
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "start_time": "2026-09-05T20:51:15.262Z",
+      "stop_time": "2046-08-31T04:00:00.000Z",
+      "end_time": "2046-08-31T04:00:00.000Z",
+      "expiration_time": "2026-11-24T20:53:08.340Z",
+      "condition": "new",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5192488569-splitter-optico-1x2-scupc-xfs121-plc-_JM",
+      "thumbnail_id": "854018-MLU75164084279_032024",
+      "thumbnail": "http://http2.mlstatic.com/D_854018-MLU75164084279_032024-I.jpg",
+      "pictures": [
+        {
+          "id": "854018-MLU75164084279_032024",
+          "url": "http://http2.mlstatic.com/D_854018-MLU75164084279_032024-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_854018-MLU75164084279_032024-O.jpg",
+          "size": "500x187",
+          "max_size": "1196x448",
+          "quality": ""
+        }
+      ],
+      "video_id": null,
+      "descriptions": [],
+      "accepts_mercadopago": true,
+      "non_mercado_pago_payment_methods": [],
+      "shipping": {
+        "mode": "me2",
+        "methods": [],
+        "tags": [],
+        "dimensions": null,
+        "local_pick_up": false,
+        "free_shipping": true,
+        "logistic_type": "xd_drop_off",
+        "store_pick_up": false
+      },
+      "international_delivery_mode": "none",
+      "seller_address": {
+        "address_line": "Rua João Marques de Nóbrega 300",
+        "zip_code": "86206240",
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "BR-PR",
+          "name": "Paraná"
+        },
+        "country": {
+          "id": "BR",
+          "name": "Brasil"
+        },
+        "search_location": {
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "TUxCUFBBUkExODBlZA",
+            "name": "Paraná"
+          }
+        },
+        "latitude": -23.284674,
+        "longitude": -51.083409,
+        "id": 1586042717
+      },
+      "seller_contact": null,
+      "location": {},
+      "geolocation": {
+        "latitude": -23.284674,
+        "longitude": -51.083409
+      },
+      "coverage_areas": [],
+      "attributes": [
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_LABEL",
+          "name": "Etiqueta de homologação da Anatel",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "picture_id"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "40364777",
+          "value_name": "33421700160",
+          "values": [
+            {
+              "id": "40364777",
+              "name": "33421700160",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTORS_POLISH_TYPES",
+          "name": "Tipos de polido dos conectores",
+          "value_id": "5774100",
+          "value_name": "UPC",
+          "values": [
+            {
+              "id": "5774100",
+              "name": "UPC",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTORS_TYPES",
+          "name": "Tipos de conectores",
+          "value_id": "5774097",
+          "value_name": "SC",
+          "values": [
+            {
+              "id": "5774097",
+              "name": "SC",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+          "name": "Quantidade de splitters",
+          "value_id": "24287935",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "24287935",
+              "name": "1",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7896637676854",
+          "values": [
+            {
+              "id": null,
+              "name": "7896637676854",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "INPUT_FIBERS_NUMBER",
+          "name": "Quantidade de fibras de entrada",
+          "value_id": "24287914",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "24287914",
+              "name": "1",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "MAX_OPERATING_TEMPERATURE",
+          "name": "Temperatura máxima de operação",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MIN_OPERATING_TEMPERATURE",
+          "name": "Temperatura mínima de operação",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24287906",
+          "value_name": "Xfs121",
+          "values": [
+            {
+              "id": "24287906",
+              "name": "Xfs121",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "OUTPUT_FIBERS_NUMBER",
+          "name": "Quantidade de fibras de saída",
+          "value_id": "24287915",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "24287915",
+              "name": "2",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK017249",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK017249",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SPLITTER_TYPE",
+          "name": "Tipo de splitter",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SPLITTING_RATIO",
+          "name": "Relação de divisão",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "TOTAL_LENGTH",
+          "name": "Comprimento total",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "WITH_CONNECTORS",
+          "name": "Com conectores",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        }
+      ],
+      "warnings": [],
+      "listing_source": "",
+      "variations": [],
+      "status": "paused",
+      "sub_status": [
+        "paused_by_seller"
+      ],
+      "tags": [
+        "immediate_payment",
+        "cart_eligible"
+      ],
+      "warranty": "Garantia de fábrica: 12 meses",
+      "catalog_product_id": "MLB27047019",
+      "domain_id": "MLB-FIBER_OPTIC_SPLITTERS",
+      "seller_custom_field": "VTK017249",
+      "parent_item_id": null,
+      "differential_pricing": null,
+      "deal_ids": [],
+      "automatic_relist": false,
+      "date_created": "2026-09-05T20:51:15.434Z",
+      "last_updated": "2026-09-05T20:53:08.471Z",
+      "health": null,
+      "catalog_listing": true,
+      "item_relations": [],
+      "channels": [
+        "marketplace"
+      ]
+    }
+  ],
+  "quantity": 2
+}

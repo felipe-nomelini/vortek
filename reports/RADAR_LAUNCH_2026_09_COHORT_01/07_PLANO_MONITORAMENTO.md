@@ -1,15 +1,11 @@
-# Monitoramento D+7 / D+15 / D+30
+# Monitoramento da coorte
 
-Nenhum checkpoint operacional foi agendado: ainda não existem anúncios publicados nesta coorte. Não criar datas fictícias a partir da auditoria.
+Eventos `RADAR_LAUNCH_VALIDATED` persistem baseline e checkpoints individuais D+7, D+15 e D+30. O monitor já existente `sync_ml_pricing_experiment_monitor` chama `monitorRadarLaunch` a cada cinco minutos. Implantação e execução do job verificadas; os checkpoints futuros ainda não venceram.
 
-Ao ocorrer PUBLICADO_VALIDADO, registrar baseline e agendar a partir do timestamp real de cada item:
+Medir visitas, vendas, conversão, faturamento, contribuição pela economia corrente, margem, preço, estoque, Buy Box e qualidade/exposição. Dados indisponíveis geram erro explícito e não viram demanda zero. A contribuição pela economia corrente não é lucro histórico contábil.
 
-| Checkpoint | Ação |
-|---|---|
-| D+7 | Visitas, vendas, conversão, faturamento, contribuição, margem, Buy Box, preço, estoque, qualidade/exposição; zero tráfego fica em observação. |
-| D+15 | Repetir métricas; zero tráfego gera ALERTA_AMARELO_SEM_TRAFEGO. |
-| D+30 | Repetir métricas e encaminhar ausência de tráfego à auditoria de exposição/qualidade. |
+D+7 sem tráfego: observação. D+15: `ALERTA_AMARELO_SEM_TRAFEGO`. D+30: `AUDITORIA_EXPOSICAO_QUALIDADE`. Deduplicação por coorte/MLB/dia impede duplicação de registros.
 
-Preservar preço experimental por 30 dias, ressalvadas as exceções expressamente autorizadas na ordem. Qualquer erro crítico pós-publicação interrompe a coorte e exige estado reversível, preferencialmente paused, com confirmação remota.
+Primeiros 30 dias protegidos contra reprecificação por performance. Mudanças de segurança ou custo exigem motivo e memória; não iniciar próximas coortes sem auditoria. Não foi criado envio de mensagens a terceiros pelo monitor Radar.
 
-Sem anúncio publicado, não foi declarada validação de idempotência de publicação, safety stop ou agendamento real dos checkpoints.
+O EV-430 pausado não integra os experimentos validados; continua na fila de validação de catálogo.

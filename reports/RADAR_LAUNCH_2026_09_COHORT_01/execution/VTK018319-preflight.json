@@ -1,0 +1,5062 @@
+{
+  "c": {
+    "sku": "VTK018319",
+    "prediction": [
+      {
+        "domain_id": "MLB-POWER_GRINDERS",
+        "domain_name": "Esmerilhadeiras elétricas",
+        "category_id": "MLB188790",
+        "category_name": "Esmerilhadeiras Angulares",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "31163",
+            "value_name": "Multilaser"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "26443549",
+            "value_name": "FE048"
+          },
+          {
+            "id": "ALPHANUMERIC_MODEL",
+            "name": "Modelo alfanumérico",
+            "value_id": "40777194",
+            "value_name": "FE048"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "283165",
+            "value_name": "Cinza"
+          },
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem",
+            "value_id": "39205162",
+            "value_name": "127V"
+          }
+        ]
+      },
+      {
+        "domain_id": "MLB-POWER_GRINDERS",
+        "domain_name": "Esmerilhadeiras elétricas",
+        "category_id": "MLB456965",
+        "category_name": "Esmerilhadeiras Angulares",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "31163",
+            "value_name": "Multilaser"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "26443549",
+            "value_name": "FE048"
+          },
+          {
+            "id": "ALPHANUMERIC_MODEL",
+            "name": "Modelo alfanumérico",
+            "value_id": "40777194",
+            "value_name": "FE048"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "283165",
+            "value_name": "Cinza"
+          },
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem",
+            "value_id": "39205162",
+            "value_name": "127V"
+          }
+        ]
+      },
+      {
+        "domain_id": "MLB-POWER_GRINDERS",
+        "domain_name": "Esmerilhadeiras elétricas",
+        "category_id": "MLB458015",
+        "category_name": "Esmerilhadeiras Retas",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "31163",
+            "value_name": "Multilaser"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "26443549",
+            "value_name": "FE048"
+          },
+          {
+            "id": "ALPHANUMERIC_MODEL",
+            "name": "Modelo alfanumérico",
+            "value_id": "40777194",
+            "value_name": "FE048"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "283165",
+            "value_name": "Cinza"
+          },
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem",
+            "value_id": "39205162",
+            "value_name": "127V"
+          }
+        ]
+      }
+    ],
+    "product": {
+      "id": "ea437bae-8be9-4561-bc0d-856de2305f93",
+      "sku": "VTK018319",
+      "nome": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+      "marca": "MULTILASER",
+      "estoque": 6,
+      "custo": 155.9,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 1.506,
+      "peso_bruto": 1.506,
+      "largura": 15,
+      "altura": 35,
+      "profundidade": 25,
+      "gtin": "7908414493698",
+      "descricao": "Esmerilhadeira Angular 127v-700w para Disco 4-1/2 Polegadas, Empunhadura com 2 Posições Multi - FE048 Empunhadura (punho) removível com 2 posições que pode ser usado em ambos os lados para maior comodidade e controle durante as operações. Desenvolvida com velocidade de 12000RPM, potência de 700W e capacidade de disco 4-1/2’ 115mm. É compacta e pode ser usada até mesmo em lugares de difícil acesso e conta com dupla isolação, garantindo maior segurança ao operador. Ideal para trabalhos como: Cortar Lixar Desbastar Polir *Imagens meramente ilustrativas.",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png"
+      ],
+      "categoria": "Ferramentas/ Ferramentas Eletricas / Esmerilhadeira",
+      "ml_item_id": null,
+      "created_at": "2026-07-20T18:32:23.092114+00:00",
+      "updated_at": "2026-09-05T19:57:18.112569+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "387946",
+      "dslite_ultima_sync": "2026-09-05T19:57:17.827+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "84672999",
+      "cest": "08.019.00",
+      "origem_fiscal": "5",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "6f20e543-6383-4a8f-a2dd-7697c757c67d",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "6f20e543-6383-4a8f-a2dd-7697c757c67d",
+      "produto_id": "ea437bae-8be9-4561-bc0d-856de2305f93",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "387946",
+      "sku_fornecedor": "387946",
+      "custo": 155.9,
+      "estoque": 6,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:57:17.827+00:00",
+      "created_at": "2026-07-20T18:32:23.345495+00:00",
+      "updated_at": "2026-09-05T19:57:17.834+00:00",
+      "sku_oferta": "387946",
+      "nome": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+      "descricao": "Esmerilhadeira Angular 127v-700w para Disco 4-1/2 Polegadas, Empunhadura com 2 Posições Multi - FE048 Empunhadura (punho) removível com 2 posições que pode ser usado em ambos os lados para maior comodidade e controle durante as operações. Desenvolvida com velocidade de 12000RPM, potência de 700W e capacidade de disco 4-1/2’ 115mm. É compacta e pode ser usada até mesmo em lugares de difícil acesso e conta com dupla isolação, garantindo maior segurança ao operador. Ideal para trabalhos como: Cortar Lixar Desbastar Polir *Imagens meramente ilustrativas.",
+      "marca": "MULTILASER",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png"
+      ],
+      "gtin": "7908414493698",
+      "ncm": "84672999",
+      "cest": "08.019.00"
+    },
+    "radar": {
+      "id": "3b3be5a7-c61c-421f-9cac-8f9550b4fad7",
+      "produto_id": "ea437bae-8be9-4561-bc0d-856de2305f93",
+      "candidate_key": "product:ea437bae-8be9-4561-bc0d-856de2305f93",
+      "sku": "VTK018319",
+      "catalog_product_id": "MLB39329744",
+      "pricing_group_id": null,
+      "stage": "AGUARDANDO_APROVACAO",
+      "queue": "EXPLORATORIOS",
+      "conflict_state": "SEM_CONFLITO",
+      "assessment": {
+        "state": "SEM_CONFLITO",
+        "economy": "VIAVEL_NO_ALVO",
+        "listing": "NOVO_ANUNCIO_CANDIDATO",
+        "reasons": [],
+        "identity": "IDENTIDADE_COHERENTE",
+        "listings": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA",
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "comparisons": [
+          {
+            "basis": "normalized",
+            "field": "brand",
+            "local": "MULTILASER",
+            "remote": "Multilaser",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "model",
+            "local": "fe048",
+            "remote": "FE048",
+            "matches": true,
+            "evidence": null
+          }
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1",
+        "publicationAutonomy": "REQUIRES_CONFIRMATION"
+      },
+      "evidence": {
+        "asOf": "2026-09-05T15:16:37.457Z",
+        "cost": 155.9,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "source": "oportunidades-ml-2026-09-05",
+        "product": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+        "identity": {
+          "local": {
+            "gtin": "7908414493698",
+            "brand": "MULTILASER",
+            "model": "fe048",
+            "quantity": null,
+            "packaging": null,
+            "variation": null,
+            "partNumber": null,
+            "provenance": {
+              "gtin": {
+                "source": "supplier_offer:6f20e543-6383-4a8f-a2dd-7697c757c67d",
+                "excerpt": "7908414493698"
+              },
+              "brand": {
+                "source": "supplier_offer:6f20e543-6383-4a8f-a2dd-7697c757c67d",
+                "excerpt": "MULTILASER; "
+              },
+              "model": {
+                "source": "supplier_offer:6f20e543-6383-4a8f-a2dd-7697c757c67d",
+                "excerpt": "fe048"
+              }
+            },
+            "brandEvidence": "Esmerilhadeira Angular Multilaser Fe048 700w 127v Esmerilhadeira Angular 127v-700w para Disco 4-1/2 Polegadas, Empunhadura com 2 Posições Multi - FE048 Empunhadura (punho) removível com 2 posições que pode ser usado em ambos os lados para maior comodidade e controle durante as operações. Desenvolvida com velocidade de 12000RPM, potência de 700W e capacidade de disco 4-1/2’ 115mm. É compacta e pode ser usada até mesmo em lugares de difícil acesso e conta com dupla isolação, garantindo maior segurança ao operador. Ideal para trabalhos como: Cortar Lixar Desbastar Polir *Imagens meramente ilustrativas."
+          },
+          "remote": {
+            "gtin": null,
+            "brand": "Multilaser",
+            "model": "FE048",
+            "critical": {
+              "SIZE": null,
+              "LENGTH": "10.5 cm",
+              "VOLTAGE": "127V",
+              "CAPACITY": null,
+              "PINS_NUMBER": null,
+              "CONNECTOR_TYPE": null,
+              "INPUT_CONNECTOR": null,
+              "OUTPUT_CONNECTOR": null
+            },
+            "quantity": null,
+            "packaging": null,
+            "saleUnits": null,
+            "variation": "Cinza",
+            "partNumber": null,
+            "provenance": {
+              "brand": {
+                "source": "/products/MLB39329744",
+                "excerpt": "BRAND: Multilaser"
+              },
+              "model": {
+                "source": "/products/MLB39329744",
+                "excerpt": "MODEL: FE048"
+              },
+              "variation": {
+                "source": "/products/MLB39329744",
+                "excerpt": "COLOR: Cinza"
+              }
+            }
+          },
+          "source": "/products/MLB39329744"
+        },
+        "supplier": "Evolusom Comercial Ltda",
+        "listingType": "gold_special",
+        "identityReview": "Esmerilhadeira Multi FE048, 700 W, 127 V, disco de 115 mm; modelo e tensão conferidos.",
+        "competitivePrice": 303.9,
+        "identityObservedAt": "2026-09-05T20:04:41.036Z"
+      },
+      "priority": {
+        "stock": 6,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "economy": "VIAVEL_NO_ALVO",
+        "identity": "IDENTIDADE_COHERENTE",
+        "demandRank": 3,
+        "publication": "COMPLETA",
+        "competitiveness": {
+          "price": 303.9,
+          "contribution": 62.35
+        }
+      },
+      "recommendation": "Explorar demanda; validar pendências antes de aprovar",
+      "evaluation_id": "d6cb02e2-1f6c-4c83-88c6-d914c193df17",
+      "target_evaluation_id": "968d7a39-9c04-4fce-a414-1310f7299f03",
+      "floor_evaluation_id": "cda3ae63-f149-4284-aa07-d78c17fca8c7",
+      "break_even_evaluation_id": "0ec75be5-f434-465d-ab3e-c2258a3a22c6",
+      "input_fingerprint": "264dd3cd44ee4955c0b19a62664078d51a1eea98b8a3849b7809d358a2b4fa20",
+      "stock": 6,
+      "demand_rank": 3,
+      "contribution": 62.35,
+      "job_id": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+      "processed_at": "2026-09-05T20:10:45.593589+00:00",
+      "updated_at": "2026-09-05T20:10:45.593589+00:00"
+    },
+    "catalog": {
+      "id": "MLB39329744",
+      "catalog_product_id": "MLB39329744",
+      "status": "active",
+      "pdp_types": [
+        "traditional"
+      ],
+      "domain_id": "MLB-POWER_GRINDERS",
+      "permalink": "",
+      "name": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+      "family_name": "Multilaser FE048",
+      "type": "catalog_product",
+      "buy_box_winner": null,
+      "pickers": [
+        {
+          "picker_id": "COLOR",
+          "picker_name": "Cor",
+          "products": [
+            {
+              "product_id": "MLB39329744",
+              "picker_label": "Cinza",
+              "picture_id": "921944-MLA95572115959_102025",
+              "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_921944-MLA95572115959_102025-I.jpg",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "Multilaser FE048 - Cinza - 127V",
+              "auto_completed": false
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "COLOR",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        },
+        {
+          "picker_id": "VOLTAGE",
+          "picker_name": "Voltagem",
+          "products": [
+            {
+              "product_id": "MLB39329744",
+              "picker_label": "127V",
+              "picture_id": "",
+              "thumbnail": "",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "Multilaser FE048 - Cinza - 127V",
+              "auto_completed": false
+            }
+          ],
+          "tags": [
+            "selection_required"
+          ],
+          "attributes": [
+            {
+              "attribute_id": "VOLTAGE",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        }
+      ],
+      "pictures": [
+        {
+          "id": "921944-MLA95572115959_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_921944-MLA95572115959_102025-F.jpg",
+          "suggested_for_picker": [
+            "COLOR"
+          ],
+          "max_width": 1200,
+          "max_height": 534,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "909944-MLA85463302285_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_909944-MLA85463302285_052025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 848,
+          "max_height": 1198,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "813502-MLA85463450021_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_813502-MLA85463450021_052025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1045,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "869537-MLA85463450033_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_869537-MLA85463450033_052025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 622,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "708597-MLA85160071422_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_708597-MLA85160071422_052025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1042,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "697849-MLA85160225378_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_697849-MLA85160225378_052025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 717,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "854845-MLA86629521302_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_854845-MLA86629521302_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "881201-MLA86951201309_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_881201-MLA86951201309_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "773242-MLA86951171771_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_773242-MLA86951171771_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "942950-MLA86951239877_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_942950-MLA86951239877_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "931966-MLA86629521348_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_931966-MLA86629521348_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        }
+      ],
+      "description_pictures": [],
+      "main_features": [
+        {
+          "text": "Vem com interruptor chave.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Protetor de disco incluído.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Inclui: manual.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Adequada para um disco de 115 mm de diâmetro.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "A sua potência é de 700 W.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Velocidade máxima de rotação de 12000 rpm.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Pesa 1.46 kg.",
+          "type": "key_value",
+          "metadata": {}
+        }
+      ],
+      "disclaimers": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "31163",
+          "value_name": "Multilaser",
+          "values": [
+            {
+              "id": "31163",
+              "name": "Multilaser"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26443549",
+          "value_name": "FE048",
+          "values": [
+            {
+              "id": "26443549",
+              "name": "FE048"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "40777194",
+          "value_name": "FE048",
+          "values": [
+            {
+              "id": "40777194",
+              "name": "FE048"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "283165",
+          "value_name": "Cinza",
+          "values": [
+            {
+              "id": "283165",
+              "name": "Cinza"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205162",
+          "value_name": "127V",
+          "values": [
+            {
+              "id": "39205162",
+              "name": "127V"
+            }
+          ]
+        },
+        {
+          "id": "MIN_ROTATION_SPEED",
+          "name": "Velocidade mínima de rotação",
+          "value_id": "7736464",
+          "value_name": "0 rpm",
+          "values": [
+            {
+              "id": "7736464",
+              "name": "0 rpm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_ROTATION_SPEED",
+          "name": "Velocidade máxima de rotação",
+          "value_id": "7917380",
+          "value_name": "12000 rpm",
+          "values": [
+            {
+              "id": "7917380",
+              "name": "12000 rpm"
+            }
+          ]
+        },
+        {
+          "id": "SOUND_PRESSURE_LEVEL",
+          "name": "Nível de pressão sonora",
+          "value_id": "7898951",
+          "value_name": "89 dBA",
+          "values": [
+            {
+              "id": "7898951",
+              "name": "89 dBA"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "96684",
+          "value_name": "700 W",
+          "values": [
+            {
+              "id": "96684",
+              "name": "700 W"
+            }
+          ]
+        },
+        {
+          "id": "POWER_GRINDER_TYPE",
+          "name": "Tipo de esmerilhadeira",
+          "value_id": "5285127",
+          "value_name": "Angular",
+          "values": [
+            {
+              "id": "5285127",
+              "name": "Angular"
+            }
+          ]
+        },
+        {
+          "id": "IS_MINI_POWER_GRINDER",
+          "name": "É mini esmerilhadeira",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "DISC_DIAMETER",
+          "name": "Diâmetro do disco",
+          "value_id": "5285126",
+          "value_name": "115 mm",
+          "values": [
+            {
+              "id": "5285126",
+              "name": "115 mm"
+            }
+          ]
+        },
+        {
+          "id": "SWITCH_TYPE",
+          "name": "Tipo de interruptor",
+          "value_id": "1033083",
+          "value_name": "Tecla",
+          "values": [
+            {
+              "id": "1033083",
+              "name": "Tecla"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "6171164",
+          "value_name": "1.46 kg",
+          "values": [
+            {
+              "id": "6171164",
+              "name": "1.46 kg"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "28288144",
+          "value_name": "10.5 cm",
+          "values": [
+            {
+              "id": "28288144",
+              "name": "10.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "10791702",
+          "value_name": "10 cm",
+          "values": [
+            {
+              "id": "10791702",
+              "name": "10 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "28288132",
+          "value_name": "26 cm",
+          "values": [
+            {
+              "id": "28288132",
+              "name": "26 cm"
+            }
+          ]
+        },
+        {
+          "id": "WITH_PROGRESSIVE_START",
+          "name": "Com arranque progressivo",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_SPEED_REGULATION",
+          "name": "Com regulação de velocidade",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "7736465",
+          "value_name": "2 m",
+          "values": [
+            {
+              "id": "7736465",
+              "name": "2 m"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_DUST_SHROUD",
+          "name": "Inclui coletor de pó",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_DISC_PROTECTOR",
+          "name": "Inclui protector de disco",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "meta": {
+                "value": true
+              }
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "8117352",
+          "value_name": "Manual",
+          "values": [
+            {
+              "id": "8117352",
+              "name": "Manual"
+            }
+          ]
+        }
+      ],
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Esmerilhadeira Angular Multilaser FE048 é uma ferramenta essencial para quem precisa de desempenho, praticidade e segurança ao realizar cortes e desbastes em diversos materiais, como metais, concreto, alvenaria e plásticos rígidos. Com potência de 700W, essa esmerilhadeira proporciona força e velocidade ideais para garantir um trabalho eficiente e de alta precisão, sendo indispensável para profissionais e também para quem deseja realizar serviços domésticos e pequenas reformas. Seu design compacto e ergonômico facilita o manuseio e melhora o controle do operador, reduzindo o cansaço durante o uso prolongado.  \n\nProjetada para discos de 4-1/2 (115 mm), essa ferramenta possibilita cortes suaves e precisos, além de desbastes eficientes, proporcionando um acabamento profissional. Sua empunhadura removível com duas posições permite ajustes conforme a necessidade do usuário, garantindo maior conforto e estabilidade durante a operação. Esse recurso é fundamental para a segurança e eficiência ao trabalhar em diferentes ângulos e superfícies, oferecendo versatilidade para os mais variados tipos de serviços.  \n\nO botão liga/desliga foi estrategicamente posicionado para facilitar o acionamento da ferramenta, permitindo um uso mais intuitivo e seguro. O corpo da esmerilhadeira possui um formato ergonômico, projetado para oferecer melhor aderência e minimizar o esforço físico do usuário. Isso faz com que a ferramenta seja confortável de segurar, proporcionando um manuseio ágil e reduzindo a fadiga ao longo do trabalho.  \n\nConstruída com materiais de alta qualidade, a Esmerilhadeira Angular Multilaser FE048 apresenta uma estrutura resistente e durável, capaz de suportar o uso contínuo sem comprometer seu desempenho. Seu motor de 700W garante eficiência e confiabilidade, tornando-a uma excelente escolha para diferentes aplicações, como serralheria, marcenaria, construção civil e manutenção industrial.  \n\nAlém de sua potência e durabilidade, essa esmerilhadeira se destaca pela versatilidade e facilidade de uso, sendo indicada tanto para iniciantes quanto para profissionais experientes. Seu desempenho robusto e seu design funcional permitem que os usuários executem cortes e acabamentos com mais segurança e precisão, resultando em um trabalho mais eficiente.  \n\nOutro diferencial dessa ferramenta é sua facilidade de transporte e armazenamento. Seu tamanho compacto e peso equilibrado fazem com que seja simples levá-la para diferentes locais de trabalho, além de permitir que seja guardada com facilidade após o uso.  \n\nCombinando potência, ergonomia, durabilidade e segurança, a Esmerilhadeira Angular Multilaser FE048 se torna uma excelente aliada para quem busca uma ferramenta confiável e eficiente para trabalhos de corte e desbaste. Seja para uso profissional ou doméstico, essa esmerilhadeira entrega resultados de alta qualidade, tornando qualquer tarefa mais prática e produtiva.\n\nAqui está a ficha técnica detalhada da Esmerilhadeira Angular Multilaser FE048, compilada a partir de informações disponíveis em fontes confiáveis:\n\n Marca: Multilaser  \n Modelo: FE048  \n Cor: Cinza  \nVoltagem: 127V  \nPotência: 700W  \nVelocidade sem carga: 12.000 RPM  \nDiâmetro do disco: 4-1/2 (115 mm)  \nEmpunhadura: Removível com 2 posições, podendo ser utilizada em ambos os lados para maior comodidade e controle durante as operações  \nMaterial: Composto por silicone e plástico  \nNível de pressão sonora (LPA): 89 dBA  \nVibração: 8,22 m/s²   \nClasse de segurança: II  \nProfundidade máxima de corte: 38 mm  \nComprimento do cabo: 2 metros  \nDimensões (LxAxC): 10 cm x 26 cm x 10,5 cm  \nPeso: 1.46 kg  \nAplicações ideais: Indicada para cortar, lixar, desbastar e polir  \nCaracterísticas adicionais: Possui dupla isolação, garantindo maior segurança ao operador; design compacto que facilita o uso em locais de difícil acesso."
+      },
+      "parent_id": "MLB28317595",
+      "children_ids": [],
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false,
+        "with_enhanced_pictures": false,
+        "base_site_product_id": null,
+        "ttr": "2026-09-06T21:03:16.767871622"
+      },
+      "quality_type": "COMPLETE",
+      "release_info": null,
+      "presale_info": null,
+      "enhanced_content": null,
+      "tags": [],
+      "date_created": "2024-08-14T15:38:20Z",
+      "authorized_stores": null,
+      "last_updated": "2026-07-01T19:41:57Z",
+      "grouper_id": null,
+      "experiments": {}
+    },
+    "category": {
+      "id": "MLB188790",
+      "name": "Esmerilhadeiras Angulares",
+      "picture": null,
+      "permalink": null,
+      "total_items_in_this_category": 46910,
+      "path_from_root": [
+        {
+          "id": "MLB263532",
+          "name": "Ferramentas"
+        },
+        {
+          "id": "MLB2526",
+          "name": "Ferramentas Elétricas"
+        },
+        {
+          "id": "MLB455277",
+          "name": "Corte"
+        },
+        {
+          "id": "MLB188790",
+          "name": "Esmerilhadeiras Angulares"
+        }
+      ],
+      "children_categories": [],
+      "attribute_types": "variations",
+      "settings": {
+        "adult_content": false,
+        "buying_allowed": true,
+        "buying_modes": [
+          "auction",
+          "buy_it_now"
+        ],
+        "catalog_domain": "MLB-POWER_GRINDERS",
+        "coverage_areas": "not_allowed",
+        "currencies": [
+          "BRL"
+        ],
+        "fragile": false,
+        "immediate_payment": "required",
+        "item_conditions": [
+          "used",
+          "not_specified",
+          "new"
+        ],
+        "items_reviews_allowed": false,
+        "listing_allowed": true,
+        "max_description_length": 50000,
+        "max_pictures_per_item": 12,
+        "max_pictures_per_item_var": 10,
+        "max_sub_title_length": 70,
+        "max_title_length": 60,
+        "max_variations_allowed": 100,
+        "maximum_price": null,
+        "maximum_price_currency": "BRL",
+        "minimum_price": 0,
+        "minimum_price_currency": "BRL",
+        "mirror_category": null,
+        "mirror_master_category": null,
+        "mirror_slave_categories": [],
+        "price": "required",
+        "reservation_allowed": "not_allowed",
+        "restrictions": [],
+        "rounded_address": false,
+        "seller_contact": "not_allowed",
+        "shipping_options": [
+          "carrier",
+          "custom"
+        ],
+        "shipping_profile": "optional",
+        "show_contact_information": false,
+        "simple_shipping": "optional",
+        "stock": "required",
+        "sub_vertical": null,
+        "subscribable": false,
+        "tags": [],
+        "vertical": null,
+        "vip_subdomain": "produto",
+        "buyer_protection_programs": [
+          "delivered",
+          "undelivered"
+        ],
+        "status": "enabled"
+      },
+      "channels_settings": [
+        {
+          "channel": "mshops",
+          "settings": {
+            "minimum_price": 0
+          }
+        },
+        {
+          "channel": "proximity",
+          "settings": {
+            "status": "disabled"
+          }
+        },
+        {
+          "channel": "mp-merchants",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        },
+        {
+          "channel": "mp-link",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        }
+      ],
+      "meta_categ_id": null,
+      "attributable": false,
+      "date_created": "2018-04-25T08:12:56.000Z"
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "45336",
+            "name": "AEG"
+          },
+          {
+            "id": "2149465",
+            "name": "Black+Decker"
+          },
+          {
+            "id": "4946",
+            "name": "Bosch"
+          },
+          {
+            "id": "1033072",
+            "name": "DeWalt"
+          },
+          {
+            "id": "217",
+            "name": "Dowen Pagio"
+          },
+          {
+            "id": "363",
+            "name": "Einhell"
+          },
+          {
+            "id": "1165381",
+            "name": "Gamma"
+          },
+          {
+            "id": "234",
+            "name": "Hitachi"
+          },
+          {
+            "id": "104585",
+            "name": "Makita"
+          },
+          {
+            "id": "104593",
+            "name": "Metabo"
+          },
+          {
+            "id": "104580",
+            "name": "Milwaukee"
+          },
+          {
+            "id": "3973014",
+            "name": "Redstone"
+          },
+          {
+            "id": "57256",
+            "name": "Ryobi"
+          },
+          {
+            "id": "104514",
+            "name": "Skil"
+          },
+          {
+            "id": "177584",
+            "name": "Stanley"
+          },
+          {
+            "id": "1033075",
+            "name": "Worx"
+          }
+        ],
+        "tooltip": "É o nome da empresa que cria o produto.",
+        "example": "Skil",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indica a série ou grupo do produto de acordo com a classificação da marca ou fabricante, por exemplo: a linha “111” da marca “xxx” agrupa diferentes modelos de produtos.",
+        "example": "20V MAX",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "tags": {},
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "É um código que combina letras e números. Você pode encontrá-lo na embalagem ou na documentação do produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "4491927",
+            "name": "Bateria"
+          },
+          {
+            "id": "49713698",
+            "name": "Corrente doméstica"
+          },
+          {
+            "id": "54769666",
+            "name": "Energia industrial"
+          },
+          {
+            "id": "54973049",
+            "name": "Bateria/Corrente doméstica"
+          },
+          {
+            "id": "53775076",
+            "name": "Bateria/Energia industrial"
+          },
+          {
+            "id": "54973110",
+            "name": "Corrente doméstica/Energia industrial"
+          },
+          {
+            "id": "53775079",
+            "name": "Bateria/Corrente doméstica/Energia industrial"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "tags": {
+          "allow_variations": true,
+          "defines_picture": true
+        },
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "283148",
+            "name": "Coral-claro"
+          },
+          {
+            "id": "283149",
+            "name": "Coral"
+          },
+          {
+            "id": "283150",
+            "name": "Laranja-claro"
+          },
+          {
+            "id": "283151",
+            "name": "Laranja-escuro"
+          },
+          {
+            "id": "283156",
+            "name": "Cáqui"
+          },
+          {
+            "id": "283157",
+            "name": "Verde-limão"
+          },
+          {
+            "id": "283158",
+            "name": "Verde-musgo"
+          },
+          {
+            "id": "283152",
+            "name": "Chocolate"
+          },
+          {
+            "id": "283153",
+            "name": "Palha"
+          },
+          {
+            "id": "283154",
+            "name": "Marrom-claro"
+          },
+          {
+            "id": "283155",
+            "name": "Marrom-escuro"
+          },
+          {
+            "id": "283164",
+            "name": "Dourado"
+          },
+          {
+            "id": "51993",
+            "name": "Vermelho"
+          },
+          {
+            "id": "283165",
+            "name": "Cinza"
+          },
+          {
+            "id": "51994",
+            "name": "Rosa"
+          },
+          {
+            "id": "283160",
+            "name": "Azul-turquesa"
+          },
+          {
+            "id": "51996",
+            "name": "Terracota"
+          },
+          {
+            "id": "283161",
+            "name": "Azul-marinho"
+          },
+          {
+            "id": "283162",
+            "name": "Índigo"
+          },
+          {
+            "id": "51998",
+            "name": "Bordô"
+          },
+          {
+            "id": "283163",
+            "name": "Rosa-chiclete"
+          },
+          {
+            "id": "52000",
+            "name": "Laranja"
+          },
+          {
+            "id": "52001",
+            "name": "Bege"
+          },
+          {
+            "id": "52003",
+            "name": "Nude"
+          },
+          {
+            "id": "52005",
+            "name": "Marrom"
+          },
+          {
+            "id": "52007",
+            "name": "Amarelo"
+          },
+          {
+            "id": "52008",
+            "name": "Creme"
+          },
+          {
+            "id": "52010",
+            "name": "Ocre"
+          },
+          {
+            "id": "52012",
+            "name": "Dourado-escuro"
+          },
+          {
+            "id": "52014",
+            "name": "Verde"
+          },
+          {
+            "id": "52015",
+            "name": "Verde-claro"
+          },
+          {
+            "id": "52019",
+            "name": "Verde-escuro"
+          },
+          {
+            "id": "52021",
+            "name": "Azul-celeste"
+          },
+          {
+            "id": "52022",
+            "name": "Água"
+          },
+          {
+            "id": "52024",
+            "name": "Azul-petróleo"
+          },
+          {
+            "id": "52028",
+            "name": "Azul"
+          },
+          {
+            "id": "52029",
+            "name": "Azul-claro"
+          },
+          {
+            "id": "52031",
+            "name": "Azul-aço"
+          },
+          {
+            "id": "52033",
+            "name": "Azul-escuro"
+          },
+          {
+            "id": "52035",
+            "name": "Violeta"
+          },
+          {
+            "id": "52036",
+            "name": "Lavanda"
+          },
+          {
+            "id": "52038",
+            "name": "Lilás"
+          },
+          {
+            "id": "52042",
+            "name": "Fúcsia"
+          },
+          {
+            "id": "52043",
+            "name": "Rosa-claro"
+          },
+          {
+            "id": "52045",
+            "name": "Rosa-pálido"
+          },
+          {
+            "id": "52047",
+            "name": "Violeta-escuro"
+          },
+          {
+            "id": "52049",
+            "name": "Preto"
+          },
+          {
+            "id": "52051",
+            "name": "Cinza-escuro"
+          },
+          {
+            "id": "52053",
+            "name": "Prateado"
+          },
+          {
+            "id": "52055",
+            "name": "Branco"
+          },
+          {
+            "id": "338779",
+            "name": "Ciano"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "tags": {
+          "allow_variations": true
+        },
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "198813",
+            "name": "220V"
+          },
+          {
+            "id": "39205162",
+            "name": "127V"
+          },
+          {
+            "id": "39205163",
+            "name": "127/220V"
+          },
+          {
+            "id": "106543",
+            "name": "380V"
+          },
+          {
+            "id": "24517453",
+            "name": "480V"
+          },
+          {
+            "id": "45522378",
+            "name": "560V"
+          },
+          {
+            "id": "22524318",
+            "name": "600V"
+          },
+          {
+            "id": "14223009",
+            "name": "1.2V"
+          },
+          {
+            "id": "6055455",
+            "name": "1.5V"
+          },
+          {
+            "id": "3625879",
+            "name": "3V"
+          },
+          {
+            "id": "2638487",
+            "name": "4.5V"
+          },
+          {
+            "id": "2499688",
+            "name": "6V"
+          },
+          {
+            "id": "8149915",
+            "name": "9V"
+          },
+          {
+            "id": "909022",
+            "name": "12V"
+          },
+          {
+            "id": "3323363",
+            "name": "24V"
+          },
+          {
+            "id": "14754561",
+            "name": "48V"
+          },
+          {
+            "id": "13244394",
+            "name": "72V"
+          },
+          {
+            "id": "2090739",
+            "name": "18V"
+          },
+          {
+            "id": "3314711",
+            "name": "36V"
+          },
+          {
+            "id": "1263450",
+            "name": "60V"
+          },
+          {
+            "id": "2453518",
+            "name": "5V"
+          }
+        ],
+        "tooltip": "Este campo é obrigatório caso o produto seja elétrico.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "tags": {
+          "allow_variations": true
+        },
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "example": "50 Hz/60 Hz",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MIN_ROTATION_SPEED",
+        "name": "Velocidade mínima de rotação",
+        "tags": {
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "rpm",
+            "name": "rpm"
+          },
+          {
+            "id": "rps",
+            "name": "rps"
+          }
+        ],
+        "default_unit": "rpm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "name": "Velocidade máxima de rotação",
+        "tags": {
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "rpm",
+            "name": "rpm"
+          },
+          {
+            "id": "rps",
+            "name": "rps"
+          }
+        ],
+        "default_unit": "rpm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SOUND_PRESSURE_LEVEL",
+        "name": "Nível de pressão sonora",
+        "tags": {
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dBA",
+            "name": "dBA"
+          }
+        ],
+        "default_unit": "dBA",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "tags": {
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "W",
+            "name": "W"
+          },
+          {
+            "id": "hp",
+            "name": "hp"
+          },
+          {
+            "id": "kW",
+            "name": "kW"
+          }
+        ],
+        "default_unit": "W",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "POWER_GRINDER_TYPE",
+        "name": "Tipo de esmerilhadeira",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "5285127",
+            "name": "Angular"
+          },
+          {
+            "id": "5284950",
+            "name": "De bancada"
+          },
+          {
+            "id": "5355327",
+            "name": "Reta"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_MINI_POWER_GRINDER",
+        "name": "É mini esmerilhadeira",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DISC_DIAMETER",
+        "name": "Diâmetro do disco",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_CUTTING_DEPTH",
+        "name": "Profundidade máxima de corte",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_HEIGHT",
+        "name": "Altura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WIDTH",
+        "name": "Largura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WEIGHT",
+        "name": "Peso da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          },
+          {
+            "id": "mg",
+            "name": "mg"
+          },
+          {
+            "id": "oz",
+            "name": "oz"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "tags": {
+          "multivalued": true,
+          "variation_attribute": true,
+          "used_hidden": true,
+          "validate": true,
+          "conditional_required": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Pode ser um EAN, UPC ou outro GTIN"
+      },
+      {
+        "id": "SEC_STAMP",
+        "name": "Selo SEC",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "picture_id",
+        "value_max_length": 255,
+        "tooltip": "É o selo QR que identifica que o produto está em conformidade com os padrões de segurança elétrica.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ELECTRICAL_SAFETY_CERTIFICATE_NUMBER",
+        "name": "Número de certificado de segurança elétrica",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "É o número do certificado que uma entidade certificadora do seu país atribui a produtos elétricos, depois de verificar que é seguro.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "OCP_CERTIFICATION_AGENCY",
+        "name": "Organismo de certificação (OCP)",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "11695662",
+            "name": "Bureau Veritas Argentina S.A."
+          },
+          {
+            "id": "11695663",
+            "name": "Instituto del Gas Argentino S.A."
+          },
+          {
+            "id": "11695664",
+            "name": "Intertek Argentina Certificaciones S.A."
+          },
+          {
+            "id": "11695665",
+            "name": "INTI Instituto Nacional de Tecnología Industrial"
+          },
+          {
+            "id": "11695666",
+            "name": "IQC S.A."
+          },
+          {
+            "id": "11695667",
+            "name": "IRAM Instituto Argentino de Normalización y Certificación"
+          },
+          {
+            "id": "11695668",
+            "name": "Lenor S.R.L."
+          },
+          {
+            "id": "11695669",
+            "name": "Net Connection International S.R.L. (NCC)"
+          },
+          {
+            "id": "11695670",
+            "name": "Qetkra S.R.L."
+          },
+          {
+            "id": "11695671",
+            "name": "TÜV Rheinland Argentina S.A. (TUV)"
+          },
+          {
+            "id": "11695672",
+            "name": "UL de Argentina S.R.L."
+          },
+          {
+            "id": "11695673",
+            "name": "Outro (sem especificar)"
+          }
+        ],
+        "tooltip": "É o organismo de certificação de produtos ou laboratório de testes em seu país que emitiu a certificação de segurança para seu produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EMPTY_GTIN_REASON",
+        "name": "Motivo de GTIN vazio",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true,
+          "conditional_required": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "17055158",
+            "name": "O produto é uma peça artesanal"
+          },
+          {
+            "id": "17055159",
+            "name": "O produto é um kit ou pack"
+          },
+          {
+            "id": "17055160",
+            "name": "O produto não tem código cadastrado"
+          },
+          {
+            "id": "17055161",
+            "name": "Outro motivo"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INCLUDES_ACCESSORIES",
+        "name": "Inclui acessórios",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "AGID",
+        "name": "AGID",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DECLARATION_NUMBER",
+        "name": "Número da DI",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "Número de 15 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INVOICE_PRODUCT_NAME",
+        "name": "Nome do produto na nota fiscal",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SAT_KEY",
+        "name": "Chave do produto",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021094",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_KEY",
+        "name": "Chave da unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021108",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_DESCRIPTION",
+        "name": "Unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IVA_FOR_RESALE",
+        "name": "IVA para revenda",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "81861612",
+            "name": "Isento"
+          },
+          {
+            "id": "81861613",
+            "name": "0%"
+          },
+          {
+            "id": "81861614",
+            "name": "8%"
+          },
+          {
+            "id": "81861616",
+            "name": "16%"
+          }
+        ],
+        "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IEPS",
+        "name": "IEPS",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "82021095",
+            "name": "0%"
+          },
+          {
+            "id": "82021096",
+            "name": "3%"
+          },
+          {
+            "id": "82021097",
+            "name": "6%"
+          },
+          {
+            "id": "82021098",
+            "name": "7%"
+          },
+          {
+            "id": "82021099",
+            "name": "8%"
+          },
+          {
+            "id": "82021100",
+            "name": "9%"
+          },
+          {
+            "id": "82021101",
+            "name": "25%"
+          },
+          {
+            "id": "82021102",
+            "name": "26.5%"
+          },
+          {
+            "id": "82021103",
+            "name": "30%"
+          },
+          {
+            "id": "82021104",
+            "name": "30.4%"
+          },
+          {
+            "id": "82021105",
+            "name": "50%"
+          },
+          {
+            "id": "82021106",
+            "name": "53%"
+          },
+          {
+            "id": "82021107",
+            "name": "160%"
+          }
+        ],
+        "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SWITCH_TYPE",
+        "name": "Tipo de interruptor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7643689",
+            "name": "Gatilho"
+          },
+          {
+            "id": "1033084",
+            "name": "Gatilho paleta"
+          },
+          {
+            "id": "1033083",
+            "name": "Tecla"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "kg",
+            "name": "kg"
+          }
+        ],
+        "default_unit": "kg",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "mm",
+            "name": "mm"
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "mm",
+            "name": "mm"
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "mm",
+            "name": "mm"
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_LED_INDICATOR",
+        "name": "Com indicador LED",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_PROGRESSIVE_START",
+        "name": "Com arranque progressivo",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_OVERLOAD_PROTECTION",
+        "name": "Com proteção contra sobrecarga",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_SPEED_REGULATION",
+        "name": "Com regulação de velocidade",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_DISC_LOCK_BUTTON",
+        "name": "Com botão de bloqueio de disco",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_OBSTRUCTION_AUTOMATIC_BRAKE",
+        "name": "Com freio automático por agarramento",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_ELECTRONIC_SAFETY_CLUTCH",
+        "name": "Com embreagem eletrônico de segurança",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_ANTI_RESTART_SYSTEM",
+        "name": "Com sistema anti-retorno",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_ANTI_DUST",
+        "name": "É antipoeira",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "name": "Comprimento do cabo",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "m",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INCLUDES_DUST_SHROUD",
+        "name": "Inclui coletor de pó",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_SIDE_HANDLE",
+        "name": "Com cabo lateral",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_SWIVEL_HANDLE",
+        "name": "Com cabo rotativo",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INCLUDES_ANTI_VIBRATION_HANDLE",
+        "name": "Inclui cabo anti-vibração",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INCLUDES_BATTERY",
+        "name": "Inclui bateria",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BATTERY_VOLTAGE",
+        "name": "Voltagem da bateria",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "2090739",
+            "name": "18V"
+          },
+          {
+            "id": "6084968",
+            "name": "20V"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INCLUDES_DISC_PROTECTOR",
+        "name": "Inclui protector de disco",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "8117352",
+            "name": "Manual"
+          },
+          {
+            "id": "8305546",
+            "name": "1 chave"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GEAR_MATERIAL",
+        "name": "Material da engrenagem",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "8843574",
+            "name": "Alumínio"
+          },
+          {
+            "id": "8839438",
+            "name": "Aço"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 2,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230581",
+            "name": "Usado"
+          },
+          {
+            "id": "2230284",
+            "name": "Novo"
+          },
+          {
+            "id": "2230582",
+            "name": "Recondicionado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VALUE_ADDED_TAX",
+        "name": "Imposto sobre o valor acrescentado",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DUTY",
+        "name": "Imposto de importação",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "49553239",
+            "name": "0 %"
+          },
+          {
+            "id": "49553240",
+            "name": "1 %"
+          },
+          {
+            "id": "49553241",
+            "name": "2.5 %"
+          },
+          {
+            "id": "49553242",
+            "name": "4 %"
+          },
+          {
+            "id": "49553243",
+            "name": "5 %"
+          },
+          {
+            "id": "49553244",
+            "name": "8 %"
+          },
+          {
+            "id": "49553245",
+            "name": "9.5 %"
+          },
+          {
+            "id": "49553246",
+            "name": "10 %"
+          },
+          {
+            "id": "49553247",
+            "name": "14 %"
+          },
+          {
+            "id": "49553248",
+            "name": "15 %"
+          },
+          {
+            "id": "49553249",
+            "name": "18 %"
+          },
+          {
+            "id": "49553250",
+            "name": "19 %"
+          },
+          {
+            "id": "49553251",
+            "name": "20 %"
+          },
+          {
+            "id": "49553252",
+            "name": "23 %"
+          },
+          {
+            "id": "49553253",
+            "name": "25 %"
+          },
+          {
+            "id": "49553254",
+            "name": "26 %"
+          },
+          {
+            "id": "49553255",
+            "name": "70 %"
+          }
+        ],
+        "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de envio",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAZMAT_TRANSPORTABILITY",
+        "name": "Transportabilidade Hazmat",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "13414677",
+            "name": "Livre"
+          },
+          {
+            "id": "13414678",
+            "name": "Limitado"
+          },
+          {
+            "id": "13414679",
+            "name": "Excedido"
+          },
+          {
+            "id": "13414680",
+            "name": "Indeterminado"
+          },
+          {
+            "id": "75989961",
+            "name": "Notificado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_KIT",
+        "name": "É kit",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DESCRIPTIVE_TAGS",
+        "name": "Tags descritivos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_CHEMICAL_FEATURES",
+        "name": "Características químicas do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7651070",
+            "name": "Inflamável"
+          },
+          {
+            "id": "7651071",
+            "name": "Aerosol"
+          },
+          {
+            "id": "7651072",
+            "name": "Oxidante"
+          },
+          {
+            "id": "7651073",
+            "name": "Corrosivo"
+          },
+          {
+            "id": "7651074",
+            "name": "Explosivo"
+          },
+          {
+            "id": "7651075",
+            "name": "Tóxico ou infeccioso"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FOODS_AND_DRINKS",
+        "name": "Alimentos e bebidas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575926",
+            "name": "Para humanos"
+          },
+          {
+            "id": "7575927",
+            "name": "Para animais"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEDICINES",
+        "name": "Medicamentos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575930",
+            "name": "Para humanos com receita médica"
+          },
+          {
+            "id": "7575931",
+            "name": "Para humanos sem receita médica"
+          },
+          {
+            "id": "7575932",
+            "name": "Para animais com receita médica"
+          },
+          {
+            "id": "7575933",
+            "name": "Para animais sem receita médica"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BATTERIES_FEATURES",
+        "name": "Características das baterias",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575934",
+            "name": "Lítio stand-alone (separadas ou isolado)"
+          },
+          {
+            "id": "7575935",
+            "name": "De lítio instaladas"
+          },
+          {
+            "id": "7575936",
+            "name": "Para carros (ácido-chumbo)"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPMENT_PACKING",
+        "name": "Embalagem do envío",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435891",
+            "name": "Flyer"
+          },
+          {
+            "id": "7435892",
+            "name": "Caixa"
+          },
+          {
+            "id": "7575937",
+            "name": "Envelope"
+          },
+          {
+            "id": "7575939",
+            "name": "Auto-expedível"
+          },
+          {
+            "id": "27037932",
+            "name": "BEX"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ADDITIONAL_INFO_REQUIRED",
+        "name": "Informação adicional requerida",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435893",
+            "name": "Possui código IMEI"
+          },
+          {
+            "id": "7435894",
+            "name": "Possui número de série"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EXCLUDED_PLATFORMS",
+        "name": "Plataformas excluídas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "9936777",
+            "name": "Android"
+          },
+          {
+            "id": "9936778",
+            "name": "iOS"
+          },
+          {
+            "id": "9936779",
+            "name": "Desktop"
+          },
+          {
+            "id": "9936780",
+            "name": "Mobile"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_SHIPMENT",
+        "name": "É adequado para envío",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_DATA_SOURCE",
+        "name": "Fonte do produto",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indique o país de origem do produto.",
+        "example": "Brasil",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+        "name": "Razões de visibilidade limitada no Marketplace",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "24219544",
+            "name": "Pharma"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAS_COMPATIBILITIES",
+        "name": "Tem compatibilidades",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CATALOG_TITLE",
+        "name": "Título de catálogo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SEARCH_ENHANCEMENT_FIELDS",
+        "name": "Campos de aprimoramento de pesquisa",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_FEATURES",
+        "name": "Características do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435885",
+            "name": "Contém líquido"
+          },
+          {
+            "id": "7435883",
+            "name": "Frágil"
+          },
+          {
+            "id": "7435888",
+            "name": "Com validade"
+          },
+          {
+            "id": "8847339",
+            "name": "Sem validade"
+          },
+          {
+            "id": "7575917",
+            "name": "Desinfetante e saneante"
+          },
+          {
+            "id": "7575924",
+            "name": "MAPA"
+          },
+          {
+            "id": "7575923",
+            "name": "Saúde e correlatos"
+          },
+          {
+            "id": "8721108",
+            "name": "Volumoso"
+          },
+          {
+            "id": "10490116",
+            "name": "Não voável"
+          },
+          {
+            "id": "12928414",
+            "name": "Não rotacionável"
+          },
+          {
+            "id": "41722098",
+            "name": "Dobrável"
+          },
+          {
+            "id": "52092586",
+            "name": "Magnético"
+          },
+          {
+            "id": "52233302",
+            "name": "Pode rolar"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_NEW_OFFER",
+        "name": "É nova oferta",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SYI_PYMES_ID",
+        "name": "syi pymes id",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_FLAMMABLE",
+        "name": "É inflamável",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_POSITIVE_IMPACT",
+        "name": "Com impacto positivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de fábrica",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "saleTerms": [
+      {
+        "id": "INVOICE",
+        "name": "Faturamento",
+        "tags": {
+          "hidden": true,
+          "multivalued": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "6891885",
+            "name": "Factura A"
+          },
+          {
+            "id": "6891886",
+            "name": "Factura B"
+          },
+          {
+            "id": "6891887",
+            "name": "Factura C"
+          },
+          {
+            "id": "6891888",
+            "name": "Não factura"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIBABLE",
+        "name": "Aceita compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRICE_SUBSCRIPTION",
+        "name": "Preço por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIPTION_FREE_SHIPPING",
+        "name": "Envio gratis por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_1",
+        "name": "Preço por ser nível 1 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_2",
+        "name": "Preço por ser nível 2 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_3",
+        "name": "Preço por ser nível 3 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_4",
+        "name": "Preço por ser nível 4 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_5",
+        "name": "Preço por ser nível 5 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_6",
+        "name": "Preço por ser nível 6 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CHECKOUT_EXCHANGE_RATE",
+        "name": "Taxa de câmbio para checkout",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL/USD",
+            "name": "BRL/USD"
+          }
+        ],
+        "default_unit": "BRL/USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DISCOUNT_SUBSCRIPTION",
+        "name": "Desconto por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "%",
+            "name": "%"
+          }
+        ],
+        "default_unit": "%",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230280",
+            "name": "Garantia do vendedor"
+          },
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica"
+          },
+          {
+            "id": "6150835",
+            "name": "Sem garantia"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          },
+          {
+            "id": "meses",
+            "name": "meses"
+          },
+          {
+            "id": "anos",
+            "name": "anos"
+          }
+        ],
+        "default_unit": "meses",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MANUFACTURING_TIME",
+        "name": "Disponibilidade de estoque",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          }
+        ],
+        "default_unit": "dias",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MIN_QUANTITY",
+        "name": "Quantidade mínima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MAX_QUANTITY",
+        "name": "Quantidade máxima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_PRICE",
+        "name": "Preço do desconto en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_PRICE",
+        "name": "Preço do desconto en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_PRICE",
+        "name": "Preço global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_ORIGINAL_PRICE",
+        "name": "Preço original global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INSTALLMENTS_CAMPAIGN",
+        "name": "Campanha de parcelas",
+        "tags": {
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10322628",
+            "name": "ahora-6"
+          },
+          {
+            "id": "10080710",
+            "name": "ahora-12"
+          },
+          {
+            "id": "10979952",
+            "name": "ahora-24"
+          },
+          {
+            "id": "10080711",
+            "name": "3x_campaign"
+          },
+          {
+            "id": "10080712",
+            "name": "18x_campaign"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPPING_ORIGIN",
+        "name": "Tipo de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "10215068",
+            "name": "Local"
+          },
+          {
+            "id": "10215069",
+            "name": "Internacional"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_VOLUME_DISCOUNT",
+        "name": "Com desconto por volume",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PROMOTION_TYPE",
+        "name": "Tipo de promoção",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10708386",
+            "name": "Oferta do dia"
+          },
+          {
+            "id": "10708387",
+            "name": "Oferta relâmpago"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_1P_MOTORS",
+        "name": "É 1P motores",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "1P_RESERVATION_PRICE",
+        "name": "Preço da reserva 1P",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_TRADE_IN_PROGRAM",
+        "name": "Plan intercâmbio",
+        "tags": {
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "identity": {
+      "local": {
+        "gtin": "7908414493698",
+        "brand": "MULTILASER",
+        "model": "fe048",
+        "partNumber": null,
+        "quantity": null,
+        "packaging": null,
+        "provenance": {
+          "model": {
+            "source": "supplier_offer:6f20e543-6383-4a8f-a2dd-7697c757c67d",
+            "excerpt": "fe048"
+          },
+          "brand": {
+            "source": "supplier_offer:6f20e543-6383-4a8f-a2dd-7697c757c67d",
+            "excerpt": "MULTILASER; "
+          },
+          "gtin": {
+            "source": "supplier_offer:6f20e543-6383-4a8f-a2dd-7697c757c67d",
+            "excerpt": "7908414493698"
+          }
+        },
+        "variation": null,
+        "brandEvidence": "Esmerilhadeira Angular Multilaser Fe048 700w 127v Esmerilhadeira Angular 127v-700w para Disco 4-1/2 Polegadas, Empunhadura com 2 Posições Multi - FE048 Empunhadura (punho) removível com 2 posições que pode ser usado em ambos os lados para maior comodidade e controle durante as operações. Desenvolvida com velocidade de 12000RPM, potência de 700W e capacidade de disco 4-1/2’ 115mm. É compacta e pode ser usada até mesmo em lugares de difícil acesso e conta com dupla isolação, garantindo maior segurança ao operador. Ideal para trabalhos como: Cortar Lixar Desbastar Polir *Imagens meramente ilustrativas."
+      },
+      "remote": {
+        "gtin": null,
+        "brand": "Multilaser",
+        "model": "FE048",
+        "partNumber": null,
+        "packaging": null,
+        "quantity": null,
+        "saleUnits": null,
+        "variation": "Cinza",
+        "provenance": {
+          "brand": {
+            "source": "ml_attributes",
+            "excerpt": "BRAND: Multilaser"
+          },
+          "model": {
+            "source": "ml_attributes",
+            "excerpt": "MODEL: FE048"
+          },
+          "variation": {
+            "source": "ml_attributes",
+            "excerpt": "COLOR: Cinza"
+          }
+        },
+        "critical": {
+          "VOLTAGE": "127V",
+          "LENGTH": "10.5 cm",
+          "SIZE": null,
+          "CAPACITY": null,
+          "CONNECTOR_TYPE": null,
+          "INPUT_CONNECTOR": null,
+          "OUTPUT_CONNECTOR": null,
+          "PINS_NUMBER": null
+        }
+      },
+      "source": "/products/MLB39329744"
+    },
+    "assessment": {
+      "identity": "IDENTIDADE_COHERENTE",
+      "comparisons": [
+        {
+          "field": "brand",
+          "local": "MULTILASER",
+          "remote": "Multilaser",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "model",
+          "local": "fe048",
+          "remote": "FE048",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        }
+      ],
+      "reasons": [],
+      "warnings": [
+        "APRESENTACAO_NAO_EXPLICITA"
+      ],
+      "identityRuleVersion": "M2M-IDENTITY-v2.1"
+    },
+    "observedAt": "2026-09-05T20:26:50.729Z"
+  },
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/387946",
+    "observedAt": "2026-09-05T20:30:41.465Z",
+    "product": {
+      "produtoid": "387946",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 155.9,
+      "preco_crossdocking": 155.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 155.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+      "titulo_curto": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+      "categoriaid": "118406",
+      "categoria_nome": "Ferramentas/ Ferramentas Eletricas / Esmerilhadeira",
+      "abc": null,
+      "ean11": "7908414493698",
+      "ncm": "84672999",
+      "descricao": "<p><strong>Esmerilhadeira Angular 127v-700w para Disco 4-1/2 Polegadas, Empunhadura com 2 Posições Multi - FE048</strong></p>\r\n<p>Empunhadura (punho) removível com 2 posições que pode ser usado em ambos os lados para maior comodidade e controle durante as operações. Desenvolvida com velocidade de 12000RPM, potência de 700W e capacidade de disco 4-1/2’ 115mm. É compacta e pode ser usada até mesmo em lugares de difícil acesso e conta com dupla isolação, garantindo maior segurança ao operador.</p>\r\n<p><strong>Ideal para trabalhos como: </strong><br />Cortar<br />Lixar<br />Desbastar <br />Polir</p>\r\n<p> </p>\r\n<p> </p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p><strong>Cor</strong><br />Cinza<br /><strong>Material</strong><br />SiliconePlástico<br /><strong>Composição do Material</strong><br />Metal e plástico<br /><strong>Peso do produto</strong><br />1460g<br /><strong>Largura do produto</strong><br />10cm<br /><strong>Altura do produto</strong><br />26cm<br /><strong>Comprimento do produto</strong><br />10.5cm<br /><strong>Potência</strong><br />700W<br /><strong>Tensão</strong><br />127V<br /><strong>Medidor de Velocidade</strong><br />12000 RPM</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MULTILASER",
+      "modelo": "",
+      "peso": 1.506,
+      "largura": 15,
+      "altura": 35,
+      "profundidade": 25,
+      "peso_embalagem": 1.506,
+      "largura_embalagem": 15,
+      "altura_embalagem": 35,
+      "profundidade_embalagem": 25,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1435,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "08.019.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-26 13:47:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-26 13:47:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png"
+        }
+      ]
+    }
+  },
+  "pictureProof": [
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/8/387946_67d2cb2f2015e.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018319/1454e795cd8520c6bba9b887bebecc086fbfaa903e346631541b5e97871d1df3.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "1454e795cd8520c6bba9b887bebecc086fbfaa903e346631541b5e97871d1df3"
+    }
+  ],
+  "context": {
+    "sellerId": "3294514937",
+    "categoryId": "MLB188790",
+    "listingType": "gold_special",
+    "shippingMode": "me2",
+    "logisticType": "xd_drop_off",
+    "freeShipping": true,
+    "dimensions": "35x15x25,1506"
+  },
+  "memory": {
+    "price": 258.72,
+    "cost": 155.9,
+    "offerId": "6f20e543-6383-4a8f-a2dd-7697c757c67d",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:57:17.834+00:00",
+    "fee": {
+      "amount": 28.46,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:30:43.796Z",
+      "evidence": "/sites/MLB/listing_prices?price=258.72&category_id=MLB188790&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "ace082c49144c96448ed777ca030552df2c8dd7f38b69131c0cc0dc17ec8a0d1"
+    },
+    "shipping": {
+      "amount": 27.05,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:30:43.796Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=258.72&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=35x15x25%2C1506",
+      "contextKey": "ace082c49144c96448ed777ca030552df2c8dd7f38b69131c0cc0dc17ec8a0d1"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:30:43.676Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:30:43.796Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "FROM_200_TO_1000",
+      "maxCents": 100000,
+      "floor": 0.07,
+      "target": 0.1,
+      "limit": 0.15
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 21.43,
+    "result": 25.88,
+    "margin": 0.10003092145949287,
+    "status": "estimated"
+  },
+  "payload": {
+    "family_name": "Esmerilhadeira Multi FE048 700W 127V disco 115mm",
+    "category_id": "MLB188790",
+    "catalog_product_id": "MLB39329744",
+    "catalog_listing": true,
+    "price": 258.72,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018319/1454e795cd8520c6bba9b887bebecc086fbfaa903e346631541b5e97871d1df3.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "31163",
+        "value_name": "Multilaser"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "26443549",
+        "value_name": "FE048"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "40777194",
+        "value_name": "FE048"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "283165",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "MIN_ROTATION_SPEED",
+        "value_id": "7736464",
+        "value_name": "0 rpm"
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "value_id": "7917380",
+        "value_name": "12000 rpm"
+      },
+      {
+        "id": "SOUND_PRESSURE_LEVEL",
+        "value_id": "7898951",
+        "value_name": "89 dBA"
+      },
+      {
+        "id": "POWER",
+        "value_id": "96684",
+        "value_name": "700 W"
+      },
+      {
+        "id": "POWER_GRINDER_TYPE",
+        "value_id": "5285127",
+        "value_name": "Angular"
+      },
+      {
+        "id": "IS_MINI_POWER_GRINDER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "DISC_DIAMETER",
+        "value_id": "5285126",
+        "value_name": "115 mm"
+      },
+      {
+        "id": "SWITCH_TYPE",
+        "value_id": "1033083",
+        "value_name": "Tecla"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "6171164",
+        "value_name": "1.46 kg"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "28288144",
+        "value_name": "10.5 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "10791702",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "28288132",
+        "value_name": "26 cm"
+      },
+      {
+        "id": "WITH_PROGRESSIVE_START",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SPEED_REGULATION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "7736465",
+        "value_name": "2 m"
+      },
+      {
+        "id": "INCLUDES_DUST_SHROUD",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_DISC_PROTECTOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "8117352",
+        "value_name": "Manual"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7908414493698"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK018319"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_CUTTING_DEPTH",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK018319",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Esmerilhadeira Multi FE048 700W 127V disco 115mm\n\n• Alimentação: 127 V; potência: 700 W.\n• Rotação de 12000 rpm e disco de 115 mm.\n• Empunhadura removível com duas posições.\n\nDIMENSÕES DA EMBALAGEM\n25 × 15 × 35 cm; peso bruto 1.506 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK018319",
+  "conditional": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "error": null
+  },
+  "validated": {
+    "ok": false,
+    "status": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        },
+        {
+          "department": "items",
+          "cause_id": 350,
+          "type": "warning",
+          "code": "item.shipping.mandatory_free_shipping",
+          "references": [],
+          "message": "Mandatory free shipping added"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    },
+    "error": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        },
+        {
+          "department": "items",
+          "cause_id": 350,
+          "type": "warning",
+          "code": "item.shipping.mandatory_free_shipping",
+          "references": [],
+          "message": "Mandatory free shipping added"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  },
+  "at": "2026-09-05T20:30:47.673Z"
+}

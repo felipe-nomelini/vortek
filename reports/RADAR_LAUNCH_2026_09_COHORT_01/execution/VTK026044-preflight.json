@@ -1,0 +1,4575 @@
+{
+  "c": {
+    "sku": "VTK026044",
+    "prediction": [
+      {
+        "domain_id": "MLB-COMPUTER_MICE",
+        "domain_name": "Mouses para computadores",
+        "category_id": "MLB1714",
+        "category_name": "Mouses",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "10366",
+            "value_name": "Intelbras"
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "13315169",
+            "value_name": "MOUSE"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "22808242",
+            "value_name": "MSI50"
+          },
+          {
+            "id": "ALPHANUMERIC_MODEL",
+            "name": "Modelo alfanumérico",
+            "value_id": "40905268",
+            "value_name": "MSI50"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto"
+          },
+          {
+            "id": "MAIN_COLOR",
+            "name": "Cor principal",
+            "value_id": "2450295",
+            "value_name": "Preto"
+          }
+        ]
+      },
+      {
+        "domain_id": "MLB-MINERAL_WATERS",
+        "domain_name": "Águas minerais",
+        "category_id": "MLB269718",
+        "category_name": "Águas Minerais",
+        "attributes": []
+      }
+    ],
+    "product": {
+      "id": "9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+      "sku": "VTK026044",
+      "nome": "Mouse Intelbras Msi50 Sem Fio Preto",
+      "marca": "INTELBRAS",
+      "estoque": 50,
+      "custo": 39.9,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.104,
+      "peso_bruto": 0.104,
+      "largura": 7,
+      "altura": 11.5,
+      "profundidade": 4,
+      "gtin": "7899298724933",
+      "descricao": "Mouse Intelbras MSI50 Sem Fio Preto Código do produto: 4300907 O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória. Características » USB 2.0 » Conexão de 2.4GHz estável via Dongle » Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional » Click silencioso, garantindo maior satisfação ao usuário » Compatibilidade com sistemas operacionais » Produto leve e confortável » Autonomia de bateria prolongada » Alcance de até 10 metros sem barreira » Modo Standby » Botões de comando que garantem sua usabilidade *Imagens meramente ilustrativas.\n\nÁrea de alcance: Até 10m* Bateria inclusa: Sim - 1 x AA – 1.5 V Consumo máximo: 11 mA - 1.5 V Capacidade da bateria: 3000 mAh** Standby: Sim – 20s e 15 min Retorno do standby: 20s – Movimento | 15m - Click Plug & Play: Sim Click silencioso: Sim Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS® Botão ligar/desligar: Sim Conectividade: 2.4GHz Dongle: Sim - Embutido USB: 2.0 Int Connect: Sim – TSI 50 Indicação de nível de bateria: Não Material: ABS Peso: 83g (com bateria) Dimensões (L × A × P): 62 × 107 × 38 mm Temperatura de trabalho: 0° à 40° Sensor óptico: Vermelho com redução Resolução: Fixo - 1200 DPI Quantidade de botões: 3 (E+D+SCR) Scroll: Sim Superfície: Todas exceto vidro e superfícies translucidas*** Ambidestro: Sim Conteúdo da embalagem » 1x Mouse sem fio MSI 50 Preto » 1x Dongle Wireless » 1x Pilha AA *A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado. **A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh. ***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento.",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+        "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png",
+        "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png"
+      ],
+      "categoria": "Informatica/ Perifericos/ Mouse óptico",
+      "ml_item_id": null,
+      "created_at": "2026-08-16T11:00:23.694417+00:00",
+      "updated_at": "2026-09-05T19:23:25.841118+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "391313",
+      "dslite_ultima_sync": "2026-09-05T19:23:25.487+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "84716053",
+      "cest": "21.031.00",
+      "origem_fiscal": "2",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "57c6546f-4141-477a-aa2e-602712b0a36f",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "57c6546f-4141-477a-aa2e-602712b0a36f",
+      "produto_id": "9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "391313",
+      "sku_fornecedor": "391313",
+      "custo": 39.9,
+      "estoque": 50,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:23:25.487+00:00",
+      "created_at": "2026-08-16T11:00:23.70381+00:00",
+      "updated_at": "2026-09-05T19:23:25.5+00:00",
+      "sku_oferta": "391313",
+      "nome": "Mouse Intelbras Msi50 Sem Fio Preto",
+      "descricao": "Mouse Intelbras MSI50 Sem Fio Preto Código do produto: 4300907 O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória. Características » USB 2.0 » Conexão de 2.4GHz estável via Dongle » Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional » Click silencioso, garantindo maior satisfação ao usuário » Compatibilidade com sistemas operacionais » Produto leve e confortável » Autonomia de bateria prolongada » Alcance de até 10 metros sem barreira » Modo Standby » Botões de comando que garantem sua usabilidade *Imagens meramente ilustrativas.\n\nÁrea de alcance: Até 10m* Bateria inclusa: Sim - 1 x AA – 1.5 V Consumo máximo: 11 mA - 1.5 V Capacidade da bateria: 3000 mAh** Standby: Sim – 20s e 15 min Retorno do standby: 20s – Movimento | 15m - Click Plug & Play: Sim Click silencioso: Sim Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS® Botão ligar/desligar: Sim Conectividade: 2.4GHz Dongle: Sim - Embutido USB: 2.0 Int Connect: Sim – TSI 50 Indicação de nível de bateria: Não Material: ABS Peso: 83g (com bateria) Dimensões (L × A × P): 62 × 107 × 38 mm Temperatura de trabalho: 0° à 40° Sensor óptico: Vermelho com redução Resolução: Fixo - 1200 DPI Quantidade de botões: 3 (E+D+SCR) Scroll: Sim Superfície: Todas exceto vidro e superfícies translucidas*** Ambidestro: Sim Conteúdo da embalagem » 1x Mouse sem fio MSI 50 Preto » 1x Dongle Wireless » 1x Pilha AA *A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado. **A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh. ***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento.",
+      "marca": "INTELBRAS",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+        "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png",
+        "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png"
+      ],
+      "gtin": "7899298724933",
+      "ncm": "84716053",
+      "cest": "21.031.00"
+    },
+    "radar": {
+      "id": "098589a6-1a50-4e13-8f5c-96849b339f39",
+      "produto_id": "9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+      "candidate_key": "product:9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+      "sku": "VTK026044",
+      "catalog_product_id": "MLB78302520",
+      "pricing_group_id": null,
+      "stage": "AGUARDANDO_APROVACAO",
+      "queue": "EXPLORATORIOS",
+      "conflict_state": "SEM_CONFLITO",
+      "assessment": {
+        "state": "SEM_CONFLITO",
+        "economy": "VIAVEL_NO_ALVO",
+        "listing": "NOVO_ANUNCIO_CANDIDATO",
+        "reasons": [],
+        "identity": "IDENTIDADE_COHERENTE",
+        "listings": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA",
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "comparisons": [
+          {
+            "basis": "normalized",
+            "field": "brand",
+            "local": "INTELBRAS",
+            "remote": "Intelbras",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "model",
+            "local": "msi50",
+            "remote": "Mouse MSI 50",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "variation",
+            "local": "preto",
+            "remote": "Preto",
+            "matches": true,
+            "evidence": null
+          }
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1",
+        "publicationAutonomy": "REQUIRES_CONFIRMATION"
+      },
+      "evidence": {
+        "asOf": "2026-09-05T15:16:37.457Z",
+        "cost": 39.9,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "source": "oportunidades-ml-2026-09-05",
+        "product": "Mouse Intelbras Msi50 Sem Fio Preto",
+        "identity": {
+          "local": {
+            "gtin": "7899298724933",
+            "brand": "INTELBRAS",
+            "model": "msi50",
+            "quantity": null,
+            "packaging": null,
+            "variation": "preto",
+            "partNumber": null,
+            "provenance": {
+              "gtin": {
+                "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+                "excerpt": "7899298724933"
+              },
+              "brand": {
+                "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+                "excerpt": "INTELBRAS; "
+              },
+              "model": {
+                "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+                "excerpt": "msi50"
+              }
+            },
+            "brandEvidence": "Mouse Intelbras Msi50 Sem Fio Preto Mouse Intelbras MSI50 Sem Fio Preto Código do produto: 4300907 O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória. Características » USB 2.0 » Conexão de 2.4GHz estável via Dongle » Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional » Click silencioso, garantindo maior satisfação ao usuário » Compatibilidade com sistemas operacionais » Produto leve e confortável » Autonomia de bateria prolongada » Alcance de até 10 metros sem barreira » Modo Standby » Botões de comando que garantem sua usabilidade *Imagens meramente ilustrativas. Área de alcance: Até 10m* Bateria inclusa: Sim - 1 x AA – 1.5 V Consumo máximo: 11 mA - 1.5 V Capacidade da bateria: 3000 mAh** Standby: Sim – 20s e 15 min Retorno do standby: 20s – Movimento | 15m - Click Plug & Play: Sim Click silencioso: Sim Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS® Botão ligar/desligar: Sim Conectividade: 2.4GHz Dongle: Sim - Embutido USB: 2.0 Int Connect: Sim – TSI 50 Indicação de nível de bateria: Não Material: ABS Peso: 83g (com bateria) Dimensões (L × A × P): 62 × 107 × 38 mm Temperatura de trabalho: 0° à 40° Sensor óptico: Vermelho com redução Resolução: Fixo - 1200 DPI Quantidade de botões: 3 (E+D+SCR) Scroll: Sim Superfície: Todas exceto vidro e superfícies translucidas*** Ambidestro: Sim Conteúdo da embalagem » 1x Mouse sem fio MSI 50 Preto » 1x Dongle Wireless » 1x Pilha AA *A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado. **A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh. ***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento."
+          },
+          "remote": {
+            "gtin": null,
+            "brand": "Intelbras",
+            "model": "Mouse MSI 50",
+            "critical": {
+              "SIZE": null,
+              "LENGTH": null,
+              "VOLTAGE": null,
+              "CAPACITY": null,
+              "PINS_NUMBER": null,
+              "CONNECTOR_TYPE": null,
+              "INPUT_CONNECTOR": null,
+              "OUTPUT_CONNECTOR": null
+            },
+            "quantity": null,
+            "packaging": null,
+            "saleUnits": null,
+            "variation": "Preto",
+            "partNumber": null,
+            "provenance": {
+              "brand": {
+                "source": "/products/MLB78302520",
+                "excerpt": "BRAND: Intelbras"
+              },
+              "model": {
+                "source": "/products/MLB78302520",
+                "excerpt": "MODEL: Mouse MSI 50"
+              },
+              "variation": {
+                "source": "/products/MLB78302520",
+                "excerpt": "COLOR: Preto"
+              }
+            }
+          },
+          "source": "/products/MLB78302520"
+        },
+        "supplier": "Evolusom Comercial Ltda",
+        "listingType": "gold_special",
+        "identityReview": "Mouse Intelbras MSI 50 sem fio preto; fornecedor confirma código 4300907.",
+        "competitivePrice": 103.35,
+        "identityObservedAt": "2026-09-05T20:04:47.374Z"
+      },
+      "priority": {
+        "stock": 50,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "economy": "VIAVEL_NO_ALVO",
+        "identity": "IDENTIDADE_COHERENTE",
+        "demandRank": 3,
+        "publication": "COMPLETA",
+        "competitiveness": {
+          "price": 103.35,
+          "contribution": 26.5
+        }
+      },
+      "recommendation": "Explorar demanda; validar pendências antes de aprovar",
+      "evaluation_id": "a3fd9e77-3b6a-412d-afb2-30647f29f9fc",
+      "target_evaluation_id": "61942e55-23c9-4fe7-82ec-a6e0a4a8479d",
+      "floor_evaluation_id": "73db4bfd-5e16-4e03-9a6a-b155b85527b9",
+      "break_even_evaluation_id": "28d72733-8355-4a2a-aa83-340243caa2bc",
+      "input_fingerprint": "9b05ad37a27a9df26e938bc42394e7f08875ab467ab95a894d605b42fcf179d5",
+      "stock": 50,
+      "demand_rank": 3,
+      "contribution": 26.5,
+      "job_id": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+      "processed_at": "2026-09-05T20:10:45.479015+00:00",
+      "updated_at": "2026-09-05T20:10:45.479015+00:00"
+    },
+    "catalog": {
+      "id": "MLB78302520",
+      "catalog_product_id": "MLB78302520",
+      "status": "active",
+      "pdp_types": [
+        "traditional"
+      ],
+      "domain_id": "MLB-COMPUTER_MICE",
+      "permalink": "",
+      "name": "Mouse sem Fio MSI50 Intelbras",
+      "family_name": "Intelbras MSI Mouse MSI 50 MSI50",
+      "type": "catalog_product",
+      "buy_box_winner": null,
+      "pickers": [
+        {
+          "picker_id": "COLOR",
+          "picker_name": "Cor",
+          "products": [
+            {
+              "product_id": "MLB78302520",
+              "picker_label": "Preto",
+              "picture_id": "975823-MLA115306548998_082026",
+              "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_975823-MLA115306548998_082026-I.jpg",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "Intelbras MSI Mouse MSI 50 MSI50 - Preto",
+              "auto_completed": true,
+              "rgb_meta": "000000"
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "COLOR",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        }
+      ],
+      "pictures": [
+        {
+          "id": "975823-MLA115306548998_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_975823-MLA115306548998_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 657,
+          "max_height": 850,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "806442-MLA116715235703_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_806442-MLA116715235703_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1001,
+          "max_height": 500,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        }
+      ],
+      "description_pictures": [],
+      "main_features": [
+        {
+          "text": "É sem fio.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Orientação da mão: ambidestro.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Com sensor óptico.",
+          "type": "key_value",
+          "metadata": {}
+        }
+      ],
+      "disclaimers": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "45251028",
+          "value_name": "MSI",
+          "values": [
+            {
+              "id": "45251028",
+              "name": "MSI"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "87828630",
+          "value_name": "Mouse MSI 50",
+          "values": [
+            {
+              "id": "87828630",
+              "name": "Mouse MSI 50"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "40905268",
+          "value_name": "MSI50",
+          "values": [
+            {
+              "id": "40905268",
+              "name": "MSI50"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto",
+              "meta": {
+                "rgb": "000000"
+              }
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "name": "Tipo de mouse",
+          "value_id": "192740",
+          "value_name": "Convencional",
+          "values": [
+            {
+              "id": "192740",
+              "name": "Convencional"
+            }
+          ]
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "name": "Tipo de sensor",
+          "value_id": "109003",
+          "value_name": "Óptico",
+          "values": [
+            {
+              "id": "109003",
+              "name": "Óptico"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_WIRE",
+          "name": "Com fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "meta": {
+                "value": true
+              }
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "name": "Orientação da mão",
+          "value_id": "2862903",
+          "value_name": "Ambidestro",
+          "values": [
+            {
+              "id": "2862903",
+              "name": "Ambidestro"
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "9022334",
+          "value_name": "83 g",
+          "values": [
+            {
+              "id": "9022334",
+              "name": "83 g"
+            }
+          ]
+        },
+        {
+          "id": "WITH_LIGHTS",
+          "name": "Com luzes",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "meta": {
+                "value": false
+              }
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "2296418",
+          "value_name": "Adaptador",
+          "values": [
+            {
+              "id": "2296418",
+              "name": "Adaptador"
+            }
+          ]
+        },
+        {
+          "id": "WIRELESS_TECHNOLOGY",
+          "name": "Tecnologia sem fio",
+          "value_id": "73460133",
+          "value_name": "Wireless 2.4",
+          "values": [
+            {
+              "id": "73460133",
+              "name": "Wireless 2.4"
+            }
+          ]
+        }
+      ],
+      "short_description": {
+        "type": "plaintext",
+        "content": ""
+      },
+      "parent_id": "MLB78302517",
+      "children_ids": [],
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false,
+        "with_enhanced_pictures": false,
+        "base_site_product_id": null,
+        "ttr": "2026-09-05T12:59:19.467475658"
+      },
+      "quality_type": "COMPLETE",
+      "release_info": null,
+      "presale_info": null,
+      "enhanced_content": null,
+      "tags": [],
+      "date_created": "2026-08-25T18:25:23Z",
+      "authorized_stores": null,
+      "last_updated": "2026-08-25T21:17:44Z",
+      "grouper_id": null,
+      "experiments": {}
+    },
+    "category": {
+      "id": "MLB1714",
+      "name": "Mouses",
+      "picture": "https://http2.mlstatic.com/storage/categories-api/images/a8f71266-9020-4eb8-8131-927c3029e03a.png",
+      "permalink": null,
+      "total_items_in_this_category": 121989,
+      "path_from_root": [
+        {
+          "id": "MLB1648",
+          "name": "Informática"
+        },
+        {
+          "id": "MLB454379",
+          "name": "Periféricos para PC"
+        },
+        {
+          "id": "MLB430630",
+          "name": "Mouses e Teclados"
+        },
+        {
+          "id": "MLB1714",
+          "name": "Mouses"
+        }
+      ],
+      "children_categories": [],
+      "attribute_types": "variations",
+      "settings": {
+        "adult_content": false,
+        "buying_allowed": true,
+        "buying_modes": [
+          "auction",
+          "buy_it_now"
+        ],
+        "catalog_domain": "MLB-COMPUTER_MICE",
+        "coverage_areas": "not_allowed",
+        "currencies": [
+          "BRL"
+        ],
+        "fragile": false,
+        "immediate_payment": "required",
+        "item_conditions": [
+          "used",
+          "new",
+          "not_specified"
+        ],
+        "items_reviews_allowed": false,
+        "listing_allowed": true,
+        "max_description_length": 50000,
+        "max_pictures_per_item": 12,
+        "max_pictures_per_item_var": 10,
+        "max_sub_title_length": 70,
+        "max_title_length": 60,
+        "max_variations_allowed": 100,
+        "maximum_price": null,
+        "maximum_price_currency": "BRL",
+        "minimum_price": 0,
+        "minimum_price_currency": "BRL",
+        "mirror_category": null,
+        "mirror_master_category": null,
+        "mirror_slave_categories": [],
+        "price": "required",
+        "reservation_allowed": "not_allowed",
+        "restrictions": [],
+        "rounded_address": false,
+        "seller_contact": "not_allowed",
+        "shipping_options": [
+          "custom",
+          "carrier"
+        ],
+        "shipping_profile": "optional",
+        "show_contact_information": false,
+        "simple_shipping": "optional",
+        "stock": "required",
+        "sub_vertical": null,
+        "subscribable": false,
+        "tags": [],
+        "vertical": null,
+        "vip_subdomain": "produto",
+        "buyer_protection_programs": [
+          "delivered",
+          "undelivered"
+        ],
+        "status": "enabled"
+      },
+      "channels_settings": [
+        {
+          "channel": "mshops",
+          "settings": {
+            "minimum_price": 0
+          }
+        },
+        {
+          "channel": "proximity",
+          "settings": {
+            "status": "disabled"
+          }
+        },
+        {
+          "channel": "mp-merchants",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        },
+        {
+          "channel": "mp-link",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        }
+      ],
+      "meta_categ_id": null,
+      "attributable": false,
+      "date_created": "2018-04-25T08:12:56.000Z"
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "50547",
+            "name": "Acteck"
+          },
+          {
+            "id": "7294334",
+            "name": "Asus"
+          },
+          {
+            "id": "41874",
+            "name": "Cooler Master"
+          },
+          {
+            "id": "47354",
+            "name": "Corsair"
+          },
+          {
+            "id": "1258105",
+            "name": "Eagle Warrior"
+          },
+          {
+            "id": "7124",
+            "name": "Genius"
+          },
+          {
+            "id": "50458",
+            "name": "Havit"
+          },
+          {
+            "id": "15788",
+            "name": "Logitech"
+          },
+          {
+            "id": "50993",
+            "name": "Mad Catz"
+          },
+          {
+            "id": "47995",
+            "name": "Manhattan"
+          },
+          {
+            "id": "15770",
+            "name": "Microsoft"
+          },
+          {
+            "id": "1187932",
+            "name": "Naceb"
+          },
+          {
+            "id": "915648",
+            "name": "Perfect Choice"
+          },
+          {
+            "id": "17587",
+            "name": "Razer"
+          },
+          {
+            "id": "2573400",
+            "name": "TechZone"
+          },
+          {
+            "id": "50538",
+            "name": "Thermaltake"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "tags": {},
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indica a série ou grupo do produto de acordo com a classificação da marca ou fabricante, por exemplo: a linha “111” da marca “xxx” agrupa diferentes modelos de produtos.",
+        "example": "Master Series",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "É o nome específico do produto.",
+        "example": "MX Master",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "tags": {},
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "40905264",
+            "name": "AMR020 (*)"
+          },
+          {
+            "id": "10983108",
+            "name": "A1296"
+          },
+          {
+            "id": "13074643",
+            "name": "A1657"
+          },
+          {
+            "id": "40905265",
+            "name": "VGP-WMS10"
+          },
+          {
+            "id": "40905266",
+            "name": "MSI100"
+          },
+          {
+            "id": "40905267",
+            "name": "MSI200"
+          },
+          {
+            "id": "40905268",
+            "name": "MSI50"
+          },
+          {
+            "id": "40905269",
+            "name": "MSI55"
+          },
+          {
+            "id": "37435518",
+            "name": "HS-526"
+          },
+          {
+            "id": "40905270",
+            "name": "DXMWXSB01YM"
+          },
+          {
+            "id": "40905271",
+            "name": "MB30720"
+          },
+          {
+            "id": "9652809",
+            "name": "XMWXSB01YM"
+          },
+          {
+            "id": "43095444",
+            "name": "BM-615"
+          },
+          {
+            "id": "43095447",
+            "name": "E-1400"
+          },
+          {
+            "id": "43095448",
+            "name": "E-1700"
+          },
+          {
+            "id": "16373810",
+            "name": "G10"
+          },
+          {
+            "id": "14791135",
+            "name": "G14"
+          },
+          {
+            "id": "19560080",
+            "name": "G600"
+          },
+          {
+            "id": "43095451",
+            "name": "IF-216"
+          },
+          {
+            "id": "43095454",
+            "name": "IMS-927"
+          },
+          {
+            "id": "43095455",
+            "name": "M-R0067"
+          },
+          {
+            "id": "36578442",
+            "name": "M-W20BK"
+          },
+          {
+            "id": "18995889",
+            "name": "M-W20BL"
+          },
+          {
+            "id": "43095456",
+            "name": "M-W20RD"
+          },
+          {
+            "id": "43095457",
+            "name": "M100"
+          },
+          {
+            "id": "43095458",
+            "name": "M110"
+          },
+          {
+            "id": "41788379",
+            "name": "M111"
+          },
+          {
+            "id": "21753370",
+            "name": "m200"
+          },
+          {
+            "id": "43095465",
+            "name": "M711PRO"
+          },
+          {
+            "id": "12961042",
+            "name": "M808-KS"
+          },
+          {
+            "id": "11205089",
+            "name": "MO251"
+          },
+          {
+            "id": "19931969",
+            "name": "NX-7000"
+          },
+          {
+            "id": "43095469",
+            "name": "NX-7010"
+          },
+          {
+            "id": "41541481",
+            "name": "NX-7015"
+          }
+        ],
+        "tooltip": "É um código que combina letras e números. Você pode encontrá-lo na embalagem ou na documentação do produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "tags": {
+          "allow_variations": true,
+          "defines_picture": true
+        },
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "283148",
+            "name": "Coral-claro"
+          },
+          {
+            "id": "283149",
+            "name": "Coral"
+          },
+          {
+            "id": "283150",
+            "name": "Laranja-claro"
+          },
+          {
+            "id": "283151",
+            "name": "Laranja-escuro"
+          },
+          {
+            "id": "283156",
+            "name": "Cáqui"
+          },
+          {
+            "id": "283157",
+            "name": "Verde-limão"
+          },
+          {
+            "id": "283158",
+            "name": "Verde-musgo"
+          },
+          {
+            "id": "283152",
+            "name": "Chocolate"
+          },
+          {
+            "id": "283153",
+            "name": "Palha"
+          },
+          {
+            "id": "283154",
+            "name": "Marrom-claro"
+          },
+          {
+            "id": "283155",
+            "name": "Marrom-escuro"
+          },
+          {
+            "id": "283164",
+            "name": "Dourado"
+          },
+          {
+            "id": "51993",
+            "name": "Vermelho"
+          },
+          {
+            "id": "283165",
+            "name": "Cinza"
+          },
+          {
+            "id": "51994",
+            "name": "Rosa"
+          },
+          {
+            "id": "283160",
+            "name": "Azul-turquesa"
+          },
+          {
+            "id": "51996",
+            "name": "Terracota"
+          },
+          {
+            "id": "283161",
+            "name": "Azul-marinho"
+          },
+          {
+            "id": "283162",
+            "name": "Índigo"
+          },
+          {
+            "id": "51998",
+            "name": "Bordô"
+          },
+          {
+            "id": "283163",
+            "name": "Rosa-chiclete"
+          },
+          {
+            "id": "52000",
+            "name": "Laranja"
+          },
+          {
+            "id": "52001",
+            "name": "Bege"
+          },
+          {
+            "id": "52003",
+            "name": "Nude"
+          },
+          {
+            "id": "52005",
+            "name": "Marrom"
+          },
+          {
+            "id": "52007",
+            "name": "Amarelo"
+          },
+          {
+            "id": "52008",
+            "name": "Creme"
+          },
+          {
+            "id": "52010",
+            "name": "Ocre"
+          },
+          {
+            "id": "52012",
+            "name": "Dourado-escuro"
+          },
+          {
+            "id": "52014",
+            "name": "Verde"
+          },
+          {
+            "id": "52015",
+            "name": "Verde-claro"
+          },
+          {
+            "id": "52019",
+            "name": "Verde-escuro"
+          },
+          {
+            "id": "52021",
+            "name": "Azul-celeste"
+          },
+          {
+            "id": "52022",
+            "name": "Água"
+          },
+          {
+            "id": "52024",
+            "name": "Azul-petróleo"
+          },
+          {
+            "id": "52028",
+            "name": "Azul"
+          },
+          {
+            "id": "52029",
+            "name": "Azul-claro"
+          },
+          {
+            "id": "52031",
+            "name": "Azul-aço"
+          },
+          {
+            "id": "52033",
+            "name": "Azul-escuro"
+          },
+          {
+            "id": "52035",
+            "name": "Violeta"
+          },
+          {
+            "id": "52036",
+            "name": "Lavanda"
+          },
+          {
+            "id": "52038",
+            "name": "Lilás"
+          },
+          {
+            "id": "52042",
+            "name": "Fúcsia"
+          },
+          {
+            "id": "52043",
+            "name": "Rosa-claro"
+          },
+          {
+            "id": "52045",
+            "name": "Rosa-pálido"
+          },
+          {
+            "id": "52047",
+            "name": "Violeta-escuro"
+          },
+          {
+            "id": "52049",
+            "name": "Preto"
+          },
+          {
+            "id": "52051",
+            "name": "Cinza-escuro"
+          },
+          {
+            "id": "52053",
+            "name": "Prateado"
+          },
+          {
+            "id": "52055",
+            "name": "Branco"
+          },
+          {
+            "id": "338779",
+            "name": "Ciano"
+          }
+        ],
+        "tooltip": "Pode ter nome fantasia.",
+        "example": "Black",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "tags": {
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "type": "color",
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "metadata": {
+              "rgb": "000000"
+            }
+          },
+          {
+            "id": "2450293",
+            "name": "Azul",
+            "metadata": {
+              "rgb": "1717FF"
+            }
+          },
+          {
+            "id": "2450307",
+            "name": "Vermelho",
+            "metadata": {
+              "rgb": "FF0000"
+            }
+          },
+          {
+            "id": "2450311",
+            "name": "Violeta",
+            "metadata": {
+              "rgb": "9F00FF"
+            }
+          },
+          {
+            "id": "2450291",
+            "name": "Marrom",
+            "metadata": {
+              "rgb": "A0522D"
+            }
+          },
+          {
+            "id": "2450314",
+            "name": "Verde",
+            "metadata": {
+              "rgb": "0DA600"
+            }
+          },
+          {
+            "id": "2450327",
+            "name": "Laranja",
+            "metadata": {
+              "rgb": "FF8C00"
+            }
+          },
+          {
+            "id": "2450278",
+            "name": "Azul celeste",
+            "metadata": {
+              "rgb": "83DDFF"
+            }
+          },
+          {
+            "id": "2450312",
+            "name": "Rosa",
+            "metadata": {
+              "rgb": "FCB1BE"
+            }
+          },
+          {
+            "id": "2450289",
+            "name": "Dourado",
+            "metadata": {
+              "rgb": "FFD700"
+            }
+          },
+          {
+            "id": "2450303",
+            "name": "Prateado",
+            "metadata": {
+              "rgb": "CBCFD0"
+            }
+          },
+          {
+            "id": "2450296",
+            "name": "Amarelo",
+            "metadata": {
+              "rgb": "FFED00"
+            }
+          },
+          {
+            "id": "2450294",
+            "name": "Cinza",
+            "metadata": {
+              "rgb": "E1E1E1"
+            }
+          },
+          {
+            "id": "2450308",
+            "name": "Branco",
+            "metadata": {
+              "rgb": "FFFFFF"
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "COMPUTER_MOUSE_TYPE",
+        "name": "Tipo de mouse",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "192740",
+            "name": "Convencional"
+          },
+          {
+            "id": "393630",
+            "name": "Trackball"
+          },
+          {
+            "id": "393632",
+            "name": "Caneta"
+          },
+          {
+            "id": "248936",
+            "name": "Vertical"
+          }
+        ],
+        "example": "Convencional",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SENSOR_TYPE",
+        "name": "Tipo de sensor",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "109003",
+            "name": "Óptico"
+          },
+          {
+            "id": "192736",
+            "name": "Laser"
+          }
+        ],
+        "example": "Óptico",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBTEL_CODE",
+        "name": "Código da SUBTEL",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "picture_id",
+        "value_max_length": 255,
+        "tooltip": "É o código QR do produto que comprova a conformidade com a norma técnica de equipamentos sem fio.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SENSOR_TECHNOLOGY",
+        "name": "Tecnologia do sensor",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "7793915",
+            "name": "BlueTrack"
+          },
+          {
+            "id": "7793916",
+            "name": "Tru-Wave"
+          },
+          {
+            "id": "7793917",
+            "name": "Mecânico"
+          },
+          {
+            "id": "7793918",
+            "name": "Blue Wave"
+          },
+          {
+            "id": "7793919",
+            "name": "Run on Shine"
+          },
+          {
+            "id": "7793920",
+            "name": "Darkfield"
+          },
+          {
+            "id": "7793921",
+            "name": "BlueTrace"
+          },
+          {
+            "id": "7793922",
+            "name": "V-Track"
+          },
+          {
+            "id": "7793923",
+            "name": "BlueEye"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "COMPATIBLE_OPERATING_SYSTEMS",
+        "name": "Sistemas operacionais compatíveis",
+        "tags": {
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "3211255",
+            "name": "Windows 7"
+          },
+          {
+            "id": "8026820",
+            "name": "Windows 10"
+          },
+          {
+            "id": "9730900",
+            "name": "Linux"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_WIRE",
+        "name": "Com fio",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SENSOR_RESOLUTION",
+        "name": "Resolução do sensor",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dpi",
+            "name": "dpi"
+          },
+          {
+            "id": "ppi",
+            "name": "ppi"
+          },
+          {
+            "id": "ppp",
+            "name": "ppp"
+          }
+        ],
+        "default_unit": "dpi",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_SPEED",
+        "name": "Velocidade máxima",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "ips",
+            "name": "ips"
+          }
+        ],
+        "default_unit": "ips",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "name": "Quantidade de botões",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "name": "Orientação da mão",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "96533",
+            "name": "Destro"
+          },
+          {
+            "id": "96534",
+            "name": "Canhoto"
+          },
+          {
+            "id": "2862903",
+            "name": "Ambidestro"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_HEIGHT",
+        "name": "Altura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WIDTH",
+        "name": "Largura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WEIGHT",
+        "name": "Peso da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          },
+          {
+            "id": "mg",
+            "name": "mg"
+          },
+          {
+            "id": "oz",
+            "name": "oz"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "tags": {
+          "multivalued": true,
+          "variation_attribute": true,
+          "used_hidden": true,
+          "validate": true,
+          "conditional_required": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Pode ser um EAN, UPC ou outro GTIN"
+      },
+      {
+        "id": "HAZMAT_TRANSPORTABILITY",
+        "name": "Transportabilidade Hazmat",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "13414677",
+            "name": "Livre"
+          },
+          {
+            "id": "13414678",
+            "name": "Limitado"
+          },
+          {
+            "id": "13414679",
+            "name": "Excedido"
+          },
+          {
+            "id": "13414680",
+            "name": "Indeterminado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "mm",
+        "example": "115 mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EMPTY_GTIN_REASON",
+        "name": "Motivo de GTIN vazio",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true,
+          "conditional_required": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "17055158",
+            "name": "O produto é uma peça artesanal"
+          },
+          {
+            "id": "17055159",
+            "name": "O produto é um kit ou pack"
+          },
+          {
+            "id": "17055160",
+            "name": "O produto não tem código cadastrado"
+          },
+          {
+            "id": "17055161",
+            "name": "Outro motivo"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "name": "Homologação Anatel Nº",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "É o número de certificação ou aprovação da marca e do modelo do seu produto na Anatel. Para evitar sanções, certifique-se de que ele corresponde ao produto que você vai anunciar.",
+        "example": "Começa com 0, 1 ou 2. Limite de 12 dígitos numéricos.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Código numérico de 12 dígitos"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "mm",
+        "example": "40 mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "40905278",
+            "name": "Acer Incorporated"
+          },
+          {
+            "id": "9344",
+            "name": "Apple"
+          },
+          {
+            "id": "40905279",
+            "name": "Chicony Electronics Co., Ltd"
+          },
+          {
+            "id": "10366",
+            "name": "Intelbras"
+          },
+          {
+            "id": "40905280",
+            "name": "Guangxun Lishen Technology Co., LTD"
+          },
+          {
+            "id": "44614796",
+            "name": "Xiaomi Communications Co Ltd"
+          },
+          {
+            "id": "42945555",
+            "name": "Youxiang Electronic Technology"
+          },
+          {
+            "id": "43095506",
+            "name": "Eastern Times Technology Co.,Ltd"
+          },
+          {
+            "id": "13585059",
+            "name": "Hewlett-Packard Company"
+          },
+          {
+            "id": "42959781",
+            "name": "Shengdongshi Electronics Co., Ltd."
+          },
+          {
+            "id": "43095507",
+            "name": "KYE Systems Corp."
+          },
+          {
+            "id": "43095508",
+            "name": "Logitech Far East Ltd"
+          },
+          {
+            "id": "42959730",
+            "name": "Doking Electronic Technology Co Ltd"
+          },
+          {
+            "id": "15126409",
+            "name": "MULTILASER INDUSTRIAL S.A."
+          },
+          {
+            "id": "43095509",
+            "name": "Ndrive Navigation Systems S.A."
+          },
+          {
+            "id": "43095510",
+            "name": "Scopus Network Technologies LTD."
+          },
+          {
+            "id": "43095511",
+            "name": "NewUnite  Electron CO.,LTD."
+          }
+        ],
+        "tooltip": "O fabricante é a empresa responsável pela produção e montagem do produto. Esse nome pode ser diferente da marca com a qual o produto é comercializado.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "name": "Etiqueta de homologação da Anatel",
+        "tags": {},
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "picture_id",
+        "value_max_length": 255,
+        "tooltip": "Envie uma imagem onde o produto e a etiqueta com o código de homologação da Anatel estejam claramente visíveis.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "name": "Com luzes",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "POLLING_RATE",
+        "name": "Taxa de polling",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "Hz",
+            "name": "Hz"
+          }
+        ],
+        "default_unit": "Hz",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_BATTERY_LIFE",
+        "name": "Duração máxima da bateria",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "h",
+            "name": "h"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          }
+        ],
+        "default_unit": "h",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "tags": {
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "2296418",
+            "name": "Adaptador"
+          },
+          {
+            "id": "9292081",
+            "name": "Fio"
+          },
+          {
+            "id": "11933535",
+            "name": "Caneta óptica"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WIRELESS_TECHNOLOGY",
+        "name": "Tecnologia sem fio",
+        "tags": {
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "73460131",
+            "name": "Bluetooth"
+          },
+          {
+            "id": "73460133",
+            "name": "Wireless 2.4"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "AGID",
+        "name": "AGID",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DECLARATION_NUMBER",
+        "name": "Número da DI",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "Número de 15 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INVOICE_PRODUCT_NAME",
+        "name": "Nome do produto na nota fiscal",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SAT_KEY",
+        "name": "Chave do produto",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021094",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_KEY",
+        "name": "Chave da unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021108",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_DESCRIPTION",
+        "name": "Unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IVA_FOR_RESALE",
+        "name": "IVA para revenda",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "81861612",
+            "name": "Isento"
+          },
+          {
+            "id": "81861613",
+            "name": "0%"
+          },
+          {
+            "id": "81861614",
+            "name": "8%"
+          },
+          {
+            "id": "81861616",
+            "name": "16%"
+          }
+        ],
+        "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IEPS",
+        "name": "IEPS",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "82021095",
+            "name": "0%"
+          },
+          {
+            "id": "82021096",
+            "name": "3%"
+          },
+          {
+            "id": "82021097",
+            "name": "6%"
+          },
+          {
+            "id": "82021098",
+            "name": "7%"
+          },
+          {
+            "id": "82021099",
+            "name": "8%"
+          },
+          {
+            "id": "82021100",
+            "name": "9%"
+          },
+          {
+            "id": "82021101",
+            "name": "25%"
+          },
+          {
+            "id": "82021102",
+            "name": "26.5%"
+          },
+          {
+            "id": "82021103",
+            "name": "30%"
+          },
+          {
+            "id": "82021104",
+            "name": "30.4%"
+          },
+          {
+            "id": "82021105",
+            "name": "50%"
+          },
+          {
+            "id": "82021106",
+            "name": "53%"
+          },
+          {
+            "id": "82021107",
+            "name": "160%"
+          }
+        ],
+        "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "TELECOMMUNICATION_HOMOLOGATION_NUMBER",
+        "name": "Número de homologação de telecomunicações",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "É o número de homologação que o organismo do seu país concede aos produtos de telecomunicação, após verificar a sua segurança.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 2,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230581",
+            "name": "Usado"
+          },
+          {
+            "id": "2230284",
+            "name": "Novo"
+          },
+          {
+            "id": "2230582",
+            "name": "Recondicionado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VALUE_ADDED_TAX",
+        "name": "Imposto sobre o valor acrescentado",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DUTY",
+        "name": "Imposto de importação",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "49553239",
+            "name": "0 %"
+          },
+          {
+            "id": "49553240",
+            "name": "1 %"
+          },
+          {
+            "id": "49553241",
+            "name": "2.5 %"
+          },
+          {
+            "id": "49553242",
+            "name": "4 %"
+          },
+          {
+            "id": "49553243",
+            "name": "5 %"
+          },
+          {
+            "id": "49553244",
+            "name": "8 %"
+          },
+          {
+            "id": "49553245",
+            "name": "9.5 %"
+          },
+          {
+            "id": "49553246",
+            "name": "10 %"
+          },
+          {
+            "id": "49553247",
+            "name": "14 %"
+          },
+          {
+            "id": "49553248",
+            "name": "15 %"
+          },
+          {
+            "id": "49553249",
+            "name": "18 %"
+          },
+          {
+            "id": "49553250",
+            "name": "19 %"
+          },
+          {
+            "id": "49553251",
+            "name": "20 %"
+          },
+          {
+            "id": "49553252",
+            "name": "23 %"
+          },
+          {
+            "id": "49553253",
+            "name": "25 %"
+          },
+          {
+            "id": "49553254",
+            "name": "26 %"
+          },
+          {
+            "id": "49553255",
+            "name": "70 %"
+          }
+        ],
+        "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de envio",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_KIT",
+        "name": "É kit",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DESCRIPTIVE_TAGS",
+        "name": "Tags descritivos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_CHEMICAL_FEATURES",
+        "name": "Características químicas do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7651070",
+            "name": "Inflamável"
+          },
+          {
+            "id": "7651071",
+            "name": "Aerosol"
+          },
+          {
+            "id": "7651072",
+            "name": "Oxidante"
+          },
+          {
+            "id": "7651073",
+            "name": "Corrosivo"
+          },
+          {
+            "id": "7651074",
+            "name": "Explosivo"
+          },
+          {
+            "id": "7651075",
+            "name": "Tóxico ou infeccioso"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FOODS_AND_DRINKS",
+        "name": "Alimentos e bebidas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575926",
+            "name": "Para humanos"
+          },
+          {
+            "id": "7575927",
+            "name": "Para animais"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEDICINES",
+        "name": "Medicamentos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575930",
+            "name": "Para humanos com receita médica"
+          },
+          {
+            "id": "7575931",
+            "name": "Para humanos sem receita médica"
+          },
+          {
+            "id": "7575932",
+            "name": "Para animais com receita médica"
+          },
+          {
+            "id": "7575933",
+            "name": "Para animais sem receita médica"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BATTERIES_FEATURES",
+        "name": "Características das baterias",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575934",
+            "name": "Lítio stand-alone (separadas ou isolado)"
+          },
+          {
+            "id": "7575935",
+            "name": "De lítio instaladas"
+          },
+          {
+            "id": "7575936",
+            "name": "Para carros (ácido-chumbo)"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPMENT_PACKING",
+        "name": "Embalagem do envío",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435891",
+            "name": "Flyer"
+          },
+          {
+            "id": "7435892",
+            "name": "Caixa"
+          },
+          {
+            "id": "7575937",
+            "name": "Envelope"
+          },
+          {
+            "id": "7575939",
+            "name": "Auto-expedível"
+          },
+          {
+            "id": "27037932",
+            "name": "BEX"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ADDITIONAL_INFO_REQUIRED",
+        "name": "Informação adicional requerida",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435893",
+            "name": "Possui código IMEI"
+          },
+          {
+            "id": "7435894",
+            "name": "Possui número de série"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EXCLUDED_PLATFORMS",
+        "name": "Plataformas excluídas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "9936777",
+            "name": "Android"
+          },
+          {
+            "id": "9936778",
+            "name": "iOS"
+          },
+          {
+            "id": "9936779",
+            "name": "Desktop"
+          },
+          {
+            "id": "9936780",
+            "name": "Mobile"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_SHIPMENT",
+        "name": "É adequado para envío",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_DATA_SOURCE",
+        "name": "Fonte do produto",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indique o país de origem do produto.",
+        "example": "Brasil",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+        "name": "Razões de visibilidade limitada no Marketplace",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "24219544",
+            "name": "Pharma"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAS_COMPATIBILITIES",
+        "name": "Tem compatibilidades",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CATALOG_TITLE",
+        "name": "Título de catálogo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SEARCH_ENHANCEMENT_FIELDS",
+        "name": "Campos de aprimoramento de pesquisa",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_FEATURES",
+        "name": "Características do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435885",
+            "name": "Contém líquido"
+          },
+          {
+            "id": "7435883",
+            "name": "Frágil"
+          },
+          {
+            "id": "7435888",
+            "name": "Com validade"
+          },
+          {
+            "id": "8847339",
+            "name": "Sem validade"
+          },
+          {
+            "id": "7575917",
+            "name": "Desinfetante e saneante"
+          },
+          {
+            "id": "7575924",
+            "name": "MAPA"
+          },
+          {
+            "id": "7575923",
+            "name": "Saúde e correlatos"
+          },
+          {
+            "id": "8721108",
+            "name": "Volumoso"
+          },
+          {
+            "id": "10490116",
+            "name": "Não voável"
+          },
+          {
+            "id": "12928414",
+            "name": "Não rotacionável"
+          },
+          {
+            "id": "41722098",
+            "name": "Dobrável"
+          },
+          {
+            "id": "52092586",
+            "name": "Magnético"
+          },
+          {
+            "id": "52233302",
+            "name": "Pode rolar"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_NEW_OFFER",
+        "name": "É nova oferta",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SYI_PYMES_ID",
+        "name": "syi pymes id",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_FLAMMABLE",
+        "name": "É inflamável",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_POSITIVE_IMPACT",
+        "name": "Com impacto positivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de fábrica",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "saleTerms": [
+      {
+        "id": "INVOICE",
+        "name": "Faturamento",
+        "tags": {
+          "hidden": true,
+          "multivalued": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "6891885",
+            "name": "Factura A"
+          },
+          {
+            "id": "6891886",
+            "name": "Factura B"
+          },
+          {
+            "id": "6891887",
+            "name": "Factura C"
+          },
+          {
+            "id": "6891888",
+            "name": "Não factura"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIBABLE",
+        "name": "Aceita compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRICE_SUBSCRIPTION",
+        "name": "Preço por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIPTION_FREE_SHIPPING",
+        "name": "Envio gratis por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_1",
+        "name": "Preço por ser nível 1 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_2",
+        "name": "Preço por ser nível 2 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_3",
+        "name": "Preço por ser nível 3 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_4",
+        "name": "Preço por ser nível 4 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_5",
+        "name": "Preço por ser nível 5 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_6",
+        "name": "Preço por ser nível 6 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CHECKOUT_EXCHANGE_RATE",
+        "name": "Taxa de câmbio para checkout",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL/USD",
+            "name": "BRL/USD"
+          }
+        ],
+        "default_unit": "BRL/USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DISCOUNT_SUBSCRIPTION",
+        "name": "Desconto por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "%",
+            "name": "%"
+          }
+        ],
+        "default_unit": "%",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230280",
+            "name": "Garantia do vendedor"
+          },
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica"
+          },
+          {
+            "id": "6150835",
+            "name": "Sem garantia"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          },
+          {
+            "id": "meses",
+            "name": "meses"
+          },
+          {
+            "id": "anos",
+            "name": "anos"
+          }
+        ],
+        "default_unit": "meses",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MANUFACTURING_TIME",
+        "name": "Disponibilidade de estoque",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          }
+        ],
+        "default_unit": "dias",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MIN_QUANTITY",
+        "name": "Quantidade mínima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MAX_QUANTITY",
+        "name": "Quantidade máxima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_PRICE",
+        "name": "Preço do desconto en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_PRICE",
+        "name": "Preço do desconto en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_PRICE",
+        "name": "Preço global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_ORIGINAL_PRICE",
+        "name": "Preço original global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INSTALLMENTS_CAMPAIGN",
+        "name": "Campanha de parcelas",
+        "tags": {
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10322628",
+            "name": "ahora-6"
+          },
+          {
+            "id": "10080710",
+            "name": "ahora-12"
+          },
+          {
+            "id": "10979952",
+            "name": "ahora-24"
+          },
+          {
+            "id": "10080711",
+            "name": "3x_campaign"
+          },
+          {
+            "id": "10080712",
+            "name": "18x_campaign"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPPING_ORIGIN",
+        "name": "Tipo de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "10215068",
+            "name": "Local"
+          },
+          {
+            "id": "10215069",
+            "name": "Internacional"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_VOLUME_DISCOUNT",
+        "name": "Com desconto por volume",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PROMOTION_TYPE",
+        "name": "Tipo de promoção",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10708386",
+            "name": "Oferta do dia"
+          },
+          {
+            "id": "10708387",
+            "name": "Oferta relâmpago"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_1P_MOTORS",
+        "name": "É 1P motores",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "1P_RESERVATION_PRICE",
+        "name": "Preço da reserva 1P",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_TRADE_IN_PROGRAM",
+        "name": "Plan intercâmbio",
+        "tags": {
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "identity": {
+      "local": {
+        "gtin": "7899298724933",
+        "brand": "INTELBRAS",
+        "model": "msi50",
+        "partNumber": null,
+        "quantity": null,
+        "packaging": null,
+        "provenance": {
+          "model": {
+            "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+            "excerpt": "msi50"
+          },
+          "brand": {
+            "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+            "excerpt": "INTELBRAS; "
+          },
+          "gtin": {
+            "source": "supplier_offer:57c6546f-4141-477a-aa2e-602712b0a36f",
+            "excerpt": "7899298724933"
+          }
+        },
+        "variation": "preto",
+        "brandEvidence": "Mouse Intelbras Msi50 Sem Fio Preto Mouse Intelbras MSI50 Sem Fio Preto Código do produto: 4300907 O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória. Características » USB 2.0 » Conexão de 2.4GHz estável via Dongle » Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional » Click silencioso, garantindo maior satisfação ao usuário » Compatibilidade com sistemas operacionais » Produto leve e confortável » Autonomia de bateria prolongada » Alcance de até 10 metros sem barreira » Modo Standby » Botões de comando que garantem sua usabilidade *Imagens meramente ilustrativas. Área de alcance: Até 10m* Bateria inclusa: Sim - 1 x AA – 1.5 V Consumo máximo: 11 mA - 1.5 V Capacidade da bateria: 3000 mAh** Standby: Sim – 20s e 15 min Retorno do standby: 20s – Movimento | 15m - Click Plug & Play: Sim Click silencioso: Sim Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS® Botão ligar/desligar: Sim Conectividade: 2.4GHz Dongle: Sim - Embutido USB: 2.0 Int Connect: Sim – TSI 50 Indicação de nível de bateria: Não Material: ABS Peso: 83g (com bateria) Dimensões (L × A × P): 62 × 107 × 38 mm Temperatura de trabalho: 0° à 40° Sensor óptico: Vermelho com redução Resolução: Fixo - 1200 DPI Quantidade de botões: 3 (E+D+SCR) Scroll: Sim Superfície: Todas exceto vidro e superfícies translucidas*** Ambidestro: Sim Conteúdo da embalagem » 1x Mouse sem fio MSI 50 Preto » 1x Dongle Wireless » 1x Pilha AA *A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado. **A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh. ***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento."
+      },
+      "remote": {
+        "gtin": null,
+        "brand": "Intelbras",
+        "model": "Mouse MSI 50",
+        "partNumber": null,
+        "packaging": null,
+        "quantity": null,
+        "saleUnits": null,
+        "variation": "Preto",
+        "provenance": {
+          "brand": {
+            "source": "ml_attributes",
+            "excerpt": "BRAND: Intelbras"
+          },
+          "model": {
+            "source": "ml_attributes",
+            "excerpt": "MODEL: Mouse MSI 50"
+          },
+          "variation": {
+            "source": "ml_attributes",
+            "excerpt": "COLOR: Preto"
+          }
+        },
+        "critical": {
+          "VOLTAGE": null,
+          "LENGTH": null,
+          "SIZE": null,
+          "CAPACITY": null,
+          "CONNECTOR_TYPE": null,
+          "INPUT_CONNECTOR": null,
+          "OUTPUT_CONNECTOR": null,
+          "PINS_NUMBER": null
+        }
+      },
+      "source": "/products/MLB78302520"
+    },
+    "assessment": {
+      "identity": "IDENTIDADE_COHERENTE",
+      "comparisons": [
+        {
+          "field": "brand",
+          "local": "INTELBRAS",
+          "remote": "Intelbras",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "model",
+          "local": "msi50",
+          "remote": "Mouse MSI 50",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "variation",
+          "local": "preto",
+          "remote": "Preto",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        }
+      ],
+      "reasons": [],
+      "warnings": [
+        "APRESENTACAO_NAO_EXPLICITA"
+      ],
+      "identityRuleVersion": "M2M-IDENTITY-v2.1"
+    },
+    "observedAt": "2026-09-05T20:26:56.297Z"
+  },
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391313",
+    "observedAt": "2026-09-05T20:30:57.484Z",
+    "product": {
+      "produtoid": "391313",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 39.9,
+      "preco_crossdocking": 39.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 39.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 21:02:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 21:02:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Mouse Intelbras Msi50 Sem Fio Preto",
+      "titulo_curto": "Mouse Intelbras Msi50 Sem Fio Preto",
+      "categoriaid": "118082",
+      "categoria_nome": "Informatica/ Perifericos/ Mouse óptico",
+      "abc": null,
+      "ean11": "7899298724933",
+      "ncm": "84716053",
+      "descricao": "<p><strong>Mouse Intelbras MSI50 Sem Fio Preto</strong><br /><strong>Código do produto:</strong> 4300907</p>\r\n<p> </p>\r\n<p>O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória.</p>\r\n<p> </p>\r\n<p><strong>Características</strong></p>\r\n<p>» USB 2.0 <br />» Conexão de 2.4GHz estável via Dongle <br />» Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional<br />» Click silencioso, garantindo maior satisfação ao usuário<br />» Compatibilidade com sistemas operacionais<br />» Produto leve e confortável<br />» Autonomia de bateria prolongada<br />» Alcance de até 10 metros sem barreira<br />» Modo Standby<br />» Botões de comando que garantem sua usabilidade</p>\r\n<p> </p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p>Área de alcance: Até 10m*<br />Bateria inclusa: Sim - 1 x AA – 1.5 V<br />Consumo máximo: 11 mA - 1.5 V<br />Capacidade da bateria: 3000 mAh**<br />Standby: Sim – 20s e 15 min<br />Retorno do standby: 20s – Movimento | 15m - Click<br />Plug & Play: Sim<br />Click silencioso: Sim<br />Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS®<br />Botão ligar/desligar: Sim</p>\r\n<p>Conectividade: 2.4GHz<br />Dongle: Sim - Embutido<br />USB: 2.0<br />Int Connect: Sim – TSI 50<br />Indicação de nível de bateria: Não<br />Material: ABS<br />Peso: 83g (com bateria)<br />Dimensões (L × A × P): 62 × 107 × 38 mm<br />Temperatura de trabalho: 0° à 40°<br />Sensor óptico: Vermelho com redução<br />Resolução: Fixo - 1200 DPI<br />Quantidade de botões: 3 (E+D+SCR)<br />Scroll: Sim<br />Superfície: Todas exceto vidro e superfícies translucidas***<br />Ambidestro: Sim</p>\r\n<p><strong>Conteúdo da embalagem</strong><br />» 1x Mouse sem fio MSI 50 Preto<br />» 1x Dongle Wireless<br />» 1x Pilha AA</p>\r\n<p> </p>\r\n<p>*A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado.<br />**A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh.<br />***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento.</p>\r\n<p> </p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "INTELBRAS",
+      "modelo": "",
+      "peso": 0.104,
+      "largura": 7,
+      "altura": 11.5,
+      "profundidade": 4,
+      "peso_embalagem": 0.104,
+      "largura_embalagem": 7,
+      "altura_embalagem": 11.5,
+      "profundidade_embalagem": 4,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 26,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.031.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-02 16:50:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-02 16:50:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 385,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png"
+        }
+      ]
+    }
+  },
+  "pictureProof": [
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/386336bb87ad7c814cda37aba032bec224bddd9dfe420f1bf65f3b75f89d277e.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "386336bb87ad7c814cda37aba032bec224bddd9dfe420f1bf65f3b75f89d277e"
+    },
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/c958fd1748fd5ba17136ef0c111a380151fed236c82a97362fafde41f5c62e73.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "c958fd1748fd5ba17136ef0c111a380151fed236c82a97362fafde41f5c62e73"
+    },
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/785cdf14c07ef07e09735d6601640f3682b850a2a32ed1ea9b7f05173efe9caf.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "785cdf14c07ef07e09735d6601640f3682b850a2a32ed1ea9b7f05173efe9caf"
+    }
+  ],
+  "context": {
+    "sellerId": "3294514937",
+    "categoryId": "MLB1714",
+    "listingType": "gold_special",
+    "shippingMode": "me2",
+    "logisticType": "xd_drop_off",
+    "freeShipping": true,
+    "dimensions": "12x7x4,104"
+  },
+  "memory": {
+    "price": 73.7,
+    "cost": 39.9,
+    "offerId": "57c6546f-4141-477a-aa2e-602712b0a36f",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:23:25.5+00:00",
+    "fee": {
+      "amount": 9.58,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:02.425Z",
+      "evidence": "/sites/MLB/listing_prices?price=73.7&category_id=MLB1714&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "f473c9f411230090834b021a674b02b42cea0953d7c6535e756f415832b397eb"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:02.425Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=73.7&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "contextKey": "f473c9f411230090834b021a674b02b42cea0953d7c6535e756f415832b397eb"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:31:02.291Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:31:02.425Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 6.11,
+    "result": 5.16,
+    "margin": 0.0700135685210312,
+    "status": "estimated"
+  },
+  "payload": {
+    "family_name": "Mouse Intelbras MSI50 sem fio preto 1200 DPI",
+    "category_id": "MLB1714",
+    "catalog_product_id": "MLB78302520",
+    "catalog_listing": true,
+    "price": 73.7,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/386336bb87ad7c814cda37aba032bec224bddd9dfe420f1bf65f3b75f89d277e.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/c958fd1748fd5ba17136ef0c111a380151fed236c82a97362fafde41f5c62e73.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/785cdf14c07ef07e09735d6601640f3682b850a2a32ed1ea9b7f05173efe9caf.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "LINE",
+        "value_id": "45251028",
+        "value_name": "MSI"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "87828630",
+        "value_name": "Mouse MSI 50"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "40905268",
+        "value_name": "MSI50"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "COMPUTER_MOUSE_TYPE",
+        "value_id": "192740",
+        "value_name": "Convencional"
+      },
+      {
+        "id": "SENSOR_TYPE",
+        "value_id": "109003",
+        "value_name": "Óptico"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_WIRE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "value_id": "2862903",
+        "value_name": "Ambidestro"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "9022334",
+        "value_name": "83 g"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "2296418",
+        "value_name": "Adaptador"
+      },
+      {
+        "id": "WIRELESS_TECHNOLOGY",
+        "value_id": "73460133",
+        "value_name": "Wireless 2.4"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7899298724933"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026044"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SENSOR_TECHNOLOGY",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "COMPATIBLE_OPERATING_SYSTEMS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "SENSOR_RESOLUTION",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_SPEED",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "POLLING_RATE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_BATTERY_LIFE",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK026044",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Mouse Intelbras MSI50 sem fio preto 1200 DPI\n\n• Conexão de 2,4 GHz com dongle USB 2.0.\n• Resolução fixa de 1200 DPI e três botões.\n• Ambidestro e com clique silencioso.\n• Acompanha mouse, dongle e uma pilha AA.\n\nDIMENSÕES DA EMBALAGEM\n4 × 7 × 11.5 cm; peso bruto 0.104 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK026044",
+  "conditional": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "error": null
+  },
+  "validated": {
+    "ok": false,
+    "status": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    },
+    "error": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  },
+  "at": "2026-09-05T20:31:06.593Z"
+}

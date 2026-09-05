@@ -1,0 +1,599 @@
+{
+  "cohort": "RADAR_LAUNCH_2026_09_COHORT_01",
+  "jobId": "8af728e7-dc37-45c1-9442-1d3f1cf9586c",
+  "at": "2026-09-05T21:00:53.241Z",
+  "results": [
+    {
+      "sku": "VTK018319",
+      "itemId": "MLB7594387528",
+      "status": "PUBLICADO_VALIDADO",
+      "reconciled": true,
+      "price": 258.72
+    },
+    {
+      "sku": "VTK017249",
+      "itemId": "MLB5192488569",
+      "status": "PUBLICADO_VALIDADO",
+      "reconciled": true,
+      "price": 70.08
+    },
+    {
+      "sku": "VTK026044",
+      "itemId": "MLB7594388436",
+      "status": "PUBLICADO_VALIDADO",
+      "reconciled": true,
+      "price": 73.7
+    },
+    {
+      "sku": "VTK017481",
+      "itemId": "MLB7594388458",
+      "status": "PUBLICADO_VALIDADO",
+      "reconciled": true,
+      "price": 47.49
+    },
+    {
+      "sku": "VTK018404",
+      "itemId": "MLB5192489303",
+      "status": "PUBLICADO_VALIDADO",
+      "reconciled": true,
+      "price": 92.68
+    },
+    {
+      "sku": "VTK026052",
+      "itemId": "MLB5192489345",
+      "status": "PUBLICADO_VALIDADO",
+      "reconciled": true,
+      "price": 93.92
+    },
+    {
+      "sku": "VTK005849",
+      "itemId": "MLB5192503807",
+      "status": "PUBLICADO_VALIDADO",
+      "price": 76.28,
+      "margin": 0.07000524383848977
+    },
+    {
+      "sku": "VTK018417",
+      "itemId": "MLB5192491275",
+      "status": "PUBLICADO_VALIDADO",
+      "price": 32.32,
+      "margin": 0.07023514851485149
+    }
+  ],
+  "requests": [
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK018319",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:31.000Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Esmerilhadeira%20Angular%20Multilaser%20Fe048%20700w%20127v",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:31.163Z"
+    },
+    {
+      "endpoint": "/items/MLB7594387528",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:31.330Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK017249",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:32.706Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Splitter%20Optico%201x2%20Sc%2Fupc%20Xfs121%20Plc",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:32.870Z"
+    },
+    {
+      "endpoint": "/items/MLB5192488569",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:33.034Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK026044",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:33.640Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Mouse%20sem%20Fio%20MSI50%20Intelbras",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:33.801Z"
+    },
+    {
+      "endpoint": "/items/MLB7594388436",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:33.962Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK017481",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:34.577Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Cabo%20Rca%20Mxt%20Profissional%20Blindado%202%20Rca%2B2%20Rca%20Azul%204mm%2F%205m",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:34.739Z"
+    },
+    {
+      "endpoint": "/items/MLB7594388458",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:35.145Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK018404",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:35.751Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Calculadora%20De%20Mesa%20Truly%20T882%2012%20D%C3%ADgitos%20Cor%20Preto",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:35.914Z"
+    },
+    {
+      "endpoint": "/items/MLB5192489303",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:36.081Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK026052",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:36.919Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Microfone%20Condensador%20Com%20Trip%C3%A9%20De%20Mesa%20Para%20Computador%20Cor%20Preto",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:37.086Z"
+    },
+    {
+      "endpoint": "/items/MLB5192489345",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:37.756Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK005849",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:38.374Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Esguicho%20Kepper%20Em%20Aluminio%2030cm%20Azul",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:38.533Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:38.752Z"
+    },
+    {
+      "endpoint": "/products/MLB41798496",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:39.294Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK005849",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:39.504Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Esguicho%20Kepper%20Em%20Aluminio%2030cm%20Azul",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:39.665Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:39.912Z"
+    },
+    {
+      "endpoint": "/users/me",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.098Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_preferences",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.244Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.53&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.484Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.53&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.484Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=60.68&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.659Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=60.68&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.659Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.82&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.830Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.82&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:40.831Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.56&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.006Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.56&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.006Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=64.63&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.166Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=64.63&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.165Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=59.35&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.333Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=59.35&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.333Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.65&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.496Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.65&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.496Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=58.54&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.647Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=58.54&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:41.647Z"
+    },
+    {
+      "endpoint": "/items/validate",
+      "method": "POST",
+      "status": 400,
+      "at": "2026-09-05T21:00:42.059Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=76.28&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:42.703Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=76.28&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:42.704Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:42.918Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807?include_internal_attributes=true",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:43.074Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807/description",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:43.236Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:43.484Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=76.28&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:43.648Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=76.28&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB5192503807",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:43.648Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807",
+      "method": "PUT",
+      "status": 200,
+      "at": "2026-09-05T21:00:43.842Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807?include_internal_attributes=true",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:44.201Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807/description",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:44.360Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:44.598Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=76.28&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:44.758Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=76.28&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB5192503807",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:44.759Z"
+    },
+    {
+      "endpoint": "/items/MLB5192503807/visits/time_window?last=1&unit=day",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:45.746Z"
+    },
+    {
+      "endpoint": "/products/MLB78766975",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:46.835Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&seller_sku=VTK018417",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:47.094Z"
+    },
+    {
+      "endpoint": "/users/3294514937/items/search?limit=100&q=Capotraste%20Bra%C3%A7adeira%20Guitarra%20E%20Viol%C3%A3o%20A%C3%A7o%20E%20Nylon%20Preto%20Preto",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:47.255Z"
+    },
+    {
+      "endpoint": "/users/me",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:47.969Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_preferences",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.122Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=32.32&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.363Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=32.32&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.363Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=33.5&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.539Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=33.5&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.539Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=32.46&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.717Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=32.46&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.717Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=35.68&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.871Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=35.68&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:48.870Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=32.76&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:49.045Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=32.76&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:49.044Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=32.37&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:49.202Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=32.37&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:49.203Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=32.31&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:49.360Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=32.31&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:49.360Z"
+    },
+    {
+      "endpoint": "/items/validate",
+      "method": "POST",
+      "status": 400,
+      "at": "2026-09-05T21:00:49.531Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=32.32&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:50.439Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=32.32&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:50.439Z"
+    },
+    {
+      "endpoint": "/items",
+      "method": "POST",
+      "status": 201,
+      "at": "2026-09-05T21:00:50.751Z"
+    },
+    {
+      "endpoint": "/items/MLB5192491275?include_internal_attributes=true",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:51.665Z"
+    },
+    {
+      "endpoint": "/items/MLB5192491275/description",
+      "method": "GET",
+      "status": 404,
+      "at": "2026-09-05T21:00:51.811Z"
+    },
+    {
+      "endpoint": "/items/MLB5192491275/description",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:51.965Z"
+    },
+    {
+      "endpoint": "/items/MLB5192491275",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:52.200Z"
+    },
+    {
+      "endpoint": "/sites/MLB/listing_prices?price=32.32&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:52.351Z"
+    },
+    {
+      "endpoint": "/users/3294514937/shipping_options/free?item_price=32.32&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB5192491275",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:52.352Z"
+    },
+    {
+      "endpoint": "/items/MLB5192491275/visits/time_window?last=1&unit=day",
+      "method": "GET",
+      "status": 200,
+      "at": "2026-09-05T21:00:53.007Z"
+    }
+  ]
+}

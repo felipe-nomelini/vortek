@@ -1,0 +1,104 @@
+{
+  "cohort": "RADAR_LAUNCH_2026_09_COHORT_01",
+  "warranty": {
+    "type": "Garantia de fábrica",
+    "months": 12,
+    "source": "Confirmação explícita da Diretoria nesta conversa"
+  },
+  "quantityCap": 2,
+  "candidates": {
+    "VTK018319": {
+      "title": "Esmerilhadeira Multi FE048 700W 127V disco 115mm",
+      "facts": [
+        "Alimentação: 127 V; potência: 700 W.",
+        "Rotação de 12000 rpm e disco de 115 mm.",
+        "Empunhadura removível com duas posições."
+      ],
+      "extra": {
+        "POWER_SUPPLY_TYPE": {
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        }
+      }
+    },
+    "VTK017249": {
+      "title": "Splitter óptico Intelbras XFS121 PLC 1x2 SC UPC",
+      "facts": [
+        "Uma entrada e duas saídas, conector SC/UPC.",
+        "Fibra monomodo G.657.A1.",
+        "Cabos: entrada de 1,5 m e saídas de 0,6 m.",
+        "Uso em ambiente interno."
+      ],
+      "extra": {}
+    },
+    "VTK026044": {
+      "title": "Mouse Intelbras MSI50 sem fio preto 1200 DPI",
+      "facts": [
+        "Conexão de 2,4 GHz com dongle USB 2.0.",
+        "Resolução fixa de 1200 DPI e três botões.",
+        "Ambidestro e com clique silencioso.",
+        "Acompanha mouse, dongle e uma pilha AA."
+      ],
+      "extra": {}
+    },
+    "VTK017481": {
+      "title": "Cabo RCA MXT blindado 2+2 macho 5 metros azul 4mm",
+      "facts": [
+        "Conexão: 2 RCA macho em cada extremidade.",
+        "Comprimento: 5 m; diâmetro: 4 mm.",
+        "Blindado, com conectores dourados e mola de proteção."
+      ],
+      "extra": {}
+    },
+    "VTK018404": {
+      "title": "Calculadora de mesa Truly T882 12 dígitos",
+      "facts": [
+        "Calculadora de mesa com visor de 12 dígitos.",
+        "Visor inclinável para facilitar a leitura."
+      ],
+      "extra": {}
+    },
+    "VTK026052": {
+      "title": "Microfone condensador MXT MX-MC017 P2 com tripé",
+      "facts": [
+        "Microfone condensador de mesa com tripé.",
+        "Cabo P2 de 1,8 m."
+      ],
+      "extra": {
+        "OUTPUT_CONNECTORS": {
+          "value_id": "7742961",
+          "value_name": "Jack 3.5 mm"
+        }
+      }
+    },
+    "VTK005849": {
+      "title": "Esguicho Kepper alumínio 30cm azul duas ponteiras",
+      "facts": [
+        "Esguicho de alumínio de 30 cm na cor azul.",
+        "Acompanha duas ponteiras: jato concentrado e leque.",
+        "Registro para abrir e fechar o fluxo de água."
+      ],
+      "extra": {}
+    },
+    "VTK018417": {
+      "title": "Capotraste MXT MC-5001 alumínio preto para violão",
+      "facts": [
+        "Capotraste de alumínio na cor preta.",
+        "Modelo MC-5001, indicado para violão."
+      ],
+      "extra": {}
+    }
+  },
+  "selectionNotes": "Selecionados em ordem da fila entre fichas materialmente coerentes e completas. CFA4211: homologação obrigatória ausente; GCP: fabricante Citrox no catálogo versus GCP/PPA; Evus F14: sensibilidade 3dB versus 103±3dB; Bravox FLT10D: carcaça aço no catálogo versus nylon/fiberglass na oferta. Demais permanecem na fila; limite máximo dez.",
+  "excludedAfterCatalogReview": {
+    "VTK017284": {
+      "mlItemId": "MLB7594384288",
+      "decision": "MANTER_PAUSADO",
+      "reason": "Catálogo descreve versões de alimentação alternativas e dimensão 200 mm, enquanto atributo LENGTH informa 26 cm. Conteúdo imutável pelo vendedor; validar catálogo antes de ativar."
+    },
+    "VTK018081": {
+      "decision": "NAO_PUBLICAR",
+      "reason": "Marca ROADSTAR BRASIL/ROADSTAR resolvida. Revisão encontrou diâmetro 18,5 mm na descrição ML versus 18 mm na oferta; confirmar medida física antes de vender nessa página."
+    }
+  }
+}

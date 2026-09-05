@@ -1,0 +1,5 @@
+(node:565418) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/lib/ml/identity-normalization.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"status":"COHORT_ALREADY_FINISHED","jobId":"8af728e7-dc37-45c1-9442-1d3f1cf9586c"}

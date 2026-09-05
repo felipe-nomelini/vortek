@@ -1,0 +1,728 @@
+{
+  "at": "2026-09-05T20:43:07.289Z",
+  "itemId": "MLB7594384288",
+  "reason": "DESCRICAO_NAO_PERSISTIDA",
+  "pause": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "id": "MLB7594384288",
+      "site_id": "MLB",
+      "title": "Identificador De Fibra Ativa Evus Ev-430 Vfl 10mw Alcance 10km Conectores Sc Fc St",
+      "seller_id": 3294514937,
+      "category_id": "MLB277515",
+      "user_product_id": "MLBU5088505727",
+      "official_store_id": null,
+      "price": 1291.84,
+      "base_price": 1291.84,
+      "original_price": null,
+      "inventory_id": null,
+      "currency_id": "BRL",
+      "initial_quantity": 2,
+      "available_quantity": 2,
+      "sold_quantity": 0,
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "name": "Tipo de garantia",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "2230279",
+              "name": "Garantia de fábrica",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "name": "Tempo de garantia",
+          "value_id": null,
+          "value_name": "12 meses",
+          "value_struct": {
+            "number": 12,
+            "unit": "meses"
+          },
+          "values": [
+            {
+              "id": null,
+              "name": "12 meses",
+              "struct": {
+                "number": 12,
+                "unit": "meses"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        }
+      ],
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "family_name": "Identificador de Fibra Ativa Evus EV-430 VFL 10mW Alcance 10km Conectores SC FC ST",
+      "family_id": 2902275910849298,
+      "start_time": "2026-09-05T20:39:44.656Z",
+      "stop_time": "2046-08-31T04:00:00.000Z",
+      "end_time": "2046-08-31T04:00:00.000Z",
+      "expiration_time": "2026-11-24T20:39:45.696Z",
+      "condition": "new",
+      "permalink": "http://produto.mercadolivre.com.br/MLB-7594384288-identificador-de-fibra-ativa-evus-ev-430-vfl-10mw-alcance-10km-conectores-sc-fc-st-_JM",
+      "pictures": [
+        {
+          "id": "989683-MLA100046558809_122025",
+          "url": "http://mla-s2-p.mlstatic.com/989683-MLA100046558809_122025-O.jpg",
+          "secure_url": "https://mla-s2-p.mlstatic.com/989683-MLA100046558809_122025-O.jpg",
+          "size": "104x500",
+          "max_size": "250x1200",
+          "quality": ""
+        },
+        {
+          "id": "872761-MLA85390824502_062025",
+          "url": "http://mla-s1-p.mlstatic.com/872761-MLA85390824502_062025-O.jpg",
+          "secure_url": "https://mla-s1-p.mlstatic.com/872761-MLA85390824502_062025-O.jpg",
+          "size": "423x500",
+          "max_size": "698x825",
+          "quality": ""
+        },
+        {
+          "id": "733063-MLA85697121451_062025",
+          "url": "http://mla-s2-p.mlstatic.com/733063-MLA85697121451_062025-O.jpg",
+          "secure_url": "https://mla-s2-p.mlstatic.com/733063-MLA85697121451_062025-O.jpg",
+          "size": "500x277",
+          "max_size": "1048x582",
+          "quality": ""
+        },
+        {
+          "id": "991902-MLA91571635374_092025",
+          "url": "http://mla-s1-p.mlstatic.com/991902-MLA91571635374_092025-O.jpg",
+          "secure_url": "https://mla-s1-p.mlstatic.com/991902-MLA91571635374_092025-O.jpg",
+          "size": "500x382",
+          "max_size": "1200x918",
+          "quality": ""
+        },
+        {
+          "id": "692766-MLA85390989978_062025",
+          "url": "http://mla-s2-p.mlstatic.com/692766-MLA85390989978_062025-O.jpg",
+          "secure_url": "https://mla-s2-p.mlstatic.com/692766-MLA85390989978_062025-O.jpg",
+          "size": "95x500",
+          "max_size": "208x1093",
+          "quality": ""
+        }
+      ],
+      "video_id": null,
+      "descriptions": [],
+      "accepts_mercadopago": true,
+      "non_mercado_pago_payment_methods": [],
+      "shipping": {
+        "mode": "me2",
+        "local_pick_up": false,
+        "free_shipping": true,
+        "methods": [],
+        "dimensions": null,
+        "tags": [
+          "mandatory_free_shipping"
+        ],
+        "logistic_type": "xd_drop_off",
+        "store_pick_up": false
+      },
+      "international_delivery_mode": "none",
+      "seller_address": {
+        "id": 1586042717,
+        "comment": "",
+        "address_line": "Rua João Marques de Nóbrega 300",
+        "zip_code": "86206240",
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "BR-PR",
+          "name": "Paraná"
+        },
+        "country": {
+          "id": "BR",
+          "name": "Brasil"
+        },
+        "latitude": -23.284674,
+        "longitude": -51.083409,
+        "search_location": {
+          "neighborhood": {
+            "id": "",
+            "name": ""
+          },
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "TUxCUFBBUkExODBlZA",
+            "name": "Paraná"
+          }
+        }
+      },
+      "seller_contact": null,
+      "location": {},
+      "geolocation": {
+        "latitude": -23.284674,
+        "longitude": -51.083409
+      },
+      "coverage_areas": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus",
+          "values": [
+            {
+              "id": "216711",
+              "name": "Evus",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTOR_SIZE",
+          "name": "Tamanho do conector",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "name": "Tipo de conector",
+          "value_id": "6622618",
+          "value_name": "Universal",
+          "values": [
+            {
+              "id": "6622618",
+              "name": "Universal",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7898597132708",
+          "values": [
+            {
+              "id": null,
+              "name": "7898597132708",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "1061412",
+          "value_name": "26 cm",
+          "values": [
+            {
+              "id": "1061412",
+              "name": "26 cm",
+              "struct": {
+                "number": 26,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MAX_LASER_REACH",
+          "name": "Alcance máximo do laser",
+          "value_id": "23336568",
+          "value_name": "10 km",
+          "values": [
+            {
+              "id": "23336568",
+              "name": "10 km",
+              "struct": {
+                "number": 10,
+                "unit": "km"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26977863",
+          "value_name": "EV-430",
+          "values": [
+            {
+              "id": "26977863",
+              "name": "EV-430",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "4554518",
+          "value_name": "10 mW",
+          "values": [
+            {
+              "id": "4554518",
+              "name": "10 mW",
+              "struct": {
+                "number": 10,
+                "unit": "mW"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK017284",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK017284",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        }
+      ],
+      "warnings": [],
+      "listing_source": "",
+      "variations": [],
+      "thumbnail_id": "989683-MLA100046558809_122025",
+      "thumbnail": "http://mlb-s2-p.mlstatic.com/989683-MLA100046558809_122025-I.jpg",
+      "status": "paused",
+      "sub_status": [
+        "paused_by_seller"
+      ],
+      "tags": [
+        "cart_eligible",
+        "immediate_payment"
+      ],
+      "warranty": "Garantia de fábrica: 12 meses",
+      "catalog_product_id": "MLB28657049",
+      "domain_id": "MLB-FIBER_OPTIC_FAULT_LOCATORS",
+      "seller_custom_field": "VTK017284",
+      "parent_item_id": null,
+      "differential_pricing": null,
+      "deal_ids": [],
+      "automatic_relist": false,
+      "date_created": "2026-09-05T20:39:44.818Z",
+      "last_updated": "2026-09-05T20:39:46.489Z",
+      "health": null,
+      "catalog_listing": true,
+      "item_relations": [],
+      "channels": [
+        "marketplace"
+      ]
+    },
+    "error": null
+  },
+  "readback": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "id": "MLB7594384288",
+      "site_id": "MLB",
+      "title": "Identificador De Fibra Ativa Evus Ev-430 Vfl 10mw Alcance 10km Conectores Sc Fc St",
+      "family_name": "Identificador de Fibra Ativa Evus EV-430 VFL 10mW Alcance 10km Conectores SC FC ST",
+      "family_id": 2902275910849298,
+      "seller_id": 3294514937,
+      "category_id": "MLB277515",
+      "user_product_id": "MLBU5088505727",
+      "official_store_id": null,
+      "price": 1291.84,
+      "base_price": 1291.84,
+      "original_price": null,
+      "inventory_id": null,
+      "currency_id": "BRL",
+      "initial_quantity": 2,
+      "available_quantity": 2,
+      "sold_quantity": 0,
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "name": "Tipo de garantia",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "2230279",
+              "name": "Garantia de fábrica",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "name": "Tempo de garantia",
+          "value_id": null,
+          "value_name": "12 meses",
+          "value_struct": {
+            "number": 12,
+            "unit": "meses"
+          },
+          "values": [
+            {
+              "id": null,
+              "name": "12 meses",
+              "struct": {
+                "number": 12,
+                "unit": "meses"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        }
+      ],
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "start_time": "2026-09-05T20:39:44.656Z",
+      "stop_time": "2046-08-31T04:00:00.000Z",
+      "end_time": "2046-08-31T04:00:00.000Z",
+      "expiration_time": "2026-11-24T20:39:45.696Z",
+      "condition": "new",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7594384288-identificador-de-fibra-ativa-evus-ev-430-vfl-10mw-alcance-10km-conectores-sc-fc-st-_JM",
+      "thumbnail_id": "989683-MLA100046558809_122025",
+      "thumbnail": "http://http2.mlstatic.com/D_989683-MLA100046558809_122025-I.webp",
+      "pictures": [
+        {
+          "id": "989683-MLA100046558809_122025",
+          "url": "http://http2.mlstatic.com/D_989683-MLA100046558809_122025-O.webp",
+          "secure_url": "https://http2.mlstatic.com/D_989683-MLA100046558809_122025-O.webp",
+          "size": "104x500",
+          "max_size": "250x1200",
+          "quality": ""
+        },
+        {
+          "id": "872761-MLA85390824502_062025",
+          "url": "http://http2.mlstatic.com/D_872761-MLA85390824502_062025-O.webp",
+          "secure_url": "https://http2.mlstatic.com/D_872761-MLA85390824502_062025-O.webp",
+          "size": "423x500",
+          "max_size": "698x825",
+          "quality": ""
+        },
+        {
+          "id": "733063-MLA85697121451_062025",
+          "url": "http://http2.mlstatic.com/D_733063-MLA85697121451_062025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_733063-MLA85697121451_062025-O.jpg",
+          "size": "500x277",
+          "max_size": "1048x582",
+          "quality": ""
+        },
+        {
+          "id": "991902-MLA91571635374_092025",
+          "url": "http://http2.mlstatic.com/D_991902-MLA91571635374_092025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_991902-MLA91571635374_092025-O.jpg",
+          "size": "500x382",
+          "max_size": "1200x918",
+          "quality": ""
+        },
+        {
+          "id": "692766-MLA85390989978_062025",
+          "url": "http://http2.mlstatic.com/D_692766-MLA85390989978_062025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_692766-MLA85390989978_062025-O.jpg",
+          "size": "95x500",
+          "max_size": "208x1093",
+          "quality": ""
+        }
+      ],
+      "video_id": null,
+      "descriptions": [],
+      "accepts_mercadopago": true,
+      "non_mercado_pago_payment_methods": [],
+      "shipping": {
+        "mode": "me2",
+        "methods": [],
+        "tags": [
+          "mandatory_free_shipping"
+        ],
+        "dimensions": null,
+        "local_pick_up": false,
+        "free_shipping": true,
+        "logistic_type": "xd_drop_off",
+        "store_pick_up": false
+      },
+      "international_delivery_mode": "none",
+      "seller_address": {
+        "address_line": "Rua João Marques de Nóbrega 300",
+        "zip_code": "86206240",
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "BR-PR",
+          "name": "Paraná"
+        },
+        "country": {
+          "id": "BR",
+          "name": "Brasil"
+        },
+        "search_location": {
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "TUxCUFBBUkExODBlZA",
+            "name": "Paraná"
+          }
+        },
+        "latitude": -23.284674,
+        "longitude": -51.083409,
+        "id": 1586042717
+      },
+      "seller_contact": null,
+      "location": {},
+      "geolocation": {
+        "latitude": -23.284674,
+        "longitude": -51.083409
+      },
+      "coverage_areas": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus",
+          "values": [
+            {
+              "id": "216711",
+              "name": "Evus",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTOR_SIZE",
+          "name": "Tamanho do conector",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "name": "Tipo de conector",
+          "value_id": "6622618",
+          "value_name": "Universal",
+          "values": [
+            {
+              "id": "6622618",
+              "name": "Universal",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7898597132708",
+          "values": [
+            {
+              "id": null,
+              "name": "7898597132708",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "1061412",
+          "value_name": "26 cm",
+          "values": [
+            {
+              "id": "1061412",
+              "name": "26 cm",
+              "struct": {
+                "number": 26,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MAX_LASER_REACH",
+          "name": "Alcance máximo do laser",
+          "value_id": "23336568",
+          "value_name": "10 km",
+          "values": [
+            {
+              "id": "23336568",
+              "name": "10 km",
+              "struct": {
+                "number": 10,
+                "unit": "km"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26977863",
+          "value_name": "EV-430",
+          "values": [
+            {
+              "id": "26977863",
+              "name": "EV-430",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "4554518",
+          "value_name": "10 mW",
+          "values": [
+            {
+              "id": "4554518",
+              "name": "10 mW",
+              "struct": {
+                "number": 10,
+                "unit": "mW"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK017284",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK017284",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        }
+      ],
+      "warnings": [],
+      "listing_source": "",
+      "variations": [],
+      "status": "paused",
+      "sub_status": [
+        "paused_by_seller"
+      ],
+      "tags": [
+        "immediate_payment",
+        "cart_eligible"
+      ],
+      "warranty": "Garantia de fábrica: 12 meses",
+      "catalog_product_id": "MLB28657049",
+      "domain_id": "MLB-FIBER_OPTIC_FAULT_LOCATORS",
+      "seller_custom_field": "VTK017284",
+      "parent_item_id": null,
+      "differential_pricing": null,
+      "deal_ids": [],
+      "automatic_relist": false,
+      "date_created": "2026-09-05T20:39:44.818Z",
+      "last_updated": "2026-09-05T20:39:46.489Z",
+      "health": null,
+      "catalog_listing": true,
+      "item_relations": [],
+      "channels": [
+        "marketplace"
+      ]
+    },
+    "error": null
+  }
+}

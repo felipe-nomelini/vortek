@@ -1,0 +1,3586 @@
+{
+  "c": {
+    "sku": "VTK018417",
+    "prediction": [
+      {
+        "domain_id": "MLB-STRING_INSTRUMENT_CAPOS",
+        "domain_name": "Capotrastes para instrumentos de cordas",
+        "category_id": "MLB271125",
+        "category_name": "Capotrastes para Guitarras",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "2153976",
+            "value_name": "MXT"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "24280759",
+            "value_name": "MC-5001"
+          },
+          {
+            "id": "CAPO_TYPE",
+            "name": "Tipo de capotraste",
+            "value_id": "25841215",
+            "value_name": "Pinça"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "7736486",
+            "value_name": "7.5 cm"
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "8076866",
+            "value_name": "1 cm"
+          },
+          {
+            "id": "LENGTH",
+            "name": "Comprimento",
+            "value_id": "7818553",
+            "value_name": "8 cm"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto"
+          }
+        ]
+      }
+    ],
+    "product": {
+      "id": "4b796113-f87a-4da8-900e-1977125a2f8b",
+      "sku": "VTK018417",
+      "nome": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto",
+      "marca": "MXT",
+      "estoque": 9,
+      "custo": 10.7,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.048,
+      "peso_bruto": 0.048,
+      "largura": 9,
+      "altura": 1,
+      "profundidade": 12.5,
+      "gtin": "7899471892213",
+      "descricao": "Capotraste de alumínio para violão MXT MC-5001 Preto. *Imagens meramente ilustrativas.",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png"
+      ],
+      "categoria": "Eletronica/ Acessórios/ Acessórios",
+      "ml_item_id": null,
+      "created_at": "2026-07-20T18:32:23.092114+00:00",
+      "updated_at": "2026-09-05T19:48:31.621578+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "391140",
+      "dslite_ultima_sync": "2026-09-05T19:48:31.315+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "92099200",
+      "cest": null,
+      "origem_fiscal": "2",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+      "produto_id": "4b796113-f87a-4da8-900e-1977125a2f8b",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "391140",
+      "sku_fornecedor": "391140",
+      "custo": 10.7,
+      "estoque": 9,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:48:31.315+00:00",
+      "created_at": "2026-07-20T18:32:23.345495+00:00",
+      "updated_at": "2026-09-05T19:48:31.322+00:00",
+      "sku_oferta": "391140",
+      "nome": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto",
+      "descricao": "Capotraste de alumínio para violão MXT MC-5001 Preto. *Imagens meramente ilustrativas.",
+      "marca": "MXT",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png"
+      ],
+      "gtin": "7899471892213",
+      "ncm": "92099200",
+      "cest": null
+    },
+    "radar": {
+      "id": "393525ab-abcf-4a10-8944-7071a11af645",
+      "produto_id": "4b796113-f87a-4da8-900e-1977125a2f8b",
+      "candidate_key": "product:4b796113-f87a-4da8-900e-1977125a2f8b",
+      "sku": "VTK018417",
+      "catalog_product_id": "MLB78766975",
+      "pricing_group_id": null,
+      "stage": "AGUARDANDO_APROVACAO",
+      "queue": "EXPLORATORIOS",
+      "conflict_state": "SEM_CONFLITO",
+      "assessment": {
+        "state": "SEM_CONFLITO",
+        "economy": "VIAVEL_NO_ALVO",
+        "listing": "NOVO_ANUNCIO_CANDIDATO",
+        "reasons": [],
+        "identity": "IDENTIDADE_COHERENTE",
+        "listings": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA",
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "comparisons": [
+          {
+            "basis": "normalized",
+            "field": "brand",
+            "local": "MXT",
+            "remote": "MXT",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "model",
+            "local": "mc-5001",
+            "remote": "MC-5001",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "variation",
+            "local": "preto",
+            "remote": "Preto",
+            "matches": true,
+            "evidence": null
+          }
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1",
+        "publicationAutonomy": "REQUIRES_CONFIRMATION"
+      },
+      "evidence": {
+        "asOf": "2026-09-05T15:16:37.457Z",
+        "cost": 10.7,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "source": "oportunidades-ml-2026-09-05",
+        "product": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto",
+        "identity": {
+          "local": {
+            "gtin": "7899471892213",
+            "brand": "MXT",
+            "model": "mc-5001",
+            "quantity": null,
+            "packaging": null,
+            "variation": "preto",
+            "partNumber": null,
+            "provenance": {
+              "gtin": {
+                "source": "supplier_offer:bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+                "excerpt": "7899471892213"
+              },
+              "brand": {
+                "source": "supplier_offer:bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+                "excerpt": "MXT; "
+              },
+              "model": {
+                "source": "supplier_offer:bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+                "excerpt": "mc-5001"
+              }
+            },
+            "brandEvidence": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto Capotraste de alumínio para violão MXT MC-5001 Preto. *Imagens meramente ilustrativas."
+          },
+          "remote": {
+            "gtin": null,
+            "brand": "MXT",
+            "model": "MC-5001",
+            "critical": {
+              "SIZE": null,
+              "LENGTH": "8 cm",
+              "VOLTAGE": null,
+              "CAPACITY": null,
+              "PINS_NUMBER": null,
+              "CONNECTOR_TYPE": null,
+              "INPUT_CONNECTOR": null,
+              "OUTPUT_CONNECTOR": null
+            },
+            "quantity": null,
+            "packaging": null,
+            "saleUnits": null,
+            "variation": "Preto",
+            "partNumber": null,
+            "provenance": {
+              "brand": {
+                "source": "/products/MLB78766975",
+                "excerpt": "BRAND: MXT"
+              },
+              "model": {
+                "source": "/products/MLB78766975",
+                "excerpt": "MODEL: MC-5001"
+              },
+              "variation": {
+                "source": "/products/MLB78766975",
+                "excerpt": "COLOR: Preto"
+              }
+            }
+          },
+          "source": "/products/MLB78766975"
+        },
+        "supplier": "Evolusom Comercial Ltda",
+        "listingType": "gold_special",
+        "identityReview": "Capotraste MXT MC-5001 preto, de alumínio.",
+        "competitivePrice": 35,
+        "identityObservedAt": "2026-09-05T20:05:00.156Z"
+      },
+      "priority": {
+        "stock": 9,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "economy": "VIAVEL_NO_ALVO",
+        "identity": "IDENTIDADE_COHERENTE",
+        "demandRank": 3,
+        "publication": "COMPLETA",
+        "competitiveness": {
+          "price": 35,
+          "contribution": 4.43
+        }
+      },
+      "recommendation": "Explorar demanda; validar pendências antes de aprovar",
+      "evaluation_id": "97820bc5-7ef5-4ec5-8ac4-0177a9f2a785",
+      "target_evaluation_id": "0ffc7165-5124-492d-b4ad-0b6de54c18e6",
+      "floor_evaluation_id": "9527d90c-ead0-45b4-b2c3-d1e538f2ce03",
+      "break_even_evaluation_id": "01a64aa6-1ae8-4f0f-83de-69a509e36db5",
+      "input_fingerprint": "98374735cc01d3849a2e3120873ffab131c60917d311897f2d143796a0c07224",
+      "stock": 9,
+      "demand_rank": 3,
+      "contribution": 4.43,
+      "job_id": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+      "processed_at": "2026-09-05T20:10:45.479015+00:00",
+      "updated_at": "2026-09-05T20:10:45.479015+00:00"
+    },
+    "catalog": {
+      "id": "MLB78766975",
+      "catalog_product_id": "MLB78766975",
+      "status": "active",
+      "pdp_types": [
+        "traditional"
+      ],
+      "domain_id": "MLB-STRING_INSTRUMENT_CAPOS",
+      "permalink": "",
+      "name": "Capotraste Braçadeira Guitarra E Violão Aço E Nylon Preto Preto",
+      "family_name": "MXT MC-5001 Metal",
+      "type": "catalog_product",
+      "buy_box_winner": null,
+      "pickers": [
+        {
+          "picker_id": "COLOR",
+          "picker_name": "Cor",
+          "products": [
+            {
+              "product_id": "MLB78766975",
+              "picker_label": "Preto",
+              "picture_id": "818479-MLA117018731719_092026",
+              "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_818479-MLA117018731719_092026-I.jpg",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "MXT MC-5001 Metal - 8 cm - 7 cm - 8 cm - 100 g - Preto",
+              "auto_completed": true
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "COLOR",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        },
+        {
+          "picker_id": "WEIGHT",
+          "picker_name": "Peso",
+          "products": [
+            {
+              "product_id": "MLB78766975",
+              "picker_label": "100 g",
+              "picture_id": "",
+              "thumbnail": "",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "MXT MC-5001 Metal - 8 cm - 7 cm - 8 cm - 100 g - Preto",
+              "auto_completed": false
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "WEIGHT",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        },
+        {
+          "picker_id": "WIDTH-LENGTH-HEIGHT",
+          "picker_name": "Dimensões",
+          "products": [
+            {
+              "product_id": "MLB78766975",
+              "picker_label": "7 cm x 8 cm x 8 cm",
+              "picture_id": "",
+              "thumbnail": "",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "MXT MC-5001 Metal - 8 cm - 7 cm - 8 cm - 100 g - Preto",
+              "auto_completed": false
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "WIDTH",
+              "template": "",
+              "position": 1
+            },
+            {
+              "attribute_id": "LENGTH",
+              "template": "",
+              "position": 2
+            },
+            {
+              "attribute_id": "HEIGHT",
+              "template": "",
+              "position": 2
+            }
+          ],
+          "value_name_delimiter": " x ",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        }
+      ],
+      "pictures": [
+        {
+          "id": "818479-MLA117018731719_092026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_818479-MLA117018731719_092026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1083,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        }
+      ],
+      "description_pictures": [],
+      "main_features": [
+        {
+          "text": "Fabricado em metal.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Recomendado para contrabaixo, guitarra elétrica, violão.",
+          "type": "key_value",
+          "metadata": {}
+        }
+      ],
+      "disclaimers": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2153976",
+          "value_name": "MXT",
+          "values": [
+            {
+              "id": "2153976",
+              "name": "MXT"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24280759",
+          "value_name": "MC-5001",
+          "values": [
+            {
+              "id": "24280759",
+              "name": "MC-5001"
+            }
+          ]
+        },
+        {
+          "id": "CAPO_TYPE",
+          "name": "Tipo de capotraste",
+          "value_id": "27360424",
+          "value_name": "Metal",
+          "values": [
+            {
+              "id": "27360424",
+              "name": "Metal"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7566493",
+          "value_name": "8 cm",
+          "values": [
+            {
+              "id": "7566493",
+              "name": "8 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "7966600",
+          "value_name": "7 cm",
+          "values": [
+            {
+              "id": "7966600",
+              "name": "7 cm"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "7818553",
+          "value_name": "8 cm",
+          "values": [
+            {
+              "id": "7818553",
+              "name": "8 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "13822632",
+          "value_name": "100 g",
+          "values": [
+            {
+              "id": "13822632",
+              "name": "100 g"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "112648",
+          "value_name": "Metal",
+          "values": [
+            {
+              "id": "112648",
+              "name": "Metal"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "name": "Instrumentos recomendados",
+          "value_id": null,
+          "value_name": "Contrabaixo, Guitarra elétrica, Violão",
+          "values": [
+            {
+              "id": "3565994",
+              "name": "Contrabaixo"
+            },
+            {
+              "id": "4180050",
+              "name": "Guitarra elétrica"
+            },
+            {
+              "id": "27739334",
+              "name": "Violão"
+            }
+          ]
+        },
+        {
+          "id": "WITH_SILICONE_PAD",
+          "name": "Com almofada de silicone",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "meta": {
+                "value": true
+              }
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        }
+      ],
+      "short_description": {
+        "type": "plaintext",
+        "content": ""
+      },
+      "parent_id": "MLB78766970",
+      "children_ids": [],
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false,
+        "with_enhanced_pictures": false,
+        "base_site_product_id": null,
+        "ttr": "2026-09-05T09:26:47.197303685"
+      },
+      "quality_type": "COMPLETE",
+      "release_info": null,
+      "presale_info": null,
+      "enhanced_content": null,
+      "tags": [],
+      "date_created": "2026-09-01T10:33:47Z",
+      "authorized_stores": null,
+      "last_updated": "2026-09-01T10:33:47Z",
+      "grouper_id": null,
+      "experiments": {}
+    },
+    "category": {
+      "id": "MLB271125",
+      "name": "Capotrastes para Guitarras",
+      "picture": null,
+      "permalink": null,
+      "total_items_in_this_category": 13781,
+      "path_from_root": [
+        {
+          "id": "MLB1182",
+          "name": "Instrumentos Musicais"
+        },
+        {
+          "id": "MLB278055",
+          "name": "Instrumentos de Corda"
+        },
+        {
+          "id": "MLB278059",
+          "name": "Acessórios"
+        },
+        {
+          "id": "MLB271125",
+          "name": "Capotrastes para Guitarras"
+        }
+      ],
+      "children_categories": [],
+      "attribute_types": "variations",
+      "settings": {
+        "adult_content": false,
+        "buying_allowed": true,
+        "buying_modes": [
+          "auction",
+          "buy_it_now"
+        ],
+        "catalog_domain": "MLB-STRING_INSTRUMENT_CAPOS",
+        "coverage_areas": "not_allowed",
+        "currencies": [
+          "BRL"
+        ],
+        "fragile": false,
+        "immediate_payment": "required",
+        "item_conditions": [
+          "new",
+          "not_specified",
+          "used"
+        ],
+        "items_reviews_allowed": false,
+        "listing_allowed": true,
+        "max_description_length": 50000,
+        "max_pictures_per_item": 12,
+        "max_pictures_per_item_var": 10,
+        "max_sub_title_length": 70,
+        "max_title_length": 60,
+        "max_variations_allowed": 100,
+        "maximum_price": null,
+        "maximum_price_currency": "BRL",
+        "minimum_price": 0,
+        "minimum_price_currency": "BRL",
+        "mirror_category": null,
+        "mirror_master_category": null,
+        "mirror_slave_categories": [],
+        "price": "required",
+        "reservation_allowed": "not_allowed",
+        "restrictions": [],
+        "rounded_address": false,
+        "seller_contact": "not_allowed",
+        "shipping_options": [
+          "custom",
+          "carrier"
+        ],
+        "shipping_profile": "optional",
+        "show_contact_information": false,
+        "simple_shipping": "optional",
+        "stock": "required",
+        "sub_vertical": null,
+        "subscribable": false,
+        "tags": [],
+        "vertical": null,
+        "vip_subdomain": "produto",
+        "buyer_protection_programs": [
+          "delivered",
+          "undelivered"
+        ],
+        "status": "enabled"
+      },
+      "channels_settings": [
+        {
+          "channel": "mshops",
+          "settings": {
+            "minimum_price": 0
+          }
+        },
+        {
+          "channel": "proximity",
+          "settings": {
+            "status": "disabled"
+          }
+        },
+        {
+          "channel": "mp-merchants",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        },
+        {
+          "channel": "mp-link",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        }
+      ],
+      "meta_categ_id": null,
+      "attributable": false,
+      "date_created": "2018-04-25T08:12:56.000Z"
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CAPO_TYPE",
+        "name": "Tipo de capotraste",
+        "tags": {
+          "catalog_required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "25841214",
+            "name": "Plano"
+          },
+          {
+            "id": "25841215",
+            "name": "Pinça"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "tags": {},
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "example": "3 cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "tags": {},
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "example": "5 cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "tags": {},
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          },
+          {
+            "id": "\"",
+            "name": "\""
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "tags": {},
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "tags": {
+          "allow_variations": true,
+          "defines_picture": true
+        },
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "283148",
+            "name": "Coral-claro"
+          },
+          {
+            "id": "283149",
+            "name": "Coral"
+          },
+          {
+            "id": "283150",
+            "name": "Laranja-claro"
+          },
+          {
+            "id": "283151",
+            "name": "Laranja-escuro"
+          },
+          {
+            "id": "283156",
+            "name": "Cáqui"
+          },
+          {
+            "id": "283157",
+            "name": "Verde-limão"
+          },
+          {
+            "id": "283158",
+            "name": "Verde-musgo"
+          },
+          {
+            "id": "283152",
+            "name": "Chocolate"
+          },
+          {
+            "id": "283153",
+            "name": "Palha"
+          },
+          {
+            "id": "283154",
+            "name": "Marrom-claro"
+          },
+          {
+            "id": "283155",
+            "name": "Marrom-escuro"
+          },
+          {
+            "id": "283164",
+            "name": "Dourado"
+          },
+          {
+            "id": "51993",
+            "name": "Vermelho"
+          },
+          {
+            "id": "283165",
+            "name": "Cinza"
+          },
+          {
+            "id": "51994",
+            "name": "Rosa"
+          },
+          {
+            "id": "283160",
+            "name": "Azul-turquesa"
+          },
+          {
+            "id": "51996",
+            "name": "Terracota"
+          },
+          {
+            "id": "283161",
+            "name": "Azul-marinho"
+          },
+          {
+            "id": "283162",
+            "name": "Índigo"
+          },
+          {
+            "id": "51998",
+            "name": "Bordô"
+          },
+          {
+            "id": "283163",
+            "name": "Rosa-chiclete"
+          },
+          {
+            "id": "52000",
+            "name": "Laranja"
+          },
+          {
+            "id": "52001",
+            "name": "Bege"
+          },
+          {
+            "id": "52003",
+            "name": "Nude"
+          },
+          {
+            "id": "52005",
+            "name": "Marrom"
+          },
+          {
+            "id": "52007",
+            "name": "Amarelo"
+          },
+          {
+            "id": "52008",
+            "name": "Creme"
+          },
+          {
+            "id": "52010",
+            "name": "Ocre"
+          },
+          {
+            "id": "52012",
+            "name": "Dourado-escuro"
+          },
+          {
+            "id": "52014",
+            "name": "Verde"
+          },
+          {
+            "id": "52015",
+            "name": "Verde-claro"
+          },
+          {
+            "id": "52019",
+            "name": "Verde-escuro"
+          },
+          {
+            "id": "52021",
+            "name": "Azul-celeste"
+          },
+          {
+            "id": "52022",
+            "name": "Água"
+          },
+          {
+            "id": "52024",
+            "name": "Azul-petróleo"
+          },
+          {
+            "id": "52028",
+            "name": "Azul"
+          },
+          {
+            "id": "52029",
+            "name": "Azul-claro"
+          },
+          {
+            "id": "52031",
+            "name": "Azul-aço"
+          },
+          {
+            "id": "52033",
+            "name": "Azul-escuro"
+          },
+          {
+            "id": "52035",
+            "name": "Violeta"
+          },
+          {
+            "id": "52036",
+            "name": "Lavanda"
+          },
+          {
+            "id": "52038",
+            "name": "Lilás"
+          },
+          {
+            "id": "52042",
+            "name": "Fúcsia"
+          },
+          {
+            "id": "52043",
+            "name": "Rosa-claro"
+          },
+          {
+            "id": "52045",
+            "name": "Rosa-pálido"
+          },
+          {
+            "id": "52047",
+            "name": "Violeta-escuro"
+          },
+          {
+            "id": "52049",
+            "name": "Preto"
+          },
+          {
+            "id": "52051",
+            "name": "Cinza-escuro"
+          },
+          {
+            "id": "52053",
+            "name": "Prateado"
+          },
+          {
+            "id": "52055",
+            "name": "Branco"
+          },
+          {
+            "id": "338779",
+            "name": "Ciano"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_HEIGHT",
+        "name": "Altura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WIDTH",
+        "name": "Largura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WEIGHT",
+        "name": "Peso da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          },
+          {
+            "id": "mg",
+            "name": "mg"
+          },
+          {
+            "id": "oz",
+            "name": "oz"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "2748301",
+            "name": "Alumínio"
+          },
+          {
+            "id": "4086949",
+            "name": "Aço inoxidável"
+          },
+          {
+            "id": "95074",
+            "name": "Liga"
+          }
+        ],
+        "tooltip": "É a matéria-prima usada para fabricar o seu produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENTS",
+        "name": "Instrumentos recomendados",
+        "tags": {
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "4180050",
+            "name": "Guitarra elétrica"
+          },
+          {
+            "id": "4180049",
+            "name": "Violão acústico"
+          },
+          {
+            "id": "25841220",
+            "name": "Banjo"
+          },
+          {
+            "id": "25841221",
+            "name": "Bandolim"
+          }
+        ],
+        "example": "Guitarra elétrica",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_SILICONE_PAD",
+        "name": "Com almofada de silicone",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "tags": {
+          "multivalued": true,
+          "variation_attribute": true,
+          "used_hidden": true,
+          "validate": true,
+          "conditional_required": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Pode ser um EAN, UPC ou outro GTIN"
+      },
+      {
+        "id": "AGID",
+        "name": "AGID",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DECLARATION_NUMBER",
+        "name": "Número da DI",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "Número de 15 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INVOICE_PRODUCT_NAME",
+        "name": "Nome do produto na nota fiscal",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SAT_KEY",
+        "name": "Chave do produto",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021094",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_KEY",
+        "name": "Chave da unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021108",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_DESCRIPTION",
+        "name": "Unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IVA_FOR_RESALE",
+        "name": "IVA para revenda",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "81861612",
+            "name": "Isento"
+          },
+          {
+            "id": "81861613",
+            "name": "0%"
+          },
+          {
+            "id": "81861614",
+            "name": "8%"
+          },
+          {
+            "id": "81861616",
+            "name": "16%"
+          }
+        ],
+        "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IEPS",
+        "name": "IEPS",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "82021095",
+            "name": "0%"
+          },
+          {
+            "id": "82021096",
+            "name": "3%"
+          },
+          {
+            "id": "82021097",
+            "name": "6%"
+          },
+          {
+            "id": "82021098",
+            "name": "7%"
+          },
+          {
+            "id": "82021099",
+            "name": "8%"
+          },
+          {
+            "id": "82021100",
+            "name": "9%"
+          },
+          {
+            "id": "82021101",
+            "name": "25%"
+          },
+          {
+            "id": "82021102",
+            "name": "26.5%"
+          },
+          {
+            "id": "82021103",
+            "name": "30%"
+          },
+          {
+            "id": "82021104",
+            "name": "30.4%"
+          },
+          {
+            "id": "82021105",
+            "name": "50%"
+          },
+          {
+            "id": "82021106",
+            "name": "53%"
+          },
+          {
+            "id": "82021107",
+            "name": "160%"
+          }
+        ],
+        "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 2,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo"
+          },
+          {
+            "id": "2230581",
+            "name": "Usado"
+          },
+          {
+            "id": "2230582",
+            "name": "Recondicionado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VALUE_ADDED_TAX",
+        "name": "Imposto sobre o valor acrescentado",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DUTY",
+        "name": "Imposto de importação",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "49553239",
+            "name": "0 %"
+          },
+          {
+            "id": "49553240",
+            "name": "1 %"
+          },
+          {
+            "id": "49553241",
+            "name": "2.5 %"
+          },
+          {
+            "id": "49553242",
+            "name": "4 %"
+          },
+          {
+            "id": "49553243",
+            "name": "5 %"
+          },
+          {
+            "id": "49553244",
+            "name": "8 %"
+          },
+          {
+            "id": "49553245",
+            "name": "9.5 %"
+          },
+          {
+            "id": "49553246",
+            "name": "10 %"
+          },
+          {
+            "id": "49553247",
+            "name": "14 %"
+          },
+          {
+            "id": "49553248",
+            "name": "15 %"
+          },
+          {
+            "id": "49553249",
+            "name": "18 %"
+          },
+          {
+            "id": "49553250",
+            "name": "19 %"
+          },
+          {
+            "id": "49553251",
+            "name": "20 %"
+          },
+          {
+            "id": "49553252",
+            "name": "23 %"
+          },
+          {
+            "id": "49553253",
+            "name": "25 %"
+          },
+          {
+            "id": "49553254",
+            "name": "26 %"
+          },
+          {
+            "id": "49553255",
+            "name": "70 %"
+          }
+        ],
+        "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de envio",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAZMAT_TRANSPORTABILITY",
+        "name": "Transportabilidade Hazmat",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "13414677",
+            "name": "Livre"
+          },
+          {
+            "id": "13414678",
+            "name": "Limitado"
+          },
+          {
+            "id": "13414679",
+            "name": "Excedido"
+          },
+          {
+            "id": "13414680",
+            "name": "Indeterminado"
+          },
+          {
+            "id": "75989961",
+            "name": "Notificado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_KIT",
+        "name": "É kit",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DESCRIPTIVE_TAGS",
+        "name": "Tags descritivos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_CHEMICAL_FEATURES",
+        "name": "Características químicas do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7651070",
+            "name": "Inflamável"
+          },
+          {
+            "id": "7651071",
+            "name": "Aerosol"
+          },
+          {
+            "id": "7651072",
+            "name": "Oxidante"
+          },
+          {
+            "id": "7651073",
+            "name": "Corrosivo"
+          },
+          {
+            "id": "7651074",
+            "name": "Explosivo"
+          },
+          {
+            "id": "7651075",
+            "name": "Tóxico ou infeccioso"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FOODS_AND_DRINKS",
+        "name": "Alimentos e bebidas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575926",
+            "name": "Para humanos"
+          },
+          {
+            "id": "7575927",
+            "name": "Para animais"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEDICINES",
+        "name": "Medicamentos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575930",
+            "name": "Para humanos com receita médica"
+          },
+          {
+            "id": "7575931",
+            "name": "Para humanos sem receita médica"
+          },
+          {
+            "id": "7575932",
+            "name": "Para animais com receita médica"
+          },
+          {
+            "id": "7575933",
+            "name": "Para animais sem receita médica"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BATTERIES_FEATURES",
+        "name": "Características das baterias",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575934",
+            "name": "Lítio stand-alone (separadas ou isolado)"
+          },
+          {
+            "id": "7575935",
+            "name": "De lítio instaladas"
+          },
+          {
+            "id": "7575936",
+            "name": "Para carros (ácido-chumbo)"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPMENT_PACKING",
+        "name": "Embalagem do envío",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435891",
+            "name": "Flyer"
+          },
+          {
+            "id": "7435892",
+            "name": "Caixa"
+          },
+          {
+            "id": "7575937",
+            "name": "Envelope"
+          },
+          {
+            "id": "7575939",
+            "name": "Auto-expedível"
+          },
+          {
+            "id": "27037932",
+            "name": "BEX"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ADDITIONAL_INFO_REQUIRED",
+        "name": "Informação adicional requerida",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435893",
+            "name": "Possui código IMEI"
+          },
+          {
+            "id": "7435894",
+            "name": "Possui número de série"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EXCLUDED_PLATFORMS",
+        "name": "Plataformas excluídas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "9936777",
+            "name": "Android"
+          },
+          {
+            "id": "9936778",
+            "name": "iOS"
+          },
+          {
+            "id": "9936779",
+            "name": "Desktop"
+          },
+          {
+            "id": "9936780",
+            "name": "Mobile"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_SHIPMENT",
+        "name": "É adequado para envío",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_DATA_SOURCE",
+        "name": "Fonte do produto",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indique o país de origem do produto.",
+        "example": "Brasil",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+        "name": "Razões de visibilidade limitada no Marketplace",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "24219544",
+            "name": "Pharma"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAS_COMPATIBILITIES",
+        "name": "Tem compatibilidades",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CATALOG_TITLE",
+        "name": "Título de catálogo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SEARCH_ENHANCEMENT_FIELDS",
+        "name": "Campos de aprimoramento de pesquisa",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_FEATURES",
+        "name": "Características do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435885",
+            "name": "Contém líquido"
+          },
+          {
+            "id": "7435883",
+            "name": "Frágil"
+          },
+          {
+            "id": "7435888",
+            "name": "Com validade"
+          },
+          {
+            "id": "8847339",
+            "name": "Sem validade"
+          },
+          {
+            "id": "7575917",
+            "name": "Desinfetante e saneante"
+          },
+          {
+            "id": "7575924",
+            "name": "MAPA"
+          },
+          {
+            "id": "7575923",
+            "name": "Saúde e correlatos"
+          },
+          {
+            "id": "8721108",
+            "name": "Volumoso"
+          },
+          {
+            "id": "10490116",
+            "name": "Não voável"
+          },
+          {
+            "id": "12928414",
+            "name": "Não rotacionável"
+          },
+          {
+            "id": "41722098",
+            "name": "Dobrável"
+          },
+          {
+            "id": "52092586",
+            "name": "Magnético"
+          },
+          {
+            "id": "52233302",
+            "name": "Pode rolar"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_NEW_OFFER",
+        "name": "É nova oferta",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SYI_PYMES_ID",
+        "name": "syi pymes id",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_FLAMMABLE",
+        "name": "É inflamável",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_POSITIVE_IMPACT",
+        "name": "Com impacto positivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de fábrica",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "saleTerms": [
+      {
+        "id": "INVOICE",
+        "name": "Faturamento",
+        "tags": {
+          "hidden": true,
+          "multivalued": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "6891885",
+            "name": "Factura A"
+          },
+          {
+            "id": "6891886",
+            "name": "Factura B"
+          },
+          {
+            "id": "6891887",
+            "name": "Factura C"
+          },
+          {
+            "id": "6891888",
+            "name": "Não factura"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIBABLE",
+        "name": "Aceita compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRICE_SUBSCRIPTION",
+        "name": "Preço por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIPTION_FREE_SHIPPING",
+        "name": "Envio gratis por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_1",
+        "name": "Preço por ser nível 1 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_2",
+        "name": "Preço por ser nível 2 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_3",
+        "name": "Preço por ser nível 3 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_4",
+        "name": "Preço por ser nível 4 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_5",
+        "name": "Preço por ser nível 5 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_6",
+        "name": "Preço por ser nível 6 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CHECKOUT_EXCHANGE_RATE",
+        "name": "Taxa de câmbio para checkout",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL/USD",
+            "name": "BRL/USD"
+          }
+        ],
+        "default_unit": "BRL/USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DISCOUNT_SUBSCRIPTION",
+        "name": "Desconto por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "%",
+            "name": "%"
+          }
+        ],
+        "default_unit": "%",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230280",
+            "name": "Garantia do vendedor"
+          },
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica"
+          },
+          {
+            "id": "6150835",
+            "name": "Sem garantia"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          },
+          {
+            "id": "meses",
+            "name": "meses"
+          },
+          {
+            "id": "anos",
+            "name": "anos"
+          }
+        ],
+        "default_unit": "meses",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MANUFACTURING_TIME",
+        "name": "Disponibilidade de estoque",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          }
+        ],
+        "default_unit": "dias",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MIN_QUANTITY",
+        "name": "Quantidade mínima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MAX_QUANTITY",
+        "name": "Quantidade máxima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_PRICE",
+        "name": "Preço do desconto en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_PRICE",
+        "name": "Preço do desconto en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_PRICE",
+        "name": "Preço global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_ORIGINAL_PRICE",
+        "name": "Preço original global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INSTALLMENTS_CAMPAIGN",
+        "name": "Campanha de parcelas",
+        "tags": {
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10322628",
+            "name": "ahora-6"
+          },
+          {
+            "id": "10080710",
+            "name": "ahora-12"
+          },
+          {
+            "id": "10979952",
+            "name": "ahora-24"
+          },
+          {
+            "id": "10080711",
+            "name": "3x_campaign"
+          },
+          {
+            "id": "10080712",
+            "name": "18x_campaign"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPPING_ORIGIN",
+        "name": "Tipo de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "10215068",
+            "name": "Local"
+          },
+          {
+            "id": "10215069",
+            "name": "Internacional"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_VOLUME_DISCOUNT",
+        "name": "Com desconto por volume",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PROMOTION_TYPE",
+        "name": "Tipo de promoção",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10708386",
+            "name": "Oferta do dia"
+          },
+          {
+            "id": "10708387",
+            "name": "Oferta relâmpago"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_1P_MOTORS",
+        "name": "É 1P motores",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "1P_RESERVATION_PRICE",
+        "name": "Preço da reserva 1P",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_TRADE_IN_PROGRAM",
+        "name": "Plan intercâmbio",
+        "tags": {
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "identity": {
+      "local": {
+        "gtin": "7899471892213",
+        "brand": "MXT",
+        "model": "mc-5001",
+        "partNumber": null,
+        "quantity": null,
+        "packaging": null,
+        "provenance": {
+          "model": {
+            "source": "supplier_offer:bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+            "excerpt": "mc-5001"
+          },
+          "brand": {
+            "source": "supplier_offer:bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+            "excerpt": "MXT; "
+          },
+          "gtin": {
+            "source": "supplier_offer:bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+            "excerpt": "7899471892213"
+          }
+        },
+        "variation": "preto",
+        "brandEvidence": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto Capotraste de alumínio para violão MXT MC-5001 Preto. *Imagens meramente ilustrativas."
+      },
+      "remote": {
+        "gtin": null,
+        "brand": "MXT",
+        "model": "MC-5001",
+        "partNumber": null,
+        "packaging": null,
+        "quantity": null,
+        "saleUnits": null,
+        "variation": "Preto",
+        "provenance": {
+          "brand": {
+            "source": "ml_attributes",
+            "excerpt": "BRAND: MXT"
+          },
+          "model": {
+            "source": "ml_attributes",
+            "excerpt": "MODEL: MC-5001"
+          },
+          "variation": {
+            "source": "ml_attributes",
+            "excerpt": "COLOR: Preto"
+          }
+        },
+        "critical": {
+          "VOLTAGE": null,
+          "LENGTH": "8 cm",
+          "SIZE": null,
+          "CAPACITY": null,
+          "CONNECTOR_TYPE": null,
+          "INPUT_CONNECTOR": null,
+          "OUTPUT_CONNECTOR": null,
+          "PINS_NUMBER": null
+        }
+      },
+      "source": "/products/MLB78766975"
+    },
+    "assessment": {
+      "identity": "IDENTIDADE_COHERENTE",
+      "comparisons": [
+        {
+          "field": "brand",
+          "local": "MXT",
+          "remote": "MXT",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "model",
+          "local": "mc-5001",
+          "remote": "MC-5001",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "variation",
+          "local": "preto",
+          "remote": "Preto",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        }
+      ],
+      "reasons": [],
+      "warnings": [
+        "APRESENTACAO_NAO_EXPLICITA"
+      ],
+      "identityRuleVersion": "M2M-IDENTITY-v2.1"
+    },
+    "observedAt": "2026-09-05T20:27:06.076Z"
+  },
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391140",
+    "observedAt": "2026-09-05T20:31:47.840Z",
+    "product": {
+      "produtoid": "391140",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 10.7,
+      "preco_crossdocking": 10.7,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 10.7,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto",
+      "titulo_curto": "Capotraste De Alumínio Para Violão Mxt Mc-5001 Preto",
+      "categoriaid": "117690",
+      "categoria_nome": "Eletronica/ Acessórios/ Acessórios",
+      "abc": null,
+      "ean11": "7899471892213",
+      "ncm": "92099200",
+      "descricao": "<p>Capotraste de alumínio para violão MXT MC-5001 Preto.</p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "Capotraste de Alumínio para Violão MXT MC-5001 Preto",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MXT",
+      "modelo": "",
+      "peso": 0.048,
+      "largura": 9,
+      "altura": 1,
+      "profundidade": 12.5,
+      "peso_embalagem": 0.048,
+      "largura_embalagem": 9,
+      "altura_embalagem": 1,
+      "profundidade_embalagem": 12.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 13,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-31 17:47:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-31 17:47:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 9,
+      "tempo_cross": 0,
+      "estoque_total": 9,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png"
+        }
+      ]
+    }
+  },
+  "pictureProof": [
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/9/391140_6a1f411fc24fc.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018417/dd1b2e78747410ca2eed535d3a37992d08f036446a9017325aed28f1a53da248.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "dd1b2e78747410ca2eed535d3a37992d08f036446a9017325aed28f1a53da248"
+    }
+  ],
+  "context": {
+    "sellerId": "3294514937",
+    "categoryId": "MLB271125",
+    "listingType": "gold_special",
+    "shippingMode": "me2",
+    "logisticType": "xd_drop_off",
+    "freeShipping": true,
+    "dimensions": "1x9x13,48"
+  },
+  "memory": {
+    "price": 32.32,
+    "cost": 10.7,
+    "offerId": "bc58c49e-b15b-48d6-ab69-7549b1f4d772",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:48:31.322+00:00",
+    "fee": {
+      "amount": 3.72,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:48.492Z",
+      "evidence": "/sites/MLB/listing_prices?price=32.32&category_id=MLB271125&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "b9246483f4592369e0a3ff932fd16ee075d9aa993001e3cbd007263bf24d2db2"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:48.492Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=32.32&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=1x9x13%2C48",
+      "contextKey": "b9246483f4592369e0a3ff932fd16ee075d9aa993001e3cbd007263bf24d2db2"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:31:48.381Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:31:48.492Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 2.68,
+    "result": 2.27,
+    "margin": 0.07023514851485149,
+    "status": "estimated"
+  },
+  "payload": {
+    "family_name": "Capotraste MXT MC-5001 alumínio preto para violão",
+    "category_id": "MLB271125",
+    "catalog_product_id": "MLB78766975",
+    "catalog_listing": true,
+    "price": 32.32,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018417/dd1b2e78747410ca2eed535d3a37992d08f036446a9017325aed28f1a53da248.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24280759",
+        "value_name": "MC-5001"
+      },
+      {
+        "id": "CAPO_TYPE",
+        "value_id": "27360424",
+        "value_name": "Metal"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7566493",
+        "value_name": "8 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7966600",
+        "value_name": "7 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "7818553",
+        "value_name": "8 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "13822632",
+        "value_name": "100 g"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "112648",
+        "value_name": "Metal"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENTS",
+        "value_name": "Contrabaixo, Guitarra elétrica, Violão",
+        "values": [
+          {
+            "id": "3565994",
+            "name": "Contrabaixo"
+          },
+          {
+            "id": "4180050",
+            "name": "Guitarra elétrica"
+          },
+          {
+            "id": "27739334",
+            "name": "Violão"
+          }
+        ]
+      },
+      {
+        "id": "WITH_SILICONE_PAD",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7899471892213"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK018417"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      }
+    ],
+    "seller_custom_field": "VTK018417",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Capotraste MXT MC-5001 alumínio preto para violão\n\n• Capotraste de alumínio na cor preta.\n• Modelo MC-5001, indicado para violão.\n\nDIMENSÕES DA EMBALAGEM\n12.5 × 9 × 1 cm; peso bruto 0.048 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK018417",
+  "conditional": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "error": null
+  },
+  "validated": {
+    "ok": false,
+    "status": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    },
+    "error": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  },
+  "at": "2026-09-05T20:31:50.980Z"
+}

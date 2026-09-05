@@ -1,0 +1,219 @@
+{
+  "evaluation": {
+    "product": {
+      "id": "c9b5ef69-7de7-4c10-94ee-fa0a9b4e2b0d",
+      "sku": "VTK017249",
+      "nome": "Cabo óptico Splitter Intelbras Plc 1x2 Sc/ Upc Xfs121 4830028",
+      "marca": "INTELBRAS",
+      "estoque": 50,
+      "custo": 35.9,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.052,
+      "peso_bruto": 0.052,
+      "largura": 15,
+      "altura": 2,
+      "profundidade": 25,
+      "gtin": "7896637676854",
+      "descricao": "Informações do Produto Splitter PLC 1 × 2 conectorizado SC/UPC - XFS 121 O splitter óptico PLC &ndash; Planar Lightwave Circuit &ndash; é um componente passivo utilizado para realizar a divisão do sinal óptico em uma rede de distribuição PON. A tecnologia PLC permite a divisão da potência de entrada igualmente entre todas as saídas. Com baixa perda de inserção e alta confiabilidade é ideal para atuar nos comprimentos de onda de 1.260 a 1.650 nm. Conta com fibras de baixa sensibilidade a curvatura (G.657A) e é ideal para sistemas FTTH, redes HFC e comunicação de dados. - Ambiente de instalação interno - Baixa perda de inserção - Boa uniformidade canal a canal - Alta confiabilidade e estabilidade - Tamanho compacto Informações Técnicas Comprimento de onda 1260 a 1650 nm Fibra óptica G.657.A1 &ndash; Monomodo Perda de inserção &#8804; 4,0 dB Uniformidade &#8804; 0,6 dB P D L 0,2 dB Diretividade &#8805; 55 dB Perda de retorno &#8805; 50 dB Temperatura de armazenamento -40 °C a 85 °C Temperatura de operação -5 °C a 75 °C Umidade relativa de operação 0% a 95% Dimensões dos cabos Entrada 1,5m Saídas 0,6m Diâmetro dos cabos 0,9mm Tipo de conector SC Polimento UPC ou APC Perda por inserção (IL) &#8804; 0,3 dB &ndash; Classe III Perda de retorno (RL) Categoria C (UPC) &#8805; 50 dB Categoria D (APC) &#8805; 60 dB Durabilidade de conexão &#8805; 600 Tipo de engate Push-pull Ferrolho Zircônia Dimensões do conector SC (L × A × P) 9X8,2X60 mm",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9ae0f8.jpg",
+        "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9aebea.jpg"
+      ],
+      "categoria": "Redes E Provedores/ Passivos De Rede/ Splitter",
+      "ml_item_id": null,
+      "created_at": "2026-07-20T18:30:22.80718+00:00",
+      "updated_at": "2026-09-05T19:15:29.504981+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "358403",
+      "dslite_ultima_sync": "2026-09-05T19:15:29.394+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "85176259",
+      "cest": "21.056.00",
+      "origem_fiscal": "7",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "bdf0cbe3-c9fb-47af-9eec-0b8a8f463b1d",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "bdf0cbe3-c9fb-47af-9eec-0b8a8f463b1d",
+      "produto_id": "c9b5ef69-7de7-4c10-94ee-fa0a9b4e2b0d",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "358403",
+      "sku_fornecedor": "358403",
+      "custo": 35.9,
+      "estoque": 50,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:15:29.394+00:00",
+      "created_at": "2026-07-20T18:30:23.096395+00:00",
+      "updated_at": "2026-09-05T19:15:29.403+00:00",
+      "sku_oferta": "358403",
+      "nome": "Cabo óptico Splitter Intelbras Plc 1x2 Sc/ Upc Xfs121 4830028",
+      "descricao": "Informações do Produto Splitter PLC 1 × 2 conectorizado SC/UPC - XFS 121 O splitter óptico PLC &ndash; Planar Lightwave Circuit &ndash; é um componente passivo utilizado para realizar a divisão do sinal óptico em uma rede de distribuição PON. A tecnologia PLC permite a divisão da potência de entrada igualmente entre todas as saídas. Com baixa perda de inserção e alta confiabilidade é ideal para atuar nos comprimentos de onda de 1.260 a 1.650 nm. Conta com fibras de baixa sensibilidade a curvatura (G.657A) e é ideal para sistemas FTTH, redes HFC e comunicação de dados. - Ambiente de instalação interno - Baixa perda de inserção - Boa uniformidade canal a canal - Alta confiabilidade e estabilidade - Tamanho compacto Informações Técnicas Comprimento de onda 1260 a 1650 nm Fibra óptica G.657.A1 &ndash; Monomodo Perda de inserção &#8804; 4,0 dB Uniformidade &#8804; 0,6 dB P D L 0,2 dB Diretividade &#8805; 55 dB Perda de retorno &#8805; 50 dB Temperatura de armazenamento -40 °C a 85 °C Temperatura de operação -5 °C a 75 °C Umidade relativa de operação 0% a 95% Dimensões dos cabos Entrada 1,5m Saídas 0,6m Diâmetro dos cabos 0,9mm Tipo de conector SC Polimento UPC ou APC Perda por inserção (IL) &#8804; 0,3 dB &ndash; Classe III Perda de retorno (RL) Categoria C (UPC) &#8805; 50 dB Categoria D (APC) &#8805; 60 dB Durabilidade de conexão &#8805; 600 Tipo de engate Push-pull Ferrolho Zircônia Dimensões do conector SC (L × A × P) 9X8,2X60 mm",
+      "marca": "INTELBRAS",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9ae0f8.jpg",
+        "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9aebea.jpg"
+      ],
+      "gtin": "7896637676854",
+      "ncm": "85176259",
+      "cest": "21.056.00"
+    },
+    "offers": [
+      {
+        "id": "bdf0cbe3-c9fb-47af-9eec-0b8a8f463b1d",
+        "produto_id": "c9b5ef69-7de7-4c10-94ee-fa0a9b4e2b0d",
+        "dslite_fornecedor_id": "133",
+        "fornecedor_nome": "EVOLUSOM-PR",
+        "dslite_produto_id": "358403",
+        "sku_fornecedor": "358403",
+        "custo": 35.9,
+        "estoque": 50,
+        "ativo": true,
+        "prioridade": 100,
+        "payment_mode": "prepaid_pix",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-09-05T19:15:29.394+00:00",
+        "created_at": "2026-07-20T18:30:23.096395+00:00",
+        "updated_at": "2026-09-05T19:15:29.403+00:00",
+        "sku_oferta": "358403",
+        "nome": "Cabo óptico Splitter Intelbras Plc 1x2 Sc/ Upc Xfs121 4830028",
+        "descricao": "Informações do Produto Splitter PLC 1 × 2 conectorizado SC/UPC - XFS 121 O splitter óptico PLC &ndash; Planar Lightwave Circuit &ndash; é um componente passivo utilizado para realizar a divisão do sinal óptico em uma rede de distribuição PON. A tecnologia PLC permite a divisão da potência de entrada igualmente entre todas as saídas. Com baixa perda de inserção e alta confiabilidade é ideal para atuar nos comprimentos de onda de 1.260 a 1.650 nm. Conta com fibras de baixa sensibilidade a curvatura (G.657A) e é ideal para sistemas FTTH, redes HFC e comunicação de dados. - Ambiente de instalação interno - Baixa perda de inserção - Boa uniformidade canal a canal - Alta confiabilidade e estabilidade - Tamanho compacto Informações Técnicas Comprimento de onda 1260 a 1650 nm Fibra óptica G.657.A1 &ndash; Monomodo Perda de inserção &#8804; 4,0 dB Uniformidade &#8804; 0,6 dB P D L 0,2 dB Diretividade &#8805; 55 dB Perda de retorno &#8805; 50 dB Temperatura de armazenamento -40 °C a 85 °C Temperatura de operação -5 °C a 75 °C Umidade relativa de operação 0% a 95% Dimensões dos cabos Entrada 1,5m Saídas 0,6m Diâmetro dos cabos 0,9mm Tipo de conector SC Polimento UPC ou APC Perda por inserção (IL) &#8804; 0,3 dB &ndash; Classe III Perda de retorno (RL) Categoria C (UPC) &#8805; 50 dB Categoria D (APC) &#8805; 60 dB Durabilidade de conexão &#8805; 600 Tipo de engate Push-pull Ferrolho Zircônia Dimensões do conector SC (L × A × P) 9X8,2X60 mm",
+        "marca": "INTELBRAS",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9ae0f8.jpg",
+          "https://evolusom.com.br/media/catalog/product/3/5/358403_67d2caf9aebea.jpg"
+        ],
+        "gtin": "7896637676854",
+        "ncm": "85176259",
+        "cest": "21.056.00"
+      }
+    ],
+    "runtime": {
+      "policy": {
+        "version": "M2M-PRC-01-v1",
+        "bands": [
+          {
+            "id": "BELOW_200",
+            "maxCents": 20000,
+            "floor": 0.05,
+            "target": 0.07,
+            "limit": 0.1
+          },
+          {
+            "id": "FROM_200_TO_1000",
+            "maxCents": 100000,
+            "floor": 0.07,
+            "target": 0.1,
+            "limit": 0.15
+          },
+          {
+            "id": "ABOVE_1000",
+            "maxCents": null,
+            "floor": 0.1,
+            "target": 0.15,
+            "limit": 0.2
+          }
+        ],
+        "maxIterations": 12,
+        "feeFallbackRate": 0.15,
+        "evidenceMaxAgeHours": 24,
+        "autonomy": "REQUIRES_CONFIRMATION",
+        "radar": {
+          "mode": "AUTO_OBSERVE",
+          "hour": 2,
+          "batchSize": 50,
+          "concurrency": 4
+        }
+      },
+      "tax": {
+        "rate": 0.08279935223578168,
+        "status": "estimated",
+        "referenceMonth": "2026-09",
+        "source": "RBT12_PEDIDOS_OPERACIONAIS",
+        "observedAt": "2026-09-05T20:51:42.753Z",
+        "evidence": null,
+        "rbt12": 929727.1799999999,
+        "missingMonths": []
+      },
+      "variableCosts": {}
+    },
+    "context": {
+      "sellerId": "3294514937",
+      "categoryId": "MLB272149",
+      "listingType": "gold_special",
+      "shippingMode": "me2",
+      "logisticType": "xd_drop_off",
+      "freeShipping": true,
+      "itemId": "MLB5192488569"
+    },
+    "memory": {
+      "price": 67.19,
+      "cost": 35.9,
+      "offerId": "bdf0cbe3-c9fb-47af-9eec-0b8a8f463b1d",
+      "supplierId": "133",
+      "costObservedAt": "2026-09-05T19:15:29.403+00:00",
+      "fee": {
+        "amount": 8.06,
+        "source": "ml_live",
+        "observedAt": "2026-09-05T20:51:43.020Z",
+        "evidence": "/sites/MLB/listing_prices?price=67.19&category_id=MLB272149&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+        "contextKey": "4b34b6eba1215fcd541a03a7c00a584ce783836c224e82f3c3d2668704bf803d"
+      },
+      "shipping": {
+        "amount": 15.05,
+        "source": "ml_live",
+        "observedAt": "2026-09-05T20:51:43.020Z",
+        "evidence": "/users/3294514937/shipping_options/free?item_price=67.19&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB5192488569",
+        "contextKey": "4b34b6eba1215fcd541a03a7c00a584ce783836c224e82f3c3d2668704bf803d"
+      },
+      "variableCosts": {
+        "amount": null,
+        "source": "unknown",
+        "observedAt": null,
+        "evidence": null
+      },
+      "tax": {
+        "rate": 0.08279935223578168,
+        "status": "estimated",
+        "referenceMonth": "2026-09",
+        "source": "RBT12_PEDIDOS_OPERACIONAIS",
+        "observedAt": "2026-09-05T20:51:42.753Z",
+        "evidence": null,
+        "rbt12": 929727.1799999999,
+        "missingMonths": []
+      },
+      "evaluatedAt": "2026-09-05T20:51:43.020Z",
+      "policyVersion": "M2M-PRC-01-v1",
+      "band": {
+        "id": "BELOW_200",
+        "maxCents": 20000,
+        "floor": 0.05,
+        "target": 0.07,
+        "limit": 0.1
+      },
+      "reasons": [
+        "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+        "TRIBUTO_ESTIMADO"
+      ],
+      "diagnostics": [
+        "MARGEM_ABAIXO_DO_PISO"
+      ],
+      "taxAmount": 5.57,
+      "result": 2.61,
+      "margin": 0.03884506623009376,
+      "status": "estimated"
+    },
+    "failure": null
+  },
+  "requests": []
+}

@@ -1,0 +1,21 @@
+{
+  "source": "ml_catalog",
+  "catalogId": "MLB27047019",
+  "response": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "text": "",
+      "plain_text": "Os splitters ópticos conectorizados são utilizados para realizar a divisão do sinal óptico em uma rede de distribuição PON. Eles já vêm com conectores do tipo SC e polimentos UPC ou APC. \n\nFibra com baixa sensibilidade à curvatura \nQuando não há muito espaço para instalação, eles podem ser utilizados com um raio de curvatura menor, graças ao tipo de fibra, o G.657ABLI (Bending Low Insensitive), que não sofre mudança no nível de atenuação. \n\nNa medida para o projeto \nO tamanho das fibras de entrada (1,5 m) e saída (0,6 m) dos splitters conectorizados é menor, o que facilita na hora de acomodá-las em uma caixa de emenda ou terminação óptica. \n\nEficiência e qualidade \nTenha mais eficiência e qualidade com produtos de uma marca brasileira em que você confia.",
+      "last_updated": "2026-09-05T20:51:16.078Z",
+      "date_created": "2026-09-05T20:51:16.078Z",
+      "snapshot": {
+        "url": "http://descriptions.mlstatic.com/D-MLB5192488569.jpg?hash=8520c3b8559cb08aa7e782b8f5334ffe_0x0",
+        "width": 0,
+        "height": 0,
+        "status": ""
+      }
+    },
+    "error": null
+  }
+}

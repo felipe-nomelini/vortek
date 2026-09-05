@@ -1,0 +1,707 @@
+{
+  "ok": true,
+  "status": 200,
+  "data": {
+    "id": "MLB7594387528",
+    "site_id": "MLB",
+    "title": "Esmerilhadeira Angular Multilaser Fe048 700w 127v Cinza",
+    "seller_id": 3294514937,
+    "category_id": "MLB188790",
+    "user_product_id": "MLBU5088527905",
+    "official_store_id": null,
+    "price": 258.72,
+    "base_price": 258.72,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 2,
+    "available_quantity": 2,
+    "sold_quantity": 0,
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica",
+        "value_struct": null,
+        "values": [
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "value_id": null,
+        "value_name": "12 meses",
+        "value_struct": {
+          "number": 12,
+          "unit": "meses"
+        },
+        "values": [
+          {
+            "id": null,
+            "name": "12 meses",
+            "struct": {
+              "number": 12,
+              "unit": "meses"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Multilaser FE048",
+    "family_id": 3463758555581266,
+    "start_time": "2026-09-05T20:50:24.389Z",
+    "stop_time": "2046-08-31T04:00:00.000Z",
+    "end_time": "2046-08-31T04:00:00.000Z",
+    "expiration_time": "2026-11-24T20:51:08.453Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7594387528-esmerilhadeira-angular-multilaser-fe048-700w-127v-cinza-_JM",
+    "pictures": [
+      {
+        "id": "921944-MLA95572115959_102025",
+        "url": "http://mla-s2-p.mlstatic.com/921944-MLA95572115959_102025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/921944-MLA95572115959_102025-O.jpg",
+        "size": "500x222",
+        "max_size": "1200x534",
+        "quality": ""
+      },
+      {
+        "id": "909944-MLA85463302285_052025",
+        "url": "http://mla-s2-p.mlstatic.com/909944-MLA85463302285_052025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/909944-MLA85463302285_052025-O.jpg",
+        "size": "353x500",
+        "max_size": "848x1198",
+        "quality": ""
+      },
+      {
+        "id": "813502-MLA85463450021_052025",
+        "url": "http://mla-s2-p.mlstatic.com/813502-MLA85463450021_052025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/813502-MLA85463450021_052025-O.jpg",
+        "size": "500x435",
+        "max_size": "1200x1045",
+        "quality": ""
+      },
+      {
+        "id": "869537-MLA85463450033_052025",
+        "url": "http://mla-s1-p.mlstatic.com/869537-MLA85463450033_052025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/869537-MLA85463450033_052025-O.jpg",
+        "size": "500x259",
+        "max_size": "1200x622",
+        "quality": ""
+      },
+      {
+        "id": "708597-MLA85160071422_052025",
+        "url": "http://mla-s2-p.mlstatic.com/708597-MLA85160071422_052025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/708597-MLA85160071422_052025-O.jpg",
+        "size": "434x500",
+        "max_size": "1042x1200",
+        "quality": ""
+      },
+      {
+        "id": "697849-MLA85160225378_052025",
+        "url": "http://mla-s1-p.mlstatic.com/697849-MLA85160225378_052025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/697849-MLA85160225378_052025-O.jpg",
+        "size": "500x298",
+        "max_size": "1200x717",
+        "quality": ""
+      },
+      {
+        "id": "854845-MLA86629521302_062025",
+        "url": "http://mla-s1-p.mlstatic.com/854845-MLA86629521302_062025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/854845-MLA86629521302_062025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "881201-MLA86951201309_062025",
+        "url": "http://mla-s1-p.mlstatic.com/881201-MLA86951201309_062025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/881201-MLA86951201309_062025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "773242-MLA86951171771_062025",
+        "url": "http://mla-s2-p.mlstatic.com/773242-MLA86951171771_062025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/773242-MLA86951171771_062025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "942950-MLA86951239877_062025",
+        "url": "http://mla-s2-p.mlstatic.com/942950-MLA86951239877_062025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/942950-MLA86951239877_062025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "931966-MLA86629521348_062025",
+        "url": "http://mla-s1-p.mlstatic.com/931966-MLA86629521348_062025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/931966-MLA86629521348_062025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": "8117352",
+        "value_name": "Manual",
+        "values": [
+          {
+            "id": "8117352",
+            "name": "Manual",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "40777194",
+        "value_name": "FE048",
+        "values": [
+          {
+            "id": "40777194",
+            "name": "FE048",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "31163",
+        "value_name": "Multilaser",
+        "values": [
+          {
+            "id": "31163",
+            "name": "Multilaser",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "name": "Comprimento do cabo",
+        "value_id": "7736465",
+        "value_name": "2 m",
+        "values": [
+          {
+            "id": "7736465",
+            "name": "2 m",
+            "struct": {
+              "number": 2,
+              "unit": "m"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "283165",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "283165",
+            "name": "Cinza",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DISC_DIAMETER",
+        "name": "Diâmetro do disco",
+        "value_id": "5285126",
+        "value_name": "115 mm",
+        "values": [
+          {
+            "id": "5285126",
+            "name": "115 mm",
+            "struct": {
+              "number": 115,
+              "unit": "mm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "7908414493698",
+        "values": [
+          {
+            "id": null,
+            "name": "7908414493698",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "28288132",
+        "value_name": "26 cm",
+        "values": [
+          {
+            "id": "28288132",
+            "name": "26 cm",
+            "struct": {
+              "number": 26,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "INCLUDES_DISC_PROTECTOR",
+        "name": "Inclui protector de disco",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_DUST_SHROUD",
+        "name": "Inclui coletor de pó",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_MINI_POWER_GRINDER",
+        "name": "É mini esmerilhadeira",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "28288144",
+        "value_name": "10.5 cm",
+        "values": [
+          {
+            "id": "28288144",
+            "name": "10.5 cm",
+            "struct": {
+              "number": 10.5,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_CUTTING_DEPTH",
+        "name": "Profundidade máxima de corte",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "name": "Velocidade máxima de rotação",
+        "value_id": "7917380",
+        "value_name": "12000 rpm",
+        "values": [
+          {
+            "id": "7917380",
+            "name": "12000 rpm",
+            "struct": {
+              "number": 12000,
+              "unit": "rpm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MIN_ROTATION_SPEED",
+        "name": "Velocidade mínima de rotação",
+        "value_id": "7736464",
+        "value_name": "0 rpm",
+        "values": [
+          {
+            "id": "7736464",
+            "name": "0 rpm",
+            "struct": {
+              "number": 0,
+              "unit": "rpm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "26443549",
+        "value_name": "FE048",
+        "values": [
+          {
+            "id": "26443549",
+            "name": "FE048",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "96684",
+        "value_name": "700 W",
+        "values": [
+          {
+            "id": "96684",
+            "name": "700 W",
+            "struct": {
+              "number": 700,
+              "unit": "W"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "POWER_GRINDER_TYPE",
+        "name": "Tipo de esmerilhadeira",
+        "value_id": "5285127",
+        "value_name": "Angular",
+        "values": [
+          {
+            "id": "5285127",
+            "name": "Angular",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica",
+        "values": [
+          {
+            "id": "49713698",
+            "name": "Corrente doméstica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK018319",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK018319",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SOUND_PRESSURE_LEVEL",
+        "name": "Nível de pressão sonora",
+        "value_id": "7898951",
+        "value_name": "89 dBA",
+        "values": [
+          {
+            "id": "7898951",
+            "name": "89 dBA",
+            "struct": {
+              "number": 89,
+              "unit": "dBA"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SWITCH_TYPE",
+        "name": "Tipo de interruptor",
+        "value_id": "1033083",
+        "value_name": "Tecla",
+        "values": [
+          {
+            "id": "1033083",
+            "name": "Tecla",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205162",
+        "value_name": "127V",
+        "values": [
+          {
+            "id": "39205162",
+            "name": "127V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "6171164",
+        "value_name": "1.46 kg",
+        "values": [
+          {
+            "id": "6171164",
+            "name": "1.46 kg",
+            "struct": {
+              "number": 1.46,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "10791702",
+        "value_name": "10 cm",
+        "values": [
+          {
+            "id": "10791702",
+            "name": "10 cm",
+            "struct": {
+              "number": 10,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WITH_PROGRESSIVE_START",
+        "name": "Com arranque progressivo",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_SPEED_REGULATION",
+        "name": "Com regulação de velocidade",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "921944-MLA95572115959_102025",
+    "thumbnail": "http://mlb-s2-p.mlstatic.com/921944-MLA95572115959_102025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": "Garantia de fábrica: 12 meses",
+    "catalog_product_id": "MLB39329744",
+    "domain_id": "MLB-POWER_GRINDERS",
+    "seller_custom_field": "VTK018319",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-09-05T20:50:24.563Z",
+    "last_updated": "2026-09-05T20:51:08.527Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "error": null
+}

@@ -1,0 +1,362 @@
+{
+  "at": "2026-09-05T20:53:46.267Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/385225",
+    "observedAt": "2026-09-05T20:53:42.697Z",
+    "product": {
+      "produtoid": "385225",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 54.9,
+      "preco_crossdocking": 54.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 54.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Calculadora De Mesa Truly 12 Dígitos - T882",
+      "titulo_curto": "Calculadora De Mesa Truly 12 Dígitos - T882",
+      "categoriaid": "117858",
+      "categoria_nome": "Informatica/ Acessórios Para Informatica/ Calculadoras",
+      "abc": null,
+      "ean11": "4891223882001",
+      "ncm": "84701000",
+      "descricao": "<p>Faça cálculos precisos e rápidos com a Calculadora de Mesa 12 Dígitos T882 TRULY, com visor inclinável permitindo assim melhor visualização!</p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p>Marca: TRULY;<br />Modelo: T882;<br />Linha: Calculadora de mesa;<br />Cor: Preta;<br />Contém: 1 unidade do produto;<br />Medidas: 112 x 172 x 33mm;<br />Visor Extra Grande de 12 dígitos;<br />Visor inclinável;<br />Tecia Roll-Over;<br />Desligamento automático;<br />Silenciosa, não faz barulho ao teclar;<br />Possui manual de instruções com algumas fórmulas de cálculo.</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "TRULY",
+      "modelo": "",
+      "peso": 0.281,
+      "largura": 13,
+      "altura": 3,
+      "profundidade": 18,
+      "peso_embalagem": 0.281,
+      "largura_embalagem": 13,
+      "altura_embalagem": 3,
+      "profundidade_embalagem": 18,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21d93b1.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1398,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-03 16:08:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-03 16:08:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21d93b1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21d9fc7.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/385225_67d2cb21da661.jpg"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "TRULY",
+        "remote": "Truly",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "t882",
+        "remote": "Truly T882",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "family_name": "Calculadora de mesa Truly T882 12 dígitos",
+    "category_id": "MLB99957",
+    "catalog_product_id": "MLB25806207",
+    "catalog_listing": true,
+    "price": 92.68,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018404/149e03ec5d701da1a446a242047ddafb3e622758f97f87d3f48de4a5d56f6929.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018404/e72bfde9a3bcc20b219d827e52be0178e815c3712a7c453317ee77de6ade673a.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK018404/a9bd390d8bbfd33143af074da5786c624a12cd38343acf715e9a3551f80bbdfb.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2434327",
+        "value_name": "Truly"
+      },
+      {
+        "id": "LINE",
+        "value_id": "6834319",
+        "value_name": "Mesa"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "49170733",
+        "value_name": "Truly T882"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DISPLAY_DIGITS_NUMBER",
+        "value_id": "17969197",
+        "value_name": "12"
+      },
+      {
+        "id": "CALCULATOR_TYPE",
+        "value_id": "6132076",
+        "value_name": "Básica"
+      },
+      {
+        "id": "FUNCTIONS_NUMBER",
+        "value_id": "7876938",
+        "value_name": "1"
+      },
+      {
+        "id": "FUNCTIONS",
+        "value_id": "25941946",
+        "value_name": "1"
+      },
+      {
+        "id": "WITH_PRINTER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "1478",
+        "value_name": "240 g"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "121920",
+        "value_name": "20 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "570719",
+        "value_name": "14 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "4891223882001"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK018404"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "BATTERY_VOLTAGE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "CELL_BATTERY_TYPE",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK018404",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Calculadora de mesa Truly T882 12 dígitos\n\n• Calculadora de mesa com visor de 12 dígitos.\n• Visor inclinável para facilitar a leitura.\n\nDIMENSÕES DA EMBALAGEM\n18 × 13 × 3 cm; peso bruto 0.281 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK018404",
+  "memory": {
+    "price": 92.68,
+    "cost": 54.9,
+    "offerId": "fed1f1e5-7971-404d-af0f-7205bf3a7474",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T20:05:31.67+00:00",
+    "fee": {
+      "amount": 10.66,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:46.021Z",
+      "evidence": "/sites/MLB/listing_prices?price=92.68&category_id=MLB99957&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "2e1748f682ddb0cac57635a82ad42b04b3f68de5a1e26f7f386e31acf6d7f81e"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:46.021Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=92.68&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x13x18%2C281",
+      "contextKey": "2e1748f682ddb0cac57635a82ad42b04b3f68de5a1e26f7f386e31acf6d7f81e"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:53:45.941Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:53:46.021Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 7.68,
+    "result": 6.49,
+    "margin": 0.07002589555459646,
+    "status": "estimated"
+  },
+  "evaluationId": "c614b0e6-cbb2-4228-8b51-74fcd0760e11",
+  "approvalId": "9231f85f-6fb3-40e0-ad59-374348281315",
+  "duplicates": [],
+  "quantity": 2
+}

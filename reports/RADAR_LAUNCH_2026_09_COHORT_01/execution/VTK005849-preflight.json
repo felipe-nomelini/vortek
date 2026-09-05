@@ -1,0 +1,3337 @@
+{
+  "c": {
+    "sku": "VTK005849",
+    "prediction": [
+      {
+        "domain_id": "MLB-GARDENING_IRRIGATION_GUNS",
+        "domain_name": "Pistolas de irrigação para jardim",
+        "category_id": "MLB428938",
+        "category_name": "Pistolas de Irrigação",
+        "attributes": []
+      },
+      {
+        "domain_id": "MLB-MINERAL_WATERS",
+        "domain_name": "Águas minerais",
+        "category_id": "MLB269718",
+        "category_name": "Águas Minerais",
+        "attributes": []
+      }
+    ],
+    "product": {
+      "id": "839725f6-1148-4b9d-baec-3516c2336d88",
+      "sku": "VTK005849",
+      "nome": "Esguicho Alumínio 30cm KE30A Azul Kepper",
+      "marca": "KEPPER",
+      "estoque": 7,
+      "custo": 29.9,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.25,
+      "peso_bruto": 0.25,
+      "largura": 6,
+      "altura": 4,
+      "profundidade": 44,
+      "gtin": "729208118583",
+      "descricao": "O Esguicho Alumínio 30cm KE30A é uma ferramenta versátil e durável, ideal para diversas tarefas cotidianas de irrigação e limpeza. Equipado com um registro de abre/fecha, proporciona controle total sobre a pressão da água, permitindo ajustes precisos conforme a necessidade. O esguicho acompanha duas ponteiras: a ponteira Leque e a ponteira Jato. A ponteira Leque é perfeita para lavagem de carros, calçadas e rega de plantas, oferecendo um jato mais amplo e suave. Já a ponteira Jato é ideal para remover sujeiras mais resistentes e alcançar áreas de difícil acesso, proporcionando um jato de água mais concentrado e potente. Construído com materiais de alta qualidade, o KE30A é robusto e resistente, garantindo uma longa vida útil. Seja para uso doméstico ou profissional, este esguicho é a escolha certa para quem busca eficiência e praticidade em suas atividades de limpeza e irrigação.",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/83930/550/1.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/4.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/5.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/6.jpg"
+      ],
+      "categoria": "Materiais Eletricos / Ferramentas Manuais / Ferramentas Diversas",
+      "ml_item_id": null,
+      "created_at": "2026-05-11T20:17:09.113226+00:00",
+      "updated_at": "2026-09-05T19:54:32.185869+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "387346",
+      "dslite_ultima_sync": "2026-09-05T19:54:31.956+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "8481.80.99",
+      "cest": null,
+      "origem_fiscal": "2",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "0807a761-0456-414f-9f5d-087ec1f467d4",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "0807a761-0456-414f-9f5d-087ec1f467d4",
+      "produto_id": "839725f6-1148-4b9d-baec-3516c2336d88",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "387346",
+      "sku_fornecedor": "387346",
+      "custo": 29.9,
+      "estoque": 7,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:54:31.956+00:00",
+      "created_at": "2026-07-20T18:31:48.470049+00:00",
+      "updated_at": "2026-09-05T19:54:31.976+00:00",
+      "sku_oferta": "387346",
+      "nome": "Esguicho Kepper Em Alumínio 30cm Azul",
+      "descricao": "Esguicho de Alta Pressão - One Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência . Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço . Seja regando delicadas flores ou realizando uma limpeza poderosa , seu acabamento refinado e a alta pressão garantem durabilidade e desempenho . Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples . Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para qualquer tarefa de irrigação ou limpeza . Oferecemos 3 meses de garantia contra defeito de fabricação para assegurar a satisfação de nossos clientes. Economia de Água Inteligente Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos. Duas Ponteiras Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados. Durabilidade que Investe no Futuro Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo. Leve e Portátil Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea. Versatilidade para Atender Suas Necessidades Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa. Economia de Espaço Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. *Imagens meramente ilustrativas.",
+      "marca": "KEPPER",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+        "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png",
+        "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png"
+      ],
+      "gtin": "729208118583",
+      "ncm": "84818099",
+      "cest": null
+    },
+    "radar": {
+      "id": "02aba396-0994-4d00-a587-65cd57b7d6cd",
+      "produto_id": "839725f6-1148-4b9d-baec-3516c2336d88",
+      "candidate_key": "product:839725f6-1148-4b9d-baec-3516c2336d88",
+      "sku": "VTK005849",
+      "catalog_product_id": "MLB41798496",
+      "pricing_group_id": null,
+      "stage": "AGUARDANDO_APROVACAO",
+      "queue": "EXPLORATORIOS",
+      "conflict_state": "SEM_CONFLITO",
+      "assessment": {
+        "state": "SEM_CONFLITO",
+        "economy": "VIAVEL_NO_ALVO",
+        "listing": "NOVO_ANUNCIO_CANDIDATO",
+        "reasons": [],
+        "identity": "IDENTIDADE_COHERENTE",
+        "listings": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA",
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "comparisons": [
+          {
+            "basis": "normalized",
+            "field": "brand",
+            "local": "KEPPER",
+            "remote": "Kepper",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "model",
+            "local": "aluminio 30cm",
+            "remote": "Kepper Aluminio 30Cm Azul",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "variation",
+            "local": "azul",
+            "remote": "Azul",
+            "matches": true,
+            "evidence": null
+          }
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1",
+        "publicationAutonomy": "REQUIRES_CONFIRMATION"
+      },
+      "evidence": {
+        "asOf": "2026-09-05T15:16:37.457Z",
+        "cost": 29.9,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "source": "oportunidades-ml-2026-09-05",
+        "product": "Esguicho Alumínio 30cm KE30A Azul Kepper",
+        "identity": {
+          "local": {
+            "gtin": "729208118583",
+            "brand": "KEPPER",
+            "model": "aluminio 30cm",
+            "quantity": null,
+            "packaging": null,
+            "variation": "azul",
+            "partNumber": null,
+            "provenance": {
+              "gtin": {
+                "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+                "excerpt": "729208118583"
+              },
+              "brand": {
+                "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+                "excerpt": "KEPPER; "
+              },
+              "model": {
+                "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+                "excerpt": "aluminio 30cm"
+              }
+            },
+            "brandEvidence": "Esguicho Kepper Em Alumínio 30cm Azul Esguicho de Alta Pressão - One Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência . Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço . Seja regando delicadas flores ou realizando uma limpeza poderosa , seu acabamento refinado e a alta pressão garantem durabilidade e desempenho . Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples . Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para qualquer tarefa de irrigação ou limpeza . Oferecemos 3 meses de garantia contra defeito de fabricação para assegurar a satisfação de nossos clientes. Economia de Água Inteligente Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos. Duas Ponteiras Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados. Durabilidade que Investe no Futuro Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo. Leve e Portátil Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea. Versatilidade para Atender Suas Necessidades Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa. Economia de Espaço Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. *Imagens meramente ilustrativas."
+          },
+          "remote": {
+            "gtin": null,
+            "brand": "Kepper",
+            "model": "Kepper Aluminio 30Cm Azul",
+            "critical": {
+              "SIZE": null,
+              "LENGTH": null,
+              "VOLTAGE": null,
+              "CAPACITY": null,
+              "PINS_NUMBER": null,
+              "CONNECTOR_TYPE": null,
+              "INPUT_CONNECTOR": null,
+              "OUTPUT_CONNECTOR": null
+            },
+            "quantity": null,
+            "packaging": null,
+            "saleUnits": null,
+            "variation": "Azul",
+            "partNumber": null,
+            "provenance": {
+              "brand": {
+                "source": "/products/MLB41798496",
+                "excerpt": "BRAND: Kepper"
+              },
+              "model": {
+                "source": "/products/MLB41798496",
+                "excerpt": "MODEL: Kepper Aluminio 30Cm Azul"
+              },
+              "variation": {
+                "source": "/products/MLB41798496",
+                "excerpt": "COLOR: Azul"
+              }
+            }
+          },
+          "source": "/products/MLB41798496"
+        },
+        "supplier": "Evolusom Comercial Ltda",
+        "listingType": "gold_special",
+        "identityReview": "Esguicho Kepper KE30A, alumínio, 30 cm, azul.",
+        "competitivePrice": 59.9,
+        "identityObservedAt": "2026-09-05T20:04:57.952Z"
+      },
+      "priority": {
+        "stock": 7,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "economy": "VIAVEL_NO_ALVO",
+        "identity": "IDENTIDADE_COHERENTE",
+        "demandRank": 3,
+        "publication": "COMPLETA",
+        "competitiveness": {
+          "price": 59.9,
+          "contribution": 5.2
+        }
+      },
+      "recommendation": "Explorar demanda; validar pendências antes de aprovar",
+      "evaluation_id": "0e62a3ef-b451-4729-a5b1-399806366796",
+      "target_evaluation_id": "73f6eccc-4b0f-4693-adc5-22060a77e2ff",
+      "floor_evaluation_id": "b6f54e11-a80b-4baa-a173-f7db14ab2396",
+      "break_even_evaluation_id": "d5770f85-b2ee-4780-97f0-83edf6da4ec1",
+      "input_fingerprint": "cb53a24fbe4846174dd6c7fd2d7efc95879ca091def40c98862e1e62d206acef",
+      "stock": 7,
+      "demand_rank": 3,
+      "contribution": 5.2,
+      "job_id": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+      "processed_at": "2026-09-05T20:10:45.479015+00:00",
+      "updated_at": "2026-09-05T20:10:45.479015+00:00"
+    },
+    "catalog": {
+      "id": "MLB41798496",
+      "catalog_product_id": "MLB41798496",
+      "status": "active",
+      "pdp_types": [
+        "traditional"
+      ],
+      "domain_id": "MLB-GARDENING_IRRIGATION_GUNS",
+      "permalink": "",
+      "name": "Esguicho Kepper Em Aluminio 30cm Azul",
+      "family_name": "Esguicho Kepper Em Aluminio 30cm Azul",
+      "type": "catalog_product",
+      "buy_box_winner": null,
+      "pickers": [],
+      "pictures": [
+        {
+          "id": "970775-MLA96226555954_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_970775-MLA96226555954_102025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 1177,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "851214-MLA112355596114_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_851214-MLA112355596114_062026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1024,
+          "max_height": 1024,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "865630-MLA112355190568_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_865630-MLA112355190568_062026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1024,
+          "max_height": 1024,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        }
+      ],
+      "description_pictures": [],
+      "main_features": [
+        {
+          "text": "Material leve e durável, ideal para uso prolongado.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Design ergonômico que proporciona conforto durante o uso.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Cor azul vibrante que se destaca em qualquer ambiente.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Comprimento de 30cm, perfeito para diversas aplicações.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Fácil de limpar e manter, garantindo praticidade.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Material leve e resistente, ideal para uso prolongado.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Design ergonômico que facilita o manuseio.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Cor vibrante que se destaca em qualquer ambiente.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Comprimento de 30 cm, perfeito para diversas aplicações.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Fácil de limpar e manter, garantindo durabilidade.",
+          "type": "key_value",
+          "metadata": {}
+        }
+      ],
+      "disclaimers": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "35763991",
+          "value_name": "Kepper",
+          "values": [
+            {
+              "id": "35763991",
+              "name": "Kepper"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "50256876",
+          "value_name": "Kepper Aluminio 30Cm Azul",
+          "values": [
+            {
+              "id": "50256876",
+              "name": "Kepper Aluminio 30Cm Azul"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52028",
+          "value_name": "Azul",
+          "values": [
+            {
+              "id": "52028",
+              "name": "Azul"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_COUPLING",
+          "name": "Inclui acoplamento",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "meta": {
+                "value": true
+              }
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        }
+      ],
+      "short_description": {
+        "type": "plaintext",
+        "content": "Esguicho Kepper Em Aluminio 30Cm Azul\n\nEspecificação:\n\nEsguicho de Alta Pressão - Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência. Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço. Seja regando delicadas flores ou realizando uma limpeza poderosa, seu acabamento refinado e a alta pressão garantem durabilidade e desempenho. Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil - perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples. Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações.\n\nEconomia de Água Inteligente  \nDesenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos.\n\nDuas Ponteiras  \nAprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados.\n\nDurabilidade que Investe no Futuro  \nConstruímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo.\n\nLeve e Portátil  \nTransporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea.\n\nVersatilidade para Atender Suas Necessidades  \nSeja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa.\n\nEconomia de Espaço  \nNossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. \n\nImagens meramente ilustrativas."
+      },
+      "parent_id": null,
+      "children_ids": [],
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false,
+        "with_enhanced_pictures": false,
+        "base_site_product_id": null,
+        "ttr": "2026-09-07T08:59:39.96714838"
+      },
+      "quality_type": "COMPLETE",
+      "release_info": null,
+      "presale_info": null,
+      "enhanced_content": null,
+      "tags": [],
+      "date_created": "2024-10-11T11:38:42Z",
+      "authorized_stores": null,
+      "last_updated": "2026-01-06T22:16:21Z",
+      "grouper_id": null,
+      "experiments": {}
+    },
+    "category": {
+      "id": "MLB428938",
+      "name": "Pistolas de Irrigação",
+      "picture": null,
+      "permalink": null,
+      "total_items_in_this_category": 54714,
+      "path_from_root": [
+        {
+          "id": "MLB1574",
+          "name": "Casa, Móveis e Decoração"
+        },
+        {
+          "id": "MLB1621",
+          "name": "Jardim e Ar Livre"
+        },
+        {
+          "id": "MLB189852",
+          "name": "Irrigação"
+        },
+        {
+          "id": "MLB455382",
+          "name": "Acessórios para Irrigação"
+        },
+        {
+          "id": "MLB428938",
+          "name": "Pistolas de Irrigação"
+        }
+      ],
+      "children_categories": [],
+      "attribute_types": "attributes",
+      "settings": {
+        "adult_content": false,
+        "buying_allowed": true,
+        "buying_modes": [
+          "auction",
+          "buy_it_now"
+        ],
+        "catalog_domain": "MLB-GARDENING_IRRIGATION_GUNS",
+        "coverage_areas": "not_allowed",
+        "currencies": [
+          "BRL"
+        ],
+        "fragile": false,
+        "immediate_payment": "required",
+        "item_conditions": [
+          "used",
+          "new",
+          "not_specified"
+        ],
+        "items_reviews_allowed": false,
+        "listing_allowed": true,
+        "max_description_length": 50000,
+        "max_pictures_per_item": 12,
+        "max_pictures_per_item_var": 10,
+        "max_sub_title_length": 70,
+        "max_title_length": 60,
+        "max_variations_allowed": 100,
+        "maximum_price": null,
+        "maximum_price_currency": "BRL",
+        "minimum_price": 0,
+        "minimum_price_currency": "BRL",
+        "mirror_category": null,
+        "mirror_master_category": null,
+        "mirror_slave_categories": [],
+        "price": "required",
+        "reservation_allowed": "not_allowed",
+        "restrictions": [],
+        "rounded_address": false,
+        "seller_contact": "not_allowed",
+        "shipping_options": [
+          "carrier",
+          "custom"
+        ],
+        "shipping_profile": "optional",
+        "show_contact_information": false,
+        "simple_shipping": "optional",
+        "stock": "required",
+        "sub_vertical": null,
+        "subscribable": false,
+        "tags": [],
+        "vertical": null,
+        "vip_subdomain": "produto",
+        "buyer_protection_programs": [
+          "delivered",
+          "undelivered"
+        ],
+        "status": "enabled"
+      },
+      "channels_settings": [
+        {
+          "channel": "mshops",
+          "settings": {
+            "minimum_price": 0
+          }
+        },
+        {
+          "channel": "proximity",
+          "settings": {
+            "status": "disabled"
+          }
+        },
+        {
+          "channel": "mp-merchants",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        },
+        {
+          "channel": "mp-link",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        }
+      ],
+      "meta_categ_id": null,
+      "attributable": false,
+      "date_created": "2019-01-02T14:54:21.000Z"
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "APGID",
+        "name": "APGID",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EMPTY_GTIN_REASON",
+        "name": "Motivo de GTIN vazio",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true,
+          "conditional_required": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "17055158",
+            "name": "O produto é uma peça artesanal"
+          },
+          {
+            "id": "17055159",
+            "name": "O produto é um kit ou pack"
+          },
+          {
+            "id": "17055160",
+            "name": "O produto não tem código cadastrado"
+          },
+          {
+            "id": "17055161",
+            "name": "Outro motivo"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VERTICAL_TAGS",
+        "name": "Tags vertical",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "53559152",
+            "name": "is_tom_brand"
+          },
+          {
+            "id": "53559153",
+            "name": "is_polos"
+          },
+          {
+            "id": "53559154",
+            "name": "is_social_brands"
+          },
+          {
+            "id": "53559155",
+            "name": "is_beauty_premium"
+          },
+          {
+            "id": "53559156",
+            "name": "has_dimensions_images"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "283148",
+            "name": "Coral-claro"
+          },
+          {
+            "id": "283149",
+            "name": "Coral"
+          },
+          {
+            "id": "283150",
+            "name": "Laranja-claro"
+          },
+          {
+            "id": "283151",
+            "name": "Laranja-escuro"
+          },
+          {
+            "id": "283156",
+            "name": "Cáqui"
+          },
+          {
+            "id": "283157",
+            "name": "Verde-limão"
+          },
+          {
+            "id": "283158",
+            "name": "Verde-musgo"
+          },
+          {
+            "id": "283152",
+            "name": "Chocolate"
+          },
+          {
+            "id": "283153",
+            "name": "Palha"
+          },
+          {
+            "id": "283154",
+            "name": "Marrom-claro"
+          },
+          {
+            "id": "283155",
+            "name": "Marrom-escuro"
+          },
+          {
+            "id": "283164",
+            "name": "Dourado"
+          },
+          {
+            "id": "51993",
+            "name": "Vermelho"
+          },
+          {
+            "id": "283165",
+            "name": "Cinza"
+          },
+          {
+            "id": "51994",
+            "name": "Rosa"
+          },
+          {
+            "id": "283160",
+            "name": "Azul-turquesa"
+          },
+          {
+            "id": "51996",
+            "name": "Terracota"
+          },
+          {
+            "id": "283161",
+            "name": "Azul-marinho"
+          },
+          {
+            "id": "283162",
+            "name": "Índigo"
+          },
+          {
+            "id": "51998",
+            "name": "Bordô"
+          },
+          {
+            "id": "283163",
+            "name": "Rosa-chiclete"
+          },
+          {
+            "id": "52000",
+            "name": "Laranja"
+          },
+          {
+            "id": "52001",
+            "name": "Bege"
+          },
+          {
+            "id": "52003",
+            "name": "Nude"
+          },
+          {
+            "id": "52005",
+            "name": "Marrom"
+          },
+          {
+            "id": "52007",
+            "name": "Amarelo"
+          },
+          {
+            "id": "52008",
+            "name": "Creme"
+          },
+          {
+            "id": "52010",
+            "name": "Ocre"
+          },
+          {
+            "id": "52012",
+            "name": "Dourado-escuro"
+          },
+          {
+            "id": "52014",
+            "name": "Verde"
+          },
+          {
+            "id": "52015",
+            "name": "Verde-claro"
+          },
+          {
+            "id": "52019",
+            "name": "Verde-escuro"
+          },
+          {
+            "id": "52021",
+            "name": "Azul-celeste"
+          },
+          {
+            "id": "52022",
+            "name": "Água"
+          },
+          {
+            "id": "52024",
+            "name": "Azul-petróleo"
+          },
+          {
+            "id": "52028",
+            "name": "Azul"
+          },
+          {
+            "id": "52029",
+            "name": "Azul-claro"
+          },
+          {
+            "id": "52031",
+            "name": "Azul-aço"
+          },
+          {
+            "id": "52033",
+            "name": "Azul-escuro"
+          },
+          {
+            "id": "52035",
+            "name": "Violeta"
+          },
+          {
+            "id": "52036",
+            "name": "Lavanda"
+          },
+          {
+            "id": "52038",
+            "name": "Lilás"
+          },
+          {
+            "id": "52042",
+            "name": "Fúcsia"
+          },
+          {
+            "id": "52043",
+            "name": "Rosa-claro"
+          },
+          {
+            "id": "52045",
+            "name": "Rosa-pálido"
+          },
+          {
+            "id": "52047",
+            "name": "Violeta-escuro"
+          },
+          {
+            "id": "52049",
+            "name": "Preto"
+          },
+          {
+            "id": "52051",
+            "name": "Cinza-escuro"
+          },
+          {
+            "id": "52053",
+            "name": "Prateado"
+          },
+          {
+            "id": "52055",
+            "name": "Branco"
+          },
+          {
+            "id": "338779",
+            "name": "Ciano"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FUNCTIONS_NUMBER",
+        "name": "Quantidade de funções",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "4837600",
+            "name": "Aço"
+          },
+          {
+            "id": "2748302",
+            "name": "Plástico"
+          }
+        ],
+        "tooltip": "É a matéria-prima usada para fabricar o seu produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INCLUDES_COUPLING",
+        "name": "Inclui acoplamento",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_HEIGHT",
+        "name": "Altura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WIDTH",
+        "name": "Largura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WEIGHT",
+        "name": "Peso da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          },
+          {
+            "id": "mg",
+            "name": "mg"
+          },
+          {
+            "id": "oz",
+            "name": "oz"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "tags": {
+          "multivalued": true,
+          "variation_attribute": true,
+          "used_hidden": true,
+          "validate": true,
+          "conditional_required": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Pode ser um EAN, UPC ou outro GTIN"
+      },
+      {
+        "id": "IMPORT_DECLARATION_NUMBER",
+        "name": "Número da DI",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "Número de 15 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INVOICE_PRODUCT_NAME",
+        "name": "Nome do produto na nota fiscal",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SAT_KEY",
+        "name": "Chave do produto",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021094",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_KEY",
+        "name": "Chave da unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021108",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_DESCRIPTION",
+        "name": "Unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IVA_FOR_RESALE",
+        "name": "IVA para revenda",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "81861612",
+            "name": "Isento"
+          },
+          {
+            "id": "81861613",
+            "name": "0%"
+          },
+          {
+            "id": "81861614",
+            "name": "8%"
+          },
+          {
+            "id": "81861616",
+            "name": "16%"
+          }
+        ],
+        "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IEPS",
+        "name": "IEPS",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "82021095",
+            "name": "0%"
+          },
+          {
+            "id": "82021096",
+            "name": "3%"
+          },
+          {
+            "id": "82021097",
+            "name": "6%"
+          },
+          {
+            "id": "82021098",
+            "name": "7%"
+          },
+          {
+            "id": "82021099",
+            "name": "8%"
+          },
+          {
+            "id": "82021100",
+            "name": "9%"
+          },
+          {
+            "id": "82021101",
+            "name": "25%"
+          },
+          {
+            "id": "82021102",
+            "name": "26.5%"
+          },
+          {
+            "id": "82021103",
+            "name": "30%"
+          },
+          {
+            "id": "82021104",
+            "name": "30.4%"
+          },
+          {
+            "id": "82021105",
+            "name": "50%"
+          },
+          {
+            "id": "82021106",
+            "name": "53%"
+          },
+          {
+            "id": "82021107",
+            "name": "160%"
+          }
+        ],
+        "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "AGID",
+        "name": "AGID",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230581",
+            "name": "Usado"
+          },
+          {
+            "id": "2230284",
+            "name": "Novo"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 2,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VALUE_ADDED_TAX",
+        "name": "Imposto sobre o valor acrescentado",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DUTY",
+        "name": "Imposto de importação",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "49553239",
+            "name": "0 %"
+          },
+          {
+            "id": "49553240",
+            "name": "1 %"
+          },
+          {
+            "id": "49553241",
+            "name": "2.5 %"
+          },
+          {
+            "id": "49553242",
+            "name": "4 %"
+          },
+          {
+            "id": "49553243",
+            "name": "5 %"
+          },
+          {
+            "id": "49553244",
+            "name": "8 %"
+          },
+          {
+            "id": "49553245",
+            "name": "9.5 %"
+          },
+          {
+            "id": "49553246",
+            "name": "10 %"
+          },
+          {
+            "id": "49553247",
+            "name": "14 %"
+          },
+          {
+            "id": "49553248",
+            "name": "15 %"
+          },
+          {
+            "id": "49553249",
+            "name": "18 %"
+          },
+          {
+            "id": "49553250",
+            "name": "19 %"
+          },
+          {
+            "id": "49553251",
+            "name": "20 %"
+          },
+          {
+            "id": "49553252",
+            "name": "23 %"
+          },
+          {
+            "id": "49553253",
+            "name": "25 %"
+          },
+          {
+            "id": "49553254",
+            "name": "26 %"
+          },
+          {
+            "id": "49553255",
+            "name": "70 %"
+          }
+        ],
+        "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de envio",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAZMAT_TRANSPORTABILITY",
+        "name": "Transportabilidade Hazmat",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "13414677",
+            "name": "Livre"
+          },
+          {
+            "id": "13414678",
+            "name": "Limitado"
+          },
+          {
+            "id": "13414679",
+            "name": "Excedido"
+          },
+          {
+            "id": "13414680",
+            "name": "Indeterminado"
+          },
+          {
+            "id": "75989961",
+            "name": "Notificado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_KIT",
+        "name": "É kit",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DESCRIPTIVE_TAGS",
+        "name": "Tags descritivos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_CHEMICAL_FEATURES",
+        "name": "Características químicas do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7651070",
+            "name": "Inflamável"
+          },
+          {
+            "id": "7651071",
+            "name": "Aerosol"
+          },
+          {
+            "id": "7651072",
+            "name": "Oxidante"
+          },
+          {
+            "id": "7651073",
+            "name": "Corrosivo"
+          },
+          {
+            "id": "7651074",
+            "name": "Explosivo"
+          },
+          {
+            "id": "7651075",
+            "name": "Tóxico ou infeccioso"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FOODS_AND_DRINKS",
+        "name": "Alimentos e bebidas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575926",
+            "name": "Para humanos"
+          },
+          {
+            "id": "7575927",
+            "name": "Para animais"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEDICINES",
+        "name": "Medicamentos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575930",
+            "name": "Para humanos com receita médica"
+          },
+          {
+            "id": "7575931",
+            "name": "Para humanos sem receita médica"
+          },
+          {
+            "id": "7575932",
+            "name": "Para animais com receita médica"
+          },
+          {
+            "id": "7575933",
+            "name": "Para animais sem receita médica"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BATTERIES_FEATURES",
+        "name": "Características das baterias",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575934",
+            "name": "Lítio stand-alone (separadas ou isolado)"
+          },
+          {
+            "id": "7575935",
+            "name": "De lítio instaladas"
+          },
+          {
+            "id": "7575936",
+            "name": "Para carros (ácido-chumbo)"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPMENT_PACKING",
+        "name": "Embalagem do envío",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435891",
+            "name": "Flyer"
+          },
+          {
+            "id": "7435892",
+            "name": "Caixa"
+          },
+          {
+            "id": "7575937",
+            "name": "Envelope"
+          },
+          {
+            "id": "7575939",
+            "name": "Auto-expedível"
+          },
+          {
+            "id": "27037932",
+            "name": "BEX"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ADDITIONAL_INFO_REQUIRED",
+        "name": "Informação adicional requerida",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435893",
+            "name": "Possui código IMEI"
+          },
+          {
+            "id": "7435894",
+            "name": "Possui número de série"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EXCLUDED_PLATFORMS",
+        "name": "Plataformas excluídas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "9936777",
+            "name": "Android"
+          },
+          {
+            "id": "9936778",
+            "name": "iOS"
+          },
+          {
+            "id": "9936779",
+            "name": "Desktop"
+          },
+          {
+            "id": "9936780",
+            "name": "Mobile"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_SHIPMENT",
+        "name": "É adequado para envío",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_DATA_SOURCE",
+        "name": "Fonte do produto",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indique o país de origem do produto.",
+        "example": "Brasil",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+        "name": "Razões de visibilidade limitada no Marketplace",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "24219544",
+            "name": "Pharma"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAS_COMPATIBILITIES",
+        "name": "Tem compatibilidades",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CATALOG_TITLE",
+        "name": "Título de catálogo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SEARCH_ENHANCEMENT_FIELDS",
+        "name": "Campos de aprimoramento de pesquisa",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_FEATURES",
+        "name": "Características do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435885",
+            "name": "Contém líquido"
+          },
+          {
+            "id": "7435883",
+            "name": "Frágil"
+          },
+          {
+            "id": "7435888",
+            "name": "Com validade"
+          },
+          {
+            "id": "8847339",
+            "name": "Sem validade"
+          },
+          {
+            "id": "7575917",
+            "name": "Desinfetante e saneante"
+          },
+          {
+            "id": "7575924",
+            "name": "MAPA"
+          },
+          {
+            "id": "7575923",
+            "name": "Saúde e correlatos"
+          },
+          {
+            "id": "8721108",
+            "name": "Volumoso"
+          },
+          {
+            "id": "10490116",
+            "name": "Não voável"
+          },
+          {
+            "id": "12928414",
+            "name": "Não rotacionável"
+          },
+          {
+            "id": "41722098",
+            "name": "Dobrável"
+          },
+          {
+            "id": "52092586",
+            "name": "Magnético"
+          },
+          {
+            "id": "52233302",
+            "name": "Pode rolar"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_NEW_OFFER",
+        "name": "É nova oferta",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SYI_PYMES_ID",
+        "name": "syi pymes id",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_FLAMMABLE",
+        "name": "É inflamável",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_POSITIVE_IMPACT",
+        "name": "Com impacto positivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de fábrica",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "saleTerms": [
+      {
+        "id": "INVOICE",
+        "name": "Faturamento",
+        "tags": {
+          "hidden": true,
+          "multivalued": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "6891885",
+            "name": "Factura A"
+          },
+          {
+            "id": "6891886",
+            "name": "Factura B"
+          },
+          {
+            "id": "6891887",
+            "name": "Factura C"
+          },
+          {
+            "id": "6891888",
+            "name": "Não factura"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIBABLE",
+        "name": "Aceita compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRICE_SUBSCRIPTION",
+        "name": "Preço por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIPTION_FREE_SHIPPING",
+        "name": "Envio gratis por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_1",
+        "name": "Preço por ser nível 1 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_2",
+        "name": "Preço por ser nível 2 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_3",
+        "name": "Preço por ser nível 3 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_4",
+        "name": "Preço por ser nível 4 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_5",
+        "name": "Preço por ser nível 5 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_6",
+        "name": "Preço por ser nível 6 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CHECKOUT_EXCHANGE_RATE",
+        "name": "Taxa de câmbio para checkout",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL/USD",
+            "name": "BRL/USD"
+          }
+        ],
+        "default_unit": "BRL/USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DISCOUNT_SUBSCRIPTION",
+        "name": "Desconto por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "%",
+            "name": "%"
+          }
+        ],
+        "default_unit": "%",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230280",
+            "name": "Garantia do vendedor"
+          },
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica"
+          },
+          {
+            "id": "6150835",
+            "name": "Sem garantia"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          },
+          {
+            "id": "meses",
+            "name": "meses"
+          },
+          {
+            "id": "anos",
+            "name": "anos"
+          }
+        ],
+        "default_unit": "meses",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MANUFACTURING_TIME",
+        "name": "Disponibilidade de estoque",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          }
+        ],
+        "default_unit": "dias",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MIN_QUANTITY",
+        "name": "Quantidade mínima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MAX_QUANTITY",
+        "name": "Quantidade máxima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_PRICE",
+        "name": "Preço do desconto en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_PRICE",
+        "name": "Preço do desconto en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_PRICE",
+        "name": "Preço global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_ORIGINAL_PRICE",
+        "name": "Preço original global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INSTALLMENTS_CAMPAIGN",
+        "name": "Campanha de parcelas",
+        "tags": {
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10322628",
+            "name": "ahora-6"
+          },
+          {
+            "id": "10080710",
+            "name": "ahora-12"
+          },
+          {
+            "id": "10979952",
+            "name": "ahora-24"
+          },
+          {
+            "id": "10080711",
+            "name": "3x_campaign"
+          },
+          {
+            "id": "10080712",
+            "name": "18x_campaign"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPPING_ORIGIN",
+        "name": "Tipo de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "10215068",
+            "name": "Local"
+          },
+          {
+            "id": "10215069",
+            "name": "Internacional"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_VOLUME_DISCOUNT",
+        "name": "Com desconto por volume",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PROMOTION_TYPE",
+        "name": "Tipo de promoção",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10708386",
+            "name": "Oferta do dia"
+          },
+          {
+            "id": "10708387",
+            "name": "Oferta relâmpago"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_1P_MOTORS",
+        "name": "É 1P motores",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "1P_RESERVATION_PRICE",
+        "name": "Preço da reserva 1P",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_TRADE_IN_PROGRAM",
+        "name": "Plan intercâmbio",
+        "tags": {
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "identity": {
+      "local": {
+        "gtin": "729208118583",
+        "brand": "KEPPER",
+        "model": "aluminio 30cm",
+        "partNumber": null,
+        "quantity": null,
+        "packaging": null,
+        "provenance": {
+          "model": {
+            "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+            "excerpt": "aluminio 30cm"
+          },
+          "brand": {
+            "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+            "excerpt": "KEPPER; "
+          },
+          "gtin": {
+            "source": "supplier_offer:0807a761-0456-414f-9f5d-087ec1f467d4",
+            "excerpt": "729208118583"
+          }
+        },
+        "variation": "azul",
+        "brandEvidence": "Esguicho Kepper Em Alumínio 30cm Azul Esguicho de Alta Pressão - One Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência . Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço . Seja regando delicadas flores ou realizando uma limpeza poderosa , seu acabamento refinado e a alta pressão garantem durabilidade e desempenho . Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples . Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para qualquer tarefa de irrigação ou limpeza . Oferecemos 3 meses de garantia contra defeito de fabricação para assegurar a satisfação de nossos clientes. Economia de Água Inteligente Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos. Duas Ponteiras Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados. Durabilidade que Investe no Futuro Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo. Leve e Portátil Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea. Versatilidade para Atender Suas Necessidades Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa. Economia de Espaço Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. *Imagens meramente ilustrativas."
+      },
+      "remote": {
+        "gtin": null,
+        "brand": "Kepper",
+        "model": "Kepper Aluminio 30Cm Azul",
+        "partNumber": null,
+        "packaging": null,
+        "quantity": null,
+        "saleUnits": null,
+        "variation": "Azul",
+        "provenance": {
+          "brand": {
+            "source": "ml_attributes",
+            "excerpt": "BRAND: Kepper"
+          },
+          "model": {
+            "source": "ml_attributes",
+            "excerpt": "MODEL: Kepper Aluminio 30Cm Azul"
+          },
+          "variation": {
+            "source": "ml_attributes",
+            "excerpt": "COLOR: Azul"
+          }
+        },
+        "critical": {
+          "VOLTAGE": null,
+          "LENGTH": null,
+          "SIZE": null,
+          "CAPACITY": null,
+          "CONNECTOR_TYPE": null,
+          "INPUT_CONNECTOR": null,
+          "OUTPUT_CONNECTOR": null,
+          "PINS_NUMBER": null
+        }
+      },
+      "source": "/products/MLB41798496"
+    },
+    "assessment": {
+      "identity": "IDENTIDADE_COHERENTE",
+      "comparisons": [
+        {
+          "field": "brand",
+          "local": "KEPPER",
+          "remote": "Kepper",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "model",
+          "local": "aluminio 30cm",
+          "remote": "Kepper Aluminio 30Cm Azul",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "variation",
+          "local": "azul",
+          "remote": "Azul",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        }
+      ],
+      "reasons": [],
+      "warnings": [
+        "APRESENTACAO_NAO_EXPLICITA"
+      ],
+      "identityRuleVersion": "M2M-IDENTITY-v2.1"
+    },
+    "observedAt": "2026-09-05T20:27:05.189Z"
+  },
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/387346",
+    "observedAt": "2026-09-05T20:31:34.670Z",
+    "product": {
+      "produtoid": "387346",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 29.9,
+      "preco_crossdocking": 29.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 29.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Esguicho Kepper Em Alumínio 30cm Azul",
+      "titulo_curto": "Esguicho Kepper Em Alumínio 30cm Azul",
+      "categoriaid": "118803",
+      "categoria_nome": "Ferramentas/ Mangueiras/ Mangueiras",
+      "abc": null,
+      "ean11": "729208118583",
+      "ncm": "84818099",
+      "descricao": "<p><strong>Esguicho de Alta Pressão - One</strong></p>\r\n<p>Concebido para ser um <strong>aliado no seu jardim</strong> e além, este esguicho de alta pressão KEPPER combina <strong>ergonomia com eficiência</strong>. Seu design inteligente facilita o trabalho, permitindo que você <strong>complete suas tarefas com menos esforço</strong>. Seja <strong>regando delicadas flores</strong> ou realizando uma <strong>limpeza poderosa</strong>, seu acabamento refinado e a alta pressão garantem <strong>durabilidade e desempenho</strong>. Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para <strong>lavar o carro, irrigar o jardim ou executar limpezas simples</strong>. Feito com materiais de alta qualidade, é uma ferramenta <strong>prática e durável</strong> que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para <strong>qualquer tarefa de irrigação ou limpeza</strong>. Oferecemos <strong>3 meses de garantia contra defeito de fabricação</strong> para assegurar a satisfação de nossos clientes.</p>\r\n<p><br /><strong>Economia de Água Inteligente</strong><br />Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos.</p>\r\n<p><strong>Duas Ponteiras</strong><br />Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados.</p>\r\n<p><strong>Durabilidade que Investe no Futuro</strong><br />Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo.</p>\r\n<p><strong>Leve e Portátil</strong><br />Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea.</p>\r\n<p><strong>Versatilidade para Atender Suas Necessidades</strong><br />Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa.</p>\r\n<p><strong>Economia de Espaço</strong><br />Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho.</p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "KEPPER",
+      "modelo": "",
+      "peso": 0.25,
+      "largura": 15,
+      "altura": 5,
+      "profundidade": 22,
+      "peso_embalagem": 0.25,
+      "largura_embalagem": 15,
+      "altura_embalagem": 5,
+      "profundidade_embalagem": 22,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1379,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-02 11:56:30.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-02 11:56:30.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 7,
+      "tempo_cross": 0,
+      "estoque_total": 7,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png"
+        }
+      ]
+    }
+  },
+  "pictureProof": [
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/9725f7d1a095024278c3ed7d25290a04461896a06991ce99da99f34a874fbb32.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "9725f7d1a095024278c3ed7d25290a04461896a06991ce99da99f34a874fbb32"
+    },
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/2f71cc2812f8047de709a3c2e6bc5a4bf9eb1798279517b58440854cef44851e.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "2f71cc2812f8047de709a3c2e6bc5a4bf9eb1798279517b58440854cef44851e"
+    },
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/df6393a609d8ec02ae54344dd9bf3b4372894ac9e7d959c4e385ccc832758375.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "df6393a609d8ec02ae54344dd9bf3b4372894ac9e7d959c4e385ccc832758375"
+    }
+  ],
+  "context": {
+    "sellerId": "3294514937",
+    "categoryId": "MLB428938",
+    "listingType": "gold_special",
+    "shippingMode": "me2",
+    "logisticType": "xd_drop_off",
+    "freeShipping": true,
+    "dimensions": "5x15x22,250"
+  },
+  "memory": {
+    "price": 58.53,
+    "cost": 29.9,
+    "offerId": "0807a761-0456-414f-9f5d-087ec1f467d4",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:54:31.976+00:00",
+    "fee": {
+      "amount": 6.73,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:44.690Z",
+      "evidence": "/sites/MLB/listing_prices?price=58.53&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "fc009f7cc6b4a0035707ab597e65d1a697a0bef8ae6323b7b62d7fd21ba7db76"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:44.690Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=58.53&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "contextKey": "fc009f7cc6b4a0035707ab597e65d1a697a0bef8ae6323b7b62d7fd21ba7db76"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:31:44.561Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:31:44.690Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 4.85,
+    "result": 4.1,
+    "margin": 0.07004954724073124,
+    "status": "estimated"
+  },
+  "payload": {
+    "family_name": "Esguicho Kepper alumínio 30cm azul duas ponteiras",
+    "category_id": "MLB428938",
+    "catalog_product_id": "MLB41798496",
+    "catalog_listing": true,
+    "price": 58.53,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/9725f7d1a095024278c3ed7d25290a04461896a06991ce99da99f34a874fbb32.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/2f71cc2812f8047de709a3c2e6bc5a4bf9eb1798279517b58440854cef44851e.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/df6393a609d8ec02ae54344dd9bf3b4372894ac9e7d959c4e385ccc832758375.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "35763991",
+        "value_name": "Kepper"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "50256876",
+        "value_name": "Kepper Aluminio 30Cm Azul"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52028",
+        "value_name": "Azul"
+      },
+      {
+        "id": "INCLUDES_COUPLING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "729208118583"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK005849"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "FUNCTIONS_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK005849",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Esguicho Kepper alumínio 30cm azul duas ponteiras\n\n• Esguicho de alumínio de 30 cm na cor azul.\n• Acompanha duas ponteiras: jato concentrado e leque.\n• Registro para abrir e fechar o fluxo de água.\n\nDIMENSÕES DA EMBALAGEM\n22 × 15 × 5 cm; peso bruto 0.25 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK005849",
+  "conditional": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "error": null
+  },
+  "validated": {
+    "ok": false,
+    "status": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    },
+    "error": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  },
+  "at": "2026-09-05T20:31:47.122Z"
+}

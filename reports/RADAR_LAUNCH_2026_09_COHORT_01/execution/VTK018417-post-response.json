@@ -1,0 +1,393 @@
+{
+  "ok": true,
+  "status": 201,
+  "data": {
+    "id": "MLB5192491275",
+    "site_id": "MLB",
+    "title": "Capotraste Braçadeira Guitarra E Violão Aço E Nylon Preto Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB271125",
+    "user_product_id": "MLBU5122455738",
+    "official_store_id": null,
+    "price": 32.32,
+    "base_price": 32.32,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 2,
+    "available_quantity": 2,
+    "sold_quantity": 0,
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica",
+        "value_struct": null,
+        "values": [
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "value_id": null,
+        "value_name": "12 meses",
+        "value_struct": {
+          "number": 12,
+          "unit": "meses"
+        },
+        "values": [
+          {
+            "id": null,
+            "name": "12 meses",
+            "struct": {
+              "number": 12,
+              "unit": "meses"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "MXT MC-5001 Metal",
+    "family_id": 5623616755386322,
+    "start_time": "2026-09-05T21:00:50.962Z",
+    "stop_time": "2046-08-31T04:00:00.000Z",
+    "end_time": "2046-08-31T04:00:00.000Z",
+    "expiration_time": "2026-11-24T21:00:51.038Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5192491275-capotraste-bracadeira-guitarra-e-violo-aco-e-nylon-preto-preto-_JM",
+    "pictures": [
+      {
+        "id": "818479-MLA117018731719_092026",
+        "url": "http://mla-s1-p.mlstatic.com/818479-MLA117018731719_092026-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/818479-MLA117018731719_092026-O.jpg",
+        "size": "500x451",
+        "max_size": "1200x1083",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2153976",
+        "value_name": "MXT",
+        "values": [
+          {
+            "id": "2153976",
+            "name": "MXT",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "24280759",
+        "value_name": "MC-5001",
+        "values": [
+          {
+            "id": "24280759",
+            "name": "MC-5001",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CAPO_TYPE",
+        "name": "Tipo de capotraste",
+        "value_id": "27360424",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "27360424",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7566493",
+        "value_name": "8 cm",
+        "values": [
+          {
+            "id": "7566493",
+            "name": "8 cm",
+            "struct": {
+              "number": 8,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "7966600",
+        "value_name": "7 cm",
+        "values": [
+          {
+            "id": "7966600",
+            "name": "7 cm",
+            "struct": {
+              "number": 7,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "7818553",
+        "value_name": "8 cm",
+        "values": [
+          {
+            "id": "7818553",
+            "name": "8 cm",
+            "struct": {
+              "number": 8,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "13822632",
+        "value_name": "100 g",
+        "values": [
+          {
+            "id": "13822632",
+            "name": "100 g",
+            "struct": {
+              "number": 100,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "112648",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "112648",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENTS",
+        "name": "Instrumentos recomendados",
+        "value_id": null,
+        "value_name": "Contrabaixo, Guitarra elétrica, Violão",
+        "values": [
+          {
+            "id": "3565994",
+            "name": "Contrabaixo",
+            "struct": null
+          },
+          {
+            "id": "4180050",
+            "name": "Guitarra elétrica",
+            "struct": null
+          },
+          {
+            "id": "27739334",
+            "name": "Violão",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_SILICONE_PAD",
+        "name": "Com almofada de silicone",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "7899471892213",
+        "values": [
+          {
+            "id": null,
+            "name": "7899471892213",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK018417",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK018417",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "818479-MLA117018731719_092026",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/818479-MLA117018731719_092026-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": "Garantia de fábrica: 12 meses",
+    "catalog_product_id": "MLB78766975",
+    "domain_id": "MLB-STRING_INSTRUMENT_CAPOS",
+    "seller_custom_field": "VTK018417",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-09-05T21:00:51.180Z",
+    "last_updated": "2026-09-05T21:00:51.180Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "error": null
+}

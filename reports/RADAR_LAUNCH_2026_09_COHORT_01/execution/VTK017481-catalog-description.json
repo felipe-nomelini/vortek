@@ -1,0 +1,20 @@
+{
+  "source": "ml_catalog",
+  "catalogId": "MLB78007028",
+  "response": {
+    "ok": false,
+    "status": 404,
+    "data": {
+      "message": "Description of item with id MLB7594388458 not found",
+      "error": "not_found",
+      "status": 404,
+      "cause": []
+    },
+    "error": {
+      "message": "Description of item with id MLB7594388458 not found",
+      "error": "not_found",
+      "status": 404,
+      "cause": []
+    }
+  }
+}

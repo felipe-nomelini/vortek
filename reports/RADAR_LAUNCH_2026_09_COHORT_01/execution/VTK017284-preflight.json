@@ -1,0 +1,3101 @@
+{
+  "c": {
+    "sku": "VTK017284",
+    "prediction": [
+      {
+        "domain_id": "MLB-FIBER_OPTIC_FAULT_LOCATORS",
+        "domain_name": "Localizadores de falhas de fibra óptica",
+        "category_id": "MLB277515",
+        "category_name": "Localizadores de Falhas",
+        "attributes": []
+      },
+      {
+        "domain_id": "MLB-TOOLS",
+        "domain_name": "Ferramentas",
+        "category_id": "MLB271688",
+        "category_name": "Outras Ferramentas",
+        "attributes": []
+      },
+      {
+        "domain_id": "MLB-MINERAL_WATERS",
+        "domain_name": "Águas minerais",
+        "category_id": "MLB269718",
+        "category_name": "Águas Minerais",
+        "attributes": []
+      }
+    ],
+    "product": {
+      "id": "746f42ba-7fe6-4f7a-8b90-9b1912ba2aeb",
+      "sku": "VTK017284",
+      "nome": "Identificador De Fibra Ativa Evus Ev-430 10mw",
+      "marca": "EVUS",
+      "estoque": 50,
+      "custo": 799.9,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.336,
+      "peso_bruto": 0.336,
+      "largura": 6,
+      "altura": 8,
+      "profundidade": 26,
+      "gtin": "7898597132708",
+      "descricao": "O Identificador de Fibra Ativa Evus identifica sinais ópticos sem interferir no tráfego do sistema e sem danificar a fibra óptica indicando o sentido dos sinais transmissores e a frequência recebida. O EV430 dispõe de uma fonte de luz visível para localização visual de eventos na fibra óptica (quebras e conectores danificados entre outros defeitos). Possibilita testes de continuidade e localiza fibras pinçadas em DIOs ou emendas. *Imagem meramente ilustrativa.",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png",
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc57a3.jpg",
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc5dc3.png",
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc653a.png"
+      ],
+      "categoria": "Redes E Provedores/ Ferramentas/ Identificadores",
+      "ml_item_id": null,
+      "created_at": "2026-07-20T18:30:22.80718+00:00",
+      "updated_at": "2026-09-05T19:15:29.840422+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "373261",
+      "dslite_ultima_sync": "2026-09-05T19:15:29.394+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "90304090",
+      "cest": null,
+      "origem_fiscal": "1",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+      "produto_id": "746f42ba-7fe6-4f7a-8b90-9b1912ba2aeb",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "373261",
+      "sku_fornecedor": "373261",
+      "custo": 799.9,
+      "estoque": 50,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:15:29.394+00:00",
+      "created_at": "2026-07-20T18:30:23.096395+00:00",
+      "updated_at": "2026-09-05T19:15:29.403+00:00",
+      "sku_oferta": "373261",
+      "nome": "Identificador De Fibra Ativa Evus Ev-430 10mw",
+      "descricao": "O Identificador de Fibra Ativa Evus identifica sinais ópticos sem interferir no tráfego do sistema e sem danificar a fibra óptica indicando o sentido dos sinais transmissores e a frequência recebida. O EV430 dispõe de uma fonte de luz visível para localização visual de eventos na fibra óptica (quebras e conectores danificados entre outros defeitos). Possibilita testes de continuidade e localiza fibras pinçadas em DIOs ou emendas. *Imagem meramente ilustrativa.",
+      "marca": "EVUS",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png",
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc57a3.jpg",
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc5dc3.png",
+        "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc653a.png"
+      ],
+      "gtin": "7898597132708",
+      "ncm": "90304090",
+      "cest": null
+    },
+    "radar": {
+      "id": "d6ce00ff-76f7-4c5a-9845-3979f80d83fe",
+      "produto_id": "746f42ba-7fe6-4f7a-8b90-9b1912ba2aeb",
+      "candidate_key": "product:746f42ba-7fe6-4f7a-8b90-9b1912ba2aeb",
+      "sku": "VTK017284",
+      "catalog_product_id": "MLB28657049",
+      "pricing_group_id": null,
+      "stage": "AGUARDANDO_APROVACAO",
+      "queue": "EXPLORATORIOS",
+      "conflict_state": "SEM_CONFLITO",
+      "assessment": {
+        "state": "SEM_CONFLITO",
+        "economy": "VIAVEL_NO_ALVO",
+        "listing": "NOVO_ANUNCIO_CANDIDATO",
+        "reasons": [],
+        "identity": "IDENTIDADE_COHERENTE",
+        "listings": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA",
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "comparisons": [
+          {
+            "basis": "normalized",
+            "field": "brand",
+            "local": "EVUS",
+            "remote": "Evus",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "model",
+            "local": "ev-430",
+            "remote": "EV-430",
+            "matches": true,
+            "evidence": null
+          }
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1",
+        "publicationAutonomy": "REQUIRES_CONFIRMATION"
+      },
+      "evidence": {
+        "asOf": "2026-09-05T15:16:37.457Z",
+        "cost": 799.9,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "source": "oportunidades-ml-2026-09-05",
+        "product": "Identificador De Fibra Ativa Evus Ev-430 10mw",
+        "identity": {
+          "local": {
+            "gtin": "7898597132708",
+            "brand": "EVUS",
+            "model": "ev-430",
+            "quantity": null,
+            "packaging": null,
+            "variation": null,
+            "partNumber": null,
+            "provenance": {
+              "gtin": {
+                "source": "supplier_offer:9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+                "excerpt": "7898597132708"
+              },
+              "brand": {
+                "source": "supplier_offer:9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+                "excerpt": "EVUS; "
+              },
+              "model": {
+                "source": "supplier_offer:9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+                "excerpt": "ev-430"
+              }
+            },
+            "brandEvidence": "Identificador De Fibra Ativa Evus Ev-430 10mw O Identificador de Fibra Ativa Evus identifica sinais ópticos sem interferir no tráfego do sistema e sem danificar a fibra óptica indicando o sentido dos sinais transmissores e a frequência recebida. O EV430 dispõe de uma fonte de luz visível para localização visual de eventos na fibra óptica (quebras e conectores danificados entre outros defeitos). Possibilita testes de continuidade e localiza fibras pinçadas em DIOs ou emendas. *Imagem meramente ilustrativa."
+          },
+          "remote": {
+            "gtin": null,
+            "brand": "Evus",
+            "model": "EV-430",
+            "critical": {
+              "SIZE": null,
+              "LENGTH": "26 cm",
+              "VOLTAGE": null,
+              "CAPACITY": null,
+              "PINS_NUMBER": null,
+              "CONNECTOR_TYPE": "Universal",
+              "INPUT_CONNECTOR": null,
+              "OUTPUT_CONNECTOR": null
+            },
+            "quantity": null,
+            "packaging": null,
+            "saleUnits": null,
+            "variation": null,
+            "partNumber": null,
+            "provenance": {
+              "brand": {
+                "source": "/products/MLB28657049",
+                "excerpt": "BRAND: Evus"
+              },
+              "model": {
+                "source": "/products/MLB28657049",
+                "excerpt": "MODEL: EV-430"
+              }
+            }
+          },
+          "source": "/products/MLB28657049"
+        },
+        "supplier": "Evolusom Comercial Ltda",
+        "listingType": "gold_special",
+        "identityReview": "Evus EV-430, identificador de fibra com VFL 10 mW; modelo e função coincidem.",
+        "competitivePrice": 1296,
+        "identityObservedAt": "2026-09-05T20:04:26.900Z"
+      },
+      "priority": {
+        "stock": 50,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "economy": "VIAVEL_NO_ALVO",
+        "identity": "IDENTIDADE_COHERENTE",
+        "demandRank": 3,
+        "publication": "COMPLETA",
+        "competitiveness": {
+          "price": 1296,
+          "contribution": 197.06
+        }
+      },
+      "recommendation": "Explorar demanda; validar pendências antes de aprovar",
+      "evaluation_id": "72efe927-96d3-4e07-a2be-e68c01d87399",
+      "target_evaluation_id": "79c9d97e-ac5c-437a-9a68-5f4089db046c",
+      "floor_evaluation_id": "d5b29254-fb1a-46b3-a2fc-156cf8953a0b",
+      "break_even_evaluation_id": "89671acc-19de-44fd-baa3-a1e0efcb1840",
+      "input_fingerprint": "ff50763c6a1c2ce8ce73094b91cf2b1dc05b96f9ec15468f5998e829286cda9f",
+      "stock": 50,
+      "demand_rank": 3,
+      "contribution": 197.06,
+      "job_id": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+      "processed_at": "2026-09-05T20:10:45.479015+00:00",
+      "updated_at": "2026-09-05T20:10:45.479015+00:00"
+    },
+    "catalog": {
+      "id": "MLB28657049",
+      "catalog_product_id": "MLB28657049",
+      "status": "active",
+      "pdp_types": [
+        "traditional"
+      ],
+      "domain_id": "MLB-FIBER_OPTIC_FAULT_LOCATORS",
+      "permalink": "",
+      "name": "Identificador de Fibra Ativa Evus EV-430 VFL 10mW Alcance 10km Conectores SC FC ST",
+      "family_name": "Identificador de Fibra Ativa Evus EV-430 VFL 10mW Alcance 10km Conectores SC FC ST",
+      "type": "catalog_product",
+      "buy_box_winner": null,
+      "pickers": [],
+      "pictures": [
+        {
+          "id": "989683-MLA100046558809_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_989683-MLA100046558809_122025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 250,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "872761-MLA85390824502_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_872761-MLA85390824502_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 698,
+          "max_height": 825,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "733063-MLA85697121451_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_733063-MLA85697121451_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1048,
+          "max_height": 582,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "991902-MLA91571635374_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_991902-MLA91571635374_092025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 918,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "692766-MLA85390989978_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_692766-MLA85390989978_062025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 208,
+          "max_height": 1093,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        }
+      ],
+      "description_pictures": [],
+      "main_features": [
+        {
+          "text": "Potência de 10 mW.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Conector universal.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Ideal para identificação de fibras ativas.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Comprimento 26 cm.",
+          "type": "key_value",
+          "metadata": {}
+        }
+      ],
+      "disclaimers": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus",
+          "values": [
+            {
+              "id": "216711",
+              "name": "Evus"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26977863",
+          "value_name": "EV-430",
+          "values": [
+            {
+              "id": "26977863",
+              "name": "EV-430"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "4554518",
+          "value_name": "10 mW",
+          "values": [
+            {
+              "id": "4554518",
+              "name": "10 mW"
+            }
+          ]
+        },
+        {
+          "id": "MAX_LASER_REACH",
+          "name": "Alcance máximo do laser",
+          "value_id": "23336568",
+          "value_name": "10 km",
+          "values": [
+            {
+              "id": "23336568",
+              "name": "10 km"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "name": "Tipo de conector",
+          "value_id": "6622618",
+          "value_name": "Universal",
+          "values": [
+            {
+              "id": "6622618",
+              "name": "Universal"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "1061412",
+          "value_name": "26 cm",
+          "values": [
+            {
+              "id": "1061412",
+              "name": "26 cm"
+            }
+          ]
+        }
+      ],
+      "short_description": {
+        "type": "plaintext",
+        "content": "Claro! Aqui está uma versão ainda mais completa, detalhada e extensa da descrição do Identificador de Fibra Ativa Evus EV-430 10mW, ideal para uso em catálogos técnicos, e-commerces, apresentações institucionais e propostas comerciais.\n\nO Identificador de Fibra Ativa Evus EV-430 10mW é uma ferramenta essencial e altamente confiável projetada para técnicos, engenheiros e profissionais de telecomunicações que trabalham com redes ópticas em ambientes de alta exigência técnica. Equipado com recursos avançados, o EV-430 combina praticidade, precisão e robustez, oferecendo uma experiência de uso segura, eficiente e adaptada às exigências das redes modernas — sejam elas FTTH, FTTx, GPON, backbone, data centers ou redes corporativas de alta velocidade.\n\nDesenvolvido para identificar com rapidez sinais ópticos ativos em fibras, o EV-430 opera de maneira não intrusiva, ou seja, sem a necessidade de desconectar a fibra da rede, evitando interrupções e minimizando o risco de perda de dados ou queda do serviço. Sua tecnologia permite a detecção de sinais em três comprimentos de onda fundamentais nas redes ópticas: 1310 nm, 1490 nm e 1550 nm.\n\nAlém de detectar a presença do sinal óptico, o equipamento informa a direção do tráfego de dados na fibra, um recurso crucial para testes de continuidade, rastreamento e organização de rotas em redes complexas. Isso possibilita ao operador entender rapidamente por onde os dados estão trafegando, facilitando manutenções, expansões ou identificação de falhas.\n\nUm de seus grandes diferenciais é o localizador visual de falhas (VFL) embutido com potência de 10mW, capaz de emitir um feixe de luz vermelha visível que percorre a fibra, ajudando a localizar curvaturas excessivas, emendas defeituosas, quebras, terminações mal polidas ou conectores danificados. Com alcance de até 10 km em fibras monomodo, o VFL torna o EV-430 uma solução dois-em-um extremamente versátil.\n\nO corpo do identificador é construído em material resistente e durável, com design ergonômico e formato portátil. O equipamento foi pensado para o uso em campo, suportando condições adversas de temperatura e transporte. O visor digital de alta resolução exibe as informações de forma clara e legível mesmo sob luz solar intensa, garantindo precisão na leitura dos resultados.\n\nOutro ponto forte é sua compatibilidade com diversos tipos de conectores ópticos, como SC, FC e ST, graças aos adaptadores inclusos. Essa compatibilidade universal torna o EV-430 ideal para equipes que trabalham com diferentes padrões de cabeamento.\n\nAlém disso, o equipamento possui alimentação por baterias recarregáveis internas (ou pilhas AA, dependendo da versão), o que oferece mobilidade e autonomia para longos períodos de trabalho sem a necessidade de recargas constantes.\n\n Ficha Técnica Detalhada:\n\nMarca: Evus\nModelo: EV-430\nTipo: Identificador de Fibra Ativa com VFL (Visual Fault Locator)\nPotência do VFL: 10mW (laser vermelho visível)\nAlcance do Laser VFL: Até 10 km em fibra monomodo\nFrequências de Detecção de Sinal: 1310nm / 1490nm / 1550nm\nDetecção de Direção de Tráfego: Sim (Indicação Direcional Visual)\nDetecção Não-Invasiva: Sim (sem necessidade de desconectar a fibra)\nCompatibilidade de Fibra: Monomodo e Multimodo\nCompatibilidade de Conectores: SC, FC, ST (com adaptadores)\nDisplay: Digital LCD de alta visibilidade\nAlimentação: Bateria recarregável ou pilhas AA (dependendo da versão)\nAutonomia: Aproximadamente 10 a 20 horas de uso contínuo\nMaterial do Corpo: Plástico ABS de alta resistência\nTemperatura de Operação: -10°C a +60°C\nPeso Aproximado: 400 gramas\nDimensões: 200 mm x 50 mm x 30 mm\nAcessórios Inclusos:\n\n   Adaptadores para SC, FC e ST\n   Bolsa de transporte com proteção interna\n   Cabo de carregamento (versões com bateria)\n   Manual do usuário em português\n\n Principais Aplicações:\n\n Instalação e certificação de redes ópticas FTTH / FTTx\n Diagnóstico de falhas e manutenção preventiva\n Rastreamento de rotas e identificação de fibras\n Localização de emendas, curvaturas e pontos de ruptura\n Trabalhos em campo, data centers e redes empresariais\n\n\n\nO Evus EV-430 é um equipamento indispensável para qualquer profissional que busca excelência, agilidade e segurança na manutenção de redes de fibra óptica. Ele une tecnologia de ponta com facilidade de uso, entregando resultados precisos que tornam o trabalho mais rápido e confiável. Seu design robusto, combinado com funcionalidades inteligentes, faz dele um investimento duradouro para equipes de instalação, manutenção e suporte técnico."
+      },
+      "parent_id": null,
+      "children_ids": [],
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false,
+        "with_enhanced_pictures": false,
+        "base_site_product_id": null,
+        "ttr": "2026-09-05T11:50:00.571196763"
+      },
+      "quality_type": "COMPLETE",
+      "release_info": null,
+      "presale_info": null,
+      "enhanced_content": null,
+      "tags": [],
+      "date_created": "2023-12-06T03:20:45Z",
+      "authorized_stores": null,
+      "last_updated": "2025-12-26T22:03:00Z",
+      "grouper_id": null,
+      "experiments": {}
+    },
+    "category": {
+      "id": "MLB277515",
+      "name": "Localizadores de Falhas",
+      "picture": null,
+      "permalink": null,
+      "total_items_in_this_category": 9439,
+      "path_from_root": [
+        {
+          "id": "MLB1648",
+          "name": "Informática"
+        },
+        {
+          "id": "MLB1700",
+          "name": "Conectividade e Redes"
+        },
+        {
+          "id": "MLB9646",
+          "name": "Ferramentas"
+        },
+        {
+          "id": "MLB277515",
+          "name": "Localizadores de Falhas"
+        }
+      ],
+      "children_categories": [],
+      "attribute_types": "attributes",
+      "settings": {
+        "adult_content": false,
+        "buying_allowed": true,
+        "buying_modes": [
+          "auction",
+          "buy_it_now"
+        ],
+        "catalog_domain": "MLB-FIBER_OPTIC_FAULT_LOCATORS",
+        "coverage_areas": "not_allowed",
+        "currencies": [
+          "BRL"
+        ],
+        "fragile": false,
+        "immediate_payment": "required",
+        "item_conditions": [
+          "used",
+          "new",
+          "not_specified"
+        ],
+        "items_reviews_allowed": false,
+        "listing_allowed": true,
+        "max_description_length": 50000,
+        "max_pictures_per_item": 12,
+        "max_pictures_per_item_var": 10,
+        "max_sub_title_length": 70,
+        "max_title_length": 60,
+        "max_variations_allowed": 100,
+        "maximum_price": null,
+        "maximum_price_currency": "BRL",
+        "minimum_price": 0,
+        "minimum_price_currency": "BRL",
+        "mirror_category": null,
+        "mirror_master_category": null,
+        "mirror_slave_categories": [],
+        "price": "required",
+        "reservation_allowed": "not_allowed",
+        "restrictions": [],
+        "rounded_address": false,
+        "seller_contact": "not_allowed",
+        "shipping_options": [
+          "custom",
+          "carrier"
+        ],
+        "shipping_profile": "optional",
+        "show_contact_information": false,
+        "simple_shipping": "optional",
+        "stock": "required",
+        "sub_vertical": null,
+        "subscribable": false,
+        "tags": [],
+        "vertical": null,
+        "vip_subdomain": "produto",
+        "buyer_protection_programs": [
+          "delivered",
+          "undelivered"
+        ],
+        "status": "enabled"
+      },
+      "channels_settings": [
+        {
+          "channel": "mshops",
+          "settings": {
+            "minimum_price": 0
+          }
+        },
+        {
+          "channel": "proximity",
+          "settings": {
+            "status": "disabled"
+          }
+        },
+        {
+          "channel": "mp-merchants",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        },
+        {
+          "channel": "mp-link",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        }
+      ],
+      "meta_categ_id": null,
+      "attributable": false,
+      "date_created": "2018-06-25T15:00:30.000Z"
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "mW",
+            "name": "mW"
+          }
+        ],
+        "default_unit": "mW",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_LASER_REACH",
+        "name": "Alcance máximo do laser",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "km",
+            "name": "km"
+          }
+        ],
+        "default_unit": "km",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "6622617",
+            "name": "FC"
+          },
+          {
+            "id": "6622618",
+            "name": "Universal"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CONNECTOR_SIZE",
+        "name": "Tamanho do conector",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "tags": {
+          "multivalued": true,
+          "variation_attribute": true,
+          "used_hidden": true,
+          "validate": true,
+          "conditional_required": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Pode ser um EAN, UPC ou outro GTIN"
+      },
+      {
+        "id": "IMPORT_DECLARATION_NUMBER",
+        "name": "Número da DI",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "Número de 15 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INVOICE_PRODUCT_NAME",
+        "name": "Nome do produto na nota fiscal",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SAT_KEY",
+        "name": "Chave do produto",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021094",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_KEY",
+        "name": "Chave da unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021108",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_DESCRIPTION",
+        "name": "Unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IVA_FOR_RESALE",
+        "name": "IVA para revenda",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "81861612",
+            "name": "Isento"
+          },
+          {
+            "id": "81861613",
+            "name": "0%"
+          },
+          {
+            "id": "81861614",
+            "name": "8%"
+          },
+          {
+            "id": "81861616",
+            "name": "16%"
+          }
+        ],
+        "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IEPS",
+        "name": "IEPS",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "82021095",
+            "name": "0%"
+          },
+          {
+            "id": "82021096",
+            "name": "3%"
+          },
+          {
+            "id": "82021097",
+            "name": "6%"
+          },
+          {
+            "id": "82021098",
+            "name": "7%"
+          },
+          {
+            "id": "82021099",
+            "name": "8%"
+          },
+          {
+            "id": "82021100",
+            "name": "9%"
+          },
+          {
+            "id": "82021101",
+            "name": "25%"
+          },
+          {
+            "id": "82021102",
+            "name": "26.5%"
+          },
+          {
+            "id": "82021103",
+            "name": "30%"
+          },
+          {
+            "id": "82021104",
+            "name": "30.4%"
+          },
+          {
+            "id": "82021105",
+            "name": "50%"
+          },
+          {
+            "id": "82021106",
+            "name": "53%"
+          },
+          {
+            "id": "82021107",
+            "name": "160%"
+          }
+        ],
+        "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_HEIGHT",
+        "name": "Altura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WIDTH",
+        "name": "Largura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WEIGHT",
+        "name": "Peso da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          },
+          {
+            "id": "mg",
+            "name": "mg"
+          },
+          {
+            "id": "oz",
+            "name": "oz"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230581",
+            "name": "Usado"
+          },
+          {
+            "id": "2230284",
+            "name": "Novo"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 2,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VALUE_ADDED_TAX",
+        "name": "Imposto sobre o valor acrescentado",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DUTY",
+        "name": "Imposto de importação",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "49553239",
+            "name": "0 %"
+          },
+          {
+            "id": "49553240",
+            "name": "1 %"
+          },
+          {
+            "id": "49553241",
+            "name": "2.5 %"
+          },
+          {
+            "id": "49553242",
+            "name": "4 %"
+          },
+          {
+            "id": "49553243",
+            "name": "5 %"
+          },
+          {
+            "id": "49553244",
+            "name": "8 %"
+          },
+          {
+            "id": "49553245",
+            "name": "9.5 %"
+          },
+          {
+            "id": "49553246",
+            "name": "10 %"
+          },
+          {
+            "id": "49553247",
+            "name": "14 %"
+          },
+          {
+            "id": "49553248",
+            "name": "15 %"
+          },
+          {
+            "id": "49553249",
+            "name": "18 %"
+          },
+          {
+            "id": "49553250",
+            "name": "19 %"
+          },
+          {
+            "id": "49553251",
+            "name": "20 %"
+          },
+          {
+            "id": "49553252",
+            "name": "23 %"
+          },
+          {
+            "id": "49553253",
+            "name": "25 %"
+          },
+          {
+            "id": "49553254",
+            "name": "26 %"
+          },
+          {
+            "id": "49553255",
+            "name": "70 %"
+          }
+        ],
+        "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de envio",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAZMAT_TRANSPORTABILITY",
+        "name": "Transportabilidade Hazmat",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "13414677",
+            "name": "Livre"
+          },
+          {
+            "id": "13414678",
+            "name": "Limitado"
+          },
+          {
+            "id": "13414679",
+            "name": "Excedido"
+          },
+          {
+            "id": "13414680",
+            "name": "Indeterminado"
+          },
+          {
+            "id": "75989961",
+            "name": "Notificado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_KIT",
+        "name": "É kit",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DESCRIPTIVE_TAGS",
+        "name": "Tags descritivos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_CHEMICAL_FEATURES",
+        "name": "Características químicas do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7651070",
+            "name": "Inflamável"
+          },
+          {
+            "id": "7651071",
+            "name": "Aerosol"
+          },
+          {
+            "id": "7651072",
+            "name": "Oxidante"
+          },
+          {
+            "id": "7651073",
+            "name": "Corrosivo"
+          },
+          {
+            "id": "7651074",
+            "name": "Explosivo"
+          },
+          {
+            "id": "7651075",
+            "name": "Tóxico ou infeccioso"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FOODS_AND_DRINKS",
+        "name": "Alimentos e bebidas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575926",
+            "name": "Para humanos"
+          },
+          {
+            "id": "7575927",
+            "name": "Para animais"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEDICINES",
+        "name": "Medicamentos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575930",
+            "name": "Para humanos com receita médica"
+          },
+          {
+            "id": "7575931",
+            "name": "Para humanos sem receita médica"
+          },
+          {
+            "id": "7575932",
+            "name": "Para animais com receita médica"
+          },
+          {
+            "id": "7575933",
+            "name": "Para animais sem receita médica"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BATTERIES_FEATURES",
+        "name": "Características das baterias",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575934",
+            "name": "Lítio stand-alone (separadas ou isolado)"
+          },
+          {
+            "id": "7575935",
+            "name": "De lítio instaladas"
+          },
+          {
+            "id": "7575936",
+            "name": "Para carros (ácido-chumbo)"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPMENT_PACKING",
+        "name": "Embalagem do envío",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435891",
+            "name": "Flyer"
+          },
+          {
+            "id": "7435892",
+            "name": "Caixa"
+          },
+          {
+            "id": "7575937",
+            "name": "Envelope"
+          },
+          {
+            "id": "7575939",
+            "name": "Auto-expedível"
+          },
+          {
+            "id": "27037932",
+            "name": "BEX"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ADDITIONAL_INFO_REQUIRED",
+        "name": "Informação adicional requerida",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435893",
+            "name": "Possui código IMEI"
+          },
+          {
+            "id": "7435894",
+            "name": "Possui número de série"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EXCLUDED_PLATFORMS",
+        "name": "Plataformas excluídas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "9936777",
+            "name": "Android"
+          },
+          {
+            "id": "9936778",
+            "name": "iOS"
+          },
+          {
+            "id": "9936779",
+            "name": "Desktop"
+          },
+          {
+            "id": "9936780",
+            "name": "Mobile"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_SHIPMENT",
+        "name": "É adequado para envío",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_DATA_SOURCE",
+        "name": "Fonte do produto",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indique o país de origem do produto.",
+        "example": "Brasil",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+        "name": "Razões de visibilidade limitada no Marketplace",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "24219544",
+            "name": "Pharma"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAS_COMPATIBILITIES",
+        "name": "Tem compatibilidades",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CATALOG_TITLE",
+        "name": "Título de catálogo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SEARCH_ENHANCEMENT_FIELDS",
+        "name": "Campos de aprimoramento de pesquisa",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_FEATURES",
+        "name": "Características do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435885",
+            "name": "Contém líquido"
+          },
+          {
+            "id": "7435883",
+            "name": "Frágil"
+          },
+          {
+            "id": "7435888",
+            "name": "Com validade"
+          },
+          {
+            "id": "8847339",
+            "name": "Sem validade"
+          },
+          {
+            "id": "7575917",
+            "name": "Desinfetante e saneante"
+          },
+          {
+            "id": "7575924",
+            "name": "MAPA"
+          },
+          {
+            "id": "7575923",
+            "name": "Saúde e correlatos"
+          },
+          {
+            "id": "8721108",
+            "name": "Volumoso"
+          },
+          {
+            "id": "10490116",
+            "name": "Não voável"
+          },
+          {
+            "id": "12928414",
+            "name": "Não rotacionável"
+          },
+          {
+            "id": "41722098",
+            "name": "Dobrável"
+          },
+          {
+            "id": "52092586",
+            "name": "Magnético"
+          },
+          {
+            "id": "52233302",
+            "name": "Pode rolar"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_NEW_OFFER",
+        "name": "É nova oferta",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SYI_PYMES_ID",
+        "name": "syi pymes id",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_FLAMMABLE",
+        "name": "É inflamável",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_POSITIVE_IMPACT",
+        "name": "Com impacto positivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de fábrica",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "saleTerms": [
+      {
+        "id": "INVOICE",
+        "name": "Faturamento",
+        "tags": {
+          "hidden": true,
+          "multivalued": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "6891885",
+            "name": "Factura A"
+          },
+          {
+            "id": "6891886",
+            "name": "Factura B"
+          },
+          {
+            "id": "6891887",
+            "name": "Factura C"
+          },
+          {
+            "id": "6891888",
+            "name": "Não factura"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIBABLE",
+        "name": "Aceita compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRICE_SUBSCRIPTION",
+        "name": "Preço por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIPTION_FREE_SHIPPING",
+        "name": "Envio gratis por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_1",
+        "name": "Preço por ser nível 1 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_2",
+        "name": "Preço por ser nível 2 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_3",
+        "name": "Preço por ser nível 3 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_4",
+        "name": "Preço por ser nível 4 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_5",
+        "name": "Preço por ser nível 5 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_6",
+        "name": "Preço por ser nível 6 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CHECKOUT_EXCHANGE_RATE",
+        "name": "Taxa de câmbio para checkout",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL/USD",
+            "name": "BRL/USD"
+          }
+        ],
+        "default_unit": "BRL/USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DISCOUNT_SUBSCRIPTION",
+        "name": "Desconto por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "%",
+            "name": "%"
+          }
+        ],
+        "default_unit": "%",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230280",
+            "name": "Garantia do vendedor"
+          },
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica"
+          },
+          {
+            "id": "6150835",
+            "name": "Sem garantia"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          },
+          {
+            "id": "meses",
+            "name": "meses"
+          },
+          {
+            "id": "anos",
+            "name": "anos"
+          }
+        ],
+        "default_unit": "meses",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MANUFACTURING_TIME",
+        "name": "Disponibilidade de estoque",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          }
+        ],
+        "default_unit": "dias",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MIN_QUANTITY",
+        "name": "Quantidade mínima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MAX_QUANTITY",
+        "name": "Quantidade máxima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_PRICE",
+        "name": "Preço do desconto en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_PRICE",
+        "name": "Preço do desconto en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_PRICE",
+        "name": "Preço global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_ORIGINAL_PRICE",
+        "name": "Preço original global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INSTALLMENTS_CAMPAIGN",
+        "name": "Campanha de parcelas",
+        "tags": {
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10322628",
+            "name": "ahora-6"
+          },
+          {
+            "id": "10080710",
+            "name": "ahora-12"
+          },
+          {
+            "id": "10979952",
+            "name": "ahora-24"
+          },
+          {
+            "id": "10080711",
+            "name": "3x_campaign"
+          },
+          {
+            "id": "10080712",
+            "name": "18x_campaign"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPPING_ORIGIN",
+        "name": "Tipo de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "10215068",
+            "name": "Local"
+          },
+          {
+            "id": "10215069",
+            "name": "Internacional"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_VOLUME_DISCOUNT",
+        "name": "Com desconto por volume",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PROMOTION_TYPE",
+        "name": "Tipo de promoção",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10708386",
+            "name": "Oferta do dia"
+          },
+          {
+            "id": "10708387",
+            "name": "Oferta relâmpago"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_1P_MOTORS",
+        "name": "É 1P motores",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "1P_RESERVATION_PRICE",
+        "name": "Preço da reserva 1P",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_TRADE_IN_PROGRAM",
+        "name": "Plan intercâmbio",
+        "tags": {
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "identity": {
+      "local": {
+        "gtin": "7898597132708",
+        "brand": "EVUS",
+        "model": "ev-430",
+        "partNumber": null,
+        "quantity": null,
+        "packaging": null,
+        "provenance": {
+          "model": {
+            "source": "supplier_offer:9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+            "excerpt": "ev-430"
+          },
+          "brand": {
+            "source": "supplier_offer:9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+            "excerpt": "EVUS; "
+          },
+          "gtin": {
+            "source": "supplier_offer:9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+            "excerpt": "7898597132708"
+          }
+        },
+        "variation": null,
+        "brandEvidence": "Identificador De Fibra Ativa Evus Ev-430 10mw O Identificador de Fibra Ativa Evus identifica sinais ópticos sem interferir no tráfego do sistema e sem danificar a fibra óptica indicando o sentido dos sinais transmissores e a frequência recebida. O EV430 dispõe de uma fonte de luz visível para localização visual de eventos na fibra óptica (quebras e conectores danificados entre outros defeitos). Possibilita testes de continuidade e localiza fibras pinçadas em DIOs ou emendas. *Imagem meramente ilustrativa."
+      },
+      "remote": {
+        "gtin": null,
+        "brand": "Evus",
+        "model": "EV-430",
+        "partNumber": null,
+        "packaging": null,
+        "quantity": null,
+        "saleUnits": null,
+        "variation": null,
+        "provenance": {
+          "brand": {
+            "source": "ml_attributes",
+            "excerpt": "BRAND: Evus"
+          },
+          "model": {
+            "source": "ml_attributes",
+            "excerpt": "MODEL: EV-430"
+          }
+        },
+        "critical": {
+          "VOLTAGE": null,
+          "LENGTH": "26 cm",
+          "SIZE": null,
+          "CAPACITY": null,
+          "CONNECTOR_TYPE": "Universal",
+          "INPUT_CONNECTOR": null,
+          "OUTPUT_CONNECTOR": null,
+          "PINS_NUMBER": null
+        }
+      },
+      "source": "/products/MLB28657049"
+    },
+    "assessment": {
+      "identity": "IDENTIDADE_COHERENTE",
+      "comparisons": [
+        {
+          "field": "brand",
+          "local": "EVUS",
+          "remote": "Evus",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "model",
+          "local": "ev-430",
+          "remote": "EV-430",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        }
+      ],
+      "reasons": [],
+      "warnings": [
+        "APRESENTACAO_NAO_EXPLICITA"
+      ],
+      "identityRuleVersion": "M2M-IDENTITY-v2.1"
+    },
+    "observedAt": "2026-09-05T20:26:41.680Z"
+  },
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/373261",
+    "observedAt": "2026-09-05T20:30:30.722Z",
+    "product": {
+      "produtoid": "373261",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 799.9,
+      "preco_crossdocking": 799.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 799.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Identificador De Fibra Ativa Evus Ev-430 10mw",
+      "titulo_curto": "Identificador De Fibra Ativa Evus Ev-430 10mw",
+      "categoriaid": "118542",
+      "categoria_nome": "Redes E Provedores/ Ferramentas/ Identificadores",
+      "abc": null,
+      "ean11": "7898597132708",
+      "ncm": "90304090",
+      "descricao": "<p>O Identificador de Fibra Ativa Evus identifica sinais ópticos sem interferir no tráfego do sistema e sem danificar a fibra óptica indicando o sentido dos sinais transmissores e a frequência recebida.<br /><br />O EV430 dispõe de uma fonte de luz visível para localização visual de eventos na fibra óptica (quebras e conectores danificados entre outros defeitos). Possibilita testes de continuidade e localiza fibras pinçadas em DIOs ou emendas.</p>\r\n<p> </p>\r\n<p>*Imagem meramente ilustrativa.</p>",
+      "caracteristicas": "<p>Teste de 0,25, 0,9, 2,0, 3,0 milímetros de fibras ópticas<br />Sem a necessidade de adaptadores<br />Cria visual de falhas 1mW ou 10mW.<br />Comprimento de onda: 800 a 1700nm (SM)<br />Tipo de sinal reconhecível: CW, 2 kHz, 1kHz, 270Hz ± 10%<br />Tipo de detecção: InGaAs 2pcs<br />Tipo de Fibra: 0,9, 0,25, 2,0, 3,0 mm de fibras<br />Sensibilidade: +10 ~ - 50dBm<br />Precisão: 10 dB para -30 dBm (Onda Contínua), 10 dB para -25 dBm (sinal modulado)<br />LED Indicador: Direção do sinal; freqüência do sinal (2kHz/1kHz/270Hz); bateria fraca<br />Temperatura de armazenamento: -20 - 60 ° C, <90% RH<br />Temperatura de Operação: -10 ~ - 50 °C, <90% RH<br />Fonte de alimentação: Pilha tipo AA - 2 Unidades<br />Dimensões e Peso:<br /><br />Altura: 23<br />Largura: 4,5<br />Comprimento: 4,5<br />Peso: 200g<br />Conteúdo:<br /><br />1 Unidade - Identificador de Fibra Óptica Ativa EV430<br />1 Unidade - Manual do Usuário<br /><br />-Caixa de embalagem<br />-Adequado para fibra de 0,25, 0,9, 2,0, 3,0 mm, sem necessidade de trocar o adaptador<br /><br /><br />Peso 200g<br /><br /><br /><br /></p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "EVUS",
+      "modelo": "",
+      "peso": 0.336,
+      "largura": 6,
+      "altura": 8,
+      "profundidade": 26,
+      "peso_embalagem": 0.336,
+      "largura_embalagem": 6,
+      "altura_embalagem": 8,
+      "profundidade_embalagem": 26,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 3.25,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1476,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-01 08:44:32.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-01 08:44:32.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 66,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc57a3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc5dc3.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc653a.png"
+        }
+      ]
+    }
+  },
+  "pictureProof": [
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/89245b787236e198cbfe4a1fa5bc290344a74bc717daa2ab4b39c7651ed05ce6.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "89245b787236e198cbfe4a1fa5bc290344a74bc717daa2ab4b39c7651ed05ce6"
+    },
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc57a3.jpg",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc57a3.jpg",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/2cbd7480b6140839d559134f22b625b90e99c62d68c322611eab2effc6c2f15a.jpg",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "2cbd7480b6140839d559134f22b625b90e99c62d68c322611eab2effc6c2f15a"
+    },
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc5dc3.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc5dc3.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/ea3395e19f4cbbf003f37235bfc8e01d2e577464d779cce874f1b3cc8b28170e.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "ea3395e19f4cbbf003f37235bfc8e01d2e577464d779cce874f1b3cc8b28170e"
+    }
+  ],
+  "context": {
+    "sellerId": "3294514937",
+    "categoryId": "MLB277515",
+    "listingType": "gold_special",
+    "shippingMode": "me2",
+    "logisticType": "xd_drop_off",
+    "freeShipping": true,
+    "dimensions": "8x6x26,336"
+  },
+  "memory": {
+    "price": 1291.84,
+    "cost": 799.9,
+    "offerId": "9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:15:29.403+00:00",
+    "fee": {
+      "amount": 167.94,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:30:36.982Z",
+      "evidence": "/sites/MLB/listing_prices?price=1291.84&category_id=MLB277515&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "61fa5bebfde293b03a46a1d23265b52b6d4033a59809431b3bf10c3aa069a4de"
+    },
+    "shipping": {
+      "amount": 23.25,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:30:36.982Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=1291.84&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=8x6x26%2C336",
+      "contextKey": "61fa5bebfde293b03a46a1d23265b52b6d4033a59809431b3bf10c3aa069a4de"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:30:36.812Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:30:36.982Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "ABOVE_1000",
+      "maxCents": null,
+      "floor": 0.1,
+      "target": 0.15,
+      "limit": 0.2
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 106.97,
+    "result": 193.78,
+    "margin": 0.1500030963586822,
+    "status": "estimated"
+  },
+  "payload": {
+    "family_name": "Identificador de fibra ativa Evus EV-430 10mW",
+    "category_id": "MLB277515",
+    "catalog_product_id": "MLB28657049",
+    "catalog_listing": true,
+    "price": 1291.84,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/89245b787236e198cbfe4a1fa5bc290344a74bc717daa2ab4b39c7651ed05ce6.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/2cbd7480b6140839d559134f22b625b90e99c62d68c322611eab2effc6c2f15a.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/ea3395e19f4cbbf003f37235bfc8e01d2e577464d779cce874f1b3cc8b28170e.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "26977863",
+        "value_name": "EV-430"
+      },
+      {
+        "id": "POWER",
+        "value_id": "4554518",
+        "value_name": "10 mW"
+      },
+      {
+        "id": "MAX_LASER_REACH",
+        "value_id": "23336568",
+        "value_name": "10 km"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "6622618",
+        "value_name": "Universal"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "1061412",
+        "value_name": "26 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7898597132708"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017284"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "CONNECTOR_SIZE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK017284",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Identificador de fibra ativa Evus EV-430 10mW\n\n• Identifica sinais ópticos sem interromper o tráfego.\n• Fonte de luz visível para localizar quebras e conexões danificadas.\n• Indica o sentido do sinal e a frequência recebida.\n\nDIMENSÕES DA EMBALAGEM\n26 × 6 × 8 cm; peso bruto 0.336 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK017284",
+  "conditional": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "error": null
+  },
+  "validated": {
+    "ok": false,
+    "status": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        },
+        {
+          "department": "items",
+          "cause_id": 350,
+          "type": "warning",
+          "code": "item.shipping.mandatory_free_shipping",
+          "references": [],
+          "message": "Mandatory free shipping added"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    },
+    "error": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        },
+        {
+          "department": "items",
+          "cause_id": 350,
+          "type": "warning",
+          "code": "item.shipping.mandatory_free_shipping",
+          "references": [],
+          "message": "Mandatory free shipping added"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  },
+  "at": "2026-09-05T20:30:40.460Z"
+}

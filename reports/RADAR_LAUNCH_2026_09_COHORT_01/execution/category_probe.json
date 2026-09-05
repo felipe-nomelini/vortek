@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "status": 200,
+  "data": [
+    {
+      "domain_id": "MLB-COMPUTER_MICE",
+      "domain_name": "Mouses para computadores",
+      "category_id": "MLB1714",
+      "category_name": "Mouses",
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "13315169",
+          "value_name": "MOUSE"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "22808242",
+          "value_name": "MSI50"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "40905268",
+          "value_name": "MSI50"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ]
+    },
+    {
+      "domain_id": "MLB-MINERAL_WATERS",
+      "domain_name": "Águas minerais",
+      "category_id": "MLB269718",
+      "category_name": "Águas Minerais",
+      "attributes": []
+    }
+  ],
+  "error": null
+}

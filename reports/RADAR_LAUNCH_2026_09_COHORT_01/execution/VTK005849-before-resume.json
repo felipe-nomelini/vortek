@@ -1,0 +1,627 @@
+{
+  "at": "2026-09-05T21:00:42.918Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/387346",
+    "observedAt": "2026-09-05T21:00:39.294Z",
+    "product": {
+      "produtoid": "387346",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 29.9,
+      "preco_crossdocking": 29.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 29.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Esguicho Kepper Em Alumínio 30cm Azul",
+      "titulo_curto": "Esguicho Kepper Em Alumínio 30cm Azul",
+      "categoriaid": "118803",
+      "categoria_nome": "Ferramentas/ Mangueiras/ Mangueiras",
+      "abc": null,
+      "ean11": "729208118583",
+      "ncm": "84818099",
+      "descricao": "<p><strong>Esguicho de Alta Pressão - One</strong></p>\r\n<p>Concebido para ser um <strong>aliado no seu jardim</strong> e além, este esguicho de alta pressão KEPPER combina <strong>ergonomia com eficiência</strong>. Seu design inteligente facilita o trabalho, permitindo que você <strong>complete suas tarefas com menos esforço</strong>. Seja <strong>regando delicadas flores</strong> ou realizando uma <strong>limpeza poderosa</strong>, seu acabamento refinado e a alta pressão garantem <strong>durabilidade e desempenho</strong>. Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para <strong>lavar o carro, irrigar o jardim ou executar limpezas simples</strong>. Feito com materiais de alta qualidade, é uma ferramenta <strong>prática e durável</strong> que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para <strong>qualquer tarefa de irrigação ou limpeza</strong>. Oferecemos <strong>3 meses de garantia contra defeito de fabricação</strong> para assegurar a satisfação de nossos clientes.</p>\r\n<p><br /><strong>Economia de Água Inteligente</strong><br />Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos.</p>\r\n<p><strong>Duas Ponteiras</strong><br />Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados.</p>\r\n<p><strong>Durabilidade que Investe no Futuro</strong><br />Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo.</p>\r\n<p><strong>Leve e Portátil</strong><br />Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea.</p>\r\n<p><strong>Versatilidade para Atender Suas Necessidades</strong><br />Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa.</p>\r\n<p><strong>Economia de Espaço</strong><br />Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho.</p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "KEPPER",
+      "modelo": "",
+      "peso": 0.25,
+      "largura": 15,
+      "altura": 5,
+      "profundidade": 22,
+      "peso_embalagem": 0.25,
+      "largura_embalagem": 15,
+      "altura_embalagem": 5,
+      "profundidade_embalagem": 22,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1379,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-02 11:56:30.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-02 11:56:30.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 7,
+      "tempo_cross": 0,
+      "estoque_total": 7,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "KEPPER",
+        "remote": "Kepper",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "aluminio 30cm",
+        "remote": "Kepper Aluminio 30Cm Azul",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "variation",
+        "local": "azul",
+        "remote": "Azul",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "price": 76.28,
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/9725f7d1a095024278c3ed7d25290a04461896a06991ce99da99f34a874fbb32.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/2f71cc2812f8047de709a3c2e6bc5a4bf9eb1798279517b58440854cef44851e.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK005849/df6393a609d8ec02ae54344dd9bf3b4372894ac9e7d959c4e385ccc832758375.png"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "free_shipping": true,
+      "local_pick_up": false
+    },
+    "condition": "new",
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "35763991",
+        "value_name": "Kepper"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "50256876",
+        "value_name": "Kepper Aluminio 30Cm Azul"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52028",
+        "value_name": "Azul"
+      },
+      {
+        "id": "INCLUDES_COUPLING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "729208118583"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK005849"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "FUNCTIONS_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "category_id": "MLB428938",
+    "currency_id": "BRL",
+    "family_name": "Esguicho Kepper alumínio 30cm azul duas ponteiras",
+    "catalog_listing": true,
+    "listing_type_id": "gold_special",
+    "available_quantity": 2,
+    "catalog_product_id": "MLB41798496",
+    "seller_custom_field": "VTK005849"
+  },
+  "description": "Esguicho Kepper alumínio 30cm azul duas ponteiras\n\n• Esguicho de alumínio de 30 cm na cor azul.\n• Acompanha duas ponteiras: jato concentrado e leque.\n• Registro para abrir e fechar o fluxo de água.\n\nDIMENSÕES DA EMBALAGEM\n22 × 15 × 5 cm; peso bruto 0.25 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK005849",
+  "memory": {
+    "price": 76.28,
+    "cost": 29.9,
+    "offerId": "0807a761-0456-414f-9f5d-087ec1f467d4",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:54:31.976+00:00",
+    "fee": {
+      "amount": 8.77,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T21:00:42.703Z",
+      "evidence": "/sites/MLB/listing_prices?price=76.28&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "70f4376162e7bd03a388f11f416ef7b9c9affcc23bf549a0e2aa07006f0c6ea4"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T21:00:42.703Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=76.28&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=5x15x22%2C250",
+      "contextKey": "70f4376162e7bd03a388f11f416ef7b9c9affcc23bf549a0e2aa07006f0c6ea4"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T21:00:42.616Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T21:00:42.703Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [
+      "MARGEM_SUPERIOR_AO_LIMITE"
+    ],
+    "taxAmount": 6.32,
+    "result": 18.34,
+    "margin": 0.2404299947561615,
+    "status": "estimated"
+  },
+  "evaluationId": "be54515a-11f0-4c53-93ae-c187c0d795f1",
+  "approvalId": "f83902d6-b2a7-4802-a715-64ff3d92d23e",
+  "duplicates": [
+    {
+      "id": "MLB5192503807",
+      "site_id": "MLB",
+      "title": "Esguicho Kepper Em Aluminio 30cm Azul",
+      "family_name": "Esguicho Kepper Em Aluminio 30cm Azul",
+      "family_id": 8580712650138447,
+      "seller_id": 3294514937,
+      "category_id": "MLB428938",
+      "user_product_id": "MLBU5088550881",
+      "official_store_id": null,
+      "price": 76.28,
+      "base_price": 76.28,
+      "original_price": null,
+      "inventory_id": null,
+      "currency_id": "BRL",
+      "initial_quantity": 2,
+      "available_quantity": 2,
+      "sold_quantity": 0,
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "name": "Tipo de garantia",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "2230279",
+              "name": "Garantia de fábrica",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "name": "Tempo de garantia",
+          "value_id": null,
+          "value_name": "12 meses",
+          "value_struct": {
+            "number": 12,
+            "unit": "meses"
+          },
+          "values": [
+            {
+              "id": null,
+              "name": "12 meses",
+              "struct": {
+                "number": 12,
+                "unit": "meses"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        }
+      ],
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "start_time": "2026-09-05T20:59:27.593Z",
+      "stop_time": "2046-08-31T04:00:00.000Z",
+      "end_time": "2046-08-31T04:00:00.000Z",
+      "expiration_time": "2026-11-24T21:00:21.338Z",
+      "condition": "new",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5192503807-esguicho-kepper-em-aluminio-30cm-azul-_JM",
+      "thumbnail_id": "970775-MLA96226555954_102025",
+      "thumbnail": "http://http2.mlstatic.com/D_970775-MLA96226555954_102025-I.jpg",
+      "pictures": [
+        {
+          "id": "970775-MLA96226555954_102025",
+          "url": "http://http2.mlstatic.com/D_970775-MLA96226555954_102025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_970775-MLA96226555954_102025-O.jpg",
+          "size": "500x490",
+          "max_size": "1200x1177",
+          "quality": ""
+        },
+        {
+          "id": "851214-MLA112355596114_062026",
+          "url": "http://http2.mlstatic.com/D_851214-MLA112355596114_062026-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_851214-MLA112355596114_062026-O.jpg",
+          "size": "500x500",
+          "max_size": "1024x1024",
+          "quality": ""
+        },
+        {
+          "id": "865630-MLA112355190568_062026",
+          "url": "http://http2.mlstatic.com/D_865630-MLA112355190568_062026-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_865630-MLA112355190568_062026-O.jpg",
+          "size": "500x500",
+          "max_size": "1024x1024",
+          "quality": ""
+        }
+      ],
+      "video_id": null,
+      "descriptions": [],
+      "accepts_mercadopago": true,
+      "non_mercado_pago_payment_methods": [],
+      "shipping": {
+        "mode": "me2",
+        "methods": [],
+        "tags": [],
+        "dimensions": null,
+        "local_pick_up": false,
+        "free_shipping": true,
+        "logistic_type": "xd_drop_off",
+        "store_pick_up": false
+      },
+      "international_delivery_mode": "none",
+      "seller_address": {
+        "address_line": "Rua João Marques de Nóbrega 300",
+        "zip_code": "86206240",
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "BR-PR",
+          "name": "Paraná"
+        },
+        "country": {
+          "id": "BR",
+          "name": "Brasil"
+        },
+        "search_location": {
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "TUxCUFBBUkExODBlZA",
+            "name": "Paraná"
+          }
+        },
+        "latitude": -23.284674,
+        "longitude": -51.083409,
+        "id": 1586042717
+      },
+      "seller_contact": null,
+      "location": {},
+      "geolocation": {
+        "latitude": -23.284674,
+        "longitude": -51.083409
+      },
+      "coverage_areas": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "35763991",
+          "value_name": "Kepper",
+          "values": [
+            {
+              "id": "35763991",
+              "name": "Kepper",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52028",
+          "value_name": "Azul",
+          "values": [
+            {
+              "id": "52028",
+              "name": "Azul",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "FUNCTIONS_NUMBER",
+          "name": "Quantidade de funções",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "729208118583",
+          "values": [
+            {
+              "id": null,
+              "name": "729208118583",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "INCLUDES_COUPLING",
+          "name": "Inclui acoplamento",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "50256876",
+          "value_name": "Kepper Aluminio 30Cm Azul",
+          "values": [
+            {
+              "id": "50256876",
+              "name": "Kepper Aluminio 30Cm Azul",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK005849",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK005849",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        }
+      ],
+      "warnings": [],
+      "listing_source": "",
+      "variations": [],
+      "status": "paused",
+      "sub_status": [
+        "paused_by_seller"
+      ],
+      "tags": [
+        "immediate_payment",
+        "cart_eligible"
+      ],
+      "warranty": "Garantia de fábrica: 12 meses",
+      "catalog_product_id": "MLB41798496",
+      "domain_id": "MLB-GARDENING_IRRIGATION_GUNS",
+      "seller_custom_field": "VTK005849",
+      "parent_item_id": null,
+      "differential_pricing": null,
+      "deal_ids": [],
+      "automatic_relist": false,
+      "date_created": "2026-09-05T20:59:27.768Z",
+      "last_updated": "2026-09-05T21:00:21.468Z",
+      "health": null,
+      "catalog_listing": true,
+      "item_relations": [],
+      "channels": [
+        "marketplace"
+      ]
+    }
+  ],
+  "quantity": 2
+}

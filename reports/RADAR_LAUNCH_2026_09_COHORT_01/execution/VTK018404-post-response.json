@@ -1,0 +1,461 @@
+{
+  "ok": true,
+  "status": 201,
+  "data": {
+    "id": "MLB5192489303",
+    "site_id": "MLB",
+    "title": "Calculadora De Mesa Truly T882 12 Dígitos Cor Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB99957",
+    "user_product_id": "MLBU5088536309",
+    "official_store_id": null,
+    "price": 92.68,
+    "base_price": 92.68,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 2,
+    "available_quantity": 2,
+    "sold_quantity": 0,
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica",
+        "value_struct": null,
+        "values": [
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "value_id": null,
+        "value_name": "12 meses",
+        "value_struct": {
+          "number": 12,
+          "unit": "meses"
+        },
+        "values": [
+          {
+            "id": null,
+            "name": "12 meses",
+            "struct": {
+              "number": 12,
+              "unit": "meses"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Truly Mesa Truly T882",
+    "family_id": 7149012003783826,
+    "start_time": "2026-09-05T20:53:46.581Z",
+    "stop_time": "2046-08-31T04:00:00.000Z",
+    "end_time": "2046-08-31T04:00:00.000Z",
+    "expiration_time": "2026-11-24T20:53:46.640Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5192489303-calculadora-de-mesa-truly-t882-12-digitos-cor-preto-_JM",
+    "pictures": [
+      {
+        "id": "968516-MLA99453718988_112025",
+        "url": "http://mla-s2-p.mlstatic.com/968516-MLA99453718988_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/968516-MLA99453718988_112025-O.jpg",
+        "size": "375x500",
+        "max_size": "375x500",
+        "quality": ""
+      },
+      {
+        "id": "635632-MLA99937702501_112025",
+        "url": "http://mla-s1-p.mlstatic.com/635632-MLA99937702501_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/635632-MLA99937702501_112025-O.jpg",
+        "size": "456x500",
+        "max_size": "456x500",
+        "quality": ""
+      },
+      {
+        "id": "677757-MLA93505460411_092025",
+        "url": "http://mla-s2-p.mlstatic.com/677757-MLA93505460411_092025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/677757-MLA93505460411_092025-O.jpg",
+        "size": "500x486",
+        "max_size": "1000x972",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2434327",
+        "value_name": "Truly",
+        "values": [
+          {
+            "id": "2434327",
+            "name": "Truly",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "6834319",
+        "value_name": "Mesa",
+        "values": [
+          {
+            "id": "6834319",
+            "name": "Mesa",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "49170733",
+        "value_name": "Truly T882",
+        "values": [
+          {
+            "id": "49170733",
+            "name": "Truly T882",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DISPLAY_DIGITS_NUMBER",
+        "name": "Quantidade de dígitos",
+        "value_id": "17969197",
+        "value_name": "12",
+        "values": [
+          {
+            "id": "17969197",
+            "name": "12",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "CALCULATOR_TYPE",
+        "name": "Tipo de calculadora",
+        "value_id": "6132076",
+        "value_name": "Básica",
+        "values": [
+          {
+            "id": "6132076",
+            "name": "Básica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FUNCTIONS_NUMBER",
+        "name": "Quantidade de funções",
+        "value_id": "7876938",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "7876938",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "FUNCTIONS",
+        "name": "Funções",
+        "value_id": "25941946",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "25941946",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_PRINTER",
+        "name": "Com impressora",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "1478",
+        "value_name": "240 g",
+        "values": [
+          {
+            "id": "1478",
+            "name": "240 g",
+            "struct": {
+              "number": 240,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "121920",
+        "value_name": "20 cm",
+        "values": [
+          {
+            "id": "121920",
+            "name": "20 cm",
+            "struct": {
+              "number": 20,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "570719",
+        "value_name": "14 cm",
+        "values": [
+          {
+            "id": "570719",
+            "name": "14 cm",
+            "struct": {
+              "number": 14,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "4891223882001",
+        "values": [
+          {
+            "id": null,
+            "name": "4891223882001",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK018404",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK018404",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BATTERY_VOLTAGE",
+        "name": "Voltagem da bateria",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CELL_BATTERY_TYPE",
+        "name": "Tipo de pilha",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "968516-MLA99453718988_112025",
+    "thumbnail": "http://mlb-s2-p.mlstatic.com/968516-MLA99453718988_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": "Garantia de fábrica: 12 meses",
+    "catalog_product_id": "MLB25806207",
+    "domain_id": "MLB-CALCULATORS",
+    "seller_custom_field": "VTK018404",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-09-05T20:53:46.738Z",
+    "last_updated": "2026-09-05T20:53:46.738Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "error": null
+}

@@ -1,0 +1,440 @@
+{
+  "at": "2026-09-05T20:53:32.437Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391313",
+    "observedAt": "2026-09-05T20:53:28.837Z",
+    "product": {
+      "produtoid": "391313",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 39.9,
+      "preco_crossdocking": 39.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 39.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 21:02:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 21:02:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Mouse Intelbras Msi50 Sem Fio Preto",
+      "titulo_curto": "Mouse Intelbras Msi50 Sem Fio Preto",
+      "categoriaid": "118082",
+      "categoria_nome": "Informatica/ Perifericos/ Mouse óptico",
+      "abc": null,
+      "ean11": "7899298724933",
+      "ncm": "84716053",
+      "descricao": "<p><strong>Mouse Intelbras MSI50 Sem Fio Preto</strong><br /><strong>Código do produto:</strong> 4300907</p>\r\n<p> </p>\r\n<p>O Mouse sem fio MSI 50 da Intelbras vai trazer novas experiências no seu dia a dia com seu click silencioso e botões de comando, é o produto ideal para auxiliar a ter mais foco e concentração na execução das suas tarefas. Conexão USB 2.0 e Plug and play de fácil instalação, é só conectar e usar! Produto leve e confortável tornando a experiência do usuário mais satisfatória.</p>\r\n<p> </p>\r\n<p><strong>Características</strong></p>\r\n<p>» USB 2.0 <br />» Conexão de 2.4GHz estável via Dongle <br />» Conectividade flexível com Dongle Plug&Play, é só conectar e usar! Não precisa de driver de instalação ou software adicional<br />» Click silencioso, garantindo maior satisfação ao usuário<br />» Compatibilidade com sistemas operacionais<br />» Produto leve e confortável<br />» Autonomia de bateria prolongada<br />» Alcance de até 10 metros sem barreira<br />» Modo Standby<br />» Botões de comando que garantem sua usabilidade</p>\r\n<p> </p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p>Área de alcance: Até 10m*<br />Bateria inclusa: Sim - 1 x AA – 1.5 V<br />Consumo máximo: 11 mA - 1.5 V<br />Capacidade da bateria: 3000 mAh**<br />Standby: Sim – 20s e 15 min<br />Retorno do standby: 20s – Movimento | 15m - Click<br />Plug & Play: Sim<br />Click silencioso: Sim<br />Compatibilidade: Win XP®, Win Vista®, Win RT®, Win 7®, Win 8®, Win 9®, Win 10®, Chrome OS®, Linux®, MacOS®<br />Botão ligar/desligar: Sim</p>\r\n<p>Conectividade: 2.4GHz<br />Dongle: Sim - Embutido<br />USB: 2.0<br />Int Connect: Sim – TSI 50<br />Indicação de nível de bateria: Não<br />Material: ABS<br />Peso: 83g (com bateria)<br />Dimensões (L × A × P): 62 × 107 × 38 mm<br />Temperatura de trabalho: 0° à 40°<br />Sensor óptico: Vermelho com redução<br />Resolução: Fixo - 1200 DPI<br />Quantidade de botões: 3 (E+D+SCR)<br />Scroll: Sim<br />Superfície: Todas exceto vidro e superfícies translucidas***<br />Ambidestro: Sim</p>\r\n<p><strong>Conteúdo da embalagem</strong><br />» 1x Mouse sem fio MSI 50 Preto<br />» 1x Dongle Wireless<br />» 1x Pilha AA</p>\r\n<p> </p>\r\n<p>*A área de alcance depende diretamente da forma de uso deste produto, sendo esta especificação definida exclusivamente para a condição de linha reta, sem obstáculos e em ambiente controlado.<br />**A Pilha Ultra Alcalina que acompanha o produto tem uma capacidade de 3000 mAh.<br />***Solicita-se que este produto seja utilizado preferencialmente sobre suporte próprio para mouse e (mouse pad), preferencialmente, em cores únicas e foscas, sob risco de mal funcionamento. Além disso, é importante salientar que este produto não foi projetado para ser utilizado em superfícies translucidas como vidros ou similares ou refletoras. Tal condição poderá incorrer no total ou parcial não funcionamento.</p>\r\n<p> </p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "INTELBRAS",
+      "modelo": "",
+      "peso": 0.104,
+      "largura": 7,
+      "altura": 11.5,
+      "profundidade": 4,
+      "peso_embalagem": 0.104,
+      "largura_embalagem": 7,
+      "altura_embalagem": 11.5,
+      "profundidade_embalagem": 4,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 26,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.031.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-02 16:50:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-02 16:50:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 385,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e749122477.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912279b.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391313_6a5e74912280f.png"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "INTELBRAS",
+        "remote": "Intelbras",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "msi50",
+        "remote": "Mouse MSI 50",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "variation",
+        "local": "preto",
+        "remote": "Preto",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "family_name": "Mouse Intelbras MSI50 sem fio preto 1200 DPI",
+    "category_id": "MLB1714",
+    "catalog_product_id": "MLB78302520",
+    "catalog_listing": true,
+    "price": 73.7,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/386336bb87ad7c814cda37aba032bec224bddd9dfe420f1bf65f3b75f89d277e.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/c958fd1748fd5ba17136ef0c111a380151fed236c82a97362fafde41f5c62e73.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026044/785cdf14c07ef07e09735d6601640f3682b850a2a32ed1ea9b7f05173efe9caf.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "LINE",
+        "value_id": "45251028",
+        "value_name": "MSI"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "87828630",
+        "value_name": "Mouse MSI 50"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "40905268",
+        "value_name": "MSI50"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "COMPUTER_MOUSE_TYPE",
+        "value_id": "192740",
+        "value_name": "Convencional"
+      },
+      {
+        "id": "SENSOR_TYPE",
+        "value_id": "109003",
+        "value_name": "Óptico"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_WIRE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "value_id": "2862903",
+        "value_name": "Ambidestro"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "9022334",
+        "value_name": "83 g"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "2296418",
+        "value_name": "Adaptador"
+      },
+      {
+        "id": "WIRELESS_TECHNOLOGY",
+        "value_id": "73460133",
+        "value_name": "Wireless 2.4"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7899298724933"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026044"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SENSOR_TECHNOLOGY",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "COMPATIBLE_OPERATING_SYSTEMS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "SENSOR_RESOLUTION",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_SPEED",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "POLLING_RATE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_BATTERY_LIFE",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK026044",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Mouse Intelbras MSI50 sem fio preto 1200 DPI\n\n• Conexão de 2,4 GHz com dongle USB 2.0.\n• Resolução fixa de 1200 DPI e três botões.\n• Ambidestro e com clique silencioso.\n• Acompanha mouse, dongle e uma pilha AA.\n\nDIMENSÕES DA EMBALAGEM\n4 × 7 × 11.5 cm; peso bruto 0.104 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK026044",
+  "memory": {
+    "price": 73.7,
+    "cost": 39.9,
+    "offerId": "57c6546f-4141-477a-aa2e-602712b0a36f",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:23:25.5+00:00",
+    "fee": {
+      "amount": 9.58,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:32.193Z",
+      "evidence": "/sites/MLB/listing_prices?price=73.7&category_id=MLB1714&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "f473c9f411230090834b021a674b02b42cea0953d7c6535e756f415832b397eb"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:32.193Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=73.7&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=12x7x4%2C104",
+      "contextKey": "f473c9f411230090834b021a674b02b42cea0953d7c6535e756f415832b397eb"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:53:32.107Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:53:32.193Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 6.11,
+    "result": 5.16,
+    "margin": 0.0700135685210312,
+    "status": "estimated"
+  },
+  "evaluationId": "2d3facf2-d17f-4320-8f4a-2bcb22b6324f",
+  "approvalId": "c5bb98a6-b48b-405f-b28f-f896cdfe5f5d",
+  "duplicates": [],
+  "quantity": 2
+}

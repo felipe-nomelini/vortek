@@ -1,8 +1,11 @@
-# Pendências para continuidade
+# Pendências efetivas
 
-1. Informar prazo e cobertura da garantia comercial dos candidatos escolhidos. VTK005849 já informa três meses na oferta do fornecedor, mas a responsabilidade de cobertura precisa ser esclarecida. Não copiar automaticamente “12 meses de fábrica”. [Contrato ML de garantia](https://developers.mercadolivre.com.br/pt_br/publicacao-de-produtos).
-2. Resolver os motivos por SKU em `03_EXCLUIDOS_GATE.csv`, mantendo reativação fora da coorte de novos.
-3. Evus FK-12P: comparar cabo/conexão de seis pinos com catálogo de quatro. Bravox CX50BK: esclarecer escopo dos valores RMS.
-4. Após completude comercial, executar atributos obrigatórios/condicionais, imagens e payload dos até dez selecionados, com recotação e verificação de oferta/estoque/fulfillment e duplicidade imediatamente antes da publicação.
+Garantia resolvida pela Diretoria: 12 meses de fábrica. ROADSTAR BRASIL/ROADSTAR também resolvido; não solicitar novamente.
 
-O campo PENDENTE não significa reprovação comercial. Ausência de demanda não foi usada para excluir.
+- EV-430 VTK017284 / MLB7594384288: catálogo apresenta dimensões incompatíveis entre descrição e atributo, além de alternativas de alimentação. Mantido pausado; validar/corrigir catálogo antes de ativar.
+- Roadstar VTK018081: confirmar cápsula nominal de 18 mm versus medida de 18,5 mm na descrição do catálogo, ou distinção entre cápsula e furação. Nenhum anúncio criado.
+- Intelbras CFA4211: obter homologação obrigatória. GCP/PPA: confirmar fabricante/voltagem do catálogo. Evus F14: resolver sensibilidade de 3 dB versus 103±3 dB. Bravox FLT10D: confirmar material da carcaça.
+- Evus FK-12P VTK017309: seis pinos na oferta versus quatro no catálogo. Bravox CX50BK VTK018523: esclarecer RMS por par/unidade.
+- Minipa VTK005172 continua em reativação, fora de nova publicação.
+
+Demais candidatos e motivos em `03_EXCLUIDOS_GATE.csv`. Não seleção nesta coorte não significa reprovação. A Diretoria pode fornecer validações para próximo lote; nenhuma nova coorte autorizada por esta execução.

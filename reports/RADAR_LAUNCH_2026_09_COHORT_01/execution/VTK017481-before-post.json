@@ -1,0 +1,414 @@
+{
+  "at": "2026-09-05T20:53:39.450Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391043",
+    "observedAt": "2026-09-05T20:53:35.908Z",
+    "product": {
+      "produtoid": "391043",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 21.1,
+      "preco_crossdocking": 21.1,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 21.1,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros",
+      "titulo_curto": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros",
+      "categoriaid": "278503",
+      "categoria_nome": "Antenas E Acessórios/ Cabo Audio/ Cabo Rca",
+      "abc": null,
+      "ean11": "7908324706932",
+      "ncm": "85444200",
+      "descricao": "<h2 data-section-id=\"juq8n1\" data-start=\"0\" data-end=\"91\"><span role=\"text\"><strong data-start=\"3\" data-end=\"91\">Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm – 5 Metros (Gold com Mola)</strong></span></h2>\r\n<p data-start=\"93\" data-end=\"449\">O <strong data-start=\"95\" data-end=\"149\">Cabo RCA MXT Profissional Blindado 2+2 de 5 metros</strong> é indicado para projetos de som automotivo que exigem <strong data-start=\"204\" data-end=\"277\">maior alcance com qualidade de sinal e proteção contra interferências</strong>. Sua construção blindada contribui para uma transmissão mais limpa e estável, reduzindo ruídos mesmo em sistemas de maior potência .</p>\r\n<p data-start=\"451\" data-end=\"755\">Com <strong data-start=\"455\" data-end=\"482\">5 metros de comprimento</strong>, oferece mais flexibilidade na instalação, facilitando o posicionamento de módulos, players e amplificadores em diferentes pontos do veículo. O <strong data-start=\"627\" data-end=\"656\">diâmetro de 4mm (O.D 4mm)</strong> garante um bom equilíbrio entre resistência e flexibilidade, favorecendo a passagem do cabeamento.</p>\r\n<p data-start=\"757\" data-end=\"1089\">O modelo conta com acabamento <strong data-start=\"787\" data-end=\"795\">azul</strong>, que auxilia na organização e identificação durante a instalação. Os <strong data-start=\"865\" data-end=\"904\">conectores com banho dourado (Gold)</strong> melhoram a condução do sinal e aumentam a durabilidade, enquanto a <strong data-start=\"972\" data-end=\"1002\">mola de proteção nos plugs</strong> ajuda a reduzir desgastes e quebras por movimentação, prolongando a vida útil do cabo.</p>\r\n<h3 data-section-id=\"1cwnv27\" data-start=\"1096\" data-end=\"1124\"><span role=\"text\"><strong data-start=\"1100\" data-end=\"1124\">Destaques do produto</strong></span></h3>\r\n<ul data-start=\"1125\" data-end=\"1517\">\r\n<li data-section-id=\"a493kg\" data-start=\"1125\" data-end=\"1166\">Conexão <strong data-start=\"1135\" data-end=\"1164\">2 RCA macho + 2 RCA macho</strong></li>\r\n<li data-section-id=\"joh7a2\" data-start=\"1167\" data-end=\"1254\"><strong data-start=\"1169\" data-end=\"1200\">Linha profissional blindada</strong> – menor interferência e maior estabilidade de sinal</li>\r\n<li data-section-id=\"1gwtgfl\" data-start=\"1255\" data-end=\"1331\"><strong data-start=\"1257\" data-end=\"1284\">Comprimento de 5 metros</strong> – ideal para instalações com maior distância</li>\r\n<li data-section-id=\"uw1zb4\" data-start=\"1332\" data-end=\"1389\"><strong data-start=\"1334\" data-end=\"1363\">Diâmetro de 4mm (O.D 4mm)</strong> – flexível e resistente</li>\r\n<li data-section-id=\"1saszle\" data-start=\"1390\" data-end=\"1461\"><strong data-start=\"1392\" data-end=\"1420\">Conectores Gold com mola</strong> – melhor condução e maior durabilidade</li>\r\n<li data-section-id=\"19r1hlx\" data-start=\"1462\" data-end=\"1517\"><strong data-start=\"1464\" data-end=\"1476\">Cor azul</strong> – facilita a organização do cabeamento</li>\r\n</ul>\r\n<h3 data-section-id=\"s7u0l0\" data-start=\"1524\" data-end=\"1542\"><span role=\"text\"><strong data-start=\"1528\" data-end=\"1542\">Aplicações</strong></span></h3>\r\n<ul data-start=\"1543\" data-end=\"1725\">\r\n<li data-section-id=\"1jpsem7\" data-start=\"1543\" data-end=\"1589\">Ligação entre player e módulo amplificador</li>\r\n<li data-section-id=\"hiwp81\" data-start=\"1590\" data-end=\"1655\">Instalações automotivas com maior distância entre componentes</li>\r\n<li data-section-id=\"1gi9qgb\" data-start=\"1656\" data-end=\"1725\">Sistemas de som automotivo que exigem melhor isolamento de ruídos</li>\r\n</ul>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm - 05 metros",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MXT",
+      "modelo": "",
+      "peso": 0.228,
+      "largura": 17,
+      "altura": 3,
+      "profundidade": 21,
+      "peso_embalagem": 0.228,
+      "largura_embalagem": 17,
+      "altura_embalagem": 3,
+      "profundidade_embalagem": 21,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 78,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "12.007.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-02 12:49:52.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-02 12:49:52.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 15,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "MXT",
+        "remote": "MXT",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "profissional blindado 2+2",
+        "remote": "MXT Profissional Blindado 2+2",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "variation",
+        "local": "azul",
+        "remote": "Azul",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "family_name": "Cabo RCA MXT blindado 2+2 macho 5 metros azul 4mm",
+    "category_id": "MLB438559",
+    "catalog_product_id": "MLB78007028",
+    "catalog_listing": true,
+    "price": 47.49,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017481/ef97dfe08af9b7d88085dfa5954f280b097782934de67d085bd974ef7bfb6adc.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "87536600",
+        "value_name": "MXT Profissional Blindado 2+2"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788220",
+        "value_name": "RCA"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "11163179",
+        "value_name": "Azul"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129121",
+        "value_name": "5 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827368",
+        "value_name": "Cabo adaptador"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16272110",
+        "value_name": "4 mm"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15289674",
+        "value_name": "2"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15290095",
+        "value_name": "2"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "6778113",
+        "value_name": "RCA"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "6778116",
+        "value_name": "RCA"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "13788230",
+        "value_name": "Ouro"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "value_id": "13788232",
+        "value_name": "TV"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7908324706932"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017481"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "AWG_SIZE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "SUPPORTED_AUDIO_CODECS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "INMETRO_CERTIFICATION_REGISTRATION_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "VERSION_TYPE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_BANDWITH",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_REFRESH_RATE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "CABLE_CERTIFICATIONS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK017481",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Cabo RCA MXT blindado 2+2 macho 5 metros azul 4mm\n\n• Conexão: 2 RCA macho em cada extremidade.\n• Comprimento: 5 m; diâmetro: 4 mm.\n• Blindado, com conectores dourados e mola de proteção.\n\nDIMENSÕES DA EMBALAGEM\n21 × 17 × 3 cm; peso bruto 0.228 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK017481",
+  "memory": {
+    "price": 47.49,
+    "cost": 21.1,
+    "offerId": "547cb64c-a61b-4b14-ada1-21e939d0f679",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:41:15.405+00:00",
+    "fee": {
+      "amount": 6.17,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:39.205Z",
+      "evidence": "/sites/MLB/listing_prices?price=47.49&category_id=MLB438559&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "1fe5c55da3dcba58a015babc30125ae7832fee633841f4d4217ab6d31898d499"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:39.205Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=47.49&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x17x21%2C228",
+      "contextKey": "1fe5c55da3dcba58a015babc30125ae7832fee633841f4d4217ab6d31898d499"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:53:39.120Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:53:39.205Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 3.94,
+    "result": 3.33,
+    "margin": 0.07012002526847758,
+    "status": "estimated"
+  },
+  "evaluationId": "1aa3d4d3-4721-4fe3-96f9-d4aff38aaafe",
+  "approvalId": "d6124c71-f259-4a8e-bf5f-02e4ad4b34f3",
+  "duplicates": [],
+  "quantity": 2
+}

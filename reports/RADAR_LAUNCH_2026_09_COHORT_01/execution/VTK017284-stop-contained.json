@@ -1,0 +1,15 @@
+{
+  "cohort": "RADAR_LAUNCH_2026_09_COHORT_01",
+  "sku": "VTK017284",
+  "stopEvents": [
+    "364df8e5-898d-4c8b-b203-8a6eb1cf1acc"
+  ],
+  "status": "CONTIDO_ITEM_PAUSADO_PENDENTE_CATALOGO",
+  "reason": "Erro de integração diagnosticado: descrição de catálogo não editável. Item permanece pausado por contradição interna de dimensões e versões de alimentação. Retirado da seleção. Correção aplica leitura do catálogo aos próximos candidatos.",
+  "remote": {
+    "id": "MLB7594384288",
+    "status": "paused",
+    "price": 1291.84
+  },
+  "at": "2026-09-05T20:49:25.819Z"
+}

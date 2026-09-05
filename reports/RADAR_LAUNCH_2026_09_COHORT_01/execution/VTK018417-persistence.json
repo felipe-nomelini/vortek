@@ -1,0 +1,5 @@
+{
+  "status": 0,
+  "output": "BEGIN\n pg_advisory_xact_lock \n-----------------------\n \n(1 row)\n\nCREATE TABLE\nDO\nCOMMIT\n                                                         row_to_json                                                         \n-----------------------------------------------------------------------------------------------------------------------------\n {\"result\":\"SAFE_PUBLICATION_PERSIST_SUCCESS\",\"listing_id\":\"c6151d92-99c3-48db-aded-be544fbaffac\",\"transaction_id\":27034306}\n(1 row)\n\n",
+  "error": ""
+}

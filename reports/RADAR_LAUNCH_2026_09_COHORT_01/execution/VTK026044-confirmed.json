@@ -1,0 +1,744 @@
+{
+  "sku": "VTK026044",
+  "itemId": "MLB7594388436",
+  "startedAt": "2026-09-05T20:53:34.868Z",
+  "observationUntil": "2026-10-05T20:53:34.868Z",
+  "remote": {
+    "id": "MLB7594388436",
+    "site_id": "MLB",
+    "title": "Mouse Sem Fio Msi50 Intelbras Preto",
+    "family_name": "Intelbras MSI Mouse MSI 50 MSI50",
+    "family_id": 432214331040787,
+    "seller_id": 3294514937,
+    "category_id": "MLB1714",
+    "user_product_id": "MLBU5088533925",
+    "official_store_id": null,
+    "price": 73.7,
+    "base_price": 73.7,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 2,
+    "available_quantity": 2,
+    "sold_quantity": 0,
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica",
+        "value_struct": null,
+        "values": [
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "value_id": null,
+        "value_name": "12 meses",
+        "value_struct": {
+          "number": 12,
+          "unit": "meses"
+        },
+        "values": [
+          {
+            "id": null,
+            "name": "12 meses",
+            "struct": {
+              "number": 12,
+              "unit": "meses"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-09-05T20:53:32.746Z",
+    "stop_time": "2046-08-31T04:00:00.000Z",
+    "end_time": "2046-08-31T04:00:00.000Z",
+    "expiration_time": "2026-11-24T20:53:32.818Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7594388436-mouse-sem-fio-msi50-intelbras-preto-_JM",
+    "thumbnail_id": "975823-MLA115306548998_082026",
+    "thumbnail": "http://http2.mlstatic.com/D_975823-MLA115306548998_082026-I.jpg",
+    "pictures": [
+      {
+        "id": "975823-MLA115306548998_082026",
+        "url": "http://http2.mlstatic.com/D_975823-MLA115306548998_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_975823-MLA115306548998_082026-O.jpg",
+        "size": "386x500",
+        "max_size": "657x850",
+        "quality": ""
+      },
+      {
+        "id": "806442-MLA116715235703_082026",
+        "url": "http://http2.mlstatic.com/D_806442-MLA116715235703_082026-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_806442-MLA116715235703_082026-O.webp",
+        "size": "500x249",
+        "max_size": "1001x500",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": "2296418",
+        "value_name": "Adaptador",
+        "values": [
+          {
+            "id": "2296418",
+            "name": "Adaptador",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "40905268",
+        "value_name": "MSI50",
+        "values": [
+          {
+            "id": "40905268",
+            "name": "MSI50",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "name": "Etiqueta de homologação da Anatel",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "picture_id"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "name": "Homologação Anatel Nº",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "10366",
+        "value_name": "Intelbras",
+        "values": [
+          {
+            "id": "10366",
+            "name": "Intelbras",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "name": "Quantidade de botões",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COMPATIBLE_OPERATING_SYSTEMS",
+        "name": "Sistemas operacionais compatíveis",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COMPUTER_MOUSE_TYPE",
+        "name": "Tipo de mouse",
+        "value_id": "192740",
+        "value_name": "Convencional",
+        "values": [
+          {
+            "id": "192740",
+            "name": "Convencional",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "7899298724933",
+        "values": [
+          {
+            "id": null,
+            "name": "7899298724933",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "name": "Orientação da mão",
+        "value_id": "2862903",
+        "value_name": "Ambidestro",
+        "values": [
+          {
+            "id": "2862903",
+            "name": "Ambidestro",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "45251028",
+        "value_name": "MSI",
+        "values": [
+          {
+            "id": "45251028",
+            "name": "MSI",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "10366",
+        "value_name": "Intelbras",
+        "values": [
+          {
+            "id": "10366",
+            "name": "Intelbras",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_BATTERY_LIFE",
+        "name": "Duração máxima da bateria",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_SPEED",
+        "name": "Velocidade máxima",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "87828630",
+        "value_name": "Mouse MSI 50",
+        "values": [
+          {
+            "id": "87828630",
+            "name": "Mouse MSI 50",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "POLLING_RATE",
+        "name": "Taxa de polling",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK026044",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026044",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SENSOR_RESOLUTION",
+        "name": "Resolução do sensor",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SENSOR_TECHNOLOGY",
+        "name": "Tecnologia do sensor",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SENSOR_TYPE",
+        "name": "Tipo de sensor",
+        "value_id": "109003",
+        "value_name": "Óptico",
+        "values": [
+          {
+            "id": "109003",
+            "name": "Óptico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "9022334",
+        "value_name": "83 g",
+        "values": [
+          {
+            "id": "9022334",
+            "name": "83 g",
+            "struct": {
+              "number": 83,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "-1",
+        "value_name": null,
+        "values": [
+          {
+            "id": "-1",
+            "name": null,
+            "struct": null
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIRELESS_TECHNOLOGY",
+        "name": "Tecnologia sem fio",
+        "value_id": "73460133",
+        "value_name": "Wireless 2.4",
+        "values": [
+          {
+            "id": "73460133",
+            "name": "Wireless 2.4",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "name": "Com luzes",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_WIRE",
+        "name": "Com fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": "Garantia de fábrica: 12 meses",
+    "catalog_product_id": "MLB78302520",
+    "domain_id": "MLB-COMPUTER_MICE",
+    "seller_custom_field": "VTK026044",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-09-05T20:53:32.927Z",
+    "last_updated": "2026-09-05T20:53:32.927Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "verification": {
+    "checks": {
+      "attributesConfirmed": true,
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "price": true,
+      "stock": true,
+      "category": true,
+      "catalog": true,
+      "identity": true,
+      "condition": true,
+      "modality": true,
+      "shipping": true,
+      "noUnexpectedPair": true
+    },
+    "identity": {
+      "identity": "IDENTIDADE_COHERENTE",
+      "comparisons": [
+        {
+          "field": "gtin",
+          "local": "7899298724933",
+          "remote": "7899298724933",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "brand",
+          "local": "Intelbras",
+          "remote": "Intelbras",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "model",
+          "local": "Mouse MSI 50",
+          "remote": "Mouse MSI 50",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "variation",
+          "local": "Preto",
+          "remote": "Preto",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        }
+      ],
+      "reasons": [],
+      "warnings": [
+        "APRESENTACAO_NAO_EXPLICITA"
+      ],
+      "identityRuleVersion": "M2M-IDENTITY-v2.1"
+    },
+    "ok": true
+  },
+  "description": {
+    "message": "Description of item with id MLB7594388436 not found",
+    "error": "not_found",
+    "status": 404,
+    "cause": []
+  },
+  "memory": {
+    "price": 73.7,
+    "cost": 39.9,
+    "offerId": "57c6546f-4141-477a-aa2e-602712b0a36f",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:23:25.5+00:00",
+    "fee": {
+      "amount": 9.58,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:34.042Z",
+      "evidence": "/sites/MLB/listing_prices?price=73.7&category_id=MLB1714&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "3201bd34ce5cac43b2ee5c937c4fd77dedd981f650e46e140eac6d04ea7867ea"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:53:34.042Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=73.7&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB7594388436",
+      "contextKey": "3201bd34ce5cac43b2ee5c937c4fd77dedd981f650e46e140eac6d04ea7867ea"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:53:33.807Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:53:34.042Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 6.11,
+    "result": 5.16,
+    "margin": 0.0700135685210312,
+    "status": "estimated"
+  },
+  "approvalId": "c5bb98a6-b48b-405f-b28f-f896cdfe5f5d",
+  "evaluationId": "5afc149b-c8fa-4a0b-b37c-ba85a1921a4d",
+  "status": "PUBLICADO_VALIDADO"
+}

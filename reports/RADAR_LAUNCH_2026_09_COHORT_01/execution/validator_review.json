@@ -1,0 +1,132 @@
+[
+  {
+    "sku": "VTK005849",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ]
+    ],
+    "price": 58.53
+  },
+  {
+    "sku": "VTK017249",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ]
+    ],
+    "price": 67.19
+  },
+  {
+    "sku": "VTK017284",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ],
+      [
+        "warning",
+        "item.shipping.mandatory_free_shipping"
+      ]
+    ],
+    "price": 1291.84
+  },
+  {
+    "sku": "VTK017481",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ]
+    ],
+    "price": 47.49
+  },
+  {
+    "sku": "VTK018081",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ],
+      [
+        "warning",
+        "item.shipping.mandatory_free_shipping"
+      ]
+    ],
+    "price": 90.42
+  },
+  {
+    "sku": "VTK018319",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ],
+      [
+        "warning",
+        "item.shipping.mandatory_free_shipping"
+      ]
+    ],
+    "price": 258.72
+  },
+  {
+    "sku": "VTK018404",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ],
+      [
+        "warning",
+        "item.shipping.mandatory_free_shipping"
+      ]
+    ],
+    "price": 92.68
+  },
+  {
+    "sku": "VTK018417",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ]
+    ],
+    "price": 32.32
+  },
+  {
+    "sku": "VTK026044",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ]
+    ],
+    "price": 73.7
+  },
+  {
+    "sku": "VTK026052",
+    "valid": true,
+    "causes": [
+      [
+        "warning",
+        "shipping.lost_me1_by_user"
+      ],
+      [
+        "warning",
+        "item.shipping.mandatory_free_shipping"
+      ]
+    ],
+    "price": 93.92
+  }
+]

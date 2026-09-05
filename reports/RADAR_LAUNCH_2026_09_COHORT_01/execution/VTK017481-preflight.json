@@ -1,0 +1,4076 @@
+{
+  "c": {
+    "sku": "VTK017481",
+    "prediction": [
+      {
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "domain_name": "Cabos e adaptadores de áudio e vídeo",
+        "category_id": "MLB438559",
+        "category_name": "Cabos e Conectores",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "2153976",
+            "value_name": "MXT"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "13834606",
+            "value_name": "Blindado"
+          },
+          {
+            "id": "CABLE_AND_ADAPTER_TYPE",
+            "name": "Tipo de cabo e adaptador",
+            "value_id": "13788220",
+            "value_name": "RCA"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "20407638",
+            "value_name": "Vermelho"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1"
+          },
+          {
+            "id": "CABLE_LENGTH",
+            "name": "Comprimento do cabo",
+            "value_id": "129121",
+            "value_name": "5 m"
+          }
+        ]
+      },
+      {
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "domain_name": "Cabos e adaptadores de áudio e vídeo",
+        "category_id": "MLB72745",
+        "category_name": "Cabos",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "2153976",
+            "value_name": "MXT"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "13834606",
+            "value_name": "Blindado"
+          },
+          {
+            "id": "CABLE_AND_ADAPTER_TYPE",
+            "name": "Tipo de cabo e adaptador",
+            "value_id": "13788220",
+            "value_name": "RCA"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "20407638",
+            "value_name": "Vermelho"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1"
+          },
+          {
+            "id": "CABLE_LENGTH",
+            "name": "Comprimento do cabo",
+            "value_id": "129121",
+            "value_name": "5 m"
+          }
+        ]
+      },
+      {
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "domain_name": "Cabos e adaptadores de áudio e vídeo",
+        "category_id": "MLB38279",
+        "category_name": "Outros Cabos",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "2153976",
+            "value_name": "MXT"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "13834606",
+            "value_name": "Blindado"
+          },
+          {
+            "id": "CABLE_AND_ADAPTER_TYPE",
+            "name": "Tipo de cabo e adaptador",
+            "value_id": "13788220",
+            "value_name": "RCA"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "20407638",
+            "value_name": "Vermelho"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1"
+          },
+          {
+            "id": "CABLE_LENGTH",
+            "name": "Comprimento do cabo",
+            "value_id": "129121",
+            "value_name": "5 m"
+          }
+        ]
+      }
+    ],
+    "product": {
+      "id": "35fd7fe3-57c4-4df2-b6ff-eedbe62200a9",
+      "sku": "VTK017481",
+      "nome": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros",
+      "marca": "MXT",
+      "estoque": 15,
+      "custo": 21.1,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.228,
+      "peso_bruto": 0.228,
+      "largura": 17,
+      "altura": 3,
+      "profundidade": 21,
+      "gtin": "7908324706932",
+      "descricao": "Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm – 5 Metros (Gold com Mola) O Cabo RCA MXT Profissional Blindado 2+2 de 5 metros é indicado para projetos de som automotivo que exigem maior alcance com qualidade de sinal e proteção contra interferências . Sua construção blindada contribui para uma transmissão mais limpa e estável, reduzindo ruídos mesmo em sistemas de maior potência . Com 5 metros de comprimento , oferece mais flexibilidade na instalação, facilitando o posicionamento de módulos, players e amplificadores em diferentes pontos do veículo. O diâmetro de 4mm (O.D 4mm) garante um bom equilíbrio entre resistência e flexibilidade, favorecendo a passagem do cabeamento. O modelo conta com acabamento azul , que auxilia na organização e identificação durante a instalação. Os conectores com banho dourado (Gold) melhoram a condução do sinal e aumentam a durabilidade, enquanto a mola de proteção nos plugs ajuda a reduzir desgastes e quebras por movimentação, prolongando a vida útil do cabo. Destaques do produto Conexão 2 RCA macho + 2 RCA macho Linha profissional blindada – menor interferência e maior estabilidade de sinal Comprimento de 5 metros – ideal para instalações com maior distância Diâmetro de 4mm (O.D 4mm) – flexível e resistente Conectores Gold com mola – melhor condução e maior durabilidade Cor azul – facilita a organização do cabeamento Aplicações Ligação entre player e módulo amplificador Instalações automotivas com maior distância entre componentes Sistemas de som automotivo que exigem melhor isolamento de ruídos *Imagens meramente ilustrativas.",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png"
+      ],
+      "categoria": "Antenas E Acessórios/ Cabo Audio/ Cabo Rca",
+      "ml_item_id": null,
+      "created_at": "2026-07-20T18:30:56.790751+00:00",
+      "updated_at": "2026-09-05T19:41:15.774562+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "391043",
+      "dslite_ultima_sync": "2026-09-05T19:41:15.397+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "85444200",
+      "cest": "12.007.00",
+      "origem_fiscal": "2",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "547cb64c-a61b-4b14-ada1-21e939d0f679",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "547cb64c-a61b-4b14-ada1-21e939d0f679",
+      "produto_id": "35fd7fe3-57c4-4df2-b6ff-eedbe62200a9",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "391043",
+      "sku_fornecedor": "391043",
+      "custo": 21.1,
+      "estoque": 15,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:41:15.397+00:00",
+      "created_at": "2026-07-20T18:30:57.116305+00:00",
+      "updated_at": "2026-09-05T19:41:15.405+00:00",
+      "sku_oferta": "391043",
+      "nome": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros",
+      "descricao": "Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm – 5 Metros (Gold com Mola) O Cabo RCA MXT Profissional Blindado 2+2 de 5 metros é indicado para projetos de som automotivo que exigem maior alcance com qualidade de sinal e proteção contra interferências . Sua construção blindada contribui para uma transmissão mais limpa e estável, reduzindo ruídos mesmo em sistemas de maior potência . Com 5 metros de comprimento , oferece mais flexibilidade na instalação, facilitando o posicionamento de módulos, players e amplificadores em diferentes pontos do veículo. O diâmetro de 4mm (O.D 4mm) garante um bom equilíbrio entre resistência e flexibilidade, favorecendo a passagem do cabeamento. O modelo conta com acabamento azul , que auxilia na organização e identificação durante a instalação. Os conectores com banho dourado (Gold) melhoram a condução do sinal e aumentam a durabilidade, enquanto a mola de proteção nos plugs ajuda a reduzir desgastes e quebras por movimentação, prolongando a vida útil do cabo. Destaques do produto Conexão 2 RCA macho + 2 RCA macho Linha profissional blindada – menor interferência e maior estabilidade de sinal Comprimento de 5 metros – ideal para instalações com maior distância Diâmetro de 4mm (O.D 4mm) – flexível e resistente Conectores Gold com mola – melhor condução e maior durabilidade Cor azul – facilita a organização do cabeamento Aplicações Ligação entre player e módulo amplificador Instalações automotivas com maior distância entre componentes Sistemas de som automotivo que exigem melhor isolamento de ruídos *Imagens meramente ilustrativas.\n\nCabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm - 05 metros",
+      "marca": "MXT",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png"
+      ],
+      "gtin": "7908324706932",
+      "ncm": "85444200",
+      "cest": "12.007.00"
+    },
+    "radar": {
+      "id": "72ee0a84-2d3b-43d7-9ae5-cdceb28046cf",
+      "produto_id": "35fd7fe3-57c4-4df2-b6ff-eedbe62200a9",
+      "candidate_key": "product:35fd7fe3-57c4-4df2-b6ff-eedbe62200a9",
+      "sku": "VTK017481",
+      "catalog_product_id": "MLB78007028",
+      "pricing_group_id": null,
+      "stage": "AGUARDANDO_APROVACAO",
+      "queue": "EXPLORATORIOS",
+      "conflict_state": "SEM_CONFLITO",
+      "assessment": {
+        "state": "SEM_CONFLITO",
+        "economy": "VIAVEL_NO_ALVO",
+        "listing": "NOVO_ANUNCIO_CANDIDATO",
+        "reasons": [],
+        "identity": "IDENTIDADE_COHERENTE",
+        "listings": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA",
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "comparisons": [
+          {
+            "basis": "normalized",
+            "field": "brand",
+            "local": "MXT",
+            "remote": "MXT",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "model",
+            "local": "profissional blindado 2+2",
+            "remote": "MXT Profissional Blindado 2+2",
+            "matches": true,
+            "evidence": null
+          },
+          {
+            "basis": "normalized",
+            "field": "variation",
+            "local": "azul",
+            "remote": "Azul",
+            "matches": true,
+            "evidence": null
+          }
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1",
+        "publicationAutonomy": "REQUIRES_CONFIRMATION"
+      },
+      "evidence": {
+        "asOf": "2026-09-05T15:16:37.457Z",
+        "cost": 21.1,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "source": "oportunidades-ml-2026-09-05",
+        "product": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros",
+        "identity": {
+          "local": {
+            "gtin": "7908324706932",
+            "brand": "MXT",
+            "model": "profissional blindado 2+2",
+            "quantity": null,
+            "packaging": null,
+            "variation": "azul",
+            "partNumber": null,
+            "provenance": {
+              "gtin": {
+                "source": "supplier_offer:547cb64c-a61b-4b14-ada1-21e939d0f679",
+                "excerpt": "7908324706932"
+              },
+              "brand": {
+                "source": "supplier_offer:547cb64c-a61b-4b14-ada1-21e939d0f679",
+                "excerpt": "MXT; "
+              },
+              "model": {
+                "source": "supplier_offer:547cb64c-a61b-4b14-ada1-21e939d0f679",
+                "excerpt": "profissional blindado 2+2"
+              }
+            },
+            "brandEvidence": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm – 5 Metros (Gold com Mola) O Cabo RCA MXT Profissional Blindado 2+2 de 5 metros é indicado para projetos de som automotivo que exigem maior alcance com qualidade de sinal e proteção contra interferências . Sua construção blindada contribui para uma transmissão mais limpa e estável, reduzindo ruídos mesmo em sistemas de maior potência . Com 5 metros de comprimento , oferece mais flexibilidade na instalação, facilitando o posicionamento de módulos, players e amplificadores em diferentes pontos do veículo. O diâmetro de 4mm (O.D 4mm) garante um bom equilíbrio entre resistência e flexibilidade, favorecendo a passagem do cabeamento. O modelo conta com acabamento azul , que auxilia na organização e identificação durante a instalação. Os conectores com banho dourado (Gold) melhoram a condução do sinal e aumentam a durabilidade, enquanto a mola de proteção nos plugs ajuda a reduzir desgastes e quebras por movimentação, prolongando a vida útil do cabo. Destaques do produto Conexão 2 RCA macho + 2 RCA macho Linha profissional blindada – menor interferência e maior estabilidade de sinal Comprimento de 5 metros – ideal para instalações com maior distância Diâmetro de 4mm (O.D 4mm) – flexível e resistente Conectores Gold com mola – melhor condução e maior durabilidade Cor azul – facilita a organização do cabeamento Aplicações Ligação entre player e módulo amplificador Instalações automotivas com maior distância entre componentes Sistemas de som automotivo que exigem melhor isolamento de ruídos *Imagens meramente ilustrativas. Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm - 05 metros"
+          },
+          "remote": {
+            "gtin": null,
+            "brand": "MXT",
+            "model": "MXT Profissional Blindado 2+2",
+            "critical": {
+              "SIZE": null,
+              "LENGTH": null,
+              "VOLTAGE": null,
+              "CAPACITY": null,
+              "PINS_NUMBER": null,
+              "CONNECTOR_TYPE": null,
+              "INPUT_CONNECTOR": "RCA",
+              "OUTPUT_CONNECTOR": "RCA"
+            },
+            "quantity": 1,
+            "packaging": "unidade",
+            "saleUnits": 1,
+            "variation": "Azul",
+            "partNumber": null,
+            "provenance": {
+              "brand": {
+                "source": "/products/MLB78007028",
+                "excerpt": "BRAND: MXT"
+              },
+              "model": {
+                "source": "/products/MLB78007028",
+                "excerpt": "MODEL: MXT Profissional Blindado 2+2"
+              },
+              "variation": {
+                "source": "/products/MLB78007028",
+                "excerpt": "COLOR: Azul"
+              },
+              "presentation": {
+                "source": "/products/MLB78007028",
+                "excerpt": "SALE_FORMAT: Unidade; UNITS_PER_PACK: 1; PACKS_NUMBER: null"
+              }
+            }
+          },
+          "source": "/products/MLB78007028"
+        },
+        "supplier": "Evolusom Comercial Ltda",
+        "listingType": "gold_special",
+        "identityReview": "Cabo MXT 2 RCA x 2 RCA, azul, 4 mm, 5 metros.",
+        "competitivePrice": 68.9,
+        "identityObservedAt": "2026-09-05T20:04:49.805Z"
+      },
+      "priority": {
+        "stock": 15,
+        "demand": "SEM_EVIDENCIA_DE_DEMANDA",
+        "economy": "VIAVEL_NO_ALVO",
+        "identity": "IDENTIDADE_COHERENTE",
+        "demandRank": 3,
+        "publication": "COMPLETA",
+        "competitiveness": {
+          "price": 68.9,
+          "contribution": 20.18
+        }
+      },
+      "recommendation": "Explorar demanda; validar pendências antes de aprovar",
+      "evaluation_id": "a0322a73-07c0-458e-9a3b-aa257610c231",
+      "target_evaluation_id": "6f0402a4-faa2-4173-9d44-5ae024e8af28",
+      "floor_evaluation_id": "2944f38f-3cb8-40e4-82f5-5700d9f0efac",
+      "break_even_evaluation_id": "fb28fdde-7a12-48bb-abf2-5ba8d6c0670e",
+      "input_fingerprint": "9fb06083b603e8f604933ddaee544fab895becc5eff91761347f7ea2e78889d3",
+      "stock": 15,
+      "demand_rank": 3,
+      "contribution": 20.18,
+      "job_id": "ecc5182e-1cd3-4671-8ca2-4213121bd14b",
+      "processed_at": "2026-09-05T20:10:45.479015+00:00",
+      "updated_at": "2026-09-05T20:10:45.479015+00:00"
+    },
+    "catalog": {
+      "id": "MLB78007028",
+      "catalog_product_id": "MLB78007028",
+      "status": "active",
+      "pdp_types": [
+        "traditional"
+      ],
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "permalink": "",
+      "name": "Cabo Rca Mxt Profissional Blindado 2 Rca+2 Rca Azul 4mm/ 5m",
+      "family_name": "MXT Profissional Blindado 2+2 RCA",
+      "type": "catalog_product",
+      "buy_box_winner": null,
+      "pickers": [
+        {
+          "picker_id": "COLOR",
+          "picker_name": "Cor",
+          "products": [
+            {
+              "product_id": "MLB78007028",
+              "picker_label": "Azul",
+              "picture_id": "954100-MLA115152839626_082026",
+              "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_954100-MLA115152839626_082026-I.jpg",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "MXT Profissional Blindado 2+2 RCA - Azul - Unidade - 1 - 5 m",
+              "auto_completed": true
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "COLOR",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        },
+        {
+          "picker_id": "UNITS_PER_PACK",
+          "picker_name": "Quantidade de embalagens",
+          "products": [
+            {
+              "product_id": "MLB78007028",
+              "picker_label": "1",
+              "picture_id": "",
+              "thumbnail": "",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "MXT Profissional Blindado 2+2 RCA - Azul - Unidade - 1 - 5 m",
+              "auto_completed": false
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "UNITS_PER_PACK",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": " ",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        },
+        {
+          "picker_id": "CABLE_LENGTH",
+          "picker_name": "Comprimento do cabo",
+          "products": [
+            {
+              "product_id": "MLB78007028",
+              "picker_label": "5 m",
+              "picture_id": "",
+              "thumbnail": "",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "MXT Profissional Blindado 2+2 RCA - Azul - Unidade - 1 - 5 m",
+              "auto_completed": false
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "CABLE_LENGTH",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        }
+      ],
+      "pictures": [
+        {
+          "id": "954100-MLA115152839626_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_954100-MLA115152839626_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1018,
+          "max_height": 1004,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "902528-MLA116549208929_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_902528-MLA116549208929_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1154,
+          "max_height": 1191,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "805373-MLA116549556067_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_805373-MLA116549556067_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1024,
+          "max_height": 1024,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "704807-MLA115152635062_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_704807-MLA115152635062_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 932,
+          "max_height": 925,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "963326-MLA116549208961_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_963326-MLA116549208961_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1024,
+          "max_height": 1024,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "627558-MLA116549727985_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_627558-MLA116549727985_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 951,
+          "max_height": 567,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "847819-MLA116549612877_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_847819-MLA116549612877_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1024,
+          "max_height": 1024,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "740461-MLA116549498837_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_740461-MLA116549498837_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 729,
+          "max_height": 798,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "863589-MLA115152663256_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_863589-MLA115152663256_082026-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1024,
+          "max_height": 1024,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        }
+      ],
+      "description_pictures": [],
+      "main_features": [
+        {
+          "text": "O diâmetro de 4 mm permite a passagem do cabeamento por conduítes e canaletas com espaço reduzido entre aparelhos.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Os conectores com revestimento em ouro reduzem a oxidação nos pontos de contato para manter a condutividade elétrica.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "A configuração de 2 RCA para 2 RCA conecta TVs a sistemas de som estéreo com transmissão de sinal analógico duplo.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Os conectores machos nas extremidades permitem o encaixe direto entre portas de entrada e saída de áudio e vídeo.",
+          "type": "key_value",
+          "metadata": {}
+        }
+      ],
+      "disclaimers": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2153976",
+          "value_name": "MXT",
+          "values": [
+            {
+              "id": "2153976",
+              "name": "MXT"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "87536600",
+          "value_name": "MXT Profissional Blindado 2+2",
+          "values": [
+            {
+              "id": "87536600",
+              "name": "MXT Profissional Blindado 2+2"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "13788220",
+          "value_name": "RCA",
+          "values": [
+            {
+              "id": "13788220",
+              "name": "RCA"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "11163179",
+          "value_name": "Azul",
+          "values": [
+            {
+              "id": "11163179",
+              "name": "Azul"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "129121",
+          "value_name": "5 m",
+          "values": [
+            {
+              "id": "129121",
+              "name": "5 m"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827368",
+          "value_name": "Cabo adaptador",
+          "values": [
+            {
+              "id": "13827368",
+              "name": "Cabo adaptador"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "name": "Diâmetro do cabo",
+          "value_id": "16272110",
+          "value_name": "4 mm",
+          "values": [
+            {
+              "id": "16272110",
+              "name": "4 mm"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de entrada",
+          "value_id": "15289674",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "15289674",
+              "name": "2"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de saída",
+          "value_id": "15290095",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "15290095",
+              "name": "2"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "name": "Conector de entrada",
+          "value_id": "6778113",
+          "value_name": "RCA",
+          "values": [
+            {
+              "id": "6778113",
+              "name": "RCA"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "name": "Conector de saída",
+          "value_id": "6778116",
+          "value_name": "RCA",
+          "values": [
+            {
+              "id": "6778116",
+              "name": "RCA"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "name": "Gênero do conector de entrada",
+          "value_id": "6116079",
+          "value_name": "Macho",
+          "values": [
+            {
+              "id": "6116079",
+              "name": "Macho"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "name": "Gênero do conector de saída",
+          "value_id": "6116086",
+          "value_name": "Macho",
+          "values": [
+            {
+              "id": "6116086",
+              "name": "Macho"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "name": "Material de revestimento do conector",
+          "value_id": "13788230",
+          "value_name": "Ouro",
+          "values": [
+            {
+              "id": "13788230",
+              "name": "Ouro"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "name": "Dispositivos compatíveis",
+          "value_id": "13788232",
+          "value_name": "TV",
+          "values": [
+            {
+              "id": "13788232",
+              "name": "TV"
+            }
+          ]
+        }
+      ],
+      "short_description": {
+        "type": "plaintext",
+        "content": "Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA de 5 metros, indicado para projetos de som automotivo que exigem qualidade de sinal e proteção contra interferências.\n\nConstrução blindada para transmissão limpa e estável, reduzindo ruídos em sistemas de maior potência. \nComprimento de 5 metros para flexibilidade na instalação, facilitando o posicionamento de módulos, players e amplificadores. \nDiâmetro de 4mm (O.D 4mm), equilibrando resistência e flexibilidade para a passagem do cabeamento. \nAcabamento na cor azul para organização e identificação. \nConectores com banho dourado (Gold) para melhor condução do sinal e maior durabilidade. \nMola de proteção nos plugs para redução de desgastes e quebras por movimentação."
+      },
+      "parent_id": "MLB78007027",
+      "children_ids": [],
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false,
+        "with_enhanced_pictures": false,
+        "base_site_product_id": null,
+        "ttr": "2026-09-06T20:56:53.137765554"
+      },
+      "quality_type": "COMPLETE",
+      "release_info": null,
+      "presale_info": null,
+      "enhanced_content": null,
+      "tags": [],
+      "date_created": "2026-08-21T18:59:38Z",
+      "authorized_stores": null,
+      "last_updated": "2026-08-21T19:11:23Z",
+      "grouper_id": null,
+      "experiments": {}
+    },
+    "category": {
+      "id": "MLB438559",
+      "name": "Cabos e Conectores",
+      "picture": null,
+      "permalink": null,
+      "total_items_in_this_category": 49745,
+      "path_from_root": [
+        {
+          "id": "MLB5672",
+          "name": "Acessórios para Veículos"
+        },
+        {
+          "id": "MLB3381",
+          "name": "Som Automotivo"
+        },
+        {
+          "id": "MLB438559",
+          "name": "Cabos e Conectores"
+        }
+      ],
+      "children_categories": [],
+      "attribute_types": "attributes",
+      "settings": {
+        "adult_content": false,
+        "buying_allowed": true,
+        "buying_modes": [
+          "auction",
+          "buy_it_now"
+        ],
+        "catalog_domain": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "coverage_areas": "not_allowed",
+        "currencies": [
+          "BRL"
+        ],
+        "fragile": false,
+        "immediate_payment": "required",
+        "item_conditions": [
+          "used",
+          "not_specified",
+          "new"
+        ],
+        "items_reviews_allowed": false,
+        "listing_allowed": true,
+        "max_description_length": 50000,
+        "max_pictures_per_item": 12,
+        "max_pictures_per_item_var": 10,
+        "max_sub_title_length": 70,
+        "max_title_length": 200,
+        "max_variations_allowed": 100,
+        "maximum_price": null,
+        "maximum_price_currency": "BRL",
+        "minimum_price": 0,
+        "minimum_price_currency": "BRL",
+        "mirror_category": null,
+        "mirror_master_category": null,
+        "mirror_slave_categories": [],
+        "price": "required",
+        "reservation_allowed": "not_allowed",
+        "restrictions": [],
+        "rounded_address": false,
+        "seller_contact": "not_allowed",
+        "shipping_options": [
+          "custom"
+        ],
+        "shipping_profile": "optional",
+        "show_contact_information": false,
+        "simple_shipping": "optional",
+        "stock": "required",
+        "sub_vertical": null,
+        "subscribable": false,
+        "tags": [],
+        "vertical": null,
+        "vip_subdomain": "produto",
+        "buyer_protection_programs": [
+          "delivered",
+          "undelivered"
+        ],
+        "status": "enabled"
+      },
+      "channels_settings": [
+        {
+          "channel": "mshops",
+          "settings": {
+            "minimum_price": 0
+          }
+        },
+        {
+          "channel": "proximity",
+          "settings": {
+            "status": "disabled"
+          }
+        },
+        {
+          "channel": "mp-merchants",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        },
+        {
+          "channel": "mp-link",
+          "settings": {
+            "buying_modes": [
+              "buy_it_now"
+            ],
+            "immediate_payment": "required",
+            "minimum_price": 0.01,
+            "status": "enabled"
+          }
+        }
+      ],
+      "meta_categ_id": null,
+      "attributable": false,
+      "date_created": "2019-09-10T15:57:18.000Z"
+    },
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "tags": {},
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "name": "Tipo de cabo e adaptador",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "hierarchy": "PARENT_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "13788220",
+            "name": "RCA"
+          },
+          {
+            "id": "13788222",
+            "name": "VGA"
+          },
+          {
+            "id": "13788227",
+            "name": "XLR"
+          },
+          {
+            "id": "16696220",
+            "name": "HDMI"
+          },
+          {
+            "id": "15282410",
+            "name": "DisplayPort"
+          },
+          {
+            "id": "43365246",
+            "name": "Jack 3.5mm"
+          },
+          {
+            "id": "25941079",
+            "name": "USB-C"
+          }
+        ],
+        "tooltip": "É o tipo ou classe específica de conexão ou tecnologia, por exemplo RCA, HDMI, USB-C.",
+        "example": "RCA",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "tags": {},
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "tags": {},
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          },
+          {
+            "id": "1359392",
+            "name": "Kit"
+          }
+        ],
+        "tooltip": "É o formato em que seu produto será vendido, podendo ser por kit ou unidade. Kit: significa vender várias unidades idênticas, agrupadas em conjunto, como 2 cabos e adaptadores de áudio e vídeo. Unidade: significa vender o produto individualmente.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "tags": {
+          "unit_yield": true,
+          "conditional_required": true
+        },
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "É a quantidade de produtos de cada kit, por exemplo, num kit com 2 cabos e adaptadores de áudio e vídeo, 2 seria o número a completar.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "name": "Comprimento do cabo",
+        "tags": {},
+        "hierarchy": "CHILD_PK",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "m",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_HEIGHT",
+        "name": "Altura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WIDTH",
+        "name": "Largura da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "cm",
+            "name": "cm"
+          },
+          {
+            "id": "ft",
+            "name": "ft"
+          },
+          {
+            "id": "m",
+            "name": "m"
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_WEIGHT",
+        "name": "Peso da embalagem",
+        "tags": {
+          "hidden": true,
+          "read_only": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "CHILD_DEPENDENT",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          },
+          {
+            "id": "kg",
+            "name": "kg"
+          },
+          {
+            "id": "lb",
+            "name": "lb"
+          },
+          {
+            "id": "mg",
+            "name": "mg"
+          },
+          {
+            "id": "oz",
+            "name": "oz"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "name": "Etiqueta de homologação da Anatel",
+        "tags": {},
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "picture_id",
+        "value_max_length": 255,
+        "tooltip": "Envie uma imagem onde o produto e a etiqueta com o código de homologação da Anatel estejam claramente visíveis.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "13827367",
+            "name": "Fio"
+          },
+          {
+            "id": "13827368",
+            "name": "Cabo adaptador"
+          },
+          {
+            "id": "13827369",
+            "name": "Adaptador"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "name": "Diâmetro do cabo",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "\"",
+            "name": "\""
+          },
+          {
+            "id": "mm",
+            "name": "mm"
+          }
+        ],
+        "default_unit": "mm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "AWG_SIZE",
+        "name": "Tamanho AWG",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "example": "28.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "name": "Quantidade de conectores de entrada",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "name": "Quantidade de conectores de saída",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "name": "Conector de entrada",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "6739226",
+            "name": "VGA"
+          },
+          {
+            "id": "6759270",
+            "name": "Jack"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "name": "Conector de saída",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "6739228",
+            "name": "VGA"
+          },
+          {
+            "id": "6759271",
+            "name": "Jack"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "name": "Gênero do conector de entrada",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "6116079",
+            "name": "Macho"
+          },
+          {
+            "id": "6116080",
+            "name": "Fêmea"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "name": "Gênero do conector de saída",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "6116086",
+            "name": "Macho"
+          },
+          {
+            "id": "6116087",
+            "name": "Fêmea"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "name": "Material de revestimento do conector",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "13788230",
+            "name": "Ouro"
+          },
+          {
+            "id": "13788231",
+            "name": "Latão niquelado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUPPORTED_AUDIO_CODECS",
+        "name": "Codecs de áudio suportados",
+        "tags": {
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "15773443",
+            "name": "Dolby TrueHD"
+          },
+          {
+            "id": "15773445",
+            "name": "Dolby Digital Plus"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "tags": {
+          "multivalued": true,
+          "variation_attribute": true,
+          "used_hidden": true,
+          "validate": true,
+          "conditional_required": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Pode ser um EAN, UPC ou outro GTIN"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "name": "Dispositivos compatíveis",
+        "tags": {
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "13788232",
+            "name": "TV"
+          },
+          {
+            "id": "13788233",
+            "name": "MP3"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "name": "Resolução máxima suportada",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "6759291",
+            "name": "720p"
+          },
+          {
+            "id": "6759292",
+            "name": "960p"
+          },
+          {
+            "id": "6759293",
+            "name": "1080p"
+          },
+          {
+            "id": "128797",
+            "name": "2K"
+          },
+          {
+            "id": "128798",
+            "name": "4K"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EMPTY_GTIN_REASON",
+        "name": "Motivo de GTIN vazio",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true,
+          "conditional_required": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "17055158",
+            "name": "O produto é uma peça artesanal"
+          },
+          {
+            "id": "17055159",
+            "name": "O produto é um kit ou pack"
+          },
+          {
+            "id": "17055160",
+            "name": "O produto não tem código cadastrado"
+          },
+          {
+            "id": "17055161",
+            "name": "Outro motivo"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INMETRO_CERTIFICATION_REGISTRATION_NUMBER",
+        "name": "Número de registro/certificação INMETRO",
+        "tags": {},
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Informe a numeração de máximo 21 dígitos, com ponto, hífen ou barra (/), se houver. É o registro no Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO).",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VERSION_TYPE",
+        "name": "Tipo de versão",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "63532248",
+            "name": "1.4"
+          },
+          {
+            "id": "63532249",
+            "name": "2.0"
+          },
+          {
+            "id": "63532250",
+            "name": "2.1"
+          },
+          {
+            "id": "63532252",
+            "name": "1.3"
+          },
+          {
+            "id": "63532253",
+            "name": "3 Pinos"
+          },
+          {
+            "id": "63532254",
+            "name": "4 Pinos"
+          },
+          {
+            "id": "63532256",
+            "name": "5 Pinos"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ELECTRICAL_SAFETY_CERTIFICATE_NUMBER",
+        "name": "Número de certificado de segurança elétrica",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "É o número do certificado que uma entidade certificadora do seu país atribui a produtos elétricos, depois de verificar que é seguro.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_BANDWITH",
+        "name": "Largura de banda máxima",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "Gbps",
+            "name": "Gbps"
+          },
+          {
+            "id": "kbps",
+            "name": "kbps"
+          },
+          {
+            "id": "Mbps",
+            "name": "Mbps"
+          }
+        ],
+        "default_unit": "Gbps",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MAX_REFRESH_RATE",
+        "name": "Taxa máxima de atualização",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "Hz",
+            "name": "Hz"
+          }
+        ],
+        "default_unit": "Hz",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CABLE_CERTIFICATIONS",
+        "name": "Certificações do cabo",
+        "tags": {
+          "multivalued": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "63532258",
+            "name": "Ultra High Speed HDMI Cable Certification"
+          },
+          {
+            "id": "63532259",
+            "name": "VESA Certified DP40"
+          },
+          {
+            "id": "63532261",
+            "name": "VESA Certified DP80"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "name": "Homologação Anatel Nº",
+        "tags": {},
+        "hierarchy": "FAMILY",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "É o número de certificação ou aprovação da marca e do modelo do seu produto na Anatel. Para evitar sanções, certifique-se de que ele corresponde ao produto que você vai anunciar.",
+        "example": "Começa com 0, 1 ou 2. Limite de 12 dígitos numéricos.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros",
+        "hint": "Código numérico de 12 dígitos"
+      },
+      {
+        "id": "AGID",
+        "name": "AGID",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 1,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DECLARATION_NUMBER",
+        "name": "Número da DI",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number",
+        "value_max_length": 18,
+        "tooltip": "Número de 15 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INVOICE_PRODUCT_NAME",
+        "name": "Nome do produto na nota fiscal",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SAT_KEY",
+        "name": "Chave do produto",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021094",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_KEY",
+        "name": "Chave da unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "82021108",
+            "name": "Não existe no catálogo"
+          }
+        ],
+        "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEASURE_UNIT_DESCRIPTION",
+        "name": "Unidade de medida",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IVA_FOR_RESALE",
+        "name": "IVA para revenda",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "81861612",
+            "name": "Isento"
+          },
+          {
+            "id": "81861613",
+            "name": "0%"
+          },
+          {
+            "id": "81861614",
+            "name": "8%"
+          },
+          {
+            "id": "81861616",
+            "name": "16%"
+          }
+        ],
+        "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IEPS",
+        "name": "IEPS",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "82021095",
+            "name": "0%"
+          },
+          {
+            "id": "82021096",
+            "name": "3%"
+          },
+          {
+            "id": "82021097",
+            "name": "6%"
+          },
+          {
+            "id": "82021098",
+            "name": "7%"
+          },
+          {
+            "id": "82021099",
+            "name": "8%"
+          },
+          {
+            "id": "82021100",
+            "name": "9%"
+          },
+          {
+            "id": "82021101",
+            "name": "25%"
+          },
+          {
+            "id": "82021102",
+            "name": "26.5%"
+          },
+          {
+            "id": "82021103",
+            "name": "30%"
+          },
+          {
+            "id": "82021104",
+            "name": "30.4%"
+          },
+          {
+            "id": "82021105",
+            "name": "50%"
+          },
+          {
+            "id": "82021106",
+            "name": "53%"
+          },
+          {
+            "id": "82021107",
+            "name": "160%"
+          }
+        ],
+        "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "TELECOMMUNICATION_HOMOLOGATION_NUMBER",
+        "name": "Número de homologação de telecomunicações",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "É o número de homologação que o organismo do seu país concede aos produtos de telecomunicação, após verificar a sua segurança.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "relevance": 2,
+        "type": "product_identifier",
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230581",
+            "name": "Usado"
+          },
+          {
+            "id": "2230284",
+            "name": "Novo"
+          },
+          {
+            "id": "2230582",
+            "name": "Recondicionado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_TOM_BRAND",
+        "name": "É marca TOM",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "VALUE_ADDED_TAX",
+        "name": "Imposto sobre o valor acrescentado",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IMPORT_DUTY",
+        "name": "Imposto de importação",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "49553239",
+            "name": "0 %"
+          },
+          {
+            "id": "49553240",
+            "name": "1 %"
+          },
+          {
+            "id": "49553241",
+            "name": "2.5 %"
+          },
+          {
+            "id": "49553242",
+            "name": "4 %"
+          },
+          {
+            "id": "49553243",
+            "name": "5 %"
+          },
+          {
+            "id": "49553244",
+            "name": "8 %"
+          },
+          {
+            "id": "49553245",
+            "name": "9.5 %"
+          },
+          {
+            "id": "49553246",
+            "name": "10 %"
+          },
+          {
+            "id": "49553247",
+            "name": "14 %"
+          },
+          {
+            "id": "49553248",
+            "name": "15 %"
+          },
+          {
+            "id": "49553249",
+            "name": "18 %"
+          },
+          {
+            "id": "49553250",
+            "name": "19 %"
+          },
+          {
+            "id": "49553251",
+            "name": "20 %"
+          },
+          {
+            "id": "49553252",
+            "name": "23 %"
+          },
+          {
+            "id": "49553253",
+            "name": "25 %"
+          },
+          {
+            "id": "49553254",
+            "name": "26 %"
+          },
+          {
+            "id": "49553255",
+            "name": "70 %"
+          }
+        ],
+        "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de envio",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "cm",
+            "name": "cm"
+          }
+        ],
+        "default_unit": "cm",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 1,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "g",
+            "name": "g"
+          }
+        ],
+        "default_unit": "g",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAZMAT_TRANSPORTABILITY",
+        "name": "Transportabilidade Hazmat",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "13414677",
+            "name": "Livre"
+          },
+          {
+            "id": "13414678",
+            "name": "Limitado"
+          },
+          {
+            "id": "13414679",
+            "name": "Excedido"
+          },
+          {
+            "id": "13414680",
+            "name": "Indeterminado"
+          },
+          {
+            "id": "75989961",
+            "name": "Notificado"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_KIT",
+        "name": "É kit",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DESCRIPTIVE_TAGS",
+        "name": "Tags descritivos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_CHEMICAL_FEATURES",
+        "name": "Características químicas do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7651070",
+            "name": "Inflamável"
+          },
+          {
+            "id": "7651071",
+            "name": "Aerosol"
+          },
+          {
+            "id": "7651072",
+            "name": "Oxidante"
+          },
+          {
+            "id": "7651073",
+            "name": "Corrosivo"
+          },
+          {
+            "id": "7651074",
+            "name": "Explosivo"
+          },
+          {
+            "id": "7651075",
+            "name": "Tóxico ou infeccioso"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "FOODS_AND_DRINKS",
+        "name": "Alimentos e bebidas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575926",
+            "name": "Para humanos"
+          },
+          {
+            "id": "7575927",
+            "name": "Para animais"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MEDICINES",
+        "name": "Medicamentos",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575930",
+            "name": "Para humanos com receita médica"
+          },
+          {
+            "id": "7575931",
+            "name": "Para humanos sem receita médica"
+          },
+          {
+            "id": "7575932",
+            "name": "Para animais com receita médica"
+          },
+          {
+            "id": "7575933",
+            "name": "Para animais sem receita médica"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "BATTERIES_FEATURES",
+        "name": "Características das baterias",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7575934",
+            "name": "Lítio stand-alone (separadas ou isolado)"
+          },
+          {
+            "id": "7575935",
+            "name": "De lítio instaladas"
+          },
+          {
+            "id": "7575936",
+            "name": "Para carros (ácido-chumbo)"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPMENT_PACKING",
+        "name": "Embalagem do envío",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435891",
+            "name": "Flyer"
+          },
+          {
+            "id": "7435892",
+            "name": "Caixa"
+          },
+          {
+            "id": "7575937",
+            "name": "Envelope"
+          },
+          {
+            "id": "7575939",
+            "name": "Auto-expedível"
+          },
+          {
+            "id": "27037932",
+            "name": "BEX"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ADDITIONAL_INFO_REQUIRED",
+        "name": "Informação adicional requerida",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435893",
+            "name": "Possui código IMEI"
+          },
+          {
+            "id": "7435894",
+            "name": "Possui número de série"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "EXCLUDED_PLATFORMS",
+        "name": "Plataformas excluídas",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "9936777",
+            "name": "Android"
+          },
+          {
+            "id": "9936778",
+            "name": "iOS"
+          },
+          {
+            "id": "9936779",
+            "name": "Desktop"
+          },
+          {
+            "id": "9936780",
+            "name": "Mobile"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_SHIPMENT",
+        "name": "É adequado para envío",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_DATA_SOURCE",
+        "name": "Fonte do produto",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "tooltip": "Indique o país de origem do produto.",
+        "example": "Brasil",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+        "name": "Razões de visibilidade limitada no Marketplace",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "24219544",
+            "name": "Pharma"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "HAS_COMPATIBILITIES",
+        "name": "Tem compatibilidades",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CATALOG_TITLE",
+        "name": "Título de catálogo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SEARCH_ENHANCEMENT_FIELDS",
+        "name": "Campos de aprimoramento de pesquisa",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRODUCT_FEATURES",
+        "name": "Características do produto",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "7435885",
+            "name": "Contém líquido"
+          },
+          {
+            "id": "7435883",
+            "name": "Frágil"
+          },
+          {
+            "id": "7435888",
+            "name": "Com validade"
+          },
+          {
+            "id": "8847339",
+            "name": "Sem validade"
+          },
+          {
+            "id": "7575917",
+            "name": "Desinfetante e saneante"
+          },
+          {
+            "id": "7575924",
+            "name": "MAPA"
+          },
+          {
+            "id": "7575923",
+            "name": "Saúde e correlatos"
+          },
+          {
+            "id": "8721108",
+            "name": "Volumoso"
+          },
+          {
+            "id": "10490116",
+            "name": "Não voável"
+          },
+          {
+            "id": "12928414",
+            "name": "Não rotacionável"
+          },
+          {
+            "id": "41722098",
+            "name": "Dobrável"
+          },
+          {
+            "id": "52092586",
+            "name": "Magnético"
+          },
+          {
+            "id": "52233302",
+            "name": "Pode rolar"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_NEW_OFFER",
+        "name": "É nova oferta",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SYI_PYMES_ID",
+        "name": "syi pymes id",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "ITEM",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_FLAMMABLE",
+        "name": "É inflamável",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_POSITIVE_IMPACT",
+        "name": "Com impacto positivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PACKAGE_DATA_SOURCE",
+        "name": "Origem do dado do pacote de fábrica",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "FAMILY",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "saleTerms": [
+      {
+        "id": "INVOICE",
+        "name": "Faturamento",
+        "tags": {
+          "hidden": true,
+          "multivalued": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 1,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "6891885",
+            "name": "Factura A"
+          },
+          {
+            "id": "6891886",
+            "name": "Factura B"
+          },
+          {
+            "id": "6891887",
+            "name": "Factura C"
+          },
+          {
+            "id": "6891888",
+            "name": "Não factura"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIBABLE",
+        "name": "Aceita compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PRICE_SUBSCRIPTION",
+        "name": "Preço por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SUBSCRIPTION_FREE_SHIPPING",
+        "name": "Envio gratis por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_1",
+        "name": "Preço por ser nível 1 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_2",
+        "name": "Preço por ser nível 2 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_3",
+        "name": "Preço por ser nível 3 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_4",
+        "name": "Preço por ser nível 4 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_5",
+        "name": "Preço por ser nível 5 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "LOYALTY_LEVEL_6",
+        "name": "Preço por ser nível 6 do loyalty",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CHECKOUT_EXCHANGE_RATE",
+        "name": "Taxa de câmbio para checkout",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL/USD",
+            "name": "BRL/USD"
+          }
+        ],
+        "default_unit": "BRL/USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "DISCOUNT_SUBSCRIPTION",
+        "name": "Desconto por compra recorrente",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "%",
+            "name": "%"
+          }
+        ],
+        "default_unit": "%",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "2230280",
+            "name": "Garantia do vendedor"
+          },
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica"
+          },
+          {
+            "id": "6150835",
+            "name": "Sem garantia"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "tags": {},
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          },
+          {
+            "id": "meses",
+            "name": "meses"
+          },
+          {
+            "id": "anos",
+            "name": "anos"
+          }
+        ],
+        "default_unit": "meses",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "MANUFACTURING_TIME",
+        "name": "Disponibilidade de estoque",
+        "tags": {
+          "hidden": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "dias",
+            "name": "dias"
+          }
+        ],
+        "default_unit": "dias",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MIN_QUANTITY",
+        "name": "Quantidade mínima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PURCHASE_MAX_QUANTITY",
+        "name": "Quantidade máxima de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number",
+        "value_max_length": 18,
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_PRICE",
+        "name": "Preço do desconto en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "CASH_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en efetivo",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_PRICE",
+        "name": "Preço do desconto en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "ALL_METHODS_REBATE_MELI_AMOUNT",
+        "name": "Valor de desconto MELI en todos os meios de pagamento",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_PRICE",
+        "name": "Preço global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "GLOBAL_ORIGINAL_PRICE",
+        "name": "Preço original global",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "INSTALLMENTS_CAMPAIGN",
+        "name": "Campanha de parcelas",
+        "tags": {
+          "multivalued": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10322628",
+            "name": "ahora-6"
+          },
+          {
+            "id": "10080710",
+            "name": "ahora-12"
+          },
+          {
+            "id": "10979952",
+            "name": "ahora-24"
+          },
+          {
+            "id": "10080711",
+            "name": "3x_campaign"
+          },
+          {
+            "id": "10080712",
+            "name": "18x_campaign"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "SHIPPING_ORIGIN",
+        "name": "Tipo de compra",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "list",
+        "values": [
+          {
+            "id": "10215068",
+            "name": "Local"
+          },
+          {
+            "id": "10215069",
+            "name": "Internacional"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_VOLUME_DISCOUNT",
+        "name": "Com desconto por volume",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "PROMOTION_TYPE",
+        "name": "Tipo de promoção",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "string",
+        "value_max_length": 255,
+        "values": [
+          {
+            "id": "10708386",
+            "name": "Oferta do dia"
+          },
+          {
+            "id": "10708387",
+            "name": "Oferta relâmpago"
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "IS_1P_MOTORS",
+        "name": "É 1P motores",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "1P_RESERVATION_PRICE",
+        "name": "Preço da reserva 1P",
+        "tags": {
+          "hidden": true,
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "number_unit",
+        "value_max_length": 255,
+        "allowed_units": [
+          {
+            "id": "BRL",
+            "name": "BRL"
+          },
+          {
+            "id": "USD",
+            "name": "USD"
+          }
+        ],
+        "default_unit": "USD",
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      },
+      {
+        "id": "WITH_TRADE_IN_PROGRAM",
+        "name": "Plan intercâmbio",
+        "tags": {
+          "read_only": true
+        },
+        "hierarchy": "SALE_TERMS",
+        "relevance": 2,
+        "value_type": "boolean",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "metadata": {
+              "value": false
+            }
+          },
+          {
+            "id": "242085",
+            "name": "Sim",
+            "metadata": {
+              "value": true
+            }
+          }
+        ],
+        "attribute_group_id": "OTHERS",
+        "attribute_group_name": "Outros"
+      }
+    ],
+    "identity": {
+      "local": {
+        "gtin": "7908324706932",
+        "brand": "MXT",
+        "model": "profissional blindado 2+2",
+        "partNumber": null,
+        "quantity": null,
+        "packaging": null,
+        "provenance": {
+          "model": {
+            "source": "supplier_offer:547cb64c-a61b-4b14-ada1-21e939d0f679",
+            "excerpt": "profissional blindado 2+2"
+          },
+          "brand": {
+            "source": "supplier_offer:547cb64c-a61b-4b14-ada1-21e939d0f679",
+            "excerpt": "MXT; "
+          },
+          "gtin": {
+            "source": "supplier_offer:547cb64c-a61b-4b14-ada1-21e939d0f679",
+            "excerpt": "7908324706932"
+          }
+        },
+        "variation": "azul",
+        "brandEvidence": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm – 5 Metros (Gold com Mola) O Cabo RCA MXT Profissional Blindado 2+2 de 5 metros é indicado para projetos de som automotivo que exigem maior alcance com qualidade de sinal e proteção contra interferências . Sua construção blindada contribui para uma transmissão mais limpa e estável, reduzindo ruídos mesmo em sistemas de maior potência . Com 5 metros de comprimento , oferece mais flexibilidade na instalação, facilitando o posicionamento de módulos, players e amplificadores em diferentes pontos do veículo. O diâmetro de 4mm (O.D 4mm) garante um bom equilíbrio entre resistência e flexibilidade, favorecendo a passagem do cabeamento. O modelo conta com acabamento azul , que auxilia na organização e identificação durante a instalação. Os conectores com banho dourado (Gold) melhoram a condução do sinal e aumentam a durabilidade, enquanto a mola de proteção nos plugs ajuda a reduzir desgastes e quebras por movimentação, prolongando a vida útil do cabo. Destaques do produto Conexão 2 RCA macho + 2 RCA macho Linha profissional blindada – menor interferência e maior estabilidade de sinal Comprimento de 5 metros – ideal para instalações com maior distância Diâmetro de 4mm (O.D 4mm) – flexível e resistente Conectores Gold com mola – melhor condução e maior durabilidade Cor azul – facilita a organização do cabeamento Aplicações Ligação entre player e módulo amplificador Instalações automotivas com maior distância entre componentes Sistemas de som automotivo que exigem melhor isolamento de ruídos *Imagens meramente ilustrativas. Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm - 05 metros"
+      },
+      "remote": {
+        "gtin": null,
+        "brand": "MXT",
+        "model": "MXT Profissional Blindado 2+2",
+        "partNumber": null,
+        "packaging": "unidade",
+        "quantity": 1,
+        "saleUnits": 1,
+        "variation": "Azul",
+        "provenance": {
+          "brand": {
+            "source": "ml_attributes",
+            "excerpt": "BRAND: MXT"
+          },
+          "model": {
+            "source": "ml_attributes",
+            "excerpt": "MODEL: MXT Profissional Blindado 2+2"
+          },
+          "variation": {
+            "source": "ml_attributes",
+            "excerpt": "COLOR: Azul"
+          },
+          "presentation": {
+            "source": "ml_attributes",
+            "excerpt": "SALE_FORMAT: Unidade; UNITS_PER_PACK: 1; PACKS_NUMBER: null"
+          }
+        },
+        "critical": {
+          "VOLTAGE": null,
+          "LENGTH": null,
+          "SIZE": null,
+          "CAPACITY": null,
+          "CONNECTOR_TYPE": null,
+          "INPUT_CONNECTOR": "RCA",
+          "OUTPUT_CONNECTOR": "RCA",
+          "PINS_NUMBER": null
+        }
+      },
+      "source": "/products/MLB78007028"
+    },
+    "assessment": {
+      "identity": "IDENTIDADE_COHERENTE",
+      "comparisons": [
+        {
+          "field": "brand",
+          "local": "MXT",
+          "remote": "MXT",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "model",
+          "local": "profissional blindado 2+2",
+          "remote": "MXT Profissional Blindado 2+2",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        },
+        {
+          "field": "variation",
+          "local": "azul",
+          "remote": "Azul",
+          "matches": true,
+          "basis": "normalized",
+          "evidence": null
+        }
+      ],
+      "reasons": [],
+      "warnings": [
+        "APRESENTACAO_NAO_EXPLICITA"
+      ],
+      "identityRuleVersion": "M2M-IDENTITY-v2.1"
+    },
+    "observedAt": "2026-09-05T20:26:58.481Z"
+  },
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391043",
+    "observedAt": "2026-09-05T20:31:07.687Z",
+    "product": {
+      "produtoid": "391043",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 21.1,
+      "preco_crossdocking": 21.1,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 21.1,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros",
+      "titulo_curto": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Azul 4mm - 05 Metros",
+      "categoriaid": "278503",
+      "categoria_nome": "Antenas E Acessórios/ Cabo Audio/ Cabo Rca",
+      "abc": null,
+      "ean11": "7908324706932",
+      "ncm": "85444200",
+      "descricao": "<h2 data-section-id=\"juq8n1\" data-start=\"0\" data-end=\"91\"><span role=\"text\"><strong data-start=\"3\" data-end=\"91\">Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm – 5 Metros (Gold com Mola)</strong></span></h2>\r\n<p data-start=\"93\" data-end=\"449\">O <strong data-start=\"95\" data-end=\"149\">Cabo RCA MXT Profissional Blindado 2+2 de 5 metros</strong> é indicado para projetos de som automotivo que exigem <strong data-start=\"204\" data-end=\"277\">maior alcance com qualidade de sinal e proteção contra interferências</strong>. Sua construção blindada contribui para uma transmissão mais limpa e estável, reduzindo ruídos mesmo em sistemas de maior potência .</p>\r\n<p data-start=\"451\" data-end=\"755\">Com <strong data-start=\"455\" data-end=\"482\">5 metros de comprimento</strong>, oferece mais flexibilidade na instalação, facilitando o posicionamento de módulos, players e amplificadores em diferentes pontos do veículo. O <strong data-start=\"627\" data-end=\"656\">diâmetro de 4mm (O.D 4mm)</strong> garante um bom equilíbrio entre resistência e flexibilidade, favorecendo a passagem do cabeamento.</p>\r\n<p data-start=\"757\" data-end=\"1089\">O modelo conta com acabamento <strong data-start=\"787\" data-end=\"795\">azul</strong>, que auxilia na organização e identificação durante a instalação. Os <strong data-start=\"865\" data-end=\"904\">conectores com banho dourado (Gold)</strong> melhoram a condução do sinal e aumentam a durabilidade, enquanto a <strong data-start=\"972\" data-end=\"1002\">mola de proteção nos plugs</strong> ajuda a reduzir desgastes e quebras por movimentação, prolongando a vida útil do cabo.</p>\r\n<h3 data-section-id=\"1cwnv27\" data-start=\"1096\" data-end=\"1124\"><span role=\"text\"><strong data-start=\"1100\" data-end=\"1124\">Destaques do produto</strong></span></h3>\r\n<ul data-start=\"1125\" data-end=\"1517\">\r\n<li data-section-id=\"a493kg\" data-start=\"1125\" data-end=\"1166\">Conexão <strong data-start=\"1135\" data-end=\"1164\">2 RCA macho + 2 RCA macho</strong></li>\r\n<li data-section-id=\"joh7a2\" data-start=\"1167\" data-end=\"1254\"><strong data-start=\"1169\" data-end=\"1200\">Linha profissional blindada</strong> – menor interferência e maior estabilidade de sinal</li>\r\n<li data-section-id=\"1gwtgfl\" data-start=\"1255\" data-end=\"1331\"><strong data-start=\"1257\" data-end=\"1284\">Comprimento de 5 metros</strong> – ideal para instalações com maior distância</li>\r\n<li data-section-id=\"uw1zb4\" data-start=\"1332\" data-end=\"1389\"><strong data-start=\"1334\" data-end=\"1363\">Diâmetro de 4mm (O.D 4mm)</strong> – flexível e resistente</li>\r\n<li data-section-id=\"1saszle\" data-start=\"1390\" data-end=\"1461\"><strong data-start=\"1392\" data-end=\"1420\">Conectores Gold com mola</strong> – melhor condução e maior durabilidade</li>\r\n<li data-section-id=\"19r1hlx\" data-start=\"1462\" data-end=\"1517\"><strong data-start=\"1464\" data-end=\"1476\">Cor azul</strong> – facilita a organização do cabeamento</li>\r\n</ul>\r\n<h3 data-section-id=\"s7u0l0\" data-start=\"1524\" data-end=\"1542\"><span role=\"text\"><strong data-start=\"1528\" data-end=\"1542\">Aplicações</strong></span></h3>\r\n<ul data-start=\"1543\" data-end=\"1725\">\r\n<li data-section-id=\"1jpsem7\" data-start=\"1543\" data-end=\"1589\">Ligação entre player e módulo amplificador</li>\r\n<li data-section-id=\"hiwp81\" data-start=\"1590\" data-end=\"1655\">Instalações automotivas com maior distância entre componentes</li>\r\n<li data-section-id=\"1gi9qgb\" data-start=\"1656\" data-end=\"1725\">Sistemas de som automotivo que exigem melhor isolamento de ruídos</li>\r\n</ul>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "Cabo RCA MXT Profissional Blindado 2 RCA + 2 RCA Azul 4mm - 05 metros",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MXT",
+      "modelo": "",
+      "peso": 0.228,
+      "largura": 17,
+      "altura": 3,
+      "profundidade": 21,
+      "peso_embalagem": 0.228,
+      "largura_embalagem": 17,
+      "altura_embalagem": 3,
+      "profundidade_embalagem": 21,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 78,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "12.007.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-02 12:49:52.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-02 12:49:52.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 15,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png"
+        }
+      ]
+    }
+  },
+  "pictureProof": [
+    {
+      "original": "https://evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png",
+      "resolved": "https://www.evolusom.com.br/media/catalog/product/3/9/391043_69f11cca28113.png",
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017481/ef97dfe08af9b7d88085dfa5954f280b097782934de67d085bd974ef7bfb6adc.png",
+      "width": 1000,
+      "height": 1000,
+      "sha256": "ef97dfe08af9b7d88085dfa5954f280b097782934de67d085bd974ef7bfb6adc"
+    }
+  ],
+  "context": {
+    "sellerId": "3294514937",
+    "categoryId": "MLB438559",
+    "listingType": "gold_special",
+    "shippingMode": "me2",
+    "logisticType": "xd_drop_off",
+    "freeShipping": true,
+    "dimensions": "3x17x21,228"
+  },
+  "memory": {
+    "price": 47.49,
+    "cost": 21.1,
+    "offerId": "547cb64c-a61b-4b14-ada1-21e939d0f679",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:41:15.405+00:00",
+    "fee": {
+      "amount": 6.17,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:10.576Z",
+      "evidence": "/sites/MLB/listing_prices?price=47.49&category_id=MLB438559&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "1fe5c55da3dcba58a015babc30125ae7832fee633841f4d4217ab6d31898d499"
+    },
+    "shipping": {
+      "amount": 12.95,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:31:10.576Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=47.49&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x17x21%2C228",
+      "contextKey": "1fe5c55da3dcba58a015babc30125ae7832fee633841f4d4217ab6d31898d499"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:31:10.459Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:31:10.576Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 3.94,
+    "result": 3.33,
+    "margin": 0.07012002526847758,
+    "status": "estimated"
+  },
+  "payload": {
+    "family_name": "Cabo RCA MXT blindado 2+2 macho 5 metros azul 4mm",
+    "category_id": "MLB438559",
+    "catalog_product_id": "MLB78007028",
+    "catalog_listing": true,
+    "price": 47.49,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017481/ef97dfe08af9b7d88085dfa5954f280b097782934de67d085bd974ef7bfb6adc.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "87536600",
+        "value_name": "MXT Profissional Blindado 2+2"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788220",
+        "value_name": "RCA"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "11163179",
+        "value_name": "Azul"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129121",
+        "value_name": "5 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827368",
+        "value_name": "Cabo adaptador"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16272110",
+        "value_name": "4 mm"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15289674",
+        "value_name": "2"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15290095",
+        "value_name": "2"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "6778113",
+        "value_name": "RCA"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "6778116",
+        "value_name": "RCA"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "13788230",
+        "value_name": "Ouro"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "value_id": "13788232",
+        "value_name": "TV"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7908324706932"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017481"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "AWG_SIZE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "SUPPORTED_AUDIO_CODECS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "INMETRO_CERTIFICATION_REGISTRATION_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "VERSION_TYPE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_BANDWITH",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MAX_REFRESH_RATE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "CABLE_CERTIFICATIONS",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "seller_custom_field": "VTK017481",
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "description": "Cabo RCA MXT blindado 2+2 macho 5 metros azul 4mm\n\n• Conexão: 2 RCA macho em cada extremidade.\n• Comprimento: 5 m; diâmetro: 4 mm.\n• Blindado, com conectores dourados e mola de proteção.\n\nDIMENSÕES DA EMBALAGEM\n21 × 17 × 3 cm; peso bruto 0.228 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK017481",
+  "conditional": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "error": null
+  },
+  "validated": {
+    "ok": false,
+    "status": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    },
+    "error": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  },
+  "at": "2026-09-05T20:31:13.499Z"
+}

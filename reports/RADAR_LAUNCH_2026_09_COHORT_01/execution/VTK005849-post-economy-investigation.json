@@ -1,0 +1,257 @@
+{
+  "evaluation": {
+    "product": {
+      "id": "839725f6-1148-4b9d-baec-3516c2336d88",
+      "sku": "VTK005849",
+      "nome": "Esguicho Alumínio 30cm KE30A Azul Kepper",
+      "marca": "KEPPER",
+      "estoque": 7,
+      "custo": 29.9,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.25,
+      "peso_bruto": 0.25,
+      "largura": 6,
+      "altura": 4,
+      "profundidade": 44,
+      "gtin": "729208118583",
+      "descricao": "O Esguicho Alumínio 30cm KE30A é uma ferramenta versátil e durável, ideal para diversas tarefas cotidianas de irrigação e limpeza. Equipado com um registro de abre/fecha, proporciona controle total sobre a pressão da água, permitindo ajustes precisos conforme a necessidade. O esguicho acompanha duas ponteiras: a ponteira Leque e a ponteira Jato. A ponteira Leque é perfeita para lavagem de carros, calçadas e rega de plantas, oferecendo um jato mais amplo e suave. Já a ponteira Jato é ideal para remover sujeiras mais resistentes e alcançar áreas de difícil acesso, proporcionando um jato de água mais concentrado e potente. Construído com materiais de alta qualidade, o KE30A é robusto e resistente, garantindo uma longa vida útil. Seja para uso doméstico ou profissional, este esguicho é a escolha certa para quem busca eficiência e praticidade em suas atividades de limpeza e irrigação.",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/83930/550/1.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/4.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/5.jpg",
+        "https://static.hayapek.com.br/produtos/83930/550/6.jpg"
+      ],
+      "categoria": "Materiais Eletricos / Ferramentas Manuais / Ferramentas Diversas",
+      "ml_item_id": null,
+      "created_at": "2026-05-11T20:17:09.113226+00:00",
+      "updated_at": "2026-09-05T19:54:32.185869+00:00",
+      "dslite_fornecedor_id": "133",
+      "dslite_produto_id": "387346",
+      "dslite_ultima_sync": "2026-09-05T19:54:31.956+00:00",
+      "fornecedor": "EVOLUSOM-PR",
+      "ncm": "8481.80.99",
+      "cest": null,
+      "origem_fiscal": "2",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "0807a761-0456-414f-9f5d-087ec1f467d4",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "offer": {
+      "id": "0807a761-0456-414f-9f5d-087ec1f467d4",
+      "produto_id": "839725f6-1148-4b9d-baec-3516c2336d88",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "387346",
+      "sku_fornecedor": "387346",
+      "custo": 29.9,
+      "estoque": 7,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-09-05T19:54:31.956+00:00",
+      "created_at": "2026-07-20T18:31:48.470049+00:00",
+      "updated_at": "2026-09-05T19:54:31.976+00:00",
+      "sku_oferta": "387346",
+      "nome": "Esguicho Kepper Em Alumínio 30cm Azul",
+      "descricao": "Esguicho de Alta Pressão - One Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência . Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço . Seja regando delicadas flores ou realizando uma limpeza poderosa , seu acabamento refinado e a alta pressão garantem durabilidade e desempenho . Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples . Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para qualquer tarefa de irrigação ou limpeza . Oferecemos 3 meses de garantia contra defeito de fabricação para assegurar a satisfação de nossos clientes. Economia de Água Inteligente Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos. Duas Ponteiras Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados. Durabilidade que Investe no Futuro Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo. Leve e Portátil Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea. Versatilidade para Atender Suas Necessidades Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa. Economia de Espaço Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. *Imagens meramente ilustrativas.",
+      "marca": "KEPPER",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+        "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png",
+        "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png"
+      ],
+      "gtin": "729208118583",
+      "ncm": "84818099",
+      "cest": null
+    },
+    "offers": [
+      {
+        "id": "0807a761-0456-414f-9f5d-087ec1f467d4",
+        "produto_id": "839725f6-1148-4b9d-baec-3516c2336d88",
+        "dslite_fornecedor_id": "133",
+        "fornecedor_nome": "EVOLUSOM-PR",
+        "dslite_produto_id": "387346",
+        "sku_fornecedor": "387346",
+        "custo": 29.9,
+        "estoque": 7,
+        "ativo": true,
+        "prioridade": 100,
+        "payment_mode": "prepaid_pix",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-09-05T19:54:31.956+00:00",
+        "created_at": "2026-07-20T18:31:48.470049+00:00",
+        "updated_at": "2026-09-05T19:54:31.976+00:00",
+        "sku_oferta": "387346",
+        "nome": "Esguicho Kepper Em Alumínio 30cm Azul",
+        "descricao": "Esguicho de Alta Pressão - One Concebido para ser um aliado no seu jardim e além, este esguicho de alta pressão KEPPER combina ergonomia com eficiência . Seu design inteligente facilita o trabalho, permitindo que você complete suas tarefas com menos esforço . Seja regando delicadas flores ou realizando uma limpeza poderosa , seu acabamento refinado e a alta pressão garantem durabilidade e desempenho . Com uma alça confortável para um manuseio mais fácil, este pulverizador é versátil – perfeito para lavar o carro, irrigar o jardim ou executar limpezas simples . Feito com materiais de alta qualidade, é uma ferramenta prática e durável que se adapta a uma ampla gama de aplicações, tornando-se uma escolha excelente para qualquer tarefa de irrigação ou limpeza . Oferecemos 3 meses de garantia contra defeito de fabricação para assegurar a satisfação de nossos clientes. Economia de Água Inteligente Desenvolvemos nosso esguicho com a mais alta tecnologia para proporcionar uma limpeza completa com menos água, promovendo a sustentabilidade e economizando recursos hídricos. Duas Ponteiras Aprimore sua limpeza com nosso esguicho de alta pressão, fornecido com duas ponteiras distintas: uma concentrada para manchas específicas e outra de padrão amplo para áreas extensas, proporcionando controle e eficiência personalizados. Durabilidade que Investe no Futuro Construímos nosso esguicho com materiais duráveis, garantindo que ele acompanhe o ritmo do seu estilo de vida ativo, proporcionando uma limpeza confiável por muito tempo. Leve e Portátil Transporte fácil com nossos esguichos leves e portáteis. Prontas para uso em qualquer lugar, proporcionando conveniência instantânea. Versatilidade para Atender Suas Necessidades Seja para limpar o pátio, o carro ou outras áreas externas, nosso esguicho de alta pressão oferece versatilidade para atender às diversas demandas da sua casa. Economia de Espaço Nossas esguichos de alta pressão garantem economia de espaço para um armazenamento fácil e eficiente, sem comprometer o desempenho. *Imagens meramente ilustrativas.",
+        "marca": "KEPPER",
+        "imagens": [
+          "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4baea.png",
+          "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4c66e.png",
+          "https://evolusom.com.br/media/catalog/product/3/8/387346_67d2cb2b4cd48.png"
+        ],
+        "gtin": "729208118583",
+        "ncm": "84818099",
+        "cest": null
+      },
+      {
+        "id": "a06d4ad2-a92a-48d9-aa98-5c924a152e0c",
+        "produto_id": "839725f6-1148-4b9d-baec-3516c2336d88",
+        "dslite_fornecedor_id": "2",
+        "fornecedor_nome": "HAYAMAX-PR",
+        "dslite_produto_id": "83930",
+        "sku_fornecedor": "83930",
+        "custo": 44.1,
+        "estoque": 0,
+        "ativo": false,
+        "prioridade": 100,
+        "payment_mode": "balance_account",
+        "lead_time_dias": null,
+        "last_sync_at": "2026-07-21T13:08:32.917+00:00",
+        "created_at": "2026-06-08T18:46:40.559351+00:00",
+        "updated_at": "2026-07-21T13:08:33.009+00:00",
+        "sku_oferta": "83930",
+        "nome": "Esguicho Alumínio 30cm KE30A Azul Kepper",
+        "descricao": "O Esguicho Alumínio 30cm KE30A é uma ferramenta versátil e durável, ideal para diversas tarefas cotidianas de irrigação e limpeza. Equipado com um registro de abre/fecha, proporciona controle total sobre a pressão da água, permitindo ajustes precisos conforme a necessidade. O esguicho acompanha duas ponteiras: a ponteira Leque e a ponteira Jato. A ponteira Leque é perfeita para lavagem de carros, calçadas e rega de plantas, oferecendo um jato mais amplo e suave. Já a ponteira Jato é ideal para remover sujeiras mais resistentes e alcançar áreas de difícil acesso, proporcionando um jato de água mais concentrado e potente. Construído com materiais de alta qualidade, o KE30A é robusto e resistente, garantindo uma longa vida útil. Seja para uso doméstico ou profissional, este esguicho é a escolha certa para quem busca eficiência e praticidade em suas atividades de limpeza e irrigação.",
+        "marca": "KEPPER",
+        "imagens": [
+          "https://static.hayapek.com.br/produtos/83930/550/1.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/2.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/3.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/4.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/5.jpg",
+          "https://static.hayapek.com.br/produtos/83930/550/6.jpg"
+        ],
+        "gtin": "729208118583",
+        "ncm": "8481.80.99",
+        "cest": null
+      }
+    ],
+    "runtime": {
+      "policy": {
+        "version": "M2M-PRC-01-v1",
+        "bands": [
+          {
+            "id": "BELOW_200",
+            "maxCents": 20000,
+            "floor": 0.05,
+            "target": 0.07,
+            "limit": 0.1
+          },
+          {
+            "id": "FROM_200_TO_1000",
+            "maxCents": 100000,
+            "floor": 0.07,
+            "target": 0.1,
+            "limit": 0.15
+          },
+          {
+            "id": "ABOVE_1000",
+            "maxCents": null,
+            "floor": 0.1,
+            "target": 0.15,
+            "limit": 0.2
+          }
+        ],
+        "maxIterations": 12,
+        "feeFallbackRate": 0.15,
+        "evidenceMaxAgeHours": 24,
+        "autonomy": "REQUIRES_CONFIRMATION",
+        "radar": {
+          "mode": "AUTO_OBSERVE",
+          "hour": 2,
+          "batchSize": 50,
+          "concurrency": 4
+        }
+      },
+      "tax": {
+        "rate": 0.08279935223578168,
+        "status": "estimated",
+        "referenceMonth": "2026-09",
+        "source": "RBT12_PEDIDOS_OPERACIONAIS",
+        "observedAt": "2026-09-05T20:59:43.676Z",
+        "evidence": null,
+        "rbt12": 929727.1799999999,
+        "missingMonths": []
+      },
+      "variableCosts": {}
+    },
+    "context": {
+      "sellerId": "3294514937",
+      "categoryId": "MLB428938",
+      "listingType": "gold_special",
+      "shippingMode": "me2",
+      "logisticType": "xd_drop_off",
+      "freeShipping": true,
+      "itemId": "MLB5192503807"
+    },
+    "memory": {
+      "price": 58.53,
+      "cost": 29.9,
+      "offerId": "0807a761-0456-414f-9f5d-087ec1f467d4",
+      "supplierId": "133",
+      "costObservedAt": "2026-09-05T19:54:31.976+00:00",
+      "fee": {
+        "amount": 6.73,
+        "source": "ml_live",
+        "observedAt": "2026-09-05T20:59:43.971Z",
+        "evidence": "/sites/MLB/listing_prices?price=58.53&category_id=MLB428938&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+        "contextKey": "ff7f0fd91726fc27a5487b4e39fb62a082748933c5ca17823b2aed25bc0c4e34"
+      },
+      "shipping": {
+        "amount": 25.95,
+        "source": "ml_live",
+        "observedAt": "2026-09-05T20:59:43.971Z",
+        "evidence": "/users/3294514937/shipping_options/free?item_price=58.53&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB5192503807",
+        "contextKey": "ff7f0fd91726fc27a5487b4e39fb62a082748933c5ca17823b2aed25bc0c4e34"
+      },
+      "variableCosts": {
+        "amount": null,
+        "source": "unknown",
+        "observedAt": null,
+        "evidence": null
+      },
+      "tax": {
+        "rate": 0.08279935223578168,
+        "status": "estimated",
+        "referenceMonth": "2026-09",
+        "source": "RBT12_PEDIDOS_OPERACIONAIS",
+        "observedAt": "2026-09-05T20:59:43.676Z",
+        "evidence": null,
+        "rbt12": 929727.1799999999,
+        "missingMonths": []
+      },
+      "evaluatedAt": "2026-09-05T20:59:43.971Z",
+      "policyVersion": "M2M-PRC-01-v1",
+      "band": {
+        "id": "BELOW_200",
+        "maxCents": 20000,
+        "floor": 0.05,
+        "target": 0.07,
+        "limit": 0.1
+      },
+      "reasons": [
+        "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+        "TRIBUTO_ESTIMADO"
+      ],
+      "diagnostics": [
+        "PREJUIZO_ESTIMADO",
+        "MARGEM_ABAIXO_DO_PISO"
+      ],
+      "taxAmount": 4.85,
+      "result": -8.9,
+      "margin": -0.15205877327866052,
+      "status": "estimated"
+    },
+    "failure": null
+  }
+}

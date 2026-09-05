@@ -1,0 +1,56 @@
+TAP version 13
+# (node:565345) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/lib/ml/identity-normalization.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: warnings de frete conhecidos não são reprovação; erro real e warning desconhecido bloqueiam
+ok 1 - warnings de frete conhecidos não são reprovação; erro real e warning desconhecido bloqueiam
+  ---
+  duration_ms: 0.603756
+  type: 'test'
+  ...
+# Subtest: leitura posterior detecta preço, quantidade, identidade, catálogo, conta e par inesperados
+ok 2 - leitura posterior detecta preço, quantidade, identidade, catálogo, conta e par inesperados
+  ---
+  duration_ms: 3.34766
+  type: 'test'
+  ...
+# Subtest: limite de dez e unicidade por SKU são obrigatórios
+ok 3 - limite de dez e unicidade por SKU são obrigatórios
+  ---
+  duration_ms: 0.278106
+  type: 'test'
+  ...
+# Subtest: proteção de preço inclui a coorte Radar sem substituir o experimento anterior
+ok 4 - proteção de preço inclui a coorte Radar sem substituir o experimento anterior
+  ---
+  duration_ms: 6.838013
+  type: 'test'
+  ...
+# Subtest: checkpoints distinguem D7, D15 e D30 sem atribuir demanda inexistente
+ok 5 - checkpoints distinguem D7, D15 e D30 sem atribuir demanda inexistente
+  ---
+  duration_ms: 61.238567
+  type: 'test'
+  ...
+# Subtest: descrição de catálogo é conferida na fonte, incluindo ausência documentada; erro de leitura nunca passa
+ok 6 - descrição de catálogo é conferida na fonte, incluindo ausência documentada; erro de leitura nunca passa
+  ---
+  duration_ms: 0.140084
+  type: 'test'
+  ...
+# Subtest: atributo multivalorado usa IDs, não espaços na representação do ML, sem aceitar valores faltantes
+ok 7 - atributo multivalorado usa IDs, não espaços na representação do ML, sem aceitar valores faltantes
+  ---
+  duration_ms: 0.337417
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 275.459377

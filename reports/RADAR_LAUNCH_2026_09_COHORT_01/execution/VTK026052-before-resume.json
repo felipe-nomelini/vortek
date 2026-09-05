@@ -1,0 +1,1128 @@
+{
+  "at": "2026-09-05T20:59:19.570Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391335",
+    "observedAt": "2026-09-05T20:59:15.893Z",
+    "product": {
+      "produtoid": "391335",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 52.9,
+      "preco_crossdocking": 52.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 52.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-08-05 20:03:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-05 20:03:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Microfone Condensador De Mesa Mxt Mx-mc017 P2 Com Tripé",
+      "titulo_curto": "Microfone Condensador De Mesa Mxt Mx-mc017 P2 Com Tripé",
+      "categoriaid": "117556",
+      "categoria_nome": "Som Profissional/ Microfones/ Microfone",
+      "abc": null,
+      "ean11": "7908324701807",
+      "ncm": "85181090",
+      "descricao": "<p><strong>Microfone Condensador de Mesa MXT MX-MC017 P2 com Tripé</strong><br /><strong>Código: 54.1.151</strong></p>\r\n<p>COM TRIPÉ DE MESA<br />CABO P2 – 1,8M</p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "Microfone Condensador de Mesa MXT MX-MC017 P2 com Tripé",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MXT",
+      "modelo": "",
+      "peso": 0.306,
+      "largura": 14.5,
+      "altura": 6.5,
+      "profundidade": 36.5,
+      "peso_embalagem": 0.306,
+      "largura_embalagem": 14.5,
+      "altura_embalagem": 6.5,
+      "profundidade_embalagem": 36.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391335_6a739cd539939.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 5,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.057.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-03 19:02:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-03 19:02:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 9,
+      "tempo_cross": 0,
+      "estoque_total": 9,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391335_6a739cd539939.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391335_6a739cd539b79.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391335_6a739cd539bde.png"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "MXT",
+        "remote": "MXT",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "mx-mc017",
+        "remote": "MX-MC017",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "price": 93.92,
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026052/85317d185bff754b749aa8aa740d4cfda817525f8498524a49c55dd57778ad39.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026052/a170d4d3df68cd03a9e4a64e46ae673d377941e753d51c6ba4f17e6fb21678e0.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK026052/6298998858912576281cf6cc50ca49de044682e3d4e909d997527cff88e09dbd.png"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "free_shipping": true,
+      "local_pick_up": false
+    },
+    "condition": "new",
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "13626290",
+        "value_name": "MX-MC017"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MICROPHONE_FORMATS",
+        "value_id": "8663308",
+        "value_name": "De mesa"
+      },
+      {
+        "id": "MICROPHONE_TYPES",
+        "value_id": "103744",
+        "value_name": "Condensador"
+      },
+      {
+        "id": "POLAR_PATTERNS",
+        "value_id": "2253805",
+        "value_name": "Omnidirecional"
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "value_id": "934836",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129119",
+        "value_name": "1.8 m"
+      },
+      {
+        "id": "MIN_FREQUENCY",
+        "value_id": "7229465",
+        "value_name": "50 Hz"
+      },
+      {
+        "id": "MAX_FREQUENCY",
+        "value_id": "7230272",
+        "value_name": "16 kHz"
+      },
+      {
+        "id": "MICROPHONE_RECOMMENDED_USES",
+        "values": [
+          {
+            "id": "20143815",
+            "name": "Podscats"
+          },
+          {
+            "id": "20143816",
+            "name": "Livestreams"
+          },
+          {
+            "id": "7226714",
+            "name": "Para câmeras"
+          },
+          {
+            "id": "12945690",
+            "name": "Skype"
+          },
+          {
+            "id": "20143818",
+            "name": "Para notebook"
+          },
+          {
+            "id": "18334840",
+            "name": "Gameplay"
+          }
+        ],
+        "value_name": "Podscats, Livestreams, Para câmeras, Skype, Para notebook, Gameplay"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BUILT_IN_SPEAKERS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "16089450",
+        "value_name": "De mesa"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "8127413",
+        "value_name": "15.5 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7736656",
+        "value_name": "130 g"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS",
+        "value_id": "7742961",
+        "value_name": "Jack 3.5 mm"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7908324701807"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026052"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "CONNECTION_TYPES",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "BATTERY_TYPE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "CELL_BATTERY_TYPE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "category_id": "MLB4469",
+    "currency_id": "BRL",
+    "family_name": "Microfone condensador MXT MX-MC017 P2 com tripé",
+    "catalog_listing": true,
+    "listing_type_id": "gold_special",
+    "available_quantity": 2,
+    "catalog_product_id": "MLB19845954",
+    "seller_custom_field": "VTK026052"
+  },
+  "description": "Microfone condensador MXT MX-MC017 P2 com tripé\n\n• Microfone condensador de mesa com tripé.\n• Cabo P2 de 1,8 m.\n\nDIMENSÕES DA EMBALAGEM\n36.5 × 14.5 × 6.5 cm; peso bruto 0.306 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK026052",
+  "memory": {
+    "price": 93.92,
+    "cost": 52.9,
+    "offerId": "48500e2d-5359-429f-94d5-a835574d982b",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:48:31.322+00:00",
+    "fee": {
+      "amount": 12.21,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:59:19.361Z",
+      "evidence": "/sites/MLB/listing_prices?price=93.92&category_id=MLB4469&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "6405c788b8ac0d10bdc0c05eb63eb3b82e2255cf272dc64393e7ca96d7dffca0"
+    },
+    "shipping": {
+      "amount": 14.45,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:59:19.361Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=93.92&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=7x15x37%2C306",
+      "contextKey": "6405c788b8ac0d10bdc0c05eb63eb3b82e2255cf272dc64393e7ca96d7dffca0"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:59:19.266Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:59:19.361Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "BELOW_200",
+      "maxCents": 20000,
+      "floor": 0.05,
+      "target": 0.07,
+      "limit": 0.1
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 7.78,
+    "result": 6.58,
+    "margin": 0.07005962521294719,
+    "status": "estimated"
+  },
+  "evaluationId": "57ed4ec3-ed26-4772-9fec-89fae9f02c4e",
+  "approvalId": "a275e6f1-b099-48f9-a210-697646a9ba5d",
+  "duplicates": [
+    {
+      "id": "MLB5192489345",
+      "site_id": "MLB",
+      "title": "Microfone Condensador Com Tripé De Mesa Para Computador Cor Preto",
+      "family_name": "MXT MX-MC017",
+      "family_id": 4884213637889937,
+      "seller_id": 3294514937,
+      "category_id": "MLB4469",
+      "user_product_id": "MLBU5122450080",
+      "official_store_id": null,
+      "price": 93.92,
+      "base_price": 93.92,
+      "original_price": null,
+      "inventory_id": null,
+      "currency_id": "BRL",
+      "initial_quantity": 2,
+      "available_quantity": 2,
+      "sold_quantity": 0,
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "name": "Tipo de garantia",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "2230279",
+              "name": "Garantia de fábrica",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "name": "Tempo de garantia",
+          "value_id": null,
+          "value_name": "12 meses",
+          "value_struct": {
+            "number": 12,
+            "unit": "meses"
+          },
+          "values": [
+            {
+              "id": null,
+              "name": "12 meses",
+              "struct": {
+                "number": 12,
+                "unit": "meses"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        }
+      ],
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "start_time": "2026-09-05T20:53:54.533Z",
+      "stop_time": "2046-08-31T04:00:00.000Z",
+      "end_time": "2046-08-31T04:00:00.000Z",
+      "expiration_time": "2026-11-24T20:53:55.378Z",
+      "condition": "new",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5192489345-microfone-condensador-com-tripe-de-mesa-para-computador-cor-preto-_JM",
+      "thumbnail_id": "636509-MLA99946915179_112025",
+      "thumbnail": "http://http2.mlstatic.com/D_636509-MLA99946915179_112025-I.jpg",
+      "pictures": [
+        {
+          "id": "636509-MLA99946915179_112025",
+          "url": "http://http2.mlstatic.com/D_636509-MLA99946915179_112025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_636509-MLA99946915179_112025-O.jpg",
+          "size": "500x497",
+          "max_size": "922x918",
+          "quality": ""
+        },
+        {
+          "id": "865836-MLA103432605333_012026",
+          "url": "http://http2.mlstatic.com/D_865836-MLA103432605333_012026-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_865836-MLA103432605333_012026-O.jpg",
+          "size": "500x500",
+          "max_size": "1200x1200",
+          "quality": ""
+        },
+        {
+          "id": "749766-MLA102917314658_012026",
+          "url": "http://http2.mlstatic.com/D_749766-MLA102917314658_012026-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_749766-MLA102917314658_012026-O.jpg",
+          "size": "500x500",
+          "max_size": "1200x1200",
+          "quality": ""
+        },
+        {
+          "id": "710859-MLA103431604003_012026",
+          "url": "http://http2.mlstatic.com/D_710859-MLA103431604003_012026-O.webp",
+          "secure_url": "https://http2.mlstatic.com/D_710859-MLA103431604003_012026-O.webp",
+          "size": "500x464",
+          "max_size": "1200x1115",
+          "quality": ""
+        },
+        {
+          "id": "648174-MLA103431921317_012026",
+          "url": "http://http2.mlstatic.com/D_648174-MLA103431921317_012026-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_648174-MLA103431921317_012026-O.jpg",
+          "size": "500x500",
+          "max_size": "1200x1200",
+          "quality": ""
+        },
+        {
+          "id": "635763-MLA102917908366_012026",
+          "url": "http://http2.mlstatic.com/D_635763-MLA102917908366_012026-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_635763-MLA102917908366_012026-O.jpg",
+          "size": "500x453",
+          "max_size": "1200x1088",
+          "quality": ""
+        },
+        {
+          "id": "650597-MLU70064987681_062023",
+          "url": "http://http2.mlstatic.com/D_650597-MLU70064987681_062023-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_650597-MLU70064987681_062023-O.jpg",
+          "size": "333x500",
+          "max_size": "635x952",
+          "quality": ""
+        },
+        {
+          "id": "600384-MLB45794581473_052021",
+          "url": "http://http2.mlstatic.com/D_600384-MLB45794581473_052021-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_600384-MLB45794581473_052021-O.jpg",
+          "size": "415x500",
+          "max_size": "996x1200",
+          "quality": ""
+        },
+        {
+          "id": "983249-MLA85970791804_062025",
+          "url": "http://http2.mlstatic.com/D_983249-MLA85970791804_062025-O.webp",
+          "secure_url": "https://http2.mlstatic.com/D_983249-MLA85970791804_062025-O.webp",
+          "size": "407x500",
+          "max_size": "726x890",
+          "quality": ""
+        },
+        {
+          "id": "824127-MLA86284968809_062025",
+          "url": "http://http2.mlstatic.com/D_824127-MLA86284968809_062025-O.webp",
+          "secure_url": "https://http2.mlstatic.com/D_824127-MLA86284968809_062025-O.webp",
+          "size": "237x500",
+          "max_size": "537x1130",
+          "quality": ""
+        },
+        {
+          "id": "785869-MLA80438934297_112024",
+          "url": "http://http2.mlstatic.com/D_785869-MLA80438934297_112024-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_785869-MLA80438934297_112024-O.jpg",
+          "size": "408x500",
+          "max_size": "981x1200",
+          "quality": ""
+        }
+      ],
+      "video_id": null,
+      "descriptions": [],
+      "accepts_mercadopago": true,
+      "non_mercado_pago_payment_methods": [],
+      "shipping": {
+        "mode": "me2",
+        "methods": [],
+        "tags": [
+          "mandatory_free_shipping"
+        ],
+        "dimensions": null,
+        "local_pick_up": false,
+        "free_shipping": true,
+        "logistic_type": "xd_drop_off",
+        "store_pick_up": false
+      },
+      "international_delivery_mode": "none",
+      "seller_address": {
+        "address_line": "Rua João Marques de Nóbrega 300",
+        "zip_code": "86206240",
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "BR-PR",
+          "name": "Paraná"
+        },
+        "country": {
+          "id": "BR",
+          "name": "Brasil"
+        },
+        "search_location": {
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "TUxCUFBBUkExODBlZA",
+            "name": "Paraná"
+          }
+        },
+        "latitude": -23.284674,
+        "longitude": -51.083409,
+        "id": 1586042717
+      },
+      "seller_contact": null,
+      "location": {},
+      "geolocation": {
+        "latitude": -23.284674,
+        "longitude": -51.083409
+      },
+      "coverage_areas": [],
+      "attributes": [
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_LABEL",
+          "name": "Etiqueta de homologação da Anatel",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "picture_id"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "BATTERY_TYPE",
+          "name": "Tipo de bateria",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2153976",
+          "value_name": "MXT",
+          "values": [
+            {
+              "id": "2153976",
+              "name": "MXT",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "129119",
+          "value_name": "1.8 m",
+          "values": [
+            {
+              "id": "129119",
+              "name": "1.8 m",
+              "struct": {
+                "number": 1.8,
+                "unit": "m"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "CELL_BATTERY_TYPE",
+          "name": "Tipo de pilha",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "name": "Tipos de conexões",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "16089450",
+          "value_name": "De mesa",
+          "values": [
+            {
+              "id": "16089450",
+              "name": "De mesa",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7908324701807",
+          "values": [
+            {
+              "id": null,
+              "name": "7908324701807",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "8127413",
+          "value_name": "15.5 cm",
+          "values": [
+            {
+              "id": "8127413",
+              "name": "15.5 cm",
+              "struct": {
+                "number": 15.5,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "7230272",
+          "value_name": "16 kHz",
+          "values": [
+            {
+              "id": "7230272",
+              "name": "16 kHz",
+              "struct": {
+                "number": 16,
+                "unit": "kHz"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "name": "Quantidade de microfones",
+          "value_id": "934836",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "934836",
+              "name": "1",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "MICROPHONE_FORMATS",
+          "name": "Formatos de microfone",
+          "value_id": "8663308",
+          "value_name": "De mesa",
+          "values": [
+            {
+              "id": "8663308",
+              "name": "De mesa",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "MICROPHONE_RECOMMENDED_USES",
+          "name": "Usos recomendados do microfone",
+          "value_id": null,
+          "value_name": "Podscats,Livestreams,Para câmeras,Skype,Para notebook,Gameplay",
+          "values": [
+            {
+              "id": "20143815",
+              "name": "Podscats",
+              "struct": null
+            },
+            {
+              "id": "20143816",
+              "name": "Livestreams",
+              "struct": null
+            },
+            {
+              "id": "7226714",
+              "name": "Para câmeras",
+              "struct": null
+            },
+            {
+              "id": "12945690",
+              "name": "Skype",
+              "struct": null
+            },
+            {
+              "id": "20143818",
+              "name": "Para notebook",
+              "struct": null
+            },
+            {
+              "id": "18334840",
+              "name": "Gameplay",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "MICROPHONE_TYPES",
+          "name": "Tipos de microfone",
+          "value_id": "103744",
+          "value_name": "Condensador",
+          "values": [
+            {
+              "id": "103744",
+              "name": "Condensador",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "7229465",
+          "value_name": "50 Hz",
+          "values": [
+            {
+              "id": "7229465",
+              "name": "50 Hz",
+              "struct": {
+                "number": 50,
+                "unit": "Hz"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "13626290",
+          "value_name": "MX-MC017",
+          "values": [
+            {
+              "id": "13626290",
+              "name": "MX-MC017",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "name": "Conectores de saída",
+          "value_id": "7742961",
+          "value_name": "Jack 3.5 mm",
+          "values": [
+            {
+              "id": "7742961",
+              "name": "Jack 3.5 mm",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "POLAR_PATTERNS",
+          "name": "Padrões polares",
+          "value_id": "2253805",
+          "value_name": "Omnidirecional",
+          "values": [
+            {
+              "id": "2253805",
+              "name": "Omnidirecional",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK026052",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK026052",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "7736656",
+          "value_name": "130 g",
+          "values": [
+            {
+              "id": "7736656",
+              "name": "130 g",
+              "struct": {
+                "number": 130,
+                "unit": "g"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "WITH_BUILT_IN_SPEAKERS",
+          "name": "Com alto-falantes embutidos",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        }
+      ],
+      "warnings": [],
+      "listing_source": "",
+      "variations": [],
+      "status": "paused",
+      "sub_status": [
+        "paused_by_seller"
+      ],
+      "tags": [
+        "immediate_payment",
+        "cart_eligible"
+      ],
+      "warranty": "Garantia de fábrica: 12 meses",
+      "catalog_product_id": "MLB19845954",
+      "domain_id": "MLB-MICROPHONES",
+      "seller_custom_field": "VTK026052",
+      "parent_item_id": null,
+      "differential_pricing": null,
+      "deal_ids": [],
+      "automatic_relist": false,
+      "date_created": "2026-09-05T20:53:54.663Z",
+      "last_updated": "2026-09-05T20:53:59.065Z",
+      "health": null,
+      "catalog_listing": true,
+      "item_relations": [],
+      "channels": [
+        "marketplace"
+      ]
+    }
+  ],
+  "quantity": 2
+}

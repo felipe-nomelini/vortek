@@ -1,0 +1,687 @@
+{
+  "at": "2026-09-05T20:43:06.204Z",
+  "supplier": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/373261",
+    "observedAt": "2026-09-05T20:43:00.601Z",
+    "product": {
+      "produtoid": "373261",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 799.9,
+      "preco_crossdocking": 799.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 799.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Identificador De Fibra Ativa Evus Ev-430 10mw",
+      "titulo_curto": "Identificador De Fibra Ativa Evus Ev-430 10mw",
+      "categoriaid": "118542",
+      "categoria_nome": "Redes E Provedores/ Ferramentas/ Identificadores",
+      "abc": null,
+      "ean11": "7898597132708",
+      "ncm": "90304090",
+      "descricao": "<p>O Identificador de Fibra Ativa Evus identifica sinais ópticos sem interferir no tráfego do sistema e sem danificar a fibra óptica indicando o sentido dos sinais transmissores e a frequência recebida.<br /><br />O EV430 dispõe de uma fonte de luz visível para localização visual de eventos na fibra óptica (quebras e conectores danificados entre outros defeitos). Possibilita testes de continuidade e localiza fibras pinçadas em DIOs ou emendas.</p>\r\n<p> </p>\r\n<p>*Imagem meramente ilustrativa.</p>",
+      "caracteristicas": "<p>Teste de 0,25, 0,9, 2,0, 3,0 milímetros de fibras ópticas<br />Sem a necessidade de adaptadores<br />Cria visual de falhas 1mW ou 10mW.<br />Comprimento de onda: 800 a 1700nm (SM)<br />Tipo de sinal reconhecível: CW, 2 kHz, 1kHz, 270Hz ± 10%<br />Tipo de detecção: InGaAs 2pcs<br />Tipo de Fibra: 0,9, 0,25, 2,0, 3,0 mm de fibras<br />Sensibilidade: +10 ~ - 50dBm<br />Precisão: 10 dB para -30 dBm (Onda Contínua), 10 dB para -25 dBm (sinal modulado)<br />LED Indicador: Direção do sinal; freqüência do sinal (2kHz/1kHz/270Hz); bateria fraca<br />Temperatura de armazenamento: -20 - 60 ° C, <90% RH<br />Temperatura de Operação: -10 ~ - 50 °C, <90% RH<br />Fonte de alimentação: Pilha tipo AA - 2 Unidades<br />Dimensões e Peso:<br /><br />Altura: 23<br />Largura: 4,5<br />Comprimento: 4,5<br />Peso: 200g<br />Conteúdo:<br /><br />1 Unidade - Identificador de Fibra Óptica Ativa EV430<br />1 Unidade - Manual do Usuário<br /><br />-Caixa de embalagem<br />-Adequado para fibra de 0,25, 0,9, 2,0, 3,0 mm, sem necessidade de trocar o adaptador<br /><br /><br />Peso 200g<br /><br /><br /><br /></p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "EVUS",
+      "modelo": "",
+      "peso": 0.336,
+      "largura": 6,
+      "altura": 8,
+      "profundidade": 26,
+      "peso_embalagem": 0.336,
+      "largura_embalagem": 6,
+      "altura_embalagem": 8,
+      "profundidade_embalagem": 26,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 3.25,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1476,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-09-01 08:44:32.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-09-01 08:44:32.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 66,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc4b7f.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc57a3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc5dc3.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/7/373261_67d2caffc653a.png"
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "identity": "IDENTIDADE_COHERENTE",
+    "comparisons": [
+      {
+        "field": "brand",
+        "local": "EVUS",
+        "remote": "Evus",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      },
+      {
+        "field": "model",
+        "local": "ev-430",
+        "remote": "EV-430",
+        "matches": true,
+        "basis": "normalized",
+        "evidence": null
+      }
+    ],
+    "reasons": [],
+    "warnings": [
+      "APRESENTACAO_NAO_EXPLICITA",
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "identityRuleVersion": "M2M-IDENTITY-v2.1",
+    "listing": "NOVO_ANUNCIO_CANDIDATO",
+    "economy": "VIAVEL_NO_ALVO",
+    "state": "SEM_CONFLITO",
+    "listings": [],
+    "publicationAutonomy": "REQUIRES_CONFIRMATION"
+  },
+  "payload": {
+    "price": 1291.84,
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/89245b787236e198cbfe4a1fa5bc290344a74bc717daa2ab4b39c7651ed05ce6.png"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/2cbd7480b6140839d559134f22b625b90e99c62d68c322611eab2effc6c2f15a.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/radar-launch/RADAR_LAUNCH_2026_09_COHORT_01/VTK017284/ea3395e19f4cbbf003f37235bfc8e01d2e577464d779cce874f1b3cc8b28170e.png"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "free_shipping": true,
+      "local_pick_up": false
+    },
+    "condition": "new",
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "26977863",
+        "value_name": "EV-430"
+      },
+      {
+        "id": "POWER",
+        "value_id": "4554518",
+        "value_name": "10 mW"
+      },
+      {
+        "id": "MAX_LASER_REACH",
+        "value_id": "23336568",
+        "value_name": "10 km"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "6622618",
+        "value_name": "Universal"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "1061412",
+        "value_name": "26 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7898597132708"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017284"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "CONNECTOR_SIZE",
+        "value_id": "-1",
+        "value_name": null
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "-1",
+        "value_name": null
+      }
+    ],
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "category_id": "MLB277515",
+    "currency_id": "BRL",
+    "family_name": "Identificador de fibra ativa Evus EV-430 10mW",
+    "catalog_listing": true,
+    "listing_type_id": "gold_special",
+    "available_quantity": 2,
+    "catalog_product_id": "MLB28657049",
+    "seller_custom_field": "VTK017284"
+  },
+  "description": "Identificador de fibra ativa Evus EV-430 10mW\n\n• Identifica sinais ópticos sem interromper o tráfego.\n• Fonte de luz visível para localizar quebras e conexões danificadas.\n• Indica o sentido do sinal e a frequência recebida.\n\nDIMENSÕES DA EMBALAGEM\n26 × 6 × 8 cm; peso bruto 0.336 kg.\n\nGarantia de fábrica: 12 meses.\nSKU: VTK017284",
+  "memory": {
+    "price": 1291.84,
+    "cost": 799.9,
+    "offerId": "9c3f72d4-7f55-4bf7-a686-228d521c6e2f",
+    "supplierId": "133",
+    "costObservedAt": "2026-09-05T19:15:29.403+00:00",
+    "fee": {
+      "amount": 167.94,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:43:05.648Z",
+      "evidence": "/sites/MLB/listing_prices?price=1291.84&category_id=MLB277515&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+      "contextKey": "61fa5bebfde293b03a46a1d23265b52b6d4033a59809431b3bf10c3aa069a4de"
+    },
+    "shipping": {
+      "amount": 23.25,
+      "source": "ml_live",
+      "observedAt": "2026-09-05T20:43:05.648Z",
+      "evidence": "/users/3294514937/shipping_options/free?item_price=1291.84&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=8x6x26%2C336",
+      "contextKey": "61fa5bebfde293b03a46a1d23265b52b6d4033a59809431b3bf10c3aa069a4de"
+    },
+    "variableCosts": {
+      "amount": null,
+      "source": "unknown",
+      "observedAt": null,
+      "evidence": null
+    },
+    "tax": {
+      "rate": 0.08279935223578168,
+      "status": "estimated",
+      "referenceMonth": "2026-09",
+      "source": "RBT12_PEDIDOS_OPERACIONAIS",
+      "observedAt": "2026-09-05T20:43:05.556Z",
+      "evidence": null,
+      "rbt12": 929727.1799999999,
+      "missingMonths": []
+    },
+    "evaluatedAt": "2026-09-05T20:43:05.648Z",
+    "policyVersion": "M2M-PRC-01-v1",
+    "band": {
+      "id": "ABOVE_1000",
+      "maxCents": null,
+      "floor": 0.1,
+      "target": 0.15,
+      "limit": 0.2
+    },
+    "reasons": [
+      "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+      "TRIBUTO_ESTIMADO"
+    ],
+    "diagnostics": [],
+    "taxAmount": 106.97,
+    "result": 193.78,
+    "margin": 0.1500030963586822,
+    "status": "estimated"
+  },
+  "evaluationId": "1eda0617-8273-470c-884e-d3fddf4d2594",
+  "approvalId": "fecc0cfc-4341-4507-babc-d199a920d09e",
+  "duplicates": [
+    {
+      "id": "MLB7594384288",
+      "site_id": "MLB",
+      "title": "Identificador De Fibra Ativa Evus Ev-430 Vfl 10mw Alcance 10km Conectores Sc Fc St",
+      "family_name": "Identificador de Fibra Ativa Evus EV-430 VFL 10mW Alcance 10km Conectores SC FC ST",
+      "family_id": 2902275910849298,
+      "seller_id": 3294514937,
+      "category_id": "MLB277515",
+      "user_product_id": "MLBU5088505727",
+      "official_store_id": null,
+      "price": 1291.84,
+      "base_price": 1291.84,
+      "original_price": null,
+      "inventory_id": null,
+      "currency_id": "BRL",
+      "initial_quantity": 2,
+      "available_quantity": 2,
+      "sold_quantity": 0,
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "name": "Tipo de garantia",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "2230279",
+              "name": "Garantia de fábrica",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "name": "Tempo de garantia",
+          "value_id": null,
+          "value_name": "12 meses",
+          "value_struct": {
+            "number": 12,
+            "unit": "meses"
+          },
+          "values": [
+            {
+              "id": null,
+              "name": "12 meses",
+              "struct": {
+                "number": 12,
+                "unit": "meses"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        }
+      ],
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "start_time": "2026-09-05T20:39:44.656Z",
+      "stop_time": "2046-08-31T04:00:00.000Z",
+      "end_time": "2046-08-31T04:00:00.000Z",
+      "expiration_time": "2026-11-24T20:39:45.696Z",
+      "condition": "new",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7594384288-identificador-de-fibra-ativa-evus-ev-430-vfl-10mw-alcance-10km-conectores-sc-fc-st-_JM",
+      "thumbnail_id": "989683-MLA100046558809_122025",
+      "thumbnail": "http://http2.mlstatic.com/D_989683-MLA100046558809_122025-I.webp",
+      "pictures": [
+        {
+          "id": "989683-MLA100046558809_122025",
+          "url": "http://http2.mlstatic.com/D_989683-MLA100046558809_122025-O.webp",
+          "secure_url": "https://http2.mlstatic.com/D_989683-MLA100046558809_122025-O.webp",
+          "size": "104x500",
+          "max_size": "250x1200",
+          "quality": ""
+        },
+        {
+          "id": "872761-MLA85390824502_062025",
+          "url": "http://http2.mlstatic.com/D_872761-MLA85390824502_062025-O.webp",
+          "secure_url": "https://http2.mlstatic.com/D_872761-MLA85390824502_062025-O.webp",
+          "size": "423x500",
+          "max_size": "698x825",
+          "quality": ""
+        },
+        {
+          "id": "733063-MLA85697121451_062025",
+          "url": "http://http2.mlstatic.com/D_733063-MLA85697121451_062025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_733063-MLA85697121451_062025-O.jpg",
+          "size": "500x277",
+          "max_size": "1048x582",
+          "quality": ""
+        },
+        {
+          "id": "991902-MLA91571635374_092025",
+          "url": "http://http2.mlstatic.com/D_991902-MLA91571635374_092025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_991902-MLA91571635374_092025-O.jpg",
+          "size": "500x382",
+          "max_size": "1200x918",
+          "quality": ""
+        },
+        {
+          "id": "692766-MLA85390989978_062025",
+          "url": "http://http2.mlstatic.com/D_692766-MLA85390989978_062025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_692766-MLA85390989978_062025-O.jpg",
+          "size": "95x500",
+          "max_size": "208x1093",
+          "quality": ""
+        }
+      ],
+      "video_id": null,
+      "descriptions": [],
+      "accepts_mercadopago": true,
+      "non_mercado_pago_payment_methods": [],
+      "shipping": {
+        "mode": "me2",
+        "methods": [],
+        "tags": [
+          "mandatory_free_shipping"
+        ],
+        "dimensions": null,
+        "local_pick_up": false,
+        "free_shipping": true,
+        "logistic_type": "xd_drop_off",
+        "store_pick_up": false
+      },
+      "international_delivery_mode": "none",
+      "seller_address": {
+        "address_line": "Rua João Marques de Nóbrega 300",
+        "zip_code": "86206240",
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "BR-PR",
+          "name": "Paraná"
+        },
+        "country": {
+          "id": "BR",
+          "name": "Brasil"
+        },
+        "search_location": {
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "TUxCUFBBUkExODBlZA",
+            "name": "Paraná"
+          }
+        },
+        "latitude": -23.284674,
+        "longitude": -51.083409,
+        "id": 1586042717
+      },
+      "seller_contact": null,
+      "location": {},
+      "geolocation": {
+        "latitude": -23.284674,
+        "longitude": -51.083409
+      },
+      "coverage_areas": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus",
+          "values": [
+            {
+              "id": "216711",
+              "name": "Evus",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTOR_SIZE",
+          "name": "Tamanho do conector",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "name": "Tipo de conector",
+          "value_id": "6622618",
+          "value_name": "Universal",
+          "values": [
+            {
+              "id": "6622618",
+              "name": "Universal",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7898597132708",
+          "values": [
+            {
+              "id": null,
+              "name": "7898597132708",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "1061412",
+          "value_name": "26 cm",
+          "values": [
+            {
+              "id": "1061412",
+              "name": "26 cm",
+              "struct": {
+                "number": 26,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MAX_LASER_REACH",
+          "name": "Alcance máximo do laser",
+          "value_id": "23336568",
+          "value_name": "10 km",
+          "values": [
+            {
+              "id": "23336568",
+              "name": "10 km",
+              "struct": {
+                "number": 10,
+                "unit": "km"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26977863",
+          "value_name": "EV-430",
+          "values": [
+            {
+              "id": "26977863",
+              "name": "EV-430",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "4554518",
+          "value_name": "10 mW",
+          "values": [
+            {
+              "id": "4554518",
+              "name": "10 mW",
+              "struct": {
+                "number": 10,
+                "unit": "mW"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK017284",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK017284",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        }
+      ],
+      "warnings": [],
+      "listing_source": "",
+      "variations": [],
+      "status": "paused",
+      "sub_status": [
+        "paused_by_seller"
+      ],
+      "tags": [
+        "immediate_payment",
+        "cart_eligible"
+      ],
+      "warranty": "Garantia de fábrica: 12 meses",
+      "catalog_product_id": "MLB28657049",
+      "domain_id": "MLB-FIBER_OPTIC_FAULT_LOCATORS",
+      "seller_custom_field": "VTK017284",
+      "parent_item_id": null,
+      "differential_pricing": null,
+      "deal_ids": [],
+      "automatic_relist": false,
+      "date_created": "2026-09-05T20:39:44.818Z",
+      "last_updated": "2026-09-05T20:39:46.489Z",
+      "health": null,
+      "catalog_listing": true,
+      "item_relations": [],
+      "channels": [
+        "marketplace"
+      ]
+    }
+  ],
+  "quantity": 2
+}

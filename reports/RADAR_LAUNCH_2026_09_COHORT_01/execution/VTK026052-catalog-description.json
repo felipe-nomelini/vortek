@@ -1,0 +1,21 @@
+{
+  "source": "ml_catalog",
+  "catalogId": "MLB19845954",
+  "response": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "text": "",
+      "plain_text": "MICROFONE CONDENSADOR COM TRIPÉ\n\nEspecificações:\n\n- Modelo: MX-MC017\n- Marca: MX\n- Acompanha Tripé de Mesa\n- Cabo p2- 1,8 metros\n\nIdeal para:\nGravação de Vídeos, Vlogs, Entrevistas\nPalestras e Apresentações\nCursos Online e EAD\nReuniões e Videoconferências\nGravação de Podcasts\nTransmissões ao Vivo\nGravação de Instrumentos Acústicos\n \nÓtima qualidade de som do microfone condensador MXT são ótimos para captar detalhes e nuances, especialmente em ambientes controlados!",
+      "last_updated": "2026-09-05T20:53:55.245Z",
+      "date_created": "2026-09-05T20:53:55.245Z",
+      "snapshot": {
+        "url": "http://descriptions.mlstatic.com/D-MLB5192489345.jpg?hash=8520c3b8559cb08aa7e782b8f5334ffe_0x0",
+        "width": 0,
+        "height": 0,
+        "status": ""
+      }
+    },
+    "error": null
+  }
+}
