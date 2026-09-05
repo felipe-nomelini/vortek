@@ -1,3 +1,6 @@
+import { titlePackQuantity } from './ml/identity-normalization.ts';
+import { presentationFacts } from './ml/opportunity-identity.ts';
+export { titlePackQuantity } from './ml/identity-normalization.ts';
 type CatalogAttribute = {
   id?: string | null;
   name?: string | null;
@@ -94,14 +97,6 @@ function titleHandOrientation(value: unknown): "destro" | "canhoto" | null {
   return null;
 }
 
-export function titlePackQuantity(value: unknown): number | null {
-  const text = normalize(value);
-  const match = text.match(
-    /^\s*(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?|tubos?|pacotes?|blisters?|encordoamentos?)\b|\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,4})\b|\b(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?)\b|\b(?:cartela|cart|car|blister|bli|pacote|pct|caixa|cx|dz|cem|tub)\s+(?:(?:com|de|c\/|\/|x)\s*)?(\d{1,4})\b|\b(?:c|ct)\s*\/\s*(\d{1,4})\b/,
-  );
-  const quantity = Number(match?.[1] || match?.[2] || match?.[3] || match?.[4] || match?.[5] || 0);
-  return Number.isInteger(quantity) && quantity > 0 ? quantity : null;
-}
 
 function positiveAttributeNumber(source: any, id: string): number | null {
   const attribute = attributesById(source).get(id);
@@ -111,11 +106,15 @@ function positiveAttributeNumber(source: any, id: string): number | null {
 }
 
 function catalogPackAttributeMismatch(product: any, catalogProduct: any) {
-  const localQuantity = titlePackQuantity(product?.nome);
+  const localQuantity = presentationFacts(String(product?.nome ?? ''), String(product?.descricao ?? '')).quantity;
   const unitsPerPack = positiveAttributeNumber(catalogProduct, 'UNITS_PER_PACK');
   if (!localQuantity || !unitsPerPack) return [];
 
   const packsNumber = positiveAttributeNumber(catalogProduct, 'PACKS_NUMBER') || 1;
+  const format = normalize(attributeLabel(attributesById(catalogProduct).get('SALE_FORMAT')));
+  const catalogContent = presentationFacts(String(catalogProduct?.name ?? catalogProduct?.title ?? ''));
+  if (unitsPerPack === 1 && packsNumber === 1 && ['unidade', 'unidad', 'unit'].includes(format)
+      && catalogContent.packaging === 'kit' && catalogContent.quantity === localQuantity) return [];
   const representedQuantity = unitsPerPack * packsNumber;
   if (representedQuantity === localQuantity) return [];
 
@@ -171,13 +170,13 @@ function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
     });
   }
 
-  const localQuantity = titlePackQuantity(localTitle);
+  const localQuantity = presentationFacts(localTitle, String(product?.descricao ?? '')).quantity;
   const catalogQuantity = titlePackQuantity(catalogTitle);
-  if (catalogQuantity && catalogQuantity > 1 && localQuantity !== catalogQuantity) {
+  if (catalogQuantity && localQuantity && localQuantity !== catalogQuantity) {
     mismatches.push({
       id: "TITLE_PACK_QUANTITY",
       name: "Quantidade do kit no título",
-      itemValue: localQuantity ? String(localQuantity) : "produto unitário",
+      itemValue: String(localQuantity),
       catalogValue: String(catalogQuantity),
     });
   }

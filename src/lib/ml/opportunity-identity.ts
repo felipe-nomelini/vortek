@@ -1,8 +1,9 @@
 import type { IdentityFacts } from './opportunity-conflicts.ts';
-import { findModelEvidence, normalizeIdentityText } from './identity-normalization.ts';
+import { findModelEvidence, normalizeIdentityText, titlePackQuantity, identityColor } from './identity-normalization.ts';
 
 export type FactOrigin = { source: string; excerpt: string };
 type TextContext = { title?: string; description?: string; source?: string };
+export type IdentitySupplement = { offerId: string; gtin: string; source: string; observedAt: string; facts: IdentityFacts };
 const clean = (text: unknown) => String(text ?? '').replace(/<[^>]+>/g, ' ').replace(/&(?:nbsp|bull);/g, ' ').replace(/\s+/g, ' ').trim();
 
 /** Composição comercial explícita. Não confunde portas, medidas ou volumes com kits. */
@@ -15,9 +16,9 @@ export function presentationFacts(title: string, description = '') {
         ?? text.match(/\bcomposto\s+por\s+(\d+)\s+unidades?\b/)
         ?? text.match(/\b(?:conteudo(?: da embalagem)?|acompanha|inclui|contem)\s*[:\-]?\s*(\d+)\s+(?:unidades?|pecas?|coolers?|falantes?)\b/);
     const unit = text.match(/\b(?:venda por unidade|vendido por unidade|conteudo(?: da embalagem)?\s*:\s*1 unidade)\b/);
-    const quantity = pair ? 2 : count ? Number(count[1]) : unit ? 1 : null;
+    const quantity = pair ? 2 : count ? Number(count[1]) : unit ? 1 : titlePackQuantity(title);
     return { quantity, packaging: pair || kit || (quantity !== null && quantity > 1) ? 'kit' : unit ? 'unidade' : null,
-        excerpt: pair ? title : count?.[0] ?? unit?.[0] ?? (kit ? title : null) };
+        excerpt: pair ? title : count?.[0] ?? unit?.[0] ?? (kit || quantity !== null ? title : null) };
 }
 
 export function identityFacts(attributes: Array<{ id: string; value_name?: string | null }> = [], context: TextContext = {}): IdentityFacts {
@@ -38,15 +39,15 @@ export function identityFacts(attributes: Array<{ id: string; value_name?: strin
     if (content.excerpt) provenance.presentation = { source, excerpt: content.excerpt };
     else if (saleUnits !== null || format) provenance.presentation = { source, excerpt: `SALE_FORMAT: ${get('SALE_FORMAT')}; UNITS_PER_PACK: ${units}; PACKS_NUMBER: ${packs}` };
     return { gtin: get('GTIN'), brand: get('BRAND'), model: get('MODEL'), partNumber: get('PART_NUMBER'), packaging, quantity, saleUnits,
-        variation: get('COLOR'), provenance,
-        critical: Object.fromEntries(['VOLTAGE', 'LENGTH', 'SIZE', 'CAPACITY', 'CONNECTOR_TYPE', 'INPUT_CONNECTOR', 'OUTPUT_CONNECTOR'].map(id => [id, get(id)])) };
+        variation: get('COLOR') ?? identityColor(get('MODEL')), provenance,
+        critical: Object.fromEntries(['VOLTAGE', 'LENGTH', 'SIZE', 'CAPACITY', 'CONNECTOR_TYPE', 'INPUT_CONNECTOR', 'OUTPUT_CONNECTOR', 'PINS_NUMBER'].map(id => [id, get(id)])) };
 }
 
-export function supplierIdentityFacts(product: any, reference?: IdentityFacts): IdentityFacts {
+export function supplierIdentityFacts(product: any, reference?: IdentityFacts, supplement?: IdentitySupplement | null): IdentityFacts {
     const title = clean(product.nome), description = clean(product.descricao);
     const text = `${title} ${description}`;
     const source = product.id ? `supplier_offer:${product.id}` : 'supplier_product';
-    const matchedModel = normalizeIdentityText(reference?.model) === normalizeIdentityText(reference?.brand) ? null : findModelEvidence(reference?.model, text);
+    const matchedModel = normalizeIdentityText(reference?.model) === normalizeIdentityText(reference?.brand) ? null : findModelEvidence(reference?.model, text, reference?.brand);
     const matchedPart = findModelEvidence(reference?.partNumber, text);
     const content = presentationFacts(title, description);
     const provenance: Record<string, FactOrigin> = {};
@@ -55,7 +56,13 @@ export function supplierIdentityFacts(product: any, reference?: IdentityFacts): 
     if (content.excerpt) provenance.presentation = { source, excerpt: content.excerpt };
     if (product.marca) provenance.brand = { source, excerpt: `${product.marca}; ${description.match(/marca\s*:[^.\n]+/i)?.[0] ?? ''}` };
     if (product.gtin) provenance.gtin = { source, excerpt: String(product.gtin) };
-    return { gtin: product.gtin ?? null, brand: product.marca ?? null, model: matchedModel, partNumber: matchedPart,
-        quantity: content.quantity, packaging: content.packaging, provenance,
+    const facts: IdentityFacts = { gtin: product.gtin ?? null, brand: product.marca ?? null, model: matchedModel, partNumber: matchedPart,
+        quantity: content.quantity, packaging: content.packaging, provenance, variation: identityColor(title),
         brandEvidence: text };
+    if (supplement && supplement.offerId === product.id && supplement.gtin === String(product.gtin) && supplement.source && supplement.observedAt) {
+        // Complemento auditado por produto/oferta; troca de oferta/GTIN exige nova comprovação.
+        return { ...facts, ...supplement.facts, gtin: facts.gtin, brand: facts.brand, brandEvidence: facts.brandEvidence, provenance: { ...provenance, ...supplement.facts.provenance },
+            critical: { ...facts.critical, ...supplement.facts.critical } };
+    }
+    return facts;
 }

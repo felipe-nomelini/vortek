@@ -1,5 +1,5 @@
 import type { EconomicMemory } from '../../services/pricing.ts';
-import { compareIdentityBrands, normalizeIdentityText, normalizeModelCode, IDENTITY_RULE_VERSION } from './identity-normalization.ts';
+import { compareIdentityBrands, normalizeIdentityText, normalizeModelCode, modelCodeLabel, identityColor, IDENTITY_RULE_VERSION } from './identity-normalization.ts';
 import type { FactOrigin } from './opportunity-identity.ts';
 export type ConflictState = 'SEM_CONFLITO' | 'CONFLITO_CONFIRMADO' | 'PENDENCIA_VALIDACAO' | 'INCONCLUSIVO';
 export type IdentityState = 'IDENTIDADE_COHERENTE' | 'IDENTIDADE_DIVERGENTE' | 'IDENTIDADE_INCONCLUSIVA';
@@ -18,6 +18,7 @@ export interface IdentityFacts {
     saleUnits?: number | null;
     brandEvidence?: string;
     provenance?: Record<string, FactOrigin>;
+    pendingReasons?: string[];
     variation?: string | null;
     critical?: Record<string, string | null>;
 }
@@ -68,7 +69,10 @@ export function assessIdentity(evidence: IdentityEvidence): Pick<ConflictAssessm
             continue;
         const normalizer = field === 'gtin' ? gtin : ['model', 'partNumber'].includes(field) ? normalizeModelCode : normalize;
         const brandMatch = field === 'brand' ? compareIdentityBrands(left, right, evidence.local.brandEvidence) : null;
-        const matches = brandMatch ? brandMatch.matches : normalizer(left) === normalizer(right);
+        const matches = brandMatch ? brandMatch.matches : field === 'model'
+            ? normalizeModelCode(modelCodeLabel(left, evidence.local.brand)) === normalizeModelCode(modelCodeLabel(right, evidence.remote.brand))
+            : field === 'variation' && identityColor(left) && identityColor(right)
+                ? identityColor(left) === identityColor(right) : normalizer(left) === normalizer(right);
         comparisons.push({ field, local: String(left), remote: String(right), matches, basis: brandMatch?.basis ?? 'normalized', evidence: brandMatch?.source ?? null });
         if (!matches) {
             if (field === 'gtin' && evidence.variationMatchEvidence)
@@ -90,6 +94,8 @@ export function assessIdentity(evidence: IdentityEvidence): Pick<ConflictAssessm
     const identified = matching.has('brand') && (matching.has('model') || matching.has('partNumber') || matching.has('gtin'));
     const kit = [evidence.local.packaging, evidence.remote.packaging].some(p => normalize(p) === 'kit');
     const materialConflicts = reasons.some(r => r !== 'EQUIVALENCIA_MARCA_NAO_COMPROVADA');
+    reasons.push(...(evidence.local.pendingReasons ?? []), ...(evidence.remote.pendingReasons ?? []));
+    if (identityColor(evidence.remote.model) && !evidence.local.variation) reasons.push('COR_DO_MODELO_NAO_COMPROVADA');
     if (!identified || !evidence.source) reasons.push('EVIDENCIA_IDENTIDADE_INCOMPLETA');
     if (kit && (!evidence.local.quantity || !evidence.remote.quantity)) reasons.push('COMPOSICAO_KIT_NAO_COMPROVADA');
     if (!kit && (!evidence.local.quantity || !evidence.remote.quantity)) warnings.push('APRESENTACAO_NAO_EXPLICITA');

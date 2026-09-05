@@ -10,6 +10,7 @@ const folder=path.resolve('reports/RADAR_LAUNCH_2026_09_COHORT_01');fs.mkdirSync
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 async function checked(p){const r=await p;if(r.error)throw Error(r.error.message);return r.data;}
 (async()=>{
+ const supplements=read(path.join(folder,'identity_supplements.json'));
  const token=(await checked(db.from('integracoes').select('access_token').eq('tipo','mercadolivre').single())).access_token;
  let calls=0;const requests=[];
  const fetchMLResult=async endpoint=>{calls++;const at=new Date().toISOString();try{const r=await fetch('https://api.mercadolibre.com'+endpoint,{headers:{Authorization:`Bearer ${token}`},signal:AbortSignal.timeout(30000)});const data=await r.json();requests.push({endpoint,at,status:r.status});return {ok:r.ok,status:r.status,data:r.ok?data:null,error:r.ok?null:{code:data.error??'ML_ERROR'}};}catch(e){requests.push({endpoint,at,status:null,error:e.name});return{ok:false,status:null,data:null,error:{code:e.name}};}};
@@ -22,10 +23,9 @@ async function checked(p){const r=await p;if(r.error)throw Error(r.error.message
    const prior=previous.find(r=>r.sku===row.sku);const resolved=await pricing.resolvePricingProduct(db,prior.produto_id);
    const catalog=prior.catalog_product_id?await fetchMLResult('/products/'+encodeURIComponent(prior.catalog_product_id)):null;
    const remote=catalog?.ok?identityFacts(catalog.data.attributes??[],{title:catalog.data.name,source:'/products/'+prior.catalog_product_id}):{};
-   const identity={local:supplierIdentityFacts(resolved.offer??resolved.product,remote),remote,source:catalog?.ok?'/products/'+prior.catalog_product_id:null};
+   const identity={local:supplierIdentityFacts(resolved.offer??resolved.product,remote,supplements[row.sku]),remote,source:catalog?.ok?'/products/'+prior.catalog_product_id:null};
    const assessment=assessIdentity(identity);const blocked=[];
    if(assessment.identity!=='IDENTIDADE_COHERENTE')blocked.push(...assessment.reasons);
-   if((assessment.warnings??[]).includes('APRESENTACAO_NAO_EXPLICITA'))blocked.push('UNIDADE_DE_VENDA_REQUER_COMPROVACAO');
    if(!resolved.offer||!resolved.product.ativo||Number(resolved.offer.estoque)<=0)blocked.push('OFERTA_ESTOQUE_INDISPONIVEL');
    if(!catalog?.ok)blocked.push('PUBLICACAO_BLOQUEADA_FONTE_ML_INCONCLUSIVA');
    let quote=null,quoteFailure=null;
@@ -45,5 +45,5 @@ async function checked(p){const r=await p;if(r.error)throw Error(r.error.message
   }));results.push(...batch);console.log(JSON.stringify({evaluated:results.length,total:reviewed.length,mlCalls:calls}));
  }
  fs.writeFileSync(path.join(folder,'baseline_live.json'),JSON.stringify({cohort:'RADAR_LAUNCH_2026_09_COHORT_01',identityRuleVersion:IDENTITY_RULE_VERSION,at:new Date().toISOString(),mlMutations:0,calls,requests,results},null,2));
- console.log(JSON.stringify({evaluated:results.length,identities:results.reduce((a,r)=>(a[r.assessment.identity]=(a[r.assessment.identity]??0)+1,a),{}),ready:results.filter(r=>!r.blocked.length).map(r=>r.sku),quoted:results.filter(r=>r.quote||r.quoteFailure).map(r=>({sku:r.sku,margin:r.quote?.margin,failure:r.quoteFailure,blocked:r.blocked}))}));
+ console.log(JSON.stringify({evaluated:results.length,identities:results.reduce((a,r)=>(a[r.assessment.identity]=(a[r.assessment.identity]??0)+1,a),{}),eligibleForFinalGate:results.filter(r=>!r.blocked.length).map(r=>r.sku),quoted:results.filter(r=>r.quote||r.quoteFailure).map(r=>({sku:r.sku,margin:r.quote?.margin,failure:r.quoteFailure,blocked:r.blocked}))}));
 })().catch(e=>{console.error(e.message);process.exitCode=1});

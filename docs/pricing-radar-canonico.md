@@ -24,7 +24,7 @@ Estratégias abaixo do piso usam `/api/pricing/strategy`, com anúncio existente
 
 ## Conflitos e Radar
 
-`opportunity-conflicts.ts` classifica identidade, embalagem/quantidade, vínculo e economia separadamente da demanda. A regra M2M-IDENTITY-v2 reconhece equivalências documentadas de marca e normaliza separadores de modelos; os valores originais e a origem permanecem na avaliação. Mesmo GTIN não supera divergência material efetiva de marca/modelo. Variação legítima exige evidência. Quantidade e apresentação comprovadamente incompatíveis bloqueiam automação. Composição é extraída também da descrição e do título do catálogo. A ausência de atributos remotos não invalida automaticamente uma identidade comprovada por marca/modelo; apresentação não explícita fica como aviso de completude, e kit de composição desconhecida continua pendente. `SEM_CONFLITO`, `CONFLITO_CONFIRMADO`, `PENDENCIA_VALIDACAO` e `INCONCLUSIVO` são independentes do score.
+`opportunity-conflicts.ts` classifica identidade, embalagem/quantidade, vínculo e economia separadamente da demanda. A regra M2M-IDENTITY-v2.1 reconhece equivalências documentadas de marca e normaliza separadores de modelos; os valores originais e a origem permanecem na avaliação. Mesmo GTIN não supera divergência material efetiva de marca/modelo. Variação legítima exige evidência. Quantidade e apresentação comprovadamente incompatíveis bloqueiam automação. Composição é extraída também da descrição e do título do catálogo. A ausência de atributos remotos não invalida automaticamente uma identidade comprovada por marca/modelo; apresentação não explícita fica como aviso de completude, e kit de composição desconhecida continua pendente. `SEM_CONFLITO`, `CONFLITO_CONFIRMADO`, `PENDENCIA_VALIDACAO` e `INCONCLUSIVO` são independentes do score.
 
 Anúncio ativo sai da fila de novos; pausado segue para reativação. Relações de catálogo só compartilham `pricing_group_id` quando `/public/buybox/sync/{itemId}` comprova `SYNC`. Falha ou anúncio próprio sem vínculo deixam busca inconclusiva. Demanda ausente/404 nunca prova ausência de vendas.
 
@@ -42,3 +42,5 @@ Autonomia: `AUTO_OBSERVE`. Publicação permanece `REQUIRES_CONFIRMATION`, indiv
 - [Buy Box](https://developers.mercadolivre.com.br/concorrencia-em-catalogo).
 - [Manual PGDAS-D](https://www8.receita.fazenda.gov.br/SimplesNacional/Arquivos/manual/MANUAL_PGDAS-D_2018_V4.pdf).
 - [PostgreSQL 15: views e privilégios](https://www.postgresql.org/docs/15/sql-createview.html), [locks](https://www.postgresql.org/docs/15/explicit-locking.html).
+
+Complementos técnicos de pesquisa ficam na evidência existente do Radar, vinculados à oferta e ao GTIN, com fonte, data e trecho. Radar e criação leem esse mesmo complemento. Troca de oferta/GTIN invalida sua aplicação. Ambiguidade material comprovada gera pendência; divergência material comprovada gera conflito. Uma confirmação genérica de revisão não supera identidade inconclusiva.

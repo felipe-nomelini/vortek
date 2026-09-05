@@ -40,6 +40,7 @@ test('um kit não vira quatro kits; seis cordas não viram seis jogos; conjunto 
  assert.equal(presentationFacts('Relê RE-10','Liga em conjunto com alarme').packaging,null);
  assert.equal(presentationFacts('Câmera','Possui um conjunto mecânico').packaging,null);
  assert.equal(presentationFacts('Kit duas vias 6 polegadas').quantity,null);
+ assert.equal(presentationFacts('Kit 2 vias 6 polegadas').quantity,null);
 });
 test('ausência remota não é contradição; kit sem composição ainda exige validação',()=>{
  const basic={local:{brand:'Evus',model:'A1'},remote:{brand:'Evus',model:'A1'},source:'source'};
@@ -53,4 +54,39 @@ test('estimativas econômicas são avisos, sem inventar confirmação ou conflit
  const memory=evaluateEconomics({price:100,cost:50,offerId:'o',supplierId:'s',costObservedAt:at,fee:amount(15),shipping:amount(10),variableCosts:{amount:null,source:'unknown',observedAt:null,evidence:null},tax:{rate:.05,status:'estimated',referenceMonth:'2026-09',observedAt:at,source:'RBT12',rbt12:1,missingMonths:[]},evaluatedAt:at});
  const assessment=assessOpportunityConflicts({identity:{local:{brand:'Evus',model:'A1'},remote:{brand:'Evus',model:'A1'},source:'source'},listings:[],listingSearchComplete:true,economy:memory,eligibleOffer:true});
  assert.equal(assessment.state,'SEM_CONFLITO');assert.ok(assessment.warnings.includes('TRIBUTO_ESTIMADO'));assert.ok(assessment.warnings.includes('CUSTOS_VARIAVEIS_NAO_INFORMADOS'));assert.equal(memory.status,'estimated');assert.equal(memory.variableCosts.amount,null);
+});
+test('complemento técnico auditado distingue seis pinos de quatro e fica vinculado à oferta/GTIN',()=>{
+ const product={id:'o',gtin:'789',marca:'EVUS',nome:'Kit FK-12P',descricao:'Composto por 4 unidades'};
+ const remote=identityFacts([a('BRAND','EVUS'),a('MODEL','FK-12P'),a('PINS_NUMBER','4')],{title:'Kit FK-12P com 4'});
+ const supplement={offerId:'o',gtin:'789',source:'supplier-page',observedAt:'2026-09-05T20:00:00Z',facts:{critical:{PINS_NUMBER:'6'}}};
+ const local=supplierIdentityFacts(product,remote,supplement);
+ const result=assessIdentity({local,remote,source:'supplier+ml'});
+ assert.equal(result.identity,'IDENTIDADE_DIVERGENTE');assert.ok(result.reasons.includes('DIVERGENCIA_ATRIBUTO_PINS_NUMBER'));
+ assert.equal(supplierIdentityFacts({...product,id:'another'},remote,supplement).critical,undefined);
+ assert.equal(supplierIdentityFacts({...product,gtin:'different'},remote,supplement).critical,undefined);
+ const pending=assessIdentity({local:{...local,critical:{},pendingReasons:['ESCOPO_POTENCIA_RMS_NAO_COMPROVADO']},remote,source:'supplier+ml'});
+ assert.equal(pending.identity,'IDENTIDADE_INCONCLUSIVA');
+});
+
+test('compatibilidade de catálogo usa composição da descrição sem confundir kit vendido como unidade',()=>{
+ const {catalogLocalCriticalMismatches}=require('../src/lib/ml-catalog-compatibility.ts');
+ const local={nome:'Kit Cooler FK-12P',descricao:'Composto por 4 unidades'};
+ const catalog={name:'Cooler FK-12P Kit com 4',attributes:[a('SALE_FORMAT','Unidade'),a('UNITS_PER_PACK','1')]};
+ assert.deepEqual(catalogLocalCriticalMismatches(local,catalog),[]);
+ assert.ok(catalogLocalCriticalMismatches(local,{...catalog,name:'Cooler FK-12P Kit com 3'}).length);
+ assert.deepEqual(catalogLocalCriticalMismatches({nome:'Cooler FK-12P'},{name:'Cooler FK-12P com 4 unidades'}),[]);
+});
+
+test('descritores do modelo não bloqueiam código comprovado; cores e sufixos continuam materiais',()=>{
+ for(const [brand,model,title] of [['Roadstar','RS606BR - Universal','Central Roadstar RS606BR'],['Roadstar','RS304BR BLACK','Sensor RS304BR Preto Brilhante'],['Intelbras','Mouse MSI 50','Mouse Intelbras MSI50 Preto'],['Truly','Truly T882','Calculadora de Mesa Truly T882']]) {
+  const remote=identityFacts([a('BRAND',brand),a('MODEL',model)]);
+  const local=supplierIdentityFacts({marca:brand,nome:title},remote);
+  assert.equal(assessIdentity({local,remote,source:'supplier+ml'}).identity,'IDENTIDADE_COHERENTE',model);
+ }
+ const genericColor=assessIdentity({local:{brand:'M',model:'X1',variation:'preto'},remote:{brand:'M',model:'X1',variation:'Preta'},source:'source'});
+ assert.equal(genericColor.identity,'IDENTIDADE_COHERENTE');
+ const remote=identityFacts([a('BRAND','Roadstar'),a('MODEL','RS304BR BLACK')]);
+ assert.equal(assessIdentity({local:supplierIdentityFacts({marca:'Roadstar',nome:'RS304BR Prata'},remote),remote,source:'supplier+ml'}).identity,'IDENTIDADE_DIVERGENTE');
+ assert.equal(assessIdentity({local:supplierIdentityFacts({marca:'Roadstar',nome:'RS304BR'},remote),remote,source:'supplier+ml'}).identity,'IDENTIDADE_INCONCLUSIVA');
+ assert.equal(findModelEvidence('PC108','Calculadora PC108-PK'),null);
 });

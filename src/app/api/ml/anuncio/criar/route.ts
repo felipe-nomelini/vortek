@@ -711,7 +711,6 @@ export async function POST(req: Request) {
       familyName: requestedFamilyName,
       targetNetProfit,
       pricingApprovalId,
-      acknowledgeIdentityReview,
     } = await req.json();
 
     if (!produtoId) {
@@ -1461,9 +1460,12 @@ export async function POST(req: Request) {
       },
     };
 
-    const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer,identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' })),remote:identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }),source:'formulario_publicacao_validado'});
+    const identitySupplementRow = await (supabase as any).from('radar_oportunidades').select('evidence').eq('candidate_key', `product:${produto.id}`).maybeSingle();
+    if (identitySupplementRow.error) throw new Error('EVIDENCIA_IDENTIDADE_INDISPONIVEL');
+    const identitySupplement = (identitySupplementRow.data?.evidence as any)?.identitySupplement;
+    const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer,identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }), identitySupplement),remote:identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }),source:'formulario_publicacao_validado'});
     if (finalIdentity.identity==='IDENTIDADE_DIVERGENTE') return NextResponse.json({error:'CONFLITO_IDENTIDADE_PUBLICACAO',identity:finalIdentity},{status:422});
-    if (finalIdentity.identity==='IDENTIDADE_INCONCLUSIVA' && acknowledgeIdentityReview!==true) return NextResponse.json({error:'PENDENCIA_VALIDACAO_IDENTIDADE',identity:finalIdentity},{status:422});
+    if (finalIdentity.identity==='IDENTIDADE_INCONCLUSIVA') return NextResponse.json({error:'PENDENCIA_VALIDACAO_IDENTIDADE',identity:finalIdentity},{status:422});
     await recordPricingEvent(supabase,{event_type:'CREATE_REQUESTED',produto_id:produto.id,pricing_source:'publication',actor:auth.user.id,reason:'Criação no alvo aprovada após revisão de identidade',new_price:initialPrice,rule_id:safePrice.memory.policyVersion,payload:{approvalId:pricingApprovalId,identity:finalIdentity},dedupe_key:`create:${pricingApprovalId}`});
     let result;
     try {
