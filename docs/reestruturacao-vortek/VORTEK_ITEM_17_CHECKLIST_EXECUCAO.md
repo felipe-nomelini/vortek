@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-12 — Contrato do webhook Easypanel`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-10` concluídas; aplicação bloqueante | Executar `BNT-PARITY-11` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-11` concluídas; aplicação bloqueante | Executar `BNT-PARITY-12` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -198,6 +198,8 @@ Regras de uso:
 - [x] Não reintroduzir `/items?ids=` nem criar fallback para o contrato legado.
 - [x] Executar somente `BNT-PARITY-10 — Deduplicação do alerta de nova venda`.
 - [x] Não avançar para `BNT-PARITY-11` antes de validar `BNT-PARITY-10` em homologação.
+- [x] Executar somente `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`.
+- [x] Não avançar para `BNT-PARITY-12` antes de validar `BNT-PARITY-11` em homologação.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2878,7 +2880,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`
 
-**Situação:** implementação e validação local concluídas; homologação pendente.
+**Situação:** concluída e publicada em homologação em `2026-09-05`.
 
 - [x] persistir ID de mensagem antes do envio e confirmação individual imediatamente após o retorno bem-sucedido do WAHA;
 - [x] retomar somente destinatários sem confirmação e reutilizar IDs alocados;
@@ -2887,7 +2889,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 - [x] aceitar ID legado somente para `primary`, sem inferir sucesso pela simples alocação;
 - [x] manter o destinatário original; contato adicional Evolusom permanece em `BNT-PARITY-DEC-01`;
 - [x] validar falhas parciais, falhas posteriores, compatibilidade e concorrência com dependências simuladas;
-- [ ] confirmar deploy e SHA ativo exclusivamente no `vortek-erp-dev`.
+- [x] confirmar deploy e SHA ativo exclusivamente no `vortek-erp-dev`.
 
 **Causa corrigida:** o worker mantinha um ID único por job, mas nenhuma confirmação de envio no histórico do job. Falhas posteriores no registro de auditoria ou na atualização do pedido levavam a nova chamada de envio na retomada. O módulo existente agora registra `whatsapp_label_recipient_message_id_allocated` e `whatsapp_label_recipient_sent` em `jobs.log`, por chave de destinatário. As confirmações persistidas impedem o reenvio; sucessos parciais são preservados. Os resultados individuais acrescentados ao resumo expõem apenas chave, sufixo mascarado, ID, modo e indicação de envio já confirmado.
 
@@ -2897,7 +2899,9 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter o commit desta ação em `dev` e publicar apenas no `vortek-erp-dev`, preservando o histórico dos jobs. Evitar retomar jobs parcialmente enviados com a implementação antiga, que ignora as confirmações individuais. Não há migration a reverter.
 
-**Próxima ação após homologação:** `BNT-PARITY-12 — Contrato do webhook Easypanel`.
+**Homologação:** commit `76fbc7f569901920bc4cc90df0066d788a0f795d` enviado apenas para `origin/dev`. A action Easypanel `cmtoheaun000407tcbkog35g6` concluiu com `Success`; o serviço `local_vortek-erp-dev` confirmou esse `GIT_SHA` e a task `czwtj653z1a8` assumiu a execução. Login e health em `dev.bentevi.shop` responderam HTTP `200`. A validação de entrega foi simulada; nenhum WhatsApp real foi enviado.
+
+**Próxima ação:** `BNT-PARITY-12 — Contrato do webhook Easypanel`.
 
 #### Classificação obrigatória
 
