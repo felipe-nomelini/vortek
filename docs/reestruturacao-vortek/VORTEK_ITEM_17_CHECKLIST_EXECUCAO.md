@@ -2728,6 +2728,26 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Próxima ação:** `BNT-PARITY-06 — Fallback seguro da retomada DSLite`.
 
+#### `BNT-PARITY-06 — Fallback seguro da retomada DSLite`
+
+- [x] preservar a ordem e a deduplicação das URLs interna e pública da retomada;
+- [x] tentar a URL seguinte somente quando o `fetch` falhar antes de receber uma resposta;
+- [x] encerrar o fallback diante de qualquer resposta HTTP, inclusive erro ou corpo inválido;
+- [x] preservar a mensagem retornada pela API DSLite e usar o status HTTP quando ela não existir;
+- [x] manter payload, headers, chave de idempotência e contrato público da confirmação de pagamento;
+- [x] provar erro HTTP, resposta inválida, fallback por falha de rede e indisponibilidade total em teste puro;
+- [x] confirmar que nenhuma migration, escrita em banco ou chamada real à DSLite é necessária.
+
+**Causa corrigida:** a confirmação do PIX percorria a segunda URL da retomada DSLite mesmo depois de receber uma resposta HTTP de erro da primeira. Isso podia repetir a mesma operação e substituir um erro de negócio autoritativo por um resultado diferente da URL pública.
+
+**Resultado técnico:** a decisão de fallback foi isolada em um helper DSLite puro. A primeira resposta HTTP agora encerra a tentativa e preserva seu erro; apenas uma rejeição do `fetch` antes da resposta libera a URL seguinte. Resposta com corpo inválido também encerra o fluxo sem nova requisição. O contrato da rota, a idempotência do job e os demais efeitos da confirmação permaneceram inalterados.
+
+**Validação:** passaram 48 cenários direcionados de retomada, contrato DSLite, criação segura, verificação, vínculo de compra e responsabilidades da interface. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. O teste legado isolado `job-idempotency.test.js` não inicia no runner Node porque o próprio serviço usa aliases `@/` sem resolver nesse runner; o código correspondente passou no `typecheck` e não foi alterado. Nenhuma chamada real, migration ou operação de banco foi executada.
+
+**Reconciliação contínua:** `origin/main` avançou de `95941f1` para `b6e1b17` com cinco commits restritos ao experimento de pricing. Nenhum deles altera o fluxo `ORD-09`; o delta ficou registrado para classificação própria antes do gate final, sem ser incorporado nesta ação.
+
+**Próxima ação:** `BNT-PARITY-07 — Venda concretizada pelo ML`.
+
 #### Classificação obrigatória
 
 Cada regra ou mudança deve receber exatamente uma classificação:

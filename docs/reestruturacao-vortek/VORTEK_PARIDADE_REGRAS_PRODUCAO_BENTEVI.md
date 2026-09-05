@@ -10,7 +10,9 @@
 
 **Ancestral comum:** `08b6237428c406b55a876578b63dbc553e8c9584`
 
-**Resultado:** fotografia concluída; `BNT-PARITY-01` e `BNT-PARITY-02` incorporadas em 04/09/2026 e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
+**Último delta remoto verificado:** `origin/main` em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de` em 05/09/2026. Os cinco commits posteriores à fotografia alteram somente o experimento de pricing e permanecem enfileirados para classificação própria antes do gate final; nenhum modifica o contrato `ORD-09`.
+
+**Resultado:** fotografia concluída; `BNT-PARITY-01` a `BNT-PARITY-06` incorporadas e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
 
 ---
 
@@ -20,12 +22,12 @@ A Bentevi preserva a maior parte das regras estruturais do Vortek e já substitu
 
 Foram encontrados **13 commits exclusivos em produção**, envolvendo 83 arquivos e quatro migrations. A análise funcional identificou:
 
-- **14 regras produtivas identificadas para incorporação**, das quais `PRC-11` e `PRD-02` foram concluídas em `BNT-PARITY-01` e `SUP-02` em `BNT-PARITY-02`; as demais continuam organizadas em ações controladas;
+- **14 regras produtivas identificadas para incorporação**, das quais `PRC-11`, `PRD-02`, `SUP-02`, `SUP-05`, `SUP-06`, `SUP-07` e `ORD-09` foram concluídas em `BNT-PARITY-01` a `BNT-PARITY-06`; as demais continuam organizadas em ações controladas;
 - **1 decisão operacional pendente**, sobre destinatário adicional de etiqueta da Evolusom;
 - comportamentos intermediários ou históricos que não devem ser copiados;
 - uma colisão real de versão de migration que bloqueia promoção automática do histórico;
 - ausência, na Bentevi, do estado produtivo `concretizada_ml` e da deduplicação de alerta de nova venda por inserção;
-- atividade manual de `produtos.ativo` e preferência exclusiva por oferta ativa já reconciliadas; inativação de fornecedor continua isolada nas próximas ações.
+- atividade manual de `produtos.ativo`, preferência por oferta ativa, inativação de fornecedor e fallback da retomada DSLite já reconciliados; as demais divergências continuam isoladas nas próximas ações.
 
 Nenhuma regra foi aplicada nesta ação. Não houve alteração funcional, migration, escrita em banco, chamada mutável a integração, deploy ou acesso a PII.
 
@@ -86,7 +88,7 @@ Não existe relação presente somente em produção. As 13 relações exclusiva
 | `b1f9e58` | regenera tipos do schema produtivo | `DB-02` | não copiar arquivo gerado |
 | `f3e9199` | reprocessamento explícito e idempotente da inativação | `SUP-07` | incorporar |
 | `649aa4f` | bloqueio de identidade inserido inicialmente no fluxo de venda | `ML-03` | não copiar; supersedido por `4bdca2c` |
-| `dc60a2b` | fallback seguro de retomada e envio idempotente por destinatário | `ORD-09`, `NTF-04`, `NTF-05` | incorporar; contato adicional exige decisão |
+| `dc60a2b` | fallback seguro de retomada e envio idempotente por destinatário | `ORD-09`, `NTF-04`, `NTF-05` | `ORD-09` incorporado em `BNT-PARITY-06`; notificações permanecem em ações próprias |
 | `4bdca2c` | move identidade para criação/ativação de anúncio e limpa bloqueio automático resolvido | `ML-03`, `ML-04` | gate equivalente; incorporar limpeza |
 | `9302353` | POST de deploy com JSON explícito | `OPS-01` | incorporar |
 | `2ac64cc` | torna atividade do produto decisão manual e rejeita oferta inativa | `PRD-02`, `SUP-02` | incorporado por `BNT-PARITY-01` e `BNT-PARITY-02` sem copiar comportamentos substituídos |
@@ -156,7 +158,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `ORD-06` | `oferta.payment_mode` | `postpaid/prepaid_pix/balance_account` → lifecycle de pagamento | modo persistido da oferta vence inferência por fornecedor | compras/pedidos | centralizado; conta-saldo apenas histórica | `EQUIVALENTE` | testes `RULE-03` |
 | `ORD-07` | confirmação de compra | `prepaid_pix` + comprovante → paid; então retomada opcional | sem comprovante bloqueia, salvo retomada já paga | compras/DSLite | igual | `EQUIVALENTE` | rota confirmar pagamento |
 | `ORD-08` | créditos de fornecedor | venda cancelada após PIX pago → candidato idempotente de crédito | movement key impede duplicata | compras/financeiro | preservado para fornecedores operacionais | `EQUIVALENTE` | testes supplier credits |
-| `ORD-09` | commit `dc60a2b` | URLs interna/pública → tentar próxima somente se houve exceção de rede | uma resposta HTTP, inclusive erro, encerra fallback | retomada DSLite | DEV tenta a segunda URL após erro HTTP | `INCORPORAR` | ação `BNT-PARITY-06` |
+| `ORD-09` | commit `dc60a2b` | URLs interna/pública → tentar próxima somente se houve exceção de rede | uma resposta HTTP, inclusive erro ou corpo inválido, encerra fallback | retomada DSLite | helper puro encerra na primeira resposta e preserva o erro; URL pública somente após rejeição do `fetch` | `EQUIVALENTE` | `BNT-PARITY-06`; testes `dslite-resume-request` |
 | `ORD-10` | commit `b95ba98` | pago + shipment `shipped/stale` + sem claim/return + pagamentos aprovados/liberados → `concretizada_ml` | consulta incompleta bloqueia; não inferir em erro | pedidos/financeiro/UI | enum, helper e auditoria ausentes | `INCORPORAR` | ação `BNT-PARITY-07`; validar inferência com casos reais |
 
 ### 5.5 Fiscal
@@ -258,7 +260,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | 3 | `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor` **(concluída)** | `SUP-05` | P1 | produto com estoque interno permanece operacional |
 | 4 | `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor` **(concluída)** | `SUP-06`, `ML-07` | P1 | quantidade 0/paused; nunca excluir/closed |
 | 5 | `BNT-PARITY-05 — Reprocessamento idempotente da inativação` **(concluída)** | `SUP-07` | P1 | reprocess explícito sem duplicar job/efeito |
-| 6 | `BNT-PARITY-06 — Fallback seguro da retomada DSLite` | `ORD-09` | P1 | próxima URL apenas em exceção de rede |
+| 6 | `BNT-PARITY-06 — Fallback seguro da retomada DSLite` **(concluída)** | `ORD-09` | P1 | próxima URL apenas em exceção de rede |
 | 7 | `BNT-PARITY-07 — Venda concretizada pelo ML` | `ORD-10` | P1 | migration nova, helper puro, auditoria e transições testadas |
 | 8 | `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade` | `ML-04` | P1 | remove só bloqueio automático resolvido; preserva manual |
 | 9 | `BNT-PARITY-09 — Estágio real do refresh de catálogo` | `ML-06` | P2 | falha registra estágio corrente |
