@@ -94,7 +94,10 @@ curl_args=(
 )
 
 if [ "$METHOD" = "POST" ]; then
-  status="$(curl "${curl_args[@]}" -X POST "$WEBHOOK_URL")"
+  status="$(curl "${curl_args[@]}" -X POST \
+    -H 'Content-Type: application/json' \
+    --data '{}' \
+    "$WEBHOOK_URL")"
 else
   status="$(curl "${curl_args[@]}" "$WEBHOOK_URL")"
 fi

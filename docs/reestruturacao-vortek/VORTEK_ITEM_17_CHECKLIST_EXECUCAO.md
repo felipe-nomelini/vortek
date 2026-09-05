@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-12 — Contrato do webhook Easypanel`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-13 — Reconciliação do histórico de migrations`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-11` concluídas; aplicação bloqueante | Executar `BNT-PARITY-12` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-12` concluídas; aplicação bloqueante | Executar `BNT-PARITY-13` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -200,6 +200,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-11` antes de validar `BNT-PARITY-10` em homologação.
 - [x] Executar somente `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`.
 - [x] Não avançar para `BNT-PARITY-12` antes de validar `BNT-PARITY-11` em homologação.
+- [x] Executar somente `BNT-PARITY-12 — Contrato do webhook Easypanel`, com teste HTTP local e sem deploy real.
+- [x] Não avançar para `BNT-PARITY-13` antes de validar o contrato e as proteções do script.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2902,6 +2904,28 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Homologação:** commit `76fbc7f569901920bc4cc90df0066d788a0f795d` enviado apenas para `origin/dev`. A action Easypanel `cmtoheaun000407tcbkog35g6` concluiu com `Success`; o serviço `local_vortek-erp-dev` confirmou esse `GIT_SHA` e a task `czwtj653z1a8` assumiu a execução. Login e health em `dev.bentevi.shop` responderam HTTP `200`. A validação de entrega foi simulada; nenhum WhatsApp real foi enviado.
 
 **Próxima ação:** `BNT-PARITY-12 — Contrato do webhook Easypanel`.
+
+#### `BNT-PARITY-12 — Contrato do webhook Easypanel`
+
+**Situação:** concluída em `2026-09-05`; validação local do contrato, sem deploy real conforme `OPS-01`.
+
+- [x] incorporar a correção produtiva `9302353`: POST com `Content-Type: application/json` e corpo literal `{}`;
+- [x] preservar GET sem corpo, timeouts, configuração por ambiente e verificações Git;
+- [x] testar a execução do script contra servidor HTTP local com configuração sintética e Git simulado;
+- [x] validar dry-run, branch divergente, alterações pendentes/no stage, URL ausente e método inválido sem requisição;
+- [x] validar respostas 2xx, 4xx/5xx e desconexão, sem retry automático;
+- [x] documentar configuração do `vortek-erp-dev` e branch esperada `dev` sem expor URL/token;
+- [x] executar testes, análise sintática Bash, validate e diff check.
+
+**Divergência corrigida:** o script DEV enviava POST vazio e sem tipo de conteúdo, enquanto a correção produtiva usa JSON explícito. Os deploys anteriores de homologação haviam sido aceitos; esta ação fecha a paridade do contrato, sem atribuir indisponibilidade ao ambiente atual.
+
+**Validação:** passaram 13 testes em `tests/easypanel-deploy-contract.test.js`, usando `curl` real contra `127.0.0.1` e ambiente isolado. Os testes não carregaram `.env.deploy.local` nem chamaram o Easypanel; confirmaram método, cabeçalho, corpo, resultados HTTP, ausência de repetição, ausência da URL nas mensagens normais e os bloqueios pré-envio. `bash -n scripts/deploy-easypanel-vortek.sh`, `npm run validate` e `git diff --check` passaram.
+
+**Build/deploy:** N/A nesta ação: alteração restrita ao script, testes e documentação. Nenhum deploy, ajuste remoto ou operação de banco foi executado.
+
+**Rollback:** reverter o commit desta ação em `dev`; não há alteração remota ou migration a desfazer.
+
+**Próxima ação:** `BNT-PARITY-13 — Reconciliação do histórico de migrations`.
 
 #### Classificação obrigatória
 
