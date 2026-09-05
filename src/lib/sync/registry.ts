@@ -8,6 +8,7 @@ export type SyncTaskKey =
   | 'sync_ml_cancelamentos_pos_nfe'
   | 'sync_ml_listings_observed'
   | 'sync_ml_listings_publish'
+  | 'sync_ml_pricing_experiment_monitor'
   | 'sync_reconcile_fiscal'
   | 'sync_reconcile_brasilnfe'
   | 'sync_mercadopago_account_money'
@@ -178,6 +179,20 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     runMode: 'inline',
     requestTimeoutMs: 180_000,
     retryOnFailure: true,
+  },
+  {
+    key: 'sync_ml_pricing_experiment_monitor',
+    jobTipo: 'sync_ml_pricing_experiment_monitor',
+    label: 'ML Experimento de Pricing',
+    path: '/api/sync/pricing-experiment/monitor',
+    domain: 'anuncios:ml_pricing_experiment_monitor',
+    lockTtlSeconds: 10 * 60,
+    kind: 'ml',
+    dispatchMode: 'scheduled',
+    schedule: { businessMinutes: 5, offHoursMinutes: 5 },
+    runMode: 'inline',
+    requestTimeoutMs: 300_000,
+    retryOnFailure: false,
   },
   {
     key: 'sync_reconcile_fiscal',

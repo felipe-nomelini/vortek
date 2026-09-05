@@ -20,6 +20,10 @@ import {
   clearAutomaticMlIdentityBlock,
   ensureAutomaticMlIdentityBlock,
 } from '@/lib/ml/identity-block';
+import {
+  activePricingExperimentSkus,
+  getHighMarginPricingExperiment,
+} from '@/lib/ml/pricing-experiment';
 
 export const maxDuration = 300;
 
@@ -504,6 +508,19 @@ export async function POST(request: Request) {
     const blockedPriceSkus = new Set(
       (manualPriceBlocks || []).map((row: any) => String(row.sku || '').trim().toUpperCase()).filter(Boolean),
     );
+    let experimentPriceSkus = new Set<string>();
+    let experimentPriceProtectionError = false;
+    try {
+      experimentPriceSkus = activePricingExperimentSkus(
+        await getHighMarginPricingExperiment(serviceClient),
+      );
+    } catch (error: any) {
+      experimentPriceProtectionError = true;
+      warnings.push({
+        code: 'ml_pricing_experiment_protection_failed',
+        message: `Preços automáticos não serão recalculados nesta execução: ${error?.message || 'falha ao ler a coorte experimental'}`,
+      });
+    }
 
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
@@ -743,8 +760,10 @@ export async function POST(request: Request) {
           const configuredShippingChanged = configuredShipping !== null
             && Math.abs(Number(produto.ml_shipping || 0) - configuredShipping) >= 0.01;
           const priceAutomationBlocked = Boolean(manualPriceBlocksError)
+            || experimentPriceProtectionError
             || blockedPriceItemIds.has(String(item.id))
-            || blockedPriceSkus.has(String(produto.sku || '').trim().toUpperCase());
+            || blockedPriceSkus.has(String(produto.sku || '').trim().toUpperCase())
+            || experimentPriceSkus.has(String(produto.sku || '').trim().toUpperCase());
           let configuredShippingPrice: number | null = null;
 
           if (configuredShippingChanged && !priceAutomationBlocked) {

@@ -1,6 +1,10 @@
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { resolveAutomaticPricingProductIds } from '@/lib/ml/automatic-pricing-selection';
+import {
+  activePricingExperimentSkus,
+  getHighMarginPricingExperiment,
+} from '@/lib/ml/pricing-experiment';
 
 type ServiceClientLike = { from: (table: string) => any };
 
@@ -27,7 +31,7 @@ export async function enqueueAutomaticPricesForCostChanges(
   const productIds = resolveAutomaticPricingProductIds(snapshots, options.forceProductIds);
   if (productIds.length === 0) return result;
 
-  const [{ data: products, error: productsError }, { data: listings, error: listingsError }] = await Promise.all([
+  const [{ data: products, error: productsError }, { data: listings, error: listingsError }, experiment] = await Promise.all([
     client
       .from('produtos')
       .select('id,sku,ativo,ml_item_id,ml_status,custo,custom_price,ml_fee,ml_shipping,ml_shipping_warning')
@@ -36,9 +40,11 @@ export async function enqueueAutomaticPricesForCostChanges(
       .from('anuncios_ml')
       .select('produto_id,ml_item_id')
       .in('produto_id', productIds),
+    getHighMarginPricingExperiment(client),
   ]);
   if (productsError) throw new Error(`Falha ao carregar produtos para preço automático: ${productsError.message}`);
   if (listingsError) throw new Error(`Falha ao carregar anúncios para preço automático: ${listingsError.message}`);
+  const experimentSkus = activePricingExperimentSkus(experiment);
 
   const targetsByProduct = new Map<string, Set<string>>();
   for (const product of products || []) {
@@ -79,11 +85,19 @@ export async function enqueueAutomaticPricesForCostChanges(
   for (const product of products || []) {
     const productId = String(product.id || '');
     const targets = Array.from(targetsByProduct.get(productId) || []);
+    const normalizedSku = String(product.sku || '').trim().toUpperCase();
     const cost = Number(product.custo || 0);
     const warning = String(product.ml_shipping_warning || '').trim();
     const publishable = product.ativo !== false && ['ativo', 'pausado'].includes(String(product.ml_status || ''));
     if (!publishable || targets.length === 0 || cost <= 0 || cost > 2_000 || warning) {
       result.skipped += 1;
+      continue;
+    }
+
+    // Durante o experimento o preço é deliberadamente estável. Esta verificação
+    // precisa ocorrer antes de alterar custom_price, não apenas antes do outbox.
+    if (experimentSkus.has(normalizedSku)) {
+      result.skipped += Math.max(1, targets.length);
       continue;
     }
 
@@ -109,7 +123,7 @@ export async function enqueueAutomaticPricesForCostChanges(
     }
     result.productsUpdated += 1;
 
-    const skuBlocked = blockedSkuSet.has(String(product.sku || '').trim().toUpperCase());
+    const skuBlocked = blockedSkuSet.has(normalizedSku);
     for (const mlItemId of targets) {
       if (skuBlocked || blockedItemSet.has(mlItemId)) {
         result.skipped += 1;
