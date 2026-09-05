@@ -58,7 +58,7 @@ async function fetchItems(products, token) {
     const batch = products.slice(index, index + 20);
     const ids = batch.map((product) => product.ml_item_id).join(',');
     const response = await fetch(
-      `https://api.mercadolibre.com/items?ids=${encodeURIComponent(ids)}&include_attributes=all`,
+      `https://api.mercadolibre.com/items/bulk?ids=${encodeURIComponent(ids)}&attributes=body.title,body.price,body.status,body.sub_status,body.category_id,body.listing_type_id,body.pictures,body.permalink`,
       { headers: { Authorization: `Bearer ${token}` } },
     );
     if (!response.ok) throw new Error(`Consulta ML falhou: HTTP ${response.status}`);
@@ -66,11 +66,12 @@ async function fetchItems(products, token) {
     const byId = new Map(batch.map((product) => [String(product.ml_item_id), product]));
     for (const entry of Array.isArray(data) ? data : []) {
       const item = entry?.body || {};
-      const product = byId.get(String(item.id));
+      const itemId = String(entry?.id || '');
+      const product = byId.get(itemId);
       observed.push({
         sku: product?.sku || null,
         produto_id: product?.id || null,
-        mlb: item.id || null,
+        mlb: itemId || null,
         title: item.title || null,
         price: item.price ?? null,
         status: item.status || null,
@@ -79,7 +80,7 @@ async function fetchItems(products, token) {
         listing_type_id: item.listing_type_id || null,
         pictures: Array.isArray(item.pictures) ? item.pictures.length : 0,
         permalink: item.permalink || null,
-        http: entry?.code || null,
+        http: entry?.status_code || null,
       });
     }
   }

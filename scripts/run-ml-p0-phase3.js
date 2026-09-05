@@ -152,13 +152,13 @@ async function scanRemoteInventory(integration) {
     'catalog_product_id', 'category_id', 'attributes', 'variations', 'price', 'base_price',
     'available_quantity', 'initial_quantity', 'sold_quantity', 'listing_type_id', 'catalog_listing',
     'health', 'permalink', 'pictures', 'thumbnail', 'date_created', 'last_updated', 'channels', 'tags',
-  ].join(',');
+  ].map((field) => `body.${field}`).join(',');
   for (let index = 0; index < uniqueIds.length; index += 20) {
     const batch = uniqueIds.slice(index, index + 20);
-    const response = await mlGet(integration, `/items?ids=${batch.join(',')}&attributes=${fields}`);
+    const response = await mlGet(integration, `/items/bulk?ids=${batch.join(',')}&attributes=${fields}`);
     for (const row of response || []) {
-      if (Number(row.code) === 200 && row.body?.id) items.push(row.body);
-      else failed.push(String(row.body?.id || row.id || 'unknown'));
+      if (Number(row.status_code) === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
+      else failed.push(String(row.id || 'unknown'));
     }
     if ((index / 20) % 30 === 0) console.log(JSON.stringify({ event: 'phase3_remote_scan', processed: Math.min(index + 20, uniqueIds.length), total: uniqueIds.length }));
   }

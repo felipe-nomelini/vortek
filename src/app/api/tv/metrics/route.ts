@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
 import { authorizeApiRequest } from "@/lib/api-request-auth";
 import { saoPauloDayBounds, saoPauloHour } from "@/lib/timezone";
+import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from "@/lib/ml/items-bulk";
 import { fetchMLResult } from "@/services/integration";
 
 function round2(value: number): number {
@@ -293,13 +294,14 @@ async function loadRecentQuestions() {
   if (!questions.length) return [];
 
   const itemIds = Array.from(new Set(questions.map((question) => question.item_id).filter(Boolean)));
-  const itemResult = await fetchMLResult<Array<{ code: number; body?: { id?: string; title?: string } }>>(
-    `/items?ids=${itemIds.map(encodeURIComponent).join(",")}&attributes=id,title`,
+  const itemResult = await fetchMLResult<Array<MlItemsBulkRow<{ id?: string; title?: string }>>>(
+    buildMlItemsBulkPath(itemIds, ["id", "title"]),
   );
   const titles = new Map<string, string>();
   if (itemResult.ok && Array.isArray(itemResult.data)) {
-    for (const item of itemResult.data) {
-      if (item.code === 200 && item.body?.id) titles.set(String(item.body.id), String(item.body.title || item.body.id));
+    for (const row of itemResult.data) {
+      const item = getMlItemsBulkBody(row);
+      if (item) titles.set(item.id, String(item.title || item.id));
     }
   }
 

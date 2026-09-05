@@ -123,11 +123,11 @@ async function scanInventory(token) {
     seen.add(response.data.scroll_id); scrollId = response.data.scroll_id;
   }
   const unique = [...new Set(ids)]; const items = [];
-  const fields = 'id,title,status,sub_status,seller_id,seller_custom_field,user_product_id,family_id,family_name,catalog_product_id,category_id,attributes,price,available_quantity,sold_quantity,listing_type_id,catalog_listing,permalink,pictures,thumbnail,condition,shipping,date_created,last_updated';
+  const fields = 'body.title,body.status,body.sub_status,body.seller_id,body.seller_custom_field,body.user_product_id,body.family_id,body.family_name,body.catalog_product_id,body.category_id,body.attributes,body.price,body.available_quantity,body.sold_quantity,body.listing_type_id,body.catalog_listing,body.permalink,body.pictures,body.thumbnail,body.condition,body.shipping,body.date_created,body.last_updated';
   for (let index = 0; index < unique.length; index += 20) {
-    const response = await ml(token, `/items?ids=${unique.slice(index, index + 20).join(',')}&attributes=${fields}`);
+    const response = await ml(token, `/items/bulk?ids=${unique.slice(index, index + 20).join(',')}&attributes=${fields}`);
     if (!response.ok) throw new Error(`AUTH_SYSTEMIC_FAILURE:remote_inventory_multiget_${response.status}`);
-    for (const row of response.data || []) if (Number(row.code) === 200 && row.body?.id) items.push(row.body);
+    for (const row of response.data || []) if (Number(row.status_code) === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
   }
   if (unique.length !== expected || items.length !== unique.length) throw new Error(`${PHASE === '6E' ? 'BATCH_ABORT_REMOTE_INVENTORY_UNRELIABLE' : 'AUTH_SYSTEMIC_FAILURE:remote_inventory_unreliable'}:${unique.length}/${expected}/${items.length}`);
   return { expected, captured: unique.length, pages, reliable: true, timestamp: now(), items };

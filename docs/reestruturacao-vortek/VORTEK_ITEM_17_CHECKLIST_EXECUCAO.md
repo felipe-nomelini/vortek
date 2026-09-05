@@ -194,6 +194,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-09` antes de `BNT-PARITY-08` estar integralmente validada.
 - [x] Executar somente `BNT-PARITY-09 — Estágio real do refresh de catálogo`.
 - [x] Não avançar para `BNT-PARITY-10` antes de `BNT-PARITY-09` estar integralmente validada.
+- [x] Executar somente `ML-BULK-01 — Migração das consultas múltiplas do Mercado Livre` antes de retomar a fila de paridade.
+- [x] Não reintroduzir `/items?ids=` nem criar fallback para o contrato legado.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2825,6 +2827,29 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Validação:** passaram os 9 testes direcionados de lote, estágio, dispatcher e retomada, além dos 4 testes do contrato canônico de jobs. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration, operação real de banco ou chamada ao Mercado Livre foi executada.
 
 **Rollback:** reverter o helper e seu uso restaura apenas a classificação fixa anterior; não existe dado estrutural, migration ou efeito externo a desfazer.
+
+**Próxima ação:** `BNT-PARITY-10 — Deduplicação do alerta de nova venda`.
+
+#### `ML-BULK-01 — Migração das consultas múltiplas do Mercado Livre`
+
+- [x] localizar todas as consultas múltiplas executáveis de itens e usuários no web app e nos scripts versionados;
+- [x] substituir `GET /items?ids=...` por `GET /items/bulk?ids=...` sem fallback legado;
+- [x] centralizar no runtime web o limite de 20 IDs e o prefixo `body.` dos atributos;
+- [x] consumir o identificador em `id`, o resultado individual em `status_code` e os dados em `body`;
+- [x] migrar os quatro fluxos web afetados: Perguntas, TV, elegíveis de catálogo e refresh de catálogo;
+- [x] migrar os 19 scripts operacionais/históricos afetados sem executá-los;
+- [x] atualizar os dois exemplos JSONL que ainda ensinavam o endpoint legado;
+- [x] preservar scan, consultas individuais, regras de negócio e persistência existentes;
+- [x] não alterar schema, migration, interface ou dados;
+- [x] validar helper, consumidores, scripts e ausência dos endpoints legados.
+
+**Causa corrigida:** o Mercado Livre disponibilizou o endpoint atual de consulta múltipla e anunciou o encerramento do contrato legado para `2026-10-25`. O Vortek ainda possuía quatro consumidores web e 19 scripts usando `/items?ids=`, além de interpretar o status individual como `code` e o identificador dentro de `body`.
+
+**Resultado técnico:** o runtime web agora usa um helper único que deduplica IDs, limita cada lote a 20, aplica o prefixo `body.` e normaliza `id`/`status_code`/`body`. Todos os consumidores versionados foram migrados diretamente para `/items/bulk`; o endpoint anterior não permanece como fallback.
+
+**Validação:** passaram 24 testes direcionados de contrato bulk, catálogo e Perguntas, mais 106 regressões do pipeline ML. Os 19 scripts migrados passaram em `node --check`, sem serem executados. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. Uma leitura real chegou ao endpoint novo, mas o token bootstrap local foi recusado pelo Mercado Livre como `UNAUTHORIZED`; nenhuma escrita externa ou operação de banco foi executada.
+
+**Rollback:** reverter o commit restaura apenas o cliente legado. Não existe migration, alteração persistente ou efeito externo a desfazer.
 
 **Próxima ação:** `BNT-PARITY-10 — Deduplicação do alerta de nova venda`.
 

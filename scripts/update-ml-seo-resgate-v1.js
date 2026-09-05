@@ -116,10 +116,13 @@ async function fetchLiveItems(ids) {
   for (let index = 0; index < ids.length; index += 20) {
     const batch = ids.slice(index, index + 20);
     const response = await mlRequest(
-      `/items?ids=${batch.map(encodeURIComponent).join(',')}&attributes=id,title,family_name,user_product_id,seller_id,seller_sku,seller_custom_field,attributes,status,sub_status,sold_quantity,available_quantity,catalog_listing,category_id`,
+      `/items/bulk?ids=${batch.map(encodeURIComponent).join(',')}&attributes=body.title,body.family_name,body.user_product_id,body.seller_id,body.seller_sku,body.seller_custom_field,body.attributes,body.status,body.sub_status,body.sold_quantity,body.available_quantity,body.catalog_listing,body.category_id`,
     );
     if (!response.ok || !Array.isArray(response.data)) throw new Error(response.error || 'Consulta de anúncios falhou');
-    for (const row of response.data) result.set(upper(row?.body?.id), row.code === 200 ? row.body : null);
+    for (const row of response.data) {
+      const id = upper(row?.id);
+      if (id) result.set(id, row.status_code === 200 && row.body ? { ...row.body, id } : null);
+    }
   }
   return result;
 }

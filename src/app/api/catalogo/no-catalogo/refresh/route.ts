@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
+import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
 import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
 import { CATALOG_REFRESH_BATCH_SIZE, normalizeCatalogRefreshItemIds } from '@/lib/catalogo/refresh-batch';
 
@@ -282,8 +283,8 @@ export async function POST(request: Request) {
   });
   const itemIdChunks = chunk(allItemIds, MULTIGET_CHUNK_SIZE);
   await runPool(itemIdChunks, MULTIGET_CONCURRENCY, async (itemIdsChunk) => {
-    const itemResult = await fetchMLResult<Array<{ code: number; body?: any }>>(
-      `/items?ids=${itemIdsChunk.map(encodeURIComponent).join(',')}&attributes=id,title,seller_custom_field,attributes,status,price,permalink,thumbnail,category_id,domain_id,catalog_product_id,last_updated,item_relations`,
+    const itemResult = await fetchMLResult<Array<MlItemsBulkRow<any>>>(
+      buildMlItemsBulkPath(itemIdsChunk, ['id', 'title', 'seller_custom_field', 'attributes', 'status', 'price', 'permalink', 'thumbnail', 'category_id', 'domain_id', 'catalog_product_id', 'last_updated', 'item_relations']),
     );
     if (!itemResult.ok || !Array.isArray(itemResult.data)) {
       for (const itemId of itemIdsChunk) {
@@ -294,10 +295,11 @@ export async function POST(request: Request) {
     }
     const returnedIds = new Set<string>();
     for (const row of itemResult.data) {
-      if (row?.code !== 200 || !row.body?.id) continue;
-      const itemId = String(row.body.id);
+      const item = getMlItemsBulkBody(row);
+      if (!item) continue;
+      const itemId = item.id;
       returnedIds.add(itemId);
-      detailsByItemId.set(itemId, row.body);
+      detailsByItemId.set(itemId, item);
     }
     for (const itemId of itemIdsChunk) {
       if (returnedIds.has(itemId)) continue;
@@ -369,16 +371,17 @@ export async function POST(request: Request) {
   });
   const relatedIdList = Array.from(relatedIds);
   await runPool(chunk(relatedIdList, MULTIGET_CHUNK_SIZE), MULTIGET_CONCURRENCY, async (relatedIdsChunk) => {
-    const result = await fetchMLResult<Array<{ code: number; body?: any }>>(
-      `/items?ids=${relatedIdsChunk.map(encodeURIComponent).join(',')}&attributes=id,permalink`,
+    const result = await fetchMLResult<Array<MlItemsBulkRow<any>>>(
+      buildMlItemsBulkPath(relatedIdsChunk, ['id', 'permalink']),
     );
     const returnedIds = new Set<string>();
     if (result.ok && Array.isArray(result.data)) {
       for (const row of result.data) {
-        if (row?.code !== 200 || !row.body?.id) continue;
-        const relatedId = String(row.body.id);
+        const item = getMlItemsBulkBody(row);
+        if (!item) continue;
+        const relatedId = item.id;
         returnedIds.add(relatedId);
-        relatedPermalinkById.set(relatedId, row.body.permalink || null);
+        relatedPermalinkById.set(relatedId, item.permalink || null);
       }
     }
     for (const relatedId of relatedIdsChunk) {

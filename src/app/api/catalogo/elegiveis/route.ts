@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
+import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
 import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
 import { classifyCatalogEligibility } from '@/lib/catalogo/dashboard';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
@@ -256,14 +257,15 @@ async function fetchItemsMap(itemIds: string[]): Promise<Map<string, any>> {
   const rowsById = new Map<string, any>();
 
   await runPool(chunk(uniqueIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
-    const result = await fetchMLResult<Array<{ code: number; body?: any }>>(
-      `/items?ids=${itemIdChunk.map(encodeURIComponent).join(',')}&attributes=id,title,seller_custom_field,attributes,status,price,permalink,thumbnail,category_id,domain_id,catalog_product_id,variations,last_updated`,
+    const result = await fetchMLResult<Array<MlItemsBulkRow<any>>>(
+      buildMlItemsBulkPath(itemIdChunk, ['id', 'title', 'seller_custom_field', 'attributes', 'status', 'price', 'permalink', 'thumbnail', 'category_id', 'domain_id', 'catalog_product_id', 'variations', 'last_updated']),
     );
     if (!result.ok || !Array.isArray(result.data)) return;
 
     for (const row of result.data) {
-      if (row?.code !== 200 || !row.body?.id) continue;
-      rowsById.set(String(row.body.id), row.body);
+      const item = getMlItemsBulkBody(row);
+      if (!item) continue;
+      rowsById.set(item.id, item);
     }
   });
 

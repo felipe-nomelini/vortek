@@ -175,6 +175,21 @@ Procedimento obrigatório para alterar o preço de um anúncio:
 
 Resposta `409` ou mudança do preço-base é conflito retomável pelo outbox existente. Erro de elegibilidade, recomendação inválida, preço líquido B2B ou divergência no read-back não autoriza inventar percentuais nem criar outro fluxo.
 
+## Consulta múltipla de itens
+
+Desde `2026-09-05`, toda consulta múltipla de anúncios do Vortek deve usar `GET /items/bulk?ids=...`. O endpoint legado `GET /items?ids=...` não pode ser reintroduzido, embora o Mercado Livre mantenha convivência temporária até `2026-10-25`.
+
+Contrato obrigatório:
+
+1. enviar no máximo 20 IDs por chamada;
+2. solicitar campos do item com prefixo `body.`, por exemplo `attributes=body.title,body.status`;
+3. ler o identificador em `id`, na raiz de cada resultado;
+4. ler o status individual em `status_code`;
+5. ler os demais campos em `body` somente quando `status_code = 200`;
+6. não criar fallback para o endpoint legado.
+
+O helper canônico para rotas web é `src/lib/ml/items-bulk.ts`. Scripts operacionais isolados devem preservar o mesmo contrato.
+
 ## Fontes oficiais
 
 - https://developers.mercadolivre.com.br/pt_br/pt_br/publicacao-de-produtos
@@ -185,4 +200,5 @@ Resposta `409` ou mudança do preço-base é conflito retomável pelo outbox exi
 - https://developers.mercadolivre.com.br/pt_br/realizacao-de-testes/trabalhar-com-imagens
 - https://developers.mercadolivre.com.br/pt_br/envio-de-produto/diagnostico-de-imagens
 - https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br/pxq-porcentagem-b2b
+- https://developers.mercadolivre.com.br/pt_br/convivencia-me1-me2/itens-e-buscas
 - https://supabase.com/docs/guides/storage/serving/downloads

@@ -87,10 +87,10 @@ async function scanInventory(token) {
   }
   const unique = [...new Set(ids)];
   const items = [];
-  const fields = 'id,title,status,seller_custom_field,user_product_id,family_id,catalog_product_id,category_id,attributes';
+  const fields = 'body.title,body.status,body.seller_custom_field,body.user_product_id,body.family_id,body.catalog_product_id,body.category_id,body.attributes';
   for (let index = 0; index < unique.length; index += 20) {
-    const rows = (await mlGet(token, `/items?ids=${unique.slice(index, index + 20).join(',')}&attributes=${fields}`)).data;
-    for (const row of rows || []) if (Number(row.code) === 200 && row.body?.id) items.push(row.body);
+    const rows = (await mlGet(token, `/items/bulk?ids=${unique.slice(index, index + 20).join(',')}&attributes=${fields}`)).data;
+    for (const row of rows || []) if (Number(row.status_code) === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
   }
   if (unique.length !== expectedTotal || items.length !== unique.length) throw new Error(`remote_inventory_unreliable:${unique.length}/${expectedTotal}/${items.length}`);
   return { expected_total: expectedTotal, captured: unique.length, detailed: items.length, pages, items };

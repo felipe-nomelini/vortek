@@ -179,13 +179,13 @@ async function scanRemoteInventory(token) {
     throw new Error(`remote_inventory_unreliable:${uniqueIds.length}/${expectedTotal}`);
   }
   const items = [];
-  const fields = 'id,seller_id,seller_custom_field,status,catalog_product_id,catalog_listing,category_id,attributes';
+  const fields = 'body.seller_id,body.seller_custom_field,body.status,body.catalog_product_id,body.catalog_listing,body.category_id,body.attributes';
   for (let index = 0; index < uniqueIds.length; index += 20) {
     const batch = uniqueIds.slice(index, index + 20);
-    const result = await ml(token, `/items?ids=${batch.join(',')}&attributes=${fields}`);
+    const result = await ml(token, `/items/bulk?ids=${batch.join(',')}&attributes=${fields}`);
     if (!result.ok) throw new Error(`inventory_items_http_${result.status}`);
     for (const row of result.data || []) {
-      if (Number(row.code) === 200 && row.body?.id) items.push(row.body);
+      if (Number(row.status_code) === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
     }
   }
   if (items.length !== uniqueIds.length) {

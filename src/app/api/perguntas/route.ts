@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { validateMercadoLivreWebhookUser } from '@/lib/ml-account-guard';
 import { listQuestionVisualReview, loadQuestionVisualReview } from '@/lib/ml/questions-visual-review';
+import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
 import { fetchMLResult, getMLConnectionStatus } from '@/services/integration';
 
 export const dynamic = 'force-dynamic';
@@ -45,17 +46,18 @@ async function fetchItemMap(itemIds: string[]) {
 
   for (let i = 0; i < uniqueIds.length; i += 20) {
     const ids = uniqueIds.slice(i, i + 20);
-    const result = await fetchMLResult<Array<{ code: number; body?: any }>>(
-      `/items?ids=${ids.map(encodeURIComponent).join(',')}&attributes=id,title,permalink,thumbnail,status`,
+    const result = await fetchMLResult<Array<MlItemsBulkRow<any>>>(
+      buildMlItemsBulkPath(ids, ['id', 'title', 'permalink', 'thumbnail', 'status']),
     );
     if (!result.ok || !Array.isArray(result.data)) continue;
-    for (const item of result.data) {
-      if (item.code !== 200 || !item.body?.id) continue;
-      map.set(String(item.body.id), {
-        title: String(item.body.title || item.body.id),
-        permalink: item.body.permalink || null,
-        thumbnail: item.body.thumbnail || null,
-        status: item.body.status || null,
+    for (const row of result.data) {
+      const item = getMlItemsBulkBody(row);
+      if (!item) continue;
+      map.set(item.id, {
+        title: String(item.title || item.id),
+        permalink: item.permalink || null,
+        thumbnail: item.thumbnail || null,
+        status: item.status || null,
       });
     }
   }

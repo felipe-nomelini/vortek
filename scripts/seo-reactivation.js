@@ -281,18 +281,18 @@ async function fetchLiveItems(itemIds) {
   for (let index = 0; index < itemIds.length; index += 20) {
     const ids = itemIds.slice(index, index + 20);
     const result = await mlRequest(
-      `/items?ids=${ids.map(encodeURIComponent).join(',')}&attributes=id,title,family_name,user_product_id,seller_id,seller_sku,seller_custom_field,attributes,status,sub_status,price,sold_quantity,available_quantity,catalog_listing,catalog_product_id,category_id,tags,pictures,variations,permalink,thumbnail,listing_type_id`,
+      `/items/bulk?ids=${ids.map(encodeURIComponent).join(',')}&attributes=body.title,body.family_name,body.user_product_id,body.seller_id,body.seller_sku,body.seller_custom_field,body.attributes,body.status,body.sub_status,body.price,body.sold_quantity,body.available_quantity,body.catalog_listing,body.catalog_product_id,body.category_id,body.tags,body.pictures,body.variations,body.permalink,body.thumbnail,body.listing_type_id`,
     );
     if (!result.ok || !Array.isArray(result.data)) {
       for (const id of ids) byId.set(id, { error: result.error || `HTTP ${result.status}`, item: null });
       continue;
     }
     for (const row of result.data) {
-      const id = sku(row?.body?.id);
+      const id = sku(row?.id);
       if (!id) continue;
-      byId.set(id, row.code === 200
-        ? { error: null, item: row.body }
-        : { error: text(row?.body?.message) || `HTTP ${row.code}`, item: null });
+      byId.set(id, row.status_code === 200
+        ? { error: null, item: row.body ? { ...row.body, id } : null }
+        : { error: text(row?.body?.message) || `HTTP ${row.status_code}`, item: null });
     }
   }
   return byId;

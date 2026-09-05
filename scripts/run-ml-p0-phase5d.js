@@ -122,10 +122,10 @@ async function fullInventory(token) {
     if (!(page?.results || []).length || new Set(ids).size >= total || !page.scroll_id || seen.has(page.scroll_id)) break;
     seen.add(page.scroll_id); scroll = page.scroll_id;
   }
-  const unique = [...new Set(ids)]; const items = []; const fields = 'id,title,status,seller_custom_field,user_product_id,family_id,catalog_product_id,category_id,attributes';
+  const unique = [...new Set(ids)]; const items = []; const fields = 'body.title,body.status,body.seller_custom_field,body.user_product_id,body.family_id,body.catalog_product_id,body.category_id,body.attributes';
   for (let i = 0; i < unique.length; i += 20) {
-    const rows = (await mlRequest(token, `/items?ids=${unique.slice(i, i + 20).join(',')}&attributes=${fields}`)).data;
-    for (const row of rows || []) if (Number(row.code) === 200 && row.body?.id) items.push(row.body);
+    const rows = (await mlRequest(token, `/items/bulk?ids=${unique.slice(i, i + 20).join(',')}&attributes=${fields}`)).data;
+    for (const row of rows || []) if (Number(row.status_code) === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
   }
   if (unique.length !== total || items.length !== unique.length) throw new Error(`remote_inventory_unreliable:${unique.length}/${total}/${items.length}`);
   return { total, pages, items };

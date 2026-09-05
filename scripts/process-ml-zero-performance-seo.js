@@ -129,9 +129,12 @@ async function fetchLiveItems(ids) {
   const result = new Map();
   for (let index = 0; index < ids.length; index += 20) {
     const batch = ids.slice(index, index + 20);
-    const response = await mlRequest(`/items?ids=${batch.map(encodeURIComponent).join(',')}&attributes=id,title,family_name,user_product_id,seller_id,seller_sku,seller_custom_field,attributes,status,sub_status,sold_quantity,available_quantity,catalog_listing,catalog_product_id,category_id,domain_id,tags,start_time,price,currency_id,buying_mode,condition,listing_type_id,sale_terms,pictures`);
+    const response = await mlRequest(`/items/bulk?ids=${batch.map(encodeURIComponent).join(',')}&attributes=body.title,body.family_name,body.user_product_id,body.seller_id,body.seller_sku,body.seller_custom_field,body.attributes,body.status,body.sub_status,body.sold_quantity,body.available_quantity,body.catalog_listing,body.catalog_product_id,body.category_id,body.domain_id,body.tags,body.start_time,body.price,body.currency_id,body.buying_mode,body.condition,body.listing_type_id,body.sale_terms,body.pictures`);
     if (!response.ok || !Array.isArray(response.data)) throw new Error(response.error || 'Consulta de anúncios falhou');
-    for (const row of response.data) result.set(upper(row?.body?.id), row.code === 200 ? row.body : null);
+    for (const row of response.data) {
+      const id = upper(row?.id);
+      if (id) result.set(id, row.status_code === 200 && row.body ? { ...row.body, id } : null);
+    }
   }
   return result;
 }

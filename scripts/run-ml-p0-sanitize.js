@@ -165,11 +165,11 @@ async function scanRemoteInventory(integration) {
   const failures = [];
   for (let index = 0; index < uniqueIds.length; index += 20) {
     const batch = uniqueIds.slice(index, index + 20);
-    const attributes = 'id,title,status,seller_id,seller_custom_field,user_product_id,catalog_product_id,attributes,variations,permalink';
-    const response = await mlGet(integration.mercadolivre, `/items?ids=${batch.join(',')}&attributes=${attributes}`);
+    const attributes = 'body.title,body.status,body.seller_id,body.seller_custom_field,body.user_product_id,body.catalog_product_id,body.attributes,body.variations,body.permalink';
+    const response = await mlGet(integration.mercadolivre, `/items/bulk?ids=${batch.join(',')}&attributes=${attributes}`);
     for (const row of response || []) {
-      if (Number(row.code) === 200 && row.body?.id) items.push(row.body);
-      else failures.push(String(row.body?.id || row.id || 'unknown'));
+      if (Number(row.status_code) === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
+      else failures.push(String(row.id || 'unknown'));
     }
     if ((index / 20) % 25 === 0) console.log(JSON.stringify({ event: 'remote_inventory_detail', processed: Math.min(index + 20, uniqueIds.length), total: uniqueIds.length }));
   }

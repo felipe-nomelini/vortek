@@ -266,11 +266,11 @@ async function scanRemoteInventory(token, account) {
   }
   const uniqueIds = [...new Set(ids)];
   const items = [];
-  const fields = 'id,title,family_name,family_id,status,sub_status,seller_id,seller_custom_field,user_product_id,catalog_product_id,category_id,attributes,variations,price,available_quantity,sold_quantity,listing_type_id,catalog_listing,permalink';
+  const fields = 'body.title,body.family_name,body.family_id,body.status,body.sub_status,body.seller_id,body.seller_custom_field,body.user_product_id,body.catalog_product_id,body.category_id,body.attributes,body.variations,body.price,body.available_quantity,body.sold_quantity,body.listing_type_id,body.catalog_listing,body.permalink';
   for (let index = 0; index < uniqueIds.length; index += 20) {
     const batch = uniqueIds.slice(index, index + 20);
-    const rows = (await mlRequest(token, `/items?ids=${batch.join(',')}&attributes=${fields}`)).data;
-    for (const row of rows || []) if (Number(row.code) === 200 && row.body?.id) items.push(row.body);
+    const rows = (await mlRequest(token, `/items/bulk?ids=${batch.join(',')}&attributes=${fields}`)).data;
+    for (const row of rows || []) if (Number(row.status_code) === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
   }
   const reliable = uniqueIds.length === expectedTotal && items.length === uniqueIds.length;
   if (!reliable) throw new Error(`remote_inventory_unreliable:${uniqueIds.length}/${expectedTotal}/${items.length}`);

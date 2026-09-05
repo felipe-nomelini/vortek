@@ -50,7 +50,11 @@ const InventoryPageSchema = z.object({
   results: z.array(z.union([z.string(), z.number()])),
   scroll_id: z.string().optional(),
 }).passthrough();
-const MultiGetSchema = z.array(z.object({ code: z.number(), body: z.record(z.any()).optional() }).passthrough());
+const MultiGetSchema = z.array(z.object({
+  id: z.union([z.string(), z.number()]),
+  status_code: z.number(),
+  body: z.record(z.any()).optional(),
+}).passthrough());
 const ProductSearchSchema = z.object({ results: z.array(z.record(z.any())).default([]) }).passthrough();
 const DomainDiscoverySchema = z.array(z.object({
   domain_id: z.string(), category_id: z.string(), domain_name: z.string().optional(), category_name: z.string().optional(),
@@ -133,11 +137,11 @@ async function scanInventory(token) {
     seenScroll.add(response.data.scroll_id); scrollId = response.data.scroll_id;
   }
   const unique = [...new Set(ids)]; const items = [];
-  const fields = 'id,title,status,sub_status,seller_id,seller_custom_field,user_product_id,family_id,family_name,catalog_product_id,category_id,attributes,price,available_quantity,listing_type_id,catalog_listing,permalink,pictures,condition,domain_id';
+  const fields = 'body.title,body.status,body.sub_status,body.seller_id,body.seller_custom_field,body.user_product_id,body.family_id,body.family_name,body.catalog_product_id,body.category_id,body.attributes,body.price,body.available_quantity,body.listing_type_id,body.catalog_listing,body.permalink,body.pictures,body.condition,body.domain_id';
   for (let index = 0; index < unique.length; index += 20) {
-    const response = await mlGet(token, `/items?ids=${unique.slice(index, index + 20).join(',')}&attributes=${fields}`, MultiGetSchema);
+    const response = await mlGet(token, `/items/bulk?ids=${unique.slice(index, index + 20).join(',')}&attributes=${fields}`, MultiGetSchema);
     if (!response.ok) throw new Error(`BATCH_ABORT_REMOTE_INVENTORY_UNRELIABLE:multiget_${response.status}`);
-    for (const row of response.data) if (row.code === 200 && row.body?.id) items.push(row.body);
+    for (const row of response.data) if (row.status_code === 200 && row.id && row.body) items.push({ ...row.body, id: String(row.id) });
   }
   if (unique.length !== expected || items.length !== unique.length) throw new Error(`BATCH_ABORT_REMOTE_INVENTORY_UNRELIABLE:${unique.length}/${expected}/${items.length}`);
   return { expected, captured: unique.length, pages, reliable: true, timestamp: now(), ids: unique, items };
