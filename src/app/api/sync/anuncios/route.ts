@@ -23,8 +23,7 @@ import {
   ensureAutomaticMlIdentityBlock,
 } from '@/lib/ml/identity-block';
 import {
-  activePricingExperimentSkus,
-  getHighMarginPricingExperiment,
+  getProtectedPricingExperimentSkus,
 } from '@/lib/ml/pricing-experiment';
 
 export const maxDuration = 300;
@@ -446,9 +445,7 @@ export async function POST(request: Request) {
     let experimentPriceSkus = new Set<string>();
     let experimentPriceProtectionError = false;
     try {
-      experimentPriceSkus = activePricingExperimentSkus(
-        await getHighMarginPricingExperiment(serviceClient),
-      );
+      experimentPriceSkus = await getProtectedPricingExperimentSkus(serviceClient);
     } catch (error: any) {
       experimentPriceProtectionError = true;
       warnings.push({

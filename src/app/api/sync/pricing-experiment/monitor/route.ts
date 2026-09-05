@@ -1,3 +1,4 @@
+import { monitorRadarLaunch } from '@/services/radar-launch-monitor';
 import { evaluateProductPricing, persistPricingEvaluation } from '@/services/pricing-context';
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
@@ -146,19 +147,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'API key inválida' }, { status: 401 });
   }
   const client = createServiceClient();
+  const radar = await monitorRadarLaunch(client);
+  if (radar.errors.length) return NextResponse.json({ sucesso: false, radar }, { status: 207 });
   const state = await getHighMarginPricingExperiment(client);
   if (!state || state.status === 'closed' || !state.groups.length) {
-    return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'experimento_inativo' });
+    return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'experimento_inativo', radar });
   }
   if (state.status === 'executing') {
-    return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'execucao_d0_em_andamento' });
+    return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'execucao_d0_em_andamento', radar });
   }
 
   const activeGroups = state.groups.filter((group) => group.status === 'active' || group.status === 'awaiting_director_decision');
   if (!activeGroups.length) {
     state.status = 'awaiting_director_decision';
     await saveHighMarginPricingExperiment(client, state);
-    return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'sem_grupos_ativos' });
+    return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'sem_grupos_ativos', radar });
   }
   const productIds = activeGroups.map((group) => group.product_id);
   const products: any[] = [];
@@ -257,6 +260,7 @@ export async function POST(request: Request) {
   }
   await saveHighMarginPricingExperiment(client, state);
   return NextResponse.json({
+    radar,
     sucesso: checkpointFailures.length === 0 && safetyFailures.length === 0,
     processados: checkpointsCompleted + safetyChecked,
     total: due.length + safetyGroups.length,

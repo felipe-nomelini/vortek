@@ -1,7 +1,7 @@
 import { evaluateProductPricing, type MlQuoteContext } from './pricing-context';
 import { fetchMLResult } from './integration';
 import { resolveMlPricingGroup } from './ml-pricing-group';
-import { activePricingExperimentSkus, getHighMarginPricingExperiment } from '../lib/ml/pricing-experiment';
+import { getProtectedPricingExperimentSkus } from '../lib/ml/pricing-experiment';
 import type { EconomicMemory } from './pricing.ts';
 type Client = {
     from: (table: string) => any;
@@ -47,8 +47,7 @@ export async function verifyPricingApproval(client: Client, input: {
         throw new Error('PENDENCIA_VALIDACAO');
     let group: any = null;
     if (input.itemId) {
-        const experiment = await getHighMarginPricingExperiment(client as any);
-        if (activePricingExperimentSkus(experiment).has(evaluation.product.sku))
+        if ((await getProtectedPricingExperimentSkus(client as any)).has(evaluation.product.sku))
             throw new Error('EXPERIMENTO_AUTORIZADO_EM_OBSERVACAO');
         const item = await fetchMLResult<any>(`/items/${encodeURIComponent(input.itemId)}`);
         const prices = await fetchMLResult<any>(`/items/${encodeURIComponent(input.itemId)}/prices`);

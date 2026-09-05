@@ -125,3 +125,14 @@ export function pricingExperimentUnitResult(input: {
   return unitResult({ revenue: input.price, cost: input.cost, fee: input.feeAmount,
     shipping: input.shippingAmount, variableCosts: 0, tax: ceilMoney(input.price * input.taxRate) });
 }
+
+/** A coorte Radar usa eventos próprios e não altera o estado do experimento anterior. */
+export async function getProtectedPricingExperimentSkus(client: ServiceClientLike): Promise<Set<string>> {
+  const skus = activePricingExperimentSkus(await getHighMarginPricingExperiment(client));
+  const { data, error } = await client.from('pricing_events').select('payload')
+    .eq('pricing_source', 'radar_launch').eq('event_type', 'RADAR_LAUNCH_VALIDATED')
+    .gte('created_at', new Date(Date.now() - 30 * 86400000).toISOString());
+  if (error) throw new Error(error.message);
+  for (const row of data ?? []) if (Date.parse(row.payload.observationUntil) > Date.now()) skus.add(row.payload.sku);
+  return skus;
+}

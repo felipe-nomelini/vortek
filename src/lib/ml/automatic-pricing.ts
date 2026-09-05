@@ -1,7 +1,7 @@
 import { commercialDiagnosis } from '../../services/pricing';
 import { evaluateProductPricing, loadPricingRuntime, persistPricingEvaluation, recordPricingEvent } from '../../services/pricing-context';
 import { resolveAutomaticPricingProductIds } from './automatic-pricing-selection';
-import { activePricingExperimentSkus, getHighMarginPricingExperiment } from './pricing-experiment';
+import { getProtectedPricingExperimentSkus } from './pricing-experiment';
 
 type ServiceClientLike = { from: (table: string) => any };
 export type CostSnapshot = { productId: string; previous: { custo: number }; next: { custo: number } };
@@ -13,7 +13,7 @@ export async function enqueueAutomaticPricesForCostChanges(client: ServiceClient
   const ids = resolveAutomaticPricingProductIds(snapshots, options.forceProductIds);
   if (!ids.length) return result;
   const runtime = await loadPricingRuntime(client);
-  const protectedSkus = activePricingExperimentSkus(await getHighMarginPricingExperiment(client));
+  const protectedSkus = await getProtectedPricingExperimentSkus(client);
   for (const productId of ids) {
     try {
       const { data: product, error } = await client.from('produtos').select('id,sku,ativo,ml_item_id').eq('id', productId).single();

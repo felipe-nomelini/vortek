@@ -168,3 +168,7 @@ Qualidade, exposição e demanda são dimensões comerciais independentes. Dimen
 - https://developers.mercadolivre.com.br/pt_br/realizacao-de-testes/trabalhar-com-imagens
 - https://developers.mercadolivre.com.br/pt_br/envio-de-produto/diagnostico-de-imagens
 - https://supabase.com/docs/guides/storage/serving/downloads
+
+## Garantia comercial homologada
+
+A Diretoria confirmou em 05/09/2026 a política de **12 meses de garantia do fabricante** para a publicação da coorte `RADAR_LAUNCH_2026_09_COHORT_01`, conforme a operação dos anúncios ativos. Essa definição não exige nova confirmação. Registrar a origem como instrução expressa da Diretoria; não apresentar eventual prazo distinto do cadastro do distribuidor como a origem dessa política.
