@@ -1,0 +1,422 @@
+{
+  "batchId": "CATALOG_EXPANSION_BATCH_01",
+  "at": "2026-09-06T05:12:32.272Z",
+  "results": [
+    {
+      "sku": "VTK002091",
+      "productId": "e568048b-c0c7-4a54-bba3-0b5f036af388",
+      "draft": {
+        "categoriaId": "MLB72745",
+        "listingType": "gold_special",
+        "description": "Caixa para montagem de medusa Santo Angelo BSMED12, 12 vias, preta. Gabinete em aço carbono com pintura epóxi e prensa-cabo metálico com mola. Oferta: 1 caixa para montagem, sem conectores e sem multicabo. Aplicação em áudio profissional.",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "value_id": "2200699",
+            "value_name": "Santo Angelo"
+          },
+          {
+            "id": "MODEL",
+            "value_id": "16484804",
+            "value_name": "Bsmed12"
+          },
+          {
+            "id": "CABLE_AND_ADAPTER_TYPE",
+            "value_id": "16484803",
+            "value_name": "Medusa"
+          },
+          {
+            "id": "COLOR",
+            "value_id": "52049",
+            "value_name": "Preto"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "value_id": "1359391",
+            "value_name": "Unidade"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "value_id": "2726554",
+            "value_name": "1"
+          },
+          {
+            "id": "CABLE_LENGTH",
+            "value_id": "13048060",
+            "value_name": "0 cm"
+          },
+          {
+            "id": "INPUT_CONNECTORS_NUMBER",
+            "value_id": "15991896",
+            "value_name": "0"
+          },
+          {
+            "id": "OUTPUT_CONNECTORS_NUMBER",
+            "value_id": "15991897",
+            "value_name": "0"
+          },
+          {
+            "id": "GTIN",
+            "value_name": "7899028803532"
+          }
+        ],
+        "familyName": "Caixa Medusa Santo Angelo BSMED12 12 Vias Preta"
+      },
+      "simulation": {
+        "success": true,
+        "evaluationId": "1fbbfab3-8881-4519-a01d-03f041eb91e2",
+        "memory": {
+          "price": 169.63,
+          "cost": 99.9,
+          "offerId": "89ab142e-aba9-4c1e-ac55-c1d860e470b7",
+          "supplierId": "133",
+          "costObservedAt": "2026-09-06T04:06:18.244+00:00",
+          "costComponents": [
+            {
+              "productId": "e568048b-c0c7-4a54-bba3-0b5f036af388",
+              "offerId": "89ab142e-aba9-4c1e-ac55-c1d860e470b7",
+              "supplierId": "133",
+              "unitCost": 99.9,
+              "quantity": 1,
+              "observedAt": "2026-09-06T04:06:18.244+00:00"
+            }
+          ],
+          "fee": {
+            "amount": 22.05,
+            "source": "ml_live",
+            "observedAt": "2026-09-06T05:12:21.743Z",
+            "evidence": "/sites/MLB/listing_prices?price=169.63&category_id=MLB72745&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+            "contextKey": "001ab42fcb804db283b4827c36c949b20110e7e4c4b804badca0280471a3cb8d"
+          },
+          "shipping": {
+            "amount": 21.75,
+            "source": "ml_live",
+            "observedAt": "2026-09-06T05:12:21.743Z",
+            "evidence": "/users/3294514937/shipping_options/free?item_price=169.63&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=8x13x27%2C1256",
+            "contextKey": "001ab42fcb804db283b4827c36c949b20110e7e4c4b804badca0280471a3cb8d"
+          },
+          "tax": {
+            "rate": 0.08279935223578168,
+            "status": "estimated",
+            "referenceMonth": "2026-09",
+            "source": "RBT12_PEDIDOS_OPERACIONAIS",
+            "observedAt": "2026-09-06T05:12:21.712Z",
+            "evidence": null,
+            "rbt12": 929727.1799999999,
+            "missingMonths": []
+          },
+          "evaluatedAt": "2026-09-06T05:12:21.743Z",
+          "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+          "band": {
+            "id": "BELOW_200",
+            "floor": 0.05,
+            "limit": 0.1,
+            "target": 0.07,
+            "maxCents": 20000
+          },
+          "reasons": [
+            "TRIBUTO_ESTIMADO"
+          ],
+          "diagnostics": [],
+          "taxAmount": 14.05,
+          "result": 11.88,
+          "margin": 0.07003478158344634,
+          "status": "estimated"
+        },
+        "autonomy": "REQUIRES_CONFIRMATION"
+      },
+      "status": "PREPARADO",
+      "warranty": {
+        "origin": "GARANTIA_FORNECEDOR",
+        "productId": "e568048b-c0c7-4a54-bba3-0b5f036af388",
+        "gtin": "7899028803532",
+        "offerId": "89ab142e-aba9-4c1e-ac55-c1d860e470b7",
+        "duration": 90,
+        "unit": "dias",
+        "source": "DSLite /v1/CrossDocking/Catalogo/133/229915:tempo_garantia; inspection.json",
+        "observedAt": "2026-09-06T04:52:33.688Z",
+        "status": "resolved",
+        "policyVersion": "VORTEK-WARRANTY-2026-09-06-SELLER-30",
+        "warranty_source": "supplier",
+        "warranty_type": "seller",
+        "warranty_duration": 90,
+        "warranty_unit": "days"
+      },
+      "imageEvidence": [
+        {
+          "original": "https://evolusom.com.br/media/catalog/product/2/2/229915_67d2cade9c18a.jpg",
+          "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog-expansion/CATALOG_EXPANSION_BATCH_01/VTK002091/f248c39331348376e7313562d09aebdafde5db1807d2a948a2937f3e767b0b95.jpg",
+          "hash": "f248c39331348376e7313562d09aebdafde5db1807d2a948a2937f3e767b0b95",
+          "width": 1000,
+          "height": 1000
+        }
+      ],
+      "identity": {
+        "identity": "IDENTIDADE_COHERENTE",
+        "comparisons": [
+          {
+            "field": "gtin",
+            "local": "7899028803532",
+            "remote": "7899028803532",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "brand",
+            "local": "SANTO ANGELO",
+            "remote": "Santo Angelo",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "model",
+            "local": "bsmed12",
+            "remote": "Bsmed12",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          }
+        ],
+        "reasons": [],
+        "warnings": [
+          "APRESENTACAO_NAO_EXPLICITA"
+        ],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1"
+      },
+      "preparationId": "7ea91649-0185-4ba6-b04d-8f57fd7e6877"
+    },
+    {
+      "sku": "VTK018523",
+      "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+      "draft": {
+        "categoriaId": "MLB3905",
+        "listingType": "gold_special",
+        "description": "Par de alto-falantes coaxiais automotivos Bravox CX50BK de 5 polegadas. Cada unidade: 60 W RMS, 4 ohms, sensibilidade de 88 dB/W/m e resposta de 70 Hz a 20 kHz. Oferta: 2 alto-falantes, total de 120 W RMS no par, sem telas. Cone de polipropileno, borda em Santoprene e tweeter de neodímio. Confira o espaço de instalação: diâmetro externo 140 mm e profundidade 60 mm.",
+        "attributes": [
+          {
+            "id": "BRAND",
+            "value_id": "17195",
+            "value_name": "Bravox"
+          },
+          {
+            "id": "LINE",
+            "value_id": "142203",
+            "value_name": "Black"
+          },
+          {
+            "id": "MODEL",
+            "value_id": "24773233",
+            "value_name": "CX50 BK"
+          },
+          {
+            "id": "VEHICLE_SPEAKER_WIDTH",
+            "value_id": "8737286",
+            "value_name": "5 \""
+          },
+          {
+            "id": "VEHICLE_SPEAKER_LENGTH",
+            "value_id": "24742288",
+            "value_name": "5 \""
+          },
+          {
+            "id": "VEHICLE_SPEAKER_DIAMETER",
+            "value_id": "8737288",
+            "value_name": "5 \""
+          },
+          {
+            "id": "COLOR",
+            "value_id": "52049",
+            "value_name": "Preto"
+          },
+          {
+            "id": "SPEAKERS_NUMBER",
+            "value_id": "999572",
+            "value_name": "2"
+          },
+          {
+            "id": "VEHICLE_TYPE",
+            "value_id": "11377043",
+            "value_name": "Carro/Caminhonete"
+          },
+          {
+            "id": "VEHICLE_SPEAKER_TYPE",
+            "value_id": "24739488",
+            "value_name": "Falante"
+          },
+          {
+            "id": "WAYS_NUMBER",
+            "value_id": "7509882",
+            "value_name": "2"
+          },
+          {
+            "id": "COILS_NUMBER",
+            "value_id": "8704186",
+            "value_name": "1"
+          },
+          {
+            "id": "RMS_POWER",
+            "value_id": "945366",
+            "value_name": "120 W"
+          },
+          {
+            "id": "DEPTH",
+            "value_id": "2095006",
+            "value_name": "6 cm"
+          },
+          {
+            "id": "GTIN",
+            "value_name": "7892787019633"
+          }
+        ],
+        "familyName": "Par Alto-Falante Bravox CX50BK 5 120W RMS 4 Ohms"
+      },
+      "simulation": {
+        "success": true,
+        "evaluationId": "8ad31b51-39b8-4e59-baa1-9476157b3976",
+        "memory": {
+          "price": 286.47,
+          "cost": 179.9,
+          "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+          "supplierId": "133",
+          "costObservedAt": "2026-09-06T04:11:21.212+00:00",
+          "costComponents": [
+            {
+              "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+              "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+              "supplierId": "133",
+              "unitCost": 179.9,
+              "quantity": 1,
+              "observedAt": "2026-09-06T04:11:21.212+00:00"
+            }
+          ],
+          "fee": {
+            "amount": 28.65,
+            "source": "ml_live",
+            "observedAt": "2026-09-06T05:12:28.994Z",
+            "evidence": "/sites/MLB/listing_prices?price=286.47&category_id=MLB3905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+            "contextKey": "c0942a562cbc15513d8debd0e701df2e308ea0677a9f245625b1cf6420c93673"
+          },
+          "shipping": {
+            "amount": 25.55,
+            "source": "ml_live",
+            "observedAt": "2026-09-06T05:12:28.994Z",
+            "evidence": "/users/3294514937/shipping_options/free?item_price=286.47&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=7x17x32%2C1574",
+            "contextKey": "c0942a562cbc15513d8debd0e701df2e308ea0677a9f245625b1cf6420c93673"
+          },
+          "tax": {
+            "rate": 0.08279935223578168,
+            "status": "estimated",
+            "referenceMonth": "2026-09",
+            "source": "RBT12_PEDIDOS_OPERACIONAIS",
+            "observedAt": "2026-09-06T05:12:28.967Z",
+            "evidence": null,
+            "rbt12": 929727.1799999999,
+            "missingMonths": []
+          },
+          "evaluatedAt": "2026-09-06T05:12:28.994Z",
+          "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+          "band": {
+            "id": "FROM_200_TO_1000",
+            "floor": 0.07,
+            "limit": 0.15,
+            "target": 0.1,
+            "maxCents": 100000
+          },
+          "reasons": [
+            "TRIBUTO_ESTIMADO"
+          ],
+          "diagnostics": [],
+          "taxAmount": 23.72,
+          "result": 28.65,
+          "margin": 0.10001047230076446,
+          "status": "estimated"
+        },
+        "autonomy": "REQUIRES_CONFIRMATION"
+      },
+      "status": "PREPARADO",
+      "warranty": {
+        "origin": "GARANTIA_FORNECEDOR",
+        "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+        "gtin": "7892787019633",
+        "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+        "duration": 90,
+        "unit": "dias",
+        "source": "DSLite /v1/CrossDocking/Catalogo/133/252568:tempo_garantia; inspection.json",
+        "observedAt": "2026-09-06T04:52:39.381Z",
+        "status": "resolved",
+        "policyVersion": "VORTEK-WARRANTY-2026-09-06-SELLER-30",
+        "warranty_source": "supplier",
+        "warranty_type": "seller",
+        "warranty_duration": 90,
+        "warranty_unit": "days"
+      },
+      "imageEvidence": [
+        {
+          "original": "https://evolusom.com.br/media/catalog/product/2/5/252568_68f1289744dbf.png",
+          "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog-expansion/CATALOG_EXPANSION_BATCH_01/VTK018523/7b4d84ecc84dcf13860da73c94a694fd8aeca9b5d6f46ce6dc555226725be2c5.png",
+          "hash": "7b4d84ecc84dcf13860da73c94a694fd8aeca9b5d6f46ce6dc555226725be2c5",
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "original": "https://evolusom.com.br/media/catalog/product/2/5/252568_67d2cae13943d.jpg",
+          "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog-expansion/CATALOG_EXPANSION_BATCH_01/VTK018523/647aa6787967d3b8f901fbb68cf4d44bdc76c9a96848d0ef755aa85ef7344292.jpg",
+          "hash": "647aa6787967d3b8f901fbb68cf4d44bdc76c9a96848d0ef755aa85ef7344292",
+          "width": 1000,
+          "height": 1000
+        }
+      ],
+      "identity": {
+        "identity": "IDENTIDADE_COHERENTE",
+        "comparisons": [
+          {
+            "field": "gtin",
+            "local": "7892787019633",
+            "remote": "7892787019633",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "brand",
+            "local": "BRAVOX",
+            "remote": "Bravox",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "model",
+            "local": "cx50bk",
+            "remote": "CX50 BK",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "packaging",
+            "local": "kit",
+            "remote": "kit",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          },
+          {
+            "field": "quantity",
+            "local": "2",
+            "remote": "2",
+            "matches": true,
+            "basis": "normalized",
+            "evidence": null
+          }
+        ],
+        "reasons": [],
+        "warnings": [],
+        "identityRuleVersion": "M2M-IDENTITY-v2.1"
+      },
+      "preparationId": "9b0dd95f-0b38-45be-a327-52959da333d9"
+    }
+  ]
+}

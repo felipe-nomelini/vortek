@@ -1,0 +1,900 @@
+{
+  "at": "2026-09-06T05:00:59.522Z",
+  "complete": true,
+  "coverage": [
+    {
+      "status": "active",
+      "found": 3395
+    },
+    {
+      "status": "paused",
+      "found": 2123
+    }
+  ],
+  "total": 5518,
+  "read": 5518,
+  "matches": [
+    {
+      "id": "MLB7594387528",
+      "attributes": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "name": "Altura da embalagem do vendor",
+          "value_id": null,
+          "value_name": "30 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "30 cm",
+              "struct": {
+                "number": 30,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "name": "Comprimento da embalagem do vendor",
+          "value_id": null,
+          "value_name": "12 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "12 cm",
+              "struct": {
+                "number": 12,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "name": "Peso da embalagem do vendor",
+          "value_id": null,
+          "value_name": "1780 g",
+          "values": [
+            {
+              "id": null,
+              "name": "1780 g",
+              "struct": {
+                "number": 1780,
+                "unit": "g"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "name": "Largura da embalagem do vendor",
+          "value_id": null,
+          "value_name": "13 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "13 cm",
+              "struct": {
+                "number": 13,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "8117352",
+          "value_name": "Manual",
+          "values": [
+            {
+              "id": "8117352",
+              "name": "Manual",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "40777194",
+          "value_name": "FE048",
+          "values": [
+            {
+              "id": "40777194",
+              "name": "FE048",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "31163",
+          "value_name": "Multilaser",
+          "values": [
+            {
+              "id": "31163",
+              "name": "Multilaser",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "7736465",
+          "value_name": "2 m",
+          "values": [
+            {
+              "id": "7736465",
+              "name": "2 m",
+              "struct": {
+                "number": 2,
+                "unit": "m"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "283165",
+          "value_name": "Cinza",
+          "values": [
+            {
+              "id": "283165",
+              "name": "Cinza",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "DISC_DIAMETER",
+          "name": "Diâmetro do disco",
+          "value_id": "5285126",
+          "value_name": "115 mm",
+          "values": [
+            {
+              "id": "5285126",
+              "name": "115 mm",
+              "struct": {
+                "number": 115,
+                "unit": "mm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "FREQUENCY",
+          "name": "Frequência",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7908414493698",
+          "values": [
+            {
+              "id": null,
+              "name": "7908414493698",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "28288132",
+          "value_name": "26 cm",
+          "values": [
+            {
+              "id": "28288132",
+              "name": "26 cm",
+              "struct": {
+                "number": 26,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "INCLUDES_DISC_PROTECTOR",
+          "name": "Inclui protector de disco",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "INCLUDES_DUST_SHROUD",
+          "name": "Inclui coletor de pó",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "IS_MINI_POWER_GRINDER",
+          "name": "É mini esmerilhadeira",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "28288144",
+          "value_name": "10.5 cm",
+          "values": [
+            {
+              "id": "28288144",
+              "name": "10.5 cm",
+              "struct": {
+                "number": 10.5,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MAX_CUTTING_DEPTH",
+          "name": "Profundidade máxima de corte",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MAX_ROTATION_SPEED",
+          "name": "Velocidade máxima de rotação",
+          "value_id": "7917380",
+          "value_name": "12000 rpm",
+          "values": [
+            {
+              "id": "7917380",
+              "name": "12000 rpm",
+              "struct": {
+                "number": 12000,
+                "unit": "rpm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MIN_ROTATION_SPEED",
+          "name": "Velocidade mínima de rotação",
+          "value_id": "7736464",
+          "value_name": "0 rpm",
+          "values": [
+            {
+              "id": "7736464",
+              "name": "0 rpm",
+              "struct": {
+                "number": 0,
+                "unit": "rpm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26443549",
+          "value_name": "FE048",
+          "values": [
+            {
+              "id": "26443549",
+              "name": "FE048",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "96684",
+          "value_name": "700 W",
+          "values": [
+            {
+              "id": "96684",
+              "name": "700 W",
+              "struct": {
+                "number": 700,
+                "unit": "W"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "POWER_GRINDER_TYPE",
+          "name": "Tipo de esmerilhadeira",
+          "value_id": "5285127",
+          "value_name": "Angular",
+          "values": [
+            {
+              "id": "5285127",
+              "name": "Angular",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica",
+          "values": [
+            {
+              "id": "49713698",
+              "name": "Corrente doméstica",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK018319",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK018319",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SOUND_PRESSURE_LEVEL",
+          "name": "Nível de pressão sonora",
+          "value_id": "7898951",
+          "value_name": "89 dBA",
+          "values": [
+            {
+              "id": "7898951",
+              "name": "89 dBA",
+              "struct": {
+                "number": 89,
+                "unit": "dBA"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SWITCH_TYPE",
+          "name": "Tipo de interruptor",
+          "value_id": "1033083",
+          "value_name": "Tecla",
+          "values": [
+            {
+              "id": "1033083",
+              "name": "Tecla",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205162",
+          "value_name": "127V",
+          "values": [
+            {
+              "id": "39205162",
+              "name": "127V",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "6171164",
+          "value_name": "1.46 kg",
+          "values": [
+            {
+              "id": "6171164",
+              "name": "1.46 kg",
+              "struct": {
+                "number": 1.46,
+                "unit": "kg"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "10791702",
+          "value_name": "10 cm",
+          "values": [
+            {
+              "id": "10791702",
+              "name": "10 cm",
+              "struct": {
+                "number": 10,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "WITH_PROGRESSIVE_START",
+          "name": "Com arranque progressivo",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        },
+        {
+          "id": "WITH_SPEED_REGULATION",
+          "name": "Com regulação de velocidade",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        }
+      ],
+      "status": "active",
+      "catalog_product_id": "MLB39329744",
+      "seller_custom_field": "VTK018319"
+    },
+    {
+      "id": "MLB5192488569",
+      "attributes": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "name": "Altura da embalagem do vendor",
+          "value_id": null,
+          "value_name": "19 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "19 cm",
+              "struct": {
+                "number": 19,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "name": "Comprimento da embalagem do vendor",
+          "value_id": null,
+          "value_name": "7 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "7 cm",
+              "struct": {
+                "number": 7,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "name": "Peso da embalagem do vendor",
+          "value_id": null,
+          "value_name": "160 g",
+          "values": [
+            {
+              "id": null,
+              "name": "160 g",
+              "struct": {
+                "number": 160,
+                "unit": "g"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "name": "Largura da embalagem do vendor",
+          "value_id": null,
+          "value_name": "18 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "18 cm",
+              "struct": {
+                "number": 18,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_LABEL",
+          "name": "Etiqueta de homologação da Anatel",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "picture_id"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "40364777",
+          "value_name": "33421700160",
+          "values": [
+            {
+              "id": "40364777",
+              "name": "33421700160",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTORS_POLISH_TYPES",
+          "name": "Tipos de polido dos conectores",
+          "value_id": "5774100",
+          "value_name": "UPC",
+          "values": [
+            {
+              "id": "5774100",
+              "name": "UPC",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CONNECTORS_TYPES",
+          "name": "Tipos de conectores",
+          "value_id": "5774097",
+          "value_name": "SC",
+          "values": [
+            {
+              "id": "5774097",
+              "name": "SC",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+          "name": "Quantidade de splitters",
+          "value_id": "24287935",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "24287935",
+              "name": "1",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7896637676854",
+          "values": [
+            {
+              "id": null,
+              "name": "7896637676854",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "INPUT_FIBERS_NUMBER",
+          "name": "Quantidade de fibras de entrada",
+          "value_id": "24287914",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "24287914",
+              "name": "1",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "MAX_OPERATING_TEMPERATURE",
+          "name": "Temperatura máxima de operação",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MIN_OPERATING_TEMPERATURE",
+          "name": "Temperatura mínima de operação",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24287906",
+          "value_name": "Xfs121",
+          "values": [
+            {
+              "id": "24287906",
+              "name": "Xfs121",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "OUTPUT_FIBERS_NUMBER",
+          "name": "Quantidade de fibras de saída",
+          "value_id": "24287915",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "24287915",
+              "name": "2",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK017249",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK017249",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SPLITTER_TYPE",
+          "name": "Tipo de splitter",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "SPLITTING_RATIO",
+          "name": "Relação de divisão",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "TOTAL_LENGTH",
+          "name": "Comprimento total",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "WITH_CONNECTORS",
+          "name": "Com conectores",
+          "value_id": "-1",
+          "value_name": null,
+          "values": [
+            {
+              "id": "-1",
+              "name": null,
+              "struct": null
+            }
+          ],
+          "value_type": "boolean"
+        }
+      ],
+      "status": "active",
+      "catalog_product_id": "MLB27047019",
+      "seller_custom_field": "VTK017249"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "sellerId": 3294514937,
+  "tags": [
+    "business",
+    "eshop",
+    "user_product_seller",
+    "messages_as_seller",
+    "normal"
+  ],
+  "preferences": {
+    "ok": true,
+    "status": 200,
+    "data": {
+      "local_pick_up": false,
+      "modes": [
+        "custom",
+        "not_specified",
+        "me2"
+      ],
+      "trusted_user": true,
+      "bulky": false,
+      "custom_calculator": false,
+      "picking_type": null,
+      "thermal_printer": null,
+      "option": "in",
+      "tags": [
+        "dsa_confirmed"
+      ],
+      "me2_enablers": [],
+      "carrier_pickup": false,
+      "items_combination": "enabled",
+      "services": [
+        101,
+        102,
+        103,
+        1051,
+        1061,
+        155413,
+        165366
+      ],
+      "logistics": [
+        {
+          "mode": "me2",
+          "types": [
+            {
+              "type": "xd_drop_off",
+              "carrier_pickup": [
+                17502440
+              ],
+              "services": [
+                101,
+                102,
+                103,
+                1051,
+                1061,
+                155413,
+                165366
+              ],
+              "default": true,
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "mode": "custom",
+          "types": [
+            {
+              "type": "custom",
+              "carrier_pickup": [],
+              "services": null,
+              "default": true,
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "mode": "not_specified",
+          "types": [
+            {
+              "type": "not_specified",
+              "carrier_pickup": [],
+              "services": null,
+              "default": true,
+              "status": "active"
+            }
+          ]
+        }
+      ],
+      "label": {
+        "print_danfe": false,
+        "print_browser": false,
+        "print_voucher": false,
+        "print_summary": true,
+        "thermal_printer": null,
+        "page_size": "a4",
+        "page_format": "pdf",
+        "print_summary_cart": null
+      },
+      "content_declaration_disabled": false,
+      "mandatory_invoice_data": true,
+      "site_id": "MLB",
+      "free_configurations": [
+        {
+          "condition": {
+            "value": null,
+            "type": "all"
+          },
+          "rule": {
+            "default": true,
+            "free_mode": "country",
+            "value": null,
+            "free_shipping_flag": true
+          }
+        },
+        {
+          "condition": {
+            "value": null,
+            "type": "all"
+          },
+          "rule": {
+            "default": false,
+            "free_mode": "exclude_region",
+            "value": [
+              "BR-NO",
+              "BR-NE"
+            ],
+            "free_shipping_flag": true
+          }
+        }
+      ],
+      "mandatory_settings": {
+        "currency_id": "BRL",
+        "mode": "me2",
+        "activation_date": "2016-08-16T00:00:00.000-0300",
+        "price_limit": 0,
+        "mode_only_me2": "",
+        "activation_date_only_me2": ""
+      }
+    }
+  },
+  "suppliers": [
+    {
+      "id": "a2b7d909-af70-4fda-99d2-21b16dd46c10",
+      "dslite_id": "2",
+      "ativo": false
+    },
+    {
+      "id": "7ce81d0b-4030-44f7-8cf3-5f165845a8c8",
+      "dslite_id": "8",
+      "ativo": false
+    },
+    {
+      "id": "9c024741-1501-4eef-a304-1c1397bedc58",
+      "dslite_id": "27",
+      "ativo": false
+    },
+    {
+      "id": "b2489e2f-79c4-4809-8885-650621bfa377",
+      "dslite_id": "35",
+      "ativo": false
+    },
+    {
+      "id": "c6946089-b07d-40c5-8772-3a5d3b2caf76",
+      "dslite_id": "108",
+      "ativo": true
+    },
+    {
+      "id": "3d5eb5e4-a064-44e3-afc3-de7158467d23",
+      "dslite_id": "133",
+      "ativo": true
+    },
+    {
+      "id": "2c4a1754-6da7-4ba0-9818-9aef47ad653a",
+      "dslite_id": "134",
+      "ativo": false
+    },
+    {
+      "id": "66281082-6706-4957-8d6a-789e09746cf2",
+      "dslite_id": "100",
+      "ativo": false
+    },
+    {
+      "id": "3bca75cc-1c65-4a74-8453-c4b6c866159c",
+      "dslite_id": "103",
+      "ativo": false
+    },
+    {
+      "id": "3f695c4b-3dd6-480b-a3b7-7d042133680d",
+      "dslite_id": "39",
+      "ativo": false
+    },
+    {
+      "id": "3902ca29-c6e6-46ac-8233-d4d14c56fdac",
+      "dslite_id": "81",
+      "ativo": false
+    },
+    {
+      "id": "25c8bf45-3129-4184-98b3-e30f6e63563c",
+      "dslite_id": "97",
+      "ativo": true
+    }
+  ]
+}

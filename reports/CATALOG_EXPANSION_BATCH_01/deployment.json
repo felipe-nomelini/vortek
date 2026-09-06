@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-06T05:38:37.764852+00:00",
+  "codeCommit": "ec51185",
+  "container": "56ff400525db",
+  "build": "qwm9K-wuArJlGjstNyjRR",
+  "checks": {
+    "catalogFingerprintGate": true,
+    "shippingWarningsGate": true,
+    "warrantyPolicyLive": true,
+    "invalidScenarioAbsent": true
+  },
+  "route": "GitHub main -> npm run deploy:easypanel -> Easypanel",
+  "preservedLocalChange": "package.json preexistente; --skip-git-check n\u00e3o enviou altera\u00e7\u00e3o local",
+  "previousDeployment": {
+    "at": "2026-09-06T05:23:59.395677+00:00",
+    "codeCommit": "f00836a",
+    "container": "7d4722c21f9b",
+    "build": "o2vU9ebPFAMSvMR6p-ZGv"
+  }
+}

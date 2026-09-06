@@ -1,0 +1,296 @@
+[
+  {
+    "sku": "VTK002091",
+    "payload": {
+      "category_id": "MLB72745",
+      "price": 169.63,
+      "currency_id": "BRL",
+      "available_quantity": 9,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "condition": "new",
+      "pictures": [
+        {
+          "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog-expansion/CATALOG_EXPANSION_BATCH_01/VTK002091/f248c39331348376e7313562d09aebdafde5db1807d2a948a2937f3e767b0b95.jpg"
+        }
+      ],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_id": "2200699",
+          "value_name": "Santo Angelo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16484804",
+          "value_name": "Bsmed12"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16484803",
+          "value_name": "Medusa"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "13048060",
+          "value_name": "0 cm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15991896",
+          "value_name": "0"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15991897",
+          "value_name": "0"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7899028803532"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK002091"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "13 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "26.5 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "1256 g"
+        }
+      ],
+      "seller_custom_field": "VTK002091",
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230280"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_name": "90 dias"
+        }
+      ],
+      "shipping": {
+        "mode": "me2",
+        "local_pick_up": false,
+        "free_shipping": true
+      },
+      "family_name": "Caixa Medusa Santo Angelo BSMED12 12 Vias Preta",
+      "catalog_product_id": "MLB21603639",
+      "catalog_listing": true
+    },
+    "http": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        },
+        {
+          "department": "items",
+          "cause_id": 350,
+          "type": "warning",
+          "code": "item.shipping.mandatory_free_shipping",
+          "references": [],
+          "message": "Mandatory free shipping added"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  },
+  {
+    "sku": "VTK018523",
+    "payload": {
+      "category_id": "MLB3905",
+      "price": 286.47,
+      "currency_id": "BRL",
+      "available_quantity": 7,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "condition": "new",
+      "pictures": [
+        {
+          "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog-expansion/CATALOG_EXPANSION_BATCH_01/VTK018523/7b4d84ecc84dcf13860da73c94a694fd8aeca9b5d6f46ce6dc555226725be2c5.png"
+        },
+        {
+          "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog-expansion/CATALOG_EXPANSION_BATCH_01/VTK018523/647aa6787967d3b8f901fbb68cf4d44bdc76c9a96848d0ef755aa85ef7344292.jpg"
+        }
+      ],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_id": "17195",
+          "value_name": "Bravox"
+        },
+        {
+          "id": "LINE",
+          "value_id": "142203",
+          "value_name": "Black"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24773233",
+          "value_name": "CX50 BK"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "8737286",
+          "value_name": "5 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24742288",
+          "value_name": "5 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737288",
+          "value_name": "5 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "999572",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "24739488",
+          "value_name": "Falante"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "7509882",
+          "value_name": "2"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "945366",
+          "value_name": "120 W"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "2095006",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7892787019633"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK018523"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "17 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "31.5 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "1574 g"
+        }
+      ],
+      "seller_custom_field": "VTK018523",
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230280"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_name": "90 dias"
+        }
+      ],
+      "shipping": {
+        "mode": "me2",
+        "local_pick_up": false,
+        "free_shipping": true
+      },
+      "family_name": "Par Alto-Falante Bravox CX50BK 5 120W RMS 4 Ohms",
+      "catalog_product_id": "MLB27401683",
+      "catalog_listing": true
+    },
+    "http": 400,
+    "data": {
+      "cause": [
+        {
+          "department": "shipping",
+          "cause_id": 4053,
+          "type": "warning",
+          "code": "shipping.lost_me1_by_user",
+          "references": [
+            "user.shipping_preferences.modes"
+          ],
+          "message": "User has not mode me1"
+        },
+        {
+          "department": "items",
+          "cause_id": 350,
+          "type": "warning",
+          "code": "item.shipping.mandatory_free_shipping",
+          "references": [],
+          "message": "Mandatory free shipping added"
+        }
+      ],
+      "message": "Validation error",
+      "error": "validation_error",
+      "status": 400
+    }
+  }
+]

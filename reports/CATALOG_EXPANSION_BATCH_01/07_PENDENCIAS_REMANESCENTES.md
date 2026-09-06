@@ -1,0 +1,10 @@
+# Pendências individuais
+
+- **VTK017680 — CONFLITO_CONFIRMADO:** Catálogo obrigatório informa CABLE_LENGTH=3 cm (produto 3 m), revestimento/material divergentes. Embalagem viva corrigida: 3 × 18 × 21 cm, 252 g.
+- **VTK017308 — CONFLITO_CONFIRMADO:** Catálogo obrigatório informa 4 pinos, 40 cfm e 20 dB; fabricante/oferta: 6 pinos, 24,5 cfm e 25,6 dBA.
+- **VTK019530 — PENDENCIA_LOGISTICA:** Embalagem viva com 278 cm no maior lado excede limite do serviço ME2 convencional; sem transporte alternativo comprovado/autorizado.
+- **VTK017291 — PENDENCIA_VALIDACAO:** Confirmar se IPI 15% já integra custo de aquisição R$52,90. Catálogo sem MODEL estruturado; descrição confirma 490 × 350 mm, 1U.
+- **VTK017289 — PENDENCIA_VALIDACAO:** Confirmar se IPI 15% já integra custo de aquisição R$52,90; preservar NCM interno. Catálogo confirma modelo e dimensões.
+- **VTK018716 — CONFLITO_CONFIRMADO:** Imagem da oferta exibe Nitro Guitar 75, não Nitro 100. Catálogo ainda atribui código 538141010F e cabo 1 mm sem evidência correspondente. Necessária imagem correta e revisão técnica.
+
+A pesquisa entregue foi reaproveitada. Não foram iniciadas novas cadências, pesquisas amplas ou próximos lotes. Correções no catálogo ML e confirmação do tratamento do IPI permanecem para validação específica.

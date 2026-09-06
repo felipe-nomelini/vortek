@@ -1,0 +1,830 @@
+[
+  {
+    "path": "/items/MLB5193194293",
+    "http": 200,
+    "data": {
+      "id": "MLB5193194293",
+      "site_id": "MLB",
+      "title": "Caixa Medusa Santo Angelo Bsmed12 12 Vias Cor Preto",
+      "family_name": "Santo Angelo Bsmed12 Medusa",
+      "family_id": 1896813896527696,
+      "seller_id": 3294514937,
+      "category_id": "MLB72745",
+      "user_product_id": "MLBU5089952613",
+      "official_store_id": null,
+      "price": 169.63,
+      "base_price": 169.63,
+      "original_price": null,
+      "inventory_id": null,
+      "currency_id": "BRL",
+      "initial_quantity": 9,
+      "available_quantity": 9,
+      "sold_quantity": 0,
+      "sale_terms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "name": "Tipo de garantia",
+          "value_id": "2230280",
+          "value_name": "Garantia do vendedor",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "2230280",
+              "name": "Garantia do vendedor",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "name": "Tempo de garantia",
+          "value_id": null,
+          "value_name": "90 dias",
+          "value_struct": {
+            "number": 90,
+            "unit": "dias"
+          },
+          "values": [
+            {
+              "id": null,
+              "name": "90 dias",
+              "struct": {
+                "number": 90,
+                "unit": "dias"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "INVOICE",
+          "name": "Faturamento",
+          "value_id": "6891885",
+          "value_name": "Factura A",
+          "value_struct": null,
+          "values": [
+            {
+              "id": "6891885",
+              "name": "Factura A",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        }
+      ],
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_special",
+      "start_time": "2026-09-06T05:23:44.936Z",
+      "stop_time": "2046-09-01T04:00:00.000Z",
+      "end_time": "2046-09-01T04:00:00.000Z",
+      "expiration_time": "2026-11-25T05:23:45.004Z",
+      "condition": "new",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5193194293-caixa-medusa-santo-angelo-bsmed12-12-vias-cor-preto-_JM",
+      "thumbnail_id": "682439-MLA99572984334_122025",
+      "thumbnail": "http://http2.mlstatic.com/D_682439-MLA99572984334_122025-I.jpg",
+      "pictures": [
+        {
+          "id": "682439-MLA99572984334_122025",
+          "url": "http://http2.mlstatic.com/D_682439-MLA99572984334_122025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_682439-MLA99572984334_122025-O.jpg",
+          "size": "443x500",
+          "max_size": "961x1083",
+          "quality": ""
+        },
+        {
+          "id": "814672-MLA94584466695_102025",
+          "url": "http://http2.mlstatic.com/D_814672-MLA94584466695_102025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_814672-MLA94584466695_102025-O.jpg",
+          "size": "500x497",
+          "max_size": "1200x1195",
+          "quality": ""
+        },
+        {
+          "id": "734748-MLA99573043998_122025",
+          "url": "http://http2.mlstatic.com/D_734748-MLA99573043998_122025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_734748-MLA99573043998_122025-O.jpg",
+          "size": "468x500",
+          "max_size": "476x508",
+          "quality": ""
+        },
+        {
+          "id": "864424-MLA94584486597_102025",
+          "url": "http://http2.mlstatic.com/D_864424-MLA94584486597_102025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_864424-MLA94584486597_102025-O.jpg",
+          "size": "500x500",
+          "max_size": "1200x1200",
+          "quality": ""
+        },
+        {
+          "id": "803486-MLA99573034284_122025",
+          "url": "http://http2.mlstatic.com/D_803486-MLA99573034284_122025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_803486-MLA99573034284_122025-O.jpg",
+          "size": "500x405",
+          "max_size": "1200x974",
+          "quality": ""
+        },
+        {
+          "id": "975518-MLA94156111640_102025",
+          "url": "http://http2.mlstatic.com/D_975518-MLA94156111640_102025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_975518-MLA94156111640_102025-O.jpg",
+          "size": "457x500",
+          "max_size": "1097x1200",
+          "quality": ""
+        },
+        {
+          "id": "961050-MLA94584515863_102025",
+          "url": "http://http2.mlstatic.com/D_961050-MLA94584515863_102025-O.jpg",
+          "secure_url": "https://http2.mlstatic.com/D_961050-MLA94584515863_102025-O.jpg",
+          "size": "500x266",
+          "max_size": "1200x639",
+          "quality": ""
+        }
+      ],
+      "video_id": null,
+      "descriptions": [],
+      "accepts_mercadopago": true,
+      "non_mercado_pago_payment_methods": [],
+      "shipping": {
+        "mode": "me2",
+        "methods": [],
+        "tags": [
+          "mandatory_free_shipping"
+        ],
+        "dimensions": null,
+        "local_pick_up": false,
+        "free_shipping": true,
+        "logistic_type": "xd_drop_off",
+        "store_pick_up": false
+      },
+      "international_delivery_mode": "none",
+      "seller_address": {
+        "address_line": "Rua João Marques de Nóbrega 300",
+        "zip_code": "86206240",
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "BR-PR",
+          "name": "Paraná"
+        },
+        "country": {
+          "id": "BR",
+          "name": "Brasil"
+        },
+        "search_location": {
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "TUxCUFBBUkExODBlZA",
+            "name": "Paraná"
+          }
+        },
+        "latitude": -23.284674,
+        "longitude": -51.083409,
+        "id": 1586042717
+      },
+      "seller_contact": null,
+      "location": {},
+      "geolocation": {
+        "latitude": -23.284674,
+        "longitude": -51.083409
+      },
+      "coverage_areas": [],
+      "attributes": [
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "value_id": "2230284",
+          "value_name": "Novo",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2200699",
+          "value_name": "Santo Angelo",
+          "values": [
+            {
+              "id": "2200699",
+              "name": "Santo Angelo",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "16484803",
+          "value_name": "Medusa",
+          "values": [
+            {
+              "id": "16484803",
+              "name": "Medusa",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "13048060",
+          "value_name": "0 cm",
+          "values": [
+            {
+              "id": "13048060",
+              "name": "0 cm",
+              "struct": {
+                "number": 0,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": null,
+          "value_name": "7899028803532",
+          "values": [
+            {
+              "id": null,
+              "name": "7899028803532",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de entrada",
+          "value_id": "15991896",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "15991896",
+              "name": "0",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16484804",
+          "value_name": "Bsmed12",
+          "values": [
+            {
+              "id": "16484804",
+              "name": "Bsmed12",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de saída",
+          "value_id": "15991897",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "15991897",
+              "name": "0",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio",
+          "values": [
+            {
+              "id": "13827367",
+              "name": "Fio",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade",
+              "struct": null
+            }
+          ],
+          "value_type": "list"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "name": "Altura da embalagem do vendor",
+          "value_id": null,
+          "value_name": "8 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "8 cm",
+              "struct": {
+                "number": 8,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "name": "Comprimento da embalagem do vendor",
+          "value_id": null,
+          "value_name": "26.5 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "26.5 cm",
+              "struct": {
+                "number": 26.5,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "name": "Peso da embalagem do vendor",
+          "value_id": null,
+          "value_name": "1256 g",
+          "values": [
+            {
+              "id": null,
+              "name": "1256 g",
+              "struct": {
+                "number": 1256,
+                "unit": "g"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "name": "Largura da embalagem do vendor",
+          "value_id": null,
+          "value_name": "13 cm",
+          "values": [
+            {
+              "id": null,
+              "name": "13 cm",
+              "struct": {
+                "number": 13,
+                "unit": "cm"
+              }
+            }
+          ],
+          "value_type": "number_unit"
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "value_id": null,
+          "value_name": "VTK002091",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK002091",
+              "struct": null
+            }
+          ],
+          "value_type": "string"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1",
+              "struct": null
+            }
+          ],
+          "value_type": "number"
+        }
+      ],
+      "warnings": [],
+      "listing_source": "",
+      "variations": [],
+      "status": "active",
+      "sub_status": [],
+      "tags": [
+        "immediate_payment",
+        "cart_eligible"
+      ],
+      "warranty": "Garantia do vendedor: 90 dias",
+      "catalog_product_id": "MLB21603639",
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "seller_custom_field": "VTK002091",
+      "parent_item_id": null,
+      "differential_pricing": null,
+      "deal_ids": [],
+      "automatic_relist": false,
+      "date_created": "2026-09-06T05:23:45.103Z",
+      "last_updated": "2026-09-06T05:23:45.103Z",
+      "health": null,
+      "catalog_listing": true,
+      "item_relations": [],
+      "channels": [
+        "marketplace"
+      ]
+    },
+    "at": "2026-09-06T05:24:35.311Z"
+  },
+  {
+    "path": "/products/MLB21603639",
+    "http": 200,
+    "data": {
+      "id": "MLB21603639",
+      "catalog_product_id": "MLB21603639",
+      "status": "active",
+      "pdp_types": [
+        "traditional"
+      ],
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "permalink": "",
+      "name": "Caixa Medusa Santo Angelo Bsmed12 12 Vias Cor Preto",
+      "family_name": "Santo Angelo Bsmed12 Medusa",
+      "type": "catalog_product",
+      "buy_box_winner": null,
+      "pickers": [
+        {
+          "picker_id": "COLOR",
+          "picker_name": "Cor",
+          "products": [
+            {
+              "product_id": "MLB21603639",
+              "picker_label": "Preto",
+              "picture_id": "682439-MLA99572984334_122025",
+              "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_682439-MLA99572984334_122025-I.jpg",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "Santo Angelo Bsmed12 Medusa - Preto - Unidade - 1 - 0 cm",
+              "auto_completed": true
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "COLOR",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        },
+        {
+          "picker_id": "UNITS_PER_PACK",
+          "picker_name": "Quantidade de embalagens",
+          "products": [
+            {
+              "product_id": "MLB21603639",
+              "picker_label": "1",
+              "picture_id": "",
+              "thumbnail": "",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "Santo Angelo Bsmed12 Medusa - Preto - Unidade - 1 - 0 cm",
+              "auto_completed": false
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "UNITS_PER_PACK",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": " ",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        },
+        {
+          "picker_id": "CABLE_LENGTH",
+          "picker_name": "Comprimento do cabo",
+          "products": [
+            {
+              "product_id": "MLB21603639",
+              "picker_label": "0 cm",
+              "picture_id": "",
+              "thumbnail": "",
+              "tags": [
+                "selected"
+              ],
+              "changes": [],
+              "permalink": "",
+              "product_name": "Santo Angelo Bsmed12 Medusa - Preto - Unidade - 1 - 0 cm",
+              "auto_completed": false
+            }
+          ],
+          "tags": [],
+          "attributes": [
+            {
+              "attribute_id": "CABLE_LENGTH",
+              "template": "",
+              "position": 1
+            }
+          ],
+          "value_name_delimiter": "",
+          "hide_extra_decoration": false,
+          "secondary_picker_name": ""
+        }
+      ],
+      "pictures": [
+        {
+          "id": "682439-MLA99572984334_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_682439-MLA99572984334_122025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 961,
+          "max_height": 1083,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "814672-MLA94584466695_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_814672-MLA94584466695_102025-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": 1200,
+          "max_height": 1195,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "734748-MLA99573043998_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_734748-MLA99573043998_122025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 476,
+          "max_height": 508,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "864424-MLA94584486597_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_864424-MLA94584486597_102025-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": 1200,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "803486-MLA99573034284_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_803486-MLA99573034284_122025-F.jpg",
+          "suggested_for_picker": null,
+          "max_width": 1200,
+          "max_height": 974,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "975518-MLA94156111640_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_975518-MLA94156111640_102025-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": 1097,
+          "max_height": 1200,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        },
+        {
+          "id": "961050-MLA94584515863_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_961050-MLA94584515863_102025-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": 1200,
+          "max_height": 639,
+          "source_metadata": null,
+          "tags": [
+            "CAROUSEL"
+          ]
+        }
+      ],
+      "description_pictures": [],
+      "main_features": [
+        {
+          "text": "Tipo de cabo e adaptador: Medusa.",
+          "type": "key_value",
+          "metadata": {}
+        },
+        {
+          "text": "Cor: Preto.",
+          "type": "key_value",
+          "metadata": {}
+        }
+      ],
+      "disclaimers": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2200699",
+          "value_name": "Santo Angelo",
+          "values": [
+            {
+              "id": "2200699",
+              "name": "Santo Angelo"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16484804",
+          "value_name": "Bsmed12",
+          "values": [
+            {
+              "id": "16484804",
+              "name": "Bsmed12"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "16484803",
+          "value_name": "Medusa",
+          "values": [
+            {
+              "id": "16484803",
+              "name": "Medusa"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "13048060",
+          "value_name": "0 cm",
+          "values": [
+            {
+              "id": "13048060",
+              "name": "0 cm"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio",
+          "values": [
+            {
+              "id": "13827367",
+              "name": "Fio"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de entrada",
+          "value_id": "15991896",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "15991896",
+              "name": "0"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de saída",
+          "value_id": "15991897",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "15991897",
+              "name": "0"
+            }
+          ]
+        }
+      ],
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Caixa Medusa Santo Angelo Bsmed12 é a solução ideal para quem busca uma distribuição eficiente e organizada de cabos. Com um design inovador, esta caixa oferece 12 vias para conexões, permitindo uma melhor gestão de fiação em sistemas de áudio e eletrônica. Além disso, conta com um prensa cabo de metal, que proporciona maior durabilidade e proteção aos cabos conectados. A marca Santo Angelo é reconhecida pela sua qualidade e desempenho, garantindo que você tenha um produto confiável em suas instalações. O modelo Bsmed12 é novo e apresenta um tipo de produto focado em fios, ideal para quem deseja um produto com ótima performance. Embora não possua conectores de entrada ou saída, sua estrutura é perfeita para adaptar-se às suas necessidades específicas. Não perca a oportunidade de otimizar seu sistema com esta caixa prática e eficiente."
+      },
+      "parent_id": "MLB21603619",
+      "children_ids": [],
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false,
+        "with_enhanced_pictures": false,
+        "base_site_product_id": null,
+        "ttr": "2026-09-06T23:30:03.593840351"
+      },
+      "quality_type": "COMPLETE",
+      "release_info": null,
+      "presale_info": null,
+      "enhanced_content": null,
+      "tags": [],
+      "date_created": "2023-02-01T12:13:26Z",
+      "authorized_stores": null,
+      "last_updated": "2025-10-22T20:25:52Z",
+      "grouper_id": null,
+      "experiments": {}
+    },
+    "at": "2026-09-06T05:24:35.473Z"
+  }
+]

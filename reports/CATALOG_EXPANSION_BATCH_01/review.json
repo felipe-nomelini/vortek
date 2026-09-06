@@ -1,0 +1,92 @@
+[
+  {
+    "sku": "VTK018319",
+    "status": "JA_ANUNCIADO_ATIVO",
+    "reason": "Anúncio existente confirmado remotamente. Preservar coorte anterior.",
+    "title": "Esmerilhadeira Angular Multilaser Fe048 700w 127v",
+    "description": null,
+    "categoryId": "MLB188790",
+    "catalogProductId": "MLB39329744"
+  },
+  {
+    "sku": "VTK017249",
+    "status": "JA_ANUNCIADO_ATIVO",
+    "reason": "Anúncio existente confirmado remotamente. Preservar coorte anterior.",
+    "title": "Cabo óptico Splitter Intelbras Plc 1x2 Sc/ Upc Xfs121 483002",
+    "description": null,
+    "categoryId": "MLB272149",
+    "catalogProductId": "MLB27047019"
+  },
+  {
+    "sku": "VTK017680",
+    "status": "CONFLITO_CONFIRMADO",
+    "reason": "Catálogo obrigatório informa CABLE_LENGTH=3 cm (produto 3 m), revestimento/material divergentes. Embalagem viva corrigida: 3 × 18 × 21 cm, 252 g.",
+    "title": "Cabo Rca Mxt Profissional Blindado 2 Rca + 2 Rca Vermelho 5m",
+    "description": null,
+    "categoryId": "MLB438559",
+    "catalogProductId": "MLB22145517"
+  },
+  {
+    "sku": "VTK017308",
+    "status": "CONFLITO_CONFIRMADO",
+    "reason": "Catálogo obrigatório informa 4 pinos, 40 cfm e 20 dB; fabricante/oferta: 6 pinos, 24,5 cfm e 25,6 dBA.",
+    "title": "Kit Cooler Fan Evus Fk-12r Rgb",
+    "description": null,
+    "categoryId": "MLB2676",
+    "catalogProductId": "MLB33317290"
+  },
+  {
+    "sku": "VTK002091",
+    "status": "APTO_PREPARACAO",
+    "reason": "Oferta e catálogo confirmam caixa BSMED12 12 vias sem conectores. Taxonomia genérica de cabos não altera conteúdo comercial explicitamente descrito. Embalagem viva: 8 × 13 × 26,5 cm, 1.256 g.",
+    "title": "Caixa Medusa Santo Angelo BSMED12 12 Vias Preta",
+    "description": "Caixa para montagem de medusa Santo Angelo BSMED12, 12 vias, preta. Gabinete em aço carbono com pintura epóxi e prensa-cabo metálico com mola. Oferta: 1 caixa para montagem, sem conectores e sem multicabo. Aplicação em áudio profissional.",
+    "categoryId": "MLB72745",
+    "catalogProductId": "MLB21603639"
+  },
+  {
+    "sku": "VTK019530",
+    "status": "PENDENCIA_LOGISTICA",
+    "reason": "Embalagem viva com 278 cm no maior lado excede limite do serviço ME2 convencional; sem transporte alternativo comprovado/autorizado.",
+    "title": "Antena Móvel Aquário B-2004p Pop Com 1/4 De Onda Para Rádio ",
+    "description": null,
+    "categoryId": null,
+    "catalogProductId": "MLB35786589"
+  },
+  {
+    "sku": "VTK017291",
+    "status": "PENDENCIA_VALIDACAO",
+    "reason": "Confirmar se IPI 15% já integra custo de aquisição R$52,90. Catálogo sem MODEL estruturado; descrição confirma 490 × 350 mm, 1U.",
+    "title": "Bandeja P/ Rack Evus Ev-ftw60 600mm Preto Ventilada",
+    "description": null,
+    "categoryId": "MLB419878",
+    "catalogProductId": "MLB37821866"
+  },
+  {
+    "sku": "VTK018523",
+    "status": "APTO_PREPARACAO",
+    "reason": "Oferta em par confirmada pela imagem e título do fornecedor; catálogo descreve 60 W RMS cada, 120 W RMS no par, sem telas. Manual indicado pela pesquisa é da linha UXP Classic, não CX50BK: usar fornecedor 90 dias comprovados na API.",
+    "title": "Par Alto-Falante Bravox CX50BK 5 120W RMS 4 Ohms",
+    "description": "Par de alto-falantes coaxiais automotivos Bravox CX50BK de 5 polegadas. Cada unidade: 60 W RMS, 4 ohms, sensibilidade de 88 dB/W/m e resposta de 70 Hz a 20 kHz. Oferta: 2 alto-falantes, total de 120 W RMS no par, sem telas. Cone de polipropileno, borda em Santoprene e tweeter de neodímio. Confira o espaço de instalação: diâmetro externo 140 mm e profundidade 60 mm.",
+    "categoryId": "MLB3905",
+    "catalogProductId": "MLB27401683"
+  },
+  {
+    "sku": "VTK017289",
+    "status": "PENDENCIA_VALIDACAO",
+    "reason": "Confirmar se IPI 15% já integra custo de aquisição R$52,90; preservar NCM interno. Catálogo confirma modelo e dimensões.",
+    "title": "Bandeja P/ Rack Evus Ev-ftw450 450mm Preto Ventilada",
+    "description": null,
+    "categoryId": "MLB419878",
+    "catalogProductId": "MLB73813161"
+  },
+  {
+    "sku": "VTK018716",
+    "status": "CONFLITO_CONFIRMADO",
+    "reason": "Imagem da oferta exibe Nitro Guitar 75, não Nitro 100. Catálogo ainda atribui código 538141010F e cabo 1 mm sem evidência correspondente. Necessária imagem correta e revisão técnica.",
+    "title": "Cabo De Guitarra Sparflex Nitro 100 Plug Noiseless 5 Metros ",
+    "description": null,
+    "categoryId": "MLB72745",
+    "catalogProductId": "MLB22251401"
+  }
+]

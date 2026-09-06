@@ -1,0 +1,68 @@
+{
+  "batchId": "CATALOG_EXPANSION_BATCH_01",
+  "at": "2026-09-06T05:23:32.032Z",
+  "results": [
+    {
+      "sku": "VTK018523",
+      "status": "BLOQUEADO_OU_INCONCLUSIVO",
+      "response": {
+        "ok": false,
+        "status": 422,
+        "data": {
+          "error": "PENDENCIA_VALIDACAO_IDENTIDADE",
+          "identity": {
+            "identity": "IDENTIDADE_INCONCLUSIVA",
+            "comparisons": [
+              {
+                "field": "gtin",
+                "local": "7892787019633",
+                "remote": "7892787019633",
+                "matches": true,
+                "basis": "normalized",
+                "evidence": null
+              },
+              {
+                "field": "brand",
+                "local": "BRAVOX",
+                "remote": "Bravox",
+                "matches": true,
+                "basis": "normalized",
+                "evidence": null
+              },
+              {
+                "field": "model",
+                "local": "cx50bk",
+                "remote": "CX50 BK",
+                "matches": true,
+                "basis": "normalized",
+                "evidence": null
+              },
+              {
+                "field": "packaging",
+                "local": "kit",
+                "remote": "kit",
+                "matches": true,
+                "basis": "normalized",
+                "evidence": null
+              },
+              {
+                "field": "quantity",
+                "local": "2",
+                "remote": "2",
+                "matches": true,
+                "basis": "normalized",
+                "evidence": null
+              }
+            ],
+            "reasons": [
+              "ESCOPO_POTENCIA_RMS_NAO_COMPROVADO"
+            ],
+            "warnings": [],
+            "identityRuleVersion": "M2M-IDENTITY-v2.1"
+          }
+        }
+      },
+      "event": null
+    }
+  ]
+}

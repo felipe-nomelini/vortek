@@ -1,0 +1,467 @@
+{
+  "at": "2026-09-06T05:14:56.753Z",
+  "results": [
+    {
+      "sku": "VTK017680",
+      "gate": "CONFLITO_CONFIRMADO",
+      "http": 200,
+      "success": true,
+      "evaluationId": "75e023c5-450f-45a8-87d0-a14f88341239",
+      "memory": {
+        "price": 65.47,
+        "cost": 33.99,
+        "offerId": "dad83b6f-2a9d-419f-929a-ba6a72ce9543",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-06T03:38:26.93+00:00",
+        "costComponents": [
+          {
+            "productId": "2c594508-a3e5-48f5-ae31-89133fdfd169",
+            "offerId": "dad83b6f-2a9d-419f-929a-ba6a72ce9543",
+            "supplierId": "133",
+            "unitCost": 33.99,
+            "quantity": 1,
+            "observedAt": "2026-09-06T03:38:26.93+00:00"
+          }
+        ],
+        "fee": {
+          "amount": 8.51,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:32.180Z",
+          "evidence": "/sites/MLB/listing_prices?price=65.47&category_id=MLB438559&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "3bd4f952b86ac8f3c24c0562aed97ab895ed0ef11751666d6cfa2b687a4a4846"
+        },
+        "shipping": {
+          "amount": 12.95,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:32.180Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=65.47&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=3x18x21%2C252",
+          "contextKey": "3bd4f952b86ac8f3c24c0562aed97ab895ed0ef11751666d6cfa2b687a4a4846"
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-06T05:14:32.157Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-06T05:14:32.180Z",
+        "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+        "band": {
+          "id": "BELOW_200",
+          "floor": 0.05,
+          "limit": 0.1,
+          "target": 0.07,
+          "maxCents": 20000
+        },
+        "reasons": [
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 5.43,
+        "result": 4.59,
+        "margin": 0.07010844661677104,
+        "status": "estimated"
+      },
+      "autonomy": "REQUIRES_CONFIRMATION"
+    },
+    {
+      "sku": "VTK017308",
+      "gate": "CONFLITO_CONFIRMADO",
+      "http": 200,
+      "success": true,
+      "evaluationId": "d7687d26-955a-4e14-ae19-47e1d65fef40",
+      "memory": {
+        "price": 155.13,
+        "cost": 89.9,
+        "offerId": "6aa7ac8f-57e5-47d3-b0e6-b7601ae4fbe6",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-06T03:34:15.095+00:00",
+        "costComponents": [
+          {
+            "productId": "6cd531a3-213d-4d01-98c3-3437b9d8525a",
+            "offerId": "6aa7ac8f-57e5-47d3-b0e6-b7601ae4fbe6",
+            "supplierId": "133",
+            "unitCost": 89.9,
+            "quantity": 1,
+            "observedAt": "2026-09-06T03:34:15.095+00:00"
+          }
+        ],
+        "fee": {
+          "amount": 20.17,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:34.951Z",
+          "evidence": "/sites/MLB/listing_prices?price=155.13&category_id=MLB2676&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "0226d5c4ccf7311948c8dc681342f203d92cd531bd429ee3b856e299aa426660"
+        },
+        "shipping": {
+          "amount": 21.35,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:34.951Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=155.13&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=15x11x15%2C600",
+          "contextKey": "0226d5c4ccf7311948c8dc681342f203d92cd531bd429ee3b856e299aa426660"
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-06T05:14:34.929Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-06T05:14:34.951Z",
+        "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+        "band": {
+          "id": "BELOW_200",
+          "floor": 0.05,
+          "limit": 0.1,
+          "target": 0.07,
+          "maxCents": 20000
+        },
+        "reasons": [
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 12.85,
+        "result": 10.86,
+        "margin": 0.07000580158576677,
+        "status": "estimated"
+      },
+      "autonomy": "REQUIRES_CONFIRMATION"
+    },
+    {
+      "sku": "VTK002091",
+      "gate": "APTO_PREPARACAO",
+      "http": 200,
+      "success": true,
+      "evaluationId": "13341898-b140-4acc-b260-246f0927ce64",
+      "memory": {
+        "price": 169.63,
+        "cost": 99.9,
+        "offerId": "89ab142e-aba9-4c1e-ac55-c1d860e470b7",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-06T04:06:18.244+00:00",
+        "costComponents": [
+          {
+            "productId": "e568048b-c0c7-4a54-bba3-0b5f036af388",
+            "offerId": "89ab142e-aba9-4c1e-ac55-c1d860e470b7",
+            "supplierId": "133",
+            "unitCost": 99.9,
+            "quantity": 1,
+            "observedAt": "2026-09-06T04:06:18.244+00:00"
+          }
+        ],
+        "fee": {
+          "amount": 22.05,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:38.133Z",
+          "evidence": "/sites/MLB/listing_prices?price=169.63&category_id=MLB72745&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "001ab42fcb804db283b4827c36c949b20110e7e4c4b804badca0280471a3cb8d"
+        },
+        "shipping": {
+          "amount": 21.75,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:38.133Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=169.63&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=8x13x27%2C1256",
+          "contextKey": "001ab42fcb804db283b4827c36c949b20110e7e4c4b804badca0280471a3cb8d"
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-06T05:14:38.115Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-06T05:14:38.133Z",
+        "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+        "band": {
+          "id": "BELOW_200",
+          "floor": 0.05,
+          "limit": 0.1,
+          "target": 0.07,
+          "maxCents": 20000
+        },
+        "reasons": [
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 14.05,
+        "result": 11.88,
+        "margin": 0.07003478158344634,
+        "status": "estimated"
+      },
+      "autonomy": "REQUIRES_CONFIRMATION"
+    },
+    {
+      "sku": "VTK017291",
+      "gate": "PENDENCIA_VALIDACAO",
+      "http": 200,
+      "success": true,
+      "evaluationId": "fc6f0a04-ac63-45f8-853a-647ced3798a5",
+      "memory": {
+        "price": 96.7,
+        "cost": 52.9,
+        "offerId": "2245de45-2b90-4247-a656-4bbf82e97bae",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-06T03:34:15.095+00:00",
+        "costComponents": [
+          {
+            "productId": "6ac9cd71-87e3-441d-8d8b-bfffef5d7441",
+            "offerId": "2245de45-2b90-4247-a656-4bbf82e97bae",
+            "supplierId": "133",
+            "unitCost": 52.9,
+            "quantity": 1,
+            "observedAt": "2026-09-06T03:34:15.095+00:00"
+          }
+        ],
+        "fee": {
+          "amount": 12.57,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:42.078Z",
+          "evidence": "/sites/MLB/listing_prices?price=96.7&category_id=MLB419878&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "bc96c7128ce9d94b4dfb7b7da0b91cef8dcb8748ba9a42e3a7efb18d83e19da2"
+        },
+        "shipping": {
+          "amount": 16.45,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:42.078Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=96.7&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=37x7x51%2C1776",
+          "contextKey": "bc96c7128ce9d94b4dfb7b7da0b91cef8dcb8748ba9a42e3a7efb18d83e19da2"
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-06T05:14:42.060Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-06T05:14:42.078Z",
+        "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+        "band": {
+          "id": "BELOW_200",
+          "floor": 0.05,
+          "limit": 0.1,
+          "target": 0.07,
+          "maxCents": 20000
+        },
+        "reasons": [
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 8.01,
+        "result": 6.77,
+        "margin": 0.07001034126163391,
+        "status": "estimated"
+      },
+      "autonomy": "REQUIRES_CONFIRMATION"
+    },
+    {
+      "sku": "VTK018523",
+      "gate": "APTO_PREPARACAO",
+      "http": 200,
+      "success": true,
+      "evaluationId": "60c359d2-b7f8-49ff-9803-ebcd37479b7b",
+      "memory": {
+        "price": 286.47,
+        "cost": 179.9,
+        "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-06T04:11:21.212+00:00",
+        "costComponents": [
+          {
+            "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+            "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+            "supplierId": "133",
+            "unitCost": 179.9,
+            "quantity": 1,
+            "observedAt": "2026-09-06T04:11:21.212+00:00"
+          }
+        ],
+        "fee": {
+          "amount": 28.65,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:46.998Z",
+          "evidence": "/sites/MLB/listing_prices?price=286.47&category_id=MLB3905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "c0942a562cbc15513d8debd0e701df2e308ea0677a9f245625b1cf6420c93673"
+        },
+        "shipping": {
+          "amount": 25.55,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:46.998Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=286.47&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=7x17x32%2C1574",
+          "contextKey": "c0942a562cbc15513d8debd0e701df2e308ea0677a9f245625b1cf6420c93673"
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-06T05:14:46.978Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-06T05:14:46.998Z",
+        "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+        "band": {
+          "id": "FROM_200_TO_1000",
+          "floor": 0.07,
+          "limit": 0.15,
+          "target": 0.1,
+          "maxCents": 100000
+        },
+        "reasons": [
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 23.72,
+        "result": 28.65,
+        "margin": 0.10001047230076446,
+        "status": "estimated"
+      },
+      "autonomy": "REQUIRES_CONFIRMATION"
+    },
+    {
+      "sku": "VTK017289",
+      "gate": "PENDENCIA_VALIDACAO",
+      "http": 200,
+      "success": true,
+      "evaluationId": "7963da75-56f1-4f68-880d-c7d3b1d08955",
+      "memory": {
+        "price": 94.76,
+        "cost": 52.9,
+        "offerId": "7f188ea8-1741-4fb7-8185-1ee86f152261",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-06T03:34:15.095+00:00",
+        "costComponents": [
+          {
+            "productId": "6b9d5a69-5d96-4316-bbc2-59f879d232a7",
+            "offerId": "7f188ea8-1741-4fb7-8185-1ee86f152261",
+            "supplierId": "133",
+            "unitCost": 52.9,
+            "quantity": 1,
+            "observedAt": "2026-09-06T03:34:15.095+00:00"
+          }
+        ],
+        "fee": {
+          "amount": 12.32,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:50.871Z",
+          "evidence": "/sites/MLB/listing_prices?price=94.76&category_id=MLB419878&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "4074d32fa8da6fd140f7c05a58f9097044cc7b2786c79ac8b80152b2732a778c"
+        },
+        "shipping": {
+          "amount": 15.05,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:50.871Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=94.76&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=28x7x50%2C1464",
+          "contextKey": "4074d32fa8da6fd140f7c05a58f9097044cc7b2786c79ac8b80152b2732a778c"
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-06T05:14:50.851Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-06T05:14:50.871Z",
+        "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+        "band": {
+          "id": "BELOW_200",
+          "floor": 0.05,
+          "limit": 0.1,
+          "target": 0.07,
+          "maxCents": 20000
+        },
+        "reasons": [
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 7.85,
+        "result": 6.64,
+        "margin": 0.07007176023638666,
+        "status": "estimated"
+      },
+      "autonomy": "REQUIRES_CONFIRMATION"
+    },
+    {
+      "sku": "VTK018716",
+      "gate": "CONFLITO_CONFIRMADO",
+      "http": 200,
+      "success": true,
+      "evaluationId": "d668df02-a927-4f9e-ac84-04e71a4c56a4",
+      "memory": {
+        "price": 230.15,
+        "cost": 134.9,
+        "offerId": "b3670941-cb0d-4a5d-8e5e-0c7fe9843daa",
+        "supplierId": "133",
+        "costObservedAt": "2026-09-06T04:16:14.674+00:00",
+        "costComponents": [
+          {
+            "productId": "3359c510-0130-4724-9dd3-9e25bc203fb9",
+            "offerId": "b3670941-cb0d-4a5d-8e5e-0c7fe9843daa",
+            "supplierId": "133",
+            "unitCost": 134.9,
+            "quantity": 1,
+            "observedAt": "2026-09-06T04:16:14.674+00:00"
+          }
+        ],
+        "fee": {
+          "amount": 29.92,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:54.095Z",
+          "evidence": "/sites/MLB/listing_prices?price=230.15&category_id=MLB72745&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+          "contextKey": "0e3d89116088510679a0d3b2133b6f98ab2520f7f5eeeb6899258ba31c58c2ad"
+        },
+        "shipping": {
+          "amount": 23.25,
+          "source": "ml_live",
+          "observedAt": "2026-09-06T05:14:54.095Z",
+          "evidence": "/users/3294514937/shipping_options/free?item_price=230.15&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=20x20x5%2C426",
+          "contextKey": "0e3d89116088510679a0d3b2133b6f98ab2520f7f5eeeb6899258ba31c58c2ad"
+        },
+        "tax": {
+          "rate": 0.08279935223578168,
+          "status": "estimated",
+          "referenceMonth": "2026-09",
+          "source": "RBT12_PEDIDOS_OPERACIONAIS",
+          "observedAt": "2026-09-06T05:14:54.074Z",
+          "evidence": null,
+          "rbt12": 929727.1799999999,
+          "missingMonths": []
+        },
+        "evaluatedAt": "2026-09-06T05:14:54.095Z",
+        "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+        "band": {
+          "id": "FROM_200_TO_1000",
+          "floor": 0.07,
+          "limit": 0.15,
+          "target": 0.1,
+          "maxCents": 100000
+        },
+        "reasons": [
+          "TRIBUTO_ESTIMADO"
+        ],
+        "diagnostics": [],
+        "taxAmount": 19.06,
+        "result": 23.02,
+        "margin": 0.1000217249619813,
+        "status": "estimated"
+      },
+      "autonomy": "REQUIRES_CONFIRMATION"
+    }
+  ]
+}

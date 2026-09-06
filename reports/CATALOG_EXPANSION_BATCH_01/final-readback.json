@@ -1,0 +1,2278 @@
+{
+  "at": "2026-09-06T05:39:16.036Z",
+  "rows": [
+    {
+      "at": "2026-09-06T05:39:15.567Z",
+      "item": {
+        "id": "MLB7594387528",
+        "site_id": "MLB",
+        "title": "Multilaser Fe048 Cinza 127v",
+        "family_name": "Multilaser FE048",
+        "family_id": 3463758555581266,
+        "seller_id": 3294514937,
+        "category_id": "MLB188790",
+        "user_product_id": "MLBU5088527905",
+        "official_store_id": null,
+        "price": 258.72,
+        "base_price": 258.72,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 6,
+        "available_quantity": 6,
+        "sold_quantity": 0,
+        "sale_terms": [
+          {
+            "id": "WARRANTY_TYPE",
+            "name": "Tipo de garantia",
+            "value_id": "2230279",
+            "value_name": "Garantia de fábrica",
+            "value_struct": null,
+            "values": [
+              {
+                "id": "2230279",
+                "name": "Garantia de fábrica",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "WARRANTY_TIME",
+            "name": "Tempo de garantia",
+            "value_id": null,
+            "value_name": "12 meses",
+            "value_struct": {
+              "number": 12,
+              "unit": "meses"
+            },
+            "values": [
+              {
+                "id": null,
+                "name": "12 meses",
+                "struct": {
+                  "number": 12,
+                  "unit": "meses"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          }
+        ],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-09-05T20:50:24.389Z",
+        "stop_time": "2046-08-31T04:00:00.000Z",
+        "end_time": "2046-08-31T04:00:00.000Z",
+        "expiration_time": "2026-11-24T20:58:48.992Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7594387528-multilaser-fe048-cinza-127v-_JM",
+        "thumbnail_id": "921944-MLA95572115959_102025",
+        "thumbnail": "http://http2.mlstatic.com/D_921944-MLA95572115959_102025-I.jpg",
+        "pictures": [
+          {
+            "id": "921944-MLA95572115959_102025",
+            "url": "http://http2.mlstatic.com/D_921944-MLA95572115959_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_921944-MLA95572115959_102025-O.jpg",
+            "size": "500x222",
+            "max_size": "1200x534",
+            "quality": ""
+          },
+          {
+            "id": "909944-MLA85463302285_052025",
+            "url": "http://http2.mlstatic.com/D_909944-MLA85463302285_052025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_909944-MLA85463302285_052025-O.jpg",
+            "size": "353x500",
+            "max_size": "848x1198",
+            "quality": ""
+          },
+          {
+            "id": "813502-MLA85463450021_052025",
+            "url": "http://http2.mlstatic.com/D_813502-MLA85463450021_052025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_813502-MLA85463450021_052025-O.jpg",
+            "size": "500x435",
+            "max_size": "1200x1045",
+            "quality": ""
+          },
+          {
+            "id": "869537-MLA85463450033_052025",
+            "url": "http://http2.mlstatic.com/D_869537-MLA85463450033_052025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_869537-MLA85463450033_052025-O.jpg",
+            "size": "500x259",
+            "max_size": "1200x622",
+            "quality": ""
+          },
+          {
+            "id": "708597-MLA85160071422_052025",
+            "url": "http://http2.mlstatic.com/D_708597-MLA85160071422_052025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_708597-MLA85160071422_052025-O.jpg",
+            "size": "434x500",
+            "max_size": "1042x1200",
+            "quality": ""
+          },
+          {
+            "id": "697849-MLA85160225378_052025",
+            "url": "http://http2.mlstatic.com/D_697849-MLA85160225378_052025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_697849-MLA85160225378_052025-O.jpg",
+            "size": "500x298",
+            "max_size": "1200x717",
+            "quality": ""
+          },
+          {
+            "id": "854845-MLA86629521302_062025",
+            "url": "http://http2.mlstatic.com/D_854845-MLA86629521302_062025-O.webp",
+            "secure_url": "https://http2.mlstatic.com/D_854845-MLA86629521302_062025-O.webp",
+            "size": "500x500",
+            "max_size": "1200x1200",
+            "quality": ""
+          },
+          {
+            "id": "881201-MLA86951201309_062025",
+            "url": "http://http2.mlstatic.com/D_881201-MLA86951201309_062025-O.webp",
+            "secure_url": "https://http2.mlstatic.com/D_881201-MLA86951201309_062025-O.webp",
+            "size": "500x500",
+            "max_size": "1200x1200",
+            "quality": ""
+          },
+          {
+            "id": "773242-MLA86951171771_062025",
+            "url": "http://http2.mlstatic.com/D_773242-MLA86951171771_062025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_773242-MLA86951171771_062025-O.jpg",
+            "size": "500x500",
+            "max_size": "1200x1200",
+            "quality": ""
+          },
+          {
+            "id": "942950-MLA86951239877_062025",
+            "url": "http://http2.mlstatic.com/D_942950-MLA86951239877_062025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_942950-MLA86951239877_062025-O.jpg",
+            "size": "500x500",
+            "max_size": "1200x1200",
+            "quality": ""
+          },
+          {
+            "id": "931966-MLA86629521348_062025",
+            "url": "http://http2.mlstatic.com/D_931966-MLA86629521348_062025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_931966-MLA86629521348_062025-O.jpg",
+            "size": "500x500",
+            "max_size": "1200x1200",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "SELLER_PACKAGE_HEIGHT",
+            "name": "Altura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "30 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "30 cm",
+                "struct": {
+                  "number": 30,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_LENGTH",
+            "name": "Comprimento da embalagem do vendor",
+            "value_id": null,
+            "value_name": "12 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "12 cm",
+                "struct": {
+                  "number": 12,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WEIGHT",
+            "name": "Peso da embalagem do vendor",
+            "value_id": null,
+            "value_name": "1780 g",
+            "values": [
+              {
+                "id": null,
+                "name": "1780 g",
+                "struct": {
+                  "number": 1780,
+                  "unit": "g"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WIDTH",
+            "name": "Largura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "13 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "13 cm",
+                "struct": {
+                  "number": 13,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "ACCESSORIES_INCLUDED",
+            "name": "Acessórios incluídos",
+            "value_id": "8117352",
+            "value_name": "Manual",
+            "values": [
+              {
+                "id": "8117352",
+                "name": "Manual",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ALPHANUMERIC_MODEL",
+            "name": "Modelo alfanumérico",
+            "value_id": "40777194",
+            "value_name": "FE048",
+            "values": [
+              {
+                "id": "40777194",
+                "name": "FE048",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "31163",
+            "value_name": "Multilaser",
+            "values": [
+              {
+                "id": "31163",
+                "name": "Multilaser",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CABLE_LENGTH",
+            "name": "Comprimento do cabo",
+            "value_id": "7736465",
+            "value_name": "2 m",
+            "values": [
+              {
+                "id": "7736465",
+                "name": "2 m",
+                "struct": {
+                  "number": 2,
+                  "unit": "m"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "283165",
+            "value_name": "Cinza",
+            "values": [
+              {
+                "id": "283165",
+                "name": "Cinza",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DISC_DIAMETER",
+            "name": "Diâmetro do disco",
+            "value_id": "5285126",
+            "value_name": "115 mm",
+            "values": [
+              {
+                "id": "5285126",
+                "name": "115 mm",
+                "struct": {
+                  "number": 115,
+                  "unit": "mm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "FREQUENCY",
+            "name": "Frequência",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": null,
+            "value_name": "7908414493698",
+            "values": [
+              {
+                "id": null,
+                "name": "7908414493698",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "28288132",
+            "value_name": "26 cm",
+            "values": [
+              {
+                "id": "28288132",
+                "name": "26 cm",
+                "struct": {
+                  "number": 26,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "INCLUDES_DISC_PROTECTOR",
+            "name": "Inclui protector de disco",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "INCLUDES_DUST_SHROUD",
+            "name": "Inclui coletor de pó",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_MINI_POWER_GRINDER",
+            "name": "É mini esmerilhadeira",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_WIRELESS",
+            "name": "É sem fio",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "LENGTH",
+            "name": "Comprimento",
+            "value_id": "28288144",
+            "value_name": "10.5 cm",
+            "values": [
+              {
+                "id": "28288144",
+                "name": "10.5 cm",
+                "struct": {
+                  "number": 10.5,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MAX_CUTTING_DEPTH",
+            "name": "Profundidade máxima de corte",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MAX_ROTATION_SPEED",
+            "name": "Velocidade máxima de rotação",
+            "value_id": "7917380",
+            "value_name": "12000 rpm",
+            "values": [
+              {
+                "id": "7917380",
+                "name": "12000 rpm",
+                "struct": {
+                  "number": 12000,
+                  "unit": "rpm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MIN_ROTATION_SPEED",
+            "name": "Velocidade mínima de rotação",
+            "value_id": "7736464",
+            "value_name": "0 rpm",
+            "values": [
+              {
+                "id": "7736464",
+                "name": "0 rpm",
+                "struct": {
+                  "number": 0,
+                  "unit": "rpm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "26443549",
+            "value_name": "FE048",
+            "values": [
+              {
+                "id": "26443549",
+                "name": "FE048",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "POWER",
+            "name": "Potência",
+            "value_id": "96684",
+            "value_name": "700 W",
+            "values": [
+              {
+                "id": "96684",
+                "name": "700 W",
+                "struct": {
+                  "number": 700,
+                  "unit": "W"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "POWER_GRINDER_TYPE",
+            "name": "Tipo de esmerilhadeira",
+            "value_id": "5285127",
+            "value_name": "Angular",
+            "values": [
+              {
+                "id": "5285127",
+                "name": "Angular",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "POWER_SUPPLY_TYPE",
+            "name": "Tipo de alimentação",
+            "value_id": "49713698",
+            "value_name": "Corrente doméstica",
+            "values": [
+              {
+                "id": "49713698",
+                "name": "Corrente doméstica",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK018319",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK018319",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SOUND_PRESSURE_LEVEL",
+            "name": "Nível de pressão sonora",
+            "value_id": "7898951",
+            "value_name": "89 dBA",
+            "values": [
+              {
+                "id": "7898951",
+                "name": "89 dBA",
+                "struct": {
+                  "number": 89,
+                  "unit": "dBA"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SWITCH_TYPE",
+            "name": "Tipo de interruptor",
+            "value_id": "1033083",
+            "value_name": "Tecla",
+            "values": [
+              {
+                "id": "1033083",
+                "name": "Tecla",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem",
+            "value_id": "39205162",
+            "value_name": "127V",
+            "values": [
+              {
+                "id": "39205162",
+                "name": "127V",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "6171164",
+            "value_name": "1.46 kg",
+            "values": [
+              {
+                "id": "6171164",
+                "name": "1.46 kg",
+                "struct": {
+                  "number": 1.46,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "10791702",
+            "value_name": "10 cm",
+            "values": [
+              {
+                "id": "10791702",
+                "name": "10 cm",
+                "struct": {
+                  "number": 10,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WITH_PROGRESSIVE_START",
+            "name": "Com arranque progressivo",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_SPEED_REGULATION",
+            "name": "Com regulação de velocidade",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": "Garantia de fábrica: 12 meses",
+        "catalog_product_id": "MLB39329744",
+        "domain_id": "MLB-POWER_GRINDERS",
+        "seller_custom_field": "VTK018319",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-09-05T20:50:24.563Z",
+        "last_updated": "2026-09-05T20:58:49.013Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      },
+      "issues": [],
+      "newInBatch": false
+    },
+    {
+      "at": "2026-09-06T05:39:15.730Z",
+      "item": {
+        "id": "MLB5192488569",
+        "site_id": "MLB",
+        "title": "Intelbras Xfs121",
+        "family_name": "Intelbras Xfs121",
+        "family_id": 5106223502581135,
+        "seller_id": 3294514937,
+        "category_id": "MLB272149",
+        "user_product_id": "MLBU5088532811",
+        "official_store_id": null,
+        "price": 70.08,
+        "base_price": 70.08,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 50,
+        "available_quantity": 50,
+        "sold_quantity": 0,
+        "sale_terms": [
+          {
+            "id": "WARRANTY_TYPE",
+            "name": "Tipo de garantia",
+            "value_id": "2230279",
+            "value_name": "Garantia de fábrica",
+            "value_struct": null,
+            "values": [
+              {
+                "id": "2230279",
+                "name": "Garantia de fábrica",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "WARRANTY_TIME",
+            "name": "Tempo de garantia",
+            "value_id": null,
+            "value_name": "12 meses",
+            "value_struct": {
+              "number": 12,
+              "unit": "meses"
+            },
+            "values": [
+              {
+                "id": null,
+                "name": "12 meses",
+                "struct": {
+                  "number": 12,
+                  "unit": "meses"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          }
+        ],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-09-05T20:51:15.262Z",
+        "stop_time": "2046-08-31T04:00:00.000Z",
+        "end_time": "2046-08-31T04:00:00.000Z",
+        "expiration_time": "2026-11-24T20:59:40.205Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5192488569-intelbras-xfs121-_JM",
+        "thumbnail_id": "854018-MLU75164084279_032024",
+        "thumbnail": "http://http2.mlstatic.com/D_854018-MLU75164084279_032024-I.jpg",
+        "pictures": [
+          {
+            "id": "854018-MLU75164084279_032024",
+            "url": "http://http2.mlstatic.com/D_854018-MLU75164084279_032024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_854018-MLU75164084279_032024-O.jpg",
+            "size": "500x187",
+            "max_size": "1196x448",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "SELLER_PACKAGE_HEIGHT",
+            "name": "Altura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "19 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "19 cm",
+                "struct": {
+                  "number": 19,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_LENGTH",
+            "name": "Comprimento da embalagem do vendor",
+            "value_id": null,
+            "value_name": "7 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "7 cm",
+                "struct": {
+                  "number": 7,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WEIGHT",
+            "name": "Peso da embalagem do vendor",
+            "value_id": null,
+            "value_name": "160 g",
+            "values": [
+              {
+                "id": null,
+                "name": "160 g",
+                "struct": {
+                  "number": 160,
+                  "unit": "g"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WIDTH",
+            "name": "Largura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "18 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "18 cm",
+                "struct": {
+                  "number": 18,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "ALPHANUMERIC_MODELS",
+            "name": "Modelo alfanumérico",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ANATEL_HOMOLOGATION_LABEL",
+            "name": "Etiqueta de homologação da Anatel",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "picture_id"
+          },
+          {
+            "id": "ANATEL_HOMOLOGATION_NUMBER",
+            "name": "Homologação Anatel Nº",
+            "value_id": "40364777",
+            "value_name": "33421700160",
+            "values": [
+              {
+                "id": "40364777",
+                "name": "33421700160",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "10366",
+            "value_name": "Intelbras",
+            "values": [
+              {
+                "id": "10366",
+                "name": "Intelbras",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CONNECTORS_POLISH_TYPES",
+            "name": "Tipos de polido dos conectores",
+            "value_id": "5774100",
+            "value_name": "UPC",
+            "values": [
+              {
+                "id": "5774100",
+                "name": "UPC",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CONNECTORS_TYPES",
+            "name": "Tipos de conectores",
+            "value_id": "5774097",
+            "value_name": "SC",
+            "values": [
+              {
+                "id": "5774097",
+                "name": "SC",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+            "name": "Quantidade de splitters",
+            "value_id": "24287935",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "24287935",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": null,
+            "value_name": "7896637676854",
+            "values": [
+              {
+                "id": null,
+                "name": "7896637676854",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "INPUT_FIBERS_NUMBER",
+            "name": "Quantidade de fibras de entrada",
+            "value_id": "24287914",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "24287914",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MANUFACTURER",
+            "name": "Fabricante",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MAX_OPERATING_TEMPERATURE",
+            "name": "Temperatura máxima de operação",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MIN_OPERATING_TEMPERATURE",
+            "name": "Temperatura mínima de operação",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "24287906",
+            "value_name": "Xfs121",
+            "values": [
+              {
+                "id": "24287906",
+                "name": "Xfs121",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "OUTPUT_FIBERS_NUMBER",
+            "name": "Quantidade de fibras de saída",
+            "value_id": "24287915",
+            "value_name": "2",
+            "values": [
+              {
+                "id": "24287915",
+                "name": "2",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK017249",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK017249",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SPLITTER_TYPE",
+            "name": "Tipo de splitter",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SPLITTING_RATIO",
+            "name": "Relação de divisão",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "TOTAL_LENGTH",
+            "name": "Comprimento total",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WITH_CONNECTORS",
+            "name": "Com conectores",
+            "value_id": "-1",
+            "value_name": null,
+            "values": [
+              {
+                "id": "-1",
+                "name": null,
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": "Garantia de fábrica: 12 meses",
+        "catalog_product_id": "MLB27047019",
+        "domain_id": "MLB-FIBER_OPTIC_SPLITTERS",
+        "seller_custom_field": "VTK017249",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-09-05T20:51:15.434Z",
+        "last_updated": "2026-09-05T20:59:40.228Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      },
+      "issues": [],
+      "newInBatch": false
+    },
+    {
+      "at": "2026-09-06T05:39:15.882Z",
+      "item": {
+        "id": "MLB5193194293",
+        "site_id": "MLB",
+        "title": "Santo Angelo Bsmed12 Medusa",
+        "family_name": "Santo Angelo Bsmed12 Medusa",
+        "family_id": 1896813896527696,
+        "seller_id": 3294514937,
+        "category_id": "MLB72745",
+        "user_product_id": "MLBU5089952613",
+        "official_store_id": null,
+        "price": 169.63,
+        "base_price": 169.63,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 9,
+        "available_quantity": 9,
+        "sold_quantity": 0,
+        "sale_terms": [
+          {
+            "id": "WARRANTY_TYPE",
+            "name": "Tipo de garantia",
+            "value_id": "2230280",
+            "value_name": "Garantia do vendedor",
+            "value_struct": null,
+            "values": [
+              {
+                "id": "2230280",
+                "name": "Garantia do vendedor",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "WARRANTY_TIME",
+            "name": "Tempo de garantia",
+            "value_id": null,
+            "value_name": "90 dias",
+            "value_struct": {
+              "number": 90,
+              "unit": "dias"
+            },
+            "values": [
+              {
+                "id": null,
+                "name": "90 dias",
+                "struct": {
+                  "number": 90,
+                  "unit": "dias"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "INVOICE",
+            "name": "Faturamento",
+            "value_id": "6891885",
+            "value_name": "Factura A",
+            "value_struct": null,
+            "values": [
+              {
+                "id": "6891885",
+                "name": "Factura A",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          }
+        ],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-09-06T05:23:44.936Z",
+        "stop_time": "2046-09-01T04:00:00.000Z",
+        "end_time": "2046-09-01T04:00:00.000Z",
+        "expiration_time": "2026-11-25T05:32:15.082Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5193194293-santo-angelo-bsmed12-medusa-_JM",
+        "thumbnail_id": "682439-MLA99572984334_122025",
+        "thumbnail": "http://http2.mlstatic.com/D_682439-MLA99572984334_122025-I.jpg",
+        "pictures": [
+          {
+            "id": "682439-MLA99572984334_122025",
+            "url": "http://http2.mlstatic.com/D_682439-MLA99572984334_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_682439-MLA99572984334_122025-O.jpg",
+            "size": "443x500",
+            "max_size": "961x1083",
+            "quality": ""
+          },
+          {
+            "id": "814672-MLA94584466695_102025",
+            "url": "http://http2.mlstatic.com/D_814672-MLA94584466695_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_814672-MLA94584466695_102025-O.jpg",
+            "size": "500x497",
+            "max_size": "1200x1195",
+            "quality": ""
+          },
+          {
+            "id": "734748-MLA99573043998_122025",
+            "url": "http://http2.mlstatic.com/D_734748-MLA99573043998_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_734748-MLA99573043998_122025-O.jpg",
+            "size": "468x500",
+            "max_size": "476x508",
+            "quality": ""
+          },
+          {
+            "id": "864424-MLA94584486597_102025",
+            "url": "http://http2.mlstatic.com/D_864424-MLA94584486597_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_864424-MLA94584486597_102025-O.jpg",
+            "size": "500x500",
+            "max_size": "1200x1200",
+            "quality": ""
+          },
+          {
+            "id": "803486-MLA99573034284_122025",
+            "url": "http://http2.mlstatic.com/D_803486-MLA99573034284_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_803486-MLA99573034284_122025-O.jpg",
+            "size": "500x405",
+            "max_size": "1200x974",
+            "quality": ""
+          },
+          {
+            "id": "975518-MLA94156111640_102025",
+            "url": "http://http2.mlstatic.com/D_975518-MLA94156111640_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_975518-MLA94156111640_102025-O.jpg",
+            "size": "457x500",
+            "max_size": "1097x1200",
+            "quality": ""
+          },
+          {
+            "id": "961050-MLA94584515863_102025",
+            "url": "http://http2.mlstatic.com/D_961050-MLA94584515863_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_961050-MLA94584515863_102025-O.jpg",
+            "size": "500x266",
+            "max_size": "1200x639",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "2200699",
+            "value_name": "Santo Angelo",
+            "values": [
+              {
+                "id": "2200699",
+                "name": "Santo Angelo",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CABLE_AND_ADAPTER_TYPE",
+            "name": "Tipo de cabo e adaptador",
+            "value_id": "16484803",
+            "value_name": "Medusa",
+            "values": [
+              {
+                "id": "16484803",
+                "name": "Medusa",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CABLE_LENGTH",
+            "name": "Comprimento do cabo",
+            "value_id": "13048060",
+            "value_name": "0 cm",
+            "values": [
+              {
+                "id": "13048060",
+                "name": "0 cm",
+                "struct": {
+                  "number": 0,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": null,
+            "value_name": "7899028803532",
+            "values": [
+              {
+                "id": null,
+                "name": "7899028803532",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "INPUT_CONNECTORS_NUMBER",
+            "name": "Quantidade de conectores de entrada",
+            "value_id": "15991896",
+            "value_name": "0",
+            "values": [
+              {
+                "id": "15991896",
+                "name": "0",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "16484804",
+            "value_name": "Bsmed12",
+            "values": [
+              {
+                "id": "16484804",
+                "name": "Bsmed12",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "OUTPUT_CONNECTORS_NUMBER",
+            "name": "Quantidade de conectores de saída",
+            "value_id": "15991897",
+            "value_name": "0",
+            "values": [
+              {
+                "id": "15991897",
+                "name": "0",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "PRODUCT_TYPE",
+            "name": "Tipo de produto",
+            "value_id": "13827367",
+            "value_name": "Fio",
+            "values": [
+              {
+                "id": "13827367",
+                "name": "Fio",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SELLER_PACKAGE_HEIGHT",
+            "name": "Altura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "34 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "34 cm",
+                "struct": {
+                  "number": 34,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_LENGTH",
+            "name": "Comprimento da embalagem do vendor",
+            "value_id": null,
+            "value_name": "5 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "5 cm",
+                "struct": {
+                  "number": 5,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WEIGHT",
+            "name": "Peso da embalagem do vendor",
+            "value_id": null,
+            "value_name": "380 g",
+            "values": [
+              {
+                "id": null,
+                "name": "380 g",
+                "struct": {
+                  "number": 380,
+                  "unit": "g"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WIDTH",
+            "name": "Largura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "18 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "18 cm",
+                "struct": {
+                  "number": 18,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK002091",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK002091",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": "Garantia do vendedor: 90 dias",
+        "catalog_product_id": "MLB21603639",
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "seller_custom_field": "VTK002091",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-09-06T05:23:45.103Z",
+        "last_updated": "2026-09-06T05:32:15.257Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      },
+      "issues": [],
+      "newInBatch": true
+    },
+    {
+      "at": "2026-09-06T05:39:16.036Z",
+      "item": {
+        "id": "MLB7595130266",
+        "site_id": "MLB",
+        "title": "Par Alto Falante Bravox Coaxial 5 Polegadas 120w Cx50bk Cor Preto",
+        "family_name": "Bravox Black CX50 BK 5  ",
+        "family_id": 901139518997009,
+        "seller_id": 3294514937,
+        "category_id": "MLB3905",
+        "user_product_id": "MLBU5123975094",
+        "official_store_id": null,
+        "price": 286.47,
+        "base_price": 286.47,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 7,
+        "available_quantity": 7,
+        "sold_quantity": 0,
+        "sale_terms": [
+          {
+            "id": "WARRANTY_TYPE",
+            "name": "Tipo de garantia",
+            "value_id": "2230280",
+            "value_name": "Garantia do vendedor",
+            "value_struct": null,
+            "values": [
+              {
+                "id": "2230280",
+                "name": "Garantia do vendedor",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "WARRANTY_TIME",
+            "name": "Tempo de garantia",
+            "value_id": null,
+            "value_name": "90 dias",
+            "value_struct": {
+              "number": 90,
+              "unit": "dias"
+            },
+            "values": [
+              {
+                "id": null,
+                "name": "90 dias",
+                "struct": {
+                  "number": 90,
+                  "unit": "dias"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "INVOICE",
+            "name": "Faturamento",
+            "value_id": "6891885",
+            "value_name": "Factura A",
+            "value_struct": null,
+            "values": [
+              {
+                "id": "6891885",
+                "name": "Factura A",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          }
+        ],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-09-06T05:38:47.491Z",
+        "stop_time": "2046-09-01T04:00:00.000Z",
+        "end_time": "2046-09-01T04:00:00.000Z",
+        "expiration_time": "2026-11-25T05:38:47.561Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7595130266-par-alto-falante-bravox-coaxial-5-polegadas-120w-cx50bk-cor-preto-_JM",
+        "thumbnail_id": "963802-MLA99416221206_112025",
+        "thumbnail": "http://http2.mlstatic.com/D_963802-MLA99416221206_112025-I.webp",
+        "pictures": [
+          {
+            "id": "963802-MLA99416221206_112025",
+            "url": "http://http2.mlstatic.com/D_963802-MLA99416221206_112025-O.webp",
+            "secure_url": "https://http2.mlstatic.com/D_963802-MLA99416221206_112025-O.webp",
+            "size": "497x500",
+            "max_size": "497x500",
+            "quality": ""
+          },
+          {
+            "id": "726955-MLA108422139549_032026",
+            "url": "http://http2.mlstatic.com/D_726955-MLA108422139549_032026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_726955-MLA108422139549_032026-O.jpg",
+            "size": "500x473",
+            "max_size": "500x473",
+            "quality": ""
+          },
+          {
+            "id": "974926-MLA108421481327_032026",
+            "url": "http://http2.mlstatic.com/D_974926-MLA108421481327_032026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_974926-MLA108421481327_032026-O.jpg",
+            "size": "441x500",
+            "max_size": "441x500",
+            "quality": ""
+          },
+          {
+            "id": "927029-MLA108421421975_032026",
+            "url": "http://http2.mlstatic.com/D_927029-MLA108421421975_032026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_927029-MLA108421421975_032026-O.jpg",
+            "size": "500x342",
+            "max_size": "500x342",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "17195",
+            "value_name": "Bravox",
+            "values": [
+              {
+                "id": "17195",
+                "name": "Bravox",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COILS_NUMBER",
+            "name": "Quantidade de bobinas",
+            "value_id": "8704186",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "8704186",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DEPTH",
+            "name": "Profundidade",
+            "value_id": "2095006",
+            "value_name": "6 cm",
+            "values": [
+              {
+                "id": "2095006",
+                "name": "6 cm",
+                "struct": {
+                  "number": 6,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": null,
+            "value_name": "7892787019633",
+            "values": [
+              {
+                "id": null,
+                "name": "7892787019633",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "142203",
+            "value_name": "Black",
+            "values": [
+              {
+                "id": "142203",
+                "name": "Black",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "24773233",
+            "value_name": "CX50 BK",
+            "values": [
+              {
+                "id": "24773233",
+                "name": "CX50 BK",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "RMS_POWER",
+            "name": "Potência RMS",
+            "value_id": "945366",
+            "value_name": "120 W",
+            "values": [
+              {
+                "id": "945366",
+                "name": "120 W",
+                "struct": {
+                  "number": 120,
+                  "unit": "W"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_HEIGHT",
+            "name": "Altura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "7 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "7 cm",
+                "struct": {
+                  "number": 7,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_LENGTH",
+            "name": "Comprimento da embalagem do vendor",
+            "value_id": null,
+            "value_name": "31.5 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "31.5 cm",
+                "struct": {
+                  "number": 31.5,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WEIGHT",
+            "name": "Peso da embalagem do vendor",
+            "value_id": null,
+            "value_name": "1574 g",
+            "values": [
+              {
+                "id": null,
+                "name": "1574 g",
+                "struct": {
+                  "number": 1574,
+                  "unit": "g"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_PACKAGE_WIDTH",
+            "name": "Largura da embalagem do vendor",
+            "value_id": null,
+            "value_name": "17 cm",
+            "values": [
+              {
+                "id": null,
+                "name": "17 cm",
+                "struct": {
+                  "number": 17,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK018523",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK018523",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SPEAKERS_NUMBER",
+            "name": "Quantidade de caixas de som",
+            "value_id": "999572",
+            "value_name": "2",
+            "values": [
+              {
+                "id": "999572",
+                "name": "2",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "VEHICLE_SPEAKER_DIAMETER",
+            "name": "Diâmetro do alto-falante",
+            "value_id": "8737288",
+            "value_name": "5 \"",
+            "values": [
+              {
+                "id": "8737288",
+                "name": "5 \"",
+                "struct": {
+                  "number": 5,
+                  "unit": "\""
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "VEHICLE_SPEAKER_LENGTH",
+            "name": "Comprimento do alto-falante",
+            "value_id": "24742288",
+            "value_name": "5 \"",
+            "values": [
+              {
+                "id": "24742288",
+                "name": "5 \"",
+                "struct": {
+                  "number": 5,
+                  "unit": "\""
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "VEHICLE_SPEAKER_TYPE",
+            "name": "Tipo de alto-falante",
+            "value_id": "24739488",
+            "value_name": "Falante",
+            "values": [
+              {
+                "id": "24739488",
+                "name": "Falante",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "VEHICLE_SPEAKER_WIDTH",
+            "name": "Largura do alto-falante",
+            "value_id": "8737286",
+            "value_name": "5 \"",
+            "values": [
+              {
+                "id": "8737286",
+                "name": "5 \"",
+                "struct": {
+                  "number": 5,
+                  "unit": "\""
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "VEHICLE_TYPE",
+            "name": "Tipo de veículo",
+            "value_id": "11377043",
+            "value_name": "Carro/Caminhonete",
+            "values": [
+              {
+                "id": "11377043",
+                "name": "Carro/Caminhonete",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "WAYS_NUMBER",
+            "name": "Quantidade de vias",
+            "value_id": "7509882",
+            "value_name": "2",
+            "values": [
+              {
+                "id": "7509882",
+                "name": "2",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": "Garantia do vendedor: 90 dias",
+        "catalog_product_id": "MLB27401683",
+        "domain_id": "MLB-VEHICLE_SPEAKERS",
+        "seller_custom_field": "VTK018523",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-09-06T05:38:47.674Z",
+        "last_updated": "2026-09-06T05:38:47.674Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      },
+      "issues": [],
+      "newInBatch": true
+    }
+  ],
+  "counts": {
+    "created": 2,
+    "validated": 2,
+    "safetyStops": 0
+  }
+}

@@ -1,0 +1,777 @@
+{
+  "batchId": "CATALOG_EXPANSION_BATCH_01",
+  "at": "2026-09-06T05:38:51.154Z",
+  "results": [
+    {
+      "sku": "VTK018523",
+      "status": "PUBLICADO_VALIDADO",
+      "response": {
+        "ok": true,
+        "status": 200,
+        "data": {
+          "success": true,
+          "steps": {
+            "categoria": {
+              "ok": true
+            },
+            "atributos": {
+              "ok": true
+            },
+            "anuncio": {
+              "ok": true
+            },
+            "descricao": {
+              "ok": true
+            },
+            "atacado": {
+              "ok": false,
+              "error": "Desconto por quantidade removido pela política comercial."
+            },
+            "fiscal": {
+              "ok": true
+            }
+          },
+          "warnings": [],
+          "missing_required_attributes": [],
+          "categoria": {
+            "id": "MLB3905",
+            "descoberta": false
+          },
+          "anuncio": {
+            "id": "MLB7595130266",
+            "title": "Par Alto Falante Bravox Coaxial 5 Polegadas 120w Cx50bk Cor Preto",
+            "price": 286.47,
+            "permalink": "https://produto.mercadolivre.com.br/MLB-7595130266-par-alto-falante-bravox-coaxial-5-polegadas-120w-cx50bk-cor-preto-_JM",
+            "status": "active",
+            "sub_status": []
+          },
+          "quantity_pricing": false,
+          "pricing_correction": {
+            "initial_price": 286.47,
+            "final_price": 286.47,
+            "ml_shipping": 27.05,
+            "ml_fee": 0.1,
+            "status": "not_needed"
+          },
+          "warranty": {
+            "resolution": {
+              "gtin": "7892787019633",
+              "unit": "dias",
+              "origin": "GARANTIA_FORNECEDOR",
+              "source": "DSLite /v1/CrossDocking/Catalogo/133/252568:tempo_garantia; inspection.json",
+              "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+              "duration": 90,
+              "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+              "observedAt": "2026-09-06T04:52:39.381Z",
+              "status": "resolved",
+              "policyVersion": "VORTEK-WARRANTY-2026-09-06-SELLER-30",
+              "warranty_source": "supplier",
+              "warranty_type": "seller",
+              "warranty_duration": 90,
+              "warranty_unit": "days"
+            },
+            "evidence": [
+              {
+                "gtin": "7892787019633",
+                "unit": "dias",
+                "origin": "GARANTIA_FORNECEDOR",
+                "source": "DSLite /v1/CrossDocking/Catalogo/133/252568:tempo_garantia; inspection.json",
+                "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+                "duration": 90,
+                "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+                "observedAt": "2026-09-06T04:52:39.381Z"
+              }
+            ]
+          },
+          "pricing_policy": {
+            "mode": "canonical",
+            "memory": {
+              "price": 286.47,
+              "cost": 179.9,
+              "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+              "supplierId": "133",
+              "costObservedAt": "2026-09-06T04:11:21.212+00:00",
+              "costComponents": [
+                {
+                  "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+                  "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+                  "supplierId": "133",
+                  "unitCost": 179.9,
+                  "quantity": 1,
+                  "observedAt": "2026-09-06T04:11:21.212+00:00"
+                }
+              ],
+              "fee": {
+                "amount": 28.65,
+                "source": "ml_live",
+                "observedAt": "2026-09-06T05:38:42.204Z",
+                "evidence": "/sites/MLB/listing_prices?price=286.47&category_id=MLB3905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+                "contextKey": "c0942a562cbc15513d8debd0e701df2e308ea0677a9f245625b1cf6420c93673"
+              },
+              "shipping": {
+                "amount": 25.55,
+                "source": "ml_live",
+                "observedAt": "2026-09-06T05:38:42.204Z",
+                "evidence": "/users/3294514937/shipping_options/free?item_price=286.47&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&dimensions=7x17x32%2C1574",
+                "contextKey": "c0942a562cbc15513d8debd0e701df2e308ea0677a9f245625b1cf6420c93673"
+              },
+              "tax": {
+                "rate": 0.08279935223578168,
+                "status": "estimated",
+                "referenceMonth": "2026-09",
+                "source": "RBT12_PEDIDOS_OPERACIONAIS",
+                "observedAt": "2026-09-06T05:38:42.186Z",
+                "evidence": null,
+                "rbt12": 929727.1799999999,
+                "missingMonths": []
+              },
+              "evaluatedAt": "2026-09-06T05:38:42.204Z",
+              "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+              "band": {
+                "id": "FROM_200_TO_1000",
+                "floor": 0.07,
+                "limit": 0.15,
+                "target": 0.1,
+                "maxCents": 100000
+              },
+              "reasons": [
+                "TRIBUTO_ESTIMADO"
+              ],
+              "diagnostics": [],
+              "taxAmount": 23.72,
+              "result": 28.65,
+              "margin": 0.10001047230076446,
+              "status": "estimated"
+            },
+            "autonomy": "REQUIRES_CONFIRMATION"
+          },
+          "fiscal": "ok",
+          "fiscal_details": []
+        }
+      },
+      "event": {
+        "event_type": "CATALOG_EXPANSION_VALIDATED",
+        "ml_item_id": "MLB7595130266",
+        "payload": {
+          "cohort": "CATALOG_EXPANSION_BATCH_01",
+          "memory": {
+            "fee": {
+              "amount": 28.65,
+              "source": "ml_live",
+              "evidence": "/sites/MLB/listing_prices?price=286.47&category_id=MLB3905&currency_id=BRL&listing_type_id=gold_special&logistic_type=xd_drop_off&shipping_mode=me2",
+              "contextKey": "5737a7652e8d07edd3b711d29a8eb170be6cb9f8ebdf7f15f6eaee75dd09b69a",
+              "observedAt": "2026-09-06T05:38:50.913Z"
+            },
+            "tax": {
+              "rate": 0.08279935223578168,
+              "rbt12": 929727.1799999999,
+              "source": "RBT12_PEDIDOS_OPERACIONAIS",
+              "status": "estimated",
+              "evidence": null,
+              "observedAt": "2026-09-06T05:38:50.736Z",
+              "missingMonths": [],
+              "referenceMonth": "2026-09"
+            },
+            "band": {
+              "id": "FROM_200_TO_1000",
+              "floor": 0.07,
+              "limit": 0.15,
+              "target": 0.1,
+              "maxCents": 100000
+            },
+            "cost": 179.9,
+            "price": 286.47,
+            "margin": 0.09477432191852549,
+            "result": 27.15,
+            "status": "estimated",
+            "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+            "reasons": [
+              "TRIBUTO_ESTIMADO"
+            ],
+            "shipping": {
+              "amount": 27.05,
+              "source": "ml_live",
+              "evidence": "/users/3294514937/shipping_options/free?item_price=286.47&listing_type_id=gold_special&mode=me2&logistic_type=xd_drop_off&condition=new&free_shipping=true&verbose=true&item_id=MLB7595130266",
+              "contextKey": "5737a7652e8d07edd3b711d29a8eb170be6cb9f8ebdf7f15f6eaee75dd09b69a",
+              "observedAt": "2026-09-06T05:38:50.913Z"
+            },
+            "taxAmount": 23.72,
+            "supplierId": "133",
+            "diagnostics": [],
+            "evaluatedAt": "2026-09-06T05:38:50.913Z",
+            "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+            "costComponents": [
+              {
+                "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+                "quantity": 1,
+                "unitCost": 179.9,
+                "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+                "observedAt": "2026-09-06T04:11:21.212+00:00",
+                "supplierId": "133"
+              }
+            ],
+            "costObservedAt": "2026-09-06T04:11:21.212+00:00"
+          },
+          "batchId": "CATALOG_EXPANSION_BATCH_01",
+          "baseline": {
+            "price": 286.47,
+            "sales": 0,
+            "stock": 7,
+            "margin": 0.09477432191852549,
+            "visits": null,
+            "startAt": "2026-09-06T05:38:51.111Z"
+          },
+          "readback": {
+            "id": "MLB7595130266",
+            "tags": [
+              "immediate_payment",
+              "cart_eligible"
+            ],
+            "price": 286.47,
+            "title": "Par Alto Falante Bravox Coaxial 5 Polegadas 120w Cx50bk Cor Preto",
+            "health": null,
+            "status": "active",
+            "site_id": "MLB",
+            "channels": [
+              "marketplace"
+            ],
+            "deal_ids": [],
+            "end_time": "2046-09-01T04:00:00.000Z",
+            "location": {},
+            "pictures": [
+              {
+                "id": "963802-MLA99416221206_112025",
+                "url": "http://http2.mlstatic.com/D_963802-MLA99416221206_112025-O.webp",
+                "size": "497x500",
+                "quality": "",
+                "max_size": "497x500",
+                "secure_url": "https://http2.mlstatic.com/D_963802-MLA99416221206_112025-O.webp"
+              },
+              {
+                "id": "726955-MLA108422139549_032026",
+                "url": "http://http2.mlstatic.com/D_726955-MLA108422139549_032026-O.jpg",
+                "size": "500x473",
+                "quality": "",
+                "max_size": "500x473",
+                "secure_url": "https://http2.mlstatic.com/D_726955-MLA108422139549_032026-O.jpg"
+              },
+              {
+                "id": "974926-MLA108421481327_032026",
+                "url": "http://http2.mlstatic.com/D_974926-MLA108421481327_032026-O.jpg",
+                "size": "441x500",
+                "quality": "",
+                "max_size": "441x500",
+                "secure_url": "https://http2.mlstatic.com/D_974926-MLA108421481327_032026-O.jpg"
+              },
+              {
+                "id": "927029-MLA108421421975_032026",
+                "url": "http://http2.mlstatic.com/D_927029-MLA108421421975_032026-O.jpg",
+                "size": "500x342",
+                "quality": "",
+                "max_size": "500x342",
+                "secure_url": "https://http2.mlstatic.com/D_927029-MLA108421421975_032026-O.jpg"
+              }
+            ],
+            "shipping": {
+              "mode": "me2",
+              "tags": [
+                "mandatory_free_shipping"
+              ],
+              "methods": [],
+              "dimensions": null,
+              "free_shipping": true,
+              "local_pick_up": false,
+              "logistic_type": "xd_drop_off",
+              "store_pick_up": false
+            },
+            "video_id": null,
+            "warnings": [],
+            "warranty": "Garantia do vendedor: 90 dias",
+            "condition": "new",
+            "domain_id": "MLB-VEHICLE_SPEAKERS",
+            "family_id": 901139518997009,
+            "permalink": "https://produto.mercadolivre.com.br/MLB-7595130266-par-alto-falante-bravox-coaxial-5-polegadas-120w-cx50bk-cor-preto-_JM",
+            "seller_id": 3294514937,
+            "stop_time": "2046-09-01T04:00:00.000Z",
+            "thumbnail": "http://http2.mlstatic.com/D_963802-MLA99416221206_112025-I.webp",
+            "attributes": [
+              {
+                "id": "ITEM_CONDITION",
+                "name": "Condição do item",
+                "values": [
+                  {
+                    "id": "2230284",
+                    "name": "Novo",
+                    "struct": null
+                  }
+                ],
+                "value_id": "2230284",
+                "value_name": "Novo",
+                "value_type": "list"
+              },
+              {
+                "id": "BRAND",
+                "name": "Marca",
+                "values": [
+                  {
+                    "id": "17195",
+                    "name": "Bravox",
+                    "struct": null
+                  }
+                ],
+                "value_id": "17195",
+                "value_name": "Bravox",
+                "value_type": "string"
+              },
+              {
+                "id": "COILS_NUMBER",
+                "name": "Quantidade de bobinas",
+                "values": [
+                  {
+                    "id": "8704186",
+                    "name": "1",
+                    "struct": null
+                  }
+                ],
+                "value_id": "8704186",
+                "value_name": "1",
+                "value_type": "number"
+              },
+              {
+                "id": "COLOR",
+                "name": "Cor",
+                "values": [
+                  {
+                    "id": "52049",
+                    "name": "Preto",
+                    "struct": null
+                  }
+                ],
+                "value_id": "52049",
+                "value_name": "Preto",
+                "value_type": "string"
+              },
+              {
+                "id": "DEPTH",
+                "name": "Profundidade",
+                "values": [
+                  {
+                    "id": "2095006",
+                    "name": "6 cm",
+                    "struct": {
+                      "unit": "cm",
+                      "number": 6
+                    }
+                  }
+                ],
+                "value_id": "2095006",
+                "value_name": "6 cm",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "GTIN",
+                "name": "Código universal de produto",
+                "values": [
+                  {
+                    "id": null,
+                    "name": "7892787019633",
+                    "struct": null
+                  }
+                ],
+                "value_id": null,
+                "value_name": "7892787019633",
+                "value_type": "string"
+              },
+              {
+                "id": "LINE",
+                "name": "Linha",
+                "values": [
+                  {
+                    "id": "142203",
+                    "name": "Black",
+                    "struct": null
+                  }
+                ],
+                "value_id": "142203",
+                "value_name": "Black",
+                "value_type": "string"
+              },
+              {
+                "id": "MODEL",
+                "name": "Modelo",
+                "values": [
+                  {
+                    "id": "24773233",
+                    "name": "CX50 BK",
+                    "struct": null
+                  }
+                ],
+                "value_id": "24773233",
+                "value_name": "CX50 BK",
+                "value_type": "string"
+              },
+              {
+                "id": "RMS_POWER",
+                "name": "Potência RMS",
+                "values": [
+                  {
+                    "id": "945366",
+                    "name": "120 W",
+                    "struct": {
+                      "unit": "W",
+                      "number": 120
+                    }
+                  }
+                ],
+                "value_id": "945366",
+                "value_name": "120 W",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "SELLER_PACKAGE_HEIGHT",
+                "name": "Altura da embalagem do vendor",
+                "values": [
+                  {
+                    "id": null,
+                    "name": "7 cm",
+                    "struct": {
+                      "unit": "cm",
+                      "number": 7
+                    }
+                  }
+                ],
+                "value_id": null,
+                "value_name": "7 cm",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "SELLER_PACKAGE_LENGTH",
+                "name": "Comprimento da embalagem do vendor",
+                "values": [
+                  {
+                    "id": null,
+                    "name": "31.5 cm",
+                    "struct": {
+                      "unit": "cm",
+                      "number": 31.5
+                    }
+                  }
+                ],
+                "value_id": null,
+                "value_name": "31.5 cm",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "SELLER_PACKAGE_WEIGHT",
+                "name": "Peso da embalagem do vendor",
+                "values": [
+                  {
+                    "id": null,
+                    "name": "1574 g",
+                    "struct": {
+                      "unit": "g",
+                      "number": 1574
+                    }
+                  }
+                ],
+                "value_id": null,
+                "value_name": "1574 g",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "SELLER_PACKAGE_WIDTH",
+                "name": "Largura da embalagem do vendor",
+                "values": [
+                  {
+                    "id": null,
+                    "name": "17 cm",
+                    "struct": {
+                      "unit": "cm",
+                      "number": 17
+                    }
+                  }
+                ],
+                "value_id": null,
+                "value_name": "17 cm",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "SELLER_SKU",
+                "name": "SKU",
+                "values": [
+                  {
+                    "id": null,
+                    "name": "VTK018523",
+                    "struct": null
+                  }
+                ],
+                "value_id": null,
+                "value_name": "VTK018523",
+                "value_type": "string"
+              },
+              {
+                "id": "SPEAKERS_NUMBER",
+                "name": "Quantidade de caixas de som",
+                "values": [
+                  {
+                    "id": "999572",
+                    "name": "2",
+                    "struct": null
+                  }
+                ],
+                "value_id": "999572",
+                "value_name": "2",
+                "value_type": "number"
+              },
+              {
+                "id": "VEHICLE_SPEAKER_DIAMETER",
+                "name": "Diâmetro do alto-falante",
+                "values": [
+                  {
+                    "id": "8737288",
+                    "name": "5 \"",
+                    "struct": {
+                      "unit": "\"",
+                      "number": 5
+                    }
+                  }
+                ],
+                "value_id": "8737288",
+                "value_name": "5 \"",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "VEHICLE_SPEAKER_LENGTH",
+                "name": "Comprimento do alto-falante",
+                "values": [
+                  {
+                    "id": "24742288",
+                    "name": "5 \"",
+                    "struct": {
+                      "unit": "\"",
+                      "number": 5
+                    }
+                  }
+                ],
+                "value_id": "24742288",
+                "value_name": "5 \"",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "VEHICLE_SPEAKER_TYPE",
+                "name": "Tipo de alto-falante",
+                "values": [
+                  {
+                    "id": "24739488",
+                    "name": "Falante",
+                    "struct": null
+                  }
+                ],
+                "value_id": "24739488",
+                "value_name": "Falante",
+                "value_type": "string"
+              },
+              {
+                "id": "VEHICLE_SPEAKER_WIDTH",
+                "name": "Largura do alto-falante",
+                "values": [
+                  {
+                    "id": "8737286",
+                    "name": "5 \"",
+                    "struct": {
+                      "unit": "\"",
+                      "number": 5
+                    }
+                  }
+                ],
+                "value_id": "8737286",
+                "value_name": "5 \"",
+                "value_type": "number_unit"
+              },
+              {
+                "id": "VEHICLE_TYPE",
+                "name": "Tipo de veículo",
+                "values": [
+                  {
+                    "id": "11377043",
+                    "name": "Carro/Caminhonete",
+                    "struct": null
+                  }
+                ],
+                "value_id": "11377043",
+                "value_name": "Carro/Caminhonete",
+                "value_type": "list"
+              },
+              {
+                "id": "WAYS_NUMBER",
+                "name": "Quantidade de vias",
+                "values": [
+                  {
+                    "id": "7509882",
+                    "name": "2",
+                    "struct": null
+                  }
+                ],
+                "value_id": "7509882",
+                "value_name": "2",
+                "value_type": "number"
+              }
+            ],
+            "base_price": 286.47,
+            "sale_terms": [
+              {
+                "id": "WARRANTY_TYPE",
+                "name": "Tipo de garantia",
+                "values": [
+                  {
+                    "id": "2230280",
+                    "name": "Garantia do vendedor",
+                    "struct": null
+                  }
+                ],
+                "value_id": "2230280",
+                "value_name": "Garantia do vendedor",
+                "value_type": "list",
+                "value_struct": null
+              },
+              {
+                "id": "WARRANTY_TIME",
+                "name": "Tempo de garantia",
+                "values": [
+                  {
+                    "id": null,
+                    "name": "90 dias",
+                    "struct": {
+                      "unit": "dias",
+                      "number": 90
+                    }
+                  }
+                ],
+                "value_id": null,
+                "value_name": "90 dias",
+                "value_type": "number_unit",
+                "value_struct": {
+                  "unit": "dias",
+                  "number": 90
+                }
+              },
+              {
+                "id": "INVOICE",
+                "name": "Faturamento",
+                "values": [
+                  {
+                    "id": "6891885",
+                    "name": "Factura A",
+                    "struct": null
+                  }
+                ],
+                "value_id": "6891885",
+                "value_name": "Factura A",
+                "value_type": "list",
+                "value_struct": null
+              }
+            ],
+            "start_time": "2026-09-06T05:38:47.491Z",
+            "sub_status": [],
+            "variations": [],
+            "buying_mode": "buy_it_now",
+            "category_id": "MLB3905",
+            "currency_id": "BRL",
+            "family_name": "Bravox Black CX50 BK 5  ",
+            "geolocation": {
+              "latitude": -23.284674,
+              "longitude": -51.083409
+            },
+            "date_created": "2026-09-06T05:38:47.674Z",
+            "descriptions": [],
+            "inventory_id": null,
+            "last_updated": "2026-09-06T05:38:47.674Z",
+            "thumbnail_id": "963802-MLA99416221206_112025",
+            "sold_quantity": 0,
+            "coverage_areas": [],
+            "item_relations": [],
+            "listing_source": "",
+            "original_price": null,
+            "parent_item_id": null,
+            "seller_address": {
+              "id": 1586042717,
+              "city": {
+                "id": "TUxCQ0lCSTQ1Y2Fh",
+                "name": "Ibiporã"
+              },
+              "state": {
+                "id": "BR-PR",
+                "name": "Paraná"
+              },
+              "country": {
+                "id": "BR",
+                "name": "Brasil"
+              },
+              "latitude": -23.284674,
+              "zip_code": "86206240",
+              "longitude": -51.083409,
+              "address_line": "Rua João Marques de Nóbrega 300",
+              "search_location": {
+                "city": {
+                  "id": "TUxCQ0lCSTQ1Y2Fh",
+                  "name": "Ibiporã"
+                },
+                "state": {
+                  "id": "TUxCUFBBUkExODBlZA",
+                  "name": "Paraná"
+                }
+              }
+            },
+            "seller_contact": null,
+            "catalog_listing": true,
+            "expiration_time": "2026-11-25T05:38:47.561Z",
+            "listing_type_id": "gold_special",
+            "user_product_id": "MLBU5123975094",
+            "automatic_relist": false,
+            "initial_quantity": 7,
+            "official_store_id": null,
+            "available_quantity": 7,
+            "catalog_product_id": "MLB27401683",
+            "accepts_mercadopago": true,
+            "seller_custom_field": "VTK018523",
+            "differential_pricing": null,
+            "international_delivery_mode": "none",
+            "non_mercado_pago_payment_methods": []
+          },
+          "warranty": {
+            "evidence": [
+              {
+                "gtin": "7892787019633",
+                "unit": "dias",
+                "origin": "GARANTIA_FORNECEDOR",
+                "source": "DSLite /v1/CrossDocking/Catalogo/133/252568:tempo_garantia; inspection.json",
+                "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+                "duration": 90,
+                "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+                "observedAt": "2026-09-06T04:52:39.381Z"
+              }
+            ],
+            "resolution": {
+              "gtin": "7892787019633",
+              "unit": "dias",
+              "origin": "GARANTIA_FORNECEDOR",
+              "source": "DSLite /v1/CrossDocking/Catalogo/133/252568:tempo_garantia; inspection.json",
+              "status": "resolved",
+              "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+              "duration": 90,
+              "productId": "b3b1b44e-2d18-448c-bab2-fd02b6948abf",
+              "observedAt": "2026-09-06T04:52:39.381Z",
+              "policyVersion": "VORTEK-WARRANTY-2026-09-06-SELLER-30",
+              "warranty_type": "seller",
+              "warranty_unit": "days",
+              "warranty_source": "supplier",
+              "warranty_duration": 90
+            }
+          },
+          "approvalId": "db286c63-30ba-4b34-bebc-06e8b3f7e006",
+          "preparationId": "9b0dd95f-0b38-45be-a327-52959da333d9"
+        }
+      }
+    }
+  ]
+}

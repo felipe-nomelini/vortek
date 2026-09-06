@@ -1,0 +1,34 @@
+{
+  "previous": {
+    "gtin": "7892787019633",
+    "facts": {
+      "provenance": {
+        "RMS_POWER": {
+          "source": "https://www.evolusom.com.br/alto-falante-bravox-coaxial-cx50bk-5-polegadas-60-w-rms-4r-par-252568",
+          "excerpt": "WRMS. Watts: 60; a ficha não explicita se o valor é por falante ou pelo par; catálogo ML informa 120 W."
+        }
+      },
+      "pendingReasons": [
+        "ESCOPO_POTENCIA_RMS_NAO_COMPROVADO"
+      ]
+    },
+    "source": "https://www.evolusom.com.br/alto-falante-bravox-coaxial-cx50bk-5-polegadas-60-w-rms-4r-par-252568",
+    "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+    "observedAt": "2026-09-05T19:56:14.860Z"
+  },
+  "next": {
+    "gtin": "7892787019633",
+    "facts": {
+      "provenance": {
+        "RMS_POWER": {
+          "source": "Diretoria seção 9 + /products/MLB27401683",
+          "excerpt": "Oferta em par. 60 W RMS por alto-falante e 120 W RMS no par. Catálogo explicita 2 alto-falantes de 60 W RMS cada, sem tela; título e imagem da oferta confirmam par."
+        }
+      },
+      "pendingReasons": []
+    },
+    "source": "Diretoria CATALOG_EXPANSION_BATCH_01 seção 9 + ML /products/MLB27401683 short_description",
+    "offerId": "d5bcb01c-5809-4fe0-b981-8a6cdc0ba14e",
+    "observedAt": "2026-09-06T05:28:12.280Z"
+  }
+}
