@@ -1,0 +1,17 @@
+[
+  {
+    "path": "scripts/audit-active-ml-cross-validation.js",
+    "before_sha256": "1077a9209911c6570c6d4befffa0c1c5fc72169d153277a7526a9f0a79ef47b6",
+    "change": "Guard no entrypoint; conte\u00fado preexistente preservado; arquivo permanece n\u00e3o versionado"
+  },
+  {
+    "path": "scripts/audit-active-ml-supplier-listings.js",
+    "before_sha256": "0691be21cb5ad7934b925b40870e41fbbe07c41cad545f19db146a78fd5bd50b",
+    "change": "Guard no entrypoint; conte\u00fado preexistente preservado; arquivo permanece n\u00e3o versionado"
+  },
+  {
+    "path": "scripts/audit-ml-adaptive-pricing.js",
+    "before_sha256": "32b5baa081f019baede971c792bf248641128d714ec0c5bd1ea3c5c0d654b19f",
+    "change": "Guard no entrypoint; otherVariableCost e tabela paralela n\u00e3o governam novas auditorias; arquivo permanece n\u00e3o versionado"
+  }
+]

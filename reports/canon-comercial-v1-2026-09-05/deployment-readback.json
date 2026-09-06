@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-06T04:00:08.075Z",
+  "buildId": "5_NDAHagLJSx4_xrcHLDd",
+  "canonicalVersionInServerChunks": true,
+  "health": {
+    "status": 200,
+    "success": true,
+    "service": "vortek"
+  },
+  "container": "fc7e640ceb80",
+  "commit": "4f11b990e63c93f0505f08abfd7d95a1a5b6f037",
+  "previousDeployment": {
+    "at": "2026-09-06T03:40:58.522Z",
+    "buildId": "Fm8qwerWrgcXQCtFHRVN9",
+    "health": {
+      "status": 200,
+      "success": true,
+      "service": "vortek"
+    },
+    "canonicalVersionInServerChunks": true,
+    "warrantyProofGateInRoute": true,
+    "commit": "0d5c5eb5e82a8a548f20ea479d24473ca314513f",
+    "container": "e6778e7f4bad",
+    "canonicalVersionInlineInRoute": false,
+    "verified": true
+  },
+  "verified": true
+}

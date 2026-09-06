@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-06T03:16:22.039Z",
+  "mlMutations": 0,
+  "dbMutations": 0,
+  "searchCoverage": [
+    {
+      "status": "active",
+      "total": 3373,
+      "found": 3373,
+      "complete": true
+    },
+    {
+      "status": "paused",
+      "total": 2145,
+      "found": 2145,
+      "complete": true
+    }
+  ],
+  "expected": 5518,
+  "evaluated": 5518,
+  "warranty": {
+    "VALIDAR_EVIDENCIA": 5324,
+    "CORRIGIR_APOS_AUTORIZACAO": 194
+  },
+  "quantityPricing": 4738,
+  "failedRequests": 0,
+  "warrantyEvidenceReviewedAt": "2026-09-06T03:50:37.951Z"
+}

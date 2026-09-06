@@ -1,0 +1,74 @@
+[
+  {
+    "ml_item_id": "MLB5192488569",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T20:53:27.977448+00:00",
+    "new_price": 70.08,
+    "pricing_group_id": "item:MLB5192488569"
+  },
+  {
+    "ml_item_id": "MLB5192489303",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T20:53:48.758362+00:00",
+    "new_price": 92.68,
+    "pricing_group_id": "item:MLB5192489303"
+  },
+  {
+    "ml_item_id": "MLB5192489345",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T20:59:22.986736+00:00",
+    "new_price": 93.92,
+    "pricing_group_id": "item:MLB5192489345"
+  },
+  {
+    "ml_item_id": "MLB5192491275",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T21:00:53.192671+00:00",
+    "new_price": 32.32,
+    "pricing_group_id": "item:MLB5192491275"
+  },
+  {
+    "ml_item_id": "MLB5192503807",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T21:00:45.938706+00:00",
+    "new_price": 76.28,
+    "pricing_group_id": "item:MLB5192503807"
+  },
+  {
+    "ml_item_id": "MLB7594387528",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T20:51:10.625521+00:00",
+    "new_price": 258.72,
+    "pricing_group_id": "item:MLB7594387528"
+  },
+  {
+    "ml_item_id": "MLB7594388436",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T20:53:34.888939+00:00",
+    "new_price": 73.7,
+    "pricing_group_id": "item:MLB7594388436"
+  },
+  {
+    "ml_item_id": "MLB7594388458",
+    "pricing_source": "radar_launch",
+    "event_type": "RADAR_LAUNCH_VALIDATED",
+    "rule_id": "M2M-PRC-01-v1",
+    "created_at": "2026-09-05T20:53:41.890675+00:00",
+    "new_price": 47.49,
+    "pricing_group_id": "item:MLB7594388458"
+  }
+]

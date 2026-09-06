@@ -1,0 +1,16 @@
+{
+  "evaluated": 5474,
+  "persisted": 5473,
+  "estimated": 3804,
+  "inconclusive": 1669,
+  "kitInactive": 1,
+  "unlinked": 44,
+  "mlMutations": 0,
+  "reasons": {
+    "CUSTO_INDISPONIVEL": 1645,
+    "TRIBUTO_ESTIMADO": 3804,
+    "INCONCLUSIVO_FONTE_ML_INDISPONIVEL": 48,
+    "FRETE_INDISPONIVEL": 48,
+    "CUSTO_DESATUALIZADO": 15
+  }
+}

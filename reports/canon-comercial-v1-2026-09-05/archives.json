@@ -1,0 +1,26 @@
+[
+  {
+    "archive": "audit-existing.json.gz",
+    "original": "audit-existing.json",
+    "originalSha256": "b54e33002313db3bb669aeb2360803e55869bbcf88822c295df67424fa0cd905",
+    "originalBytes": 18577985
+  },
+  {
+    "archive": "audit-requests.json.gz",
+    "original": "audit-requests.json",
+    "originalSha256": "d1c0e5f7878607be7593c2483221327317abd816e7cd0fdbe3535ddf30ff1746",
+    "originalBytes": 1499283
+  },
+  {
+    "archive": "economic-reprocessing.json.gz",
+    "original": "economic-reprocessing.json",
+    "originalSha256": "808f61ad771b76458352fae1e9c90d8f9298865559b7700bfbaec193281c29a5",
+    "originalBytes": 12566522
+  },
+  {
+    "archive": "economic-requests.json.gz",
+    "original": "economic-requests.json",
+    "originalSha256": "0dacaf91e24526ba937b56627ed410f11603b18a1a9ec0b2ee678e5cba6f3daa",
+    "originalBytes": 3651854
+  }
+]

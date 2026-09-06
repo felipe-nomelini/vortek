@@ -1,0 +1,88 @@
+{
+  "at": "2026-09-06T03:50:38.034Z",
+  "multipleOffers": 5,
+  "checked": [
+    {
+      "productId": "f8906f65-7eb8-4b23-b5c5-f4a6b25a6157",
+      "offerId": "03d9a6e6-1ca4-4f69-8486-f5ec462a2f18",
+      "linked": 0,
+      "resolution": {
+        "origin": "GARANTIA_FORNECEDOR",
+        "productId": "f8906f65-7eb8-4b23-b5c5-f4a6b25a6157",
+        "gtin": "7897013578571",
+        "offerId": "03d9a6e6-1ca4-4f69-8486-f5ec462a2f18",
+        "duration": 90,
+        "unit": "dias",
+        "source": "produto_fornecedor_ofertas:03d9a6e6-1ca4-4f69-8486-f5ec462a2f18:descricao",
+        "observedAt": "2026-09-05T23:54:23.934+00:00",
+        "status": "resolved"
+      }
+    },
+    {
+      "productId": "cebcd52e-a040-4e2b-82c5-25c93dcd3d01",
+      "offerId": "11bc86fa-56de-4642-835d-a3803c7f1d9d",
+      "linked": 2,
+      "resolution": {
+        "origin": "GARANTIA_FORNECEDOR",
+        "productId": "cebcd52e-a040-4e2b-82c5-25c93dcd3d01",
+        "gtin": "7898112607186",
+        "offerId": "11bc86fa-56de-4642-835d-a3803c7f1d9d",
+        "duration": 3,
+        "unit": "meses",
+        "source": "produto_fornecedor_ofertas:11bc86fa-56de-4642-835d-a3803c7f1d9d:descricao",
+        "observedAt": "2026-09-06T00:24:18.583+00:00",
+        "status": "resolved"
+      }
+    },
+    {
+      "productId": "256a7c08-20b5-4abe-bf7c-725c2fb29993",
+      "offerId": "c85f70a9-c4d3-4e3f-8443-7592035c0f54",
+      "linked": 0,
+      "resolution": {
+        "origin": "GARANTIA_FORNECEDOR",
+        "productId": "256a7c08-20b5-4abe-bf7c-725c2fb29993",
+        "gtin": "7898700212099",
+        "offerId": "c85f70a9-c4d3-4e3f-8443-7592035c0f54",
+        "duration": 1,
+        "unit": "anos",
+        "source": "produto_fornecedor_ofertas:c85f70a9-c4d3-4e3f-8443-7592035c0f54:descricao",
+        "observedAt": "2026-09-06T03:41:17.163+00:00",
+        "status": "resolved"
+      }
+    },
+    {
+      "productId": "b37b1018-4743-403d-af16-784631dc9308",
+      "offerId": "d81dd6a5-ecce-4794-a135-0155c67c5673",
+      "linked": 0,
+      "resolution": {
+        "origin": "GARANTIA_FORNECEDOR",
+        "productId": "b37b1018-4743-403d-af16-784631dc9308",
+        "gtin": "7899838853604",
+        "offerId": "d81dd6a5-ecce-4794-a135-0155c67c5673",
+        "duration": 10,
+        "unit": "anos",
+        "source": "produto_fornecedor_ofertas:d81dd6a5-ecce-4794-a135-0155c67c5673:descricao",
+        "observedAt": "2026-09-06T01:25:27.32+00:00",
+        "status": "resolved"
+      }
+    },
+    {
+      "productId": "5ae862fa-38b6-412b-9605-25c522a243a1",
+      "offerId": "ecc04c23-54fb-4a1e-883e-90442e958bef",
+      "linked": 0,
+      "resolution": {
+        "origin": "GARANTIA_FORNECEDOR",
+        "productId": "5ae862fa-38b6-412b-9605-25c522a243a1",
+        "gtin": "7898555214798",
+        "offerId": "ecc04c23-54fb-4a1e-883e-90442e958bef",
+        "duration": 1095,
+        "unit": "dias",
+        "source": "produto_fornecedor_ofertas:ecc04c23-54fb-4a1e-883e-90442e958bef:descricao",
+        "observedAt": "2026-09-06T03:46:19.333+00:00",
+        "status": "resolved"
+      }
+    }
+  ],
+  "mlMutations": 0,
+  "dbMutations": 0
+}

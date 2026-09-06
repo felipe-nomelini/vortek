@@ -1,0 +1,62 @@
+[
+  {
+    "file": "scripts/create-profitable-shelf-listings.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/prepare-bkr1-kit-sheet-listings.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/prepare-bkr1-ml-batches.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/prepare-evolusom-audited-traditional-batches.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/prepare-evolusom-ml-batches.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/prepare-ml-anuncio-batches.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/prepare-ml-replacements-2026-08-03.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/run-ml-p0-audit.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/run-ml-p0-phase4a.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/run-ml-p0-phase5a.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/run-ml-p0-phase5b.js",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  },
+  {
+    "file": "scripts/run-radar-launch-cohort.cjs",
+    "exitCode": 1,
+    "retiredBeforeExecution": true
+  }
+]

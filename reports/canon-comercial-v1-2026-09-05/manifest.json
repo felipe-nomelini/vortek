@@ -1,0 +1,583 @@
+{
+  "canon": "1.0",
+  "economicModel": "VORTEK-CANON-1.0-ECON-2",
+  "completedAt": "2026-09-06T04:01:17.033334+00:00",
+  "baselineCommit": "e54f16ae9f76b021d4288eff970df830bba37951",
+  "deployedCodeCommit": "4f11b990e63c93f0505f08abfd7d95a1a5b6f037",
+  "commits": [
+    {
+      "hash": "9ddc899b030499826e5b779940fa7036474d3a1b",
+      "subject": "fix(pricing): centralize acquisition costs and version canonical economics"
+    },
+    {
+      "hash": "96ece9583b916a69e03c02e6728b0ebfe60ce2d0",
+      "subject": "feat(commercial): require warranty evidence and explicit group protection"
+    },
+    {
+      "hash": "2b7ca376dd8cb0fa9a4104da8475c54c72293c63",
+      "subject": "fix(ml): retire quantity discount writes and legacy commercial runners"
+    },
+    {
+      "hash": "0d5c5eb5e82a8a548f20ea479d24473ca314513f",
+      "subject": "docs(commercial): register approved canon and read-only listing audit"
+    },
+    {
+      "hash": "f869cffa22bcea17aad0ed2c4382263bec78388a",
+      "subject": "fix(warranty): compare every declared supplier warranty duration"
+    },
+    {
+      "hash": "4f11b990e63c93f0505f08abfd7d95a1a5b6f037",
+      "subject": "fix(pricing): preserve approvals across nonmaterial supplier refreshes"
+    }
+  ],
+  "migrations": [
+    "20260906010000",
+    "20260906011000"
+  ],
+  "validation": {
+    "pricingRadarTests": 101,
+    "commercialTests": 15,
+    "costLimitTests": 1,
+    "retiredEntrypoints": 12,
+    "lint": true,
+    "typecheck": true,
+    "build": true,
+    "sqlRollbackTests": true,
+    "deploymentReadback": true,
+    "authenticatedVisualTest": false
+  },
+  "remoteListingMutations": 0,
+  "newPeriodicRoutines": 0,
+  "audit": {
+    "at": "2026-09-06T03:16:22.039Z",
+    "mlMutations": 0,
+    "dbMutations": 0,
+    "searchCoverage": [
+      {
+        "status": "active",
+        "total": 3373,
+        "found": 3373,
+        "complete": true
+      },
+      {
+        "status": "paused",
+        "total": 2145,
+        "found": 2145,
+        "complete": true
+      }
+    ],
+    "expected": 5518,
+    "evaluated": 5518,
+    "warranty": {
+      "VALIDAR_EVIDENCIA": 5324,
+      "CORRIGIR_APOS_AUTORIZACAO": 194
+    },
+    "quantityPricing": 4738,
+    "failedRequests": 0,
+    "warrantyEvidenceReviewedAt": "2026-09-06T03:50:37.951Z"
+  },
+  "economicReprocessing": {
+    "evaluated": 5474,
+    "persisted": 5473,
+    "estimated": 3804,
+    "inconclusive": 1669,
+    "kitInactive": 1,
+    "unlinked": 44,
+    "mlMutations": 0,
+    "reasons": {
+      "CUSTO_INDISPONIVEL": 1645,
+      "TRIBUTO_ESTIMADO": 3804,
+      "INCONCLUSIVO_FONTE_ML_INDISPONIVEL": 48,
+      "FRETE_INDISPONIVEL": 48,
+      "CUSTO_DESATUALIZADO": 15
+    }
+  },
+  "preservedPackageSha256": "55bbd721d64438ab3805ffbe358bcd66743b5a5668adb23524ab66dfc814a06d",
+  "codeFiles": [
+    {
+      "path": "docs/canon-comercial-vortek-bentevi-1.0.md",
+      "sha256": "9559e62911c115eaf162d12d9784deef8aa5cc6525c22da307e10d301f4c6903"
+    },
+    {
+      "path": "docs/catalogo-regras-m2m.md",
+      "sha256": "c5077d04a76103f015d8d6fbd5ac9042e3cb03bebf87d10b9097b76ddc07c0ff"
+    },
+    {
+      "path": "docs/mercado-livre-publicacao-operacional.md",
+      "sha256": "1a7506f89d6d77c88c1c8f5f7ed0787c597d3f588c5800e3274285edd3bd8e03"
+    },
+    {
+      "path": "docs/pricing-radar-canonico.md",
+      "sha256": "9bc76b21eceb8c1b8150a5e5d61a352c6d653ddfc06071e0d2364fe72d18b977"
+    },
+    {
+      "path": "scripts/audit-commercial-canon.cjs",
+      "sha256": "76f6fda56fa827fd0a8871746b9ef16576657a10f76fa72a4060288550dae7c7"
+    },
+    {
+      "path": "scripts/create-profitable-shelf-listings.js",
+      "sha256": "5b576bf82aaba9163c287d7f806f516d91a50939d022e22fc7548c545cbaaa25"
+    },
+    {
+      "path": "scripts/lib/ml-pricing-experiment.js",
+      "sha256": "8e722976c1ba7a187dc85419e64e2946763f35d9cf5f2d54d819a16b2c785acc"
+    },
+    {
+      "path": "scripts/prepare-bkr1-kit-sheet-listings.js",
+      "sha256": "6cedc98fe5f5045a1d42c5089a80bdfb2096c9100abf7a135852d9fe6c64a552"
+    },
+    {
+      "path": "scripts/prepare-bkr1-ml-batches.js",
+      "sha256": "58182c39233ee18d1128232cc35a0273d0cfe1b7ce389eb3550cba16f05a0685"
+    },
+    {
+      "path": "scripts/prepare-evolusom-audited-traditional-batches.js",
+      "sha256": "7ea228a22802c5c28be07ca5dd2d17204339d6e3f9e6c45d65f9a59161ca8f2d"
+    },
+    {
+      "path": "scripts/prepare-evolusom-ml-batches.js",
+      "sha256": "3d12242b94ff18c2fd1710c15793bacf485da3ad0f6f9f56c77dc3753f2e1ad1"
+    },
+    {
+      "path": "scripts/prepare-ml-anuncio-batches.js",
+      "sha256": "7803658468e38972571af17809389cbc314f4d7a3aa300e830d3c47089c52f13"
+    },
+    {
+      "path": "scripts/prepare-ml-replacements-2026-08-03.js",
+      "sha256": "64466a98f85a4824697f46c5f531baff760c2b1953c8d8566ad612e41ead5133"
+    },
+    {
+      "path": "scripts/reprocess-commercial-canon.cjs",
+      "sha256": "997f629719b27d7adce31242a14c85f416f63cb02601a8cc8f8a618299907ee2"
+    },
+    {
+      "path": "scripts/reprocess-m2m-opportunities.cjs",
+      "sha256": "b39279e34c5748bbd7b5e9d6bacae17425a0433b774d9225f75029c3407ce93a"
+    },
+    {
+      "path": "scripts/run-ml-p0-audit.js",
+      "sha256": "95e2da7eca7840d5d7c2a91f999f5938947886b0a2e35aafea2dc11307697048"
+    },
+    {
+      "path": "scripts/run-ml-p0-phase4a.js",
+      "sha256": "16801385fdc04ea0e4a9b6ce2e88deead43558cab48e40a2b6ecb703bf96f4db"
+    },
+    {
+      "path": "scripts/run-ml-p0-phase5a.js",
+      "sha256": "ef48d8130f163b635664d987a39d924090e6a8f96571750bd38ab5b4e3648b66"
+    },
+    {
+      "path": "scripts/run-ml-p0-phase5b.js",
+      "sha256": "13e1c7dbb41520b3b5067e601b3e066975b121eb029aab7c7a569287cb7fe87a"
+    },
+    {
+      "path": "scripts/run-radar-launch-cohort.cjs",
+      "sha256": "e64294440706f8a0cbc5a1d9368a48eaff0bd3ce3f1c734da8848a0ef1647408"
+    },
+    {
+      "path": "src/app/(app)/anuncios/page.tsx",
+      "sha256": "51cfa67694fa7a39ced4b047745f2cc91d88153e2f7871f3cce0b132451c9d86"
+    },
+    {
+      "path": "src/app/(app)/produtos/[id]/page.tsx",
+      "sha256": "c535225dd9054d6b5f6fc556f2ecdd9512a538a37cfcf1cf5c947e3e032b4b0c"
+    },
+    {
+      "path": "src/app/(app)/produtos/page.tsx",
+      "sha256": "cc1c303395165ce33031ce78342b57657f017ab615d92b71cbe70c9908e4ac9b"
+    },
+    {
+      "path": "src/app/api/configuracoes/route.ts",
+      "sha256": "e322c95ca33f2c130564bb4a3536136fd872c7f7e294274f55434dacdd1453d9"
+    },
+    {
+      "path": "src/app/api/ml/anuncio/aplicar-atacado/route.ts",
+      "sha256": "232eedb871e5f7a07b84d454b8a16a0ca2064dbff3d3f4e34207890f4dc9e880"
+    },
+    {
+      "path": "src/app/api/ml/anuncio/atualizar-preco/status/route.ts",
+      "sha256": "aab4e5e97390e99e14489693dddbf5955ded2691c5b2cff91fde6065a76a26fe"
+    },
+    {
+      "path": "src/app/api/ml/anuncio/criar/route.ts",
+      "sha256": "d4684ac71f8c90aa3be940d57e82c32a6b9def0bdb928ad9275b9fb7192c3987"
+    },
+    {
+      "path": "src/app/api/ml/anuncio/preco-detalhe/route.ts",
+      "sha256": "06cc443c3b4cd174e387ca89253e3f9199f3a34a6773aa87fad1109e71b1150b"
+    },
+    {
+      "path": "src/app/api/ml/anuncio/schema/route.ts",
+      "sha256": "795c1dd8beff6cfeb198615ff352b1aed00a8e45e3857723753e1bccc0fcdcb9"
+    },
+    {
+      "path": "src/app/api/ml/anuncio/sugerir-campo/route.ts",
+      "sha256": "718c363782dd904d0ba2d8699c423334d15772199be5d235eca65dbd62da0117"
+    },
+    {
+      "path": "src/app/api/pricing/approve/route.ts",
+      "sha256": "2368ad97be266c2719a7f835bd110dcbab333773852b4397f912cbbd34f47134"
+    },
+    {
+      "path": "src/app/api/pricing/strategy/route.ts",
+      "sha256": "d1b45ae59de933c1fd168fb4f4113abd00a611ffef5bd3f8c2c2d11f4082af72"
+    },
+    {
+      "path": "src/app/api/produtos/[id]/route.ts",
+      "sha256": "01345655e966c03b5054ed27aa74b53422ef97327018cf1d25031846077db04b"
+    },
+    {
+      "path": "src/app/api/sync/anuncios/publish/route.ts",
+      "sha256": "5acac2c4f8eeefae40cadf056f25cc349d72934684f37a48a252db2ce8ec8402"
+    },
+    {
+      "path": "src/app/api/sync/anuncios/route.ts",
+      "sha256": "b62f3e2e3592ac9b28e2cc841a46d532dfb228e09d0b4faa2979fa5a119a543c"
+    },
+    {
+      "path": "src/components/CanonicalPricingSettings.tsx",
+      "sha256": "0dd14e38dfb8ae0a7de56448d8625f92cf98f2ebf1d75e65a6e21f5f8778583d"
+    },
+    {
+      "path": "src/components/CommercialPolicyControls.tsx",
+      "sha256": "d29d83c25598f2ac38f0543f891403aae96bceedd97ea5b4cc22f40ff5c0a79d"
+    },
+    {
+      "path": "src/components/catalogo/CatalogoView.tsx",
+      "sha256": "bd0e99b01163c390f8db712e796fd455d5b7837c93a5a2e318c9e255ce1777fb"
+    },
+    {
+      "path": "src/lib/ml-sale-terms.ts",
+      "sha256": "76a1a0cf2149041997a3753b00a79db008fc75117979822ea32330d87c918f18"
+    },
+    {
+      "path": "src/lib/ml/automatic-pricing.ts",
+      "sha256": "1c8f4aa15bb7ccfea8c09a9259fa209c732121c9ec9c938565643eb75057c0ce"
+    },
+    {
+      "path": "src/lib/ml/order-profit.ts",
+      "sha256": "51a351e91c59ff260e09f32167620a006607b2721ab06fd111094e5ebb54d31e"
+    },
+    {
+      "path": "src/lib/ml/pricing-experiment.ts",
+      "sha256": "ac3b05b1d5ed96fb9508b4d45a9b922dcb1c4c29f80c88475a10cc13d6e7cde2"
+    },
+    {
+      "path": "src/services/dslite.ts",
+      "sha256": "40c9730ed28bb7c0034b27bd98d652f30b2cca0543a0af5100984f086880c95b"
+    },
+    {
+      "path": "src/services/opportunity-radar.ts",
+      "sha256": "0733b44fc0e57e17b50b2c5ec8098c7df62b2069f8e028866c9c8e206645bce9"
+    },
+    {
+      "path": "src/services/orders.ts",
+      "sha256": "a6034eb7f0adace470cf44f90c246f1a480adb0c034d46cd2ff8c5e4037c097e"
+    },
+    {
+      "path": "src/services/pricing-approval.ts",
+      "sha256": "dfcb9937052df2835e482e2c916b412ed6dd6b90c1711d2cdcba14cd05625da7"
+    },
+    {
+      "path": "src/services/pricing-context.ts",
+      "sha256": "ab1815ee60202a94075dc0df2955a00b056292093f371e8fc272cd21d38b4468"
+    },
+    {
+      "path": "src/services/pricing-policy.ts",
+      "sha256": "e595e5fcc3e5ebd630b01b7ef9be49766d35d4a10880c88cf7305e9b9ed2fa9d"
+    },
+    {
+      "path": "src/services/pricing-strategy.ts",
+      "sha256": "ebf014d237292feafa41792955bf8e80d7e946f8ee39f3769e37084fb0a7dd41"
+    },
+    {
+      "path": "src/services/pricing.ts",
+      "sha256": "1914bd26117f372963ba29e166fa47c1d7fa59d1a375a14efe32fec94a998fed"
+    },
+    {
+      "path": "src/services/product-warranty.ts",
+      "sha256": "15c9e6c3636ac3dc0f1aeccac74e2f514c089b774735e39e2ebb1e1fd7f6e704"
+    },
+    {
+      "path": "supabase/migrations/20260906010000_commercial_canon_v1.sql",
+      "sha256": "0fa729368679d3f954497c601ea30a7e34b2e51d81f7412b85a88de97e50504f"
+    },
+    {
+      "path": "supabase/migrations/20260906011000_commercial_canon_material_cost.sql",
+      "sha256": "1287f372ce1518ed66afd043deab89fe6c84e90e9663077eb18c0ddbe91c7220"
+    },
+    {
+      "path": "supabase/seed.sql",
+      "sha256": "f83258c922bdb3f67c782c3cac2687059afbe4627fb18eb8076285d084c23aa2"
+    },
+    {
+      "path": "tests/commercial-canon.test.cjs",
+      "sha256": "960484dbe2a156560c6ee5dc3a51b194781a21f66fcc7efce7ae74acfe16496d"
+    },
+    {
+      "path": "tests/m2m-identity-equivalence.test.cjs",
+      "sha256": "d57f006aa62ece3d43a4130763ab398e932e3ebafc36dc8bb452da19e4ecdd98"
+    },
+    {
+      "path": "tests/m2m-pricing-approval.test.cjs",
+      "sha256": "1d3387c1d97632564ba9c4c404c563aa85fdc5fc8edfe768343713629fb49459"
+    },
+    {
+      "path": "tests/m2m-pricing-conflicts.test.js",
+      "sha256": "d0e9ce07b196c204698b82c466548d62481c719327851924d24c07e843886881"
+    },
+    {
+      "path": "tests/m2m-pricing-integration.test.cjs",
+      "sha256": "127cae8ef6ac3acd267bde49ca45908cf903e4255d0c35a69b0a95db8937b447"
+    },
+    {
+      "path": "tests/ml-order-profit.test.js",
+      "sha256": "04ba9e0663aed946c21f4a0c8670cdb6366203841cf633064785c1377cfa8acc"
+    },
+    {
+      "path": "tests/sql/commercial-canon.sql",
+      "sha256": "dbfd4cd42dfbb86194df6361464f46a7ada7e2daf1157ae0d173edf2cfac8767"
+    },
+    {
+      "path": "tests/target-net-profit-pricing.test.js",
+      "sha256": "4849a6d73432df76389d7f3bd3c00b6a869885728a5b0074b8cbd42b92f413e2"
+    }
+  ],
+  "files": [
+    {
+      "path": "00_RESUMO_EXECUTIVO.md",
+      "sha256": "0d4f9b76f6462ce805ad45714ea5186c6356da30725f39607cfac21779a62771",
+      "bytes": 2331
+    },
+    {
+      "path": "01_AS_IS_TO_BE.md",
+      "sha256": "fdc768889ae5a87205c3f09930fd1d47162c0a11152b44fcd6196887b7ab49c2",
+      "bytes": 2847
+    },
+    {
+      "path": "02_CONSUMIDORES_MIGRADOS.md",
+      "sha256": "f9a01b3fcfe665ade805e0cdc8f2f28c2d309c747b2201ff54ee53b567de1d3d",
+      "bytes": 1923
+    },
+    {
+      "path": "03_POLITICAS_REMOVIDAS_E_ORFAS.md",
+      "sha256": "a957799e0decb20a5e0484bd18d628eaebd0f6046ca9e46f3d9a85cae553a0d3",
+      "bytes": 2107
+    },
+    {
+      "path": "04_FILA_CORRECAO_GARANTIA.csv",
+      "sha256": "e88575d60932e0cb7edc8ac37143d536b1590495c0a7ba4f2469845776bf5b83",
+      "bytes": 69897
+    },
+    {
+      "path": "04_GARANTIA_EXISTENTES.csv",
+      "sha256": "187ddf18644d3bab7772d1edd84118788cca996287f11f241dfc3db5e67a886f",
+      "bytes": 1460192
+    },
+    {
+      "path": "05_DESCONTOS_EXISTENTES.csv",
+      "sha256": "7dc0401903bc6d8a72b6a350c2ddbaac161c6d7fe12cf5f3ed3b931289ebb7c4",
+      "bytes": 5180813
+    },
+    {
+      "path": "05_FILA_REMOCAO_ATACADO.csv",
+      "sha256": "7be45e3f91e046b4efd866a2428f473dc188f3f8185e04a3575febf4b03c4274",
+      "bytes": 5091100
+    },
+    {
+      "path": "06_PRICING_EXISTENTES.csv",
+      "sha256": "ebc9b15baa7881496f318e31591633d253b10c73ea8c1013ff80a7f7b92ca300",
+      "bytes": 662735
+    },
+    {
+      "path": "07_TESTES_E_EVIDENCIAS.md",
+      "sha256": "881c9b3a8682797bc3945f51b96d899773ceef3dcebca29c61a17cd1830733ae",
+      "bytes": 3244
+    },
+    {
+      "path": "08_IMPACTO_E_PENDENCIAS.md",
+      "sha256": "d3acb0bc79efa85e1da7adbe95ba13592a557cd3e892caf080cc7b0ea6f5598c",
+      "bytes": 2701
+    },
+    {
+      "path": "09_ROLLBACK.md",
+      "sha256": "591666fa8148ada27fd24f1e648f179f73017043046fdd26f93cb12816c32fde",
+      "bytes": 1492
+    },
+    {
+      "path": "10_RECOMENDACAO_CORRECOES_REMOTAS.md",
+      "sha256": "c4332177401a27c51daafd9586839241b655be50835e5eea0e6107304b5972b1",
+      "bytes": 948
+    },
+    {
+      "path": "11_MEMORIAS_ECONOMICAS.csv",
+      "sha256": "00c93327242decf85f1e61885236aeac92f079510ea7587a41588a3adf2156a1",
+      "bytes": 2403648
+    },
+    {
+      "path": "11_PENDENCIAS_ECONOMICAS.csv",
+      "sha256": "64e0e29c2f6bd2e09c68780d4fc414b655df5d409b56fb9ca8c3c375855e0de5",
+      "bytes": 452215
+    },
+    {
+      "path": "LEIA_ME.md",
+      "sha256": "167b485a37bfbd5f28eae637cbe88f1b2c7c82eb1b8e2ca1bddbc6ed139eee38",
+      "bytes": 983
+    },
+    {
+      "path": "archives.json",
+      "sha256": "607ad779850833ea1eff979f2639d06f265cad5943bbac43da4f5ee4bc828fec",
+      "bytes": 857
+    },
+    {
+      "path": "audit-existing.json.gz",
+      "sha256": "d362d77fddc59b6c1ca9252781d644ca1ac19f0f3d918fe0701655f39ca4f7db",
+      "bytes": 771847
+    },
+    {
+      "path": "audit-requests.json.gz",
+      "sha256": "7cf77ea2fe57631243f63dd5cb92fe6d46e54b4b3ed4a9bc14cfc0dd590224cf",
+      "bytes": 60548
+    },
+    {
+      "path": "audit-search.json",
+      "sha256": "db44e05c024dff6076a9d7db2b3cdf417e6e146a78483ee63ee155cf7f5bd5f8",
+      "bytes": 116166
+    },
+    {
+      "path": "audit-summary.json",
+      "sha256": "98333b0cf3b3addaf9fad05c9031c36f77bc6fb3f5d1db22f8a7130002df4473",
+      "bytes": 552
+    },
+    {
+      "path": "baseline.json",
+      "sha256": "dc56ae2f2f775ffaca36843c7dec78c726ea9fcc40f1d1211db43c73cbecd67c",
+      "bytes": 1402
+    },
+    {
+      "path": "config-baseline.json",
+      "sha256": "84a50c0731beff97635ff86e394e20522ac8a65510e61404a2456a6e60d2a05b",
+      "bytes": 207
+    },
+    {
+      "path": "database-final-readback.json",
+      "sha256": "3a5e416439fb29e281145a07647c4a187f7ff3ef91a78f62ad6a17bbab832dd4",
+      "bytes": 253
+    },
+    {
+      "path": "database-readback.json",
+      "sha256": "2e62d6899bac4f3d582e320499aa44687fb3c308a8503448de4f943841b16d91",
+      "bytes": 565
+    },
+    {
+      "path": "deployment-readback.json",
+      "sha256": "ffe5515ec79d0f8ddaf16935abdff0c6b00184a93253c4d800631ea1b3e672c7",
+      "bytes": 749
+    },
+    {
+      "path": "economic-reprocessing.json.gz",
+      "sha256": "c839fad5019bdafc28c63fb817f2434afd35987ad6a0b6cbb67c8d555e0ebb7f",
+      "bytes": 1079181
+    },
+    {
+      "path": "economic-requests.json.gz",
+      "sha256": "4a3c5c9103b4cf1f90e2b3bd09573da730a8a56e3068f9449ee47aac0eef107e",
+      "bytes": 158129
+    },
+    {
+      "path": "economic-summary.json",
+      "sha256": "92bd5f1558b39042d576e7ab9023b4b5ad457ad0714ba81511b58b1abcae6888",
+      "bytes": 336
+    },
+    {
+      "path": "evidencias/build.log",
+      "sha256": "0bce833718797d7c8752c5cef4ca55b1dfc4c1d4cd0c7df2176b54f295012b80",
+      "bytes": 17293
+    },
+    {
+      "path": "evidencias/commercial-canon.log",
+      "sha256": "cee04c82a35b13ae85fa8e274ed013636857534e056a2f99b52fa8f829046f58",
+      "bytes": 3800
+    },
+    {
+      "path": "evidencias/deploy-final.log",
+      "sha256": "05a4af4aaf1a49d5d838cc47b17957c5e1090150af8ac059032a67997b7e9238",
+      "bytes": 317
+    },
+    {
+      "path": "evidencias/deploy.log",
+      "sha256": "2c24fa927cc53c42825e1ac9234078984480f483fb83dd4a04472058e0184be5",
+      "bytes": 317
+    },
+    {
+      "path": "evidencias/economic-reprocessing.log",
+      "sha256": "9827cb889fdd6d141f19f3e81c59ec3cdc30383feced5164aafe0af33325a748",
+      "bytes": 2956
+    },
+    {
+      "path": "evidencias/material-cost-rollback-test.log",
+      "sha256": "c3d74f4a1d3bb13b7953ed268ab54b6f89061882e33242b680abb6870c3245c0",
+      "bytes": 153
+    },
+    {
+      "path": "evidencias/migration-rollback-test.log",
+      "sha256": "eb6a5daee224cfea523a0b23a8629fbea8fefa482527c1b201e3b87745c2432a",
+      "bytes": 243
+    },
+    {
+      "path": "evidencias/pricing-radar.log",
+      "sha256": "b291b858655905bb3ddf412b23b0095f22177edf08dc58b8010dc7d14f188ff4",
+      "bytes": 25532
+    },
+    {
+      "path": "evidencias/product-activity.log",
+      "sha256": "b1fc8575b47ef0b990dfe13418037fd26019f0532852209f4a7ee40f36596336",
+      "bytes": 304
+    },
+    {
+      "path": "evidencias/retired-entrypoints.json",
+      "sha256": "aad0abc33d1fcb9484eb19992f452e354542a5596b178e8da5a4a2db840203f5",
+      "bytes": 1389
+    },
+    {
+      "path": "evidencias/validate.log",
+      "sha256": "bf92056c3e327e95a7e896025de85a95e412d520e4dcac5f6644b70de7ddc5fe",
+      "bytes": 171
+    },
+    {
+      "path": "material-cost-migration-apply.log",
+      "sha256": "92481fc9431db7c718e840da427960ee0a6f3823805daffd1bfec34c7e746e4a",
+      "bytes": 47
+    },
+    {
+      "path": "migration-apply.log",
+      "sha256": "cbd88c6a7712a71c045ea3e128487c1fb94f302917e7975e16e0589ab0aa4b2b",
+      "bytes": 157
+    },
+    {
+      "path": "preexisting-script-adjustments.json",
+      "sha256": "7f4143083329fca83d9bf4ec474e58faa234dd2e976cd01f5d5e7cae1d8c1878",
+      "bytes": 843
+    },
+    {
+      "path": "pricing-lineage.json",
+      "sha256": "e23154d34efa0ac15df23556a99b1830479724cab8fe2cd729bf8086e7790006",
+      "bytes": 2250
+    },
+    {
+      "path": "product-readback.json",
+      "sha256": "a196b580bd669d310cfe7a8da52cc7eb520d1b0dcd610e6fb9e1fe046b71a503",
+      "bytes": 209
+    },
+    {
+      "path": "schema-baseline.sql",
+      "sha256": "bec6c4e7ae8398b6b4b50c226319b26f917ebb71378651c665cad933d7f569cb",
+      "bytes": 2981
+    },
+    {
+      "path": "warranty-multiple-mentions.json",
+      "sha256": "b2dc8d57e6bef8ae9b1e64911d76b15176d366088d5d282df267c304f0d6e9e6",
+      "bytes": 3115
+    }
+  ]
+}

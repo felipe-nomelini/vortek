@@ -1,0 +1,29 @@
+{
+  "policyVersion": "VORTEK-CANON-1.0-ECON-2",
+  "removedFieldPresent": false,
+  "historicalEvaluations": 9671,
+  "currentLegacyEvaluations": 0,
+  "migrationRecorded": true,
+  "orders": [
+    {
+      "ml_order_id": "2000018306225848",
+      "lucro": 2.27
+    },
+    {
+      "ml_order_id": "2000018301030896",
+      "lucro": 5.75
+    },
+    {
+      "ml_order_id": "2000018305512122",
+      "lucro": 59.65
+    },
+    {
+      "ml_order_id": "2000018301138698",
+      "lucro": 2.01
+    },
+    {
+      "ml_order_id": "2000018304422954",
+      "lucro": 7.46
+    }
+  ]
+}
