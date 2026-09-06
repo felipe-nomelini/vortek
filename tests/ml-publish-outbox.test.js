@@ -165,16 +165,36 @@ test('status diferente publica somente status quando quantidade é igual', async
   assert.equal(client.rows[1].payload.apply_status, true);
 });
 
-test('preço diferente não reaplica quantidade igual', async () => {
+test('PRC-03: preço bloqueado não reaplica quantidade igual nem cria retry', async () => {
   const client = createFakeClient([completedStock()]);
   const result = await enqueueMlPublishOutbox(client, stockInput({
     desiredPrice: 99.9,
     payload: { ...stockInput().payload, apply_price: true },
   }));
+  assert.equal(result.action, 'unchanged');
+  assert.equal(result.pricingBlocked, true);
+  assert.equal(client.rows.length, 1);
+});
+
+test('PRC-03: bloqueia preço puro antes de consultar ou persistir', async () => {
+  const result = await enqueueMlPublishOutbox({ from() { throw Error('efeito proibido'); } }, {
+    produtoId: 'P', mlItemId: 'MLB1', desiredPrice: 100, payload: { apply_price: true },
+  });
+  assert.equal(result.action, 'skipped_ineligible');
+  assert.equal(result.reason, 'pricing_execution_not_ready');
+  assert.equal(result.retryAt, null);
+});
+
+test('PRC-03: estoque independente é enfileirado sem preço nem atacado', async () => {
+  const client = createFakeClient();
+  const result = await enqueueMlPublishOutbox(client, stockInput({ desiredPrice: 100,
+    payload: { ...stockInput().payload, apply_price: true, apply_quantity_pricing: true } }));
   assert.equal(result.action, 'inserted');
-  assert.equal(client.rows[1].payload.apply_price, true);
-  assert.equal(client.rows[1].payload.apply_quantity, false);
-  assert.equal(client.rows[1].payload.apply_status, false);
+  assert.equal(client.rows[0].desired_price, null);
+  assert.equal(client.rows[0].payload.apply_price, false);
+  assert.equal(client.rows[0].payload.apply_quantity_pricing, false);
+  assert.equal(client.rows[0].payload.apply_quantity, true);
+  assert.equal(client.rows[0].payload.pricing_block.code, 'pricing_execution_not_ready');
 });
 
 test('pendência igual não reinicia tentativas nem timestamps', async () => {

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult, type MLFailureCategory } from '@/services/integration';
 import { setItemQuantityPricing } from '@/services/mercadolibre';
@@ -60,6 +61,7 @@ function resolveApplyMode(row: any): {
   applyQuantity: boolean;
   applyStatus: boolean;
   basePriceForQuantityPricing: number | null;
+  pricingBlocked: boolean;
 } {
   const payload = normalizeOutboxPayload(row?.payload);
 
@@ -77,9 +79,13 @@ function resolveApplyMode(row: any): {
     ? Math.round(basePriceRaw * 100) / 100
     : null;
 
+  const requestedPrice = applyPriceFlag ?? hasDesiredPrice;
+  const requestedQuantityPricing = applyQuantityPricingFlag ?? wantsQuantityPricing(payload);
+  const executionBlock = getPricingExecutionBlock();
   return {
-    applyPrice: applyPriceFlag ?? hasDesiredPrice,
-    applyQuantityPricing: applyQuantityPricingFlag ?? wantsQuantityPricing(payload),
+    applyPrice: !executionBlock && requestedPrice,
+    applyQuantityPricing: !executionBlock && requestedQuantityPricing,
+    pricingBlocked: !!executionBlock && (requestedPrice || requestedQuantityPricing || !!payload.pricing_block),
     applyQuantity: applyQuantityFlag ?? hasDesiredQuantity,
     applyStatus: applyStatusFlag ?? hasDesiredStatus,
     basePriceForQuantityPricing,
@@ -422,6 +428,24 @@ export async function POST(request: Request) {
       const attempts = Number(row.attempts || 0) + 1;
       const outboxPayloadBase = normalizeOutboxPayload((row as any).payload);
       const deleteListing = isMlListingDeletionPayload(outboxPayloadBase);
+      const applyMode = resolveApplyMode(row);
+      if (applyMode.pricingBlocked) {
+        outboxPayloadBase.pricing_block = getPricingExecutionBlock();
+        outboxPayloadBase.apply_price = false;
+        outboxPayloadBase.apply_quantity_pricing = false;
+        warnings.push({ code: 'pricing_execution_not_ready',
+          message: 'Preço não executado; estoque/status independentes permanecem elegíveis.',
+          context: { outboxId, mlItemId } });
+        if (!applyMode.applyQuantity && !applyMode.applyStatus && !deleteListing) {
+          await (client.from('anuncios_ml_outbox' as any).update({
+            status: 'cancelled', last_error: 'pricing_execution_not_ready',
+            payload: withPublishProgress(outboxPayloadBase, { state: 'cancelled', last_operation: 'pricing_blocked', attempts: Number(row.attempts || 0) }),
+            processed_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+          } as any).eq('id', outboxId) as any);
+          permanentFailed += 1;
+          continue;
+        }
+      }
       const eligibility = eligibilityForRow(row);
       let lastOperationMarker: string | null = null;
       const updateProcessingMarker = async (operation: string) => {
@@ -510,7 +534,6 @@ export async function POST(request: Request) {
       const operations: PublishOperation[] = [];
 
       const rowProductId = String(row.produto_id || '').trim();
-      const applyMode = resolveApplyMode(row);
       const outboxSource = String((row as any).source || '').trim().toLowerCase();
       const desiredStatusRaw = String(row.desired_status || '').trim().toLowerCase();
       const safeInactiveSupplierPause = isSafeInactiveSupplierPause({
@@ -747,7 +770,7 @@ export async function POST(request: Request) {
         } else {
           const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
           const reconciledMlPrice = Number(itemStateResult.data?.price);
-          const hasDesiredPriceForReconcile = row.desired_price !== null && row.desired_price !== undefined;
+          const hasDesiredPriceForReconcile = applyMode.applyPrice && row.desired_price !== null && row.desired_price !== undefined;
           const desiredPrice = Number(row.desired_price);
 
           const produtoUpdate = row.produto_id

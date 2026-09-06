@@ -1,3 +1,5 @@
+// PRC-03: motor legado aposentado; falha antes de carregar ambiente ou criar clientes.
+require('../src/lib/ml/pricing-execution.js').assertPricingExecutionReady();
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');

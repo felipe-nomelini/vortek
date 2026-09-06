@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
@@ -308,6 +309,9 @@ export async function POST(request: Request) {
     const auth = await createClient();
     const { data: { user } } = await auth.auth.getUser();
     if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+
+    const executionBlock = getPricingExecutionBlock();
+    if (executionBlock) return NextResponse.json(executionBlock, { status: 409 });
 
     const body = await request.json().catch(() => ({}));
     const produtoId = String(body?.produtoId || '').trim();

@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// Entrada comercial histórica aposentada na V2; nenhum cliente externo deve ser inicializado.
+require('../src/lib/ml/pricing-execution.js').assertPricingExecutionReady();
 /* Phase 4B.3 resumed: one true PostgreSQL transaction, no Mercado Livre writes. */
 const { spawnSync } = require('child_process');
 const fs = require('fs');

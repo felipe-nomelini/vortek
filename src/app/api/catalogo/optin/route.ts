@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
@@ -464,6 +465,8 @@ export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const executionBlock = getPricingExecutionBlock();
+  if (executionBlock) return NextResponse.json({ ...executionBlock, erro: executionBlock.error }, { status: 409 });
 
   try {
     const body = await request.json().catch(() => ({}));

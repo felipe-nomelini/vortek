@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// Entrada comercial histórica aposentada na V2; nenhum cliente externo deve ser inicializado.
+require('../src/lib/ml/pricing-execution.js').assertPricingExecutionReady();
 /* AUDIT ONLY. Proibidos POST /items, PUT /items, vínculos e mutações comerciais. */
 const fs = require('fs');
 const path = require('path');

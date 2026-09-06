@@ -1,3 +1,5 @@
+// Entrada comercial histórica aposentada na V2; nenhum cliente externo deve ser inicializado.
+require('../src/lib/ml/pricing-execution.js').assertPricingExecutionReady();
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');

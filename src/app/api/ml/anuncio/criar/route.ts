@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 
 export const maxDuration = 300;
 
@@ -17,7 +18,7 @@ import {
   calculateSuggestedPrice,
   calculateTargetNetProfitPrice,
 } from "@/services/pricing";
-import { createServiceClient } from "@/lib/supabase";
+import { createClient, createServiceClient } from "@/lib/supabase";
 import { loadPricingTaxContext, requirePricingTaxRate } from "@/services/pricing-tax-context";
 import {
   fiscalStrictSchema,
@@ -821,6 +822,11 @@ async function persistListingLink(params: {
 
 export async function POST(req: Request) {
   try {
+    const auth = await createClient();
+    const { data: { user } } = await auth.auth.getUser();
+    if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+    const executionBlock = getPricingExecutionBlock();
+    if (executionBlock) return NextResponse.json(executionBlock, { status: 409 });
     const {
       produtoId,
       categoriaId,

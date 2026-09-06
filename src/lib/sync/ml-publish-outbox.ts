@@ -1,4 +1,5 @@
 import type { Database } from '@/types/database';
+import { getPricingExecutionBlock } from '../ml/pricing-execution.js';
 import { classifyMlPublishEligibility } from '../ml/publish-eligibility.js';
 
 type ServiceClientLike = {
@@ -180,7 +181,7 @@ export async function enqueueMlPublishOutbox(
   client: ServiceClientLike,
   input: MlPublishOutboxInput,
 ): Promise<
-  | { ok: true; outboxId: string; action: 'inserted' | 'updated_existing' | 'reopened_failed' | 'unchanged' }
+  | { ok: true; outboxId: string; action: 'inserted' | 'updated_existing' | 'reopened_failed' | 'unchanged'; pricingBlocked?: boolean }
   | {
       ok: true;
       outboxId: null;
@@ -197,11 +198,11 @@ export async function enqueueMlPublishOutbox(
     return { ok: false, error: 'produtoId e mlItemId são obrigatórios para enfileirar publicação ML' };
   }
 
-  const desiredPrice = normalizeDesiredPrice(input.desiredPrice);
+  let desiredPrice = normalizeDesiredPrice(input.desiredPrice);
   const desiredQuantity = normalizeDesiredQuantity(input.desiredQuantity);
   const desiredStatus = input.desiredStatus || null;
   const source = String(input.source || 'produto_update');
-  const payload = input.payload || {};
+  const payload = { ...input.payload };
   const dedupePending = input.dedupePending === true;
   const deleteListing = payload.delete_listing === true;
   const requestedMode = resolveInputOperationMode(
@@ -211,6 +212,20 @@ export async function enqueueMlPublishOutbox(
     desiredQuantity,
     desiredStatus,
   );
+  const executionBlock = getPricingExecutionBlock();
+  if (executionBlock && (requestedMode.applyPrice || requestedMode.applyQuantityPricing)) {
+    if (!requestedMode.applyQuantity && !requestedMode.applyStatus && !deleteListing) {
+      return { ok: true, outboxId: null, action: 'skipped_ineligible',
+        reason: executionBlock.code, eligibility: 'terminally_blocked', retryAt: null };
+    }
+    payload.pricing_block = executionBlock;
+    payload.apply_price = false;
+    payload.apply_quantity_pricing = false;
+    delete payload.base_price_for_quantity_pricing;
+    desiredPrice = null;
+    requestedMode.applyPrice = false;
+    requestedMode.applyQuantityPricing = false;
+  }
   let processingHasDifferentState = false;
 
   if (!deleteListing) {
@@ -289,7 +304,7 @@ export async function enqueueMlPublishOutbox(
         });
 
       if (requestAlreadyCovered && previousStatus !== 'failed') {
-        return { ok: true, outboxId: existingId, action: 'unchanged' };
+        return { ok: true, outboxId: existingId, action: 'unchanged', ...(payload.pricing_block ? { pricingBlocked: true } : {}) };
       }
 
       // A linha em processamento nunca é alterada. Se o estado mudou, uma nova
@@ -381,7 +396,7 @@ export async function enqueueMlPublishOutbox(
     && !applyStatus
     && payload.delete_listing !== true;
   if (allRequestedOperationsUnchanged && unchangedOutboxId) {
-    return { ok: true, outboxId: unchangedOutboxId, action: 'unchanged' };
+    return { ok: true, outboxId: unchangedOutboxId, action: 'unchanged', ...(payload.pricing_block ? { pricingBlocked: true } : {}) };
   }
 
   const { data, error } = await (client

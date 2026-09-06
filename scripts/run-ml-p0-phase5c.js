@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// Entrada comercial histórica aposentada na V2; nenhum cliente externo deve ser inicializado.
+require('../src/lib/ml/pricing-execution.js').assertPricingExecutionReady();
 /* Phase 5C: one catalog-required POST, read-back only, no local persistence. */
 const fs = require('fs');
 const path = require('path');

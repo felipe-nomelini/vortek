@@ -1,3 +1,4 @@
+import { assertPricingExecutionReady } from '@/lib/ml/pricing-execution';
 import {
   fetchML,
   fetchMLResult,
@@ -185,6 +186,7 @@ export async function getCategorySaleTerms(categoryId: string): Promise<MlCatego
 export async function createListing(
   input: MLCreateItemInput,
 ): Promise<MLCreateItemResult | null> {
+  assertPricingExecutionReady();
   const attributes = [...input.attributes];
   const hasSellerSku = attributes.some(
     (a) => a.id.toUpperCase() === "SELLER_SKU",
@@ -683,6 +685,7 @@ export async function setItemQuantityPricing(
   itemId: string,
   basePrice: number,
 ): Promise<QuantityPricingApplyResult> {
+  assertPricingExecutionReady();
   try {
     const commercial = await loadCommercialPricingConfiguration(createServiceClient());
     const result = await applyItemQuantityPricing(
@@ -741,6 +744,7 @@ export async function updateItemPrice(
   itemId: string,
   price: number,
 ): Promise<boolean> {
+  assertPricingExecutionReady();
   try {
     const result = await fetchML<any>(`/items/${itemId}`, {
       method: "PUT",

@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+// Entrada comercial histórica aposentada na V2; nenhum cliente externo deve ser inicializado.
+require('../src/lib/ml/pricing-execution.js').assertPricingExecutionReady();
 /* Canary-only publisher: exactly one POST /items, no other ML writes and no local writes. */
 const crypto = require('crypto');
 const fs = require('fs');

@@ -8,10 +8,7 @@ import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { getConfiguredMlShippingCost } from '@/lib/ml/shipping-cost';
-import { calculateSuggestedPrice } from '@/services/pricing';
-import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
-import { resolveMlFee } from '@/lib/commercial-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
@@ -505,31 +502,15 @@ export async function POST(request: Request) {
     const itemIds = requestedItemIds;
 
     const serviceClient = createServiceClient();
-    const [pricingTaxContext, commercial, operationalSupplierIds] = await Promise.all([
-      loadPricingTaxContext(serviceClient),
+    const [commercial, operationalSupplierIds] = await Promise.all([
       loadCommercialPricingConfiguration(serviceClient),
       loadOperationalDropshippingSupplierIds(serviceClient),
     ]);
-    const taxRate = requirePricingTaxRate(pricingTaxContext);
     const sellerZipResult = await resolveSellerZip();
     if (sellerZipResult.warning) warnings.push({ code: 'ml_seller_zip_unavailable', message: sellerZipResult.warning });
 
-    const { data: manualPriceBlocks, error: manualPriceBlocksError } = await serviceClient
-      .from('ml_manual_blocklist')
-      .select('ml_item_id, sku')
-      .eq('ativo', true);
-    if (manualPriceBlocksError) {
-      warnings.push({
-        code: 'ml_manual_blocklist_query_failed',
-        message: `Preços automáticos não serão recalculados nesta execução: ${manualPriceBlocksError.message}`,
-      });
-    }
-    const blockedPriceItemIds = new Set(
-      (manualPriceBlocks || []).map((row: any) => String(row.ml_item_id || '').trim()).filter(Boolean),
-    );
-    const blockedPriceSkus = new Set(
-      (manualPriceBlocks || []).map((row: any) => String(row.sku || '').trim().toUpperCase()).filter(Boolean),
-    );
+    warnings.push({ code: 'pricing_execution_not_ready',
+      message: 'Custos e frete são sincronizados sem alterar preços ou enfileirar reprecificação.' });
 
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
@@ -761,80 +742,15 @@ export async function POST(request: Request) {
           if (pricing.mlShipping !== null) productPatch.ml_shipping_warning = null;
           else if (pricing.warning) productPatch.ml_shipping_warning = pricing.warning;
 
-          const configuredShipping = getConfiguredMlShippingCost(
-            item?.shipping?.mode,
-            commercial.unspecifiedShippingCost,
-          );
-          const configuredShippingChanged = configuredShipping !== null
-            && Math.abs(Number(produto.ml_shipping || 0) - configuredShipping) >= 0.01;
-          const priceAutomationBlocked = Boolean(manualPriceBlocksError)
-            || blockedPriceItemIds.has(String(item.id))
-            || blockedPriceSkus.has(String(produto.sku || '').trim().toUpperCase());
-          let configuredShippingPrice: number | null = null;
-
-          if (configuredShippingChanged && !priceAutomationBlocked) {
-            try {
-              configuredShippingPrice = calculateSuggestedPrice({
-                cost: Number(produto.custo || 0),
-                shipping: configuredShipping,
-                mlFee: resolveMlFee(pricing.mlFee ?? produto.ml_fee, commercial.mlFeeFallbackRate),
-                taxRate,
-                costTiers: commercial.costTiers,
-              }).suggestedPrice;
-              productPatch.custom_price = configuredShippingPrice;
-            } catch (error: any) {
-              warnings.push({
-                code: 'ml_configured_shipping_price_calculation_failed',
-                message: error?.message || 'Falha ao recalcular preço com frete configurado',
-                context: { mlItemId: String(item.id), produtoId },
-              });
-            }
-          }
-
           if (Object.keys(productPatch).length > 0) {
             productPatch.updated_at = new Date().toISOString();
             const { error: pricingUpdateError } = await serviceClient
-              .from('produtos')
-              .update(productPatch as any)
-              .eq('id', String(produtoId));
-
+              .from('produtos').update(productPatch as any).eq('id', String(produtoId));
             if (pricingUpdateError) {
-              errors.push({
-                code: 'produto_ml_pricing_update_failed',
-                message: pricingUpdateError.message,
-                context: { mlItemId: String(item.id), produtoId },
-              });
+              errors.push({ code: 'produto_ml_pricing_update_failed',
+                message: pricingUpdateError.message, context: { mlItemId: String(item.id), produtoId } });
             } else {
               pricingFieldsUpdated += 1;
-              if (
-                configuredShippingPrice !== null
-                && ['active', 'paused'].includes(String(item.status || '').toLowerCase())
-                && Math.abs(Number(item.price || 0) - configuredShippingPrice) >= 0.01
-              ) {
-                const outbox = await enqueueMlPublishOutbox(serviceClient, {
-                  produtoId: String(produtoId),
-                  mlItemId: String(item.id),
-                  desiredPrice: configuredShippingPrice,
-                  source: 'ml_not_specified_fixed_shipping_price',
-                  dedupePending: true,
-                  payload: {
-                    apply_price: true,
-                    apply_quantity_pricing: true,
-                    apply_quantity: false,
-                    apply_status: false,
-                    base_price_for_quantity_pricing: configuredShippingPrice,
-                    shipping_mode: 'not_specified',
-                    configured_shipping: configuredShipping,
-                  },
-                });
-                if (!outbox.ok) {
-                  warnings.push({
-                    code: 'ml_configured_shipping_price_enqueue_failed',
-                    message: outbox.error,
-                    context: { mlItemId: String(item.id), produtoId },
-                  });
-                }
-              }
             }
           }
         }
