@@ -36,6 +36,7 @@ export interface MLCreateItemInput {
   title?: string;
   familyName?: string;
   categoryId: string;
+  catalogProductId?: string;
   price: number;
   availableQuantity: number;
   condition: "new" | "used";
@@ -167,9 +168,7 @@ export async function getCategoryAttributes(
   );
 }
 
-export async function createListing(
-  input: MLCreateItemInput,
-): Promise<MLCreateItemResult | null> {
+export function buildMlCreatePayload(input: MLCreateItemInput): Record<string, any> {
   const attributes = [...input.attributes];
   const hasSellerSku = attributes.some(
     (a) => a.id.toUpperCase() === "SELLER_SKU",
@@ -222,7 +221,15 @@ export async function createListing(
     payload.title = input.title;
   }
 
-  console.log("[ML createListing] payload:", JSON.stringify(payload, null, 2));
+  if (input.catalogProductId) {
+    payload.catalog_product_id = input.catalogProductId;
+    payload.catalog_listing = true;
+    delete payload.description;
+  }
+  return payload;
+}
+export async function createListing(input: MLCreateItemInput): Promise<MLCreateItemResult | null> {
+  const payload = buildMlCreatePayload(input);
 
   const result = await fetchMLResult<MLCreateItemResult>("/items", {
     method: "POST",
@@ -638,19 +645,17 @@ export async function searchItemBySellerSku(
   sku: string,
 ): Promise<string | null> {
   const me = await fetchML<{ id: number }>("/users/me");
-  if (!me) return null;
-  const data = await fetchML<{ results: string[] }>(
-    `/users/${me.id}/items/search?seller_sku=${encodeURIComponent(sku)}`,
-  );
-  if (!data?.results?.length) return null;
-  for (const itemId of data.results) {
-    const item = await fetchML<{ id: string; status?: string }>(
-      `/items/${encodeURIComponent(itemId)}?attributes=id,status`,
-    );
-    const status = String(item?.status || "").toLowerCase();
-    if (item?.id && ["active", "paused"].includes(status)) return item.id;
+  if (!me?.id) throw Error('BUSCA_ANUNCIO_EXISTENTE_INCONCLUSIVA');
+  const searches = await Promise.all(['seller_sku','sku'].map(field => fetchML<{results:string[];paging?:{total:number}}>(`/users/${me.id}/items/search?${field}=${encodeURIComponent(sku)}`)));
+  if (searches.some(r=>!r || !Array.isArray(r.results) || Number(r.paging?.total ?? 0)>r.results.length)) throw Error('BUSCA_ANUNCIO_EXISTENTE_INCONCLUSIVA');
+  let paused: string | null = null;
+  for (const itemId of Array.from(new Set(searches.flatMap(r=>r!.results)))) {
+    const item = await fetchML<{id:string;status:string}>(`/items/${encodeURIComponent(itemId)}?attributes=id,status`);
+    if (!item?.id) throw Error('BUSCA_ANUNCIO_EXISTENTE_INCONCLUSIVA');
+    if (item.status === 'active') return item.id;
+    if (item.status === 'paused') paused = item.id;
   }
-  return null;
+  return paused;
 }
 
 export async function setItemInvoiceSaleTerm(itemId: string): Promise<boolean> {

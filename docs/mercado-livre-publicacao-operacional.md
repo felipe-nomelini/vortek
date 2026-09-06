@@ -179,8 +179,12 @@ Qualidade, exposição e demanda são dimensões comerciais independentes. Dimen
 
 ## Garantia comercial homologada
 
-Seguir o [Cânon e os complementos expressamente aprovados](canon-comercial-vortek-bentevi-1.0.md). Fabricante comprovado → fornecedor comprovado → garantia legal conforme classificação documentada (30 dias não duráveis; 90 dias duráveis). Não aplicar prazo genérico de marca ou de outro produto.
+Seguir o [Cânon e os complementos expressamente aprovados](canon-comercial-vortek-bentevi-1.0.md). Fabricante comprovado → fornecedor comprovado → garantia do vendedor de 30 dias, conforme emenda homologada em 06/09/2026. Não aplicar prazo genérico de marca ou de outro produto.
 
-O resolvedor mantém origem, prazo, unidade e evidência separados dos termos ML. Para fornecedor/legal, a representação aceita de vendedor não muda a origem interna nem permite descrição de garantia de fabricante. A categoria deve aceitar a representação; garantia ausente não vira 12 meses ou primeiro valor da lista. O readback confere os termos aprovados.
+O resolvedor mantém origem, prazo, unidade e evidência separados dos termos ML. Para fornecedor/fallback do vendedor, a representação aceita de vendedor não muda a origem interna nem permite descrição de garantia de fabricante. A categoria deve aceitar a representação; garantia ausente não vira 12 meses ou primeiro valor da lista. O readback confere os termos aprovados.
 
 A instrução de 12 meses usada na coorte anterior é histórica e foi substituída para novas decisões pelo Cânon. Anúncios existentes não foram modificados por esta adequação.
+
+## Lote CATALOG_EXPANSION_BATCH_01
+
+A rota canônica exige preparação persistida, preço aprovado, consulta viva ao fornecedor e ML, chave por lote/produto e readback. Safety stop fica na trilha e no bloqueio operacional até revisão. Não reutilizar o runner histórico.

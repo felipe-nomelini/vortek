@@ -38,3 +38,9 @@ Autoridade: [Cânon integral e complementos](canon-comercial-vortek-bentevi-1.0.
 | CANON-AUDIT-01 | audit-commercial-canon.cjs | Auditoria pontual GET/SELECT; políticas órfãs seguem para Diretoria |
 
 O runner da coorte anterior foi aposentado para novas execuções; seus registros, baseline e monitor existente permanecem preservados. Não reutilizar a autorização histórica de garantia/publicação.
+
+## CATALOG_EXPANSION_BATCH_01 — 06/09/2026
+
+- Garantia `VORTEK-WARRANTY-2026-09-06-SELLER-30`: fabricante → fornecedor → vendedor 30 dias. Sem classificação de durabilidade.
+- Expansão limitada aos dez SKUs da ordem. Chave estável por lote/produto, conferência remota sequencial e safety stop persistente.
+- Anúncio ativo equivalente não entra como nova publicação; reativação exige os mesmos gates.

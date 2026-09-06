@@ -762,13 +762,13 @@ export async function fetchMLResult<T>(
   try {
     let res = await doFetch(token);
 
-    if (res.status === 429) {
+    if (res.status === 429 && !(method === "POST" && path === "/items")) {
       const retryAfter = parseInt(res.headers.get("Retry-After") || "2", 10);
       await delay(Math.min(Math.max(retryAfter, 1), 5) * 1000);
       res = await doFetch(token);
     }
 
-    if (res.status === 401) {
+    if (res.status === 401 && !(method === "POST" && path === "/items")) {
       const freshToken = await getValidMLToken(true);
       if (!freshToken) {
         setAuthFatalCooldown("refresh_failed_after_401");
