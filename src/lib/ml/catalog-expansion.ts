@@ -28,3 +28,11 @@ export function catalogExpansionReadbackIssues(expected: any, item: any, memory:
   if (item.status !== 'active' || (item.sub_status?.length ?? 0) > 0) issues.push('STATUS_NAO_VALIDADO');
   return issues;
 }
+/** O validador ML pode responder 400 contendo somente estes avisos de frete já atendidos. */
+export function catalogExpansionPayloadValidated(result: {ok:boolean;status:number|null;error?:{causes?:Array<{type?:string;code?:string}>}|null}, payload: any): boolean {
+  if (result.ok) return true;
+  const causes = result.error?.causes;
+  return result.status === 400 && payload.shipping?.mode === 'me2' && payload.shipping?.free_shipping === true
+    && Array.isArray(causes) && causes.length > 0
+    && causes.every(c=>c.type==='warning' && ['shipping.lost_me1_by_user','item.shipping.mandatory_free_shipping'].includes(c.code ?? ''));
+}

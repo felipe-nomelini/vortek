@@ -20,6 +20,7 @@ export type MLFailureCategory =
 export type MLAuthState = "ok" | "degraded" | "reauth_required";
 
 export interface MLRequestError {
+  causes?: Array<{ type?: string; code?: string; message?: string }>;
   status: number;
   code: string | null;
   message: string;
@@ -824,6 +825,7 @@ export async function fetchMLResult<T>(
       : baseMessage;
 
     const error: MLRequestError = {
+      ...(Array.isArray(parsed?.cause) ? {causes:parsed.cause} : {}),
       status: res.status,
       code,
       message,

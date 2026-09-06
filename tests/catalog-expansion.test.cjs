@@ -39,3 +39,12 @@ test('falha de busca remota não significa anúncio inexistente; SKU legado tamb
  const calls=[];const service=listingService(async p=>{calls.push(p);if(p==='/users/me')return{id:1};if(p.includes('seller_sku='))return{results:[],paging:{total:0}};if(p.includes('?sku='))return{results:['MLB1'],paging:{total:1}};return{id:'MLB1',status:'paused'};});
  assert.equal(await service.searchItemBySellerSku('x'),'MLB1');assert.ok(calls.some(p=>p.includes('?sku=')));
 });
+test('400 com avisos de ME1 e frete grátis já atendidos não bloqueia; qualquer erro real bloqueia',()=>{
+ const {catalogExpansionPayloadValidated:valid}=require('../src/lib/ml/catalog-expansion.ts');
+ const payload={shipping:{mode:'me2',free_shipping:true}},warning={type:'warning',code:'item.shipping.mandatory_free_shipping'};
+ const response=causes=>({ok:false,status:400,error:{causes}});
+ assert.equal(valid(response([warning,{type:'warning',code:'shipping.lost_me1_by_user'}]),payload),true);
+ for(const causes of [[],[{...warning,type:'error'}],[{type:'warning',code:'UNKNOWN'}],[warning,{type:'error',code:'item.attribute.required'}]])assert.equal(valid(response(causes),payload),false);
+ assert.equal(valid(response([warning]),{shipping:{mode:'custom',free_shipping:true}}),false);
+ assert.equal(valid(response([warning]),{shipping:{mode:'me2',free_shipping:false}}),false);
+});

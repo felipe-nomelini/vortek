@@ -70,7 +70,7 @@ async function prepare() {
   const previous=await checked(db.from('produtos').select('altura,largura,profundidade,peso_bruto,updated_at').eq('id',p.id).single());
   const patch={altura:v.altura_embalagem,largura:v.largura_embalagem,profundidade:v.profundidade_embalagem,peso_bruto:v.peso_embalagem};
   if(Object.keys(patch).some(k=>Number(previous[k])!==Number(patch[k]))){
-   await checked(db.from('pricing_events').insert({event_type:'CATALOG_EXPANSION_LOGISTICS_CORRECTED',produto_id:p.id,pricing_source:'radar_launch',actor,reason:'Embalagem confirmada na oferta viva; produto ativo preservado',payload:{batchId:BATCH,previous,next:patch,source:'/v1/CrossDocking/Catalogo/'+o.dslite_fornecedor_id+'/'+o.dslite_produto_id,observedAt:row.liveOffer.at}}));
+   await checked(db.from('pricing_events').insert({event_type:'CATALOG_EXPANSION_LOGISTICS_CORRECTED',rule_id:BATCH,produto_id:p.id,pricing_source:'radar_launch',actor,reason:'Embalagem confirmada na oferta viva; produto ativo preservado',payload:{batchId:BATCH,previous,next:patch,source:'/v1/CrossDocking/Catalogo/'+o.dslite_fornecedor_id+'/'+o.dslite_produto_id,observedAt:row.liveOffer.at}}));
    await checked(db.from('produtos').update(patch).eq('id',p.id).eq('updated_at',previous.updated_at));
   }
   const warrantyInput={evidence:[{origin:'GARANTIA_FORNECEDOR',productId:p.id,gtin:p.gtin,offerId:o.id,duration:Number(v.tempo_garantia),unit:'dias',source:`DSLite /v1/CrossDocking/Catalogo/${o.dslite_fornecedor_id}/${o.dslite_produto_id}:tempo_garantia; inspection.json`,observedAt:row.liveOffer.at}]};
@@ -120,7 +120,7 @@ async function execute() {
   const event=await checked(db.from('pricing_events').select('event_type,ml_item_id,payload').eq('produto_id',candidate.productId).eq('event_type','CATALOG_EXPANSION_VALIDATED').contains('payload',{batchId:BATCH}).maybeSingle());
   results.push({sku:candidate.sku,status:event?'PUBLICADO_VALIDADO':'BLOQUEADO_OU_INCONCLUSIVO',response,event});save('execution.json',{batchId:BATCH,at:new Date().toISOString(),results});
   console.log({sku:candidate.sku,http:response.status,status:results.at(-1).status,itemId:event?.ml_item_id,error:response.data.error});
-  if(!event)break;
+  if(!event){const attempts=await checked(db.from('pricing_events').select('id').eq('produto_id',candidate.productId).eq('event_type','CREATE_REQUESTED').contains('payload',{batchId:BATCH}).limit(1));if(attempts.length)break;}
  }
 }
 
