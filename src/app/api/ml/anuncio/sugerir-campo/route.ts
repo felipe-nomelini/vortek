@@ -392,14 +392,7 @@ function evaluateWarrantyRule(fieldId: string, allowed: AllowedValue[]): Suggest
   if (target !== 'WARRANTY_TIME') return null;
   if (!allowed.length) return null;
 
-  const by12 = allowed.find((v) => normalizeTxt(v.name).includes('12'));
-  const selected = by12 || allowed[0];
-  return {
-    value_id: String(selected.id),
-    value_name: String(selected.name),
-    reason: 'rule_based_warranty_enumerated',
-    confidence: 1,
-  };
+  return null; // Garantia exige o resolvedor canônico e evidência por produto.
 }
 
 function buildPrompt(payload: {
@@ -602,6 +595,7 @@ export async function POST(req: Request) {
         );
     }
 
+    if (['WARRANTY_TYPE','WARRANTY_TIME'].includes(field.id)) return NextResponse.json({error:'Use a garantia comprovada no cadastro do produto',code:'GARANTIA_EVIDENCIA_OBRIGATORIA'},{status:422});
     const warrantyDecision = evaluateWarrantyRule(field.id, allowed);
     if (warrantyDecision) {
       return successResponse(warrantyDecision);

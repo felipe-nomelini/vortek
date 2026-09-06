@@ -1,5 +1,6 @@
 'use client';
 
+import CommercialPolicyControls from '@/components/CommercialPolicyControls';
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
@@ -333,6 +334,7 @@ export default function ProductDetailPage() {
       </div>
 
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 24 }}>{product.name}</Title>
+      <CommercialPolicyControls productId={product.id}/>
 
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={10}>

@@ -23,11 +23,8 @@ import {
   mapOriginType,
   normalizeNcm,
 } from "@/lib/fiscal-strict";
-import {
-  DEFAULT_ML_WARRANTY_TIME,
-  normalizeMlSaleTerms,
-  normalizeMlWarrantyTime,
-} from "@/lib/ml-sale-terms";
+import { normalizeMlSaleTerms, warrantySaleTerms, warrantyDescription } from '@/lib/ml-sale-terms';
+import { loadProductWarranty } from '@/services/product-warranty';
 import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
 import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
 import {
@@ -443,13 +440,7 @@ function sanitizeAttributesByDependencies(
   apply("WITH_GEMSTONE", ["GEMSTONE_TYPE", "GEMSTONE_COLOR"]);
 }
 
-function pickWarrantyValueId(values: Array<{ id: string; name: string }>) {
-  if (!Array.isArray(values) || values.length === 0) return undefined;
-  const hit12 = values.find((v) =>
-    normalizeText(v.name).toLowerCase().includes("12"),
-  );
-  return String((hit12 || values[0]).id);
-}
+
 
 function formatPackageWeightFromKg(weightKg: unknown) {
   const grams = Math.round(Number(weightKg || 0) * 1000);
@@ -1351,62 +1342,17 @@ export async function POST(req: Request) {
       });
     steps.atributos.ok = true;
 
-    const categorySaleTerms = Array.isArray(categoryInfo?.sale_terms)
-      ? categoryInfo.sale_terms
-      : [];
-    const warrantySchema = categorySaleTerms.find(
-      (t: any) => String(t.id) === "WARRANTY_TIME",
-    );
-    const warrantyValues = Array.isArray(warrantySchema?.values)
-      ? warrantySchema.values.map((v: any) => ({
-          id: String(v.id),
-          name: String(v.name),
-        }))
-      : [];
-
-    const saleTermsInput = Array.isArray(editedSaleTerms)
-      ? (editedSaleTerms as SaleTermInput[])
-          .filter((term) => term?.id)
-          .map((term) => {
-            const id = String(term.id);
-            if (id === "WARRANTY_TIME" && warrantyValues.length > 0) {
-              const valueId = term.value_id ? String(term.value_id) : "";
-              const valid = warrantyValues.some(
-                (v: { id: string; name: string }) => String(v.id) === valueId,
-              );
-              if (valid)
-                return { id, value_id: valueId, value_name: undefined };
-              const fallbackId = pickWarrantyValueId(warrantyValues);
-              return { id, value_id: fallbackId, value_name: undefined };
-            }
-            return {
-              id,
-              value_id: term.value_id ? String(term.value_id) : undefined,
-              value_name: term.value_name
-                ? id === "WARRANTY_TIME"
-                  ? normalizeMlWarrantyTime(term.value_name)
-                  : String(term.value_name)
-                : undefined,
-            };
-          })
-      : [];
-
-    if (!saleTermsInput.find((t) => t.id === "WARRANTY_TIME")) {
-      if (warrantyValues.length > 0) {
-        saleTermsInput.push({
-          id: "WARRANTY_TIME",
-          value_id: pickWarrantyValueId(warrantyValues),
-          value_name: undefined,
-        });
-      } else {
-        saleTermsInput.push({
-          id: "WARRANTY_TIME",
-          value_id: undefined,
-          value_name: DEFAULT_ML_WARRANTY_TIME,
-        });
-      }
-    }
-    const saleTerms = normalizeMlSaleTerms(saleTermsInput);
+    const warranty = await loadProductWarranty(supabase, safePrice.evaluation.product, safePrice.evaluation.offer);
+    if (warranty.resolution.status !== 'resolved') return NextResponse.json({error:warranty.resolution.reason,code:'PENDENCIA_VALIDACAO',warranty},{status:422});
+    const saleTermsResponse = await fetchMLResult<any[]>(`/categories/${categoriaId}/sale_terms`);
+    if (!saleTermsResponse.ok) return NextResponse.json({error:'GARANTIA_CONTRATO_ML_INDISPONIVEL'},{status:422});
+    let warrantyTerms;
+    try { warrantyTerms = warrantySaleTerms(warranty.resolution, saleTermsResponse.data ?? []); }
+    catch (error: any) { return NextResponse.json({error:error.message},{status:422}); }
+    const saleTerms = normalizeMlSaleTerms([
+      ...(Array.isArray(editedSaleTerms) ? editedSaleTerms.filter((t: any) => !['WARRANTY_TYPE','WARRANTY_TIME'].includes(t.id)) : []),
+      ...warrantyTerms,
+    ]);
 
     const imagens = produto.imagens || [];
     if (!imagens.length) return NextResponse.json({error:'IMAGENS_REAIS_OBRIGATORIAS'}, {status:422});
@@ -1438,7 +1384,7 @@ export async function POST(req: Request) {
       useFamilyName = me?.tags?.includes("user_product_seller") ?? false;
     } catch {}
 
-    const listingDescription = buildDescription(produto, description);
+    const listingDescription = `${buildDescription(produto, description)}\n\n${warrantyDescription(warranty.resolution)}`;
 
     let listingPayload: Parameters<typeof createListing>[0] = {
       title: useFamilyName ? undefined : effectiveFamilyName,
@@ -1463,10 +1409,14 @@ export async function POST(req: Request) {
     const identitySupplementRow = await (supabase as any).from('radar_oportunidades').select('evidence').eq('candidate_key', `product:${produto.id}`).maybeSingle();
     if (identitySupplementRow.error) throw new Error('EVIDENCIA_IDENTIDADE_INDISPONIVEL');
     const identitySupplement = (identitySupplementRow.data?.evidence as any)?.identitySupplement;
-    const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer,identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }), identitySupplement),remote:identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }),source:'formulario_publicacao_validado'});
+    const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer ?? safePrice.evaluation.product,identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }), identitySupplement),remote:identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }),source:'formulario_publicacao_validado'});
     if (finalIdentity.identity==='IDENTIDADE_DIVERGENTE') return NextResponse.json({error:'CONFLITO_IDENTIDADE_PUBLICACAO',identity:finalIdentity},{status:422});
     if (finalIdentity.identity==='IDENTIDADE_INCONCLUSIVA') return NextResponse.json({error:'PENDENCIA_VALIDACAO_IDENTIDADE',identity:finalIdentity},{status:422});
-    await recordPricingEvent(supabase,{event_type:'CREATE_REQUESTED',produto_id:produto.id,pricing_source:'publication',actor:auth.user.id,reason:'Criação no alvo aprovada após revisão de identidade',new_price:initialPrice,rule_id:safePrice.memory.policyVersion,payload:{approvalId:pricingApprovalId,identity:finalIdentity},dedupe_key:`create:${pricingApprovalId}`});
+    const creationClaim = await (supabase as any).from('pricing_events').insert({event_type:'CREATE_REQUESTED',produto_id:produto.id,pricing_source:'publication',actor:auth.user.id,reason:'Criação no alvo aprovada após revisão de identidade',new_price:initialPrice,rule_id:safePrice.memory.policyVersion,payload:{approvalId:pricingApprovalId,identity:finalIdentity,warranty},dedupe_key:`create:${pricingApprovalId}`});
+    if (creationClaim.error) {
+      if (creationClaim.error.code === '23505') return NextResponse.json({success:false,error:'PUBLICACAO_JA_SOLICITADA_RECONCILIAR_ESTADO_REMOTO'},{status:409});
+      throw new Error('AUDITORIA_PRICING_INDISPONIVEL');
+    }
     let result;
     try {
       result = await createListing(listingPayload);
@@ -1511,7 +1461,18 @@ export async function POST(req: Request) {
     }
     steps.anuncio.ok = true;
 
-    let latestItem = (await getListingSnapshot(result.id)) || result;
+    await recordPricingEvent(supabase, {event_type:'CREATED_REMOTE', produto_id:produto.id, ml_item_id:result.id, pricing_source:'publication', actor:auth.user.id, reason:'POST aceito; confirmação remota pendente', rule_id:safePrice.memory.policyVersion, payload:{approvalId:pricingApprovalId,warranty}, dedupe_key:`created:${pricingApprovalId}`});
+    let latestItem = await getListingSnapshot(result.id);
+    if (!latestItem) {
+      return NextResponse.json({success:false,error:'PUBLICACAO_READBACK_INCONCLUSIVO',ml_item_id:result.id},{status:409});
+    }
+    const warrantyConfirmed = warrantyTerms.every(expected => (latestItem?.sale_terms ?? []).some((actual:any) => actual.id === expected.id && (expected.value_id ? String(actual.value_id) === expected.value_id : String(actual.value_name) === expected.value_name)));
+    if (!warrantyConfirmed) {
+      const pause = await pauseCreatedListing(result.id);
+      await recordPricingEvent(supabase,{event_type:'CREATED_WARRANTY_MISMATCH',produto_id:produto.id,ml_item_id:result.id,pricing_source:'publication',actor:auth.user.id,reason:'Garantia remota difere da evidência aprovada',rule_id:safePrice.memory.policyVersion,payload:{warranty,expected:warrantyTerms,observed:latestItem?.sale_terms,pauseConfirmed:pause.ok,approvalId:pricingApprovalId}});
+      return NextResponse.json({success:false,error:'GARANTIA_POS_PUBLICACAO_DIVERGENTE',ml_item_id:result.id,paused:pause.ok},{status:409});
+    }
+
     const identityAssessment = assessMlProductIdentity(
       latestItem,
       { ...produto, gtin: gtinForMl || produto.gtin },
@@ -1674,7 +1635,7 @@ export async function POST(req: Request) {
       await recordPricingEvent(supabase, { event_type: 'CREATED_READBACK', produto_id: produto.id, ml_item_id: result.id,
         evaluation_id: evaluationId, pricing_source: 'publication', actor: 'publication', reason: 'Conferência após criação no alvo canônico',
         previous_price: null, new_price: initialPrice, rule_id: finalEvaluation.runtime.policy.version,
-        payload: { approvalId:pricingApprovalId, memory_status: finalEvaluation.memory.status, diagnostics: finalEvaluation.memory.diagnostics } });
+        payload: { approvalId:pricingApprovalId, warranty, memory_status: finalEvaluation.memory.status, diagnostics: finalEvaluation.memory.diagnostics } });
       pricingCorrection.final_price = initialPrice;
       if (finalEvaluation.memory.result === null || finalEvaluation.memory.diagnostics.length) {
         pricingCorrection.status = 'pending';
@@ -1804,6 +1765,7 @@ export async function POST(req: Request) {
       },
       quantity_pricing: quantityPricingResult.ok,
       pricing_correction: pricingCorrection,
+      warranty,
       pricing_policy: { mode: 'canonical', memory: safePrice.memory, autonomy: 'REQUIRES_CONFIRMATION' },
       fiscal: fiscalErrors.length === 0 ? "ok" : fiscalErrors,
       fiscal_details: fiscalErrorDetails,

@@ -1,3 +1,9 @@
+import { createClient } from '@/lib/supabase';
+import { requireAdminUser } from '@/lib/auth/admin';
+import { loadProductWarranty } from '@/services/product-warranty';
+import { resolvePricingProduct, recordPricingEvent } from '@/services/pricing-context';
+import { PRICING_POLICY } from '@/services/pricing-policy';
+import { resolveWarranty } from '@/lib/ml-sale-terms';
 import { loadPricingProjections } from '@/services/pricing-projection';
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
@@ -45,7 +51,19 @@ export async function GET(
     const supplierStock = Number(data.estoque || 0);
     const operationalListing = selectOperationalMlListing(listingsResult.data || []);
     const projections = await loadPricingProjections(supabase, [data.id]);
+    let warrantyOffer: any = null;
+    let acquisitionPending: string | null = null;
+    try {
+      warrantyOffer = (await resolvePricingProduct(supabase, data.id)).offer;
+    } catch (error: any) {
+      if (!['KIT_INATIVO', 'KIT_COMPOSTO_NAO_SUPORTADO', 'COMPOSICAO_KIT_INVALIDA'].includes(error.message)) throw error;
+      acquisitionPending = error.message;
+    }
+    const warranty = await loadProductWarranty(supabase, data, warrantyOffer);
     const resolvedData: any = {
+      warranty,
+      acquisitionPending,
+      warrantyOfferId: warrantyOffer?.id ?? null,
       pricing: projections.get(data.id) ?? { current: null, target: null },
       ...data,
       estoque_operacional: Math.max(supplierStock, internalStock),
@@ -71,6 +89,19 @@ export async function PATCH(
   try {
     const body = await req.json();
     const supabase = createServiceClient();
+    if ('warrantyEvidence' in body) {
+      const auth = await requireAdminUser(await createClient());
+      if (!auth.ok) return auth.response;
+      const resolved = await resolvePricingProduct(supabase,params.id);
+      const input = body.warrantyEvidence;
+      if (!input || !Array.isArray(input.evidence) || !body.reason?.trim()) return NextResponse.json({error:'Evidência e motivo obrigatórios'},{status:422});
+      const identity = {productId:params.id,gtin:resolved.product.gtin || null,offerId:resolved.offer?.id ?? null};
+      if (input.evidence.some((e:any) => e.productId !== identity.productId || (e.gtin ?? null) !== identity.gtin || !['FABRICANTE','GARANTIA_FORNECEDOR'].includes(e.origin) || (e.origin === 'GARANTIA_FORNECEDOR' && (!identity.offerId || e.offerId !== identity.offerId)))) return NextResponse.json({error:'Evidência não corresponde ao produto/oferta atual'},{status:422});
+      const resolution = resolveWarranty({...identity,evidence:input.evidence,durability:input.durability});
+      if (resolution.status === 'pending') return NextResponse.json({error:resolution.reason},{status:422});
+      await recordPricingEvent(supabase,{event_type:'WARRANTY_EVIDENCE_REGISTERED',produto_id:params.id,pricing_source:'manual_evidence',actor:auth.user.id,reason:body.reason.trim(),rule_id:PRICING_POLICY.version,payload:{evidence:input.evidence,durability:input.durability ?? null,resolution}});
+      return NextResponse.json({success:true,warranty:resolution,mlMutations:0});
+    }
 
     const { data: current, error: currentError } = await supabase
       .from('produtos')
