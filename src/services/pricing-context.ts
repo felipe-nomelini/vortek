@@ -83,8 +83,8 @@ export function evaluateProductPricing(
   const { scenario, ...projectionBase } = base;
   const projectedBase = { ...projectionBase, scenario: scenario === 'simulation' ? 'simulation' as const : 'projected' as const };
   return {
-    costCents: base.cost.amountCents,
-    currentPriceCents,
+    costCents: Number.isSafeInteger(base.cost.amountCents) && Number(base.cost.amountCents) >= 0 ? base.cost.amountCents : null,
+    currentPriceCents: Number.isSafeInteger(currentPriceCents) && Number(currentPriceCents) > 0 ? currentPriceCents : null,
     current: currentPriceCents === null
       ? { status: 'inconclusive', memory: null, reasons: [{ field: 'input', code: 'DADO_AUSENTE' }] }
       : evaluateEconomicMemory({ ...base, priceCents: currentPriceCents, fee: observedFee ?? fee }),

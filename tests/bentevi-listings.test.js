@@ -8,7 +8,7 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'u
 
 const page = read('src/app/(app)/anuncios/page.tsx');
 const styles = read('src/app/(app)/anuncios/anuncios.module.css');
-const route = read('src/app/api/anuncios/route.ts');
+const route = read('src/services/ml-listings-query.ts');
 const statusRoute = read('src/app/api/anuncios/status-lote/route.ts');
 const detailRoute = read('src/app/api/ml/anuncio/preco-detalhe/route.ts');
 const priceRoute = read('src/app/api/ml/anuncio/atualizar-preco/route.ts');

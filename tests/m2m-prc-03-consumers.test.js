@@ -139,3 +139,20 @@ test('PDF usa uma única leitura completa, inclusive com economia inconclusiva',
   const document = await pdfLib.PDFDocument.load(await response.arrayBuffer());
   assert.ok(document.getPageCount() > 0);
 });
+
+test('PDF de Anúncios não reconsulta todo o conjunto a cada página', async () => {
+  let reads = 0; const pdfLib = require('pdf-lib');
+  const route = load('src/app/api/anuncios/exportar-pdf/route.ts', {
+    'node:fs/promises': require('node:fs/promises'), 'node:path': { default: require('node:path') }, 'pdf-lib': pdfLib,
+    'next/server': { NextResponse: { json: (data, init) => Response.json(data, init) } },
+    '@/services/ml-listings-query': { getMlListingResponse: async (_, allRows) => {
+      reads++; assert.equal(allRows, true);
+      return Response.json({ data: [{ itemId: 'MLB_TEST', title: 'Amostra', price: 100, profit: null, marginPercent: null }], total: 1 });
+    } },
+    '@/theme/bentevi': require('../src/theme/bentevi.ts'),
+  });
+  const response = await route.GET(new Request('http://localhost/api/anuncios/exportar-pdf'));
+  assert.equal(response.status, 200); assert.equal(reads, 1);
+  const document = await pdfLib.PDFDocument.load(await response.arrayBuffer());
+  assert.ok(document.getPageCount() > 0);
+});

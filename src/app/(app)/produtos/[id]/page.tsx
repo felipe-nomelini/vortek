@@ -365,7 +365,7 @@ export default function ProductDetailPage() {
       <div className={styles.priceSummary}>
         <div><span>Preço atual</span><strong>{formatCurrency(displayPrice)}</strong><small>{'origem manual não comprovada'}</small></div>
         <div><span>Preço calculado</span><strong>{formatCurrency(suggestedPrice)}</strong><small>referência automática</small></div>
-        <div className={profit !== null && profit >= 0 ? styles.profitBox : styles.lossBox}><span>Lucro líquido</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? '—' : margin.toFixed(2).replace('.', ',')}% de margem</small></div>
+        <div className={profit === null ? undefined : profit >= 0 ? styles.profitBox : styles.lossBox}><span>Lucro líquido</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? 'Dados econômicos incompletos' : `${margin.toFixed(2).replace('.', ',')}% de margem estimada`}</small></div>
       </div>
     </section>
   </div>;
@@ -449,7 +449,7 @@ export default function ProductDetailPage() {
           <div><span>Fornecedor atual</span><strong className={styles.summaryText}>{capacity.internal > 0 ? 'Estoque interno' : currentSupplier?.fornecedor_nome || product.fornecedor || 'Não definido'}</strong><small>{supplierOffers.length} oferta{supplierOffers.length === 1 ? '' : 's'}</small></div>
           <div><span>Custo</span><strong>{formatCurrency(pricingView(product.pricing).cost)}</strong><small>oferta elegível</small></div>
           <div><span>Preço</span><strong>{formatCurrency(displayPrice)}</strong><small>{'preço registrado'}</small></div>
-          <div className={profit !== null && profit >= 0 ? styles.summaryProfit : styles.summaryLoss}><span>Lucro</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? '—' : margin.toFixed(2).replace('.', ',')}% de margem</small></div>
+          <div className={profit === null ? undefined : profit >= 0 ? styles.summaryProfit : styles.summaryLoss}><span>Lucro</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? 'Dados econômicos incompletos' : `${margin.toFixed(2).replace('.', ',')}% de margem estimada`}</small></div>
         </div>
       </div>
     </section>

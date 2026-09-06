@@ -40,10 +40,10 @@ test('BNT-D11-PDF espelha a hierarquia operacional aprovada de Anúncios', () =>
 });
 
 test('BNT-D11-PDF reutiliza a listagem canônica sem consulta paralela nem recálculo', () => {
-  assert.match(route, /import \{ GET as getListings \} from '@\/app\/api\/anuncios\/route'/);
-  assert.match(route, /await getListings\(new Request\(listUrl, \{ headers \}\)\)/);
+  assert.match(route, /import \{ getMlListingResponse \} from '@\/services\/ml-listings-query'/);
+  assert.match(route, /await getMlListingResponse\(new Request\(listUrl, \{ headers \}\), true\)/);
   assert.match(route, /headers\.set\('x-vortek-read-only', '1'\)/);
-  assert.match(route, /while \(rows\.length < total\)/);
+  assert.doesNotMatch(route, /while \(rows\.length < total\)/);
   assert.doesNotMatch(route, /createClient|createServiceClient/);
   assert.doesNotMatch(route, /calculateNetProfitAtPrice|calculateSuggestedPrice/);
   assert.doesNotMatch(route, /\.from\('anuncios_ml'\)/);

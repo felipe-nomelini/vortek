@@ -165,7 +165,7 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
               {FINAL_PRICE_POLICY.bands.map((band, index) => (
                 <Col xs={24} xl={8} key={band.id}>
                   <Title level={5}>{["Até R$ 200,00", "R$ 200,01 a R$ 1.000,00", "Acima de R$ 1.000,00"][index]}</Title>
-                  <Text>Piso {band.floor * 100}% · Alvo {band.target * 100}% · Limite {band.limit * 100}%</Text>
+                  <Text>Piso {band.floor.toLocaleString("pt-BR", { style: "percent", maximumFractionDigits: 2 })} · Alvo {band.target.toLocaleString("pt-BR", { style: "percent", maximumFractionDigits: 2 })} · Limite {band.limit.toLocaleString("pt-BR", { style: "percent", maximumFractionDigits: 2 })}</Text>
                 </Col>
               ))}
             </Row>
@@ -244,7 +244,7 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
               <Col xs={24} xl={9}>
                 <div style={{ background: "linear-gradient(135deg, #ffc400 0%, #8a6200 100%)", borderRadius: 10, padding: 18, color: "#0b0b0b" }}>
                   <Text style={{ color: "#2a2100" }}>Preço sugerido</Text>
-                  <div style={{ fontSize: 30, fontWeight: 800 }}>{simulation?.target.ok ? money(simulation.target.priceCents / 100) : "Indisponível"}</div>
+                  <div style={{ fontSize: 30, fontWeight: 800 }}>{simulation?.target.ok ? money(simulation.target.priceCents / 100) : simulation ? "Indisponível" : "Aguardando simulação"}</div>
                   <Text style={{ color: "#2a2100" }}>Lucro líquido projetado: {simulation?.target.ok ? money(simulation.target.evaluation.memory.resultCents / 100) : "—"}</Text>
                 </div>
               </Col>

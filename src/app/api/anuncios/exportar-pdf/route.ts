@@ -10,7 +10,7 @@ import {
   type RGB,
 } from 'pdf-lib';
 import { NextResponse } from 'next/server';
-import { GET as getListings } from '@/app/api/anuncios/route';
+import { getMlListingResponse } from '@/services/ml-listings-query';
 import type { MlCatalogStatus, MlListingDashboardRow } from '@/lib/ml/listings-dashboard';
 import { benteviColors } from '@/theme/bentevi';
 
@@ -523,22 +523,12 @@ export async function GET(request: Request) {
     }
     const headers = new Headers(request.headers);
     headers.set('x-vortek-read-only', '1');
-    const rows: ExportRow[] = [];
-    let page = 1;
-    let total = 0;
-    do {
-      listUrl.searchParams.set('page', String(page));
-      const response = await getListings(new Request(listUrl, { headers }));
-      const payload = await response.json().catch(() => ({})) as ListingPayload & { erro?: string; error?: string };
-      if (!response.ok) {
-        return NextResponse.json({ erro: payload.erro || payload.error || 'Falha ao consultar anúncios' }, { status: response.status });
-      }
-      const pageRows = Array.isArray(payload.data) ? payload.data : [];
-      rows.push(...pageRows.map(mapExportRow));
-      total = Number(payload.total || 0);
-      page += 1;
-      if (!pageRows.length) break;
-    } while (rows.length < total);
+    const response = await getMlListingResponse(new Request(listUrl, { headers }), true);
+    const payload = await response.json() as ListingPayload & { erro?: string; error?: string };
+    if (!response.ok) {
+      return NextResponse.json({ erro: payload.erro || payload.error || 'Falha ao consultar anúncios' }, { status: response.status });
+    }
+    const rows = (payload.data || []).map(mapExportRow);
     const pdf = await buildPdf(rows, buildFilterDescription(sourceUrl));
     const date = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
     return new Response(new Uint8Array(pdf), {
