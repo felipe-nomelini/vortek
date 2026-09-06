@@ -4,13 +4,13 @@ Data: 06/09/2026. Ambiente: branch dev; banco 192.168.1.162, hostname supabase-d
 
 ## Estado
 
-Implementação local validada e migration aplicada. Publicação DEV e homologação web ainda em execução; não declarar o item concluído até registrar o resultado abaixo.
+Concluído no escopo de transição da PRC-03: consumidores migrados, migration aplicada e código `a26bde1` publicado e validado em `dev.bentevi.shop`. Próxima ação: planejar `BNT-CANON-QTY-01`. Isso não libera execução comercial, autonomia ou promoção para produção.
 
 ## Mudança e critérios
 
 - Produtos/lista/detalhe/PDF, Anúncios, análise de catálogo e schema/preço-detalhe usam o contexto e a memória econômica centrais. Não há fórmula financeira própria no browser ou PDF.
 - Preço registrado e alvo estimado são distintos. Ausência de CMV/frete/tarifa/tributo produz resultado inconclusivo, nunca zero fabricado. custom_price não comprova autoria manual.
-- Busca financeira de Produtos e Anúncios ocorre no servidor sobre todo o conjunto antes de filtros econômicos, ordenação, resumo e paginação. O PDF de Produtos faz uma única leitura completa. Q segura vem do carregador operacional existente.
+- Busca financeira de Produtos e Anúncios ocorre no servidor sobre todo o conjunto antes de filtros econômicos, ordenação, resumo e paginação. Os PDFs de Produtos e Anúncios reutilizam uma única leitura completa do respectivo conjunto, sem repetir a reconstrução econômica por página. Q segura vem do carregador operacional existente.
 - Formulário/contrato/RPC comercial não recebem costTiers; a política final é somente leitura. Simulação administrativa explícita no servidor, sem alterar configuração, preço ou fila.
 - Aritmética de pedidos usa base total explícita, cobertura integral de itens e competência da venda no fuso oficial. Custo atual e compras.valor_total não comprovam CMV histórico. A API admite evidência histórica itemizada, mas os chamadores atuais não possuem essa prova: novos lucros ficam inconclusivos, sem apagar os valores registrados. Não apresentar isso como lucro realizado confirmado.
 - Scripts comerciais históricos, criação/preço/opt-in, transporte e escrita de preço permanecem bloqueados. Outbox mista continua estoque/status sem preço; preço puro antigo é cancelado sem retry.
@@ -18,7 +18,7 @@ Implementação local validada e migration aplicada. Publicação DEV e homologa
 
 ## Evidência local
 
-290 testes passaram, zero falhas:
+291 testes passaram, zero falhas:
 
 ```sh
 node --test tests/m2m-*.test.js tests/*pricing*.test.js tests/*products*.test.js tests/*listings*.test.js tests/bentevi-product-detail.test.js tests/seo-reactivation.test.js tests/catalog-cleanup.test.js tests/preferred-offer.test.js tests/product-activity.test.js tests/supplier-deactivation.test.js tests/ml-price-publish-tracking.test.js tests/ml-publish-outbox.test.js tests/ml-order-profit.test.js tests/easypanel-deploy-contract.test.js
@@ -40,7 +40,7 @@ Fotografia anterior: [M2M-PRC-03-schema-before.json](M2M-PRC-03-schema-before.js
 - SHA-256: abd96f873fc0af3a00697083f5326ed1f5c2ea948fdf83a1bfcec3927eced2a2.
 - Ensaio com BEGIN/ROLLBACK passou. Consultas Produtos/Anúncios responderam; helper SQL legado removido. anon/authenticated sem execução das novas RPCs; service_role autorizado.
 - Aplicação transacional e registro no histórico confirmados somente em .162. Histórico após: 110 versões, última 20260906120000. Cinco produtos operacionais preservados; zero anúncios operacionais.
-- Assinaturas dos tipos afetados conferidas por introspecção após aplicar: busca com dez argumentos, configuração com quatro; RPC de resumo legada removida. Não houve regeneração indiscriminada do schema inteiro.
+- Tipos das duas RPCs afetadas regenerados a partir de `pg_proc` após aplicar: busca com dez argumentos, configuração com quatro; RPC de resumo legada removida. Typecheck posterior passou. Não houve regeneração indiscriminada do schema inteiro.
 - Amostra protegida já existente: 40 produtos, separada dos registros operacionais; não foi copiado banco de produção.
 
 ## Reversão coordenada
@@ -61,4 +61,14 @@ Fontes oficiais consultadas: [PostgreSQL 17 — funções](https://www.postgresq
 
 ## Homologação web
 
-Pendente registrar commit implantado, respostas autenticadas, simulador e capturas em dev.bentevi.shop.
+- Código final: `a26bde1`, na branch `dev`, após commits `3473e93`, `a87b60c` e `e2a9989`. Commit/push e deploy restritos a DEV, pelo script `npm run deploy:easypanel`.
+- Easypanel: serviço `local_vortek-erp-dev`; ação `cmtpgxqoa000n07tch3on2kiq`; atualização concluída em 06/09/2026 às 07:09:13 UTC. Container `022544e9c409`, task `g4nssfk9855w`. Hashes dos arquivos de contexto, consulta de anúncios e aba Comercial conferidos contra o código local.
+- Respostas autenticadas HTTP 200: Produtos, resumo, detalhe de amostra protegida, Anúncios, configuração Comercial, simulador e ambos os PDFs. Amostra: 40 produtos e 55 anúncios; resumo com 31 produtos com estoque e sete sem anúncio. Nenhum anúncio real foi criado ou alterado.
+- Simulação explícita com CMV de 4.000 centavos, frete de 1.000, tarifa de 14% e preço atual de 10.000 retornou alvo de 6.667 centavos, cenário `simulation` e resultado estimado.
+- Criação de anúncio, alteração de preço e opt-in de catálogo retornaram HTTP 409 `pricing_execution_not_ready`, conforme o bloqueio esperado. Nenhuma chamada comercial externa foi liberada.
+- Navegação autenticada em Produtos, detalhe, Anúncios e Comercial sem erros de página; botão “Simular no servidor” respondeu 200. Percentuais formatados sem resíduos de ponto flutuante e resultado ausente apresentado como inconclusivo, sem sinal de prejuízo fabricado.
+- Sessão temporária de homologação encerrada ao final, sem alteração de senha ou credenciais. Banco de produção não acessado; `.160` usado apenas para o serviço web DEV e sua implantação, nunca como destino de banco gravável.
+
+Capturas finais: [Produtos](M2M-PRC-03-produtos.png), [Detalhe do produto](M2M-PRC-03-produto-detalhe.png), [Anúncios](M2M-PRC-03-anuncios.png), [Comercial e simulador](M2M-PRC-03-comercial.png).
+
+As skills de implementação DEV, Supabase Vortek e boas práticas PostgreSQL orientaram a execução por etapa, a validação do destino `.162`, as leituras em lotes e o ensaio transacional. O mapa de ambientes do `AGENTS.md` prevaleceu sobre referência antiga de endereço na skill. `AGENTS.md` e o cânon imutável foram preservados. Evidências e ordenação dos tipos podem ser commitadas depois do código implantado, sem nova mudança de runtime.

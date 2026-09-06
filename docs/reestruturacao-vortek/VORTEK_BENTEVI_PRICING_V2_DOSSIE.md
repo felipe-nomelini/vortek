@@ -440,7 +440,7 @@ O gate de publicação deve usar primeiro testes de contrato com respostas contr
 
 ## 15. M2M-PRC-03 — Checkpoint de implementação parcial (06/09/2026)
 
-Registro histórico da primeira parcela. A continuação, incluindo migration DEV e migração dos consumidores, está na [evidência atual de PRC-03](evidencias/M2M-PRC-03-validacao.md). O estado anterior abaixo não descreve a implantação atual.
+Registro histórico da primeira parcela. A conclusão está na seção 16 e na [evidência atual de PRC-03](evidencias/M2M-PRC-03-validacao.md). O estado anterior abaixo não descreve a implantação atual.
 
 **Estado: EM ANDAMENTO, não homologado.** O corte inicial de escrita está implementado localmente; a migração integral de consumidores ainda não ocorreu. Não avançar para QTY-01 nem liberar publicação. Os bloqueios abaixo não estão implantados em homologação: não houve commit, push ou deploy.
 
@@ -476,3 +476,21 @@ Passaram os 12 arquivos de testes direcionados: memória PRC-02, contexto PRC-03
 `AGENTS.md` e cópia do cânon mantiveram seus hashes iniciais. Skills de implementação DEV e Supabase mantiveram o trabalho local e a inspeção self-hosted somente leitura no `.162`; o endereço antigo presente na skill não substitui o mapa de ambientes do AGENTS.
 
 **Rollback:** somente hunks desta parcela, preservando PRC-02/02A e demais alterações do usuário. Não há rollback de banco ou reprocessamento de histórico, pois não houve escrita. Não retirar isoladamente o guard de execução: ainda há código legado atrás dele. A conclusão da PRC-03 depende das linhas pendentes da matriz e de suas evidências, não apenas do build passar.
+
+## 16. M2M-PRC-03 — Fechamento e homologação DEV (06/09/2026)
+
+**Estado:** concluído o corte de consumidores legados no escopo de transição aprovado. Código `a26bde1` publicado e validado em `dev.bentevi.shop`. Próxima ação: planejar `BNT-CANON-QTY-01`; não houve implementação da próxima ação.
+
+| Pendência da fotografia | Resultado final |
+|---|---|
+| Produtos, detalhe e PDF | DTO econômico central conectado, alvo separado de preço registrado, ausência explícita; filtros/resumo/ordenação sobre conjunto completo antes de paginar |
+| Anúncios, catálogo, schema e simulação | Mesma memória central; retirada de fórmulas locais e piso fixo de 10%; PDF reutiliza consulta completa sem reconstrução por página |
+| Pedidos | Aritmética total compartilhada, tributo por competência e cobertura integral de itens; sem evidência histórica itemizada, lucro novo permanece inconclusivo e valor histórico é preservado |
+| Configuração e SQL | Formulário/contrato/RPC sem costTiers; faixas finais somente leitura; simulador explícito no servidor; motor SQL antigo retirado em migration nova |
+| Helpers, scripts e writers | Entradas comerciais antigas falham explicitamente antes de efeito; criação/preço/opt-in bloqueados; estoque/status da fila mista preservados |
+
+**Validação:** 291 testes passaram, `npm run validate`, `npm run build` e typecheck após regeneração dos tipos afetados aprovados. Homologação autenticada: 40 produtos, 55 anúncios, telas, simulador e PDFs com HTTP 200; tentativas comerciais com HTTP 409 esperado e nenhuma publicação externa. Capturas, commits, inspeção do runtime, resultado do simulador e roteiro de reversão coordenada na [evidência final](evidencias/M2M-PRC-03-validacao.md).
+
+**Banco:** destino confirmado `192.168.1.162 / supabase-dev`; migration `20260906120000` ensaiada com ROLLBACK e aplicada transacionalmente, histórico 109 → 110. Registros operacionais preservados e assinaturas regeneradas por introspecção. Nenhum acesso ao banco de produção. O host `.160` foi usado somente para a aplicação web DEV/Easypanel, não para escrita de banco.
+
+**Limites:** conclusão da PRC-03 não significa conclusão global do pricing. Aquisição/revalidação ML viva é PRC-04; QTY-01 e contratos de governança seguem na fila. O guard de execução não deve ser removido isoladamente. Ausência de evidência não foi convertida em preço, custo zero ou lucro realizado. Não houve promoção, escrita autônoma ou liberação comercial. `AGENTS.md` e cópia imutável do cânon preservados.

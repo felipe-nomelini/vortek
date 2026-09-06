@@ -1947,16 +1947,16 @@ export type Database = {
       }
       search_produtos_paginated: {
         Args: {
-          p_search?: string | null
-          p_supplier_dslite_ids?: string[] | null
-          p_include_internal?: boolean | null
-          p_product_active_status?: string | null
-          p_ml_status?: string | null
           p_estoque?: string | null
+          p_include_internal?: boolean | null
+          p_ml_status?: string | null
           p_page?: number | null
           p_page_size?: number | null
+          p_product_active_status?: string | null
+          p_search?: string | null
           p_sort_by?: string | null
           p_sort_order?: string | null
+          p_supplier_dslite_ids?: string[] | null
         }
         Returns: Json
       }
