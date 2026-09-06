@@ -1,0 +1,228 @@
+
+> vortek@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/126) ...
+   Generating static pages (31/126) 
+   Generating static pages (62/126) 
+   Generating static pages (94/126) 
+ ✓ Generating static pages (126/126)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                              Size     First Load JS
+┌ ○ /_not-found                                          880 B          88.4 kB
+├ ○ /anuncios                                            9.48 kB         391 kB
+├ ƒ /api/anuncios                                        0 B                0 B
+├ ƒ /api/anuncios/exportar-pdf                           0 B                0 B
+├ ƒ /api/anuncios/resumo                                 0 B                0 B
+├ ƒ /api/anuncios/status-lote                            0 B                0 B
+├ ƒ /api/auth/login                                      0 B                0 B
+├ ƒ /api/auth/logout                                     0 B                0 B
+├ ƒ /api/auth/me                                         0 B                0 B
+├ ƒ /api/auth/register                                   0 B                0 B
+├ ƒ /api/catalogo/elegiveis                              0 B                0 B
+├ ƒ /api/catalogo/no-catalogo                            0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/analise-preco              0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/backfill-catalog-listing   0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/exportar-pdf               0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/refresh                    0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/refresh/job                0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/refresh/job/worker         0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/refresh/status             0 B                0 B
+├ ƒ /api/catalogo/no-catalogo/resumo                     0 B                0 B
+├ ƒ /api/catalogo/optin                                  0 B                0 B
+├ ƒ /api/clientes                                        0 B                0 B
+├ ƒ /api/clientes/[id]                                   0 B                0 B
+├ ƒ /api/clientes/resumo                                 0 B                0 B
+├ ƒ /api/compras                                         0 B                0 B
+├ ƒ /api/compras/[id]/confirmar-pagamento                0 B                0 B
+├ ƒ /api/compras/[id]/enviar-etiqueta-whatsapp           0 B                0 B
+├ ƒ /api/compras/exportar-pdf                            0 B                0 B
+├ ƒ /api/compras/resumo                                  0 B                0 B
+├ ƒ /api/configuracoes                                   0 B                0 B
+├ ƒ /api/configuracoes/empresa                           0 B                0 B
+├ ƒ /api/configuracoes/fiscal-provider                   0 B                0 B
+├ ƒ /api/configuracoes/usuarios                          0 B                0 B
+├ ƒ /api/configuracoes/usuarios/[id]                     0 B                0 B
+├ ƒ /api/dashboard/resumo                                0 B                0 B
+├ ƒ /api/dslite/completar-etiqueta                       0 B                0 B
+├ ƒ /api/dslite/desvincular-local                        0 B                0 B
+├ ƒ /api/dslite/etiqueta-auto                            0 B                0 B
+├ ƒ /api/dslite/frete                                    0 B                0 B
+├ ƒ /api/dslite/pedido                                   0 B                0 B
+├ ƒ /api/dslite/pedido/status                            0 B                0 B
+├ ƒ /api/estoque                                         0 B                0 B
+├ ƒ /api/estoque/[movimentoId]/situacao                  0 B                0 B
+├ ƒ /api/estoque/produto                                 0 B                0 B
+├ ƒ /api/fornecedores                                    0 B                0 B
+├ ƒ /api/fornecedores/[id]                               0 B                0 B
+├ ƒ /api/fornecedores/[id]/status                        0 B                0 B
+├ ƒ /api/fornecedores/creditos                           0 B                0 B
+├ ƒ /api/fornecedores/creditos/[id]                      0 B                0 B
+├ ƒ /api/fornecedores/creditos/reconciliar               0 B                0 B
+├ ƒ /api/fornecedores/saldo-hayamax                      0 B                0 B
+├ ƒ /api/fornecedores/saldo-hayamax/aprovar-mercadopago  0 B                0 B
+├ ƒ /api/fornecedores/sync                               0 B                0 B
+├ ƒ /api/integracao/ml/callback                          0 B                0 B
+├ ƒ /api/integracao/ml/connect                           0 B                0 B
+├ ƒ /api/integracoes/config                              0 B                0 B
+├ ƒ /api/integracoes/status                              0 B                0 B
+├ ƒ /api/integracoes/teste/brasilnfe                     0 B                0 B
+├ ƒ /api/integracoes/teste/dslite                        0 B                0 B
+├ ƒ /api/jobs                                            0 B                0 B
+├ ƒ /api/jobs/[id]                                       0 B                0 B
+├ ƒ /api/ml/anuncio/aplicar-atacado                      0 B                0 B
+├ ƒ /api/ml/anuncio/atualizar-fiscal                     0 B                0 B
+├ ƒ /api/ml/anuncio/atualizar-preco                      0 B                0 B
+├ ƒ /api/ml/anuncio/atualizar-preco/status               0 B                0 B
+├ ƒ /api/ml/anuncio/categorias                           0 B                0 B
+├ ƒ /api/ml/anuncio/criar                                0 B                0 B
+├ ƒ /api/ml/anuncio/preco-detalhe                        0 B                0 B
+├ ƒ /api/ml/anuncio/preencher-inteligente                0 B                0 B
+├ ƒ /api/ml/anuncio/schema                               0 B                0 B
+├ ƒ /api/ml/anuncio/sugerir-campo                        0 B                0 B
+├ ƒ /api/ml/anuncio/testar-fiscal                        0 B                0 B
+├ ƒ /api/ml/anuncios/alertas                             0 B                0 B
+├ ƒ /api/ml/estado                                       0 B                0 B
+├ ƒ /api/ml/reclamacoes                                  0 B                0 B
+├ ƒ /api/ml/reputacao                                    0 B                0 B
+├ ƒ /api/mobile/v1/purchases                             0 B                0 B
+├ ƒ /api/mobile/v1/purchases/[id]                        0 B                0 B
+├ ƒ /api/mobile/v1/purchases/summary                     0 B                0 B
+├ ƒ /api/mobile/v1/sales                                 0 B                0 B
+├ ƒ /api/mobile/v1/sales/[id]                            0 B                0 B
+├ ƒ /api/mobile/v1/sales/[id]/create-dslite              0 B                0 B
+├ ƒ /api/mobile/v1/sales/[id]/operation                  0 B                0 B
+├ ƒ /api/mobile/v1/sales/[id]/resume-dslite              0 B                0 B
+├ ƒ /api/mobile/v1/sales/[id]/supplier-payment           0 B                0 B
+├ ƒ /api/mobile/v1/sales/[id]/tracking                   0 B                0 B
+├ ƒ /api/mobile/v1/sales/[id]/whatsapp-label             0 B                0 B
+├ ƒ /api/mobile/v1/sales/summary                         0 B                0 B
+├ ƒ /api/mobile/v1/session                               0 B                0 B
+├ ƒ /api/mobile/v1/tv/live                               0 B                0 B
+├ ƒ /api/mobile/v1/tv/metrics                            0 B                0 B
+├ ƒ /api/nf/backfill-danfes                              0 B                0 B
+├ ƒ /api/nf/reconciliar-documentos-ml                    0 B                0 B
+├ ƒ /api/notas-fiscais                                   0 B                0 B
+├ ƒ /api/notas-fiscais/[id]/cancelar                     0 B                0 B
+├ ƒ /api/notas-fiscais/[id]/carta-correcao               0 B                0 B
+├ ƒ /api/notas-fiscais/[id]/enviar-email                 0 B                0 B
+├ ƒ /api/notas-fiscais/[id]/pdf                          0 B                0 B
+├ ƒ /api/notas-fiscais/[id]/pdf/download                 0 B                0 B
+├ ƒ /api/notas-fiscais/[id]/xml                          0 B                0 B
+├ ƒ /api/notas-fiscais/resumo                            0 B                0 B
+├ ƒ /api/ops/health                                      0 B                0 B
+├ ƒ /api/pedidos                                         0 B                0 B
+├ ƒ /api/pedidos/[id]/enviar-etiqueta-whatsapp           0 B                0 B
+├ ƒ /api/pedidos/[id]/enviar-etiqueta-whatsapp/status    0 B                0 B
+├ ƒ /api/pedidos/[id]/etiqueta                           0 B                0 B
+├ ƒ /api/pedidos/[id]/tracking                           0 B                0 B
+├ ƒ /api/pedidos/exportar-pdf                            0 B                0 B
+├ ƒ /api/pedidos/resumo                                  0 B                0 B
+├ ƒ /api/perguntas                                       0 B                0 B
+├ ƒ /api/perguntas/[id]/responder                        0 B                0 B
+├ ƒ /api/pricing/approve                                 0 B                0 B
+├ ƒ /api/pricing/simulate                                0 B                0 B
+├ ƒ /api/pricing/strategy                                0 B                0 B
+├ ƒ /api/produtos                                        0 B                0 B
+├ ƒ /api/produtos/[id]                                   0 B                0 B
+├ ƒ /api/produtos/[id]/fornecedores                      0 B                0 B
+├ ƒ /api/produtos/exportar-pdf                           0 B                0 B
+├ ƒ /api/produtos/inativar-custo-alto                    0 B                0 B
+├ ƒ /api/produtos/ofertas                                0 B                0 B
+├ ƒ /api/produtos/ofertas/[id]                           0 B                0 B
+├ ƒ /api/produtos/resumo                                 0 B                0 B
+├ ƒ /api/public/comprovantes-fornecedor/[id]             0 B                0 B
+├ ƒ /api/public/etiquetas/[id]                           0 B                0 B
+├ ƒ /api/public/fornecedor/bkr1/kits/gtin                0 B                0 B
+├ ƒ /api/public/fornecedor/evolusom/gtin                 0 B                0 B
+├ ƒ /api/public/notas-fiscais/[id]/danfe                 0 B                0 B
+├ ƒ /api/public/notas-fiscais/[id]/xml                   0 B                0 B
+├ ƒ /api/push/public-key                                 0 B                0 B
+├ ƒ /api/push/subscription                               0 B                0 B
+├ ƒ /api/push/test                                       0 B                0 B
+├ ƒ /api/radar                                           0 B                0 B
+├ ƒ /api/sync/anuncios                                   0 B                0 B
+├ ƒ /api/sync/anuncios/backfill-estoque-status           0 B                0 B
+├ ƒ /api/sync/anuncios/job                               0 B                0 B
+├ ƒ /api/sync/anuncios/publish                           0 B                0 B
+├ ƒ /api/sync/anuncios/status                            0 B                0 B
+├ ƒ /api/sync/catalogo                                   0 B                0 B
+├ ƒ /api/sync/cron-dispatch                              0 B                0 B
+├ ƒ /api/sync/cron-status                                0 B                0 B
+├ ƒ /api/sync/disparar                                   0 B                0 B
+├ ƒ /api/sync/dslite                                     0 B                0 B
+├ ƒ /api/sync/dslite-pedidos                             0 B                0 B
+├ ƒ /api/sync/dslite/process                             0 B                0 B
+├ ƒ /api/sync/dslite/status                              0 B                0 B
+├ ƒ /api/sync/fornecedores                               0 B                0 B
+├ ƒ /api/sync/jobs/recover-stale                         0 B                0 B
+├ ƒ /api/sync/mercadopago-account-money                  0 B                0 B
+├ ƒ /api/sync/municipios-ibge/seed                       0 B                0 B
+├ ƒ /api/sync/nf/reconciliar-brasilnfe                   0 B                0 B
+├ ƒ /api/sync/nf/reconciliar-brasilnfe/job               0 B                0 B
+├ ƒ /api/sync/pedidos                                    0 B                0 B
+├ ƒ /api/sync/pedidos/cancelamentos-pos-nfe              0 B                0 B
+├ ƒ /api/sync/pedidos/job                                0 B                0 B
+├ ƒ /api/sync/pedidos/pack-id-backfill                   0 B                0 B
+├ ƒ /api/sync/pedidos/reconciliar-fiscal                 0 B                0 B
+├ ƒ /api/sync/pedidos/status                             0 B                0 B
+├ ƒ /api/sync/preco-estoque                              0 B                0 B
+├ ƒ /api/sync/preco-estoque-xml                          0 B                0 B
+├ ƒ /api/sync/pricing-experiment/monitor                 0 B                0 B
+├ ƒ /api/sync/radar                                      0 B                0 B
+├ ƒ /api/sync/run                                        0 B                0 B
+├ ƒ /api/sync/vincular-produtos                          0 B                0 B
+├ ƒ /api/tv/live                                         0 B                0 B
+├ ƒ /api/tv/metrics                                      0 B                0 B
+├ ƒ /api/waha/qr                                         0 B                0 B
+├ ƒ /api/webhooks/mercadopago                            0 B                0 B
+├ ƒ /api/webhooks/ml/notifications                       0 B                0 B
+├ ○ /catalogo                                            143 B          87.7 kB
+├ ○ /catalogo/elegiveis                                  201 B           404 kB
+├ ○ /catalogo/no-catalogo                                201 B           404 kB
+├ ○ /clientes                                            2.9 kB          340 kB
+├ ƒ /clientes/[id]                                       5.27 kB         353 kB
+├ ○ /compras                                             11.6 kB         429 kB
+├ ○ /configuracoes                                       9.51 kB         386 kB
+├ ○ /dashboard                                           7.3 kB          498 kB
+├ ○ /estoque                                             3.46 kB         385 kB
+├ ƒ /fornecedor/bkr1/kits-sem-anuncio                    1.3 kB         97.5 kB
+├ ƒ /fornecedor/evolusom/produtos-sem-gtin               1.44 kB        97.7 kB
+├ ○ /fornecedores                                        228 B           366 kB
+├ ƒ /fornecedores/[id]                                   10.3 kB         282 kB
+├ ○ /fornecedores/cadastros                              229 B           366 kB
+├ ○ /fornecedores/creditos                               12.4 kB         394 kB
+├ ○ /login                                               66.4 kB         300 kB
+├ ○ /notas-fiscais                                       5.61 kB         404 kB
+├ ○ /pedidos                                             28.9 kB         482 kB
+├ ○ /perguntas                                           8.01 kB         398 kB
+├ ○ /produtos                                            16.9 kB         401 kB
+├ ƒ /produtos/[id]                                       5.45 kB         383 kB
+├ ○ /produtos/ofertas                                    7.25 kB         344 kB
+├ ƒ /produtos/ofertas/[id]                               3.51 kB         313 kB
+├ ○ /radar                                               6.33 kB         351 kB
+├ ○ /reclamacoes                                         9.28 kB         376 kB
+├ ○ /reputacao                                           6.62 kB         245 kB
+├ ƒ /s/[code]                                            0 B                0 B
+└ ○ /tv                                                  19.3 kB         473 kB
++ First Load JS shared by all                            87.5 kB
+  ├ chunks/2117-cde933a762e83b99.js                      31.9 kB
+  ├ chunks/fd9d1056-f0ee659b9b1f8d50.js                  53.6 kB
+  └ other shared chunks (total)                          1.96 kB
+
+
+ƒ Middleware                                             82 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

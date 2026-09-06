@@ -1,0 +1,31 @@
+{
+  "code_commit": "69bfdd3",
+  "scope": "Correção e recuperação de lucro de cinco pedidos",
+  "deployed": true,
+  "orders": [
+    "2000018304422954",
+    "2000018305512122",
+    "2000018301138698",
+    "2000018306225848",
+    "2000018301030896"
+  ],
+  "tests": {
+    "passed": 101,
+    "failed": 0
+  },
+  "ml_operations": "GET only",
+  "fiscal_or_dslite_writes": false,
+  "files": {
+    "README.md": "1919c231c45f015f70c28fdefee66ed2a06cadf820ee13df6b1ea5c1e9581da4",
+    "after.json": "5eacac9a56cc8b217dfa295c98cae0f5859c18fd6ceca4f6d5932ac9da0b57ab",
+    "baseline.json": "563ad45f235ed89cbede4f853a323ecd5cd820dab5a88b34bf4d8422189f056d",
+    "build.txt": "4bcca5860d0d0c2786940ddc797e8d790a328ce8a5492b854a5fff64f6dc5069",
+    "deployment.json": "fe83d874639e738a109a84d662c5a6e1de4c01bc87e8ae31efe947f9d8828e65",
+    "financial-preview.json": "e9ec461635e9a8584fe775a600ab2ede522662712a8ab37f045cc37afeb6a24d",
+    "pedidos-recalculados.csv": "fe55a8b742bded5c83dd90030ce65cd3dd837ae2be174c582c41c818a0be6576",
+    "testes.txt": "2097395edf6686003595458801d902c4b1310e9f365de29bc1ec314fc79f39eb",
+    "transaction-result.json": "74cf560acbc711eea2741b4ed1abbf90b932962a1332d04cc7b47a09bceb7f84",
+    "tv-handler-validation.json": "835eb41d7600e4b61dae74fe12b1905ecb3b399f6074966463187040ef8e3691",
+    "validate.txt": "bf92056c3e327e95a7e896025de85a95e412d520e4dcac5f6644b70de7ddc5fe"
+  }
+}

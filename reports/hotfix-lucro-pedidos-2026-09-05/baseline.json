@@ -1,0 +1,83 @@
+{
+  "at": "2026-09-06T02:00:37.673Z",
+  "causeCommit": "94bab47",
+  "orders": [
+    {
+      "id": "fe57310e-713f-4074-8541-a15c7a954a5d",
+      "ml_order_id": "2000018301030896",
+      "total": 79.09,
+      "lucro": 0,
+      "snapshot_incompleto": false,
+      "snapshot_pendencias": [],
+      "updated_at": "2026-09-06T01:59:15.194259+00:00",
+      "nota_fiscal_emitida": true,
+      "nfe_status": "authorized",
+      "nfe_external_id": "1315",
+      "dslite_id": "405578",
+      "dslite_status": "Aguardando Informações",
+      "dslite_etiqueta_enviada": false
+    },
+    {
+      "id": "2d174453-9321-4fc1-82fa-ad1686ed8f5e",
+      "ml_order_id": "2000018301138698",
+      "total": 59.9,
+      "lucro": 0,
+      "snapshot_incompleto": false,
+      "snapshot_pendencias": [],
+      "updated_at": "2026-09-06T01:59:15.171985+00:00",
+      "nota_fiscal_emitida": true,
+      "nfe_status": "authorized",
+      "nfe_external_id": "1316",
+      "dslite_id": "405579",
+      "dslite_status": "Aguardando Informações",
+      "dslite_etiqueta_enviada": false
+    },
+    {
+      "id": "1abf5746-2b50-43f9-92c6-72a4a06b77fe",
+      "ml_order_id": "2000018305512122",
+      "total": 1039,
+      "lucro": 0,
+      "snapshot_incompleto": false,
+      "snapshot_pendencias": [],
+      "updated_at": "2026-09-06T01:59:15.147049+00:00",
+      "nota_fiscal_emitida": true,
+      "nfe_status": "authorized",
+      "nfe_external_id": "1317",
+      "dslite_id": "405580",
+      "dslite_status": "Aguardando Informações",
+      "dslite_etiqueta_enviada": false
+    },
+    {
+      "id": "10ed5753-e030-40e8-8acb-1037223f3fc8",
+      "ml_order_id": "2000018306225848",
+      "total": 37,
+      "lucro": 0,
+      "snapshot_incompleto": false,
+      "snapshot_pendencias": [],
+      "updated_at": "2026-09-06T01:59:17.276177+00:00",
+      "nota_fiscal_emitida": true,
+      "nfe_status": "authorized",
+      "nfe_external_id": "1318",
+      "dslite_id": null,
+      "dslite_status": null,
+      "dslite_etiqueta_enviada": false
+    },
+    {
+      "id": "e8212d1a-e335-4e8a-b71a-494cfdc838fe",
+      "ml_order_id": "2000018304422954",
+      "total": 53.19,
+      "lucro": 0,
+      "snapshot_incompleto": true,
+      "snapshot_pendencias": [
+        "lucro_pendente_produto"
+      ],
+      "updated_at": "2026-09-06T01:43:30.136513+00:00",
+      "nota_fiscal_emitida": false,
+      "nfe_status": "pendente",
+      "nfe_external_id": null,
+      "dslite_id": null,
+      "dslite_status": null,
+      "dslite_etiqueta_enviada": false
+    }
+  ]
+}

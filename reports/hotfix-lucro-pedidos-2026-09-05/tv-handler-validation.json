@@ -1,0 +1,38 @@
+{
+  "at": "2026-09-06T02:06:02.206Z",
+  "method": "Handler TV executado isoladamente com banco real; autenticação substituída apenas no teste local",
+  "http": 200,
+  "today": {
+    "orders": 11,
+    "revenue": 3182.14,
+    "profit": 236.66,
+    "averageTicket": 289.29,
+    "statusCounts": {
+      "pronto_envio": 4,
+      "pendente": 6,
+      "etiqueta_impressa": 1
+    }
+  },
+  "recentOrders": [
+    {
+      "order": "2000018306225848",
+      "profit": 2.27
+    },
+    {
+      "order": "2000018305512122",
+      "profit": 59.65
+    },
+    {
+      "order": "2000018304422954",
+      "profit": 7.46
+    },
+    {
+      "order": "2000018301138698",
+      "profit": 2.01
+    },
+    {
+      "order": "2000018301030896",
+      "profit": 5.75
+    }
+  ]
+}

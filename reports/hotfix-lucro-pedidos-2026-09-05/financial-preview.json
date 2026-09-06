@@ -1,0 +1,316 @@
+{
+  "at": "2026-09-06T02:05:06.323Z",
+  "rows": [
+    {
+      "before": {
+        "id": "e8212d1a-e335-4e8a-b71a-494cfdc838fe",
+        "ml_order_id": "2000018304422954",
+        "total": 53.19,
+        "lucro": 0,
+        "snapshot_incompleto": true,
+        "snapshot_pendencias": [
+          "lucro_pendente_produto"
+        ],
+        "updated_at": "2026-09-06T01:43:30.136513+00:00",
+        "nota_fiscal_emitida": false,
+        "nfe_status": "pendente",
+        "nfe_external_id": null,
+        "dslite_id": null,
+        "dslite_status": null,
+        "dslite_etiqueta_enviada": false
+      },
+      "result": {
+        "lucro": 7.46,
+        "status": "estimated",
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "custoTotal": 24.72,
+        "taxasTotal": 7.45,
+        "frete": 9.15,
+        "imposto": 4.41,
+        "taxStatus": "estimated",
+        "itensEncontrados": 1,
+        "rastreio": null,
+        "freteDisponivel": true
+      },
+      "updates": {
+        "lucro": 7.46,
+        "snapshot_pendencias": [],
+        "snapshot_incompleto": false
+      },
+      "source": {
+        "orderId": "2000018304422954",
+        "shipmentId": 47943010269,
+        "items": [
+          {
+            "itemId": "MLB4923465039",
+            "sku": "VTK016034",
+            "quantity": 1,
+            "saleFee": 7.45
+          }
+        ],
+        "sellerShippingCost": 9.15
+      }
+    },
+    {
+      "before": {
+        "id": "1abf5746-2b50-43f9-92c6-72a4a06b77fe",
+        "ml_order_id": "2000018305512122",
+        "total": 1039,
+        "lucro": 0,
+        "snapshot_incompleto": false,
+        "snapshot_pendencias": [],
+        "updated_at": "2026-09-06T02:03:42.691931+00:00",
+        "nota_fiscal_emitida": true,
+        "nfe_status": "authorized",
+        "nfe_external_id": "1317",
+        "dslite_id": "405580",
+        "dslite_status": "Aguardando Informações",
+        "dslite_etiqueta_enviada": false
+      },
+      "result": {
+        "lucro": 59.65,
+        "status": "estimated",
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "custoTotal": 614.03,
+        "taxasTotal": 171.44,
+        "frete": 107.85,
+        "imposto": 86.03,
+        "taxStatus": "estimated",
+        "itensEncontrados": 1,
+        "rastreio": null,
+        "freteDisponivel": true
+      },
+      "updates": {
+        "lucro": 59.65
+      },
+      "source": {
+        "orderId": "2000018305512122",
+        "shipmentId": 47943473333,
+        "items": [
+          {
+            "itemId": "MLB7229867624",
+            "sku": "VTK009840",
+            "quantity": 1,
+            "saleFee": 171.44
+          }
+        ],
+        "sellerShippingCost": 107.85
+      }
+    },
+    {
+      "before": {
+        "id": "2d174453-9321-4fc1-82fa-ad1686ed8f5e",
+        "ml_order_id": "2000018301138698",
+        "total": 59.9,
+        "lucro": 0,
+        "snapshot_incompleto": false,
+        "snapshot_pendencias": [],
+        "updated_at": "2026-09-06T02:03:42.734484+00:00",
+        "nota_fiscal_emitida": true,
+        "nfe_status": "authorized",
+        "nfe_external_id": "1316",
+        "dslite_id": "405579",
+        "dslite_status": "Aguardando Informações",
+        "dslite_etiqueta_enviada": false
+      },
+      "result": {
+        "lucro": 2.01,
+        "status": "estimated",
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "custoTotal": 33.9,
+        "taxasTotal": 10.78,
+        "frete": 8.25,
+        "imposto": 4.96,
+        "taxStatus": "estimated",
+        "itensEncontrados": 1,
+        "rastreio": null,
+        "freteDisponivel": true
+      },
+      "updates": {
+        "lucro": 2.01
+      },
+      "source": {
+        "orderId": "2000018301138698",
+        "shipmentId": 47941846914,
+        "items": [
+          {
+            "itemId": "MLB4972470597",
+            "sku": "VTK017679",
+            "quantity": 1,
+            "saleFee": 10.78
+          }
+        ],
+        "sellerShippingCost": 8.25
+      }
+    },
+    {
+      "before": {
+        "id": "10ed5753-e030-40e8-8acb-1037223f3fc8",
+        "ml_order_id": "2000018306225848",
+        "total": 37,
+        "lucro": 0,
+        "snapshot_incompleto": false,
+        "snapshot_pendencias": [],
+        "updated_at": "2026-09-06T02:04:27.103531+00:00",
+        "nota_fiscal_emitida": true,
+        "nfe_status": "authorized",
+        "nfe_external_id": "1318",
+        "dslite_id": null,
+        "dslite_status": null,
+        "dslite_etiqueta_enviada": false
+      },
+      "result": {
+        "lucro": 2.27,
+        "status": "estimated",
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "custoTotal": 14.45,
+        "taxasTotal": 4.26,
+        "frete": 12.95,
+        "imposto": 3.07,
+        "taxStatus": "estimated",
+        "itensEncontrados": 1,
+        "rastreio": null,
+        "freteDisponivel": true
+      },
+      "updates": {
+        "lucro": 2.27
+      },
+      "source": {
+        "orderId": "2000018306225848",
+        "shipmentId": 47944093114,
+        "items": [
+          {
+            "itemId": "MLB5109037741",
+            "sku": "VTK003659",
+            "quantity": 1,
+            "saleFee": 4.26
+          }
+        ],
+        "sellerShippingCost": 12.95
+      }
+    },
+    {
+      "before": {
+        "id": "fe57310e-713f-4074-8541-a15c7a954a5d",
+        "ml_order_id": "2000018301030896",
+        "total": 79.09,
+        "lucro": 0,
+        "snapshot_incompleto": false,
+        "snapshot_pendencias": [],
+        "updated_at": "2026-09-06T02:03:42.766395+00:00",
+        "nota_fiscal_emitida": true,
+        "nfe_status": "authorized",
+        "nfe_external_id": "1315",
+        "dslite_id": "405578",
+        "dslite_status": "Aguardando Informações",
+        "dslite_etiqueta_enviada": false
+      },
+      "result": {
+        "lucro": 5.75,
+        "status": "estimated",
+        "reasons": [
+          "CUSTOS_VARIAVEIS_NAO_INFORMADOS",
+          "TRIBUTO_ESTIMADO"
+        ],
+        "custoTotal": 37.5,
+        "taxasTotal": 14.24,
+        "frete": 15.05,
+        "imposto": 6.55,
+        "taxStatus": "estimated",
+        "itensEncontrados": 1,
+        "rastreio": null,
+        "freteDisponivel": true
+      },
+      "updates": {
+        "lucro": 5.75
+      },
+      "source": {
+        "orderId": "2000018301030896",
+        "shipmentId": 47941505897,
+        "items": [
+          {
+            "itemId": "MLB7216666520",
+            "sku": "VTK000045",
+            "quantity": 1,
+            "saleFee": 14.24
+          }
+        ],
+        "sellerShippingCost": 15.05
+      }
+    }
+  ],
+  "requests": [
+    {
+      "endpoint": "/orders/2000018304422954",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:03.220Z"
+    },
+    {
+      "endpoint": "/shipments/47943010269/costs",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:03.378Z"
+    },
+    {
+      "endpoint": "/orders/2000018305512122",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:04.043Z"
+    },
+    {
+      "endpoint": "/shipments/47943473333/costs",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:04.194Z"
+    },
+    {
+      "endpoint": "/orders/2000018301138698",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:04.664Z"
+    },
+    {
+      "endpoint": "/shipments/47941846914/costs",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:04.814Z"
+    },
+    {
+      "endpoint": "/orders/2000018306225848",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:05.263Z"
+    },
+    {
+      "endpoint": "/shipments/47944093114/costs",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:05.420Z"
+    },
+    {
+      "endpoint": "/orders/2000018301030896",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:05.903Z"
+    },
+    {
+      "endpoint": "/shipments/47941505897/costs",
+      "status": 200,
+      "method": "GET",
+      "at": "2026-09-06T02:05:06.051Z"
+    }
+  ]
+}
