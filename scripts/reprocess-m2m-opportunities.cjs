@@ -34,7 +34,7 @@ for(const candidate of candidates){
   return evaluateEconomics({price,cost:offer?.custo??null,offerId:offer?.id??null,supplierId:offer?.dslite_fornecedor_id??null,costObservedAt:offer?.last_sync_at??null,
     fee:amount(fee,exact?'ml_observed':'fallback',exact?.fees?.endpoint??`revisao-precos.json:${p.sku}:projecao_tarifa`,exact?.fees?.at??observed?.fees?.at),
     shipping:amount(freight,exact?'ml_observed':'fallback',exact?.ship?.endpoint??`revisao-precos.json:${p.sku}:frete_requer_recotacao`,exact?.ship?.at??observed?.ship?.at),
-    variableCosts:amount(null,'unknown',null),tax,evaluatedAt:asOf});
+    tax,evaluatedAt:asOf});
  };
  let target=null,floor=null,breakEven=null;
  if(offer&&feeRate!==null&&fixedFee!==null&&Number.isFinite(shipping)&&tax.rate!==null){

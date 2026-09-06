@@ -53,7 +53,7 @@ test('estimativas econômicas são avisos, sem inventar confirmação ou conflit
  const at='2026-09-05T15:00:00Z',amount=n=>({amount:n,source:'ml_live',observedAt:at,evidence:'ML'});
  const memory=evaluateEconomics({price:100,cost:50,offerId:'o',supplierId:'s',costObservedAt:at,fee:amount(15),shipping:amount(10),variableCosts:{amount:null,source:'unknown',observedAt:null,evidence:null},tax:{rate:.05,status:'estimated',referenceMonth:'2026-09',observedAt:at,source:'RBT12',rbt12:1,missingMonths:[]},evaluatedAt:at});
  const assessment=assessOpportunityConflicts({identity:{local:{brand:'Evus',model:'A1'},remote:{brand:'Evus',model:'A1'},source:'source'},listings:[],listingSearchComplete:true,economy:memory,eligibleOffer:true});
- assert.equal(assessment.state,'SEM_CONFLITO');assert.ok(assessment.warnings.includes('TRIBUTO_ESTIMADO'));assert.ok(assessment.warnings.includes('CUSTOS_VARIAVEIS_NAO_INFORMADOS'));assert.equal(memory.status,'estimated');assert.equal(memory.variableCosts.amount,null);
+ assert.equal(assessment.state,'SEM_CONFLITO');assert.ok(assessment.warnings.includes('TRIBUTO_ESTIMADO'));assert.equal(assessment.warnings.includes('CUSTOS_VARIAVEIS_NAO_INFORMADOS'),false);assert.equal(memory.status,'estimated');assert.equal('variableCosts' in memory,false);
 });
 test('complemento técnico auditado distingue seis pinos de quatro e fica vinculado à oferta/GTIN',()=>{
  const product={id:'o',gtin:'789',marca:'EVUS',nome:'Kit FK-12P',descricao:'Composto por 4 unidades'};

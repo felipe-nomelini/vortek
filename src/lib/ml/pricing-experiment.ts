@@ -123,7 +123,7 @@ export function pricingExperimentUnitResult(input: {
   taxRate: number;
 }): number | null {
   return unitResult({ revenue: input.price, cost: input.cost, fee: input.feeAmount,
-    shipping: input.shippingAmount, variableCosts: 0, tax: ceilMoney(input.price * input.taxRate) });
+    shipping: input.shippingAmount, tax: ceilMoney(input.price * input.taxRate) });
 }
 
 /** A coorte Radar usa eventos próprios e não altera o estado do experimento anterior. */

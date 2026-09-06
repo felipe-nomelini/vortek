@@ -21,7 +21,7 @@ export interface PricingPolicy {
     };
 }
 export const PRICING_POLICY: PricingPolicy = {
-    version: 'M2M-PRC-01-v1',
+    version: 'VORTEK-CANON-1.0-ECON-2',
     bands: [
         { id: 'BELOW_200', maxCents: 20000, floor: 0.05, target: 0.07, limit: 0.10 },
         { id: 'FROM_200_TO_1000', maxCents: 100000, floor: 0.07, target: 0.10, limit: 0.15 },
@@ -53,7 +53,7 @@ export function validatePricingPolicy(value: unknown): PricingPolicy {
         || (p.feeFallbackRate !== null && (!Number.isFinite(p.feeFallbackRate) || p.feeFallbackRate < 0 || p.feeFallbackRate >= 1))
         || p.bands.some((b, i) => b.id !== PRICING_POLICY.bands[i].id || b.maxCents !== PRICING_POLICY.bands[i].maxCents
             || ![b.floor, b.target, b.limit].every(n => Number.isFinite(n) && n >= 0 && n < 1)
-            || b.floor > b.target || b.target > b.limit)) {
+            || b.floor !== PRICING_POLICY.bands[i].floor || b.target !== PRICING_POLICY.bands[i].target || b.limit !== PRICING_POLICY.bands[i].limit)) {
         throw new Error('CONFIGURACAO_PRICING_INVALIDA');
     }
     return p;

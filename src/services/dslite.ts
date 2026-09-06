@@ -170,6 +170,7 @@ export interface DsliteProduto {
   preco_normal: number;
   preco_crossdocking: number;
   preco_promocional?: number;
+  /** @deprecated Campo recebido do fornecedor; não governa o pricing Vortek. */
   margem_lucro?: number;
   estoque: number;
   estoque_total?: number;

@@ -1,3 +1,4 @@
+import { strategyIsCurrent } from './pricing-strategy.ts';
 import { PRICING_POLICY, priceBand, type PricingPolicy, type PriceBand } from './pricing-policy.ts';
 import type { PricingTaxContext } from './pricing-tax.ts';
 export { PRICING_POLICY, priceBand } from './pricing-policy.ts';
@@ -12,15 +13,16 @@ export interface EconomicAmount {
   evidence: string | null;
   contextKey?: string;
 }
+export interface CostComponent { productId: string; offerId: string; supplierId: string; unitCost: number; quantity: number; observedAt: string | null }
 export interface EconomicInputs {
   price: number;
   cost: number | null;
   offerId: string | null;
   supplierId: string | null;
   costObservedAt: string | null;
+  costComponents?: CostComponent[];
   fee: EconomicAmount;
   shipping: EconomicAmount;
-  variableCosts: EconomicAmount;
   tax: PricingTaxContext;
   evaluatedAt: string;
 }
@@ -37,10 +39,10 @@ export interface EconomicMemory extends EconomicInputs {
 
 /** Aritmética compartilhada também pelo resultado realizado. Nenhuma fonte implícita. */
 export function unitResult(input: {
-  revenue: number; cost: number; fee: number; shipping: number; variableCosts: number; tax: number;
+  revenue: number; cost: number; fee: number; shipping: number; tax: number;
 }): number | null {
-  if (!Object.values(input).every(n => Number.isFinite(n) && n >= 0) || input.revenue <= 0) return null;
-  return money(input.revenue - input.cost - input.fee - input.shipping - input.variableCosts - input.tax);
+  if (![input.revenue, input.cost, input.fee, input.shipping, input.tax].every(n => Number.isFinite(n) && n >= 0) || input.revenue <= 0) return null;
+  return money(input.revenue - input.cost - input.fee - input.shipping - input.tax);
 }
 
 export function evaluateEconomics(input: EconomicInputs, policy: PricingPolicy = PRICING_POLICY): EconomicMemory {
@@ -56,11 +58,8 @@ export function evaluateEconomics(input: EconomicInputs, policy: PricingPolicy =
   if (!band || Math.abs(input.price*100-Math.round(input.price*100))>1e-6) reasons.push('PRECO_INVALIDO');
   if (!Number.isFinite(Date.parse(input.evaluatedAt))) reasons.push('TIMESTAMP_AVALIACAO_INVALIDO');
   if (input.tax.rate !== null && input.tax.rate >= 1) reasons.push('TRIBUTO_INVALIDO');
-  if (input.variableCosts.amount !== null && (!Number.isFinite(input.variableCosts.amount) || input.variableCosts.amount < 0)) reasons.push('CUSTOS_VARIAVEIS_INVALIDOS');
-  const base = { ...input, policyVersion: policy.version, band, reasons, diagnostics: [] as string[] };
+  const base = { price: input.price, cost: input.cost, offerId: input.offerId, supplierId: input.supplierId, costObservedAt: input.costObservedAt, costComponents: input.costComponents, fee: input.fee, shipping: input.shipping, tax: input.tax, evaluatedAt: input.evaluatedAt, policyVersion: policy.version, band, reasons, diagnostics: [] as string[] };
   if (reasons.length) return { ...base, taxAmount: null, result: null, margin: null, status: 'inconclusive' };
-  if (input.variableCosts.amount === null) reasons.push('CUSTOS_VARIAVEIS_NAO_INFORMADOS');
-  else if (input.variableCosts.source !== 'confirmed') reasons.push('CUSTOS_VARIAVEIS_ESTIMADOS');
   if (!input.costObservedAt || Date.parse(input.evaluatedAt)-Date.parse(input.costObservedAt)>policy.evidenceMaxAgeHours*3600000) reasons.push('CUSTO_DESATUALIZADO');
   if (input.tax.status !== 'confirmed') reasons.push('TRIBUTO_ESTIMADO');
   for (const [label, value] of [['TARIFA', input.fee], ['FRETE', input.shipping]] as const) {
@@ -69,7 +68,7 @@ export function evaluateEconomics(input: EconomicInputs, policy: PricingPolicy =
       || Date.parse(input.evaluatedAt) - Date.parse(value.observedAt) > policy.evidenceMaxAgeHours * 3600000) reasons.push(`${label}_DESATUALIZADO`);
   }
   const taxAmount = ceilMoney(input.price * input.tax.rate!);
-  const result = unitResult({ revenue: input.price, cost: input.cost!, fee: input.fee.amount!, shipping: input.shipping.amount!, variableCosts: input.variableCosts.amount ?? 0, tax: taxAmount })!;
+  const result = unitResult({ revenue: input.price, cost: input.cost!, fee: input.fee.amount!, shipping: input.shipping.amount!, tax: taxAmount })!;
   const margin = result / input.price;
   if (result < 0) base.diagnostics.push(reasons.length ? 'PREJUIZO_ESTIMADO' : 'PREJUIZO_REAL');
   if (margin < band!.floor) base.diagnostics.push('MARGEM_ABAIXO_DO_PISO');
@@ -79,7 +78,7 @@ export function evaluateEconomics(input: EconomicInputs, policy: PricingPolicy =
 
 export interface PricingParams {
   cost: number; shipping: number; mlFee: number; taxRate: number;
-  fixedFee?: number; variableCosts?: number; margin?: number;
+  fixedFee?: number; margin?: number;
 }
 export interface PricingResult {
   suggestedPrice: number; tax: number; mlFeeAmount: number; marginAmount: number; netProfit: number;
@@ -87,11 +86,11 @@ export interface PricingResult {
 
 /** Inversão algébrica para proposta; confirmar pelo motor e pela cotação no preço final. */
 export function calculateExactMarginPrice(params: PricingParams & { margin: number }): number {
-  const values = [params.cost, params.shipping, params.mlFee, params.taxRate, params.margin, params.fixedFee ?? 0, params.variableCosts ?? 0];
+  const values = [params.cost, params.shipping, params.mlFee, params.taxRate, params.margin, params.fixedFee ?? 0];
   if (!values.every(n => Number.isFinite(n) && n >= 0) || params.cost <= 0) throw new Error('DADOS_ECONOMICOS_INVALIDOS');
   const denominator = 1 - params.mlFee - params.taxRate - params.margin;
   if (denominator <= 0) throw new Error('DENOMINADOR_ECONOMICO_INVALIDO');
-  let price = ceilMoney((params.cost + params.shipping + (params.fixedFee ?? 0) + (params.variableCosts ?? 0)) / denominator);
+  let price = ceilMoney((params.cost + params.shipping + (params.fixedFee ?? 0)) / denominator);
   for (let i = 0; i < 3; i++) {
     if (calculateNetProfitAtPrice({ ...params, price }) / price + 1e-10 >= params.margin) return price;
     price = ceilMoney(price + 0.01 / denominator);
@@ -101,7 +100,7 @@ export function calculateExactMarginPrice(params: PricingParams & { margin: numb
 
 export function calculateNetProfitAtPrice(params: PricingParams & { price: number }): number {
   if (!Number.isFinite(params.taxRate) || params.taxRate < 0 || params.taxRate >= 1) throw new Error('TRIBUTO_INDISPONIVEL');
-  const result = unitResult({ revenue: params.price, cost: params.cost, fee: money(params.price * params.mlFee + (params.fixedFee ?? 0)), shipping: params.shipping, variableCosts: params.variableCosts ?? 0, tax: ceilMoney(params.price * params.taxRate) });
+  const result = unitResult({ revenue: params.price, cost: params.cost, fee: money(params.price * params.mlFee + (params.fixedFee ?? 0)), shipping: params.shipping, tax: ceilMoney(params.price * params.taxRate) });
   if (result === null) throw new Error('DADOS_ECONOMICOS_INVALIDOS');
   return result;
 }
@@ -131,13 +130,6 @@ export function calculateSuggestedPrice(params: PricingParams, policy: PricingPo
   return { suggestedPrice, netProfit, marginAmount: netProfit, tax: ceilMoney(suggestedPrice * params.taxRate), mlFeeAmount: money(suggestedPrice * params.mlFee + (params.fixedFee ?? 0)) };
 }
 
-/** Parâmetro nominal somente para estratégia explicitamente autorizada; não é piso. */
-export function calculateTargetNetProfitPrice(params: PricingParams & { targetNetProfit: number }): number {
-  if (!Number.isFinite(params.cost) || params.cost <= 0) throw new Error('DADOS_ECONOMICOS_INVALIDOS');
-  if (!Number.isFinite(params.targetNetProfit) || params.targetNetProfit < 0) throw new Error('LUCRO_ALVO_INVALIDO');
-  return calculateExactMarginPrice({ ...params, cost: params.cost + params.targetNetProfit, margin: 0 });
-}
-
 export type PriceObjective = 'floor' | 'target' | 'limit' | 'break_even';
 export type QuotedPricingResult = { ok: true; memory: EconomicMemory; iterations: number }
   | { ok: false; reason: string; memories: EconomicMemory[] };
@@ -165,7 +157,7 @@ export async function solveQuotedPrice(input: {
       const rate = input.objective === 'break_even' ? 0 : band[input.objective];
       const denominator = 1 - input.taxRate - rate;
       if (denominator <= 0) break;
-      let next = ceilMoney((input.cost + memory.fee.amount! + memory.shipping.amount! + (memory.variableCosts.amount ?? 0)) / denominator);
+      let next = ceilMoney((input.cost + memory.fee.amount! + memory.shipping.amount!) / denominator);
       if (next === price && memory.margin! + 1e-10 < rate) next = money(price + 0.01);
       if (memory.band.id === band.id && memory.margin! + 1e-10 >= rate && Math.abs(next - price) < 0.011) {
         stable.push({ memory, iterations: iteration }); break;
@@ -183,11 +175,11 @@ export async function solveQuotedPrice(input: {
 
 export function commercialDiagnosis(memory: EconomicMemory, context: {
   sales: number | null; visits: number | null; completeWindow: boolean;
-  strategy?: { kind: 'functional' | 'clearance'; author: string; reason: string; validUntil: string } | null;
+  strategy?: { kind: 'functional' | 'clearance'; author: string; reason: string; validUntil: string | null; untilRevoked?: boolean } | null;
 }): string {
   if (memory.result === null || !memory.band) return 'INCONCLUSIVO';
   const strategy = context.strategy;
-  const authorized = strategy && strategy.author && strategy.reason && Date.parse(strategy.validUntil) > Date.parse(memory.evaluatedAt);
+  const authorized = strategy && strategy.author && strategy.reason && strategyIsCurrent(strategy, Date.parse(memory.evaluatedAt));
   if (authorized && strategy.kind === 'clearance') return 'LIQUIDACAO_AUTORIZADA';
   if (memory.result < 0) return memory.status === 'available' ? 'PREJUIZO_REAL' : 'PREJUIZO_ESTIMADO';
   if (memory.margin! > memory.band.limit && context.sales !== null && context.sales > 0) return 'MARGEM_PREMIUM_VALIDADA_PELO_MERCADO';

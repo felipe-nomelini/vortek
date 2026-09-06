@@ -1,8 +1,8 @@
 -- Seed data for Vortek
 
 -- Configurações padrão
-insert into public.configuracoes (id, margem_lucro, notificacoes_email, notificacoes_push)
-values ('00000000-0000-0000-0000-000000000001', 30, true, false)
+insert into public.configuracoes (id, notificacoes_email, notificacoes_push)
+values ('00000000-0000-0000-0000-000000000001', true, false)
 on conflict (id) do nothing;
 
 -- Empresa padrão

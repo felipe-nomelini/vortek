@@ -19,7 +19,7 @@ function stableTargetPrice(input){
 }
 function unitEconomics({price,cost,feeRate,fixedFee=0,shippingAmount,taxRate}){
  const feeAmount=canonical.money(price*feeRate+fixedFee),taxAmount=canonical.ceilMoney(price*taxRate);
- const result=canonical.unitResult({revenue:price,cost,fee:feeAmount,shipping:shippingAmount,tax:taxAmount,variableCosts:0});
+ const result=canonical.unitResult({revenue:price,cost,fee:feeAmount,shipping:shippingAmount,tax:taxAmount});
  return result===null?null:{price:canonical.money(price),feeAmount,taxAmount,result,marginPct:round(result/price*100,4)};
 }
 function resolvePreferredOffer(product,offers){const offer=resolvePreferredOfferForProduct(offers,product?.oferta_preferencial_id,product?.fornecedor_preferencial_manual===true);return{offer,source:product?.fornecedor_preferencial_manual&&offer?.id===product.oferta_preferencial_id?'manual':'automatic'};}

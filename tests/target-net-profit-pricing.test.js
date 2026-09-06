@@ -1,56 +1,14 @@
-const assert = require('node:assert/strict');
 const test = require('node:test');
-
-const {
-  calculateTargetNetProfitPrice,
-} = require('../src/services/pricing.ts');
-
-test('cenário nominal explícito com alíquota informada, sem piso nominal global', () => {
-  assert.equal(calculateTargetNetProfitPrice({
-    cost: 28.1,
-    taxRate: 0.04,
-    shipping: 6.5,
-    mlFee: 0.165,
-    targetNetProfit: 60.13,
-  }), 119.16);
+const assert = require('node:assert/strict');
+const pricing = require('../src/services/pricing.ts');
+test('lucro nominal não é interface de pricing operacional', () => {
+  assert.equal(pricing.calculateTargetNetProfitPrice, undefined);
 });
-
-test('inclui tarifa fixa no preço do lucro alvo', () => {
-  assert.equal(calculateTargetNetProfitPrice({
-    cost: 50,
-    taxRate: 0.04,
-    shipping: 10,
-    mlFee: 0.15,
-    fixedFee: 6,
-    targetNetProfit: 20,
-  }), 106.18);
-});
-
-test('rejeita taxa ou valores inválidos', () => {
-  assert.throws(() => calculateTargetNetProfitPrice({
-    cost: -1,
-    taxRate: 0.04,
-    shipping: 0,
-    mlFee: 0.15,
-    targetNetProfit: 20,
-  }), /DADOS_ECONOMICOS_INVALIDOS/);
-  assert.throws(() => calculateTargetNetProfitPrice({
-    cost: 1,
-    taxRate: 0.04,
-    shipping: 0,
-    mlFee: 0.97,
-    targetNetProfit: 20,
-  }), /DENOMINADOR_ECONOMICO_INVALIDO/);
-});
-
-test('manifesto contém nove SKUs únicos e títulos válidos', () => {
-  const manifest = require('../reports/ml-shelf-and-seo-2026-08-12/create-manifest.json');
-  assert.equal(manifest.items.length, 9);
-  assert.equal(new Set(manifest.items.map((row) => row.sku)).size, 9);
-  assert.equal(new Set(manifest.items.map((row) => row.produtoId)).size, 9);
-  for (const row of manifest.items) {
-    assert.match(row.familyName, /^[a-zA-Z0-9 ]+$/);
-    assert.ok(row.familyName.length < 60);
-    assert.ok(row.targetNetProfit > 0);
-  }
+test('preço novo depende do alvo da faixa final, nunca de lucro nominal', () => {
+  const params = {cost:20,shipping:5,mlFee:.15,taxRate:.05};
+  const normal=pricing.calculateSuggestedPrice(params);
+  const legacy=pricing.calculateSuggestedPrice({...params,minProfit:150,margem_lucro:.3});
+  assert.deepEqual(legacy,normal);
+  assert.ok(normal.netProfit<20);
+  assert.ok(normal.netProfit/normal.suggestedPrice>=pricing.priceBand(normal.suggestedPrice).target);
 });

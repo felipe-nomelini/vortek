@@ -28,7 +28,7 @@ test('RBT12 proporcionalizado e mês ausente não vira zero', () => {
 test('economia canônica discrimina ausência, zero confirmado e estimativa', () => {
   assert.equal(evaluateEconomics(input()).result,10);
   assert.equal(evaluateEconomics(input({shipping:amount(null)})).result,null);
-  assert.equal(evaluateEconomics(input({variableCosts:amount(null,'unknown')})).status,'estimated');
+  assert.equal(evaluateEconomics(input({variableCosts:amount(null,'unknown')})).status,'available');
   assert.equal(evaluateEconomics(input({cost:0})).status,'inconclusive');
 });
 test('7,3% abaixo de 200 é viável no alvo, sem piso universal 10%', () => {

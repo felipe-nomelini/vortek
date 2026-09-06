@@ -1,3 +1,6 @@
+import { loadGroupStrategies } from '../../services/pricing-strategy';
+import { resolveMlPricingGroup } from '../../services/ml-pricing-group';
+import { fetchMLResult } from '../../services/integration';
 import { commercialDiagnosis } from '../../services/pricing';
 import { evaluateProductPricing, loadPricingRuntime, persistPricingEvaluation, recordPricingEvent } from '../../services/pricing-context';
 import { resolveAutomaticPricingProductIds } from './automatic-pricing-selection';
@@ -19,6 +22,12 @@ export async function enqueueAutomaticPricesForCostChanges(client: ServiceClient
       const { data: product, error } = await client.from('produtos').select('id,sku,ativo,ml_item_id').eq('id', productId).single();
       if (error) throw new Error(error.message);
       if (!product.ativo || !product.ml_item_id || protectedSkus.has(product.sku)) { result.skipped++; continue; }
+      const item = await fetchMLResult<any>(`/items/${product.ml_item_id}`);
+      if (!item.ok) throw new Error('VINCULO_INCONCLUSIVO');
+      const group = await resolveMlPricingGroup(client,item.data);
+      if (!group.complete) throw new Error('VINCULO_INCONCLUSIVO');
+      const strategies = await loadGroupStrategies(client,group.groupId);
+      if (strategies.some((s:any) => s.payload.kind === 'manual_pricing_override' || s.payload.kind === 'clearance' || s.payload.kind === 'functional')) { result.skipped++; continue; }
       const current = await evaluateProductPricing(client,{productId,itemId:product.ml_item_id,runtime,requireLive:true});
       if(!current.memory||current.memory.result===null)throw new Error('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
       const currentId=await persistPricingEvaluation(client,{...current,memory:current.memory,scenario:'current',itemId:product.ml_item_id});
@@ -29,14 +38,15 @@ export async function enqueueAutomaticPricesForCostChanges(client: ServiceClient
         await recordPricingEvent(client,{event_type:'MAINTAIN',produto_id:productId,ml_item_id:product.ml_item_id,evaluation_id:currentId,pricing_source:'supplier_cost_change',actor:'job:automatic_pricing',reason:diagnosis,previous_price:current.memory.price,new_price:current.memory.price,rule_id:runtime.policy.version});
         result.skipped++;continue;
       }
-      const evaluation = await evaluateProductPricing(client, { productId, itemId: product.ml_item_id, objective: 'target', runtime, requireLive: true });
+      if (current.memory.margin! >= current.memory.band!.floor) { result.skipped++; continue; }
+      const evaluation = await evaluateProductPricing(client, { productId, itemId: product.ml_item_id, objective: 'floor', runtime, requireLive: true });
       if (!evaluation.memory) throw new Error(evaluation.failure ?? 'ECONOMIA_INCONCLUSIVA');
-      const evaluationId = await persistPricingEvaluation(client, { ...evaluation, memory: evaluation.memory, scenario: 'target', itemId: product.ml_item_id });
+      const evaluationId = await persistPricingEvaluation(client, { ...evaluation, memory: evaluation.memory, scenario: 'floor', itemId: product.ml_item_id, groupId: group.groupId });
       await recordPricingEvent(client, {
-        event_type: 'PROPOSED', produto_id: productId, ml_item_id: product.ml_item_id, evaluation_id: evaluationId,
-        pricing_source: 'supplier_cost_change', actor: 'job:automatic_pricing', reason: 'Mudança de custo; aguarda aprovação',
-        previous_price: evaluation.product.custom_price, new_price: evaluation.memory.price, rule_id: runtime.policy.version,
-        dedupe_key: `cost:${productId}:${evaluation.offer?.updated_at}:${runtime.policy.version}`,
+        event_type: 'PROPOSED', pricing_group_id: group.groupId, produto_id: productId, ml_item_id: product.ml_item_id, evaluation_id: evaluationId,
+        pricing_source: 'supplier_cost_change', actor: 'job:automatic_pricing', reason: 'Recuperação no piso após alteração econômica; aguarda aprovação',
+        previous_price: current.memory.price, new_price: evaluation.memory.price, rule_id: runtime.policy.version,
+        dedupe_key: `cost:${group.groupId}:${evaluation.costBasis?.observedAt}:${runtime.policy.version}`,
         payload: { autonomy: 'REQUIRES_CONFIRMATION', diagnostics: evaluation.memory.diagnostics },
       });
       result.proposals!++;

@@ -35,8 +35,7 @@ export default function CanonicalPricingSettings({ initial }: {
     <Alert type="info" showIcon message="Comercial / Precificação" description="Faixas pelo preço final. Limite é teto de busca, sem reduzir margens premium. Radar observa; publicação e alteração de preço exigem confirmação."/>
     <Table pagination={false} rowKey="id" dataSource={policy.bands} columns={[
             { title: 'Preço final', dataIndex: 'maxCents', render: (_, row) => row.id === 'BELOW_200' ? 'Até R$ 200,00' : row.id === 'FROM_200_TO_1000' ? 'R$ 200,01 a R$ 1.000,00' : 'Acima de R$ 1.000,00' },
-            ...(['floor', 'target', 'limit'] as const).map((field, index) => ({ title: ['Piso %', 'Alvo %', 'Limite de busca %'][index], key: field, render: (_: unknown, row: PricingPolicy['bands'][number]) => <InputNumber min={0} max={99} value={row[field] * 100} onChange={value => { if (value !== null)
-                    setPolicy(p => ({ ...p, bands: p.bands.map(b => b.id === row.id ? { ...b, [field]: value / 100 } : b) as PricingPolicy['bands'] })); }}/> }))
+            ...(['floor', 'target', 'limit'] as const).map((field, index) => ({ title: ['Piso %', 'Alvo %', 'Limite de busca %'][index], key: field, render: (_: unknown, row: PricingPolicy['bands'][number]) => <Typography.Text>{row[field] * 100}%</Typography.Text> }))
         ]}/>
     <Typography.Text>Tarifa fallback (%) — usada somente como estimativa</Typography.Text>
     <InputNumber min={0} max={99} value={policy.feeFallbackRate === null ? null : policy.feeFallbackRate * 100} onChange={v => setPolicy(p => ({ ...p, feeFallbackRate: v === null ? null : v / 100 }))}/>

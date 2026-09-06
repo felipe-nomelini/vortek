@@ -19,7 +19,8 @@ export async function GET() {
 
   if (error && error.code !== "PGRST116")
     return NextResponse.json({ erro: error.message }, { status: 500 });
-  return NextResponse.json({ ...(data || {}), pricing_policy: (data as any)?.pricing_policy ?? PRICING_POLICY });
+  const { margem_lucro: legacyMargin, ...current } = (data || {}) as any;
+  return NextResponse.json({ ...current, pricing_policy: (data as any)?.pricing_policy ?? PRICING_POLICY });
 }
 
 export async function PUT(request: Request) {
@@ -34,11 +35,11 @@ export async function PUT(request: Request) {
     try {
       const requested = validatePricingPolicy(body.pricing_policy);
       const { version: ignoredVersion, ...content } = requested;
-      const policy = { ...content, version: `M2M-${pricingFingerprint({ policy:content, tax:body.pricing_tax_config ?? {} }).slice(0,16)}` };
+      const policy = { ...content, version: `VORTEK-CANON-1.0-ECON-2-${pricingFingerprint({ policy:content, tax:body.pricing_tax_config ?? {} }).slice(0,16)}` };
       const tax = body.pricing_tax_config ?? {};
       if (tax.activityStartDate && !/^\d{4}-\d{2}-\d{2}$/.test(tax.activityStartDate)) throw new Error('Data de início inválida');
       if (tax.confirmed && (!/^\d{4}-\d{2}$/.test(tax.confirmed.month) || !Number.isFinite(tax.confirmed.rate) || tax.confirmed.rate < 0 || tax.confirmed.rate >= 1 || !String(tax.confirmed.evidence || '').trim())) throw new Error('Confirmação fiscal exige competência, alíquota e evidência');
-      if (Object.values(tax.variableCosts ?? {}).some(value => typeof value !== 'number' || !Number.isFinite(value) || value < 0)) throw new Error('Custos variáveis inválidos');
+      if ('variableCosts' in tax || 'custo_variavel' in tax) throw new Error('POLITICA_REMOVIDA: custo variável por SKU');
       if (!body.reason?.trim()) throw new Error('Informe a razão da alteração');
       const result = await (serviceClient as any).rpc('update_canonical_pricing_config', { p_policy:policy,p_tax:tax,p_expected_version:body.expectedVersion,p_actor:admin.user.id,p_reason:body.reason.trim() });
       if (result.error) return NextResponse.json({ erro:result.error.message }, { status:409 });

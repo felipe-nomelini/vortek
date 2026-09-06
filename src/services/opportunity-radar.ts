@@ -73,7 +73,7 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
                     own.data.push(...others.data);
                 }
             }
-            const inputHash = pricingFingerprint({ identityRule: IDENTITY_RULE_VERSION, policy: runtime.policy.version, tax: runtime.tax.rate, taxStatus: runtime.tax.status, product: { id: product.id, active: product.ativo, preferred: product.oferta_preferencial_id, manual: product.fornecedor_preferencial_manual, gtin: product.gtin, brand: product.marca, name: product.nome, description: product.descricao, dimensions: [product.altura, product.largura, product.profundidade, product.peso_bruto] }, offer: resolved.offer && { id: resolved.offer.id, name: resolved.offer.nome, description: resolved.offer.descricao, brand: resolved.offer.marca, gtin: resolved.offer.gtin, cost: resolved.offer.custo, stock: resolved.offer.estoque, active: resolved.offer.ativo }, listings: own.data.map((l: any) => [l.ml_item_id, l.status, l.preco_ml]), catalogId, coverageComplete, competitive: prior?.evidence?.competitivePrice, identityReview: prior?.evidence?.identityReview, identitySupplement: prior?.evidence?.identitySupplement });
+            const inputHash = pricingFingerprint({ identityRule: IDENTITY_RULE_VERSION, policy: runtime.policy.version, tax: runtime.tax.rate, taxStatus: runtime.tax.status, product: { id: product.id, active: product.ativo, preferred: product.oferta_preferencial_id, manual: product.fornecedor_preferencial_manual, gtin: product.gtin, brand: product.marca, name: product.nome, description: product.descricao, dimensions: [product.altura, product.largura, product.profundidade, product.peso_bruto] }, costBasis: resolved.costBasis, offer: resolved.offer && { id: resolved.offer.id, name: resolved.offer.nome, description: resolved.offer.descricao, brand: resolved.offer.marca, gtin: resolved.offer.gtin, cost: resolved.offer.custo, stock: resolved.offer.estoque, active: resolved.offer.ativo }, listings: own.data.map((l: any) => [l.ml_item_id, l.status, l.preco_ml]), catalogId, coverageComplete, competitive: prior?.evidence?.competitivePrice, identityReview: prior?.evidence?.identityReview, identitySupplement: prior?.evidence?.identitySupplement });
             if (prior?.input_fingerprint === inputHash && Date.now() - Date.parse(prior.processed_at) < runtime.policy.evidenceMaxAgeHours * 3600000)
                 return null;
             const listings: ListingEvidence[] = [];
@@ -108,11 +108,11 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
             const active = listings.some(l => l.status === 'active');
             const memories: Record<string, EconomicMemory | null> = { competitive: !active && competitivePrice ? await quote(competitivePrice) : null, current: !active && liveItem ? await quote(Number(liveItem.price)) : null };
             for (const objective of ['target', 'floor', 'break_even'] as const) {
-                if (active || !ctx || !resolved.offer || runtime.tax.rate === null) {
+                if (active || !ctx || !resolved.costBasis || runtime.tax.rate === null) {
                     memories[objective] = null;
                     continue;
                 }
-                const solution = await solveQuotedPrice({ cost: Number(resolved.offer.custo), taxRate: runtime.tax.rate, initialPrice: competitivePrice ?? Number(resolved.offer.custo), objective, policy: runtime.policy, quote });
+                const solution = await solveQuotedPrice({ cost: Number(resolved.costBasis!.amount), taxRate: runtime.tax.rate, initialPrice: competitivePrice ?? Number(resolved.costBasis!.amount), objective, policy: runtime.policy, quote });
                 memories[objective] = solution.ok ? solution.memory : null;
             }
             const ids: Record<string, string | null> = {};
@@ -120,18 +120,18 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
                 if (memory)
                     ids[scenario] = await persistPricingEvaluation(client, { ...resolved, memory, scenario, itemId: liveItem?.id, groupId: listings[0]?.pricingGroupId, jobId });
             const economy = memories.competitive ?? memories.target;
-            const assessment = assessOpportunityConflicts({ identity, listings, listingSearchComplete: linksComplete, economy, buyBox: !!competitivePrice, eligibleOffer: product.ativo === true && !!resolved.offer });
+            const assessment = assessOpportunityConflicts({ identity, listings, listingSearchComplete: linksComplete, economy, buyBox: !!competitivePrice, eligibleOffer: product.ativo === true && !!resolved.costBasis });
             const sold = await client.from('pedido_itens').select('id,pedidos!inner(situacao)').eq('seller_sku', product.sku).not('pedidos.situacao','in','(cancelado,recusado,pendente,aberto)').limit(1);
             if (sold.error)
                 throw new Error(sold.error.message);
             const demand: DemandState = (sold.data?.length ?? 0) > 0 ? 'HISTORICO_PROPRIO' : prior?.evidence?.demand ?? 'SEM_EVIDENCIA_DE_DEMANDA';
-            const stock = Number(resolved.offer?.estoque ?? 0);
+            const stock = Number(resolved.costBasis?.stock ?? 0);
             const complete = !!product.ncm && Array.isArray(product.imagens) && product.imagens.length > 0 && assessment.identity === 'IDENTIDADE_COHERENTE';
             const classification = radarClassification(assessment, demand, stock, complete);
                 if (prior && ['REJEITADO','VALIDADO','PUBLICADO_EXPERIMENTO'].includes(prior.stage) && prior.input_fingerprint===inputHash) classification.stage=prior.stage;
                 else if (prior && ['VALIDADO','PUBLICADO_EXPERIMENTO'].includes(prior.stage)) classification.stage='REVISAR';
             const priority = radarPriority({ assessment, demand, stock, publicationComplete: complete, competitivePrice, contribution: economy?.result ?? null });
-            return { produto_id: product.id, candidate_key: `product:${product.id}`, sku: product.sku, catalog_product_id: catalogId, pricing_group_id: listings[0]?.pricingGroupId ?? null, stage: classification.stage, queue: classification.queue, conflict_state: assessment.state, assessment, evidence: { ...prior?.evidence, product: product.nome, supplier: resolved.offer?.fornecedor_nome, cost: resolved.offer?.custo, identity, competitivePrice, demand, coverageComplete: linksComplete, observedAt: startedAt }, priority, recommendation: classification.recommendation, evaluation_id: ids.competitive ?? ids.current ?? ids.target ?? null, target_evaluation_id: ids.target ?? null, floor_evaluation_id: ids.floor ?? null, break_even_evaluation_id: ids.break_even ?? null, input_fingerprint: inputHash, stock, demand_rank: priority.demandRank, contribution: economy?.result ?? null };
+            return { produto_id: product.id, candidate_key: `product:${product.id}`, sku: product.sku, catalog_product_id: catalogId, pricing_group_id: listings[0]?.pricingGroupId ?? null, stage: classification.stage, queue: classification.queue, conflict_state: assessment.state, assessment, evidence: { ...prior?.evidence, product: product.nome, supplier: resolved.offer?.fornecedor_nome, cost: resolved.costBasis?.amount, identity, competitivePrice, demand, coverageComplete: linksComplete, observedAt: startedAt }, priority, recommendation: classification.recommendation, evaluation_id: ids.competitive ?? ids.current ?? ids.target ?? null, target_evaluation_id: ids.target ?? null, floor_evaluation_id: ids.floor ?? null, break_even_evaluation_id: ids.break_even ?? null, input_fingerprint: inputHash, stock, demand_rank: priority.demandRank, contribution: economy?.result ?? null };
         }));
         for (let i = 0; i < settled.length; i++) {
             const result = settled[i];

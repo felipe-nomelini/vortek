@@ -115,25 +115,25 @@ function fixture({ variables = {}, kit = false, activeOffer = true, activeSuppli
     },
   });
   const order = { id: '2000018304422954', total_amount: 53.19, order_items: [{ item: { id: 'MLB1', seller_sku: product.sku }, quantity: 1, sale_fee: 7.45 }] };
-  return { service, order, tables, calculate: (value = order, freight = 9.15) => service.calculateOrderProfit(value, null, { allowShipmentFetch: false, sellerShippingCost: freight }) };
+  return { service, order, tables, db, pricing, calculate: (value = order, freight = 9.15) => service.calculateOrderProfit(value, null, { allowShipmentFetch: false, sellerShippingCost: freight }) };
 }
 
-test('despesa não cadastrada permite estimativa; zero confirmado e despesa informada são preservados', async () => {
+test('campo legado de despesas não participa mais da economia', async () => {
   const missing = await fixture().calculate();
   assert.equal(missing.lucro, 19.82);
   assert.equal(missing.status, 'estimated');
-  assert.ok(missing.reasons.includes('CUSTOS_VARIAVEIS_NAO_INFORMADOS'));
+  assert.equal(missing.reasons.includes('CUSTOS_VARIAVEIS_NAO_INFORMADOS'), false);
   const zero = await fixture({ variables: { product: 0 }, taxStatus: 'confirmed' }).calculate();
   assert.equal(zero.lucro, 19.82); assert.equal(zero.status, 'available');
-  assert.equal((await fixture({ variables: { product: 2 } }).calculate()).lucro, 17.82);
+  assert.equal((await fixture({ variables: { product: 2 } }).calculate()).lucro, 19.82);
   assert.equal((await fixture({ variables: { product: null } }).calculate()).lucro, 19.82);
 });
 
-test('despesa adicional inválida não vira zero nem valor estimado utilizável', async () => {
+test('valores legados inválidos de despesas não têm autoridade', async () => {
   for (const value of [-1, NaN, Infinity, '2']) {
     const r = await fixture({ variables: { product: value } }).calculate();
-    assert.equal(r.lucro, null); assert.equal(r.status, 'inconclusive');
-    assert.ok(r.reasons.includes('CUSTOS_VARIAVEIS_INVALIDOS'));
+    assert.equal(r.lucro, 19.82); assert.equal(r.status, 'estimated');
+    assert.equal(r.reasons.includes('CUSTOS_VARIAVEIS_INVALIDOS'), false);
   }
 });
 
@@ -144,12 +144,12 @@ test('venda real de kit usa duas ofertas unitárias e cobra tarifa uma vez por k
   assert.equal(r.status, 'estimated');
 });
 
-test('dois kits multiplicam componentes, tarifa e despesas pela quantidade correta', async () => {
+test('dois kits multiplicam componentes e tarifa pela quantidade vendida', async () => {
   const f = fixture({ kit: true, variables: { product: 1 } });
   f.order.order_items[0].quantity = 2; f.order.total_amount = 106.38;
   const r = await f.calculate();
   assert.equal(r.custoTotal, 49.44); assert.equal(r.taxasTotal, 14.9);
-  assert.equal(r.lucro, 22.08);
+  assert.equal(r.lucro, 24.08);
 });
 
 test('oferta ou fornecedor inativo não sustenta custo de kit', async () => {
@@ -174,16 +174,32 @@ test('ausência de frete, tarifa ou tributo não produz lucro falso', async () =
   assert.equal((await fixture({ taxRate: null }).calculate()).lucro, null);
 });
 
-test('uma despesa ausente não elimina as despesas conhecidas das outras linhas', async () => {
+test('CMV de linhas diferentes soma componentes sem custo adicional', async () => {
   const f = fixture({ kit: true, variables: { product: 2 } });
   f.order.order_items.push({ item: { id: 'MLB2', seller_sku: 'VTK003213' }, quantity: 1, sale_fee: 1 });
   const r = await f.calculate();
-  assert.equal(r.custoTotal, 37.08); assert.equal(r.lucro, -7.9);
-  assert.ok(r.reasons.includes('CUSTOS_VARIAVEIS_NAO_INFORMADOS'));
+  assert.equal(r.custoTotal, 37.08); assert.equal(r.lucro, -5.9);
+  assert.equal(r.reasons.includes('CUSTOS_VARIAVEIS_NAO_INFORMADOS'), false);
 });
 
 test('cálculo compartilhado aceita despesa adicional ausente sem dispensar custos obrigatórios', () => {
   for (const variableCosts of [undefined, null, 0]) {
     assert.equal(calculateFinalOrderProfit({ total: 89, productCost: 55.43, saleFees: 10.24, sellerShippingCost: 13.25, tax: 3.56, variableCosts, matchedItems: 1 }), 6.52);
   }
+});
+
+test('pedido, simulador e Radar recebem o mesmo CMV de kit sem oferta fictícia', async () => {
+  const f = fixture({ kit: true, taxRate: .05, taxStatus: 'confirmed' });
+  const resolved = await f.pricing.resolvePricingProduct(f.db, 'product');
+  assert.equal(resolved.offer, null);
+  assert.equal(resolved.costBasis.amount, 24.72);
+  assert.equal(resolved.costBasis.stock, 50);
+  assert.equal(resolved.costBasis.components[0].quantity, 2);
+  const { evaluateEconomics } = require('../src/services/pricing.ts');
+  const a = amount => ({ amount, source:'ml_observed', observedAt:'2026-09-06T00:00:00Z', evidence:'order' });
+  const memory = evaluateEconomics({ price:53.19, cost:resolved.costBasis.amount, costComponents:resolved.costBasis.components, fee:a(7.45), shipping:a(9.15), tax:{rate:.05,status:'confirmed',referenceMonth:'2026-09'}, evaluatedAt:'2026-09-06T00:00:00Z' });
+  const order = await f.calculate();
+  assert.equal(memory.cost, order.custoTotal);
+  assert.equal(memory.result, order.lucro);
+  assert.equal('variableCosts' in memory, false);
 });

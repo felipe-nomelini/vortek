@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     if (evaluation.memory.margin < evaluation.memory.band.floor && !await approvedStrategy(client, body.strategyId, evaluation.produto_id, evaluation.price, evaluation.margin, evaluation.ml_item_id))
         return NextResponse.json({ error: 'Preço abaixo do piso exige estratégia registrada separadamente' }, { status: 422 });
     if (evaluation.memory.status === 'estimated' && body.acknowledgeEstimates !== true)
-        return NextResponse.json({ error: 'Revisar e reconhecer estimativas e custos não informados', reasons: evaluation.memory.reasons }, { status: 422 });
+        return NextResponse.json({ error: 'Revisar e reconhecer estimativas das fontes econômicas', reasons: evaluation.memory.reasons }, { status: 422 });
     const live = evaluation.ml_item_id ? await fetchMLResult<any>(`/items/${encodeURIComponent(evaluation.ml_item_id)}`) : null;
     if (live && !live.ok)
         return NextResponse.json({ error: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' }, { status: 409 });

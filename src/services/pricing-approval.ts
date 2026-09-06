@@ -1,3 +1,4 @@
+import { strategyIsCurrent } from './pricing-strategy';
 import { evaluateProductPricing, type MlQuoteContext } from './pricing-context';
 import { fetchMLResult } from './integration';
 import { resolveMlPricingGroup } from './ml-pricing-group';
@@ -6,15 +7,18 @@ import type { EconomicMemory } from './pricing.ts';
 type Client = {
     from: (table: string) => any;
 };
-export const economicSignature = (m: EconomicMemory) => JSON.stringify({ price: m.price, cost: m.cost, offer: m.offerId, supplier: m.supplierId, fee: m.fee.amount, feeContext: m.fee.contextKey, shipping: m.shipping.amount, shippingContext: m.shipping.contextKey, variable: m.variableCosts.amount, tax: m.tax.rate, taxStatus: m.tax.status, month: m.tax.referenceMonth, policy: m.policyVersion });
+export const economicSignature = (m: EconomicMemory) => JSON.stringify({ price: m.price, cost: m.cost, offer: m.offerId, supplier: m.supplierId, fee: m.fee.amount, feeContext: m.fee.contextKey, shipping: m.shipping.amount, shippingContext: m.shipping.contextKey, costComponents: m.costComponents, tax: m.tax.rate, taxStatus: m.tax.status, month: m.tax.referenceMonth, policy: m.policyVersion });
 export async function approvedStrategy(client: Client, id: string | undefined, productId: string, price: number, margin: number, itemId?: string) {
     if (!id || !itemId)
         return null;
-    const result = await client.from('pricing_events').select('*').eq('id', id).eq('event_type', 'STRATEGY_REGISTERED').eq('produto_id', productId).eq('ml_item_id', itemId).maybeSingle();
+    const result = await client.from('pricing_events').select('*').eq('id', id).eq('event_type', 'STRATEGY_REGISTERED').eq('produto_id', productId).maybeSingle();
     if (result.error || !result.data)
         return null;
     const strategy = result.data;
-    if (Date.parse(strategy.payload.validUntil) <= Date.now() || price < strategy.payload.minimumPrice || margin < strategy.payload.minimumMargin)
+    const revoked = await client.from('pricing_events').select('id').eq('event_type','STRATEGY_REVOKED').contains('payload',{strategyId:id}).limit(1);
+    const listing = await client.from('anuncios_ml').select('pricing_group_id').eq('produto_id',productId).eq('ml_item_id',itemId).maybeSingle();
+    const sameGroup = strategy.pricing_group_id ? listing.data?.pricing_group_id === strategy.pricing_group_id : strategy.ml_item_id === itemId;
+    if (revoked.error || revoked.data?.length || listing.error || !sameGroup || !['functional','clearance'].includes(strategy.payload.kind) || !strategyIsCurrent(strategy.payload) || !Number.isFinite(strategy.payload.minimumPrice) || !Number.isFinite(strategy.payload.minimumMargin) || price < strategy.payload.minimumPrice || margin < strategy.payload.minimumMargin)
         return null;
     return strategy;
 }
@@ -29,7 +33,7 @@ export async function verifyPricingApproval(client: Client, input: {
     const { data: approval, error } = await client.from('pricing_events').select('*').eq('id', input.approvalId).eq('event_type', 'APPROVED').eq('produto_id', input.productId).maybeSingle();
     if (error || !approval || Number(approval.new_price) !== input.price || (approval.ml_item_id ?? null) !== (input.itemId ?? null))
         throw new Error('PRICING_APPROVAL_REQUIRED');
-    const applied = await client.from('pricing_events').select('id').in('event_type', ['APPLIED', 'CREATED_READBACK']).contains('payload', { approvalId: input.approvalId }).limit(1);
+    const applied = await client.from('pricing_events').select('id').in('event_type', ['APPLIED', 'CREATED_REMOTE', 'CREATED_READBACK']).contains('payload', { approvalId: input.approvalId }).limit(1);
     if (applied.error || applied.data?.length)
         throw new Error('APROVACAO_JA_UTILIZADA');
     const { data: baseline, error: baselineError } = await client.from('current_pricing_evaluations').select('memory').eq('id', approval.evaluation_id).maybeSingle();
@@ -56,7 +60,7 @@ export async function verifyPricingApproval(client: Client, input: {
         if (approval.previous_price !== null && Number(item.data.price) !== Number(approval.previous_price))
             throw new Error('PRECO_ANTERIOR_ALTERADO');
         const rows = prices.data?.prices;
-        if (!Array.isArray(rows) || rows.some((r: any) => r.type !== 'standard' || Number(r.conditions?.min_purchase_unit ?? 1) > 1 || r.conditions?.context_restrictions?.includes('user_type_business')))
+        if (!Array.isArray(rows) || (prices.data?.price_per_quantity?.length ?? 0) > 0 || rows.some((r: any) => r.type !== 'standard' || Number(r.conditions?.min_purchase_unit ?? 1) > 1 || r.conditions?.context_restrictions?.includes('user_type_business')))
             throw new Error('PRECOS_NATIVOS_PROMOCAO_OU_ATACADO_REQUEREM_REVISAO');
         group = await resolveMlPricingGroup(client, item.data);
         if (!group.complete)
@@ -67,7 +71,7 @@ export async function verifyPricingApproval(client: Client, input: {
                 throw new Error('GRUPO_ECONOMICO_DIVERGENTE');
             if (member !== input.itemId) {
                 const sibling = await evaluateProductPricing(client, { productId: input.productId, itemId: member, price: input.price, requireLive: true, runtime: evaluation.runtime });
-                if (!sibling.memory || sibling.memory.result === null || sibling.memory.margin! < sibling.memory.band!.floor)
+                if (!sibling.memory || sibling.memory.result === null || (sibling.memory.margin! < sibling.memory.band!.floor && !await approvedStrategy(client, approval.payload?.strategyId, input.productId, input.price, sibling.memory.margin!, member)))
                     throw new Error('ECONOMIA_DO_PAR_SINCRONIZADO_REQUER_REVISAO');
             }
         }

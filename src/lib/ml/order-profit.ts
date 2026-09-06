@@ -44,7 +44,6 @@ export function calculateFinalOrderProfit(input: {
   saleFees: number;
   sellerShippingCost: number | null;
   tax: number | null;
-  variableCosts?: number | null;
   matchedItems: number;
 }): number | null {
   if (input.matchedItems <= 0 || input.sellerShippingCost === null || input.tax === null) return null;
@@ -57,5 +56,5 @@ export function calculateFinalOrderProfit(input: {
   ].every(Number.isFinite)) return null;
 
   return unitResult({ revenue: input.total, cost: input.productCost, fee: input.saleFees,
-    shipping: input.sellerShippingCost, tax: input.tax, variableCosts: input.variableCosts ?? 0 });
+    shipping: input.sellerShippingCost, tax: input.tax });
 }

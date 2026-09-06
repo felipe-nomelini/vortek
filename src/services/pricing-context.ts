@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
 import { PRICING_POLICY, validatePricingPolicy, type PricingPolicy } from './pricing-policy.ts';
 import { buildPricingTaxContext, type PricingTaxContext } from './pricing-tax.ts';
-import { evaluateEconomics, solveQuotedPrice, money, type EconomicAmount, type EconomicMemory, type PriceObjective } from './pricing.ts';
+import { evaluateEconomics, solveQuotedPrice, money, type CostComponent, type EconomicAmount, type EconomicMemory, type PriceObjective } from './pricing.ts';
 import { resolvePreferredOfferForProduct } from '../lib/preferred-offer.ts';
 import { fetchMLResult } from './integration';
 type Client = {
@@ -11,7 +11,6 @@ type Client = {
 export type PricingRuntime = {
     policy: PricingPolicy;
     tax: PricingTaxContext;
-    variableCosts: Record<string, number>;
 };
 export const unknownAmount = (): EconomicAmount => ({ amount: null, source: 'unknown', observedAt: null, evidence: null });
 export const pricingFingerprint = (input: unknown): string => createHash('sha256').update(JSON.stringify(input)).digest('hex');
@@ -36,10 +35,9 @@ export async function loadPricingRuntime(client: Client, at = new Date().toISOSt
     return {
         policy,
         tax: buildPricingTaxContext({ activityStartDate: config.activityStartDate ?? '', referenceMonth, monthlyRevenue, observedAt: at, confirmed: config.confirmed }),
-        variableCosts: config.variableCosts ?? {},
     };
 }
-export async function resolvePricingProduct(client: Client, productId: string) {
+export async function resolvePricingProduct(client: Client, productId: string): Promise<{product: any; offer: any; offers: any[]; costBasis: {amount: number; stock: number; components: CostComponent[]; observedAt: string | null} | null}> {
     const [productResponse, offersResponse, suppliersResponse] = await Promise.all([
         client.from('produtos').select('*').eq('id', productId).single(),
         client.from('produto_fornecedor_ofertas').select('*').eq('produto_id', productId),
@@ -52,7 +50,32 @@ export async function resolvePricingProduct(client: Client, productId: string) {
     const offers = (offersResponse.data ?? []).map((o: any) => ({ ...o, ativo: o.ativo === true && activeSuppliers.has(String(o.dslite_fornecedor_id)) }));
     const product = productResponse.data;
     const offer = resolvePreferredOfferForProduct<any>(offers, product.oferta_preferencial_id, product.fornecedor_preferencial_manual === true);
-    return { product, offer, offers };
+    let costBasis: { amount: number; stock: number; components: CostComponent[]; observedAt: string | null } | null = offer ? {
+        amount: Number(offer.custo), stock: Number(offer.estoque ?? 0), observedAt: offer.updated_at ?? null,
+        components: [{ productId, offerId: offer.id, supplierId: String(offer.dslite_fornecedor_id), unitCost: Number(offer.custo), quantity: 1, observedAt: offer.updated_at ?? null }],
+    } : null;
+    const kit = await client.from('produto_kits').select('produto_id,ativo').eq('produto_id', productId).maybeSingle();
+    if (kit.error) throw new Error(`KIT_INDISPONIVEL: ${kit.error.message}`);
+    if (kit.data) {
+        costBasis = null;
+        if (kit.data.ativo !== true || product.ativo === false) throw new Error('KIT_INATIVO');
+        const parts = await client.from('produto_kit_componentes').select('componente_produto_id,quantidade').eq('kit_produto_id', productId);
+        if (parts.error) throw new Error(`COMPONENTE_KIT_INDISPONIVEL: ${parts.error.message}`);
+        if (parts.data?.length !== 1) throw new Error('KIT_COMPOSTO_NAO_SUPORTADO');
+        const part = parts.data[0];
+        if (!Number.isInteger(part.quantidade) || part.quantidade <= 0 || part.componente_produto_id === productId) throw new Error('COMPOSICAO_KIT_INVALIDA');
+        const nested = await client.from('produto_kits').select('produto_id').eq('produto_id', part.componente_produto_id).maybeSingle();
+        if (nested.error) throw new Error(nested.error.message);
+        if (nested.data) throw new Error('KIT_COMPOSTO_NAO_SUPORTADO');
+        const component = await resolvePricingProduct(client, part.componente_produto_id);
+        if (component.product.ativo === false) throw new Error('KIT_INATIVO');
+        if (component.costBasis) costBasis = {
+            amount: money(component.costBasis.amount * part.quantidade), stock: Math.floor(component.costBasis.stock / part.quantidade),
+            observedAt: component.costBasis.observedAt,
+            components: component.costBasis.components.map(c => ({ ...c, quantity: c.quantity * part.quantidade })),
+        };
+    }
+    return { product, offer: kit.data ? null : offer, offers, costBasis };
 }
 export interface MlQuoteContext {
     sellerId: string;
@@ -86,6 +109,7 @@ export async function quoteMlEconomics(input: {
     price: number;
     product: any;
     offer: any;
+    costBasis?: { amount: number; stock: number; components: CostComponent[]; observedAt: string | null } | null;
     runtime: PricingRuntime;
     context: MlQuoteContext | null;
     evaluatedAt?: string;
@@ -130,9 +154,8 @@ export async function quoteMlEconomics(input: {
         if (shipping.amount === null && localShipping !== null)
             shipping = { amount: localShipping, source: 'local', observedAt: input.product.updated_at, evidence: 'produtos.ml_shipping' };
     }
-    const variable = numberOrNull(input.runtime.variableCosts[input.product.id]);
-    const memory = evaluateEconomics({ price: input.price, cost: numberOrNull(input.offer?.custo), offerId: input.offer?.id ?? null, supplierId: input.offer?.dslite_fornecedor_id ?? null, costObservedAt: input.offer?.updated_at ?? null, fee, shipping,
-        variableCosts: variable === null ? unknownAmount() : { amount: variable, source: 'confirmed', observedAt: at, evidence: 'configuracoes.pricing_tax_config.variableCosts' }, tax: input.runtime.tax, evaluatedAt: at }, input.runtime.policy);
+    const memory = evaluateEconomics({ price: input.price, cost: input.costBasis === undefined ? numberOrNull(input.offer?.custo) : input.costBasis?.amount ?? null, costComponents: input.costBasis?.components, offerId: input.offer?.id ?? null, supplierId: input.offer?.dslite_fornecedor_id ?? null, costObservedAt: input.costBasis?.observedAt ?? input.offer?.updated_at ?? null, fee, shipping,
+        tax: input.runtime.tax, evaluatedAt: at }, input.runtime.policy);
     if (input.requireLive && (fee.amount === null || shipping.amount === null))
         memory.reasons.unshift('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
     return memory;
@@ -169,7 +192,7 @@ export async function evaluateProductPricing(client: Client, input: {
     const at = new Date().toISOString();
     const quote = (price: number) => quoteMlEconomics({ ...resolved, price, runtime, context, evaluatedAt: at, requireLive: input.requireLive, observedMemory });
     if (input.objective) {
-        const solution = await solveQuotedPrice({ cost: resolved.offer?.custo ?? NaN, taxRate: runtime.tax.rate ?? NaN, initialPrice: observedPrice ?? resolved.offer?.custo ?? 0, objective: input.objective, quote, policy: runtime.policy });
+        const solution = await solveQuotedPrice({ cost: resolved.costBasis?.amount ?? NaN, taxRate: runtime.tax.rate ?? NaN, initialPrice: observedPrice ?? resolved.costBasis?.amount ?? 0, objective: input.objective, quote, policy: runtime.policy });
         return { ...resolved, runtime, context, memory: solution.ok ? solution.memory : null, failure: solution.ok ? null : solution.reason };
     }
     return { ...resolved, runtime, context, memory: await quote(observedPrice ?? 0), failure: null };
