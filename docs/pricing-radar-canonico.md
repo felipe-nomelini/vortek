@@ -1,6 +1,6 @@
 # Pricing e Radar canônicos — contrato M2M
 
-Vigência: M2M-PRC-01-v1. Configuração tipada em `src/services/pricing-policy.ts`, persistida em `configuracoes.pricing_policy`. Mudanças são versionadas, auditadas e invalidam simulações anteriores; não escrevem preços no ML. A margem global antiga fica sem consumidores operacionais.
+Autoridade: [Cânon Comercial 1.0 e complementos homologados](canon-comercial-vortek-bentevi-1.0.md). Modelo econômico: VORTEK-CANON-1.0-ECON-2. Configuração tipada em `src/services/pricing-policy.ts`, persistida em `configuracoes.pricing_policy`. Mudanças são versionadas, auditadas e invalidam simulações anteriores; não escrevem preços no ML. A margem global antiga fica sem consumidores operacionais.
 
 | Preço final | Piso | Alvo | Limite de busca |
 |---|---:|---:|---:|
@@ -8,17 +8,17 @@ Vigência: M2M-PRC-01-v1. Configuração tipada em `src/services/pricing-policy.
 | R$ 200,01–1.000,00 | 7% | 10% | 15% |
 | Acima de R$ 1.000,00 | 10% | 15% | 20% |
 
-`src/services/pricing.ts` é o único motor: resultado = receita − CMV − tarifa total ML − frete Vortek − custos variáveis − tributo. Margem = resultado / receita. A tarifa `sale_fee_amount` já inclui componente fixo. Alvos são resolvidos na faixa resultante, com arredondamento para centavos, recotação no preço final e falha explícita por não convergência. Limite não é teto permitido: margem premium com vendas deve ser mantida.
+`src/services/pricing.ts` é o único motor: resultado = receita − CMV − tarifa total ML − frete Vortek − tributo. Margem = resultado / receita. A tarifa `sale_fee_amount` já inclui componente fixo. Alvos são resolvidos na faixa resultante, com arredondamento para centavos, recotação no preço final e falha explícita por não convergência. Limite não é teto permitido: margem premium com vendas deve ser mantida.
 
-`pricing-context.ts` resolve oferta ativa e fornecedor ativo, tributo central RBT12/Simples, contexto logístico e cotação. Tributo `confirmed` exige competência e evidência; a estimativa não substitui confirmação. Meses ausentes não são receita zero. Custos variáveis ausentes geram cenário estimado e reconhecimento explícito antes da aprovação; resultado realizado fica pendente quando faltam componentes.
+`pricing-context.ts` resolve oferta ativa e fornecedor ativo, tributo central RBT12/Simples, contexto logístico e cotação. Tributo `confirmed` exige competência e evidência; a estimativa não substitui confirmação. Meses ausentes não são receita zero. Custos adicionais por SKU foram removidos. Resultado realizado fica pendente somente quando faltam componentes econômicos canônicos.
 
 Fonte ML viva vence observação válida; observação válida do mesmo contexto/preço vence fallback. Antes de ação econômica é obrigatória recotação viva. Falha retorna `INCONCLUSIVO_FONTE_ML_INDISPONIVEL`. Prejuízo estimado não comanda pausa. O monitor do experimento anterior conserva seu escopo autorizado e só pausa com prejuízo confirmado pela economia canônica.
 
 ## Aprovação e trilha
 
-`POST /api/pricing/simulate` gera memória imutável; `POST /api/pricing/approve` registra razão, autor e reconhecimento das estimativas. `POST /api/ml/anuncio/atualizar-preco` exige essa aprovação, recota, verifica as mesmas entradas e o preço anterior, bloqueia promoções/atacado e verifica o grupo sincronizado. Edição manual não equivale a override. Aprovação já utilizada não autoriza outra alteração.
+`POST /api/pricing/simulate` gera memória imutável; `POST /api/pricing/approve` registra razão, autor e reconhecimento das estimativas. `POST /api/ml/anuncio/atualizar-preco` exige essa aprovação, recota, verifica as mesmas entradas e o preço anterior, bloqueia promoções/atacado remoto até revisão e verifica o grupo sincronizado. Edição manual não equivale a override. Aprovação já utilizada não autoriza outra alteração.
 
-Estratégias abaixo do piso usam `/api/pricing/strategy`, com anúncio existente, razão, autor, validade até 30 dias, preço e margem mínimos; ainda requerem simulação/aprovação. Novo anúncio com prejuízo não é permitido. Custos alterados geram propostas. O worker de estoque registra solicitações de preço como propostas e continua somente operações autorizadas de estoque/status.
+Estratégias abaixo do piso usam `/api/pricing/strategy`, com anúncio existente, razão, autor, validade expressa com término ou até revogação, preço e margem mínimos; ainda requerem simulação/aprovação. Novo anúncio com prejuízo não é permitido. Custos alterados geram propostas. O worker de estoque registra solicitações de preço como propostas e continua somente operações autorizadas de estoque/status.
 
 `pricing_evaluations` guarda as entradas e os resultados; `pricing_events` guarda propostas, aprovações, aplicações e configurações. `current_pricing_evaluations` só projeta memória compatível com oferta ativa, custo, competência, versão, preço observado e validade. SQL, telas e PDFs não recalculam margem. Ausência aparece como pendência, sem preço inventado.
 
@@ -44,3 +44,5 @@ Autonomia: `AUTO_OBSERVE`. Publicação permanece `REQUIRES_CONFIRMATION`, indiv
 - [PostgreSQL 15: views e privilégios](https://www.postgresql.org/docs/15/sql-createview.html), [locks](https://www.postgresql.org/docs/15/explicit-locking.html).
 
 Complementos técnicos de pesquisa ficam na evidência existente do Radar, vinculados à oferta e ao GTIN, com fonte, data e trecho. Radar e criação leem esse mesmo complemento. Troca de oferta/GTIN invalida sua aplicação. Ambiguidade material comprovada gera pendência; divergência material comprovada gera conflito. Uma confirmação genérica de revisão não supera identidade inconclusiva.
+
+A proteção explícita por grupo e a liquidação são registradas em pricing_events; registro/revogação de estratégias usa transação serializada por grupo. Nenhuma nova rotina periódica foi criada nesta adequação.

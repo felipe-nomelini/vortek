@@ -22,3 +22,19 @@ M2M-IDENTITY-v2.1: comparadores de equivalência compartilhados por Radar, cria�
 M2M-RAD-LAUNCH-01: `scripts/run-radar-launch-cohort.cjs` executa somente a coorte expressamente autorizada, com limite agregado de dez criações, lock do publicador, recotação viva, registro prévio e reconciliação sem segundo POST. Descrição de catálogo é somente leitura; atributos multivalorados são comparados por IDs. Safety stops preservam pausa, diagnóstico e resolução auditável.
 
 M2M-RAD-MONITOR-01: `services/radar-launch-monitor.ts` usa o monitor agendado existente para D+7/D+15/D+30; `getProtectedPricingExperimentSkus` inclui a coorte validada nos 30 dias de proteção contra reprecificação por performance. Evidências D0 em `reports/RADAR_LAUNCH_2026_09_COHORT_01/`.
+
+## Adequação ao Cânon Comercial 1.0
+
+Autoridade: [Cânon integral e complementos](canon-comercial-vortek-bentevi-1.0.md). Modelo `VORTEK-CANON-1.0-ECON-2` substitui a autoridade decisória das memórias anteriores, preservadas no histórico.
+
+| Regra | Consumidores / fonte | Ausência / autonomia |
+|---|---|---|
+| CANON-ECON-02 | pricing, pricing-context, orders, Radar, simulador e publicação; CMV único com componentes reais | Fonte material ausente: inconclusivo; nenhuma decisão usa custo variável ou lucro mínimo nominal |
+| CANON-WARRANTY-01 | ml-sale-terms, product-warranty, schema/criar e evidência no cadastro | Fabricante → fornecedor → legal 30/90 documentado; classificação ausente: pendência específica |
+| CANON-QUANTITY-REMOVED | Endpoint tombstone; UI sem sugestões; outbox descarta só desconto legado | Nenhuma escrita por quantidade; leitura para auditoria |
+| CANON-OVERRIDE-01 | strategy / pricing_events, registro serializado por grupo | Desligada sem registro explícito; até revogação; admin + motivo |
+| CANON-CLEARANCE-01 | strategy / pricing-approval | Prazo autorizado ou até revogação; sem teto técnico ou nova rotina |
+| CANON-COST-RECOVERY-01 | automatic-pricing existente gera proposta no piso | Sem alteração automática; proteção/liquidação/experimento preservados |
+| CANON-AUDIT-01 | audit-commercial-canon.cjs | Auditoria pontual GET/SELECT; políticas órfãs seguem para Diretoria |
+
+O runner da coorte anterior foi aposentado para novas execuções; seus registros, baseline e monitor existente permanecem preservados. Não reutilizar a autorização histórica de garantia/publicação.

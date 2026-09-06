@@ -162,7 +162,7 @@ A regra anterior de proteção universal de 50% foi aposentada. Seguir [o contra
 3. Registrar aprovação individual e revisão explícita das pendências; não fabricar dados ausentes.
 4. Revalidar as entradas aprovadas e criar no preço aprovado. Confirmar leitura remota e persistir vínculo e trilha econômica.
 5. Recotar após criação; discrepâncias geram revisão. Fonte indisponível não autoriza pausa econômica automática.
-6. Preços de atacado exigem avaliação e aprovação próprias por quantidade. Não aplicar descontos implícitos.
+6. Descontos por quantidade foram removidos. Leitura remota somente para auditoria; não criar, editar ou renovar faixas.
 
 Qualidade, exposição e demanda são dimensões comerciais independentes. Dimensões normalizadas pelo ML não substituem silenciosamente o cadastro do fornecedor. Publicação automática em massa continua sem autorização.
 
@@ -179,4 +179,8 @@ Qualidade, exposição e demanda são dimensões comerciais independentes. Dimen
 
 ## Garantia comercial homologada
 
-A Diretoria confirmou em 05/09/2026 a política de **12 meses de garantia do fabricante** para a publicação da coorte `RADAR_LAUNCH_2026_09_COHORT_01`, conforme a operação dos anúncios ativos. Essa definição não exige nova confirmação. Registrar a origem como instrução expressa da Diretoria; não apresentar eventual prazo distinto do cadastro do distribuidor como a origem dessa política.
+Seguir o [Cânon e os complementos expressamente aprovados](canon-comercial-vortek-bentevi-1.0.md). Fabricante comprovado → fornecedor comprovado → garantia legal conforme classificação documentada (30 dias não duráveis; 90 dias duráveis). Não aplicar prazo genérico de marca ou de outro produto.
+
+O resolvedor mantém origem, prazo, unidade e evidência separados dos termos ML. Para fornecedor/legal, a representação aceita de vendedor não muda a origem interna nem permite descrição de garantia de fabricante. A categoria deve aceitar a representação; garantia ausente não vira 12 meses ou primeiro valor da lista. O readback confere os termos aprovados.
+
+A instrução de 12 meses usada na coorte anterior é histórica e foi substituída para novas decisões pelo Cânon. Anúncios existentes não foram modificados por esta adequação.
