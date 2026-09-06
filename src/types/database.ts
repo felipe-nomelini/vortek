@@ -1835,7 +1835,6 @@ export type Database = {
     Functions: {
       save_commercial_pricing_configuration: {
         Args: {
-          p_cost_tiers: Json
           p_inactive_cost_threshold: number
           p_ml_fee_fallback_rate: number
           p_quantity_tiers: Json
@@ -1954,29 +1953,10 @@ export type Database = {
           p_product_active_status?: string | null
           p_ml_status?: string | null
           p_estoque?: string | null
-          p_price_min?: number | null
-          p_price_max?: number | null
-          p_price_field?: string | null
           p_page?: number | null
           p_page_size?: number | null
           p_sort_by?: string | null
           p_sort_order?: string | null
-          p_tax_rate: number
-        }
-        Returns: Json
-      }
-      search_produtos_resumo: {
-        Args: {
-          p_search?: string | null
-          p_supplier_dslite_ids?: string[] | null
-          p_include_internal?: boolean | null
-          p_product_active_status?: string | null
-          p_ml_status?: string | null
-          p_estoque?: string | null
-          p_price_min?: number | null
-          p_price_max?: number | null
-          p_price_field?: string | null
-          p_tax_rate: number
         }
         Returns: Json
       }

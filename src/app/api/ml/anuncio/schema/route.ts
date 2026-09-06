@@ -6,7 +6,7 @@ import {
   getCategorySaleTerms,
   predictCategory,
 } from "@/services/mercadolibre";
-import { calculateSuggestedPrice } from "@/services/pricing";
+import { loadProductPricing } from "@/services/pricing-context";
 import { loadPricingTaxContext, requirePricingTaxRate } from "@/services/pricing-tax-context";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
@@ -327,7 +327,6 @@ export async function POST(req: Request) {
       loadOperationalDropshippingSupplierIds(supabase),
       loadMercadoLivreConfiguration(supabase),
     ]);
-    const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto, error } = await supabase
       .from("produtos")
       .select("*")
@@ -371,27 +370,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Não foi possível consultar os termos de venda oficiais da categoria." }, { status: 502 });
     }
 
-    let suggestedPrice = 0;
-    try {
-      const cost = Number(produto.custo || 0);
-      const shipping = Number(produto.ml_shipping || 0);
-      let mlFee = resolveMlFee(produto.ml_fee, commercial.mlFeeFallbackRate);
-      const provisional = calculateSuggestedPrice({
-        cost,
-        shipping,
-        mlFee,
-        taxRate,
-        costTiers: commercial.costTiers,
-      });
-      const listingPrices = await fetchML<any>(
-        `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${categoriaId}&listing_type_id=${listingType}`,
-      );
-      mlFee = extractMlFee(listingPrices) ?? mlFee;
-      const pricing = calculateSuggestedPrice({ cost, shipping, mlFee, taxRate, costTiers: commercial.costTiers });
-      suggestedPrice = Number(produto.custom_price ?? pricing.suggestedPrice);
-    } catch {
-      suggestedPrice = Number(produto.custom_price ?? produto.custo ?? 0);
-    }
+    const pricing = (await loadProductPricing(supabase, [produto], {
+      requestContext: { commercial, taxContext: pricingTaxContext, operational: operationalSupplierIds, evaluatedAt: new Date().toISOString() },
+    })).get(produto.id)!;
+    const suggestedPrice = pricing.target.ok ? pricing.target.priceCents / 100 : null;
 
     const predictionByAttr = await predictionAttributes(categoriaId, produtoForMl);
 
@@ -436,7 +418,7 @@ export async function POST(req: Request) {
       };
     });
 
-    const conditionalResult = await fetchMLResult<{
+    const conditionalResult = suggestedPrice === null ? null : await fetchMLResult<{
       required_attributes?: Array<{ id?: string }>;
     }>(`/categories/${categoriaId}/attributes/conditional`, {
       method: "POST",
@@ -460,7 +442,7 @@ export async function POST(req: Request) {
           })),
       }),
     });
-    if (!conditionalResult.ok) {
+    if (conditionalResult && !conditionalResult.ok) {
       return NextResponse.json(
         {
           error:
@@ -471,7 +453,7 @@ export async function POST(req: Request) {
       );
     }
     const conditionalRequiredIds = new Set(
-      (conditionalResult.data?.required_attributes || [])
+      (conditionalResult?.data?.required_attributes || [])
         .map((attr) => String(attr.id || ""))
         .filter(Boolean),
     );
@@ -499,6 +481,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       success: true,
+      pricing,
+      conditionalValidation: conditionalResult ? 'validated' : 'pending_pricing',
       schema: {
         required_attributes: prefillAttributes.filter((a) => a.required),
         optional_attributes: prefillAttributes.filter((a) => !a.required),
@@ -513,7 +497,7 @@ export async function POST(req: Request) {
         conditional_required_attributes: Array.from(conditionalRequiredIds),
         prefill: {
           description: buildDescription(produtoForMl),
-          base_price: Math.round(suggestedPrice * 100) / 100,
+          base_price: suggestedPrice,
           listing_type: listingType,
           seller_id: me?.id || null,
         },

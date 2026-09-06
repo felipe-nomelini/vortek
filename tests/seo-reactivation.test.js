@@ -12,14 +12,14 @@ const {
   validateSeoTitle,
 } = require('../src/lib/ml/seo-reactivation.ts');
 
-test('calcula lucro com a alíquota explícita informada', () => {
-  assert.equal(calculateSeoReactivationProfit({
+test('cálculo comercial da reativação histórica está aposentado', () => {
+  assert.throws(() => calculateSeoReactivationProfit({
     price: 100,
     cost: 50,
     shipping: 10,
     mlFee: 0.15,
     taxRate: 0.04,
-  }), 21);
+  }), /legado aposentado/);
 });
 
 test('reativação exige lucro, venda, estoque e estado seguros', () => {

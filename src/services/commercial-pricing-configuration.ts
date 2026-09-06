@@ -4,7 +4,6 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/types/database";
 import type {
   CommercialPricingConfiguration,
-  PricingCostTier,
   QuantityPricingRange,
 } from "@/lib/commercial-pricing";
 
@@ -14,27 +13,6 @@ function finiteNumber(value: unknown, label: string): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) throw new Error(`${label} inválido`);
   return parsed;
-}
-
-function validateCostTiers(rows: PricingCostTier[]): PricingCostTier[] {
-  if (rows.length !== 3) throw new Error("A configuração comercial deve possuir exatamente três faixas de custo");
-  const sorted = [...rows].sort((left, right) => left.position - right.position);
-  let previousMax = 0;
-  sorted.forEach((tier, index) => {
-    if (tier.position !== index + 1) throw new Error("Posições das faixas de custo inválidas");
-    if (tier.margin <= 0 || tier.margin >= 1 || tier.minProfit < 0) {
-      throw new Error("Margem ou lucro mínimo inválido nas faixas de custo");
-    }
-    if (index === sorted.length - 1) {
-      if (tier.maxCost !== null) throw new Error("A última faixa de custo deve ser ilimitada");
-      return;
-    }
-    if (tier.maxCost === null || tier.maxCost <= previousMax) {
-      throw new Error("Limites das faixas de custo devem ser crescentes");
-    }
-    previousMax = tier.maxCost;
-  });
-  return sorted;
 }
 
 function validateQuantityRanges(rows: QuantityPricingRange[]): QuantityPricingRange[] {
@@ -65,15 +43,11 @@ function validateQuantityRanges(rows: QuantityPricingRange[]): QuantityPricingRa
 export async function loadCommercialPricingConfiguration(
   client: ServiceClient,
 ): Promise<CommercialPricingConfiguration> {
-  const [configurationResult, costTiersResult, quantityTiersResult] = await Promise.all([
+  const [configurationResult, quantityTiersResult] = await Promise.all([
     client
       .from("configuracoes")
       .select("pricing_ml_fee_fallback_rate,pricing_unspecified_shipping_cost,product_inactive_cost_threshold")
       .maybeSingle(),
-    client
-      .from("pricing_cost_tiers")
-      .select("position,max_cost,margin_rate,min_profit")
-      .order("position", { ascending: true }),
     client
       .from("ml_quantity_pricing_tiers")
       .select("position,min_purchase_unit,discount_percentage")
@@ -82,9 +56,6 @@ export async function loadCommercialPricingConfiguration(
 
   if (configurationResult.error) {
     throw new Error(`Falha ao carregar parâmetros comerciais: ${configurationResult.error.message}`);
-  }
-  if (costTiersResult.error) {
-    throw new Error(`Falha ao carregar faixas de custo: ${costTiersResult.error.message}`);
   }
   if (quantityTiersResult.error) {
     throw new Error(`Falha ao carregar faixas por quantidade: ${quantityTiersResult.error.message}`);
@@ -110,12 +81,6 @@ export async function loadCommercialPricingConfiguration(
     throw new Error("Proteções comerciais inválidas");
   }
 
-  const costTiers = validateCostTiers((costTiersResult.data || []).map((row) => ({
-    position: Number(row.position),
-    maxCost: row.max_cost === null ? null : Number(row.max_cost),
-    margin: Number(row.margin_rate),
-    minProfit: Number(row.min_profit),
-  })));
   const quantityPricingRanges = validateQuantityRanges((quantityTiersResult.data || []).map((row) => ({
     position: Number(row.position),
     minPurchaseUnit: Number(row.min_purchase_unit),
@@ -126,7 +91,6 @@ export async function loadCommercialPricingConfiguration(
     mlFeeFallbackRate,
     unspecifiedShippingCost,
     inactiveCostThreshold,
-    costTiers,
     quantityPricingRanges,
   };
 }

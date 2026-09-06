@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
+import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { assertVortekSku } from '@/lib/product-master-sku';
 import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
-import { loadPricingTaxContext } from '@/services/pricing-tax-context';
+import { loadPricingRequestContext, loadProductPricing } from '@/services/pricing-context';
 import { loadProductMlListings } from '@/lib/ml/product-listings';
 import {
   findBntD07VisualReviewItem,
+  pricingFor,
   loadBntD07VisualReview,
 } from '@/lib/products/bnt-d07-visual-review';
-import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 
 export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -19,10 +20,8 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
     if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
 
     const supabase = createServiceClient();
-    const [pricingTaxContext, commercialPricing] = await Promise.all([
-      loadPricingTaxContext(supabase),
-      loadCommercialPricingConfiguration(supabase),
-    ]);
+    const requestContext = await loadPricingRequestContext(supabase);
+    const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
     const visualReview = await loadBntD07VisualReview();
     const fixture = visualReview
       ? findBntD07VisualReviewItem(visualReview, params.id)
@@ -30,7 +29,7 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
 
     if (fixture) {
       return NextResponse.json({
-        data: fixture.product,
+        data: { ...fixture.product, pricing: pricingFor(fixture, pricingTaxContext.appliedRate, commercialPricing).pricing },
         pricingTaxContext,
         commercialPricing,
         fulfillmentCapacity: fixture.fulfillmentCapacity,
@@ -71,6 +70,12 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
     const operationalListing = listings[0] || null;
     const resolvedData: any = {
       ...data,
+      pricing: (await loadProductPricing(supabase, [data], { requestContext,
+        evidence: operationalListing ? new Map([[data.id, {
+          mlItemId: operationalListing.itemId, currentPriceCents: operationalListing.price == null ? null : Math.round(operationalListing.price * 100),
+          marketContextKey: `listing:${operationalListing.itemId}:unquoted`,
+        }]]) : undefined,
+      })).get(data.id),
       estoque_operacional: capacity.safe,
       estoque_fornecedor: capacity.supplier,
       estoque_interno: capacity.internal,
@@ -122,6 +127,14 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
     }
     if (!current?.id) {
       return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
+    }
+
+    if ('custom_price' in body || 'customPrice' in body) {
+      const unchanged = (!('custom_price' in body) || body.custom_price === current.custom_price)
+        && (!('customPrice' in body) || body.customPrice === current.custom_price);
+      const executionBlock = getPricingExecutionBlock();
+      if (!unchanged && executionBlock) return NextResponse.json(executionBlock, { status: 409 });
+      if (executionBlock) { delete body.custom_price; delete body.customPrice; }
     }
 
     // Mapear campos do frontend (camelCase) para o banco (snake_case)

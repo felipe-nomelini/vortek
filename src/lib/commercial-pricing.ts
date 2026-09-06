@@ -15,7 +15,8 @@ export type CommercialPricingConfiguration = {
   mlFeeFallbackRate: number;
   unspecifiedShippingCost: number;
   inactiveCostThreshold: number;
-  costTiers: PricingCostTier[];
+  /** @deprecated Sem carga operacional; somente contratos históricos ainda em retirada. */
+  costTiers?: PricingCostTier[];
   quantityPricingRanges: QuantityPricingRange[];
 };
 

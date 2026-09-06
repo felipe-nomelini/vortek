@@ -10,8 +10,8 @@ import {
   type RGB,
 } from 'pdf-lib';
 import { NextResponse } from 'next/server';
-import { GET as getProducts } from '@/app/api/produtos/route';
-import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
+import { getProductListResponse } from '@/services/product-list';
+import { pricingView } from '@/lib/pricing-view';
 import { benteviColors } from '@/theme/bentevi';
 import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 import { resolveMlFee } from '@/lib/commercial-pricing';
@@ -38,9 +38,10 @@ type ExportRow = {
   supplier: string;
   offersCount: number;
   preferredSupplierManual: boolean;
-  displayPrice: number;
+  displayPrice: number | null;
+  suggestedPrice: number | null;
   customPrice: boolean;
-  cost: number;
+  cost: number | null;
   profit: number | null;
   margin: number | null;
   mlStatus: string;
@@ -117,7 +118,8 @@ const colors = {
   error: hexToRgb('#FF4D4F'),
 };
 
-function formatCurrency(value: number): string {
+function formatCurrency(value: number | null): string {
+  if (value === null) return 'Indisponível';
   const [integer, decimals] = Number(value || 0).toFixed(2).split('.');
   return `R$ ${integer.replace(/\B(?=(\d{3})+(?!\d))/g, '.')},${decimals}`;
 }
@@ -290,18 +292,20 @@ function prepareRowFragments(row: ExportRow, fonts: ReportFonts): PreparedRow[] 
     ];
     const commercialLines = [
       ...makeLines(formatCurrency(row.displayPrice), widths.commercial, fonts, { bold: true, size: 6.3, color: colors.primary }),
-      ...makeLines(`Preço ${row.customPrice ? 'personalizado' : 'calculado'}`, widths.commercial, fonts, { size: 5.2, color: colors.textSecondary }),
+      ...makeLines('Preço registrado; origem manual não comprovada', widths.commercial, fonts, { size: 5.2, color: colors.textSecondary }),
       ...makeLines(`Custo ${formatCurrency(row.cost)}`, widths.commercial, fonts, { size: 5.3, color: colors.textSecondary }),
+      ...makeLines(`Alvo estimado ${formatCurrency(row.suggestedPrice)}`, widths.commercial, fonts, { size: 5.3, color: colors.textSecondary }),
     ];
     const profitColor = row.profit === null || row.profit === 0 ? colors.textSecondary : row.profit > 0 ? colors.success : colors.error;
     const profitabilityLines = row.profit === null
       ? [
           ...makeLines('—', widths.profitability, fonts, { bold: true, size: 6.3, color: colors.textSecondary }),
-          ...makeLines('Após publicação', widths.profitability, fonts, { size: 5.3, color: colors.textSecondary }),
+          ...makeLines('Dados econômicos incompletos', widths.profitability, fonts, { size: 5.3, color: colors.textSecondary }),
         ]
       : [
           ...makeLines(formatCurrency(row.profit), widths.profitability, fonts, { bold: true, size: 6.1, color: profitColor }),
           ...makeLines(row.margin === null ? 'Margem —' : `${formatPercent(row.margin)} de margem`, widths.profitability, fonts, { size: 5.2, color: profitColor }),
+          ...makeLines('Estimativa operacional', widths.profitability, fonts, { size: 5.3, color: colors.textSecondary }),
         ];
     const cells: Record<ColumnKey, PreparedCell> = {
       product: { lines: productLines },
@@ -343,20 +347,21 @@ function drawFilters(page: PDFPage, description: string, fonts: ReportFonts): vo
 }
 
 function buildSummaryMetrics(rows: ExportRow[]): Array<{ label: string; value: string; detail: string; color: RGB }> {
-  const revenuePotential = rows.reduce((total, row) => total + (row.displayPrice * row.safeQuantity), 0);
+  const revenuePotential = rows.some(row => row.suggestedPrice === null) ? null
+    : rows.reduce((total, row) => total + Math.round(row.suggestedPrice! * 100) * row.safeQuantity, 0) / 100;
   const knownProfits = rows.flatMap((row) => row.profit === null ? [] : [row.profit]);
-  const averageProfit = knownProfits.length ? knownProfits.reduce((total, value) => total + value, 0) / knownProfits.length : 0;
+  const averageProfit = knownProfits.length ? Math.round(knownProfits.reduce((total, value) => total + Math.round(value * 100), 0) / knownProfits.length) / 100 : null;
   const safeCount = rows.filter((row) => row.safeQuantity > 0).length;
   const withoutListing = rows.filter((row) => normalizeStatus(row.mlStatus) === 'sem_anuncio').length;
   return [
     { label: 'PRODUTOS', value: String(rows.length), detail: 'No conjunto exportado', color: colors.text },
     { label: 'COM Q SEGURA', value: String(safeCount), detail: 'Disponíveis para venda', color: safeCount ? colors.success : colors.textSecondary },
     { label: 'SEM ANÚNCIO', value: String(withoutListing), detail: 'Ainda não publicados', color: withoutListing ? colors.primary : colors.textSecondary },
-    { label: 'RECEITA POTENCIAL', value: formatCurrency(revenuePotential), detail: 'Preço × Q segura', color: colors.primary },
+    { label: 'RECEITA POTENCIAL', value: formatCurrency(revenuePotential), detail: 'Preço-alvo estimado × Q segura', color: colors.primary },
     {
       label: 'LUCRO MÉDIO', value: formatCurrency(averageProfit),
       detail: knownProfits.length ? `${knownProfits.length} com lucro calculado` : 'Nenhum lucro calculado',
-      color: averageProfit < 0 ? colors.error : averageProfit > 0 ? colors.success : colors.textSecondary,
+      color: averageProfit !== null && averageProfit < 0 ? colors.error : averageProfit !== null && averageProfit > 0 ? colors.success : colors.textSecondary,
     },
   ];
 }
@@ -477,33 +482,18 @@ function mapListing(value: Record<string, any>): ProductMlListing | null {
 
 function mapExportRow(
   item: ProductListItem,
-  taxRate: number,
-  commercialPricing: CommercialPricingConfiguration,
   supplierNames: Map<string, string>,
 ): ExportRow {
   const product = item.product || {};
   const preferredOffer = item.preferredOffer || null;
-  const cost = Number(preferredOffer?.custo ?? product.custo ?? 0);
+  const { cost, displayPrice, suggestedPrice, profit, margin } = pricingView(product.pricing);
   const mlShipping = Number(product.ml_shipping || 0);
-  const mlFee = resolveMlFee(product.ml_fee, commercialPricing.mlFeeFallbackRate);
-  let displayPrice = Number(product.custom_price ?? cost);
-  let profit: number | null = null;
-  try {
-    const calculated = calculateSuggestedPrice({ cost, shipping: mlShipping, mlFee, taxRate, costTiers: commercialPricing.costTiers });
-    displayPrice = Math.round(Number(product.custom_price ?? calculated.suggestedPrice) * 100) / 100;
-    if (normalizeStatus(product.ml_status) !== 'sem_anuncio') {
-      profit = Math.round(calculateNetProfitAtPrice({ price: displayPrice, cost, shipping: mlShipping, mlFee, taxRate }) * 100) / 100;
-    }
-  } catch {
-    displayPrice = Math.round(displayPrice * 100) / 100;
-  }
   const supplierId = String(product.dslite_fornecedor_id || preferredOffer?.dslite_fornecedor_id || '').trim();
   const supplier = supplierNames.get(supplierId) || String(preferredOffer?.fornecedor_nome || product.fornecedor || '').trim() || 'Sem fornecedor';
   const mappedListings = (Array.isArray(item.mlListings) ? item.mlListings : []).map(mapListing).filter((listing): listing is ProductMlListing => listing !== null);
   if (!mappedListings.length && String(product.ml_item_id || '').trim()) {
     mappedListings.push({ itemId: String(product.ml_item_id).trim().toUpperCase(), type: 'standard', status: String(product.ml_status || ''), catalogStatus: 'sem_catalogo' });
   }
-  const margin = profit === null || displayPrice <= 0 ? null : Math.round((profit / displayPrice) * 10000) / 100;
   return {
     sku: String(product.sku || '').trim(),
     name: String(product.nome || '').trim(),
@@ -517,6 +507,7 @@ function mapExportRow(
     offersCount: Number(item.offersCount || 0),
     preferredSupplierManual: product.fornecedor_preferencial_manual === true,
     displayPrice,
+    suggestedPrice,
     customPrice: product.custom_price !== null && product.custom_price !== undefined,
     cost,
     profit,
@@ -573,34 +564,15 @@ export async function GET(request: Request) {
     listUrl.searchParams.set('ativo', sourceUrl.searchParams.get('ativo') || 'todos');
     const headers = new Headers(request.headers);
     headers.set('x-vortek-read-only', '1');
-    const items: ProductListItem[] = [];
-    let page = 1;
-    let total = 0;
-    let supplierOptions: SupplierOption[] = [];
-    let taxRate: number | null = null;
-    let commercialPricing: CommercialPricingConfiguration | null = null;
-    do {
-      listUrl.searchParams.set('page', String(page));
-      const response = await getProducts(new Request(listUrl, { headers }));
-      const payload = await response.json().catch(() => ({})) as ProductListPayload & { erro?: string; error?: string };
-      if (!response.ok) {
-        return NextResponse.json({ erro: payload.erro || payload.error || 'Falha ao consultar produtos' }, { status: response.status });
-      }
-      const pageItems = Array.isArray(payload.data) ? payload.data : [];
-      if (!supplierOptions.length && Array.isArray(payload.fornecedores)) supplierOptions = payload.fornecedores;
-      if (taxRate === null && Number.isFinite(Number(payload.pricingTaxContext?.appliedRate))) taxRate = Number(payload.pricingTaxContext?.appliedRate);
-      if (!commercialPricing && payload.commercialPricing) commercialPricing = payload.commercialPricing;
-      items.push(...pageItems);
-      total = Number(payload.total || 0);
-      page += 1;
-      if (!pageItems.length) break;
-    } while (items.length < total);
-    if (taxRate === null) throw new Error('Alíquota tributária indisponível para gerar o relatório');
-    if (!commercialPricing) throw new Error('Configuração comercial indisponível para gerar o relatório');
+    const response = await getProductListResponse(new Request(listUrl, { headers }), true);
+    const payload = await response.json() as ProductListPayload & { erro?: string };
+    if (!response.ok) return NextResponse.json({ erro: payload.erro || 'Falha ao consultar produtos' }, { status: response.status });
+    const items = payload.data || [];
+    const supplierOptions = payload.fornecedores || [];
     const supplierNames = new Map(
       supplierOptions.filter((option) => String(option.dsliteId || '').trim()).map((option) => [String(option.dsliteId), String(option.apelido || option.label)]),
     );
-    const rows = items.map((item) => mapExportRow(item, taxRate, commercialPricing, supplierNames));
+    const rows = items.map((item) => mapExportRow(item, supplierNames));
     const pdf = await buildPdf(rows, buildFilterDescription(sourceUrl, supplierOptions));
     const date = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
     return new Response(new Uint8Array(pdf), {

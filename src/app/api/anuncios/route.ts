@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { classifyMlPublishEligibility } from '@/lib/ml/publish-eligibility.js';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
-import { listBntD11VisualReview, type MlListingsFocus } from '@/lib/ml/listings-dashboard';
-import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import { listBntD11VisualReview, selectMlListingRows, type MlListingDashboardRow, type MlListingsFocus } from '@/lib/ml/listings-dashboard';
+import { loadPricingRequestContext, loadProductPricing } from '@/services/pricing-context';
+import { pricingView } from '@/lib/pricing-view';
 
 const PAGE_SIZE = 100;
 const FOCUS = new Set<MlListingsFocus>(['all', 'active', 'paused', 'quality_risk', 'price_review']);
@@ -53,14 +54,15 @@ export async function GET(request: Request) {
 
   const serviceClient = createServiceClient();
   try {
-    const pricingTaxContext = await loadPricingTaxContext(serviceClient);
-    const taxRate = requirePricingTaxRate(pricingTaxContext);
+    const requestContext = await loadPricingRequestContext(serviceClient);
+    const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
+    const taxRate = pricingTaxContext.appliedRate;
     const visualReview = await loadBntD07VisualReview();
 
     if (visualReview) {
       const result = listBntD11VisualReview({
         review: visualReview,
-        taxRate,
+        taxRate, commercialPricing,
         page,
         pageSize: PAGE_SIZE,
         search,
@@ -89,23 +91,51 @@ export async function GET(request: Request) {
       });
     }
 
-    const { data, error } = await (serviceClient as any).rpc('search_ml_listings_paginated', {
-      p_tax_rate: taxRate,
-      p_page: page,
-      p_page_size: PAGE_SIZE,
-      p_search: search || null,
-      p_focus: focus,
-      p_quality: quality,
-      p_catalog: catalog,
-      p_profitability: profitability,
-      p_price_min: priceMin,
-      p_price_max: priceMax,
-      p_sort_by: sortBy,
-      p_sort_order: sortOrder,
-    });
-    if (error) throw new Error(error.message);
-
-    const result = (data || {}) as Record<string, any>;
+    const rows: MlListingDashboardRow[] = [];
+    const seenItems = new Set<string>();
+    for (let rawPage = 1; ; rawPage++) {
+      const { data, error } = await (serviceClient as any).rpc('search_ml_listings_paginated', {
+        p_tax_rate: null, p_page: rawPage, p_page_size: PAGE_SIZE,
+        p_search: search || null, p_focus: 'all', p_quality: quality, p_catalog: catalog,
+        p_profitability: 'all', p_price_min: priceMin, p_price_max: priceMax, p_sort_by: 'item', p_sort_order: 'asc',
+      });
+      if (error) throw new Error(error.message);
+      const batch: MlListingDashboardRow[] = data?.data || [];
+      if (!batch.length) break;
+      for (const row of batch) {
+        if (seenItems.has(row.itemId)) throw new Error('A lista mudou durante a leitura; atualize os filtros');
+        seenItems.add(row.itemId);
+      }
+      rows.push(...batch);
+      if (batch.length < PAGE_SIZE) break;
+    }
+    const productIds = [...new Set(rows.flatMap(row => row.productId ? [row.productId] : []))];
+    const products = new Map<string, any>();
+    for (let offset = 0; offset < productIds.length; offset += 100) {
+      const { data, error } = await serviceClient.from('produtos').select('*').in('id', productIds.slice(offset, offset + 100));
+      if (error) throw new Error('Falha ao carregar fontes econômicas dos anúncios');
+      for (const product of data || []) products.set(product.id, product);
+    }
+    const pending = [...rows];
+    while (pending.length) {
+      const batch: MlListingDashboardRow[] = []; const ids = new Set<string>();
+      for (let i = 0; i < pending.length && batch.length < 100;) {
+        const row = pending[i];
+        if (!row.productId || !products.has(row.productId)) { row.profit = null; row.marginPercent = null; pending.splice(i, 1); continue; }
+        if (ids.has(row.productId)) { i++; continue; }
+        ids.add(row.productId); batch.push(row); pending.splice(i, 1);
+      }
+      if (!batch.length) break;
+      const evidence = new Map(batch.map(row => [row.productId!, { mlItemId: row.itemId,
+        currentPriceCents: row.price > 0 ? Math.round(row.price * 100) : null, marketContextKey: `listing:${row.itemId}:unquoted` }]));
+      const pricing = await loadProductPricing(serviceClient, batch.map(row => products.get(row.productId!)), { requestContext, evidence });
+      for (const row of batch) {
+        const view = pricingView(pricing.get(row.productId!));
+        row.profit = view.profit; row.marginPercent = view.margin;
+      }
+    }
+    const result = selectMlListingRows(rows, { page, pageSize: PAGE_SIZE, search, focus, quality, catalog,
+      profitability, priceMin, priceMax, sortBy, sortOrder });
     return NextResponse.json({
       data: (Array.isArray(result.data) ? result.data : []).map(enrichPublishEligibility),
       total: Number(result.total || 0),

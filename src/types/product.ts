@@ -1,6 +1,7 @@
 export type MLStatus = 'ativo' | 'pausado' | 'sem_anuncio';
 
 export interface Product {
+  pricing?: import('@/services/pricing-context').ProductPricing;
   id: string;
   active: boolean;
   sku: string;

@@ -1,5 +1,6 @@
 import { getSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
-import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
+import { simulateProductPricing } from '@/services/pricing-context';
+import { pricingView } from '@/lib/pricing-view';
 import type { SupplierFilterOption } from '@/lib/produto-filtering';
 import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 import { resolveMlFee } from '@/lib/commercial-pricing';
@@ -59,7 +60,7 @@ export type BntD07VisualReviewFilters = {
   priceField: 'cost' | 'suggestedPrice' | 'profit';
   priceMin: number | null;
   priceMax: number | null;
-  taxRate: number;
+  taxRate: number | null;
   commercialPricing: CommercialPricingConfiguration;
 };
 
@@ -139,31 +140,27 @@ export function findBntD07VisualReviewItem(
   return review.items.find((item) => String(item.product.id || '') === productId) || null;
 }
 
-function pricingFor(
+export function pricingFor(
   item: VisualReviewItem,
-  taxRate: number,
+  taxRate: number | null,
   commercialPricing: CommercialPricingConfiguration,
+  evaluatedAt = new Date().toISOString(),
 ) {
   const product = item.product;
-  const cost = Number(item.preferredOffer?.custo ?? product.custo ?? 0);
-  const mlFee = resolveMlFee(product.ml_fee, commercialPricing.mlFeeFallbackRate);
-  const shipping = Number(product.ml_shipping ?? 0);
-  const suggested = calculateSuggestedPrice({
-    cost,
-    mlFee,
-    shipping,
-    taxRate,
-    costTiers: commercialPricing.costTiers,
-  }).suggestedPrice;
-  const displayPrice = Number(product.custom_price ?? suggested);
-  const profit = product.ml_status === 'sem_anuncio'
-    ? null
-    : calculateNetProfitAtPrice({ price: displayPrice, cost, mlFee, shipping, taxRate });
-
-  return { cost, displayPrice, profit };
+  const toCents = (value: unknown) => value == null || value === '' ? null : Math.round(Number(value) * 100);
+  const pricing = simulateProductPricing({
+    costCents: toCents(item.preferredOffer?.custo ?? product.custo),
+    shippingCents: toCents(product.ml_shipping), priceCents: toCents(product.custom_price),
+    feeRate: resolveMlFee(product.ml_fee, commercialPricing.mlFeeFallbackRate), evaluatedAt,
+    // Amostra protegida: parâmetros hipotéticos, nunca confirmação fiscal/operacional.
+    taxContext: { appliedRate: taxRate, estimatedRate: taxRate, confirmedRate: null,
+      rbt12: null, bracket: null, source: taxRate === null ? 'unavailable' : 'estimated',
+      referenceMonth: evaluatedAt.slice(0, 7), manualRequired: false, warning: 'Simulação de homologação' },
+  });
+  return { ...pricingView(pricing), pricing };
 }
 
-function matchesFilters(item: VisualReviewItem, filters: BntD07VisualReviewFilters) {
+function matchesFilters(item: VisualReviewItem, filters: BntD07VisualReviewFilters, pricing = pricingFor(item, filters.taxRate, filters.commercialPricing)) {
   const product = item.product;
   const search = filters.search.trim().toLocaleLowerCase('pt-BR');
   if (search) {
@@ -198,11 +195,10 @@ function matchesFilters(item: VisualReviewItem, filters: BntD07VisualReviewFilte
   if (filters.stockStatus === 'com_estoque' && item.fulfillmentCapacity.safe <= 0) return false;
   if (filters.stockStatus === 'sem_estoque' && item.fulfillmentCapacity.safe !== 0) return false;
 
-  const pricing = pricingFor(item, filters.taxRate, filters.commercialPricing);
   const priceValue = filters.priceField === 'cost'
     ? pricing.cost
     : filters.priceField === 'suggestedPrice'
-      ? pricing.displayPrice
+      ? pricing.suggestedPrice
       : pricing.profit;
   if (filters.priceMin !== null && (priceValue === null || priceValue < filters.priceMin)) return false;
   if (filters.priceMax !== null && (priceValue === null || priceValue > filters.priceMax)) return false;
@@ -220,17 +216,17 @@ export function filterBntD07VisualReviewItems(
 function sortValue(
   item: VisualReviewItem,
   sortBy: string,
-  taxRate: number,
+  taxRate: number | null,
   commercialPricing: CommercialPricingConfiguration,
+  pricing = pricingFor(item, taxRate, commercialPricing),
 ): string | number | null {
-  const pricing = pricingFor(item, taxRate, commercialPricing);
   if (sortBy === 'nome') return String(item.product.nome || '');
   if (sortBy === 'fornecedor') return String(item.product.fornecedor || '');
   if (sortBy === 'estoque') return item.fulfillmentCapacity.safe;
   if (sortBy === 'custo') return pricing.cost;
   if (sortBy === 'ml_fee') return Number(item.product.ml_fee || 0);
   if (sortBy === 'ml_shipping') return Number(item.product.ml_shipping || 0);
-  if (sortBy === 'suggested_price') return pricing.displayPrice;
+  if (sortBy === 'suggested_price') return pricing.suggestedPrice;
   if (sortBy === 'profit') return pricing.profit;
   if (sortBy === 'ml_status') return String(item.product.ml_status || '');
   return String(item.product.sku || '');
@@ -244,11 +240,13 @@ export function listBntD07VisualReview(params: {
   sortBy: string;
   sortOrder: 'asc' | 'desc';
 }) {
-  const filtered = filterBntD07VisualReviewItems(params.review, params.filters);
+  const evaluatedAt = new Date().toISOString();
+  const economics = new Map(params.review.items.map(item => [item, pricingFor(item, params.filters.taxRate, params.filters.commercialPricing, evaluatedAt)]));
+  const filtered = params.review.items.filter(item => matchesFilters(item, params.filters, economics.get(item)!));
   const direction = params.sortOrder === 'desc' ? -1 : 1;
   const sorted = [...filtered].sort((left, right) => {
-    const leftValue = sortValue(left, params.sortBy, params.filters.taxRate, params.filters.commercialPricing);
-    const rightValue = sortValue(right, params.sortBy, params.filters.taxRate, params.filters.commercialPricing);
+    const leftValue = sortValue(left, params.sortBy, params.filters.taxRate, params.filters.commercialPricing, economics.get(left)!);
+    const rightValue = sortValue(right, params.sortBy, params.filters.taxRate, params.filters.commercialPricing, economics.get(right)!);
     if (leftValue === null) return rightValue === null ? 0 : 1;
     if (rightValue === null) return -1;
     if (typeof leftValue === 'number' && typeof rightValue === 'number') {
@@ -260,7 +258,7 @@ export function listBntD07VisualReview(params: {
 
   return {
     data: sorted.slice(offset, offset + params.pageSize).map((item) => ({
-      product: item.product,
+      product: { ...item.product, pricing: economics.get(item)!.pricing },
       preferredOffer: item.preferredOffer,
       offersCount: item.offersCount,
       fulfillmentCapacity: item.fulfillmentCapacity,
@@ -278,13 +276,17 @@ export function summarizeBntD07VisualReview(
   review: BntD07VisualReview,
   filters: BntD07VisualReviewFilters,
 ) {
-  const items = filterBntD07VisualReviewItems(review, filters);
+  const evaluatedAt = new Date().toISOString();
+  const economics = new Map(review.items.map(item => [item, pricingFor(item, filters.taxRate, filters.commercialPricing, evaluatedAt)]));
+  const items = review.items.filter(item => matchesFilters(item, filters, economics.get(item)!));
   let revenuePotential = 0;
+  let incomplete = 0;
   const profits: number[] = [];
 
   for (const item of items) {
-    const pricing = pricingFor(item, filters.taxRate, filters.commercialPricing);
-    revenuePotential += pricing.displayPrice * item.fulfillmentCapacity.safe;
+    const pricing = economics.get(item)!;
+    if (pricing.suggestedPrice !== null) revenuePotential += Math.round(pricing.suggestedPrice * 100) * item.fulfillmentCapacity.safe;
+    else incomplete++;
     if (pricing.profit !== null) profits.push(pricing.profit);
   }
 
@@ -292,9 +294,11 @@ export function summarizeBntD07VisualReview(
     total: items.length,
     comEstoque: items.filter((item) => item.fulfillmentCapacity.safe > 0).length,
     semAnuncio: items.filter((item) => item.product.ml_status === 'sem_anuncio').length,
-    receitaPotencial: Math.round(revenuePotential * 100) / 100,
+    receitaPotencial: incomplete ? null : revenuePotential / 100,
     lucroMedio: profits.length > 0
       ? Math.round((profits.reduce((sum, value) => sum + value, 0) / profits.length) * 100) / 100
-      : 0,
+      : null,
+    pricingInconclusive: incomplete,
+    profitSampleCount: profits.length,
   };
 }

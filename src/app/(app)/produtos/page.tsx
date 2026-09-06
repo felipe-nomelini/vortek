@@ -6,7 +6,7 @@ import {
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined, ReloadOutlined, FilterOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
+import { pricingView } from '@/lib/pricing-view';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
@@ -67,7 +67,7 @@ interface ProductMlListing {
   itemId: string;
   type: 'standard' | 'catalog';
   status: string;
-  price: number;
+  price: number | null;
   permalink: string | null;
   catalogProductId?: string | null;
   catalogStatus?: 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
@@ -100,8 +100,8 @@ interface ProductRow {
   offersCount: number;
   fulfillmentCapacity: ProductMasterListItem['fulfillmentCapacity'];
   isKit: boolean;
-  effectiveCost: number;
-  displayPrice: number;
+  effectiveCost: number | null;
+  displayPrice: number | null;
   profit: number | null;
   margin: number | null;
 }
@@ -265,43 +265,10 @@ function parseEditablePriceText(input: string): number | null {
   return Number.isFinite(parsed) ? Math.round(parsed * 100) / 100 : null;
 }
 
-function computeDerived(
-  item: Product | ProductMasterListItem,
-  taxRate: number | null,
-  commercialPricing: CommercialPricingConfiguration | null,
-): { displayPrice: number; profit: number | null } {
+function computeDerived(item: Product | ProductMasterListItem, _taxRate: number | null,
+  _commercialPricing: CommercialPricingConfiguration | null) {
   const product = 'product' in item ? item.product : item;
-  const cost = 'preferredOffer' in item
-    ? Number(item.preferredOffer?.custo ?? item.product.cost)
-    : item.cost;
-  try {
-    if (taxRate === null || !commercialPricing) throw new Error('Precificação indisponível');
-    const result = calculateSuggestedPrice({
-      cost,
-      shipping: product.mlShipping,
-      mlFee: product.mlFee,
-      taxRate,
-      costTiers: commercialPricing.costTiers,
-    });
-    const displayPrice = Math.round((product.customPrice ?? result.suggestedPrice) * 100) / 100;
-
-    // Sem anúncio vinculado: não exibimos lucro operacional.
-    if (product.mlStatus === 'sem_anuncio') {
-      return { displayPrice, profit: null };
-    }
-
-    const netProfit = calculateNetProfitAtPrice({
-      price: displayPrice,
-      cost,
-      shipping: product.mlShipping,
-      mlFee: product.mlFee,
-      taxRate,
-    });
-
-    return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
-  } catch {
-    return { displayPrice: Math.round((product.customPrice ?? cost) * 100) / 100, profit: null };
-  }
+  return pricingView(product.pricing);
 }
 
 const mlStatusColor: Record<MLStatus, string> = { ativo: 'green', pausado: 'orange', sem_anuncio: 'default' };
@@ -310,6 +277,7 @@ const mlStatusLabel: Record<MLStatus, string> = { ativo: 'Ativo', pausado: 'Paus
 function mapDBtoProduct(item: ProdutoRow, mlFeeFallbackRate: number): Product {
   return {
     id: item.id,
+    pricing: (item as ProdutoRow & { pricing?: Product['pricing'] }).pricing,
     active: item.ativo !== false,
     sku: item.sku,
     name: item.nome,
@@ -435,7 +403,7 @@ export default function ProductsPage() {
     result: null,
   });
 
-  const [stats, setStats] = useState({ total: 0, comEstoque: 0, semAnuncio: 0, lucroMedio: 0, receitaPotencial: 0 });
+  const [stats, setStats] = useState({ total: 0, comEstoque: 0, semAnuncio: 0, lucroMedio: null as number | null, receitaPotencial: null as number | null });
 
   useEffect(() => {
     const skuFromUrl = new URLSearchParams(window.location.search).get('search')?.trim() || '';
@@ -1193,8 +1161,8 @@ export default function ProductsPage() {
         total: json.total || 0,
         comEstoque: json.comEstoque || 0,
         semAnuncio: json.semAnuncio || 0,
-        lucroMedio: json.lucroMedio || 0,
-        receitaPotencial: json.receitaPotencial || 0,
+        lucroMedio: json.lucroMedio ?? null,
+        receitaPotencial: json.receitaPotencial ?? null,
       });
     } catch (error: any) {
       if (statsRequestRef.current !== requestId) return;
@@ -1210,7 +1178,7 @@ export default function ProductsPage() {
   const rows: ProductRow[] = useMemo(() => {
     return products.map(item => {
       const { displayPrice, profit } = computeDerived(item, pricingTaxRate, commercialPricing);
-      const effectiveCost = Number(item.preferredOffer?.custo ?? item.product.cost ?? 0);
+      const effectiveCost = pricingView(item.product.pricing).cost;
       return {
         key: item.product.id,
         product: item.product,
@@ -1222,9 +1190,7 @@ export default function ProductsPage() {
         effectiveCost,
         displayPrice,
         profit,
-        margin: profit === null || displayPrice <= 0
-          ? null
-          : Math.round((profit / displayPrice) * 10000) / 100,
+        margin: pricingView(item.product.pricing).margin,
       };
     });
   }, [commercialPricing, pricingTaxRate, products]);
@@ -1455,8 +1421,9 @@ export default function ProductsPage() {
       render: (_, record) => (
         <div className={styles.commercialCell}>
           <strong>{formatCurrency(record.displayPrice)}</strong>
-          <span>Preço {record.product.customPrice === null ? 'calculado' : 'personalizado'}</span>
+          <span>Preço registrado · origem manual não comprovada</span>
           <span>Custo {formatCurrency(record.effectiveCost)}</span>
+          <span>Alvo estimado {formatCurrency(pricingView(record.product.pricing).suggestedPrice)}</span>
         </div>
       ),
     },
@@ -1464,11 +1431,12 @@ export default function ProductsPage() {
       title: 'Rentabilidade', key: 'profit', width: 155, sorter: true,
       sortOrder: getRemoteSortOrder('profit', sort),
       render: (_, record) => record.profit === null ? (
-        <div className={styles.stackedCell}><strong>—</strong><span>Após publicação</span></div>
+        <div className={styles.stackedCell}><strong>—</strong><span>Dados econômicos incompletos</span></div>
       ) : (
         <div className={record.profit >= 0 ? styles.profitPositive : styles.profitNegative}>
           <strong>{formatCurrency(record.profit)}</strong>
           <span>{record.margin === null ? '—' : `${record.margin.toFixed(2).replace('.', ',')}% de margem`}</span>
+          <span>Estimativa operacional</span>
         </div>
       ),
     },
@@ -1641,10 +1609,10 @@ export default function ProductsPage() {
         <div className={styles.summaryItem}><span>Produtos</span><strong>{stats.total}</strong><small>no conjunto atual</small></div>
         <div className={styles.summaryItem}><span>Com estoque</span><strong>{stats.comEstoque}</strong><small>saldo operacional</small></div>
         <div className={styles.summaryItem}><span>Sem anúncio ML</span><strong>{stats.semAnuncio}</strong><small>aguardando publicação</small></div>
-        <div className={stats.lucroMedio >= 0 ? styles.summaryItem : styles.summaryDanger}>
+        <div className={stats.lucroMedio === null || stats.lucroMedio >= 0 ? styles.summaryItem : styles.summaryDanger}>
           <span>Lucro médio</span><strong>{formatCurrency(stats.lucroMedio)}</strong><small>anúncios com cálculo</small>
         </div>
-        <div className={styles.summaryHighlight}><span>Receita potencial</span><strong>{formatCurrency(stats.receitaPotencial)}</strong><small>preço × saldo operacional</small></div>
+        <div className={styles.summaryHighlight}><span>Receita potencial</span><strong>{formatCurrency(stats.receitaPotencial)}</strong><small>preço-alvo estimado × Q segura</small></div>
       </section>
 
       <section className={styles.filterBar}>
@@ -1754,39 +1722,22 @@ export default function ProductsPage() {
         okText={priceModal.results.length > 0 ? 'Aplicar novamente' : 'Aplicar nos anúncios'}
         cancelText="Fechar"
         confirmLoading={priceModal.saving}
-        okButtonProps={{ disabled: Boolean(visualReview) }}
+        okButtonProps={{ disabled: true }}
         destroyOnClose
       >
         {priceModal.record && (() => {
           const record = priceModal.record;
           const value = Number(priceModal.value || 0);
-          const previewProfit = pricingTaxRate === null || value <= 0
-            ? null
-            : calculateNetProfitAtPrice({
-                price: value,
-                cost: record.effectiveCost,
-                shipping: record.product.mlShipping,
-                mlFee: record.product.mlFee,
-                taxRate: pricingTaxRate,
-              });
-          const previewMargin = previewProfit === null || value <= 0
-            ? null
-            : Math.round((previewProfit / value) * 10000) / 100;
-          const suggestedPrice = pricingTaxRate === null
-            ? record.displayPrice
-            : commercialPricing ? calculateSuggestedPrice({
-                cost: record.effectiveCost,
-                shipping: record.product.mlShipping,
-                mlFee: record.product.mlFee,
-                taxRate: pricingTaxRate,
-                costTiers: commercialPricing.costTiers,
-              }).suggestedPrice : record.displayPrice;
+          const view = pricingView(record.product.pricing);
+          const previewProfit = value === view.displayPrice ? view.profit : null;
+          const previewMargin = value === view.displayPrice ? view.margin : null;
+          const suggestedPrice = view.suggestedPrice;
           const listings = displayMlListings(record).filter(listing => ['ativo', 'pausado'].includes(listing.status));
           return (
             <div className={styles.priceModalContent}>
               <div className={styles.priceModalProduct}>
                 <strong>{record.product.name}</strong>
-                <span>Um único preço será aplicado a todos os anúncios vinculados.</span>
+                <span>Alteração de preço indisponível até a homologação das proteções comerciais.</span>
               </div>
               <label className={styles.priceInputLabel}>
                 <span>Novo preço de venda</span>

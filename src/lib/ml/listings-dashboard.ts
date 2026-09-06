@@ -1,5 +1,6 @@
 import type { BntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
-import { calculateNetProfitAtPrice } from '@/services/pricing';
+import { pricingFor } from '@/lib/products/bnt-d07-visual-review';
+import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 
 export type MlListingsFocus = 'all' | 'active' | 'paused' | 'quality_risk' | 'price_review';
 export type MlCatalogStatus = 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
@@ -57,7 +58,8 @@ export type MlListingQueueCounts = MlListingMetrics;
 
 type VisualReviewParams = {
   review: BntD07VisualReview;
-  taxRate: number;
+  taxRate: number | null;
+  commercialPricing: CommercialPricingConfiguration;
   page: number;
   pageSize: number;
   search: string;
@@ -96,7 +98,7 @@ function qualityDetails(listing: Record<string, any>) {
   };
 }
 
-function visualRows(review: BntD07VisualReview, taxRate: number): MlListingDashboardRow[] {
+function visualRows(review: BntD07VisualReview, taxRate: number | null, commercialPricing: CommercialPricingConfiguration): MlListingDashboardRow[] {
   const rows: MlListingDashboardRow[] = [];
   for (const item of review.items) {
     const product = item.product || {};
@@ -107,12 +109,8 @@ function visualRows(review: BntD07VisualReview, taxRate: number): MlListingDashb
       if (!itemId) continue;
       const listingType = listing.type === 'catalog' || listing.catalogo === true ? 'catalog' : 'standard';
       const price = Number(listing.price ?? listing.preco_ml ?? product.custom_price ?? 0);
-      const cost = Number(item.preferredOffer?.custo ?? product.custo ?? 0);
-      const shipping = Number(product.ml_shipping || 0);
-      const mlFee = Number(product.ml_fee || 0);
-      const profit = price > 0 && Number.isFinite(cost)
-        ? calculateNetProfitAtPrice({ price, cost, shipping, mlFee, taxRate })
-        : null;
+      const economics = pricingFor({ ...item, product: { ...product, custom_price: price } }, taxRate, commercialPricing);
+      const profit = economics.profit;
       const catalogStatus = listingType === 'catalog'
         ? (listing.catalogStatus || listing.catalog_status || 'perdendo') as MlCatalogStatus
         : 'sem_catalogo';
@@ -133,7 +131,7 @@ function visualRows(review: BntD07VisualReview, taxRate: number): MlListingDashb
         relatedItemId: String(listing.relatedItemId || listing.related_item_id || '').trim() || null,
         price,
         profit,
-        marginPercent: profit === null || price <= 0 ? null : Math.round((profit / price) * 10000) / 100,
+        marginPercent: economics.margin,
         sold: Number(listing.sold ?? listing.vendidos ?? 0),
         visits: Number(listing.visits ?? listing.visitas ?? 0),
         ...quality,
@@ -162,7 +160,7 @@ function isPriceReview(row: MlListingDashboardRow) {
     && row.priceToWin > 0;
 }
 
-function matchesCommonFilters(row: MlListingDashboardRow, params: VisualReviewParams) {
+function matchesCommonFilters(row: MlListingDashboardRow, params: Omit<VisualReviewParams, 'review' | 'taxRate' | 'commercialPricing'>) {
   const search = params.search.trim().toLocaleLowerCase('pt-BR');
   if (search && ![row.itemId, row.productSku, row.productName, row.listingTitle]
     .join(' ').toLocaleLowerCase('pt-BR').includes(search)) return false;
@@ -204,7 +202,11 @@ function sortValue(row: MlListingDashboardRow, sortBy: string): string | number 
 }
 
 export function listBntD11VisualReview(params: VisualReviewParams) {
-  const common = visualRows(params.review, params.taxRate).filter((row) => matchesCommonFilters(row, params));
+  return { ...selectMlListingRows(visualRows(params.review, params.taxRate, params.commercialPricing), params), visualReview: params.review.metadata };
+}
+
+export function selectMlListingRows(rows: MlListingDashboardRow[], params: Omit<VisualReviewParams, 'review' | 'taxRate' | 'commercialPricing'>) {
+  const common = rows.filter((row) => matchesCommonFilters(row, params));
   const metrics: MlListingMetrics = {
     total: common.length,
     active: common.filter((row) => row.observedStatus === 'active').length,
@@ -231,6 +233,5 @@ export function listBntD11VisualReview(params: VisualReviewParams) {
     metrics,
     queueCounts: metrics,
     lastSyncedAt: common.map((row) => row.listingSyncedAt).filter(Boolean).sort().at(-1) || null,
-    visualReview: params.review.metadata,
   };
 }

@@ -12,7 +12,7 @@ import {
   ReloadOutlined, SaveOutlined, StopOutlined,
 } from '@ant-design/icons';
 import { formatCurrency, currencyFormatter, currencyParser } from '@/lib/format';
-import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
+import { pricingView } from '@/lib/pricing-view';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
 import type { ProductMlListing } from '@/lib/ml/product-listings';
@@ -66,7 +66,7 @@ function mapDBtoProduct(
   mlFeeFallbackRate: number,
 ): ProductDetail {
   return {
-    id: String(item.id), active: item.ativo !== false, sku: String(item.sku || ''),
+    id: String(item.id), pricing: (item as any).pricing, active: item.ativo !== false, sku: String(item.sku || ''),
     name: String(item.nome || ''), brand: String(item.marca || ''),
     fornecedor: item.fornecedor_operacional || item.fornecedor || null,
     supplierId: item.dslite_fornecedor_id || null,
@@ -274,13 +274,8 @@ export default function ProductDetailPage() {
 
   if (loading) return <div className={styles.centerState}><Spin indicator={<LoadingOutlined className={styles.loadingIcon} spin />} /><Text type="secondary">Carregando produto...</Text></div>;
   if (error || !product) return <div className={styles.centerState}><StopOutlined className={styles.errorIcon} /><Title level={4}>{error || 'Produto não encontrado'}</Title><Button type="primary" onClick={() => router.push('/produtos')}>Voltar para Produtos</Button></div>;
-  if (pricingTaxRate === null || !commercialPricing) return <Alert type="error" showIcon message="Precificação indisponível" description="Não é possível apresentar a precificação com segurança enquanto a configuração fiscal ou comercial estiver indisponível." />;
-
-  const suggestedPrice = calculateSuggestedPrice({ cost: product.cost, shipping: product.mlShipping, mlFee: product.mlFee, taxRate: pricingTaxRate, costTiers: commercialPricing.costTiers }).suggestedPrice;
-  const displayPrice = product.customPrice ?? suggestedPrice;
-  const profit = calculateNetProfitAtPrice({ price: displayPrice, cost: product.cost, shipping: product.mlShipping, mlFee: product.mlFee, taxRate: pricingTaxRate });
-  const margin = displayPrice > 0 ? (profit / displayPrice) * 100 : 0;
-  const effectiveListings: ProductMlListing[] = mlListings.length > 0 ? mlListings : product.mlItemId ? [{ itemId: product.mlItemId, type: 'standard', status: product.mlStatus, price: displayPrice, permalink: null, catalogStatus: 'sem_catalogo' }] : [];
+  const { suggestedPrice, displayPrice, profit, margin } = pricingView(product.pricing);
+  const effectiveListings: ProductMlListing[] = mlListings.length > 0 ? mlListings : product.mlItemId && displayPrice !== null ? [{ itemId: product.mlItemId, type: 'standard', status: product.mlStatus, price: displayPrice, permalink: null, catalogStatus: 'sem_catalogo' }] : [];
   const kitSupplierOffer = supplierOffers.find((offer) => offer.is_kit_supplier);
   const currentSupplier = supplierOffers.find((offer) => offer.preferred) || supplierOffers.find((offer) => String(offer.id) === preferredSupplierOfferId) || null;
   const categoryItems = product.category ? product.category.split(' > ').map((name) => ({ title: name })) : [];
@@ -368,9 +363,9 @@ export default function ProductDetailPage() {
       ]} />}
       {product.shippingWarning ? <Alert className={styles.inlineAlert} type="warning" showIcon message="Frete precisa de revisão" description={product.shippingWarning} /> : null}
       <div className={styles.priceSummary}>
-        <div><span>Preço atual</span><strong>{formatCurrency(displayPrice)}</strong><small>{product.customPrice === null ? 'calculado pela regra central' : 'personalizado'}</small></div>
+        <div><span>Preço atual</span><strong>{formatCurrency(displayPrice)}</strong><small>{'origem manual não comprovada'}</small></div>
         <div><span>Preço calculado</span><strong>{formatCurrency(suggestedPrice)}</strong><small>referência automática</small></div>
-        <div className={profit >= 0 ? styles.profitBox : styles.lossBox}><span>Lucro líquido</span><strong>{formatCurrency(profit)}</strong><small>{margin.toFixed(2).replace('.', ',')}% de margem</small></div>
+        <div className={profit !== null && profit >= 0 ? styles.profitBox : styles.lossBox}><span>Lucro líquido</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? '—' : margin.toFixed(2).replace('.', ',')}% de margem</small></div>
       </div>
     </section>
   </div>;
@@ -452,9 +447,9 @@ export default function ProductDetailPage() {
         <div className={styles.summaryBand}>
           <div className={styles.summaryHighlight}><span>Q segura</span><strong>{capacity.safe}</strong><small>I {capacity.internal} · F {capacity.supplier}</small></div>
           <div><span>Fornecedor atual</span><strong className={styles.summaryText}>{capacity.internal > 0 ? 'Estoque interno' : currentSupplier?.fornecedor_nome || product.fornecedor || 'Não definido'}</strong><small>{supplierOffers.length} oferta{supplierOffers.length === 1 ? '' : 's'}</small></div>
-          <div><span>Custo</span><strong>{formatCurrency(product.cost)}</strong><small>{product.preferredSupplierManual ? 'preferência manual' : 'fonte automática'}</small></div>
-          <div><span>Preço</span><strong>{formatCurrency(displayPrice)}</strong><small>{product.customPrice === null ? 'calculado' : 'personalizado'}</small></div>
-          <div className={profit >= 0 ? styles.summaryProfit : styles.summaryLoss}><span>Lucro</span><strong>{formatCurrency(profit)}</strong><small>{margin.toFixed(2).replace('.', ',')}% de margem</small></div>
+          <div><span>Custo</span><strong>{formatCurrency(pricingView(product.pricing).cost)}</strong><small>oferta elegível</small></div>
+          <div><span>Preço</span><strong>{formatCurrency(displayPrice)}</strong><small>{'preço registrado'}</small></div>
+          <div className={profit !== null && profit >= 0 ? styles.summaryProfit : styles.summaryLoss}><span>Lucro</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? '—' : margin.toFixed(2).replace('.', ',')}% de margem</small></div>
         </div>
       </div>
     </section>

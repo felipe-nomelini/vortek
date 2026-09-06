@@ -1,6 +1,5 @@
 import type { PricingParams, PricingResult } from '@/types/pricing';
 import type { PricingCostTier } from '@/lib/commercial-pricing';
-import { calculateNetProfitAtPrice } from './pricing-core.js';
 
 export { calculateNetProfitAtPrice } from './pricing-core.js';
 
@@ -168,10 +167,8 @@ export function buildPricingTaxContext(input: {
   };
 }
 
-export function getPricingStrategy(cost: number, costTiers: PricingCostTier[]): PricingStrategy {
-  const tier = costTiers.find((candidate) => candidate.maxCost === null || cost <= candidate.maxCost);
-  if (!tier) throw new Error('Nenhuma faixa comercial atende ao custo informado');
-  return { margin: tier.margin, minProfit: tier.minProfit };
+export function getPricingStrategy(cost: number, costTiers?: PricingCostTier[]): PricingStrategy {
+  throw new Error('Política comercial legada aposentada; use pricing-economy');
 }
 
 export function calculateBreakEvenPrice(params: {
@@ -180,15 +177,10 @@ export function calculateBreakEvenPrice(params: {
   mlFee: number;
   taxRate: number;
 }): number {
-  assertRate(params.taxRate, 'Alíquota de imposto');
-  const denominator = 1 - (params.taxRate + params.mlFee);
-  if (denominator <= 0) {
-    throw new Error('A soma de imposto e taxa ML não pode ser igual ou superior a 100%');
-  }
-  return round2((params.cost + params.shipping) / denominator);
+  throw new Error('Política comercial legada aposentada; use pricing-economy');
 }
 
-/** Calcula o preço pela margem líquida desejada sobre o preço final. */
+/** @deprecated Entrada histórica bloqueada; projeções pertencem a pricing-economy. */
 export function calculateExactMarginPrice(params: {
   cost: number;
   shipping: number;
@@ -197,19 +189,10 @@ export function calculateExactMarginPrice(params: {
   fixedFee?: number;
   taxRate: number;
 }): number {
-  assertRate(params.taxRate, 'Alíquota de imposto');
-  const fixedFee = params.fixedFee ?? 0;
-  if (!Number.isFinite(fixedFee) || fixedFee < 0) {
-    throw new Error('Tarifa fixa deve ser um valor não negativo');
-  }
-  const denominator = 1 - params.taxRate - params.mlFee - params.margin;
-  if (denominator <= 0) {
-    throw new Error('A soma de imposto, taxa ML e margem não pode ser igual ou superior a 100%');
-  }
-  return round2((params.cost + params.shipping + fixedFee) / denominator);
+  throw new Error('Política comercial legada aposentada; use pricing-economy');
 }
 
-/** Calcula o preço necessário para preservar um lucro líquido nominal. */
+/** @deprecated Lucro nominal não governa novas decisões comerciais. */
 export function calculateTargetNetProfitPrice(params: {
   cost: number;
   shipping: number;
@@ -218,61 +201,13 @@ export function calculateTargetNetProfitPrice(params: {
   fixedFee?: number;
   taxRate: number;
 }): number {
-  const taxRate = params.taxRate;
-  const values = [
-    params.cost,
-    params.shipping,
-    params.mlFee,
-    params.targetNetProfit,
-    params.fixedFee ?? 0,
-    taxRate,
-  ];
-  if (values.some((value) => !Number.isFinite(value) || value < 0)) {
-    throw new Error('Dados inválidos para cálculo de lucro líquido alvo');
-  }
-  const denominator = 1 - taxRate - params.mlFee;
-  if (denominator <= 0) {
-    throw new Error('A soma de imposto e taxa ML deve ser inferior a 100%');
-  }
-  return round2(
-    (params.cost + params.shipping + (params.fixedFee ?? 0) + params.targetNetProfit)
-      / denominator,
-  );
+  throw new Error('Política comercial legada aposentada; use pricing-economy');
 }
 
 /**
- * Calcula preço sugerido usando estratégia Vortek atual.
- *
- * A margem e o lucro mínimo vêm das faixas comerciais configuradas.
- *
- * Quando `margin` é informado explicitamente, ele sobrescreve margem da estratégia,
- * mas o piso de lucro mínimo por faixa continua valendo.
+ * @deprecated Assinatura histórica preservada somente para falhar explicitamente.
+ * A política atual usa preço final e a memória econômica de pricing-economy.
  */
 export function calculateSuggestedPrice(params: PricingParams): PricingResult {
-  const { cost, shipping, mlFee, taxRate } = params;
-  assertRate(taxRate, 'Alíquota de imposto');
-  const strategy = getPricingStrategy(cost, params.costTiers);
-  const margin = typeof params.margin === 'number' ? params.margin : strategy.margin;
-  const denominator = 1 - (taxRate + mlFee);
-
-  if (denominator <= 0) {
-    throw new Error(
-      'A soma de imposto e taxa ML não pode ser igual ou superior a 100%'
-    );
-  }
-
-  const priceByMargin = (cost + shipping + (cost * margin)) / denominator;
-  const priceByMinProfit = (cost + shipping + strategy.minProfit) / denominator;
-  const suggestedPrice = Math.max(priceByMargin, priceByMinProfit);
-  const tax = suggestedPrice * taxRate;
-  const mlFeeAmount = suggestedPrice * mlFee;
-  const netProfit = suggestedPrice - cost - shipping - tax - mlFeeAmount;
-
-  return {
-    suggestedPrice: round2(suggestedPrice),
-    tax: round2(tax),
-    mlFeeAmount: round2(mlFeeAmount),
-    marginAmount: round2(netProfit),
-    netProfit: round2(netProfit),
-  };
+  throw new Error('Política comercial legada aposentada; use pricing-economy');
 }

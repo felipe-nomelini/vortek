@@ -103,57 +103,8 @@ test('exige PGDAS acima do sublimite de cálculo automático', () => {
   assert.equal(confirmed.source, 'confirmed');
 });
 
-test('uma única alíquota explícita governa preço e lucro projetados', () => {
-  const pricing = calculateSuggestedPrice({
-    cost: 215,
-    shipping: 44.05,
-    mlFee: 0.16,
-    taxRate: 0.05,
-    costTiers: COST_TIERS,
-  });
-  assert.equal(calculateNetProfitAtPrice({
-    price: pricing.suggestedPrice,
-    cost: 215,
-    shipping: 44.05,
-    mlFee: 0.16,
-    taxRate: 0.05,
-  }), pricing.netProfit);
-  assert.throws(() => calculateSuggestedPrice({
-    cost: 10,
-    shipping: 0,
-    mlFee: 0.15,
-    costTiers: COST_TIERS,
-  }), /Alíquota/);
-});
-
-test('seleciona as faixas comerciais configuradas nos limites exatos', () => {
-  const calculate = (cost) => calculateSuggestedPrice({
-    cost,
-    shipping: 0,
-    mlFee: 0.15,
-    taxRate: 0.04,
-    costTiers: COST_TIERS,
-  });
-
-  assert.equal(calculate(400).netProfit, 60);
-  assert.equal(calculate(400.01).netProfit, 80);
-  assert.equal(calculate(1000).netProfit, 200);
-  assert.equal(calculate(1000.01).netProfit, 250);
-
-  const changedPolicy = COST_TIERS.map((tier) => ({ ...tier, minProfit: tier.minProfit + 10 }));
-  assert.notEqual(
-    calculateSuggestedPrice({ cost: 50, shipping: 0, mlFee: 0.15, taxRate: 0.04, costTiers: changedPolicy }).suggestedPrice,
-    calculate(50).suggestedPrice,
-  );
-});
-
-test('margem exata inclui tarifa fixa sem criar fórmula paralela', () => {
-  assert.equal(calculateExactMarginPrice({
-    cost: 100,
-    shipping: 10,
-    fixedFee: 5,
-    mlFee: 0.15,
-    margin: 0.20,
-    taxRate: 0.05,
-  }), 191.67);
+test('entradas comerciais legadas falham explicitamente, sem piso por custo', () => {
+  for (const fn of [calculateSuggestedPrice, calculateNetProfitAtPrice, calculateExactMarginPrice]) {
+    assert.throws(() => fn({ cost: 215, price: 400, shipping: 0, mlFee: .15, taxRate: .04, costTiers: COST_TIERS }), /legad.*aposentad/);
+  }
 });

@@ -53,8 +53,8 @@ test('BNT-D11 só classifica qualidade quando a fonte é o endpoint de performan
 });
 
 test('BNT-D11 usa alíquota dinâmica e mantém cálculo de rentabilidade no backend', () => {
-  assert.match(route, /loadPricingTaxContext/);
-  assert.match(route, /p_tax_rate: taxRate/);
+  assert.match(route, /loadPricingRequestContext/);
+  assert.match(route, /loadProductPricing/);
   assert.match(migration, /base\.price \* p_tax_rate/);
   assert.doesNotMatch(migration, /base\.price \* 0\.0[45]/);
   assert.match(migration, /raise exception 'p_tax_rate inválida/);

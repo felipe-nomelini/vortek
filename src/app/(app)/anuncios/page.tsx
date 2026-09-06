@@ -197,10 +197,6 @@ function formatDateTime(value: string | null) {
   }).format(date);
 }
 
-function calculateProfit(price: number, calculator: PricingDetails['calculator']) {
-  return Math.round((price - calculator.cost - calculator.shipping - (price * calculator.taxRate) - (price * calculator.mlFee)) * 100) / 100;
-}
-
 function batchOutcomeLabel(outcome: string) {
   if (outcome === 'done') return 'Concluído no ML';
   if (outcome === 'processing') return 'Processando no ML';
@@ -680,7 +676,7 @@ export default function AnunciosPage() {
   };
 
   const activeAnalysis = analysis.row;
-  const nextProfit = details && newPrice && newPrice > 0 ? calculateProfit(newPrice, details.calculator) : null;
+  const nextProfit = details && newPrice === details.currentPrice ? details.currentProfit : null;
   const qualityItems = Array.isArray((activeAnalysis?.qualityInfo as any)?.itens) ? (activeAnalysis?.qualityInfo as any).itens : [];
   const syncing = Boolean(syncJob && !TERMINAL_JOB_STATUSES.has(syncJob.status));
 

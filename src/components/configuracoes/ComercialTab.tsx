@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Alert,
   Button,
@@ -18,20 +18,13 @@ import {
 } from "antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import type { MessageInstance } from "antd/es/message/interface";
-import { calculateSuggestedPrice } from "@/services/pricing";
-import type { PricingCostTier } from "@/lib/commercial-pricing";
+import { FINAL_PRICE_POLICY } from "@/services/pricing-policy";
+import type { ProductPricing } from "@/services/pricing-context";
 import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
 
 import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 
 const { Text, Title } = Typography;
-
-type CostTierForm = {
-  position: number;
-  maxCost: number | null;
-  marginPercent: number;
-  minProfit: number;
-};
 
 type QuantityTierForm = {
   position: number;
@@ -43,7 +36,6 @@ type CommercialFormValues = {
   mlFeeFallbackPercent: number;
   unspecifiedShippingCost: number;
   inactiveCostThreshold: number;
-  costTiers: CostTierForm[];
   quantityPricingTiers: QuantityTierForm[];
 };
 
@@ -67,15 +59,6 @@ function rateLabel(context: TaxContext | null) {
   return `${(context.appliedRate * 100).toFixed(4).replace(".", ",")}%`;
 }
 
-function costRangeLabel(tiers: CostTierForm[], index: number) {
-  const previous = index === 0 ? 0 : Number(tiers[index - 1]?.maxCost || 0);
-  const current = tiers[index];
-  if (!current || current.maxCost === null) return `Acima de ${money(previous)}`;
-  return index === 0
-    ? `Até ${money(current.maxCost)}`
-    : `De ${money(previous + 0.01)} até ${money(current.maxCost)}`;
-}
-
 export default function ComercialTab({ messageApi }: { messageApi: MessageInstance }) {
   const [form] = Form.useForm<CommercialFormValues>();
   const [modal, modalContextHolder] = Modal.useModal();
@@ -85,7 +68,8 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
   const [simulatorCost, setSimulatorCost] = useState(250);
   const [simulatorShipping, setSimulatorShipping] = useState(30);
   const [simulatorFee, setSimulatorFee] = useState(15);
-  const watchedValues = Form.useWatch([], form);
+  const [simulation, setSimulation] = useState<ProductPricing | null>(null);
+  const [simulating, setSimulating] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -108,37 +92,26 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
     void load();
   }, [form, messageApi]);
 
-  const simulation = useMemo(() => {
-    const tiers = watchedValues?.costTiers;
-    const taxRate = taxContext?.appliedRate;
-    if (!tiers?.length || taxRate === null || taxRate === undefined) return null;
+  const simulate = async () => {
+    setSimulating(true); setSimulation(null);
     try {
-      const costTiers: PricingCostTier[] = [...tiers]
-        .sort((left, right) => left.position - right.position)
-        .map((tier) => ({
-          position: tier.position,
-          maxCost: tier.maxCost,
-          margin: tier.marginPercent / 100,
-          minProfit: tier.minProfit,
-        }));
-      return calculateSuggestedPrice({
-        cost: Number(simulatorCost || 0),
-        shipping: Number(simulatorShipping || 0),
-        mlFee: Number(simulatorFee || 0) / 100,
-        taxRate,
-        costTiers,
+      const response = await fetch("/api/configuracoes/comercial/simular", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ costCents: Math.round(simulatorCost * 100),
+          shippingCents: Math.round(simulatorShipping * 100), feeRate: simulatorFee / 100, priceCents: null }),
       });
-    } catch {
-      return null;
-    }
-  }, [simulatorCost, simulatorFee, simulatorShipping, taxContext, watchedValues]);
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.erro || "Falha na simulação");
+      setSimulation(result.pricing); setTaxContext(result.pricingTaxContext);
+    } catch (error) { messageApi.error(error instanceof Error ? error.message : "Falha na simulação"); }
+    finally { setSimulating(false); }
+  };
 
   const persist = async (values: CommercialFormValues) => {
     setSaving(true);
     try {
       const normalized = {
         ...values,
-        costTiers: values.costTiers.map((tier, index) => ({ ...tier, position: index + 1 })),
         quantityPricingTiers: values.quantityPricingTiers.map((tier, index) => ({ ...tier, position: index + 1 })),
       };
       const response = await fetch("/api/configuracoes/comercial", {
@@ -171,7 +144,6 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
     });
   };
 
-  const currentCostTiers = watchedValues?.costTiers || [];
 
   return (
     <Spin spinning={loading}>
@@ -179,7 +151,7 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
       <Form form={form} layout="vertical" onFinish={save} requiredMark={false}>
         <Space direction="vertical" size={16} style={{ width: "100%" }}>
           <ConfiguracoesTabHeading title="Comercial e precificação"
-            description="Fonte única das margens, proteções de custo e política mínima de atacado." />
+            description="Política por preço final, fontes econômicas e simulação sem alteração de anúncios." />
 
           <Alert
             type="info"
@@ -188,44 +160,16 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
             description="Salvar altera somente os próximos cálculos. Nenhum preço atual, anúncio ou produto será modificado automaticamente."
           />
 
-          <Card style={configuracoesCardStyle}>
-            <Space direction="vertical" size={4} style={{ width: "100%", marginBottom: 16 }}>
-              <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>Estratégia por custo</Title>
-              <Text type="secondary">O maior resultado entre margem e lucro mínimo define o preço sugerido.</Text>
-            </Space>
-            <Form.List name="costTiers">
-              {(fields) => (
-                <Row gutter={[12, 12]}>
-                  {fields.map((field, index) => (
-                    <Col xs={24} xl={8} key={field.key}>
-                      <Card size="small" style={{ background: "#191919", borderColor: "#353535", height: "100%" }}>
-                        <Text strong style={{ color: "#ffc400", display: "block", marginBottom: 12 }}>
-                          Faixa {index + 1} · {costRangeLabel(currentCostTiers, index)}
-                        </Text>
-                        <Form.Item name={[field.name, "position"]} hidden><InputNumber /></Form.Item>
-                        {index < 2 && (
-                          <Form.Item name={[field.name, "maxCost"]} label="Custo máximo" rules={[{ required: true, message: "Informe o limite" }]}>
-                            <InputNumber min={0.01} precision={2} prefix="R$" style={inputStyle} />
-                          </Form.Item>
-                        )}
-                        <Row gutter={10}>
-                          <Col span={12}>
-                            <Form.Item name={[field.name, "marginPercent"]} label="Margem" rules={[{ required: true }]}>
-                              <InputNumber min={0.01} max={99.99} precision={2} suffix="%" style={inputStyle} />
-                            </Form.Item>
-                          </Col>
-                          <Col span={12}>
-                            <Form.Item name={[field.name, "minProfit"]} label="Lucro mínimo" rules={[{ required: true }]}>
-                              <InputNumber min={0} precision={2} prefix="R$" style={inputStyle} />
-                            </Form.Item>
-                          </Col>
-                        </Row>
-                      </Card>
-                    </Col>
-                  ))}
-                </Row>
-              )}
-            </Form.List>
+          <Card style={configuracoesCardStyle} title="Política canônica por preço final">
+            <Row gutter={[12, 12]}>
+              {FINAL_PRICE_POLICY.bands.map((band, index) => (
+                <Col xs={24} xl={8} key={band.id}>
+                  <Title level={5}>{["Até R$ 200,00", "R$ 200,01 a R$ 1.000,00", "Acima de R$ 1.000,00"][index]}</Title>
+                  <Text>Piso {band.floor * 100}% · Alvo {band.target * 100}% · Limite {band.limit * 100}%</Text>
+                </Col>
+              ))}
+            </Row>
+            <p>O piso orienta diagnóstico. O limite não é margem máxima e não autoriza reduzir preços.</p>
           </Card>
 
           <Card style={configuracoesCardStyle}>
@@ -251,7 +195,7 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
 
           <Card style={configuracoesCardStyle}>
             <Space direction="vertical" size={4} style={{ width: "100%", marginBottom: 16 }}>
-              <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>Preço por quantidade</Title>
+              <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>Preço por quantidade — execução bloqueada</Title>
               <Text type="secondary">De 1 a 5 faixas. A recomendação válida do ML prevalece; estes percentuais são o piso local e o fallback da resposta 204.</Text>
             </Space>
             <Form.List name="quantityPricingTiers">
@@ -289,23 +233,25 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
               <Col xs={24} xl={15}>
                 <Title level={5} style={{ color: "#f5f5f5", marginTop: 0 }}>Simulador</Title>
                 <Row gutter={12}>
-                  <Col xs={24} sm={8}><Text type="secondary">Custo</Text><InputNumber value={simulatorCost} onChange={(value) => setSimulatorCost(Number(value || 0))} min={0} precision={2} prefix="R$" style={inputStyle} /></Col>
-                  <Col xs={24} sm={8}><Text type="secondary">Frete</Text><InputNumber value={simulatorShipping} onChange={(value) => setSimulatorShipping(Number(value || 0))} min={0} precision={2} prefix="R$" style={inputStyle} /></Col>
-                  <Col xs={24} sm={8}><Text type="secondary">Taxa ML</Text><InputNumber value={simulatorFee} onChange={(value) => setSimulatorFee(Number(value || 0))} min={0} max={99.99} precision={2} suffix="%" style={inputStyle} /></Col>
+                  <Col xs={24} sm={8}><Text type="secondary">Custo</Text><InputNumber value={simulatorCost} disabled={simulating} onChange={(value) => { setSimulatorCost(Number(value || 0)); setSimulation(null); }} min={0} precision={2} prefix="R$" style={inputStyle} /></Col>
+                  <Col xs={24} sm={8}><Text type="secondary">Frete</Text><InputNumber value={simulatorShipping} disabled={simulating} onChange={(value) => { setSimulatorShipping(Number(value || 0)); setSimulation(null); }} min={0} precision={2} prefix="R$" style={inputStyle} /></Col>
+                  <Col xs={24} sm={8}><Text type="secondary">Taxa ML</Text><InputNumber value={simulatorFee} disabled={simulating} onChange={(value) => { setSimulatorFee(Number(value || 0)); setSimulation(null); }} min={0} max={99.99} precision={2} suffix="%" style={inputStyle} /></Col>
                 </Row>
+                <Button htmlType="button" onClick={() => void simulate()} loading={simulating} style={{ marginTop: 12 }}>Simular no servidor</Button>
                 <Divider style={{ borderColor: "#303030", margin: "16px 0 10px" }} />
                 <Text type="secondary">Alíquota fiscal aplicada: </Text><Text style={{ color: "#f5f5f5" }}>{rateLabel(taxContext)}</Text>
               </Col>
               <Col xs={24} xl={9}>
                 <div style={{ background: "linear-gradient(135deg, #ffc400 0%, #8a6200 100%)", borderRadius: 10, padding: 18, color: "#0b0b0b" }}>
                   <Text style={{ color: "#2a2100" }}>Preço sugerido</Text>
-                  <div style={{ fontSize: 30, fontWeight: 800 }}>{simulation ? money(simulation.suggestedPrice) : "Indisponível"}</div>
-                  <Text style={{ color: "#2a2100" }}>Lucro líquido projetado: {simulation ? money(simulation.netProfit) : "—"}</Text>
+                  <div style={{ fontSize: 30, fontWeight: 800 }}>{simulation?.target.ok ? money(simulation.target.priceCents / 100) : "Indisponível"}</div>
+                  <Text style={{ color: "#2a2100" }}>Lucro líquido projetado: {simulation?.target.ok ? money(simulation.target.evaluation.memory.resultCents / 100) : "—"}</Text>
                 </div>
               </Col>
             </Row>
           </Card>
 
+          {simulation && !simulation.target.ok && <Alert type="warning" showIcon message="Simulação inconclusiva" description={simulation.target.reasons.map(reason => `${reason.field}: ${reason.code}`).join("; ")} />}
           {taxContext?.warning && <Alert type="warning" showIcon message={taxContext.warning} />}
 
           <Button type="primary" htmlType="submit" loading={saving}>

@@ -13,14 +13,14 @@ const base = {
   profit: -3.24,
 };
 
-test('calcula lucro com mesma regra da página ANÚNCIOS', () => {
-  assert.equal(calculateCatalogCleanupProfit({
+test('cálculo comercial do script histórico está aposentado', () => {
+  assert.throws(() => calculateCatalogCleanupProfit({
     price: 29.05,
     cost: 15,
     shipping: 12.35,
     mlFee: 0.13,
     taxRate: 0.04,
-  }), -3.24);
+  }), /legado aposentado/);
 });
 
 test('aceita qualquer anúncio pausado no ERP com lucro negativo', () => {

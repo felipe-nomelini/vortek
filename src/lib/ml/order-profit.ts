@@ -1,3 +1,5 @@
+import { calculateEconomicTotalsCents } from '../../services/pricing-core.js';
+
 export type MlShipmentCosts = {
   senders?: Array<{
     user_id?: string | number | null;
@@ -54,11 +56,9 @@ export function calculateFinalOrderProfit(input: {
     input.tax,
   ].every(Number.isFinite)) return null;
 
-  return Number((
-    input.total
-    - input.productCost
-    - input.saleFees
-    - input.sellerShippingCost
-    - input.tax
-  ).toFixed(2));
+  const result = calculateEconomicTotalsCents({ basis: 'order_total',
+    revenueCents: Math.round(input.total * 100), costCents: Math.round(input.productCost * 100),
+    feeCents: Math.round(input.saleFees * 100), shippingCents: Math.round(input.sellerShippingCost * 100),
+    taxCents: Math.round(input.tax * 100) });
+  return result === null ? null : result / 100;
 }

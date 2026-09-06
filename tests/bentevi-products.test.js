@@ -8,7 +8,7 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'u
 
 const page = read('src/app/(app)/produtos/page.tsx');
 const styles = read('src/app/(app)/produtos/produtos.module.css');
-const listRoute = read('src/app/api/produtos/route.ts');
+const listRoute = read('src/services/product-list.ts') + read('src/services/product-pricing-query.ts');
 const summaryRoute = read('src/app/api/produtos/resumo/route.ts');
 const visualReview = read('src/lib/products/bnt-d07-visual-review.ts');
 const priceRoute = read('src/app/api/ml/anuncio/atualizar-preco/route.ts');
@@ -28,9 +28,9 @@ test('BNT-D07 organiza produtos por decisão operacional', () => {
 });
 
 test('BNT-D07 exibe a capacidade canônica sem recalculá-la no browser', () => {
-  assert.match(listRoute, /loadProductFulfillmentCapacities\(serviceClient, productIds\)/);
+  assert.match(listRoute, /loadProductFulfillmentCapacities\(client, ids\)/);
   assert.match(listRoute, /fulfillmentCapacity:/);
-  assert.match(listRoute, /isKit: kitProductIds\.has\(productId\)/);
+  assert.match(listRoute, /isKit: kits.data.some/);
   assert.match(page, /record\.fulfillmentCapacity\.safe/);
   assert.match(page, /record\.fulfillmentCapacity\.internal/);
   assert.match(page, /record\.fulfillmentCapacity\.supplier/);
@@ -39,10 +39,11 @@ test('BNT-D07 exibe a capacidade canônica sem recalculá-la no browser', () => 
 });
 
 test('BNT-D07 usa o mesmo custo efetivo na leitura comercial e na rentabilidade', () => {
-  assert.match(page, /effectiveCost = Number\(item\.preferredOffer\?\.custo \?\? item\.product\.cost/);
+  assert.match(page, /effectiveCost = pricingView\(item.product.pricing\).cost/);
   assert.match(page, /Custo \{formatCurrency\(record\.effectiveCost\)\}/);
   assert.match(page, /record\.profit >= 0 \? styles\.profitPositive : styles\.profitNegative/);
-  assert.match(page, /profit \/ displayPrice/);
+  assert.doesNotMatch(page, /profit \/ displayPrice/);
+  assert.match(page, /pricingView\(item.product.pricing\).margin/);
   assert.doesNotMatch(page, /persistCustomPrice/);
   assert.doesNotMatch(page, /savingCustomPriceById/);
 });
@@ -109,7 +110,7 @@ test('BNT-D07 representa anúncios padrão e catálogo sem multiplicar tags', ()
   assert.match(listRoute, /loadProductMlListings/);
   assert.match(listingLoader, /from\('anuncios_ml'\)/);
   assert.match(listingLoader, /from\('catalogo_ml_snapshot'\)/);
-  assert.match(listRoute, /mlListings: mlListingsByProductId\.get\(productId\) \|\| \[\]/);
+  assert.match(listRoute, /mlListings: listings.get\(row.product.id\) \|\| \[\]/);
   assert.match(page, /listing\.type === 'catalog' \? 'Catálogo' : 'Padrão'/);
   assert.match(page, /listing\.catalogStatus === 'ganhando'/);
   assert.match(styles, /\.mlOverallStatus[\s\S]*?width: fit-content/);

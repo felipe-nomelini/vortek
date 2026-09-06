@@ -24,10 +24,11 @@ test('não classifica custos inválidos ou não positivos como custo alto', () =
   }
 });
 
-test('pricing automático reutiliza a regra central sem repetir o threshold', () => {
+test('PRC-03 aposenta automação por custo sem alterar atividade ou recriar threshold', () => {
   const source = read('src/lib/ml/automatic-pricing.ts');
 
-  assert.match(source, /shouldSupplierOfferBeInactiveByCost\(cost, commercial\.inactiveCostThreshold\)/);
+  assert.match(source, /getPricingExecutionBlock/);
+  assert.doesNotMatch(source, /\.update\(|custom_price|calculateSuggestedPrice/);
   assert.doesNotMatch(source, /cost\s*>\s*2_?000/);
 });
 

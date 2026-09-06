@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import type { Database } from '@/types/database';
 import { POST as refreshNoCatalogSnapshot } from '@/app/api/catalogo/no-catalogo/refresh/route';
-import { calculateBreakEvenPrice, calculateNetProfitAtPrice, calculateSuggestedPrice, getPricingStrategy } from '@/services/pricing';
+import { loadProductPricing, loadPricingRequestContext, type ProductPricing } from '@/services/pricing-context';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 import { resolveMlFee } from '@/lib/commercial-pricing';
@@ -12,10 +12,7 @@ type SnapshotRow = Pick<
   'ml_item_id' | 'title' | 'sku_local' | 'produto_id' | 'status' | 'catalog_listing' | 'buy_box_winning' | 'price' | 'price_to_win' | 'permalink'
 >;
 
-type ProdutoRow = Pick<
-  Database['public']['Tables']['produtos']['Row'],
-  'id' | 'sku' | 'nome' | 'custo' | 'ml_fee' | 'ml_shipping' | 'custom_price'
->;
+type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
 
 type ClasseAnalise =
   | 'ajustar_para_ganhar_sem_prejuizo'
@@ -38,8 +35,6 @@ interface AnaliseRow {
   motivo: string;
 }
 
-const MARGEM_LUCRO_MINIMA_ANALISE = 0.05;
-const DELTA_PRECO_MINIMO_ANALISE = 0.005;
 const PAGE_SIZE = 1000;
 const SUPABASE_IN_CHUNK_SIZE = 100;
 type RefreshMode = 'none' | 'incremental' | 'full';
@@ -49,6 +44,7 @@ function round2(value: number): number {
 }
 
 function toFiniteNumber(value: unknown): number | null {
+  if (value == null || value === '') return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
 }
@@ -127,11 +123,7 @@ export async function POST(request: Request) {
   }
 
   const service = createServiceClient();
-  const [pricingTaxContext, commercial] = await Promise.all([
-    loadPricingTaxContext(service),
-    loadCommercialPricingConfiguration(service),
-  ]);
-  const taxRate = requirePricingTaxRate(pricingTaxContext);
+  const requestContext = await loadPricingRequestContext(service);
   const snapshotRows: SnapshotRow[] = [];
   let snapshotMaxSyncedAt: string | null = null;
   let from = 0;
@@ -191,7 +183,7 @@ export async function POST(request: Request) {
     const idsChunk = produtoIds.slice(i, i + SUPABASE_IN_CHUNK_SIZE);
     const { data, error } = await service
       .from('produtos')
-      .select('id,sku,nome,custo,ml_fee,ml_shipping,custom_price')
+      .select('*')
       .in('id', idsChunk);
     if (error) {
       return NextResponse.json({ success: false, erro: error.message }, { status: 500 });
@@ -203,134 +195,45 @@ export async function POST(request: Request) {
   produtosQueryMs = Date.now() - produtosQueryStartedAt;
 
   const calculationStartedAt = Date.now();
-  const report: AnaliseRow[] = snapshotRows.map((row) => {
-    const precoAtual = round2(toFiniteNumber(row.price) || 0);
+  const pricingByListing = new Map<string, ProductPricing>();
+  // Agrupa anúncios sem repetir produto no mesmo lote; custo/configuração nunca são calculados no browser.
+  const pending = [...snapshotRows];
+  while (pending.length) {
+    const group: SnapshotRow[] = []; const ids = new Set<string>();
+    for (let i = 0; i < pending.length && group.length < 100;) {
+      const row = pending[i];
+      if (!row.produto_id || !produtoMap.has(row.produto_id)) { pending.splice(i, 1); continue; }
+      if (ids.has(row.produto_id)) { i++; continue; }
+      ids.add(row.produto_id); group.push(row); pending.splice(i, 1);
+    }
+    if (!group.length) break;
+    const products = group.map(row => produtoMap.get(row.produto_id!)!);
+    const evidence = new Map(group.map(row => [row.produto_id!, { mlItemId: row.ml_item_id,
+      currentPriceCents: row.price_to_win == null ? null : Math.round(Number(row.price_to_win) * 100),
+      marketContextKey: `listing:${row.ml_item_id}:competitive:unquoted` }]));
+    const pricing = await loadProductPricing(service, products, { requestContext, evidence });
+    for (const row of group) pricingByListing.set(row.ml_item_id, pricing.get(row.produto_id!)!);
+  }
+  const report: AnaliseRow[] = snapshotRows.map(row => {
+    const p = pricingByListing.get(row.ml_item_id);
+    const memory = p?.current.memory;
     const priceToWin = toFiniteNumber(row.price_to_win);
-    const produto = row.produto_id ? produtoMap.get(row.produto_id) : null;
-
-    if (!row.produto_id || !produto) {
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || '',
-        sku_local: row.sku_local,
-        produto_id: row.produto_id || null,
-        preco_atual: precoAtual,
-        price_to_win: priceToWin !== null ? round2(priceToWin) : null,
-        preco_piso_sem_prejuizo: null,
-        preco_recomendado: null,
-        delta_preco: null,
-        lucro_unitario_estimado: null,
-        classe: 'dados_insuficientes',
-        motivo: 'produto_id_ausente_ou_sem_vinculo_local',
-      };
-    }
-
-    const taxaMl = toFiniteNumber(produto.ml_fee);
-    const frete = toFiniteNumber(produto.ml_shipping);
-    const custo = toFiniteNumber(produto.custo);
-
-    const taxaMlAplicada = resolveMlFee(taxaMl, commercial.mlFeeFallbackRate);
-    const freteAplicado = frete !== null ? frete : 0;
-    const custoAplicado = custo !== null ? custo : 0;
-
-    let pisoSemPrejuizo: number | null = null;
-    let precoEstrategicoMinimo: number | null = null;
-    let estrategia: ReturnType<typeof getPricingStrategy> | null = null;
-    try {
-      pisoSemPrejuizo = calculateBreakEvenPrice({
-        cost: custoAplicado,
-        shipping: freteAplicado,
-        mlFee: taxaMlAplicada,
-        taxRate,
-      });
-      estrategia = getPricingStrategy(custoAplicado, commercial.costTiers);
-      precoEstrategicoMinimo = calculateSuggestedPrice({
-        cost: custoAplicado,
-        shipping: freteAplicado,
-        mlFee: taxaMlAplicada,
-        taxRate,
-        costTiers: commercial.costTiers,
-      }).suggestedPrice;
-    } catch {
-      pisoSemPrejuizo = null;
-      precoEstrategicoMinimo = null;
-      estrategia = null;
-    }
-
-    if (precoEstrategicoMinimo === null || priceToWin === null || priceToWin <= 0) {
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || produto.nome || '',
-        sku_local: row.sku_local || produto.sku || null,
-        produto_id: row.produto_id,
-        preco_atual: precoAtual,
-        price_to_win: priceToWin !== null ? round2(priceToWin) : null,
-        preco_piso_sem_prejuizo: pisoSemPrejuizo,
-        preco_recomendado: null,
-        delta_preco: null,
-        lucro_unitario_estimado: null,
-        classe: 'dados_insuficientes',
-        motivo: priceToWin === null || priceToWin <= 0 ? 'sem_preco_alvo_ml' : 'taxas_invalidas_para_calculo',
-      };
-    }
-
-    const priceToWinRounded = round2(priceToWin);
-
-    const deltaPriceToWin = round2(priceToWinRounded - precoAtual);
-    const lucroNoPriceToWin = calculateNetProfitAtPrice({
-      price: priceToWinRounded,
-      cost: custoAplicado,
-      shipping: freteAplicado,
-      mlFee: taxaMlAplicada,
-      taxRate,
-    });
-
-    if (priceToWinRounded >= precoEstrategicoMinimo) {
-      const recomendado = priceToWinRounded;
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || produto.nome || '',
-        sku_local: row.sku_local || produto.sku || null,
-        produto_id: row.produto_id,
-        preco_atual: precoAtual,
-        price_to_win: priceToWinRounded,
-        preco_piso_sem_prejuizo: pisoSemPrejuizo,
-        preco_recomendado: recomendado,
-        delta_preco: deltaPriceToWin,
-        lucro_unitario_estimado: lucroNoPriceToWin,
-        classe: 'ajustar_para_ganhar_sem_prejuizo',
-        motivo: 'price_to_win_atende_estrategia_minima',
-      };
-    }
-
-    const recomendado = precoEstrategicoMinimo;
+    const floor = p?.floor.ok ? p.floor.priceCents / 100 : null;
+    const positive = memory && memory.resultCents >= 0 && memory.margin >= memory.band.floor;
     return {
-      ml_item_id: row.ml_item_id,
-      permalink: row.permalink || null,
-      titulo: row.title || produto.nome || '',
-      sku_local: row.sku_local || produto.sku || null,
-      produto_id: row.produto_id,
-      preco_atual: precoAtual,
-      price_to_win: priceToWinRounded,
-      preco_piso_sem_prejuizo: pisoSemPrejuizo,
-      preco_recomendado: recomendado,
-      delta_preco: deltaPriceToWin,
-      lucro_unitario_estimado: lucroNoPriceToWin,
-      classe: 'nao_viavel_ganhar_sem_prejuizo',
-      motivo: `price_to_win_abaixo_da_estrategia_minima:margem_${Math.round((estrategia?.margin || 0) * 100)}:lucro_${estrategia?.minProfit || 0}`,
+      ml_item_id: row.ml_item_id, permalink: row.permalink || null, titulo: row.title || '',
+      sku_local: row.sku_local, produto_id: row.produto_id, preco_atual: Number(row.price || 0),
+      price_to_win: priceToWin, preco_piso_sem_prejuizo: p?.breakEven.ok ? p.breakEven.priceCents / 100 : null,
+      preco_recomendado: memory && priceToWin !== null ? positive ? priceToWin : floor : null,
+      delta_preco: priceToWin === null ? null : round2(priceToWin - Number(row.price || 0)),
+      lucro_unitario_estimado: memory ? memory.resultCents / 100 : null,
+      classe: !memory ? 'dados_insuficientes' : positive ? 'ajustar_para_ganhar_sem_prejuizo' : 'nao_viavel_ganhar_sem_prejuizo',
+      motivo: !memory ? 'memoria_economica_inconclusiva' : positive ? 'price_to_win_atende_piso_canonico' : 'CONFLITO_ECONOMICO_DE_BUY_BOX',
+      pricing: p || null,
     };
   });
-
-  const filtered = report.filter((row) => {
-    const lucro = toFiniteNumber(row.lucro_unitario_estimado);
-    const precoBase = toFiniteNumber(row.preco_recomendado) || toFiniteNumber(row.price_to_win);
-    const delta = Math.abs(toFiniteNumber(row.delta_preco) || 0);
-    if (lucro === null || precoBase === null || precoBase <= 0) return false;
-    return delta >= DELTA_PRECO_MINIMO_ANALISE && lucro > 0 && (lucro / precoBase) >= MARGEM_LUCRO_MINIMA_ANALISE;
-  });
+  // Ausência de evidência e margem baixa permanecem visíveis; não há piso universal.
+  const filtered = report;
 
   const sorted = [...filtered].sort((a, b) => {
     const priorityDiff = classPriority(a.classe) - classPriority(b.classe);
@@ -356,8 +259,6 @@ export async function POST(request: Request) {
     snapshot_rows: snapshotRows.length,
     produto_ids: produtoIds.length,
     produtos_loaded: produtoMap.size,
-    min_profit_margin: MARGEM_LUCRO_MINIMA_ANALISE,
-    min_price_delta: DELTA_PRECO_MINIMO_ANALISE,
     report_rows_before_filter: report.length,
     returned_rows: sorted.length,
     durations_ms: {

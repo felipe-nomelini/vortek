@@ -1,20 +1,15 @@
+import 'server-only';
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import {
-  INTERNAL_SUPPLIER_FILTER_OPTION,
-  includesInternalSupplierFilter,
-  listActiveSupplierOptions,
-  mapSupplierFilterIdsToDsliteIds,
-  type SupplierFilterOption,
+  INTERNAL_SUPPLIER_FILTER_OPTION, includesInternalSupplierFilter, listActiveSupplierOptions,
+  mapSupplierFilterIdsToDsliteIds, type SupplierFilterOption,
 } from '@/lib/produto-filtering';
 import { loadPricingRequestContext } from '@/services/pricing-context';
 import { queryPricedProducts } from '@/services/product-pricing-query';
-import {
-  loadBntD07VisualReview,
-  summarizeBntD07VisualReview,
-} from '@/lib/products/bnt-d07-visual-review';
+import { listBntD07VisualReview, loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 
-export async function GET(request: Request) {
+export async function getProductListResponse(request: Request, allRows = false) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
@@ -24,7 +19,11 @@ export async function GET(request: Request) {
   const taxRate = pricingTaxContext.appliedRate;
 
   const { searchParams } = new URL(request.url);
+  const parsedPage = Number(searchParams.get('page') || 1);
+  const page = allRows ? 1 : Number.isSafeInteger(parsedPage) && parsedPage > 0 ? parsedPage : 1;
   const search = searchParams.get('search') || '';
+  const pageSize = allRows ? Number.MAX_SAFE_INTEGER : 100;
+
   const fornecedorFilterIds = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
   const productActiveStatusParam = searchParams.get('ativo') || 'ativo';
   const productActiveStatus = productActiveStatusParam === 'inativo' || productActiveStatusParam === 'todos'
@@ -43,6 +42,23 @@ export async function GET(request: Request) {
   const parsedPriceMax = rawPriceMax !== null ? Number(rawPriceMax) : null;
   const priceMin = parsedPriceMin !== null && Number.isFinite(parsedPriceMin) ? parsedPriceMin : null;
   const priceMax = parsedPriceMax !== null && Number.isFinite(parsedPriceMax) ? parsedPriceMax : null;
+  const rawSortBy = searchParams.get('sortBy') || 'sku';
+  const rawSortOrder = searchParams.get('sortOrder') || 'asc';
+  const allowedSortBy = new Set([
+    'sku',
+    'nome',
+    'fornecedor',
+    'estoque',
+    'custo',
+    'ml_fee',
+    'ml_shipping',
+    'suggested_price',
+    'profit',
+    'ml_status',
+  ]);
+  const sortBy = allowedSortBy.has(rawSortBy) ? rawSortBy : 'sku';
+  const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
+
   let supplierOptions: SupplierFilterOption[] = [];
   let visualReview;
   try {
@@ -51,14 +67,15 @@ export async function GET(request: Request) {
       ? [INTERNAL_SUPPLIER_FILTER_OPTION, ...visualReview.suppliers]
       : await listActiveSupplierOptions(serviceClient);
   } catch (error: any) {
-    console.error('[api/produtos/resumo] Falha ao carregar contexto do resumo:', error?.message || error);
-    return NextResponse.json({ erro: error?.message || 'Falha ao carregar contexto do resumo' }, { status: 500 });
+    console.error('[api/produtos] Falha ao carregar contexto da lista:', error?.message || error);
+    return NextResponse.json({ erro: error?.message || 'Falha ao carregar contexto da lista' }, { status: 500 });
   }
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
   if (visualReview) {
-    return NextResponse.json({
-      ...summarizeBntD07VisualReview(visualReview, {
+    const fixtureResult = listBntD07VisualReview({
+      review: visualReview,
+      filters: {
         search,
         supplierDsliteIds: supplierFilterDsliteIds,
         includeInternal: includesInternalSupplierFilter(fornecedorFilterIds),
@@ -70,7 +87,16 @@ export async function GET(request: Request) {
         priceMax,
         taxRate,
         commercialPricing,
-      }),
+      },
+      page,
+      pageSize,
+      sortBy,
+      sortOrder,
+    });
+
+    return NextResponse.json({
+      ...fixtureResult,
+      fornecedores: supplierOptions,
       pricingTaxContext,
       commercialPricing,
       visualReview: visualReview.metadata,
@@ -82,21 +108,16 @@ export async function GET(request: Request) {
     priced = await queryPricedProducts(serviceClient, {
       search, supplierIds: supplierFilterDsliteIds, includeInternal: includesInternalSupplierFilter(fornecedorFilterIds),
       active: productActiveStatus, mlStatus, stock: estoque, priceField, priceMin, priceMax,
-      sortBy: 'sku', sortOrder: 'asc', page: 1, pageSize: 100,
+      sortBy: sortBy, sortOrder: sortOrder, page: page, pageSize: pageSize,
     }, requestContext);
   } catch {
     return NextResponse.json({ erro: 'Falha ao carregar a memória econômica dos produtos' }, { status: 500 });
   }
-  const result = priced.summary;
-
   return NextResponse.json({
-    total: Number(result.total || 0),
-    comEstoque: Number(result.comEstoque || 0),
-    semAnuncio: Number(result.semAnuncio || 0),
-    receitaPotencial: result.receitaPotencial,
-    lucroMedio: result.lucroMedio,
-    pricingInconclusive: result.pricingInconclusive,
+    ...priced,
+    fornecedores: supplierOptions,
     pricingTaxContext,
     commercialPricing,
   });
 }
+

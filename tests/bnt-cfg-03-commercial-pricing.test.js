@@ -12,11 +12,6 @@ const validConfiguration = {
   mlFeeFallbackPercent: 15,
   unspecifiedShippingCost: 30,
   inactiveCostThreshold: 2000,
-  costTiers: [
-    { position: 1, maxCost: 400, marginPercent: 15, minProfit: 20 },
-    { position: 2, maxCost: 1000, marginPercent: 20, minProfit: 60 },
-    { position: 3, maxCost: null, marginPercent: 25, minProfit: 150 },
-  ],
   quantityPricingTiers: [
     { position: 1, minPurchaseUnit: 3, discountPercent: 3 },
     { position: 2, minPurchaseUnit: 5, discountPercent: 4 },
@@ -28,9 +23,7 @@ test('contrato comercial aceita a política vigente e rejeita faixas ambíguas',
   assert.equal(contracts.commercialConfigurationSchema.safeParse(validConfiguration).success, true);
   assert.equal(contracts.commercialConfigurationSchema.safeParse({
     ...validConfiguration,
-    costTiers: validConfiguration.costTiers.map((tier, index) => (
-      index === 1 ? { ...tier, maxCost: 300 } : tier
-    )),
+    costTiers: [{ position: 1, maxCost: null, marginPercent: 25, minProfit: 150 }],
   }).success, false);
   assert.equal(contracts.commercialConfigurationSchema.safeParse({
     ...validConfiguration,

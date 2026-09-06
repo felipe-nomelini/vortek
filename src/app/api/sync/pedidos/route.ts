@@ -904,6 +904,7 @@ async function processOrder(params: {
   order: any;
   serviceClient: ReturnType<typeof createServiceClient>;
   returnAddress: { addressId: string | null; zipCode: string | null };
+  taxContexts: Map<string, Promise<import('@/services/pricing-tax-context').PricingTaxContext>>;
 }): Promise<SyncOrderResult> {
   const startedAt = Date.now();
   const { order: o, serviceClient, returnAddress } = params;
@@ -1333,10 +1334,11 @@ async function processOrder(params: {
   } = await calculateOrderProfit(detail, shipmentDetail, {
     allowShipmentFetch: false,
     sellerShippingCost,
+    taxContexts: params.taxContexts,
   });
   const quantidadeItensPedido = Array.isArray(detail?.order_items) ? detail.order_items.length : 0;
   const custoProdutoPendente = quantidadeItensPedido > 0 && itensEncontrados < quantidadeItensPedido;
-  const lucroPendente = !freteDisponivel || custoProdutoPendente;
+  const lucroPendente = lucro === null || !freteDisponivel || custoProdutoPendente;
 
   // 8. Claim: usar dados da busca ou detalhe do pedido
   let mlClaimId: string | null = claimIdFromSearch;
@@ -1519,7 +1521,7 @@ async function processOrder(params: {
 
   const hasFutureRelease = Boolean(releaseWindow.releaseAt && releaseWindow.isBlockedNow);
   const hadReleaseBefore = Boolean((existingPedido as any)?.ml_fiscal_release_at);
-  const profitUpdate = typeof lucro === 'number' && Number.isFinite(lucro)
+  const profitUpdate = existingPedido?.lucro == null && typeof lucro === 'number' && Number.isFinite(lucro)
     ? { lucro }
     : {};
   const persistedFreight = (
@@ -2046,6 +2048,7 @@ export async function POST(request: Request) {
 
   let cursor = 0;
   const workerCount = Math.min(SYNC_CONCURRENCY, results.length);
+  const taxContexts = new Map<string, Promise<import('@/services/pricing-tax-context').PricingTaxContext>>();
 
   const worker = async (): Promise<SyncOrderResult[]> => {
     const localResults: SyncOrderResult[] = [];
@@ -2066,6 +2069,7 @@ export async function POST(request: Request) {
         order,
         serviceClient,
         returnAddress: operationConfiguration.returnAddress,
+        taxContexts,
       });
       localResults.push(processed);
       if (processed.authFatal) {

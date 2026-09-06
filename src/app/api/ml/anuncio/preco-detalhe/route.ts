@@ -11,7 +11,8 @@ import {
   extractQuantityPricingTiers,
   serializeQuantityPricingTiers,
 } from '@/lib/ml/quantity-pricing';
-import { calculateNetProfitAtPrice } from '@/services/pricing';
+import { loadPricingRequestContext, loadProductPricing } from '@/services/pricing-context';
+import { pricingView } from '@/lib/pricing-view';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
 import { resolveMlFee } from '@/lib/commercial-pricing';
@@ -55,14 +56,12 @@ export async function GET(request: Request) {
   if (!produtoId) return NextResponse.json({ error: 'produtoId é obrigatório' }, { status: 422 });
 
   const service = createServiceClient();
-  const [pricingTaxContext, commercialPricing] = await Promise.all([
-    loadPricingTaxContext(service),
-    loadCommercialPricingConfiguration(service),
-  ]);
-  const taxRate = requirePricingTaxRate(pricingTaxContext);
+  const requestContext = await loadPricingRequestContext(service);
+  const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
+  const taxRate = pricingTaxContext.appliedRate;
   const { data: produto, error } = await service
     .from('produtos')
-    .select('id,ml_item_id,custo,ml_fee,ml_shipping')
+    .select('*')
     .eq('id', produtoId)
     .maybeSingle();
   if (error) return NextResponse.json({ error: `Falha ao buscar produto: ${error.message}` }, { status: 500 });
@@ -101,9 +100,14 @@ export async function GET(request: Request) {
   const quantityResult = await fetchMLResult<any>(`/items/${encodeURIComponent(mlItemId)}/prices`, {
     headers: { 'show-all-prices': 'TRUE' },
   });
-  const cost = Number(produto.custo || 0);
-  const shipping = Number(produto.ml_shipping || 0);
-  const mlFee = resolveMlFee(produto.ml_fee, commercialPricing.mlFeeFallbackRate);
+  const pricing = (await loadProductPricing(service, [produto], { requestContext,
+    evidence: new Map([[produto.id, { mlItemId, currentPriceCents: Math.round(price * 100), marketContextKey: `listing:${mlItemId}:unquoted` }]]),
+    shippingModes: new Map([[produto.id, { mode: String(itemResult.data.shipping?.mode || ''), mlItemId, observedAt: requestContext.evaluatedAt }]]),
+  })).get(produto.id)!;
+  const view = pricingView(pricing);
+  const cost = view.cost;
+  const shipping = pricing.current.memory?.shipping.amountCents == null ? null : pricing.current.memory.shipping.amountCents / 100;
+  const mlFee = commercialPricing.mlFeeFallbackRate;
   let catalog: any = null;
 
   if (catalogListing) {
@@ -181,7 +185,8 @@ export async function GET(request: Request) {
     success: true,
     mlItemId,
     currentPrice: round2(price),
-    currentProfit: calculateNetProfitAtPrice({ price, cost, shipping, mlFee, taxRate }),
+    currentProfit: view.profit,
+    pricing,
     quantityPricing: quantityResult.ok
       ? serializeQuantityPricingTiers(extractQuantityPricingTiers(quantityResult.data, price))
       : [],

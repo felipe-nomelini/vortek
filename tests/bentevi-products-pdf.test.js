@@ -39,12 +39,13 @@ test('BNT-D07-PDF espelha a hierarquia operacional aprovada de Produtos', () => 
 });
 
 test('BNT-D07-PDF reutiliza a listagem canônica sem consulta paralela de produtos', () => {
-  assert.match(route, /import \{ GET as getProducts \} from '@\/app\/api\/produtos\/route'/);
-  assert.match(route, /await getProducts\(new Request\(listUrl, \{ headers \}\)\)/);
+  assert.match(route, /import \{ getProductListResponse \} from '@\/services\/product-list'/);
+  assert.match(route, /await getProductListResponse\(new Request\(listUrl, \{ headers \}\), true\)/);
   assert.match(route, /headers\.set\('x-vortek-read-only', '1'\)/);
-  assert.match(route, /while \(items\.length < total\)/);
-  assert.match(route, /calculateSuggestedPrice/);
-  assert.match(route, /calculateNetProfitAtPrice/);
+  assert.doesNotMatch(route, /while \(items\.length < total\)/);
+  assert.doesNotMatch(route, /calculateSuggestedPrice/);
+  assert.doesNotMatch(route, /calculateNetProfitAtPrice/);
+  assert.match(route, /pricingView\(product.pricing\)/);
   assert.doesNotMatch(route, /search_produtos_paginated/);
   assert.doesNotMatch(route, /createServiceClient/);
   assert.doesNotMatch(route, /\.from\('produtos'\)/);
@@ -54,7 +55,7 @@ test('BNT-D07-PDF resume o mesmo conjunto exportado', () => {
   for (const label of ['PRODUTOS', 'COM Q SEGURA', 'SEM ANÚNCIO', 'RECEITA POTENCIAL', 'LUCRO MÉDIO']) {
     assert.match(route, new RegExp(label));
   }
-  assert.match(route, /row\.displayPrice \* row\.safeQuantity/);
+  assert.match(route, /Math.round\(row.suggestedPrice! \* 100\) \* row.safeQuantity/);
   assert.match(route, /row\.profit === null/);
   assert.match(route, /Nenhum filtro — todos os produtos/);
   assert.match(route, /FILTROS E ORDENAÇÃO/);

@@ -57,7 +57,7 @@ test('BNT-D08 recebe Q segura e anúncios do backend sem recalcular no browser',
 });
 
 test('BNT-D08 reutiliza a mesma leitura de anúncios da lista de Produtos', () => {
-  assert.match(listRoute, /import \{ loadProductMlListings \} from '@\/lib\/ml\/product-listings'/);
+  assert.match(read('src/services/product-pricing-query.ts'), /import \{ loadProductMlListings \} from '@\/lib\/ml\/product-listings'/);
   assert.match(detailRoute, /import \{ loadProductMlListings \} from '@\/lib\/ml\/product-listings'/);
   assert.match(listingLoader, /from\('anuncios_ml'\)/);
   assert.match(listingLoader, /from\('catalogo_ml_snapshot'\)/);

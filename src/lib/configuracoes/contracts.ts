@@ -66,7 +66,7 @@ export const CONFIGURATION_DEFINITIONS = {
   "configuracoes.ml_default_warranty": { domain: "mercado_livre_anuncios", label: "Garantia padrão dos anúncios", classification: "EDITAVEL_CONTROLADO" },
   "fornecedores.dslite_catalog_xml_url": { domain: "produtos_estoque_fulfillment", label: "Feed XML do fornecedor", classification: "SECRET_WRITE_ONLY" },
   "fornecedores.dropshipping_retired_at": { domain: "produtos_estoque_fulfillment", label: "Aposentadoria do fornecedor", classification: "STATUS_SOMENTE_LEITURA" },
-  "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo, margem e lucro mínimo", classification: "EDITAVEL_CONTROLADO" },
+  "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo legadas (histórico)", classification: "OBSOLETO" },
   "ml_quantity_pricing_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de preço por quantidade", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.notificacoes_push": { domain: "notificacoes", label: "Notificações push globais", classification: "OBSOLETO" },
   "notificacoes.push.policy": { domain: "notificacoes", label: "Política de notificações push", classification: "EDITAVEL_CONTROLADO" },
@@ -227,13 +227,6 @@ export const notificationChannelTestSchema = z.object({
 
 export type NotificationConfigurationInput = z.infer<typeof notificationConfigurationSchema>;
 
-const costTierSchema = z.object({
-  position: z.number().int().min(1).max(3),
-  maxCost: z.number().finite().positive().nullable(),
-  marginPercent: z.number().finite().gt(0).lt(100),
-  minProfit: z.number().finite().min(0).max(10_000_000),
-}).strict();
-
 const quantityPricingTierSchema = z.object({
   position: z.number().int().min(1).max(5),
   minPurchaseUnit: z.number().int().min(1).max(100),
@@ -244,28 +237,8 @@ export const commercialConfigurationSchema = z.object({
   mlFeeFallbackPercent: z.number().finite().min(0).lt(100),
   unspecifiedShippingCost: z.number().finite().min(0).max(10_000_000),
   inactiveCostThreshold: z.number().finite().positive().max(10_000_000),
-  costTiers: z.array(costTierSchema).length(3),
   quantityPricingTiers: z.array(quantityPricingTierSchema).min(1).max(5),
 }).strict().superRefine((value, context) => {
-  const orderedCostTiers = [...value.costTiers].sort((left, right) => left.position - right.position);
-  let previousMax = 0;
-  orderedCostTiers.forEach((tier, index) => {
-    if (tier.position !== index + 1) {
-      context.addIssue({ code: "custom", path: ["costTiers", index, "position"], message: "As faixas de custo devem ter posições sequenciais" });
-    }
-    if (index === orderedCostTiers.length - 1) {
-      if (tier.maxCost !== null) context.addIssue({ code: "custom", path: ["costTiers", index, "maxCost"], message: "A última faixa de custo deve ser ilimitada" });
-    } else if (tier.maxCost === null || tier.maxCost <= previousMax) {
-      context.addIssue({ code: "custom", path: ["costTiers", index, "maxCost"], message: "Os limites de custo devem ser crescentes" });
-    } else {
-      previousMax = tier.maxCost;
-    }
-    const totalRate = (tier.marginPercent + value.mlFeeFallbackPercent) / 100;
-    if (totalRate >= 1) {
-      context.addIssue({ code: "custom", path: ["costTiers", index, "marginPercent"], message: "Margem e taxa fallback do ML devem somar menos de 100%" });
-    }
-  });
-
   const orderedQuantityTiers = [...value.quantityPricingTiers].sort((left, right) => left.position - right.position);
   let previousQuantity = 0;
   let previousDiscount = 0;
