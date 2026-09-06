@@ -7,10 +7,12 @@ export async function loadProductWarranty(client: {from: (table: string) => any}
   const payload = result.data?.payload ?? {};
   const evidence: WarrantyEvidence[] = [...(payload.evidence ?? [])];
   // Apenas declaração explícita de prazo na oferta vigente; jamais prazo genérico.
-  const match = String(offer?.descricao ?? '').match(/garantia\s*(?:de\s*)?[:\-]?\s*(\d+)\s*(dias?|m[eê]s(?:es)?|anos?)/i);
-  if (match && offer?.updated_at && !evidence.some(e => e.origin === 'GARANTIA_FORNECEDOR' && e.offerId === offer.id)) {
+  const matches = [...String(offer?.descricao ?? '').matchAll(/garantia\s*(?:de\s*)?[:\-]?\s*(\d+)\s*(dias?|m[eê]s(?:es)?|anos?)/gi)];
+  if (offer?.updated_at && !evidence.some(e => e.origin === 'GARANTIA_FORNECEDOR' && e.offerId === offer.id)) {
+   for (const match of matches) {
     const unit = /^dia/i.test(match[2]) ? 'dias' : /^ano/i.test(match[2]) ? 'anos' : 'meses';
     evidence.push({origin:'GARANTIA_FORNECEDOR',productId:product.id,gtin:product.gtin || null,offerId:offer.id,duration:Number(match[1]),unit,source:`produto_fornecedor_ofertas:${offer.id}:descricao`,observedAt:offer.updated_at});
+   }
   }
   return { resolution: resolveWarranty({productId:product.id,gtin:product.gtin || null,offerId:offer?.id ?? null,evidence,durability:payload.durability as DurabilityEvidence | undefined}), evidence, durability:payload.durability ?? null };
 }

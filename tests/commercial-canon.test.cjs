@@ -91,3 +91,12 @@ test('margem premium com vendas gera manutenção, nunca proposta de redução',
 test('12 meses e 1 ano na mesma precedência são a mesma duração',()=>{
  assert.equal(resolve([evidence('FABRICANTE',12),evidence('FABRICANTE',1,{unit:'anos'})]).status,'resolved');
 });
+
+test('descrição da oferta não escolhe o primeiro prazo quando há contradição',async()=>{
+ const {loadProductWarranty}=require('../src/services/product-warranty.ts');
+ const client={from:()=>{const q={select:()=>q,eq:()=>q,order:()=>q,limit:()=>q,maybeSingle:async()=>({data:null})};return q;}};
+ const p={id:'p',gtin:'789'},offer={id:'o',updated_at:at,descricao:'Garantia: 6 meses. Garantia: 12 meses.'};
+ assert.equal((await loadProductWarranty(client,p,offer)).resolution.reason,'GARANTIA_FONTES_CONTRADITORIAS');
+ offer.descricao='Garantia: 12 meses. Garantia de 1 ano.';
+ assert.equal((await loadProductWarranty(client,p,offer)).resolution.status,'resolved');
+});
