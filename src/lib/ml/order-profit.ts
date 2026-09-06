@@ -47,7 +47,7 @@ export function calculateFinalOrderProfit(input: {
   variableCosts?: number | null;
   matchedItems: number;
 }): number | null {
-  if (input.matchedItems <= 0 || input.sellerShippingCost === null || input.tax === null || input.variableCosts === null) return null;
+  if (input.matchedItems <= 0 || input.sellerShippingCost === null || input.tax === null) return null;
   if (![
     input.total,
     input.productCost,

@@ -1341,6 +1341,8 @@ async function processOrder(params: {
 
   const {
     lucro,
+    status: profitStatus,
+    reasons: profitReasons,
     rastreio,
     freteDisponivel,
     itensEncontrados,
@@ -1515,6 +1517,7 @@ async function processOrder(params: {
       evento: 'sync_snapshot_start',
       respostaMl: {
         items_count: itemsSnapshot.length,
+        economia: { lucro, status: profitStatus, reasons: profitReasons },
         source: snapshot.source,
         emit_uf_source: emitUfDecision.source,
         emit_uf_value: emitUf,

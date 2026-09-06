@@ -2061,7 +2061,13 @@ async function runDsliteCreateJob(
       const msg =
         pendenciasPosSync.includes("item_sem_ncm") && skusSemNcm.length > 0
           ? `Produto ${skusSemNcm.join(", ")} não encontrado fiscalmente ou sem NCM`
-          : "Falha ao sincronizar pedido automaticamente. Tente novamente.";
+          : pendenciasPosSync.includes("lucro_pendente_produto")
+            ? "Pedido sincronizado, mas o custo do produto ou dos componentes do kit não está disponível em uma oferta válida."
+            : pendenciasPosSync.includes("lucro_pendente_frete")
+              ? "Pedido sincronizado, mas o Mercado Livre ainda não disponibilizou o custo do frete do vendedor."
+              : itensCountPosSync <= 0
+                ? "Pedido sincronizado sem itens. Verifique os itens retornados pelo Mercado Livre."
+                : `Pedido sincronizado com dados incompletos: ${pendenciasPosSync.join(", ") || "verifique o diagnóstico do pedido"}.`;
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: syncMlOrderId,

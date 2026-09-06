@@ -1,13 +1,14 @@
 import { loadPricingRuntime, resolvePricingProduct } from './pricing-context';
-import { ceilMoney } from './pricing';
+import { ceilMoney, type EconomicMemory } from './pricing';
 /**
- * Calcula o lucro real de um pedido do Mercado Livre.
+ * Calcula o resultado do pedido, distinguindo estimativas e dados indisponíveis.
  * Busca custos dos produtos no banco e frete na API do ML.
  */
 
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from './integration';
 import { getSkuLookupVariants } from '@/lib/sku';
+import { resolveSimpleKitOrderPlan } from '@/lib/produto-kits';
 import {
   calculateFinalOrderProfit,
   resolveMlSellerShippingCost,
@@ -27,6 +28,8 @@ export interface OrderDetail {
 
 export interface OrderProfitResult {
   lucro: number | null;
+  status: EconomicMemory['status'];
+  reasons: string[];
   custoTotal: number;
   taxasTotal: number;
   frete: number;
@@ -59,6 +62,8 @@ export async function calculateOrderProfit(
   if (!detail) {
     return {
       lucro: null,
+      status: 'inconclusive',
+      reasons: ['PEDIDO_INDISPONIVEL'],
       custoTotal: 0,
       taxasTotal: 0,
       frete: 0,
@@ -82,6 +87,8 @@ export async function calculateOrderProfit(
   let feesAvailable = true;
   let variableCosts = 0;
   let variableCostsAvailable = true;
+  let variableCostsValid = true;
+  const reasons: string[] = [];
   const runtime = await loadPricingRuntime(serviceClient, detail.date_created ?? new Date().toISOString());
   let itensEncontrados = 0;
 
@@ -168,7 +175,11 @@ export async function calculateOrderProfit(
     for (const item of orderItems) {
       const mlItemId = item.item?.id;
       const sku = item.item?.seller_sku;
-      const qty = item.quantity || 1;
+      const qty = item.quantity ?? 1;
+      if (!Number.isInteger(qty) || qty <= 0) {
+        reasons.push('QUANTIDADE_INVALIDA');
+        continue;
+      }
       const skuVariants = getSkuLookupVariants(sku);
       const produto = (mlItemId && mlItemMap.get(mlItemId))
         || (mlItemId && catalogItemMap.get(mlItemId))
@@ -176,14 +187,29 @@ export async function calculateOrderProfit(
         || skuVariants.map((variant) => skuMap.get(variant) || offerSkuMap.get(variant)).find(Boolean)
         || (sku && offerSkuMap.get(sku));
       if (produto) {
+        const kit = await resolveSimpleKitOrderPlan(serviceClient, produto.sku);
+        let costProductId = produto.id;
+        let componentQuantity = 1;
+        if (kit.kind === 'ready') {
+          const component = await serviceClient.from('produtos').select('id')
+            .eq('sku', kit.plan.componentSku).single();
+          if (component.error) throw new Error(`COMPONENTE_KIT_INDISPONIVEL: ${component.error.message}`);
+          costProductId = component.data.id;
+          componentQuantity = kit.plan.componentQuantity;
+        } else if (kit.kind !== 'not_kit') {
+          reasons.push(kit.kind === 'inactive' ? 'KIT_INATIVO' : 'KIT_COMPOSTO_NAO_SUPORTADO');
+          continue;
+        }
+        const resolved = await resolvePricingProduct(serviceClient, costProductId);
+        const custo = Number(resolved.offer?.custo) * componentQuantity;
+        if (!Number.isFinite(custo) || custo <= 0) continue;
         itensEncontrados++;
-        const resolved = await resolvePricingProduct(serviceClient, produto.id);
-        const custo = resolved.offer?.custo;
-        if (!(Number(custo)>0)) { itensEncontrados--; continue; }
         const taxa = item.sale_fee;
         if (!Number.isFinite(taxa) || Number(taxa)<0) feesAvailable=false;
         const variable = runtime.variableCosts[produto.id];
-        if (!Number.isFinite(variable)) variableCostsAvailable=false; else variableCosts+=variable*qty;
+        if (variable === null || variable === undefined) variableCostsAvailable = false;
+        else if (!Number.isFinite(variable) || variable < 0) variableCostsValid = false;
+        else variableCosts += variable * qty;
         custoTotal += custo * qty;
         taxasTotal += (taxa ?? 0) * qty;
       }
@@ -233,12 +259,24 @@ export async function calculateOrderProfit(
     saleFees: taxasTotal,
     sellerShippingCost: freteDisponivel ? frete : null,
     tax: imposto,
-    variableCosts: variableCostsAvailable ? variableCosts : null,
+    // Ausência de despesa adicional é estimativa; não apaga custos conhecidos.
+    variableCosts: variableCostsValid ? variableCosts : Number.NaN,
     matchedItems: feesAvailable && itensEncontrados===(detail.order_items?.length??0) ? itensEncontrados : 0,
   });
 
+  if (itensEncontrados !== orderItems.length || !itensEncontrados) reasons.push('CUSTO_PRODUTO_INDISPONIVEL');
+  if (!feesAvailable) reasons.push('TARIFA_ML_INDISPONIVEL');
+  if (!freteDisponivel) reasons.push('FRETE_INDISPONIVEL');
+  if (!variableCostsAvailable) reasons.push('CUSTOS_VARIAVEIS_NAO_INFORMADOS');
+  if (!variableCostsValid) reasons.push('CUSTOS_VARIAVEIS_INVALIDOS');
+  if (runtime.tax.rate === null) reasons.push('TRIBUTO_INDISPONIVEL');
+  else if (runtime.tax.status !== 'confirmed') reasons.push('TRIBUTO_ESTIMADO');
+  if (lucro === null && !reasons.length) reasons.push('ECONOMIA_INVALIDA');
+
   return {
     lucro,
+    status: lucro === null ? 'inconclusive' : reasons.length ? 'estimated' : 'available',
+    reasons,
     custoTotal,
     taxasTotal,
     frete,
