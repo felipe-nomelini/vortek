@@ -1,0 +1,15 @@
+ before_current 
+----------------
+           3701
+(1 row)
+
+BEGIN
+SET
+CREATE VIEW
+NOTIFY
+ after_current 
+---------------
+          3902
+(1 row)
+
+ROLLBACK

@@ -1,0 +1,8 @@
+
+> vortek@0.1.0 deploy:easypanel
+> bash scripts/deploy-easypanel-vortek.sh --skip-git-check
+
+[deploy:easypanel] triggering Easypanel deploy for main@0d5c5eb
+[deploy:easypanel] method=POST
+[deploy:easypanel] webhook accepted: HTTP 200
+[deploy:easypanel] now check Easypanel Deployments/Actions for visible build logs.

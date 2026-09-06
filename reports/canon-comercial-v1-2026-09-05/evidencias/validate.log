@@ -1,0 +1,13 @@
+
+> vortek@0.1.0 validate
+> npm run lint && npm run typecheck
+
+
+> vortek@0.1.0 lint
+> next lint
+
+✔ No ESLint warnings or errors
+
+> vortek@0.1.0 typecheck
+> tsc --noEmit
+

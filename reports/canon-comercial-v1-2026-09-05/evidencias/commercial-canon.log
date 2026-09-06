@@ -1,0 +1,104 @@
+TAP version 13
+# (node:658776) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fabricante comprovado prevalece sobre fornecedor divergente
+ok 1 - fabricante comprovado prevalece sobre fornecedor divergente
+  ---
+  duration_ms: 0.845551
+  type: 'test'
+  ...
+# Subtest: garantia de fornecedor mantém origem e não vira fabricante no ML
+ok 2 - garantia de fornecedor mantém origem e não vira fabricante no ML
+  ---
+  duration_ms: 0.12433
+  type: 'test'
+  ...
+# Subtest: ausência contratual usa classificação comprovada: legal 30/90
+ok 3 - ausência contratual usa classificação comprovada: legal 30/90
+  ---
+  duration_ms: 0.14075
+  type: 'test'
+  ...
+# Subtest: granel e evidência de outro SKU não resolvem durabilidade nem inventam prazo
+ok 4 - granel e evidência de outro SKU não resolvem durabilidade nem inventam prazo
+  ---
+  duration_ms: 0.194103
+  type: 'test'
+  ...
+# Subtest: contradição na mesma precedência e duração inválida exigem revisão
+ok 5 - contradição na mesma precedência e duração inválida exigem revisão
+  ---
+  duration_ms: 0.235319
+  type: 'test'
+  ...
+# Subtest: normalização nunca cria 12 meses ou escolhe primeiro termo
+ok 6 - normalização nunca cria 12 meses ou escolhe primeiro termo
+  ---
+  duration_ms: 1.045131
+  type: 'test'
+  ...
+# Subtest: validade acima de 30 dias e até revogação são explícitas; ausência não autoriza
+ok 7 - validade acima de 30 dias e até revogação são explícitas; ausência não autoriza
+  ---
+  duration_ms: 0.156105
+  type: 'test'
+  ...
+# Subtest: revogação explícita remove proteção do grupo sem depender de custom_price
+ok 8 - revogação explícita remove proteção do grupo sem depender de custom_price
+  ---
+  duration_ms: 0.286274
+  type: 'test'
+  ...
+# Subtest: tabela comercial rejeita percentuais alterados sem nova homologação
+ok 9 - tabela comercial rejeita percentuais alterados sem nova homologação
+  ---
+  duration_ms: 1.272348
+  type: 'test'
+  ...
+# Subtest: campos econômicos órfãos não afetam fórmula nem novas memórias
+ok 10 - campos econômicos órfãos não afetam fórmula nem novas memórias
+  ---
+  duration_ms: 0.886371
+  type: 'test'
+  ...
+# Subtest: recuperação de existente propõe piso com cotação viva, grupo e confirmação
+ok 11 - recuperação de existente propõe piso com cotação viva, grupo e confirmação
+  ---
+  duration_ms: 190.080221
+  type: 'test'
+  ...
+# Subtest: override e liquidação do grupo impedem proposta automática
+ok 12 - override e liquidação do grupo impedem proposta automática
+  ---
+  duration_ms: 36.672571
+  type: 'test'
+  ...
+# Subtest: margem premium com vendas gera manutenção, nunca proposta de redução
+ok 13 - margem premium com vendas gera manutenção, nunca proposta de redução
+  ---
+  duration_ms: 7.917409
+  type: 'test'
+  ...
+# Subtest: 12 meses e 1 ano na mesma precedência são a mesma duração
+ok 14 - 12 meses e 1 ano na mesma precedência são a mesma duração
+  ---
+  duration_ms: 0.146614
+  type: 'test'
+  ...
+# Subtest: descrição da oferta não escolhe o primeiro prazo quando há contradição
+ok 15 - descrição da oferta não escolhe o primeiro prazo quando há contradição
+  ---
+  duration_ms: 1.933342
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 340.319381
