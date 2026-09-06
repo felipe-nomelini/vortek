@@ -1836,7 +1836,7 @@ export async function POST(req: Request) {
       if (issues.length) { batchReason=issues.join('|');batchCritical=issues.some(i=>!['READBACK_INDISPONIVEL','ECONOMIA_INCONCLUSIVA','STATUS_NAO_VALIDADO'].includes(i));return NextResponse.json({success:false,error:batchReason,ml_item_id:result.id},{status:409}); }
       const group = await resolveMlPricingGroup(supabase,readback);
       if (!group.complete || group.itemIds.some(id=>id!==result.id)) {batchCritical=true;batchReason='VINCULO_INESPERADO_POS_PUBLICACAO';return NextResponse.json({success:false,error:batchReason,ml_item_id:result.id},{status:409});}
-      const evaluationId = await persistPricingEvaluation(supabase,{...post!,memory:post!.memory!,scenario:'catalog_expansion_readback',itemId:result.id,groupId:group.groupId});
+      const evaluationId = await persistPricingEvaluation(supabase,{...post!,memory:post!.memory!,scenario:'current',itemId:result.id,groupId:group.groupId});
       await recordPricingEvent(supabase,{event_type:'CATALOG_EXPANSION_VALIDATED',produto_id:produto.id,ml_item_id:result.id,pricing_group_id:group.groupId,evaluation_id:evaluationId,pricing_source:'radar_launch',actor:auth.user.id,reason:'PUBLICADO_VALIDADO',new_price:readback.price,rule_id:post!.memory!.policyVersion,dedupe_key:`validated:${catalogExpansionKey(produto.id)}`,payload:{batchId:batch.batchId,cohort:batch.batchId,preparationId:batch.preparationId,approvalId:pricingApprovalId,warranty,memory:post!.memory,baseline:{startAt:new Date().toISOString(),price:readback.price,margin:post!.memory!.margin,stock:readback.available_quantity,sales:readback.sold_quantity,visits:null},readback}});
       batchValidated = true;
     }
@@ -1864,7 +1864,8 @@ export async function POST(req: Request) {
       fiscal_details: fiscalErrorDetails,
     });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    batchReason = err.message;
+    return NextResponse.json({ error: err.message, ...(batchRemoteId ? {ml_item_id:batchRemoteId} : {}) }, { status: 500 });
   } finally {
     try {
       if (batch && batchAttempted && !batchValidated) {
@@ -1877,7 +1878,7 @@ export async function POST(req: Request) {
           const state = await getListingSnapshot(batchRemoteId);
           pauseConfirmed = state?.status === 'paused';
         }
-        await recordPricingEvent(client,{event_type:batchCritical?'CATALOG_EXPANSION_SAFETY_STOP':'CATALOG_EXPANSION_INCONCLUSIVE',produto_id:batchProductId,ml_item_id:batchRemoteId,pricing_source:'radar_launch',actor:auth.user.id,reason:batchReason,payload:{batchId:batch.batchId,preparationId:batch.preparationId,pauseConfirmed},dedupe_key:`stop:${catalogExpansionKey(batchProductId!)}`});
+        await recordPricingEvent(client,{event_type:batchCritical?'CATALOG_EXPANSION_SAFETY_STOP':'CATALOG_EXPANSION_INCONCLUSIVE',produto_id:batchProductId,ml_item_id:batchRemoteId,pricing_source:'radar_launch',actor:auth.user.id,reason:batchReason,rule_id:batch.batchId,payload:{batchId:batch.batchId,preparationId:batch.preparationId,pauseConfirmed},dedupe_key:`stop:${catalogExpansionKey(batchProductId!)}`});
       }
     } finally {
       if (batchLock) await releaseDomainLock(batchLock);

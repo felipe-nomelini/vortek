@@ -116,9 +116,11 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
                 memories[objective] = solution.ok ? solution.memory : null;
             }
             const ids: Record<string, string | null> = {};
-            for (const [scenario, memory] of Object.entries(memories))
+            for (const scenario of ['competitive','current','target','floor','break_even'] as const) {
+                const memory = memories[scenario];
                 if (memory)
                     ids[scenario] = await persistPricingEvaluation(client, { ...resolved, memory, scenario, itemId: liveItem?.id, groupId: listings[0]?.pricingGroupId, jobId });
+            }
             const economy = memories.competitive ?? memories.target;
             const assessment = assessOpportunityConflicts({ identity, listings, listingSearchComplete: linksComplete, economy, buyBox: !!competitivePrice, eligibleOffer: product.ativo === true && !!resolved.costBasis });
             const sold = await client.from('pedido_itens').select('id,pedidos!inner(situacao)').eq('seller_sku', product.sku).not('pedidos.situacao','in','(cancelado,recusado,pendente,aberto)').limit(1);

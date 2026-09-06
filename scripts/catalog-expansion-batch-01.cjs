@@ -52,7 +52,7 @@ async function appRuntime() {
  async function app(endpoint,method='GET',body) {
   const r=await fetch(base+endpoint,{method,headers:{Cookie:cookie,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(300000)});
   const newCookies=r.headers.getSetCookie();if(newCookies.length)cookie=newCookies.map(x=>x.split(';')[0]).join('; ');
-  const data=await r.json();return{ok:r.ok,status:r.status,data};
+  const text=await r.text();let data;try{data=JSON.parse(text);}catch{data={error:'RESPOSTA_HTTP_INCONCLUSIVA',httpStatus:r.status};}return{ok:r.ok,status:r.status,data};
  }
  return{app,actor:user.user.id};
 }
@@ -111,6 +111,8 @@ async function execute() {
  const prepared=JSON.parse(fs.readFileSync(path.join(dir,'preparation.json'))).results.filter(r=>r.status==='PREPARADO').sort((a,b)=>b.simulation.memory.result-a.simulation.memory.result||a.sku.localeCompare(b.sku));
  const results=[];
  for(const candidate of prepared){
+  const completed=await checked(db.from('pricing_events').select('id').eq('produto_id',candidate.productId).eq('event_type','CATALOG_EXPANSION_VALIDATED').contains('payload',{batchId:BATCH}).maybeSingle());
+  if(completed){console.log({sku:candidate.sku,status:'JA_VALIDADO_SEM_NOVA_ESCRITA'});continue;}
   const simulation=await app('/api/pricing/simulate','POST',{productId:candidate.productId,categoryId:candidate.draft.categoriaId,listingType:candidate.draft.listingType,objective:'target'});
   if(!simulation.ok||!simulation.data.success){results.push({sku:candidate.sku,status:'BLOQUEADO_PRE_POST',response:simulation});save('execution.json',{results});continue;}
   const approval=await app('/api/pricing/approve','POST',{evaluationId:simulation.data.evaluationId,acknowledgeEstimates:true,reason:'Diretoria autorizou CATALOG_EXPANSION_BATCH_01; alvo canônico e tributo estimated registrado'});
@@ -124,4 +126,69 @@ async function execute() {
  }
 }
 
-if(require.main===module){const action={inspect,prepare,execute}[process.argv[2]];if(!action)throw Error("Use inspect, prepare ou execute");action().catch(e=>{console.error(e.message);process.exitCode=1;});}
+if(require.main===module){const action={inspect,prepare,execute,reconcile,report}[process.argv[2]];if(!action)throw Error("Use inspect, prepare, execute, reconcile ou report");action().catch(e=>{console.error(e.message);process.exitCode=1;});}
+
+async function report() {
+ const cp=require('node:child_process');
+ const read=name=>fs.existsSync(path.join(dir,name))?JSON.parse(fs.readFileSync(path.join(dir,name))):null;
+ const reviews=read('review.json'),inspection=read('inspection.json'),preparation=read('preparation.json')?.results??[],simulations=read('economic-simulations.json')?.results??[];
+ const events=await checked(db.from('pricing_events').select('*').contains('payload',{batchId:BATCH}).order('created_at'));
+ save('audit-events.json',events);
+ const validated=events.filter(e=>e.event_type==='CATALOG_EXPANSION_VALIDATED'),stops=events.filter(e=>e.event_type==='CATALOG_EXPANSION_SAFETY_STOP');
+ function csv(name,rows,columns){const escape=v=>'"'+String(v??'').replaceAll('"','""')+'"';fs.writeFileSync(path.join(dir,name),'\ufeff'+[columns.map(escape).join(','),...rows.map(r=>columns.map(k=>escape(r[k])).join(','))].join('\r\n')+'\r\n');}
+ const gates=reviews.map(review=>{
+  const row=inspection.rows.find(r=>r.sku===review.sku),success=validated.find(e=>e.produto_id===row.product.id),attempt=events.find(e=>e.event_type==='CREATE_REQUESTED'&&e.produto_id===row.product.id),prepared=preparation.find(p=>p.sku===review.sku);
+  const remote=events.find(e=>e.event_type==='CREATED_REMOTE'&&e.produto_id===row.product.id);
+  const result=read('execution.json')?.results?.find(r=>r.sku===review.sku);
+  return{sku:review.sku,produto:row.product.nome,estado:success?'PUBLICADO_VALIDADO':attempt?'PUBLICACAO_INCONCLUSIVA':review.status==='APTO_PREPARACAO'?(result?'BLOQUEADO_PRE_POST':'PREPARADO_NAO_PUBLICADO'):review.status,mlb:success?.ml_item_id??remote?.ml_item_id??row.items[0]?.data?.id??'',motivo:success?'Todos os gates e readback concluídos':result?.response?.data?.error??review.reason,oferta:row.product.oferta_preferencial_id,custo:row.product.custo,estoque:row.product.estoque,preco_preparado:prepared?.simulation?.memory?.price??'',catalog_product_id:review.catalogProductId};
+ });
+ csv('01_GATES_10_SKUS.csv',gates,['sku','produto','estado','mlb','motivo','oferta','custo','estoque','preco_preparado','catalog_product_id']);
+ const published=validated.map(e=>{const row=inspection.rows.find(r=>r.product.id===e.produto_id),m=e.payload.memory,w=e.payload.warranty.resolution;return{sku:row.sku,mlb:e.ml_item_id,status:e.reason,preco:m.price,margem:m.margin,faixa:m.band.id,piso:m.band.floor,alvo:m.band.target,limite:m.band.limit,resultado:m.result,estoque:e.payload.readback.available_quantity,pricing_group_id:e.pricing_group_id,garantia_origem:w.origin,garantia_prazo:w.duration,garantia_unidade:w.unit,timestamp:e.created_at};});
+ csv('02_PUBLICADOS_VALIDADO.csv',published,['sku','mlb','status','preco','margem','faixa','piso','alvo','limite','resultado','estoque','pricing_group_id','garantia_origem','garantia_prazo','garantia_unidade','timestamp']);
+ const blocked=gates.filter(g=>!['PUBLICADO_VALIDADO','JA_ANUNCIADO_ATIVO'].includes(g.estado));
+ csv('03_BLOQUEADOS_E_MOTIVOS.csv',blocked,['sku','estado','mlb','motivo']);
+ const memories=[];
+ function memoryRow(sku,phase,m,mlb=''){if(!m)return;memories.push({sku,fase:phase,mlb,preco:m.price,cmv:m.cost,oferta:m.offerId,fornecedor:m.supplierId,tarifa:m.fee.amount,tarifa_origem:m.fee.source,frete:m.shipping.amount,frete_origem:m.shipping.source,tributo:m.taxAmount,tributo_status:m.tax.status,aliquota:m.tax.rate,resultado:m.result,margem:m.margin,faixa:m.band?.id,piso:m.band?.floor,alvo:m.band?.target,limite:m.band?.limit,modelo:m.policyVersion,timestamp:m.evaluatedAt});}
+ for(const sim of simulations)memoryRow(sim.sku,'SIMULACAO_NAO_AUTORIZA_PUBLICACAO',sim.memory);
+ for(const p of preparation)memoryRow(p.sku,'PRE_POST',p.simulation.memory);
+ for(const e of validated)memoryRow(inspection.rows.find(r=>r.product.id===e.produto_id).sku,'POS_PUBLICACAO',e.payload.memory,e.ml_item_id);
+ csv('04_MEMORIA_ECONOMICA.csv',memories,['sku','fase','mlb','preco','cmv','oferta','fornecedor','tarifa','tarifa_origem','frete','frete_origem','tributo','tributo_status','aliquota','resultado','margem','faixa','piso','alvo','limite','modelo','timestamp']);
+ csv('05_GARANTIAS_APLICADAS.csv',validated.map(e=>{const w=e.payload.warranty.resolution;return{sku:inspection.rows.find(r=>r.product.id===e.produto_id).sku,mlb:e.ml_item_id,origem:w.origin,warranty_source:w.warranty_source,warranty_type:w.warranty_type,warranty_duration:w.warranty_duration,warranty_unit:w.warranty_unit,fonte:w.source,evidencia_em:w.observedAt,politica:w.policyVersion};}),['sku','mlb','origem','warranty_source','warranty_type','warranty_duration','warranty_unit','fonte','evidencia_em','politica']);
+ const write=(name,text)=>fs.writeFileSync(path.join(dir,name),text+'\n');
+ write('00_RESUMO_EXECUTIVO.md',`# ${BATCH} — D0\n\nNovos publicados e validados: **${validated.length}**. Reativados: **0**. Já ativos: **${gates.filter(g=>g.estado==='JA_ANUNCIADO_ATIVO').length}**. Bloqueados/pendentes: **${blocked.length}**.\n\n${gates.map(g=>`- ${g.sku}: ${g.estado}${g.mlb?' — '+g.mlb:''}. ${g.motivo}`).join('\n')}\n\nSafety stops: ${stops.length}. As simulações não autorizam candidatos com conflito. Não houve correção remota nos dois anúncios previamente ativos.\n\n${published.map(p=>`Publicado ${p.sku}: faixa ${p.faixa}, piso ${p.piso*100}%, alvo ${p.alvo*100}%, margem remota ${(p.margem*100).toFixed(4)}%.`).join('\n')}\n\nA garantia padrão foi alterada por decisão expressa: fabricante → fornecedor → vendedor 30 dias. Nas ofertas publicadas, prevalece o prazo comprovado da fonte registrada.`);
+ write('06_READBACK_ML.md',`# Conferência remota\n\n${validated.length} eventos PUBLICADO_VALIDADO. Evidência integral: audit-events.json.\n\n${validated.map(e=>`- ${e.ml_item_id}: status ${e.payload.readback.status}, preço ${e.payload.readback.price}, estoque ${e.payload.readback.available_quantity}, catálogo ${e.payload.readback.catalog_product_id}, margem ${(e.payload.memory.margin*100).toFixed(4)}%. Garantia, identidade e grupo conferidos pelo backend; sem divergência impeditiva.`).join('\n')}\n\n${stops.length?'Safety stop registrado; consultar eventos.':'Nenhum safety stop registrado.'}\n\nHTTP 400 do validador contendo exclusivamente avisos shipping.lost_me1_by_user e item.shipping.mandatory_free_shipping é aceito somente quando o payload já exige ME2 e frete grátis. Nenhum erro material foi dispensado.`);
+ write('07_PENDENCIAS_REMANESCENTES.md',`# Pendências individuais\n\n${blocked.map(g=>`- **${g.sku} — ${g.estado}:** ${g.motivo}`).join('\n')}\n\nA pesquisa entregue foi reaproveitada. Não foram iniciadas novas cadências, pesquisas amplas ou próximos lotes. Correções no catálogo ML e confirmação do tratamento do IPI permanecem para validação específica.`);
+ write('rollback.md','# Rollback\n\nCódigo: reverter os commits desta entrega por novos commits, mantendo histórico e eventos. O fallback anterior depende de classificação, portanto seu retorno exige decisão da Diretoria; não restaurar política antiga silenciosamente.\nNão apagar anúncios nem eventos para desfazer a operação. Anúncio com divergência crítica deve ser pausado e confirmado remotamente; bloqueio persistente permanece até revisão. As correções locais de embalagem têm baseline nos eventos CATALOG_EXPANSION_LOGISTICS_CORRECTED. Não foi necessária migration.');
+ const files={};for(const name of fs.readdirSync(dir)){const full=path.join(dir,name);if(fs.statSync(full).isFile()&&name!=='manifest.json')files[name]=crypto.createHash('sha256').update(fs.readFileSync(full)).digest('hex');}
+ save('manifest.json',{batchId:BATCH,generatedAt:new Date().toISOString(),implementationCommits:cp.execFileSync('git',['log','-4','--format=%H'],{encoding:'utf8'}).trim().split('\n'),warrantyPolicy:'VORTEK-WARRANTY-2026-09-06-SELLER-30',economicModel:'VORTEK-CANON-1.0-ECON-2',counts:{evaluated:10,published:validated.length,reactivated:0,alreadyActive:gates.filter(g=>g.estado==='JA_ANUNCIADO_ATIVO').length,blockedOrPending:blocked.length,safetyStops:stops.length},files});
+ console.log({report:dir,published:validated.length,pending:blocked.length});
+}
+
+async function reconcile() {
+ const {app,actor}=await appRuntime();
+ const {catalogExpansionReadbackIssues,catalogExpansionKey}=require('../src/lib/ml/catalog-expansion.ts');
+ const {assessIdentity}=require('../src/lib/ml/opportunity-conflicts.ts');
+ const {identityFacts}=require('../src/lib/ml/opportunity-identity.ts');
+ const token=(await checked(db.from('integracoes').select('access_token').eq('tipo','mercadolivre').single())).access_token;
+ async function ml(endpoint){const r=await fetch('https://api.mercadolibre.com'+endpoint,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('READBACK_HTTP_'+r.status);return r.json();}
+ const rows=await checked(db.from('pricing_events').select('*').eq('event_type','CREATED_REMOTE').contains('payload',{batchId:BATCH}));
+ for(const row of rows){
+  const existing=await checked(db.from('pricing_events').select('id').eq('event_type','CATALOG_EXPANSION_VALIDATED').eq('ml_item_id',row.ml_item_id).maybeSingle());if(existing)continue;
+  const prepared=await checked(db.from('pricing_events').select('*').eq('event_type','CATALOG_EXPANSION_PAYLOAD_VALIDATED').eq('produto_id',row.produto_id).contains('payload',{batchId:BATCH}).order('created_at',{ascending:false}).limit(1).single());
+  const expected=prepared.payload.payload,item=await ml('/items/'+row.ml_item_id);
+  const simulation=await app('/api/pricing/simulate','POST',{productId:row.produto_id,itemId:row.ml_item_id,price:Number(item.price)});
+  const memory=simulation.data.memory,issues=catalogExpansionReadbackIssues({price:expected.price,quantity:expected.available_quantity,categoryId:expected.category_id,catalogProductId:expected.catalog_product_id},item,memory);
+  const identity=assessIdentity({local:identityFacts(expected.attributes,{title:expected.title||expected.family_name}),remote:identityFacts(item.attributes,{title:item.title||item.family_name}),source:'readback_reconciliation'});
+  if(identity.identity!=='IDENTIDADE_COHERENTE')issues.push('IDENTIDADE_NAO_CONFIRMADA');
+  if(!expected.sale_terms.every(e=>item.sale_terms.some(a=>a.id===e.id&&(e.value_id?String(a.value_id)===String(e.value_id):a.value_name===e.value_name))))issues.push('GARANTIA_NAO_CONFIRMADA');
+  if(!item.pictures?.length||(item.item_relations??[]).length)issues.push('IMAGENS_OU_VINCULO_INCONCLUSIVO');
+  const sku=expected.seller_custom_field;const duplicates=await Promise.all(['seller_sku','sku'].map(k=>ml('/users/'+item.seller_id+'/items/search?'+k+'='+encodeURIComponent(sku))));
+  const ids=[...new Set(duplicates.flatMap(r=>r.results??[]))];if(ids.length!==1||ids[0]!==item.id)issues.push('DUPLICIDADE_OU_INDICE_INCONCLUSIVO');
+  save('reconciliation-'+sku+'.json',{at:new Date().toISOString(),item,identity,simulation,issues,duplicates});
+  if(issues.length)throw Error('RECONCILIACAO_PENDENTE_'+issues.join('|'));
+  const link=await checked(db.from('anuncios_ml').select('produto_id,pricing_group_id').eq('ml_item_id',item.id).single());if(link.produto_id!==row.produto_id||link.pricing_group_id!=='item:'+item.id)throw Error('VINCULO_LOCAL_INCONCLUSIVO');
+  await checked(db.from('pricing_events').insert({event_type:'CATALOG_EXPANSION_VALIDATED',produto_id:row.produto_id,ml_item_id:item.id,pricing_group_id:link.pricing_group_id,evaluation_id:simulation.data.evaluationId,pricing_source:'radar_launch',actor,reason:'PUBLICADO_VALIDADO',new_price:item.price,rule_id:memory.policyVersion,dedupe_key:'validated:'+catalogExpansionKey(row.produto_id),payload:{batchId:BATCH,cohort:BATCH,preparationId:prepared.payload.preparationId,approvalId:row.payload.approvalId,warranty:row.payload.warranty,memory,baseline:{startAt:row.created_at,price:item.price,margin:memory.margin,stock:item.available_quantity,sales:item.sold_quantity,visits:null},readback:item,reconciliation:{reason:'Conferência concluída após falha de persistência do cenário; sem repetir POST',at:new Date().toISOString(),identity,duplicateIds:ids}}}));
+  await checked(db.from('radar_oportunidades').update({stage:'PUBLICADO_EXPERIMENTO',queue:'JA_ANUNCIADOS',processed_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('produto_id',row.produto_id));
+  console.log({sku,mlb:item.id,status:'PUBLICADO_VALIDADO',price:item.price,margin:memory.margin,repeatedPost:false});
+ }
+}

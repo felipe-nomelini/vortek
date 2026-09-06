@@ -201,7 +201,7 @@ export async function persistPricingEvaluation(client: Client, input: {
     product: any;
     offer: any;
     memory: EconomicMemory;
-    scenario: string;
+    scenario: 'current' | 'target' | 'floor' | 'break_even' | 'competitive' | 'manual';
     itemId?: string | null;
     groupId?: string | null;
     jobId?: string | null;
@@ -223,7 +223,7 @@ export async function persistPricingEvaluation(client: Client, input: {
     }
     return data.id;
 }
-export async function recordPricingEvent(client: Client, event: Record<string, unknown>) {
+export async function recordPricingEvent(client: Client, event: Record<string, unknown> & { rule_id: string }) {
     const { error } = await client.from('pricing_events').insert(event);
     if (error && error.code !== '23505')
         throw new Error(`AUDITORIA_PRICING_INDISPONIVEL: ${error.message}`);
