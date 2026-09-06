@@ -5,8 +5,7 @@ const {evaluateEconomics,unitResult}=require('../src/services/pricing.ts');
 const {PRICING_POLICY,validatePricingPolicy}=require('../src/services/pricing-policy.ts');
 const at='2026-09-06T00:00:00Z',subject={productId:'p',gtin:'789',offerId:'o'};
 const evidence=(origin,duration=12,extra={})=>({...subject,origin,duration,unit:'meses',source:'Documento do produto p',observedAt:at,...extra});
-const durability=kind=>({productId:'p',gtin:'789',kind,source:'Classificação revisada do produto',observedAt:at});
-const resolve=(e=[],d)=>resolveWarranty({...subject,evidence:e,durability:d});
+const resolve=(e=[])=>resolveWarranty({...subject,evidence:e,evaluatedAt:at});
 const schemas=[{id:'WARRANTY_TYPE',values:[{id:'2230279',name:'Garantia de fábrica'},{id:'2230280',name:'Garantia do vendedor'}]},{id:'WARRANTY_TIME',value_type:'number_unit',allowed_units:[{id:'dias'},{id:'meses'},{id:'anos'}]}];
 test('fabricante comprovado prevalece sobre fornecedor divergente',()=>{
  const w=resolve([evidence('GARANTIA_FORNECEDOR',3),evidence('FABRICANTE',6)]);
@@ -15,13 +14,11 @@ test('fabricante comprovado prevalece sobre fornecedor divergente',()=>{
 test('garantia de fornecedor mantém origem e não vira fabricante no ML',()=>{
  const w=resolve([evidence('GARANTIA_FORNECEDOR',3)]);assert.equal(w.origin,'GARANTIA_FORNECEDOR');assert.equal(warrantySaleTerms(w,schemas)[0].value_id,'2230280');
 });
-test('ausência contratual usa classificação comprovada: legal 30/90',()=>{
- for(const [kind,days] of [['durable',90],['non_durable',30]]){const w=resolve([],durability(kind));assert.equal(w.origin,'GARANTIA_LEGAL');assert.equal(w.duration,days);assert.equal(warrantySaleTerms(w,schemas)[1].value_name,`${days} dias`);}
+test('ausência contratual aplica vendedor 30 dias sem classificação e sem nome legal',()=>{
+ const w=resolve();assert.equal(w.origin,'GARANTIA_VENDEDOR_30_DIAS');assert.equal(w.warranty_source,'seller_fallback');assert.equal(w.warranty_type,'seller');assert.equal(w.warranty_duration,30);assert.equal(w.warranty_unit,'days');assert.equal(warrantySaleTerms(w,schemas)[0].value_id,'2230280');assert.equal(warrantySaleTerms(w,schemas)[1].value_name,'30 dias');
 });
-test('granel e evidência de outro SKU não resolvem durabilidade nem inventam prazo',()=>{
- const w=resolve([evidence('FABRICANTE',12,{productId:'other'})]);assert.equal(w.status,'pending');
- assert.equal(resolve([],durability('unknown')).status,'pending');
- assert.equal(resolve([evidence('GARANTIA_FORNECEDOR',12,{offerId:'other'})]).status,'pending');
+test('evidência de outro SKU ou oferta não aumenta garantia do produto',()=>{
+ for(const e of [evidence('FABRICANTE',12,{productId:'other'}),evidence('GARANTIA_FORNECEDOR',12,{offerId:'other'})])assert.equal(resolve([e]).warranty_source,'seller_fallback');
 });
 test('contradição na mesma precedência e duração inválida exigem revisão',()=>{
  assert.equal(resolve([evidence('FABRICANTE',12),evidence('FABRICANTE',6)]).reason,'GARANTIA_FONTES_CONTRADITORIAS');

@@ -2,7 +2,6 @@ import { createClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
 import { loadProductWarranty } from '@/services/product-warranty';
 import { resolvePricingProduct, recordPricingEvent } from '@/services/pricing-context';
-import { PRICING_POLICY } from '@/services/pricing-policy';
 import { resolveWarranty } from '@/lib/ml-sale-terms';
 import { loadPricingProjections } from '@/services/pricing-projection';
 import { NextResponse } from 'next/server';
@@ -97,9 +96,9 @@ export async function PATCH(
       if (!input || !Array.isArray(input.evidence) || !body.reason?.trim()) return NextResponse.json({error:'Evidência e motivo obrigatórios'},{status:422});
       const identity = {productId:params.id,gtin:resolved.product.gtin || null,offerId:resolved.offer?.id ?? null};
       if (input.evidence.some((e:any) => e.productId !== identity.productId || (e.gtin ?? null) !== identity.gtin || !['FABRICANTE','GARANTIA_FORNECEDOR'].includes(e.origin) || (e.origin === 'GARANTIA_FORNECEDOR' && (!identity.offerId || e.offerId !== identity.offerId)))) return NextResponse.json({error:'Evidência não corresponde ao produto/oferta atual'},{status:422});
-      const resolution = resolveWarranty({...identity,evidence:input.evidence,durability:input.durability});
+      const resolution = resolveWarranty({...identity,evidence:input.evidence});
       if (resolution.status === 'pending') return NextResponse.json({error:resolution.reason},{status:422});
-      await recordPricingEvent(supabase,{event_type:'WARRANTY_EVIDENCE_REGISTERED',produto_id:params.id,pricing_source:'manual_evidence',actor:auth.user.id,reason:body.reason.trim(),rule_id:PRICING_POLICY.version,payload:{evidence:input.evidence,durability:input.durability ?? null,resolution}});
+      await recordPricingEvent(supabase,{event_type:'WARRANTY_EVIDENCE_REGISTERED',produto_id:params.id,pricing_source:'manual_evidence',actor:auth.user.id,reason:body.reason.trim(),rule_id:resolution.policyVersion,payload:{evidence:input.evidence,resolution}});
       return NextResponse.json({success:true,warranty:resolution,mlMutations:0});
     }
 

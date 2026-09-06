@@ -1,13 +1,15 @@
 export type MlSaleTerm = { id: string; value_name?: string; value_id?: string };
-export type WarrantyOrigin = 'FABRICANTE' | 'GARANTIA_FORNECEDOR' | 'GARANTIA_LEGAL';
+export type WarrantyOrigin = 'FABRICANTE' | 'GARANTIA_FORNECEDOR' | 'GARANTIA_VENDEDOR_30_DIAS';
 export type WarrantyEvidence = {
   productId: string; gtin: string | null; offerId?: string | null;
   origin: 'FABRICANTE' | 'GARANTIA_FORNECEDOR'; duration: number;
   unit: 'dias' | 'meses' | 'anos'; source: string; observedAt: string;
 };
-export type DurabilityEvidence = { productId: string; gtin: string | null; kind: 'durable' | 'non_durable'; source: string; observedAt: string };
+export const WARRANTY_POLICY_VERSION = 'VORTEK-WARRANTY-2026-09-06-SELLER-30';
 export type WarrantyResolution = {
   status: 'resolved'; origin: WarrantyOrigin; duration: number; unit: 'dias' | 'meses' | 'anos';
+  warranty_source: 'manufacturer' | 'supplier' | 'seller_fallback'; warranty_type: 'manufacturer' | 'seller';
+  warranty_duration: number; warranty_unit: 'days' | 'months' | 'years'; policyVersion: string;
   source: string; observedAt: string; productId: string; gtin: string | null; offerId: string | null;
 } | { status: 'pending'; reason: string };
 
@@ -27,7 +29,7 @@ export function normalizeMlSaleTerms(terms: MlSaleTerm[]): MlSaleTerm[] {
     return [{ id, ...(term.value_id ? { value_id: term.value_id } : {}), ...(name ? { value_name: name } : {}) }];
   });
 }
-export function resolveWarranty(input: { productId: string; gtin: string | null; offerId: string | null; evidence: WarrantyEvidence[]; durability?: DurabilityEvidence | null }): WarrantyResolution {
+export function resolveWarranty(input: { productId: string; gtin: string | null; offerId: string | null; evidence: WarrantyEvidence[]; evaluatedAt?: string }): WarrantyResolution {
   const relevant = input.evidence.filter(e => e.productId === input.productId && (e.gtin ?? null) === input.gtin
     && (e.origin === 'FABRICANTE' || (!!input.offerId && e.offerId === input.offerId)));
   for (const origin of ['FABRICANTE', 'GARANTIA_FORNECEDOR'] as const) {
@@ -37,12 +39,12 @@ export function resolveWarranty(input: { productId: string; gtin: string | null;
       return { status: 'pending', reason: 'GARANTIA_EVIDENCIA_INVALIDA' };
     if (new Set(candidates.map(e => e.unit === 'dias' ? `${e.duration}:dias` : `${e.duration * (e.unit === 'anos' ? 12 : 1)}:meses`)).size > 1) return { status: 'pending', reason: 'GARANTIA_FONTES_CONTRADITORIAS' };
     const e = [...candidates].sort((a,b) => Date.parse(b.observedAt)-Date.parse(a.observedAt))[0];
-    return { ...e, status: 'resolved', offerId: origin === 'GARANTIA_FORNECEDOR' ? input.offerId : null };
+    return { ...e, status: 'resolved', policyVersion: WARRANTY_POLICY_VERSION, warranty_source: origin === 'FABRICANTE' ? 'manufacturer' : 'supplier', warranty_type: origin === 'FABRICANTE' ? 'manufacturer' : 'seller', warranty_duration: e.duration, warranty_unit: e.unit === 'dias' ? 'days' : e.unit === 'meses' ? 'months' : 'years', offerId: origin === 'GARANTIA_FORNECEDOR' ? input.offerId : null };
   }
-  const d = input.durability;
-  if (!d || d.productId !== input.productId || (d.gtin ?? null) !== input.gtin || !['durable','non_durable'].includes(d.kind) || !d.source?.trim() || !Number.isFinite(Date.parse(d.observedAt)))
-    return { status: 'pending', reason: 'GARANTIA_CLASSIFICACAO_DURABILIDADE_PENDENTE' };
-  return { status: 'resolved', origin: 'GARANTIA_LEGAL', duration: d.kind === 'durable' ? 90 : 30, unit: 'dias', source: `CDC art.26; ${d.source}`, observedAt: d.observedAt, productId: input.productId, gtin: input.gtin, offerId: null };
+  return { status: 'resolved', origin: 'GARANTIA_VENDEDOR_30_DIAS', duration: 30, unit: 'dias',
+    warranty_source: 'seller_fallback', warranty_type: 'seller', warranty_duration: 30, warranty_unit: 'days',
+    policyVersion: WARRANTY_POLICY_VERSION, source: WARRANTY_POLICY_VERSION, observedAt: input.evaluatedAt ?? new Date().toISOString(),
+    productId: input.productId, gtin: input.gtin, offerId: input.offerId };
 }
 /** O tipo ML não substitui a origem auditada da garantia. */
 export function warrantySaleTerms(warranty: WarrantyResolution, schemas: any[]): MlSaleTerm[] {
@@ -63,6 +65,6 @@ export function warrantySaleTerms(warranty: WarrantyResolution, schemas: any[]):
 }
 export function warrantyDescription(w: WarrantyResolution): string {
   if (w.status !== 'resolved') return '';
-  const title = w.origin === 'FABRICANTE' ? 'Garantia do fabricante' : w.origin === 'GARANTIA_FORNECEDOR' ? 'Garantia declarada pelo fornecedor' : 'Garantia legal';
+  const title = w.origin === 'FABRICANTE' ? 'Garantia do fabricante' : w.origin === 'GARANTIA_FORNECEDOR' ? 'Garantia declarada pelo fornecedor' : 'Garantia do vendedor';
   return `${title}: ${w.duration} ${w.unit}. Preservados os direitos de garantia legal aplicáveis.`;
 }

@@ -243,3 +243,15 @@ Registro: conversa de aprovação do plano, 05–06/09/2026. Autoridade: Diretor
 Garantia contratual e garantia legal permanecem distintas; não somar durações por inferência. Prazo de outro SKU, primeiro valor da categoria e duração genérica de marca não são fontes. Classificação duvidosa do produto exige validação específica, sem fabricar 30 ou 90 dias.
 
 Fonte legal lida: [CDC atualizado, arts. 24, 26 e 50](https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html).
+
+
+## Emenda homologada — garantia do vendedor — 06/09/2026
+
+Autoridade: Diretoria, decisão expressa na aprovação do plano CATALOG_EXPANSION_BATCH_01.
+Regra vigente: `VORTEK-WARRANTY-2026-09-06-SELLER-30`. Substitui as referências anteriores a fallback legal 30/90 dias; o registro anterior permanece histórico, sem autoridade decisória.
+
+Fabricante comprovado para o produto → fornecedor comprovado da oferta utilizada → **garantia do vendedor de 30 dias**.
+O fallback possui `warranty_source=seller_fallback`, `warranty_type=seller`, `warranty_duration=30`, `warranty_unit=days`.
+Não classificar duráveis/não duráveis. Não nomear o fallback como garantia legal. A oferta contratual não elimina direitos legais aplicáveis.
+Ausência contratual não bloqueia publicação. Evidência conflitante ou indisponibilidade de leitura da fonte não equivale a ausência comprovada.
+Impacto: resolvedor, API de evidências, interface, novas preparações e publicações. Histórico, anúncios ativos e modelo econômico `VORTEK-CANON-1.0-ECON-2` preservados.

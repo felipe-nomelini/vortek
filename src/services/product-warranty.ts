@@ -1,4 +1,4 @@
-import { resolveWarranty, type WarrantyEvidence, type DurabilityEvidence } from '../lib/ml-sale-terms.ts';
+import { resolveWarranty, type WarrantyEvidence } from '../lib/ml-sale-terms.ts';
 /** Evidências explícitas no registro de auditoria existente, sem prazo inferido da marca. */
 export async function loadProductWarranty(client: {from: (table: string) => any}, product: any, offer: any) {
   const result = await client.from('pricing_events').select('payload,created_at').eq('produto_id', product.id)
@@ -14,5 +14,5 @@ export async function loadProductWarranty(client: {from: (table: string) => any}
     evidence.push({origin:'GARANTIA_FORNECEDOR',productId:product.id,gtin:product.gtin || null,offerId:offer.id,duration:Number(match[1]),unit,source:`produto_fornecedor_ofertas:${offer.id}:descricao`,observedAt:offer.updated_at});
    }
   }
-  return { resolution: resolveWarranty({productId:product.id,gtin:product.gtin || null,offerId:offer?.id ?? null,evidence,durability:payload.durability as DurabilityEvidence | undefined}), evidence, durability:payload.durability ?? null };
+  return { resolution: resolveWarranty({productId:product.id,gtin:product.gtin || null,offerId:offer?.id ?? null,evidence}), evidence };
 }
