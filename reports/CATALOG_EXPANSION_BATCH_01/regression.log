@@ -1,0 +1,374 @@
+TAP version 13
+# Subtest: autorização restrita aos dez SKUs e preparação persistente
+ok 1 - autorização restrita aos dez SKUs e preparação persistente
+  ---
+  duration_ms: 2.31888
+  type: 'test'
+  ...
+# Subtest: nova aprovação não altera chave de publicação por produto
+ok 2 - nova aprovação não altera chave de publicação por produto
+  ---
+  duration_ms: 0.177833
+  type: 'test'
+  ...
+# Subtest: timeout após claim bloqueia próximo SKU e reinício; somente readback validado encerra
+ok 3 - timeout após claim bloqueia próximo SKU e reinício; somente readback validado encerra
+  ---
+  duration_ms: 0.226616
+  type: 'test'
+  ...
+# Subtest: piso inclusivo e leitura remota exata autorizam conclusão
+ok 4 - piso inclusivo e leitura remota exata autorizam conclusão
+  ---
+  duration_ms: 0.316012
+  type: 'test'
+  ...
+# Subtest: preço estoque categoria catálogo logística condição e margem errados bloqueiam
+ok 5 - preço estoque categoria catálogo logística condição e margem errados bloqueiam
+  ---
+  duration_ms: 0.161103
+  type: 'test'
+  ...
+# Subtest: fonte stale ou GET ausente não prova prejuízo; status pendente não é publicado validado
+ok 6 - fonte stale ou GET ausente não prova prejuízo; status pendente não é publicado validado
+  ---
+  duration_ms: 0.170992
+  type: 'test'
+  ...
+# Subtest: payload de catálogo preserva termos e não escreve descrição administrada pelo ML
+ok 7 - payload de catálogo preserva termos e não escreve descrição administrada pelo ML
+  ---
+  duration_ms: 385.41006
+  type: 'test'
+  ...
+# Subtest: falha de busca remota não significa anúncio inexistente; SKU legado também é consultado
+ok 8 - falha de busca remota não significa anúncio inexistente; SKU legado também é consultado
+  ---
+  duration_ms: 193.922227
+  type: 'test'
+  ...
+# Subtest: 400 com avisos de ME1 e frete grátis já atendidos não bloqueia; qualquer erro real bloqueia
+ok 9 - 400 com avisos de ME1 e frete grátis já atendidos não bloqueia; qualquer erro real bloqueia
+  ---
+  duration_ms: 0.639682
+  type: 'test'
+  ...
+# (node:700992) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fabricante comprovado prevalece sobre fornecedor divergente
+ok 10 - fabricante comprovado prevalece sobre fornecedor divergente
+  ---
+  duration_ms: 1.902894
+  type: 'test'
+  ...
+# Subtest: garantia de fornecedor mantém origem e não vira fabricante no ML
+ok 11 - garantia de fornecedor mantém origem e não vira fabricante no ML
+  ---
+  duration_ms: 0.25191
+  type: 'test'
+  ...
+# Subtest: ausência contratual aplica vendedor 30 dias sem classificação e sem nome legal
+ok 12 - ausência contratual aplica vendedor 30 dias sem classificação e sem nome legal
+  ---
+  duration_ms: 0.239745
+  type: 'test'
+  ...
+# Subtest: evidência de outro SKU ou oferta não aumenta garantia do produto
+ok 13 - evidência de outro SKU ou oferta não aumenta garantia do produto
+  ---
+  duration_ms: 0.339084
+  type: 'test'
+  ...
+# Subtest: contradição na mesma precedência e duração inválida exigem revisão
+ok 14 - contradição na mesma precedência e duração inválida exigem revisão
+  ---
+  duration_ms: 0.406222
+  type: 'test'
+  ...
+# Subtest: normalização nunca cria 12 meses ou escolhe primeiro termo
+ok 15 - normalização nunca cria 12 meses ou escolhe primeiro termo
+  ---
+  duration_ms: 1.73509
+  type: 'test'
+  ...
+# Subtest: validade acima de 30 dias e até revogação são explícitas; ausência não autoriza
+ok 16 - validade acima de 30 dias e até revogação são explícitas; ausência não autoriza
+  ---
+  duration_ms: 0.620449
+  type: 'test'
+  ...
+# Subtest: revogação explícita remove proteção do grupo sem depender de custom_price
+ok 17 - revogação explícita remove proteção do grupo sem depender de custom_price
+  ---
+  duration_ms: 1.972175
+  type: 'test'
+  ...
+# Subtest: tabela comercial rejeita percentuais alterados sem nova homologação
+ok 18 - tabela comercial rejeita percentuais alterados sem nova homologação
+  ---
+  duration_ms: 0.954564
+  type: 'test'
+  ...
+# Subtest: campos econômicos órfãos não afetam fórmula nem novas memórias
+ok 19 - campos econômicos órfãos não afetam fórmula nem novas memórias
+  ---
+  duration_ms: 1.37814
+  type: 'test'
+  ...
+# Subtest: recuperação de existente propõe piso com cotação viva, grupo e confirmação
+ok 20 - recuperação de existente propõe piso com cotação viva, grupo e confirmação
+  ---
+  duration_ms: 272.166934
+  type: 'test'
+  ...
+# Subtest: override e liquidação do grupo impedem proposta automática
+ok 21 - override e liquidação do grupo impedem proposta automática
+  ---
+  duration_ms: 74.784833
+  type: 'test'
+  ...
+# Subtest: margem premium com vendas gera manutenção, nunca proposta de redução
+ok 22 - margem premium com vendas gera manutenção, nunca proposta de redução
+  ---
+  duration_ms: 18.965855
+  type: 'test'
+  ...
+# Subtest: 12 meses e 1 ano na mesma precedência são a mesma duração
+ok 23 - 12 meses e 1 ano na mesma precedência são a mesma duração
+  ---
+  duration_ms: 0.280832
+  type: 'test'
+  ...
+# Subtest: descrição da oferta não escolhe o primeiro prazo quando há contradição
+ok 24 - descrição da oferta não escolhe o primeiro prazo quando há contradição
+  ---
+  duration_ms: 4.743881
+  type: 'test'
+  ...
+# (node:700993) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-strategy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: aprovação vinculada às mesmas entradas pode prosseguir sem teto artificial de margem
+ok 25 - aprovação vinculada às mesmas entradas pode prosseguir sem teto artificial de margem
+  ---
+  duration_ms: 80.92585
+  type: 'test'
+  ...
+# Subtest: aprovação ausente ou já aplicada não autoriza outra escrita
+ok 26 - aprovação ausente ou já aplicada não autoriza outra escrita
+  ---
+  duration_ms: 51.808348
+  type: 'test'
+  ...
+# Subtest: mudança de custo ou preço anterior invalida aprovação
+ok 27 - mudança de custo ou preço anterior invalida aprovação
+  ---
+  duration_ms: 49.117599
+  type: 'test'
+  ...
+# Subtest: fonte inconclusiva e grupo divergente impedem aplicação
+ok 28 - fonte inconclusiva e grupo divergente impedem aplicação
+  ---
+  duration_ms: 68.490358
+  type: 'test'
+  ...
+# Subtest: refresh da mesma oferta preserva aprovação; quantidade material diferente invalida
+ok 29 - refresh da mesma oferta preserva aprovação; quantidade material diferente invalida
+  ---
+  duration_ms: 37.845448
+  type: 'test'
+  ...
+# (node:700999) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-strategy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fronteiras canônicas de preço final, inclusive centavos
+ok 30 - fronteiras canônicas de preço final, inclusive centavos
+  ---
+  duration_ms: 3.521981
+  type: 'test'
+  ...
+# Subtest: tributo precisa de competência e evidência; confirmado vence estimativa
+ok 31 - tributo precisa de competência e evidência; confirmado vence estimativa
+  ---
+  duration_ms: 1.563151
+  type: 'test'
+  ...
+# Subtest: RBT12 proporcionalizado e mês ausente não vira zero
+ok 32 - RBT12 proporcionalizado e mês ausente não vira zero
+  ---
+  duration_ms: 0.447264
+  type: 'test'
+  ...
+# Subtest: economia canônica discrimina ausência, zero confirmado e estimativa
+ok 33 - economia canônica discrimina ausência, zero confirmado e estimativa
+  ---
+  duration_ms: 0.763608
+  type: 'test'
+  ...
+# Subtest: 7,3% abaixo de 200 é viável no alvo, sem piso universal 10%
+ok 34 - 7,3% abaixo de 200 é viável no alvo, sem piso universal 10%
+  ---
+  duration_ms: 2.170738
+  type: 'test'
+  ...
+# Subtest: preço sugerido estabiliza e respeita alvo final com arredondamento fiscal
+ok 35 - preço sugerido estabiliza e respeita alvo final com arredondamento fiscal
+  ---
+  duration_ms: 1.365796
+  type: 'test'
+  ...
+# Subtest: solver consulta o preço retornado e cruza faixas
+ok 36 - solver consulta o preço retornado e cruza faixas
+  ---
+  duration_ms: 1.77838
+  type: 'test'
+  ...
+# Subtest: solver falha explicitamente quando fonte está indisponível
+ok 37 - solver falha explicitamente quando fonte está indisponível
+  ---
+  duration_ms: 0.365672
+  type: 'test'
+  ...
+# Subtest: regressão D0: cotação viva desfaz falso prejuízo stale
+ok 38 - regressão D0: cotação viva desfaz falso prejuízo stale
+  ---
+  duration_ms: 0.544505
+  type: 'test'
+  ...
+# Subtest: margem premium com venda é preservada; baixa funcional exige estratégia
+ok 39 - margem premium com venda é preservada; baixa funcional exige estratégia
+  ---
+  duration_ms: 0.994713
+  type: 'test'
+  ...
+# Subtest: marca/modelo contraditórios vencem GTIN igual
+ok 40 - marca/modelo contraditórios vencem GTIN igual
+  ---
+  duration_ms: 1.11699
+  type: 'test'
+  ...
+# Subtest: GTIN diferente só admite variação com evidência e atributos coerentes
+ok 41 - GTIN diferente só admite variação com evidência e atributos coerentes
+  ---
+  duration_ms: 0.399599
+  type: 'test'
+  ...
+# Subtest: kit e quantidade impedem automação, GTIN sozinho deixa pendência
+ok 42 - kit e quantidade impedem automação, GTIN sozinho deixa pendência
+  ---
+  duration_ms: 0.35474
+  type: 'test'
+  ...
+# Subtest: ativo, reativação e vínculo incompleto têm filas distintas
+ok 43 - ativo, reativação e vínculo incompleto têm filas distintas
+  ---
+  duration_ms: 0.672309
+  type: 'test'
+  ...
+# Subtest: ausência de demanda não cria conflito; Buy Box negativa bloqueia
+ok 44 - ausência de demanda não cria conflito; Buy Box negativa bloqueia
+  ---
+  duration_ms: 0.381632
+  type: 'test'
+  ...
+# (node:701001) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-strategy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: integração tarifa total sem duplicar fixed_fee; frete vivo vence stale
+ok 45 - integração tarifa total sem duplicar fixed_fee; frete vivo vence stale
+  ---
+  duration_ms: 139.589671
+  type: 'test'
+  ...
+# Subtest: ML indisponível não confirma prejuízo por frete local
+ok 46 - ML indisponível não confirma prejuízo por frete local
+  ---
+  duration_ms: 62.086378
+  type: 'test'
+  ...
+# Subtest: fallback configurado é explícito e nunca sobrescreve fonte viva
+ok 47 - fallback configurado é explícito e nunca sobrescreve fonte viva
+  ---
+  duration_ms: 46.664175
+  type: 'test'
+  ...
+# Subtest: Radar, anúncio e simulador compartilham os mesmos valores e cotação final
+ok 48 - Radar, anúncio e simulador compartilham os mesmos valores e cotação final
+  ---
+  duration_ms: 37.714803
+  type: 'test'
+  ...
+# Subtest: solver detecta oscilação em cotação descontínua
+ok 49 - solver detecta oscilação em cotação descontínua
+  ---
+  duration_ms: 0.659724
+  type: 'test'
+  ...
+# Subtest: escolha de oferta impede fornecedor inativo de fornecer CMV
+ok 50 - escolha de oferta impede fornecedor inativo de fornecer CMV
+  ---
+  duration_ms: 28.720478
+  type: 'test'
+  ...
+# Subtest: observação ML válida vence fallback quando nova consulta falha
+ok 51 - observação ML válida vence fallback quando nova consulta falha
+  ---
+  duration_ms: 46.82105
+  type: 'test'
+  ...
+# Subtest: extrai apenas orders componentes do mesmo kit virtual
+ok 52 - extrai apenas orders componentes do mesmo kit virtual
+  ---
+  duration_ms: 4.361147
+  type: 'test'
+  ...
+# Subtest: ignora carrinho comum sem kit_orders relacionado
+ok 53 - ignora carrinho comum sem kit_orders relacionado
+  ---
+  duration_ms: 0.691566
+  type: 'test'
+  ...
+# Subtest: bloqueia grupo inconsistente com mais de um anúncio pai
+ok 54 - bloqueia grupo inconsistente com mais de um anúncio pai
+  ---
+  duration_ms: 0.9959
+  type: 'test'
+  ...
+# Subtest: extrai carrinho comum com duas orders
+ok 55 - extrai carrinho comum com duas orders
+  ---
+  duration_ms: 1.060455
+  type: 'test'
+  ...
+# Subtest: ignora pack unitário
+ok 56 - ignora pack unitário
+  ---
+  duration_ms: 0.637498
+  type: 'test'
+  ...
+# Subtest: mantém apenas orders do mesmo seller
+ok 57 - mantém apenas orders do mesmo seller
+  ---
+  duration_ms: 0.510697
+  type: 'test'
+  ...
+# Subtest: rateia custo único do shipment sem duplicar centavos
+ok 58 - rateia custo único do shipment sem duplicar centavos
+  ---
+  duration_ms: 6.862959
+  type: 'test'
+  ...
+1..58
+# tests 58
+# suites 0
+# pass 58
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 694.62058

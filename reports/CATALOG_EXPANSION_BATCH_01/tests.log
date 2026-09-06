@@ -1,0 +1,140 @@
+TAP version 13
+# Subtest: autorização restrita aos dez SKUs e preparação persistente
+ok 1 - autorização restrita aos dez SKUs e preparação persistente
+  ---
+  duration_ms: 2.200928
+  type: 'test'
+  ...
+# Subtest: nova aprovação não altera chave de publicação por produto
+ok 2 - nova aprovação não altera chave de publicação por produto
+  ---
+  duration_ms: 0.215088
+  type: 'test'
+  ...
+# Subtest: timeout após claim bloqueia próximo SKU e reinício; somente readback validado encerra
+ok 3 - timeout após claim bloqueia próximo SKU e reinício; somente readback validado encerra
+  ---
+  duration_ms: 0.345576
+  type: 'test'
+  ...
+# Subtest: piso inclusivo e leitura remota exata autorizam conclusão
+ok 4 - piso inclusivo e leitura remota exata autorizam conclusão
+  ---
+  duration_ms: 0.438343
+  type: 'test'
+  ...
+# Subtest: preço estoque categoria catálogo logística condição e margem errados bloqueiam
+ok 5 - preço estoque categoria catálogo logística condição e margem errados bloqueiam
+  ---
+  duration_ms: 0.352457
+  type: 'test'
+  ...
+# Subtest: fonte stale ou GET ausente não prova prejuízo; status pendente não é publicado validado
+ok 6 - fonte stale ou GET ausente não prova prejuízo; status pendente não é publicado validado
+  ---
+  duration_ms: 0.695427
+  type: 'test'
+  ...
+# (node:680152) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/felipe/Documentos/Projetos/vortek/vortek-prod/src/services/pricing-policy.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/felipe/Documentos/Projetos/vortek/vortek-prod/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fabricante comprovado prevalece sobre fornecedor divergente
+ok 7 - fabricante comprovado prevalece sobre fornecedor divergente
+  ---
+  duration_ms: 1.075288
+  type: 'test'
+  ...
+# Subtest: garantia de fornecedor mantém origem e não vira fabricante no ML
+ok 8 - garantia de fornecedor mantém origem e não vira fabricante no ML
+  ---
+  duration_ms: 0.138558
+  type: 'test'
+  ...
+# Subtest: ausência contratual aplica vendedor 30 dias sem classificação e sem nome legal
+ok 9 - ausência contratual aplica vendedor 30 dias sem classificação e sem nome legal
+  ---
+  duration_ms: 0.108169
+  type: 'test'
+  ...
+# Subtest: evidência de outro SKU ou oferta não aumenta garantia do produto
+ok 10 - evidência de outro SKU ou oferta não aumenta garantia do produto
+  ---
+  duration_ms: 0.173102
+  type: 'test'
+  ...
+# Subtest: contradição na mesma precedência e duração inválida exigem revisão
+ok 11 - contradição na mesma precedência e duração inválida exigem revisão
+  ---
+  duration_ms: 0.216111
+  type: 'test'
+  ...
+# Subtest: normalização nunca cria 12 meses ou escolhe primeiro termo
+ok 12 - normalização nunca cria 12 meses ou escolhe primeiro termo
+  ---
+  duration_ms: 1.205652
+  type: 'test'
+  ...
+# Subtest: validade acima de 30 dias e até revogação são explícitas; ausência não autoriza
+ok 13 - validade acima de 30 dias e até revogação são explícitas; ausência não autoriza
+  ---
+  duration_ms: 0.150079
+  type: 'test'
+  ...
+# Subtest: revogação explícita remove proteção do grupo sem depender de custom_price
+ok 14 - revogação explícita remove proteção do grupo sem depender de custom_price
+  ---
+  duration_ms: 0.339197
+  type: 'test'
+  ...
+# Subtest: tabela comercial rejeita percentuais alterados sem nova homologação
+ok 15 - tabela comercial rejeita percentuais alterados sem nova homologação
+  ---
+  duration_ms: 0.375684
+  type: 'test'
+  ...
+# Subtest: campos econômicos órfãos não afetam fórmula nem novas memórias
+ok 16 - campos econômicos órfãos não afetam fórmula nem novas memórias
+  ---
+  duration_ms: 0.527308
+  type: 'test'
+  ...
+# Subtest: recuperação de existente propõe piso com cotação viva, grupo e confirmação
+ok 17 - recuperação de existente propõe piso com cotação viva, grupo e confirmação
+  ---
+  duration_ms: 178.394495
+  type: 'test'
+  ...
+# Subtest: override e liquidação do grupo impedem proposta automática
+ok 18 - override e liquidação do grupo impedem proposta automática
+  ---
+  duration_ms: 36.462537
+  type: 'test'
+  ...
+# Subtest: margem premium com vendas gera manutenção, nunca proposta de redução
+ok 19 - margem premium com vendas gera manutenção, nunca proposta de redução
+  ---
+  duration_ms: 7.72889
+  type: 'test'
+  ...
+# Subtest: 12 meses e 1 ano na mesma precedência são a mesma duração
+ok 20 - 12 meses e 1 ano na mesma precedência são a mesma duração
+  ---
+  duration_ms: 0.173152
+  type: 'test'
+  ...
+# Subtest: descrição da oferta não escolhe o primeiro prazo quando há contradição
+ok 21 - descrição da oferta não escolhe o primeiro prazo quando há contradição
+  ---
+  duration_ms: 1.853687
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 333.577625
