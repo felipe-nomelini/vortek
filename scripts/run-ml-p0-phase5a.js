@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+if (require.main === module) throw new Error('POLITICA_REMOVIDA: relatório operacional de pricing legado aposentado; usar auditoria do Cânon.');
 /* Phase 5A: read-only prepublication audit for exactly three authorized SKUs. */
 const fs = require('fs');
 const path = require('path');

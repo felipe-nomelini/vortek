@@ -417,10 +417,14 @@ export async function POST(request: Request) {
       const rowProductId = String(row.produto_id || '').trim();
       const outboxSource = String((row as any).source || '').trim().toLowerCase();
       const applyMode = resolveApplyMode(row);
-      if (applyMode.applyPrice || applyMode.applyQuantityPricing) {
+      if (applyMode.applyQuantityPricing) {
+        await recordPricingEvent(client, {event_type:'LEGACY_OPERATION_DISCARDED',produto_id:row.produto_id,ml_item_id:row.ml_item_id,pricing_source:'outbox',actor:'job:ml_publish',reason:'POLITICA_REMOVIDA: desconto por quantidade',rule_id:'VORTEK-CANON-1.0-ECON-2',dedupe_key:`quantity-removed:${outboxId}`,payload:{outboxId}});
+        applyMode.applyQuantityPricing = false;
+      }
+      if (applyMode.applyPrice) {
         await recordPricingEvent(client, { event_type:'PROPOSED',produto_id:rowProductId,ml_item_id:mlItemId,
           pricing_source:outboxSource||'outbox',actor:'job:ml_publish',reason:'REQUIRES_CONFIRMATION',new_price:row.desired_price,
-          rule_id:'M2M-PRC-01-v1',dedupe_key:`outbox-review:${outboxId}`,payload:{outboxId,requires_confirmation:true} });
+          rule_id:'VORTEK-CANON-1.0-ECON-2',dedupe_key:`outbox-review:${outboxId}`,payload:{outboxId,requires_confirmation:true} });
         applyMode.applyPrice=false;applyMode.applyQuantityPricing=false;
         warnings.push({code:'pricing_approval_required',message:'Proposta registrada; simular e aprovar em Anúncios.',context:{outboxId,mlItemId}});
       }

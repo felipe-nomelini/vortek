@@ -265,7 +265,7 @@ function parseOutboxStepLabel(operation: string | null | undefined): string {
   if (op === 'processing_start') return 'Iniciando publicação';
   if (op === 'validate') return 'Validando item no outbox';
   if (op === 'price') return 'Publicando preço base';
-  if (op === 'quantity_pricing') return 'Publicando preços de atacado';
+  if (op === 'quantity_pricing') return 'Operação legada removida';
   if (op === 'quantity') return 'Publicando estoque';
   if (op === 'status') return 'Publicando status do anúncio';
   return op;
@@ -277,28 +277,6 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
   const phase = statusPayload?.phase || 'enfileirado';
   const lastOperation = statusPayload?.progress?.last_operation || null;
   const result = statusPayload?.result || null;
-  const quantityPricing = Array.isArray(result?.quantity_pricing) ? result?.quantity_pricing : [];
-  const hasQuantityPricing = quantityPricing.length > 0;
-  const quantityPricingState = String(result?.quantity_pricing_state || (hasQuantityPricing ? 'active' : 'absent'));
-  const quantityPricingLastError = String(result?.quantity_pricing_last_error || '').trim();
-  const suggestedQuantityPricing = Array.isArray(result?.suggested_quantity_pricing) ? result.suggested_quantity_pricing : [];
-  const warnings = Array.isArray(result?.warnings) ? result.warnings : [];
-
-  const atacadoAtivoDetail = quantityPricing.length > 0
-    ? quantityPricing.map((tier) => `${tier.min_purchase_unit}+ = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')
-    : 'Sem preços de atacado ativos no anúncio.';
-  const atacadoSugeridoDetail = suggestedQuantityPricing.length > 0
-    ? `Sugestão: ${suggestedQuantityPricing.map((tier) => `${tier.min_purchase_unit}+ (-${tier.discount_percent}%) = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')}`
-    : 'Sem sugestões disponíveis.';
-  const diagnosticReason = quantityPricingState === 'failed_validation'
-    ? 'Diagnóstico: o ML aceitou a chamada, mas as faixas não ficaram ativas.'
-    : quantityPricingState === 'provider_rejected'
-      ? 'Diagnóstico: o ML rejeitou a aplicação de atacado para este anúncio.'
-      : quantityPricingState === 'absent' && !hasQuantityPricing
-        ? 'Diagnóstico: anúncio sem faixas de atacado ativas no momento.'
-        : '';
-  const technicalReason = quantityPricingLastError ? ` Detalhe técnico: ${quantityPricingLastError}` : '';
-
   return [
     {
       label: 'Enfileirado',
@@ -313,7 +291,7 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
           ? 'success'
           : 'loading',
       detail: currentStatus === 'done'
-        ? 'Preço base e atacado processados pelo worker.'
+        ? 'Processamento concluído. Confira o preço observado no ML.'
         : parseOutboxStepLabel(lastOperation),
       error: currentStatus === 'failed' ? (lastError || 'Falha ao processar publicação no ML.') : undefined,
     },
@@ -328,17 +306,7 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
         ? `Preço atual no ML: ${result?.item_price !== null && result?.item_price !== undefined ? formatCurrency(Number(result.item_price)) : 'não disponível'}`
         : 'Aguardando confirmação final do ML.',
     },
-    {
-      label: 'Preços de atacado',
-      status: currentStatus === 'done'
-        ? (hasQuantityPricing ? 'success' : 'warning')
-        : currentStatus === 'failed'
-          ? 'warning'
-          : 'pending',
-      detail: currentStatus === 'done'
-        ? `${atacadoAtivoDetail} ${atacadoSugeridoDetail}${diagnosticReason ? ` ${diagnosticReason}` : ''}${technicalReason}${warnings.length > 0 ? ` | Aviso: ${warnings.join(' | ')}` : ''}`
-        : 'Aguardando confirmação final do ML.',
-    },
+
   ];
 }
 
@@ -407,7 +375,6 @@ export default function ProductsPage() {
   const [mlPublishOutboxId, setMlPublishOutboxId] = useState<string | null>(null);
   const [mlPublishLastStatus, setMlPublishLastStatus] = useState<MlPublishStatusResponse | null>(null);
   const [mlPublishRetryContext, setMlPublishRetryContext] = useState<MlPublishContext | null>(null);
-  const [mlPublishApplyingWholesale, setMlPublishApplyingWholesale] = useState(false);
   const mlPublishPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const productsRequestRef = useRef(0);
   const statsRequestRef = useRef(0);
@@ -1049,7 +1016,6 @@ export default function ProductsPage() {
     setMlPublishModalOpen(false);
     setMlPublishOutboxId(null);
     setMlPublishLastStatus(null);
-    setMlPublishApplyingWholesale(false);
     setMlPublishModalSteps(buildMlPublishSteps(null));
   };
 
@@ -1143,13 +1109,7 @@ export default function ProductsPage() {
 
       if (data?.price_updated) {
         const warnings = Array.isArray(data?.warnings) ? data.warnings.filter(Boolean) : [];
-        if (data?.quantity_pricing_updated) {
-          messageApi.success('Preço e atacado atualizados no Mercado Livre.');
-        } else if (data?.quantity_pricing_queued || data?.quantity_pricing_outbox_id) {
-          messageApi.warning('Preço atualizado no Mercado Livre. Atacado ficou em fila para retry.');
-        } else {
-          messageApi.success('Preço atualizado no Mercado Livre.');
-        }
+        messageApi.success('Preço atualizado no Mercado Livre.');
         if (warnings.length > 0) {
           messageApi.warning(warnings.join(' | '));
         }
@@ -1184,63 +1144,6 @@ export default function ProductsPage() {
     void startMlPublishUpdate(retryContext);
   };
 
-  const applyWholesaleFromModal = async () => {
-    if (mlPublishApplyingWholesale) return;
-    const produtoId = mlPublishRetryContext?.produtoId;
-    const itemPrice = Number(mlPublishLastStatus?.result?.item_price);
-    const outboxProcessing = Boolean(
-      mlPublishModalOpen
-      && mlPublishOutboxId
-      && mlPublishLastStatus?.status !== 'done'
-      && mlPublishLastStatus?.status !== 'failed',
-    );
-    if (outboxProcessing) {
-      messageApi.warning('Já existe uma publicação em acompanhamento. Aguarde finalizar.');
-      return;
-    }
-    if (!produtoId || !Number.isFinite(itemPrice) || itemPrice <= 0) {
-      messageApi.error('Não foi possível identificar preço base válido para aplicar atacado.');
-      return;
-    }
-
-    setMlPublishApplyingWholesale(true);
-    try {
-      const response = await fetch('/api/ml/anuncio/aplicar-atacado', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          produtoId,
-          basePrice: itemPrice,
-          source: 'modal_result_sem_atacado',
-        }),
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        messageApi.error(payload?.error || 'Falha ao enfileirar aplicação de atacado.');
-        return;
-      }
-      const outboxId = String(payload?.outboxId || '').trim();
-      if (!payload?.queued_publish || !outboxId) {
-        messageApi.error('Não foi possível enfileirar aplicação de atacado.');
-        return;
-      }
-
-      startMlPublishTracking(outboxId);
-      messageApi.success('Aplicação de atacado enfileirada. Acompanhe no modal.');
-    } catch {
-      messageApi.error('Erro de conexão ao aplicar atacado.');
-    } finally {
-      setMlPublishApplyingWholesale(false);
-    }
-  };
-
-  const canApplyWholesaleFromModal = Boolean(
-    mlPublishLastStatus?.status === 'done'
-    && !mlPublishApplyingWholesale
-    && !(mlPublishLastStatus?.result?.has_quantity_pricing)
-    && Number(mlPublishLastStatus?.result?.item_price || 0) > 0
-    && mlPublishRetryContext?.produtoId,
-  );
 
   const atualizarPrecoMl = async (product: Product) => {
     await startMlPublishUpdate({ produtoId: product.id });
@@ -1884,12 +1787,6 @@ export default function ProductsPage() {
         onClose={closeMlPublishModal}
         onCancel={retryMlPublish}
         showCloseButton={mlPublishLastStatus?.status === 'failed' || mlPublishLastStatus?.status === 'done'}
-        customActions={canApplyWholesaleFromModal ? [{
-          key: 'apply_wholesale',
-          label: mlPublishApplyingWholesale ? 'Criando atacado...' : 'Criar preços de atacado',
-          onClick: () => { void applyWholesaleFromModal(); },
-          primary: true,
-        }] : []}
       />
 
       <Modal
@@ -1992,12 +1889,6 @@ export default function ProductsPage() {
                   showIcon
                   message="Fiscal ML"
                   description={fiscalMessage}
-                />
-                <Alert
-                  type={result.quantity_pricing ? 'success' : 'warning'}
-                  showIcon
-                  message="Preços de atacado"
-                  description={result.quantity_pricing ? 'Preços de atacado configurados.' : 'Preços de atacado não confirmados.'}
                 />
               </div>
 

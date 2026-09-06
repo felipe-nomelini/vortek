@@ -207,6 +207,7 @@ export async function GET(request: Request) {
     currentProfit: evaluation.memory?.result ?? null,
     memory: evaluation.memory,
     quantityPricing: quantityResult.ok ? extractQuantityPricingTiers(quantityResult.data) : [],
+    remoteQuantityDiscounts: quantityResult.ok ? quantityResult.data?.price_per_quantity ?? [] : null,
     quantityPricingWarning: quantityResult.ok ? null : (quantityResult.error?.message || 'Não foi possível consultar preços de atacado no ML.'),
     calculator: { cost, shipping, mlFee },
     catalog,

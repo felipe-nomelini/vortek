@@ -118,22 +118,6 @@ function extractQuantityPricingTiers(raw: any): QuantityPricingTier[] {
   return tiers.sort((a, b) => a.min_purchase_unit - b.min_purchase_unit);
 }
 
-function buildSuggestedQuantityPricing(basePrice: number | null): SuggestedQuantityPricingTier[] {
-  if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) return [];
-  const price = Number(basePrice);
-  const suggestions = [
-    { min_purchase_unit: 3, discount_percent: 3 },
-    { min_purchase_unit: 5, discount_percent: 4 },
-    { min_purchase_unit: 10, discount_percent: 5 },
-  ];
-  return suggestions.map((tier) => ({
-    min_purchase_unit: tier.min_purchase_unit,
-    discount_percent: tier.discount_percent,
-    amount: Math.round(price * (1 - (tier.discount_percent / 100)) * 100) / 100,
-    currency_id: 'BRL',
-  }));
-}
-
 export async function GET(request: Request) {
   const supabase = await createClient();
   const {
@@ -246,9 +230,9 @@ export async function GET(request: Request) {
     warnings.push(quantityResult.error?.message || 'Não foi possível consultar faixas de atacado no ML.');
   }
 
-  const hasQuantityPricing = quantityPricing.length > 0;
+  const hasQuantityPricing = quantityPricing.length > 0 || (quantityResult.data?.price_per_quantity?.length ?? 0) > 0;
   const quantityPricingState = mapQuantityPricingState(hasQuantityPricing, failedOperationCode);
-  const suggestedQuantityPricing = buildSuggestedQuantityPricing(itemPrice);
+  const suggestedQuantityPricing: never[] = [];
   const quantityPricingLastError = quantityPricingState === 'active'
     ? null
     : (lastError || null);
@@ -256,6 +240,7 @@ export async function GET(request: Request) {
   response.result = {
     item_price: itemPrice,
     quantity_pricing: quantityPricing,
+    remote_price_per_quantity: quantityResult.ok ? quantityResult.data?.price_per_quantity ?? [] : null,
     has_quantity_pricing: hasQuantityPricing,
     quantity_pricing_state: quantityPricingState,
     quantity_pricing_last_error: quantityPricingLastError,

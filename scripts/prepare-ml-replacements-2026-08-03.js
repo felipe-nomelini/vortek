@@ -1,3 +1,4 @@
+if (require.main === module) throw new Error('POLITICA_REMOVIDA: publicador/preparador histórico aposentado; usar os caminhos canônicos do ERP.');
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');

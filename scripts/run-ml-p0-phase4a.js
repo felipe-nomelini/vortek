@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+if (require.main === module) throw new Error('POLITICA_REMOVIDA: relatório operacional de pricing legado aposentado; usar auditoria do Cânon.');
 /* PRE-PUBLISH ONLY: no Mercado Livre commercial writes and no local database writes. */
 const fs = require('fs');
 const path = require('path');

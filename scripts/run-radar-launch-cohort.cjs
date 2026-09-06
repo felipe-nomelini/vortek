@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+if (require.main === module) throw new Error('POLITICA_REMOVIDA: publicador/preparador histórico aposentado; usar os caminhos canônicos do ERP.');
 /** Operação limitada à coorte expressamente autorizada; sem fórmula econômica própria. */
 const fs = require('node:fs');
 const path = require('node:path');

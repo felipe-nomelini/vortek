@@ -1,3 +1,4 @@
+if (require.main === module) throw new Error('POLITICA_REMOVIDA: publicador histórico aposentado; usar simulação e aprovação canônica do ERP.');
 /* eslint-disable no-console */
 const crypto = require('crypto');
 const fs = require('fs');

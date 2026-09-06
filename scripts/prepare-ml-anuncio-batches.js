@@ -1,3 +1,4 @@
+if (require.main === module) throw new Error('POLITICA_REMOVIDA: publicador/preparador histórico aposentado; usar os caminhos canônicos do ERP.');
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');

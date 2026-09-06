@@ -731,7 +731,7 @@ export async function POST(request: Request) {
                   dedupePending: true,
                   payload: {
                     apply_price: true,
-                    apply_quantity_pricing: true,
+                    apply_quantity_pricing: false,
                     apply_quantity: false,
                     apply_status: false,
                     base_price_for_quantity_pricing: configuredShippingPrice,

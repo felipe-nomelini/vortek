@@ -43,6 +43,7 @@ type PricingDetails = {
   currentPrice: number;
   currentProfit: number | null;
   quantityPricing: QuantityPricingTier[];
+  remoteQuantityDiscounts?: Array<{percentage: number; conditions?: {min_purchase_unit?: number}}> | null;
   quantityPricingWarning: string | null;
   calculator: { cost: number; shipping: number; mlFee: number };
   catalog: {
@@ -673,9 +674,7 @@ export default function AnunciosPage() {
   const targetPrice = Number(newPrice);
   const nextProfit: number | null = null; // O resultado do novo preço exige cotação do servidor.
 
-  const nextWholesalePrices = Number.isFinite(targetPrice) && targetPrice > 0
-    ? [] as QuantityPricingTier[]
-    : [];
+
 
   return (
     <div>
@@ -925,6 +924,7 @@ export default function AnunciosPage() {
 
               <div>
                 <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Preços atuais de atacado</div>
+                {priceModal.details.remoteQuantityDiscounts?.map((tier,index)=><div key={index}>{tier.conditions?.min_purchase_unit ?? '—'} unidades: {tier.percentage}% — legado remoto, remoção exige autorização.</div>)}
                 {priceModal.details.quantityPricing.length > 0 ? (
                   <Space wrap>
                     {priceModal.details.quantityPricing.map((tier) => (
@@ -967,14 +967,7 @@ export default function AnunciosPage() {
                 </strong>
               </div>
 
-              <div>
-                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novos preços de atacado</div>
-                <Space wrap>
-                  {nextWholesalePrices.map((tier) => (
-                    <Tag color="blue" key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ = {formatCurrency(tier.amount)}</Tag>
-                  ))}
-                </Space>
-              </div>
+
             </Space>
           )}
         </Spin>
