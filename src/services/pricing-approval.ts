@@ -7,7 +7,7 @@ import type { EconomicMemory } from './pricing.ts';
 type Client = {
     from: (table: string) => any;
 };
-export const economicSignature = (m: EconomicMemory) => JSON.stringify({ price: m.price, cost: m.cost, offer: m.offerId, supplier: m.supplierId, fee: m.fee.amount, feeContext: m.fee.contextKey, shipping: m.shipping.amount, shippingContext: m.shipping.contextKey, costComponents: m.costComponents, tax: m.tax.rate, taxStatus: m.tax.status, month: m.tax.referenceMonth, policy: m.policyVersion });
+export const economicSignature = (m: EconomicMemory) => JSON.stringify({ price: m.price, cost: m.cost, offer: m.offerId, supplier: m.supplierId, fee: m.fee.amount, feeContext: m.fee.contextKey, shipping: m.shipping.amount, shippingContext: m.shipping.contextKey, costComponents: m.costComponents?.map(({ productId, offerId, supplierId, unitCost, quantity }) => ({ productId, offerId, supplierId, unitCost, quantity })), tax: m.tax.rate, taxStatus: m.tax.status, month: m.tax.referenceMonth, policy: m.policyVersion });
 export async function approvedStrategy(client: Client, id: string | undefined, productId: string, price: number, margin: number, itemId?: string) {
     if (!id || !itemId)
         return null;

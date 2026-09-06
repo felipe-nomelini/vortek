@@ -13,3 +13,12 @@ test('aprovação vinculada às mesmas entradas pode prosseguir sem teto artific
 test('aprovação ausente ou já aplicada não autoriza outra escrita',async()=>{await assert.rejects(fixture({approval:null}).run(),/PRICING_APPROVAL_REQUIRED/);await assert.rejects(fixture({applied:[{id:'applied'}]}).run(),/APROVACAO_JA_UTILIZADA/);});
 test('mudança de custo ou preço anterior invalida aprovação',async()=>{const f=fixture();f.state.memory={...f.state.memory,cost:61};await assert.rejects(f.run(),/APROVACAO_ECONOMICA_DESATUALIZADA/);await assert.rejects(fixture({remotePrice:99}).run(),/PRECO_ANTERIOR_ALTERADO/);});
 test('fonte inconclusiva e grupo divergente impedem aplicação',async()=>{const f=fixture();f.state.memory={...f.state.memory,result:null};await assert.rejects(f.run(),/INCONCLUSIVO_FONTE_ML_INDISPONIVEL/);await assert.rejects(fixture({group:{complete:false}}).run(),/VINCULO_INCONCLUSIVO/);await assert.rejects(fixture({linkedProduct:'other'}).run(),/GRUPO_ECONOMICO_DIVERGENTE/);});
+
+test('refresh da mesma oferta preserva aprovação; quantidade material diferente invalida',async()=>{
+ const f=fixture();const component={productId:'p',offerId:'offer',supplierId:'supplier',unitCost:60,quantity:1,observedAt:'2026-09-06T00:00:00Z'};
+ f.state.baseline={...f.state.baseline,costComponents:[component]};
+ f.state.memory={...f.state.memory,costComponents:[{...component,observedAt:'2026-09-06T00:05:00Z'}]};
+ assert.equal((await f.run()).approval.id,'approval');
+ f.state.memory.costComponents[0].quantity=2;
+ await assert.rejects(f.run(),/APROVACAO_ECONOMICA_DESATUALIZADA/);
+});
