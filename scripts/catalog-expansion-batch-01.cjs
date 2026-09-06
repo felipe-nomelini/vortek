@@ -86,7 +86,7 @@ async function prepare() {
    const hash=crypto.createHash('sha256').update(bytes).digest('hex'),object=`catalog-expansion/${BATCH}/${p.sku}/${hash}.${meta.format==='jpeg'?'jpg':meta.format}`;
    const upload=await db.storage.from('product-images').upload(object,bytes,{contentType:r.headers.get('content-type'),upsert:false});
    if(upload.error && !['409','Duplicate'].includes(String(upload.error.statusCode)) && !/already exists/i.test(upload.error.message))throw Error(upload.error.message);
-   const publicUrl=db.storage.from('product-images').getPublicUrl(object).data.publicUrl;
+   const publicUrl=new URL(`/storage/v1/object/public/product-images/${object}`,process.env.NEXT_PUBLIC_SUPABASE_URL).href;
    const remote=await fetch(publicUrl,{method:'HEAD',signal:AbortSignal.timeout(10000)});if(!remote.ok)throw Error('IMAGEM_PUBLICA_INDISPONIVEL');
    images.push(publicUrl);imageEvidence.push({original,url:publicUrl,hash,width:meta.width,height:meta.height});
   }
@@ -99,7 +99,7 @@ async function prepare() {
   const record={sku:p.sku,productId:p.id,draft,simulation:simulation.data,status:simulation.ok&&simulation.data.success?'PREPARADO':'ECONOMIA_INCONCLUSIVA',warranty:warranty.data.warranty,imageEvidence,identity};
   if(simulation.ok&&simulation.data.success){
    const id=crypto.randomUUID();
-   const payload={batchId:BATCH,identity:identity.identity,conflict:'SEM_CONFLITO',logistics:'CONFIRMED',warrantyPolicyVersion:warranty.data.warranty.policyVersion,offerId:o.id,cost:Number(o.custo),stock:Number(o.estoque),catalogProductId:catalog.id,images,draftHash:crypto.createHash('sha256').update(JSON.stringify(draft)).digest('hex'),draft,review,duplicateCoverage:{complete:true,at:duplicates.at,total:duplicates.total},sourceInspectionAt:inspection.at};
+   const payload={batchId:BATCH,identity:identity.identity,conflict:'SEM_CONFLITO',logistics:'CONFIRMED',warrantyPolicyVersion:warranty.data.warranty.policyVersion,offerId:o.id,cost:Number(o.custo),stock:Number(o.estoque),catalogProductId:catalog.id,catalogFingerprint:crypto.createHash('sha256').update(JSON.stringify({name:catalog.name,attributes:catalog.attributes,description:catalog.short_description})).digest('hex'),images,draftHash:crypto.createHash('sha256').update(JSON.stringify(draft)).digest('hex'),draft,review,duplicateCoverage:{complete:true,at:duplicates.at,total:duplicates.total},sourceInspectionAt:inspection.at};
    await checked(db.from('pricing_events').insert({id,event_type:'CATALOG_EXPANSION_PREPARED',produto_id:p.id,pricing_source:'radar_launch',actor,reason:'Preparação individual revisada pela ordem da Diretoria',rule_id:warranty.data.warranty.policyVersion,payload}));
    record.preparationId=id;
   }

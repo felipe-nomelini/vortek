@@ -761,7 +761,7 @@ export async function POST(req: Request) {
       preparation = prepared.data.payload as any;
       const draft = {categoriaId,listingType,description,attributes:editedAttributes,familyName:requestedFamilyName};
       if (preparation.batchId !== batch.batchId || preparation.draftHash !== pricingFingerprint(draft) || preparation.warrantyPolicyVersion !== 'VORTEK-WARRANTY-2026-09-06-SELLER-30') throw Error('PREPARACAO_LOTE_DIVERGENTE');
-      if (preparation.identity !== 'IDENTIDADE_COHERENTE' || preparation.conflict !== 'SEM_CONFLITO' || preparation.logistics !== 'CONFIRMED') throw Error('GATES_LOTE_PENDENTES');
+      if (preparation.identity !== 'IDENTIDADE_COHERENTE' || preparation.conflict !== 'SEM_CONFLITO' || preparation.logistics !== 'CONFIRMED' || preparation.duplicateCoverage?.complete !== true) throw Error('GATES_LOTE_PENDENTES');
       if (!produto.ativo || allowOutOfStockListing || !(Number(produto.estoque)>0)) throw Error('PRODUTO_INATIVO_OU_SEM_ESTOQUE');
     }
 
@@ -1460,6 +1460,7 @@ export async function POST(req: Request) {
       if (preparation.catalogProductId) {
         const catalog = await fetchMLResult<any>(`/products/${preparation.catalogProductId}`);
         if (!catalog.ok || catalog.data?.status !== 'active') throw Error('CATALOGO_INDISPONIVEL');
+        if (preparation.catalogFingerprint !== pricingFingerprint({name:catalog.data.name,attributes:catalog.data.attributes,description:catalog.data.short_description})) throw Error('CATALOGO_ALTERADO_APOS_REVISAO');
         const identity = assessIdentity({local:identityFacts(listingPayload.attributes,{title:effectiveFamilyName}),remote:identityFacts(catalog.data.attributes,{title:catalog.data.name}),source:'catalog_live_before_post'});
         if (identity.identity !== 'IDENTIDADE_COHERENTE') throw Error('CATALOGO_IDENTIDADE_NAO_COHERENTE');
       }
