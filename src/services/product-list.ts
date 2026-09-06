@@ -120,4 +120,3 @@ export async function getProductListResponse(request: Request, allRows = false) 
     commercialPricing,
   });
 }
-

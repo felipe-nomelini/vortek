@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** planejar `M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única`, sem execução automática. A ordem definitiva M2M foi incorporada, preservando complementos compatíveis. `M2M-PRC-01 / BNT-PRICING-V2-01` implementou política/estabilização puras, ainda sem ativação nos consumidores. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
+**Ação corrente:** concluir `M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados`. Implementação local parcial: contexto econômico e corte inicial de escrita testados; consumidores de leitura, SQL, configuração comercial e pedidos ainda pendentes. O núcleo novo ainda não está conectado às telas. Não avançar nem considerar o pricing homologado. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
 
 ---
 
@@ -54,7 +54,7 @@ Regras de uso:
 |---:|---|---|---|
 | 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
 | 1 | Segurança crítica | Encerrada com risco aceito | Reabrir `SEC-05` se a exigência de links permanentes mudar |
-| 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
+| 2 | Preços por Quantidade Mercado Livre | Objetivo de ativação superado pelo Cânon Comercial | Retirar a funcionalidade em `BNT-CANON-QTY-01`; tag business deixa de bloquear, sem declarar a antiga prova realizada |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
@@ -65,7 +65,7 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00 concluído; PRC-01/V2-01 implementado como módulo puro | Planejar `M2M-PRC-02 / BNT-PRICING-V2-02`; consumidores/Radar ainda pendentes |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00 e CANON-01 concluídos; PRC-01/02/02A como núcleo puro | Planejar `M2M-PRC-03`; consumidores/publicação/Radar ainda pendentes |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -213,7 +213,11 @@ Regras de uso:
 - [x] Aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`, incluindo refinamento dos cards e padronização tipográfica.
 - [x] Executar `BNT-PRICING-V2-00 — Dossiê AS_IS → TO_BE e contratos` após aprovação de `BNT-CFG-07`.
 - [x] Planejar e implementar `M2M-PRC-01 / BNT-PRICING-V2-01 — Faixas por preço final`, somente política/estabilização puras, sem ativação nos consumidores.
-- [ ] Planejar `M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única`.
+- [x] Planejar e implementar `M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única`, no escopo puro, sem custos extras ou ativação nos consumidores.
+- [x] Executar `BNT-PARITY-CANON-01 — Reconciliação comercial`: importar cânon, classificar 18 commits e ajustar a fila, sem alteração funcional.
+- [x] Planejar e implementar `M2M-PRC-02A — Ajuste ao Cânon Comercial`, validada no núcleo puro.
+- [x] Planejar `M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados`.
+- [ ] Concluir a implementação e homologação da PRC-03; ver checkpoint ao final deste documento.
 - [ ] Executar as ações restantes da fila unificada Pricing V2/M2M (seção 14 do plano), uma por tarefa e sem duplicar identificadores correspondentes.
 - [ ] Executar `BNT-CFG-08` somente depois de os alertas e indicadores de pricing necessários estarem estabilizados.
 - [ ] Executar `BNT-CFG-09` incluindo agenda, limites e saúde do job noturno já validado.
@@ -397,6 +401,8 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ## 6. Etapa 2 — Prazo externo Mercado Livre
 
 ### ML-01 — Preços por Quantidade
+
+**Atualização canônica em 06/09/2026:** o objetivo de ativar desconto por quantidade foi substituído pela sua retirada em `BNT-CANON-QTY-01`, conforme [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md). Não reabrir a prova B2B nem solicitar habilitação da tag business para esta funcionalidade. Os registros abaixo preservam a execução e pendência históricas; não são instruções atuais nem prova externa concluída. Compra normal de várias unidades e consultas múltiplas ML-BULK-01 permanecem preservadas.
 
 **Prioridade:** P1 com prazo
 **Prazo externo:** antes de `26/10/2026`
@@ -3077,7 +3083,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
-**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos; V2-00 entregue documentalmente; V2-01/PRC-01 implementado no escopo puro aprovado. Consumidores ainda operam o contrato anterior; o corte é ação própria, não foi antecipado. Próxima ação: planejar V2-02/PRC-02.
+**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos; V2-00 e CANON-01 entregues documentalmente; PRC-01/02/02A implementados no escopo puro aprovado. Consumidores ainda operam o contrato anterior; o corte é ação própria, não foi antecipado. Próxima ação: planejar PRC-03, conforme o [plano reconciliado](VORTEK_BENTEVI_PRICING_V2_PLANO.md) e os aceites da seção 13 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
 **Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
@@ -3089,8 +3095,11 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 - [x] `BNT-PRICING-V2-00` — produzir matriz `AS_IS → TO_BE`, contratos, migrations previstas, donos, consumidores e testes, sem implementação funcional;
 - [x] `BNT-PRICING-V2-01` / `M2M-PRC-01` — faixas finais e estabilização pura, sem ativação nos consumidores;
-- [ ] `BNT-PRICING-V2-02` / `M2M-PRC-02` — economia unitária e memória únicas;
+- [x] `BNT-PRICING-V2-02` / `M2M-PRC-02` — economia unitária, memória e projeção puras validadas; ainda sem consumidores;
+- [x] `BNT-PARITY-CANON-01` — fonte canônica integral, matriz dos 18 commits e fila reconciliada, sem implementação funcional;
+- [x] `M2M-PRC-02A` — tributo calculado para cima ao centavo, campo de extras retirado e memória ECON-2; realizado/histórico preservados;
 - [ ] `BNT-PRICING-V2-03` / `M2M-PRC-03` — retirar custo/lucro nominal/margem global/piso universal de 10% do caminho decisório;
+- [ ] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
 - [ ] `M2M-PRC-04` — precedência/revalidação ML viva e `INCONCLUSIVO_FONTE_ML_INDISPONIVEL`;
 - [ ] `BNT-PRICING-V2-04` — origem e audit trail do pricing;
 - [ ] `BNT-PRICING-V2-05` — override manual explícito;
@@ -3098,7 +3107,9 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [ ] `M2M-CFL-01` — contrato de conflitos independente do score;
 - [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
 - [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos;
+- [ ] `BNT-CANON-WARRANTY-01` — garantia por evidência, sem prazo universal ou atributos inventados;
 - [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
+- [ ] `BNT-CANON-PUB-GATE` — validar sugestão, preparação, confirmação e publicação/read-back em homologação; não substitui gate final nem libera massa autônoma;
 - [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem;
 - [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
 - [ ] `BNT-PRICING-V2-10` — experimentos;
@@ -3287,7 +3298,7 @@ O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tive
 - [ ] homologação permanece isolada e operacional;
 - [ ] todos os P0 foram resolvidos;
 - [ ] todos os P1 foram resolvidos ou formalmente reclassificados com evidência;
-- [ ] quantity pricing foi migrado antes do prazo;
+- [ ] desconto por quantidade retirado conforme o cânon e `BNT-CANON-QTY-01` validada; compra normal de múltiplas unidades e histórico preservados; não reativar a prova B2B antiga;
 - [ ] estoque interno possui reserva segura;
 - [ ] quantidade segura possui uma única fonte;
 - [ ] Mercado Livre não executa scans/outboxes desnecessários comprovados;
@@ -3358,3 +3369,71 @@ Encaminhamento após aprovação: `BNT-PRICING-V2-00`, concluído na evidência 
 **Escopo preservado:** HEAD anterior `880bfca`, branch `dev` inicialmente limpa. Não mudou `src/services/pricing.ts` nem consumidores atuais, banco, migrations, configuração comercial, preço ou anúncio. Sem acesso autenticado a integrações, publicação em massa, deploy ou escrita produtiva. `AGENTS.md` intacto. A origem do cálculo central continua no domínio de pricing; integração econômica será PRC-02 e corte dos consumidores PRC-03.
 
 **Pendências reais:** economia/cotações, consumidores, trilha/proteções/confirmações, conflitos/Radar e reprocessamento da planilha continuam pendentes na fila unificada. Sucesso na estabilização de faixa não comprova margem econômica, dado vivo ou autorização de publicação. Os relatórios de implantação/reprocessamento/homologação serão gerados apenas nas ações correspondentes.
+
+## Evidência M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única (05/09/2026)
+
+**Estado:** núcleo puro implementado e validado; ainda sem ativação nos consumidores. Próxima ação: planejar `M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados`.
+
+**Mudança:** `src/services/pricing-economy.ts` entrega avaliação canônica e projeção com modelo explícito de fallback, usando o solver PRC-01 e o contexto tributário existente. Contratos em `src/types/pricing.ts`. Fórmula única para custo, tarifa ML total, frete vendedor e tributo; memória com origem/contexto/instantes, faixa, margem e suficiência dos dados. Ausência não vira zero; adicionais são `not_applicable` por decisão expressa do responsável, sem novo cadastro ou custo extra.
+
+**Validação:** 139 testes passaram (37 PRC-02 + 26 PRC-01 + 76 existentes), incluindo comparação de memória avaliação/projeção, centavos/fronteiras, tributo/PGDAS, tarifa sem duplicação, cotação incompatível, base unitária/quantidade, 7,3% abaixo de R$200 e refinamento limitado com falha explícita. `npm run validate` passou. Testes executados no mesmo processo Node, com o loader existente injetando módulos reais, sem serviços autenticados.
+
+**Limites:** banco, migrations, ledger, fontes/RPCs tributárias, consumidores, UI, configurações e integrações não foram alterados. Sem build/deploy porque o módulo não foi ligado às rotas/runtime. Sem commit/push ou acesso produtivo; branch `dev`, `AGENTS.md` preservado. `available` não autoriza escrita; simulações não equivalem a cotação viva. Totais de pedido devem ser normalizados explicitamente pelo consumidor, não passados como montantes unitários.
+
+**Pendências:** PRC-03 migra consumidores e retira o legado; PRC-04 obtém/revalida fontes ML e sua compatibilidade real. Cobertura fiscal, origem e elegibilidade recebidas pelo núcleo não foram comprovadas operacionalmente nesta ação. UI/API/PDF reais serão comparados após a migração. Contratos, decisão de custos extras, fontes consultadas e rollback constam na seção 12 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
+
+## Evidência BNT-PARITY-CANON-01 — Reconciliação comercial (06/09/2026)
+
+**Estado:** concluída somente a ação documental aprovada. Importado o [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md), atualizados matriz de paridade, dossiê, plano e este checklist. Próxima ação: planejar `M2M-PRC-02A — Ajuste ao Cânon Comercial`; não executar PRC-03 antes dela.
+
+**Fonte e integridade:** `origin/main` confirmado em `7f0a2921fe986562c348e75b16c319ab25076a97`; cópia do documento canônico comparada byte a byte com o objeto Git. SHA-256 da cópia: `9559e62911c115eaf162d12d9784deef8aa5cc6525c22da307e10d301f4c6903`. Os 18 commits do intervalo `cffc64d..7f0a292` estão classificados uma única vez na matriz. O SHA implantado em produção permanece não comprovado.
+
+**Validação executada nesta ação:**
+
+- Cópia integral idêntica à fonte, matriz 18/18 sem duplicidade, 30 links locais dos cinco documentos existentes e identificadores das novas ações presentes em dossiê/plano/checklist.
+- 139 testes de regressão passaram: PRC-01/02, RULE-02, preço por lucro alvo, CFG-03, automação, oferta preferencial, atividade manual, quantity pricing legado, tracking de preço e outbox. Esses testes comprovam preservação do estado local, não implementação das novas regras ou aprovação comercial da funcionalidade que será retirada.
+- `npm run validate` passou (ESLint e TypeScript); `git diff --check` sem erros.
+- Hashes de `AGENTS.md`, `src/types/pricing.ts`, `src/services/pricing-economy.ts` e `tests/m2m-prc-02-economic-memory.test.js` idênticos ao início da ação. Alterações PRC-02 preexistentes preservadas.
+- Build, homologação visual e publicação externa não se aplicam à alteração documental e não foram executados.
+
+**Escopo:** branch `dev`, HEAD `7f15d9f60112fe49778b7a61118dbab1db3080e7`; árvore já continha trabalho PRC-02 não commitado e não foi declarada limpa. Sem mudança de código funcional nesta ação, sem banco/migrations, alteração de configuração operacional, execução de coorte, commit, push ou deploy. Nenhuma escrita em produção. A skill `vortek-dev-implementation` orientou a execução de uma única ação e a validação, sem antecipar implementação funcional.
+
+**Pendências:** implementar e validar a fila reconciliada, começando por PRC-02A. Garantia e retirada de desconto por quantidade têm ações próprias; PUB-GATE antecipa prova funcional de criação de anúncio, mas não substitui M2M-GATE ou paridade final. Revalidar deltas posteriores de main e revisão efetivamente implantada antes da promoção.
+
+## Evidência M2M-PRC-02A — Ajuste ao Cânon Comercial (06/09/2026)
+
+**Estado:** concluído no escopo puro aprovado, sem ativação nos consumidores. Próxima ação: planejar `M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados`.
+
+**Mudança:** tributo calculado usa teto exato ao centavo por fração decimal/BigInt; montante realizado informado, inclusive zero, prevalece. Realizado sem montante permanece estimado. Tarifa ML mantém half-up e parcela fixa sem duplicação. Campo de extras removido do tipo, objeto e fingerprint; versão `VORTEK-CANON-1.0-ECON-2`, sem alteração de `policyVersion`. Não houve alteração de alíquota, RBT12/PGDAS ou histórico fiscal.
+
+**Validação executada:**
+
+- Suíte PRC-02 ampliada para 52 testes; regressão conjunta de 154 testes passou, incluindo PRC-01, RULE-02, alvo de lucro, CFG-03, automação, oferta preferencial, atividade, quantity legado, tracking de preço e outbox. Os testes de quantity comprovam preservação, não revertem sua retirada futura.
+- Novos casos cobrem teto exato, frações tributárias, centavo mínimo, quatro fronteiras comerciais, precisão monetária, realizado/estimado, zero realizado, ausência de extras, versão e preservação do arredondamento ML.
+- `npm run validate` passou (ESLint/TypeScript); `git diff --check` sem erros.
+- Busca em `src` não encontrou o campo removido nem a versão antiga, e confirmou ausência de chamadores operacionais do núcleo novo.
+- `AGENTS.md` e a cópia imutável do cânon mantiveram seus hashes anteriores. Build e homologação visual não executados: sem alteração de consumidor ou framework.
+
+**Limites:** branch `dev`; trabalho PRC-02 e documentação preexistentes preservados. Sem acesso a bancos, migrations, integrações autenticadas, escrita produtiva, commit, push ou deploy. A skill `vortek-dev-implementation` manteve a entrega restrita à ação atual e exigiu testes direcionados e validação geral. Detalhes e rollback seletivo na seção 14 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
+
+## Checkpoint M2M-PRC-03 — Implementação parcial (06/09/2026)
+
+Registro histórico da primeira parcela. Continuação: [validação PRC-03](evidencias/M2M-PRC-03-validacao.md), com consumidores migrados, 290 testes, migration aplicada no .162 e homologação web em execução. Não avançar enquanto o fechamento não estiver registrado.
+
+**Estado: EM ANDAMENTO. Não avançar para a próxima ação.**
+
+- [x] Confirmar branch `dev`, preservar alterações anteriores e inspecionar referências legadas.
+- [x] Confirmar `.162`/`supabase-dev` e consultar schema/histórico em READ ONLY, sem mutations.
+- [x] Implementar e testar carregador econômico em lotes, preferência ativa, kit simples e simulação explícita, ainda sem ativação nos consumidores.
+- [x] Retirar recomposição automática de preço por custo/frete e adicionar bloqueios locais nas entradas de criação/preço/opt-in, transporte e CRUD de preço.
+- [x] Provar cancelamento de preço legado sem retry e manutenção de estoque/status na fila mista.
+- [x] Bloquear as cinco entradas comerciais de scripts tratadas, antes de ambiente/clientes.
+- [x] Executar regressões direcionadas (12 arquivos), `npm run validate`, `npm run build` e `git diff --check`.
+- [ ] Migrar Produtos/detalhes, Anúncios, Catálogo, schemas, PDFs e simuladores ao DTO canônico; retirar fórmulas no browser.
+- [ ] Retirar fórmulas legadas das RPCs de busca/resumo, mantendo filtros, ordenação e paginação coerentes.
+- [ ] Migrar aritmética/tributação de pedidos sem inventar CMV histórico nem sobrescrever valores realizados.
+- [ ] Migrar formulário/contrato/RPC comercial; criar migration nova, ensaiar com rollback no `.162`, aplicar e regenerar tipos.
+- [ ] Concluir inventário e retirada dos helpers/scripts restantes; comprovar ausência de consumidores decisórios legados.
+- [ ] Executar regressão completa da migração e homologação com fixtures protegidas antes de encerrar PRC-03.
+
+Matriz, evidências, limites e rollback na seção 15 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md). Não houve commit, push, deploy, migration ou escrita em produção. O ambiente web ainda não recebeu estes bloqueios locais.

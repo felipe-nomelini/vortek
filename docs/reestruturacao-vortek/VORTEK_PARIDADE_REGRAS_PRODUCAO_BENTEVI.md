@@ -10,7 +10,9 @@
 
 **Ancestral comum:** `08b6237428c406b55a876578b63dbc553e8c9584`
 
-**Último delta remoto classificado:** `origin/main` em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de` em 05/09/2026. Os cinco commits posteriores à fotografia estão classificados na seção 4.1, por regra e destino; nenhum modifica o contrato `ORD-09`. Classificação documental não significa incorporação funcional ou liberação do gate. O SHA implantado não foi reconfirmado nesta ação.
+**Último delta remoto classificado:** `origin/main` em `7f0a2921fe986562c348e75b16c319ab25076a97`, confirmado por consulta ao ref remoto em 06/09/2026. A seção 4.1 conserva o delta até `b6e1b17`; a seção 4 do dossiê de pricing classifica o complemento até `cffc64d`; a seção 11 abaixo classifica os 18 commits seguintes. Classificação documental não significa incorporação funcional ou liberação do gate. O SHA atualmente implantado em produção não foi confirmado.
+
+**Autoridade comercial atual:** [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md). Regras antigas das seções 5/6 que mandavam manter faixas por custo, lucro nominal ou desconto por quantidade são fotografias históricas, não instruções vigentes. A seção 11 resolve seus destinos; nenhuma paridade anteriormente concluída é desfeita por esta classificação.
 
 **Resultado:** fotografia concluída; `BNT-PARITY-01` a `BNT-PARITY-08` incorporadas e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
 
@@ -385,3 +387,66 @@ Os resultados executados após a criação deste documento são registrados no c
 - Supabase — segurança da Data API: <https://supabase.com/docs/guides/api/securing-your-api>
 
 Contratos específicos de DSLite e Brasil NFe continuam vinculados às implementações e evidências já validadas nas ações `DSL-01`, `INV-01` e `FIS-01` a `FIS-03`. Antes de qualquer mudança nesses contratos, a ação `BNT-PARITY-N` correspondente deve reabrir a documentação oficial do endpoint exato; esta fotografia não autoriza inferir comportamento externo.
+
+## 11. BNT-PARITY-CANON-01 — Reconciliação comercial (06/09/2026)
+
+### 11.1 Fonte, alcance e classificação
+
+Fonte imutável: `docs/canon-comercial-vortek-bentevi-1.0.md` no commit `7f0a2921fe986562c348e75b16c319ab25076a97`, copiada integralmente para [VORTEK_CANON_COMERCIAL_V1.md](VORTEK_CANON_COMERCIAL_V1.md). O texto original e seus complementos foram preservados. A ordem M2M permanece fonte dos requisitos compatíveis de Radar, performance e automação; não duplicar política em outra implementação.
+
+DEV: `7f15d9f60112fe49778b7a61118dbab1db3080e7`, branch `dev`, com PRC-02 local ainda não commitada. Tipos, serviço, testes e registros preexistentes dessa ação foram preservados. O intervalo abaixo é `cffc64d..7f0a292`, exatamente 18 commits, não uma comparação binária completa dos dois sistemas. Não houve cherry-pick, execução de scripts de produção nem importação de dados/clientes/credenciais.
+
+Os tratamentos abaixo descrevem portabilidade, não execução: **REAPROVEITAR** e **ADAPTAR** correspondem a `INCORPORAR`; **EQUIVALENTE** mantém o significado anterior; **APOSENTAR** corresponde a `SUBSTITUÍDA/NÃO COPIAR`; **PENDENTE** identifica evidência insuficiente ou validação ainda necessária, não reprovação automática.
+
+### 11.2 Matriz dos 18 commits
+
+| Commit | Evidência e mudança identificada | Tratamento | Destino / limite |
+| --- | --- | --- | --- |
+| `8c604a1` | Normalização de identidade e equivalências fundamentadas; consumidores de Radar/anúncios | ADAPTAR | CFL-01/02: equivalência não apaga contradição técnica; aliases específicos exigem evidência |
+| `bc57c39` | Scripts/relatórios de reclassificação dos candidatos com identidade viva | ADAPTAR | RAD-04: reaproveitar método, não importar decisões, autorizações ou conta da coorte |
+| `a31cd43` | Separação de descritor/modelo, marca e quantidade; preservação de conflito material | ADAPTAR | CFL-02: testes positivos e negativos, inclusive variação legítima versus kit |
+| `5cd4fc0` | Registro documental da identidade/reclassificação e preparação D0 | PENDENTE | Evidência histórica; revalidar universo em RAD-04, sem autorização de publicação herdada |
+| `2428566` | Executor de coorte, read-back/checkpoints, monitor e proteção de experimento | ADAPTAR | PUB-GATE/V2-10/12: idempotência e proteções; não copiar monitor ou ausência de visita como zero sem contrato |
+| `e536bfa` | Reconciliação de catálogo e parada de segurança sem duplicar publicação | ADAPTAR | CFL-03/PUB-GATE: rechecagem e retomada controlada; contratos ML serão reconfirmados |
+| `a9a25a9` | Selagem do evento de conclusão da coorte no ledger | APOSENTAR | Não repetir coorte concluída; preservar padrão de trilha em V2-10 |
+| `1ad54be` | Artefatos D0: oito anúncios validados e um pausado, conforme relatório histórico | PENDENTE | Não comprova estado atual nem autoriza retomada; evidência para PUB-GATE/paridade final |
+| `69bfdd3` | `ml/order-profit.ts`, pedidos/sync: lucro com componentes de kits e extras opcionais | ADAPTAR | PRC-03: preservar CMV/quantidades; extras foram retirados depois, não portar estado intermediário |
+| `e54f16a` | Registro de hotfix do lucro e recuperação de cinco pedidos | PENDENTE | Fixture/regressão em PRC-03; não repetir recuperação ou reescrever vendas históricas |
+| `9ddc899` | `pricing-context`, `orders`, política: CMV central e modelo ECON-2; migration canônica | ADAPTAR | PRC-02A/03/04: memória única, kits, aquisição no CMV e recuperação pelo piso; adaptar a contratos DEV |
+| `96ece95` | `product-warranty`, `ml-sale-terms`, publicação/UI e proteção comercial por grupo | ADAPTAR | WARRANTY-01 e V2-05/06: sem garantia universal; preservar UI e configurações tipadas Bentevi |
+| `2b7ca37` | API/UI/workers e runners deixam de escrever desconto por quantidade | APOSENTAR | QTY-01: remover escritores legados, preservar estoque/status e compra normal de múltiplas unidades |
+| `0d5c5eb` | Registro do cânon e auditoria pontual de anúncios somente leitura | REAPROVEITAR | Fonte documental incorporada; auditoria operacional futura tem escopo próprio |
+| `f869cff` | Garantia: comparar todas as durações declaradas pelo fornecedor | REAPROVEITAR | WARRANTY-01: 12 meses/1 ano equivalentes; declarações contraditórias ficam pendentes |
+| `4f11b99` | Assinatura material do CMV preserva aprovação em refresh sem alteração econômica | ADAPTAR | V2-04/05/07: custo/quantidade/oferta material invalidam; timestamp isolado não |
+| `c52daf0` | Relatórios de filas, migrations, testes e rollback comercial | PENDENTE | Referência histórica, não prova de runtime ou homologação DEV atual |
+| `7f0a292` | Retenção dos logs de validação e migrations da entrega | REAPROVEITAR | Evidência vinculada ao SHA; não declarar testes/migrations de main como executados aqui |
+
+### 11.3 Regras reconciliadas e consumidores
+
+| Regra | AS_IS DEV / divergência | TO_BE e ação responsável |
+| --- | --- | --- |
+| Faixas por preço final | PRC-01 puro já entregue; consumidores continuam legados | EQUIVALENTE no núcleo, ADAPTAR consumidores em PRC-03; preservar limites/convergência |
+| Memória econômica | PRC-02 usa half-up no tributo calculado e mantém marcador de extras | PRC-02A: retirar campo de extras; tributo projetado para cima ao centavo; versão explícita |
+| CMV de produto e kit | Fontes e fórmulas distribuídas entre pricing, pedidos, sync e helpers | PRC-03: oferta ativa/elegível; componentes × quantidades, origem por componente; ausência não vira custo zero |
+| Políticas antigas | Faixas por custo, nominal/global e quantity ainda têm consumidores | PRC-03 e QTY-01: APOSENTAR decisão/configuração ativa, sem reescrever migrations/histórico |
+| Publicação/sugestão/simulação | Núcleo novo ainda não está integrado | PRC-03/04/PUB-GATE: mesma memória; preço novo no alvo, recuperação inicialmente no piso |
+| Fonte viva e prejuízo | Contrato puro não consulta ML | PRC-04: dado vivo válido vence stale; falha com dado duvidoso é inconclusivo, não pausa automática |
+| Manual, override, liquidação | Nova governança ainda não incorporada | V2-04/05/06: origem auditável; override explícito por grupo até revogação; liquidação por data ou revogação |
+| Grupo/catálogo | Sem comprovação ponta a ponta da nova unidade econômica | CFL-03/V2-07: sem dupla contagem/preços conflitantes; alteração material invalida aprovação |
+| Identidade e demanda | Filtro canônico ainda pendente | CFL-01/02: dados ausentes não equivalem a conflito; kit/quantidade/atributo material contraditórios bloqueiam automação |
+| Garantia | Publicação precisa ser reconciliada com evidência, não valor padrão | WARRANTY-01: fonte/classificação e conflitos explícitos; não inventar 12 meses nem escolher primeiro atributo permitido |
+| Atividade e oferta preferencial | Paridades anteriores concluídas | EQUIVALENTE, preservar regressões: sync/preço não alteram atividade manual e oferta inativa não é preferencial |
+| Radar/coorte/noturno | Objetivos M2M futuros permanecem, coorte de main é histórica | RAD-01/02/04, V2-10: não herdar autorização; sem nova pesquisa pesada ou escrita automática em massa |
+
+Consumidores a migrar/revalidar continuam no inventário do dossiê: serviços de pricing/projeção, produtos/ofertas/kits, anúncios/criação, Radar, simuladores, UI/PDF, pedidos/sync/lucro, outbox/workers e configurações. Cada ação deve reconfirmar os chamadores atuais; esta matriz não afirma equivalência operacional por semelhança de nomes.
+
+### 11.4 Riscos e limites de evidência
+
+- `origin/main` é código versionado. A inspeção somente leitura do serviço/imagem não forneceu revisão implantada; não afirmar que o SHA atual está em produção.
+- Os relatórios de main registram lacunas de custo/frete/garantia, descontos remotos existentes e casos sem vínculo; essas filas não autorizam correção em massa. Contagens históricas não são situação atual certificada.
+- As migrations `20260906010000_commercial_canon_v1.sql` e `20260906011000_commercial_canon_material_cost.sql` são referências, não arquivos para copiar/aplicar. Futuras alterações devem usar schema DEV confirmado, migration nova e preflight .162.
+- A retirada de desconto por quantidade substitui a antiga obrigação de habilitar a tag business em ML-01. Não confundir com consultas múltiplas ML-BULK-01 nem impedir venda de várias unidades pelo preço normal.
+- Não remover garantias ou descontos já publicados remotamente nesta entrega. Compromissos existentes exigem auditoria e autorização próprias.
+- Gate funcional antecipado não encerra performance/Radar, migrações, paridade final nem autoriza promoção.
+
+**Resultado:** reconciliação documental concluída; próxima ação: planejar `M2M-PRC-02A`. Critérios e dependências das ações adicionais estão na seção 13 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md); ordem operacional única na seção 14 do [plano](VORTEK_BENTEVI_PRICING_V2_PLANO.md).

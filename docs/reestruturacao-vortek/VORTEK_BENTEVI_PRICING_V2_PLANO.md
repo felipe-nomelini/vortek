@@ -4,10 +4,12 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação:** em andamento; M2M-PRC-01 / BNT-PRICING-V2-01 implementado como módulo puro, sem ativação operacional
+**Situação:** PRC-03 em implementação local parcial: base de contexto econômico e corte inicial de escrita implementados; migração dos consumidores de leitura/SQL/configuração/pedidos ainda pendente. Não homologado nem liberado para promoção.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
-**Atualização em 05/09/2026:** a [ordem definitiva M2M da Diretoria](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md) prevalece sobre regras anteriores conflitantes. O responsável confirmou a preservação dos complementos compatíveis. V2-00 permanece como fotografia documental; V2-01 implementa somente política e estabilização puras. Próximo passo: planejar `M2M-PRC-02 / BNT-PRICING-V2-02`. Consumidores, publicadores e configuração de runtime ainda não foram migrados; nenhuma escrita autônoma ou promoção foi liberada.
+**Atualização em 06/09/2026 — M2M-PRC-03:** o [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md), importado de `origin/main` em `7f0a292`, atualiza as regras conflitantes da [ordem M2M](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md); complementos compatíveis permanecem. PRC-02A concluído; PRC-03 iniciado, ainda não concluído. Continuar a mesma ação, conforme seção 15 do dossiê. Não relaxar o bloqueio de execução enquanto houver fórmulas legadas e contratos de governança pendentes. Nenhuma escrita autônoma ou promoção foi liberada.
+
+**Transição PRC-02A concluída:** o campo de extras foi retirado do tipo, objeto e fingerprint da nova memória, sem substituto. Tributo calculado usa teto exato ao centavo; montante realizado informado, inclusive zero, prevalece. Cenário realizado sem montante continua estimado; tarifa ML mantém half-up. Custos de aquisição pertencem ao CMV; despesas corporativas não entram como extras por SKU. Decisão na seção 13 e implementação na seção 14 do dossiê; histórico preservado.
 
 ---
 
@@ -67,7 +69,7 @@ As faixas são determinadas pelo **preço final**, não pelo custo:
 | Acima de R$ 1.000,00 | 10% | 15% | 20% |
 
 - **Piso:** mínimo operacional normal. Resultado abaixo do piso gera diagnóstico, não alteração cega.
-- **Alvo:** referência para preço novo, publicação, simulação, recomposição e experimento autorizado.
+- **Alvo:** referência para preço novo, publicação, simulação e experimento autorizado. Recuperação de preço existente prioriza o piso, não recomposição automática ao alvo.
 - **Limite de busca:** teto para a busca automática de aumento; não é margem máxima permitida.
 - Margem acima do limite com vendas deve ser preservada.
 
@@ -82,7 +84,7 @@ O cálculo por faixa deve ser determinístico:
 
 Os limites R$ 200,00, R$ 200,01, R$ 1.000,00 e R$ 1.000,01 são casos obrigatórios de teste.
 
-Os pisos nominais de R$ 20, R$ 60 e R$ 150 deixam de governar o motor. A capacidade pode permanecer apenas como política opcional, tipada, auditável e desativada por padrão até nova homologação.
+Os pisos nominais de R$ 20, R$ 60 e R$ 150 são retirados do motor e das configurações, sem opção de reativação. Estruturas históricas podem permanecer somente sem novos consumidores.
 
 Também retirar do caminho decisório a margem global legada e o piso universal de 10% para oportunidades. Não criar consumidores novos dos contratos antigos. Migrations/histórico não serão reescritos.
 
@@ -90,7 +92,7 @@ Também retirar do caminho decisório a margem global legada e o piso universal 
 
 A fórmula canônica é:
 
-`resultado_unitario = receita - CMV - taxa_ml - frete_vortek - custos_variaveis - tributo`
+`resultado_unitario = receita - CMV - taxa_ml - frete_vortek - tributo`
 
 `margem_operacional = resultado_unitario / receita`
 
@@ -119,7 +121,7 @@ Valores admitidos para `pricing_source`:
 
 `manual`, `pricing_engine`, `scheduled_job`, `catalog_sync`, `mercado_livre`, `supplier_sync`, `migration`, `unknown`.
 
-`custom_price` não comprova ação manual e não pode ser usado como trilha de origem. `manual_pricing_override` deve ser explícito, separado, auditável e possuir lifecycle próprio.
+`custom_price` não comprova ação manual e não pode ser usado como trilha de origem. `manual_pricing_override` deve ser explícito, separado, auditável, por grupo e válido até revogação; editar preço não cria override implicitamente.
 
 Precedência:
 
@@ -135,7 +137,7 @@ Precedência:
 
 ### Liquidação interna
 
-`internal_stock_clearance` deve registrar autor, início, motivo, validade opcional e estado. Pode autorizar margem abaixo do piso, zero ou prejuízo controlado. O impacto continua visível, mas não é corrigido automaticamente enquanto a exceção estiver válida.
+`internal_stock_clearance` deve registrar autor, início, motivo, validade por data ou até revogação e estado, sem teto arbitrário de 30 dias. Pode autorizar margem abaixo do piso, zero ou prejuízo controlado. O impacto continua visível, mas não é corrigido automaticamente enquanto a exceção estiver válida.
 
 ### Pricing group e catálogo
 
@@ -285,7 +287,7 @@ Em `/configuracoes`, na seção Comercial e Precificação, expor com contrato t
 - piso, alvo e limite;
 - fallback de taxa Mercado Livre;
 - fallback de frete;
-- lucro mínimo opcional;
+- nenhuma opção de lucro mínimo nominal, margem global legada, extras por SKU ou desconto por quantidade;
 - parâmetros homologados de observação;
 - zero tráfego;
 - permissões de automação por regra;
@@ -295,14 +297,17 @@ Coleções reais exigem tabelas tipadas. `sync_runtime_config` não pode virar a
 
 ## 14. Fila obrigatória
 
-Uma fila operacional; duas identificações na mesma linha representam **a mesma ação**. Os complementos preservados entram nas dependências, mantendo a ordem relativa M2M. Nenhuma equivalência de nome antecipa conclusão. Abaixo, 00 é fotografia e 01 é base pura já entregue; os demais itens permanecem pendentes.
+Uma fila operacional; duas identificações na mesma linha representam **a mesma ação**. Os complementos preservados entram nas dependências, mantendo a ordem relativa M2M. Nenhuma equivalência de nome antecipa conclusão. Abaixo, 00/CANON-01 são entregas documentais e 01/02/02A são núcleo puro entregue; os demais itens permanecem pendentes.
 
 | Ordem | Ação | Prioridade | Entrega central |
 |---:|---|---|---|
 | 0 | `BNT-PRICING-V2-00` | P0 | Dossiê `AS_IS → TO_BE`, contratos, donos, consumidores, migrations e testes; nenhuma implementação funcional |
 | 1 | `BNT-PRICING-V2-01` / `M2M-PRC-01` | P0 | Faixas finais e estabilização pura; sem ativação nos consumidores |
-| 2 | `BNT-PRICING-V2-02` / `M2M-PRC-02` | P0 | Economia unitária e memória únicas |
+| 2 | `BNT-PRICING-V2-02` / `M2M-PRC-02` | P0 | Economia unitária, memória e projeção puras validadas; consumidores ainda não migrados |
+| 2.1 | `BNT-PARITY-CANON-01` | P0 | Reconciliação documental concluída: fonte imutável, 18 commits classificados e fila ajustada |
+| 2.2 | `M2M-PRC-02A` | P0 | Concluído: tributo calculado para cima ao centavo, campo de extras removido e memória ECON-2; realizados/histórico preservados |
 | 3 | `BNT-PRICING-V2-03` / `M2M-PRC-03` | P0 | Retirar custo/lucro mínimo/margem global/piso universal de 10% do caminho decisório |
+| 3.1 | `BNT-CANON-QTY-01` | P0 | Aposentar desconto por quantidade em UI/API/config/jobs, preservando compra de múltiplas unidades, estoque/status e histórico |
 | 4 | `M2M-PRC-04` | P0 | Precedência/revalidação ML viva e inconclusivo explícito |
 | 5 | `BNT-PRICING-V2-04` | P0 | Origem e audit trail do pricing |
 | 6 | `BNT-PRICING-V2-05` | P0 | Override manual explícito e lifecycle |
@@ -310,7 +315,9 @@ Uma fila operacional; duas identificações na mesma linha representam **a mesma
 | 8 | `M2M-CFL-01` | P0 | Contrato canônico de conflitos independente do score |
 | 9 | `M2M-CFL-02` | P0 | Identidade, embalagem, kit e quantidade com evidência |
 | 10 | `BNT-PRICING-V2-07` / `M2M-CFL-03` | P0 | Anúncio existente, reativação, vínculo e grupos sincronizados |
+| 10.1 | `BNT-CANON-WARRANTY-01` | P0 | Garantia por evidência, sem prazo universal ou atributo inventado; conflitos exigem validação |
 | 11 | `BNT-PRICING-V2-08` / `M2M-CFL-04` | P0 | Viabilidade competitiva e Buy Box econômica |
+| 11.1 | `BNT-CANON-PUB-GATE` | P0 | Provar sugestão → preparação → confirmação → publicação/read-back em homologação, com economia, identidade, garantia e grupo coerentes |
 | 12 | `BNT-PRICING-V2-08A` | P1 | Diagnósticos de margem baixa, prejuízo, liquidação e premium |
 | 13 | `BNT-PRICING-V2-09` | P1 | Performance 30/90/150 separada da economia |
 | 14 | `BNT-PRICING-V2-10` | P1 | Experimentos |
@@ -328,7 +335,9 @@ Uma fila operacional; duas identificações na mesma linha representam **a mesma
 
 Cada ação terá critério de aceite, teste e evidência próprios. Não agrupar correções independentes. Migrations são novas, ensaiadas e aplicadas somente no `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura.
 
-**Contrato de transição reconciliado com M2M:** V2-01 entregou política/solver puro sem ligar escritores; V2-02 consolida economia e contrato de memória; V2-03 migra consumidores e retira o legado do papel de motor; M2M-PRC-04 integra a revalidação das fontes ML. Não habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. O [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) contém C01–C10, decisões DEC-01–DEC-06, inventário de migrations e matriz de testes por ação. Pendências posteriores bloqueiam as respectivas ativações, não exigem decisão antecipada.
+**Contrato de transição reconciliado com M2M:** V2-01 entregou política/solver puro sem ligar escritores; V2-02 entregou memória pura, que PRC-02A deve adequar ao cânon antes de V2-03 migrar consumidores e retirar o legado. PRC-03 inclui CMV unitário e componentes/quantidades de kits em todos os consumidores identificados; M2M-PRC-04 integra a revalidação das fontes ML. Não habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. O [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md), seção 13, registra a reconciliação e os aceites das ações adicionais. Cada linha permanece uma tarefa independente.
+
+O gate de publicação é evidência funcional antecipada, não substitui `M2M-GATE`, o gate de autonomia ou `BNT-PARITY-FINAL`. Não autoriza publicação em massa, continuidade de coorte histórica, alteração de anúncios reais ou produção. A ausência de nova rotina periódica na entrega pontual do cânon de produção não cancela o job noturno já solicitado para a V2: ele permanece na ação própria, inicialmente observacional.
 
 ## 15. Gate de autonomia
 

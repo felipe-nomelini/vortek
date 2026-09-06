@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização posterior — M2M-PRC-01:** a fotografia V2-00 abaixo foi preservada. A ordem definitiva recebida e a implementação pura V2-01 estão registradas na seção 11. Próxima ação atual: `M2M-PRC-02 / BNT-PRICING-V2-02`; prevalece a [ordem M2M](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md), com complementos compatíveis confirmados pelo responsável.
+**Atualização posterior — M2M-PRC-02A (06/09/2026):** a fotografia V2-00 e a entrega PRC-02 abaixo foram preservadas. A reconciliação da seção 13 incorpora o [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md); a seção 14 registra o ajuste do núcleo para ECON-2. Próxima ação atual: `M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados`. Referências anteriores a “próxima ação” e contratos anteriores são registros históricos, não a fila vigente.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -342,3 +342,137 @@ Os entregáveis exigidos `00` a `08` e `manifest.json` estão associados às aç
 - Sem build/deploy: módulo puro não ligado aos consumidores, sem alteração de rotas/UI/configuração de framework. Sem migration, banco, segredo ou escrita ML. `AGENTS.md` preservado. Reversão desta ação é retirada do módulo/tipos/testes novos e atualização documental; não há efeito financeiro remoto a compensar.
 
 **Resultado:** PRC-01/V2-01 implementado no escopo puro aprovado. **Ainda pendente:** integrar economia/cotações, migrar consumidores, governar escritas e implementar conflitos/Radar. Não afirmar que o sistema já opera integralmente pela nova política. Próxima ação: planejar **M2M-PRC-02 / BNT-PRICING-V2-02 — Economia unitária única**.
+
+## 12. M2M-PRC-02 / V2-02 — Economia unitária única (05/09/2026)
+
+### AS_IS → TO_BE e decisão de escopo
+
+Base local: `dev`, árvore inicialmente limpa, PRC-01 disponível. O helper legado `pricing-core.js` considera percentual ML sem parcela fixa, enquanto `calculateExactMarginPrice` admite fixa; os contratos não compartilham memória/origem. Nenhum consumidor foi migrado nesta ação: a retirada dos helpers legados do caminho decisório pertence à PRC-03.
+
+O responsável decidiu **não incluir custos variáveis adicionais**. A previsão anterior C02/DEC-01 não exige cadastro ou dados extras nesta versão. A memória mantém apenas o marcador `additionalVariableCosts = { amountCents: 0, status: 'not_applicable', source: 'user_scope_decision_2026_09_05' }`. Não se trata de valor externo confirmado nem de substituição silenciosa de dado ausente. Ausência dos componentes efetivos continua inconclusiva.
+
+### Interfaces implementadas e ownership
+
+- `src/services/pricing-economy.ts`: `evaluateEconomicMemory`, `projectEconomicPrice` e `ECONOMIC_MAX_REFINEMENTS = 12`. Módulo puro do domínio pricing, ao lado da política; reutiliza `pricing.ts` para o mínimo tributário existente e recebe seu `PricingTaxContext`, sem duplicar cálculo RBT12/Simples. Não foi ligado a rotas/escritores nem reexportado por `pricing.ts` (evita dependência circular).
+- `src/types/pricing.ts`: contratos `EconomicContext`, `EconomicComponent`, `EconomicTax`, `EconomicInput`, `EconomicMemory`, `EconomicResult`, projeção e razões discriminadas. Tipos e helpers antigos permanecem intactos para o corte PRC-03.
+- Todos os montantes representam **uma unidade vendida**, em centavos inteiros seguros e BRL. `quantity` é a quantidade do cenário de cotação, não multiplicador dos montantes. Um total de pedido não é aceito como unidade; sua normalização/rateio explícito será responsabilidade do consumidor, sem inventar divisão/arredondamento nesta etapa. Kits usam a unidade vendida do anúncio, não uma peça interna do kit.
+- Entrada identifica produto, oferta/fornecedor, anúncio/grupo quando conhecidos, competência e `marketContextKey` do cenário ML. Oferta projetada exige elegibilidade e identidade da origem; realizado exige custo histórico, sem depender da atividade atual da oferta.
+- Componentes guardam montante, condição, origem, identidade, instante UTC, validade opcional, base e preço/contexto cotado. Estado `stale`, expiração informada, preço/contexto/quantidade divergentes ou dado obrigatório ausente/inválido resultam em `inconclusive`, motivos tipados e memória nula. Nenhuma mensagem externa arbitrária é reproduzida.
+- Não há TTL comercial presumido. Validade temporal/material e prova de oferta são recebidas do chamador; reconsulta, seleção viva/fallback e invalidação operacional pertencem à PRC-04. A suficiência declarada dos dados não prova sua aquisição remota.
+
+### Aritmética, tributação e projeção
+
+- Uma avaliação soma custo, tarifa ML **total**, frete do vendedor e tributo. Breakdown de tarifa não é um débito adicional. Origem fallback sempre produz estimativa, mesmo quando marcada `known` pelo chamador. Zero explícito é válido; ausente não vira zero.
+- Taxas são frações, não percentuais de apresentação. Projeções monetárias usam frações decimais exatas internamente com `BigInt`, half-up uma única vez por componente e saída JSON em números/centavos seguros. Margem é resultado/receita; comparação de objetivo usa frações exatas, não margem arredondada da UI. Sem dependência ou mudança de tsconfig.
+- O contexto tributário preserva mínimo operacional 4%, alíquota protegida, competência e trava PGDAS. `confirmed` exige prova com competência, instante e identificação, alíquota correspondente e cobertura completa. Estimativa/proteção/cobertura não comprovada não são promovidas a confirmação. Quando PGDAS é obrigatório e não comprovado, o cálculo é inconclusivo. Não mudou fonte/RPC/cadastro tributário nem alegou comprovação fiscal dos dados existentes.
+- Realizado aceita montante tributário explícito e o preserva. Sem montante realizado, o valor é uma projeção pela alíquota recebida; não altera documento fiscal. Lucro negativo/positivo e margem alta não geram ações.
+- Projeção aceita exclusivamente um modelo **de fallback explicitamente declarado**, com percentual e parcela fixa, mais custo/frete e contexto tributário. Não transforma tarifa total observada em percentual nem extrapola cotação ML vinculada. O modelo gera componentes e chama a mesma avaliação usada para preço informado.
+- Reutiliza `resolveFinalPrice` da PRC-01 nos quatro objetivos, candidato arredondado para cima e até 12 refinamentos de centavo. Confere margem efetiva depois dos arredondamentos, trata denominador inviável/overflow/não convergência explicitamente e não retorna preço substituto em falha. Recotação viva para outros preços é entrega PRC-04, não simulada como integração pronta.
+- Memória guarda cenário, componentes, resultado, margem, faixa/piso/alvo/limite e versões. `fingerprint` é serialização com chaves ordenadas, incluindo o instante fornecido; identifica entradas iguais, **não** é assinatura de aprovação, token, chave de dedupe diário ou prova de autorização. Snapshot não compartilha referências mutáveis com a entrada.
+
+### Testes, fontes e limites
+
+- Suíte `tests/m2m-prc-02-economic-memory.test.js`: 37 testes, incluindo tarifa fixa sem duplicação, ausentes/zero, bases, origem, competência/PGDAS, cálculo RBT12 existente, montante realizado, precisão, fronteiras, repetibilidade, igualdade projeção/avaliação, exemplo M2M de 7,3% e falha real de refinamento limitado.
+- Regressão conjunta: **139 testes passaram** (37 PRC-02 + 26 PRC-01 + 76 regressões existentes). `npm run validate` passou (ESLint/TypeScript).
+- Fontes: [comissão ML](https://developers.mercadolivre.com.br/pt_br/comissao-por-vender) confirma `sale_fee_amount` total incluindo fixa; [custos/cotações](https://developers.mercadolivre.com.br/pt_br/mercadolideres-lojas-oficiais/mercado-envios-custos-e-cotacoes) diferencia frete vendedor/comprador; [Manual PGDAS-D](https://www8.receita.fazenda.gov.br/SimplesNacional/Arquivos/manual/MANUAL_PGDAS-D_2018_V4.pdf) orienta contexto RBT12. No planejamento desta ação, páginas ML retornaram 403 na abertura direta e foram consultadas pelo conteúdo oficial indexado; PDF direto teve timeout, com seção indexada consultada. Mínimo operacional 4% é contrato Bentevi, não afirmação fiscal universal. Guia TypeScript instalado do Next e [Node 22 TypeScript](https://nodejs.org/docs/latest-v22.x/api/typescript.html) orientaram compatibilidade; testes reutilizam loader existente e módulos reais.
+- Sem banco, migration, publicação ML, mudança visual, build ou deploy. Build não aplicável ao módulo puro não importado por consumidores. Nenhum commit/push nesta ação; `AGENTS.md` preservado.
+- Rollback: remover exclusivamente módulo/teste/tipos novos e atualização documental desta ação; não há dados, ledger ou efeitos externos a compensar. Não retirar a PRC-01 já entregue.
+
+**Resultado:** núcleo econômico validado, sem ativação no ERP. **Próxima ação:** planejar **M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados**. Homologação visual e paridade entre telas reais não foram executadas nem declaradas; dependem da migração de consumidores. Autonomia e produção permanecem bloqueadas.
+
+## 13. Reconciliação comercial — BNT-PARITY-CANON-01 (06/09/2026)
+
+### Fonte e estado real
+
+Importado integralmente `docs/canon-comercial-vortek-bentevi-1.0.md` de `origin/main` no SHA `7f0a2921fe986562c348e75b16c319ab25076a97`, preservado em [VORTEK_CANON_COMERCIAL_V1.md](VORTEK_CANON_COMERCIAL_V1.md). A [matriz de paridade, seção 11](VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md#11-bnt-parity-canon-01--reconciliação-comercial-06092026) classifica os 18 commits após `cffc64d`, suas regras, consumidores, destinos e riscos. Não duplicar essa matriz em código ou configuração.
+
+DEV permanece em `7f15d9f60112fe49778b7a61118dbab1db3080e7`, com a implementação PRC-02 local preexistente. Nenhum consumidor foi migrado aqui. O código versionado de main não é prova do SHA implantado; a inspeção somente leitura do serviço/imagem não confirmou revisão. Não houve conexão ao banco, migration ou escrita externa.
+
+### Decisão de arredondamento — DEC-CANON-01
+
+O responsável aprovou, no planejamento desta reconciliação, alinhar a **projeção de tributo** ao arredondamento para cima ao centavo usado no código de main. Evidência: `src/services/pricing.ts` em `7f0a292`, `ceilMoney` e avaliação do tributo (referência de arquivo corrigida em PRC-02A). Na fotografia anterior à PRC-02A, DEV usava `roundedRate` (half-up) em `src/services/pricing-economy.ts`.
+
+- Aplicar prospectivamente em PRC-02A, centralizando a regra; não trocar indiscriminadamente o arredondamento da tarifa ML.
+- Valor fiscal realizado informado continua prevalecendo integralmente. Não recalcular imposto confirmado/histórico para impor arredondamento de projeção.
+- Centavos exatos permanecem exatos; fração positiva sobe ao próximo centavo, sem artefato de ponto flutuante.
+- Testar produto de preço/taxa exato, abaixo/meio/acima de meio centavo, centavo mínimo, limites das faixas, estabilidade após arredondamento e valores monetários inválidos.
+- Preservar RBT12/PGDAS, origem e estados estimated/confirmed; esta decisão é de projeção econômica, não nova regra tributária legal.
+
+### Aceites e dependências da fila ajustada
+
+| Ação | Dependência | Mudança e critério de aceite | Testes/evidência exigidos |
+| --- | --- | --- | --- |
+| `M2M-PRC-02A` | Esta reconciliação | Aplicar DEC-CANON-01; retirar `additionalVariableCosts`, inclusive marcador zero/not_applicable, do novo contrato e memória; versionar modelo econômico em correspondência a ECON-2; preservar histórico e valores realizados | Mesmas entradas → mesma avaliação/projeção; ausência do campo no tipo/saída; testes fiscais/fronteiras/convergência e regressões PRC-01/02 |
+| `M2M-PRC-03` | PRC-02A validada | Migrar inventário de consumidores para memória central, incluindo CMV unitário de kits; retirar faixas por custo, nominal, margem global e piso universal 10% do caminho decisório/configuração | API/UI/PDF/simulação/pedidos comparáveis; componentes × quantidade sem duplicar CMV; oferta inativa ausente/inconclusiva, nunca custo zero; demonstrar que writers não usam helpers antigos |
+| `BNT-CANON-QTY-01` | PRC-03 validada | Retirar desconto por quantidade de UI/API/config e jobs; encerrar endpoint legado explicitamente; worker ignora somente intenção legada de desconto, preservando estoque/status; manter histórico legível | Tentativa antiga não publica desconto; outbox mista mantém outras operações; compra normal de múltiplas unidades e preço unitário não regridem; nenhuma remoção remota automática |
+| `M2M-PRC-04` | PRC-03 e QTY-01 validadas | Cotação compatível e revalidação viva antes de decisão econômica/publicação; recuperação pelo piso, preço novo pelo alvo | Tarifa fixa sem dupla contagem; frete stale corrigido; indisponibilidade → inconclusivo; atualização material invalida cotação/decisão |
+| V2-04/05/06/07 e CFL-01/02/03 | Ordem da fila, uma ação por vez | Trilha/override/liquidação/grupos e identidade por evidência; assinatura material ignora refresh sem mudança, mas reconhece custo/oferta/quantidade | Aprovação idempotente, precedência, revogação e conflito material; catálogo não duplica estoque/resultado; ausência de evidência não reprova |
+| `BNT-CANON-WARRANTY-01` | CFL-02 e CFL-03/V2-07 validadas | Resolver garantia com fonte e atributos reais; distinguir legal/contratual; fabricante/fornecedor/classificação conforme cânon, sem prazo universal, soma inferida ou primeiro valor da categoria | 12 meses versus 1 ano; todas as declarações de duração; conflitos; ausência/classificação duvidosa → pendência; atributos aceitos pelo contrato oficial ML |
+| `BNT-CANON-PUB-GATE` | PRC-02A/03/04, QTY-01, trilha/exceções/grupo, CFL-01 a 04 e WARRANTY-01 validadas | Provar fluxo sugestão → preparação → aprovação → publicação → read-back em homologação, sem alterar atividade manual, duplicar anúncio ou perseguir prejuízo | Produto simples, kit, ativo já anunciado, candidato a reativação, par de catálogo, prejuízo, dados inconclusivos, garantia ausente, retry/duplo clique e mudança de custo após aprovação |
+
+O gate de publicação deve usar primeiro testes de contrato com respostas controladas e fixtures sanitizadas; uma prova externa usa somente conta/item DEV e autorização específica da ação, sem dados produtivos graváveis. Limitação do ambiente externo fica registrada como pendência, nunca como teste aprovado. Não avançar se faltar validação exigida da ação atual.
+
+### Preservação, rollback e pendências
+
+- Não copiar arquivos de main em bloco: adaptar comportamentos aos contratos, configurações tipadas, serviços e UI Bentevi existentes. Reutilizar somente após confrontar a versão vigente.
+- A correção intermediária de kits em `69bfdd3` não autoriza reintroduzir os extras removidos por `9ddc899`.
+- Garantias/descontos remotos existentes e coortes históricas não são alvo desta entrega. A autorização original de main não vale para DEV.
+- Esta entrega não cria migrations. Futuras alterações de schema exigem inspeção .162, nova migration, ensaio/rollback aplicável e tipos regenerados. Não importar/reexecutar migrations ou reparos de produção.
+- Rollback desta ação é exclusivamente documental e seletivo: restaurar os trechos adicionados pela reconciliação preservando as edições PRC-02 preexistentes; não usar reset/checkout da árvore. Nenhum rollback operacional é necessário porque não houve ativação.
+- A rotina noturna, experimentos e Radar continuam pendentes nas ações próprias; o limite de monitoramento da entrega pontual de main não os cancela. Publicação automática em massa continua proibida.
+- A paridade final deve reconfirmar os deltas posteriores a `7f0a292`, o SHA implantado e os gates de dados/schema. A classificação atual não certifica produção pronta nem equivalência funcional total.
+
+**Resultado desta ação:** fonte canônica incorporada, 18 commits classificados e fila reconciliada. **Próxima ação:** planejar PRC-02A. Evidências de validação documental e preservação do código constam no checklist.
+
+## 14. M2M-PRC-02A — Ajuste ao Cânon Comercial (06/09/2026)
+
+**Causa:** o núcleo PRC-02 ainda usava half-up para tributo calculado e incluía um marcador zerado de extras, divergindo de DEC-CANON-01 e do cânon. A busca de chamadores confirmou uso restrito ao próprio núcleo e testes; nenhum consumidor operacional foi migrado.
+
+**Implementação:** `pricing-economy.ts` reutiliza a fração decimal existente e calcula teto por divisão inteira BigInt; não copia tolerâncias float da main. A [especificação ECMAScript de BigInt](https://tc39.es/ecma262/multipage/ecmascript-data-types-and-values.html#sec-numeric-types-bigint-divide) fundamenta a divisão inteira. `realizedAmountCents ?? ceilRate(...)` preserva valor realizado, inclusive zero. Na ausência do montante realizado, o valor calculado usa o mesmo teto e permanece estimado. Tarifa percentual/fixa ML, RBT12, PGDAS, validações, objetivos e limites do solver não mudaram.
+
+`EconomicMemory.version` e a constante tipada do serviço usam `VORTEK-CANON-1.0-ECON-2`. `additionalVariableCosts` foi retirado do tipo, objeto e fingerprint, sem substituto ou compatibilidade paralela. `policyVersion` permanece a mesma: não houve alteração das faixas. O fingerprint continua serialização determinística dos dados completos, não assinatura de autorização.
+
+**Testes:** suíte existente ampliada de 37 para 52 casos. Antes da correção, 15 falharam contra o contrato novo; após o ajuste, 52 passaram, junto às regressões, totalizando 154 testes. Cobertura nova: centavo exato, frações abaixo/meio/acima de meio centavo, preço mínimo, taxa decimal, fronteiras das faixas, limite monetário seguro, realizado/estimado, zero realizado, versão/ausência de extras e independência do arredondamento ML. Avaliação/projeção, determinismo e convergência continuam cobertos.
+
+**Limites e rollback:** alteração exclusivamente do núcleo puro, tipos, testes e documentação local; sem banco, migrations, rede autenticada, mudanças de consumidores, build, homologação visual, commit/push ou deploy. O trabalho PRC-02 preexistente foi preservado. Rollback seletivo somente dos hunks PRC-02A e de seus testes/registros, sem reset da árvore ou recálculo de histórico.
+
+**Resultado:** núcleo ajustado ao cânon; próxima ação: planejar PRC-03. A implementação ainda não certifica equivalência entre telas/publicadores/Radar. Validação geral e evidência final no checklist.
+
+## 15. M2M-PRC-03 — Checkpoint de implementação parcial (06/09/2026)
+
+Registro histórico da primeira parcela. A continuação, incluindo migration DEV e migração dos consumidores, está na [evidência atual de PRC-03](evidencias/M2M-PRC-03-validacao.md). O estado anterior abaixo não descreve a implantação atual.
+
+**Estado: EM ANDAMENTO, não homologado.** O corte inicial de escrita está implementado localmente; a migração integral de consumidores ainda não ocorreu. Não avançar para QTY-01 nem liberar publicação. Os bloqueios abaixo não estão implantados em homologação: não houve commit, push ou deploy.
+
+### Fotografia e causa
+
+Branch `dev`, HEAD inicial `7f15d9f60112fe49778b7a61118dbab1db3080e7`; alterações PRC-02/02A e documentais preexistentes preservadas. Além dos helpers TypeScript e do cálculo no browser/PDF, as RPCs `search_produtos_paginated` e `search_produtos_resumo` consomem `private.rule_02_projected_price`, ainda baseado em `pricing_cost_tiers`. Portanto, trocar apenas o valor exibido não resolve ordenação, filtros ou resumo.
+
+Consulta READ ONLY no destino confirmado `192.168.1.162`, hostname `supabase-dev`, pelo pooler de sessão: PostgreSQL 17.6, 109 entradas no histórico, última versão `20260905120000`. Confirmadas as tabelas comerciais e a assinatura de cinco argumentos de `save_commercial_pricing_configuration`, incluindo `p_cost_tiers`. Nenhuma transação de escrita foi aberta; nenhuma migration foi criada/aplicada nesta parcela. Não houve acesso ao banco `.160` nesta implementação.
+
+### Matriz de execução AS_IS → TO_BE
+
+| Consumidor | Estado encontrado | Implementação / restante |
+|---|---|---|
+| Contexto econômico | Núcleo puro sem carregador operacional | `pricing-context.ts`: lote limitado, ofertas paginadas, fornecedores operacionais, preferência manual válida, DTO atual/alvo/piso/break-even. Testado isoladamente; **ainda não conectado às rotas/telas** |
+| Kits e simulação | Contrato exigia oferta do produto pai | Composição tipada da oferta real do componente × quantidade; somente kit simples válido. Simulação explícita sem IDs operacionais fictícios; tarifa calculada no núcleo compartilhado |
+| Custo/frete → preço | Sync sobrescrevia `custom_price` e enfileirava preço | Removido o motor de `automatic-pricing.ts` e o bloco de recomposição por frete no sync de anúncios. Sincronização de evidências preservada |
+| Criação, preço e opt-in | Rotas podiam executar antes da governança | HTTP 409 `pricing_execution_not_ready` após autenticação, antes do processamento comercial/ML. Guardas também no transporte de criação, preço e atacado |
+| Cadastro/edição de produto | `custom_price` podia ser gravado e propagado | Alteração de preço bloqueada antes do update; valor idêntico é retirado do payload para permitir edição dos outros campos sem reprecificar |
+| Outbox | Filas antigas podiam publicar preço e entrar em retry | Preço puro não é enfileirado; fila antiga de preço é cancelada. Linha mista executa estoque/status e registra `pricing_block`, sem reconciliar preço que não foi executado |
+| Scripts comerciais | Cinco entradas ainda utilizavam estratégias legadas | Guardado o primeiro comando de batch, preparação, prateleira e campanha; testes executaram apenas esse comando isolado, nunca os scripts operacionais |
+| Produtos/lista/detalhe/PDF | Fórmulas locais e SQL legado | **Pendente:** consumir DTO canônico; distinguir preço atual/sugerido e estado inconclusivo, preservar filtros e paginação |
+| Anúncios/catálogo/schema/preço-detalhe | Cálculos próprios e snapshots de custo/frete | **Pendente:** migrar análise, apresentação e simulação para o mesmo DTO; não extrapolar cotação de outro preço/contexto |
+| Pedidos | Subtração independente e imposto fixo de 4% | **Pendente:** aritmética compartilhada para totais, tributo por competência, cobertura de todos os itens e preservação de valores históricos/realizados |
+| Comercial e RPC | `costTiers` editável e motor SQL antigo | **Pendente:** remover contrato/formulário ativo legado, simulador no servidor, política final somente leitura e nova migration sem gravar faixas por custo |
+| Helpers/scripts residuais | Ainda existem consumidores e fórmulas antigas | **Pendente:** concluir inventário transitivo, migrar ou retirar; não remover helpers enquanto houver chamadores não migrados |
+
+O carregador não usa `produtos.custo` como substituto de oferta. Frete sem evidência não vira zero; texto de warning e timestamp genérico de produto não comprovam modalidade ou cotação. Fallback `not_specified` exige modalidade fornecida pelo chamador para o mesmo anúncio. Sem prova mensal de PGDAS quando exigível, o resultado permanece inconclusivo. Aquisição/validade/recotação ML da PRC-04 não foi antecipada.
+
+### Validação e limites
+
+Passaram os 12 arquivos de testes direcionados: memória PRC-02, contexto PRC-03, bloqueios PRC-03, outbox, seleção de automação, RULE-02, inativação de fornecedor, Produtos, Detalhe do Produto, Anúncios, atividade e lifecycle de identidade. Cobrem efeitos nulos nos caminhos bloqueados, fila mista, preferência inativa, paginação de ofertas, kit composto/aninhado/inativo/fracionário, ausência de frete e identidade hipotética de simulação. `npm run validate`, `npm run build` e `git diff --check` passaram. Testes fiscais/pedidos/SQL da migração completa e homologação visual ainda não foram executados.
+
+`AGENTS.md` e cópia do cânon mantiveram seus hashes iniciais. Skills de implementação DEV e Supabase mantiveram o trabalho local e a inspeção self-hosted somente leitura no `.162`; o endereço antigo presente na skill não substitui o mapa de ambientes do AGENTS.
+
+**Rollback:** somente hunks desta parcela, preservando PRC-02/02A e demais alterações do usuário. Não há rollback de banco ou reprocessamento de histórico, pois não houve escrita. Não retirar isoladamente o guard de execução: ainda há código legado atrás dele. A conclusão da PRC-03 depende das linhas pendentes da matriz e de suas evidências, não apenas do build passar.
