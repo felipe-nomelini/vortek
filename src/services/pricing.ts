@@ -157,7 +157,9 @@ export async function solveQuotedPrice(input: {
       const rate = input.objective === 'break_even' ? 0 : band[input.objective];
       const denominator = 1 - input.taxRate - rate;
       if (denominator <= 0) break;
-      let next = ceilMoney((input.cost + memory.fee.amount! + memory.shipping.amount!) / denominator);
+      // Inclui os centavos do tributo já usados no resultado econômico cotado.
+      const taxRounding = memory.taxAmount! - price * input.taxRate;
+      let next = ceilMoney((input.cost + memory.fee.amount! + memory.shipping.amount! + taxRounding) / denominator);
       if (next === price && memory.margin! + 1e-10 < rate) next = money(price + 0.01);
       if (memory.band.id === band.id && memory.margin! + 1e-10 >= rate && Math.abs(next - price) < 0.011) {
         stable.push({ memory, iterations: iteration }); break;
