@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação (07/09/2026):** planejar `M2M-CFL-01 — Contrato canônico de conflitos`. Implementação DEV da PRC-04 entregue e validada no contexto disponível; por decisão explícita do usuário, a validação de frete vivo ME2 fica para a conexão da conta real. Essa pendência não bloqueia o próximo desenvolvimento, mas continua obrigatória antes da liberação comercial. [Evidências e decisão](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Nenhuma conta real é conectada ou escrita comercial liberada por esta atualização.
+**Próxima ação (07/09/2026):** planejar `M2M-CFL-02 — Identidade, embalagem e quantidade`. CFL-01 implementada e testada como contrato puro, ainda não ativada nos consumidores. [Evidências CFL-01](evidencias/M2M-CFL-01-validacao.md). A validação de frete vivo ME2 permanece para a conexão autorizada da conta real: não bloqueia o desenvolvimento seguinte, mas continua obrigatória antes da liberação comercial. [Evidências e decisão PRC-04](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Nenhuma conta real é conectada ou escrita comercial liberada por esta atualização.
 
 ---
 
@@ -3102,7 +3102,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
 - [x] `BNT-M2M-RECON-01` — reconciliar autoridade, dependências e critérios de aceite, sem alteração funcional;
 - [x] `M2M-PRC-04` — implementação DEV entregue com ressalva: timestamp corrigido, testes/validate/build e cotação Clássico/`not_specified` aprovados; frete ME2 transferido por decisão do usuário para a pendência abaixo, sem declará-lo homologado. [Evidência](evidencias/M2M-PRC-04-validacao.md);
-- [ ] `M2M-CFL-01` — contrato de conflitos independente do score;
+- [x] `M2M-CFL-01` — contrato de conflitos independente do score; núcleo puro implementado e testado, ainda sem ativação nos consumidores. [Evidências](evidencias/M2M-CFL-01-validacao.md);
 - [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
 - [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos, sem habilitar escritores;
 - [ ] `BNT-PRICING-V2-04` — origem e audit trail vinculados ao grupo existente;
@@ -3471,3 +3471,16 @@ Nenhuma alteração de desconto remoto, banco de produção ou liberação comer
 Build e deploy não se aplicam: não existe mudança de runtime. A skill local orientou a execução de uma ação por vez em DEV; não houve uso de skills de banco nem operação de infraestrutura. Reversão possível por commit documental seletivo, sem reverter outras entregas. Os testes funcionais da análise anterior não são nova homologação nesta ação.
 
 Commit/push desta reconciliação limitado aos cinco documentos em `dev`. Não avançar automaticamente: PRC-04, contratos de execução, Radar e gates continuam pendentes. Publicação e alteração de preço permanecem bloqueadas.
+
+### Fechamento M2M-CFL-01 — 07/09/2026
+
+**Estado: CONCLUÍDO no escopo puro aprovado — contrato implementado e testado, ainda não ativado nos consumidores. Próxima ação: planejar M2M-CFL-02.**
+
+- [x] Fotografar `dev` inicialmente limpa em `d057dc6` e confrontar verificadores existentes com o Cânon Comercial 1.0 e a fila reconciliada.
+- [x] Entregar contrato tipado e classificador determinístico das quatro dimensões, sem score/demanda, fórmulas, banco ou chamadas externas.
+- [x] Diferenciar conflito comprovado, inconclusivo e validação pendente; exigir cobertura completa e evidências válidas para `SEM_CONFLITO`; preservar motivos por dimensão.
+- [x] Não converter `blockingConflicts=[]` em aprovação canônica, nem alterar reconciliação de marca, identidade, vínculos ou bloqueios existentes.
+- [x] Executar 52 testes direcionados (18 novos, incluindo 256 combinações de estados), regressões de identidade/atributos, lifecycle do bloqueio e guard comercial; `npm run validate` e `git diff --check` aprovados.
+- [x] Registrar [contrato, matriz AS_IS → TO_BE, limites e rollback](evidencias/M2M-CFL-01-validacao.md).
+
+Sem build/deploy por não haver integração no runtime; sem migrations, banco, conta real ou escrita ML. `pricing_execution_not_ready` intacto. Frete ME2 segue pendente para a conexão autorizada da conta real e bloqueia aceite comercial de PUB-GATE/M2M-GATE/produção. CFL-02/03/04 não executadas nesta entrega.

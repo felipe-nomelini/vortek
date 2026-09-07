@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — M2M-PRC-04 (07/09/2026):** implementação DEV entregue com ressalva. Timestamp corrigido e cotação autenticada Clássico/`not_specified` validada; por decisão do usuário, [frete vivo ME2 fica para a conexão da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Podemos planejar CFL-01, sem alterar a ordem reconciliada ou liberar escritas. A ressalva permanece bloqueadora do aceite comercial do PUB-GATE, do M2M-GATE e da liberação comercial em produção. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas; a dispensa de bloqueio do próximo desenvolvimento não equivale à validação de ME2.
+**Atualização vigente — M2M-CFL-01 (07/09/2026):** contrato puro implementado e testado, ainda não ativado nos consumidores; [evidências](evidencias/M2M-CFL-01-validacao.md) e seção 19. Próxima ação: planejar CFL-02, sem liberar escritas. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). A ressalva não bloqueia o desenvolvimento seguinte, mas permanece bloqueadora do aceite comercial do PUB-GATE, do M2M-GATE e da liberação comercial em produção. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas; a dispensa de bloqueio do próximo desenvolvimento não equivale à validação de ME2.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -545,3 +545,13 @@ O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md), incluindo complementos a
 A análise precedente consultou o conteúdo indexado da documentação oficial de [custos por vender](https://developers.mercadolivre.com.br/pt_br/comissao-por-vender), [catálogo](https://developers.mercadolivre.com.br/devcenter/publicacao-no-catalogo) e [visitas](https://developers.mercadolivre.com.br/pt_br/envio-de-produto/recurso-visits); abertura direta apresentou bloqueios. Na implementação de cada integração, reconfirmar o contrato aplicável. Não houve chamada autenticada ML nesta reconciliação.
 
 **Validação concluída:** plano/checklist com a mesma sequência (32 linhas, 40 identificadores únicos), dependências críticas ordenadas, links locais adicionados válidos, transcrição original M2M preservada integralmente e alterações restritas a cinco documentos. `git diff --check` e `npm run validate` aprovados. Cânon e AGENTS intactos, sem código, migration, banco, ML autenticado ou deploy. Fechamento registrado no checklist; testes funcionais das ações futuras continuam pendentes. Reversão, se necessária, é documental e seletiva, preservando outras alterações; não envolve banco, anúncios ou rollback de runtime. Próxima ação: **planejar M2M-PRC-04**, sem executá-la nesta tarefa.
+
+## 19. M2M-CFL-01 — Contrato canônico de conflitos (07/09/2026)
+
+Contrato C09 implementado em `src/types/commercial-conflicts.ts` e `src/services/commercial-conflicts.ts`, sem ativação nos consumidores. O classificador consolida avaliações de identidade, embalagem/quantidade, vínculo e economia. Estados, cobertura, evidências e motivos permanecem separados por dimensão; score/demanda não participam. Não substitui avaliadores, memória econômica ou autorização comercial.
+
+**AS_IS → TO_BE:** `assessMlListingIdentity` ignora atributos ausentes e admite reconciliação de marca com SKU/GTIN; o sync usa `blockingConflicts` para reconciliar marca/bloqueio. Portanto, lista vazia não prova cobertura completa e não pode virar `SEM_CONFLITO` implicitamente. CFL-01 não muda esses fluxos; CFL-02 consolidará as verificações materiais, CFL-03 resolverá vínculos/grupos e CFL-04 avaliará economia a partir da memória canônica.
+
+**Aceite:** 52 testes direcionados aprovados, incluindo 18 novos e 256 combinações de classificação; `npm run validate` e `git diff --check` aprovados. Sem build/deploy, migrations ou integração externa. Não há mudança visual nesta entrega. O [registro de evidências](evidencias/M2M-CFL-01-validacao.md) especifica interface, precedência, validação, matriz de consumidores e rollback.
+
+**Estado:** concluído somente o contrato puro aprovado. Planejar CFL-02 sem executá-la automaticamente. Guard comercial preservado; pendência ME2 permanece para conexão autorizada da conta real e continua bloqueadora dos gates comerciais.
