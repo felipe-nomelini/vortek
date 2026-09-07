@@ -3083,7 +3083,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
-**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos; V2-00 e CANON-01 entregues documentalmente; PRC-01/02/02A/03 e QTY-01 implementados e validados nos respectivos escopos. Bloqueios de escrita comercial preservados. Próxima ação: planejar `M2M-PRC-04`, conforme o [plano reconciliado](VORTEK_BENTEVI_PRICING_V2_PLANO.md) e o fechamento da seção 17 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
+**Situação:** em andamento. Paridade/integrações e PRC-01/02/02A/03/QTY-01 concluídas nos respectivos escopos. PRC-04 implementada e validada localmente; concluir a homologação econômica com oferta DEV/contexto comercial apto antes de avançar. [Evidência e pendência corrente](evidencias/M2M-PRC-04-validacao.md). Bloqueios de escrita comercial preservados; sequência reconciliada inalterada.
 
 **Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 

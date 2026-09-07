@@ -83,7 +83,7 @@ export default function LivePricingQuote({ productId, listings, disabled }: {
     <Modal title="Consulta econômica no Mercado Livre" open={open} onCancel={close} footer={null} width={1040} destroyOnHidden>
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
         <Typography.Text type="secondary">Consulta individual, sem salvar preço ou publicar anúncio. Para um novo anúncio, confirme o contexto de preparação; categoria e logística serão validadas no ML.</Typography.Text>
-        <Form form={form} layout="vertical" preserve={false} disabled={loading} onFinish={query} onValuesChange={() => { setPricing(null); setError(null); }}
+        <Form form={form} layout="vertical" preserve={false} disabled={loading} onFinish={query} validateMessages={{ required: 'Informe ${label}.' }} onValuesChange={() => { setPricing(null); setError(null); }}
           initialValues={listings.length === 1 ? { mlItemId: listings[0].itemId } : undefined}>
           {listings.length ? <Form.Item name="mlItemId" label="Anúncio a consultar" rules={[{ required: true }]}><Select options={listings.map(item => ({ value: item.itemId, label: `${item.itemId} · ${item.type === 'catalog' ? 'Catálogo' : 'Padrão'}` }))} /></Form.Item> : <>
             <Form.Item name="categoryId" label="Categoria ML (ID confirmado na preparação)" rules={[{ required: true, pattern: /^MLB\d+$/, message: 'Informe um ID de categoria MLB válido.' }]}><Input placeholder="MLB..." /></Form.Item>

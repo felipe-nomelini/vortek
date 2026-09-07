@@ -4,7 +4,7 @@ Data: 06/09/2026. Worktree/branch: vortek-dev / dev. Base anterior: 9d44997.
 
 ## Estado e limite de conclusão
 
-Implementação e validação local concluídas. **Ação ainda aberta**, aguardando homologação econômica completa com oferta elegível e contexto comercial de teste apto. Não avançar para CFL-01 enquanto essa evidência não existir. Deploy e verificação web serão registrados abaixo após execução.
+Implementação e validação local concluídas; primeira publicação DEV e verificação web autenticada executadas. **Ação ainda aberta**, aguardando homologação econômica completa com oferta elegível e contexto comercial de teste apto. Não avançar para CFL-01 enquanto essa evidência não existir.
 
 ## AS_IS → TO_BE
 
@@ -51,6 +51,16 @@ Preflight por conexão direta: **192.168.1.162**, hostname **supabase-dev**, tra
 - `/users/me` HTTP 200, conta MLB com tag `test_user`; busca retorna um anúncio de teste, tipo **free**, modalidade **not_specified**. Não é um cenário comercial Clássico/Premium apto para provar toda a recotação.
 - Consulta direta somente leitura de `listing_prices` para esse item respondeu 200 e tarifa total/fixa/percentual explícitos zero. Isso comprova acesso/parsing do tipo gratuito, **não** CMV/tributo/projeção completa nem frete ME2. Ausência de fallback informado nessa prova permaneceu null, não zero fabricado.
 - Pendente: preparar uma oferta DEV com custo/estoque e origem conhecidos, associada a produto de teste e contexto comercial habilitado; provar consulta completa alvo/piso/equilíbrio e revalidação autenticada. Não copiar credenciais/anúncios de produção nem inventar custo para encerrar o gate. Nenhum anúncio externo foi criado ou modificado.
+
+## Publicação e homologação web
+
+- Runtime inicial `7672398`, push apenas em dev e deploy pelo script oficial. Ação Easypanel `cmtqm3czn000106mn1755eyzn`: compilação e exportação da imagem DEV concluídas. SHA-256 da rota no checkout de build coincidiu com o local (`a6ce21555a4edaee2764f2cdc027bf34d962f7f50c071d13fb1ef58271a593dd`).
+- A primeira sondagem durante implantação ainda recebeu 405 (runtime anterior sem POST). Após a compilação/exportação concluir, nova validação confirmou o contrato novo. Aceite HTTP 200 do webhook não foi tratado como implantação concluída.
+- Sessão Auth temporária gerada/verificada diretamente em .162, após preflight do hostname/histórico/schema; sem redefinir senha, encerrada com scope local ao final, inclusive na sondagem anterior.
+- HTTP 200 em Produtos (40 amostras visuais protegidas), detalhe operacional, Anúncios (55 amostras) e PDFs de Produtos/Anúncios. Nenhuma oferta operacional foi criada para fingir completude.
+- POST cotação sobre fixture: 409 `homologation_fixture_read_only`; campo sellerId não permitido: 422. Criação/preço/opt-in: 409 `pricing_execution_not_ready`.
+- Navegação autenticada sem erros JavaScript: botão desabilitado na amostra; modal acessível no produto DEV operacional; campos obrigatórios bloqueiam submissão incompleta; fechar/reabrir limpa estado. Revisão visual identificou mensagens padrão em inglês e foi aplicada tradução no próprio formulário antes do encerramento da entrega.
+- [Amostra protegida](M2M-PRC-04-fixture-protegida.png) e [preparação de cotação](M2M-PRC-04-preparacao.png). Essas capturas não representam cotação econômica comercial completa.
 
 ## Rollback e riscos residuais
 
