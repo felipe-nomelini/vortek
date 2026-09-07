@@ -18,12 +18,13 @@ import {
 } from "@/lib/ml-product-facts";
 import {
   isMlCriticalAttributeId,
+  loadMlIdentityKit,
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
 import { loadOperationalDropshippingSupplierIds } from "@/lib/dslite/supplier-policy";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
-import { mergeMlAttributePrefill } from "@/lib/ml-listing-identity";
+import { mergeMlAttributePrefill, normalizeMlIdentityValue } from "@/lib/ml-listing-identity";
 
 function normalizeStr(v: unknown): string {
   return String(v ?? "").trim();
@@ -84,11 +85,13 @@ function pickAllowedValue(
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   const hit = (attr.values || []).find(
-    (v: any) => normalizeValue(v.name) === normalizeValue(valueName),
+    (v: any) => isMlCriticalAttributeId(attr.id)
+      ? normalizeMlIdentityValue(attr.id, String(v.name)) === normalizeMlIdentityValue(attr.id, valueName)
+      : normalizeValue(v.name) === normalizeValue(valueName),
   );
   return hit
     ? { value_id: String(hit.id), value_name: String(hit.name) }
-    : { value_name: valueName };
+    : isMlCriticalAttributeId(attr.id) && attr.value_type === 'list' ? {} : { value_name: valueName };
 }
 
 function initialAttributeValue(
@@ -347,13 +350,15 @@ export async function POST(req: Request) {
     );
     const produtoForMl = gtinForMl ? { ...produto, gtin: gtinForMl } : produto;
 
-    const { data: supplierOffers } = await supabase
+    const { data: supplierOffers, error: supplierOffersError } = await supabase
       .from("produto_fornecedor_ofertas")
       .select(
-        "id,produto_id,dslite_fornecedor_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at",
+        "id,produto_id,dslite_fornecedor_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at,updated_at,marca,gtin",
       )
       .eq("produto_id", produtoId);
 
+    if (supplierOffersError) return NextResponse.json({ error: 'Não foi possível consultar evidências do fornecedor.' }, { status: 502 });
+    const kit = await loadMlIdentityKit(supabase, produtoId);
     const attrs = (await getCategoryAttributes(categoriaId)) || [];
     const requiredAttributes = attrs.filter(
       (a: any) =>
@@ -386,7 +391,7 @@ export async function POST(req: Request) {
         "PACKS_NUMBER",
       ].includes(attrId);
       const trustedCriticalValue = isMlCriticalAttributeId(attrId)
-        ? resolveTrustedMlCriticalValue(attrId, produtoForMl, supplierOffers || [], operationalSupplierIds)
+        ? resolveTrustedMlCriticalValue(attrId, produto, supplierOffers || [], operationalSupplierIds, kit, attrs)
         : null;
       const pre = isMlCriticalAttributeId(attrId)
         ? trustedCriticalValue

@@ -365,7 +365,8 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
           .match(/\b(\d{1,2}(?:\.\d{3})?)\s*btus?\b/i)?.[1]
           ?.replace(".", "")
       : undefined,
-    packagesNumber: isAirConditioner && text.includes("split") ? 2 : undefined,
+    // Caixas logísticas exigem evidência explícita; split não prova dois volumes.
+    packagesNumber: undefined,
     isRechargeable: isBattery
       ? text.includes("recarregavel") || text.includes("eneloop")
         ? "Sim"

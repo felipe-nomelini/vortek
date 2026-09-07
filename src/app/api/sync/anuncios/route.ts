@@ -14,7 +14,9 @@ import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
-import { assessMlProductIdentity } from '@/lib/ml-critical-attributes';
+import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
+import { isMlIdentityComplete, hasConfirmedMlIdentityConflict } from '@/lib/ml-listing-identity';
+import { getCategoryAttributes } from '@/services/mercadolibre';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import {
   clearAutomaticMlIdentityBlock,
@@ -512,6 +514,9 @@ export async function POST(request: Request) {
     warnings.push({ code: 'pricing_execution_not_ready',
       message: 'Custos e frete são sincronizados sem alterar preços ou enfileirar reprecificação.' });
 
+    const identityCategories = new Map<string, ReturnType<typeof getCategoryAttributes>>();
+    const identityKits = new Map<string, ReturnType<typeof loadMlIdentityKit>>();
+    const identityDeferredIds = new Set<string>();
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
     const listingMetricsByItemId = new Map<string, { soldQuantity: unknown; startTime: string | null }>();
@@ -527,7 +532,7 @@ export async function POST(request: Request) {
     const failedItemIds = new Set<string>();
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
-      const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
+      const itemResult = await fetchMLResult<any>(`/items/${itemId}?include_attributes=all`);
       if (!itemResult.ok || !itemResult.data) {
         recordsFailed += 1;
         failedItemIds.add(itemId);
@@ -562,14 +567,14 @@ export async function POST(request: Request) {
 
       const { data: byItem } = await serviceClient
         .from('produtos')
-        .select('id, sku, nome, descricao, categoria, marca, gtin, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
+        .select('id, sku, nome, descricao, categoria, marca, gtin, updated_at, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
         .eq('ml_item_id', String(item.id))
         .maybeSingle();
 
       const bySku = !byItem && sku
         ? await serviceClient
             .from('produtos')
-            .select('id, sku, nome, descricao, categoria, marca, gtin, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
+            .select('id, sku, nome, descricao, categoria, marca, gtin, updated_at, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
             .eq('sku', sku)
             .maybeSingle()
         : { data: null } as any;
@@ -594,7 +599,7 @@ export async function POST(request: Request) {
         if (productId) {
           const { data: productByOffer } = await serviceClient
             .from('produtos')
-            .select('id, sku, nome, descricao, categoria, marca, gtin, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
+            .select('id, sku, nome, descricao, categoria, marca, gtin, updated_at, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
             .eq('id', productId)
             .maybeSingle();
           produto = productByOffer || null;
@@ -606,7 +611,7 @@ export async function POST(request: Request) {
 
         const { data: identityOffers, error: identityOffersError } = await serviceClient
           .from('produto_fornecedor_ofertas')
-          .select('id, dslite_fornecedor_id, nome, descricao, custo, estoque, prioridade, ativo')
+          .select('id, dslite_fornecedor_id, nome, descricao, marca, gtin, updated_at, last_sync_at, custo, estoque, prioridade, ativo')
           .eq('produto_id', produtoId);
         if (identityOffersError) {
           errors.push({
@@ -618,41 +623,30 @@ export async function POST(request: Request) {
           skuLocal = null;
           produto = null;
         } else {
+          const categoryId = String(item.category_id || '');
+          if (!identityCategories.has(categoryId)) identityCategories.set(categoryId, getCategoryAttributes(categoryId));
+          if (!identityKits.has(produtoId)) identityKits.set(produtoId, loadMlIdentityKit(serviceClient, produtoId));
+          const [categoryAttributes, kit] = await Promise.all([identityCategories.get(categoryId), identityKits.get(produtoId)]);
           const identityAssessment = assessMlProductIdentity(
             item,
             produto,
             identityOffers || [],
             operationalSupplierIds,
+            { categoryAttributes: categoryAttributes || null, kit,
+              remoteEvidence: { source: 'mercado_livre', reference: String(item.id), collectedAt: new Date().toISOString(), condition: 'valid' } },
           );
-          let identityConflicts = identityAssessment.blockingConflicts;
-
-          if (identityAssessment.canonicalBrand) {
-            const { error: brandUpdateError } = await serviceClient
-              .from('produtos')
-              .update({ marca: identityAssessment.canonicalBrand })
-              .eq('id', produtoId);
-            if (brandUpdateError) {
-              errors.push({
-                code: 'ml_identity_brand_reconciliation_failed',
-                message: brandUpdateError.message,
-                context: {
-                  mlItemId: String(item.id),
-                  produtoId,
-                  canonicalBrand: identityAssessment.canonicalBrand,
-                },
-              });
-              identityConflicts = identityAssessment.conflicts;
-            } else {
-              produto = { ...produto, marca: identityAssessment.canonicalBrand };
-              warnings.push({
-                code: 'ml_identity_brand_reconciled',
-                message: `Marca local corrigida para ${identityAssessment.canonicalBrand} após confirmação por SKU e GTIN.`,
-                context: { mlItemId: String(item.id), produtoId },
-              });
-            }
+          const identityConflicts = identityAssessment.comparisons.filter(value => value.status === 'CONFLITO_CONFIRMADO');
+          if (!isMlIdentityComplete(identityAssessment) && !hasConfirmedMlIdentityConflict(identityAssessment)) {
+            warnings.push({ code: 'ml_identity_validation_pending', message: 'Identidade/apresentação sem conclusão; bloqueios existentes preservados.',
+              context: { mlItemId: String(item.id), produtoId, identity: identityAssessment.identity.status, packaging: identityAssessment.packaging_quantity.status } });
+            // Mantém snapshot observado sem permitir ações derivadas de vínculo não validado.
+            identityDeferredIds.add(String(item.id));
+            if (!byItem) { produtoId = null; skuLocal = null; }
+            produto = null;
           }
 
-          if (identityConflicts.length === 0) {
+
+          if (isMlIdentityComplete(identityAssessment)) {
             const unblockResult = await clearAutomaticMlIdentityBlock(
               serviceClient,
               String(item.id),
@@ -669,9 +663,9 @@ export async function POST(request: Request) {
             }
           }
 
-          if (identityConflicts.length > 0) {
+          if (hasConfirmedMlIdentityConflict(identityAssessment)) {
             const reason = `Divergência material de identidade ML: ${identityConflicts
-              .map((conflict) => `${conflict.field} local=${conflict.expected} remoto=${conflict.remote}`)
+              .map((conflict) => `${conflict.field} local=${conflict.local} remoto=${conflict.remote}`)
               .join('; ')}`;
             const blockResult = await ensureAutomaticMlIdentityBlock(
               serviceClient,
@@ -984,6 +978,7 @@ export async function POST(request: Request) {
         const missingSnapshots = snapshots.filter((snapshot) => (
           snapshot.produto_id
           && snapshot.sku_local
+          && !identityDeferredIds.has(String(snapshot.ml_item_id))
           && !existingByItemId.has(String(snapshot.ml_item_id))
         ));
         await runPool(missingSnapshots, CONCURRENCY, async (snapshot) => {
@@ -1103,6 +1098,7 @@ export async function POST(request: Request) {
 
         const affectedProductIds = Array.from(new Set<string>(
           snapshots
+            .filter((snapshot) => !identityDeferredIds.has(String(snapshot.ml_item_id)))
             .map((snapshot) => String(snapshot.produto_id || '').trim())
             .filter(Boolean),
         ));

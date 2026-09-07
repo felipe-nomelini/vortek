@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação (07/09/2026):** planejar `M2M-CFL-02 — Identidade, embalagem e quantidade`. CFL-01 implementada e testada como contrato puro, ainda não ativada nos consumidores. [Evidências CFL-01](evidencias/M2M-CFL-01-validacao.md). A validação de frete vivo ME2 permanece para a conexão autorizada da conta real: não bloqueia o desenvolvimento seguinte, mas continua obrigatória antes da liberação comercial. [Evidências e decisão PRC-04](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Nenhuma conta real é conectada ou escrita comercial liberada por esta atualização.
+**Próxima ação (07/09/2026):** planejar `M2M-CFL-03 / BNT-PRICING-V2-07 — Vínculos e grupos de anúncios`. CFL-02 implementada nos verificadores e consumidores, validada localmente, sem deploy ou homologação externa. [Evidências CFL-02](evidencias/M2M-CFL-02-validacao.md). Frete vivo ME2 permanece para a conexão autorizada da conta real: não bloqueia o desenvolvimento seguinte, mas continua obrigatório antes da liberação comercial. [Decisão PRC-04](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Escritas comerciais continuam bloqueadas.
 
 ---
 
@@ -3103,7 +3103,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-M2M-RECON-01` — reconciliar autoridade, dependências e critérios de aceite, sem alteração funcional;
 - [x] `M2M-PRC-04` — implementação DEV entregue com ressalva: timestamp corrigido, testes/validate/build e cotação Clássico/`not_specified` aprovados; frete ME2 transferido por decisão do usuário para a pendência abaixo, sem declará-lo homologado. [Evidência](evidencias/M2M-PRC-04-validacao.md);
 - [x] `M2M-CFL-01` — contrato de conflitos independente do score; núcleo puro implementado e testado, ainda sem ativação nos consumidores. [Evidências](evidencias/M2M-CFL-01-validacao.md);
-- [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
+- [x] `M2M-CFL-02` — identidade/embalagem/kit/quantidade: implementação e validação local concluídas, sem deploy; [evidências](evidencias/M2M-CFL-02-validacao.md);
 - [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos, sem habilitar escritores;
 - [ ] `BNT-PRICING-V2-04` — origem e audit trail vinculados ao grupo existente;
 - [ ] `BNT-PRICING-V2-05` — override explícito por grupo até revogação manual;

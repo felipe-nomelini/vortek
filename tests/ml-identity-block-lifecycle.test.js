@@ -128,7 +128,7 @@ test("erro ao limpar o bloqueio é propagado", async () => {
 test("sync encerra bloqueio somente após identidade válida e mantém fornecedores operacionais", () => {
   const assessmentIndex = syncRouteSource.indexOf("const identityAssessment = assessMlProductIdentity(");
   const supplierPolicyIndex = syncRouteSource.indexOf("operationalSupplierIds", assessmentIndex);
-  const validIdentityIndex = syncRouteSource.indexOf("if (identityConflicts.length === 0)", assessmentIndex);
+  const validIdentityIndex = syncRouteSource.indexOf("if (isMlIdentityComplete(identityAssessment))", assessmentIndex);
   const clearIndex = syncRouteSource.indexOf("clearAutomaticMlIdentityBlock(", validIdentityIndex);
 
   assert.ok(assessmentIndex >= 0);
@@ -140,11 +140,13 @@ test("sync encerra bloqueio somente após identidade válida e mantém fornecedo
 
 test("criação e vínculo reconciliam bloqueio resolvido sem remover o gate de conflito", () => {
   const assessments = createRouteSource.match(/assessMlProductIdentity\(/g) || [];
-  const reconciliations = createRouteSource.match(/reconcileResolvedMlIdentity\(/g) || [];
+  const reconciliations = createRouteSource.match(/clearAutomaticMlIdentityBlock\(/g) || [];
 
   assert.equal(assessments.length, 2);
-  assert.equal(reconciliations.length, 3);
-  assert.match(createRouteSource, /const identityConflicts = identityAssessment\.blockingConflicts/);
+  assert.equal(reconciliations.length, 2);
+  assert.match(createRouteSource, /const identityConflicts = identityAssessment\.comparisons/);
+  assert.doesNotMatch(createRouteSource, /canonicalBrand|blockingConflicts/);
+  assert.match(createRouteSource, /if \(hasConfirmedMlIdentityConflict\(identityAssessment\)\)/);
   assert.match(createRouteSource, /identity_conflicts: identityConflicts/);
   assert.match(createRouteSource, /pauseCreatedListing\(result\.id\)/);
 });

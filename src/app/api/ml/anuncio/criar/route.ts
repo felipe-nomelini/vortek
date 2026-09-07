@@ -30,6 +30,7 @@ import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
 import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
 import {
   assessMlProductIdentity,
+  loadMlIdentityKit,
   isMlCriticalAttributeId,
   normalizeCriticalAttributeValue,
   resolveTrustedMlCriticalValue,
@@ -45,27 +46,12 @@ import { resolveMlFee, type CommercialPricingConfiguration } from "@/lib/commerc
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { clearAutomaticMlIdentityBlock } from "@/lib/ml/identity-block";
 
+import { isMlIdentityComplete, hasConfirmedMlIdentityConflict } from '@/lib/ml-listing-identity';
+
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
 type SaleTermInput = { id: string; value_name?: string; value_id?: string };
 type MappedAttr = { id: string; value_name?: string; value_id?: string };
-
-async function reconcileResolvedMlIdentity(params: {
-  client: ReturnType<typeof createServiceClient>;
-  produtoId: string;
-  itemId: string;
-  canonicalBrand: string | null;
-}): Promise<{ ok: true } | { ok: false; error: string }> {
-  if (params.canonicalBrand) {
-    const { error } = await params.client
-      .from("produtos")
-      .update({ marca: params.canonicalBrand })
-      .eq("id", params.produtoId);
-    if (error) return { ok: false, error: error.message };
-  }
-
-  return clearAutomaticMlIdentityBlock(params.client, params.itemId);
-}
 
 const NOT_APPLICABLE_ID = "-1";
 const NO_IDS = new Set(["242084"]);
@@ -644,7 +630,7 @@ async function updateCreatedListingPrice(itemId: string, price: number) {
 }
 
 async function getListingSnapshot(itemId: string) {
-  return fetchML<any>(`/items/${encodeURIComponent(itemId)}`);
+  return fetchML<any>(`/items/${encodeURIComponent(itemId)}?include_attributes=all`);
 }
 
 type MlShippingResolution = {
@@ -874,19 +860,21 @@ export async function POST(req: Request) {
       );
     }
 
+    const identityKit = await loadMlIdentityKit(supabase, produtoId);
     const gtinForMl = await resolveGtinForMlListing(
       supabase,
       String(produto.sku || ""),
       produto.gtin,
     );
 
-    const { data: supplierOffers } = await supabase
+    const { data: supplierOffers, error: supplierOffersError } = await supabase
       .from("produto_fornecedor_ofertas")
       .select(
-        "id,produto_id,dslite_fornecedor_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at",
+        "id,produto_id,dslite_fornecedor_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at,updated_at,marca,gtin",
       )
       .eq("produto_id", produtoId);
 
+    if (supplierOffersError) return NextResponse.json({ error: 'Não foi possível consultar evidências do fornecedor.' }, { status: 502 });
     if (!produto.sku?.trim()) {
       return NextResponse.json(
         { error: "Produto sem SKU. Preencha o SKU antes de criar anúncio." },
@@ -1119,6 +1107,8 @@ export async function POST(req: Request) {
         produto,
         supplierOffers || [],
         operationalSupplierIds,
+        identityKit,
+        attrs,
       );
       const current = attributesMap.get(attr.id);
       if (!trustedValue) {
@@ -1141,9 +1131,15 @@ export async function POST(req: Request) {
       }
       attributesMap.set(attr.id, {
         id: attr.id,
-        value_id: undefined,
+        value_id: (attr.values || []).find((value: any) => normalizeCriticalAttributeValue(attrId, value.name) === trustedValue)?.id,
         value_name: trustedValue,
       });
+      if (attr.value_type === 'list' && !attributesMap.get(attr.id)?.value_id) {
+        attributesMap.delete(attr.id);
+        warnings.push(`${attr.name}: evidência não corresponde a um valor permitido pela categoria.`);
+      } else if (attributesMap.get(attr.id)?.value_id) {
+        attributesMap.set(attr.id, { id: attr.id, value_id: attributesMap.get(attr.id)!.value_id });
+      }
     }
 
     sanitizeAttributesByDependencies(
@@ -1331,59 +1327,8 @@ export async function POST(req: Request) {
           { status: 502 },
         );
       }
-      const identityAssessment = assessMlProductIdentity(
-        existingItem,
-        { ...produto, gtin: gtinForMl || produto.gtin },
-        supplierOffers || [],
-        operationalSupplierIds,
-      );
-      const identityConflicts = identityAssessment.blockingConflicts;
-      if (identityConflicts.length > 0) {
-        return NextResponse.json(
-          {
-            success: false,
-            steps,
-            warnings,
-            error:
-              "Anúncio existente com o mesmo SKU diverge da identidade comprovada do produto. O vínculo automático foi bloqueado.",
-            identity_conflicts: identityConflicts,
-            existing_item: {
-              id: existingItem.id,
-              category_id: existingItem.category_id,
-              catalog_product_id: existingItem.catalog_product_id || null,
-              status: existingItem.status,
-              permalink: existingItem.permalink,
-            },
-          },
-          { status: 409 },
-        );
-      }
-      const identityReconciliation = await reconcileResolvedMlIdentity({
-        client: supabase,
-        produtoId: String(produto.id),
-        itemId: String(existingItem.id),
-        canonicalBrand: identityAssessment.canonicalBrand,
-      });
-      if (!identityReconciliation.ok) {
-        return NextResponse.json(
-          {
-            success: false,
-            steps,
-            warnings,
-            error: `Falha ao consolidar a identidade validada do anúncio: ${identityReconciliation.error}`,
-          },
-          { status: 500 },
-        );
-      }
-      if (identityAssessment.canonicalBrand) {
-        produto.marca = identityAssessment.canonicalBrand;
-        warnings.push(
-          `Marca local corrigida para ${identityAssessment.canonicalBrand} após confirmação por SKU e GTIN.`,
-        );
-      }
       if (
-        existingItem.category_id &&
-        String(existingItem.category_id) !== String(categoriaId)
+        String(existingItem.category_id || '') !== String(categoriaId)
       ) {
         return NextResponse.json(
           {
@@ -1401,6 +1346,46 @@ export async function POST(req: Request) {
             },
           },
           { status: 409 },
+        );
+      }
+      const identityAssessment = assessMlProductIdentity(
+        existingItem,
+        produto,
+        supplierOffers || [],
+        operationalSupplierIds,
+        { categoryAttributes: attrs, kit: identityKit, remoteEvidence: { source: 'mercado_livre', reference: String(existingItem.id), collectedAt: new Date().toISOString(), condition: 'valid' } },
+      );
+      const identityConflicts = identityAssessment.comparisons;
+      if (!isMlIdentityComplete(identityAssessment)) {
+        return NextResponse.json(
+          {
+            success: false,
+            steps,
+            warnings,
+            error:
+              "Identidade/apresentação do anúncio existente não validada. Consulte as evidências antes de vincular.",
+            identity_conflicts: identityConflicts,
+            existing_item: {
+              id: existingItem.id,
+              category_id: existingItem.category_id,
+              catalog_product_id: existingItem.catalog_product_id || null,
+              status: existingItem.status,
+              permalink: existingItem.permalink,
+            },
+          },
+          { status: 409 },
+        );
+      }
+      const identityReconciliation = await clearAutomaticMlIdentityBlock(supabase, String(existingItem.id));
+      if (!identityReconciliation.ok) {
+        return NextResponse.json(
+          {
+            success: false,
+            steps,
+            warnings,
+            error: `Falha ao consolidar a identidade validada do anúncio: ${identityReconciliation.error}`,
+          },
+          { status: 500 },
         );
       }
       const existingShipping = await resolveMlShippingCost(
@@ -1620,15 +1605,17 @@ export async function POST(req: Request) {
     }
     steps.anuncio.ok = true;
 
-    let latestItem = (await getListingSnapshot(result.id)) || result;
+    let latestItem = await getListingSnapshot(result.id);
+    if (!latestItem) return NextResponse.json({ success: false, item_id: result.id, error: 'Read-back indisponível; identidade inconclusiva. Nenhuma pausa executada.' }, { status: 502 });
     const identityAssessment = assessMlProductIdentity(
       latestItem,
-      { ...produto, gtin: gtinForMl || produto.gtin },
+      produto,
       supplierOffers || [],
       operationalSupplierIds,
+      { categoryAttributes: attrs, kit: identityKit, remoteEvidence: { source: 'mercado_livre', reference: String(latestItem.id), collectedAt: new Date().toISOString(), condition: 'valid' } },
     );
-    const identityConflicts = identityAssessment.blockingConflicts;
-    if (identityConflicts.length > 0) {
+    const identityConflicts = identityAssessment.comparisons;
+    if (hasConfirmedMlIdentityConflict(identityAssessment)) {
       const pauseResult = await pauseCreatedListing(result.id);
       steps.anuncio = {
         ok: false,
@@ -1649,12 +1636,8 @@ export async function POST(req: Request) {
       );
     }
 
-    const identityReconciliation = await reconcileResolvedMlIdentity({
-      client: supabase,
-      produtoId: String(produto.id),
-      itemId: String(result.id),
-      canonicalBrand: identityAssessment.canonicalBrand,
-    });
+    if (!isMlIdentityComplete(identityAssessment)) return NextResponse.json({ success: false, item_id: result.id, identity: identityAssessment, error: 'Identidade/apresentação pendente; nenhuma pausa por ausência de evidência.' }, { status: 409 });
+    const identityReconciliation = await clearAutomaticMlIdentityBlock(supabase, String(result.id));
     if (!identityReconciliation.ok) {
       const pauseResult = await pauseCreatedListing(result.id);
       steps.anuncio = {
@@ -1671,12 +1654,6 @@ export async function POST(req: Request) {
           safety_pause: pauseResult,
         },
         { status: 500 },
-      );
-    }
-    if (identityAssessment.canonicalBrand) {
-      produto.marca = identityAssessment.canonicalBrand;
-      warnings.push(
-        `Marca local corrigida para ${identityAssessment.canonicalBrand} após confirmação por SKU e GTIN.`,
       );
     }
 

@@ -166,10 +166,9 @@ test('copia apenas o contrato, sem propagar payloads extras de provedores', () =
   assert.deepEqual(result, classify(fixture()));
 });
 
-test('ausência de blockingConflicts no helper atual não é avaliação canônica completa', () => {
+test('avaliação de identidade vazia não implica cobertura canônica completa', () => {
   const { assessMlListingIdentity } = require('../src/lib/ml-listing-identity.ts');
-  const legacy = assessMlListingIdentity({}, {});
-  assert.deepEqual(legacy.blockingConflicts, []);
-  const input = fixture(); input.identity = legacy;
-  assert.equal(classify(input).status, 'INCONCLUSIVO');
+  const result = assessMlListingIdentity({}, {}, { categoryAttributes: null, remoteEvidence: null });
+  const input = fixture(); input.identity = result.identity;
+  assert.notEqual(classify(input).status, 'SEM_CONFLITO');
 });

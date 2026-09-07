@@ -6,15 +6,25 @@ const {
   normalizeVoltageValue,
 } = require("../src/lib/ml-voltage.ts");
 const {
-  assessMlListingIdentity,
+  assessMlListingIdentity: assessCanonicalIdentity,
   extractStrictProductDiameter,
-  findMlListingIdentityConflicts,
   mergeMlAttributePrefill,
 } = require("../src/lib/ml-listing-identity.ts");
 const {
   applyProductFactsToMlAttribute,
   extractMlProductFacts,
 } = require("../src/lib/ml-product-facts.ts");
+
+function assessMlListingIdentity(item, expected) {
+  const keys = { sellerSku: 'SELLER_SKU', gtin: 'GTIN', brand: 'BRAND', diameter: 'DIAMETER', voltage: 'VOLTAGE', packagesNumber: 'PACKAGES_NUMBER' };
+  const proof = { source: 'product', reference: 'fixture', collectedAt: '2026-09-07T00:00:00.000Z', condition: 'valid' };
+  const facts = Object.fromEntries(Object.entries(expected).map(([key, value]) => [keys[key], { value: String(value), evidence: [proof] }]));
+  return assessCanonicalIdentity(item, facts, { categoryAttributes: Object.values(keys).map(id => ({ id })), remoteEvidence: { ...proof, source: 'mercado_livre' } });
+}
+function findMlListingIdentityConflicts(item, expected) {
+  return assessMlListingIdentity(item, expected).comparisons.filter(row => row.status === 'CONFLITO_CONFIRMADO')
+    .map(row => ({ field: row.field, expected: row.local, remote: row.remote }));
+}
 
 test("aceita tensão DC explícita como evidência crítica", () => {
   assert.equal(extractStrictVoltage("Alimentação 3 Vdc, bateria CR2450"), "3 Vdc");
@@ -27,10 +37,10 @@ test("normaliza tensão DC sem convertê-la em tensão de rede", () => {
   assert.equal(normalizeVoltageValue("DC 12 V"), "12 Vdc");
 });
 
-test("normaliza 120V de fornecedor como 127V de catálogo", () => {
-  assert.equal(extractStrictVoltage("Alimentação: 120v"), "127V");
-  assert.equal(extractStrictVoltage("Voltagem 120 V"), "127V");
-  assert.equal(normalizeVoltageValue("120V"), "127V");
+test("preserva 120V sem declarar equivalência a 127V", () => {
+  assert.equal(extractStrictVoltage("Alimentação: 120v"), "120V");
+  assert.equal(extractStrictVoltage("Voltagem 120 V"), "120V");
+  assert.equal(normalizeVoltageValue("120V"), "120V");
 });
 
 test("não deduz tensão DC a partir de uma bateria sem rótulo elétrico", () => {
@@ -100,7 +110,7 @@ test("aceita anúncio com identidade crítica equivalente", () => {
   assert.deepEqual(conflicts, []);
 });
 
-test("reconcilia somente marca quando SKU e GTIN comprovam o mesmo produto", () => {
+test("marca contraditória não é reconciliada por SKU/GTIN coincidentes", () => {
   const assessment = assessMlListingIdentity(
     {
       seller_custom_field: "VTK009696",
@@ -116,8 +126,8 @@ test("reconcilia somente marca quando SKU e GTIN comprovam o mesmo produto", () 
     },
   );
 
-  assert.equal(assessment.canonicalBrand, "New York");
-  assert.deepEqual(assessment.blockingConflicts, []);
+  assert.equal(assessment.identity.status, 'CONFLITO_CONFIRMADO');
+  assert.equal('canonicalBrand' in assessment, false);
 });
 
 test("não reconcilia marca quando o GTIN diverge", () => {
@@ -136,9 +146,9 @@ test("não reconcilia marca quando o GTIN diverge", () => {
     },
   );
 
-  assert.equal(assessment.canonicalBrand, null);
+  assert.equal('canonicalBrand' in assessment, false);
   assert.deepEqual(
-    assessment.blockingConflicts.map((conflict) => conflict.field),
+    assessment.comparisons.filter(row => row.status === 'CONFLITO_CONFIRMADO').map(row => row.field),
     ["GTIN", "BRAND"],
   );
 });
@@ -155,9 +165,9 @@ test("não reconcilia marca sem SKU e GTIN remotos comprovados", () => {
     },
   );
 
-  assert.equal(assessment.canonicalBrand, null);
+  assert.equal('canonicalBrand' in assessment, false);
   assert.deepEqual(
-    assessment.blockingConflicts.map((conflict) => conflict.field),
+    assessment.comparisons.filter(row => row.status === 'CONFLITO_CONFIRMADO').map(row => row.field),
     ["BRAND"],
   );
 });
