@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação (07/09/2026):** planejar `BNT-PRICING-V2-06 — Liquidação interna`. V2-05 implementada e validada localmente e no Supabase DEV `.162`, sem deploy ou homologação ML externa. [Evidências V2-05](evidencias/BNT-PRICING-V2-05-validacao.md). Por decisão do usuário, push e deploy ficam para o final das etapas. Frete vivo ME2 permanece para a conexão autorizada da conta real: não bloqueia o desenvolvimento seguinte, mas continua obrigatório antes da liberação comercial. [Decisão PRC-04](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Escritas comerciais continuam bloqueadas.
+**Próxima ação (07/09/2026):** planejar `BNT-CANON-WARRANTY-01 — Garantia por evidência`. V2-06 implementada e validada localmente e no Supabase DEV `.162`, sem deploy ou homologação ML externa. [Evidências V2-06](evidencias/BNT-PRICING-V2-06-validacao.md). Por decisão do usuário, push e deploy ficam para o final das etapas. Frete vivo ME2 permanece para a conexão autorizada da conta real: não bloqueia o desenvolvimento seguinte, mas continua obrigatório antes da liberação comercial. [Decisão PRC-04](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Escritas comerciais continuam bloqueadas.
 
 ---
 
@@ -65,7 +65,7 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | PRC-04 entregue com ressalva ME2; CFL-01/02/03 e V2-04/05 implementadas; homologação externa pendente | Planejar BNT-PRICING-V2-06; push/deploy ao final das etapas; validar ME2 na conexão autorizada da conta real antes dos gates comerciais; governança, publicação e Radar pendentes |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | PRC-04 entregue com ressalva ME2; CFL-01/02/03 e V2-04/05/06 implementadas; homologação externa pendente | Planejar BNT-CANON-WARRANTY-01; push/deploy ao final das etapas; validar ME2 na conexão autorizada da conta real antes dos gates comerciais; governança, publicação e Radar pendentes |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -3107,7 +3107,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos; implementação/testes locais e banco DEV validados, sem habilitar escritores ou alegar homologação ML externa. [Evidências](evidencias/M2M-CFL-03-validacao.md);
 - [x] `BNT-PRICING-V2-04` — origem e audit trail vinculados ao grupo existente; implementação e validação local/SQL DEV concluídas, sem deploy ou homologação ML externa;
 - [x] `BNT-PRICING-V2-05` — override explícito por grupo até revogação manual; validação local/SQL DEV concluída, interface pendente do deploy/aceite conjunto;
-- [ ] `BNT-PRICING-V2-06` — liquidação interna;
+- [x] `BNT-PRICING-V2-06` — liquidação interna: implementação, testes locais e SQL DEV concluídos; sem liberar execução comercial; interface pendente do deploy/aceite conjunto. [Evidências](evidencias/BNT-PRICING-V2-06-validacao.md);
 - [ ] `BNT-CANON-WARRANTY-01` — garantia por evidência, sem prazo universal ou atributos inventados;
 - [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
 - [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa;
@@ -3517,6 +3517,19 @@ Sem push/deploy ou acesso à produção. Por instrução do usuário, push e dep
 ### Fechamento BNT-PRICING-V2-05 — 07/09/2026
 
 **Estado: implementação e validação local/SQL DEV concluídas; interface pendente do deploy/aceite conjunto. Próxima ação: planejar BNT-PRICING-V2-06 — Liquidação interna.**
+
+### Fechamento BNT-PRICING-V2-06 — 07/09/2026
+
+- [x] Autorização de liquidação interna tipada, idempotente, auditada e gerida por admin/gerente;
+- [x] Quantidade recortada no estoque interno existente; reposições não herdam exceção; kits usam componentes;
+- [x] Limite de perda unitária explícito; economia canônica preservada e inconclusivo visível;
+- [x] Transferência entre grupos sem multiplicar orçamento; conflitos impedem aplicação;
+- [x] Vigência/encerramento/revogação sem reprecificação automática; integração às verificações de preparação/envio;
+- [x] Migration nova aplicada somente no `.162`, tipos gerados, SQL/concorrência, 338 testes Node, validate e build aprovados;
+- [ ] Aceite visual em `dev.bentevi.shop` no deploy conjunto solicitado pelo usuário;
+- [ ] Gates comerciais e frete vivo ME2 continuam pendentes, sem autorizar efeito ML nesta etapa.
+
+[Evidências e rollback](evidencias/BNT-PRICING-V2-06-validacao.md). **Próxima ação: planejar BNT-CANON-WARRANTY-01 — Garantia por evidência.** Sem push/deploy ou produção.
 
 - [x] Fotografar `dev` limpa em `c70844e`; confrontar cânon, grupos, auditoria e consumidores atuais.
 - [x] Registrar decisões explícitas: gestão por admin/gerente; propagação automática aos grupos resultantes.

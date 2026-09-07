@@ -36,7 +36,13 @@ export async function recordPricingEvaluation(client: Client, productId: string,
 
 const operationSchema = z.object({ id: z.string().uuid(), evaluationId: z.string().uuid(), groupId: z.string().uuid(), groupVersion: z.number().int().positive(),
   itemId: z.string().regex(/^ML[A-Z]\d+$/), priceCents: z.number().int().positive().safe(), source: pricingSourceSchema,
-  actorId: z.string().uuid().nullable(), reason: z.string().trim().min(1).max(200), ruleId: z.string().max(100).nullable().default(null), jobId: z.string().uuid().nullable().default(null) }).strict();
+  actorId: z.string().uuid().nullable(), reason: z.string().trim().min(1).max(200), ruleId: z.string().max(100).nullable().default(null), jobId: z.string().uuid().nullable().default(null),
+  clearanceId: z.string().uuid().optional(), fulfillmentSource: z.enum(['internal', 'supplier']).optional(), clearanceQuantity: z.number().int().positive().max(2147483647).optional() }).strict().superRefine((input, ctx) => {
+    if ((input.clearanceId || input.fulfillmentSource || input.clearanceQuantity !== undefined)
+      && (!input.clearanceId || input.fulfillmentSource !== 'internal' || input.clearanceQuantity === undefined || input.source !== 'manual')) {
+      ctx.addIssue({ code: 'custom', message: 'Liquidação exige contexto interno, quantidade e decisão manual explícitos' });
+    }
+  });
 
 /** Contrato interno; preparar não aprova nem executa. Actor vem da sessão/job, não do body web. */
 export async function preparePricingOperation(client: Client, input: z.input<typeof operationSchema>) {
@@ -44,7 +50,8 @@ export async function preparePricingOperation(client: Client, input: z.input<typ
   if (p.source === 'manual' && !p.actorId) throw new Error('pricing_actor_required');
   const { data, error } = await client.rpc('prepare_pricing_operation', { p_id: p.id, p_evaluation_id: p.evaluationId,
     p_group_id: p.groupId, p_group_version: p.groupVersion, p_item_id: p.itemId, p_price_cents: p.priceCents,
-    p_source: p.source, p_actor_id: p.actorId, p_reason: p.reason, p_rule_id: p.ruleId, p_job_id: p.jobId });
+    p_source: p.source, p_actor_id: p.actorId, p_reason: p.reason, p_rule_id: p.ruleId, p_job_id: p.jobId,
+    ...(p.clearanceId ? { p_clearance_id: p.clearanceId, p_fulfillment_source: p.fulfillmentSource, p_quantity: p.clearanceQuantity } : {}) });
   if (error) throw new Error('pricing_operation_prepare_failed');
   return data;
 }

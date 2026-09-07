@@ -14,6 +14,162 @@ export type Database = {
   }
   public: {
     Tables: {
+      internal_stock_clearance_groups: {
+        Row: {
+          clearance_id: string
+          group_id: string
+          group_version: number
+        }
+        Insert: {
+          clearance_id: string
+          group_id: string
+          group_version: number
+        }
+        Update: {
+          clearance_id?: string
+          group_id?: string
+          group_version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "internal_stock_clearance_groups_clearance_id_fkey"
+            columns: ["clearance_id"]
+            referencedRelation: "internal_stock_clearance"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "internal_stock_clearance_groups_group_id_fkey"
+            columns: ["group_id"]
+            referencedRelation: "ml_pricing_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "internal_stock_clearance_groups_group_id_group_version_fkey"
+            columns: ["group_id", "group_version"]
+            referencedRelation: "ml_pricing_group_revisions"
+            referencedColumns: ["group_id", "version"]
+          },
+        ]
+      }
+      internal_stock_clearance_entries: {
+        Row: {
+          clearance_id: string
+          component_id: string
+          entry_id: string
+          first_unit: number
+          last_unit: number
+          units_per_sale: number
+        }
+        Insert: {
+          clearance_id: string
+          component_id: string
+          entry_id: string
+          first_unit: number
+          last_unit: number
+          units_per_sale: number
+        }
+        Update: {
+          clearance_id?: string
+          component_id?: string
+          entry_id?: string
+          first_unit?: number
+          last_unit?: number
+          units_per_sale?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "internal_stock_clearance_entries_clearance_id_fkey"
+            columns: ["clearance_id"]
+            referencedRelation: "internal_stock_clearance"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "internal_stock_clearance_entries_component_id_fkey"
+            columns: ["component_id"]
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "internal_stock_clearance_entries_component_id_fkey"
+            columns: ["component_id"]
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "internal_stock_clearance_entries_entry_id_fkey"
+            columns: ["entry_id"]
+            referencedRelation: "estoque_interno_movimentacoes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      internal_stock_clearance: {
+        Row: {
+          actor_id: string
+          close_reason: string | null
+          closed_at: string | null
+          closed_by: string | null
+          ends_at: string | null
+          evaluation_id: string | null
+          id: string
+          max_loss_cents: number
+          produto_id: string
+          quantity: number
+          reason: string
+          starts_at: string
+          state: string
+        }
+        Insert: {
+          actor_id: string
+          close_reason?: string | null
+          closed_at?: string | null
+          closed_by?: string | null
+          ends_at?: string | null
+          evaluation_id?: string | null
+          id?: string
+          max_loss_cents: number
+          produto_id: string
+          quantity: number
+          reason: string
+          starts_at?: string
+          state?: string
+        }
+        Update: {
+          actor_id?: string
+          close_reason?: string | null
+          closed_at?: string | null
+          closed_by?: string | null
+          ends_at?: string | null
+          evaluation_id?: string | null
+          id?: string
+          max_loss_cents?: number
+          produto_id?: string
+          quantity?: number
+          reason?: string
+          starts_at?: string
+          state?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "internal_stock_clearance_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            referencedRelation: "pricing_evaluations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "internal_stock_clearance_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "internal_stock_clearance_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       manual_pricing_overrides: {
         Row: {
           actor_id: string | null
@@ -112,8 +268,11 @@ export type Database = {
       pricing_operations: {
         Row: {
           actor_id: string | null
+          clearance_id: string | null
+          clearance_quantity: number | null
           created_at: string
           evaluation_id: string
+          fulfillment_source: string | null
           group_id: string
           group_version: number
           id: string
@@ -130,8 +289,11 @@ export type Database = {
         }
         Insert: {
           actor_id?: string | null
+          clearance_id?: string | null
+          clearance_quantity?: number | null
           created_at?: string
           evaluation_id: string
+          fulfillment_source?: string | null
           group_id: string
           group_version: number
           id: string
@@ -148,8 +310,11 @@ export type Database = {
         }
         Update: {
           actor_id?: string | null
+          clearance_id?: string | null
+          clearance_quantity?: number | null
           created_at?: string
           evaluation_id?: string
+          fulfillment_source?: string | null
           group_id?: string
           group_version?: number
           id?: string
@@ -165,6 +330,12 @@ export type Database = {
           state?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "pricing_operations_clearance_id_fkey"
+            columns: ["clearance_id"]
+            referencedRelation: "internal_stock_clearance"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "pricing_operations_evaluation_id_fkey"
             columns: ["evaluation_id"]
@@ -191,9 +362,10 @@ export type Database = {
           },
         ]
       }
-pricing_events: {
+      pricing_events: {
         Row: {
           actor_id: string | null
+          clearance_id: string | null
           command_id: string | null
           created_at: string
           evaluation_id: string | null
@@ -217,6 +389,7 @@ pricing_events: {
         }
         Insert: {
           actor_id?: string | null
+          clearance_id?: string | null
           command_id?: string | null
           created_at?: string
           evaluation_id?: string | null
@@ -240,6 +413,7 @@ pricing_events: {
         }
         Update: {
           actor_id?: string | null
+          clearance_id?: string | null
           command_id?: string | null
           created_at?: string
           evaluation_id?: string | null
@@ -262,6 +436,12 @@ pricing_events: {
           rule_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "pricing_events_clearance_id_fkey"
+            columns: ["clearance_id"]
+            referencedRelation: "internal_stock_clearance"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "pricing_events_evaluation_id_fkey"
             columns: ["evaluation_id"]
@@ -2252,6 +2432,49 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      assert_pricing_governance_allows: {
+        Args: {
+          p_actor_id: string
+          p_clearance_id: string
+          p_evaluation_id: string
+          p_fulfillment_source: string
+          p_group_id: string
+          p_price_cents: number
+          p_quantity: number
+          p_source: string
+        }
+        Returns: undefined
+      }
+      get_product_pricing_clearances: {
+        Args: { p_product_id: string }
+        Returns: Json
+      }
+      manage_internal_stock_clearance: {
+        Args: {
+          p_actor_id: string
+          p_command: Json
+          p_evaluation?: Json
+          p_product_id: string
+        }
+        Returns: string
+      }
+      internal_clearance_available: {
+        Args: { p_clearance_id: string }
+        Returns: number
+      }
+      get_internal_clearance_stock: {
+        Args: { p_product_id: string }
+        Returns: Json
+      }
+      internal_clearance_fifo: {
+        Args: { p_product_id: string }
+        Returns: {
+          created_at: string
+          entry_id: string
+          first_available: number
+          last_unit: number
+        }[]
+      }
       manage_manual_pricing_override: {
         Args: {
           p_action: string
@@ -2276,13 +2499,16 @@ ml_pricing_groups: {
       prepare_pricing_operation: {
         Args: {
           p_actor_id: string
+          p_clearance_id?: string
           p_evaluation_id: string
+          p_fulfillment_source?: string
           p_group_id: string
           p_group_version: number
           p_id: string
           p_item_id: string
           p_job_id?: string
           p_price_cents: number
+          p_quantity?: number
           p_reason: string
           p_rule_id?: string
           p_source: string

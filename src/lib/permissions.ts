@@ -1,6 +1,7 @@
 import type { Database } from "@/types/database";
 
 export const VORTEK_PERMISSIONS = [
+  "pricing.clearance.manage",
   "pricing.override.manage",
   "tv.read",
   "sales.read",

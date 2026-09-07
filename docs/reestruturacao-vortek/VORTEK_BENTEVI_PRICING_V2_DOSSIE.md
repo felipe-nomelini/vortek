@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — BNT-PRICING-V2-05 (07/09/2026):** override por grupo, auditoria, propagação e controles implementados; testes locais e banco DEV `.162` validados; [evidências](evidencias/BNT-PRICING-V2-05-validacao.md) e seção 23. Próxima ação: planejar BNT-PRICING-V2-06 — Liquidação interna, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Push e deploy ficam para o final das etapas, por decisão do usuário. Sem homologação ML externa nesta entrega.
+**Atualização vigente — BNT-PRICING-V2-06 (07/09/2026):** liquidação interna limitada por estoque, perda unitária e vigência, com transferência compartilhada e auditoria implementadas; testes locais e banco DEV `.162` validados; [evidências](evidencias/BNT-PRICING-V2-06-validacao.md) e seção 24. Próxima ação: planejar BNT-CANON-WARRANTY-01 — Garantia por evidência, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Push e deploy ficam para o final das etapas, por decisão do usuário. Sem homologação ML externa nesta entrega.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -593,3 +593,11 @@ Persistência e eventos são transacionais e idempotentes. Reconciliação de gr
 O detalhe do produto apresenta proteção, membros, responsável/motivo, ações contextuais e histórico. API autenticada aplica a matriz existente; amostras protegidas não permitem gestão. Estado de proteção acompanha a consulta econômica sem alterar fórmulas. Leitura falha não vira ausência de override.
 
 Migration `20260907193000` aplicada somente no DEV `.162`, após ensaio revertido. Tipos gerados desse mesmo banco. Evidências SQL, concorrência, API, renderização SSR e limitações: [V2-05](evidencias/BNT-PRICING-V2-05-validacao.md). Sem push/deploy ou produção; aceite visual no domínio permanece para a homologação conjunta. Próxima ação: **BNT-PRICING-V2-06 — Liquidação interna**.
+
+## 24. BNT-PRICING-V2-06 — Liquidação interna (07/09/2026)
+
+Autorização implementada com perda máxima por unidade, quantidade recortada nas entradas internas, vigência e encerramento auditado. Admin/gerente gerenciam; demais perfis consultam. Custo continua na oferta ativa canônica, não representa aquisição histórica.
+
+Vínculos transferidos entre grupos compartilham o mesmo orçamento. Reposição não herda autorização; conflito entre autorizações, falta de estoque, grupo/composição inválidos ou economia inconclusiva impedem aplicação. Ativação administrativa não altera preço nem habilita automação. Precedência integrada à preparação e à transição `requested`, preservando override e reconciliação de operações em andamento.
+
+Migration `20260907203000` aplicada exclusivamente ao DEV `.162`, tipos gerados, testes SQL/concorrência e 338 testes Node aprovados, validate e build aprovados. [Evidências, limites e rollback](evidencias/BNT-PRICING-V2-06-validacao.md). Sem push/deploy; aceite visual fica para homologação conjunta. Próxima ação: **BNT-CANON-WARRANTY-01 — Garantia por evidência**. Não liberar escritores ML nesta passagem.
