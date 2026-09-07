@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Ação corrente:** planejar `M2M-PRC-04 — Precedência/revalidação ML viva`. `BNT-M2M-RECON-01` concluída documentalmente; `BNT-CANON-QTY-01` concluída e homologada em DEV. O programa completo de pricing ainda não está homologado para produção. Bloqueios comerciais da PRC-03 preservados; escritas comerciais, produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
+**Ação corrente:** `M2M-PRC-04 — Fontes ML vivas e cotação sob demanda`, implementada com validação local aprovada, mas ainda aberta para homologação econômica completa com oferta DEV elegível. [Evidências e pendência](evidencias/M2M-PRC-04-validacao.md). Não avançar para CFL-01 nem liberar escrita comercial; produção permanece fora do escopo.
 
 ---
 
@@ -65,7 +65,7 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00, CANON-01, PRC-01/02/02A/03 e QTY-01 concluídos nos respectivos escopos | Planejar `M2M-PRC-04`; fontes vivas, governança, publicação e Radar ainda pendentes |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00, CANON-01, PRC-01/02/02A/03 e QTY-01 concluídos; PRC-04 implementada localmente | Validar PRC-04 com oferta DEV e contexto comercial apto; governança, publicação e Radar ainda pendentes |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -3101,7 +3101,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-03` / `M2M-PRC-03` — retirar custo/lucro nominal/margem global/piso universal de 10% do caminho decisório;
 - [x] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
 - [x] `BNT-M2M-RECON-01` — reconciliar autoridade, dependências e critérios de aceite, sem alteração funcional;
-- [ ] `M2M-PRC-04` — precedência/revalidação ML viva e `INCONCLUSIVO_FONTE_ML_INDISPONIVEL`;
+- [ ] `M2M-PRC-04` — implementada, testes/validate/build aprovados; pendente homologação econômica completa com oferta DEV elegível e contexto comercial ML apto. [Evidência](evidencias/M2M-PRC-04-validacao.md);
 - [ ] `M2M-CFL-01` — contrato de conflitos independente do score;
 - [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
 - [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos, sem habilitar escritores;

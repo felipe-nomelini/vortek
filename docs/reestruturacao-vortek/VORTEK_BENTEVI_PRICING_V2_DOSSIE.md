@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — BNT-M2M-RECON-01 (06/09/2026):** PRC-01/02/02A/03 e QTY-01 concluídas nos respectivos escopos; sequência e dependências reconciliadas na seção 18 e no plano. Próxima ação: planejar `M2M-PRC-04 — Precedência/revalidação ML viva`. O [Cânon Comercial 1.0 e seus complementos aprovados](VORTEK_CANON_COMERCIAL_V1.md) prevalece. As seções anteriores à 18 são fotografias datadas: suas próximas ações e contratos superados (inclusive validade de override anterior à decisão de proteção até revogação) não substituem os contratos vigentes. Nenhuma escrita comercial ou promoção liberada.
+**Atualização vigente — M2M-PRC-04 (06/09/2026):** consulta econômica sob demanda implementada e validada localmente; [homologação econômica completa ainda pendente](evidencias/M2M-PRC-04-validacao.md). Sequência reconciliada na seção 18 mantida, sem avançar para CFL-01 ou liberar escritas. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas.
 
 ## 1. Escopo, autoridade e fotografia
 

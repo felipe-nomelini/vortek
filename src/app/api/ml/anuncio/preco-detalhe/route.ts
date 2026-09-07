@@ -1,201 +1,161 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
-import {
-  isWinningBuyBoxStatus,
-  normalizeBuyBoxStatus,
-  normalizePriceToWin,
-  resolveCatalogCompetitionStatus,
-} from '@/lib/catalogo/no-catalogo';
-import {
-  extractQuantityPricingTiers,
-  serializeQuantityPricingTiers,
-} from '@/lib/ml/quantity-pricing';
-import { loadPricingRequestContext, loadProductPricing } from '@/services/pricing-context';
+import { loadLiveProductPricing } from '@/services/pricing-live';
+import { quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
 import { pricingView } from '@/lib/pricing-view';
-import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
+import { extractQuantityPricingTiers, serializeQuantityPricingTiers } from '@/lib/ml/quantity-pricing';
 import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
-import { resolveMlFee } from '@/lib/commercial-pricing';
-import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
+import { normalizeBuyBoxStatus, normalizePriceToWin, resolveCatalogCompetitionStatus } from '@/lib/catalogo/no-catalogo';
 
-function round2(value: number) {
-  return Math.round(value * 100) / 100;
+const contextSchema = z.object({
+  categoryId: z.string().regex(/^MLB\d+$/), listingType: z.enum(['gold_special', 'gold_pro']),
+  condition: z.enum(['new', 'used', 'not_specified']), mode: z.enum(['me2', 'not_specified']),
+  logisticType: z.string().trim().min(1).max(60), freeShipping: z.boolean(),
+}).strict();
+const inputSchema = z.object({
+  produtoId: z.string().min(1).max(100),
+  mlItemId: z.string().regex(/^MLB\d+$/).optional(),
+  priceCents: z.number().int().positive().max(Number.MAX_SAFE_INTEGER).optional(),
+  context: contextSchema.optional(),
+}).strict();
+type Input = z.infer<typeof inputSchema>;
+const json = (body: unknown, status = 200) => NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
+
+function dimensions(product: any): string | null {
+  const values = [product.altura, product.largura, product.profundidade, product.peso_bruto].map(Number);
+  if (!values.every(v => Number.isFinite(v) && v > 0)) return null;
+  return values.slice(0, 3).join('x') + ',' + Math.ceil(values[3] * 1000);
+}
+function itemContext(item: any, sellerId: string): MarketContext | null {
+  if (!item || !item.id) return null;
+  const parsed = contextSchema.safeParse({ categoryId: item.category_id, listingType: item.listing_type_id,
+    condition: item.condition, mode: item.shipping?.mode, logisticType: item.shipping?.logistic_type,
+    freeShipping: item.shipping?.free_shipping });
+  if (!parsed.success || item.currency_id !== 'BRL' || String(item.seller_id) !== sellerId) return null;
+  // No anúncio existente, o ML resolve as dimensões do próprio item, não um snapshot local.
+  return { ...parsed.data, sellerId, itemId: item.id, catalogProductId: /^MLB\d+$/.test(item.catalog_product_id) ? item.catalog_product_id : null,
+    dimensions: null, currency: 'BRL', quantity: 1 };
 }
 
-function normalizeReasons(payload: any): string[] {
-  const source = Array.isArray(payload?.reason)
-    ? payload.reason
-    : Array.isArray(payload?.reasons)
-      ? payload.reasons
-      : payload?.reason
-        ? [payload.reason]
-        : [];
-  return source
-    .map((reason: any) => String(reason?.message || reason?.id || reason || '').trim())
-    .filter(Boolean);
+async function preparationValid(context: z.infer<typeof contextSchema>, sellerId: string): Promise<boolean | null> {
+  const [category, seller, shipping] = await Promise.all([
+    fetchMLResult<any>('/categories/' + encodeURIComponent(context.categoryId)),
+    fetchMLResult<any>('/users/' + encodeURIComponent(sellerId) + '/shipping_preferences'),
+    fetchMLResult<any>('/categories/' + encodeURIComponent(context.categoryId) + '/shipping_preferences'),
+  ]);
+  if (!category.ok || !seller.ok || !shipping.ok) return null;
+  return category.data?.id === context.categoryId && Array.isArray(category.data?.children_categories)
+    && category.data.children_categories.length === 0 && category.data?.settings?.listing_allowed === true
+    && Array.isArray(seller.data?.logistics) && seller.data.logistics.some((row: any) => row.mode === context.mode
+      && Array.isArray(row.types) && row.types.some((type: any) => type.type === context.logisticType))
+    && Array.isArray(shipping.data?.logistics) && shipping.data.logistics.some((row: any) => row.mode === context.mode
+      && Array.isArray(row.types) && row.types.includes(context.logisticType));
 }
 
-function normalizeBoosts(payload: any) {
-  return (Array.isArray(payload?.boosts) ? payload.boosts : [])
-    .map((boost: any) => ({
-      id: String(boost?.id || '').trim(),
-      status: String(boost?.status || '').trim(),
-      description: String(boost?.description || '').trim(),
-    }))
-    .filter((boost: any) => boost.id || boost.description);
+async function details(raw: unknown) {
+  const auth = await createClient();
+  const { data: { user } } = await auth.auth.getUser();
+  if (!user) return json({ error: 'Não autenticado' }, 401);
+  const parsed = inputSchema.safeParse(raw);
+  if (!parsed.success) return json({ error: 'Contexto de cotação inválido' }, 422);
+  const input: Input = parsed.data;
+  const review = await loadBntD07VisualReview();
+  if (input.produtoId.startsWith('bnt-d07-review-') || review?.items.some(row =>
+    String(row.product.id) === input.produtoId || row.mlListings?.some(item => item.itemId === input.mlItemId))) {
+    return json({ error: 'Amostra protegida: nenhuma consulta aos anúncios reais será executada.', code: 'homologation_fixture_read_only' }, 409);
+  }
+  const service = createServiceClient();
+  const { data: product, error } = await service.from('produtos').select('*').eq('id', input.produtoId).maybeSingle();
+  if (error) return json({ error: 'Falha ao carregar produto' }, 503);
+  if (!product) return json({ error: 'Produto não encontrado' }, 404);
+  const itemId = input.mlItemId || product.ml_item_id || null;
+  if (input.mlItemId) {
+    const binding = await service.from('anuncios_ml').select('ml_item_id').eq('ml_item_id', input.mlItemId).eq('produto_id', product.id).maybeSingle();
+    if (binding.error) return json({ error: 'Falha ao validar vínculo' }, 503);
+    if (!binding.data && input.mlItemId !== product.ml_item_id) return json({ error: 'Anúncio não pertence ao produto' }, 422);
+  }
+  // Cliente único resolve a conta conectada; não aceita seller_id fornecido pelo navegador.
+  const me = await fetchMLResult<any>('/users/me');
+  if (!me.ok || !me.data?.id || me.data.site_id !== 'MLB') return json({
+    error: 'Não foi possível validar a conta Mercado Livre.', code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' }, 503);
+  const sellerId = String(me.data.id);
+  let item: any = null;
+  let context: MarketContext | null = null;
+  let currentPrice: number | null = null;
+  if (itemId) {
+    if (input.context) return json({ error: 'O contexto de anúncio existente deve vir do ML' }, 422);
+    const result = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId));
+    if (!result.ok || !result.data) return json({ error: 'Anúncio indisponível para cotação.', code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' }, 503);
+    item = result.data;
+    context = itemContext(item, sellerId);
+    currentPrice = quoteMoney(item.price);
+    if (!context || !currentPrice || String(item.id) !== itemId) return json({ error: 'Contexto do anúncio incompatível para cotação.' }, 422);
+  } else {
+    if (!input.context) return json({ error: 'Informe categoria, tipo e logística para simular o novo anúncio.' }, 422);
+    const validPreparation = await preparationValid(input.context, sellerId);
+    if (validPreparation === null) return json({ error: 'ML indisponível para validar a preparação.', code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' }, 503);
+    if (!validPreparation) return json({
+        error: 'Categoria ou logística não confirmada. Revise o contexto de preparação.', code: 'COTACAO_INCOMPATIVEL' }, 422);
+    context = { ...input.context, sellerId, itemId: null, catalogProductId: null, dimensions: dimensions(product), currency: 'BRL', quantity: 1 };
+    if (context.mode === 'me2' && !context.dimensions) return json({ error: 'Dimensões e peso bruto comprovados são necessários.' }, 422);
+  }
+  const expected = JSON.stringify({ context, price: item?.price ?? null, tags: item?.tags ?? [], shipping: item?.shipping ?? null });
+  const pricing = await loadLiveProductPricing(service, product, context, input.priceCents ?? currentPrice, async () => {
+    const account = await fetchMLResult<any>('/users/me');
+    if (!account.ok) return null;
+    if (String(account.data?.id) !== sellerId || account.data?.site_id !== 'MLB') return false;
+    if (!itemId) return preparationValid(input.context!, sellerId);
+    const fresh = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId));
+    if (!fresh.ok) return null;
+    const next = itemContext(fresh.data, sellerId);
+    return JSON.stringify({ context: next, price: fresh.data?.price ?? null, tags: fresh.data?.tags ?? [], shipping: fresh.data?.shipping ?? null }) === expected;
+  });
+  const view = pricingView(pricing);
+  const memory = pricing.current.memory;
+  let quantityPricing: ReturnType<typeof serializeQuantityPricingTiers> = [];
+  let quantityPricingWarning: string | null = null;
+  let catalog: any = null;
+  if (itemId) {
+    const prices = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId) + '/prices', { headers: { 'show-all-prices': 'TRUE' } });
+    if (prices.ok) quantityPricing = serializeQuantityPricingTiers(extractQuantityPricingTiers(prices.data, (currentPrice ?? 0) / 100));
+    else quantityPricingWarning = 'Descontos existentes indisponíveis para consulta.';
+    if (item?.catalog_listing) {
+      const competition = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId) + '/price_to_win?version=v2');
+      const rawStatus = competition.ok ? normalizeBuyBoxStatus(competition.data) : null;
+      catalog = { status: resolveCatalogCompetitionStatus({ catalogListing: true, buyBoxStatus: rawStatus }),
+        rawStatus, priceToWin: competition.ok ? normalizePriceToWin(competition.data) : null,
+        currentPrice: (currentPrice ?? 0) / 100, catalogProductId: item.catalog_product_id,
+        warning: competition.ok ? null : 'Competição indisponível; não é recomendação de preço.',
+        syncedAt: competition.ok ? new Date().toISOString() : null,
+        currencyId: 'BRL', consistent: typeof competition.data?.consistent === 'boolean' ? competition.data.consistent : null,
+        visitShare: competition.ok ? competition.data?.visit_share ?? null : null,
+        competitorsSharingFirstPlace: competition.ok ? competition.data?.competitors_sharing_first_place ?? null : null,
+        winner: competition.ok && competition.data?.winner ? { itemId: competition.data.winner.item_id ?? competition.data.winner.id ?? null,
+          price: typeof competition.data.winner.price === 'number' ? competition.data.winner.price : null, currencyId: 'BRL' } : null,
+        boosts: competition.ok && Array.isArray(competition.data?.boosts) ? competition.data.boosts.map((b: any) => ({
+          id: String(b.id ?? ''), status: String(b.status ?? ''), description: String(b.description ?? '') })) : [],
+        reasons: competition.ok ? [competition.data?.reason ?? competition.data?.reasons ?? []].flat().map((r: any) => String(r?.message ?? r?.id ?? r)) : [] };
+    }
+  }
+  return json({ success: true, mlItemId: itemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
+    currentProfit: input.priceCents != null && input.priceCents !== currentPrice ? null : view.profit,
+    pricing, quantityPricing, quantityPricingWarning, catalog,
+    calculator: { cost: view.cost, shipping: memory ? memory.shipping.amountCents! / 100 : null,
+      mlFee: null, taxRate: memory?.tax.context.appliedRate ?? null },
+    automaticPricing: { active: item ? hasMlAutomaticPrice(item) : false, tag: ML_DYNAMIC_STANDARD_PRICE_TAG } });
 }
 
 export async function GET(request: Request) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+  const params = new URL(request.url).searchParams;
+  try { return await details({ produtoId: params.get('produtoId') || '', ...(params.get('mlItemId') ? { mlItemId: params.get('mlItemId') } : {}) }); }
+  catch { return json({ error: 'Falha ao consultar fontes econômicas.' }, 503); }
+}
 
-  const searchParams = new URL(request.url).searchParams;
-  const produtoId = String(searchParams.get('produtoId') || '').trim();
-  const requestedMlItemId = String(searchParams.get('mlItemId') || '').trim().toUpperCase();
-  if (!produtoId) return NextResponse.json({ error: 'produtoId é obrigatório' }, { status: 422 });
-
-  const service = createServiceClient();
-  const requestContext = await loadPricingRequestContext(service);
-  const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
-  const taxRate = pricingTaxContext.appliedRate;
-  const { data: produto, error } = await service
-    .from('produtos')
-    .select('*')
-    .eq('id', produtoId)
-    .maybeSingle();
-  if (error) return NextResponse.json({ error: `Falha ao buscar produto: ${error.message}` }, { status: 500 });
-  if (!produto?.ml_item_id) return NextResponse.json({ error: 'Produto sem anúncio no Mercado Livre' }, { status: 422 });
-
-  let catalogListing = false;
-  let mlItemId = requestedMlItemId || String(produto.ml_item_id);
-  if (requestedMlItemId) {
-    const { data: anuncio, error: anuncioError } = await service
-      .from('anuncios_ml')
-      .select('ml_item_id,produto_id,catalogo')
-      .eq('ml_item_id', requestedMlItemId)
-      .eq('produto_id', produtoId)
-      .maybeSingle();
-    if (anuncioError) {
-      return NextResponse.json({ error: `Falha ao validar anúncio: ${anuncioError.message}` }, { status: 500 });
-    }
-    if (!anuncio) {
-      return NextResponse.json({ error: 'O anúncio informado não pertence a este produto' }, { status: 422 });
-    }
-    mlItemId = String(anuncio.ml_item_id);
-    catalogListing = Boolean(anuncio.catalogo);
-  }
-
-  const itemResult = await fetchMLResult<any>(`/items/${encodeURIComponent(mlItemId)}`);
-  if (!itemResult.ok || !itemResult.data) {
-    return NextResponse.json({ error: itemResult.error?.message || 'Falha ao consultar preço atual no Mercado Livre' }, { status: itemResult.status || 502 });
-  }
-  catalogListing = Boolean(itemResult.data.catalog_listing ?? catalogListing);
-
-  const price = Number(itemResult.data.price);
-  if (!Number.isFinite(price) || price <= 0) {
-    return NextResponse.json({ error: 'Mercado Livre retornou preço atual inválido' }, { status: 502 });
-  }
-
-  const quantityResult = await fetchMLResult<any>(`/items/${encodeURIComponent(mlItemId)}/prices`, {
-    headers: { 'show-all-prices': 'TRUE' },
-  });
-  const pricing = (await loadProductPricing(service, [produto], { requestContext,
-    evidence: new Map([[produto.id, { mlItemId, currentPriceCents: Math.round(price * 100), marketContextKey: `listing:${mlItemId}:unquoted` }]]),
-    shippingModes: new Map([[produto.id, { mode: String(itemResult.data.shipping?.mode || ''), mlItemId, observedAt: requestContext.evaluatedAt }]]),
-  })).get(produto.id)!;
-  const view = pricingView(pricing);
-  const cost = view.cost;
-  const shipping = pricing.current.memory?.shipping.amountCents == null ? null : pricing.current.memory.shipping.amountCents / 100;
-  const mlFee = commercialPricing.mlFeeFallbackRate;
-  let catalog: any = null;
-
-  if (catalogListing) {
-    const { data: snapshot } = await service
-      .from('catalogo_ml_snapshot')
-      .select('buy_box_status,buy_box_winning,catalog_product_id,price_to_win,price,synced_at')
-      .eq('ml_item_id', mlItemId)
-      .maybeSingle();
-    const competitionResult = await fetchMLResult<any>(
-      `/items/${encodeURIComponent(mlItemId)}/price_to_win?version=v2`,
-    );
-    const competition = competitionResult.ok ? competitionResult.data : null;
-    const rawStatus = normalizeBuyBoxStatus(competition) || snapshot?.buy_box_status || null;
-    const rawPriceToWin = competition
-      ? normalizePriceToWin(competition)
-      : Number(snapshot?.price_to_win);
-    const priceToWin = Number.isFinite(Number(rawPriceToWin)) && Number(rawPriceToWin) > 0
-      ? round2(Number(rawPriceToWin))
-      : null;
-    const catalogProductId = String(
-      competition?.catalog_product_id
-      || itemResult.data?.catalog_product_id
-      || snapshot?.catalog_product_id
-      || '',
-    ).trim() || null;
-    const winner = competition?.winner && typeof competition.winner === 'object'
-      ? {
-          itemId: String(competition.winner.item_id || competition.winner.id || '').trim() || null,
-          price: Number.isFinite(Number(competition.winner.price)) ? round2(Number(competition.winner.price)) : null,
-          currencyId: String(competition.winner.currency_id || competition.currency_id || 'BRL'),
-        }
-      : null;
-
-    catalog = {
-      status: resolveCatalogCompetitionStatus({
-        catalogListing: true,
-        buyBoxStatus: rawStatus,
-        buyBoxWinning: snapshot?.buy_box_winning,
-      }),
-      rawStatus,
-      priceToWin,
-      catalogProductId,
-      currentPrice: round2(Number(competition?.current_price ?? price)),
-      currencyId: String(competition?.currency_id || itemResult.data?.currency_id || 'BRL'),
-      consistent: typeof competition?.consistent === 'boolean' ? competition.consistent : null,
-      visitShare: String(competition?.visit_share || '').trim() || null,
-      competitorsSharingFirstPlace: Number.isFinite(Number(competition?.competitors_sharing_first_place))
-        ? Number(competition.competitors_sharing_first_place)
-        : null,
-      winner,
-      boosts: normalizeBoosts(competition),
-      reasons: normalizeReasons(competition),
-      warning: competitionResult.ok
-        ? null
-        : (competitionResult.error?.message || 'Não foi possível atualizar a disputa do catálogo agora; exibindo o último estado sincronizado.'),
-      syncedAt: competitionResult.ok ? new Date().toISOString() : (snapshot?.synced_at || null),
-    };
-
-    if (competitionResult.ok) {
-      await service
-        .from('catalogo_ml_snapshot')
-        .update({
-          buy_box_status: rawStatus,
-          buy_box_winning: isWinningBuyBoxStatus(rawStatus),
-          catalog_product_id: catalogProductId,
-          price_to_win: priceToWin,
-          price: round2(price),
-          synced_at: new Date().toISOString(),
-        } as any)
-        .eq('ml_item_id', mlItemId);
-    }
-  }
-
-  return NextResponse.json({
-    success: true,
-    mlItemId,
-    currentPrice: round2(price),
-    currentProfit: view.profit,
-    pricing,
-    quantityPricing: quantityResult.ok
-      ? serializeQuantityPricingTiers(extractQuantityPricingTiers(quantityResult.data, price))
-      : [],
-    quantityPricingWarning: quantityResult.ok ? null : (quantityResult.error?.message || 'Não foi possível consultar preços de atacado no ML.'),
-    calculator: { cost, shipping, mlFee, taxRate },
-    automaticPricing: {
-      active: hasMlAutomaticPrice(itemResult.data),
-      tag: ML_DYNAMIC_STANDARD_PRICE_TAG,
-    },
-    catalog,
-  });
+/** Consulta explícita, nunca grava configuração ou preço. */
+export async function POST(request: Request) {
+  try { return await details(await request.json().catch(() => null)); }
+  catch { return json({ error: 'Falha ao consultar fontes econômicas.' }, 503); }
 }

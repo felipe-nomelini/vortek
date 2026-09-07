@@ -119,7 +119,8 @@ export type EconomicIssue = Readonly<{
   code: 'DADO_INVALIDO' | 'DADO_AUSENTE' | 'DADO_VENCIDO' | 'BASE_INCOMPATIVEL'
     | 'COTACAO_INCOMPATIVEL' | 'OFERTA_INELEGIVEL' | 'COMPETENCIA_INCOMPATIVEL'
     | 'PGDAS_NAO_COMPROVADO' | 'PRECISAO_INSEGURA' | 'DENOMINADOR_INVIAVEL'
-    | 'POLITICA_PRICING_INVALIDA' | 'OBJETIVO_PRICING_INVALIDO' | 'PRECIFICACAO_NAO_CONVERGIU';
+    | 'POLITICA_PRICING_INVALIDA' | 'OBJETIVO_PRICING_INVALIDO' | 'PRECIFICACAO_NAO_CONVERGIU'
+    | 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' | 'CONTEXTO_ALTERADO';
 }>;
 
 export type EconomicMemory = Readonly<{
@@ -167,3 +168,11 @@ export type EconomicProjectionResult =
   | { ok: true; priceCents: number; objective: FinalPriceObjective;
     iterations: number; evaluation: Exclude<EconomicResult, { status: 'inconclusive' }> }
   | { ok: false; reasons: readonly EconomicIssue[] };
+
+/** Cotação unitária vinculada ao preço. Modelo serve apenas para propor o próximo candidato. */
+export type EconomicMarketQuote = {
+  fee: EconomicComponent;
+  shipping: EconomicComponent;
+  feeRate: number | null;
+  fixedFeeCents: number | null;
+};

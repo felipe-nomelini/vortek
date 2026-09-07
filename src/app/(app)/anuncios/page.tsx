@@ -1,5 +1,8 @@
 'use client';
 
+import { PricingQuoteSummary } from '@/components/products/LivePricingQuote';
+import type { ProductPricing } from '@/services/pricing-context';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Alert,
@@ -70,8 +73,9 @@ type ListingRow = MlListingDashboardRow & {
 };
 
 type PricingDetails = {
+  pricing?: ProductPricing;
   currentPrice: number;
-  currentProfit: number;
+  currentProfit: number | null;
   quantityPricing: Array<{
     min_purchase_unit: number;
     discount_percent: number;
@@ -739,6 +743,7 @@ export default function AnunciosPage() {
           </section>
 
           <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Preço e rentabilidade</span><strong>Um preço para os anúncios vinculados</strong></div></div>
+            <PricingQuoteSummary pricing={details?.pricing} />
             {details?.automaticPricing?.active && <Alert type="warning" showIcon message="Preço automático ativo no Mercado Livre" description="A edição manual está bloqueada para evitar uma rejeição do provedor. Desative a automação no Mercado Livre antes de alterar aqui." />}
             <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || details.automaticPricing?.active || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => setNewPrice(details.catalog?.priceToWin || null)}>Usar preço para ganhar</Button>}<Button type="primary" loading={savingPrice} disabled={!details || details.automaticPricing?.active || Boolean(visualReview)} onClick={() => void savePrice()}>Aplicar nos anúncios</Button></div>
             <small className={styles.scopeNotice}>O mesmo preço será aplicado ao anúncio padrão e ao anúncio de catálogo ativos ou pausados vinculados a este produto. O resultado aparece separadamente por item.</small>

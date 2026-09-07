@@ -71,7 +71,7 @@ test('BNT-D11 altera um preço único nos anúncios padrão e catálogo vinculad
 
 test('BNT-D11 detecta preço automático antes de habilitar edição manual', () => {
   assert.match(detailRoute, /automaticPricing/);
-  assert.match(detailRoute, /hasMlAutomaticPrice\(itemResult\.data\)/);
+  assert.match(detailRoute, /hasMlAutomaticPrice\(item\)/);
   assert.match(priceRoute, /hasMlAutomaticPrice\(result\.data\)/);
   assert.match(page, /details\.automaticPricing\?\.active/);
   assert.match(page, /Preço automático ativo no Mercado Livre/);

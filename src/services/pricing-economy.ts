@@ -1,6 +1,6 @@
 import type {
   EconomicComponent, EconomicEstimateReason, EconomicInput, EconomicIssue, EconomicMemory, EconomicProjectionInput,
-  EconomicProjectionResult, EconomicResult,
+  EconomicProjectionResult, EconomicResult, EconomicMarketQuote, FinalPriceObjective,
 } from '@/types/pricing';
 import { FINAL_PRICE_POLICY, getFinalPriceBand, isFinalPricePolicy, resolveFinalPrice } from './pricing-policy';
 import { SIMPLES_COMMERCE_MIN_RATE } from './pricing';
@@ -244,4 +244,40 @@ export function projectEconomicPrice(input: EconomicProjectionInput): EconomicPr
   const evaluation = evaluate(resolution.priceCents);
   if (evaluation.status === 'inconclusive') return { ok: false, reasons: evaluation.reasons };
   return { ok: true, priceCents: resolution.priceCents, objective: input.objective, iterations: resolution.iterations, evaluation };
+}
+
+/** Recotação limitada; nenhuma estimativa intermediária é devolvida como preço ML validado. */
+export async function projectQuotedEconomicPrice(input: {
+  base: Omit<EconomicInput, 'priceCents' | 'fee' | 'shipping'>;
+  seedCents: number;
+  objective: FinalPriceObjective;
+  quote: (priceCents: number) => Promise<EconomicMarketQuote>;
+}): Promise<EconomicProjectionResult> {
+  const failure = (code: EconomicIssue['code']): EconomicProjectionResult => ({ ok: false, reasons: [issue('projection', code)] });
+  let candidate = input.seedCents;
+  const visited = new Set<number>();
+  for (let step = 0; step < ECONOMIC_MAX_REFINEMENTS; step++) {
+    if (!cents(candidate) || candidate === 0) return failure('DADO_INVALIDO');
+    if (visited.has(candidate)) return failure('PRECIFICACAO_NAO_CONVERGIU');
+    visited.add(candidate);
+    const quote = await input.quote(candidate);
+    const evaluatedAt = [input.base.evaluatedAt, quote.fee.observedAt, quote.shipping.observedAt].sort().at(-1)!;
+    const evaluation = evaluateEconomicMemory({ ...input.base, evaluatedAt, priceCents: candidate, fee: quote.fee, shipping: quote.shipping });
+    if (evaluation.status === 'inconclusive') return { ok: false, reasons: evaluation.reasons };
+    if (quote.feeRate === null || quote.fixedFeeCents === null) return failure('COTACAO_INCOMPATIVEL');
+    // Somente semente matemática. O total vivo continua autoritativo na avaliação final.
+    const next = projectEconomicPrice({ base: { ...input.base, scenario: 'projected', evaluatedAt,
+      shipping: { ...quote.shipping, source: 'fallback', condition: 'estimated',
+        sourceId: 'projection.seed.shipping', quotedPriceCents: null } },
+      feeModel: { source: 'fallback', sourceId: 'projection.seed.fee', observedAt: evaluatedAt,
+        expiresAt: null, rate: quote.feeRate, fixedFeeCents: quote.fixedFeeCents }, objective: input.objective });
+    if (!next.ok) return next;
+    if (next.priceCents === candidate) {
+      const margin = input.objective === 'break_even' ? 0 : evaluation.memory.band[input.objective];
+      if (!reachesMargin(evaluation.memory.resultCents, candidate, margin)) return failure('COTACAO_INCOMPATIVEL');
+      return { ok: true, priceCents: candidate, objective: input.objective, iterations: step + 1, evaluation };
+    }
+    candidate = next.priceCents;
+  }
+  return failure('PRECIFICACAO_NAO_CONVERGIU');
 }

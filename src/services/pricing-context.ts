@@ -20,6 +20,7 @@ export type ProductPricing = {
   target: EconomicProjectionResult;
   floor: EconomicProjectionResult;
   breakEven: EconomicProjectionResult;
+  revalidation?: { status: 'queried' | 'inconclusive'; evaluatedAt: string; contextKey: string; code?: string };
 };
 export type PricingProduct = Pick<Database['public']['Tables']['produtos']['Row'],
   'id' | 'ativo' | 'oferta_preferencial_id' | 'fornecedor_preferencial_manual' | 'ml_item_id'
@@ -101,6 +102,9 @@ export async function loadProductPricing(client: Client, products: readonly Pric
   requestContext?: PricingRequestContext;
   evidence?: ReadonlyMap<string, ProductPricingEvidence>;
   taxEvidence?: Pick<EconomicTax, 'confirmation' | 'coverage'>;
+  /** Reutiliza a fonte econômica sem duplicar seleção de oferta ou composição de kit. */
+  evaluate?: (base: Omit<EconomicInput, 'priceCents' | 'fee'>, price: number | null,
+    feeRate: number, observedFee?: EconomicComponent) => ProductPricing;
 } = {}): Promise<Map<string, ProductPricing>> {
   const results = new Map<string, ProductPricing>();
   if (!products.length) return results;
@@ -173,7 +177,7 @@ export async function loadProductPricing(client: Client, products: readonly Pric
     const shipping: EconomicComponent = { ...componentBase, source: 'fallback',
       sourceId: 'configuracoes.pricing_unspecified_shipping_cost', observedAt: evaluatedAt,
       condition: unspecified ? 'estimated' : 'missing', amountCents: unspecified ? money(commercial.unspecifiedShippingCost) : null };
-    results.set(product.id, evaluateProductPricing({ scenario: 'projected', evaluatedAt,
+    results.set(product.id, (options.evaluate ?? evaluateProductPricing)({ scenario: 'projected', evaluatedAt,
       context: { productId: product.id, offerId: kit ? null : offer?.id || null,
         supplierId: kit ? null : offer ? String(offer.dslite_fornecedor_id) : null,
         mlItemId, pricingGroupId: null, currency: 'BRL', unit: 'sale_unit', quantity: 1,

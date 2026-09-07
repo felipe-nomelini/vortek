@@ -1,5 +1,7 @@
 'use client';
 
+import LivePricingQuote from '@/components/products/LivePricingQuote';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
@@ -349,7 +351,7 @@ export default function ProductDetailPage() {
       <div><span>Fonte atual</span><strong className={styles.textMetric}>{capacity.internal > 0 ? 'Estoque interno' : currentSupplier?.fornecedor_nome || product.fornecedor || 'Não definida'}</strong><small>{product.preferredSupplierManual ? 'preferência manual' : 'seleção automática'}</small></div>
     </section>
     <section className={styles.sectionCard}>
-      <div className={styles.sectionHeader}><div><Title level={4}>Custo e publicação</Title><Text type="secondary">Custo e estoque refletem a fonte preferencial quando houver oferta vinculada.</Text></div></div>
+      <div className={styles.sectionHeader}><div><Title level={4}>Custo e publicação</Title><Text type="secondary">Custo e estoque refletem a fonte preferencial quando houver oferta vinculada.</Text></div><LivePricingQuote key={id} productId={id} listings={effectiveListings} disabled={Boolean(visualReview) || isEditing} /></div>
       {isEditing ? <div className={styles.formGrid}>
         <label><span>Custo atual</span><InputNumber value={product.cost} onChange={(value) => patch({ cost: value ?? 0 })} formatter={currencyFormatter} parser={currencyParser} step={0.5} /></label>
         <label><span>Estoque do fornecedor</span><InputNumber value={product.supplierStock} onChange={(value) => patch({ supplierStock: value ?? 0 })} min={0} disabled={capacity.internal > 0} /></label>
@@ -364,7 +366,7 @@ export default function ProductDetailPage() {
       {product.shippingWarning ? <Alert className={styles.inlineAlert} type="warning" showIcon message="Frete precisa de revisão" description={product.shippingWarning} /> : null}
       <div className={styles.priceSummary}>
         <div><span>Preço atual</span><strong>{formatCurrency(displayPrice)}</strong><small>{'origem manual não comprovada'}</small></div>
-        <div><span>Preço calculado</span><strong>{formatCurrency(suggestedPrice)}</strong><small>referência automática</small></div>
+        <div><span>Preço calculado</span><strong>{formatCurrency(suggestedPrice)}</strong><small>estimativa local · sem revalidação ML</small></div>
         <div className={profit === null ? undefined : profit >= 0 ? styles.profitBox : styles.lossBox}><span>Lucro líquido</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? 'Dados econômicos incompletos' : `${margin.toFixed(2).replace('.', ',')}% de margem estimada`}</small></div>
       </div>
     </section>
