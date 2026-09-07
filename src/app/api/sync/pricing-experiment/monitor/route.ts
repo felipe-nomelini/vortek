@@ -253,7 +253,7 @@ export async function POST(request: Request) {
     }
   }
 
-  const monitored = state.groups.filter((group) => group.status !== 'execution_failed');
+  const monitored = state.groups.filter((group) => group.status !== 'execution_failed' && group.status !== 'closed');
   if (monitored.length > 0 && monitored.every((group) => Boolean(group.checkpoints?.D30) || group.status === 'paused_loss')) {
     state.status = 'awaiting_director_decision';
     for (const group of state.groups) if (group.status === 'active') group.status = 'awaiting_director_decision';

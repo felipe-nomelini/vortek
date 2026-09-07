@@ -8,9 +8,13 @@ export function radarCheckpointClassification(day: number, visits: number) {
 export async function monitorRadarLaunch(client: { from: (table: string) => any }) {
   const rows = await client.from('pricing_events').select('*').eq('pricing_source', 'radar_launch').eq('event_type', 'RADAR_LAUNCH_VALIDATED');
   if (rows.error) throw new Error(rows.error.message);
+  const ended = await client.from('pricing_events').select('payload').eq('event_type', 'PRICING_OBSERVATION_ENDED');
+  if (ended.error) throw new Error(ended.error.message);
+  const endedLaunches = new Set((ended.data ?? []).map((row: any) => row.payload.launchEventId).filter(Boolean));
   let processed = 0;
   const errors: Array<{itemId: string; error: string}> = [];
   for (const row of rows.data ?? []) {
+    if (endedLaunches.has(row.id)) continue;
     for (const day of [7, 15, 30]) {
       const due = Date.parse(row.payload.startedAt) + day * 86400000;
       if (Date.now() < due) continue;

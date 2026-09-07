@@ -7,6 +7,7 @@ export const HIGH_MARGIN_PRICING_EXPERIMENT_CONFIG_KEY = 'pricing_experiment_hig
 export type PricingExperimentCheckpoint = 'D7' | 'D15' | 'D30';
 export type PricingExperimentGroupStatus =
   | 'active'
+  | 'closed'
   | 'paused_loss'
   | 'execution_failed'
   | 'awaiting_director_decision';
@@ -86,6 +87,15 @@ export async function getHighMarginPricingExperiment(
   try {
     const parsed = JSON.parse(String(data.value));
     if (!isState(parsed)) throw new Error('estrutura inválida');
+    const ended = await client.from('pricing_events').select('payload,created_at')
+      .eq('event_type', 'PRICING_OBSERVATION_ENDED')
+      .contains('payload', { experimentId: parsed.experiment_id });
+    if (ended.error) throw new Error(ended.error.message);
+    // O encerramento é um evento separado: monitor com estado antigo não o apaga.
+    for (const group of parsed.groups) {
+      const ending = (ended.data ?? []).find((row: any) => row.payload.groupId === group.pricing_group_id);
+      if (ending) { group.status = 'closed'; group.stopped_at = ending.created_at; group.stop_reason = 'REPRICING_AUTORIZADO'; }
+    }
     return parsed;
   } catch (error: any) {
     throw new Error(`Configuração inválida do experimento de pricing: ${error?.message || 'JSON inválido'}`);
@@ -129,10 +139,13 @@ export function pricingExperimentUnitResult(input: {
 /** A coorte Radar usa eventos próprios e não altera o estado do experimento anterior. */
 export async function getProtectedPricingExperimentSkus(client: ServiceClientLike): Promise<Set<string>> {
   const skus = activePricingExperimentSkus(await getHighMarginPricingExperiment(client));
-  const { data, error } = await client.from('pricing_events').select('payload')
+  const { data, error } = await client.from('pricing_events').select('id,payload')
     .eq('pricing_source', 'radar_launch').eq('event_type', 'RADAR_LAUNCH_VALIDATED')
     .gte('created_at', new Date(Date.now() - 30 * 86400000).toISOString());
   if (error) throw new Error(error.message);
-  for (const row of data ?? []) if (Date.parse(row.payload.observationUntil) > Date.now()) skus.add(row.payload.sku);
+  const ended = await client.from('pricing_events').select('payload').eq('event_type', 'PRICING_OBSERVATION_ENDED');
+  if (ended.error) throw new Error(ended.error.message);
+  const endedLaunches = new Set((ended.data ?? []).map((row: any) => row.payload.launchEventId).filter(Boolean));
+  for (const row of data ?? []) if (!endedLaunches.has(row.id) && Date.parse(row.payload.observationUntil) > Date.now()) skus.add(row.payload.sku);
   return skus;
 }

@@ -22,8 +22,17 @@ test('limite de dez e unicidade por SKU são obrigatórios',()=>{
 test('proteção de preço inclui a coorte Radar sem substituir o experimento anterior',async()=>{
  const {getProtectedPricingExperimentSkus}=require('../src/lib/ml/pricing-experiment.ts');
  const state={version:1,experiment_id:'PRICING_EXPERIMENT_HIGH_MARGIN_ZERO_TRAFFIC_2026_09',status:'active',groups:[{sku:'OLD',status:'active'}]};
- const db={from:table=>{const b={select:()=>b,eq:()=>b,gte:()=>Promise.resolve({data:[{payload:{sku:'NEW',observationUntil:new Date(Date.now()+86400000).toISOString()}},{payload:{sku:'EXPIRED',observationUntil:'2020-01-01'}}]}),maybeSingle:()=>Promise.resolve({data:{value:JSON.stringify(state)}})};return b;}};
+ const db={from:table=>{const b={select:()=>b,eq:()=>b,contains:()=>b,then:resolve=>resolve({data:[]}),gte:()=>Promise.resolve({data:[{payload:{sku:'NEW',observationUntil:new Date(Date.now()+86400000).toISOString()}},{payload:{sku:'EXPIRED',observationUntil:'2020-01-01'}}]}),maybeSingle:()=>Promise.resolve({data:{value:JSON.stringify(state)}})};return b;}};
  const skus=await getProtectedPricingExperimentSkus(db);assert.deepEqual([...skus].sort(),['NEW','OLD']);
+});
+test('encerramento por grupo libera apenas a observação autorizada e sobrevive ao estado antigo',async()=>{
+ const {getProtectedPricingExperimentSkus,getHighMarginPricingExperiment}=require('../src/lib/ml/pricing-experiment.ts');
+ const state={version:1,experiment_id:'PRICING_EXPERIMENT_HIGH_MARGIN_ZERO_TRAFFIC_2026_09',status:'active',groups:[{sku:'END',pricing_group_id:'g1',status:'active'},{sku:'KEEP',pricing_group_id:'g2',status:'active'}]};
+ const ended=[{created_at:new Date().toISOString(),payload:{experimentId:state.experiment_id,groupId:'g1'}},{payload:{launchEventId:'launch1'}}];
+ const launches=[{id:'launch1',payload:{sku:'RADAR_END',observationUntil:'2099-01-01'}},{id:'launch2',payload:{sku:'RADAR_KEEP',observationUntil:'2099-01-01'}}];
+ const db={from:()=>{let type;const b={select:()=>b,eq:(k,v)=>(k==='event_type'&&(type=v),b),contains:()=>b,gte:()=>b,maybeSingle:async()=>({data:{value:JSON.stringify(state)}}),then:resolve=>resolve({data:type==='RADAR_LAUNCH_VALIDATED'?launches:ended})};return b;}};
+ const loaded=await getHighMarginPricingExperiment(db);assert.equal(loaded.groups[0].status,'closed');assert.equal(state.groups[0].status,'active');
+ assert.deepEqual([...await getProtectedPricingExperimentSkus(db)].sort(),['KEEP','RADAR_KEEP']);
 });
 test('checkpoints distinguem D7, D15 e D30 sem atribuir demanda inexistente',()=>{
  const fs=require('fs'),vm=require('vm'),ts=require('typescript');const m={exports:{}};
