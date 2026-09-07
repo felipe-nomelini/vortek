@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — M2M-PRC-04 (06/09/2026):** consulta econômica sob demanda implementada e validada localmente; [homologação econômica completa ainda pendente](evidencias/M2M-PRC-04-validacao.md). Sequência reconciliada na seção 18 mantida, sem avançar para CFL-01 ou liberar escritas. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas.
+**Atualização vigente — M2M-PRC-04 (07/09/2026):** corrigido timestamp real da oferta; consulta autenticada Clássico/`not_specified` validada em DEV com tarifa viva, origem de custo registrada e projeções completas. [Pendente homologação de frete vivo ME2: conta de teste sem essa logística](evidencias/M2M-PRC-04-validacao.md). Sequência reconciliada na seção 18 mantida, sem avançar para CFL-01 ou liberar escritas. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas.
 
 ## 1. Escopo, autoridade e fotografia
 

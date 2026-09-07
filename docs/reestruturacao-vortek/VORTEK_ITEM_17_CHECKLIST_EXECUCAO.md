@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Ação corrente:** `M2M-PRC-04 — Fontes ML vivas e cotação sob demanda`, implementada com validação local aprovada, mas ainda aberta para homologação econômica completa com oferta DEV elegível. [Evidências e pendência](evidencias/M2M-PRC-04-validacao.md). Não avançar para CFL-01 nem liberar escrita comercial; produção permanece fora do escopo.
+**Ação corrente (07/09/2026):** `M2M-PRC-04 — Fontes ML vivas e cotação sob demanda`: timestamp real corrigido; consulta autenticada Clássico/`not_specified` validada com tarifa viva e oferta temporária de origem registrada. Ainda aberta para homologação de frete vivo ME2, indisponível na conta de teste conectada. [Evidências e pendência](evidencias/M2M-PRC-04-validacao.md). Não avançar para CFL-01 nem liberar escrita comercial; produção permanece fora do escopo.
 
 ---
 
@@ -3083,7 +3083,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
-**Situação:** em andamento. Paridade/integrações e PRC-01/02/02A/03/QTY-01 concluídas nos respectivos escopos. PRC-04 implementada e validada localmente; concluir a homologação econômica com oferta DEV/contexto comercial apto antes de avançar. [Evidência e pendência corrente](evidencias/M2M-PRC-04-validacao.md). Bloqueios de escrita comercial preservados; sequência reconciliada inalterada.
+**Situação:** em andamento. Paridade/integrações e PRC-01/02/02A/03/QTY-01 concluídas nos respectivos escopos. PRC-04 com cotação autenticada Clássico/`not_specified` validada em DEV; concluir homologação de frete vivo ME2 em conta/contexto de teste habilitado antes de avançar. [Evidência e pendência corrente](evidencias/M2M-PRC-04-validacao.md). Bloqueios de escrita comercial preservados; sequência reconciliada inalterada.
 
 **Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
@@ -3101,7 +3101,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-03` / `M2M-PRC-03` — retirar custo/lucro nominal/margem global/piso universal de 10% do caminho decisório;
 - [x] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
 - [x] `BNT-M2M-RECON-01` — reconciliar autoridade, dependências e critérios de aceite, sem alteração funcional;
-- [ ] `M2M-PRC-04` — implementada, testes/validate/build aprovados; pendente homologação econômica completa com oferta DEV elegível e contexto comercial ML apto. [Evidência](evidencias/M2M-PRC-04-validacao.md);
+- [ ] `M2M-PRC-04` — timestamp real corrigido, testes/validate/build aprovados, cotação autenticada Clássico/`not_specified` validada; pendente frete vivo ME2 em conta/contexto de teste habilitado. [Evidência](evidencias/M2M-PRC-04-validacao.md);
 - [ ] `M2M-CFL-01` — contrato de conflitos independente do score;
 - [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
 - [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos, sem habilitar escritores;

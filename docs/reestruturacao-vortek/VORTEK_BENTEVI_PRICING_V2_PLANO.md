@@ -4,7 +4,7 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação:** PRC-03 e BNT-CANON-QTY-01 concluídas. PRC-04 implementada e validada localmente; homologação econômica completa pendente por ausência de oferta operacional DEV e contexto comercial de teste apto. [Evidência corrente](evidencias/M2M-PRC-04-validacao.md). Não avançar para CFL-01 ou liberar escrita comercial enquanto o gate não estiver validado.
+**Situação (07/09/2026):** PRC-03 e BNT-CANON-QTY-01 concluídas. PRC-04: timestamp real corrigido; consulta autenticada Clássico/`not_specified` validada com oferta temporária de origem registrada, tarifa viva e alvo/piso/equilíbrio. Pendente cotação viva de frete ME2: a conta de teste não possui essa logística. [Evidência corrente](evidencias/M2M-PRC-04-validacao.md). Não avançar para CFL-01 ou liberar escrita comercial enquanto o gate não estiver validado.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
 **Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.

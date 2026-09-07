@@ -4,7 +4,7 @@ Data: 06/09/2026. Worktree/branch: vortek-dev / dev. Base anterior: 9d44997.
 
 ## Estado e limite de conclusão
 
-Implementação e validação local concluídas; runtime final **8edefd2** publicado em DEV e verificação web autenticada executada. **Ação ainda aberta**, aguardando homologação econômica completa com oferta elegível e contexto comercial de teste apto. Não avançar para CFL-01 enquanto essa evidência não existir.
+Atualização de 07/09: runtime **591a46e** publicado em DEV. Consulta autenticada Clássico/`not_specified` validada com oferta temporária de origem registrada, tarifa ML viva e projeções completas; corrigido timestamp real de oferta. **Ação ainda aberta**: falta homologar cotação viva de frete ME2 em conta/contexto de teste habilitado. A conta conectada não possui ME2. Não avançar para CFL-01 enquanto essa evidência não existir. As seções anteriores à continuação de 07/09 registram a fotografia da entrega inicial.
 
 ## AS_IS → TO_BE
 
@@ -82,3 +82,32 @@ Cotação é temporal e aproximada; não constitui autorização futura de escri
 - [Easypanel — deployment](https://easypanel.io/docs/services/app#deployments).
 
 Skills DEV/Supabase orientam validação e isolamento; a referência antiga da skill a .160 foi rejeitada conforme AGENTS. Banco de produção não acessado. Cânon e AGENTS preservados.
+
+## Continuação em 07/09/2026 — timestamp real da oferta
+
+- Preflight repetido diretamente em **192.168.1.162 / supabase-dev**: 111 migrations, última 20260906130000; cinco produtos e zero ofertas. Conta ML `test_user` confirmada por `/users/me`. Preferências vivas da conta: somente `custom` e `not_specified`, **sem ME2**. Categoria do anúncio de teste MLB457941, folha publicável, também permite somente essas modalidades. Consulta Clássico a R$100 retornou tarifa total R$12, fixa zero e percentual declarado 12%; nenhum anúncio foi criado/alterado.
+- Encontrada referência existente no snapshot visual DEV, fonte `production-read-only`, capturada em 02/09/2026 às 02:55:49Z: SKU VTK000020 / oferta BKR1 1171, custo R$11,82, estoque 66. Esses valores são uma **referência histórica de teste**, não oferta comercial revalidada hoje. Não houve nova leitura em produção.
+- Ensaio com ROLLBACK e cadastro temporário `BNT-QA-PRC04-TEMP`: produto inativo, oferta de referência, identificadores de fornecedor prefixados `QA-PRC04-`, sem anúncio remoto, sem copiar vínculos ML reais. A categoria de teste serve à prova do fluxo econômico e **não homologa identidade/categoria do produto de referência**. Nenhum fornecedor foi ativado, nenhuma configuração foi alterada.
+- A primeira consulta autenticada retornou HTTP 200, mas memória/projeções inconclusivas com `cost / DADO_INVALIDO`. Causa: `loadProductPricing` repassava `updated_at` do PostgREST sem adaptação para o contrato canônico de instantes UTC. PostgREST real confirmou formato `2026-09-01T23:45:00.626481+00:00`; o núcleo exige `Z` e precisão de milissegundos.
+- Correção mínima **591a46e**: normalizar somente a representação do timestamp da oferta no adaptador `pricing-context`, mantendo instante/origem, sem usar o relógio atual como substituto. Núcleo, fórmulas e política preservados. Datas ausentes, inválidas, sem horário/fuso ou futuras continuam inconclusivas.
+- Três regressões de offset/microssegundos falharam antes e passaram depois. Acrescentados sete casos; 30 casos do teste de cotação e sete casos da rota passaram. Suíte ampliada com 28 arquivos passou, além de `npm run validate`, `npm run build` e `git diff --check`. Aviso preexistente de módulo sem tipo não foi alterado.
+- Primeira sessão temporária encerrada com `scope: local`; produto/oferta temporários removidos, contagens novamente cinco/zero. Fonte visual original preservada e disponível para reproduzir o ensaio. Sem migration, sem alteração de senha, sem escrita em produção ou ML.
+- Commit enviado somente para `dev`; ação Easypanel **cmtqpntco000406mn8bqkcgca** terminou com `Success` em **07/09/2026 04:01:00 UTC**, após exportação e unpack da imagem DEV. Hash do adaptador no checkout de build igual ao local: `3ef5fd1da9ae959c4216a64a4365e6eaf431f57d1a8f839c4e07da47ccd1b156`. A sondagem das 04:00:57 ainda ocorreu antes do término e reproduziu o runtime antigo; não foi usada como evidência de validação do novo código.
+- Após conclusão, duas consultas POST autenticadas em `dev.bentevi.shop` (04:01:29 e 04:01:32 UTC) retornaram HTTP 200, `Cache-Control: no-store`, `revalidation.status=queried` e memórias de preço consultado/alvo/piso/equilíbrio. Tarifa `ml_live`, frete configurado **R$30 / estimated / fallback**, tributo `estimated`; origem da oferta igual ao registro temporário e timestamp normalizado para `2026-09-02T01:19:34.638Z`. A segunda consulta adquiriu novos timestamps ML e preservou os mesmos resultados econômicos.
+- POST com `me2/drop_off` retornou HTTP 422 `COTACAO_INCOMPATIVEL`, coerente com as preferências vivas. Não inventar habilitação nem trocar silenciosamente para logística disponível.
+- Todas as três execuções do ensaio encerraram suas sessões com `scope: local` e removeram seus próprios produto/oferta temporários; contagens finais **cinco produtos, zero ofertas**. Nenhum cadastro preexistente removido. O cadastro temporário pode ser reproduzido a partir da fonte visual DEV, que foi preservada. Não houve criação/alteração de anúncio, preço, fornecedor, configuração ou migration.
+
+### Resultado econômico do cenário de teste (não é recomendação comercial)
+
+| Objetivo | Preço | Tarifa ML total | Resultado | Margem |
+| --- | ---: | ---: | ---: | ---: |
+| Preço de consulta explícito | R$100,00 | R$12,00 | R$42,18 | 42,18% |
+| Alvo | R$64,39 | R$15,48 | R$4,51 | 7,0042% |
+| Piso | R$62,75 | R$15,28 | R$3,14 | 5,0040% |
+| Equilíbrio | R$59,02 | R$14,83 | R$0,00 | 0% |
+
+Cada preço recebeu cotação própria: a tarifa do preço de R$100 **não foi extrapolada** para os candidatos menores. Referência de custo R$11,82 e frete configurado R$30 constantes neste ensaio. Nenhum desses preços foi aplicado a produto/anúncio.
+
+**Pendência remanescente:** conta de teste/contexto comercial com Mercado Envios habilitado para cotar frete vivo ME2 e concluir a homologação dessa modalidade com oferta de origem conhecida. A prova acima não substitui frete vivo, identidade comercial, cobertura fiscal confirmada ou o gate futuro de publicação. Não usar conta/credenciais de produção nem habilitar escritas para contornar a pendência. PRC-04 continua aberta; CFL-01 não iniciada.
+
+Contrato de timestamp verificado em [PostgREST — timestamps](https://postgrest.org/en/stable/how-tos/working-with-postgresql-data-types.html#timestamps). O adaptador converte a representação do banco; não altera o timezone do banco nem relaxa o contrato econômico.
