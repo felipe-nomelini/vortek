@@ -1,7 +1,9 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
-const { persistSingleAnuncioBySku } = require('../src/lib/ml/persist-single-anuncio.ts');
+const load = require('./helpers/load-integration-module');
+const audit = load('src/services/pricing-audit.ts', { zod: require('zod') });
+const { persistSingleAnuncioBySku } = load('src/lib/ml/persist-single-anuncio.ts', { '@/services/pricing-audit': audit });
 
 function createClient(initialRows) {
   const rows = initialRows.map((row) => ({ ...row }));
@@ -10,6 +12,15 @@ function createClient(initialRows) {
   return {
     rows,
     operations,
+    async rpc(name, args) {
+      assert.equal(name, 'persist_ml_pricing_observations');
+      for (const patch of args.p_rows) {
+        const current = rows.find(row => row.ml_item_id === patch.ml_item_id);
+        operations.push(current ? { type: 'update', column: 'id', value: current.id } : { type: 'upsert', item: patch.ml_item_id });
+        if (current) Object.assign(current, patch); else rows.push({ id: `row-${rows.length + 1}`, ...patch });
+      }
+      return { data: args.p_rows, error: null };
+    },
     from(table) {
       assert.equal(table, 'anuncios_ml');
       return {

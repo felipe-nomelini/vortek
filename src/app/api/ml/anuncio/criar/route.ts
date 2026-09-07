@@ -798,7 +798,7 @@ async function persistListingLink(params: {
     status: mlStatus,
     thumbnail: item.thumbnail || null,
     permalink: item.permalink,
-  });
+  }, item.last_updated);
 
   if (!persistResult.ok) {
     throw new Error(`Falha ao persistir anúncio ML único por SKU: ${persistResult.error}`);

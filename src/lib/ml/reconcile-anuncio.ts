@@ -1,4 +1,5 @@
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
+import { persistPricingObservations } from '@/services/pricing-audit';
 import {
   resolveMlPublishBlockPatch,
 } from '@/lib/ml/operational-listing';
@@ -6,6 +7,7 @@ import type { Database } from '@/types/database';
 
 type ServiceClientLike = {
   from: (table: string) => any;
+  rpc: (name: any, args: any) => any;
 };
 
 type ExistingAnuncioRow = Pick<
@@ -25,6 +27,7 @@ type MlListingLike = {
   thumbnail?: string | null;
   sold_quantity?: unknown;
   visits?: unknown;
+  last_updated?: string;
 };
 
 
@@ -119,7 +122,7 @@ export async function reconcileAnuncioMlFromItem(
     return { ok: true, found: false, updated: false, mlItemId };
   }
 
-  const nextPrice = normalizePrice(item?.price);
+  const nextPrice = typeof item.price === 'number' && Number.isFinite(item.price) && item.price > 0 ? normalizePrice(item.price) : normalizePrice(current.preco_ml);
   const nextStatus = mapMlStatusToLocalStatus(item?.status);
   const nextTitle = toNullableString(item?.title);
   const nextPermalink = toNullableString(item?.permalink);
@@ -129,7 +132,7 @@ export async function reconcileAnuncioMlFromItem(
   const shouldSyncDesiredProductStatus = source === 'publish_reconcile';
 
   const patch: Database['public']['Tables']['anuncios_ml']['Update'] = {};
-  if (normalizePrice(current.preco_ml) !== nextPrice) patch.preco_ml = nextPrice;
+  if (typeof item.price === 'number' && Number.isFinite(item.price) && item.price > 0) patch.preco_ml = nextPrice;
   if (current.status !== nextStatus) patch.status = nextStatus;
   if (isDifferentNullableString(current.titulo, nextTitle)) patch.titulo = nextTitle || '';
   if (isDifferentNullableString(current.permalink, nextPermalink)) patch.permalink = nextPermalink;
@@ -156,12 +159,11 @@ export async function reconcileAnuncioMlFromItem(
     };
   }
 
+  const changed = Object.keys(patch).some(key => key !== 'preco_ml' || normalizePrice(current.preco_ml) !== nextPrice);
   patch.updated_at = new Date().toISOString();
 
-  const { error: updateError } = await (client
-    .from('anuncios_ml')
-    .update(patch as any)
-    .eq('ml_item_id', mlItemId) as any);
+  const { error: updateError } = await persistPricingObservations(client, 'anuncios_ml',
+    [{ ...patch, ml_item_id: mlItemId }], item.last_updated || new Date().toISOString());
 
   if (updateError) {
     return { ok: false, mlItemId, error: updateError.message };
@@ -192,7 +194,7 @@ export async function reconcileAnuncioMlFromItem(
   return {
     ok: true,
     found: true,
-    updated: true,
+    updated: changed,
     mlItemId,
     previousPrice: normalizePrice(current.preco_ml),
     nextPrice,

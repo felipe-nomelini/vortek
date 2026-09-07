@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — M2M-CFL-03 (07/09/2026):** vínculos e grupos observacionais implementados; testes locais e banco DEV `.162` validados; [evidências](evidencias/M2M-CFL-03-validacao.md) e seção 21. Próxima ação: planejar BNT-PRICING-V2-04 — Origem e audit trail, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Sem deploy ou homologação ML externa nesta entrega.
+**Atualização vigente — BNT-PRICING-V2-04 (07/09/2026):** avaliações, operações e eventos de preço implementados; testes locais e banco DEV `.162` validados; [evidências](evidencias/BNT-PRICING-V2-04-validacao.md) e seção 22. Próxima ação: planejar BNT-PRICING-V2-05 — Override explícito, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Push e deploy ficam para o final das etapas, por decisão do usuário. Sem homologação ML externa nesta entrega.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -573,3 +573,13 @@ Grupos, revisões e membros tipados preservam identidade/histórico, exclusivida
 **Contrato de agregação para os consumidores seguintes:** estoque do par é capacidade compartilhada, não soma dos espelhos; vendas/resultados são deduplicados pelo evento econômico de origem, não pelo número de anúncios; visitas por anúncio não comprovam visitantes únicos do grupo. Métricas sem base comparável ficam explicitamente indisponíveis. CFL-03 não cria nem recalcula essas métricas.
 
 Migration `20260907150000` aplicada somente em `.162`, após ensaio com rollback. Tipos extraídos do metadata desse mesmo banco. [Matriz, contratos, validações e riscos](evidencias/M2M-CFL-03-validacao.md). Homologação autenticada ML e deploy não executados. Próxima ação: planejar **BNT-PRICING-V2-04 — Origem e audit trail**; não executar CFL-04 fora da sequência reconciliada.
+
+## 22. BNT-PRICING-V2-04 — Origem e audit trail (07/09/2026)
+
+Avaliações imutáveis reutilizam a memória econômica existente. Operações idempotentes se vinculam à avaliação e versão do grupo; eventos distinguem baseline, observação, projeção local, pedido e resultado. Alteração legada sem contexto fica `unknown`, sem presumir autoria manual ou sucesso remoto.
+
+Produtores observacionais usam RPC transacional com locks por item, watermark e dedupe entre anúncio/snapshot. Preparação exige baseline de todos os membros; confirmação ou encerramento sem efeito exige contrato de prova. Resultado incerto impede tentativa cega. Não há transporte ML ou liberação comercial nesta entrega.
+
+Migrations `20260907180000` e `20260907183000` aplicadas somente no DEV `.162`, com ensaios revertidos e tipos gerados nesse banco. **325 testes**, SQL transacional, concorrência real, `npm run validate` e build aprovados. Matriz de consumidores, contratos, fontes, limites e rollback: [evidências V2-04](evidencias/BNT-PRICING-V2-04-validacao.md).
+
+Próxima ação: planejar **BNT-PRICING-V2-05 — Override explícito**. Homologação externa pendente; push/deploy ao final das etapas conforme o usuário. Frete ME2 e demais gates comerciais permanecem obrigatórios antes da liberação.

@@ -5,6 +5,7 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
+import { persistPricingObservations } from '@/services/pricing-audit';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { getConfiguredMlShippingCost } from '@/lib/ml/shipping-cost';
@@ -983,9 +984,7 @@ export async function POST(request: Request) {
     }
 
     if (snapshots.length > 0) {
-      const { error: upsertError } = await (serviceClient
-        .from('catalogo_ml_snapshot' as any)
-        .upsert(snapshots as any, { onConflict: 'ml_item_id' }) as any);
+      const { error: upsertError } = await persistPricingObservations(serviceClient, 'catalogo_ml_snapshot', snapshots, new Date(startedAt).toISOString());
       if (upsertError) {
         errors.push({
           code: 'catalog_snapshot_upsert_failed',
@@ -1041,7 +1040,7 @@ export async function POST(request: Request) {
             thumbnail: snapshot.thumbnail || null,
             permalink: snapshot.permalink || null,
             updated_at: new Date().toISOString(),
-          });
+          }, snapshot.last_updated_ml || new Date(startedAt).toISOString());
           if (!persistResult.ok) {
             errors.push({
               code: 'anuncios_ml_missing_persist_failed',
@@ -1125,6 +1124,7 @@ export async function POST(request: Request) {
             {
               id: snapshot.ml_item_id,
               price: snapshot.price,
+              last_updated: snapshot.last_updated_ml || new Date(startedAt).toISOString(),
               status: snapshot.status,
               title: snapshot.title,
               permalink: snapshot.permalink,

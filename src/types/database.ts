@@ -14,6 +14,207 @@ export type Database = {
   }
   public: {
     Tables: {
+      pricing_evaluations: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          fingerprint: string
+          id: string
+          produto_id: string
+          result: Json
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          fingerprint: string
+          id?: string
+          produto_id: string
+          result: Json
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          fingerprint?: string
+          id?: string
+          produto_id?: string
+          result?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_evaluations_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "pricing_evaluations_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pricing_operations: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          evaluation_id: string
+          group_id: string
+          group_version: number
+          id: string
+          item_id: string
+          job_id: string | null
+          new_price_cents: number
+          previous_price_cents: number | null
+          produto_id: string
+          reason: string
+          requested_at: string | null
+          rule_id: string | null
+          source: string
+          state: string
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          evaluation_id: string
+          group_id: string
+          group_version: number
+          id: string
+          item_id: string
+          job_id?: string | null
+          new_price_cents: number
+          previous_price_cents?: number | null
+          produto_id: string
+          reason: string
+          requested_at?: string | null
+          rule_id?: string | null
+          source: string
+          state?: string
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          evaluation_id?: string
+          group_id?: string
+          group_version?: number
+          id?: string
+          item_id?: string
+          job_id?: string | null
+          new_price_cents?: number
+          previous_price_cents?: number | null
+          produto_id?: string
+          reason?: string
+          requested_at?: string | null
+          rule_id?: string | null
+          source?: string
+          state?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_operations_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            referencedRelation: "pricing_evaluations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_operations_group_id_group_version_fkey"
+            columns: ["group_id", "group_version"]
+            referencedRelation: "ml_pricing_group_revisions"
+            referencedColumns: ["group_id", "version"]
+          },
+          {
+            foreignKeyName: "pricing_operations_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "pricing_operations_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pricing_events: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          evaluation_id: string | null
+          evidence: Json
+          group_id: string | null
+          group_version: number | null
+          id: number
+          item_id: string | null
+          job_id: string | null
+          kind: string
+          new_price_cents: number | null
+          observed_at: string | null
+          operation_id: string | null
+          previous_price_cents: number | null
+          pricing_source: string
+          produto_id: string | null
+          projection: string | null
+          reason: string
+          rule_id: string | null
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          evaluation_id?: string | null
+          evidence?: Json
+          group_id?: string | null
+          group_version?: number | null
+          id?: never
+          item_id?: string | null
+          job_id?: string | null
+          kind: string
+          new_price_cents?: number | null
+          observed_at?: string | null
+          operation_id?: string | null
+          previous_price_cents?: number | null
+          pricing_source: string
+          produto_id?: string | null
+          projection?: string | null
+          reason: string
+          rule_id?: string | null
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          evaluation_id?: string | null
+          evidence?: Json
+          group_id?: string | null
+          group_version?: number | null
+          id?: never
+          item_id?: string | null
+          job_id?: string | null
+          kind?: string
+          new_price_cents?: number | null
+          observed_at?: string | null
+          operation_id?: string | null
+          previous_price_cents?: number | null
+          pricing_source?: string
+          produto_id?: string | null
+          projection?: string | null
+          reason?: string
+          rule_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_events_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            referencedRelation: "pricing_evaluations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_events_operation_id_fkey"
+            columns: ["operation_id"]
+            referencedRelation: "pricing_operations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
 ml_pricing_group_members: {
         Row: {
           catalog_listing: boolean
@@ -148,12 +349,13 @@ ml_pricing_groups: {
           catalogo: boolean
           created_at: string
           id: string
+          ml_item_id: string
           ml_sync_block_reason: string | null
           ml_sync_blocked_until: string | null
           ml_sync_last_error: string | null
-          ml_item_id: string
           permalink: string | null
           preco_ml: number
+          pricing_observed_at: string | null
           produto_id: string | null
           qualidade: number
           qualidade_info: Json | null
@@ -170,12 +372,13 @@ ml_pricing_groups: {
           catalogo?: boolean
           created_at?: string
           id?: string
+          ml_item_id: string
           ml_sync_block_reason?: string | null
           ml_sync_blocked_until?: string | null
           ml_sync_last_error?: string | null
-          ml_item_id: string
           permalink?: string | null
           preco_ml?: number
+          pricing_observed_at?: string | null
           produto_id?: string | null
           qualidade?: number
           qualidade_info?: Json | null
@@ -192,12 +395,13 @@ ml_pricing_groups: {
           catalogo?: boolean
           created_at?: string
           id?: string
+          ml_item_id?: string
           ml_sync_block_reason?: string | null
           ml_sync_blocked_until?: string | null
           ml_sync_last_error?: string | null
-          ml_item_id?: string
           permalink?: string | null
           preco_ml?: number
+          pricing_observed_at?: string | null
           produto_id?: string | null
           qualidade?: number
           qualidade_info?: Json | null
@@ -214,7 +418,12 @@ ml_pricing_groups: {
           {
             foreignKeyName: "anuncios_ml_produto_id_fkey"
             columns: ["produto_id"]
-            isOneToOne: false
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "anuncios_ml_produto_id_fkey"
+            columns: ["produto_id"]
             referencedRelation: "produtos"
             referencedColumns: ["id"]
           },
@@ -235,6 +444,7 @@ ml_pricing_groups: {
           permalink: string | null
           price: number
           price_to_win: number | null
+          pricing_observed_at: string | null
           produto_id: string | null
           refresh_job_id: string | null
           related_item_id: string | null
@@ -262,6 +472,7 @@ ml_pricing_groups: {
           permalink?: string | null
           price?: number
           price_to_win?: number | null
+          pricing_observed_at?: string | null
           produto_id?: string | null
           refresh_job_id?: string | null
           related_item_id?: string | null
@@ -289,6 +500,7 @@ ml_pricing_groups: {
           permalink?: string | null
           price?: number
           price_to_win?: number | null
+          pricing_observed_at?: string | null
           produto_id?: string | null
           refresh_job_id?: string | null
           related_item_id?: string | null
@@ -306,8 +518,19 @@ ml_pricing_groups: {
           {
             foreignKeyName: "catalogo_ml_snapshot_produto_id_fkey"
             columns: ["produto_id"]
-            isOneToOne: false
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "catalogo_ml_snapshot_produto_id_fkey"
+            columns: ["produto_id"]
             referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalogo_ml_snapshot_refresh_job_id_fkey"
+            columns: ["refresh_job_id"]
+            referencedRelation: "jobs"
             referencedColumns: ["id"]
           },
         ]
@@ -1962,6 +2185,30 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      persist_ml_pricing_observations: {
+        Args: { p_observed_at: string; p_rows: Json; p_table: string }
+        Returns: Json
+      }
+      prepare_pricing_operation: {
+        Args: {
+          p_actor_id: string
+          p_evaluation_id: string
+          p_group_id: string
+          p_group_version: number
+          p_id: string
+          p_item_id: string
+          p_job_id?: string
+          p_price_cents: number
+          p_reason: string
+          p_rule_id?: string
+          p_source: string
+        }
+        Returns: string
+      }
+      transition_pricing_operation: {
+        Args: { p_evidence?: Json; p_id: string; p_state: string }
+        Returns: Json
+      }
 reconcile_ml_pricing_groups: {
         Args: {
           p_complete: boolean

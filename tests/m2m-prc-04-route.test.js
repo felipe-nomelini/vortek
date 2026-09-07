@@ -14,6 +14,7 @@ function harness(options = {}) {
   const client = { from(table) { return { select() { return this; }, eq() { return this; },
     maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p : options.unlinked ? null : { ml_item_id: 'MLB1' } }) }; } };
   const routes = load('src/app/api/ml/anuncio/preco-detalhe/route.ts', {
+    '@/services/pricing-audit': { recordPricingEvaluation: async () => 'evaluation-test' },
     'next/server': { NextResponse: { json: (data, init) => Response.json(data, init) } }, zod: require('zod'),
     '@/lib/supabase': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: options.anonymous ? null : { id: 'U1' } } }) } }), createServiceClient: () => client },
     '@/services/integration': { fetchMLResult: async path => {
@@ -49,10 +50,10 @@ test('401, contrato estrito e fixture são recusados antes de qualquer chamada M
   const h = harness({ review: { items: [{ product: { id: 'bnt-d07-review-X' }, mlListings: [{ itemId: 'MLB1' }] }] } });
   assert.equal((await h.post({ produtoId: 'P1', mlItemId: 'MLB1' })).status, 409); assert.equal(h.calls.length, 0);
 });
-test('GET mantém preço, descontos existentes e indicador de automação; origem viva, sem gravação', async () => {
+test('GET mantém preço, descontos e automação; avaliação identificada não altera preço', async () => {
   const h = harness(); const response = await h.get('produtoId=P1&mlItemId=MLB1');
   assert.equal(response.status, 200); assert.equal(response.headers.get('cache-control'), 'no-store');
-  const body = await response.json(); assert.equal(body.currentPrice, 100); assert.deepEqual(body.quantityPricing, []); assert.equal(body.automaticPricing.active, true);
+  const body = await response.json(); assert.equal(body.evaluationId, 'evaluation-test'); assert.equal(body.currentPrice, 100); assert.deepEqual(body.quantityPricing, []); assert.equal(body.automaticPricing.active, true);
   assert.equal(h.captured[0].market.sellerId, '123'); assert.equal(h.captured[0].market.dimensions, null); assert.equal(h.captured[0].valid, true);
 });
 test('POST consulta preço alternativo sem atribuir seu lucro ao preço atual', async () => {

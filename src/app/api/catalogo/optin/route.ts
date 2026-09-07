@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { persistPricingObservations } from '@/services/pricing-audit';
 import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
@@ -138,7 +139,7 @@ async function syncCatalogOptinLocally(params: {
     permalink: catalogItem.permalink || null,
     catalogo: catalogItem.catalog_listing === true,
     updated_at: new Date().toISOString(),
-  });
+  }, catalogItem.last_updated);
   if (!anuncioResult.ok) warnings.push(`Falha ao salvar anúncio de catálogo: ${anuncioResult.error}`);
 
   if (!produtoId) {
@@ -158,9 +159,7 @@ async function syncCatalogOptinLocally(params: {
     relatedPermalink,
   });
 
-  const { error: snapshotError } = await service
-    .from('catalogo_ml_snapshot')
-    .upsert({
+  const { error: snapshotError } = await persistPricingObservations(service, 'catalogo_ml_snapshot', [{
       ml_item_id: catalogItemId,
       seller_id: Number(catalogItem.seller_id || sellerId || 0),
       catalog_listing: catalogItem.catalog_listing === true,
@@ -182,7 +181,7 @@ async function syncCatalogOptinLocally(params: {
       sku_local: sku,
       last_updated_ml: catalogItem.last_updated || null,
       synced_at: new Date().toISOString(),
-    }, { onConflict: 'ml_item_id' });
+    }], catalogItem.last_updated);
   if (snapshotError) warnings.push(`Falha ao salvar snapshot de catálogo: ${snapshotError.message}`);
   if (produtoId && !snapshotError) {
     try {

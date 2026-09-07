@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { persistPricingObservations } from '@/services/pricing-audit';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
@@ -10,7 +11,7 @@ const MAX_INCREMENTAL_PAGES = 10;
 const DETAIL_CONCURRENCY = 10;
 const MULTIGET_CHUNK_SIZE = 20;
 const MULTIGET_CONCURRENCY = 4;
-const UPSERT_CHUNK_SIZE = 250;
+const UPSERT_CHUNK_SIZE = 200;
 const DELETE_CHUNK_SIZE = 500;
 const ML_SCAN_PAGE_SIZE = 100;
 
@@ -506,9 +507,7 @@ export async function POST(request: Request) {
   let updated = 0;
   await reportProgress({ stage: 'save_snapshot', message: 'Salvando snapshot atualizado.', processed: 0, total: upsertRows.length, progress: 90 });
   for (const rowsChunk of chunk(upsertRows, UPSERT_CHUNK_SIZE)) {
-    const { error } = await service
-      .from('catalogo_ml_snapshot')
-      .upsert(rowsChunk, { onConflict: 'ml_item_id' });
+    const { error } = await persistPricingObservations(service, 'catalogo_ml_snapshot', rowsChunk);
     if (error) {
       return NextResponse.json({
         success: false,

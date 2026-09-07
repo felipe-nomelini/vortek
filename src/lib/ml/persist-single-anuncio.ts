@@ -1,7 +1,9 @@
 import type { Database } from '@/types/database';
+import { persistPricingObservations } from '@/services/pricing-audit';
 
 type ServiceClientLike = {
   from: (table: 'anuncios_ml') => any;
+  rpc: (name: any, args: any) => any;
 };
 
 type AnuncioRow = Database['public']['Tables']['anuncios_ml']['Row'];
@@ -21,6 +23,7 @@ function normalizeText(value: unknown): string {
 export async function persistSingleAnuncioBySku(
   client: ServiceClientLike,
   payload: AnuncioInsert,
+  observedAt?: string,
 ): Promise<{ ok: true; canonicalId: string | null; removedDuplicateIds: string[] } | { ok: false; error: string }> {
   const mlItemId = normalizeText(payload.ml_item_id);
   if (!mlItemId) return { ok: false, error: 'ml_item_id ausente para persistir anúncio' };
@@ -36,9 +39,7 @@ export async function persistSingleAnuncioBySku(
   };
 
   if (!sku) {
-    const { error } = await (client
-      .from('anuncios_ml')
-      .upsert(normalizedPayload as any, { onConflict: 'ml_item_id' }) as any);
+    const { error } = await persistPricingObservations(client, 'anuncios_ml', [normalizedPayload], observedAt);
 
     if (error) return { ok: false, error: error.message };
     return { ok: true, canonicalId: null, removedDuplicateIds: [] };
@@ -67,10 +68,7 @@ export async function persistSingleAnuncioBySku(
       updated_at: toIsoNow(),
     };
 
-    const { error: updateError } = await (client
-      .from('anuncios_ml')
-      .update(patch as any)
-      .eq('id', exact.id) as any);
+    const { error: updateError } = await persistPricingObservations(client, 'anuncios_ml', [patch], observedAt);
     if (updateError) return { ok: false, error: updateError.message };
 
     return {
@@ -97,9 +95,7 @@ export async function persistSingleAnuncioBySku(
     };
   }
 
-  const { error } = await (client
-    .from('anuncios_ml')
-    .upsert(normalizedPayload as any, { onConflict: 'ml_item_id' }) as any);
+  const { error } = await persistPricingObservations(client, 'anuncios_ml', [normalizedPayload], observedAt);
   if (error) return { ok: false, error: error.message };
 
   return {

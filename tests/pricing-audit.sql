@@ -1,0 +1,51 @@
+-- Executar somente em DEV, dentro de BEGIN ... ROLLBACK.
+do $$
+declare p uuid; row jsonb; t timestamptz:=clock_timestamp()-interval '1 hour'; n integer; evaluation uuid; g uuid; op uuid:=gen_random_uuid(); result jsonb;
+begin
+ select id into p from public.produtos limit 1;
+ row:=jsonb_build_object('ml_item_id','MLB990040001','produto_id',p,'sku','AUDIT_TEST','titulo','Audit test','preco_ml',100,'status','ativo');
+ perform public.persist_ml_pricing_observations('anuncios_ml',jsonb_build_array(row),t);
+ if (select count(*) from public.pricing_events where item_id='MLB990040001' and kind='baseline')<>1 then raise exception 'baseline'; end if;
+ perform public.persist_ml_pricing_observations('anuncios_ml',jsonb_build_array(row),t+interval '1 minute');
+ if (select count(*) from public.pricing_events where item_id='MLB990040001')<>1 then raise exception 'dedupe'; end if;
+ perform public.persist_ml_pricing_observations('anuncios_ml','[{"ml_item_id":"MLB990040001","preco_ml":90}]',t+interval '30 seconds');
+ if (select preco_ml from public.anuncios_ml where ml_item_id='MLB990040001')<>100 then raise exception 'refresh_watermark'; end if;
+ row:=jsonb_build_object('ml_item_id','MLB990040001','preco_ml',120);
+ perform public.persist_ml_pricing_observations('anuncios_ml',jsonb_build_array(row),t+interval '2 minutes');
+ if (select previous_price_cents from public.pricing_events where item_id='MLB990040001' order by id desc limit 1)<>10000 then raise exception 'previous'; end if;
+ select count(*) into n from public.pricing_events where item_id='MLB990040001';
+ perform public.persist_ml_pricing_observations('catalogo_ml_snapshot',jsonb_build_array(jsonb_build_object('ml_item_id','MLB990040001','produto_id',p,'seller_id',9900401,'price',120)),t+interval '2 minutes');
+ if (select count(*) from public.pricing_events where item_id='MLB990040001')<>n then raise exception 'duplicate_projection'; end if;
+ begin
+   perform public.persist_ml_pricing_observations('anuncios_ml','[{"ml_item_id":"MLB990040001","preco_ml":150},{"ml_item_id":"MLB990040002","invalid_column":1}]',t+interval '10 minutes');
+   raise exception 'batch_should_fail';
+ exception when others then if sqlerrm='batch_should_fail' then raise; end if; end;
+ if (select count(*) from public.pricing_events where item_id='MLB990040001')<>n or (select preco_ml from public.anuncios_ml where ml_item_id='MLB990040001')<>120 then raise exception 'batch_not_atomic'; end if;
+ perform public.persist_ml_pricing_observations('anuncios_ml','[{"ml_item_id":"MLB990040001","preco_ml":90}]',t);
+ if (select preco_ml from public.anuncios_ml where ml_item_id='MLB990040001')<>120 then raise exception 'stale'; end if;
+ perform public.persist_ml_pricing_observations('anuncios_ml','[{"ml_item_id":"MLB990040001","preco_ml":90}]',t+interval '2 minutes');
+ if not exists(select 1 from public.pricing_events where item_id='MLB990040001' and kind='inconclusive') then raise exception 'conflicting_timestamp'; end if;
+ if (select preco_ml from public.anuncios_ml where ml_item_id='MLB990040001')<>120 then raise exception 'conflicting_projection'; end if;
+ update public.produtos set custom_price=123.45 where id=p;
+ if not exists(select 1 from public.pricing_events where produto_id=p and projection='produtos' and pricing_source='unknown' and new_price_cents=12345) then raise exception 'passive_audit'; end if;
+ update public.produtos set custom_price=null where id=p;
+ if not exists(select 1 from public.pricing_events where produto_id=p and projection='produtos' and new_price_cents is null) then raise exception 'removed_projection'; end if;
+ begin update public.pricing_events set reason='overwrite' where item_id='MLB990040001'; raise exception 'immutable_missing'; exception when others then if sqlerrm='immutable_missing' then raise; end if; end;
+ insert into public.pricing_evaluations(produto_id,fingerprint,result) values(p,'TEST','{}') returning id into evaluation;
+ result:=public.reconcile_ml_pricing_groups(9900401,p,t,true,jsonb_build_array(jsonb_build_object('anchorItemId','MLB990040001','anchorVariationId','','state','verified','synchronized',false,'members',jsonb_build_array(jsonb_build_object('itemId','MLB990040001','variationId','','catalog',false)),'reasons',jsonb_build_array('TEST'),'evidence',jsonb_build_array(jsonb_build_object('source','mercado_livre','reference','TEST','collectedAt',t,'condition','valid')))));
+ g:=(result->'groups'->0->>'groupId')::uuid;
+ perform public.prepare_pricing_operation(op,evaluation,g,1,'MLB990040001',13000,'scheduled_job',null,'TEST');
+ perform public.prepare_pricing_operation(op,evaluation,g,1,'MLB990040001',13000,'scheduled_job',null,'TEST');
+ if (select count(*) from public.pricing_operations where id=op)<>1 then raise exception 'operation_dedupe'; end if;
+ begin perform public.prepare_pricing_operation(op,evaluation,g,1,'MLB990040001',14000,'scheduled_job',null,'TEST'); raise exception 'idempotency_missing'; exception when others then if sqlerrm='idempotency_missing' then raise; end if; end;
+ perform public.transition_pricing_operation(op,'requested');
+ perform public.transition_pricing_operation(op,'inconclusive');
+ begin perform public.transition_pricing_operation(op,'failed'); raise exception 'unproven_failure'; exception when others then if sqlerrm='unproven_failure' then raise; end if; end;
+ begin perform public.transition_pricing_operation(op,'requested'); raise exception 'blind_retry'; exception when others then if sqlerrm='blind_retry' then raise; end if; end;
+ begin perform public.transition_pricing_operation(op,'confirmed','{}'); raise exception 'false_success'; exception when others then if sqlerrm='false_success' then raise; end if; end;
+ perform public.transition_pricing_operation(op,'confirmed',jsonb_build_object('item_id','MLB990040001','price_cents',13000,'observed_at',clock_timestamp(),'outcome','readback_verified','reference','items/MLB990040001/prices','members',jsonb_build_array(jsonb_build_object('item_id','MLB990040001','variation_id','','price_cents',13000))));
+ perform public.transition_pricing_operation(op,'confirmed');
+ if (select count(*) from public.pricing_events where operation_id=op and kind='confirmed')<>1 then raise exception 'confirmation_dedupe'; end if;
+ if has_function_privilege('authenticated','public.transition_pricing_operation(uuid,text,jsonb)','EXECUTE') or has_table_privilege('service_role','public.pricing_events','UPDATE') then raise exception 'privileges'; end if;
+ raise notice 'Pricing audit: regression suite passed';
+end $$;

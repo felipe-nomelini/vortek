@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { loadLiveProductPricing } from '@/services/pricing-live';
+import { recordPricingEvaluation } from '@/services/pricing-audit';
 import { quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
 import { pricingView } from '@/lib/pricing-view';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
@@ -142,7 +143,8 @@ async function details(raw: unknown) {
         reasons: competition.ok ? [competition.data?.reason ?? competition.data?.reasons ?? []].flat().map((r: any) => String(r?.message ?? r?.id ?? r)) : [] };
     }
   }
-  return json({ success: true, mlItemId: itemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
+  const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing);
+  return json({ success: true, evaluationId, mlItemId: itemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
     currentProfit: input.priceCents != null && input.priceCents !== currentPrice ? null : view.profit,
     pricing, quantityPricing, quantityPricingWarning, catalog,
     calculator: { cost: view.cost, shipping: memory ? memory.shipping.amountCents! / 100 : null,
