@@ -7,11 +7,6 @@ import {
 } from '@/lib/configuracoes/contracts';
 import { getMercadoLivreRedirectUri } from '@/lib/ml-oauth-config';
 import { getMLAuthDiagnostics, fetchMLResult } from '@/services/integration';
-import {
-  loadMercadoLivreConfiguration,
-  toMercadoLivreWarrantyDto,
-} from '@/services/mercado-livre-configuration';
-import { CONFIGURATION_ROW_ID } from '@/services/operation-configuration';
 import { recordConfigurationAudit } from '@/services/configuration-audit';
 
 export const dynamic = 'force-dynamic';
@@ -35,9 +30,8 @@ export async function GET() {
   const admin = await requireAdminUser(supabase);
   if (!admin.ok) return admin.response;
   const serviceClient = createServiceClient();
-  const [{ data: integration, error }, warranty, diagnostics] = await Promise.all([
+  const [{ data: integration, error }, diagnostics] = await Promise.all([
     serviceClient.from('integracoes').select(ML_FIELDS).eq('tipo', 'mercadolivre').single(),
-    loadMercadoLivreConfiguration(serviceClient),
     getMLAuthDiagnostics(),
   ]);
   if (error || !integration) return noStoreJson({ erro: error?.message || 'Integração Mercado Livre ausente' }, { status: 500 });
@@ -100,7 +94,7 @@ export async function GET() {
     },
     seller,
     app: application,
-    warranty: toMercadoLivreWarrantyDto(warranty),
+    warrantyPolicy: 'product_evidence',
   });
 }
 
@@ -110,6 +104,7 @@ export async function PATCH(request: Request) {
   if (!admin.ok) return admin.response;
   const parsed = mercadoLivreConfigurationPatchSchema.safeParse(await request.json().catch(() => ({})));
   if (!parsed.success) return noStoreJson({ erro: configurationValidationMessage(parsed.error, 'Configuração Mercado Livre inválida') }, { status: 422 });
+  if (parsed.data.section === 'warranty') return noStoreJson({ erro: 'Garantia global aposentada. Registre evidência no produto.', code: 'global_warranty_retired' }, { status: 410 });
   const serviceClient = createServiceClient();
 
   if (parsed.data.section === 'application') {
@@ -132,19 +127,6 @@ export async function PATCH(request: Request) {
     return noStoreJson({ ok: true });
   }
 
-  const previous = await loadMercadoLivreConfiguration(serviceClient);
-  const next = { typeId: parsed.data.warrantyTypeId, duration: parsed.data.warrantyDuration, unit: parsed.data.warrantyUnit };
-  const { error } = await serviceClient.from('configuracoes').update({
-    ml_default_warranty_type_id: next.typeId,
-    ml_default_warranty_duration: next.duration,
-    ml_default_warranty_unit: next.unit,
-    updated_at: new Date().toISOString(),
-  }).eq('id', CONFIGURATION_ROW_ID);
-  if (error) return noStoreJson({ erro: error.message }, { status: 500 });
-  await recordConfigurationAudit(serviceClient, { id: admin.user.id, name: admin.nome }, [
-    { key: 'configuracoes.ml_default_warranty', before: previous, after: next },
-  ]);
-  return noStoreJson({ ok: true, warranty: toMercadoLivreWarrantyDto(next) });
 }
 
 export async function DELETE() {

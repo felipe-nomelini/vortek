@@ -23,20 +23,13 @@ test("contrato Mercado Livre separa aplicativo e garantia", () => {
   }).success, false);
 });
 
-test("garantia padrão só é criada quando a categoria aceita exatamente seus termos", () => {
-  const configured = { typeId: "2230279", duration: 12, unit: "meses" };
-  assert.deepEqual(saleTerms.buildSupportedMlWarrantyTerms([], configured), []);
-  assert.deepEqual(saleTerms.buildSupportedMlWarrantyTerms([
-    { id: "WARRANTY_TYPE", values: [{ id: "2230280", name: "Garantia do vendedor" }] },
-    { id: "WARRANTY_TIME", value_type: "number_unit" },
-  ], configured), []);
-  assert.deepEqual(saleTerms.buildSupportedMlWarrantyTerms([
-    { id: "WARRANTY_TYPE", values: [{ id: "2230279", name: "Garantia de fábrica" }] },
-    { id: "WARRANTY_TIME", value_type: "number_unit" },
-  ], configured), [
-    { id: "WARRANTY_TYPE", value_id: "2230279", value_name: "Garantia de fábrica" },
-    { id: "WARRANTY_TIME", value_name: "12 meses" },
-  ]);
+test("WARRANTY-01 aposenta motor e editor globais, preservando contrato histórico", () => {
+  assert.equal(saleTerms.buildSupportedMlWarrantyTerms, undefined);
+  const route = read('src/app/api/configuracoes/mercado-livre/route.ts');
+  assert.match(route, /global_warranty_retired/);
+  assert.match(route, /410/);
+  assert.doesNotMatch(route, /ml_default_warranty_duration|loadMercadoLivreConfiguration/);
+  assert.equal(contracts.CONFIGURATION_DEFINITIONS['configuracoes.ml_default_warranty'].classification, 'OBSOLETO');
 });
 
 test("normalização não inventa garantia quando ela não foi informada", () => {

@@ -14,6 +14,107 @@ export type Database = {
   }
   public: {
     Tables: {
+      product_warranty_assessments: {
+        Row: {
+          action: string
+          actor_id: string
+          command: Json
+          completed_at: string | null
+          created_at: string
+          deadline: string
+          fingerprint: string
+          id: string
+          produto_id: string
+          result: Json | null
+          state: string
+        }
+        Insert: {
+          action: string
+          actor_id: string
+          command: Json
+          completed_at?: string | null
+          created_at?: string
+          deadline?: string
+          fingerprint: string
+          id: string
+          produto_id: string
+          result?: Json | null
+          state: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string
+          command?: Json
+          completed_at?: string | null
+          created_at?: string
+          deadline?: string
+          fingerprint?: string
+          id?: string
+          produto_id?: string
+          result?: Json | null
+          state?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_warranty_assessments_actor_id_fkey"
+            columns: ["actor_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "product_warranty_assessments_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "product_warranty_assessments_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      warranty_sources: {
+        Row: {
+          actor_id: string
+          created_at: string
+          host: string
+          id: string
+          reason: string
+          reference: string
+          scope: string
+          state: string
+        }
+        Insert: {
+          actor_id: string
+          created_at?: string
+          host: string
+          id: string
+          reason: string
+          reference: string
+          scope: string
+          state: string
+        }
+        Update: {
+          actor_id?: string
+          created_at?: string
+          host?: string
+          id?: string
+          reason?: string
+          reference?: string
+          scope?: string
+          state?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "warranty_sources_actor_id_fkey"
+            columns: ["actor_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       internal_stock_clearance_groups: {
         Row: {
           clearance_id: string
@@ -2432,6 +2533,31 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      begin_product_warranty_command: {
+        Args: { p_actor_id: string; p_command: Json; p_product_id: string }
+        Returns: Json
+      }
+      finish_product_warranty_command: {
+        Args: {
+          p_actor_id: string
+          p_id: string
+          p_result: Json
+          p_source?: Json
+        }
+        Returns: undefined
+      }
+      get_product_warranty_context: {
+        Args: { p_product_id: string }
+        Returns: Json
+      }
+      get_product_warranty_fingerprint: {
+        Args: { p_product_id: string }
+        Returns: string
+      }
+      get_product_warranty_snapshot: {
+        Args: { p_product_id: string }
+        Returns: Json
+      }
       assert_pricing_governance_allows: {
         Args: {
           p_actor_id: string

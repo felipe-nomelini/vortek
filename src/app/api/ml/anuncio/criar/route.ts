@@ -24,8 +24,9 @@ import {
   mapOriginType,
   normalizeNcm,
 } from "@/lib/fiscal-strict";
-import { buildSupportedMlWarrantyTerms, normalizeMlSaleTerms } from "@/lib/ml-sale-terms";
-import { loadMercadoLivreConfiguration } from "@/services/mercado-livre-configuration";
+import { normalizeMlSaleTerms } from "@/lib/ml-sale-terms";
+import { warrantySaleTerms, warrantyDescription, warrantyDescriptionConflicts } from "@/lib/product-warranty";
+import { loadProductWarranty } from "@/services/product-warranty";
 import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
 import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
 import {
@@ -821,6 +822,7 @@ export async function POST(req: Request) {
       description,
       attributes: editedAttributes,
       sale_terms: editedSaleTerms,
+      warrantyRevision,
       allowOutOfStockListing = false,
       pricingMode,
       familyName: requestedFamilyName,
@@ -1193,10 +1195,9 @@ export async function POST(req: Request) {
       warnings.push("Material corrigido: produto banhado não é ouro maciço.");
     }
 
-    const [categoryInfo, categorySaleTerms, mlConfiguration] = await Promise.all([
+    const [categoryInfo, categorySaleTerms] = await Promise.all([
       fetchML<any>(`/categories/${categoriaId}`),
       getCategorySaleTerms(categoriaId),
-      loadMercadoLivreConfiguration(supabase),
     ]);
     if (!categorySaleTerms) {
       return NextResponse.json({ success: false, error: "Não foi possível consultar os termos de venda oficiais da categoria." }, { status: 502 });
@@ -1501,10 +1502,16 @@ export async function POST(req: Request) {
         return NextResponse.json({ success: false, error: `A categoria não aceita o valor informado para ${term.id}.` }, { status: 422 });
       }
     }
-    for (const configured of buildSupportedMlWarrantyTerms(categorySaleTerms, mlConfiguration)) {
-      if (!saleTermsInput.some((term) => term.id === configured.id)) saleTermsInput.push(configured);
+    const warranty = await loadProductWarranty(supabase, produtoId);
+    const warrantyTerms = warrantySaleTerms(warranty.resolution, categorySaleTerms);
+    if (!warrantyTerms.compatible || warrantyRevision !== warranty.resolution.revision) {
+      return NextResponse.json({ success: false, code: 'warranty_validation_required', error: 'Garantia pendente ou alterada. Prepare o anúncio novamente.' }, { status: 409 });
     }
-    const saleTerms = normalizeMlSaleTerms(saleTermsInput);
+    const warrantyInput = saleTermsInput.filter(t => t.id.startsWith('WARRANTY_'));
+    if (warrantyInput.some(t => !warrantyTerms.terms.some(v => v.id === t.id && (t.value_id ? t.value_id === v.value_id : t.value_name === v.value_name)))) {
+      return NextResponse.json({ success: false, code: 'warranty_evidence_mismatch', error: 'A garantia informada diverge da evidência.' }, { status: 422 });
+    }
+    const saleTerms = normalizeMlSaleTerms([...saleTermsInput.filter(t => !t.id.startsWith('WARRANTY_')), ...warrantyTerms.terms]);
 
     const imagens = produto.imagens || [];
     const picturesSource =
@@ -1541,7 +1548,8 @@ export async function POST(req: Request) {
       useFamilyName = me?.tags?.includes("user_product_seller") ?? false;
     } catch {}
 
-    const listingDescription = buildDescription(produto, description);
+    if (warrantyDescriptionConflicts(String(description || ''), warranty.resolution)) return NextResponse.json({ error: 'A descrição contradiz a garantia comprovada. Revise o texto antes de publicar.', code: 'warranty_description_conflict' }, { status: 422 });
+    const listingDescription = warrantyDescription(buildDescription(produto, description), warranty.resolution);
 
     const fulfillmentCapacity = await loadProductFulfillmentCapacity(
       supabase,

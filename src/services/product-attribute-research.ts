@@ -1,9 +1,38 @@
+import { warrantyUrl } from '@/lib/product-warranty';
+
 type ResearchSource = {
   title: string;
   url: string;
   content: string;
   trusted: boolean;
 };
+
+/** WARRANTY-01: preserve primary content; no generic `trusted` heuristic. */
+export async function researchWarrantySources(query: string, signal: AbortSignal): Promise<Array<{ url: string; content: string }>> {
+  const key = process.env.FIRECRAWL_API_KEY;
+  if (!key) throw new Error('warranty_search_not_configured');
+  const response = await fetch('https://api.firecrawl.dev/v2/search', {
+    method: 'POST', signal, headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: query.slice(0, 500), limit: 3, country: 'BR', timeout: 15000,
+      scrapeOptions: { formats: ['markdown', 'links'], onlyMainContent: false, timeout: 8000 } }),
+  });
+  if (!response.ok) throw new Error('warranty_search_unavailable');
+  const payload = await response.json();
+  const rows = Array.isArray(payload?.data?.web) ? payload.data.web.filter((r: { url?: string }) => warrantyUrl(r.url || '')).slice(0, 3) : [];
+  const result: Array<{ url: string; content: string }> = rows.slice(0, 3).map((r: { url?: string; markdown?: string }) => ({ url: String(r.url || ''), content: String(r.markdown || '').slice(0, 18000) }));
+  // One linked manual at most. No crawler, retries or arbitrary URL supplied by AI.
+  const parent = rows.find((r: { url?: string; links?: string[] }) => r.links?.some(link => {
+    try { return !!warrantyUrl(link) && /\.pdf$/i.test(new URL(link).pathname) && new URL(link).origin === new URL(r.url || '').origin; } catch { return false; }
+  }));
+  const manual = parent?.links?.find((link: string) => { try { return !!warrantyUrl(link) && /\.pdf$/i.test(new URL(link).pathname) && new URL(link).origin === new URL(parent.url).origin; } catch { return false; } });
+  if (manual) {
+    const scrape = await fetch('https://api.firecrawl.dev/v2/scrape', { method: 'POST', signal,
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: manual, formats: ['markdown'], timeout: 10000, onlyMainContent: false, maxAge: 0 }) });
+    if (scrape.ok) { const data = await scrape.json(); result.push({ url: String(data.data?.metadata?.sourceURL || manual), content: String(data.data?.markdown || '').slice(0, 24000) }); }
+  }
+  return result;
+}
 
 export type ProductAttributeResearchResult = {
   searched: boolean;

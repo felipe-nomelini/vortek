@@ -152,6 +152,7 @@ interface MlSaleTermField {
 }
 
 interface CategorySchemaResponse {
+  warranty?: { status: string; reason: string; revision: string; compatible: boolean; representationReason: string };
   required_attributes: MlRequiredAttribute[];
   optional_attributes: MlRequiredAttribute[];
   sale_terms: MlSaleTermField[];
@@ -503,24 +504,6 @@ export default function ProductsPage() {
   const loadCategorySchema = async (categoryId: string) => {
     if (!mlModal.produtoId) return;
 
-    const cached = mlModal.categorySchemaCache[categoryId];
-    if (cached) {
-      setMlModalPriceText(priceToEditableText(cached.prefill.base_price));
-      setMlModal(prev => ({
-        ...prev,
-        selectedCategory: categoryId,
-        editableAttributes: cached.required_attributes.map((a) => ({
-          id: a.id, name: a.name, value_type: a.value_type, values: a.values || [], value_id: a.value_id || '', value_name: a.value_name || '',
-        })),
-        optionalAttributes: cached.optional_attributes,
-        saleTerms: cached.sale_terms,
-        editableFiscal: cached.fiscal_fields,
-        editablePrice: cached.prefill.base_price,
-        description: cached.prefill.description || prev.description,
-      }));
-      return;
-    }
-
     setMlModal(prev => ({ ...prev, loading: true }));
     try {
       const res = await fetch('/api/ml/anuncio/schema', {
@@ -597,24 +580,7 @@ export default function ProductsPage() {
       const suggestionValueName = sanitizeMlFieldValue(suggestion.value_name);
       const generatedDescription = String(suggestionValueName || '').trim();
 
-      if (target === 'description' && generatedDescription) {
-        const saveRes = await fetch(`/api/produtos/${mlModal.produtoId}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ descricao: generatedDescription }),
-        });
-        const saveData = await saveRes.json().catch(() => ({}));
-        if (!saveRes.ok) {
-          messageApi.warning(saveData?.error || 'Descrição gerada, mas não foi possível salvar no produto.');
-        } else {
-          messageApi.success('Descrição melhorada e salva no produto.');
-          setProducts((prev) => prev.map((item) => (
-            item.product.id === mlModal.produtoId
-              ? { ...item, product: { ...item.product, description: generatedDescription } }
-              : item
-          )));
-        }
-      }
+      // Listing-specific warranty belongs to this draft, not the master description.
 
       setMlModal(prev => {
         if (target === 'required' && typeof index === 'number') {
@@ -945,6 +911,7 @@ export default function ProductsPage() {
             value_id: term.value_id,
             value_name: term.value_name,
           })),
+          warrantyRevision: mlModal.categorySchemaCache[mlModal.selectedCategory]?.warranty?.revision,
         }),
       });
       const data = await res.json();
@@ -2330,6 +2297,10 @@ export default function ProductsPage() {
             {mlModal.saleTerms.length > 0 && (
               <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
                 <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Garantia e Termos</Title>
+                <Alert showIcon style={{ marginBottom: 16 }} type={mlModal.categorySchemaCache[mlModal.selectedCategory || '']?.warranty?.compatible ? 'info' : 'warning'}
+                  message={mlModal.categorySchemaCache[mlModal.selectedCategory || '']?.warranty?.representationReason || 'Garantia ainda não validada'}
+                  description={<span>Prazo e tipo vêm da evidência do produto. <a href={`/produtos/${mlModal.produtoId}`} target="_blank" rel="noopener noreferrer">Consultar ou revisar garantia</a>. Depois, recarregue a categoria para atualizar a comprovação.</span>}
+                  action={<Button size="small" disabled={!mlModal.selectedCategory} onClick={() => void loadCategorySchema(mlModal.selectedCategory || '')}>Atualizar</Button>} />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.saleTerms.map((term, idx) => (
                     <div key={term.id} style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 8, alignItems: 'center' }}>
@@ -2344,6 +2315,7 @@ export default function ProductsPage() {
                       {term.values?.length ? (
                         <Select
                           size="small"
+                          disabled={term.id === 'WARRANTY_TYPE' || term.id === 'WARRANTY_TIME'}
                           value={term.value_id || undefined}
                           onChange={(value) => {
                             const selectedVal = term.values.find(v => v.id === value);
@@ -2358,6 +2330,7 @@ export default function ProductsPage() {
                       ) : (
                         <Input
                           size="small"
+                          disabled={term.id === 'WARRANTY_TYPE' || term.id === 'WARRANTY_TIME'}
                           value={term.value_name || ''}
                           onChange={(e) => {
                             const value = e.target.value;
@@ -2371,6 +2344,7 @@ export default function ProductsPage() {
                       )}
                       <Button
                         size="small"
+                        disabled={term.id === 'WARRANTY_TYPE' || term.id === 'WARRANTY_TIME'}
                         icon={<StarOutlined />}
                         loading={mlModal.suggestingFieldId === `sale_term:${term.id}`}
                         onClick={() => void sugerirCampoIA({ id: term.id, name: term.name, value_type: term.value_type, values: term.values || [] }, 'sale_term', idx)}

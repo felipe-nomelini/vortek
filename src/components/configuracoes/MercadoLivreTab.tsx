@@ -10,10 +10,8 @@ import {
   Descriptions,
   Divider,
   Input,
-  InputNumber,
   Modal,
   Row,
-  Select,
   Space,
   Spin,
   Tag,
@@ -49,12 +47,7 @@ type MlConfiguration = {
     mixedMercadoPagoScopes: boolean;
     diagnosticsError: string | null;
   };
-  warranty: {
-    typeId: "2230279" | "2230280";
-    typeLabel: string;
-    duration: number;
-    unit: "dias" | "meses" | "anos";
-  };
+  warrantyPolicy: "product_evidence";
 };
 
 function errorMessage(error: unknown, fallback: string) {
@@ -67,9 +60,6 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
   const [data, setData] = useState<MlConfiguration | null>(null);
   const [clientId, setClientId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [warrantyTypeId, setWarrantyTypeId] = useState<"2230279" | "2230280">("2230279");
-  const [warrantyDuration, setWarrantyDuration] = useState(12);
-  const [warrantyUnit, setWarrantyUnit] = useState<"dias" | "meses" | "anos">("meses");
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -80,9 +70,6 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
       setData(payload);
       setClientId(payload.application.clientId || "");
       setClientSecret("");
-      setWarrantyTypeId(payload.warranty.typeId);
-      setWarrantyDuration(payload.warranty.duration);
-      setWarrantyUnit(payload.warranty.unit);
     } catch (error) {
       messageApi.error(errorMessage(error, "Falha ao carregar Mercado Livre"));
     } finally {
@@ -120,26 +107,6 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
           await load();
         } catch (error) {
           messageApi.error(errorMessage(error, "Falha ao atualizar aplicativo"));
-          throw error;
-        } finally { setSaving(false); }
-      },
-    });
-  };
-
-  const saveWarranty = () => {
-    Modal.confirm({
-      title: "Atualizar garantia padrão?",
-      content: "A regra será usada apenas em novas publicações e somente quando a categoria aceitar estes termos. Anúncios existentes não serão alterados.",
-      okText: "Atualizar",
-      cancelText: "Cancelar",
-      async onOk() {
-        setSaving(true);
-        try {
-          await patch({ section: "warranty", warrantyTypeId, warrantyDuration, warrantyUnit });
-          messageApi.success("Garantia padrão atualizada");
-          await load();
-        } catch (error) {
-          messageApi.error(errorMessage(error, "Falha ao atualizar garantia"));
           throw error;
         } finally { setSaving(false); }
       },
@@ -228,16 +195,10 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
 
         <Row gutter={[16, 16]}>
           <Col xs={24} xl={10}>
-            <Card title="Garantia padrão" style={{ ...configuracoesCardStyle, height: "100%" }}>
-              <Paragraph type="secondary">Preenchida somente em categorias que aceitam exatamente o tipo e o prazo escolhidos.</Paragraph>
-              <Space direction="vertical" size={10} style={{ width: "100%" }}>
-                <Select value={warrantyTypeId} onChange={setWarrantyTypeId} options={[{ value: "2230279", label: "Garantia de fábrica" }, { value: "2230280", label: "Garantia do vendedor" }]} style={{ width: "100%" }} />
-                <Space.Compact style={{ width: "100%" }}>
-                  <InputNumber min={1} max={1200} value={warrantyDuration} onChange={(value) => setWarrantyDuration(value || 1)} style={{ width: "50%" }} />
-                  <Select value={warrantyUnit} onChange={setWarrantyUnit} options={[{ value: "dias", label: "dias" }, { value: "meses", label: "meses" }, { value: "anos", label: "anos" }]} style={{ width: "50%" }} />
-                </Space.Compact>
-                <Button type="primary" onClick={saveWarranty}>Salvar garantia</Button>
-              </Space>
+            <Card title="Garantia por produto" style={{ ...configuracoesCardStyle, height: "100%" }}>
+              <Paragraph>Fabricante comprovado → fornecedor comprovado → regra legal com classificação documentada.</Paragraph>
+              <Paragraph type="secondary">Não há prazo universal. Fontes, pesquisa e revisão ficam no detalhe do produto, em Comercial e estoque. Aprovar um domínio não transfere prazos entre produtos.</Paragraph>
+              <Link href="/produtos">Abrir produtos</Link>
             </Card>
           </Col>
           <Col xs={24} xl={14}>

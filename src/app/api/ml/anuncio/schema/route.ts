@@ -10,8 +10,10 @@ import { loadProductPricing } from "@/services/pricing-context";
 import { loadPricingTaxContext, requirePricingTaxRate } from "@/services/pricing-tax-context";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
-import { buildSupportedMlWarrantyTerms } from "@/lib/ml-sale-terms";
-import { loadMercadoLivreConfiguration } from "@/services/mercado-livre-configuration";
+import { warrantySaleTerms, warrantyDescription } from "@/lib/product-warranty";
+import { prepareProductWarranty } from "@/services/product-warranty";
+import { authorizeApiRequest } from "@/lib/api-request-auth";
+import { loadBntD07VisualReview } from "@/lib/products/bnt-d07-visual-review";
 import {
   applyProductFactsToMlAttribute,
   extractMlProductFacts,
@@ -309,6 +311,8 @@ function extractMlFee(listingPrices: any): number | null {
 }
 
 export async function POST(req: Request) {
+  const authorization = await authorizeApiRequest(req, 'products.warranty.manage');
+  if (!authorization.ok) return authorization.response;
   try {
     const {
       produtoId,
@@ -324,11 +328,10 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
-    const [pricingTaxContext, commercial, operationalSupplierIds, mlConfiguration] = await Promise.all([
+    const [pricingTaxContext, commercial, operationalSupplierIds] = await Promise.all([
       loadPricingTaxContext(supabase),
       loadCommercialPricingConfiguration(supabase),
       loadOperationalDropshippingSupplierIds(supabase),
-      loadMercadoLivreConfiguration(supabase),
     ]);
     const { data: produto, error } = await supabase
       .from("produtos")
@@ -467,7 +470,11 @@ export async function POST(req: Request) {
       if (conditionalRequiredIds.has(String(attr.id))) attr.required = true;
     }
 
-    const defaultsById = new Map(buildSupportedMlWarrantyTerms(saleTermsRaw, mlConfiguration).map((term) => [term.id, term]));
+    const review = await loadBntD07VisualReview();
+    if (review?.items.some(row => String(row.product.id) === produtoId)) return NextResponse.json({ error: 'Amostra protegida de homologação' }, { status: 409 });
+    const warranty = await prepareProductWarranty(supabase, produtoId, authorization.userId);
+    const warrantyTerms = warrantySaleTerms(warranty.resolution, saleTermsRaw);
+    const defaultsById = new Map(warrantyTerms.terms.map(term => [term.id, term]));
     const saleTerms = saleTermsRaw.map((term: any) => {
       const values = (term.values || [])
         .slice(0, 100)
@@ -489,6 +496,7 @@ export async function POST(req: Request) {
       pricing,
       conditionalValidation: conditionalResult ? 'validated' : 'pending_pricing',
       schema: {
+        warranty: { ...warranty.resolution, compatible: warrantyTerms.compatible, representationReason: warrantyTerms.reason },
         required_attributes: prefillAttributes.filter((a) => a.required),
         optional_attributes: prefillAttributes.filter((a) => !a.required),
         sale_terms: saleTerms,
@@ -501,7 +509,7 @@ export async function POST(req: Request) {
         },
         conditional_required_attributes: Array.from(conditionalRequiredIds),
         prefill: {
-          description: buildDescription(produtoForMl),
+          description: warrantyDescription(buildDescription(produtoForMl), warranty.resolution),
           base_price: suggestedPrice,
           listing_type: listingType,
           seller_id: me?.id || null,

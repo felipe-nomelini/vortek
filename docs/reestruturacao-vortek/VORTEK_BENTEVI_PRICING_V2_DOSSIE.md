@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — BNT-PRICING-V2-06 (07/09/2026):** liquidação interna limitada por estoque, perda unitária e vigência, com transferência compartilhada e auditoria implementadas; testes locais e banco DEV `.162` validados; [evidências](evidencias/BNT-PRICING-V2-06-validacao.md) e seção 24. Próxima ação: planejar BNT-CANON-WARRANTY-01 — Garantia por evidência, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Push e deploy ficam para o final das etapas, por decisão do usuário. Sem homologação ML externa nesta entrega.
+**Situação vigente (07/09/2026):** `BNT-CANON-WARRANTY-01` implementada e validada localmente e no Supabase DEV `.162`; falta configurar/testar a pesquisa real (Firecrawl/OpenRouter DEV) e homologar a interface após deploy autorizado. [Evidências e pendências](evidencias/BNT-CANON-WARRANTY-01-validacao.md). Não avançar automaticamente para Buy Box econômica antes desta validação. O lote anterior até `562ffa3` foi publicado em DEV e o usuário aprovou visualmente override/liquidação; registros anteriores de “sem deploy” são fotografias históricas. Nenhum push/deploy desta nova entrega. Frete vivo ME2 continua reservado à conexão autorizada da conta real; `pricing_execution_not_ready` e gates comerciais permanecem bloqueando escritas.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -601,3 +601,9 @@ Autorização implementada com perda máxima por unidade, quantidade recortada n
 Vínculos transferidos entre grupos compartilham o mesmo orçamento. Reposição não herda autorização; conflito entre autorizações, falta de estoque, grupo/composição inválidos ou economia inconclusiva impedem aplicação. Ativação administrativa não altera preço nem habilita automação. Precedência integrada à preparação e à transição `requested`, preservando override e reconciliação de operações em andamento.
 
 Migration `20260907203000` aplicada exclusivamente ao DEV `.162`, tipos gerados, testes SQL/concorrência e 338 testes Node aprovados, validate e build aprovados. [Evidências, limites e rollback](evidencias/BNT-PRICING-V2-06-validacao.md). Sem push/deploy; aceite visual fica para homologação conjunta. Próxima ação: **BNT-CANON-WARRANTY-01 — Garantia por evidência**. Não liberar escritores ML nesta passagem.
+
+## 25. BNT-CANON-WARRANTY-01 — Garantia por evidência (07/09/2026)
+
+Garantia global aposentada no runtime. Preparação, sugestão e criação usam resolução por produto, fabricante comprovado → fornecedor comprovado → legal documentada. Pesquisa pontual limitada e confiança de domínio por marca/fornecedor não significam prazo universal. Decisões, fontes, contexto e histórico preservam auditoria. Contrato completo, AS_IS → TO_BE e consumidores no [relatório WARRANTY-01](evidencias/BNT-CANON-WARRANTY-01-validacao.md).
+
+Migration `20260907213000` aplicada somente em `.162`, tipos gerados, SQL/concorrência e testes locais validados. Falta configurar as credenciais DEV de pesquisa e homologar pesquisa/interface. Nenhum push/deploy desta entrega. O lote anterior até `562ffa3` foi publicado em DEV e override/liquidação aprovados visualmente. Não confundir este aceite com homologação comercial; guard continua bloqueado. Próxima ação depois de validar garantia: V2-08 / CFL-04 — Buy Box econômica.

@@ -4,6 +4,8 @@ Data: 07/09/2026. Base: `2eaf020`, branch `dev` inicialmente limpa.
 
 **Entrega:** autorização administrativa de liquidação interna, recorte de estoque, limite de perda unitária, transferência entre grupos, auditoria e interface no detalhe do produto. Implementação/validação local e SQL DEV concluídas; sem push, deploy, escrita ML ou acesso à produção. Aceite visual no domínio permanece para o deploy conjunto solicitado pelo usuário.
 
+**Atualização posterior — 07/09/2026:** o lote até `562ffa3` foi publicado em DEV a pedido do usuário; override e liquidação foram aprovados visualmente na conversa. As menções a ausência de deploy neste relatório descrevem a entrega inicial. A aprovação não autoriza escritas ML, conta real ou promoção em produção.
+
 ## AS_IS → TO_BE
 
 | Área | Antes | Agora |

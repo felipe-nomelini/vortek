@@ -63,7 +63,7 @@ export const CONFIGURATION_DEFINITIONS = {
   "configuracoes.product_inactive_cost_threshold": { domain: "comercial_precificacao", label: "Limite de elegibilidade da oferta", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.order_operational_delay_minutes": { domain: "produtos_estoque_fulfillment", label: "Prazo de atenção operacional", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.internal_stock_return_address": { domain: "produtos_estoque_fulfillment", label: "Endereço do estoque interno", classification: "EDITAVEL_CONTROLADO" },
-  "configuracoes.ml_default_warranty": { domain: "mercado_livre_anuncios", label: "Garantia padrão dos anúncios", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.ml_default_warranty": { domain: "mercado_livre_anuncios", label: "Garantia padrão legada (histórico)", classification: "OBSOLETO" },
   "fornecedores.dslite_catalog_xml_url": { domain: "produtos_estoque_fulfillment", label: "Feed XML do fornecedor", classification: "SECRET_WRITE_ONLY" },
   "fornecedores.dropshipping_retired_at": { domain: "produtos_estoque_fulfillment", label: "Aposentadoria do fornecedor", classification: "STATUS_SOMENTE_LEITURA" },
   "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo legadas (histórico)", classification: "OBSOLETO" },

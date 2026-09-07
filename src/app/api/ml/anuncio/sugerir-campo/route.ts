@@ -4,8 +4,9 @@ import { predictCategory } from '@/services/mercadolibre';
 import { researchProductAttribute, type ProductAttributeResearchResult } from '@/services/product-attribute-research';
 import { applyProductFactsToMlAttribute, extractMlProductFacts, type MlProductFacts } from '@/lib/ml-product-facts';
 import { filterOperationalDropshippingSupplierOffers, loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
-import { formatMlWarrantyTime, type MlWarrantyConfiguration } from '@/lib/ml-sale-terms';
-import { loadMercadoLivreConfiguration } from '@/services/mercado-livre-configuration';
+import { warrantySaleTerms, warrantyDescription } from '@/lib/product-warranty';
+import { loadProductWarranty } from '@/services/product-warranty';
+import { getCategorySaleTerms } from '@/services/mercadolibre';
 
 type AllowedValue = { id: string; name: string };
 type Suggestion = {
@@ -390,25 +391,6 @@ function evaluateDependencyRule(fieldId: string, currentForm: any, allowed: Allo
   return null;
 }
 
-function evaluateWarrantyRule(fieldId: string, allowed: AllowedValue[], configuration: MlWarrantyConfiguration): Suggestion | null {
-  const target = String(fieldId || '').toUpperCase();
-  if (target === 'WARRANTY_TYPE') {
-    const selected = allowed.find((value) => String(value.id) === configuration.typeId);
-    return selected ? { value_id: selected.id, value_name: selected.name, reason: 'configured_warranty_type', confidence: 1 } : null;
-  }
-  if (target !== 'WARRANTY_TIME') return null;
-  const configured = formatMlWarrantyTime(configuration);
-  if (!allowed.length) return { value_id: null, value_name: configured, reason: 'configured_warranty_time', confidence: 1 };
-  const selected = allowed.find((value) => normalizeTxt(value.name) === normalizeTxt(configured));
-  if (!selected) return null;
-  return {
-    value_id: String(selected.id),
-    value_name: String(selected.name),
-    reason: 'configured_warranty_time',
-    confidence: 1,
-  };
-}
-
 function buildPrompt(payload: {
   produto: any;
   categoriaId: string;
@@ -581,10 +563,7 @@ export async function POST(req: Request) {
       .select('dslite_fornecedor_id, sku_oferta, sku_fornecedor, nome, descricao, marca')
       .eq('produto_id', produtoId)
       .limit(5);
-    const [operationalSupplierIds, mlConfiguration] = await Promise.all([
-      loadOperationalDropshippingSupplierIds(supabase),
-      loadMercadoLivreConfiguration(supabase),
-    ]);
+    const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(supabase);
     const supplierRows = filterOperationalDropshippingSupplierOffers(
       supplierSkusResult.data || [],
       operationalSupplierIds,
@@ -604,8 +583,21 @@ export async function POST(req: Request) {
     };
     const productFacts = extractMlProductFacts(produtoWithEvidence);
 
+    const descriptionWarranty = String(field.id).toUpperCase() === 'DESCRIPTION' ? await loadProductWarranty(supabase, produtoId) : null;
+    if (['WARRANTY_TYPE', 'WARRANTY_TIME'].includes(String(field.id).toUpperCase())) {
+      const warranty = await loadProductWarranty(supabase, produtoId);
+      const schema = await getCategorySaleTerms(categoriaId);
+      if (!schema) return ignoredResponse('Termos oficiais indisponíveis', { reason: 'warranty_category_unavailable', confidence: 0 });
+      const terms = warrantySaleTerms(warranty.resolution, schema);
+      const selected = terms.terms.find(t => t.id === String(field.id).toUpperCase());
+      if (!selected) return ignoredResponse(terms.reason, { reason: 'warranty_evidence_required', confidence: 0 });
+      return successResponse({ value_id: selected.value_id || null, value_name: selected.value_name || null, reason: 'canonical_warranty_evidence', confidence: 1,
+        source_urls: warranty.resolution.selected ? [warranty.resolution.selected.url] : [], evidence: warranty.resolution.selected?.excerpt });
+    }
+
     const productDecision = evaluateProductRule(field, produtoWithEvidence, allowed, currentForm || {});
     if (productDecision) {
+      if (descriptionWarranty && productDecision.value_name) productDecision.value_name = warrantyDescription(productDecision.value_name, descriptionWarranty.resolution);
       return productDecision.value_id || productDecision.value_name
         ? successResponse(productDecision)
         : ignoredResponse(
@@ -614,11 +606,6 @@ export async function POST(req: Request) {
             : 'Sem evidência confiável para preencher este atributo',
           productDecision,
         );
-    }
-
-    const warrantyDecision = evaluateWarrantyRule(field.id, allowed, mlConfiguration);
-    if (warrantyDecision) {
-      return successResponse(warrantyDecision);
     }
 
     const dependencyDecision = evaluateDependencyRule(field.id, currentForm || {}, allowed);
@@ -698,7 +685,7 @@ export async function POST(req: Request) {
       if (hasUsefulDescription(generatedDescription, produtoWithEvidence, productFacts)) {
         return successResponse(withEvidence({
           value_id: null,
-          value_name: generatedDescription,
+          value_name: warrantyDescription(generatedDescription, descriptionWarranty!.resolution),
           reason: String(parsed.reason || 'clean_product_description'),
           confidence: Number(parsed.confidence || 0.85),
         }, parsed, research));
@@ -707,7 +694,7 @@ export async function POST(req: Request) {
       const fallbackDescription = buildDeterministicDescription(produtoWithEvidence, currentForm || {}, productFacts);
       return successResponse({
         value_id: null,
-        value_name: fallbackDescription,
+        value_name: warrantyDescription(fallbackDescription, descriptionWarranty!.resolution),
         reason: 'deterministic_description_fallback',
         confidence: 1,
         evidence: 'Descrição IA rejeitada por baixa qualidade; usado template determinístico com dados do produto.',
