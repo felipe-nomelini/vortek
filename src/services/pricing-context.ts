@@ -165,8 +165,14 @@ export async function loadProductPricing(client: Client, products: readonly Pric
     const mlItemId = evidence?.mlItemId ?? product.ml_item_id;
     const marketContextKey = evidence?.marketContextKey ?? `product:${product.id}:unquoted`;
     const componentBase = { expiresAt: null, basis: 'unit' as const, quantity: 1, marketContextKey, quotedPriceCents: null };
+    // PostgREST serializa timestamptz com offset e até microssegundos; o contrato econômico usa UTC em ms.
+    // Normalize a representação, nunca substitua uma data ausente/inválida pelo relógio da consulta.
+    const rawObservedAt = offer?.updated_at ?? '';
+    const observedTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:\d{2})$/.test(rawObservedAt)
+      ? Date.parse(rawObservedAt) : NaN;
     const cost: EconomicComponent = { ...componentBase, source: 'offer', sourceId: offer?.id || '',
-      condition: offer ? 'known' : 'missing', amountCents: costCents, observedAt: offer?.updated_at || '',
+      condition: offer ? 'known' : 'missing', amountCents: costCents,
+      observedAt: Number.isFinite(observedTime) ? new Date(observedTime).toISOString() : '',
       ...(kit && offer && sourceProduct && unitCostCents !== null ? { composition: {
         productId: sourceProduct.id, offerId: offer.id, supplierId: String(offer.dslite_fornecedor_id), quantity, unitCostCents,
       } } : {}) };

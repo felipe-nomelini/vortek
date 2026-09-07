@@ -146,6 +146,26 @@ test('integração usa oferta real e serviço canônico, deduplica por preço so
   assert.equal(new Set(h.calls).size, h.calls.length);
   const length = h.calls.length; await h.run(); assert.equal(h.calls.length, length * 2);
 });
+for (const timestamp of [now.replace('Z', '+00:00'), now.replace('Z', '456+00:00'), '2026-09-02T01:19:34.638-03:00']) {
+  test(`timestamp timestamptz da oferta é normalizado na entrada: ${timestamp}`, async () => {
+    const result = await liveHarness({ rows: { produto_fornecedor_ofertas: [{ ...offer, updated_at: timestamp }] } }).run();
+    assert.equal(result.revalidation.status, 'queried', JSON.stringify(result));
+    for (const memory of [result.current.memory, result.target.evaluation.memory,
+      result.floor.evaluation.memory, result.breakEven.evaluation.memory]) {
+      assert.equal(memory.cost.observedAt, new Date(timestamp).toISOString());
+      assert.equal(memory.cost.amountCents, 4000);
+    }
+  });
+}
+for (const timestamp of ['', 'invalid', '2026-09-02', '2099-09-02T01:19:34.638+00:00']) {
+  test(`data ausente, inválida, ambígua ou futura não é substituída por agora: ${timestamp}`, async () => {
+    const result = await liveHarness({ rows: { produto_fornecedor_ofertas: [{ ...offer, updated_at: timestamp }] } }).run();
+    assert.equal(result.revalidation.status, 'inconclusive');
+    assert.equal(result.current.memory, null);
+    assert.equal(result.target.ok, false);
+    assert.ok(result.current.reasons.some(r => r.field === 'cost' && r.code === 'DADO_INVALIDO'));
+  });
+}
 for (const mutate of [r => r.produto_fornecedor_ofertas[0].custo++, r => { r.produtos[0].ativo = false; },
   r => { r.produto_fornecedor_ofertas[0].ativo = false; }, r => { r.produtos[0].peso_bruto++; }, r => { r.produtos[0].ml_item_id = 'MLB2'; }]) {
   test(`revalidação material invalida consulta: ${mutate}`, async () => {
