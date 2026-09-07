@@ -4,7 +4,7 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação (07/09/2026):** PRC-03 e BNT-CANON-QTY-01 concluídas. PRC-04: timestamp real corrigido; consulta autenticada Clássico/`not_specified` validada com oferta temporária de origem registrada, tarifa viva e alvo/piso/equilíbrio. Pendente cotação viva de frete ME2: a conta de teste não possui essa logística. [Evidência corrente](evidencias/M2M-PRC-04-validacao.md). Não avançar para CFL-01 ou liberar escrita comercial enquanto o gate não estiver validado.
+**Situação (07/09/2026):** PRC-04 entregue em DEV com ressalva: frete vivo ME2 será validado quando a conta real for conectada, por decisão explícita do usuário. Cotação Clássico/`not_specified`, tarifa viva, alvo/piso/equilíbrio e correção de timestamp já possuem evidência. Próxima ação: planejar `M2M-CFL-01`. A pendência ME2 deixa de bloquear o desenvolvimento seguinte, mas continua bloqueadora do aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e da liberação comercial em produção. [Evidência e decisão](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Nenhuma conexão de conta real, uso de credenciais produtivas no DEV ou escrita externa é autorizada por esta atualização.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
 **Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.

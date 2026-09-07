@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 06/09/2026
+**Última atualização:** 07/09/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Ação corrente (07/09/2026):** `M2M-PRC-04 — Fontes ML vivas e cotação sob demanda`: timestamp real corrigido; consulta autenticada Clássico/`not_specified` validada com tarifa viva e oferta temporária de origem registrada. Ainda aberta para homologação de frete vivo ME2, indisponível na conta de teste conectada. [Evidências e pendência](evidencias/M2M-PRC-04-validacao.md). Não avançar para CFL-01 nem liberar escrita comercial; produção permanece fora do escopo.
+**Próxima ação (07/09/2026):** planejar `M2M-CFL-01 — Contrato canônico de conflitos`. Implementação DEV da PRC-04 entregue e validada no contexto disponível; por decisão explícita do usuário, a validação de frete vivo ME2 fica para a conexão da conta real. Essa pendência não bloqueia o próximo desenvolvimento, mas continua obrigatória antes da liberação comercial. [Evidências e decisão](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Nenhuma conta real é conectada ou escrita comercial liberada por esta atualização.
 
 ---
 
@@ -3083,7 +3083,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
-**Situação:** em andamento. Paridade/integrações e PRC-01/02/02A/03/QTY-01 concluídas nos respectivos escopos. PRC-04 com cotação autenticada Clássico/`not_specified` validada em DEV; concluir homologação de frete vivo ME2 em conta/contexto de teste habilitado antes de avançar. [Evidência e pendência corrente](evidencias/M2M-PRC-04-validacao.md). Bloqueios de escrita comercial preservados; sequência reconciliada inalterada.
+**Situação:** em andamento. Paridade/integrações e PRC-01/02/02A/03/QTY-01 concluídas nos respectivos escopos. PRC-04 entregue em DEV com ressalva explícita: frete ME2 será validado ao conectar a conta real, conforme decisão do usuário em 07/09. Podemos planejar CFL-01; a ressalva permanece bloqueadora da liberação comercial, não do desenvolvimento seguinte. [Evidência e decisão](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Bloqueios de escrita comercial preservados; ordem das ações inalterada.
 
 **Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
@@ -3101,7 +3101,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-03` / `M2M-PRC-03` — retirar custo/lucro nominal/margem global/piso universal de 10% do caminho decisório;
 - [x] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
 - [x] `BNT-M2M-RECON-01` — reconciliar autoridade, dependências e critérios de aceite, sem alteração funcional;
-- [ ] `M2M-PRC-04` — timestamp real corrigido, testes/validate/build aprovados, cotação autenticada Clássico/`not_specified` validada; pendente frete vivo ME2 em conta/contexto de teste habilitado. [Evidência](evidencias/M2M-PRC-04-validacao.md);
+- [x] `M2M-PRC-04` — implementação DEV entregue com ressalva: timestamp corrigido, testes/validate/build e cotação Clássico/`not_specified` aprovados; frete ME2 transferido por decisão do usuário para a pendência abaixo, sem declará-lo homologado. [Evidência](evidencias/M2M-PRC-04-validacao.md);
 - [ ] `M2M-CFL-01` — contrato de conflitos independente do score;
 - [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
 - [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos, sem habilitar escritores;
@@ -3111,6 +3111,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [ ] `BNT-CANON-WARRANTY-01` — garantia por evidência, sem prazo universal ou atributos inventados;
 - [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
 - [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa;
+- [ ] **Pendência PRC-04 — Frete ME2 na conexão da conta real:** retomar quando a conta real estiver conectada em ambiente autorizado; comprovar cotação do vendedor no contexto real e recotação de alvo/piso/equilíbrio com oferta de origem conhecida. Registrar evidências e inconclusivo quando a fonte falhar. Não bloqueia o planejamento/desenvolvimento de CFL-01; bloqueia o aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e a liberação comercial em produção enquanto não validada. Esta anotação não autoriza conectar conta, copiar credenciais de produção para DEV, publicar, reprecificar ou pausar anúncios;
 - [ ] `BNT-CANON-PUB-GATE` — validar sugestão, preparação, confirmação e publicação/read-back em homologação; não substitui gate final nem libera massa autônoma;
 - [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
 - [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem com evidência comercial;

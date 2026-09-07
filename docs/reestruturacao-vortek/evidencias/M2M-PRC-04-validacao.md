@@ -4,7 +4,7 @@ Data: 06/09/2026. Worktree/branch: vortek-dev / dev. Base anterior: 9d44997.
 
 ## Estado e limite de conclusão
 
-Atualização de 07/09: runtime **591a46e** publicado em DEV. Consulta autenticada Clássico/`not_specified` validada com oferta temporária de origem registrada, tarifa ML viva e projeções completas; corrigido timestamp real de oferta. **Ação ainda aberta**: falta homologar cotação viva de frete ME2 em conta/contexto de teste habilitado. A conta conectada não possui ME2. Não avançar para CFL-01 enquanto essa evidência não existir. As seções anteriores à continuação de 07/09 registram a fotografia da entrega inicial.
+Atualização de 07/09: runtime **591a46e** publicado em DEV. Consulta autenticada Clássico/`not_specified` validada com oferta temporária de origem registrada, tarifa ML viva e projeções completas; corrigido timestamp real de oferta. **Implementação DEV entregue com ressalva:** por decisão posterior do usuário, frete vivo ME2 fica para a conexão da conta real, sem bloquear o próximo desenvolvimento. Próxima ação: planejar CFL-01. A validação ME2 permanece aberta e obrigatória antes da liberação comercial. Ver [decisão vigente](#decisão-do-usuário--frete-na-conexão-da-conta-real); as demais seções registram fotografias datadas, não homologação de ME2.
 
 ## AS_IS → TO_BE
 
@@ -108,6 +108,17 @@ Skills DEV/Supabase orientam validação e isolamento; a referência antiga da s
 
 Cada preço recebeu cotação própria: a tarifa do preço de R$100 **não foi extrapolada** para os candidatos menores. Referência de custo R$11,82 e frete configurado R$30 constantes neste ensaio. Nenhum desses preços foi aplicado a produto/anúncio.
 
-**Pendência remanescente:** conta de teste/contexto comercial com Mercado Envios habilitado para cotar frete vivo ME2 e concluir a homologação dessa modalidade com oferta de origem conhecida. A prova acima não substitui frete vivo, identidade comercial, cobertura fiscal confirmada ou o gate futuro de publicação. Não usar conta/credenciais de produção nem habilitar escritas para contornar a pendência. PRC-04 continua aberta; CFL-01 não iniciada.
+**Pendência identificada no ensaio:** cotar frete vivo ME2 em conta/contexto habilitado, com oferta de origem conhecida. A prova acima não substitui frete vivo, identidade comercial, cobertura fiscal confirmada ou o gate futuro de publicação. O momento da validação e seu efeito na sequência foram ajustados pela decisão abaixo; a evidência técnica não foi alterada.
 
 Contrato de timestamp verificado em [PostgREST — timestamps](https://postgrest.org/en/stable/how-tos/working-with-postgresql-data-types.html#timestamps). O adaptador converte a representação do banco; não altera o timezone do banco nem relaxa o contrato econômico.
+
+## Decisão do usuário — frete na conexão da conta real
+
+Em 07/09/2026, o usuário determinou registrar a validação de frete para quando conectarmos a conta real. A implementação DEV da PRC-04 fica entregue **com essa ressalva**, sem afirmar homologação integral. Pelas evidências registradas, esta era a única pendência remanescente da PRC-04 que bloqueava o próximo desenvolvimento; as demais ações da fila continuam pendentes nos próprios escopos.
+
+- [ ] Ao conectar a conta real em ambiente autorizado e em tarefa própria, retomar a validação de frete ME2: conta/item/categoria/logística e oferta de origem conhecida, cotação de custo do vendedor e recotação de alvo/piso/equilíbrio, origem/timestamps e indisponibilidade explícita. Registrar resultado e evidências nesta ação antes de aceitar a liberação comercial.
+- A ressalva não bloqueia o planejamento/desenvolvimento de `M2M-CFL-01 — Contrato canônico de conflitos`, que é o próximo item. Não foi implementado nesta atualização.
+- A ressalva continua bloqueadora do aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e da liberação comercial em produção. Os demais requisitos desses gates permanecem íntegros.
+- Esta decisão é documental: não conecta conta real agora, não autoriza importar credenciais produtivas para DEV, não muda os ambientes do AGENTS e não autoriza publicar, reprecificar, pausar anúncios ou remover `pricing_execution_not_ready`.
+
+Skill `vortek-dev-implementation` aplicada para limitar a alteração ao acompanhamento desta ação. Conferidos sequência, ressalva e referências nos quatro documentos; `git diff --check` e `npm run validate` aprovados. Sem mudança funcional, banco, integração ou deploy. Build e nova homologação externa não executados nesta atualização exclusivamente documental.

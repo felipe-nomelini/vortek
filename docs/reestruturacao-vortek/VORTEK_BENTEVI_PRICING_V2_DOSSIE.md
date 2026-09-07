@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — M2M-PRC-04 (07/09/2026):** corrigido timestamp real da oferta; consulta autenticada Clássico/`not_specified` validada em DEV com tarifa viva, origem de custo registrada e projeções completas. [Pendente homologação de frete vivo ME2: conta de teste sem essa logística](evidencias/M2M-PRC-04-validacao.md). Sequência reconciliada na seção 18 mantida, sem avançar para CFL-01 ou liberar escritas. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas.
+**Atualização vigente — M2M-PRC-04 (07/09/2026):** implementação DEV entregue com ressalva. Timestamp corrigido e cotação autenticada Clássico/`not_specified` validada; por decisão do usuário, [frete vivo ME2 fica para a conexão da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Podemos planejar CFL-01, sem alterar a ordem reconciliada ou liberar escritas. A ressalva permanece bloqueadora do aceite comercial do PUB-GATE, do M2M-GATE e da liberação comercial em produção. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas; a dispensa de bloqueio do próximo desenvolvimento não equivale à validação de ME2.
 
 ## 1. Escopo, autoridade e fotografia
 
