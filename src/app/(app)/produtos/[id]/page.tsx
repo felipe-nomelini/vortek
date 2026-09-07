@@ -1,6 +1,7 @@
 'use client';
 
 import LivePricingQuote from '@/components/products/LivePricingQuote';
+import PricingOverrideControl from '@/components/products/PricingOverrideControl';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -369,6 +370,7 @@ export default function ProductDetailPage() {
         <div><span>Preço calculado</span><strong>{formatCurrency(suggestedPrice)}</strong><small>estimativa local · sem revalidação ML</small></div>
         <div className={profit === null ? undefined : profit >= 0 ? styles.profitBox : styles.lossBox}><span>Lucro líquido</span><strong>{formatCurrency(profit)}</strong><small>{margin === null ? 'Dados econômicos incompletos' : `${margin.toFixed(2).replace('.', ',')}% de margem estimada`}</small></div>
       </div>
+      <PricingOverrideControl key={id} productId={id} disabled={Boolean(visualReview) || isEditing} />
     </section>
   </div>;
 

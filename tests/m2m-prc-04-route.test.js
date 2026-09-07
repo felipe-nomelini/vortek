@@ -15,6 +15,7 @@ function harness(options = {}) {
     maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p : options.unlinked ? null : { ml_item_id: 'MLB1' } }) }; } };
   const routes = load('src/app/api/ml/anuncio/preco-detalhe/route.ts', {
     '@/services/pricing-audit': { recordPricingEvaluation: async () => 'evaluation-test' },
+    '@/services/pricing-overrides': { loadPricingOverrides: async () => { if (options.protectionDown) throw new Error('database unavailable'); return { status: 'available', groups: [] }; } },
     'next/server': { NextResponse: { json: (data, init) => Response.json(data, init) } }, zod: require('zod'),
     '@/lib/supabase': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: options.anonymous ? null : { id: 'U1' } } }) } }), createServiceClient: () => client },
     '@/services/integration': { fetchMLResult: async path => {
@@ -86,4 +87,13 @@ test('fonte indisponível é explícita; alteração do anúncio invalida contex
   const down = harness({ mlDown: true }); const response = await down.get('produtoId=P1');
   assert.equal(response.status, 503); assert.equal((await response.json()).code, 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
   const changed = harness({ changed: true }); await changed.get('produtoId=P1'); assert.equal(changed.captured[0].valid, false);
+});
+
+test('proteção indisponível não vira ausência de override nem impede diagnóstico econômico', async () => {
+  const h = harness({ protectionDown: true });
+  const response = await h.get('produtoId=P1');
+  assert.equal(response.status, 200);
+  const body = await response.json();
+  assert.equal(body.protection.status, 'unavailable');
+  assert.deepEqual(body.pricing, pricing);
 });

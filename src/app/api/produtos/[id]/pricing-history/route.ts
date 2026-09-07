@@ -14,7 +14,7 @@ export async function GET(req: Request, props: { params: Promise<{ id: string }>
   const product = await client.from('produtos').select('id').eq('id', id).maybeSingle();
   if (product.error) return NextResponse.json({ error: 'Histórico indisponível' }, { status: 503 });
   if (!product.data) return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
-  let query = client.from('pricing_events').select('id,created_at,item_id,group_id,group_version,operation_id,evaluation_id,kind,pricing_source,actor_id,reason,rule_id,job_id,previous_price_cents,new_price_cents,observed_at,projection')
+  let query = client.from('pricing_events').select('id,created_at,item_id,group_id,group_version,operation_id,evaluation_id,override_id,kind,pricing_source,actor_id,reason,rule_id,job_id,previous_price_cents,new_price_cents,observed_at,projection,source_override_ids:evidence->sourceOverrideIds')
     .eq('produto_id', id).order('id', { ascending: false }).limit(input.data.limit);
   if (input.data.before) query = query.lt('id', Number(input.data.before));
   if (input.data.itemId) query = query.eq('item_id', input.data.itemId);

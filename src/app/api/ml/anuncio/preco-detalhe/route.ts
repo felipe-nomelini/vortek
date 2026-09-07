@@ -4,6 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { loadLiveProductPricing } from '@/services/pricing-live';
 import { recordPricingEvaluation } from '@/services/pricing-audit';
+import { loadPricingOverrides, type PricingProtection } from '@/services/pricing-overrides';
 import { quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
 import { pricingView } from '@/lib/pricing-view';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
@@ -144,7 +145,8 @@ async function details(raw: unknown) {
     }
   }
   const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing);
-  return json({ success: true, evaluationId, mlItemId: itemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
+  const protection: PricingProtection = await loadPricingOverrides(service, product.id).catch(() => ({ status: 'unavailable', groups: [] }));
+  return json({ success: true, evaluationId, protection, mlItemId: itemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
     currentProfit: input.priceCents != null && input.priceCents !== currentPrice ? null : view.profit,
     pricing, quantityPricing, quantityPricingWarning, catalog,
     calculator: { cost: view.cost, shipping: memory ? memory.shipping.amountCents! / 100 : null,

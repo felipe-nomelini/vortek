@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — BNT-PRICING-V2-04 (07/09/2026):** avaliações, operações e eventos de preço implementados; testes locais e banco DEV `.162` validados; [evidências](evidencias/BNT-PRICING-V2-04-validacao.md) e seção 22. Próxima ação: planejar BNT-PRICING-V2-05 — Override explícito, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Push e deploy ficam para o final das etapas, por decisão do usuário. Sem homologação ML externa nesta entrega.
+**Atualização vigente — BNT-PRICING-V2-05 (07/09/2026):** override por grupo, auditoria, propagação e controles implementados; testes locais e banco DEV `.162` validados; [evidências](evidencias/BNT-PRICING-V2-05-validacao.md) e seção 23. Próxima ação: planejar BNT-PRICING-V2-06 — Liquidação interna, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Push e deploy ficam para o final das etapas, por decisão do usuário. Sem homologação ML externa nesta entrega.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -583,3 +583,13 @@ Produtores observacionais usam RPC transacional com locks por item, watermark e 
 Migrations `20260907180000` e `20260907183000` aplicadas somente no DEV `.162`, com ensaios revertidos e tipos gerados nesse banco. **325 testes**, SQL transacional, concorrência real, `npm run validate` e build aprovados. Matriz de consumidores, contratos, fontes, limites e rollback: [evidências V2-04](evidencias/BNT-PRICING-V2-04-validacao.md).
 
 Próxima ação: planejar **BNT-PRICING-V2-05 — Override explícito**. Homologação externa pendente; push/deploy ao final das etapas conforme o usuário. Frete ME2 e demais gates comerciais permanecem obrigatórios antes da liberação.
+
+## 23. BNT-PRICING-V2-05 — Override explícito (07/09/2026)
+
+Proteção tipada por grupo até revogação manual, independente de `custom_price` e da autoria de alterações. Por decisão expressa do responsável, admin/gerente gerenciam e a proteção é propagada automaticamente aos grupos resultantes com membros anteriormente protegidos. As decisões foram acrescentadas ao cânon; o contrato antigo com expiração automática está superado.
+
+Persistência e eventos são transacionais e idempotentes. Reconciliação de grupos, ativação/revogação e preparação/transição de operações compartilham controle de concorrência. Operações automáticas são bloqueadas na preparação e antes de `requested`; operações já solicitadas continuam exigindo reconciliação. Sem preço, job ou outbox disparados por gerenciar proteção.
+
+O detalhe do produto apresenta proteção, membros, responsável/motivo, ações contextuais e histórico. API autenticada aplica a matriz existente; amostras protegidas não permitem gestão. Estado de proteção acompanha a consulta econômica sem alterar fórmulas. Leitura falha não vira ausência de override.
+
+Migration `20260907193000` aplicada somente no DEV `.162`, após ensaio revertido. Tipos gerados desse mesmo banco. Evidências SQL, concorrência, API, renderização SSR e limitações: [V2-05](evidencias/BNT-PRICING-V2-05-validacao.md). Sem push/deploy ou produção; aceite visual no domínio permanece para a homologação conjunta. Próxima ação: **BNT-PRICING-V2-06 — Liquidação interna**.

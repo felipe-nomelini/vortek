@@ -14,6 +14,61 @@ export type Database = {
   }
   public: {
     Tables: {
+      manual_pricing_overrides: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          group_id: string
+          group_version: number
+          id: string
+          origin: string
+          reason: string
+          revoke_reason: string | null
+          revoked_at: string | null
+          revoked_by: string | null
+          state: string
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          group_id: string
+          group_version: number
+          id?: string
+          origin: string
+          reason: string
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          revoked_by?: string | null
+          state?: string
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          group_id?: string
+          group_version?: number
+          id?: string
+          origin?: string
+          reason?: string
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          revoked_by?: string | null
+          state?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "manual_pricing_overrides_group_id_fkey"
+            columns: ["group_id"]
+            referencedRelation: "ml_pricing_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "manual_pricing_overrides_group_id_group_version_fkey"
+            columns: ["group_id", "group_version"]
+            referencedRelation: "ml_pricing_group_revisions"
+            referencedColumns: ["group_id", "version"]
+          },
+        ]
+      }
       pricing_evaluations: {
         Row: {
           actor_id: string | null
@@ -136,9 +191,10 @@ export type Database = {
           },
         ]
       }
-      pricing_events: {
+pricing_events: {
         Row: {
           actor_id: string | null
+          command_id: string | null
           created_at: string
           evaluation_id: string | null
           evidence: Json
@@ -151,6 +207,7 @@ export type Database = {
           new_price_cents: number | null
           observed_at: string | null
           operation_id: string | null
+          override_id: string | null
           previous_price_cents: number | null
           pricing_source: string
           produto_id: string | null
@@ -160,6 +217,7 @@ export type Database = {
         }
         Insert: {
           actor_id?: string | null
+          command_id?: string | null
           created_at?: string
           evaluation_id?: string | null
           evidence?: Json
@@ -172,6 +230,7 @@ export type Database = {
           new_price_cents?: number | null
           observed_at?: string | null
           operation_id?: string | null
+          override_id?: string | null
           previous_price_cents?: number | null
           pricing_source: string
           produto_id?: string | null
@@ -181,6 +240,7 @@ export type Database = {
         }
         Update: {
           actor_id?: string | null
+          command_id?: string | null
           created_at?: string
           evaluation_id?: string | null
           evidence?: Json
@@ -193,6 +253,7 @@ export type Database = {
           new_price_cents?: number | null
           observed_at?: string | null
           operation_id?: string | null
+          override_id?: string | null
           previous_price_cents?: number | null
           pricing_source?: string
           produto_id?: string | null
@@ -211,6 +272,12 @@ export type Database = {
             foreignKeyName: "pricing_events_operation_id_fkey"
             columns: ["operation_id"]
             referencedRelation: "pricing_operations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_events_override_id_fkey"
+            columns: ["override_id"]
+            referencedRelation: "manual_pricing_overrides"
             referencedColumns: ["id"]
           },
         ]
@@ -2185,6 +2252,23 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      manage_manual_pricing_override: {
+        Args: {
+          p_action: string
+          p_actor_id: string
+          p_command_id: string
+          p_group_id: string
+          p_group_version: number
+          p_override_id?: string
+          p_product_id: string
+          p_reason: string
+        }
+        Returns: string
+      }
+      assert_pricing_override_allows: {
+        Args: { p_actor_id: string; p_group_id: string; p_source: string }
+        Returns: undefined
+      }
       persist_ml_pricing_observations: {
         Args: { p_observed_at: string; p_rows: Json; p_table: string }
         Returns: Json
