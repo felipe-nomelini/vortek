@@ -4,7 +4,7 @@ Data: 06/09/2026. Worktree/branch: vortek-dev / dev. Base anterior: 9d44997.
 
 ## Estado e limite de conclusão
 
-Implementação e validação local concluídas; primeira publicação DEV e verificação web autenticada executadas. **Ação ainda aberta**, aguardando homologação econômica completa com oferta elegível e contexto comercial de teste apto. Não avançar para CFL-01 enquanto essa evidência não existir.
+Implementação e validação local concluídas; runtime final **8edefd2** publicado em DEV e verificação web autenticada executada. **Ação ainda aberta**, aguardando homologação econômica completa com oferta elegível e contexto comercial de teste apto. Não avançar para CFL-01 enquanto essa evidência não existir.
 
 ## AS_IS → TO_BE
 
@@ -61,6 +61,9 @@ Preflight por conexão direta: **192.168.1.162**, hostname **supabase-dev**, tra
 - POST cotação sobre fixture: 409 `homologation_fixture_read_only`; campo sellerId não permitido: 422. Criação/preço/opt-in: 409 `pricing_execution_not_ready`.
 - Navegação autenticada sem erros JavaScript: botão desabilitado na amostra; modal acessível no produto DEV operacional; campos obrigatórios bloqueiam submissão incompleta; fechar/reabrir limpa estado. Revisão visual identificou mensagens padrão em inglês e foi aplicada tradução no próprio formulário antes do encerramento da entrega.
 - [Amostra protegida](M2M-PRC-04-fixture-protegida.png) e [preparação de cotação](M2M-PRC-04-preparacao.png). Essas capturas não representam cotação econômica comercial completa.
+- Revisão final `8edefd2` publicada pelo script oficial; ação `cmtqmfuy8000306mn2pmf3x9e`. Compilação/exportação da imagem `easypanel/local/vortek-erp-dev` concluídas. Hashes do checkout de build e local coincidem: rota `331b9c89335c823832d588a1889e163b8f64b8d18dc6b91d1fbc4dae0d2f4735`, componente `6eab8be3596c388cd2d38bcca9282c2d03be619a48bb0162eaaf4ec2e1960018`. Isso comprova o código recebido para o build; não é inspeção direta do container em execução.
+- Após o último build, a homologação autenticada repetiu os HTTP 200/409/422 acima com sucesso, sem erros JavaScript; mensagem `Informe Tipo do anúncio.` visível e `Please enter` ausente. Capturas atualizadas e inspecionadas. Auth temporário novamente encerrado apenas em .162. Sem mudança de senha ou dados comerciais.
+- A interface/guardas estão validados em DEV. O cálculo completo com oferta e cotação comercial viva **não** foi homologado: permanece a pendência descrita acima. Sem avanço de CFL-01 ou liberação de publicação/reprecificação.
 
 ## Rollback e riscos residuais
 
