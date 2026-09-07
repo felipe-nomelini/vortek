@@ -4,10 +4,10 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação:** PRC-03 concluída e validada em DEV: consumidores de leitura/SQL/configuração/pedidos migrados e bloqueios comerciais preservados. Próxima ação: planejar `BNT-CANON-QTY-01`. O programa de pricing ainda não está concluído nem liberado para promoção.
+**Situação:** PRC-03 e BNT-CANON-QTY-01 concluídas e validadas em DEV: consumidores migrados, desconto por quantidade retirado e bloqueios comerciais preservados. Próxima ação: planejar `M2M-PRC-04`. O programa de pricing ainda não está concluído nem liberado para promoção.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
-**Atualização em 06/09/2026 — M2M-PRC-03:** o [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md), importado de `origin/main` em `7f0a292`, atualiza as regras conflitantes da [ordem M2M](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md); complementos compatíveis permanecem. PRC-02A e PRC-03 concluídos nos respectivos escopos. Fechamento na seção 16 do dossiê e na [evidência PRC-03](evidencias/M2M-PRC-03-validacao.md): 291 testes, validate, build, migration somente no `.162` e homologação web. QTY-01, PRC-04 e governança continuam nas ações próprias. Nenhuma escrita comercial/autônoma ou promoção foi liberada.
+**Atualização em 06/09/2026 — QTY-01:** o [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md), importado de `origin/main` em `7f0a292`, atualiza as regras conflitantes da [ordem M2M](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md); complementos compatíveis permanecem. PRC-02A, PRC-03 e QTY-01 concluídos nos respectivos escopos. Fechamentos nas seções 16/17 do dossiê e nas evidências [PRC-03](evidencias/M2M-PRC-03-validacao.md) e [QTY-01](evidencias/BNT-CANON-QTY-01-validacao.md). PRC-04 e governança continuam nas ações próprias. Nenhuma escrita comercial/autônoma ou promoção foi liberada.
 
 **Transição PRC-02A concluída:** o campo de extras foi retirado do tipo, objeto e fingerprint da nova memória, sem substituto. Tributo calculado usa teto exato ao centavo; montante realizado informado, inclusive zero, prevalece. Cenário realizado sem montante continua estimado; tarifa ML mantém half-up. Custos de aquisição pertencem ao CMV; despesas corporativas não entram como extras por SKU. Decisão na seção 13 e implementação na seção 14 do dossiê; histórico preservado.
 

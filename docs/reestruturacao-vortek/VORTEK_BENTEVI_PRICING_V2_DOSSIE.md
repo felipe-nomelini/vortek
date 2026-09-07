@@ -494,3 +494,15 @@ Passaram os 12 arquivos de testes direcionados: memória PRC-02, contexto PRC-03
 **Banco:** destino confirmado `192.168.1.162 / supabase-dev`; migration `20260906120000` ensaiada com ROLLBACK e aplicada transacionalmente, histórico 109 → 110. Registros operacionais preservados e assinaturas regeneradas por introspecção. Nenhum acesso ao banco de produção. O host `.160` foi usado somente para a aplicação web DEV/Easypanel, não para escrita de banco.
 
 **Limites:** conclusão da PRC-03 não significa conclusão global do pricing. Aquisição/revalidação ML viva é PRC-04; QTY-01 e contratos de governança seguem na fila. O guard de execução não deve ser removido isoladamente. Ausência de evidência não foi convertida em preço, custo zero ou lucro realizado. Não houve promoção, escrita autônoma ou liberação comercial. `AGENTS.md` e cópia imutável do cânon preservados.
+
+## 17. BNT-CANON-QTY-01 — Fechamento e homologação DEV (06/09/2026)
+
+**Estado:** concluído. Código `9898b71` publicado em `dev.bentevi.shop`. Próxima ação: planejar `M2M-PRC-04`, sem executá-la nesta tarefa.
+
+Editor, contrato administrativo, escritores e etapas de atacado retirados. Endpoints legados retornam 410; fila exclusivamente de quantidade termina sem retry, enquanto estoque/status de fila mista continuam no fluxo existente. Compra normal de múltiplas unidades e leitura informativa de descontos existentes no ML preservadas; nenhum desconto remoto alterado.
+
+Migration `20260906130000` ensaiada com ROLLBACK e aplicada exclusivamente no destino confirmado `.162 / supabase-dev`: RPC comercial de três argumentos, tipos conferidos com assinatura viva, ACL preservada e três faixas históricas intactas por hash. Histórico com 111 versões; nenhuma migration histórica reescrita.
+
+**Validação:** 281 testes direcionados, validate e build passaram; execução adicional de 47 testes também aprovada, com sobreposição. Homologação autenticada de Produtos, detalhe, Anúncios, Comercial, simulador e PDFs; endpoints antigos 410, payload administrativo legado 422 e guard comercial 409. Salvamento válido comprovado no teste isolado da rota e no ensaio real da RPC com ROLLBACK, sem alteração de parâmetros pelo navegador. [Evidências, captura e reversão](evidencias/BNT-CANON-QTY-01-validacao.md).
+
+**Limites:** nenhuma escrita no banco de produção, publicação no ML ou liberação dos guards da PRC-03. Fontes ML vivas e governança permanecem nas respectivas ações. Histórico de auditoria e cânon imutável preservados.

@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 05/09/2026
+**Última atualização:** 06/09/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Ação corrente:** planejar `BNT-CANON-QTY-01 — Retirar desconto por quantidade`. `M2M-PRC-03 / BNT-PRICING-V2-03` concluída no escopo de transição e validada em DEV, com consumidores migrados e bloqueios comerciais preservados; evidências ao final deste documento. O programa completo de pricing ainda não está homologado para produção. Escritas comerciais, produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
+**Ação corrente:** planejar `M2M-PRC-04 — Precedência/revalidação ML viva`. `BNT-CANON-QTY-01` concluída e homologada em DEV; evidências ao final deste documento. O programa completo de pricing ainda não está homologado para produção. Bloqueios comerciais da PRC-03 preservados; escritas comerciais, produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
 
 ---
 
@@ -54,7 +54,7 @@ Regras de uso:
 |---:|---|---|---|
 | 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
 | 1 | Segurança crítica | Encerrada com risco aceito | Reabrir `SEC-05` se a exigência de links permanentes mudar |
-| 2 | Preços por Quantidade Mercado Livre | Objetivo de ativação superado pelo Cânon Comercial | Retirar a funcionalidade em `BNT-CANON-QTY-01`; tag business deixa de bloquear, sem declarar a antiga prova realizada |
+| 2 | Preços por Quantidade Mercado Livre | Funcionalidade retirada em `BNT-CANON-QTY-01`, validada em DEV | Preservar histórico e múltiplas unidades; tag business não bloqueia, sem declarar a antiga prova realizada |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
@@ -65,7 +65,7 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00, CANON-01 e PRC-01/02/02A/03 concluídos nos respectivos escopos | Planejar `BNT-CANON-QTY-01`; fontes vivas, governança, publicação e Radar ainda pendentes |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00, CANON-01, PRC-01/02/02A/03 e QTY-01 concluídos nos respectivos escopos | Planejar `M2M-PRC-04`; fontes vivas, governança, publicação e Radar ainda pendentes |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -3083,7 +3083,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
-**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos; V2-00 e CANON-01 entregues documentalmente; PRC-01/02/02A e migração de consumidores PRC-03 implementados e validados nos respectivos escopos. Bloqueios de escrita comercial preservados. Próxima ação: planejar `BNT-CANON-QTY-01`, conforme o [plano reconciliado](VORTEK_BENTEVI_PRICING_V2_PLANO.md) e o fechamento da seção 16 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
+**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos; V2-00 e CANON-01 entregues documentalmente; PRC-01/02/02A/03 e QTY-01 implementados e validados nos respectivos escopos. Bloqueios de escrita comercial preservados. Próxima ação: planejar `M2M-PRC-04`, conforme o [plano reconciliado](VORTEK_BENTEVI_PRICING_V2_PLANO.md) e o fechamento da seção 17 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
 **Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
@@ -3099,7 +3099,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PARITY-CANON-01` — fonte canônica integral, matriz dos 18 commits e fila reconciliada, sem implementação funcional;
 - [x] `M2M-PRC-02A` — tributo calculado para cima ao centavo, campo de extras retirado e memória ECON-2; realizado/histórico preservados;
 - [x] `BNT-PRICING-V2-03` / `M2M-PRC-03` — retirar custo/lucro nominal/margem global/piso universal de 10% do caminho decisório;
-- [ ] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
+- [x] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
 - [ ] `M2M-PRC-04` — precedência/revalidação ML viva e `INCONCLUSIVO_FONTE_ML_INDISPONIVEL`;
 - [ ] `BNT-PRICING-V2-04` — origem e audit trail do pricing;
 - [ ] `BNT-PRICING-V2-05` — override manual explícito;
@@ -3298,7 +3298,7 @@ O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tive
 - [ ] homologação permanece isolada e operacional;
 - [ ] todos os P0 foram resolvidos;
 - [ ] todos os P1 foram resolvidos ou formalmente reclassificados com evidência;
-- [ ] desconto por quantidade retirado conforme o cânon e `BNT-CANON-QTY-01` validada; compra normal de múltiplas unidades e histórico preservados; não reativar a prova B2B antiga;
+- [x] desconto por quantidade retirado conforme o cânon e `BNT-CANON-QTY-01` validada; compra normal de múltiplas unidades e histórico preservados; não reativar a prova B2B antiga;
 - [ ] estoque interno possui reserva segura;
 - [ ] quantidade segura possui uma única fonte;
 - [ ] Mercado Livre não executa scans/outboxes desnecessários comprovados;
@@ -3437,3 +3437,17 @@ Primeira parcela e continuação concluídas. [Validação PRC-03](evidencias/M2
 - [x] Executar regressão completa da migração e homologação com fixtures protegidas antes de encerrar PRC-03.
 
 Fotografia histórica na seção 15 e fechamento na seção 16 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md). Código `a26bde1` commitado, enviado à branch `dev` e implantado exclusivamente no serviço web DEV. Migration `20260906120000` aplicada no `192.168.1.162`; histórico com 110 versões. Nenhuma mutation no banco de produção nem merge/deploy em produção. Origem/recotação ML viva e governança permanecem nas ações seguintes; ausência de CMV histórico itemizado continua inconclusiva, sem lucro realizado fabricado. Não houve implementação de QTY-01 ou PRC-04.
+
+### Fechamento BNT-CANON-QTY-01 — 06/09/2026
+
+**Estado: CONCLUÍDO em DEV. Próxima ação: planejar M2M-PRC-04 — Precedência/revalidação ML viva.**
+
+- [x] Retirar editor, contratos e escritores de desconto por quantidade; endpoints legados autenticados retornam 410.
+- [x] Cancelar trabalho legado exclusivamente de quantidade sem retry e preservar estoque/status de filas mistas.
+- [x] Preservar compra de múltiplas unidades, histórico e consulta informativa de descontos existentes no ML.
+- [x] Ensaiar com ROLLBACK e aplicar migration `20260906130000` somente em `.162 / supabase-dev`; tipos conferidos com assinatura viva, histórico com 111 versões e faixas preservadas por hash.
+- [x] Executar 281 testes direcionados, validate e build; mais 47 testes adicionais aprovados, com sobreposição entre suítes.
+- [x] Publicar código `9898b71` somente em DEV e validar telas, simulador, PDFs, HTTP 410/422 e guard comercial 409.
+- [x] Registrar [evidências e captura](evidencias/BNT-CANON-QTY-01-validacao.md). Salvamento válido: teste isolado da rota e RPC real com ROLLBACK; sem alteração de parâmetros pelo navegador.
+
+Nenhuma alteração de desconto remoto, banco de produção ou liberação comercial. PRC-04 não executada. Os fechamentos anteriores permanecem como fotografia histórica.
