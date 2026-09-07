@@ -1,34 +1,21 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
-import { previewItemQuantityPricing } from '@/services/mercadolibre';
-import {
-  extractQuantityPricingTiers,
-  serializeQuantityPricingTiers,
-} from '@/lib/ml/quantity-pricing';
 
-type PublishOutboxStatus = 'pending' | 'processing' | 'retry' | 'failed' | 'done';
-type PublishPhase = 'enfileirado' | 'processando' | 'erro' | 'concluido';
-type QuantityPricingState = 'active' | 'absent' | 'failed_validation' | 'provider_rejected';
-
-type QuantityPricingTier = {
-  min_purchase_unit: number;
-  discount_percent: number;
-  amount: number;
-  currency_id: string;
-  pricing_model: 'percentage' | 'absolute';
-};
-
+type PublishOutboxStatus = 'pending' | 'processing' | 'retry' | 'failed' | 'done' | 'cancelled';
+type PublishPhase = 'enfileirado' | 'processando' | 'erro' | 'concluido' | 'cancelado';
 function normalizeOutboxStatus(value: unknown): PublishOutboxStatus {
   const raw = String(value || '').trim().toLowerCase();
   if (raw === 'processing') return 'processing';
   if (raw === 'retry') return 'retry';
   if (raw === 'failed') return 'failed';
+  if (raw === 'cancelled') return 'cancelled';
   if (raw === 'done') return 'done';
   return 'pending';
 }
 
 function mapStatusToPhase(status: PublishOutboxStatus): PublishPhase {
+  if (status === 'cancelled') return 'cancelado';
   if (status === 'done') return 'concluido';
   if (status === 'failed') return 'erro';
   if (status === 'processing' || status === 'retry') return 'processando';
@@ -41,37 +28,6 @@ function extractLastOperationFromError(lastError: string | null): string | null 
   const close = raw.indexOf(']');
   if (close <= 1) return null;
   return raw.slice(1, close).trim() || null;
-}
-
-function extractFailedOperationCode(lastError: string | null): string | null {
-  const raw = String(lastError || '').trim();
-  if (!raw.startsWith('[')) return null;
-  const close = raw.indexOf(']');
-  if (close <= 1) return null;
-  const marker = raw.slice(1, close).trim();
-  const parts = marker.split(':');
-  if (parts.length < 2) return null;
-  return String(parts[1] || '').trim() || null;
-}
-
-function mapQuantityPricingState(hasQuantityPricing: boolean, operationCode: string | null): QuantityPricingState {
-  if (hasQuantityPricing) return 'active';
-  const code = String(operationCode || '').toLowerCase();
-  if (
-    code.includes('quantity_pricing_not_effective')
-    || code.includes('quantity_pricing_validation_failed')
-  ) {
-    return 'failed_validation';
-  }
-  if (
-    code.includes('quantity_pricing_provider_rejected')
-    || code.includes('item_not_eligible')
-    || code.includes('forbidden')
-    || code.includes('auth')
-  ) {
-    return 'provider_rejected';
-  }
-  return 'absent';
 }
 
 function normalizeAmount(value: unknown): number | null {
@@ -128,7 +84,6 @@ export async function GET(request: Request) {
   }
   const phase = mapStatusToPhase(status);
   const lastError = outboxRow.last_error ? String(outboxRow.last_error) : null;
-  const failedOperationCode = extractFailedOperationCode(lastError);
   const payload = outboxRow.payload && typeof outboxRow.payload === 'object'
     ? outboxRow.payload as Record<string, any>
     : {};
@@ -165,11 +120,6 @@ export async function GET(request: Request) {
   if (!mlItemId) {
     response.result = {
       item_price: null,
-      quantity_pricing: [],
-      has_quantity_pricing: false,
-      suggested_quantity_pricing: [],
-      quantity_pricing_state: 'absent' as QuantityPricingState,
-      quantity_pricing_last_error: null,
       warnings: ['Outbox concluído sem ml_item_id para conferência final.'],
     };
     return NextResponse.json(response);
@@ -177,7 +127,6 @@ export async function GET(request: Request) {
 
   const warnings: string[] = [];
   let itemPrice: number | null = null;
-  let quantityPricing: QuantityPricingTier[] = [];
 
   const itemResult = await fetchMLResult<any>(`/items/${mlItemId}`, { method: 'GET' });
   if (itemResult.ok) {
@@ -186,42 +135,8 @@ export async function GET(request: Request) {
     warnings.push(itemResult.error?.message || 'Não foi possível consultar o preço final do anúncio no ML.');
   }
 
-  const quantityResult = await fetchMLResult<any>(`/items/${mlItemId}/prices`, {
-    method: 'GET',
-    headers: {
-      'show-all-prices': 'TRUE',
-    },
-  });
-  if (quantityResult.ok) {
-    quantityPricing = serializeQuantityPricingTiers(
-      extractQuantityPricingTiers(quantityResult.data, Number(itemPrice || 0)),
-    );
-  } else {
-    warnings.push(quantityResult.error?.message || 'Não foi possível consultar faixas de atacado no ML.');
-  }
-
-  const hasQuantityPricing = quantityPricing.length > 0;
-  const quantityPricingState = mapQuantityPricingState(hasQuantityPricing, failedOperationCode);
-  let suggestedQuantityPricing: QuantityPricingTier[] = [];
-  if (!hasQuantityPricing && itemPrice !== null) {
-    const preview = await previewItemQuantityPricing(mlItemId, itemPrice);
-    if (preview.ok) {
-      suggestedQuantityPricing = serializeQuantityPricingTiers(preview.tiers);
-    } else {
-      warnings.push(preview.error || 'Não foi possível calcular a sugestão de atacado no ML.');
-    }
-  }
-  const quantityPricingLastError = quantityPricingState === 'active'
-    ? null
-    : (lastError || null);
-
   response.result = {
     item_price: itemPrice,
-    quantity_pricing: quantityPricing,
-    has_quantity_pricing: hasQuantityPricing,
-    quantity_pricing_state: quantityPricingState,
-    quantity_pricing_last_error: quantityPricingLastError,
-    suggested_quantity_pricing: suggestedQuantityPricing,
     warnings,
   };
 

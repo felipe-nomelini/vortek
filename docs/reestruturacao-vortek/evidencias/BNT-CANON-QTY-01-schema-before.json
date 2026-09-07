@@ -1,0 +1,22 @@
+{
+  "functions": [
+    {
+      "signature": "save_commercial_pricing_configuration(numeric,numeric,numeric,jsonb)",
+      "definition": "CREATE OR REPLACE FUNCTION public.save_commercial_pricing_configuration(p_ml_fee_fallback_rate numeric, p_unspecified_shipping_cost numeric, p_inactive_cost_threshold numeric, p_quantity_tiers jsonb)\n RETURNS void\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'pg_catalog', 'pg_temp'\nAS $function$\ndeclare\n  v_quantity_count integer;\nbegin\n  if p_ml_fee_fallback_rate is null or p_ml_fee_fallback_rate < 0 or p_ml_fee_fallback_rate >= 1 then\n    raise exception 'Taxa fallback do ML inválida';\n  end if;\n  if p_unspecified_shipping_cost is null or p_inactive_cost_threshold is null or p_unspecified_shipping_cost < 0 or p_inactive_cost_threshold <= 0 then\n    raise exception 'Proteções comerciais inválidas';\n  end if;\n  if p_quantity_tiers is null or jsonb_typeof(p_quantity_tiers) <> 'array'\n    or jsonb_array_length(p_quantity_tiers) < 1\n    or jsonb_array_length(p_quantity_tiers) > 5 then\n    raise exception 'São obrigatórias de uma a cinco faixas por quantidade';\n  end if;\n\n  with tiers as (\n    select\n      (entry->>'position')::smallint as position,\n      (entry->>'minPurchaseUnit')::smallint as min_purchase_unit,\n      (entry->>'discountPercentage')::numeric as discount_percentage\n    from jsonb_array_elements(p_quantity_tiers) entry\n  )\n  select count(*) into v_quantity_count\n  from tiers tier\n  where tier.position between 1 and 5\n    and tier.min_purchase_unit between 1 and 100\n    and tier.discount_percentage > 0 and tier.discount_percentage < 100;\n\n  if v_quantity_count <> jsonb_array_length(p_quantity_tiers)\n    or (select count(distinct (entry->>'position')::smallint) from jsonb_array_elements(p_quantity_tiers) entry) <> v_quantity_count\n    or (select sum((entry->>'position')::smallint) from jsonb_array_elements(p_quantity_tiers) entry)\n      <> (v_quantity_count * (v_quantity_count + 1) / 2)\n    or exists (\n      select 1\n      from (\n        select\n          (entry->>'position')::smallint as position,\n          (entry->>'minPurchaseUnit')::smallint as min_purchase_unit,\n          (entry->>'discountPercentage')::numeric as discount_percentage\n        from jsonb_array_elements(p_quantity_tiers) entry\n      ) tier\n      left join (\n        select\n          (entry->>'position')::smallint as position,\n          (entry->>'minPurchaseUnit')::smallint as min_purchase_unit,\n          (entry->>'discountPercentage')::numeric as discount_percentage\n        from jsonb_array_elements(p_quantity_tiers) entry\n      ) previous on previous.position = tier.position - 1\n      where tier.position > 1\n        and (tier.min_purchase_unit <= previous.min_purchase_unit\n          or tier.discount_percentage <= previous.discount_percentage)\n    ) then\n    raise exception 'Faixas por quantidade devem ser sequenciais e progressivas';\n  end if;\n\n  update public.configuracoes\n  set\n    pricing_ml_fee_fallback_rate = p_ml_fee_fallback_rate,\n    pricing_unspecified_shipping_cost = p_unspecified_shipping_cost,\n    product_inactive_cost_threshold = p_inactive_cost_threshold,\n    updated_at = now()\n  where id = '00000000-0000-0000-0000-000000000001'::uuid;\n  if not found then raise exception 'Configuração principal não encontrada'; end if;\n\n  delete from public.ml_quantity_pricing_tiers;\n  insert into public.ml_quantity_pricing_tiers (\n    position, min_purchase_unit, discount_percentage, updated_at\n  )\n  select\n    (entry->>'position')::smallint,\n    (entry->>'minPurchaseUnit')::smallint,\n    (entry->>'discountPercentage')::numeric,\n    now()\n  from jsonb_array_elements(p_quantity_tiers) entry;\nend;\n$function$\n",
+      "acl": "{postgres=X/postgres,service_role=X/postgres}",
+      "owner": "postgres"
+    }
+  ],
+  "table": [
+    {
+      "rls": true,
+      "acl": "{postgres=arwdDxtm/postgres,service_role=r/postgres}",
+      "comment": "Política local mínima/fallback para preços por quantidade do Mercado Livre."
+    }
+  ],
+  "history": {
+    "total": 110,
+    "latest": "20260906120000"
+  },
+  "tiersHash": "1d2e551c545783929d0d6b654dc78b2ccf9f37a5dd719de35d2c95362398e166"
+}

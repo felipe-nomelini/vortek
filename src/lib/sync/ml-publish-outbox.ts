@@ -1,3 +1,4 @@
+import { hasRetiredQuantityPricing, retireQuantityPricingPayload } from '../ml/quantity-pricing';
 import type { Database } from '@/types/database';
 import { getPricingExecutionBlock } from '../ml/pricing-execution.js';
 import { classifyMlPublishEligibility } from '../ml/publish-eligibility.js';
@@ -21,7 +22,6 @@ export interface MlPublishOutboxInput {
 
 type MlPublishOperationMode = {
   applyPrice: boolean;
-  applyQuantityPricing: boolean;
   applyQuantity: boolean;
   applyStatus: boolean;
 };
@@ -46,7 +46,7 @@ function parseBooleanFlag(value: unknown): boolean | null {
 
 function operationEnabled(
   payload: Record<string, unknown>,
-  key: 'apply_price' | 'apply_quantity_pricing' | 'apply_quantity' | 'apply_status',
+  key: 'apply_price' | 'apply_quantity' | 'apply_status',
   hasDesiredValue: boolean,
 ): boolean {
   return parseBooleanFlag(payload[key]) ?? hasDesiredValue;
@@ -65,7 +65,6 @@ function resolveInputOperationMode(
       'apply_price',
       Object.prototype.hasOwnProperty.call(input, 'desiredPrice') && desiredPrice !== null,
     ),
-    applyQuantityPricing: operationEnabled(payload, 'apply_quantity_pricing', false),
     applyQuantity: operationEnabled(
       payload,
       'apply_quantity',
@@ -89,7 +88,6 @@ function resolveRowOperationMode(row: any): MlPublishOperationMode {
       'apply_price',
       row?.desired_price !== null && row?.desired_price !== undefined,
     ),
-    applyQuantityPricing: operationEnabled(payload, 'apply_quantity_pricing', false),
     applyQuantity: operationEnabled(
       payload,
       'apply_quantity',
@@ -113,14 +111,6 @@ function requestedOperationsAreCovered(params: {
   desiredQuantity: number | null;
   desiredStatus: Database['public']['Enums']['ml_status'] | null;
 }): boolean {
-  const requestedBasePrice = Number(params.requestedPayload.base_price_for_quantity_pricing);
-  const existingBasePrice = Number(params.existingPayload.base_price_for_quantity_pricing);
-  const quantityPricingCovered = !params.requestedMode.applyQuantityPricing || (
-    params.existingMode.applyQuantityPricing
-    && Number.isFinite(requestedBasePrice)
-    && Number.isFinite(existingBasePrice)
-    && samePrice(requestedBasePrice, existingBasePrice)
-  );
   const deletionRequested = params.requestedPayload.delete_listing === true;
   const deletionCovered = !deletionRequested || params.existingPayload.delete_listing === true;
 
@@ -129,7 +119,6 @@ function requestedOperationsAreCovered(params: {
       params.existingMode.applyPrice
       && samePrice(params.existing.desired_price, params.desiredPrice)
     ))
-    && quantityPricingCovered
     && (!params.requestedMode.applyQuantity || (
       params.existingMode.applyQuantity
       && normalizeDesiredQuantity(params.existing.desired_quantity) === params.desiredQuantity
@@ -145,7 +134,6 @@ function hasRequestedOperation(
   payload: Record<string, unknown>,
 ): boolean {
   return mode.applyPrice
-    || mode.applyQuantityPricing
     || mode.applyQuantity
     || mode.applyStatus
     || payload.delete_listing === true;
@@ -202,7 +190,9 @@ export async function enqueueMlPublishOutbox(
   const desiredQuantity = normalizeDesiredQuantity(input.desiredQuantity);
   const desiredStatus = input.desiredStatus || null;
   const source = String(input.source || 'produto_update');
-  const payload = { ...input.payload };
+  const originalPayload = { ...input.payload };
+  const retiredQuantityPricing = hasRetiredQuantityPricing(originalPayload);
+  const payload = retireQuantityPricingPayload(originalPayload);
   const dedupePending = input.dedupePending === true;
   const deleteListing = payload.delete_listing === true;
   const requestedMode = resolveInputOperationMode(
@@ -212,19 +202,20 @@ export async function enqueueMlPublishOutbox(
     desiredQuantity,
     desiredStatus,
   );
+  if (retiredQuantityPricing && !hasRequestedOperation(requestedMode, payload)) {
+    return { ok: true, outboxId: null, action: 'skipped_ineligible',
+      reason: 'quantity_pricing_retired', eligibility: 'terminally_blocked', retryAt: null };
+  }
   const executionBlock = getPricingExecutionBlock();
-  if (executionBlock && (requestedMode.applyPrice || requestedMode.applyQuantityPricing)) {
+  if (executionBlock && requestedMode.applyPrice) {
     if (!requestedMode.applyQuantity && !requestedMode.applyStatus && !deleteListing) {
       return { ok: true, outboxId: null, action: 'skipped_ineligible',
         reason: executionBlock.code, eligibility: 'terminally_blocked', retryAt: null };
     }
     payload.pricing_block = executionBlock;
     payload.apply_price = false;
-    payload.apply_quantity_pricing = false;
-    delete payload.base_price_for_quantity_pricing;
     desiredPrice = null;
     requestedMode.applyPrice = false;
-    requestedMode.applyQuantityPricing = false;
   }
   let processingHasDifferentState = false;
 
@@ -303,7 +294,7 @@ export async function enqueueMlPublishOutbox(
           desiredStatus,
         });
 
-      if (requestAlreadyCovered && previousStatus !== 'failed') {
+      if (requestAlreadyCovered && previousStatus !== 'failed' && (!hasRetiredQuantityPricing(existingPayload) || previousStatus === 'processing')) {
         return { ok: true, outboxId: existingId, action: 'unchanged', ...(payload.pricing_block ? { pricingBlocked: true } : {}) };
       }
 
@@ -312,14 +303,13 @@ export async function enqueueMlPublishOutbox(
       if (previousStatus === 'processing') {
         processingHasDifferentState = true;
       } else {
-        const mergedPayload = {
+        const mergedPayload = retireQuantityPricingPayload({
           ...existingPayload,
           ...payload,
           apply_price: existingMode.applyPrice || requestedMode.applyPrice,
-          apply_quantity_pricing: existingMode.applyQuantityPricing || requestedMode.applyQuantityPricing,
           apply_quantity: existingMode.applyQuantity || requestedMode.applyQuantity,
           apply_status: existingMode.applyStatus || requestedMode.applyStatus,
-        };
+        });
 
         const { error: updateError } = await (client
           .from('anuncios_ml_outbox' as any)
@@ -385,13 +375,11 @@ export async function enqueueMlPublishOutbox(
   const normalizedPayload = {
     ...payload,
     apply_price: requestedMode.applyPrice,
-    apply_quantity_pricing: requestedMode.applyQuantityPricing,
     apply_quantity: applyQuantity,
     apply_status: applyStatus,
   };
   const allRequestedOperationsUnchanged = hasRequestedOperation(requestedMode, payload)
     && !requestedMode.applyPrice
-    && !requestedMode.applyQuantityPricing
     && !applyQuantity
     && !applyStatus
     && payload.delete_listing !== true;

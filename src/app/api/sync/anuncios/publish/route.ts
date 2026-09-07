@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult, type MLFailureCategory } from '@/services/integration';
-import { setItemQuantityPricing } from '@/services/mercadolibre';
+import { hasRetiredQuantityPricing, retireQuantityPricingPayload } from '@/lib/ml/quantity-pricing';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
@@ -43,12 +43,6 @@ function toMlStatus(value: unknown): 'active' | 'paused' | null {
 
 
 
-function wantsQuantityPricing(payload: unknown): boolean {
-  if (!payload || typeof payload !== 'object') return false;
-  const raw = (payload as Record<string, unknown>).update_quantity_pricing;
-  return raw === true || raw === 'true' || raw === 1 || raw === '1';
-}
-
 function parseBooleanFlag(value: unknown): boolean | null {
   if (value === true || value === 'true' || value === 1 || value === '1') return true;
   if (value === false || value === 'false' || value === 0 || value === '0') return false;
@@ -57,16 +51,14 @@ function parseBooleanFlag(value: unknown): boolean | null {
 
 function resolveApplyMode(row: any): {
   applyPrice: boolean;
-  applyQuantityPricing: boolean;
+  quantityPricingRetired: boolean;
   applyQuantity: boolean;
   applyStatus: boolean;
-  basePriceForQuantityPricing: number | null;
   pricingBlocked: boolean;
 } {
   const payload = normalizeOutboxPayload(row?.payload);
 
   const applyPriceFlag = parseBooleanFlag(payload.apply_price);
-  const applyQuantityPricingFlag = parseBooleanFlag(payload.apply_quantity_pricing);
   const applyQuantityFlag = parseBooleanFlag(payload.apply_quantity);
   const applyStatusFlag = parseBooleanFlag(payload.apply_status);
 
@@ -74,21 +66,14 @@ function resolveApplyMode(row: any): {
   const hasDesiredQuantity = row?.desired_quantity !== null && row?.desired_quantity !== undefined;
   const hasDesiredStatus = Boolean(toMlStatus(row?.desired_status));
 
-  const basePriceRaw = Number(payload.base_price_for_quantity_pricing);
-  const basePriceForQuantityPricing = Number.isFinite(basePriceRaw) && basePriceRaw > 0
-    ? Math.round(basePriceRaw * 100) / 100
-    : null;
-
   const requestedPrice = applyPriceFlag ?? hasDesiredPrice;
-  const requestedQuantityPricing = applyQuantityPricingFlag ?? wantsQuantityPricing(payload);
   const executionBlock = getPricingExecutionBlock();
   return {
     applyPrice: !executionBlock && requestedPrice,
-    applyQuantityPricing: !executionBlock && requestedQuantityPricing,
-    pricingBlocked: !!executionBlock && (requestedPrice || requestedQuantityPricing || !!payload.pricing_block),
+    quantityPricingRetired: hasRetiredQuantityPricing(payload) || !!payload.quantity_pricing_retirement,
+    pricingBlocked: !!executionBlock && (requestedPrice || !!payload.pricing_block),
     applyQuantity: applyQuantityFlag ?? hasDesiredQuantity,
     applyStatus: applyStatusFlag ?? hasDesiredStatus,
-    basePriceForQuantityPricing,
   };
 }
 
@@ -426,13 +411,24 @@ export async function POST(request: Request) {
       const outboxId = String(row.id);
       const mlItemId = String(row.ml_item_id || '').trim();
       const attempts = Number(row.attempts || 0) + 1;
-      const outboxPayloadBase = normalizeOutboxPayload((row as any).payload);
+      const outboxPayloadBase = retireQuantityPricingPayload(normalizeOutboxPayload((row as any).payload));
       const deleteListing = isMlListingDeletionPayload(outboxPayloadBase);
       const applyMode = resolveApplyMode(row);
+      if (applyMode.quantityPricingRetired) {
+        warnings.push({ code: 'quantity_pricing_retired', message: 'Desconto por quantidade aposentado; demais operações preservadas.', context: { outboxId, mlItemId } });
+        if (!applyMode.applyPrice && !applyMode.applyQuantity && !applyMode.applyStatus && !deleteListing && !applyMode.pricingBlocked) {
+          const { error: retirementError } = await (client.from('anuncios_ml_outbox' as any).update({
+            status: 'cancelled', last_error: 'quantity_pricing_retired',
+            payload: withPublishProgress(outboxPayloadBase, { state: 'cancelled', last_operation: 'quantity_pricing_retired', attempts: Number(row.attempts || 0) }),
+            processed_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+          } as any).eq('id', outboxId) as any);
+          if (retirementError) throw new Error('Falha ao registrar aposentadoria da intenção de atacado');
+          continue;
+        }
+      }
       if (applyMode.pricingBlocked) {
         outboxPayloadBase.pricing_block = getPricingExecutionBlock();
         outboxPayloadBase.apply_price = false;
-        outboxPayloadBase.apply_quantity_pricing = false;
         warnings.push({ code: 'pricing_execution_not_ready',
           message: 'Preço não executado; estoque/status independentes permanecem elegíveis.',
           context: { outboxId, mlItemId } });
@@ -541,7 +537,7 @@ export async function POST(request: Request) {
         desiredStatus: desiredStatusRaw,
         desiredQuantity: row.desired_quantity,
         appliesPrice: applyMode.applyPrice,
-        appliesQuantityPricing: applyMode.applyQuantityPricing,
+        appliesQuantityPricing: false,
         appliesQuantity: applyMode.applyQuantity,
         appliesStatus: applyMode.applyStatus,
       });
@@ -632,38 +628,6 @@ export async function POST(request: Request) {
             });
             pricePublishedOk = result.ok;
             pricePublishedValue = price;
-          }
-        }
-
-        if (applyMode.applyQuantityPricing) {
-          await updateProcessingMarker('quantity_pricing');
-          const basePrice = applyMode.basePriceForQuantityPricing
-            ?? (Number.isFinite(Number(pricePublishedValue)) ? Number(pricePublishedValue) : null)
-            ?? (Number.isFinite(Number(row.desired_price)) ? Number(row.desired_price) : null);
-
-          if (applyMode.applyPrice && !pricePublishedOk) {
-            operations.push({
-              op: 'quantity_pricing',
-              ok: false,
-              error: 'Falha ao publicar preço base antes do atacado',
-            });
-          } else if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) {
-            operations.push({
-              op: 'quantity_pricing',
-              ok: false,
-              error: 'Preço base inválido para publicar atacado',
-            });
-          } else {
-            const quantityPricingResult = await setItemQuantityPricing(mlItemId, Number(basePrice));
-            operations.push({
-              op: 'quantity_pricing',
-              ok: quantityPricingResult.ok,
-              error: quantityPricingResult.ok
-                ? undefined
-                : (quantityPricingResult.error || 'Falha ao publicar preços de atacado no ML'),
-              code: quantityPricingResult.code,
-              status: quantityPricingResult.httpStatus,
-            });
           }
         }
 

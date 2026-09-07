@@ -23,11 +23,6 @@ function toDto(
     unspecifiedShippingCost: configuration.unspecifiedShippingCost,
     inactiveCostThreshold: configuration.inactiveCostThreshold,
     finalPricePolicy: FINAL_PRICE_POLICY,
-    quantityPricingTiers: configuration.quantityPricingRanges.map((tier) => ({
-      position: tier.position,
-      minPurchaseUnit: tier.minPurchaseUnit,
-      discountPercent: tier.fallbackDiscountPercentage,
-    })),
     pricingTaxContext,
   };
 }
@@ -74,13 +69,6 @@ export async function PUT(request: Request) {
   try {
     const previous = await loadDto(serviceClient);
     const mlFeeRate = parsed.data.mlFeeFallbackPercent / 100;
-    const quantityTiers = [...parsed.data.quantityPricingTiers]
-      .sort((left, right) => left.position - right.position)
-      .map((tier) => ({
-        position: tier.position,
-        minPurchaseUnit: tier.minPurchaseUnit,
-        discountPercentage: tier.discountPercent,
-      }));
 
     const { error } = await serviceClient.rpc(
       "save_commercial_pricing_configuration",
@@ -88,7 +76,6 @@ export async function PUT(request: Request) {
         p_ml_fee_fallback_rate: mlFeeRate,
         p_unspecified_shipping_cost: parsed.data.unspecifiedShippingCost,
         p_inactive_cost_threshold: parsed.data.inactiveCostThreshold,
-        p_quantity_tiers: quantityTiers,
       },
     );
     if (error) throw new Error(error.message);
@@ -102,7 +89,6 @@ export async function PUT(request: Request) {
           { key: "configuracoes.pricing_ml_fee_fallback_rate", targetId: CONFIG_ROW_ID, before: previous.mlFeeFallbackPercent, after: saved.mlFeeFallbackPercent },
           { key: "configuracoes.pricing_unspecified_shipping_cost", targetId: CONFIG_ROW_ID, before: previous.unspecifiedShippingCost, after: saved.unspecifiedShippingCost },
           { key: "configuracoes.product_inactive_cost_threshold", targetId: CONFIG_ROW_ID, before: previous.inactiveCostThreshold, after: saved.inactiveCostThreshold },
-          { key: "ml_quantity_pricing_tiers.policy", before: previous.quantityPricingTiers, after: saved.quantityPricingTiers },
         ],
       );
     } catch {

@@ -5,19 +5,7 @@ import {
   getValidMLToken,
 } from "./integration";
 import { normalizeMlSaleTerms, type MlCategorySaleTerm } from "@/lib/ml-sale-terms";
-import {
-  applyItemQuantityPricing,
-  previewItemQuantityPricing as resolveItemQuantityPricingPreview,
-  type QuantityPricingApplyResult,
-  type QuantityPricingPreviewResult,
-} from "@/lib/ml/quantity-pricing";
-import { createServiceClient } from "@/lib/supabase";
-import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 
-export type {
-  QuantityPricingApplyResult,
-  QuantityPricingTier,
-} from "@/lib/ml/quantity-pricing";
 
 export interface MLCategoryPrediction {
   domain_id: string;
@@ -679,65 +667,6 @@ export async function setItemInvoiceSaleTerm(itemId: string): Promise<boolean> {
     }),
   });
   return result !== null;
-}
-
-export async function setItemQuantityPricing(
-  itemId: string,
-  basePrice: number,
-): Promise<QuantityPricingApplyResult> {
-  assertPricingExecutionReady();
-  try {
-    const commercial = await loadCommercialPricingConfiguration(createServiceClient());
-    const result = await applyItemQuantityPricing(
-      fetchMLResult,
-      itemId,
-      basePrice,
-      commercial.quantityPricingRanges,
-    );
-    console.log(
-      JSON.stringify({
-        event: "ml_quantity_pricing_validation",
-        timestamp_utc: new Date().toISOString(),
-        ml_item_id: itemId,
-        base_price: Math.round(basePrice * 100) / 100,
-        recommendation_source: result.recommendationSource,
-        tiers_expected: result.tiersExpected,
-        tiers_found: result.tiersFound,
-        result: result.ok ? "ok" : result.code,
-      }),
-    );
-    return result;
-  } catch (err: any) {
-    console.error(
-      `[setItemQuantityPricing] Erro para ${itemId}:`,
-      err.message || err,
-    );
-    return {
-      ok: false,
-      error: err?.message || "Erro inesperado ao publicar preços de atacado",
-      code: "quantity_pricing_exception",
-      httpStatus: null,
-      providerBody: null,
-      recommendationSource: null,
-      tiersExpected: [],
-      tiersFound: [],
-    };
-  }
-}
-
-export async function previewItemQuantityPricing(
-  itemId: string,
-  basePrice: number,
-  currencyId = "BRL",
-): Promise<QuantityPricingPreviewResult> {
-  const commercial = await loadCommercialPricingConfiguration(createServiceClient());
-  return resolveItemQuantityPricingPreview(
-    fetchMLResult,
-    itemId,
-    basePrice,
-    commercial.quantityPricingRanges,
-    currencyId,
-  );
 }
 
 export async function updateItemPrice(

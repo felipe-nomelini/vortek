@@ -41,8 +41,8 @@ test('edição de preço rejeita antes de update/enqueue', async () => {
 
 test('transporte não permite contornar rotas para criar, reprecificar ou aplicar atacado', async () => {
   const transport = guardedModule('src/services/mercadolibre.ts');
-  for (const execute of [() => transport.createListing({}), () => transport.updateItemPrice('MLB1', 100),
-    () => transport.setItemQuantityPricing('MLB1', 100)]) {
+  assert.equal(transport.setItemQuantityPricing, undefined);
+  for (const execute of [() => transport.createListing({}), () => transport.updateItemPrice('MLB1', 100)]) {
     await assert.rejects(execute, /pricing_execution_not_ready/);
   }
 });
@@ -76,7 +76,7 @@ test('mudança de custo e kit não gravam preço nem enfileiram automação', as
   assert.equal(result.blockedReason, 'pricing_execution_not_ready');
 });
 
-function worker(row) {
+function worker(row, executionGuard = guard) {
   const tables = { anuncios_ml_outbox: [structuredClone(row)], produtos: [{ id: 'P1', ativo: true }],
     anuncios_ml: [{ ml_item_id: 'MLB1' }], catalogo_ml_snapshot: [{ ml_item_id: 'MLB1', status: 'active' }] };
   const requests = []; const stock = [];
@@ -98,7 +98,8 @@ function worker(row) {
   const route = load('src/app/api/sync/anuncios/publish/route.ts', {
     'next/server': { NextResponse: { json: (body, options) => Response.json(body, options) } },
     '@/lib/supabase': { createServiceClient: () => client },
-    '@/lib/ml/pricing-execution': guard,
+    '@/lib/ml/pricing-execution': executionGuard,
+    '@/lib/ml/quantity-pricing': require('../src/lib/ml/quantity-pricing.ts'),
     '@/services/integration': { fetchMLResult: async (url, options = {}) => {
       requests.push({ url, ...options }); return { ok: true, data: { id: 'MLB1', status: 'paused', price: 77 } };
     } },
@@ -143,3 +144,31 @@ test('fila mista executa estoque/status e registra preço bloqueado, sem diverg�
   assert.equal(body.records.retry, 0);
   assert.notEqual(row.payload.publish_progress.last_operation, 'price_reconcile_mismatch');
 });
+
+for (const gate of [guard, { getPricingExecutionBlock: () => null }]) {
+  for (const flag of ['apply_quantity_pricing', 'update_quantity_pricing']) {
+    test(`aposentadoria permanente no worker: ${flag}, gate ${!!gate.getPricingExecutionBlock()}`, async () => {
+      const h = worker({ ...priceRow, desired_price: null,
+        payload: { apply_price: false, [flag]: '1', apply_quantity: false, apply_status: false } }, gate);
+      for (let i = 0; i < 2; i++) {
+        const response = await h.route.POST(request());
+        assert.equal(response.status, 200);
+      }
+      const row = h.tables.anuncios_ml_outbox[0];
+      assert.equal(row.status, 'cancelled'); assert.equal(row.last_error, 'quantity_pricing_retired');
+      assert.equal(row.attempts, 0); assert.equal(h.requests.length, 0); assert.equal(h.stock.length, 0);
+    });
+  }
+  test(`fila mista sem preço preserva estoque/status com gate ${!!gate.getPricingExecutionBlock()}`, async () => {
+    const h = worker({ ...priceRow, desired_price: null, desired_quantity: 10, desired_status: 'pausado',
+      payload: { apply_price: false, update_quantity_pricing: true, apply_quantity: true, apply_status: true } }, gate);
+    const response = await h.route.POST(request());
+    assert.equal(response.status, 200);
+    const row = h.tables.anuncios_ml_outbox[0];
+    assert.equal(row.status, 'done');
+    assert.equal(row.payload.quantity_pricing_retirement.code, 'quantity_pricing_retired');
+    assert.equal(row.payload.update_quantity_pricing, undefined);
+    assert.equal(h.stock.length, 1); assert.equal(h.stock[0][1], 10);
+    assert.ok(h.requests.every(r => !r.url.includes('quantity')));
+  });
+}

@@ -67,7 +67,7 @@ export const CONFIGURATION_DEFINITIONS = {
   "fornecedores.dslite_catalog_xml_url": { domain: "produtos_estoque_fulfillment", label: "Feed XML do fornecedor", classification: "SECRET_WRITE_ONLY" },
   "fornecedores.dropshipping_retired_at": { domain: "produtos_estoque_fulfillment", label: "Aposentadoria do fornecedor", classification: "STATUS_SOMENTE_LEITURA" },
   "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo legadas (histórico)", classification: "OBSOLETO" },
-  "ml_quantity_pricing_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de preço por quantidade", classification: "EDITAVEL_CONTROLADO" },
+  "ml_quantity_pricing_tiers.policy": { domain: "comercial_precificacao", label: "Faixas por quantidade legadas (histórico)", classification: "OBSOLETO" },
   "configuracoes.notificacoes_push": { domain: "notificacoes", label: "Notificações push globais", classification: "OBSOLETO" },
   "notificacoes.push.policy": { domain: "notificacoes", label: "Política de notificações push", classification: "EDITAVEL_CONTROLADO" },
   "notificacoes.whatsapp.recipients": { domain: "notificacoes", label: "Destinatários de alertas WhatsApp", classification: "EDITAVEL_CONTROLADO" },
@@ -227,35 +227,11 @@ export const notificationChannelTestSchema = z.object({
 
 export type NotificationConfigurationInput = z.infer<typeof notificationConfigurationSchema>;
 
-const quantityPricingTierSchema = z.object({
-  position: z.number().int().min(1).max(5),
-  minPurchaseUnit: z.number().int().min(1).max(100),
-  discountPercent: z.number().finite().gt(0).lt(100),
-}).strict();
-
 export const commercialConfigurationSchema = z.object({
   mlFeeFallbackPercent: z.number().finite().min(0).lt(100),
   unspecifiedShippingCost: z.number().finite().min(0).max(10_000_000),
   inactiveCostThreshold: z.number().finite().positive().max(10_000_000),
-  quantityPricingTiers: z.array(quantityPricingTierSchema).min(1).max(5),
-}).strict().superRefine((value, context) => {
-  const orderedQuantityTiers = [...value.quantityPricingTiers].sort((left, right) => left.position - right.position);
-  let previousQuantity = 0;
-  let previousDiscount = 0;
-  orderedQuantityTiers.forEach((tier, index) => {
-    if (tier.position !== index + 1) {
-      context.addIssue({ code: "custom", path: ["quantityPricingTiers", index, "position"], message: "As faixas por quantidade devem ter posições sequenciais" });
-    }
-    if (tier.minPurchaseUnit <= previousQuantity) {
-      context.addIssue({ code: "custom", path: ["quantityPricingTiers", index, "minPurchaseUnit"], message: "As quantidades devem ser únicas e crescentes" });
-    }
-    if (tier.discountPercent <= previousDiscount) {
-      context.addIssue({ code: "custom", path: ["quantityPricingTiers", index, "discountPercent"], message: "Os descontos devem ser crescentes" });
-    }
-    previousQuantity = tier.minPurchaseUnit;
-    previousDiscount = tier.discountPercent;
-  });
-});
+}).strict();
 
 export type CommercialConfigurationInput = z.infer<typeof commercialConfigurationSchema>;
 

@@ -1,7 +1,13 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
-const { enqueueMlPublishOutbox } = require('../src/lib/sync/ml-publish-outbox.ts');
+const load = require('./helpers/load-integration-module');
+const dependencies = {
+  '../ml/pricing-execution.js': require('../src/lib/ml/pricing-execution.js'),
+  '../ml/publish-eligibility.js': require('../src/lib/ml/publish-eligibility.js'),
+  '../ml/quantity-pricing': require('../src/lib/ml/quantity-pricing.ts'),
+};
+const { enqueueMlPublishOutbox } = load('src/lib/sync/ml-publish-outbox.ts', dependencies);
 
 function createFakeClient(initialRows = []) {
   const rows = initialRows.map((row) => ({ ...row, payload: { ...(row.payload || {}) } }));
@@ -192,7 +198,7 @@ test('PRC-03: estoque independente é enfileirado sem preço nem atacado', async
   assert.equal(result.action, 'inserted');
   assert.equal(client.rows[0].desired_price, null);
   assert.equal(client.rows[0].payload.apply_price, false);
-  assert.equal(client.rows[0].payload.apply_quantity_pricing, false);
+  assert.equal(client.rows[0].payload.apply_quantity_pricing, undefined);
   assert.equal(client.rows[0].payload.apply_quantity, true);
   assert.equal(client.rows[0].payload.pricing_block.code, 'pricing_execution_not_ready');
 });
@@ -341,3 +347,31 @@ test('exclusão ignora bloqueio de publicação comum', async () => {
   assert.equal(result.action, 'inserted');
   assert.equal(client.rows.length, 2);
 });
+
+for (const gateEnabled of [true, false]) {
+  const enqueue = load('src/lib/sync/ml-publish-outbox.ts', { ...dependencies,
+    '../ml/pricing-execution.js': gateEnabled ? dependencies['../ml/pricing-execution.js'] : { getPricingExecutionBlock: () => null },
+  }).enqueueMlPublishOutbox;
+  test(`pedido puro de atacado não consulta nem grava, gate ${gateEnabled}`, async () => {
+    const client = { from() { throw Error('Consulta indevida'); } };
+    const result = await enqueue(client, { produtoId: 'product', mlItemId: 'MLB1',
+      payload: { update_quantity_pricing: 'true', base_price_for_quantity_pricing: 100 } });
+    assert.equal(result.action, 'skipped_ineligible'); assert.equal(result.reason, 'quantity_pricing_retired');
+  });
+  for (const status of ['pending', 'failed']) {
+    test(`merge/reabertura ${status} não ressuscita desconto, gate ${gateEnabled}`, async () => {
+      const client = createFakeClient([completedStock({ status,
+        payload: { apply_price: false, update_quantity_pricing: true, base_price_for_quantity_pricing: 100, apply_quantity: true, apply_status: true },
+      })]);
+      await enqueue(client, stockInput({ desiredQuantity: 10 }));
+      const row = client.rows[0];
+      assert.equal(row.payload.update_quantity_pricing, undefined);
+      assert.equal(row.payload.apply_quantity_pricing, undefined);
+      assert.equal(row.payload.base_price_for_quantity_pricing, undefined);
+      assert.equal(row.payload.quantity_pricing_retirement.code, 'quantity_pricing_retired');
+      assert.equal(row.desired_quantity, 10); assert.equal(row.status, 'pending');
+      const again = await enqueue(client, stockInput({ desiredQuantity: 10 }));
+      assert.equal(again.action, 'unchanged'); assert.equal(client.rows.length, 1);
+    });
+  }
+}

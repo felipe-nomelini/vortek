@@ -1837,7 +1837,6 @@ export type Database = {
         Args: {
           p_inactive_cost_threshold: number
           p_ml_fee_fallback_rate: number
-          p_quantity_tiers: Json
           p_unspecified_shipping_cost: number
         }
         Returns: undefined

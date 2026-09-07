@@ -12,11 +12,7 @@ const validConfiguration = {
   mlFeeFallbackPercent: 15,
   unspecifiedShippingCost: 30,
   inactiveCostThreshold: 2000,
-  quantityPricingTiers: [
-    { position: 1, minPurchaseUnit: 3, discountPercent: 3 },
-    { position: 2, minPurchaseUnit: 5, discountPercent: 4 },
-    { position: 3, minPurchaseUnit: 10, discountPercent: 5 },
-  ],
+
 };
 
 test('contrato comercial aceita a política vigente e rejeita faixas ambíguas', () => {
@@ -28,8 +24,7 @@ test('contrato comercial aceita a política vigente e rejeita faixas ambíguas',
   assert.equal(contracts.commercialConfigurationSchema.safeParse({
     ...validConfiguration,
     quantityPricingTiers: [
-      validConfiguration.quantityPricingTiers[0],
-      { ...validConfiguration.quantityPricingTiers[1], discountPercent: 2 },
+      { position: 1, minPurchaseUnit: 3, discountPercent: 3 },
     ],
   }).success, false);
 });

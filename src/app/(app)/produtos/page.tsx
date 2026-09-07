@@ -183,7 +183,6 @@ type MlCreateListingResult = {
     status?: string;
     sub_status?: string[];
   };
-  quantity_pricing?: boolean;
   pricing_correction?: {
     initial_price?: number;
     final_price?: number | null;
@@ -1908,12 +1907,6 @@ export default function ProductsPage() {
                   showIcon
                   message="Fiscal ML"
                   description={fiscalMessage}
-                />
-                <Alert
-                  type={result.quantity_pricing ? 'success' : 'warning'}
-                  showIcon
-                  message="Preços de atacado"
-                  description={result.quantity_pricing ? 'Preços de atacado configurados.' : 'Preços de atacado não confirmados.'}
                 />
               </div>
 

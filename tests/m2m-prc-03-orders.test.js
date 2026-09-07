@@ -79,3 +79,19 @@ test('todos os entrypoints comerciais aposentados bloqueiam antes de inicializar
     }), error => error === stopped, name);
   }
 });
+
+for (const quantity of [1, 3, 5, 10]) {
+  test(`compra normal de ${quantity} unidades mantém preço unitário e economia total`, async () => {
+    const h = harness();
+    const order = { ...detail, total_amount: 100 * quantity,
+      order_items: [{ item: { id: 'MLB1' }, quantity, unit_price: 100, sale_fee: 10 }] };
+    const original = structuredClone(order);
+    const result = await h.calculateOrderProfit(order, null, { ...options,
+      historicalCosts: [{ ...proof[0], quantity, totalCostCents: 4000 * quantity }] });
+    assert.equal(result.custoTotal, 40 * quantity);
+    assert.equal(result.taxasTotal, 10 * quantity);
+    assert.equal(result.imposto, 5 * quantity);
+    assert.equal(result.lucro, 45 * quantity - 10);
+    assert.deepEqual(order, original);
+  });
+}

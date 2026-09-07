@@ -8,7 +8,6 @@ import { resolveMlFee } from '@/lib/commercial-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { fetchMLResult } from '@/services/integration';
-import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { operationalMlStatus, selectOperationalMlListing } from '@/lib/ml/operational-listing';
 import {
   isWinningBuyBoxStatus,
@@ -31,9 +30,6 @@ type PriceUpdateResult = {
   queued_publish: boolean;
   outboxId: string | null;
   price_updated: boolean;
-  quantity_pricing_updated: boolean;
-  quantity_pricing_queued: boolean;
-  quantity_pricing_outbox_id: string | null;
   immediate_publish: {
     ok: boolean;
     status: number | null;
@@ -174,9 +170,6 @@ async function publishTargetPrice(params: {
         outboxId: null,
         immediate_publish: { ok: false, status: priceResult.status, error: errorMessage, code: priceResult.error?.code || null },
         price_updated: false,
-        quantity_pricing_updated: false,
-        quantity_pricing_queued: false,
-        quantity_pricing_outbox_id: null,
         warnings,
         errors: [errorMessage],
         error: errorMessage,
@@ -196,8 +189,6 @@ async function publishTargetPrice(params: {
         apply_status: false,
         apply_price: true,
         apply_quantity: false,
-        apply_quantity_pricing: true,
-        update_quantity_pricing: true,
       },
     });
     const queued = outbox.ok && outbox.action !== 'skipped_ineligible';
@@ -213,9 +204,6 @@ async function publishTargetPrice(params: {
       outboxId: queued ? outbox.outboxId : null,
       immediate_publish: { ok: false, status: priceResult.status, error: errorMessage, code: priceResult.error?.code || null },
       price_updated: false,
-      quantity_pricing_updated: false,
-      quantity_pricing_queued: queued,
-      quantity_pricing_outbox_id: queued ? outbox.outboxId : null,
       warnings,
       errors,
       error: queued ? null : (errors[0] || errorMessage),
@@ -228,41 +216,6 @@ async function publishTargetPrice(params: {
     if (!listingReconcile.ok) warnings.push(`Preço atualizado, mas falhou ao reconciliar anúncio: ${listingReconcile.error}`);
   } else {
     warnings.push(itemState.error?.message || 'Preço atualizado, mas não foi possível conferir o estado final do anúncio.');
-  }
-
-  const quantityPricingResult = await setItemQuantityPricing(target.mlItemId, basePrice);
-  let quantityPricingQueued = false;
-  let quantityPricingOutboxId: string | null = null;
-  if (!quantityPricingResult.ok) {
-    warnings.push(quantityPricingResult.error || 'Preço atualizado, mas atacado não foi confirmado.');
-    if (isRetryableMlStatus(quantityPricingResult.httpStatus || null)) {
-      const quantityOutbox = await enqueueMlPublishOutbox(service, {
-        produtoId: String(produto.id),
-        mlItemId: target.mlItemId,
-        desiredStatus: null,
-        desiredPrice: null,
-        desiredQuantity: null,
-        source: 'ml_anuncio_atualizar_preco_atacado_retry',
-        payload: {
-          source,
-          apply_price: false,
-          apply_status: false,
-          apply_quantity: false,
-          apply_quantity_pricing: true,
-          update_quantity_pricing: true,
-          base_price_for_quantity_pricing: basePrice,
-          fallback_reason: quantityPricingResult.code || quantityPricingResult.httpStatus || 'quantity_pricing_retry',
-        },
-      });
-      quantityPricingQueued = quantityOutbox.ok && quantityOutbox.action !== 'skipped_ineligible';
-      quantityPricingOutboxId = quantityPricingQueued
-        && quantityOutbox.ok
-        && quantityOutbox.action !== 'skipped_ineligible'
-        ? quantityOutbox.outboxId
-        : null;
-      if (!quantityOutbox.ok) warnings.push(`Falha ao enfileirar retry de atacado: ${quantityOutbox.error}`);
-      if (quantityOutbox.ok && quantityOutbox.action === 'skipped_ineligible') warnings.push(`Retry de atacado não enfileirado: ${quantityOutbox.reason}`);
-    }
   }
 
   if (target.isCatalog || Boolean(itemState.data?.catalog_listing)) {
@@ -292,12 +245,9 @@ async function publishTargetPrice(params: {
     type: target.isCatalog ? 'catalog' : 'standard',
     basePrice,
     queued_publish: false,
-    outboxId: quantityPricingQueued ? quantityPricingOutboxId : null,
+    outboxId: null,
     immediate_publish: { ok: true, status: priceResult.status },
     price_updated: true,
-    quantity_pricing_updated: quantityPricingResult.ok,
-    quantity_pricing_queued: quantityPricingQueued,
-    quantity_pricing_outbox_id: quantityPricingOutboxId,
     warnings,
     errors,
     error: null,
@@ -414,7 +364,7 @@ export async function POST(request: Request) {
         source,
         target_price_received: targetPrice,
         message: result.price_updated
-          ? (result.quantity_pricing_updated ? 'Preço e atacado atualizados no Mercado Livre' : 'Preço atualizado no Mercado Livre; atacado ficou pendente')
+          ? 'Preço atualizado no Mercado Livre'
           : (result.queued_publish ? 'Mercado Livre retornou erro transitório; atualização ficou em fila para retry' : result.error),
       }, { status: result.success ? 200 : 502 });
     }

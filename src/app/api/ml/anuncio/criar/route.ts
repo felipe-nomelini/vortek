@@ -8,7 +8,6 @@ import {
   getCategoryAttributes,
   getCategorySaleTerms,
   searchItemBySellerSku,
-  setItemQuantityPricing,
   updateListingFiscalData,
   upsertListingDescription,
 } from "@/services/mercadolibre";
@@ -938,7 +937,6 @@ export async function POST(req: Request) {
       | "atributos"
       | "anuncio"
       | "descricao"
-      | "atacado"
       | "fiscal",
       StepResult
     > = {
@@ -946,7 +944,6 @@ export async function POST(req: Request) {
       atributos: { ok: false },
       anuncio: { ok: false },
       descricao: { ok: false },
-      atacado: { ok: false },
       fiscal: { ok: false },
     };
 
@@ -1467,7 +1464,6 @@ export async function POST(req: Request) {
           permalink: existingItem.permalink,
           status: existingItem.status,
         },
-        quantity_pricing: false,
         fiscal: "ok",
       });
     }
@@ -1866,8 +1862,6 @@ export async function POST(req: Request) {
                 apply_status: false,
                 apply_price: true,
                 apply_quantity: false,
-                apply_quantity_pricing: true,
-                update_quantity_pricing: true,
                 initial_price: initialPrice,
                 final_price: finalSuggestedPrice,
                 ml_shipping: mlShipping,
@@ -1899,22 +1893,6 @@ export async function POST(req: Request) {
       pricingCorrection.error = "Frete ML real não retornado após criação";
       warnings.push(
         "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente.",
-      );
-    }
-
-    const quantityPricingBasePrice =
-      pricingCorrection.final_price || finalSuggestedPrice || displayPrice;
-    const quantityPricingResult = await setItemQuantityPricing(
-      result.id,
-      quantityPricingBasePrice,
-    );
-    if (quantityPricingResult.ok) steps.atacado.ok = true;
-    else {
-      const errorMessage =
-        quantityPricingResult.error || "Falha ao atualizar preços de atacado";
-      steps.atacado = { ok: false, error: errorMessage };
-      warnings.push(
-        `Não foi possível configurar os preços de atacado neste momento. Motivo: ${errorMessage}`,
       );
     }
 
@@ -2030,7 +2008,6 @@ export async function POST(req: Request) {
         status: latestItem?.status || result.status,
         sub_status: getMlSubStatuses(latestItem),
       },
-      quantity_pricing: quantityPricingResult.ok,
       pricing_correction: pricingCorrection,
       pricing_policy:
         pricingMode === "profitable_shelf_2"

@@ -144,7 +144,7 @@ A navegação permanece numa única rota. As seções poderão usar grupos inter
 | Lucro mínimo por faixa | R$ 20, R$ 60 e R$ 150 | `EDITAVEL_CONTROLADO`; valor não negativo |
 | Limite de custo para inativação | R$ 2.000 | `EDITAVEL_CONTROLADO`; substituir a constante central, preservando fonte única |
 | Custo de frete não informado | R$ 30 | `EDITAVEL_CONTROLADO`; mostrar quando é fallback e não frete real |
-| Faixas de preço por quantidade | 3/5/10 unidades, 3%/4%/5% | `EDITAVEL_CONTROLADO`; respeitar resposta e elegibilidade do ML |
+| Faixas de preço por quantidade | Histórico 3/5/10 unidades, 3%/4%/5% | `OBSOLETO` — retiradas da configuração operacional por BNT-CANON-QTY-01; histórico preservado |
 | Taxa ML | vem do anúncio/produto, com fallback localizado | valor observado quando disponível; qualquer fallback global deve ser explícito e único |
 | Regras de break-even | cálculo central | `INVARIANTE`; não permitir configuração que gere denominador inválido |
 
@@ -339,7 +339,7 @@ Esta lista cobre as variáveis lidas pelo código da aplicação em `src/` na fo
 | `pricing.ts` — faixas, margens e lucros mínimos | tornar configuração comercial tipada; fórmulas e tabela legal continuam invariantes |
 | `product-activity.ts` — limite de custo | tornar configuração comercial única |
 | `ml/shipping-cost.ts` — frete não informado | tornar fallback explícito e configurável |
-| `ml/quantity-pricing.ts` — quantidades/descontos | tornar coleção comercial validada |
+| `ml/quantity-pricing.ts` — quantidades/descontos | BNT-CANON-QTY-01: somente leitura de descontos remotos e aposentadoria de intenções antigas; sem coleção operacional |
 | `ml-sale-terms.ts` — garantia | tornar preferência ML validada |
 | `sync/registry.ts` — agenda, body, timeout, lock e retry | editar somente os campos operacionais aprovados; identidade e dispatch permanecem fixos |
 | serviços de sync — concorrência, lote e retry | só promover à área avançada quando houver consumidor único e limites testados |
@@ -449,3 +449,7 @@ Validação do refinamento: 74 testes de integrações, 13 do contrato de deploy
 Depois de `BNT-PARITY-GATE` e da aprovação de `BNT-CFG-07`, a sequência passa a seguir `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. `BNT-PRICING-V2-00` documentará o desenho executável; as ações `01` a `15`, incluindo `08A`, implementarão uma mudança por vez; `BNT-CFG-08` e `BNT-CFG-09` consumirão os contratos estabilizados; e `BNT-PRICING-V2-16` bloqueará qualquer autonomia até comprovação de segurança.
 
 As faixas atualmente expostas por `BNT-CFG-03` permanecem como fotografia do motor vigente até sua substituição controlada. Elas não devem coexistir como um segundo motor após a transição. Mudanças automáticas de preço permanecem `REQUIRES_CONFIRMATION` por padrão.
+
+## Atualização BNT-CANON-QTY-01 — 06/09/2026
+
+O cânon substitui as referências históricas acima a descontos configuráveis. Retirados editor, parâmetros de GET/PUT e carregamento de faixas; payload antigo é rejeitado. A RPC comercial recebe somente taxa fallback, frete não informado e limite de elegibilidade da oferta. Faixas e auditoria antigas permanecem históricas, classificadas como OBSOLETO. Nenhuma opção permite reativar desconto automático por quantidade. Evidência de implantação e validação em [BNT-CANON-QTY-01](evidencias/BNT-CANON-QTY-01-validacao.md).

@@ -55,17 +55,15 @@ function failedStatus(outboxId: string, error: string): MlPublishStatusResponse 
   };
 }
 
-export function useMlPricePublishTracking(messageApi: MessageApi): UseMlPricePublishTrackingResult {
+export function useMlPricePublishTracking(_messageApi: MessageApi): UseMlPricePublishTrackingResult {
   const [modalOpen, setModalOpen] = useState(false);
   const [trackingContext, setTrackingContext] = useState<MlPublishTrackingContext | null>(null);
   const [lastStatus, setLastStatus] = useState<MlPublishStatusResponse | null>(null);
-  const [applyingWholesale, setApplyingWholesale] = useState(false);
 
   const closeModal = useCallback(() => {
     setModalOpen(false);
     setTrackingContext(null);
     setLastStatus(null);
-    setApplyingWholesale(false);
   }, []);
 
   const startTracking = useCallback((context: MlPublishTrackingContext) => {
@@ -100,7 +98,7 @@ export function useMlPricePublishTracking(messageApi: MessageApi): UseMlPricePub
           if (cancelled) return;
 
           setLastStatus(payload);
-          if (payload.status === 'done' || payload.status === 'failed') {
+          if (payload.status === 'done' || payload.status === 'failed' || payload.status === 'cancelled') {
             trackingContext.onTerminal?.(payload);
             return;
           }
@@ -125,61 +123,10 @@ export function useMlPricePublishTracking(messageApi: MessageApi): UseMlPricePub
   const retry = useCallback(() => {
     const retryAction = trackingContext?.retry;
     closeModal();
-    retryAction?.();
-  }, [closeModal, trackingContext]);
-
-  const applyWholesale = useCallback(async () => {
-    if (applyingWholesale || !trackingContext) return;
-    const itemPrice = Number(lastStatus?.result?.item_price);
-    const outboxProcessing = lastStatus?.status !== 'done' && lastStatus?.status !== 'failed';
-    if (outboxProcessing) {
-      messageApi.warning('Já existe uma publicação em acompanhamento. Aguarde finalizar.');
-      return;
-    }
-    if (!Number.isFinite(itemPrice) || itemPrice <= 0) {
-      messageApi.error('Não foi possível identificar preço base válido para aplicar atacado.');
-      return;
-    }
-
-    setApplyingWholesale(true);
-    try {
-      const response = await fetch('/api/ml/anuncio/aplicar-atacado', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          produtoId: trackingContext.produtoId,
-          basePrice: itemPrice,
-          source: 'modal_result_sem_atacado',
-        }),
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        messageApi.error(payload?.error || 'Falha ao enfileirar aplicação de atacado.');
-        return;
-      }
-      const outboxId = String(payload?.outboxId || '').trim();
-      if (!payload?.queued_publish || !outboxId) {
-        messageApi.error('Não foi possível enfileirar aplicação de atacado.');
-        return;
-      }
-
-      startTracking({ ...trackingContext, outboxId });
-      messageApi.success('Aplicação de atacado enfileirada. Acompanhe no modal.');
-    } catch {
-      messageApi.error('Erro de conexão ao aplicar atacado.');
-    } finally {
-      setApplyingWholesale(false);
-    }
-  }, [applyingWholesale, lastStatus, messageApi, startTracking, trackingContext]);
+    if (lastStatus?.status !== 'cancelled') retryAction?.();
+  }, [closeModal, trackingContext, lastStatus]);
 
   const steps = useMemo(() => buildMlPublishSteps(lastStatus), [lastStatus]);
-  const canApplyWholesale = Boolean(
-    lastStatus?.status === 'done'
-    && !applyingWholesale
-    && !lastStatus?.result?.has_quantity_pricing
-    && Number(lastStatus?.result?.item_price || 0) > 0
-    && trackingContext?.produtoId,
-  );
 
   return {
     hasOpenTracking: modalOpen && Boolean(trackingContext?.outboxId),
@@ -190,13 +137,8 @@ export function useMlPricePublishTracking(messageApi: MessageApi): UseMlPricePub
       steps,
       onClose: closeModal,
       onCancel: retry,
-      showCloseButton: lastStatus?.status === 'failed' || lastStatus?.status === 'done',
-      customActions: canApplyWholesale ? [{
-        key: 'apply_wholesale',
-        label: applyingWholesale ? 'Criando atacado...' : 'Criar preços de atacado',
-        onClick: () => { void applyWholesale(); },
-        primary: true,
-      }] : [],
+      showCloseButton: lastStatus?.status === 'failed' || lastStatus?.status === 'done' || lastStatus?.status === 'cancelled',
+      customActions: [],
     },
   };
 }

@@ -1,300 +1,126 @@
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
 const test = require('node:test');
+const fs = require('node:fs');
+const load = require('./helpers/load-integration-module');
+const qty = require('../src/lib/ml/quantity-pricing.ts');
 
-const {
-  applyItemQuantityPricing,
-  buildQuantityPricingPayload,
-  buildQuantityPricingPreview,
-  extractQuantityPricingTiers,
-  previewItemQuantityPricing,
-  quantityPricingTiersMatch,
-  serializeQuantityPricingTiers,
-} = require('../src/lib/ml/quantity-pricing.ts');
-
-const QUANTITY_RANGES = [
-  { position: 1, minPurchaseUnit: 3, fallbackDiscountPercentage: 3 },
-  { position: 2, minPurchaseUnit: 5, fallbackDiscountPercentage: 4 },
-  { position: 3, minPurchaseUnit: 10, fallbackDiscountPercentage: 5 },
-];
-
-function recommendationData(percentages = [4.340541, 8.064865, 9.2]) {
-  return {
-    recommendations: [3, 5, 10].map((quantity, index) => ({
-      quantity,
-      amount: [95.66, 91.94, 90.8][index],
-      is_incoherent_quantity: false,
-      discount: { percentage: percentages[index] },
-    })),
-  };
+for (const flag of ['apply_quantity_pricing', 'update_quantity_pricing']) {
+  for (const value of [true, 'true', 1, '1']) {
+    test(`reconhece e aposenta ${flag}=${JSON.stringify(value)} sem alterar entrada`, () => {
+      const input = { [flag]: value, base_price_for_quantity_pricing: 100, apply_quantity: true, apply_status: true, source: 'historico' };
+      const snapshot = structuredClone(input);
+      const output = qty.retireQuantityPricingPayload(input);
+      assert.equal(qty.hasRetiredQuantityPricing(input), true);
+      assert.equal(output.quantity_pricing_retirement.code, 'quantity_pricing_retired');
+      assert.equal(output.apply_quantity, true); assert.equal(output.apply_status, true);
+      assert.equal(output.source, 'historico');
+      assert.equal(output[flag], undefined); assert.equal(output.base_price_for_quantity_pricing, undefined);
+      assert.deepEqual(input, snapshot); assert.deepEqual(qty.retireQuantityPricingPayload(output), output);
+    });
+  }
 }
-
-function currentPrices(overrides = {}) {
-  return {
-    version: 7,
-    presentation: { display_currency: 'BRL' },
-    prices: [
-      {
-        id: 'standard-1',
-        type: 'standard',
-        amount: 100,
-        currency_id: 'BRL',
-        conditions: { context_restrictions: [] },
-      },
-      {
-        id: 'legacy-3',
-        type: 'standard',
-        amount: 97,
-        currency_id: 'BRL',
-        conditions: {
-          context_restrictions: ['channel_marketplace', 'user_type_business'],
-          min_purchase_unit: 3,
-        },
-      },
-    ],
-    price_per_quantity: [],
-    ...overrides,
-  };
+test('preço base auxiliar antigo é identificado; operação normal não vira atacado', () => {
+  assert.equal(qty.hasRetiredQuantityPricing({ base_price_for_quantity_pricing: 100 }), true);
+  for (const value of [false, 'false', 0, '0', undefined]) {
+    assert.equal(qty.hasRetiredQuantityPricing({ apply_quantity_pricing: value, apply_quantity: true }), false);
+  }
+});
+test('módulo não exporta cálculo, recomendação ou writer de atacado', () => {
+  for (const symbol of ['applyItemQuantityPricing', 'previewItemQuantityPricing', 'buildQuantityPricingPreview', 'buildQuantityPricingPayload']) {
+    assert.equal(qty[symbol], undefined);
+  }
+});
+test('preserva consulta de descontos remotos percentuais e absolutos', () => {
+  const conditions = { context_restrictions: ['channel_marketplace', 'user_type_business'], min_purchase_unit: 3 };
+  const found = qty.extractQuantityPricingTiers({
+    price_per_quantity: [{ id: 'p', type: 'discount_percentage', percentage: 3, conditions }],
+    prices: [{ id: 'a', type: 'standard', amount: 95, conditions: { ...conditions, min_purchase_unit: 5 } }],
+  }, 100);
+  assert.deepEqual(qty.serializeQuantityPricingTiers(found).map(t => [t.min_purchase_unit, t.amount, t.pricing_model]),
+    [[3, 97, 'percentage'], [5, 95, 'absolute']]);
+  assert.deepEqual(qty.extractQuantityPricingTiers({}, 100), []);
+});
+for (const endpoint of ['aplicar-atacado', 'atacado-preview']) {
+  for (const authenticated of [false, true]) {
+    test(`${endpoint}: autenticação e encerramento antes de efeitos`, async () => {
+      const route = load(`src/app/api/ml/anuncio/${endpoint}/route.ts`, {
+        'next/server': { NextResponse: { json: (body, opts) => Response.json(body, opts) } },
+        '@/lib/supabase': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: authenticated ? { id: 'test' } : null } }) } }),
+          createServiceClient() { throw Error('Efeito inesperado'); } },
+      });
+      const response = await route.POST({ json() { throw Error('Payload não deve ser lido'); } });
+      assert.equal(response.status, authenticated ? 410 : 401);
+      if (authenticated) assert.equal((await response.json()).code, 'quantity_pricing_retired');
+    });
+  }
 }
-
-function percentageReadback(percentages = [4.340541, 8.064865, 9.2]) {
-  return {
-    presentation: { display_currency: 'BRL' },
-    prices: [currentPrices().prices[0]],
-    price_per_quantity: [3, 5, 10].map((quantity, index) => ({
-      id: String(index + 20),
-      type: 'discount_percentage',
-      percentage: percentages[index],
-      conditions: {
-        context_restrictions: ['channel_marketplace', 'user_type_business'],
-        min_purchase_unit: quantity,
-        eligible: true,
-      },
-    })),
-  };
-}
-
-test('converte recomendações do ML em uma única regra percentual 3/5/10', () => {
-  const preview = buildQuantityPricingPreview(recommendationData(), 200, 100, QUANTITY_RANGES, 'BRL');
-
-  assert.equal(preview.ok, true);
-  assert.equal(preview.source, 'mercado_livre');
-  assert.deepEqual(preview.tiers.map((tier) => ({
-    quantity: tier.minPurchaseUnit,
-    percentage: tier.discountPercentage,
-  })), [
-    { quantity: 3, percentage: 4.340541 },
-    { quantity: 5, percentage: 8.064865 },
-    { quantity: 10, percentage: 9.2 },
-  ]);
+test('nenhum consumidor operacional recomenda ou publica faixas', () => {
+  for (const path of ['src/services/mercadolibre.ts', 'src/app/api/ml/anuncio/criar/route.ts',
+    'src/app/api/ml/anuncio/atualizar-preco/route.ts', 'src/app/api/ml/anuncio/atualizar-preco/status/route.ts',
+    'src/app/api/sync/anuncios/publish/route.ts']) {
+    assert.doesNotMatch(fs.readFileSync(path, 'utf8'), /setItemQuantityPricing|previewItemQuantityPricing|price-per-quantity|prices-per-quantity|apply_quantity_pricing: true/);
+  }
+});
+test('carregador comercial não consulta tabela histórica', async () => {
+  const tables = [];
+  const { loadCommercialPricingConfiguration } = load('src/services/commercial-pricing-configuration.ts', { 'server-only': {} });
+  const config = await loadCommercialPricingConfiguration({ from(table) {
+    tables.push(table); assert.equal(table, 'configuracoes');
+    return { select() { return this; }, maybeSingle: async () => ({ data: {
+      pricing_ml_fee_fallback_rate: .15, pricing_unspecified_shipping_cost: 30, product_inactive_cost_threshold: 2000,
+    }, error: null }) };
+  } });
+  assert.deepEqual(tables, ['configuracoes']); assert.equal(config.quantityPricingRanges, undefined);
 });
 
-test('usa a política atual 3/4/5 somente quando recomendações respondem 204', () => {
-  const preview = buildQuantityPricingPreview(null, 204, 100, QUANTITY_RANGES, 'BRL');
-
-  assert.equal(preview.ok, true);
-  assert.equal(preview.source, 'fallback_204');
-  assert.deepEqual(preview.tiers.map((tier) => tier.discountPercentage), [3, 4, 5]);
-});
-
-test('rejeita recomendações não progressivas e não inventa percentuais', () => {
-  const preview = buildQuantityPricingPreview(
-    recommendationData([4, 4, 5]),
-    200,
-    100,
-    QUANTITY_RANGES,
-    'BRL',
-  );
-
-  assert.equal(preview.ok, false);
-  assert.equal(preview.code, 'quantity_pricing_recommendation_not_progressive');
-  assert.deepEqual(preview.tiers, []);
-});
-
-test('descarta faixa incoerente informada pelo provedor', () => {
-  const data = recommendationData();
-  data.recommendations[1].is_incoherent_quantity = true;
-  const preview = buildQuantityPricingPreview(data, 200, 100, QUANTITY_RANGES, 'BRL');
-
-  assert.equal(preview.ok, true);
-  assert.deepEqual(preview.tiers.map((tier) => tier.minPurchaseUnit), [3, 10]);
-});
-
-test('payload oficial preserva id existente e coincide com a prévia', () => {
-  const preview = buildQuantityPricingPreview(recommendationData(), 200, 100, QUANTITY_RANGES, 'BRL');
-  const payload = buildQuantityPricingPayload(preview.tiers, {
-    price_per_quantity: [{
-      id: 'existing-3',
-      type: 'discount_percentage',
-      percentage: 2,
-      conditions: {
-        context_restrictions: ['channel_marketplace', 'user_type_business'],
-        min_purchase_unit: 3,
-      },
-    }],
+test('Comercial salva os três parâmetros restantes e rejeita contrato antigo antes de persistir', async () => {
+  const contracts = require('../src/lib/configuracoes/contracts.ts');
+  const calls = []; const audits = [];
+  const config = { mlFeeFallbackRate: .15, unspecifiedShippingCost: 30, inactiveCostThreshold: 2000 };
+  const route = load('src/app/api/configuracoes/comercial/route.ts', {
+    'next/server': { NextResponse: { json: (body, opts) => Response.json(body, opts) } },
+    '@/lib/supabase': { createClient: async () => ({}), createServiceClient: () => ({
+      rpc: async (name, args) => { calls.push({ name, args }); return { error: null }; },
+    }) },
+    '@/lib/auth/admin': { requireAdminUser: async () => ({ ok: true, user: { id: 'test' }, nome: 'Teste' }) },
+    '@/lib/configuracoes/contracts': contracts,
+    '@/services/commercial-pricing-configuration': { loadCommercialPricingConfiguration: async () => config },
+    '@/services/pricing-tax-context': { loadPricingTaxContext: async () => ({ appliedRate: .04 }) },
+    '@/services/configuration-audit': { recordConfigurationAudit: async (_, __, entries) => audits.push(...entries) },
+    '@/services/pricing-policy': require('../src/services/pricing-policy.ts'),
   });
-
-  assert.equal(payload.price_per_quantity[0].id, 'existing-3');
-  assert.equal(payload.price_per_quantity[0].type, 'discount_percentage');
-  assert.equal(payload.price_per_quantity[0].conditions.eligible, true);
-  assert.deepEqual(
-    payload.price_per_quantity.map((tier) => [tier.conditions.min_purchase_unit, tier.percentage]),
-    preview.tiers.map((tier) => [tier.minPurchaseUnit, tier.discountPercentage]),
-  );
+  const input = { mlFeeFallbackPercent: 15, unspecifiedShippingCost: 30, inactiveCostThreshold: 2000 };
+  const rejected = await route.PUT({ json: async () => ({ ...input, quantityPricingTiers: [{ position: 1, minPurchaseUnit: 3, discountPercent: 3 }] }) });
+  assert.equal(rejected.status, 422); assert.equal(calls.length, 0);
+  const saved = await route.PUT({ json: async () => input });
+  assert.equal(saved.status, 200);
+  assert.equal((await saved.json()).quantityPricingTiers, undefined);
+  assert.deepEqual(calls[0].args, { p_ml_fee_fallback_rate: .15, p_unspecified_shipping_cost: 30, p_inactive_cost_threshold: 2000 });
+  assert.equal(audits.length, 3);
+  assert.ok(audits.every(a => !a.key.includes('quantity')));
+  assert.equal((await (await route.GET()).json()).quantityPricingTiers, undefined);
 });
-
-test('publica com recomendação, x-version, migra legado e valida read-back', async () => {
-  const calls = [];
-  const requester = async (path, options = {}) => {
-    calls.push({ path, options });
-    if (calls.length === 1) return { ok: true, status: 200, data: currentPrices(), error: null };
-    if (calls.length === 2) return { ok: true, status: 200, data: recommendationData(), error: null };
-    if (calls.length === 3) return { ok: true, status: 200, data: {}, error: null };
-    return { ok: true, status: 200, data: percentageReadback(), error: null };
-  };
-
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
-
-  assert.equal(result.ok, true);
-  assert.equal(result.recommendationSource, 'mercado_livre');
-  assert.equal(calls[0].path, '/items/MLB123/prices?display_version=true');
-  assert.equal(calls[1].path, '/prices-per-quantity/v1/recommendations');
-  assert.equal(calls[2].path, '/items/MLB123/prices/price-per-quantity?remove-absolute-pxq=true');
-  assert.equal(calls[2].options.headers['X-Version'], '7');
-  assert.equal(calls[3].path, '/items/MLB123/prices');
-  const payload = JSON.parse(calls[2].options.body);
-  assert.deepEqual(
-    payload.price_per_quantity.map((tier) => [tier.conditions.min_purchase_unit, tier.percentage]),
-    result.tiersExpected.map((tier) => [tier.minPurchaseUnit, tier.discountPercentage]),
-  );
-});
-
-test('bloqueia preço líquido B2B sem chamar recomendação ou escrita', async () => {
-  let calls = 0;
-  const requester = async () => {
-    calls += 1;
-    return {
-      ok: true,
-      status: 200,
-      error: null,
-      data: currentPrices({
-        prices: [
-          currentPrices().prices[0],
-          {
-            amount: 95,
-            amount_tax_inclusion_type: 'net',
-            conditions: {
-              context_restrictions: ['channel_marketplace', 'user_type_business'],
-              min_purchase_unit: 1,
-            },
-          },
-        ],
-      }),
-    };
-  };
-
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
-  assert.equal(result.ok, false);
-  assert.equal(result.code, 'quantity_pricing_net_price_incompatible');
-  assert.equal(result.httpStatus, 422);
-  assert.equal(calls, 1);
-});
-
-test('trata mudança concorrente de preço como conflito retomável', async () => {
-  const requester = async () => ({
-    ok: true,
-    status: 200,
-    data: currentPrices(),
-    error: null,
+test('consulta de fila cancelada é terminal e não consulta ML nem recomendações', async () => {
+  const route = load('src/app/api/ml/anuncio/atualizar-preco/status/route.ts', {
+    'next/server': { NextResponse: { json: (body, opts) => Response.json(body, opts) } },
+    '@/lib/supabase': {
+      createClient: async () => ({ auth: { getUser: async () => ({ data: { user: { id: 'test' } } }) } }),
+      createServiceClient: () => ({ from: () => ({ select() { return this; }, eq() { return this; },
+        maybeSingle: async () => ({ data: { id: 'old', status: 'cancelled', last_error: 'quantity_pricing_retired', payload: {} }, error: null }),
+      }) }),
+    },
+    '@/services/integration': { fetchMLResult() { throw Error('Consulta ML inesperada'); } },
   });
-
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 101, QUANTITY_RANGES);
-  assert.equal(result.ok, false);
-  assert.equal(result.code, 'quantity_pricing_base_price_conflict');
-  assert.equal(result.httpStatus, 409);
+  const response = await route.GET(new Request('https://dev.bentevi.shop/api/ml/anuncio/atualizar-preco/status?outboxId=old'));
+  const body = await response.json();
+  assert.equal(response.status, 200); assert.equal(body.status, 'cancelled');
+  assert.equal(body.phase, 'cancelado'); assert.equal(body.result, null);
 });
-
-test('preserva conflito x-version retornado pelo provedor', async () => {
-  let call = 0;
-  const requester = async () => {
-    call += 1;
-    if (call === 1) return { ok: true, status: 200, data: currentPrices({ prices: [currentPrices().prices[0]] }), error: null };
-    if (call === 2) return { ok: true, status: 200, data: recommendationData(), error: null };
-    return {
-      ok: false,
-      status: 409,
-      data: null,
-      error: { code: 'item.version', message: 'version changed' },
-    };
-  };
-
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
-  assert.equal(result.ok, false);
-  assert.equal(result.code, 'quantity_pricing_version_conflict');
-  assert.equal(result.httpStatus, 409);
-});
-
-test('falha quando read-back percentual diverge do payload publicado', async () => {
-  let call = 0;
-  const requester = async () => {
-    call += 1;
-    if (call === 1) return { ok: true, status: 200, data: currentPrices({ prices: [currentPrices().prices[0]] }), error: null };
-    if (call === 2) return { ok: true, status: 200, data: recommendationData(), error: null };
-    if (call === 3) return { ok: true, status: 200, data: {}, error: null };
-    return { ok: true, status: 200, data: percentageReadback([4.340541, 8.064865, 8.9]), error: null };
-  };
-
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
-  assert.equal(result.ok, false);
-  assert.equal(result.code, 'quantity_pricing_not_effective');
-});
-
-test('serializa leitura percentual e absoluta para a interface durante transição', () => {
-  const percentage = extractQuantityPricingTiers(percentageReadback(), 100);
-  assert.equal(quantityPricingTiersMatch(percentage, percentage), true);
-  assert.deepEqual(serializeQuantityPricingTiers(percentage)[0], {
-    min_purchase_unit: 3,
-    discount_percent: 4.340541,
-    amount: 95.66,
-    currency_id: 'BRL',
-    pricing_model: 'percentage',
-  });
-
-  const absolute = extractQuantityPricingTiers(currentPrices(), 100);
-  assert.equal(absolute[0].pricingModel, 'absolute');
-  assert.equal(absolute[0].discountPercentage, 3);
-});
-
-test('propaga seller inelegível sem criar fallback', async () => {
-  const requester = async () => ({
-    ok: false,
-    status: 403,
-    data: null,
-    error: { code: 'forbidden', message: 'user is not allowed to request recommendations' },
-  });
-
-  const preview = await previewItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
-  assert.equal(preview.ok, false);
-  assert.equal(preview.code, 'forbidden');
-  assert.deepEqual(preview.tiers, []);
-});
-
-test('backend calcula a prévia e o browser não replica descontos', () => {
-  const previewRoute = fs.readFileSync(
-    path.join(__dirname, '../src/app/api/ml/anuncio/atacado-preview/route.ts'),
-    'utf8',
-  );
-  const anunciosPage = fs.readFileSync(
-    path.join(__dirname, '../src/app/(app)/anuncios/page.tsx'),
-    'utf8',
-  );
-  const produtosPage = fs.readFileSync(
-    path.join(__dirname, '../src/app/(app)/produtos/page.tsx'),
-    'utf8',
-  );
-
-  assert.match(previewRoute, /previewItemQuantityPricing/);
-  assert.doesNotMatch(anunciosPage, /buildWholesalePrices|basePrice\s*\*\s*0\.9[567]/);
-  assert.doesNotMatch(produtosPage, /basePrice\s*\*\s*0\.9[567]/);
+test('migration substitui assinatura e preserva tabela/auditoria históricas', () => {
+  const sql = fs.readFileSync('supabase/migrations/20260906130000_bnt_canon_qty_01_retire_quantity_pricing.sql', 'utf8');
+  assert.match(sql, /drop function public.save_commercial_pricing_configuration\(numeric,numeric,numeric,jsonb\)/);
+  assert.doesNotMatch(sql, /delete from|truncate|drop table|p_quantity_tiers/i);
+  assert.match(sql, /grant execute[^;]+to service_role/);
+  assert.match(sql, /revoke all[^;]+from public, anon, authenticated/);
+  assert.match(sql, /set search_path to 'pg_catalog', 'pg_temp'/);
 });

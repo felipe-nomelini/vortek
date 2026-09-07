@@ -13,10 +13,8 @@ import {
   Row,
   Space,
   Spin,
-  Tag,
   Typography,
 } from "antd";
-import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import type { MessageInstance } from "antd/es/message/interface";
 import { FINAL_PRICE_POLICY } from "@/services/pricing-policy";
 import type { ProductPricing } from "@/services/pricing-context";
@@ -26,17 +24,10 @@ import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 
 const { Text, Title } = Typography;
 
-type QuantityTierForm = {
-  position: number;
-  minPurchaseUnit: number;
-  discountPercent: number;
-};
-
 type CommercialFormValues = {
   mlFeeFallbackPercent: number;
   unspecifiedShippingCost: number;
   inactiveCostThreshold: number;
-  quantityPricingTiers: QuantityTierForm[];
 };
 
 type TaxContext = {
@@ -111,8 +102,9 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
     setSaving(true);
     try {
       const normalized = {
-        ...values,
-        quantityPricingTiers: values.quantityPricingTiers.map((tier, index) => ({ ...tier, position: index + 1 })),
+        mlFeeFallbackPercent: values.mlFeeFallbackPercent,
+        unspecifiedShippingCost: values.unspecifiedShippingCost,
+        inactiveCostThreshold: values.inactiveCostThreshold,
       };
       const response = await fetch("/api/configuracoes/comercial", {
         method: "PUT",
@@ -191,41 +183,6 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
                 </Form.Item>
               </Col>
             </Row>
-          </Card>
-
-          <Card style={configuracoesCardStyle}>
-            <Space direction="vertical" size={4} style={{ width: "100%", marginBottom: 16 }}>
-              <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>Preço por quantidade — execução bloqueada</Title>
-              <Text type="secondary">De 1 a 5 faixas. A recomendação válida do ML prevalece; estes percentuais são o piso local e o fallback da resposta 204.</Text>
-            </Space>
-            <Form.List name="quantityPricingTiers">
-              {(fields, { add, remove }) => (
-                <Space direction="vertical" size={10} style={{ width: "100%" }}>
-                  {fields.map((field, index) => (
-                    <Row gutter={12} align="middle" key={field.key}>
-                      <Col flex="42px"><Tag color="gold">{index + 1}</Tag></Col>
-                      <Col xs={10} md={8}>
-                        <Form.Item name={[field.name, "position"]} hidden><InputNumber /></Form.Item>
-                        <Form.Item name={[field.name, "minPurchaseUnit"]} label="Quantidade mínima" rules={[{ required: true }]} style={{ marginBottom: 0 }}>
-                          <InputNumber min={1} max={100} precision={0} style={inputStyle} />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={10} md={8}>
-                        <Form.Item name={[field.name, "discountPercent"]} label="Desconto mínimo" rules={[{ required: true }]} style={{ marginBottom: 0 }}>
-                          <InputNumber min={0.01} max={99.99} precision={2} suffix="%" style={inputStyle} />
-                        </Form.Item>
-                      </Col>
-                      <Col flex="48px">
-                        <Button aria-label={`Remover faixa ${index + 1}`} icon={<DeleteOutlined />} disabled={fields.length === 1} onClick={() => remove(field.name)} />
-                      </Col>
-                    </Row>
-                  ))}
-                  <Button icon={<PlusOutlined />} disabled={fields.length >= 5} onClick={() => add({ position: fields.length + 1, minPurchaseUnit: 1, discountPercent: 1 })}>
-                    Adicionar faixa
-                  </Button>
-                </Space>
-              )}
-            </Form.List>
           </Card>
 
           <Card style={{ ...configuracoesCardStyle, borderColor: "#5c4800" }}>

@@ -5,19 +5,12 @@ export type PricingCostTier = {
   minProfit: number;
 };
 
-export type QuantityPricingRange = {
-  position: number;
-  minPurchaseUnit: number;
-  fallbackDiscountPercentage: number;
-};
-
 export type CommercialPricingConfiguration = {
   mlFeeFallbackRate: number;
   unspecifiedShippingCost: number;
   inactiveCostThreshold: number;
   /** @deprecated Sem carga operacional; somente contratos históricos ainda em retirada. */
   costTiers?: PricingCostTier[];
-  quantityPricingRanges: QuantityPricingRange[];
 };
 
 export function resolveMlFee(value: unknown, fallbackRate: number): number {
