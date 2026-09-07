@@ -21,6 +21,8 @@ const inputSchema = z.object({
   priceCents: z.number().int().positive().max(Number.MAX_SAFE_INTEGER).optional(),
   context: contextSchema.optional(),
 }).strict();
+// Um item existente preserva o tipo observado, inclusive Gratuito; não o converte em Clássico.
+const observedContextSchema = contextSchema.extend({ listingType: z.enum(['free', 'gold_special', 'gold_pro']) });
 type Input = z.infer<typeof inputSchema>;
 const json = (body: unknown, status = 200) => NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 
@@ -31,7 +33,7 @@ function dimensions(product: any): string | null {
 }
 function itemContext(item: any, sellerId: string): MarketContext | null {
   if (!item || !item.id) return null;
-  const parsed = contextSchema.safeParse({ categoryId: item.category_id, listingType: item.listing_type_id,
+  const parsed = observedContextSchema.safeParse({ categoryId: item.category_id, listingType: item.listing_type_id,
     condition: item.condition, mode: item.shipping?.mode, logisticType: item.shipping?.logistic_type,
     freeShipping: item.shipping?.free_shipping });
   if (!parsed.success || item.currency_id !== 'BRL' || String(item.seller_id) !== sellerId) return null;

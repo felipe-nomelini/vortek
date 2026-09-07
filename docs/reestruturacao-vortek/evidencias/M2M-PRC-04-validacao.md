@@ -20,7 +20,7 @@ Implementação e validação local concluídas; primeira publicação DEV e ver
 
 - Mesma seleção de oferta, CMV, kit simples e contexto fiscal de `pricing-context`; nenhuma fórmula de economia duplicada em API/UI/PDF.
 - GET `/api/ml/anuncio/preco-detalhe` preserva consulta de anúncio, descontos remotos informativos e indicação de automação ML. POST estrito aceita produto, anúncio opcional, preço em centavos opcional e contexto explícito somente antes de anúncio. Autenticação obrigatória; respostas `no-store`.
-- Conta vem do cliente ML autorizado, não do browser. Vínculo produto/anúncio, seller, moeda BRL, categoria e contexto são verificados. Preparação exige categoria folha publicável e interseção logística da conta/categoria. Nesta entrega a preparação comercial admite Clássico/Premium; outros tipos são incompatíveis explícitos.
+- Conta vem do cliente ML autorizado, não do browser. Vínculo produto/anúncio, seller, moeda BRL, categoria e contexto são verificados. Preparação exige categoria folha publicável e interseção logística da conta/categoria. Preparação comercial admite Clássico/Premium; anúncio existente preserva também tipo Gratuito observado, sem convertê-lo em Clássico ou inventar tarifa.
 - Item existente resolve dimensões no ML por item_id. Produto novo exige dimensões/peso bruto locais para ME2, convertendo kg para gramas inteiros. Ausência não inventa medidas.
 - `listing_prices`: categoria ou produto catálogo, preço candidato, tipo, moeda, modalidade/logística e peso faturável quando retornado. Um único resultado compatível. `sale_fee_amount` é total autoritativo; fixa já incluída. Percentual declarado/fixa servem apenas à próxima semente, nunca se infere taxa dividindo total pelo preço.
 - Frete: endpoint do vendedor `/users/{id}/shipping_options/free`, contexto completo, `coverage.all_country.list_cost`. Não usa `options.cost` do comprador, desconto presumido ou proteção fixa de 50%. Cotação viva continua **estimativa**, não custo realizado de shipment.
@@ -32,7 +32,7 @@ Implementação e validação local concluídas; primeira publicação DEV e ver
 
 ## Validação local executada
 
-344 testes passaram, zero falhas, incluindo 29 novos testes de cotação, convergência, integração das fontes reais de código e rotas isoladas.
+345 testes passaram na revisão final, zero falhas, incluindo 30 novos testes de cotação, convergência, integração das fontes reais de código e rotas isoladas. A revisão também preserva o tipo Gratuito observado em anúncio existente. `validate` e build passaram novamente após os ajustes.
 
 ```sh
 node --test tests/m2m-*.test.js tests/*pricing*.test.js tests/*products*.test.js tests/*listings*.test.js tests/bentevi-product-detail.test.js tests/seo-reactivation.test.js tests/catalog-cleanup.test.js tests/preferred-offer.test.js tests/product-activity.test.js tests/supplier-deactivation.test.js tests/ml-price-publish-tracking.test.js tests/ml-publish-outbox.test.js tests/ml-order-profit.test.js tests/easypanel-deploy-contract.test.js

@@ -59,6 +59,11 @@ test('POST consulta preço alternativo sem atribuir seu lucro ao preço atual', 
   const h = harness(); const response = await h.post({ produtoId: 'P1', priceCents: 13000 });
   assert.equal(response.status, 200); assert.equal(h.captured[0].price, 13000); assert.equal((await response.json()).currentProfit, null);
 });
+test('tipo gratuito observado é preservado no item existente, sem simular tarifa de Clássico', async () => {
+  const h = harness({ item: { listing_type_id: 'free' } });
+  assert.equal((await h.get('produtoId=P1')).status, 200);
+  assert.equal(h.captured[0].market.listingType, 'free');
+});
 test('novo produto exige contexto explícito, valida categoria/logística e converte kg para gramas', async () => {
   const h = harness({ product: { ml_item_id: null } });
   assert.equal((await h.post({ produtoId: 'P1' })).status, 422);
