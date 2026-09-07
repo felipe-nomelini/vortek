@@ -17,6 +17,7 @@ import { extractMlItemSku } from '@/lib/ml/item-sku';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
 import { isMlIdentityComplete, hasConfirmedMlIdentityConflict } from '@/lib/ml-listing-identity';
 import { getCategoryAttributes } from '@/services/mercadolibre';
+import { resolveProductMlLinks, persistProductMlGroups } from '@/services/ml-listing-links';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import {
   clearAutomaticMlIdentityBlock,
@@ -517,6 +518,7 @@ export async function POST(request: Request) {
     const identityCategories = new Map<string, ReturnType<typeof getCategoryAttributes>>();
     const identityKits = new Map<string, ReturnType<typeof loadMlIdentityKit>>();
     const identityDeferredIds = new Set<string>();
+    const linkResolutions = new Map<string, ReturnType<typeof resolveProductMlLinks>>();
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
     const listingMetricsByItemId = new Map<string, { soldQuantity: unknown; startTime: string | null }>();
@@ -614,6 +616,11 @@ export async function POST(request: Request) {
           .select('id, dslite_fornecedor_id, nome, descricao, marca, gtin, updated_at, last_sync_at, custo, estoque, prioridade, ativo')
           .eq('produto_id', produtoId);
         if (identityOffersError) {
+          try {
+            await persistProductMlGroups(serviceClient, produtoId, Number(me.id), { coverage: 'partial', groups: [] }, new Date().toISOString());
+          } catch {
+            warnings.push({ code: 'ml_listing_group_invalidation_failed', message: 'Não foi possível invalidar a comprovação anterior do grupo.', context: { mlItemId: String(item.id) } });
+          }
           errors.push({
             code: 'ml_identity_supplier_evidence_failed',
             message: identityOffersError.message,
@@ -636,6 +643,32 @@ export async function POST(request: Request) {
               remoteEvidence: { source: 'mercado_livre', reference: String(item.id), collectedAt: new Date().toISOString(), condition: 'valid' } },
           );
           const identityConflicts = identityAssessment.comparisons.filter(value => value.status === 'CONFLITO_CONFIRMADO');
+          let linkValidated = false;
+          {
+            if (!linkResolutions.has(produtoId)) {
+              const observedAt = new Date().toISOString();
+              const observedProductId = produtoId;
+              linkResolutions.set(produtoId, resolveProductMlLinks(serviceClient, produto, Number(me.id)).then(async result => {
+                const stored = await persistProductMlGroups(serviceClient, observedProductId, Number(me.id), result, observedAt);
+                if (stored?.applied !== true) throw new Error('listing_group_observation_not_applied');
+                return result;
+              }).catch(async error => {
+                await persistProductMlGroups(serviceClient, observedProductId, Number(me.id), { coverage: 'partial', groups: [] }, observedAt);
+                throw error;
+              }));
+            }
+            try {
+              const links = await linkResolutions.get(produtoId)!;
+              linkValidated = links.coverage === 'complete' && links.candidates.some(candidate => candidate.itemId === String(item.id) && candidate.identity === 'complete');
+            } catch {
+              warnings.push({ code: 'ml_listing_link_unavailable', message: 'Vínculo/grupo não revalidado; nenhuma ação derivada autorizada.', context: { mlItemId: String(item.id) } });
+            }
+            if (!linkValidated && isMlIdentityComplete(identityAssessment)) {
+              identityDeferredIds.add(String(item.id));
+              if (!byItem) { produtoId = null; skuLocal = null; }
+              produto = null;
+            }
+          }
           if (!isMlIdentityComplete(identityAssessment) && !hasConfirmedMlIdentityConflict(identityAssessment)) {
             warnings.push({ code: 'ml_identity_validation_pending', message: 'Identidade/apresentação sem conclusão; bloqueios existentes preservados.',
               context: { mlItemId: String(item.id), produtoId, identity: identityAssessment.identity.status, packaging: identityAssessment.packaging_quantity.status } });
@@ -646,7 +679,7 @@ export async function POST(request: Request) {
           }
 
 
-          if (isMlIdentityComplete(identityAssessment)) {
+          if (isMlIdentityComplete(identityAssessment) && linkValidated) {
             const unblockResult = await clearAutomaticMlIdentityBlock(
               serviceClient,
               String(item.id),
@@ -806,6 +839,21 @@ export async function POST(request: Request) {
         synced_at: new Date().toISOString(),
       });
     });
+
+    // Item indisponível não pode deixar uma prova anterior de grupo com aparência de revalidada.
+    if (failedItemIds.size) {
+      const { data: memberships, error: membershipError } = await serviceClient.from('ml_pricing_group_members')
+        .select('group_id').eq('seller_id', Number(me.id)).eq('is_current', true).in('ml_item_id', [...failedItemIds]);
+      if (membershipError) throw new Error('listing_group_failure_read_failed');
+      const groupIds = [...new Set((memberships || []).map(member => member.group_id))];
+      if (groupIds.length) {
+        const { data: groups, error: groupsError } = await serviceClient.from('ml_pricing_groups').select('produto_id').in('id', groupIds);
+        if (groupsError) throw new Error('listing_group_failure_read_failed');
+        for (const productId of new Set((groups || []).map(group => group.produto_id))) if (!linkResolutions.has(productId)) {
+          await persistProductMlGroups(serviceClient, productId, Number(me.id), { coverage: 'partial', groups: [] }, new Date(startedAt).toISOString());
+        }
+      }
+    }
 
     const visitsByItemId = await fetchVisitsByItemId(
       Array.from(listingMetricsByItemId.entries()).map(([itemId, metrics]) => ({

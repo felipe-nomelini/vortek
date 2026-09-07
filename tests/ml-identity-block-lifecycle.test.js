@@ -128,7 +128,7 @@ test("erro ao limpar o bloqueio é propagado", async () => {
 test("sync encerra bloqueio somente após identidade válida e mantém fornecedores operacionais", () => {
   const assessmentIndex = syncRouteSource.indexOf("const identityAssessment = assessMlProductIdentity(");
   const supplierPolicyIndex = syncRouteSource.indexOf("operationalSupplierIds", assessmentIndex);
-  const validIdentityIndex = syncRouteSource.indexOf("if (isMlIdentityComplete(identityAssessment))", assessmentIndex);
+  const validIdentityIndex = syncRouteSource.indexOf("if (isMlIdentityComplete(identityAssessment) && linkValidated)", assessmentIndex);
   const clearIndex = syncRouteSource.indexOf("clearAutomaticMlIdentityBlock(", validIdentityIndex);
 
   assert.ok(assessmentIndex >= 0);

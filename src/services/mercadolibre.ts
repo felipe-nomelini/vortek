@@ -639,25 +639,6 @@ export async function checkCanInvoice(
   });
 }
 
-export async function searchItemBySellerSku(
-  sku: string,
-): Promise<string | null> {
-  const me = await fetchML<{ id: number }>("/users/me");
-  if (!me) return null;
-  const data = await fetchML<{ results: string[] }>(
-    `/users/${me.id}/items/search?seller_sku=${encodeURIComponent(sku)}`,
-  );
-  if (!data?.results?.length) return null;
-  for (const itemId of data.results) {
-    const item = await fetchML<{ id: string; status?: string }>(
-      `/items/${encodeURIComponent(itemId)}?attributes=id,status`,
-    );
-    const status = String(item?.status || "").toLowerCase();
-    if (item?.id && ["active", "paused"].includes(status)) return item.id;
-  }
-  return null;
-}
-
 export async function setItemInvoiceSaleTerm(itemId: string): Promise<boolean> {
   const result = await fetchML(`/items/${itemId}`, {
     method: "PUT",

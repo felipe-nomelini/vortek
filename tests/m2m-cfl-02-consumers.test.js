@@ -20,9 +20,10 @@ const runDecision = new Function('deps', `return (async () => {
   const { item, byItem, identityOffers, operationalSupplierIds, serviceClient,
     assessMlProductIdentity, getCategoryAttributes, loadMlIdentityKit,
     isMlIdentityComplete, hasConfirmedMlIdentityConflict, clearAutomaticMlIdentityBlock,
-    ensureAutomaticMlIdentityBlock } = deps;
+    ensureAutomaticMlIdentityBlock, resolveProductMlLinks, persistProductMlGroups } = deps;
+  const me = { id: 123 };
   let produto = deps.produto, produtoId = produto.id, skuLocal = produto.sku;
-  const warnings = [], errors = [], identityCategories = new Map(), identityKits = new Map(), identityDeferredIds = new Set();
+  const warnings = [], errors = [], identityCategories = new Map(), identityKits = new Map(), identityDeferredIds = new Set(), linkResolutions = new Map();
   ${body}
   return { produto, produtoId, skuLocal, warnings, errors, deferred: [...identityDeferredIds] };
 })();`);
@@ -42,6 +43,8 @@ function setup() {
     hasConfirmedMlIdentityConflict: identity.hasConfirmedMlIdentityConflict,
     clearAutomaticMlIdentityBlock: async () => { calls.push('clear'); return { ok: true }; },
     ensureAutomaticMlIdentityBlock: async () => { calls.push('ensure'); return { ok: true }; },
+    resolveProductMlLinks: async () => ({ coverage: 'complete', groups: [], candidates: [{ itemId: 'MLB1', identity: 'complete' }] }),
+    persistProductMlGroups: async () => ({ applied: true }),
   } };
 }
 
@@ -70,6 +73,20 @@ test('sync com divergência comprovada usa bloqueio local existente, sem trocar 
   const { calls, deps } = setup(); deps.item.attributes.find(attr => attr.id === 'BRAND').value_name = 'Marca B';
   const result = await runDecision(deps);
   assert.deepEqual(calls, ['ensure']); assert.equal(result.produtoId, null); assert.equal(deps.produto.marca, 'Marca A');
+});
+
+test('identidade válida não limpa bloqueio se grupo/vínculo estiver inconclusivo', async () => {
+  const { calls, deps } = setup(); deps.byItem = null;
+  deps.resolveProductMlLinks = async () => ({ coverage: 'partial', groups: [], candidates: [] });
+  const result = await runDecision(deps);
+  assert.deepEqual(calls, []); assert.equal(result.produtoId, null); assert.deepEqual(result.deferred, ['MLB1']);
+});
+
+test('falha do resolvedor invalida prova anterior e não habilita ação derivada', async () => {
+  const { calls, deps } = setup(); const observations=[];
+  deps.resolveProductMlLinks = async () => { throw Error('read failed'); };
+  deps.persistProductMlGroups = async (_, productId, sellerId, result) => { observations.push(result.coverage); return {applied:true}; };
+  const result=await runDecision(deps);assert.deepEqual(calls,[]);assert.deepEqual(observations,['partial']);assert.equal(result.produto,null);
 });
 
 test('falha da fonte de categoria mantém observação e não libera bloqueio', async () => {

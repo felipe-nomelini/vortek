@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { getItemFiscalData, checkCanInvoice, searchItemBySellerSku, updateListingFiscalData } from '@/services/mercadolibre';
+import { getItemFiscalData, checkCanInvoice, updateListingFiscalData } from '@/services/mercadolibre';
+import { resolveProductMlLinks } from '@/services/ml-listing-links';
+import { fetchML } from '@/services/integration';
 import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
 
 export async function POST(req: Request) {
@@ -16,14 +18,16 @@ export async function POST(req: Request) {
 
     const prod = produto.data;
 
-    let mlItemId = prod.ml_item_id;
-    if (!mlItemId) {
-      const anuncio = await supabase.from('anuncios_ml').select('ml_item_id').eq('sku', sku).maybeSingle();
-      mlItemId = anuncio.data?.ml_item_id || null;
+    const seller = await fetchML<{ id: number }>('/users/me');
+    if (!seller?.id) return NextResponse.json({ error: 'listing_link_seller_unavailable' }, { status: 502 });
+    const links = await resolveProductMlLinks(supabase, prod, seller.id);
+    const requestedItemId = typeof body.mlItemId === 'string' ? body.mlItemId : null;
+    if (links.coverage !== 'complete' || (!requestedItemId && links.candidates.length > 1)) {
+      return NextResponse.json({ error: 'existing_listings_require_selection', links }, { status: 409 });
     }
-    if (!mlItemId) {
-      mlItemId = await searchItemBySellerSku(sku);
-    }
+    const mlItemId = requestedItemId
+      ? links.candidates.find(candidate => candidate.itemId === requestedItemId)?.itemId
+      : links.candidates[0]?.itemId;
     if (!mlItemId) {
       return NextResponse.json({ success: false, error: 'Anúncio ML não encontrado', sku }, { status: 404 });
     }

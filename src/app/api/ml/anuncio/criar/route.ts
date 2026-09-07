@@ -7,11 +7,11 @@ import {
   createListing,
   getCategoryAttributes,
   getCategorySaleTerms,
-  searchItemBySellerSku,
   updateListingFiscalData,
   upsertListingDescription,
 } from "@/services/mercadolibre";
 import { fetchML, fetchMLResult } from "@/services/integration";
+import { resolveProductMlLinks } from '@/services/ml-listing-links';
 import {
   calculateExactMarginPrice,
   calculateSuggestedPrice,
@@ -1315,7 +1315,13 @@ export async function POST(req: Request) {
       );
     }
 
-    const existingItemId = await searchItemBySellerSku(String(produto.sku));
+    const linkSeller = await fetchML<{ id: number }>('/users/me');
+    if (!linkSeller?.id) return NextResponse.json({ error: 'listing_link_seller_unavailable' }, { status: 502 });
+    const links = await resolveProductMlLinks(supabase, produto, linkSeller.id);
+    if (links.classification === 'VINCULO_INCONCLUSIVO') return NextResponse.json({ error: 'listing_link_inconclusive', links }, { status: 409 });
+    // Mais de um anúncio/grupo não pode ser reduzido ao primeiro resultado da busca.
+    if (links.candidates.length > 1) return NextResponse.json({ error: 'existing_listings_require_selection', links }, { status: 409 });
+    const existingItemId = links.candidates[0]?.itemId || null;
     if (existingItemId) {
       const existingItem = await getListingSnapshot(existingItemId);
       if (!existingItem?.id) {

@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização vigente — M2M-CFL-02 (07/09/2026):** avaliação de identidade e apresentação consolidada e integrada nos consumidores, com validação local; [evidências](evidencias/M2M-CFL-02-validacao.md) e seção 20. Próxima ação: planejar CFL-03, sem liberar escritas. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Sem deploy ou homologação externa nesta entrega.
+**Atualização vigente — M2M-CFL-03 (07/09/2026):** vínculos e grupos observacionais implementados; testes locais e banco DEV `.162` validados; [evidências](evidencias/M2M-CFL-03-validacao.md) e seção 21. Próxima ação: planejar BNT-PRICING-V2-04 — Origem e audit trail, sem liberar escritas comerciais. PRC-04 permanece entregue com ressalva: [frete vivo ME2 fica para a conexão autorizada da conta real](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real), bloqueando os gates comerciais, não o desenvolvimento seguinte. O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md) prevalece. Seções anteriores são fotografias datadas. Sem deploy ou homologação ML externa nesta entrega.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -563,3 +563,13 @@ Os verificadores existentes foram consolidados em avaliações de identidade e a
 **Aceite local:** 118 testes direcionados, `npm run validate` e `npm run build` aprovados. Sem migration, chamadas autenticadas ao ML, deploy ou acesso à produção. Kits compostos sem prova remota da composição permanecem pendentes. A guarda `pricing_execution_not_ready` continua vigente.
 
 Matriz AS_IS → TO_BE, consumidores, testes, limitações e rollback: [evidências CFL-02](evidencias/M2M-CFL-02-validacao.md). Próxima ação: planejar CFL-03, sem executá-la nesta tarefa. Frete ME2 continua reservado à conexão autorizada da conta real antes dos gates comerciais.
+
+## 21. M2M-CFL-03 — Vínculos e grupos observacionais
+
+Implementação sobre `972cd0b`, em DEV. O resolvedor reúne IDs conhecidos, buscas paginadas por SKU mestre/ofertas e relações remotas; não reduz múltiplos candidatos ao primeiro. Vendedor/propriedade e identidade CFL-02 são pré-condições. Par sincronizado exige relações coerentes e provas bilaterais de `SYNC`; relação, SKU, UPID ou catálogo isolados não comprovam sincronismo.
+
+Grupos, revisões e membros tipados preservam identidade/histórico, exclusividade vigente e composição nas falhas. O sync observado é o produtor; não existe novo scheduler ou executor de catálogo. DTO acrescenta grupo/versionamento/evidência temporal sem redesenhar a interface. `produtos.ml_item_id` continua ponteiro operacional, não identidade do grupo.
+
+**Contrato de agregação para os consumidores seguintes:** estoque do par é capacidade compartilhada, não soma dos espelhos; vendas/resultados são deduplicados pelo evento econômico de origem, não pelo número de anúncios; visitas por anúncio não comprovam visitantes únicos do grupo. Métricas sem base comparável ficam explicitamente indisponíveis. CFL-03 não cria nem recalcula essas métricas.
+
+Migration `20260907150000` aplicada somente em `.162`, após ensaio com rollback. Tipos extraídos do metadata desse mesmo banco. [Matriz, contratos, validações e riscos](evidencias/M2M-CFL-03-validacao.md). Homologação autenticada ML e deploy não executados. Próxima ação: planejar **BNT-PRICING-V2-04 — Origem e audit trail**; não executar CFL-04 fora da sequência reconciliada.

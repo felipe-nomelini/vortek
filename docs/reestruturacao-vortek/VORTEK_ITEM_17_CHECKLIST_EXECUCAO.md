@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação (07/09/2026):** planejar `M2M-CFL-03 / BNT-PRICING-V2-07 — Vínculos e grupos de anúncios`. CFL-02 implementada nos verificadores e consumidores, validada localmente, sem deploy ou homologação externa. [Evidências CFL-02](evidencias/M2M-CFL-02-validacao.md). Frete vivo ME2 permanece para a conexão autorizada da conta real: não bloqueia o desenvolvimento seguinte, mas continua obrigatório antes da liberação comercial. [Decisão PRC-04](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Escritas comerciais continuam bloqueadas.
+**Próxima ação (07/09/2026):** planejar `BNT-PRICING-V2-04 — Origem e audit trail`. CFL-03 implementada e validada localmente e no Supabase DEV `.162`, sem deploy ou homologação ML externa. [Evidências CFL-03](evidencias/M2M-CFL-03-validacao.md). Frete vivo ME2 permanece para a conexão autorizada da conta real: não bloqueia o desenvolvimento seguinte, mas continua obrigatório antes da liberação comercial. [Decisão PRC-04](evidencias/M2M-PRC-04-validacao.md#decisão-do-usuário--frete-na-conexão-da-conta-real). Escritas comerciais continuam bloqueadas.
 
 ---
 
@@ -65,7 +65,7 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-00, CANON-01, PRC-01/02/02A/03 e QTY-01 concluídos; PRC-04 implementada localmente | Validar PRC-04 com oferta DEV e contexto comercial apto; governança, publicação e Radar ainda pendentes |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | PRC-04 entregue com ressalva ME2; CFL-01/02/03 implementadas, sem homologação ML externa de CFL-03 | Planejar BNT-PRICING-V2-04; validar ME2 na conexão autorizada da conta real antes dos gates comerciais; governança, publicação e Radar pendentes |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -3104,7 +3104,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `M2M-PRC-04` — implementação DEV entregue com ressalva: timestamp corrigido, testes/validate/build e cotação Clássico/`not_specified` aprovados; frete ME2 transferido por decisão do usuário para a pendência abaixo, sem declará-lo homologado. [Evidência](evidencias/M2M-PRC-04-validacao.md);
 - [x] `M2M-CFL-01` — contrato de conflitos independente do score; núcleo puro implementado e testado, ainda sem ativação nos consumidores. [Evidências](evidencias/M2M-CFL-01-validacao.md);
 - [x] `M2M-CFL-02` — identidade/embalagem/kit/quantidade: implementação e validação local concluídas, sem deploy; [evidências](evidencias/M2M-CFL-02-validacao.md);
-- [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos, sem habilitar escritores;
+- [x] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos; implementação/testes locais e banco DEV validados, sem habilitar escritores ou alegar homologação ML externa. [Evidências](evidencias/M2M-CFL-03-validacao.md);
 - [ ] `BNT-PRICING-V2-04` — origem e audit trail vinculados ao grupo existente;
 - [ ] `BNT-PRICING-V2-05` — override explícito por grupo até revogação manual;
 - [ ] `BNT-PRICING-V2-06` — liquidação interna;
@@ -3484,3 +3484,18 @@ Commit/push desta reconciliação limitado aos cinco documentos em `dev`. Não a
 - [x] Registrar [contrato, matriz AS_IS → TO_BE, limites e rollback](evidencias/M2M-CFL-01-validacao.md).
 
 Sem build/deploy por não haver integração no runtime; sem migrations, banco, conta real ou escrita ML. `pricing_execution_not_ready` intacto. Frete ME2 segue pendente para a conexão autorizada da conta real e bloqueia aceite comercial de PUB-GATE/M2M-GATE/produção. CFL-02/03/04 não executadas nesta entrega.
+
+### Fechamento M2M-CFL-03 / BNT-PRICING-V2-07 — 07/09/2026
+
+**Estado: implementação validada localmente e no banco DEV; homologação ML externa não executada. Próxima ação: planejar BNT-PRICING-V2-04 — Origem e audit trail.**
+
+- [x] Fotografar branch `dev` inicialmente limpa em `972cd0b`; confrontar regras, consumidores e documentação oficial de relações, SYNC/UNSYNC, buscas e variações.
+- [x] Classificar anúncio ativo, candidato à reativação, candidato novo e vínculo inconclusivo; não selecionar o primeiro resultado por SKU.
+- [x] Exigir vendedor, propriedade, identidade/apresentação e prova bilateral de sincronismo para formar par; preservar independentes.
+- [x] Persistir grupos/revisões/membros com identidade estável, dedupe, invalidação por falha, união/separação histórica e exclusividade do membro vigente.
+- [x] Reutilizar sync/job observado, substituir vinculação cega e adaptar criação, teste fiscal e DTO sem nova tela ou executor comercial.
+- [x] Aplicar migration `20260907150000` somente no Supabase independente `.162`, após ensaio com rollback; gerar os tipos pelo metadata desse banco.
+- [x] Validar regressões SQL, permissões/RLS e duas conexões concorrentes; reverter todos os dados de ensaio.
+- [x] Executar testes direcionados, `npm run validate`, build e conferência do diff; evidências e limitações no [relatório CFL-03](evidencias/M2M-CFL-03-validacao.md).
+
+Sem push/deploy, conta real, publicação, reativação, pausa ou reprecificação ML nesta execução. Produção não acessada. O estado do DTO é uma observação datada, nunca uma autorização permanente. Frete vivo ME2 e homologação comercial permanecem reservados aos respectivos gates.

@@ -11,6 +11,10 @@ export type ProductMlListing = {
   catalogStatus?: 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
   priceToWin?: number | null;
   relatedItemId?: string | null;
+  pricingGroup?: {
+    groupId: string; version: number; state: string; observedAt: string;
+    catalogSynchronizedPair: boolean; members: { itemId: string; variationId: string; catalog: boolean }[];
+  } | null;
 };
 
 function normalizeListingStatus(status: unknown) {
@@ -99,6 +103,33 @@ export async function loadProductMlListings(
         : 'sem_catalogo',
     });
   }
+
+  const { data: groups, error: groupError } = await serviceClient.from('ml_pricing_groups')
+    .select('id,produto_id,current_version,state,observed_at').in('produto_id', productIds).neq('state', 'retired');
+  if (groupError) throw new Error('listing_groups_read_failed');
+  const groupIds = (groups || []).map(group => group.id);
+  if (groupIds.length) {
+    const [{ data: members, error: membersError }, { data: revisions, error: revisionsError }] = await Promise.all([
+      serviceClient.from('ml_pricing_group_members').select('group_id,version,ml_item_id,variation_id,catalog_listing').in('group_id', groupIds).eq('is_current', true),
+      serviceClient.from('ml_pricing_group_revisions').select('group_id,version,catalog_synchronized_pair')
+        .or((groups || []).map(group => `and(group_id.eq.${group.id},version.eq.${group.current_version})`).join(',')),
+    ]);
+    if (membersError || revisionsError) throw new Error('listing_group_members_read_failed');
+    for (const group of groups || []) {
+      const currentMembers = (members || []).filter(member => member.group_id === group.id && member.version === group.current_version);
+      const revision = (revisions || []).find(row => row.group_id === group.id && row.version === group.current_version);
+      for (const member of currentMembers) {
+        const listing = listingsByProductId.get(group.produto_id)?.get(member.ml_item_id);
+        if (!listing) continue;
+        // Um item com várias variações não pode ser reduzido a um grupo arbitrário no DTO legado.
+        if (listing.pricingGroup !== undefined) { listing.pricingGroup = null; continue; }
+        listing.pricingGroup = { groupId: group.id, version: group.current_version, state: group.state,
+          observedAt: group.observed_at, catalogSynchronizedPair: group.state === 'verified' && revision?.catalog_synchronized_pair === true,
+          members: currentMembers.map(row => ({ itemId: row.ml_item_id, variationId: row.variation_id, catalog: row.catalog_listing })) };
+      }
+    }
+  }
+  for (const listings of listingsByProductId.values()) for (const listing of listings.values()) listing.pricingGroup ??= null;
 
   return new Map(
     [...listingsByProductId.entries()].map(([productId, listings]) => [

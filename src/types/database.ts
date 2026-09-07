@@ -14,6 +14,135 @@ export type Database = {
   }
   public: {
     Tables: {
+ml_pricing_group_members: {
+        Row: {
+          catalog_listing: boolean
+          group_id: string
+          is_current: boolean
+          ml_item_id: string
+          seller_id: number
+          variation_id: string
+          version: number
+        }
+        Insert: {
+          catalog_listing: boolean
+          group_id: string
+          is_current: boolean
+          ml_item_id: string
+          seller_id: number
+          variation_id?: string
+          version: number
+        }
+        Update: {
+          catalog_listing?: boolean
+          group_id?: string
+          is_current?: boolean
+          ml_item_id?: string
+          seller_id?: number
+          variation_id?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_pricing_group_members_group_id_version_fkey"
+            columns: ["group_id", "version"]
+            referencedRelation: "ml_pricing_group_revisions"
+            referencedColumns: ["group_id", "version"]
+          },
+        ]
+      }
+ml_pricing_group_revisions: {
+        Row: {
+          catalog_synchronized_pair: boolean
+          evidence: Json
+          fingerprint: string
+          group_id: string
+          observed_at: string
+          predecessor_ids: string[]
+          reasons: string[]
+          state: string
+          version: number
+        }
+        Insert: {
+          catalog_synchronized_pair: boolean
+          evidence: Json
+          fingerprint: string
+          group_id: string
+          observed_at: string
+          predecessor_ids?: string[]
+          reasons: string[]
+          state: string
+          version: number
+        }
+        Update: {
+          catalog_synchronized_pair?: boolean
+          evidence?: Json
+          fingerprint?: string
+          group_id?: string
+          observed_at?: string
+          predecessor_ids?: string[]
+          reasons?: string[]
+          state?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_pricing_group_revisions_group_id_fkey"
+            columns: ["group_id"]
+            referencedRelation: "ml_pricing_groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+ml_pricing_groups: {
+        Row: {
+          anchor_item_id: string
+          anchor_variation_id: string
+          current_version: number
+          id: string
+          latest_evidence: Json
+          observed_at: string
+          produto_id: string
+          seller_id: number
+          state: string
+        }
+        Insert: {
+          anchor_item_id: string
+          anchor_variation_id?: string
+          current_version?: number
+          id?: string
+          latest_evidence?: Json
+          observed_at: string
+          produto_id: string
+          seller_id: number
+          state: string
+        }
+        Update: {
+          anchor_item_id?: string
+          anchor_variation_id?: string
+          current_version?: number
+          id?: string
+          latest_evidence?: Json
+          observed_at?: string
+          produto_id?: string
+          seller_id?: number
+          state?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_pricing_groups_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "ml_pricing_groups_produto_id_fkey"
+            columns: ["produto_id"]
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       anuncios_ml: {
         Row: {
           catalogo: boolean
@@ -1833,6 +1962,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+reconcile_ml_pricing_groups: {
+        Args: {
+          p_complete: boolean
+          p_groups: Json
+          p_observed_at: string
+          p_product_id: string
+          p_seller_id: number
+        }
+        Returns: Json
+      }
       save_commercial_pricing_configuration: {
         Args: {
           p_inactive_cost_threshold: number
