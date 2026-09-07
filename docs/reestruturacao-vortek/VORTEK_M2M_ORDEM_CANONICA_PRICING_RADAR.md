@@ -1,5 +1,7 @@
 # M2M --- ORDEM CANÔNICA AO ORÁCULO
 
+> **Roteamento vigente — BNT-M2M-RECON-01, 06/09/2026:** abaixo está a transcrição histórica da ordem, preservada integralmente. O [Cânon Comercial 1.0 e seus complementos aprovados](VORTEK_CANON_COMERCIAL_V1.md) prevalece nos conflitos; complementos compatíveis desta ordem permanecem. `custos_variaveis`/extras por SKU, lucro mínimo nominal inclusive opcional, faixas por custo, margem global e desconto por quantidade não são políticas operacionais da V2. A margem protetiva fixa de 50% do procedimento antigo também não é motor alternativo. Consulte a [fila vigente](VORTEK_BENTEVI_PRICING_V2_PLANO.md#14-fila-obrigatória) e o [checklist](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md): a ordem histórica abaixo não substitui as dependências reconciliadas nem autoriza publicação. Trechos superados não devem ser implementados ou reativados.
+
 ## Política definitiva de pricing + filtro de conflitos do Radar de Oportunidades
 
 **De:** Diretoria de Operações --- Vortek\

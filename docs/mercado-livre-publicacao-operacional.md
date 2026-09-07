@@ -145,18 +145,13 @@ Não tratar criação como concluída enquanto imagem e ficha não forem verific
 7. Diagnóstico de imagem sem erro.
 8. Status/substatus ML compatíveis com processamento ou publicação ativa.
 
-## Safe Publication Mode
+## Safe Publication Mode — procedimento superado, não executar
 
-O ciclo industrial e a otimização comercial são independentes.
+O procedimento histórico de criar primeiro e aplicar depois margem protetiva mínima de 50% foi superado pelo [Cânon Comercial 1.0](reestruturacao-vortek/VORTEK_CANON_COMERCIAL_V1.md), especialmente seções 2, 7, 20 e 23. Não é um motor alternativo nem autorização de publicação. A versão anterior permanece no histórico Git; não substituir 50% por outro percentual arbitrário.
 
-1. Validar identidade, duplicidade, categoria/catálogo obrigatório, atributos e imagens.
-2. Criar o item e obter o frete real por `item_id`.
-3. Aplicar imediatamente preço de proteção com margem operacional mínima de 50%, usando o maior frete comprovado disponível.
-4. Confirmar read-back remoto e persistir o vínculo local transacionalmente.
-5. Registrar `QUALITY_OPTIMIZATION_PENDING`; qualidade, performance, completeness, health e recomendações não bloqueiam criação ou persistência industrial.
-6. Registrar `COMMERCIAL_OPTIMIZATION_PENDING`; Buy Box, `price_to_win` e competitividade não bloqueiam este ciclo.
+Na Bentevi V2, a preparação deve usar economia canônica, evidências compatíveis de tarifa/frete, identidade, conflitos, garantia e grupo, com confirmação autorizada e read-back. Alvo é referência para preço novo; margem mínima e exceções seguem exclusivamente o cânon. Dado inconclusivo não autoriza inventar proteção ou executar ação destrutiva.
 
-Preço protetivo não é preço comercial definitivo. Dimensões normalizadas pelo Mercado Envios não substituem silenciosamente o cadastro mestre do fornecedor.
+Os bloqueios comerciais da PRC-03 permanecem. A [fila reconciliada](reestruturacao-vortek/VORTEK_BENTEVI_PRICING_V2_PLANO.md#14-fila-obrigatória) entrega os contratos antes do `BNT-CANON-PUB-GATE`; esta correção documental não habilita código, não altera anúncios existentes e não executa ML. Dimensões normalizadas pelo Mercado Envios não substituem silenciosamente o cadastro mestre do fornecedor.
 
 ## Preços por Quantidade (B2B) — aposentado na Bentevi V2
 

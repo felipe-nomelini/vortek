@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Ação corrente:** planejar `M2M-PRC-04 — Precedência/revalidação ML viva`. `BNT-CANON-QTY-01` concluída e homologada em DEV; evidências ao final deste documento. O programa completo de pricing ainda não está homologado para produção. Bloqueios comerciais da PRC-03 preservados; escritas comerciais, produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
+**Ação corrente:** planejar `M2M-PRC-04 — Precedência/revalidação ML viva`. `BNT-M2M-RECON-01` concluída documentalmente; `BNT-CANON-QTY-01` concluída e homologada em DEV. O programa completo de pricing ainda não está homologado para produção. Bloqueios comerciais da PRC-03 preservados; escritas comerciais, produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
 
 ---
 
@@ -3087,7 +3087,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 **Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
-**Precedência definitiva:** [ordem M2M da Diretoria](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md), incorporada integralmente; complementos anteriores compatíveis permanecem por confirmação do responsável. Correspondências abaixo são a mesma ação, não duas entregas independentes.
+**Precedência vigente:** o [Cânon Comercial 1.0 e seus complementos aprovados](VORTEK_CANON_COMERCIAL_V1.md) prevalece nos conflitos com a [ordem M2M histórica](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md); complementos compatíveis permanecem. A fila foi reconciliada em `BNT-M2M-RECON-01`. Correspondências abaixo são a mesma ação, não duas entregas independentes; não reintroduzir extras, nominal opcional, desconto por quantidade ou proteção fixa de 50%.
 
 **Objetivo:** substituir de forma controlada as faixas comerciais por custo por uma política baseada em preço final, economia unitária única, governança, pricing groups, performance, experimentos, alertas e autonomia graduada.
 
@@ -3100,23 +3100,24 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `M2M-PRC-02A` — tributo calculado para cima ao centavo, campo de extras retirado e memória ECON-2; realizado/histórico preservados;
 - [x] `BNT-PRICING-V2-03` / `M2M-PRC-03` — retirar custo/lucro nominal/margem global/piso universal de 10% do caminho decisório;
 - [x] `BNT-CANON-QTY-01` — retirar desconto por quantidade de UI/API/config/jobs sem remover compra de múltiplas unidades, estoque/status ou histórico;
+- [x] `BNT-M2M-RECON-01` — reconciliar autoridade, dependências e critérios de aceite, sem alteração funcional;
 - [ ] `M2M-PRC-04` — precedência/revalidação ML viva e `INCONCLUSIVO_FONTE_ML_INDISPONIVEL`;
-- [ ] `BNT-PRICING-V2-04` — origem e audit trail do pricing;
-- [ ] `BNT-PRICING-V2-05` — override manual explícito;
-- [ ] `BNT-PRICING-V2-06` — liquidação interna;
 - [ ] `M2M-CFL-01` — contrato de conflitos independente do score;
 - [ ] `M2M-CFL-02` — identidade/embalagem/kit/quantidade;
-- [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos;
+- [ ] `BNT-PRICING-V2-07` / `M2M-CFL-03` — anúncio existente, reativação, vínculo e grupos, sem habilitar escritores;
+- [ ] `BNT-PRICING-V2-04` — origem e audit trail vinculados ao grupo existente;
+- [ ] `BNT-PRICING-V2-05` — override explícito por grupo até revogação manual;
+- [ ] `BNT-PRICING-V2-06` — liquidação interna;
 - [ ] `BNT-CANON-WARRANTY-01` — garantia por evidência, sem prazo universal ou atributos inventados;
 - [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
+- [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa;
 - [ ] `BNT-CANON-PUB-GATE` — validar sugestão, preparação, confirmação e publicação/read-back em homologação; não substitui gate final nem libera massa autônoma;
-- [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem;
 - [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
+- [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem com evidência comercial;
 - [ ] `BNT-PRICING-V2-10` — experimentos;
 - [ ] `BNT-PRICING-V2-11` — zero tráfego;
 - [ ] `M2M-RAD-01` — funil e priorização explicável, com demanda separada de conflito;
 - [ ] `BNT-PRICING-V2-12` / `M2M-RAD-02` — rotina única noturna de pricing/Radar, idempotente e observável;
-- [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe;
 - [ ] `BNT-PRICING-V2-14` / `M2M-RAD-03` — Dashboard com filas acionáveis e sete filas do Radar;
 - [ ] `BNT-PRICING-V2-15` — configurações administrativas;
 - [ ] `M2M-RAD-04` — reprocessar universo da planilha e candidatos revisados, sem pesquisa externa pesada;
@@ -3126,6 +3127,8 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [ ] `BNT-D20` — composição visual final de Configurações.
 
 **Regras de transição:** não manter motores paralelos publicando preços; alteração automática permanece `REQUIRES_CONFIRMATION` por padrão; nenhuma migration sai do `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura; cada ação exige teste, evidência e rollback próprios.
+
+**Dependências e aceites vigentes:** seção 14 do [plano](VORTEK_BENTEVI_PRICING_V2_PLANO.md) e seção 18 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md). Grupos antes de trilha/override; confirmação antes da prova externa; performance antes de classificação comercial. Etapas posteriores reutilizam contratos já entregues. RAD-04 exige insumo identificado: ausência da planilha não equivale a reprocessamento concluído. Esta fila não autoriza a próxima implementação automaticamente.
 
 **Aceite da etapa:** política antiga deixa de governar pricing; economia unitária e origem são únicas; catálogo sincronizado é unidade econômica; Buy Box não induz prejuízo não autorizado; performance não é confundida com economia; alertas e confirmações são deduplicados e auditáveis; job noturno é idempotente e observável; nenhuma autonomia existe sem nível declarado e gate aprovado.
 
@@ -3451,3 +3454,19 @@ Fotografia histórica na seção 15 e fechamento na seção 16 do [dossiê](VORT
 - [x] Registrar [evidências e captura](evidencias/BNT-CANON-QTY-01-validacao.md). Salvamento válido: teste isolado da rota e RPC real com ROLLBACK; sem alteração de parâmetros pelo navegador.
 
 Nenhuma alteração de desconto remoto, banco de produção ou liberação comercial. PRC-04 não executada. Os fechamentos anteriores permanecem como fotografia histórica.
+
+### Fechamento BNT-M2M-RECON-01 — 06/09/2026
+
+**Estado: CONCLUÍDO — exclusivamente documental. Próxima ação: planejar M2M-PRC-04.**
+
+- [x] Confirmar branch `dev` e working tree inicialmente limpa em `ce19f63`.
+- [x] Reconciliar precedência do cânon, marcar proteção fixa de 50% como superada e preservar integralmente a transcrição M2M sob aviso de autoridade posterior.
+- [x] Alinhar sequência do plano e checklist: grupos antes de trilha/override, confirmações antes de PUB-GATE, performance antes de diagnósticos comerciais. Sem duplicar entregas.
+- [x] Registrar donos e testes exigidos das ações futuras na seção 18 do dossiê; atualizações materiais invalidam decisão, score não supera conflito, métricas de grupo exigem bases explícitas e RAD-04 depende do insumo identificado.
+- [x] Conferência estrutural por Node/assert: 32 linhas e 40 identificadores únicos, mesma ordem no plano/checklist e dependências críticas ordenadas. Links locais adicionados resolvem para arquivos existentes.
+- [x] `git diff --check` e `npm run validate` aprovados (ESLint e TypeScript). Nenhum teste de integração externa foi executado ou alegado nesta ação.
+- [x] Confirmar diff exclusivamente em cinco documentos, `AGENTS.md` e cânon intactos; nenhum arquivo funcional ou migration alterado. Nenhum acesso ao banco, ML autenticado, Easypanel ou produção.
+
+Build e deploy não se aplicam: não existe mudança de runtime. A skill local orientou a execução de uma ação por vez em DEV; não houve uso de skills de banco nem operação de infraestrutura. Reversão possível por commit documental seletivo, sem reverter outras entregas. Os testes funcionais da análise anterior não são nova homologação nesta ação.
+
+Commit/push desta reconciliação limitado aos cinco documentos em `dev`. Não avançar automaticamente: PRC-04, contratos de execução, Radar e gates continuam pendentes. Publicação e alteração de preço permanecem bloqueadas.

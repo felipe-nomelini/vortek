@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Atualização posterior — M2M-PRC-02A (06/09/2026):** a fotografia V2-00 e a entrega PRC-02 abaixo foram preservadas. A reconciliação da seção 13 incorpora o [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md); a seção 14 registra o ajuste do núcleo para ECON-2. Próxima ação atual: `M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados`. Referências anteriores a “próxima ação” e contratos anteriores são registros históricos, não a fila vigente.
+**Atualização vigente — BNT-M2M-RECON-01 (06/09/2026):** PRC-01/02/02A/03 e QTY-01 concluídas nos respectivos escopos; sequência e dependências reconciliadas na seção 18 e no plano. Próxima ação: planejar `M2M-PRC-04 — Precedência/revalidação ML viva`. O [Cânon Comercial 1.0 e seus complementos aprovados](VORTEK_CANON_COMERCIAL_V1.md) prevalece. As seções anteriores à 18 são fotografias datadas: suas próximas ações e contratos superados (inclusive validade de override anterior à decisão de proteção até revogação) não substituem os contratos vigentes. Nenhuma escrita comercial ou promoção liberada.
 
 ## 1. Escopo, autoridade e fotografia
 
@@ -506,3 +506,42 @@ Migration `20260906130000` ensaiada com ROLLBACK e aplicada exclusivamente no de
 **Validação:** 281 testes direcionados, validate e build passaram; execução adicional de 47 testes também aprovada, com sobreposição. Homologação autenticada de Produtos, detalhe, Anúncios, Comercial, simulador e PDFs; endpoints antigos 410, payload administrativo legado 422 e guard comercial 409. Salvamento válido comprovado no teste isolado da rota e no ensaio real da RPC com ROLLBACK, sem alteração de parâmetros pelo navegador. [Evidências, captura e reversão](evidencias/BNT-CANON-QTY-01-validacao.md).
 
 **Limites:** nenhuma escrita no banco de produção, publicação no ML ou liberação dos guards da PRC-03. Fontes ML vivas e governança permanecem nas respectivas ações. Histórico de auditoria e cânon imutável preservados.
+
+## 18. BNT-M2M-RECON-01 — Coerência e dependências (06/09/2026)
+
+**Entrega:** exclusivamente documental, aprovada pelo responsável após análise da fila. A sequência canônica permanece na seção 14 do [plano](VORTEK_BENTEVI_PRICING_V2_PLANO.md); o [checklist](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md) registra execução. Não são novas políticas ou um segundo motor. Esta seção atualiza dependências e aceites anteriores, sem apagar suas fotografias.
+
+### Causa e reconciliação
+
+- O procedimento operacional ainda orientava proteção fixa de 50%, enquanto DEC-04 a rejeitava como motor alternativo; marcado como superado/não executável, sem percentual substituto.
+- A ordem M2M transcrita ainda contém extras por SKU; preservada como transcrição, agora com aviso inicial de precedência do cânon e das regras removidas.
+- A fila exigia override por grupo antes de entregar grupos; aprovação na prova externa antes de V2-13; classificação comercial antes de performance. Reordenadas as entregas existentes, sem duplicar IDs ou criar contratos transitórios descartáveis.
+- Cabeçalhos e estados correntes reconciliados com PRC-03 e QTY-01 concluídas. Próximas ações históricas não são comandos atuais.
+
+### Responsabilidades e testes obrigatórios das próximas ações
+
+| Dono | Aceite obrigatório e evidência |
+|---|---|
+| PRC-04 | Integrar tarifa/frete compatíveis com preço candidato, categoria/catálogo e logística. Testar fronteiras e nova cotação quando o contexto mudar, tarifa fixa sem dupla contagem, vivo válido sobre fallback, fonte stale e indisponível, recuperação pelo piso e preço novo pelo alvo. Fonte ausente não vira zero; estimativa não vira confirmação. Preservar guard comercial: consultar ML não autoriza publicar. |
+| CFL-01/02 | Consolidar verificações existentes; ausência não é contradição. Testar score alto com conflito material, dado ausente, GTIN divergente com variação legítima comprovada, marca/modelo, unidade/kit/quantidade. Nenhum score neutraliza conflito; nenhum atributo ausente é fabricado. |
+| CFL-03/V2-07 | Entregar identidade/composição versionada e leitura de sincronização antes das proteções. Não deduzir grupo apenas por SKU/GTIN/related_item_id. Testar ativo já anunciado, reativação, vínculo inconclusivo e par sincronizado. Definir bases de agregação: estoque compartilhado não soma exposição disponível, vendas não duplicam eventos, visitas por anúncio não provam visitantes únicos do grupo. Escrita/read-back integrado só será provado após os contratos de execução. |
+| V2-04/05/06 | Consumir grupo existente; registrar origem prospectiva sem inventar autoria histórica. Override por grupo até revogação manual, sem expiração automática herdada do contrato antigo. Liquidação com término expresso ou até revogação, sem teto arbitrário; exceção não contorna trava crítica. Testar precedência, revogação, alteração manual sem override e mudança de composição do grupo. |
+| WARRANTY-01 e CFL-04/V2-08 | Garantia por evidência segundo cânon; não reativar prazo universal. Viabilidade usa a memória única e contexto competitivo válido, sem preço concorrente funcionar como ordem de redução. Testar falta/conflito de evidência, margem abaixo do piso, prejuízo e Buy Box economicamente incompatível. |
+| V2-13 | Entregar confirmação auditável/idempotente, vínculo com avaliação/grupo/proteções, aplicação controlada e lifecycle/dedupe de alertas para os fluxos existentes. Testar autorização, aprovação/rejeição/adiamento, duplo clique, mudança material, crash após efeito remoto e retomada por leitura. Reusar outbox/locks e auditoria; testes de contrato não exigem job noturno ou Dashboard novos prontos. Não liberar writers genericamente por concluir o módulo. |
+| PUB-GATE | Depender explicitamente de PRC-04, CFL-01/02/03/04, V2-04/05/06/13, QTY-01 e WARRANTY-01 validados. Provar sugestão → preparação → confirmação → publicação → read-back com produto simples, kit, anúncio existente e reativação. Conta/item DEV e autorização específica para prova externa. Fixtures protegidas não viram alvos graváveis. Guard de transição só pode evoluir para a execução canônica controlada no escopo aprovado, nunca desaparecer sem substituto. |
+| V2-09 → V2-08A | Performance antes dos diagnósticos comerciais. Testar janelas/cobertura, venda cancelada, ausência como SEM_AMOSTRA e semântica de grupo. Sem evidência não afirmar margem premium validada ou margem baixa estrategicamente funcional; separar prejuízo estimado de realizado. |
+| V2-10/11 | Experimentos e zero tráfego usam contratos anteriores de decisão/alerta/performance. Não duplicar executor nem agenda. Baseline, concorrência, safety stop, checkpoints e D7/D15/D30 testados sem tratar falha de coleta como zero visitas. |
+| RAD-01 | Funil/score explicáveis e separados do filtro de conflitos. Pesos/limiares comerciais não definidos exigem homologação específica; nenhum default inventado governa publicação ou prioridade comercial. Sem evidência de demanda não significa inviabilidade. |
+| RAD-02/V2-12 | Reusar scheduler, domínio/locks, checkpoint e alertas já entregues. Testar retomada, falha parcial, cobertura, dedupe e ausência de sobreposição. Uma rotina observacional, sem ativação silenciosa de escrita. |
+| RAD-03/V2-14 | Incorporar filas acionáveis preservando layout e indicadores aprovados. Separar realizado de projetado; detalhe explica evidência/impacto/regra/ação. Não duplicar memória, alertas ou contagem por anúncio sincronizado. |
+| V2-15, CFG-08/09 | Configurações tipadas/auditadas e integração dos contratos já entregues, sem reconstruir motor, Dashboard ou scheduler. Salvar parâmetro não publica/reprecifica silenciosamente. |
+| RAD-04 | Identificar caminho, versão/hash, cobertura e vínculo com universo revisado antes de processar. A busca anterior no repositório não localizou oportunidades-ml.xlsx; não atesta ausência fora dele nem comprova os 65 candidatos. Não trocar o universo por amostra conveniente. Insumo faltante é pendência explícita, não conclusão; sem nova pesquisa pesada ou alteração ML. |
+| M2M-GATE/V2-16 | Consolidar testes integrados, fontes, riscos, rollback e evidências reais por ação. Não substituir prova funcional por soma de unitários, liberar massa autônoma ou dispensar BNT-PARITY-FINAL antes da promoção. |
+
+### Autoridade, fontes e preservação
+
+O [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md), incluindo complementos aprovados, permanece intacto. A limitação de monitoramento da entrega pontual produtiva não cancela Radar, experimentos ou rotina noturna pedidos para a V2. O plano define sua fila e homologação próprias.
+
+A análise precedente consultou o conteúdo indexado da documentação oficial de [custos por vender](https://developers.mercadolivre.com.br/pt_br/comissao-por-vender), [catálogo](https://developers.mercadolivre.com.br/devcenter/publicacao-no-catalogo) e [visitas](https://developers.mercadolivre.com.br/pt_br/envio-de-produto/recurso-visits); abertura direta apresentou bloqueios. Na implementação de cada integração, reconfirmar o contrato aplicável. Não houve chamada autenticada ML nesta reconciliação.
+
+**Validação concluída:** plano/checklist com a mesma sequência (32 linhas, 40 identificadores únicos), dependências críticas ordenadas, links locais adicionados válidos, transcrição original M2M preservada integralmente e alterações restritas a cinco documentos. `git diff --check` e `npm run validate` aprovados. Cânon e AGENTS intactos, sem código, migration, banco, ML autenticado ou deploy. Fechamento registrado no checklist; testes funcionais das ações futuras continuam pendentes. Reversão, se necessária, é documental e seletiva, preservando outras alterações; não envolve banco, anúncios ou rollback de runtime. Próxima ação: **planejar M2M-PRC-04**, sem executá-la nesta tarefa.

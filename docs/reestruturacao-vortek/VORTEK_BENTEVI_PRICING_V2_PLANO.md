@@ -7,6 +7,8 @@
 **Situação:** PRC-03 e BNT-CANON-QTY-01 concluídas e validadas em DEV: consumidores migrados, desconto por quantidade retirado e bloqueios comerciais preservados. Próxima ação: planejar `M2M-PRC-04`. O programa de pricing ainda não está concluído nem liberado para promoção.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
+**Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.
+
 **Atualização em 06/09/2026 — QTY-01:** o [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md), importado de `origin/main` em `7f0a292`, atualiza as regras conflitantes da [ordem M2M](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md); complementos compatíveis permanecem. PRC-02A, PRC-03 e QTY-01 concluídos nos respectivos escopos. Fechamentos nas seções 16/17 do dossiê e nas evidências [PRC-03](evidencias/M2M-PRC-03-validacao.md) e [QTY-01](evidencias/BNT-CANON-QTY-01-validacao.md). PRC-04 e governança continuam nas ações próprias. Nenhuma escrita comercial/autônoma ou promoção foi liberada.
 
 **Transição PRC-02A concluída:** o campo de extras foi retirado do tipo, objeto e fingerprint da nova memória, sem substituto. Tributo calculado usa teto exato ao centavo; montante realizado informado, inclusive zero, prevalece. Cenário realizado sem montante continua estimado; tarifa ML mantém half-up. Custos de aquisição pertencem ao CMV; despesas corporativas não entram como extras por SKU. Decisão na seção 13 e implementação na seção 14 do dossiê; histórico preservado.
@@ -297,7 +299,7 @@ Coleções reais exigem tabelas tipadas. `sync_runtime_config` não pode virar a
 
 ## 14. Fila obrigatória
 
-Uma fila operacional; duas identificações na mesma linha representam **a mesma ação**. Os complementos preservados entram nas dependências, mantendo a ordem relativa M2M. Nenhuma equivalência de nome antecipa conclusão. Abaixo, 00/CANON-01 são entregas documentais e 01/02/02A são núcleo puro entregue; os demais itens permanecem pendentes.
+Uma fila operacional; duas identificações na mesma linha representam **a mesma ação**. Reconciliação `BNT-M2M-RECON-01`, aprovada em 06/09/2026: preservar ordem relativa M2M, antecipar grupos antes das proteções, confirmações antes da prova de publicação e performance antes dos diagnósticos comerciais. Não criar entregas intermediárias descartáveis. 00/CANON-01 são documentais; PRC-01/02/02A/03 e QTY-01 estão concluídas nos respectivos escopos. Demais entregas funcionais abaixo estão pendentes; o checklist registra evidências e conclusão, não a mera posição na fila.
 
 | Ordem | Ação | Prioridade | Entrega central |
 |---:|---|---|---|
@@ -308,34 +310,37 @@ Uma fila operacional; duas identificações na mesma linha representam **a mesma
 | 2.2 | `M2M-PRC-02A` | P0 | Concluído: tributo calculado para cima ao centavo, campo de extras removido e memória ECON-2; realizados/histórico preservados |
 | 3 | `BNT-PRICING-V2-03` / `M2M-PRC-03` | P0 | Retirar custo/lucro mínimo/margem global/piso universal de 10% do caminho decisório |
 | 3.1 | `BNT-CANON-QTY-01` | P0 | Aposentar desconto por quantidade em UI/API/config/jobs, preservando compra de múltiplas unidades, estoque/status e histórico |
+| 3.2 | `BNT-M2M-RECON-01` | P0 documental | Reconciliar autoridade, dependências e aceites; sem código, banco ou liberação comercial |
 | 4 | `M2M-PRC-04` | P0 | Precedência/revalidação ML viva e inconclusivo explícito |
-| 5 | `BNT-PRICING-V2-04` | P0 | Origem e audit trail do pricing |
-| 6 | `BNT-PRICING-V2-05` | P0 | Override manual explícito e lifecycle |
-| 7 | `BNT-PRICING-V2-06` | P1 | Liquidação interna |
-| 8 | `M2M-CFL-01` | P0 | Contrato canônico de conflitos independente do score |
-| 9 | `M2M-CFL-02` | P0 | Identidade, embalagem, kit e quantidade com evidência |
-| 10 | `BNT-PRICING-V2-07` / `M2M-CFL-03` | P0 | Anúncio existente, reativação, vínculo e grupos sincronizados |
+| 5 | `M2M-CFL-01` | P0 | Contrato canônico de conflitos independente do score |
+| 6 | `M2M-CFL-02` | P0 | Identidade, embalagem, kit e quantidade com evidência |
+| 7 | `BNT-PRICING-V2-07` / `M2M-CFL-03` | P0 | Anúncio existente, reativação, vínculo e grupos sincronizados; sem habilitar escritores |
+| 8 | `BNT-PRICING-V2-04` | P0 | Origem e audit trail vinculados ao grupo existente |
+| 9 | `BNT-PRICING-V2-05` | P0 | Override explícito por grupo até revogação manual |
+| 10 | `BNT-PRICING-V2-06` | P1 | Liquidação interna |
 | 10.1 | `BNT-CANON-WARRANTY-01` | P0 | Garantia por evidência, sem prazo universal ou atributo inventado; conflitos exigem validação |
 | 11 | `BNT-PRICING-V2-08` / `M2M-CFL-04` | P0 | Viabilidade competitiva e Buy Box econômica |
-| 11.1 | `BNT-CANON-PUB-GATE` | P0 | Provar sugestão → preparação → confirmação → publicação/read-back em homologação, com economia, identidade, garantia e grupo coerentes |
-| 12 | `BNT-PRICING-V2-08A` | P1 | Diagnósticos de margem baixa, prejuízo, liquidação e premium |
-| 13 | `BNT-PRICING-V2-09` | P1 | Performance 30/90/150 separada da economia |
+| 11.1 | `BNT-PRICING-V2-13` | P0 operacional | Alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa |
+| 11.2 | `BNT-CANON-PUB-GATE` | P0 | Provar sugestão → preparação → confirmação → publicação/read-back em homologação, com economia, identidade, garantia e grupo coerentes |
+| 12 | `BNT-PRICING-V2-09` | P1 | Performance 30/90/150 separada da economia |
+| 13 | `BNT-PRICING-V2-08A` | P1 | Diagnósticos de margem baixa, prejuízo, liquidação e premium com evidência comercial |
 | 14 | `BNT-PRICING-V2-10` | P1 | Experimentos |
 | 15 | `BNT-PRICING-V2-11` | P1 | Zero tráfego |
 | 16 | `M2M-RAD-01` | P0 | Funil e priorização explicável nas seis dimensões |
 | 17 | `BNT-PRICING-V2-12` / `M2M-RAD-02` | P0 operacional | Uma rotina noturna de pricing/Radar com checkpoint, dedupe e cobertura |
-| 18 | `BNT-PRICING-V2-13` | P0 operacional | Alertas, confirmações, lifecycle e dedupe |
-| 19 | `BNT-PRICING-V2-14` / `M2M-RAD-03` | P0 | Dashboard, filas acionáveis e sete filas do Radar |
-| 20 | `BNT-PRICING-V2-15` | P1 | Configurações administrativas tipadas |
-| 21 | `M2M-RAD-04` | P0 | Reprocessar universo existente e candidatos revisados, sem pesquisa pesada |
-| 22 | `BNT-CFG-08` | P1 | Integrar Dashboard, TV e metas |
-| 23 | `BNT-CFG-09` | P1 | Integrar agenda e saúde operacional |
-| 24 | `BNT-PRICING-V2-16` / `M2M-GATE` | P0 release | Regressão, evidências, homologação e gate de autonomia |
-| 25 | `BNT-D20` | P1 | Composição visual final de Configurações |
+| 18 | `BNT-PRICING-V2-14` / `M2M-RAD-03` | P0 | Dashboard, filas acionáveis e sete filas do Radar |
+| 19 | `BNT-PRICING-V2-15` | P1 | Configurações administrativas tipadas |
+| 20 | `M2M-RAD-04` | P0 | Reprocessar universo existente e candidatos revisados, sem pesquisa pesada |
+| 21 | `BNT-CFG-08` | P1 | Integrar Dashboard, TV e metas |
+| 22 | `BNT-CFG-09` | P1 | Integrar agenda e saúde operacional |
+| 23 | `BNT-PRICING-V2-16` / `M2M-GATE` | P0 release | Regressão, evidências, homologação e gate de autonomia |
+| 24 | `BNT-D20` | P1 | Composição visual final de Configurações |
 
 Cada ação terá critério de aceite, teste e evidência próprios. Não agrupar correções independentes. Migrations são novas, ensaiadas e aplicadas somente no `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura.
 
-**Contrato de transição reconciliado com M2M:** V2-01 entregou política/solver puro sem ligar escritores; V2-02 entregou memória pura, que PRC-02A deve adequar ao cânon antes de V2-03 migrar consumidores e retirar o legado. PRC-03 inclui CMV unitário e componentes/quantidades de kits em todos os consumidores identificados; M2M-PRC-04 integra a revalidação das fontes ML. Não habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. O [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md), seção 13, registra a reconciliação e os aceites das ações adicionais. Cada linha permanece uma tarefa independente.
+**Contrato de transição vigente:** PRC-01/02 entregaram o núcleo; PRC-02A adequou a memória ao cânon; PRC-03 migrou consumidores, inclusive CMV unitário e kits, preservando bloqueios; QTY-01 retirou desconto por quantidade. PRC-04 integrará revalidação ML viva, sem liberar criação/preço. Não habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. A seção 18 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) registra os aceites reconciliados; a seção 13 permanece histórica. Cada linha é uma tarefa independente.
+
+**Dependências sem ciclo:** CFL-03/V2-07 entrega identidade e leitura de grupos, não depende de publicação efetiva para ser concluída. V2-04/05/06 consomem esse contrato. V2-13 entrega decisões, aplicação controlada e lifecycle de alertas para os fluxos já existentes, com testes de contrato; não exige job noturno, experimentos ou Dashboard prontos. Essas entregas posteriores conectam seus produtores ao mesmo mecanismo, sem duplicá-lo. PUB-GATE só admite prova externa DEV após V2-13 e demais pré-requisitos, mediante autorização específica. Performance V2-09 antecede diagnósticos V2-08A; uma dependência ausente permanece explícita, nunca simulada como entrega concluída.
 
 O gate de publicação é evidência funcional antecipada, não substitui `M2M-GATE`, o gate de autonomia ou `BNT-PARITY-FINAL`. Não autoriza publicação em massa, continuidade de coorte histórica, alteração de anúncios reais ou produção. A ausência de nova rotina periódica na entrega pontual do cânon de produção não cancela o job noturno já solicitado para a V2: ele permanece na ação própria, inicialmente observacional.
 
@@ -432,7 +437,7 @@ As APIs oficiais sustentam o uso de `price_to_win` como informação competitiva
 
 ## 20. Incorporação definitiva M2M — contratos e entregáveis
 
-A transcrição integral está na [ordem da Diretoria](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md). Este plano e o dossiê mantêm o encaixe técnico; não são outra política comercial. As adições abaixo estão **pendentes de implementação**, exceto a seleção/estabilização pura PRC-01.
+A transcrição integral está na [ordem histórica da Diretoria](VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md), subordinada ao cânon posterior nos conflitos. Este plano e o dossiê mantêm o encaixe técnico; não são outra política comercial. PRC-01/02/02A/03 e QTY-01 estão concluídas nos respectivos escopos; as adições CFL/RAD/GATE abaixo permanecem **pendentes de implementação** e obedecem à fila reconciliada, não antecipam homologação.
 
 - **CFL-01/02:** filtro independente de score com `SEM_CONFLITO`, `CONFLITO_CONFIRMADO`, `PENDENCIA_VALIDACAO`, `INCONCLUSIVO`. Comparar os atributos disponíveis e registrar motivos; GTIN isolado não supera contradição material. Variação legítima exige evidência. Kit/unidade/quantidade incompatível bloqueia automação, sem inventar dados ausentes.
 - **CFL-03:** consultar ativos, pausados, próprios, catálogo, pares e histórico. `JA_ANUNCIADO_ATIVO`, `REATIVACAO_CANDIDATA`, `NOVO_ANUNCIO_CANDIDATO` e `VINCULO_INCONCLUSIVO` são estados distintos; eliminar já anunciado do funil de **novo** anúncio não significa excluir/pausar o anúncio existente.
