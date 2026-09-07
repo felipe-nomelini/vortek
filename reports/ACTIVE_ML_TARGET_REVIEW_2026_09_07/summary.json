@@ -1,0 +1,43 @@
+{
+  "run": "ACTIVE_ML_TARGET_REVIEW_2026_09_07",
+  "at": "2026-09-07T15:43:25.934Z",
+  "total": 3854,
+  "statuses": {
+    "ECONOMIA_INCONCLUSIVA": 20,
+    "ALVO_VALIDADO": 3809,
+    "IDENTIDADE_PENDENTE": 23,
+    "PENDENTE": 2
+  },
+  "suppliers": {
+    "97": {
+      "name": "VANRAL",
+      "ALVO_VALIDADO": 161,
+      "changed": 154
+    },
+    "108": {
+      "name": "BKR1",
+      "ALVO_VALIDADO": 2152,
+      "IDENTIDADE_PENDENTE": 18,
+      "changed": 1430
+    },
+    "133": {
+      "name": "EVOLUSOM-PR",
+      "ALVO_VALIDADO": 1496,
+      "ECONOMIA_INCONCLUSIVA": 16,
+      "IDENTIDADE_PENDENTE": 5,
+      "changed": 616
+    },
+    "INCONCLUSIVO": {
+      "name": "INCONCLUSIVO",
+      "ECONOMIA_INCONCLUSIVA": 4,
+      "PENDENTE": 2
+    }
+  },
+  "changed": 2200,
+  "economicsAtTarget": 3832,
+  "belowTarget": [],
+  "economicsUnknown": 22,
+  "initiallyNegative": 27,
+  "initiallyNegativeCorrected": 27,
+  "automationRemovals": 2
+}
