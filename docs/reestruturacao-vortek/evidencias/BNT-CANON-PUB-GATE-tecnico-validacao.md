@@ -2,7 +2,7 @@
 
 Data: 08/09/2026. Branch: `dev`. Base local: `e35970c`, com alterações documentais preexistentes preservadas.
 
-**Situação: implementação local e regressões concluídas; conta de teste conectada; publicação DEV autorizada e em preparação. Prova externa e aceite autenticado pendentes. Marco 1 e PUB-GATE integral não encerrados.** Na implementação inicial não houve commit, push, deploy, acesso à produção ou escrita comercial ML. A publicação autorizada será registrada separadamente abaixo.
+**Situação: implementação e regressões concluídas; publicada em DEV; conta de teste conectada. Prova externa e aceite autenticado pendentes. Marco 1 e PUB-GATE integral não encerrados.** A publicação autorizada está registrada abaixo; não habilitou escrita comercial ML.
 
 ## AS_IS → TO_BE implementado
 
@@ -65,11 +65,23 @@ Os testes de transporte utilizam mocks e os SQL provam o contrato transacional; 
 ## Pendências e limites de aceite
 
 1. **Conta ML de teste já conectada e verificada.** Em tarefa própria de prova externa autorizada, reconfirmar token/tag/allowlist/destino, habilitar temporariamente `test_only` e executar uma criação limitada e uma alteração de preço explicitamente aprovadas. Registrar IDs, operação/outbox, projeções e read-back; restaurar `disabled` ao encerrar a prova. O push/deploy não habilita essa execução.
-2. Publicar o candidato em DEV conforme solicitação atual; validar depois a interface autenticada: preparação, decisão, aplicação, resultado e recuperação. Ainda não houve teste visual no navegador desta implementação.
+2. Candidato publicado em DEV conforme solicitação. Falta validar a interface autenticada: preparação, decisão, aplicação, resultado e recuperação. Os smokes sem sessão não substituem teste visual/E2E autenticado.
 3. Resposta perdida antes da captura do ID de criação não tem busca heurística/novo POST: permanece inconclusiva, exige investigação do anúncio remoto. Descrição falha não é reenviada automaticamente; a conferência aponta incompletude sem duplicar anúncio.
 4. O cadastro fiscal é validado localmente, mas esta entrega **não realiza nem comprova vínculo fiscal externo no ML**. Verificar a necessidade/contrato no contexto comercial autorizado antes de liberar sua operação; não confundir NF-e/integração fiscal com cadastro de anúncio.
 5. Frete/tarifa ME2 da conta real e aceitação comercial permanecem no **marco 6**. Este código contém somente capacidade de teste: a política de liberação produtiva ainda deverá ser implementada/revisada no workspace produtivo e release autorizados, sem simplesmente contornar o guard.
 6. Não foram comprovados externamente kit, reativação ou pares de catálogo nesta entrega. Os contratos existentes e testes de bloqueio/sincronização foram preservados; criação rejeita anúncios existentes/reativações, que não viram novo anúncio. Sem publicação em massa nem autonomia de preço.
+
+## Publicação DEV — 08/09/2026
+
+- Implementação/testes: commit `6a3a64ce`. Documentação/marcos autorizados: `9a18ff8f`.
+- Push normal de `dev` concluído; candidato implantado: `9a18ff8f903d990d8beda7264d720894ef30f5bf`.
+- Webhook conferido com a configuração real de `local/vortek-erp-dev`, branch `dev`, autoDeploy desabilitado. URL/segredo não reproduzidos. Usado `npm run deploy:easypanel`, sem bypass de Git nem atualização manual de serviço.
+- Ação Easypanel `cmtsvy4qy000707o9gs5q1tcy`: `done`, criada às 16:30:11 UTC e concluída às 16:32:48 UTC (13:32:48 BRT). Build remoto compilado e 122 páginas geradas.
+- Serviço DEV: atualização `completed`, réplica `Running`, `GIT_SHA` igual ao candidato. `https://dev.bentevi.shop/login`: HTTP 200. Sem sessão, GET/POST `/api/pricing/decisions/execute` e POST `/api/ml/anuncio/criar` e `/api/ml/anuncio/atualizar-preco`: HTTP 401.
+- Conta de teste novamente verificada **após deploy**, por transação somente leitura em `.162` e `GET /users/me`: conectada, HTTP 200, seller `3648914818`, site MLB, tag `test_user`, sem erro de refresh. Sem renovar/copiar/exibir tokens.
+- `ML_PRICING_EXECUTION_MODE` continua ausente no runtime, portanto `disabled`. Nenhuma publicação, alteração de preço ou habilitação comercial foi executada.
+- Produção comparada por metadados somente leitura: serviço `local_vortek-erp` conservou versão `9649`, `UpdatedAt=2026-09-08T16:19:25.482718275Z` e SHA `82f0425ade3b6f9e391762fd9cd9635f49639e07` antes/depois. Nenhuma operação no banco produtivo; nenhuma migration foi executada nesta publicação.
+- `AGENTS.md` e `.gitignore` preservados; regras/skills locais continuam ignoradas. Registro pós-deploy enviado em commit exclusivamente documental, sem necessidade de nova imagem (autoDeploy desligado); o SHA implantado é o candidato informado acima.
 
 ## Rollback e recuperação
 

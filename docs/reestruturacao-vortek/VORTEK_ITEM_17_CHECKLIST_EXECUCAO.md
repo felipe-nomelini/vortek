@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** `BNT-CANON-PUB-GATE` técnico implementado localmente, com 219 testes, validate, build e ensaios SQL aprovados. Três migrations novas aplicadas somente em `192.168.1.162`. [Evidências e limites do marco 1](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Execução desabilitada por padrão; conta ML de teste conectada e verificada por leitura de /users/me. Faltam publicação do candidato em DEV, aceite autenticado e prova limitada na conta de teste; marco 1 ainda aberto. Push/deploy DEV autorizado, ainda pendente de execução; sem escrita em produção ou comercial ML. [Última evidência de V2-13 publicada](evidencias/BNT-PRICING-V2-13-validacao.md) não equivale ao deploy deste candidato.
+**Situação vigente (08/09/2026):** PUB-GATE técnico publicado em DEV (`9a18ff8f`), com 219 testes, validate/build e smoke sem sessão aprovados. Seller de teste conectado/verificado; execução comercial continua desabilitada. Marco 1 aberto: faltam aceite autenticado e prova externa limitada de criação/preço com read-back. Sem escrita em produção nem nova migration nesta publicação. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). ME2/prova comercial real permanecem no marco 6; gate integral/autonomia continuam abertos.
 
 ---
 
@@ -65,13 +65,13 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | PUB-GATE técnico implementado/testado localmente; prova externa pendente | Validar candidato e conta de teste no marco 1; aceite comercial/ME2 depende do marco 6 |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | PUB-GATE técnico publicado em DEV; aceite autenticado/prova externa pendentes | Validar candidato e conta de teste no marco 1; aceite comercial/ME2 depende do marco 6 |
 | 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Marco 3, após o aceite inicial de Configurações; não depende do Radar futuro; obrigatório no primeiro lançamento |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 08/09/2026:** concluir a prova autenticada/externa do candidato `BNT-CANON-PUB-GATE`, sem avançar para o marco 2. Seller de teste já conectado/verificado; publicar o candidato DEV conforme autorização atual; habilitar o transporte de teste no escopo limitado da prova e registrar criação, alteração aprovada e read-back. [Implementação, testes e pendências](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Frete ME2 e prova comercial real permanecem no marco 6. Escritores antigos continuam bloqueados e a capacidade nova está desabilitada por padrão.
+**Prioridade vigente — atualização de 08/09/2026:** concluir o aceite autenticado e a prova externa limitada do `BNT-CANON-PUB-GATE`, sem avançar para o marco 2. Candidato já publicado em DEV e seller de teste conectado/verificado. Habilitação temporária do transporte de teste, criação, alteração aprovada e read-back pertencem à tarefa própria da prova; este deploy conservou a execução desabilitada. [Evidências](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Frete ME2 e prova comercial real permanecem no marco 6; escritores antigos continuam bloqueados.
 
 <a id="bentevi-em-operacao"></a>
 
@@ -83,7 +83,7 @@ Regras de uso:
 
 | Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
 |---|---|---|---|---|
-| 1 — Execução comercial | Implementação local/testes concluídos; aceite pendente | Prova autenticada e transporte com seller de teste conectado; execução continua desabilitada | Publicar candidato DEV quando solicitado e executar prova limitada com read-back, sem conta real | [219 testes, SQL/rollback, validate/build e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md); falta evidência externa, sem fechamento do marco |
+| 1 — Execução comercial | Implementado/publicado em DEV; aceite pendente | Prova autenticada e transporte com seller de teste já conectado; execução continua desabilitada | Executar prova limitada autorizada com read-back, sem conta real | [219 testes, SQL/rollback, validate/build, deploy e smoke](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md); falta evidência externa, sem fechamento do marco |
 | 2 — Configurações iniciais | Pendente | Parte operacional de V2-15 e aceite inicial D20; consumidor real, permissões, auditoria e teste para cada controle liberado | Após marco 1, planejar o recorte operacional V2-15 e depois homologar D20 inicial | Evidência por ação; V2-15/D20 integrais não fechados por aceite parcial |
 | 3 — Assistente Bentevi | Pendente | AI-00 → AI-01 → AI-02 → AI-GATE; consultas e histórico individual dos dois administradores | Após marco 2, planejar AI-00 reutilizando o piloto existente | Provedor adequado, precisão, isolamento e aceite de ambos; sem depender de indicadores futuros |
 | 4 — Operação ponta a ponta | Pendente | Regressão do candidato: vendas, compras DSLite, estoque, fiscal, entrega e notificações, inclusive falhas/reprocessamento | Reutilizar testes e fluxos existentes; corrigir divergências individualmente | Relatório por fluxo, testes direcionados, validate e build do candidato; não repetir etapas já validadas sem motivo |
@@ -3169,7 +3169,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-08` / `M2M-CFL-04` — implementada, validada e publicada em DEV (`a71873d`); [evidências](evidencias/M2M-CFL-04-validacao.md). Pendente conferência autenticada/aceite visual; sem liberar gates comerciais;
 - [x] `BNT-PRICING-V2-13` — implementada, validada localmente/SQL e publicada em DEV (`81042dd`); alertas, decisões auditáveis/idempotentes e contrato de consumo. [Evidências](evidencias/BNT-PRICING-V2-13-validacao.md). Usuário abriu a central vazia e autorizou avançar; aceite da apresentação observada, sem prova funcional adicional nem gate comercial liberado;
 - [ ] **Pendência PRC-04 — Frete ME2 na conexão da conta real:** retomar quando a conta real estiver conectada em ambiente autorizado; comprovar cotação do vendedor no contexto real e recotação de alvo/piso/equilíbrio com oferta de origem conhecida. Registrar evidências e inconclusivo quando a fonte falhar. Não bloqueia o planejamento/desenvolvimento de CFL-01; bloqueia o aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e a liberação comercial em produção enquanto não validada. Esta anotação não autoriza conectar conta, copiar credenciais de produção para DEV, publicar, reprecificar ou pausar anúncios;
-- [ ] `BNT-CANON-PUB-GATE` — implementação técnica local e regressões aprovadas em 08/09/2026; migrations somente `.162`. Seller de teste já conectado/verificado; faltam publicar o candidato autorizado e realizar a prova autenticada/externa do marco 1. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Completar evidências comerciais/ME2 na ativação autorizada do marco 6; não fechar o gate integral por preparo técnico nem liberar massa autônoma;
+- [ ] `BNT-CANON-PUB-GATE` — implementação/regressões aprovadas e candidato `9a18ff8f` publicado em DEV em 08/09/2026. Migrations anteriores somente `.162`; seller de teste conectado/verificado. Faltam aceite autenticado e prova externa limitada do marco 1; execução comercial permanece desabilitada. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Completar evidências comerciais/ME2 na ativação autorizada do marco 6; não fechar o gate integral por preparo técnico nem liberar massa autônoma;
 - [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
 - [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem com evidência comercial;
 - [ ] `BNT-PRICING-V2-10` — experimentos;

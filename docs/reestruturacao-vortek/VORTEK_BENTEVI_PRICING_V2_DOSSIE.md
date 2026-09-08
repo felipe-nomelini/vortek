@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Situação vigente (08/09/2026):** PUB-GATE técnico implementado/testado localmente; [AS_IS → TO_BE, evidências e pendências](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Marco 1 ainda aberto: falta prova autenticada/externa com seller de teste já conectado; publicação DEV autorizada e em preparação. Capacidade nova desabilitada por padrão; escritores legados bloqueados. Migrations apenas `.162`, sem escrita em produção ou comercial; push/deploy DEV autorizado e em preparação. O recorte [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao) mantém ME2/prova comercial real no marco 6 e gate integral M2M/autonomia aberto. Fotografias históricas abaixo não substituem esta evidência atual.
+**Situação vigente (08/09/2026):** PUB-GATE técnico publicado em DEV (`9a18ff8f`), com 219 testes, validate/build e smoke sem sessão aprovados. Seller de teste conectado/verificado; execução comercial continua desabilitada. Marco 1 aberto: faltam aceite autenticado e prova externa limitada de criação/preço com read-back. Sem escrita em produção nem nova migration nesta publicação. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). ME2/prova comercial real permanecem no marco 6; gate integral/autonomia continuam abertos.
 
 ## 1. Escopo, autoridade e fotografia
 

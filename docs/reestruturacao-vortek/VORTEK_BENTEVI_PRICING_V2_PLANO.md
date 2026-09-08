@@ -4,7 +4,7 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação vigente (08/09/2026):** PUB-GATE técnico implementado localmente; 219 testes, validate/build e ensaios SQL aprovados. Migrations novas somente `.162`; publicação DEV autorizada e em preparação, sem escrita comercial. [Evidências e pendências](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Marco 1 aberto até prova autenticada/externa com seller de teste; conta de teste DEV já conectada e verificada. Escritores legados continuam bloqueados e transporte canônico desabilitado por padrão. ME2/provas reais continuam no marco 6 de [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao); épica integral e autonomia não encerradas.
+**Situação vigente (08/09/2026):** PUB-GATE técnico publicado em DEV (`9a18ff8f`), com 219 testes, validate/build e smoke sem sessão aprovados. Seller de teste conectado/verificado; execução comercial continua desabilitada. Marco 1 aberto: faltam aceite autenticado e prova externa limitada de criação/preço com read-back. Sem escrita em produção nem nova migration nesta publicação. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). ME2/prova comercial real permanecem no marco 6; gate integral/autonomia continuam abertos.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
 **Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.
