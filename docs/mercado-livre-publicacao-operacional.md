@@ -103,7 +103,7 @@ O frete vivo por dimensões anterior à criação pode diferir do frete vivo por
 
 ### Requisito
 
-URL de imagem precisa ser pública, estática, direta, sem redirecionamento e retornar `Content-Type` de imagem. Preferir JPG/PNG, mínimo 250 px em ambos lados e um lado maior que 500 px.
+URL de imagem precisa ser pública, estática, direta, sem redirecionamento e retornar `Content-Type` de imagem. Preferir JPG/PNG, mínimo 250 px em ambos lados e pelo menos 500 px em um lado; preferir resoluções maiores. Conferir também o tamanho após o processamento pelo ML. O limite inclui 500 px, conforme a [validação oficial de imagens](https://developers.mercadolivre.com.br/en_us/authentication-and-authorization/validations).
 
 ### Falha encontrada
 
@@ -133,6 +133,8 @@ ML não aceitou redirecionamento e deixou itens em `picture_download_pending`, d
 6. Consultar `/pictures/{PICTURE_ID}/errors` e status do item até processar.
 
 Nunca usar URL de fornecedor que retorna 301/302, HTML, bloqueio ou Content-Type incompatível.
+
+Nos lotes preparados, enviar as fotos dos anúncios tradicionais diretamente ao ML com `POST /pictures/items/upload` (multipart), usando os mesmos bytes verificados e guardados no Storage. Registrar os IDs na preparação e criar com `pictures: [{ id: picture_id }]`. O envio por `source` inicia uma etapa assíncrona de download; os IDs permitem reutilizar as imagens já enviadas. Conferir fotos e status após criar em ambos os casos. Fonte: [envio e associação de imagens](https://developers.mercadolivre.com.br/pt_br/realizacao-de-testes/trabalhar-com-imagens).
 
 ## Estados pós-publicação
 
@@ -187,4 +189,14 @@ A instrução de 12 meses usada na coorte anterior é histórica e foi substitu�
 
 ## Lote CATALOG_EXPANSION_BATCH_01
 
-A rota canônica exige preparação persistida, preço aprovado, consulta viva ao fornecedor e ML, chave por lote/produto e readback. Safety stop fica na trilha e no bloqueio operacional até revisão. Não reutilizar o runner histórico.
+A rota canônica exige preparação persistida, preço aprovado, consulta viva ao fornecedor e ML, chave por lote/produto e readback. Safety stop fica na trilha e no bloqueio operacional até revisão. A retomada exige validação posterior do mesmo produto/anúncio, referenciando expressamente o evento de parada. Correção de preço precisa de aprovação e aplicação confirmada, preservando os valores e memórias anteriores. Não reutilizar o runner histórico.
+
+Uma nova tentativa após erro sem ID remoto exige autorização expressa do usuário e nova conferência completa da conta e das duas buscas por SKU. Registrar `CATALOG_EXPANSION_RETRY_AUTHORIZED` referenciando a tentativa original e a evidência da busca sem correspondências. Essa autorização permite uma única tentativa do mesmo produto, com chave própria; não apaga o pedido anterior, não libera outros produtos pendentes e não supera safety stops ou anúncio remoto já identificado. Repetição automática continua proibida.
+
+## Revisão de categoria e substituição no lote
+
+O preditor sugere categorias; a revisão compara a aplicação informada pela DSLite com toda a árvore e o domínio. A preparação registra `categoryReview` com versão, oferta/produto do fornecedor, texto de origem, aplicação, trecho usado, categoria, árvore e domínio. Preparações anteriores sem essa revisão não autorizam novos POSTs. A rota compara novamente a oferta viva antes da criação e confere a categoria no retorno.
+
+Substituição de categoria usa `replacementAuthorizationId`, distinto da autorização de retentativa. A autorização persistida vincula produto, item antigo e nova preparação, com arquivo do anúncio anterior, exclusão confirmada e ausência de vendas/pedidos. Uma tentativa de substituição incompleta bloqueia o lote mesmo que o produto tenha uma publicação anterior validada. Não apagar eventos anteriores. Não reutilizar a verificação econômica do item antigo para o novo.
+
+Antes de excluir: validar integralmente o novo payload e confirmar a ausência de vendas/pedidos. Usar o mecanismo existente de exclusão e desvinculação, confirmar `deleted`, registrar a autorização e criar exclusivamente pela rota canônica. Restrições de política do ML permanecem impeditivas. Se a categoria correta não oferecer `me2`, manter pendente; não escolher uma categoria incompatível para obter frete.

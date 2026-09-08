@@ -5,6 +5,18 @@
  */
 function decodeEntities(value: string) {
   return value
+    .replace(/&#(x[0-9a-f]+|[0-9]+);/gi, (entity, code: string) => {
+      const point = code[0].toLowerCase() === "x" ? parseInt(code.slice(1), 16) : Number(code);
+      return point > 0 && point <= 0x10ffff ? String.fromCodePoint(point) : entity;
+    })
+    .replace(/&plusmn;/gi, "+/-")
+    .replace(/&sup2;/gi, "²")
+    .replace(/&lfloor;/gi, "[")
+    .replace(/&ndash;/gi, "-")
+    .replace(/&trade;/gi, "(TM)")
+    .replace(/&reg;/gi, "(R)")
+    .replace(/&bull;/gi, "•")
+    .replace(/&ordf;/gi, "ª")
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
     .replace(/&lt;/gi, "<")
@@ -15,6 +27,20 @@ function decodeEntities(value: string) {
 
 function normalizeLine(value: unknown) {
   return decodeEntities(String(value ?? ""))
+    .normalize("NFC")
+    .replace(/MΩ/g, "megaohms")
+    .replace(/kΩ/g, "quiloohms")
+    .replace(/Ω/g, "ohms")
+    .replace(/φ(?=\s*\d)/g, "diâmetro ")
+    .replace(/μ/g, "µ")
+    .replace(/≥/g, ">=")
+    .replace(/≤/g, "<=")
+    .replace(/℃/g, "°C")
+    .replace(/℉/g, "°F")
+    .replace(/⎓/g, "DC")
+    .replace(/[\u200b\u200e\u200f]/g, "")
+    .replace(/″/g, '"')
+    .replace(/[\uFF01-\uFF5E]/g, (character) => String.fromCharCode(character.charCodeAt(0) - 0xFEE0))
     .replace(/\r/g, "")
     .replace(/[ \t]+/g, " ")
     .trim();

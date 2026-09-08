@@ -4,12 +4,17 @@ export const normalizeIdentityText = (value: unknown): string => String(value ??
 export const normalizeModelCode = (value: unknown): string => normalizeIdentityText(value).replace(/[\s\-/]+/g, '');
 
 const brands: Record<string, { name: string; source: string }> = {
+    leson: { name: 'leson', source: 'https://leson.com.br/produto/microfone-ls58-chumbo/' },
+    'le son': { name: 'leson', source: 'https://leson.com.br/produto/microfone-ls58-chumbo/' },
+    'c3 tech': { name: 'c3tech', source: 'https://www.c3technology.com.br/sobre' },
+    c3tech: { name: 'c3tech', source: 'https://www.c3technology.com.br/sobre' },
     'roadstar brasil': { name: 'roadstar', source: 'https://www.roadstarbrasil.com.br/' },
     roadstar: { name: 'roadstar', source: 'https://www.roadstarbrasil.com.br/' },
     multilaser: { name: 'multi', source: 'https://www.multilaser.com.br/' },
     multi: { name: 'multi', source: 'https://www.multilaser.com.br/' },
     'sohoplus - furukawa': { name: 'furukawa', source: 'https://content.furukawalatam.com/sohoplus-lp' },
     'sohoplus furukawa': { name: 'furukawa', source: 'https://content.furukawalatam.com/sohoplus-lp' },
+    'furukawa sohoplus': { name: 'furukawa', source: 'https://content.furukawalatam.com/sohoplus-lp' },
     furukawa: { name: 'furukawa', source: 'https://content.furukawalatam.com/sohoplus-lp' },
 };
 export function compareIdentityBrands(left: unknown, right: unknown, supplierText = '') {
@@ -53,10 +58,14 @@ export function findModelEvidence(model: unknown, text: string, brand?: unknown)
 }
 
 export function titlePackQuantity(value: unknown): number | null {
-  const text = normalizeIdentityText(value);
+  let text = normalizeIdentityText(value);
+  const pack = text.match(/\b(\d{1,4})\s*-?\s*packs?\b/);
+  // Pares de condutores descrevem o cabo, não a quantidade comercial de bobinas.
+  if (/\bcabos?\b/.test(text) && /\b(?:utp|ftp|cftv|rede|cat[\s-]?[5-8][a-z]?)\b/.test(text))
+    text = text.replace(/\b\d+\s+pares?\b(?!\s+(?:de\s+)?cabos?\b)/g, 'condutores');
   const match = text.match(
     /^\s*(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?|tubos?|pacotes?|blisters?|encordoamentos?)\b|\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,4})\b(?!\s*(?:vias?|pol|polegadas?|mm|cm|m|v|w)\b)|\b(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?)\b|\b(?:cartela|cart|car|blister|bli|pacote|pct|caixa|cx|dz|cem|tub)\s+(?:(?:com|de|c\/|\/|x)\s*)?(\d{1,4})\b|\b(?:c|ct)\s*\/\s*(\d{1,4})\b/,
   );
-  const quantity = Number(match?.[1] || match?.[2] || match?.[3] || match?.[4] || match?.[5] || 0);
+  const quantity = Number(match?.[1] || match?.[2] || match?.[3] || match?.[4] || match?.[5] || pack?.[1] || 0);
   return Number.isInteger(quantity) && quantity > 0 ? quantity : null;
 }

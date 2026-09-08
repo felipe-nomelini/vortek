@@ -9,6 +9,13 @@ function normalizeText(input: unknown): string {
 
 export function extractStrictVoltage(input: unknown): string | null {
   const text = normalizeText(input);
+  // A entrada de rede pertence ao produto; a descrição pode também informar a tensão DC do fan.
+  const inputRange = text.match(/\b(?:tensao|voltagem)\s+(?:de\s+)?entrada\s*[:\-]?\s*(100|110|120|127)\s*(?:vac|v)?\s*[-/~a]\s*(220|240)\s*v(?:ac)?\b/);
+  if (inputRange) return "127/220V";
+  const adapterRange = text.match(/\b(?:adaptador|fonte)\s+(?:extern[ao]\s+)?bivolt\s*(?:automatic[oa]\s*)?[:\-]?\s*(?:ac\s*)?(100|110|120|127)\s*(?:vac|v)?\s*[-/~a]\s*(220|240)\s*v(?:ac)?\b/);
+  if (adapterRange) return "127/220V";
+  if (/\bbivolt\s+seletiv[oa]\b[^.]{0,100}\b(?:110|127)\s*v\s+ou\s+220\s*v\b/.test(text)) return "127/220V";
+  if (/\b(?:alimentacao|tensao|voltagem)\s*[:\-]?\s*(110|120|127)\s*v?\s*\/\s*220\s*v\b/.test(text)) return "127/220V";
   const directDc = text.match(/\b(\d+(?:[.,]\d+)?)\s*vdc\b/);
   if (directDc?.[1]) {
     return `${directDc[1].replace(",", ".")} Vdc`;

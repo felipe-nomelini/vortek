@@ -9,15 +9,17 @@ const clean = (text: unknown) => String(text ?? '').replace(/<[^>]+>/g, ' ').rep
 /** Composição comercial explícita. Não confunde portas, medidas ou volumes com kits. */
 export function presentationFacts(title: string, description = '') {
     const text = normalizeIdentityText(clean(`${title} ${description}`));
-    const kit = /\b(?:kit|conjunto|jogo|pack)\b/.test(normalizeIdentityText(title)) || /\b(?:este kit|esse kit|kit (?:de|com))\b/.test(text);
-    const pair = /\bpar\b/.test(normalizeIdentityText(title));
-    const count = text.match(/\b(?:kit|pack|conjunto)\s*(?:com|de)?\s*(\d+)\b(?!\s*(?:vias?|pol|polegadas?|mm|cm|m|v|w)\b)/)
-        ?? text.match(/\bkit\s+(?:de\s+)?(?:coolers?|fans?|falantes?|sensores?)\s+(?:com|de)\s+(\d+)\b/)
+    const kit = /\b(?:kit|conjunto|jogo|pack)\b/.test(normalizeIdentityText(title)) || /\b(?:este kit|esse kit)\b/.test(text);
+    const pair = /\bpar\b(?!\s+trancado\b)/.test(normalizeIdentityText(title));
+    const count = (kit ? text.match(/\b(?:kit|pack|conjunto)\s*(?:com|de)?\s*(\d+)\b(?!\s*(?:vias?|pol|polegadas?|mm|cm|m|v|w)\b)/)
+        ?? text.match(/\bkit\s+(?:de\s+)?(?:coolers?|fans?|falantes?|sensores?)\s+(?:com|de)\s+(\d+)\b/) : null)
         ?? text.match(/\bcomposto\s+por\s+(\d+)\s+unidades?\b/)
         ?? text.match(/\b(?:conteudo(?: da embalagem)?|acompanha|inclui|contem)\s*[:\-]?\s*(\d+)\s+(?:unidades?|pecas?|coolers?|falantes?)\b/);
     const unit = text.match(/\b(?:venda por unidade|vendido por unidade|conteudo(?: da embalagem)?\s*:\s*1 unidade)\b/);
-    const quantity = pair ? 2 : count ? Number(count[1]) : unit ? 1 : titlePackQuantity(title);
-    return { quantity, packaging: pair || kit || (quantity !== null && quantity > 1) ? 'kit' : unit ? 'unidade' : null,
+    const multipack = text.match(/\b(\d+)\s+(?:blisters?|packs?|pacotes?)\s+(?:com|de)\s+(\d+)\s+unidades?\b/);
+    const quantity = pair ? 2 : titlePackQuantity(title) ?? (multipack ? Number(multipack[1]) * Number(multipack[2]) : count ? Number(count[1]) : unit ? 1 : null);
+    const singlePack = quantity === 1 && /\b1\s*-?\s*pack\b/.test(normalizeIdentityText(title));
+    return { quantity, packaging: singlePack ? 'unidade' : pair || kit || (quantity !== null && quantity > 1) ? 'kit' : unit ? 'unidade' : null,
         excerpt: pair ? title : count?.[0] ?? unit?.[0] ?? (kit || quantity !== null ? title : null) };
 }
 
@@ -31,12 +33,13 @@ export function identityFacts(attributes: Array<{ id: string; value_name?: strin
     const format = normalizeIdentityText(get('SALE_FORMAT'));
     const packaging = content.packaging ?? (/^(unidade|unidad|unit)$/.test(format) ? 'unidade' : /^(kit|pack|pacote|par)$/.test(format) ? 'kit' : null);
     // Um kit vendido como uma unidade conserva sua composição; não são quatro kits.
-    const quantity = content.quantity ?? (content.packaging === 'kit' ? null : saleUnits);
+    const quantity = content.quantity ?? positive(get('SPEAKERS_NUMBER')) ?? (content.packaging === 'kit' ? null : saleUnits);
     const provenance: Record<string, FactOrigin> = {};
     const source = context.source ?? 'ml_attributes';
     for (const [field, id] of Object.entries({ gtin: 'GTIN', brand: 'BRAND', model: 'MODEL', partNumber: 'PART_NUMBER', variation: 'COLOR' }))
         if (get(id)) provenance[field] = { source, excerpt: `${id}: ${get(id)}` };
     if (content.excerpt) provenance.presentation = { source, excerpt: content.excerpt };
+    else if (positive(get('SPEAKERS_NUMBER'))) provenance.presentation = { source, excerpt: `SPEAKERS_NUMBER: ${get('SPEAKERS_NUMBER')}` };
     else if (saleUnits !== null || format) provenance.presentation = { source, excerpt: `SALE_FORMAT: ${get('SALE_FORMAT')}; UNITS_PER_PACK: ${units}; PACKS_NUMBER: ${packs}` };
     return { gtin: get('GTIN'), brand: get('BRAND'), model: get('MODEL'), partNumber: get('PART_NUMBER'), packaging, quantity, saleUnits,
         variation: get('COLOR') ?? identityColor(get('MODEL')), provenance,

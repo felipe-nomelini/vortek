@@ -1,4 +1,3 @@
-import { fetchML } from "@/services/integration";
 import type { MLCategoryPrediction } from "@/services/mercadolibre";
 
 const PET_CATEGORY_ROOT = "Pet Shop";
@@ -106,6 +105,7 @@ export function getPreferredHayamaxCategoryForProduct(produto: any) {
 export async function getMlCategoryRoot(
   categoryId: string,
 ): Promise<string | null> {
+  const { fetchML } = await import("@/services/integration");
   const category = await fetchML<any>(
     `/categories/${encodeURIComponent(categoryId)}`,
   );
@@ -131,9 +131,10 @@ export async function filterPetShopPredictions(
   return filtered;
 }
 
-async function getMlCategoryInfo(
+export async function getMlCategoryInfo(
   categoryId: string,
 ): Promise<{ root: string | null; path: string; domain: string | null }> {
+  const { fetchML } = await import("@/services/integration");
   const category = await fetchML<any>(
     `/categories/${encodeURIComponent(categoryId)}`,
   );
@@ -161,7 +162,34 @@ function assertNicheCategoryEvidence(produto: any, info: { path: string; domain:
   const source = normalizeCategoryText(
     `${produto?.nome || ""} ${produto?.descricao || ""} ${produto?.categoria || ""}`,
   );
-  const target = normalizeCategoryText(`${info.path} ${info.domain || ""}`);
+  const category = normalizeCategoryText(`${info.path} ${info.domain}`);
+  const productName = normalizeCategoryText(produto?.nome);
+  const application = normalizeCategoryText(`${produto?.nome || ""} ${produto?.descricao || ""}`);
+  if (/controle|chaveiro/.test(productName) && /automotiv|veicular|alarme.{0,30}(carro|moto)|positron|px-?80|pxn.?74|cr.?750|cr.?965|cr.?740|cr.?800/.test(source)
+    && !/acessorios para veiculos.*seguranca veicular/.test(category)) {
+    throw Error('CATEGORIA_CONTROLE_AUTOMOTIVO_INCOMPATIVEL');
+  }
+  if (/arandela/.test(productName) && /MLB-VEHICLE_SPEAKERS/i.test(info.domain || '')) {
+    throw Error('CATEGORIA_CAIXA_EMBUTIR_INCOMPATIVEL');
+  }
+  if (/atuador/.test(productName) && /trava eletrica|fechadura/.test(application)
+    && /window_regulator/.test(category)) throw Error('CATEGORIA_TRAVA_ELETRICA_INCOMPATIVEL');
+  if (/modulo/.test(productName) && /teto solar/.test(productName)
+    && info.domain === 'MLB-VEHICLE_SUNROOFS') throw Error('CATEGORIA_MODULO_TETO_INCOMPATIVEL');
+  if (/rebat|recolh/.test(source) && /retrovisor/.test(source)
+    && /vidro|window_regulator/.test(category)) {
+    throw Error('CATEGORIA_REBATIMENTO_RETROVISOR_INCOMPATIVEL');
+  }
+  if (/cabo|adaptador|conector/.test(source) && /antena|parabolica|radiofrequencia|\brf\s*174\b|\brg\s*174\b|uhf|vhf/.test(application)
+    && /audio_and_video.*(cables|converters)/.test(normalizeCategoryText(info.domain))) {
+    throw Error('CATEGORIA_CABO_RF_INCOMPATIVEL');
+  }
+  // O departamento compartilhado também contém camping e iluminação;
+  // somente seus ramos específicos de pesca exigem evidência de pesca.
+  const specificPath = info.path.split(" > ").filter(
+    (segment) => normalizeCategoryText(segment) !== "camping, caca e pesca",
+  ).join(" > ");
+  const target = normalizeCategoryText(`${specificPath} ${info.domain || ""}`);
   const niches: Array<{ categoryTerms: string[]; sourceTerms: string[]; label: string }> = [
     {
       categoryTerms: ["aquario", "aquarios", "peixe", "peixes"],
@@ -187,11 +215,43 @@ function assertNicheCategoryEvidence(produto: any, info: { path: string; domain:
 
   for (const niche of niches) {
     if (!niche.categoryTerms.some((term) => target.includes(term))) continue;
-    if (niche.sourceTerms.some((term) => source.includes(term))) continue;
+    // Aquário é também uma marca de antenas: o nome da marca não prova uso aquático.
+    const evidence = niche.label === "Aquários/peixes" && normalizeCategoryText(produto?.marca) === 'aquario'
+      ? source.replace(/\baquario\b/g, '') : source;
+    if (niche.sourceTerms.some((term) => evidence.includes(term))) continue;
     throw new Error(
       `Categoria ML sem evidência compatível no cadastro do fornecedor: ${niche.label}. Categoria recebida: ${info.path || "não identificada"}.`,
     );
   }
+}
+
+export type MlCategoryReview = {
+  version: 1;
+  categoryId: string;
+  path: string;
+  domain: string;
+  offerId: string;
+  supplierProductId: string;
+  source: { nome: string; descricao: string; categoria: string; marca: string };
+  productUse: string;
+  sourceExcerpt: string;
+};
+
+/** A revisão humana fica vinculada à oferta, à aplicação descrita e à árvore completa. */
+export function assertMlCategoryReview(review: MlCategoryReview, categoryId: string,
+  info: { path: string; domain: string | null }, offerId: string, liveOffer: any) {
+  const source = { nome: String(liveOffer?.titulo || ''),
+    descricao: String(liveOffer?.descricao || ''), categoria: String(liveOffer?.categoria_nome || ''),
+    marca: String(liveOffer?.marca || '') };
+  if (!review || review.version !== 1 || review.categoryId !== categoryId
+    || !info.path || !info.domain || review.path !== info.path || review.domain !== info.domain
+    || review.offerId !== offerId || review.supplierProductId !== String(liveOffer?.produtoid)
+    || Object.keys(source).some(key => source[key as keyof typeof source] !== review.source?.[key as keyof typeof source])
+    || !review.productUse?.trim() || !review.sourceExcerpt?.trim()
+    || !normalizeCategoryText(Object.values(source).join(' ')).includes(normalizeCategoryText(review.sourceExcerpt))) {
+    throw Error('REVISAO_CATEGORIA_AUSENTE_OU_OBSOLETA');
+  }
+  assertNicheCategoryEvidence(source, info);
 }
 
 export async function assertAllowedMlCategoryForProduct(
@@ -203,6 +263,7 @@ export async function assertAllowedMlCategoryForProduct(
   }
 
   const categoryInfo = await getMlCategoryInfo(categoryId);
+  if (!categoryInfo.path || !categoryInfo.domain) throw Error('CATEGORIA_ARVORE_OU_DOMINIO_AUSENTE');
   assertNicheCategoryEvidence(produto, categoryInfo);
 
   const requiredPanasonicBatteryCategory =

@@ -24,6 +24,7 @@ export interface MLAttribute {
     catalog_required?: boolean;
     fixed?: boolean;
     hidden?: boolean;
+    read_only?: boolean;
   };
   value_type: "list" | "number" | "string" | "boolean" | "number_unit";
   values?: Array<{ id: string; name: string }>;
@@ -42,7 +43,7 @@ export interface MLCreateItemInput {
   condition: "new" | "used";
   listingTypeId: "gold_special" | "gold_pro";
   description: string;
-  pictures: string[];
+  pictures: Array<string | { id: string }>;
   attributes: Array<{ id: string; value_name?: string; value_id?: string }>;
   sellerCustomField?: string;
   saleTerms?: Array<{ id: string; value_name?: string; value_id?: string }>;
@@ -160,11 +161,11 @@ export async function getCategoryAttributes(
 ): Promise<MLAttribute[] | null> {
   const data = await fetchML<any>(`/categories/${categoryId}/attributes`);
   if (!data) return null;
-  // ML keeps EMPTY_GTIN_REASON hidden in the technical sheet, but it must be
-  // available to the publication flow when a conditional GTIN is absent.
+  // Os metadados de GTIN precisam permanecer disponíveis para distinguir
+  // código condicional de código que a categoria não permite enviar.
   return data.filter(
     (attribute: any) =>
-      !attribute.tags?.hidden || attribute.id === "EMPTY_GTIN_REASON",
+      !attribute.tags?.hidden || ["GTIN", "EMPTY_GTIN_REASON"].includes(attribute.id),
   );
 }
 
@@ -202,7 +203,7 @@ export function buildMlCreatePayload(input: MLCreateItemInput): Record<string, a
     listing_type_id: input.listingTypeId,
     condition: input.condition,
     description: { plain_text: input.description },
-    pictures: input.pictures.map((url) => ({ source: url })),
+    pictures: input.pictures.map((picture) => typeof picture === "string" ? { source: picture } : { id: picture.id }),
     attributes: sanitizedAttributes,
     seller_custom_field: input.sellerCustomField || undefined,
     sale_terms: sanitizedSaleTerms.length > 0 ? sanitizedSaleTerms : undefined,

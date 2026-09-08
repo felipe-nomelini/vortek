@@ -6,7 +6,7 @@ const {assessMlListingIdentity,shouldPauseMlListingForIdentityConflicts}=require
 const {evaluateEconomics}=require('../src/services/pricing.ts');
 const a=(id,value_name)=>({id,value_name});
 test('equivalências documentadas funcionam no Radar e na leitura posterior, sem renomear cadastro',()=>{
- for(const [left,right] of [['ROADSTAR BRASIL','Roadstar'],['MULTILASER','Multi'],['SOHOPLUS - FURUKAWA','Furukawa']]){
+ for(const [left,right] of [['LESON','Le Son'],['C3 TECH','C3Tech'],['ROADSTAR BRASIL','Roadstar'],['MULTILASER','Multi'],['SOHOPLUS - FURUKAWA','Furukawa'],['FURUKAWA SOHOPLUS','Furukawa']]){
   const e={local:{brand:left,model:'A1'},remote:{brand:right,model:'A1'},source:'supplier+ml'};
   assert.equal(assessIdentity(e).identity,'IDENTIDADE_COHERENTE');
   const readback=assessMlListingIdentity({attributes:[a('BRAND',right)]},{brand:left});assert.equal(readback.blockingConflicts.length,0);assert.equal(readback.canonicalBrand,null);
@@ -32,6 +32,20 @@ test('composição de kit é extraída da descrição e do título ML, com orige
  assert.equal(local.quantity,4);assert.equal(remote.quantity,4);assert.ok(local.provenance.presentation.excerpt.includes('4 unidades'));
  assert.equal(assessIdentity({local,remote,source:'supplier+ml'}).identity,'IDENTIDADE_COHERENTE');
  assert.equal(assessIdentity({local,remote:{...remote,quantity:3},source:'supplier+ml'}).identity,'IDENTIDADE_DIVERGENTE');
+});
+test('par trançado e quatro pares de condutores não são kits de cabos',()=>{
+ assert.equal(presentationFacts('Proeletronic Cat-5e Par Trançado Utp Cftv').packaging,null);
+ assert.equal(presentationFacts('Cabo Proeletronic CFTV 4 Pares Azul 305m').quantity,null);
+ assert.equal(presentationFacts('Kit 2 Cabos de Rede CAT6 4 Pares').quantity,2);
+ assert.equal(presentationFacts('Par de Cabos de Rede CAT6').quantity,2);
+ assert.equal(presentationFacts('Alto Falante Bravox Revo6 Par').quantity,2);
+});
+test('quantidade de caixas de som confirma par mesmo sem contagem no título do catálogo',()=>{
+ const local=supplierIdentityFacts({marca:'Hurricane',nome:'Alto Falante TRIAK 5 Par'}, {brand:'Hurricane',model:'TRIAK 5'});
+ const remote=identityFacts([a('BRAND','Hurricane'),a('MODEL','TRIAK 5'),a('SPEAKERS_NUMBER','2')],{title:'Alto Falante Hurricane Triak 5'});
+ assert.equal(assessIdentity({local,remote,source:'supplier+catalog'}).identity,'IDENTIDADE_COHERENTE');
+ assert.equal(assessIdentity({local,remote:{...remote,quantity:1},source:'supplier+catalog'}).identity,'IDENTIDADE_DIVERGENTE');
+ assert.equal(remote.provenance.presentation.excerpt,'SPEAKERS_NUMBER: 2');
 });
 test('um kit não vira quatro kits; seis cordas não viram seis jogos; conjunto mecânico não é kit',()=>{
  const facts=identityFacts([a('SALE_FORMAT','Unidade'),a('UNITS_PER_PACK','1')],{title:'Kit cooler com 4'});
@@ -89,4 +103,24 @@ test('descritores do modelo não bloqueiam código comprovado; cores e sufixos c
  assert.equal(assessIdentity({local:supplierIdentityFacts({marca:'Roadstar',nome:'RS304BR Prata'},remote),remote,source:'supplier+ml'}).identity,'IDENTIDADE_DIVERGENTE');
  assert.equal(assessIdentity({local:supplierIdentityFacts({marca:'Roadstar',nome:'RS304BR'},remote),remote,source:'supplier+ml'}).identity,'IDENTIDADE_INCONCLUSIVA');
  assert.equal(findModelEvidence('PC108','Calculadora PC108-PK'),null);
+});
+test('quantidade da embalagem DSLite complementa o título abreviado somente na mesma oferta e GTIN',()=>{
+ const offer={id:'offer',gtin:'789',marca:'Grid',nome:'Calota Grid 123CP-PTA'},remote=identityFacts([a('BRAND','Grid'),a('MODEL','123CP-PTA'),a('GTIN','789')],{title:'Calota Grid 123CP-PTA Kit 4 Unidades'});
+ const supplement={offerId:'offer',gtin:'789',source:'DSLite /v1/CrossDocking/Catalogo/133/123:embalagem_quantidade',observedAt:'2026-09-07T06:00:00Z',facts:{quantity:4,packaging:'kit',provenance:{presentation:{source:'DSLite:embalagem_quantidade',excerpt:'4'}}}};
+ assert.equal(assessIdentity({local:supplierIdentityFacts(offer,remote),remote,source:'supplier'}).identity,'IDENTIDADE_INCONCLUSIVA');
+ assert.equal(assessIdentity({local:supplierIdentityFacts(offer,remote,supplement),remote,source:'supplier'}).identity,'IDENTIDADE_COHERENTE');
+ assert.equal(assessIdentity({local:supplierIdentityFacts(offer,remote,{...supplement,facts:{...supplement.facts,quantity:2}}),remote,source:'supplier'}).identity,'IDENTIDADE_DIVERGENTE');
+ assert.equal(supplierIdentityFacts({...offer,gtin:'different'},remote,supplement).quantity,null);
+});
+
+test('kit de montagem não transforma o produto principal em kit comercial',()=>{
+ assert.equal(presentationFacts('Access Point EAP115','Acompanha kit de montagem').packaging,null);
+ assert.equal(presentationFacts('Suporte para monitor','Kit de parafusos incluso').packaging,null);
+ assert.equal(presentationFacts('Access Point EAP115','Acompanha kit com 4 peças para montagem').quantity,null);
+ assert.equal(presentationFacts('Kit de montagem com 4 peças').quantity,4);
+ assert.equal(presentationFacts('Roteador HX220 (1-pack)','Disponível também em pacote com 2 unidades').quantity,1);
+ assert.equal(presentationFacts('Roteador HX220 (1-pack)').packaging,'unidade');
+ assert.equal(presentationFacts('Roteador Deco HC220-G5 2 Pack').quantity,2);
+ assert.equal(presentationFacts('Tubo 60 Pilhas AAA - 15 Packs Com 4 Unidades').quantity,60);
+ assert.equal(presentationFacts('Pilha AAA Elgin blister grande com 10x2','Cartelão 10 blisters com 2 unidades').quantity,20);
 });

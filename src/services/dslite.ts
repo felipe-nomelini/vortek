@@ -203,6 +203,7 @@ export interface DsliteProduto {
   midias?: { tipo: string; indice: string; valor: string }[];
   volumes?: number;
   embalagem_unidade?: string;
+  embalagem_quantidade?: number;
   variacoes?: any[];
 }
 

@@ -1,11 +1,12 @@
 import { obterProdutoEspecifico } from '@/services/dslite';
-import { validateCatalogExpansionContext, catalogExpansionKey, assertCatalogExpansionCanAdvance, catalogExpansionReadbackIssues, catalogExpansionPayloadValidated, type CatalogExpansionContext } from '@/lib/ml/catalog-expansion';
+import { EVOLUSOM_PREMIUM_BATCH, EVOLUSOM_PREMIUM_BATCH_02, EVOLUSOM_PREMIUM_BATCH_03, EVOLUSOM_PREMIUM_BATCH_04, EVOLUSOM_PREMIUM_BATCH_05, EVOLUSOM_PREMIUM_BATCH_06, validateCatalogExpansionContext, catalogExpansionKey, catalogExpansionAttemptKey, assertCatalogExpansionReplacement, assertCatalogExpansionCanAdvance, catalogExpansionReadbackIssues, catalogExpansionPayloadValidated, type CatalogExpansionContext } from '@/lib/ml/catalog-expansion';
 import { resolveMlPricingGroup } from '@/services/ml-pricing-group';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { requireAdminUser } from '@/lib/auth/admin';
 import { createClient } from '@/lib/supabase';
 import { assessIdentity } from '@/lib/ml/opportunity-conflicts';
 import { identityFacts, supplierIdentityFacts } from '@/lib/ml/opportunity-identity';
+import { findModelEvidence } from '@/lib/ml/identity-normalization';
 import { verifyPricingApproval } from '@/services/pricing-approval';
 import { NextResponse } from "next/server";
 
@@ -30,7 +31,7 @@ import {
 import { normalizeMlSaleTerms, warrantySaleTerms, warrantyDescription, WARRANTY_POLICY_VERSION } from '@/lib/ml-sale-terms';
 import { loadProductWarranty } from '@/services/product-warranty';
 import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
-import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
+import { assertAllowedMlCategoryForProduct, assertMlCategoryReview, getMlCategoryInfo } from "@/lib/ml-category-guard";
 import {
   assessMlProductIdentity,
   isMlCriticalAttributeId,
@@ -676,6 +677,8 @@ async function persistListingLink(params: {
     produto_id: produto.id,
     titulo: item.title,
     preco_ml: item.price,
+    tipo: item.listing_type_id,
+    catalogo: item.catalog_listing === true,
     vendidos: 0,
     status: mlStatus,
     thumbnail: item.thumbnail || null,
@@ -685,6 +688,17 @@ async function persistListingLink(params: {
   if (!persistResult.ok) {
     throw new Error(`Falha ao persistir anúncio ML único por SKU: ${persistResult.error}`);
   }
+}
+
+async function loadCatalogExpansionSafetyEvents(client: any, batchId: string) {
+  const batchEvents: any[] = [];
+  for (let offset = 0; ; offset += 1000) {
+    const events = await client.from('pricing_events').select('id,event_type,produto_id,ml_item_id,created_at,payload').contains('payload',{batchId}).in('event_type',['CREATE_REQUESTED','CREATED_REMOTE','CATALOG_EXPANSION_VALIDATED','CATALOG_EXPANSION_SAFETY_STOP','CATALOG_EXPANSION_RETRY_AUTHORIZED','CATALOG_EXPANSION_REPLACEMENT_AUTHORIZED']).order('created_at').order('id').range(offset, offset + 999);
+    if (events.error) throw Error('AUDITORIA_LOTE_INDISPONIVEL');
+    batchEvents.push(...(events.data ?? []));
+    if ((events.data?.length ?? 0) < 1000) break;
+  }
+  return batchEvents;
 }
 
 export async function POST(req: Request) {
@@ -753,9 +767,8 @@ export async function POST(req: Request) {
       const lock = await acquireDomainLock({domain,ownerTask:'catalog_expansion',ttlSeconds:300});
       if (!lock.acquired) return NextResponse.json({error:'LOTE_EM_EXECUCAO'},{status:409});
       batchLock = {domain,ownerToken:lock.ownerToken};
-      const events = await (supabase as any).from('pricing_events').select('event_type,produto_id,payload').contains('payload',{batchId:batch.batchId});
-      if (events.error) throw Error('AUDITORIA_LOTE_INDISPONIVEL');
-      assertCatalogExpansionCanAdvance(events.data ?? []);
+      const batchEvents = await loadCatalogExpansionSafetyEvents(supabase, batch.batchId);
+      assertCatalogExpansionCanAdvance(batchEvents, batch.batchId, batch.retryAuthorizationId ? {productId:produto.id,authorizationId:batch.retryAuthorizationId} : undefined);
       const prepared = await (supabase as any).from('pricing_events').select('payload').eq('id',batch.preparationId).eq('produto_id',produto.id).eq('event_type','CATALOG_EXPANSION_PREPARED').maybeSingle();
       if (prepared.error || !prepared.data) throw Error('PREPARACAO_LOTE_INDISPONIVEL');
       preparation = prepared.data.payload as any;
@@ -1080,9 +1093,10 @@ export async function POST(req: Request) {
 
     const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
     const gtinAttr = categoryAttrsById.get("GTIN");
+    if (gtinAttr?.tags?.read_only) attributesMap.delete("GTIN");
     const emptyGtinReasonAttr = categoryAttrsById.get("EMPTY_GTIN_REASON");
     const hasGtinValue = hasValue(attributesMap.get("GTIN") || { id: "GTIN" });
-    if (!hasGtinValue && emptyGtinReasonAttr && !hasExplicitEmptyGtinReason) {
+    if (!gtinAttr?.tags?.read_only && !hasGtinValue && emptyGtinReasonAttr && !hasExplicitEmptyGtinReason) {
       const reason = pickEmptyGtinReasonValue(emptyGtinReasonAttr, produto.nome);
       if (reason) {
         attributesMap.set("EMPTY_GTIN_REASON", {
@@ -1388,7 +1402,8 @@ export async function POST(req: Request) {
 
     const imagens = batch ? preparation.images : produto.imagens || [];
     if (!imagens.length) return NextResponse.json({error:'IMAGENS_REAIS_OBRIGATORIAS'}, {status:422});
-    const pictures = imagens.slice(0,12);
+    if (batch && preparation.pictureIds && (!Array.isArray(preparation.pictureIds) || preparation.pictureIds.length !== imagens.length || preparation.pictureIds.some((id: unknown) => typeof id !== 'string' || !id.trim()))) throw Error('IMAGENS_PREPARADAS_ML_INVALIDAS');
+    const pictures = batch && preparation.pictureIds ? preparation.pictureIds.slice(0,12).map((id: string) => ({id})) : imagens.slice(0,12);
     if (imagens.length > pictures.length)
       warnings.push(
         `Imagens limitadas a ${pictures.length} para respeitar o limite do Mercado Livre.`,
@@ -1404,7 +1419,6 @@ export async function POST(req: Request) {
       && requestedFamilyName
         ? truncateListingName(
             String(requestedFamilyName)
-              .replace(/[-|/]+/g, " ")
               .replace(/\s+/g, " ")
               .trim(),
           )
@@ -1433,7 +1447,7 @@ export async function POST(req: Request) {
       saleTerms,
       sellerCustomField: produto.sku,
       fiscalData: {
-        gtin: hasExplicitEmptyGtinReason
+        gtin: hasExplicitEmptyGtinReason || gtinAttr?.tags?.read_only
           ? undefined
           : fiscal?.gtin || gtinForMl || undefined,
       },
@@ -1445,36 +1459,65 @@ export async function POST(req: Request) {
     const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer ?? safePrice.evaluation.product,identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }), identitySupplement),remote:identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }),source:'formulario_publicacao_validado'});
     if (finalIdentity.identity==='IDENTIDADE_DIVERGENTE') return NextResponse.json({error:'CONFLITO_IDENTIDADE_PUBLICACAO',identity:finalIdentity},{status:422});
     if (finalIdentity.identity==='IDENTIDADE_INCONCLUSIVA') return NextResponse.json({error:'PENDENCIA_VALIDACAO_IDENTIDADE',identity:finalIdentity},{status:422});
+    const canonicalIdentity = assessMlProductIdentity(
+      { attributes: listingPayload.attributes, seller_custom_field: produto.sku },
+      { ...produto, gtin: gtinForMl || produto.gtin },
+      supplierOffers || [],
+    );
+    if (canonicalIdentity.blockingConflicts.length) {
+      return NextResponse.json({ error: 'CADASTRO_DIVERGE_OFERTA_PUBLICACAO', identity_conflicts: canonicalIdentity.blockingConflicts }, { status: 422 });
+    }
     if (batch) {
       const currentOffer = safePrice.evaluation.offer;
+      if ((batch.batchId === EVOLUSOM_PREMIUM_BATCH || batch.batchId === EVOLUSOM_PREMIUM_BATCH_02 || batch.batchId === EVOLUSOM_PREMIUM_BATCH_03 || batch.batchId === EVOLUSOM_PREMIUM_BATCH_04 || batch.batchId === EVOLUSOM_PREMIUM_BATCH_05 || batch.batchId === EVOLUSOM_PREMIUM_BATCH_06) && (String(currentOffer?.dslite_fornecedor_id) !== '133' || listingType !== 'gold_pro')) throw Error('LOTE_EVOLUSOM_PREMIUM_DIVERGENTE');
       if (!currentOffer?.ativo || currentOffer.id !== preparation.offerId || Number(currentOffer.custo) !== Number(preparation.cost) || Number(currentOffer.estoque) !== Number(preparation.stock)) throw Error('OFERTA_LOTE_ALTERADA');
       if (Number(produto.estoque) !== Number(currentOffer.estoque)) throw Error('ESTOQUE_LOCAL_DIVERGE_OFERTA');
       if (safePrice.memory.result === null || safePrice.memory.margin! < safePrice.memory.band!.floor) throw Error('ECONOMIA_ABAIXO_DO_PISO');
       const liveOffer = await obterProdutoEspecifico(currentOffer.dslite_fornecedor_id,currentOffer.dslite_produto_id);
       if (!liveOffer || liveOffer.status_empresa !== 'A' || liveOffer.status_fornecedor !== 'A') throw Error('OFERTA_VIVA_INDISPONIVEL');
+      assertMlCategoryReview(preparation.categoryReview, categoriaId, await getMlCategoryInfo(categoriaId), currentOffer.id, liveOffer);
       const liveCost = Number(liveOffer.preco_promocional)>0 ? Number(liveOffer.preco_promocional) : Number(liveOffer.preco_crossdocking);
       if (liveCost !== Number(currentOffer.custo) || Number(liveOffer.estoque) !== Number(currentOffer.estoque) || String(liveOffer.ean11) !== String(produto.gtin)) throw Error('OFERTA_VIVA_ALTERADA');
       const livePackage = liveOffer as any;
       if (['altura','largura','profundidade'].some(key=>Number(livePackage[`${key}_embalagem`])!==Number((produto as any)[key])) || Number(livePackage.peso_embalagem)!==Number(produto.peso_bruto)) throw Error('EMBALAGEM_VIVA_ALTERADA');
       if (warranty.resolution.warranty_source==='supplier' && warranty.resolution.unit==='dias' && warranty.resolution.duration!==Number(liveOffer.tempo_garantia)) throw Error('GARANTIA_FORNECEDOR_ALTERADA');
+      if (identitySupplement?.source === `DSLite /v1/CrossDocking/Catalogo/${currentOffer.dslite_fornecedor_id}/${currentOffer.dslite_produto_id}:embalagem_quantidade` && Number(identitySupplement.facts?.quantity) !== Number(liveOffer.embalagem_quantidade)) throw Error('QUANTIDADE_EMBALAGEM_VIVA_ALTERADA');
+      const livePackQuantity = Number(liveOffer.embalagem_quantidade);
+      const declaredPresentation = identityFacts(listingPayload.attributes, { title: effectiveFamilyName, description: listingDescription });
+      if (livePackQuantity > 1 && declaredPresentation.quantity !== livePackQuantity) throw Error('QUANTIDADE_EMBALAGEM_VIVA_DIVERGENTE');
       if (preparation.catalogProductId) {
         const catalog = await fetchMLResult<any>(`/products/${preparation.catalogProductId}`);
         if (!catalog.ok || catalog.data?.status !== 'active') throw Error('CATALOGO_INDISPONIVEL');
         if (preparation.catalogFingerprint !== pricingFingerprint({name:catalog.data.name,attributes:catalog.data.attributes,description:catalog.data.short_description})) throw Error('CATALOGO_ALTERADO_APOS_REVISAO');
-        const identity = assessIdentity({local:identityFacts(listingPayload.attributes,{title:effectiveFamilyName}),remote:identityFacts(catalog.data.attributes,{title:catalog.data.name}),source:'catalog_live_before_post'});
+        const localIdentity = identityFacts(listingPayload.attributes,{title:effectiveFamilyName});
+        const catalogIdentity = identityFacts(catalog.data.attributes,{title:catalog.data.name});
+        if (!catalogIdentity.model) {
+          const modelInTitle = findModelEvidence(localIdentity.model,catalog.data.name,catalogIdentity.brand);
+          if (modelInTitle) {
+            catalogIdentity.model = modelInTitle;
+            catalogIdentity.provenance = {...catalogIdentity.provenance,model:{source:`/products/${preparation.catalogProductId}:name`,excerpt:modelInTitle}};
+          }
+        }
+        const identity = assessIdentity({local:localIdentity,remote:catalogIdentity,source:'catalog_live_before_post'});
         if (identity.identity !== 'IDENTIDADE_COHERENTE') throw Error('CATALOGO_IDENTIDADE_NAO_COHERENTE');
       }
       const payload = buildMlCreatePayload(listingPayload);
       const validation = await fetchMLResult<any>('/items/validate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-      if (!catalogExpansionPayloadValidated(validation,payload)) throw Error(`PAYLOAD_ML_REPROVADO: ${validation.error?.message ?? validation.status}`);
+      if (!catalogExpansionPayloadValidated(validation,payload,attrs)) throw Error(`PAYLOAD_ML_REPROVADO: ${validation.error?.message ?? validation.status}`);
       const renewed = await (supabase as any).rpc('acquire_sync_domain_lock',{p_domain:batchLock!.domain,p_owner_task:'catalog_expansion',p_owner_token:batchLock!.ownerToken,p_owner_job_id:null,p_ttl_seconds:300,p_metadata:{batchId:batch.batchId}});
       if (renewed.error || !renewed.data) throw Error('LOTE_LOCK_PERDIDO');
-      const pending = await (supabase as any).from('pricing_events').select('event_type,produto_id').contains('payload',{batchId:batch.batchId});
-      if (pending.error) throw Error('AUDITORIA_LOTE_INDISPONIVEL');
-      assertCatalogExpansionCanAdvance(pending.data ?? []);
-      await recordPricingEvent(supabase,{event_type:'CATALOG_EXPANSION_PAYLOAD_VALIDATED',produto_id:produto.id,pricing_source:'radar_launch',actor:auth.user.id,reason:'Payload validado pelo ML antes da criação',rule_id:safePrice.memory.policyVersion,payload:{batchId:batch.batchId,preparationId:batch.preparationId,approvalId:pricingApprovalId,payload,validation,warranty,memory:safePrice.memory}});
+      const pending = await loadCatalogExpansionSafetyEvents(supabase, batch.batchId);
+      assertCatalogExpansionCanAdvance(pending, batch.batchId, batch.retryAuthorizationId ? {productId:produto.id,authorizationId:batch.retryAuthorizationId} : undefined);
+      if (batch.replacementAuthorizationId) {
+        const oldItemId = assertCatalogExpansionReplacement(pending, produto.id, batch);
+        const old = await fetchMLResult<any>(`/items/${oldItemId}`);
+        if (!old.ok || !old.data?.sub_status?.includes('deleted') || old.data.sold_quantity !== 0) throw Error('SUBSTITUICAO_EXIGE_ANTIGO_EXCLUIDO_SEM_VENDAS');
+        const orders = await fetchMLResult<any>(`/orders/search?seller=${old.data.seller_id}&item=${oldItemId}&limit=1`);
+        if (!orders.ok || orders.data?.paging?.total !== 0 || !Array.isArray(orders.data?.results) || orders.data.results.length) throw Error('SUBSTITUICAO_PEDIDOS_NAO_DESCARTADOS');
+      }
+      await recordPricingEvent(supabase,{event_type:'CATALOG_EXPANSION_PAYLOAD_VALIDATED',produto_id:produto.id,pricing_source:'radar_launch',actor:auth.user.id,reason:'Payload validado pelo ML antes da criação',rule_id:safePrice.memory.policyVersion,payload:{batchId:batch.batchId,...(batch.replacementAuthorizationId?{replacementAuthorizationId:batch.replacementAuthorizationId}:{}),...(batch.retryAuthorizationId?{retryAuthorizationId:batch.retryAuthorizationId}:{}),preparationId:batch.preparationId,approvalId:pricingApprovalId,payload,validation,warranty,memory:safePrice.memory}});
     }
-    const creationClaim = await (supabase as any).from('pricing_events').insert({event_type:'CREATE_REQUESTED',produto_id:produto.id,pricing_source:batch?'radar_launch':'publication',actor:auth.user.id,reason:'Criação no alvo aprovada após revisão de identidade',new_price:initialPrice,rule_id:safePrice.memory.policyVersion,payload:{approvalId:pricingApprovalId,identity:finalIdentity,warranty,...(batch ? {batchId:batch.batchId,preparationId:batch.preparationId} : {})},dedupe_key:batch ? catalogExpansionKey(produto.id) : `create:${pricingApprovalId}`});
+    const creationClaim = await (supabase as any).from('pricing_events').insert({event_type:'CREATE_REQUESTED',produto_id:produto.id,pricing_source:batch?'radar_launch':'publication',actor:auth.user.id,reason:'Criação no alvo aprovada após revisão de identidade',new_price:initialPrice,rule_id:safePrice.memory.policyVersion,payload:{approvalId:pricingApprovalId,identity:finalIdentity,warranty,...(batch ? {batchId:batch.batchId,preparationId:batch.preparationId,...(batch.retryAuthorizationId ? {retryAuthorizationId:batch.retryAuthorizationId} : {}),...(batch.replacementAuthorizationId ? {replacementAuthorizationId:batch.replacementAuthorizationId} : {})} : {})},dedupe_key:batch ? catalogExpansionAttemptKey(produto.id, batch) : `create:${pricingApprovalId}`});
     if (creationClaim.error) {
       if (creationClaim.error.code === '23505') return NextResponse.json({success:false,error:'PUBLICACAO_JA_SOLICITADA_RECONCILIAR_ESTADO_REMOTO'},{status:409});
       throw new Error('AUDITORIA_PRICING_INDISPONIVEL');
@@ -1525,7 +1568,7 @@ export async function POST(req: Request) {
     steps.anuncio.ok = true;
     batchRemoteId = result.id;
 
-    await recordPricingEvent(supabase, {event_type:'CREATED_REMOTE', produto_id:produto.id, ml_item_id:result.id, pricing_source:batch?'radar_launch':'publication', actor:auth.user.id, reason:'POST aceito; confirmação remota pendente', rule_id:safePrice.memory.policyVersion, payload:{approvalId:pricingApprovalId,warranty,...(batch ? {batchId:batch.batchId} : {})}, dedupe_key:`created:${pricingApprovalId}`});
+    await recordPricingEvent(supabase, {event_type:'CREATED_REMOTE', produto_id:produto.id, ml_item_id:result.id, pricing_source:batch?'radar_launch':'publication', actor:auth.user.id, reason:'POST aceito; confirmação remota pendente', rule_id:safePrice.memory.policyVersion, payload:{approvalId:pricingApprovalId,warranty,...(batch ? {batchId:batch.batchId,preparationId:batch.preparationId,...(batch.replacementAuthorizationId?{replacementAuthorizationId:batch.replacementAuthorizationId}:{}),...(batch.retryAuthorizationId?{retryAuthorizationId:batch.retryAuthorizationId}:{})} : {})}, dedupe_key:`created:${pricingApprovalId}`});
     let latestItem = await getListingSnapshot(result.id);
     if (!latestItem) {
       return NextResponse.json({success:false,error:'PUBLICACAO_READBACK_INCONCLUSIVO',ml_item_id:result.id},{status:409});
@@ -1715,6 +1758,7 @@ export async function POST(req: Request) {
 
     if (batch) {
       const issues = catalogExpansionReadbackIssues({price:initialPrice,quantity:listingPayload.availableQuantity,categoryId:categoriaId,catalogProductId:listingPayload.catalogProductId},latestItem,finalEvaluation.memory);
+      try { await assertAllowedMlCategoryForProduct(preparation.categoryReview.source, latestItem.category_id); } catch { issues.push('CATEGORIA_SEM_EVIDENCIA'); }
       if (payloadReadbackIdentity.identity !== 'IDENTIDADE_COHERENTE') issues.push('IDENTIDADE_INCONCLUSIVA');
       if (!descriptionResult.ok) issues.push('DESCRICAO_NAO_CONFIRMADA');
       if (issues.length) {
@@ -1828,6 +1872,7 @@ export async function POST(req: Request) {
       const post = readback ? await evaluateProductPricing(supabase,{productId:produto.id,itemId:result.id,price:Number(readback.price),requireLive:true}) : null;
       const issues = catalogExpansionReadbackIssues({price:initialPrice,quantity:listingPayload.availableQuantity,categoryId:categoriaId,catalogProductId:listingPayload.catalogProductId},readback,post?.memory);
       if (readback) {
+        try { await assertAllowedMlCategoryForProduct(preparation.categoryReview.source, readback.category_id); } catch { issues.push('CATEGORIA_SEM_EVIDENCIA'); }
         const identity = assessIdentity({local:identityFacts(listingPayload.attributes,{title:effectiveFamilyName,description:listingDescription}),remote:identityFacts(readback.attributes,{title:readback.title || readback.family_name}),source:'final_readback'});
         if (identity.identity !== 'IDENTIDADE_COHERENTE') issues.push('IDENTIDADE_NAO_CONFIRMADA');
         if (!warrantyTerms.every(expected=>(readback.sale_terms??[]).some((actual:any)=>actual.id===expected.id && (expected.value_id?String(actual.value_id)===expected.value_id:String(actual.value_name)===expected.value_name)))) issues.push('GARANTIA_DIVERGENTE');
@@ -1837,7 +1882,7 @@ export async function POST(req: Request) {
       const group = await resolveMlPricingGroup(supabase,readback);
       if (!group.complete || group.itemIds.some(id=>id!==result.id)) {batchCritical=true;batchReason='VINCULO_INESPERADO_POS_PUBLICACAO';return NextResponse.json({success:false,error:batchReason,ml_item_id:result.id},{status:409});}
       const evaluationId = await persistPricingEvaluation(supabase,{...post!,memory:post!.memory!,scenario:'current',itemId:result.id,groupId:group.groupId});
-      await recordPricingEvent(supabase,{event_type:'CATALOG_EXPANSION_VALIDATED',produto_id:produto.id,ml_item_id:result.id,pricing_group_id:group.groupId,evaluation_id:evaluationId,pricing_source:'radar_launch',actor:auth.user.id,reason:'PUBLICADO_VALIDADO',new_price:readback.price,rule_id:post!.memory!.policyVersion,dedupe_key:`validated:${catalogExpansionKey(produto.id)}`,payload:{batchId:batch.batchId,cohort:batch.batchId,preparationId:batch.preparationId,approvalId:pricingApprovalId,warranty,memory:post!.memory,baseline:{startAt:new Date().toISOString(),price:readback.price,margin:post!.memory!.margin,stock:readback.available_quantity,sales:readback.sold_quantity,visits:null},readback}});
+      await recordPricingEvent(supabase,{event_type:'CATALOG_EXPANSION_VALIDATED',produto_id:produto.id,ml_item_id:result.id,pricing_group_id:group.groupId,evaluation_id:evaluationId,pricing_source:'radar_launch',actor:auth.user.id,reason:'PUBLICADO_VALIDADO',new_price:readback.price,rule_id:post!.memory!.policyVersion,dedupe_key:`validated:${catalogExpansionAttemptKey(produto.id, batch)}`,payload:{batchId:batch.batchId,...(batch.replacementAuthorizationId?{replacementAuthorizationId:batch.replacementAuthorizationId}:{}),cohort:batch.batchId,preparationId:batch.preparationId,approvalId:pricingApprovalId,warranty,memory:post!.memory,baseline:{startAt:new Date().toISOString(),price:readback.price,margin:post!.memory!.margin,stock:readback.available_quantity,sales:readback.sold_quantity,visits:null},readback}});
       batchValidated = true;
     }
     const radarUpdate = await (supabase as any).from('radar_oportunidades').update({stage:'PUBLICADO_EXPERIMENTO',queue:'JA_ANUNCIADOS',processed_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('produto_id',produto.id);
@@ -1878,7 +1923,7 @@ export async function POST(req: Request) {
           const state = await getListingSnapshot(batchRemoteId);
           pauseConfirmed = state?.status === 'paused';
         }
-        await recordPricingEvent(client,{event_type:batchCritical?'CATALOG_EXPANSION_SAFETY_STOP':'CATALOG_EXPANSION_INCONCLUSIVE',produto_id:batchProductId,ml_item_id:batchRemoteId,pricing_source:'radar_launch',actor:auth.user.id,reason:batchReason,rule_id:batch.batchId,payload:{batchId:batch.batchId,preparationId:batch.preparationId,pauseConfirmed},dedupe_key:`stop:${catalogExpansionKey(batchProductId!)}`});
+        await recordPricingEvent(client,{event_type:batchCritical?'CATALOG_EXPANSION_SAFETY_STOP':'CATALOG_EXPANSION_INCONCLUSIVE',produto_id:batchProductId,ml_item_id:batchRemoteId,pricing_source:'radar_launch',actor:auth.user.id,reason:batchReason,rule_id:batch.batchId,payload:{batchId:batch.batchId,preparationId:batch.preparationId,pauseConfirmed},dedupe_key:`stop:${catalogExpansionKey(batchProductId!, batch.batchId)}`});
       }
     } finally {
       if (batchLock) await releaseDomainLock(batchLock);
