@@ -1,6 +1,15 @@
 # BNT-PRICING-V2-13 — Alertas e confirmações
 
-Data: 08/09/2026. Implementação e validação local/SQL DEV. **Sem push, deploy, escrita ML ou acesso à produção nesta entrega.**
+Data: 08/09/2026. O registro de implementação abaixo é anterior ao pedido de publicação. Nenhuma escrita ML ou acesso ao banco produtivo foi feito.
+
+## Publicação DEV — solicitação posterior de 08/09/2026
+
+- Push somente de `dev`: `758047d` → `81042dd5f49c6c1ee62c83531b724f76144b3ce3`.
+- Preflight confirmou serviço `local/vortek-erp-dev`, fonte GitHub `dev`, autoDeploy desabilitado e correspondência do webhook configurado. Script oficial `npm run deploy:easypanel`; HTTP 200 significou aceite, não conclusão antecipada.
+- Action Easypanel `cmtsrqwds000507o95sbpgkin`: `done` às `2026-09-08 14:35:03` UTC. Serviço DEV versão `9635`, atualização `completed` às `2026-09-08T14:35:09Z`, GIT_SHA `81042dd5f49c6c1ee62c83531b724f76144b3ce3`. Nova task `dokf6cckk96wcmp2b5e5h9zw9` em execução.
+- Smoke HTTPS: `/login` respondeu 200 e `/api/pricing/decisions` respondeu 401 sem sessão. Aceite visual/autenticado continua pendente do responsável.
+- Produção permaneceu na versão `9620`, SHA `ae059653a8f6443539733d2076790380a11243f3` e UpdatedAt `2026-09-08T05:40:26.052234736Z`, iguais ao preflight. Nenhum banco, variável de ambiente ou preço foi alterado nesta publicação.
+- Os 13 testes do contrato do webhook e seu dry-run passaram. As validações da implementação abaixo correspondem ao commit publicado. Atualização documental posterior não altera o bundle em execução.
 
 ## AS_IS → TO_BE
 
@@ -49,7 +58,7 @@ São migrations novas; nenhuma migration aplicada foi reescrita. Tipos das tabel
 
 ## Pendências e rollback
 
-1. Publicar em DEV quando solicitado e conferir Anúncios/Catálogo autenticados. Aceite visual do usuário ainda não registrado, inclusive a pendência anterior de V2-08.
+1. Publicação DEV concluída. Conferir Anúncios/Catálogo autenticados; aceite visual do usuário ainda não registrado, inclusive a pendência anterior de V2-08.
 2. PUB-GATE permanece etapa separada. Frete ME2, conta autorizada, prova externa com read-back e gate comercial continuam necessários. Nenhuma autorização anterior é reaproveitada automaticamente quando o gate for liberado.
 3. Transporte real, crash após efeito remoto e recuperação em workers reais serão provados no PUB-GATE; aqui foram validados os contratos SQL, revalidação e bloqueio do consumo em runtime. Não declarar execução ML homologada.
 

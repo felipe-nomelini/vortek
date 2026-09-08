@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-13` implementada e validada localmente/SQL DEV: central compartilhada de alertas e decisões, aprovação/rejeição/adiamento auditáveis e idempotentes. 441 testes passaram (1 LIVE opcional de garantia não executado), testes SQL com rollback, navegador isolado, validate/build aprovados. [Evidências, contratos e rollback](evidencias/BNT-PRICING-V2-13-validacao.md). Migrations somente em `.162`; nenhum push/deploy ou acesso à produção nesta entrega. Pendentes publicação DEV e aceite autenticado/visual; V2-08 também conserva sua pendência visual. PUB-GATE, frete ME2 e `pricing_execution_not_ready` continuam bloqueando execução comercial.
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-13` implementada, validada e publicada em DEV no commit `81042dd`. Easypanel concluiu a action `cmtsrqwds000507o95sbpgkin`; serviço `vortek-erp-dev` atualizado e em execução. HTTPS: login 200 e API de decisões 401 sem sessão. [Evidências e limites](evidencias/BNT-PRICING-V2-13-validacao.md). Aceite visual/autenticado de V2-13 e a pendência visual de V2-08 permanecem. Próxima etapa a planejar: `BNT-CANON-PUB-GATE`, preservando frete ME2/conta autorizada e `pricing_execution_not_ready`. Produção inalterada; nenhuma migration ou escrita comercial nesta publicação.
 
 ## 1. Escopo, autoridade e fotografia
 
