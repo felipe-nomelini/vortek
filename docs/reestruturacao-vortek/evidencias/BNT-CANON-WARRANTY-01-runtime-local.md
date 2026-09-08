@@ -1,5 +1,7 @@
 # WARRANTY-01 — Runtime local para homologação
 
+**Atualização posterior em 08/09/2026:** o usuário solicitou retirar os controles de garantia da interface. O painel, os modais e os links para revisão foram removidos do código DEV; o roteiro visual abaixo registra o ensaio anterior e não deve ser executado como instrução atual. APIs, pesquisa na preparação, evidências e histórico persistido permanecem. Esta retirada ainda não foi publicada. [Mudança e validação](BNT-CANON-WARRANTY-01-validacao.md#atualização--retirada-dos-controles-da-interface-08092026).
+
 Data: 08/09/2026. Branch `dev`, base `c2f39a3`. Continuação operacional do piloto individual de Felipe, sem mudar o contrato de garantia.
 
 ## Entrega e limites
@@ -27,7 +29,7 @@ Fontes coletadas no ensaio TS Shara:
 
 Esses links são resultados coletados, não declaração de aplicabilidade de garantia ao SKU da amostra.
 
-## Roteiro disponível ao usuário
+## Roteiro histórico do ensaio anterior à retirada da interface
 
 - [Produto real em cadastro de teste inativo — VTK000002](http://localhost:3001/produtos/55f0d5e5-1aeb-4553-8247-5f80d158528f): **Comercial e estoque → Garantia**. Fonte, pesquisa e revisão persistidas; permite consultar evidência e histórico e repetir a pesquisa. Esse cadastro não é uma venda/lote real e não tem anúncio.
 - [Cadastro fictício com pesquisa/histórico habilitados](http://localhost:3001/produtos/8b61221f-ef58-49c7-9d06-fdb77ab8e0f0): entrar com a conta existente; **Comercial e estoque → Garantia**. É adequado para conferir botões, pesquisa inconclusiva e histórico. Não atribuir garantia contratual real a produto fictício.

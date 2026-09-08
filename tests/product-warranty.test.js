@@ -186,19 +186,63 @@ test('falha Firecrawl não repete requisição e não vaza resposta externa', as
   const research = load('src/services/product-attribute-research.ts', { '@/lib/product-warranty': domain });
   await assert.rejects(research.researchWarrantySources('q', new AbortController().signal), /^Error: warranty_search_unavailable$/); assert.equal(calls, 1);
 });
-function render(state, disabled = false) {
-  const React = require('react'); let index = 0;
-  const Component = load('src/components/products/ProductWarrantyControl.tsx', {
-    react: { ...React, useState: initial => [index++ === 0 ? state : initial, () => {}], useEffect: () => {}, useCallback: fn => fn, useRef: initial => ({ current: initial }) },
-    'react/jsx-runtime': require('react/jsx-runtime'), antd: require('antd'), '@/lib/product-warranty': domain,
-  }).default;
-  return require('react-dom/server').renderToStaticMarkup(React.createElement(Component, { productId: id, disabled }));
+test('interface retira gestão de garantia e referências ao painel sem retirar controles comerciais', () => {
+  const detail = fs.readFileSync('src/app/(app)/produtos/[id]/page.tsx', 'utf8');
+  const settings = fs.readFileSync('src/components/configuracoes/MercadoLivreTab.tsx', 'utf8');
+  const listing = fs.readFileSync('src/app/(app)/produtos/page.tsx', 'utf8');
+  assert.doesNotMatch(detail, /ProductWarrantyControl|\/warranty|Pesquisar garantia|Revisar evidência/);
+  assert.match(detail, /PricingOverrideControl/);
+  assert.match(detail, /PricingClearanceControl/);
+  assert.doesNotMatch(settings, /Garantia por produto|Fontes, pesquisa e revisão/);
+  assert.match(settings, /<Col xs=\{24\}>\s*<Card title=\{<Space><SafetyCertificateOutlined \/>Regras protegidas/);
+  assert.doesNotMatch(listing, /Consultar ou revisar garantia|recarregue a categoria para atualizar a comprovação/);
+  assert.equal(fs.existsSync('src/components/products/ProductWarrantyControl.tsx'), false);
+});
+function renderListingTerms(saleTerms, compatible = true) {
+  // Render the actual JSX block: the page's unrelated data loaders remain outside this test.
+  const ts = require('typescript');
+  const source = fs.readFileSync('src/app/(app)/produtos/page.tsx', 'utf8');
+  const file = ts.createSourceFile('page.tsx', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const blocks = [];
+  function visit(node) {
+    if (ts.isJsxElement(node) && node.openingElement.tagName.getText(file) === 'div'
+      && node.getText(file).includes('Garantia e Termos')) blocks.push(node.getText(file));
+    ts.forEachChild(node, visit);
+  }
+  visit(file);
+  const markup = blocks.sort((a, b) => a.length - b.length)[0];
+  assert.ok(markup);
+  const js = ts.transpileModule(`
+    const { Typography, Alert, Button, Tooltip, Select, Input } = require('antd');
+    const { Text, Title } = Typography;
+    const { LinkOutlined, StarOutlined } = require('@ant-design/icons');
+    module.exports = (${markup});
+  `, { compilerOptions: { jsx: ts.JsxEmit.ReactJSX, module: ts.ModuleKind.CommonJS } }).outputText;
+  const module = { exports: {} };
+  const noAction = () => { throw Error('render must not perform actions'); };
+  new Function('require', 'module', 'exports', 'mlModal', 'loadCategorySchema', 'setMlModal', 'sugerirCampoIA', js)(
+    require, module, module.exports, { saleTerms, selectedCategory: 'test', categorySchemaCache: { test: { warranty: {
+      compatible, representationReason: compatible ? 'Prazo vinculado à evidência do produto' : 'Categoria incompatível com a garantia',
+    } } } }, noAction, noAction, noAction);
+  return require('react-dom/server').renderToStaticMarkup(module.exports);
 }
-test('SSR Ant Design mostra evidência, revisão e bloqueia gestão do leitor', () => {
-  const state = { resolution: resolve(), researchConfigured: false, researchWarning: null, currentId: id, history: [], canManage: true };
-  const html = render(state); assert.match(html, /Garantia comprovada/); assert.match(html, /12/); assert.match(html, /Revisar evidência/); assert.match(html, /Pesquisa indisponível/);
-  assert.doesNotMatch(render({ ...state, canManage: false }), /Revisar evidência|Validar fonte oficial/);
-  assert.match(render(state, true), /Amostra protegida/);
+test('SSR mantém prazo real como texto, sem opções de garantia, preservando outros termos', () => {
+  const html = renderListingTerms([
+    { id: 'WARRANTY_TYPE', value_id: '2230279', name: 'Tipo de garantia', values: category[0].values },
+    { id: 'WARRANTY_TIME', value_name: '4 anos', name: 'Prazo' },
+    { id: 'OTHER_TERM', name: 'Outro termo', value_id: 'a', values: [{ id: 'a', name: 'Opção' }] },
+  ]);
+  assert.match(html, /Garantia de fábrica/);
+  assert.match(html, /4 anos/);
+  assert.doesNotMatch(html, /12 meses|Garantia do vendedor|Consultar ou revisar garantia/);
+  assert.equal((html.match(/role="combobox"/g) || []).length, 1);
+  assert.equal((html.match(/<button\b/g) || []).length, 2); // Atualizar + IA do outro termo.
+});
+test('SSR mantém impedimento e ausência de prazo explícitos, sem inventar valor', () => {
+  const html = renderListingTerms([{ id: 'WARRANTY_TIME', name: 'Prazo' }], false);
+  assert.match(html, /Categoria incompatível com a garantia/);
+  assert.match(html, /Não informado/);
+  assert.doesNotMatch(html, /role="combobox"|<input|12 meses/);
 });
 test('API de configuração antiga responde 410 sem acessar serviço ou auditar escrita', async () => {
   const ts = require('typescript');
@@ -276,11 +320,4 @@ test('Codex reutiliza validação canônica, minimiza entrada e não chama OpenR
   invalid = true; await module.manageProductWarranty(client, id, id, command); assert.deepEqual(finish.p_result.candidates, []);
   failure = true; await module.manageProductWarranty(client, id, id, command);
   assert.equal(finish.p_result.failure, 'warranty_codex_auth_required'); assert.equal(requests.length, 3);
-});
-
-test('SSR identifica piloto e separa dependência de coleta da extração', () => {
-  const state = { resolution: resolve(), researchConfigured: false, researchAvailable: false, researchProvider: 'codex',
-    researchUnavailableReason: 'Firecrawl DEV precisa ser configurado para coletar as fontes.', researchWarning: null, currentId: id, history: [], canManage: true };
-  const html = render(state); assert.match(html, /ChatGPT\/Codex/); assert.match(html, /piloto individual local/); assert.match(html, /Firecrawl DEV precisa/);
-  assert.doesNotMatch(html, /OPENAI_API_KEY|OPENROUTER_API_KEY|auth.json/);
 });

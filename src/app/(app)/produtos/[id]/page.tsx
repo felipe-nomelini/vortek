@@ -3,7 +3,6 @@
 import LivePricingQuote from '@/components/products/LivePricingQuote';
 import PricingOverrideControl from '@/components/products/PricingOverrideControl';
 import PricingClearanceControl from '@/components/products/PricingClearanceControl';
-import ProductWarrantyControl from '@/components/products/ProductWarrantyControl';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -374,7 +373,6 @@ export default function ProductDetailPage() {
       </div>
       <PricingOverrideControl key={id} productId={id} disabled={Boolean(visualReview) || isEditing} />
       <PricingClearanceControl key={`clearance-${id}`} productId={id} disabled={Boolean(visualReview) || isEditing} />
-      <ProductWarrantyControl key={`warranty-${id}`} productId={id} disabled={Boolean(visualReview) || isEditing} />
     </section>
   </div>;
 

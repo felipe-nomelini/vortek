@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Situação vigente (08/09/2026):** piloto individual ChatGPT/Codex + Firecrawl disponível em `http://localhost:3001`, somente Supabase DEV `.162`. Cadastro real de teste inativo `VTK000002` criado com autorização; fonte oficial, pesquisa, revisão documentada e persistência do histórico validadas pelo navegador. [Link direto, evidências e limites](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md). Pendentes aceite visual e conciliação da política de garantia; não fechar WARRANTY-01 nem avançar para Buy Box antes desses gates. Sem push/deploy, uso compartilhado ou substituição geral do OpenRouter; futuro chat permanece após `BNT-D20`. Frete vivo ME2 e `pricing_execution_not_ready` continuam pendentes/bloqueados.
+**Situação vigente (08/09/2026):** retirada dos controles de garantia aprovada pelo usuário e encerrada no escopo de interface; 85 testes passaram, um LIVE omitido, validate e build aprovados. A alteração visual ainda não recebeu push/deploy ou conferência autenticada em navegador. O piloto individual/local ChatGPT/Codex + Firecrawl e a pesquisa/revisão/histórico no cadastro inativo `VTK000002` já possuem evidências anteriores; não repetir a configuração como pendência. [Estado e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md). WARRANTY-01 permanece aberta pela conciliação comercial e homologação restantes, antes de Buy Box econômica. Nenhuma regra alterada por este aceite. Frete vivo ME2, `pricing_execution_not_ready` e uso compartilhado do provedor permanecem pendentes; futuro chat após `BNT-D20`.
 
 ## 1. Escopo, autoridade e fotografia
 

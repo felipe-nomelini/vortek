@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** piloto individual ChatGPT/Codex + Firecrawl disponível em `http://localhost:3001`, somente Supabase DEV `.162`. Cadastro real de teste inativo `VTK000002` criado com autorização; fonte oficial, pesquisa, revisão documentada e persistência do histórico validadas pelo navegador. [Link direto, evidências e limites](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md). Pendentes aceite visual e conciliação da política de garantia; não fechar WARRANTY-01 nem avançar para Buy Box antes desses gates. Sem push/deploy, uso compartilhado ou substituição geral do OpenRouter; futuro chat permanece após `BNT-D20`. Frete vivo ME2 e `pricing_execution_not_ready` continuam pendentes/bloqueados.
+**Situação vigente (08/09/2026):** retirada dos controles de garantia aprovada pelo usuário e encerrada no escopo de interface; 85 testes passaram, um LIVE omitido, validate e build aprovados. A alteração visual ainda não recebeu push/deploy ou conferência autenticada em navegador. O piloto individual/local ChatGPT/Codex + Firecrawl e a pesquisa/revisão/histórico no cadastro inativo `VTK000002` já possuem evidências anteriores; não repetir a configuração como pendência. [Estado e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md). WARRANTY-01 permanece aberta pela conciliação comercial e homologação restantes, antes de Buy Box econômica. Nenhuma regra alterada por este aceite. Frete vivo ME2, `pricing_execution_not_ready` e uso compartilhado do provedor permanecem pendentes; futuro chat após `BNT-D20`.
 
 ---
 
@@ -65,13 +65,13 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-05/06 aprovadas visualmente; piloto ChatGPT individual/local validado; WARRANTY-01 com pesquisa real e visual pendentes | Configurar coleta/runtime e concluir homologação WARRANTY-01; depois Buy Box econômica; ME2 e demais gates comerciais permanecem |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-05/06 aprovadas; piloto e pesquisa/revisão locais validados; retirada dos controles de garantia aprovada e encerrada no escopo visual | Conciliar política e concluir homologação restante de WARRANTY-01; depois Buy Box econômica; ME2 e demais gates comerciais permanecem |
 | 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Executar após `BNT-D20`, com contratos e indicadores estabilizados; homologação obrigatória antes do primeiro lançamento |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — decisão de 07/09/2026:** piloto `BNT-AI-PROVIDER-01` individual/local validado; concluir coleta real e aceite visual da garantia. A lista abaixo preserva o histórico e as demais dependências; o piloto não antecipa o futuro chat nem certifica uso compartilhado.
+**Prioridade vigente — atualização de 08/09/2026:** retirada dos controles de garantia aprovada e encerrada no escopo visual. Resolver a conciliação comercial e a homologação restante de WARRANTY-01 antes de Buy Box; não repetir a coleta/runtime já validados. A lista abaixo preserva o histórico e as demais dependências; o piloto não antecipa o futuro chat nem certifica uso compartilhado.
 
 - [x] Executar somente `ML-03 — Não publicar estoque igual`.
 - [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
@@ -3115,7 +3115,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-05` — override explícito por grupo até revogação manual; validação local/SQL DEV concluída, interface pendente do deploy/aceite conjunto;
 - [x] `BNT-PRICING-V2-06` — liquidação interna: implementação, testes locais e SQL DEV concluídos; sem liberar execução comercial; interface pendente do deploy/aceite conjunto. [Evidências](evidencias/BNT-PRICING-V2-06-validacao.md);
 - [x] `BNT-AI-PROVIDER-01` — integração e extração real validadas no piloto individual/local de Felipe; não certifica pesquisa ponta a ponta, uso compartilhado ou deploy. Evidências e limites abaixo;
-- [ ] `BNT-CANON-WARRANTY-01` — implementação/SQL DEV validados; após o piloto de provedor, concluir pesquisa real com Firecrawl DEV e aceite visual; [evidências](evidencias/BNT-CANON-WARRANTY-01-validacao.md);
+- [ ] `BNT-CANON-WARRANTY-01` — implementação/SQL DEV e pesquisa/revisão locais validados; retirada dos controles aprovada; conciliação comercial e homologação restantes pendentes; [evidências](evidencias/BNT-CANON-WARRANTY-01-validacao.md);
 - [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
 - [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa;
 - [ ] **Pendência PRC-04 — Frete ME2 na conexão da conta real:** retomar quando a conta real estiver conectada em ambiente autorizado; comprovar cotação do vendedor no contexto real e recotação de alvo/piso/equilíbrio com oferta de origem conhecida. Registrar evidências e inconclusivo quando a fonte falhar. Não bloqueia o planejamento/desenvolvimento de CFL-01; bloqueia o aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e a liberação comercial em produção enquanto não validada. Esta anotação não autoriza conectar conta, copiar credenciais de produção para DEV, publicar, reprecificar ou pausar anúncios;
@@ -3597,7 +3597,9 @@ Sem push, deploy, chamada autenticada ML ou acesso à produção. Guard comercia
 
 ### BNT-CANON-WARRANTY-01 — 07/09/2026
 
-**Estado: implementação/SQL DEV e fluxo local de pesquisa/revisão/histórico validados; aceite visual e conciliação comercial pendentes.** [Evidências e rollback](evidencias/BNT-CANON-WARRANTY-01-validacao.md); [cadastro real de teste e link](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md).
+**Decisão posterior (08/09/2026):** controles visuais de garantia retirados a pedido do usuário. Detalhe do produto sem painel, configurações sem card e criação com tipo/prazo somente para leitura, preservando avisos. APIs, prazos, pesquisa de preparação, evidências, histórico e gates de publicação inalterados. [Validação da retirada](evidencias/BNT-CANON-WARRANTY-01-validacao.md#atualização--retirada-dos-controles-da-interface-08092026). Sem push/deploy desta alteração; não reintroduzir o painel nem considerar a retirada como conciliação comercial.
+
+**Estado: implementação/SQL DEV e fluxo local de pesquisa/revisão/histórico validados; retirada dos controles aprovada e encerrada no escopo visual; conciliação comercial e homologação restantes pendentes.** [Evidências e rollback](evidencias/BNT-CANON-WARRANTY-01-validacao.md); [cadastro real de teste e link](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md).
 
 - [x] Remover garantia global do fluxo novo e preservar histórico;
 - [x] Resolvedor único por produto, hierarquia fabricante/fornecedor/legal, equivalência de unidades e conflitos explícitos;
@@ -3607,7 +3609,7 @@ Sem push, deploy, chamada autenticada ML ou acesso à produção. Guard comercia
 - [x] Migration `20260907213000` somente no `.162`, tipos gerados, SQL/concorrência/PostgREST, testes locais e build;
 - [x] Executar `BNT-AI-PROVIDER-01` antes de exigir chave OpenRouter — piloto individual/local validado, conforme evidência própria;
 - [x] Configurar Firecrawl DEV/runtime local e validar tecnicamente pesquisa real limitada, fonte oficial, revisão e histórico em cadastro real de teste inativo, autorizado pelo usuário, sem ML; evidência em 08/09/2026. Pesquisa inconclusiva não foi apresentada como aprovação automática;
-- [ ] Aceite visual do piloto local em `localhost:3001`, Comercial e estoque → Garantia do produto `VTK000002`;
+- [x] Aprovação do usuário e encerramento da retirada dos controles em 08/09/2026; aceite da mudança visual não equivale a teste autenticado em navegador ou homologação remota;
 - [ ] Reconciliar a garantia padrão de `main` (`4a40832`, fallback comercial vendedor 30 dias) com o contrato V2 de evidência/classificação legal antes de fechar WARRANTY-01; diferença identificada e documentada no piloto, sem mudança de regra implícita;
 - [ ] Push/deploy quando solicitado e aceite visual em `dev.bentevi.shop`;
 - [ ] Manter a etapa aberta até estas validações; depois planejar V2-08 / CFL-04 — Buy Box econômica.

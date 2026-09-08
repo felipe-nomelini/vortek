@@ -434,7 +434,7 @@ Os tratamentos abaixo descrevem portabilidade, não execução: **REAPROVEITAR**
 | Manual, override, liquidação | Nova governança ainda não incorporada | V2-04/05/06: origem auditável; override explícito por grupo até revogação; liquidação por data ou revogação |
 | Grupo/catálogo | Sem comprovação ponta a ponta da nova unidade econômica | CFL-03/V2-07: sem dupla contagem/preços conflitantes; alteração material invalida aprovação |
 | Identidade e demanda | Filtro canônico ainda pendente | CFL-01/02: dados ausentes não equivalem a conflito; kit/quantidade/atributo material contraditórios bloqueiam automação |
-| Garantia | Publicação precisa ser reconciliada com evidência, não valor padrão | WARRANTY-01: fonte/classificação e conflitos explícitos; não inventar 12 meses nem escolher primeiro atributo permitido |
+| Garantia | Publicação precisa ser reconciliada com evidência, não valor padrão | WARRANTY-01: fonte/classificação e conflitos explícitos; não inventar 12 meses nem escolher primeiro atributo permitido. Em 08/09/2026, fallback `SELLER-30` classificado NÃO INCORPORAR por já estar substituído pelo contrato V2 aprovado; ref main `3ed7f127`, sem mudar outras classificações. [Conciliação](evidencias/BNT-CANON-WARRANTY-01-validacao.md#conciliação-de-política--08092026) |
 | Atividade e oferta preferencial | Paridades anteriores concluídas | EQUIVALENTE, preservar regressões: sync/preço não alteram atividade manual e oferta inativa não é preferencial |
 | Radar/coorte/noturno | Objetivos M2M futuros permanecem, coorte de main é histórica | RAD-01/02/04, V2-10: não herdar autorização; sem nova pesquisa pesada ou escrita automática em massa |
 

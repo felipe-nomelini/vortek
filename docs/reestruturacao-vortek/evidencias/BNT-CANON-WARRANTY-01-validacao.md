@@ -1,5 +1,31 @@
 # BNT-CANON-WARRANTY-01 — Garantia por evidência
 
+## Conciliação de política — 08/09/2026
+
+O pedido de resolver as pendências mantém o escopo aprovado: retirar a gestão visual sem alterar as regras atuais. Reconfirmados por `git ls-remote` e leitura local do ref: `origin/main` em `3ed7f1273d50229f1c17aee744dfc90ad9e7d66f`; nenhum commit de garantia nos arquivos de resolução/preparação/criação entre `dd34980` e esse SHA. Não se trata de certificação da revisão implantada em produção nem de auditoria dos outros domínios.
+
+| Divergência | Classificação para a V2 | Evidência/resultado |
+| --- | --- | --- |
+| Main `VORTEK-WARRANTY-2026-09-06-SELLER-30`: ausência de fonte gera 30 dias pelo vendedor | **NÃO INCORPORAR — comportamento substituído pelo contrato V2 aprovado** | Cânon Comercial §22 e tabela de decisões: prazo por produto; ausência de classificação documentada não fabrica 30/90 dias. V2 sem evidência continua inconclusiva. Não ampliar compromisso comercial da Bentevi por cópia de fallback. |
+| Fabricante/fornecedor comprovados, equivalência anos/meses e conflitos | **PRESERVADO/ADAPTADO** | Resolvedor V2 existente e regressões de precedência, conflito e categoria; fabricante não é confundido com fornecedor. |
+| Garantias já declaradas em anúncios existentes | **PRESERVAR** | Nenhuma escrita ML, migração retroativa ou alteração de compromisso existente autorizada nesta conciliação. |
+
+Não foi necessário mudar o motor. `src/lib/product-warranty.ts` tem o mesmo SHA-256 da base `4c6864f`: `b42c51c435e24aa9b822b3737bb6ed714236b089d04bb3388b7b19213ae560b3`. A conciliação encerra a divergência documental, sem introduzir garantia universal de 12 meses ou fallback vendedor 30 dias. A pesquisa no servidor continua sujeita à disponibilidade do provedor existente; o piloto Codex permanece individual/local, não uma exigência nova de compartilhamento nesta etapa.
+
+Homologação da retirada em andamento; registrar abaixo somente após deploy e conferência autenticada reais. PUB-GATE, frete ME2 e autonomia continuam em suas etapas próprias.
+
+## Atualização — retirada dos controles da interface (08/09/2026)
+
+**Encerramento do ajuste visual:** o usuário solicitou fechar a etapa em 08/09/2026. Aprovação registrada para a retirada implementada; não houve nova decisão de prazo, concessão ou comprovação de garantia. A alteração de interface está encerrada; publicação/conferência remota e conciliação comercial da WARRANTY-01 continuam pendentes. Este registro não declara um teste de navegador que não ocorreu.
+
+Por decisão explícita do usuário, foram retirados o painel de garantia do detalhe do produto e o card de garantia nas configurações Mercado Livre. Na criação do anúncio, tipo/prazo aparecem somente como texto; os avisos de incompatibilidade permanecem, sem links para revisão em um painel que deixou de existir. Os demais termos continuam editáveis como antes.
+
+Alteração exclusivamente visual: APIs, resolvedor, pesquisa de preparação, evidências, histórico e bloqueios comerciais preservados. Nenhum prazo universal introduzido, nenhuma migration, escrita de banco, alteração ML, push ou deploy. O componente visual removido pode ser recuperado pelo histórico Git; os registros não foram apagados. O fluxo de gestão visual descrito na fotografia abaixo é histórico, não uma instrução atual de uso.
+
+Validação local: 85 testes aprovados e um LIVE opt-in omitido, incluindo renderização do bloco real de termos com Ant Design, prazo de 4 anos preservado, ausência de opções de garantia, ausência de prazo explícita, impedimento de categoria e manutenção dos outros termos. `npm run validate`, `npm run build` (120 páginas) e `git diff --check` aprovados. Não houve conferência autenticada em navegador ou homologação remota desta mudança. A conciliação comercial continua pendente; retirar a interface não fecha WARRANTY-01.
+
+---
+
 **Atualização operacional de 08/09/2026:** Firecrawl/runtime local configurados; pesquisa pelo navegador e histórico persistido validados, além de coleta/extração real sem gravação da amostra. [Links para teste, evidências e pendências atuais](BNT-CANON-WARRANTY-01-runtime-local.md). O relato abaixo preserva a fotografia de 07/09; garantia ainda não homologada.
 
 Data: 07/09/2026. Base: `562ffa339cbd2cc65e22b609f2cbd64535fef7af`, branch `dev` inicialmente limpa.

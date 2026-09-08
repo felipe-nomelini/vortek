@@ -2299,7 +2299,6 @@ export default function ProductsPage() {
                 <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Garantia e Termos</Title>
                 <Alert showIcon style={{ marginBottom: 16 }} type={mlModal.categorySchemaCache[mlModal.selectedCategory || '']?.warranty?.compatible ? 'info' : 'warning'}
                   message={mlModal.categorySchemaCache[mlModal.selectedCategory || '']?.warranty?.representationReason || 'Garantia ainda não validada'}
-                  description={<span>Prazo e tipo vêm da evidência do produto. <a href={`/produtos/${mlModal.produtoId}`} target="_blank" rel="noopener noreferrer">Consultar ou revisar garantia</a>. Depois, recarregue a categoria para atualizar a comprovação.</span>}
                   action={<Button size="small" disabled={!mlModal.selectedCategory} onClick={() => void loadCategorySchema(mlModal.selectedCategory || '')}>Atualizar</Button>} />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.saleTerms.map((term, idx) => (
@@ -2312,7 +2311,9 @@ export default function ProductsPage() {
                           </Tooltip>
                         ) : null}
                       </Text>
-                      {term.values?.length ? (
+                      {term.id === 'WARRANTY_TYPE' || term.id === 'WARRANTY_TIME' ? (
+                        <Text>{term.value_name || term.values?.find(value => value.id === term.value_id)?.name || 'Não informado'}</Text>
+                      ) : term.values?.length ? (
                         <Select
                           size="small"
                           disabled={term.id === 'WARRANTY_TYPE' || term.id === 'WARRANTY_TIME'}
@@ -2342,13 +2343,13 @@ export default function ProductsPage() {
                           }}
                         />
                       )}
-                      <Button
+                      {term.id !== 'WARRANTY_TYPE' && term.id !== 'WARRANTY_TIME' && <Button
                         size="small"
                         disabled={term.id === 'WARRANTY_TYPE' || term.id === 'WARRANTY_TIME'}
                         icon={<StarOutlined />}
                         loading={mlModal.suggestingFieldId === `sale_term:${term.id}`}
                         onClick={() => void sugerirCampoIA({ id: term.id, name: term.name, value_type: term.value_type, values: term.values || [] }, 'sale_term', idx)}
-                      />
+                      />}
                     </div>
                   ))}
                 </div>

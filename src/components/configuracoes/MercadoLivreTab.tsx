@@ -194,14 +194,7 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
         </Row>
 
         <Row gutter={[16, 16]}>
-          <Col xs={24} xl={10}>
-            <Card title="Garantia por produto" style={{ ...configuracoesCardStyle, height: "100%" }}>
-              <Paragraph>Fabricante comprovado → fornecedor comprovado → regra legal com classificação documentada.</Paragraph>
-              <Paragraph type="secondary">Não há prazo universal. Fontes, pesquisa e revisão ficam no detalhe do produto, em Comercial e estoque. Aprovar um domínio não transfere prazos entre produtos.</Paragraph>
-              <Link href="/produtos">Abrir produtos</Link>
-            </Card>
-          </Col>
-          <Col xs={24} xl={14}>
+          <Col xs={24}>
             <Card title={<Space><SafetyCertificateOutlined />Regras protegidas</Space>} style={{ ...configuracoesCardStyle, height: "100%" }}>
               <Space direction="vertical" size={12}>
                 {["Estoque inalterado não gera nova publicação.", "Elegibilidade é verificada na criação e novamente no processamento.", "Catálogo e Buy Box são estados externos somente para consulta.", "A conta vendedora autorizada permanece limitada pela allowlist do runtime."].map((rule) => <Space align="start" key={rule}><CheckCircleOutlined style={{ color: "#52c41a", marginTop: 4 }} /><Text>{rule}</Text></Space>)}
