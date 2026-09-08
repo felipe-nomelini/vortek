@@ -8,6 +8,7 @@ import type { MenuProps, TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined, FilePdfOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/format';
+import type { EconomicMemory } from '@/services/pricing';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
 const { Title } = Typography;
@@ -15,6 +16,20 @@ const { Title } = Typography;
 type ListingStatus = 'ativo' | 'pausado';
 type CatalogStatus = 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
 type PriceModalMode = 'default' | 'catalog';
+
+const pricingReasonLabels: Record<string, string> = {
+  TRIBUTO_ESTIMADO: 'O imposto foi calculado com uma alíquota estimada.',
+  CUSTO_DESATUALIZADO: 'O custo do fornecedor precisa ser atualizado.',
+  TARIFA_ESTIMADO: 'A tarifa do Mercado Livre é estimada.',
+  FRETE_ESTIMADO: 'O custo de frete é estimado.',
+  TARIFA_DESATUALIZADO: 'A tarifa do Mercado Livre precisa ser atualizada.',
+  FRETE_DESATUALIZADO: 'O custo de frete precisa ser atualizado.',
+};
+
+function pricingWarnings(reasons: string[]): string {
+  return [...new Set(reasons.map(reason => pricingReasonLabels[reason]
+    || 'Há informações do cálculo que precisam ser conferidas.'))].join(' ');
+}
 
 interface Anuncio {
   id: string;
@@ -91,6 +106,7 @@ function mapDBtoAnuncio(item: any): Anuncio {
 }
 
 export default function AnunciosPage() {
+  const [priceConfirmation, priceConfirmationHolder] = Modal.useModal();
   const [data, setData] = useState<Anuncio[]>([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
@@ -117,6 +133,44 @@ export default function AnunciosPage() {
   const [priceModalLoading, setPriceModalLoading] = useState(false);
   const [priceModalSaving, setPriceModalSaving] = useState(false);
   const [newPrice, setNewPrice] = useState<number | null>(null);
+  const [pricePreview, setPricePreview] = useState<{
+    itemId: string; price: number; memory: EconomicMemory | null; error: string | null;
+  } | null>(null);
+  const previewItemId = priceModal.record?.id;
+  const previewProductId = priceModal.record?.produtoId;
+  const previewReady = priceModal.open && Boolean(priceModal.details);
+
+  useEffect(() => {
+    setPricePreview(null);
+    if (!previewReady || !previewItemId || !previewProductId
+      || newPrice === null || !Number.isFinite(newPrice) || newPrice <= 0) return;
+
+    const controller = new AbortController();
+    // Aguarda a digitação para não cotar cada tecla; o cleanup descarta respostas antigas.
+    const timer = setTimeout(async () => {
+      try {
+        const response = await fetch('/api/pricing/simulate', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId: previewProductId, itemId: previewItemId, price: newPrice }),
+          signal: controller.signal,
+        });
+        const simulation = await response.json();
+        if (!response.ok || !simulation.memory || !Number.isFinite(simulation.memory.result)
+          || !Number.isFinite(simulation.memory.margin) || simulation.memory.price !== newPrice) {
+          throw new Error('Não foi possível calcular o lucro. Confira os dados de custo, tarifa, frete e imposto.');
+        }
+        if (!controller.signal.aborted) {
+          setPricePreview({ itemId: previewItemId, price: newPrice, memory: simulation.memory, error: null });
+        }
+      } catch {
+        if (!controller.signal.aborted) {
+          setPricePreview({ itemId: previewItemId, price: newPrice, memory: null,
+            error: 'Não foi possível calcular o lucro agora. Tente novamente ao salvar ou altere o preço.' });
+        }
+      }
+    }, 350);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [newPrice, previewItemId, previewProductId, previewReady]);
   const [summary, setSummary] = useState({
     total: 0,
     ativos: 0,
@@ -307,8 +361,17 @@ export default function AnunciosPage() {
       const simulationResponse = await fetch('/api/pricing/simulate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productId: record.produtoId, itemId: record.id, price: targetPrice }) });
       const simulation = await simulationResponse.json();
       if (!simulationResponse.ok || !simulation.memory || simulation.memory.result === null) throw new Error(simulation.error || simulation.reason || 'Economia inconclusiva');
-      const accepted = await new Promise<boolean>(resolve => Modal.confirm({ title: 'Aprovar alteração de preço',
-        content: <div><p>Preço: {formatCurrency(simulation.memory.price)}. Contribuição: {formatCurrency(simulation.memory.result)}. Margem: {(simulation.memory.margin * 100).toFixed(2)}%.</p><p>{simulation.memory.reasons.join(' • ') || 'Fontes confirmadas'}</p><p>A aprovação reconhece as estimativas e pendências exibidas.</p></div>,
+      const accepted = await new Promise<boolean>(resolve => priceConfirmation.confirm({ title: 'Confirmar alteração de preço',
+        content: <Space direction="vertical" style={{ width: '100%' }}>
+          <div>Preço de venda: <strong>{formatCurrency(simulation.memory.price)}</strong></div>
+          <div>Custo do produto: {formatCurrency(simulation.memory.cost)}</div>
+          <div>Tarifa do Mercado Livre: {formatCurrency(simulation.memory.fee.amount)}</div>
+          <div>Frete: {formatCurrency(simulation.memory.shipping.amount)}</div>
+          <div>Imposto: {formatCurrency(simulation.memory.taxAmount)}</div>
+          <div>Lucro unitário{simulation.memory.status === 'estimated' ? ' estimado' : ''}: <strong>{formatCurrency(simulation.memory.result)}</strong></div>
+          <div>Margem: {(simulation.memory.margin * 100).toFixed(2).replace('.', ',')}%</div>
+          {simulation.memory.reasons.length > 0 && <Alert type="warning" message={pricingWarnings(simulation.memory.reasons)} />}
+        </Space>,
         okText: 'Aprovar e aplicar', cancelText: 'Voltar', onOk: () => resolve(true), onCancel: () => resolve(false) }));
       if (!accepted) return;
       const approvalResponse = await fetch('/api/pricing/approve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ evaluationId: simulation.evaluationId, reason: 'Aprovação manual após revisão da simulação do anúncio', acknowledgeEstimates: true }) });
@@ -344,7 +407,7 @@ export default function AnunciosPage() {
       setPriceModalSaving(false);
       setUpdatingActionItemId(null);
     }
-  }, [fetchData, newPrice, priceModal.details, priceModal.mode, priceModal.record, scheduleStatusPolling]);
+  }, [fetchData, newPrice, priceConfirmation, priceModal.details, priceModal.mode, priceModal.record, scheduleStatusPolling]);
 
   const selectedRecords = useMemo(() => {
     const selectedIds = new Set(selectedRowKeys.map((key) => String(key)));
@@ -672,12 +735,14 @@ export default function AnunciosPage() {
   };
 
   const targetPrice = Number(newPrice);
-  const nextProfit: number | null = null; // O resultado do novo preço exige cotação do servidor.
+  const currentPreview = pricePreview?.itemId === previewItemId && pricePreview?.price === newPrice ? pricePreview : null;
+  const nextProfit = currentPreview?.memory?.result ?? null;
 
 
 
   return (
     <div>
+      {priceConfirmationHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Anúncios - Mercado Livre</Title>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[16, 16]}>
@@ -952,6 +1017,7 @@ export default function AnunciosPage() {
                 </div>
                 <InputNumber
                   value={newPrice}
+                  disabled={priceModalSaving}
                   onChange={(value) => setNewPrice(value ?? null)}
                   min={0.01}
                   precision={2}
@@ -961,10 +1027,15 @@ export default function AnunciosPage() {
               </div>
 
               <div>
-                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novo lucro unitário</div>
-                <strong style={{ color: (nextProfit || 0) >= 0 ? '#52c41a' : '#ff4d4f' }}>
-                  {nextProfit === null ? '—' : formatCurrency(nextProfit)}
-                </strong>
+                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novo lucro unitário{currentPreview?.memory?.status === 'estimated' ? ' estimado' : ''}</div>
+                {!Number.isFinite(targetPrice) || targetPrice <= 0 ? <span>Informe um preço maior que zero.</span>
+                  : currentPreview?.error ? <Alert type="warning" message={currentPreview.error} />
+                  : nextProfit === null ? <Space><Spin size="small" />Calculando lucro…</Space>
+                  : <>
+                    <strong style={{ color: nextProfit >= 0 ? '#52c41a' : '#ff4d4f' }}>{formatCurrency(nextProfit)}</strong>
+                    <div>Margem: {(currentPreview!.memory!.margin! * 100).toFixed(2).replace('.', ',')}%</div>
+                    {Boolean(currentPreview?.memory?.reasons.length) && <Alert style={{ marginTop: 8 }} type="warning" message={pricingWarnings(currentPreview!.memory!.reasons)} />}
+                  </>}
               </div>
 
 
