@@ -323,3 +323,20 @@ test('parada da rota usa chave própria da substituição mesmo com parada anter
  const evaluate=batch=>vm.runInNewContext(ts.transpileModule('result = '+key,{compilerOptions:{target:9}}).outputText,{batch,batchProductId:'p',catalogExpansionAttemptKey,catalogExpansionKey,result:null});
  assert.notEqual(evaluate(context),evaluate({...context,replacementAuthorizationId:'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'}));
 });
+
+test('moderação definitiva recebida pelo reconciliador interrompe lote mesmo antes do vínculo local',async()=>{
+ const fs=require('fs'),ts=require('typescript'),vm=require('vm'),mod={exports:{}};
+ vm.runInNewContext(ts.transpileModule(fs.readFileSync('src/lib/ml/reconcile-anuncio.ts','utf8'),{compilerOptions:{module:1,target:9}}).outputText,{module:mod,exports:mod.exports,console,require:()=>({mapMlStatusToLocalStatus:()=> 'pausado'})});
+ const stops=new Map();let unavailable=false,hasBatch=true;
+ const client={from(table){return{select(){return this;},eq(){return this;},order(){return this;},limit(){return this;},async maybeSingle(){return{data:table==='pricing_events'?{produto_id:'p',actor:'actor',payload:hasBatch?{batchId:context.batchId}: {}}:null,error:null};},async upsert(value,options){assert.equal(options.ignoreDuplicates,true);if(unavailable)return{error:{message:'offline'}};stops.set(value.dedupe_key,value);return{error:null};}};}};
+ const item={id:'MLB1',status:'under_review',sub_status:['forbidden'],category_id:'cat'};
+ for(let n=0;n<2;n++)assert.equal((await mod.exports.reconcileAnuncioMlFromItem(client,item,'items_webhook')).ok,true);
+ assert.equal(stops.size,1);const stop=[...stops.values()][0];assert.equal(stop.event_type,'CATALOG_EXPANSION_SAFETY_STOP');assert.throws(()=>assertCatalogExpansionCanAdvance([stop],context.batchId),/SAFETY_STOP/);
+ unavailable=true;const failed=await mod.exports.reconcileAnuncioMlFromItem(client,item,'items_webhook');assert.equal(failed.ok,false);assert.match(failed.error,/CATALOG_EXPANSION_MODERATION_AUDIT/);
+ hasBatch=false;assert.equal((await mod.exports.reconcileAnuncioMlFromItem(client,item,'items_webhook')).ok,true);
+});
+
+test('retomada não confia no alvo em cache quando o anúncio foi moderado depois',async()=>{
+ const fs=require('fs'),ts=require('typescript'),vm=require('vm');const source=ts.createSourceFile('runner.js',fs.readFileSync('scripts/catalog-expansion-batch-01.cjs','utf8'),ts.ScriptTarget.Latest,true);const code=source.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text==='verifyPublicationTarget').getText(source);let reads=0;
+ const scope={dir:'/batch',fs:{existsSync:()=>true,readFileSync:()=>JSON.stringify({rows:[{sku:'SKU',itemId:'MLB1',status:'ALVO_VALIDADO',after:{price:100}}]})},db:{from:()=>({select(){return this;},eq(){return this;},single(){return this;}})},checked:async()=>({access_token:'test-token'}),fetch:async()=>{reads++;return{ok:true,json:async()=>({id:'MLB1',status:'under_review',category_id:'cat',seller_custom_field:'SKU',price:100})}},AbortSignal};vm.runInNewContext(code,scope);await assert.rejects(scope.verifyPublicationTarget(()=>{throw Error('Não deve alterar preço');},{sku:'SKU',draft:{categoriaId:'cat'}},'MLB1'),/ESTADO_IDENTIDADE/);assert.equal(reads,1);
+});

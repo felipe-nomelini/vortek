@@ -637,6 +637,9 @@ export async function POST(request: Request) {
             ml_item_id: reconcileResult.mlItemId,
             error: reconcileResult.error,
           }));
+          if (reconcileResult.error.startsWith('CATALOG_EXPANSION_MODERATION_AUDIT:')) {
+            return NextResponse.json({ received: false, error: 'MODERATION_AUDIT_FAILED' }, { status: 503 });
+          }
         }
 
         const observedStatus = String(itemResult.data.status || '').trim().toLowerCase();

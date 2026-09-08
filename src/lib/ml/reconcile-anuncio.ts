@@ -14,6 +14,8 @@ type MlListingLike = {
   id?: string | number | null;
   price?: number | null;
   status?: string | null;
+  sub_status?: string[] | null;
+  category_id?: string | null;
   title?: string | null;
   permalink?: string | null;
   thumbnail?: string | null;
@@ -92,6 +94,27 @@ export async function reconcileAnuncioMlFromItem(
   const mlItemId = String(item?.id || '').trim();
   if (!mlItemId) {
     return { ok: false, mlItemId: '', error: 'ml_item_id ausente para reconciliar anúncio' };
+  }
+
+  // A aprovação inicial não garante que uma moderação posterior aceite o item.
+  // O mesmo fluxo usado por webhook/sync interrompe o lote antes de outra criação.
+  if (item.status === 'under_review' && item.sub_status?.includes('forbidden')) {
+    const created = await client.from('pricing_events')
+      .select('produto_id,actor,payload').eq('event_type', 'CREATED_REMOTE')
+      .eq('ml_item_id', mlItemId).order('created_at', { ascending: false }).limit(1).maybeSingle();
+    if (created.error) return { ok: false, mlItemId, error: 'CATALOG_EXPANSION_MODERATION_AUDIT: ' + created.error.message };
+    const batchId = created.data?.payload?.batchId;
+    if (batchId) {
+      const stop = await client.from('pricing_events').upsert({
+        event_type: 'CATALOG_EXPANSION_SAFETY_STOP', produto_id: created.data.produto_id,
+        ml_item_id: mlItemId, actor: created.data.actor, rule_id: batchId,
+        pricing_source: 'radar_launch', reason: 'MODERACAO_ML_APOS_CRIACAO',
+        dedupe_key: `moderation:${batchId}:${mlItemId}`,
+        payload: { batchId, source, status: item.status, subStatus: item.sub_status,
+          categoryId: item.category_id, replacementAuthorizationId: created.data.payload.replacementAuthorizationId ?? null },
+      }, { onConflict: 'dedupe_key', ignoreDuplicates: true });
+      if (stop.error) return { ok: false, mlItemId, error: 'CATALOG_EXPANSION_MODERATION_AUDIT: ' + stop.error.message };
+    }
   }
 
   let current = existingRow ?? null;

@@ -166,13 +166,13 @@ if(event)await target(c,event.ml_item_id);
 }
 
 async function verifyPublicationTarget(app,c,itemId) {
- const file=dir+'/target-verification.json',rows=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)).rows:[];let row=rows.find(r=>r.sku===c.sku&&r.itemId===itemId);if(row?.status==='ALVO_VALIDADO')return;if(!row){row={sku:c.sku,productId:c.productId,itemId,attempts:[]};rows.push(row);}const save=()=>fs.writeFileSync(file,JSON.stringify({at:new Date().toISOString(),rows},null,2));
+ const file=dir+'/target-verification.json',rows=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)).rows:[];let row=rows.find(r=>r.sku===c.sku&&r.itemId===itemId);if(!row){row={sku:c.sku,productId:c.productId,itemId,attempts:[]};rows.push(row);}const save=()=>fs.writeFileSync(file,JSON.stringify({at:new Date().toISOString(),rows},null,2));
  if(['APLICACAO_SOLICITADA','APLICACAO_INCONCLUSIVA'].includes(row.status))throw Error('RECONCILIAR_PRECO_'+c.sku);
  const atTarget=m=>m?.result>0&&m.margin+1e-10>=m.band.target&&m.fee.source==='ml_live'&&m.shipping.source==='ml_live';
  const token=(await checked(db.from('integracoes').select('access_token').eq('tipo','mercadolivre').single())).access_token;
- async function read(){const r=await fetch('https://api.mercadolibre.com/items/'+itemId,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error('READBACK_'+r.status);const i=await r.json();if(i.status!=='active'||i.seller_custom_field!==c.sku||i.item_relations?.length)throw Error('ESTADO_IDENTIDADE_'+c.sku);return i;}
+ async function read(){const r=await fetch('https://api.mercadolibre.com/items/'+itemId,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error('READBACK_'+r.status);const i=await r.json();if(i.status!=='active'||i.category_id!==c.draft.categoriaId||i.seller_custom_field!==c.sku||i.item_relations?.length)throw Error('ESTADO_IDENTIDADE_'+c.sku);return i;}
  async function sim(body){const r=await app('/api/pricing/simulate','POST',{productId:c.productId,itemId,...body});if(!r.ok||!r.data.success)throw Error('SIMULACAO_ALVO_'+JSON.stringify(r.data));return r.data;}
- const item=await read(),current=await sim({price:item.price});row.before??={price:item.price,memory:current.memory};row.current=current;save();
+ const item=await read();if(row.status==='ALVO_VALIDADO'&&row.after?.price===item.price)return;const current=await sim({price:item.price});row.before??={price:item.price,memory:current.memory};row.current=current;save();
  if(!atTarget(current.memory)){
  const target=await sim({objective:'target'});if(!atTarget(target.memory)||target.memory.price<=item.price)throw Error('ALVO_INCONSISTENTE_'+c.sku);const attempt={at:new Date().toISOString(),before:current,target};row.attempts.push(attempt);save();
  const approval=await app('/api/pricing/approve','POST',{evaluationId:target.evaluationId,acknowledgeEstimates:true,reason:'Usuário autorizou o lote '+BATCH+'. Ajustar novo anúncio '+c.sku+' ao alvo canônico após cotação real por item_id; imposto estimado reconhecido.'});attempt.approval=approval;if(!approval.ok||!approval.data.success)throw Error('APROVACAO_ALVO');row.status='APLICACAO_SOLICITADA';save();
