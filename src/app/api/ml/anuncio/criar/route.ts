@@ -1923,7 +1923,7 @@ export async function POST(req: Request) {
           const state = await getListingSnapshot(batchRemoteId);
           pauseConfirmed = state?.status === 'paused';
         }
-        await recordPricingEvent(client,{event_type:batchCritical?'CATALOG_EXPANSION_SAFETY_STOP':'CATALOG_EXPANSION_INCONCLUSIVE',produto_id:batchProductId,ml_item_id:batchRemoteId,pricing_source:'radar_launch',actor:auth.user.id,reason:batchReason,rule_id:batch.batchId,payload:{batchId:batch.batchId,preparationId:batch.preparationId,pauseConfirmed},dedupe_key:`stop:${catalogExpansionKey(batchProductId!, batch.batchId)}`});
+        await recordPricingEvent(client,{event_type:batchCritical?'CATALOG_EXPANSION_SAFETY_STOP':'CATALOG_EXPANSION_INCONCLUSIVE',produto_id:batchProductId,ml_item_id:batchRemoteId,pricing_source:'radar_launch',actor:auth.user.id,reason:batchReason,rule_id:batch.batchId,payload:{batchId:batch.batchId,...(batch.replacementAuthorizationId?{replacementAuthorizationId:batch.replacementAuthorizationId}:{}),preparationId:batch.preparationId,pauseConfirmed},dedupe_key:`stop:${catalogExpansionAttemptKey(batchProductId!, batch)}`});
       }
     } finally {
       if (batchLock) await releaseDomainLock(batchLock);

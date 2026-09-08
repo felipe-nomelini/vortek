@@ -314,3 +314,12 @@ test('menção a controle na descrição e departamento Antenas não mudam o tip
  ];
  for(const [nome,descricao,categoria,path,domain] of cases){const source={nome,descricao,categoria,marca:'Marca'};assert.doesNotThrow(()=>assertMlCategoryReview({version:1,categoryId:'cat',path,domain,offerId:'o',supplierProductId:'1',source,productUse:nome,sourceExcerpt:nome},'cat',{path,domain},'o',{produtoid:'1',titulo:nome,descricao,categoria_nome:categoria,marca:'Marca'}));}
 });
+
+test('parada da rota usa chave própria da substituição mesmo com parada anterior do produto',()=>{
+ const fs=require('fs'),ts=require('typescript'),vm=require('vm');
+ const source=ts.createSourceFile('route.ts',fs.readFileSync('src/app/api/ml/anuncio/criar/route.ts','utf8'),ts.ScriptTarget.Latest,true);let key;
+ function visit(n){if(ts.isObjectLiteralExpression(n)&&n.properties.some(p=>ts.isPropertyAssignment(p)&&p.name.getText(source)==='event_type'&&p.initializer.getText(source).includes('CATALOG_EXPANSION_SAFETY_STOP')))key=n.properties.find(p=>p.name?.getText(source)==='dedupe_key')?.initializer.getText(source);ts.forEachChild(n,visit);}visit(source);assert.ok(key);
+ const {catalogExpansionAttemptKey}=require('../src/lib/ml/catalog-expansion.ts');
+ const evaluate=batch=>vm.runInNewContext(ts.transpileModule('result = '+key,{compilerOptions:{target:9}}).outputText,{batch,batchProductId:'p',catalogExpansionAttemptKey,catalogExpansionKey,result:null});
+ assert.notEqual(evaluate(context),evaluate({...context,replacementAuthorizationId:'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'}));
+});
