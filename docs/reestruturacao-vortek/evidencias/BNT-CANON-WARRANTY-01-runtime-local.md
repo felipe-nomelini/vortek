@@ -1,5 +1,7 @@
 # WARRANTY-01 — Runtime local para homologação
 
+**Fechamento posterior em 08/09/2026:** a retirada foi publicada em DEV (`e036397`) e conferida em navegador autenticado, junto à preservação de API, avaliação, histórico e dados. A conciliação mantém a política V2 vigente, sem importar fallback universal de produção. WARRANTY-01 encerrada no escopo DEV; [evidências finais e limites](BNT-CANON-WARRANTY-01-validacao.md#fechamento-dev--08092026). O conteúdo abaixo é histórico.
+
 **Atualização posterior em 08/09/2026:** o usuário solicitou retirar os controles de garantia da interface. O painel, os modais e os links para revisão foram removidos do código DEV; o roteiro visual abaixo registra o ensaio anterior e não deve ser executado como instrução atual. APIs, pesquisa na preparação, evidências e histórico persistido permanecem. Esta retirada ainda não foi publicada. [Mudança e validação](BNT-CANON-WARRANTY-01-validacao.md#atualização--retirada-dos-controles-da-interface-08092026).
 
 Data: 08/09/2026. Branch `dev`, base `c2f39a3`. Continuação operacional do piloto individual de Felipe, sem mudar o contrato de garantia.

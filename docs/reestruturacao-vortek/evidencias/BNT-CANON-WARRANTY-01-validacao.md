@@ -1,5 +1,23 @@
 # BNT-CANON-WARRANTY-01 — Garantia por evidência
 
+## Fechamento DEV — 08/09/2026
+
+**Concluída no escopo DEV/homologação. Próxima ação: planejar BNT-PRICING-V2-08 / M2M-CFL-04 — Buy Box econômica.** Os registros de pendências abaixo são fotografias anteriores, superadas por este fechamento somente onde explicitado.
+
+- Conciliação: mantém-se o contrato V2 aprovado; fallback vendedor 30 dias de main NÃO INCORPORADO, conforme comparação abaixo. Nenhuma nova decisão de prazo ou nova fórmula de garantia.
+- Lote `e036397bb2df1e2c0758b3e7020208ec0652563c` commitado e enviado a `origin/dev`; `npm run deploy:easypanel` executado pelo webhook existente, reconfirmado por comparação privada com o token do serviço `local/vortek-erp-dev`, origem GitHub ref `dev`, auto deploy desabilitado.
+- Easypanel: ação `cmts65gr7000107o91ulwat0i`, build concluído e serviço DEV atualizado em `2026-09-08T04:30:35.253Z`, versão 9578, `UpdateStatus=completed`; `GIT_SHA` corresponde a `e036397`.
+- Chromium autenticado em `http://localhost:3001` e `https://dev.bentevi.shop`: detalhe `VTK000002`, aba Comercial e estoque sem painel/botões de garantia; configurações Mercado Livre sem card nem links de revisão, com regras protegidas preservadas. GET de configurações retornou 200; zero erros JS e zero mutações de aplicação durante o ensaio.
+- GET autenticado `/api/produtos/55f0d5e5-1aeb-4553-8247-5f80d158528f/warranty` retornou 200, mesma avaliação e fingerprint do snapshot lido diretamente do `.162`, fabricante 4 anos e histórico intacto. Snapshots completos da garantia e estado do produto comparados antes/depois: sem alteração.
+- Autenticação de teste somente na conta existente, via `generateLink`/`verifyOtp`, sem envio de email, criação de usuário ou alteração de senha. Antes de cada ação Auth, preflight TCP `.162`, hostname `supabase-dev`, histórico de migration `20260907213000` e schema afetado; sessão encerrada com `scope: local`. Nenhuma escrita de dados de negócio ou migration.
+- 428 regressões aprovadas, um LIVE opt-in omitido (429 testes); `npm run validate`, `npm run build` (120 páginas) e `git diff --check` aprovados. Inclui garantia/Codex, M2M, pricing, permissões, capacidade, interface/configurações e 13 testes de deploy.
+- Produção: serviço `local_vortek-erp` permaneceu na versão 9540 e timestamp `2026-09-08T02:32:28.030966423Z`, mesmos valores do preflight; nenhuma alteração de serviço, banco, conta ou anúncio produtivo.
+- Evidências visuais locais: `/tmp/bentevi-warranty-close-Mgs3gq/dev-produto.png` e `/tmp/bentevi-warranty-close-Mgs3gq/dev-configuracoes.png`; roteiro de leitura autenticada em `verify.cjs` no mesmo diretório, sem secrets gravados. São artefatos temporários, não fixtures nem arquivos publicados.
+
+**Limites preservados:** a tela de integração exibe conta ML desconectada e último erro de allowlist da conta de teste; não houve reconexão nem edição de permissões nesta tarefa. Retomar acesso autorizado no PUB-GATE antes de prova ML. Frete ME2 real, publicação/read-back e autonomia permanecem pendentes nas ações próprias, sem reabrir o escopo visual da garantia. Pesquisa remota indisponível continua explícita e não cria prazo; o piloto ChatGPT/Codex segue exclusivamente individual/local. Não se certifica produção nem uso compartilhado.
+
+Rollback: reverter seletivamente o lote visual pelo Git e novo deploy exclusivamente DEV se necessário; preservar regras, tabelas e histórico. O fechamento documental posterior não exige outro build: não modifica a aplicação implantada.
+
 ## Conciliação de política — 08/09/2026
 
 O pedido de resolver as pendências mantém o escopo aprovado: retirar a gestão visual sem alterar as regras atuais. Reconfirmados por `git ls-remote` e leitura local do ref: `origin/main` em `3ed7f1273d50229f1c17aee744dfc90ad9e7d66f`; nenhum commit de garantia nos arquivos de resolução/preparação/criação entre `dd34980` e esse SHA. Não se trata de certificação da revisão implantada em produção nem de auditoria dos outros domínios.
