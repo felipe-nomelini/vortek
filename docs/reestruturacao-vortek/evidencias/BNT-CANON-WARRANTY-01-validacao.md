@@ -53,7 +53,8 @@ node --test tests/m2m-*.test.js tests/pricing-audit*.test.js tests/pricing-overr
 
 ## Pendências e próxima ação
 
-1. Configurar credenciais **de desenvolvimento** de `FIRECRAWL_API_KEY` e `OPENROUTER_API_KEY` e executar a pesquisa real limitada, com aprovação de um domínio oficial e evidência do produto. Configuração runtime DEV e arquivos locais autorizados consultados; nenhum valor utilizável encontrado (placeholder de `.env.example` não é credencial). Não reutilizar credenciais de produção.
+1. **Decisão de 07/09/2026:** executar primeiro `BNT-AI-PROVIDER-01 — Integração ChatGPT/Codex e teste em DEV`, conforme [contrato no checklist](../VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bnt-ai-provider-01--integração-chatgptcodex-e-teste-em-dev). A chave OpenRouter deixa de ser exigida antes dessa avaliação; o código ainda usa OpenRouter e nenhuma substituição foi validada. Comprovar modalidade suportada e uso da assinatura no piloto de extração, sem migração em lote dos demais consumidores ou ativação automática de API paga.
+   Manter `FIRECRAWL_API_KEY` **de desenvolvimento** como dependência independente de coleta e, após o piloto validado, executar a pesquisa real limitada com domínio oficial aprovado e evidência do produto. A inspeção anterior não encontrou credenciais utilizáveis de pesquisa (placeholder de `.env.example` não é credencial); essa fotografia não comprova configuração atual nem conclusão do novo piloto. Não reutilizar credenciais de produção.
 2. Push/deploy desta entrega somente quando solicitado e aceite visual em `dev.bentevi.shop`: fabricante, fornecedor, legal, pendência, conflito e indisponibilidade; revisão e histórico. Nenhuma aprovação visual desta etapa foi presumida.
 3. Contrato de representação real de garantia no ML permanece sob o gate de publicação, sem POST/PUT externo nesta etapa.
 

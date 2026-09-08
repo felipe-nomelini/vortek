@@ -4,7 +4,7 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação vigente (07/09/2026):** `BNT-CANON-WARRANTY-01` implementada e validada localmente e no Supabase DEV `.162`; falta configurar/testar a pesquisa real (Firecrawl/OpenRouter DEV) e homologar a interface após deploy autorizado. [Evidências e pendências](evidencias/BNT-CANON-WARRANTY-01-validacao.md). Não avançar automaticamente para Buy Box econômica antes desta validação. O lote anterior até `562ffa3` foi publicado em DEV e o usuário aprovou visualmente override/liquidação; registros anteriores de “sem deploy” são fotografias históricas. Nenhum push/deploy desta nova entrega. Frete vivo ME2 continua reservado à conexão autorizada da conta real; `pricing_execution_not_ready` e gates comerciais permanecem bloqueando escritas.
+**Situação vigente (07/09/2026):** próxima ação `BNT-AI-PROVIDER-01 — Integração ChatGPT/Codex e teste em DEV`, antes de fechar `BNT-CANON-WARRANTY-01`. Garantia implementada e validada localmente e no Supabase DEV `.162`, ainda pendente de pesquisa real e aceite visual. Avaliar/testar a substituição do OpenRouter pela assinatura antes de exigir sua chave; Firecrawl permanece como dependência de coleta. [Evidências e pendências da garantia](evidencias/BNT-CANON-WARRANTY-01-validacao.md). Integração nova apenas planejada, sem modalidade compartilhada ou funcionamento presumidos. Depois do piloto validado, concluir a garantia e seguir para Buy Box econômica. O futuro chat permanece após `BNT-D20`. Frete vivo ME2 continua reservado à conexão autorizada da conta real; `pricing_execution_not_ready` e gates comerciais permanecem bloqueando escritas.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
 **Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.
@@ -318,6 +318,7 @@ Uma fila operacional; duas identificações na mesma linha representam **a mesma
 | 8 | `BNT-PRICING-V2-04` | P0 | Origem e audit trail vinculados ao grupo existente |
 | 9 | `BNT-PRICING-V2-05` | P0 | Override explícito por grupo até revogação manual |
 | 10 | `BNT-PRICING-V2-06` | P1 | Liquidação interna |
+| 10.05 | `BNT-AI-PROVIDER-01` | P0 operacional | Integração ChatGPT/Codex e teste DEV na extração de garantia antes de exigir chave OpenRouter; Firecrawl e regras preservados |
 | 10.1 | `BNT-CANON-WARRANTY-01` | P0 | Garantia por evidência, sem prazo universal ou atributo inventado; conflitos exigem validação |
 | 11 | `BNT-PRICING-V2-08` / `M2M-CFL-04` | P0 | Viabilidade competitiva e Buy Box econômica |
 | 11.1 | `BNT-PRICING-V2-13` | P0 operacional | Alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa |
@@ -337,6 +338,8 @@ Uma fila operacional; duas identificações na mesma linha representam **a mesma
 | 24 | `BNT-D20` | P1 | Composição visual final de Configurações |
 
 Cada ação terá critério de aceite, teste e evidência próprios. Não agrupar correções independentes. Migrations são novas, ensaiadas e aplicadas somente no `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura.
+
+**Adição aprovada em 07/09/2026:** `BNT-AI-PROVIDER-01` é a próxima ação, inserida antes do fechamento da garantia já implementada. Contrato, testes e critérios de aceite no [checklist](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bnt-ai-provider-01--integração-chatgptcodex-e-teste-em-dev). Integração/teste → homologação WARRANTY-01 → Buy Box econômica. Não depende do futuro chat; `BNT-AI-00`, após `BNT-D20`, reutilizará seus resultados. Não presumir modalidade compartilhada suportada, substituir Firecrawl ou migrar os demais consumidores OpenRouter junto do piloto. Se houver impedimento, registrá-lo sem ativar API paga automaticamente.
 
 **Contrato de transição vigente:** PRC-01/02 entregaram o núcleo; PRC-02A adequou a memória ao cânon; PRC-03 migrou consumidores, inclusive CMV unitário e kits, preservando bloqueios; QTY-01 retirou desconto por quantidade. PRC-04 integrará revalidação ML viva, sem liberar criação/preço. Não habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. A seção 18 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) registra os aceites reconciliados; a seção 13 permanece histórica. Cada linha é uma tarefa independente.
 

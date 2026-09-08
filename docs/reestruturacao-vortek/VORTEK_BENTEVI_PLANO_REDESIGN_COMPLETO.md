@@ -182,12 +182,14 @@ Rotas-wrapper e aliases reutilizam a página responsável; não receberão imple
 
 | ID | Entrega |
 |---|---|
-| `BNT-AI-00` | Contrato e modalidade de provedor suportada para os dois usuários, avaliando a conta ChatGPT da empresa sem presumir autorização de uso compartilhado ou créditos de API. |
+| `BNT-AI-00` | Reutilizar os resultados de `BNT-AI-PROVIDER-01` e confirmar contrato/modalidade para o chat dos dois usuários, sem presumir autorização de uso compartilhado ou créditos de API. |
 | `BNT-AI-01` | Conhecimento e consultas autorizadas, reutilizando documentação vigente, serviços e cálculos canônicos do ERP. |
 | `BNT-AI-02` | Página de chat, novas conversas, histórico individual, respostas progressivas, fontes e links para os registros consultados. |
 | `BNT-AI-GATE` | Testes de precisão, isolamento, permissões, consumo e falhas; aprovação visual de ambos e gate obrigatório de lançamento. |
 
 Todas as ações estão pendentes. Os critérios funcionais completos ficam no checklist, sem duplicar regras comerciais aqui. A seleção de provedor não altera automaticamente os consumidores atuais do OpenRouter.
+
+`BNT-AI-PROVIDER-01` pertence à fila imediata de integração/garantia e será testada antes do fechamento de WARRANTY-01; não depende do chat. Seu resultado deve ser reaproveitado aqui, sem remontar a integração nem antecipar `/assistente` sobre `BNT-D20`.
 
 **Direção visual:** priorizar a conversa, com histórico secundário e fontes acessíveis em cada resposta; reaproveitar shell, tokens e componentes existentes. Mostrar carregamento, resposta em andamento, vazio, erro e indisponibilidade de dados sem parecer resultado confirmado. Permitir navegação do diagnóstico ao registro do ERP sem executar ações comerciais pelo chat.
 
