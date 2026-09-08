@@ -49,7 +49,9 @@ const money = (cents: number | null) => formatCurrency(cents === null ? null : c
 const percent = (value: number) => `${(value * 100).toFixed(2).replace('.', ',')}%`;
 
 /** Apresentação apenas: cada linha usa sua própria memória, sem fórmula no browser. */
-export function PricingQuoteSummary({ pricing, currentLabel = 'Preço consultado', showContextAlert = true }: { pricing?: ProductPricing | null; currentLabel?: string; showContextAlert?: boolean }) {
+export function PricingQuoteSummary({ pricing, currentLabel = 'Preço consultado', showContextAlert = true, presentation = 'live' }: {
+  pricing?: ProductPricing | null; currentLabel?: string; showContextAlert?: boolean; presentation?: 'live' | 'simulation';
+}) {
   const { token } = theme.useToken();
   if (!pricing) return null;
   const rows: Array<{ key: string; label: string; memory: EconomicMemory | null; issues: string }> = [];
@@ -64,17 +66,20 @@ export function PricingQuoteSummary({ pricing, currentLabel = 'Preço consultado
     rows.push({ key, label, memory: result.ok ? result.evaluation.memory : null, issues: result.ok ? '' : explain(result.reasons) });
   }
   const queried = pricing.revalidation?.status === 'queried';
+  const simulated = presentation === 'simulation';
+  const evaluatedAt = simulated ? rows.find(row => row.memory)?.memory?.evaluatedAt : pricing.revalidation?.evaluatedAt;
   return <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-    {showContextAlert && <Alert showIcon type={queried ? 'info' : 'warning'} message={queried ? 'Fontes consultadas no Mercado Livre' : 'Consulta econômica inconclusiva'}
-      description={pricing.revalidation?.code ? explanations[pricing.revalidation.code as EconomicIssue['code']] || pricing.revalidation.code
+    {showContextAlert && <Alert showIcon type={simulated || queried ? 'info' : 'warning'} message={simulated ? 'Simulação hipotética — sem consulta ao Mercado Livre' : queried ? 'Fontes consultadas no Mercado Livre' : 'Consulta econômica inconclusiva'}
+      description={simulated ? 'Custo, taxa e frete são entradas do cenário. Tributo vem do contexto fiscal central. Nenhuma configuração ou preço foi gravado; esta simulação não libera publicação.'
+        : pricing.revalidation?.code ? explanations[pricing.revalidation.code as EconomicIssue['code']] || pricing.revalidation.code
         : 'Cotação sob demanda, não autorização para publicar. Frete é estimado; não é o custo realizado do shipment. Alterações automáticas continuam bloqueadas.'} />}
-    <Typography.Text type="secondary">CMV: {money(pricing.costCents)} · Consulta: {pricing.revalidation ? new Date(pricing.revalidation.evaluatedAt).toLocaleString('pt-BR') : 'sem revalidação viva'}</Typography.Text>
+    <Typography.Text type="secondary">CMV: {money(pricing.costCents)} · {simulated ? 'Simulação' : 'Consulta'}: {evaluatedAt ? new Date(evaluatedAt).toLocaleString('pt-BR') : simulated ? 'memória indisponível' : 'sem revalidação viva'}</Typography.Text>
     <Table size="small" pagination={false} dataSource={rows} rowKey="key" scroll={{ x: 810 }} onRow={() => ({ style: { color: token.colorText } })} columns={[
       { title: 'Referência', dataIndex: 'label', width: 130 },
       { title: 'Preço', key: 'price', render: (_, row) => money(row.memory?.revenueCents ?? null) },
-      { title: 'Tarifa ML total', key: 'fee', render: (_, row) => <span>{money(row.memory?.fee.amountCents ?? null)}<br /><small>{row.memory?.fee.source === 'ml_live' ? 'ML vivo · inclui fixa' : row.memory ? 'Fallback estimado' : '—'}</small></span> },
-      { title: 'Frete estimado', key: 'shipping', render: (_, row) => <span>{money(row.memory?.shipping.amountCents ?? null)}<br /><small>{row.memory?.shipping.source === 'ml_live' ? 'Cotação ML' : row.memory ? 'Configuração not_specified' : '—'}</small></span> },
-      { title: 'Tributo', key: 'tax', render: (_, row) => <span>{money(row.memory?.tax.amountCents ?? null)}<br /><small>{row.memory ? row.memory.tax.status === 'confirmed' ? 'Confirmado' : 'Estimado' : '—'}</small></span> },
+      { title: simulated ? 'Taxa ML simulada' : 'Tarifa ML total', key: 'fee', render: (_, row) => <span>{money(row.memory?.fee.amountCents ?? null)}<br /><small>{simulated && row.memory ? 'Taxa do cenário' : row.memory?.fee.source === 'ml_live' ? 'ML vivo · inclui fixa' : row.memory ? 'Fallback estimado' : '—'}</small></span> },
+      { title: 'Frete estimado', key: 'shipping', render: (_, row) => <span>{money(row.memory?.shipping.amountCents ?? null)}<br /><small>{simulated && row.memory ? 'Frete do cenário' : row.memory?.shipping.source === 'ml_live' ? 'Cotação ML' : row.memory ? 'Configuração not_specified' : '—'}</small></span> },
+      { title: 'Tributo', key: 'tax', render: (_, row) => <span>{money(row.memory?.tax.amountCents ?? null)}<br /><small>{row.memory ? row.memory.tax.status === 'confirmed' ? 'Confirmado' : 'Estimado' : '—'}{simulated && row.memory?.tax.context.appliedRate != null ? ` · ${percent(row.memory.tax.context.appliedRate)}` : ''}</small></span> },
       { title: 'Resultado / margem', key: 'result', render: (_, row) => row.memory ? <Typography.Text type={row.memory.resultCents < 0 ? 'danger' : 'success'}>{money(row.memory.resultCents)}<br />{percent(row.memory.margin)}</Typography.Text> : '—' },
       { title: 'Piso / alvo / limite', key: 'band', render: (_, row) => row.memory ? `${percent(row.memory.band.floor)} / ${percent(row.memory.band.target)} / ${percent(row.memory.band.limit)}` : '—' },
     ]} />

@@ -1,5 +1,8 @@
 import { z } from "zod";
 import type { Json } from "@/types/database";
+import type { FinalPricePolicy } from "@/types/pricing";
+import type { PricingTaxContext } from "@/services/pricing";
+import type { ProductPricing } from "@/services/pricing-context";
 import { isValidCnpj, normalizeCnpj } from "../fiscal/cnpj.js";
 
 export const CONFIGURATION_CLASSIFICATIONS = [
@@ -234,6 +237,24 @@ export const commercialConfigurationSchema = z.object({
 }).strict();
 
 export type CommercialConfigurationInput = z.infer<typeof commercialConfigurationSchema>;
+
+export type CommercialConfigurationDto = CommercialConfigurationInput & {
+  finalPricePolicy: FinalPricePolicy;
+  pricingTaxContext: PricingTaxContext;
+};
+
+export const commercialSimulationSchema = z.object({
+  costCents: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
+  shippingCents: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),
+  feeRate: z.number().finite().min(0).lt(1),
+  priceCents: z.number().int().positive().max(Number.MAX_SAFE_INTEGER).nullable(),
+}).strict();
+
+export type CommercialSimulationInput = z.infer<typeof commercialSimulationSchema>;
+export type CommercialSimulationDto = {
+  pricing: ProductPricing;
+  pricingTaxContext: PricingTaxContext;
+};
 
 const dsliteXmlFeedUrlSchema = z.string().trim().max(2048).superRefine((value, context) => {
   try {

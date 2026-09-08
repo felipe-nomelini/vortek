@@ -4,6 +4,7 @@ import { requireAdminUser } from "@/lib/auth/admin";
 import {
   commercialConfigurationSchema,
   configurationValidationMessage,
+  type CommercialConfigurationDto,
 } from "@/lib/configuracoes/contracts";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { loadPricingTaxContext } from "@/services/pricing-tax-context";
@@ -17,7 +18,7 @@ const CONFIG_ROW_ID = "00000000-0000-0000-0000-000000000001";
 function toDto(
   configuration: CommercialPricingConfiguration,
   pricingTaxContext: Awaited<ReturnType<typeof loadPricingTaxContext>>,
-) {
+): CommercialConfigurationDto {
   return {
     mlFeeFallbackPercent: configuration.mlFeeFallbackRate * 100,
     unspecifiedShippingCost: configuration.unspecifiedShippingCost,
@@ -66,6 +67,7 @@ export async function PUT(request: Request) {
   }
 
   const serviceClient = createServiceClient();
+  let persisted = false;
   try {
     const previous = await loadDto(serviceClient);
     const mlFeeRate = parsed.data.mlFeeFallbackPercent / 100;
@@ -79,6 +81,7 @@ export async function PUT(request: Request) {
       },
     );
     if (error) throw new Error(error.message);
+    persisted = true;
 
     const saved = await loadDto(serviceClient);
     try {
@@ -101,7 +104,11 @@ export async function PUT(request: Request) {
     return NextResponse.json(saved, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     return NextResponse.json(
-      { erro: error instanceof Error ? error.message : "Falha ao salvar configuração comercial" },
+      { erro: persisted
+        ? "Configuração salva, mas a confirmação e o histórico administrativo não puderam ser concluídos"
+        : error instanceof Error ? error.message : "Falha ao salvar configuração comercial",
+        ...(persisted ? { persisted: true } : {}),
+      },
       { status: 500 },
     );
   }

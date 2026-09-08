@@ -102,6 +102,7 @@ test('paginação detecta lote repetido sem laço infinito ou resumo parcial', a
 test('simulador autentica antes do contexto e rejeita campos legados sem efeitos', async () => {
   let allowed = false; let reads = 0;
   const route = load('src/app/api/configuracoes/comercial/simular/route.ts', {
+    '@/lib/configuracoes/contracts': require('../src/lib/configuracoes/contracts.ts'),
     'next/server': { NextResponse: { json: (data, init) => Response.json(data, init) } }, zod: require('zod'),
     '@/lib/supabase': { createClient: async () => ({}), createServiceClient: () => { reads++; return {}; } },
     '@/lib/auth/admin': { requireAdminUser: async () => allowed ? { ok: true } : { ok: false, response: new Response(null, { status: 403 }) } },
