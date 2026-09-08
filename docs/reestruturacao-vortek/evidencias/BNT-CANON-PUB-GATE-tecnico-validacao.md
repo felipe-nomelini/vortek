@@ -2,7 +2,17 @@
 
 Data: 08/09/2026. Branch: `dev`. Base local: `e35970c`, com alterações documentais preexistentes preservadas.
 
-**Situação: implementação e regressões concluídas; publicada em DEV; conta de teste conectada. Prova externa e aceite autenticado pendentes. Marco 1 e PUB-GATE integral não encerrados.** A publicação autorizada está registrada abaixo; não habilitou escrita comercial ML.
+**Situação: implementação e regressões concluídas; publicada em DEV; conta de teste conectada na última verificação. Recorte técnico do marco 1 concluído para sequência; aceite autenticado e prova externa transferidos ao marco 6 por decisão do usuário. PUB-GATE integral não encerrado.** A publicação autorizada está registrada abaixo; não habilitou escrita comercial ML. Próxima ação: planejar V2-15 operacional no marco 2.
+
+## Decisão de sequência — após o deploy de 08/09/2026
+
+O usuário aprovou avançar nas etapas e realizar a prova externa de publicação/preço na ativação real acompanhada. Não preparar novo produto de teste nem ampliar agora a homologação visual desta ação. O marco 2 fica liberado pelo recorte técnico já comprovado; os 219 testes anteriores e smokes não são convertidos em evidência de operação externa ou aceite autenticado.
+
+Risco aceito para desenvolvimento: a primeira prova real pode revelar divergências ainda não observadas. O risco não foi eliminado e continua bloqueador da liberação geral do fluxo se materializado. A capacidade produtiva deve ser preparada e testada no marco 5; o aceite autenticado e a prova externa, junto de ME2, pertencem ao marco 6. Sequência e critérios são os de [Bentevi em operação](../VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao).
+
+Esta atualização é exclusivamente documental: não habilita `test_only`, não seleciona produto, não altera amostras protegidas, código, banco, credenciais ou produção. Testes automatizados continuam obrigatórios por mudança. Nenhum commit/push/deploy novo é necessário nesta tarefa.
+
+**Validação desta atualização documental (08/09/2026):** branch `dev`, árvore inicialmente limpa; seis documentos alterados, sem arquivos funcionais. Conferência automatizada aprovou sete marcos únicos, V2-15 operacional como próxima ação, V2-15/D20 ainda pendentes, capacidade produtiva no marco 5, prova externa no marco 6 e PUB-GATE integral aberto; 84 links locais conferidos. `npm run validate` (lint/typecheck) e `git diff --check` aprovados. A suíte funcional de 219 testes e o build abaixo são evidências anteriores, não reexecutadas nesta tarefa documental. Sem acesso à infraestrutura, migrations, alteração de `AGENTS.md`, commit, push ou deploy nesta atualização. Contratos externos e homologação runtime: não aplicáveis a esta alteração de sequência, permanecendo obrigatórios nas respectivas ações técnicas.
 
 ## AS_IS → TO_BE implementado
 
@@ -64,11 +74,11 @@ Os testes de transporte utilizam mocks e os SQL provam o contrato transacional; 
 
 ## Pendências e limites de aceite
 
-1. **Conta ML de teste já conectada e verificada.** Em tarefa própria de prova externa autorizada, reconfirmar token/tag/allowlist/destino, habilitar temporariamente `test_only` e executar uma criação limitada e uma alteração de preço explicitamente aprovadas. Registrar IDs, operação/outbox, projeções e read-back; restaurar `disabled` ao encerrar a prova. O push/deploy não habilita essa execução.
-2. Candidato publicado em DEV conforme solicitação. Falta validar a interface autenticada: preparação, decisão, aplicação, resultado e recuperação. Os smokes sem sessão não substituem teste visual/E2E autenticado.
+1. **Marco 5 — capacidade produtiva pendente:** preparar e testar o contrato produtivo canônico, preservando aprovação humana, auditoria, consumo idempotente, prevenção de duplicação, revalidação e read-back. O código atual exige `test_only`, conta `test_user` e `.162`; conectar a conta real ou remover o guard não é implementação suficiente. Ensaios permanecem em DEV `.162`; configuração/ativação produtivas somente pelo workspace `vortek-prod`, no release autorizado. Definir backup, recuperação e tratamento de efeitos externos já enviados antes da ativação.
+2. **Marco 6 — aceite autenticado e prova externa transferidos, não realizados:** começar por leitura/conferência de preços, custos, tarifas e frete/ME2 da conta real no ambiente produtivo preparado. Validar preparação, decisão, aplicação, resultado e recuperação com uma publicação comercial selecionada e uma alteração de preço, aprovadas individualmente. Registrar IDs, operação/outbox, histórico, projeções, read-back e ausência de duplicação antes de ampliar uso. Manter um único executor por fluxo; resultado inconclusivo ou divergência material interrompe o fluxo afetado. Sem novo produto de teste como bloqueador da sequência DEV, sem transportar fixtures nem criar anúncio fictício na conta real. Os smokes sem sessão não substituem esse aceite.
 3. Resposta perdida antes da captura do ID de criação não tem busca heurística/novo POST: permanece inconclusiva, exige investigação do anúncio remoto. Descrição falha não é reenviada automaticamente; a conferência aponta incompletude sem duplicar anúncio.
 4. O cadastro fiscal é validado localmente, mas esta entrega **não realiza nem comprova vínculo fiscal externo no ML**. Verificar a necessidade/contrato no contexto comercial autorizado antes de liberar sua operação; não confundir NF-e/integração fiscal com cadastro de anúncio.
-5. Frete/tarifa ME2 da conta real e aceitação comercial permanecem no **marco 6**. Este código contém somente capacidade de teste: a política de liberação produtiva ainda deverá ser implementada/revisada no workspace produtivo e release autorizados, sem simplesmente contornar o guard.
+5. Frete/tarifa ME2 da conta real e aceitação comercial permanecem no **marco 6**, junto da prova transferida do marco 1. A capacidade produtiva é entrega obrigatória do marco 5; sua ativação fica no workspace produtivo/release autorizados, sem contornar o guard nem permitir escrita produtiva por este worktree.
 6. Não foram comprovados externamente kit, reativação ou pares de catálogo nesta entrega. Os contratos existentes e testes de bloqueio/sincronização foram preservados; criação rejeita anúncios existentes/reativações, que não viram novo anúncio. Sem publicação em massa nem autonomia de preço.
 
 ## Publicação DEV — 08/09/2026

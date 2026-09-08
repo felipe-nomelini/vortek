@@ -4,7 +4,7 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação vigente (08/09/2026):** PUB-GATE técnico publicado em DEV (`9a18ff8f`), com 219 testes, validate/build e smoke sem sessão aprovados. Seller de teste conectado/verificado; execução comercial continua desabilitada. Marco 1 aberto: faltam aceite autenticado e prova externa limitada de criação/preço com read-back. Sem escrita em produção nem nova migration nesta publicação. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). ME2/prova comercial real permanecem no marco 6; gate integral/autonomia continuam abertos.
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-15` operacional implementado e validado localmente: faixas fixas somente leitura, três parâmetros auditáveis e simulação canônica; 87 testes Node, 13 cenários de navegador isolado, validate/build aprovados. [Evidências V2-15 operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). Sem push/deploy desta ação; próxima ação técnica: aceite inicial de `BNT-D20`, após disponibilizar o candidato para conferência mediante solicitação. Marco 2 e V2-15/D20 integrais continuam abertos. PUB-GATE técnico permanece publicado em DEV (`9a18ff8f`); aceite autenticado/prova externa e ME2 pendentes no marco 6, capacidade produtiva no marco 5. Execução comercial não habilitada e produção não alterada. [Limites PUB-GATE](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
 **Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.
@@ -41,7 +41,7 @@ A sequência abaixo descreve a épica integral; os passos 1 a 4 foram concluído
 
 `BNT-PARITY-FINAL` continua obrigatório imediatamente antes de qualquer promoção.
 
-**Primeira operação:** PUB-GATE técnico → V2-15 operacional/D20 inicial → Assistente → regressão operacional → preparação da transição → ativação real/ME2/PUB-GATE comercial → uso diário. O aceite inicial de D20 não depende de CFG-08/09 nem do gate integral V2-16; suas partes futuras permanecem abertas. V2-15 também terá aceite parcial explícito, sem marcar a ação integral como concluída. A fila completa é retomada depois, preservando dependências e uma ação por tarefa.
+**Primeira operação:** PUB-GATE técnico (recorte concluído para sequência) → V2-15 operacional/D20 inicial → Assistente → regressão operacional → preparação da transição/capacidade produtiva → ativação real/ME2/aceite autenticado e prova externa PUB-GATE → uso diário. Por decisão do usuário após o deploy de 08/09/2026, a prova externa não bloqueia V2-15 operacional e fica pendente no marco 6, sem exigir agora novo produto de teste. A capacidade produtiva é entrega obrigatória do marco 5, não uma remoção dos guards atuais. O aceite inicial de D20 não depende de CFG-08/09 nem do gate integral V2-16; suas partes futuras permanecem abertas. V2-15 também terá aceite parcial explícito, sem marcar a ação integral como concluída. A fila completa é retomada depois, preservando dependências e uma ação por tarefa.
 
 Não haverá dois motores publicando preços em paralelo. Até o gate `BNT-PRICING-V2-16`, alterações automáticas de preço permanecem `REQUIRES_CONFIRMATION`.
 
@@ -285,6 +285,8 @@ Severidades:
 
 ## 13. Configurações administrativas
 
+**Decisão operacional de 08/09/2026:** faixas/piso/alvo/limite permanecem fixos e somente leitura no lançamento. Editáveis agora: taxa fallback ML, frete fallback `not_specified` e limite de custo para elegibilidade. Reutilizar contratos/RPC/auditoria existentes; não criar tabela dinâmica de política. A lista integral abaixo não autoriza editar faixas futuramente sem nova homologação. Radar, observação, experimentos e autonomia só ganham parâmetros quando seus consumidores existirem.
+
 Em `/configuracoes`, na seção Comercial e Precificação, expor com contrato tipado e auditoria:
 
 - faixas por preço final;
@@ -324,7 +326,7 @@ Uma fila integral; duas identificações na mesma linha representam **a mesma a�
 | 10.1 | `BNT-CANON-WARRANTY-01` | P0 | Garantia por evidência, sem prazo universal ou atributo inventado; conflitos exigem validação |
 | 11 | `BNT-PRICING-V2-08` / `M2M-CFL-04` | P0 | Viabilidade competitiva e Buy Box econômica |
 | 11.1 | `BNT-PRICING-V2-13` | P0 operacional | Alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa |
-| 11.2 | `BNT-CANON-PUB-GATE` | P0 | Provar sugestão → preparação → confirmação → publicação/read-back em homologação, com economia, identidade, garantia e grupo coerentes |
+| 11.2 | `BNT-CANON-PUB-GATE` | P0 | Recorte técnico concluído para sequência; aceite autenticado e prova sugestão → preparação → confirmação → publicação/read-back transferidos ao marco 6 autorizado, com economia, identidade, garantia e grupo coerentes; gate integral aberto |
 | 12 | `BNT-PRICING-V2-09` | P1 | Performance 30/90/150 separada da economia |
 | 13 | `BNT-PRICING-V2-08A` | P1 | Diagnósticos de margem baixa, prejuízo, liquidação e premium com evidência comercial |
 | 14 | `BNT-PRICING-V2-10` | P1 | Experimentos |
@@ -347,7 +349,7 @@ Cada ação terá critério de aceite, teste e evidência próprios. Não agrupa
 
 **Dependências sem ciclo:** CFL-03/V2-07 entrega identidade e leitura de grupos, não depende de publicação efetiva para ser concluída. V2-04/05/06 consomem esse contrato. V2-13 entrega decisões, aplicação controlada e lifecycle de alertas para os fluxos já existentes, com testes de contrato; não exige job noturno, experimentos ou Dashboard prontos. Essas entregas posteriores conectam seus produtores ao mesmo mecanismo, sem duplicá-lo. PUB-GATE só admite prova externa DEV após V2-13 e demais pré-requisitos, mediante autorização específica. Performance V2-09 antecede diagnósticos V2-08A; uma dependência ausente permanece explícita, nunca simulada como entrega concluída.
 
-O gate de publicação possui preparo técnico no marco 1 e aceite comercial com provas reais autorizadas no marco 6; não fechá-lo apenas com o preparo. A passagem do marco 1 ao 2 não declara ME2 homologado. A primeira operação tem gate próprio e não encerra `M2M-GATE`, autonomia ou `BNT-PARITY-FINAL`. Esta decisão documental não autoriza publicação em massa, continuidade de coorte histórica, alteração de anúncios reais ou produção. O job noturno permanece solicitado na ação própria, inicialmente observacional, mas foi adiado para depois da entrada em operação; jobs operacionais existentes continuam no escopo inicial.
+O gate de publicação possui recorte técnico concluído para sequência no marco 1; seu aceite autenticado e prova externa foram transferidos ao marco 6 por decisão do usuário. Não fechar o gate integral apenas com o preparo. A passagem do marco 1 ao 2 fica liberada, sem declarar ME2 ou execução externa homologados. No marco 5, preparar/testar a capacidade produtiva canônica antes da ativação; o código atual só admite conta de teste e `.162`. A primeira operação tem gate próprio e não encerra `M2M-GATE`, autonomia ou `BNT-PARITY-FINAL`. Esta decisão documental não autoriza publicação em massa, continuidade de coorte histórica, alteração de anúncios reais ou produção. O job noturno permanece solicitado na ação própria, inicialmente observacional, mas foi adiado para depois da entrada em operação; jobs operacionais existentes continuam no escopo inicial.
 
 ## 15. Gate de autonomia
 

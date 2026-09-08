@@ -6,6 +6,8 @@ Este documento registra regras práticas validadas na criação de anúncios do 
 
 O PUB-GATE publicado em DEV (`9a18ff8f`) substitui a criação direta por preparação, aprovação explícita, operação/outbox, worker e conferência. O formulário de preço também encaminha proposta à central; a rota de preço bruto continua bloqueada. A capacidade nova está **desabilitada por padrão**, restrita à conta de teste/allowlist/DEV e banco `.162`. Os testes locais não substituem a prova no ML: o seller de teste está conectado/verificado, mas o aceite autenticado e a prova externa limitada ainda estão pendentes. [Contrato, evidências, rollback e pendências do marco 1](reestruturacao-vortek/evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
 
+**Sequência atualizada por decisão do usuário, após o deploy de 08/09/2026:** recorte técnico do marco 1 concluído para sequência; seguir para V2-15 operacional/D20 inicial. Aceite autenticado e prova externa transferidos ao marco 6 de [Bentevi em operação](reestruturacao-vortek/VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao), sem exigir agora novo produto de teste. Preparar/testar capacidade produtiva no marco 5; conta real e escritas somente na ativação autorizada pelo workspace `vortek-prod`. Esta decisão não altera o código, não habilita execução e não encerra PUB-GATE integral.
+
 Não reenviar criação ou preço após resultado incerto. A central pode solicitar nova conferência da mesma operação, sem repetir a mutação. Nenhuma destas regras autoriza anúncio real, publicação em massa ou escrita em produção.
 
 ## Regra central

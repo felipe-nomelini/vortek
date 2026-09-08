@@ -1337,6 +1337,8 @@ sem consumidor → remover
 
 **Recorte Bentevi aprovado em 08/09/2026:** a substituição inicial desktop segue os [sete marcos Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao), fonte única dos bloqueadores, adiamentos e acompanhamento. Primeira operação não significa encerramento do Item 17 nem da épica M2M. Preparar a ativação após o marco 5; concluir provas reais autorizadas no marco 6 antes do uso diário no marco 7. Produção exige autorização própria e execução no workspace `vortek-prod`; este plano não permite mutações produtivas a partir de `vortek-dev`.
 
+**Atualização de sequência após o deploy PUB-GATE, aprovada em 08/09/2026:** o recorte técnico do marco 1 está concluído para liberar Configurações iniciais (V2-15 operacional/D20 inicial). Aceite autenticado e prova externa de publicação/preço ficam pendentes no marco 6, sem novo produto de teste como pré-requisito do marco 2. Preparar/testar capacidade produtiva canônica no marco 5, preservando controles e testes automatizados; a transferência da prova não habilita produção nem encerra o gate integral.
+
 Nenhuma etapa inteira precisa esperar todas as outras para chegar à produção.
 
 A regra é por mudança validada.

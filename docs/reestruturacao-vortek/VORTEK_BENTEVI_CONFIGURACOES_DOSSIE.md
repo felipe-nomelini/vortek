@@ -85,7 +85,7 @@ Cada item deve receber uma destas classes antes da implementação:
 |---|---|
 | Empresa e marca | identidade operacional, contato, endereço e identidade dos documentos |
 | Fiscal | cadastro do emitente, Simples Nacional, defaults fiscais permitidos e saúde do emissor |
-| Comercial e precificação | margens, lucros mínimos, faixas, custo alto, frete estimado e preço por quantidade |
+| Comercial e precificação | política fixa por preço final, contexto fiscal de consulta, taxa/frete estimados, limite de elegibilidade e simulação canônica |
 | Produtos e estoque | políticas de ativação, estoque interno, recebimento e origens de oferta |
 | Pedidos e fulfillment | prioridade de atendimento, prazos operacionais, etiqueta e expedição |
 | Compras e fornecedores | modalidades, pagamentos, fornecedor e políticas específicas sem listas duplicadas |
@@ -136,23 +136,25 @@ A navegação permanece numa única rota. As seções poderão usar grupos inter
 
 ### 5.3 Comercial e precificação
 
+**Estado vigente em 08/09/2026 — V2-15 operacional:** por decisão explícita do usuário, faixas/piso/alvo/limite permanecem fixos e somente para consulta. O recorte não cria edição da política nem migrations. As políticas antigas abaixo são históricas, sem autoridade econômica.
+
 | Parâmetro | Estado atual | Classe e destino |
 |---|---|---|
-| Margem padrão | `configuracoes.margem_lucro` | manter somente se todos os consumidores forem identificados; caso contrário, consolidar ou aposentar |
-| Faixas de custo | até 400, até 1.000 e acima | `EDITAVEL_CONTROLADO`; coleção tipada e sem sobreposição |
-| Margem por faixa | 15%, 20% e 25% | `EDITAVEL_CONTROLADO`; validar imposto + taxa + margem abaixo de 100% |
-| Lucro mínimo por faixa | R$ 20, R$ 60 e R$ 150 | `EDITAVEL_CONTROLADO`; valor não negativo |
-| Limite de custo para inativação | R$ 2.000 | `EDITAVEL_CONTROLADO`; substituir a constante central, preservando fonte única |
-| Custo de frete não informado | R$ 30 | `EDITAVEL_CONTROLADO`; mostrar quando é fallback e não frete real |
+| Política por preço final | `FINAL_PRICE_POLICY`, retornada por `/api/configuracoes/comercial` | `INVARIANTE`; versão e três faixas visíveis, sem edição; percentuais no cânon |
+| Margem global, faixas por custo e lucro mínimo nominal | estruturas históricas, consumidores aposentados por PRC-03 | `OBSOLETO`; não configurar nem reintroduzir no motor |
+| Limite de custo da oferta | `configuracoes.product_inactive_cost_threshold` | `EDITAVEL_CONTROLADO`; elegibilidade, nunca margem/faixa ou atividade manual do produto |
+| Frete estimado — a combinar | `configuracoes.pricing_unspecified_shipping_cost` | `EDITAVEL_CONTROLADO`; fallback somente `not_specified`, sem substituir cotação válida |
 | Faixas de preço por quantidade | Histórico 3/5/10 unidades, 3%/4%/5% | `OBSOLETO` — retiradas da configuração operacional por BNT-CANON-QTY-01; histórico preservado |
-| Taxa ML | vem do anúncio/produto, com fallback localizado | valor observado quando disponível; qualquer fallback global deve ser explícito e único |
+| Taxa estimada do ML | `configuracoes.pricing_ml_fee_fallback_rate`, percentual na UI | `EDITAVEL_CONTROLADO`; taxa válida observada/viva, inclusive zero, prevalece sobre fallback |
+| Contexto fiscal | `loadPricingTaxContext` | `STATUS_SOMENTE_LEITURA` em Comercial; fonte, competência e alíquota; edição somente em Empresa e fiscal |
+| Simulador | `/api/configuracoes/comercial/simular` → `simulateProductPricing` | sem persistência; usa parâmetros salvos ou formulário explicitamente; custo obrigatório, preço opcional, zero explícito válido; apresenta memória do servidor |
 | Regras de break-even | cálculo central | `INVARIANTE`; não permitir configuração que gere denominador inválido |
 
 ### 5.4 Produtos, estoque e fulfillment
 
 | Parâmetro | Estado atual | Classe e destino |
 |---|---|---|
-| Política de produto ativo por custo | consumidor da regra central | controlada pela configuração comercial do limite de custo |
+| Atividade do produto | `produtos.ativo` manual | `INVARIANTE`; limite de custo afeta elegibilidade da oferta, não atividade do produto |
 | Prioridade entre estoque interno e fornecedor | regra consolidada de fulfillment | `INVARIANTE` até existir nova regra de negócio aprovada |
 | Cálculo de quantidade segura | `max(interno, fornecedor)` | `INVARIANTE` de integridade |
 | Fornecedores bloqueados para dropshipping | IDs fixos em policy | migrar para propriedade operacional do fornecedor, sem lista global paralela |
@@ -307,6 +309,8 @@ A lista abaixo descreve a sequência integral. Para a primeira entrega, vigora o
 
 **Aceite inicial, não encerramento integral:** homologar os controles necessários aos fluxos liberados e a composição desktop existente, sem criar parâmetros de Radar/experimentos/job noturno ainda ausentes. Registrar separadamente os aceites iniciais de V2-15/D20; suas partes futuras continuam pendentes. O Assistente passa a depender desse aceite inicial, não de CFG-08/09 ou V2-16 integral. Controle necessário sem consumidor, permissão, auditoria ou teste bloqueia o marco 2; refinamento visual sem impacto operacional pode ficar para depois.
 
+**V2-15 operacional — 08/09/2026:** recorte implementado e validado localmente: três parâmetros auditáveis, faixas fixas retornadas pela API, contexto fiscal e simulação separada entre salvo/formulário. 87 testes Node, 13 checkpoints de navegador isolado e validate/build aprovados. [Evidências e limites](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). Sem push/deploy; próximo passo é disponibilizar o candidato quando solicitado e obter aceite inicial D20. Não fecha marco 2 nem V2-15 integral.
+
 Após `BNT-PARITY-GATE`, cada ação também deve conferir se `origin/main` avançou além do último SHA auditado. Antes da promoção, `BNT-PARITY-FINAL` repete obrigatoriamente o delta e bloqueia o release diante de regra ou commit sem classificação.
 
 ---
@@ -387,6 +391,8 @@ Implementado tecnicamente em `2026-09-04` no commit `439e685` e publicado em `de
 A migration `20260904210000_bnt_cfg_02_company_fiscal.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. A entrega foi aprovada visualmente pelo responsável em `2026-09-04`, liberando `BNT-CFG-03` como próxima ação.
 
 ### `BNT-CFG-03 — Comercial e precificação`
+
+**Registro histórico de 04/09/2026:** regras por custo, lucro mínimo, inativação automática e quantidade descritas nesta fotografia foram posteriormente aposentadas/conciliadas pelo Cânon e paridades. Não representam a configuração atual; consultar a seção 5.3 e a evidência de V2-15 operacional.
 
 Implementado tecnicamente em `2026-09-04` no commit `c86976a` e publicado em `dev.bentevi.shop`. A aba `Comercial` consolidou como fontes tipadas as três faixas de custo/margem/lucro mínimo, a taxa fallback do Mercado Livre, o frete `not_specified`, o limite de inativação por custo e a política mínima/fallback de preços por quantidade. O simulador compartilha o cálculo operacional e salvar a configuração não recalcula nem publica produtos ou anúncios existentes.
 
