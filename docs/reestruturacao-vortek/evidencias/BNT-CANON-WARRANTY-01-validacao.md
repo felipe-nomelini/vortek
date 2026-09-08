@@ -1,5 +1,7 @@
 # BNT-CANON-WARRANTY-01 — Garantia por evidência
 
+**Atualização operacional de 08/09/2026:** Firecrawl/runtime local configurados; pesquisa pelo navegador e histórico persistido validados, além de coleta/extração real sem gravação da amostra. [Links para teste, evidências e pendências atuais](BNT-CANON-WARRANTY-01-runtime-local.md). O relato abaixo preserva a fotografia de 07/09; garantia ainda não homologada.
+
 Data: 07/09/2026. Base: `562ffa339cbd2cc65e22b609f2cbd64535fef7af`, branch `dev` inicialmente limpa.
 
 **Estado: implementação local e banco DEV validados; pesquisa externa real e aceite visual pendentes. Não marcar o gate de garantia como homologado.** Nenhum push/deploy desta entrega, acesso à produção ou escrita no Mercado Livre.

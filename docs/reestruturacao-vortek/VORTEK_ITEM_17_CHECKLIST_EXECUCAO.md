@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (07/09/2026):** `BNT-AI-PROVIDER-01` implementado e validado como piloto **individual/local de Felipe**, com login ChatGPT e extração real por `gpt-5.4-mini/low`; [evidências](evidencias/BNT-AI-PROVIDER-01-validacao.md). Sem uso compartilhado, substituição geral do OpenRouter ou deploy. Próxima ação: configurar Firecrawl DEV/runtime local e concluir pesquisa real e aceite visual de `BNT-CANON-WARRANTY-01`, conforme [pendências da garantia](evidencias/BNT-CANON-WARRANTY-01-validacao.md); depois seguir para Buy Box econômica. OpenRouter não é exigido no caminho Codex do piloto. O futuro chat permanece após `BNT-D20`. Frete vivo ME2 continua reservado à conexão autorizada da conta real; `pricing_execution_not_ready` e gates comerciais permanecem bloqueando escritas.
+**Situação vigente (08/09/2026):** piloto individual ChatGPT/Codex + Firecrawl configurado em `http://localhost:3001`, conectado somente ao Supabase DEV `.162`. Pesquisa pelo navegador e persistência do histórico validadas em cadastro fictício; coleta/extração de produto real testada sem gravar a amostra protegida. [Runtime, links e limites](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md). Ainda faltam produto real gravável para a prova positiva de fonte/revisão, aceite visual e conciliação da política de garantia. Não marcar WARRANTY-01 homologada nem avançar para Buy Box antes desses gates. Sem push/deploy, uso compartilhado ou substituição geral do OpenRouter; futuro chat permanece após `BNT-D20`. Frete vivo ME2 e `pricing_execution_not_ready` continuam pendentes/bloqueados.
 
 ---
 

@@ -1,5 +1,7 @@
 # BNT-AI-PROVIDER-01 — Piloto individual ChatGPT/Codex
 
+**Atualização operacional de 08/09/2026:** `.env.local` agora contém Firecrawl e conexão DEV `.162`; aplicação em `http://localhost:3001`, com pesquisa/histórico verificados no navegador e coleta/extração de produto real testadas sem gravar amostra. [Runtime e limites atuais](BNT-CANON-WARRANTY-01-runtime-local.md). As ausências de configuração e de coleta mencionadas abaixo descrevem a fotografia original de 07/09.
+
 Data: 07/09/2026. Branch: `dev`. Base local: `b327031`.
 
 **Resultado: integração e extração individual local comprovadas com login ChatGPT. Não equivale à homologação ponta a ponta da pesquisa de garantia nem ao uso compartilhado do ERP.** Sem push/deploy, migrations, gravações no banco ou alterações em produção nesta tarefa.
