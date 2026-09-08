@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-13` implementada, validada e publicada em DEV no commit `81042dd`. Easypanel concluiu a action `cmtsrqwds000507o95sbpgkin`; serviço `vortek-erp-dev` atualizado e em execução. HTTPS: login 200 e API de decisões 401 sem sessão. [Evidências e limites](evidencias/BNT-PRICING-V2-13-validacao.md). Aceite visual/autenticado de V2-13 e a pendência visual de V2-08 permanecem. Próxima etapa a planejar: `BNT-CANON-PUB-GATE`, preservando frete ME2/conta autorizada e `pricing_execution_not_ready`. Produção inalterada; nenhuma migration ou escrita comercial nesta publicação.
+**Situação vigente (08/09/2026):** PUB-GATE técnico implementado/testado localmente; [AS_IS → TO_BE, evidências e pendências](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Marco 1 ainda aberto: falta prova autenticada/externa com seller de teste já conectado; publicação DEV autorizada e em preparação. Capacidade nova desabilitada por padrão; escritores legados bloqueados. Migrations apenas `.162`, sem escrita em produção ou comercial; push/deploy DEV autorizado e em preparação. O recorte [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao) mantém ME2/prova comercial real no marco 6 e gate integral M2M/autonomia aberto. Fotografias históricas abaixo não substituem esta evidência atual.
 
 ## 1. Escopo, autoridade e fotografia
 

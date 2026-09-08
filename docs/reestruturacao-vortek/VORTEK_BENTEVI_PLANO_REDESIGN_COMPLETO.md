@@ -178,7 +178,7 @@ Rotas-wrapper e aliases reutilizam a página responsável; não receberão imple
 
 **Página planejada:** `/assistente`, com entrada “Assistente Bentevi” no menu. Público inicial: Felipe e seu sócio, cada um autenticado com seu usuário administrador do ERP. Históricos e contexto de conversa privados por usuário, sem compartilhamento automático mesmo entre administradores.
 
-**Momento:** após `BNT-D20` e estabilização de contratos de negócio, indicadores e configurações; antes da homologação final para o primeiro lançamento. Preservar os IDs e a ordem relativa de `BNT-D01` a `BNT-D24`, assim como a etapa corrente. Uma ação validada por vez:
+**Momento vigente (08/09/2026):** após o aceite inicial de `BNT-D20` no marco 2 de [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao); Assistente no marco 3, obrigatório no primeiro lançamento. Usar contratos, indicadores e configurações existentes estabilizados, sem dependência do Radar futuro ou de D20 integral. Preservar IDs e ordem relativa das páginas ao retomar o redesign adiado. Uma ação validada por vez:
 
 | ID | Entrega |
 |---|---|
@@ -198,6 +198,8 @@ Todas as ações estão pendentes. Os critérios funcionais completos ficam no c
 ---
 
 ## 7. Web celular
+
+**Adiado — não concluído:** web celular, aplicativo nativo e refinamentos integrais D20–D24 ficam depois da primeira operação desktop, conforme os sete marcos. Isso não dispensa funcionamento de Login, TV ou páginas operacionais atuais: impedimentos ao trabalho diário bloqueiam o marco 4. Aceite inicial de Configurações e Assistente permanecem antes do lançamento; não marcar o redesign integral como concluído.
 
 Somente depois de `BNT-D01` a `BNT-D24` e do aceite desktop do Assistente em `BNT-AI-GATE` aprovados, adaptar as mesmas páginas na mesma ordem, incluindo `/assistente` após seu aceite desktop:
 

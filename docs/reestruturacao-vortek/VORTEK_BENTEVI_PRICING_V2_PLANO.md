@@ -4,7 +4,7 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-13` implementada, validada e publicada em DEV no commit `81042dd`. Easypanel concluiu a action `cmtsrqwds000507o95sbpgkin`; serviço `vortek-erp-dev` atualizado e em execução. HTTPS: login 200 e API de decisões 401 sem sessão. [Evidências e limites](evidencias/BNT-PRICING-V2-13-validacao.md). Aceite visual/autenticado de V2-13 e a pendência visual de V2-08 permanecem. Próxima etapa a planejar: `BNT-CANON-PUB-GATE`, preservando frete ME2/conta autorizada e `pricing_execution_not_ready`. Produção inalterada; nenhuma migration ou escrita comercial nesta publicação.
+**Situação vigente (08/09/2026):** PUB-GATE técnico implementado localmente; 219 testes, validate/build e ensaios SQL aprovados. Migrations novas somente `.162`; publicação DEV autorizada e em preparação, sem escrita comercial. [Evidências e pendências](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Marco 1 aberto até prova autenticada/externa com seller de teste; conta de teste DEV já conectada e verificada. Escritores legados continuam bloqueados e transporte canônico desabilitado por padrão. ME2/provas reais continuam no marco 6 de [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao); épica integral e autonomia não encerradas.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
 **Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.
@@ -27,7 +27,7 @@ A rotina noturna observa, calcula, diagnostica, consolida e alerta. Decisões co
 
 ## 2. Encaixe obrigatório no Item 17
 
-A ordem bloqueante permanece; os passos 1 a 4 foram concluídos no nível aplicável (00 é exclusivamente documental):
+A sequência abaixo descreve a épica integral; os passos 1 a 4 foram concluídos no nível aplicável (00 é exclusivamente documental). Para o lançamento inicial, prevalece o recorte aprovado dos [sete marcos](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao), sem dispensar controles dos fluxos liberados:
 
 1. concluir `BNT-PARITY-01` a `BNT-PARITY-13`;
 2. resolver a decisão registrada e concluir `BNT-PARITY-GATE`;
@@ -40,6 +40,8 @@ A ordem bloqueante permanece; os passos 1 a 4 foram concluídos no nível aplic�
 9. concluir `BNT-D20`.
 
 `BNT-PARITY-FINAL` continua obrigatório imediatamente antes de qualquer promoção.
+
+**Primeira operação:** PUB-GATE técnico → V2-15 operacional/D20 inicial → Assistente → regressão operacional → preparação da transição → ativação real/ME2/PUB-GATE comercial → uso diário. O aceite inicial de D20 não depende de CFG-08/09 nem do gate integral V2-16; suas partes futuras permanecem abertas. V2-15 também terá aceite parcial explícito, sem marcar a ação integral como concluída. A fila completa é retomada depois, preservando dependências e uma ação por tarefa.
 
 Não haverá dois motores publicando preços em paralelo. Até o gate `BNT-PRICING-V2-16`, alterações automáticas de preço permanecem `REQUIRES_CONFIRMATION`.
 
@@ -299,7 +301,7 @@ Coleções reais exigem tabelas tipadas. `sync_runtime_config` não pode virar a
 
 ## 14. Fila obrigatória
 
-Uma fila operacional; duas identificações na mesma linha representam **a mesma ação**. Reconciliação `BNT-M2M-RECON-01`, aprovada em 06/09/2026: preservar ordem relativa M2M, antecipar grupos antes das proteções, confirmações antes da prova de publicação e performance antes dos diagnósticos comerciais. Não criar entregas intermediárias descartáveis. 00/CANON-01 são documentais; PRC-01/02/02A/03 e QTY-01 estão concluídas nos respectivos escopos. Demais entregas funcionais abaixo estão pendentes; o checklist registra evidências e conclusão, não a mera posição na fila.
+Uma fila integral; duas identificações na mesma linha representam **a mesma ação**. Reconciliação `BNT-M2M-RECON-01`, aprovada em 06/09/2026: preservar ordem relativa M2M, antecipar grupos antes das proteções, confirmações antes da prova de publicação e performance antes dos diagnósticos comerciais. Em 08/09/2026, o usuário aprovou o [recorte de primeira operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao): a posição/prioridade abaixo não obriga lançar capacidades adiadas junto com o ERP. Não criar entregas descartáveis nem dois motores. O checklist registra estado/evidências; manter requisitos futuros pendentes, nunca concluídos por adiamento.
 
 | Ordem | Ação | Prioridade | Entrega central |
 |---:|---|---|---|
@@ -345,9 +347,11 @@ Cada ação terá critério de aceite, teste e evidência próprios. Não agrupa
 
 **Dependências sem ciclo:** CFL-03/V2-07 entrega identidade e leitura de grupos, não depende de publicação efetiva para ser concluída. V2-04/05/06 consomem esse contrato. V2-13 entrega decisões, aplicação controlada e lifecycle de alertas para os fluxos já existentes, com testes de contrato; não exige job noturno, experimentos ou Dashboard prontos. Essas entregas posteriores conectam seus produtores ao mesmo mecanismo, sem duplicá-lo. PUB-GATE só admite prova externa DEV após V2-13 e demais pré-requisitos, mediante autorização específica. Performance V2-09 antecede diagnósticos V2-08A; uma dependência ausente permanece explícita, nunca simulada como entrega concluída.
 
-O gate de publicação é evidência funcional antecipada, não substitui `M2M-GATE`, o gate de autonomia ou `BNT-PARITY-FINAL`. Não autoriza publicação em massa, continuidade de coorte histórica, alteração de anúncios reais ou produção. A ausência de nova rotina periódica na entrega pontual do cânon de produção não cancela o job noturno já solicitado para a V2: ele permanece na ação própria, inicialmente observacional.
+O gate de publicação possui preparo técnico no marco 1 e aceite comercial com provas reais autorizadas no marco 6; não fechá-lo apenas com o preparo. A passagem do marco 1 ao 2 não declara ME2 homologado. A primeira operação tem gate próprio e não encerra `M2M-GATE`, autonomia ou `BNT-PARITY-FINAL`. Esta decisão documental não autoriza publicação em massa, continuidade de coorte histórica, alteração de anúncios reais ou produção. O job noturno permanece solicitado na ação própria, inicialmente observacional, mas foi adiado para depois da entrada em operação; jobs operacionais existentes continuam no escopo inicial.
 
 ## 15. Gate de autonomia
+
+**Separação de gates (08/09/2026):** `BNT-PRICING-V2-16` / `M2M-GATE` permanece aberto para a entrega integral e futura autonomia. O lançamento inicial usa os sete marcos, sem escrita autônoma de preço/publicação. Os critérios abaixo aplicáveis aos escritores sob confirmação também devem ser comprovados antes de sua liberação, e não adiados junto com Experimentos.
 
 Antes de qualquer escrita autônoma:
 
@@ -364,6 +368,8 @@ Antes de qualquer escrita autônoma:
 O padrão continua sendo `REQUIRES_CONFIRMATION` para mudança automática de preço.
 
 ## 16. Critério global de conclusão
+
+O encerramento integral abaixo é distinto da primeira entrada em operação. Capacidades adiadas mantêm seus critérios e pendências; a aprovação do lançamento não marca esta épica como concluída.
 
 A épica termina somente quando:
 

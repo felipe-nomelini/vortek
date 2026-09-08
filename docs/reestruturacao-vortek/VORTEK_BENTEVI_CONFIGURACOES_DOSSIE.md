@@ -286,7 +286,7 @@ Para alterações técnicas, uma auditoria administrativa dedicada é justificad
 
 ## 7. Sequência de implementação
 
-Cada ação abaixo é independente e bloqueia a seguinte até validação:
+A lista abaixo descreve a sequência integral. Para a primeira entrega, vigora o recorte [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao), aprovado em 08/09/2026: V2-15 operacional e D20 inicial no marco 2, antes do Assistente; CFG-08/09 e configurações futuras adiadas. Cada ação técnica continua exigindo validação antes da seguinte dentro de seu recorte:
 
 1. `BNT-CFG-01` — núcleo administrativo, contratos tipados e auditoria sanitizada;
 2. `BNT-CFG-02` — Empresa e cadastro fiscal;
@@ -304,6 +304,8 @@ Cada ação abaixo é independente e bloqueia a seguinte até validação:
 14. `BNT-D20` — composição visual final de `/configuracoes`, responsividade desktop e aprovação.
 
 `BNT-D20` somente será marcado como concluído quando todos os controles implementados tiverem consumidor real, autorização administrativa, validação, auditoria aplicável e teste direcionado.
+
+**Aceite inicial, não encerramento integral:** homologar os controles necessários aos fluxos liberados e a composição desktop existente, sem criar parâmetros de Radar/experimentos/job noturno ainda ausentes. Registrar separadamente os aceites iniciais de V2-15/D20; suas partes futuras continuam pendentes. O Assistente passa a depender desse aceite inicial, não de CFG-08/09 ou V2-16 integral. Controle necessário sem consumidor, permissão, auditoria ou teste bloqueia o marco 2; refinamento visual sem impacto operacional pode ficar para depois.
 
 Após `BNT-PARITY-GATE`, cada ação também deve conferir se `origin/main` avançou além do último SHA auditado. Antes da promoção, `BNT-PARITY-FINAL` repete obrigatoriamente o delta e bloqueia o release diante de regra ou commit sem classificação.
 
@@ -446,7 +448,7 @@ Referências: [DSLite oficial](https://documenter.getpostman.com/view/5316990/RW
 
 Validação do refinamento: 74 testes de integrações, 13 do contrato de deploy, validate e build. Chromium renderizou os componentes reais com dados sintéticos e CSS compilado a 1440/900/390 px: dez cards, grade 3/2/1, gap de 24 px, zero imagem quebrada e zero overflow. Navegação por Tab alcançou a ação do primeiro card. Commit `2583ad8` publicado em DEV com ação Easypanel concluída, SHA do container e assets públicos confirmados; evidência detalhada no checklist. Esta evidência não substitui teste autenticado remoto nem aprovação visual do responsável.
 
-Depois de `BNT-PARITY-GATE` e da aprovação de `BNT-CFG-07`, a sequência passa a seguir `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. `BNT-PRICING-V2-00` documentará o desenho executável; as ações `01` a `15`, incluindo `08A`, implementarão uma mudança por vez; `BNT-CFG-08` e `BNT-CFG-09` consumirão os contratos estabilizados; e `BNT-PRICING-V2-16` bloqueará qualquer autonomia até comprovação de segurança.
+Depois de `BNT-PARITY-GATE` e da aprovação de `BNT-CFG-07`, a sequência segue `VORTEK_BENTEVI_PRICING_V2_PLANO.md` e o recorte de primeira operação da seção 7 acima. CFG-08/09 consomem contratos futuros e não bloqueiam o aceite inicial de D20; V2-16 integral continua obrigatório para futura autonomia, sem substituir o gate de lançamento dos sete marcos.
 
 As faixas atualmente expostas por `BNT-CFG-03` permanecem como fotografia do motor vigente até sua substituição controlada. Elas não devem coexistir como um segundo motor após a transição. Mudanças automáticas de preço permanecem `REQUIRES_CONFIRMATION` por padrão.
 

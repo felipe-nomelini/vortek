@@ -2,6 +2,12 @@
 
 Este documento registra regras práticas validadas na criação de anúncios do Vortek.
 
+## Estado da execução Bentevi DEV — 08/09/2026
+
+O candidato PUB-GATE substitui a criação direta por preparação, aprovação explícita, operação/outbox, worker e conferência. O formulário de preço também encaminha proposta à central; a rota de preço bruto continua bloqueada. A capacidade nova está **desabilitada por padrão**, restrita à conta de teste/allowlist/DEV e banco `.162`. Os testes locais não substituem a prova no ML: o seller de teste já está conectado/verificado e a publicação do candidato DEV foi autorizada. [Contrato, evidências, rollback e pendências do marco 1](reestruturacao-vortek/evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
+
+Não reenviar criação ou preço após resultado incerto. A central pode solicitar nova conferência da mesma operação, sem repetir a mutação. Nenhuma destas regras autoriza anúncio real, publicação em massa ou escrita em produção.
+
 ## Regra central
 
 Não criar anúncio até validar, por produto e por categoria:

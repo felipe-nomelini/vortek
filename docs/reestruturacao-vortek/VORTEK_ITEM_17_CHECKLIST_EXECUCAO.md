@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-13` implementada, validada e publicada em DEV no commit `81042dd`. Easypanel concluiu a action `cmtsrqwds000507o95sbpgkin`; serviço `vortek-erp-dev` atualizado e em execução. HTTPS: login 200 e API de decisões 401 sem sessão. [Evidências e limites](evidencias/BNT-PRICING-V2-13-validacao.md). Aceite visual/autenticado de V2-13 e a pendência visual de V2-08 permanecem. Próxima etapa a planejar: `BNT-CANON-PUB-GATE`, preservando frete ME2/conta autorizada e `pricing_execution_not_ready`. Produção inalterada; nenhuma migration ou escrita comercial nesta publicação.
+**Situação vigente (08/09/2026):** `BNT-CANON-PUB-GATE` técnico implementado localmente, com 219 testes, validate, build e ensaios SQL aprovados. Três migrations novas aplicadas somente em `192.168.1.162`. [Evidências e limites do marco 1](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Execução desabilitada por padrão; conta ML de teste conectada e verificada por leitura de /users/me. Faltam publicação do candidato em DEV, aceite autenticado e prova limitada na conta de teste; marco 1 ainda aberto. Push/deploy DEV autorizado, ainda pendente de execução; sem escrita em produção ou comercial ML. [Última evidência de V2-13 publicada](evidencias/BNT-PRICING-V2-13-validacao.md) não equivale ao deploy deste candidato.
 
 ---
 
@@ -65,13 +65,61 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-13 validada e publicada em DEV (`81042dd`) | Aceite visual/autenticado pendente; próxima etapa PUB-GATE. Gates comerciais preservados |
-| 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Executar após `BNT-D20`, com contratos e indicadores estabilizados; homologação obrigatória antes do primeiro lançamento |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | PUB-GATE técnico implementado/testado localmente; prova externa pendente | Validar candidato e conta de teste no marco 1; aceite comercial/ME2 depende do marco 6 |
+| 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Marco 3, após o aceite inicial de Configurações; não depende do Radar futuro; obrigatório no primeiro lançamento |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 08/09/2026:** obter aceite visual/autenticado de **BNT-PRICING-V2-13**, já publicada em DEV. [Evidências](evidencias/BNT-PRICING-V2-13-validacao.md). Depois, planejar `BNT-CANON-PUB-GATE`, mantendo frete ME2/conta autorizada como pré-requisitos. Publicação do ERP não autoriza escrita comercial ou prova externa automática.
+**Prioridade vigente — atualização de 08/09/2026:** concluir a prova autenticada/externa do candidato `BNT-CANON-PUB-GATE`, sem avançar para o marco 2. Seller de teste já conectado/verificado; publicar o candidato DEV conforme autorização atual; habilitar o transporte de teste no escopo limitado da prova e registrar criação, alteração aprovada e read-back. [Implementação, testes e pendências](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Frete ME2 e prova comercial real permanecem no marco 6. Escritores antigos continuam bloqueados e a capacidade nova está desabilitada por padrão.
+
+<a id="bentevi-em-operacao"></a>
+
+### Marco de lançamento — Bentevi em operação
+
+**Decisão aprovada em 08/09/2026:** separar a primeira operação desktop da conclusão integral do Item 17/Pricing V2/M2M. O Assistente permanece na primeira entrega. Esta seção é a fonte única do recorte de lançamento e substitui dependências anteriores que exigiam todas as evoluções antes de operar; não altera o cânon econômico nem declara funcionalidades prontas.
+
+**Quando começaremos a usar:** no marco 7, depois dos aceites 1 a 6. São sete marcos de aceite, não sete tarefas ou uma estimativa de dias. A janela da virada será combinada ao concluir o marco 5, com os pré-requisitos do marco 6 preparados. Até lá, sem data prometida. Uma ação técnica validada por tarefa; novas ideias não ampliam automaticamente o lançamento.
+
+| Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
+|---|---|---|---|---|
+| 1 — Execução comercial | Implementação local/testes concluídos; aceite pendente | Prova autenticada e transporte com seller de teste conectado; execução continua desabilitada | Publicar candidato DEV quando solicitado e executar prova limitada com read-back, sem conta real | [219 testes, SQL/rollback, validate/build e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md); falta evidência externa, sem fechamento do marco |
+| 2 — Configurações iniciais | Pendente | Parte operacional de V2-15 e aceite inicial D20; consumidor real, permissões, auditoria e teste para cada controle liberado | Após marco 1, planejar o recorte operacional V2-15 e depois homologar D20 inicial | Evidência por ação; V2-15/D20 integrais não fechados por aceite parcial |
+| 3 — Assistente Bentevi | Pendente | AI-00 → AI-01 → AI-02 → AI-GATE; consultas e histórico individual dos dois administradores | Após marco 2, planejar AI-00 reutilizando o piloto existente | Provedor adequado, precisão, isolamento e aceite de ambos; sem depender de indicadores futuros |
+| 4 — Operação ponta a ponta | Pendente | Regressão do candidato: vendas, compras DSLite, estoque, fiscal, entrega e notificações, inclusive falhas/reprocessamento | Reutilizar testes e fluxos existentes; corrigir divergências individualmente | Relatório por fluxo, testes direcionados, validate e build do candidato; não repetir etapas já validadas sem motivo |
+| 5 — Preparação da transição | Pendente | DELTA_PROMOCAO ensaiado; PARITY-FINAL; domínio/configurações; dados preservados; backup/recuperação; destino de jobs e experimentos produtivos | Preparar delta e ensaio em DEV, depois conferir paridade final e checklist de release | SHAs, ensaio, inventário sem secrets, plano de recuperação e janela acordada; reconfirmar deltas se houver avanço até a virada |
+| 6 — Ativação real acompanhada | Pendente; exige autorização de release | Conta real no ambiente produtivo preparado; tarifas/frete ME2 e recotação reais; completar PUB-GATE comercial antes de liberar operações | Executar a ativação pelo workspace produtivo dedicado, em release específica autorizada | Leituras reais e provas comerciais limitadas/autorizadas com read-back; risco inconclusivo bloqueia o fluxo afetado |
+| 7 — Bentevi em operação | Pendente | Marcos anteriores aceitos; sistema novo como único executor; verificações iniciais aprovadas | Transferir operação diária e acompanhar os primeiros pedidos | Horário da virada, versão, primeiros resultados e registro de acompanhamento; não exige esperar sete dias para começar a usar |
+
+**Gate da primeira operação:** ao fechar o marco 5, autorizar apenas a preparação/ativação controlada prevista no release; ao fechar o marco 6, liberar a operação inicial. Ele não fecha `BNT-PRICING-V2-16` / `M2M-GATE`: esses continuam abertos para a entrega integral e futura autonomia. Até lá, publicação e alteração de preço exigem confirmação humana e todos os controles técnicos correspondentes. Não basta remover `pricing_execution_not_ready`: consumo, execução, recuperação e read-back ainda precisam ser comprovados. Jobs operacionais já existentes não são adiados com o novo job noturno e exigem validação no marco 4.
+
+#### Adiado — não concluído; não bloqueia a primeira operação por si só
+
+| Etapas existentes | Tratamento |
+|---|---|
+| V2-09, V2-08A, V2-10, V2-11 | Performance, diagnósticos comerciais avançados, experimentos e zero tráfego após a entrada em operação |
+| M2M-RAD-01/02/03/04; V2-12 e V2-14 equivalentes | Funil, rotina noturna nova, Dashboard avançado e reprocessamento após a entrada; preservar equivalências, sem tarefas duplicadas |
+| Parte futura V2-15; BNT-CFG-08/09 | Configurações das capacidades adiadas somente quando houver consumidor validado; controles operacionais necessários ficam no marco 2 |
+| Composição integral BNT-D20; BNT-D21/22/23/24; web celular e aplicativo nativo | Refinamentos de interface/redesign posteriores; telas atuais necessárias continuam funcionais e são revalidadas no marco 4 |
+| Etapa 12 — Limpeza histórica | Após estabilidade; preservar evidências e histórico |
+| BNT-PRICING-V2-16 / M2M-GATE | Gate integral/autonomia posterior; não dispensar no lançamento os testes de proteção aplicáveis aos escritores que serão liberados |
+
+Nenhuma etapa adiada recebe `[x]` ou `N/A` por causa deste recorte. Respeitar a ordem relativa e as dependências da fila integral ao retomá-la. Classificar requisitos compartilhados no marco que libera seu consumidor: trilha, locks, idempotência, safety stop, grupos, override e liquidação não podem ser adiados só porque também aparecem em Experimentos. Falhas conhecidas de preço, duplicação, perda de dados, emissão fiscal incorreta ou impedimento ao trabalho diário continuam bloqueadoras; problemas cosméticos e novas capacidades entram na fila posterior.
+
+#### Ativação, interrupção e acompanhamento
+
+- Conta real somente na ativação produtiva autorizada, nunca por cópia de tokens de produção para DEV. Preparação e ensaios neste worktree usam exclusivamente o Supabase DEV `.162`; banco `.160` é produção/somente leitura aqui. Mutações produtivas ficam no workspace `vortek-prod`, com autorização própria. Este documento não executa nem autoriza a virada.
+- Não copiar banco de homologação sobre produção, transportar fixtures ou retirar suas proteções. Preservar dados, filas e eventos reais. A exclusão das amostras DEV antes prevista em D24 será resolvida no marco 5, independentemente do adiamento visual de D24, com escopo e validação próprios.
+- Confirmar um único executor por fluxo: sistema antigo e novo não podem consumir/processar simultaneamente a mesma operação. Inventariar pendências, checkpoints, agendamentos e webhooks; preservar recepção/retomada de eventos durante a troca. Não ativar silenciosamente experimentos ou decisões históricas.
+- Antes de liberar escritas, conferir leituras reais, inclusive ME2. Provas externas com efeito são limitadas ao escopo autorizado e conferidas por read-back, antes da liberação geral; homologação técnica anterior não equivale a essa evidência.
+- Testar aprovação repetida, mudança material de custo após aprovação, falha externa, sucesso remoto sem checkpoint local, resultado incerto e recuperação sem efeito duplicado. Validar preço/imposto/frete/quantidade e transições fiscais, não apenas abertura das páginas.
+- Divergência material de preço, duplicação, inconsistência fiscal ou perda de eventos interrompe o fluxo afetado, preserva evidência e exige correção antes da retomada. Falhas menores entram na fila posterior, sem prometer que todo efeito externo é reversível.
+- Recuperação deve preservar pedidos/eventos recebidos após a virada. Reverter código não desfaz vendas, mensagens ou documentos externos; restauração de backup não é solução automática para esses efeitos.
+- Acompanhar diariamente os primeiros **sete dias e até observar o ciclo completo de um pedido real**, o que ocorrer por último. Registrar ocorrências, correções, revalidações e resultados; este acompanhamento sucede a entrada em uso, não adia o marco 7.
+
+**Controle documental desta decisão:** somente planejamento/checklist; sem implementação funcional, conexão ML, banco, migration ou liberação de produção. As evidências técnicas e aceites históricos permanecem datados. O fechamento documental desta tarefa não fecha nenhum dos sete marcos.
+
+**Validação documental executada em 08/09/2026:** branch `dev`, árvore inicialmente limpa; seis documentos reconciliados. Conferência automatizada confirmou sete marcos únicos e pendentes, âncora e cinco referências ao recorte, 14 etapas futuras mantidas pendentes e ausência de alteração em `AGENTS.md`, `.rules` e `.gitignore`. `npm run validate` (lint/typecheck) e `git diff --check` passaram. Build, homologação visual e consulta a contratos externos: **N/A nesta tarefa exclusivamente documental**, sem modificar comportamento de biblioteca/API; reconfirmação oficial permanece obrigatória nas ações técnicas futuras. Sem commit, push, deploy ou acesso à infraestrutura nesta tarefa.
 
 - [x] Executar somente `ML-03 — Não publicar estoque igual`.
 - [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
@@ -221,12 +269,12 @@ Regras de uso:
 - [x] Planejar e implementar `M2M-PRC-02A — Ajuste ao Cânon Comercial`, validada no núcleo puro.
 - [x] Planejar `M2M-PRC-03 / BNT-PRICING-V2-03 — Aposentar consumidores legados`.
 - [x] Concluir a implementação e homologação da PRC-03; ver fechamento ao final e [evidências](evidencias/M2M-PRC-03-validacao.md).
-- [ ] Executar as ações restantes da fila unificada Pricing V2/M2M (seção 14 do plano), uma por tarefa e sem duplicar identificadores correspondentes.
+- [ ] Executar as ações restantes da fila unificada Pricing V2/M2M (seção 14 do plano), uma por tarefa e sem duplicar identificadores correspondentes, separando lançamento e evolução conforme [Bentevi em operação](#bentevi-em-operacao).
 - [ ] Executar `BNT-CFG-08` somente depois de os alertas e indicadores de pricing necessários estarem estabilizados.
 - [ ] Executar `BNT-CFG-09` incluindo agenda, limites e saúde do job noturno já validado.
 - [ ] Executar `BNT-PRICING-V2-16 — Gate de autonomia` antes de permitir qualquer escrita autônoma de preço.
-- [ ] Concluir `BNT-D20` somente depois do gate de autonomia e da composição final das Configurações.
-- [ ] Após `BNT-D20`, executar `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE`, uma ação por tarefa; não antecipar o chat sobre a etapa corrente.
+- [ ] Homologar `BNT-D20` no escopo inicial do marco 2; manter composição integral pendente das capacidades futuras, sem bloquear o lançamento por elas.
+- [ ] Após o aceite inicial de `BNT-D20`, executar `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE` no marco 3, uma ação por tarefa, sem dependência do Radar futuro.
 
 ---
 
@@ -3097,7 +3145,9 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 **Objetivo:** substituir de forma controlada as faixas comerciais por custo por uma política baseada em preço final, economia unitária única, governança, pricing groups, performance, experimentos, alertas e autonomia graduada.
 
-#### Sequência bloqueante
+#### Fila integral e recorte de lançamento
+
+**Vigência em 08/09/2026:** a ordem abaixo descreve a entrega integral. A entrada em operação segue os [sete marcos](#bentevi-em-operacao), com os adiamentos explicitamente registrados lá. Itens não executados continuam pendentes; não confundir prioridade da épica com bloqueio de uma capacidade excluída da primeira entrega.
 
 - [x] `BNT-PRICING-V2-00` — produzir matriz `AS_IS → TO_BE`, contratos, migrations previstas, donos, consumidores e testes, sem implementação funcional;
 - [x] `BNT-PRICING-V2-01` / `M2M-PRC-01` — faixas finais e estabilização pura, sem ativação nos consumidores;
@@ -3117,9 +3167,9 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-AI-PROVIDER-01` — integração e extração real validadas no piloto individual/local de Felipe; não certifica pesquisa ponta a ponta, uso compartilhado ou deploy. Evidências e limites abaixo;
 - [x] `BNT-CANON-WARRANTY-01` — contrato conciliado sem fallback vendedor universal, interface simplificada aprovada/publicada/conferida em DEV; API, evidências e histórico preservados; [fechamento e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md#fechamento-dev--08092026);
 - [x] `BNT-PRICING-V2-08` / `M2M-CFL-04` — implementada, validada e publicada em DEV (`a71873d`); [evidências](evidencias/M2M-CFL-04-validacao.md). Pendente conferência autenticada/aceite visual; sem liberar gates comerciais;
-- [x] `BNT-PRICING-V2-13` — implementada, validada localmente/SQL e publicada em DEV (`81042dd`); alertas, decisões auditáveis/idempotentes e contrato de consumo. [Evidências](evidencias/BNT-PRICING-V2-13-validacao.md). Aceite visual/autenticado pendente; nenhum gate comercial liberado;
+- [x] `BNT-PRICING-V2-13` — implementada, validada localmente/SQL e publicada em DEV (`81042dd`); alertas, decisões auditáveis/idempotentes e contrato de consumo. [Evidências](evidencias/BNT-PRICING-V2-13-validacao.md). Usuário abriu a central vazia e autorizou avançar; aceite da apresentação observada, sem prova funcional adicional nem gate comercial liberado;
 - [ ] **Pendência PRC-04 — Frete ME2 na conexão da conta real:** retomar quando a conta real estiver conectada em ambiente autorizado; comprovar cotação do vendedor no contexto real e recotação de alvo/piso/equilíbrio com oferta de origem conhecida. Registrar evidências e inconclusivo quando a fonte falhar. Não bloqueia o planejamento/desenvolvimento de CFL-01; bloqueia o aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e a liberação comercial em produção enquanto não validada. Esta anotação não autoriza conectar conta, copiar credenciais de produção para DEV, publicar, reprecificar ou pausar anúncios;
-- [ ] `BNT-CANON-PUB-GATE` — validar sugestão, preparação, confirmação e publicação/read-back em homologação; não substitui gate final nem libera massa autônoma;
+- [ ] `BNT-CANON-PUB-GATE` — implementação técnica local e regressões aprovadas em 08/09/2026; migrations somente `.162`. Seller de teste já conectado/verificado; faltam publicar o candidato autorizado e realizar a prova autenticada/externa do marco 1. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Completar evidências comerciais/ME2 na ativação autorizada do marco 6; não fechar o gate integral por preparo técnico nem liberar massa autônoma;
 - [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
 - [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem com evidência comercial;
 - [ ] `BNT-PRICING-V2-10` — experimentos;
@@ -3127,12 +3177,12 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [ ] `M2M-RAD-01` — funil e priorização explicável, com demanda separada de conflito;
 - [ ] `BNT-PRICING-V2-12` / `M2M-RAD-02` — rotina única noturna de pricing/Radar, idempotente e observável;
 - [ ] `BNT-PRICING-V2-14` / `M2M-RAD-03` — Dashboard com filas acionáveis e sete filas do Radar;
-- [ ] `BNT-PRICING-V2-15` — configurações administrativas;
+- [ ] `BNT-PRICING-V2-15` — configurações administrativas: parte operacional no marco 2; parâmetros das capacidades futuras adiados, sem fechamento integral antecipado;
 - [ ] `M2M-RAD-04` — reprocessar universo da planilha e candidatos revisados, sem pesquisa externa pesada;
 - [ ] `BNT-CFG-08` — integrar Dashboard, TV e metas aos contratos estabilizados;
 - [ ] `BNT-CFG-09` — integrar agenda e saúde operacional do job noturno;
-- [ ] `BNT-PRICING-V2-16` / `M2M-GATE` — regressão M2M, relatórios, manifest, homologação e gate de autonomia;
-- [ ] `BNT-D20` — composição visual final de Configurações.
+- [ ] `BNT-PRICING-V2-16` / `M2M-GATE` — regressão M2M integral, relatórios, manifest, homologação e gate de autonomia; permanece aberto após o lançamento inicial, cujo gate está nos sete marcos;
+- [ ] `BNT-D20` — aceite inicial de Configurações no marco 2; composição visual integral após capacidades adiadas, sem declarar escopo futuro concluído.
 
 **Regras de transição:** não manter motores paralelos publicando preços; alteração automática permanece `REQUIRES_CONFIRMATION` por padrão; nenhuma migration sai do `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura; cada ação exige teste, evidência e rollback próprios.
 
@@ -3156,7 +3206,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 **Aceite da etapa:** política antiga deixa de governar pricing; economia unitária e origem são únicas; catálogo sincronizado é unidade econômica; Buy Box não induz prejuízo não autorizado; performance não é confundida com economia; alertas e confirmações são deduplicados e auditáveis; job noturno é idempotente e observável; nenhuma autonomia existe sem nível declarado e gate aprovado.
 
-**Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
+**Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Tratar a remoção da amostra no marco 5, antes da promoção Bentevi, sem aguardar o redesign adiado de `BNT-D24` e sem retirar as proteções para testes reais.
 
 ### `Etapa 11.3 — Assistente Bentevi — chat operacional`
 
@@ -3164,7 +3214,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 **Situação:** inclusão documental realizada; nenhuma ação funcional abaixo foi iniciada ou homologada. Não altera a próxima ação vigente de garantia/pricing, não troca OpenRouter e não autoriza acesso ou escrita em produção.
 
-**Sequência:** contratos de negócio, indicadores e configurações estabilizados → `BNT-D20` aprovado → `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE`. Validar cada ação antes da seguinte; manter os demais gates de pricing, paridade, interface e promoção. O Assistente não é pré-requisito dos cálculos ou serviços que consulta.
+**Sequência vigente:** contratos e configurações da primeira entrega estabilizados → aceite inicial de `BNT-D20` (marco 2) → `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE` (marco 3). Validar cada ação antes da seguinte e manter os gates dos [sete marcos](#bentevi-em-operacao). Não depender de indicadores futuros, Radar ou composição integral de D20. O Assistente consulta serviços existentes e explicita dados/capacidades ausentes; não inventa indicadores nem é pré-requisito dos cálculos que consulta.
 
 #### Ações e critérios de aceite
 
@@ -3303,7 +3353,7 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 
 ## 18. Checklist de promoção controlada `dev → main`
 
-Esta seção prepara a promoção. Ela não autoriza merge nem deploy.
+Esta seção prepara a promoção. Ela não autoriza merge nem deploy. Na primeira entrega, aplicar o [gate Bentevi em operação](#bentevi-em-operacao): marco 5 libera somente a solicitação da ativação controlada; marco 6 exige provas reais antes do uso diário no marco 7. O gate integral M2M permanece aberto, sem dispensar proteções da operação liberada. A execução produtiva pertence ao workspace `vortek-prod` em autorização própria.
 
 ### Antes de solicitar autorização
 
@@ -3323,6 +3373,9 @@ Esta seção prepara a promoção. Ela não autoriza merge nem deploy.
 - [ ] migrations da promoção identificadas;
 - [ ] novas variáveis de produção identificadas sem expor valores;
 - [ ] rollback e condição de interrupção conhecidos;
+- [ ] marcos 1 a 5 aceitos para preparar ativação; prova comercial/ME2 ainda pendente explicitada no marco 6, sem autorização ampla de escrita;
+- [ ] nenhum requisito essencial foi adiado junto com Radar/experimentos; escritores do escopo inicial protegidos, confirmados e testados;
+- [ ] fixtures excluídas da promoção; dados e eventos reais preservados; um único executor por fluxo planejado;
 - [ ] nenhuma mudança fora do escopo;
 - [ ] autorização explícita do responsável recebida.
 
@@ -3334,6 +3387,8 @@ Esta seção prepara a promoção. Ela não autoriza merge nem deploy.
 - [ ] smoke test seguro executado;
 - [ ] logs verificados;
 - [ ] operação confirmada;
+- [ ] marco 6 aceito com tarifa/frete ME2, provas autorizadas e read-back antes da liberação diária;
+- [ ] marco 7 registrado com versão, horário, executor único e acompanhamento dos primeiros sete dias e de um ciclo completo de pedido real;
 - [ ] release registrada;
 - [ ] branch `dev` reconciliada com a nova base de produção.
 
