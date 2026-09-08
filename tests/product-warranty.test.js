@@ -124,7 +124,7 @@ test('POST protege fixture e permissão antes de efeitos; não afirma escrita ML
 });
 test('todos os consumidores usam resolução canônica e o bloqueio comercial permanece', () => {
   for (const name of ['schema','sugerir-campo','criar']) {
-    const code = fs.readFileSync(`src/app/api/ml/anuncio/${name}/route.ts`, 'utf8');
+    const code = fs.readFileSync(name === 'criar' ? 'src/services/publication-preparation.ts' : `src/app/api/ml/anuncio/${name}/route.ts`, 'utf8');
     assert.match(code, /warrantySaleTerms/); assert.match(code, /warrantyDescription/);
     assert.doesNotMatch(code, /loadMercadoLivreConfiguration|buildSupportedMlWarrantyTerms/);
   }

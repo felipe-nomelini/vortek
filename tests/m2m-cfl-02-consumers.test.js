@@ -109,12 +109,13 @@ test('schema crítico não usa predição e listas respeitam valor oficial', () 
 });
 
 test('read-back ausente não usa resposta inicial para pausar por identidade', () => {
-  const create = fs.readFileSync('src/app/api/ml/anuncio/criar/route.ts', 'utf8');
+  const create = fs.readFileSync('src/services/publication-readback.ts', 'utf8');
   assert.doesNotMatch(create, /let latestItem = \(await getListingSnapshot\(result.id\)\) \|\| result/);
-  const begin = create.indexOf('let latestItem = await getListingSnapshot(result.id)');
+  const begin = create.indexOf('const itemResponse = await fetchMLResult');
   const assessment = create.indexOf('const identityAssessment', begin);
   const fragment = create.slice(begin, assessment);
-  assert.match(fragment, /if \(!latestItem\) return NextResponse.json/);
+  assert.match(fragment, /if \(!itemResponse.ok/);
+  assert.match(fragment, /return false/);
   assert.doesNotMatch(fragment, /pauseCreatedListing/);
   assert.doesNotMatch(create, /canonicalBrand|blockingConflicts/);
 });

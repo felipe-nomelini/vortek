@@ -69,7 +69,7 @@ test('BNT-D07 separa publicação do Mercado Livre da tabela', () => {
   assert.match(page, /\/api\/ml\/anuncio\/categorias/);
   assert.match(page, /\/api\/ml\/anuncio\/schema/);
   assert.match(page, /\/api\/ml\/anuncio\/criar/);
-  assert.match(page, /useMlPricePublishTracking/);
+  assert.match(page, /PricingDecisionCenter/);
 });
 
 test('BNT-D07 possui lista móvel e identidade Bentevi sem comprimir a tabela', () => {
@@ -117,27 +117,21 @@ test('BNT-D07 representa anúncios padrão e catálogo sem multiplicar tags', ()
   assert.match(styles, /\.mlListingLine/);
 });
 
-test('BNT-D07 permite definir um preço único para todos os anúncios vinculados', () => {
+test('PUB-GATE prepara um preço pela origem e pelo grupo canônico, sem envio direto', () => {
   assert.match(page, /Novo preço de venda/);
-  assert.match(page, /scope: 'linked'/);
-  assert.match(page, /Este preço gera prejuízo/);
-  assert.match(page, /Aplicar nos anúncios/);
-  assert.match(priceRoute, /body\?\.scope === 'linked'/);
-  assert.match(priceRoute, /\.in\('status', \['ativo', 'pausado'\]\)/);
-  assert.match(priceRoute, /JSON\.stringify\(\{ price: basePrice \}\)/);
-  assert.match(priceRoute, /custom_price: basePrice/);
-  assert.match(priceRoute, /results\.map/);
+  assert.match(page, /Anúncio de origem/);
+  assert.match(page, /PricingProposalButton/);
+  assert.doesNotMatch(page, /scope: 'linked'|\/api\/ml\/anuncio\/atualizar-preco/);
+  assert.match(priceRoute, /getPricingExecutionBlock/);
+  assert.doesNotMatch(priceRoute, /fetchML|custom_price/);
 });
 
-test('BNT-D07 bloqueia preço automatizado antes de persistir o valor desejado', () => {
-  assert.match(priceRoute, /dynamic_standard_price/);
-  assert.match(priceRoute, /const targets = await resolveTargets/);
-  assert.match(priceRoute, /const \{ error: persistError \}/);
-  assert.ok(
-    priceRoute.indexOf('const targets = await resolveTargets') < priceRoute.indexOf('const { error: persistError }'),
-    'preflight dos anúncios deve ocorrer antes da persistência local',
-  );
-  assert.match(priceRoute, /if \(!user\).*status: 401/);
+test('PUB-GATE bloqueia preço automatizado na decisão e autentica contrato aposentado', () => {
+  const decision = read('src/services/pricing-decisions.ts');
+  assert.match(decision, /input\.automatic/);
+  assert.match(decision, /PRECO_AUTOMATICO_ML/);
+  assert.match(priceRoute, /authorizeApiRequest/);
+  assert.match(priceRoute, /if \(!auth.ok\) return auth.response/);
 });
 
 test('BNT-D07 filtra a amostra por capacidade segura e preserva filtros remotos', () => {

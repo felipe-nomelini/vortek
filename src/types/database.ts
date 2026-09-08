@@ -21,7 +21,7 @@ export type Database = {
           fingerprint: string
           group_id: string | null
           id: string
-          item_id: string
+          item_id: string | null
           last_seen_at: string
           latest_decision_id: string | null
           merged_into: string | null
@@ -44,7 +44,7 @@ export type Database = {
           fingerprint: string
           group_id?: string | null
           id?: string
-          item_id: string
+          item_id?: string | null
           last_seen_at: string
           latest_decision_id?: string | null
           merged_into?: string | null
@@ -55,7 +55,7 @@ export type Database = {
           rule_id: string
           seller_id: string
           severity: string
-          severity_order?: never
+          severity_order?: number | null
           state: string
           subject_key: string
           title: string
@@ -67,7 +67,7 @@ export type Database = {
           fingerprint?: string
           group_id?: string | null
           id?: string
-          item_id?: string
+          item_id?: string | null
           last_seen_at?: string
           latest_decision_id?: string | null
           merged_into?: string | null
@@ -78,7 +78,7 @@ export type Database = {
           rule_id?: string
           seller_id?: string
           severity?: string
-          severity_order?: never
+          severity_order?: number | null
           state?: string
           subject_key?: string
           title?: string
@@ -112,6 +112,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "pricing_alerts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_alerts_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
           },
           {
             foreignKeyName: "pricing_alerts_produto_id_fkey"
@@ -209,10 +216,10 @@ export type Database = {
           created_at: string
           desired_price: number | null
           desired_quantity: number | null
-          desired_status: string | null
+          desired_status: Database["public"]["Enums"]["ml_status"] | null
           id: string
           last_error: string | null
-          ml_item_id: string
+          ml_item_id: string | null
           payload: Json
           pricing_operation_id: string | null
           processed_at: string | null
@@ -227,10 +234,10 @@ export type Database = {
           created_at?: string
           desired_price?: number | null
           desired_quantity?: number | null
-          desired_status?: string | null
+          desired_status?: Database["public"]["Enums"]["ml_status"] | null
           id?: string
           last_error?: string | null
-          ml_item_id: string
+          ml_item_id?: string | null
           payload?: Json
           pricing_operation_id?: string | null
           processed_at?: string | null
@@ -245,10 +252,10 @@ export type Database = {
           created_at?: string
           desired_price?: number | null
           desired_quantity?: number | null
-          desired_status?: string | null
+          desired_status?: Database["public"]["Enums"]["ml_status"] | null
           id?: string
           last_error?: string | null
-          ml_item_id?: string
+          ml_item_id?: string | null
           payload?: Json
           pricing_operation_id?: string | null
           processed_at?: string | null
@@ -264,6 +271,13 @@ export type Database = {
             isOneToOne: true
             referencedRelation: "pricing_operations"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "anuncios_ml_outbox_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
           },
           {
             foreignKeyName: "anuncios_ml_outbox_produto_id_fkey"
@@ -634,17 +648,19 @@ export type Database = {
           created_at: string
           evaluation_id: string
           fulfillment_source: string | null
-          group_id: string
-          group_version: number
+          group_id: string | null
+          group_version: number | null
           id: string
-          item_id: string
+          item_id: string | null
           job_id: string | null
           new_price_cents: number
+          operation_kind: string
           previous_price_cents: number | null
           produto_id: string
           reason: string
           requested_at: string | null
           rule_id: string | null
+          seller_id: string | null
           source: string
           state: string
         }
@@ -655,17 +671,19 @@ export type Database = {
           created_at?: string
           evaluation_id: string
           fulfillment_source?: string | null
-          group_id: string
-          group_version: number
+          group_id?: string | null
+          group_version?: number | null
           id: string
-          item_id: string
+          item_id?: string | null
           job_id?: string | null
           new_price_cents: number
+          operation_kind?: string
           previous_price_cents?: number | null
           produto_id: string
           reason: string
           requested_at?: string | null
           rule_id?: string | null
+          seller_id?: string | null
           source: string
           state?: string
         }
@@ -676,17 +694,19 @@ export type Database = {
           created_at?: string
           evaluation_id?: string
           fulfillment_source?: string | null
-          group_id?: string
-          group_version?: number
+          group_id?: string | null
+          group_version?: number | null
           id?: string
-          item_id?: string
+          item_id?: string | null
           job_id?: string | null
           new_price_cents?: number
+          operation_kind?: string
           previous_price_cents?: number | null
           produto_id?: string
           reason?: string
           requested_at?: string | null
           rule_id?: string | null
+          seller_id?: string | null
           source?: string
           state?: string
         }
@@ -694,30 +714,35 @@ export type Database = {
           {
             foreignKeyName: "pricing_operations_clearance_id_fkey"
             columns: ["clearance_id"]
+            isOneToOne: false
             referencedRelation: "internal_stock_clearance"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "pricing_operations_evaluation_id_fkey"
             columns: ["evaluation_id"]
+            isOneToOne: false
             referencedRelation: "pricing_evaluations"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "pricing_operations_group_id_group_version_fkey"
             columns: ["group_id", "group_version"]
+            isOneToOne: false
             referencedRelation: "ml_pricing_group_revisions"
             referencedColumns: ["group_id", "version"]
           },
           {
             foreignKeyName: "pricing_operations_produto_id_fkey"
             columns: ["produto_id"]
+            isOneToOne: false
             referencedRelation: "estoque_interno_posicoes"
             referencedColumns: ["produto_id"]
           },
           {
             foreignKeyName: "pricing_operations_produto_id_fkey"
             columns: ["produto_id"]
+            isOneToOne: false
             referencedRelation: "produtos"
             referencedColumns: ["id"]
           },
@@ -2817,6 +2842,18 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      assert_publication_evaluation: {
+        Args: { p_actor_id: string; p_evaluation_id: string }
+        Returns: undefined
+      }
+      capture_pricing_created_item: {
+        Args: { p_item_id: string; p_operation_id: string; p_seller_id: string }
+        Returns: undefined
+      }
+      claim_pricing_decision_dispatch: {
+        Args: { p_fresh_evaluation_id: string; p_operation_id: string }
+        Returns: boolean
+      }
       consume_pricing_decision: {
         Args: {
           p_id: string

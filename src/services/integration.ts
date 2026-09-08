@@ -677,6 +677,7 @@ export async function getValidMLToken(force = false): Promise<string | null> {
 export async function fetchMLResult<T>(
   path: string,
   options?: RequestInit,
+  execution?: { singleAttempt: true; validateToken: (token: string) => Promise<void> },
 ): Promise<MLRequestResult<T>> {
   const method = options?.method || "GET";
   if (isBlockedMlFiscalInvoicePath(path)) {
@@ -751,6 +752,7 @@ export async function fetchMLResult<T>(
   const timeout = setTimeout(() => controller.abort(), 30000);
 
   const doFetch = async (tok: string) => {
+    if (execution) await execution.validateToken(tok);
     return fetch(`https://api.mercadolibre.com${path}`, {
       ...options,
       signal: controller.signal,
@@ -761,13 +763,13 @@ export async function fetchMLResult<T>(
   try {
     let res = await doFetch(token);
 
-    if (res.status === 429) {
+    if (res.status === 429 && !execution?.singleAttempt) {
       const retryAfter = parseInt(res.headers.get("Retry-After") || "2", 10);
       await delay(Math.min(Math.max(retryAfter, 1), 5) * 1000);
       res = await doFetch(token);
     }
 
-    if (res.status === 401) {
+    if (res.status === 401 && !execution?.singleAttempt) {
       const freshToken = await getValidMLToken(true);
       if (!freshToken) {
         setAuthFatalCooldown("refresh_failed_after_401");

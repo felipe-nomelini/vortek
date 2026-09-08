@@ -20,11 +20,12 @@ export const decisionCommandSchema = z
   });
 
 export type DecisionContext = {
+  operationKind?: 'price_change' | 'listing_create';
   sellerId: string;
-  itemId: string;
+  itemId: string | null;
   groupId: string | null;
   groupVersion: number | null;
-  previousPriceCents: number;
+  previousPriceCents: number | null;
   priceCents: number;
   executable: boolean;
   reasons: string[];
@@ -41,6 +42,7 @@ export function decisionContext(input: {
   priceCents: number;
   group: PricingOverrideGroup | null;
   automatic: boolean;
+  listingSafety?: { verified: boolean; evidence: unknown[] };
   clearance?: DecisionContext['clearance'];
   clearanceState?: unknown;
 }): DecisionContext {
@@ -49,7 +51,9 @@ export function decisionContext(input: {
   if (!g || g.state !== 'verified' || !g.members.some((m) => m.itemId === input.itemId))
     reasons.push('GRUPO_NAO_CONFIRMADO');
   if (g?.inFlight) reasons.push('OPERACAO_EM_ANDAMENTO');
+  if (g?.members.some(m => m.variationId)) reasons.push('VARIACAO_REQUER_CONTRATO_DE_EXECUCAO');
   if (input.automatic) reasons.push('PRECO_AUTOMATICO_ML');
+  if (input.listingSafety?.verified !== true) reasons.push('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA');
   if (
     p.revalidation?.status !== 'queried' ||
     p.current.status === 'inconclusive' ||
@@ -90,10 +94,12 @@ export function decisionContext(input: {
         }
       : null,
     automatic: input.automatic,
+    listingSafety: input.listingSafety ?? null,
     clearance: input.clearance ?? null,
     clearanceState: input.clearanceState ?? null,
   };
   return {
+    operationKind: 'price_change',
     sellerId: input.sellerId,
     itemId: input.itemId,
     groupId: g?.id ?? null,
@@ -158,14 +164,17 @@ export async function syncPricingAlerts(
   if (error) throw new Error('pricing_alert_persistence_failed');
 }
 
-/** The only application entrypoint. Gate precedes revalidation/consumption; no environment bypass. */
+/** The only consumption entrypoint. Legacy writers retain their unconditional block. */
 export async function consumePricingDecision(
   client: Client,
   input: { decisionId: string; operationId: string; actorId: string },
   revalidate: () => Promise<string>,
 ) {
-  const block = getPricingExecutionBlock();
-  if (block) throw new Error(block.code);
+  if (process.env.ML_PRICING_EXECUTION_MODE !== 'test_only')
+    throw new Error(getPricingExecutionBlock()!.code);
+  // Server-owned account/destination checks; no browser flag grants execution.
+  const { requireTestPricingAccount } = await import('./pricing-execution-access');
+  await requireTestPricingAccount();
   const evaluationId = await revalidate();
   const { data, error } = await client.rpc('consume_pricing_decision', {
     p_id: z.string().uuid().parse(input.decisionId),

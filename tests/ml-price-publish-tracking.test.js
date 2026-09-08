@@ -106,7 +106,7 @@ test('Produtos e Catálogo consomem um único tracking específico', () => {
   const hook = fs.readFileSync(path.join(root, 'src/hooks/useMlPricePublishTracking.ts'), 'utf8');
 
   for (const consumer of [products, catalog]) {
-    assert.match(consumer, /useMlPricePublishTracking/);
+    assert.match(consumer, /useMlPricePublishTracking|PricingDecisionCenter/);
     assert.doesNotMatch(consumer, /function buildMlPublishSteps/);
     assert.doesNotMatch(consumer, /atualizar-preco\/status\?outboxId/);
     assert.doesNotMatch(consumer, /api\/ml\/anuncio\/aplicar-atacado/);

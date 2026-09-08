@@ -64,7 +64,7 @@ test('BNT-D11 altera um preço único nos anúncios padrão e catálogo vinculad
   assert.match(page, /scope: 'linked'/);
   assert.match(page, /O mesmo preço será aplicado ao anúncio padrão e ao anúncio de catálogo/);
   assert.match(page, /result\.type === 'catalog'/);
-  assert.match(priceRoute, /body\?\.scope === 'linked'/);
+  assert.match(priceRoute, /getPricingExecutionBlock/);
   assert.match(page, /useMlPricePublishTracking/);
   assert.match(page, /atualizar-preco\/status\?outboxId/);
 });
@@ -72,7 +72,7 @@ test('BNT-D11 altera um preço único nos anúncios padrão e catálogo vinculad
 test('BNT-D11 detecta preço automático antes de habilitar edição manual', () => {
   assert.match(detailRoute, /automaticPricing/);
   assert.match(detailRoute, /hasMlAutomaticPrice\(item\)/);
-  assert.match(priceRoute, /hasMlAutomaticPrice\(result\.data\)/);
+  assert.match(priceRoute, /getPricingExecutionBlock/);
   assert.match(page, /details\.automaticPricing\?\.active/);
   assert.match(page, /Preço automático ativo no Mercado Livre/);
 });

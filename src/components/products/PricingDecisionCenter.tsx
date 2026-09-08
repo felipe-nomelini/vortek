@@ -30,7 +30,7 @@ const labels: Record<string, string> = {
   open: 'Aberto',
   resolved: 'Resolvido',
   pending: 'Aguardando decisão',
-  approved: 'Aprovado — aplicação bloqueada pelo gate',
+  approved: 'Proposta aprovada',
   rejected: 'Rejeitado',
   deferred: 'Adiado',
   expired: 'Expirado',
@@ -47,6 +47,11 @@ const labels: Record<string, string> = {
   decision_expired: 'Proposta expirada',
   decision_invalidated: 'Proposta invalidada',
   decision_consumed: 'Aprovação vinculada à operação',
+  prepared: 'Na fila — ainda não enviado',
+  requested: 'Enviado — aguardando conferência',
+  confirmed: 'Aplicado e conferido no ML',
+  inconclusive: 'Resultado inconclusivo — não reenviar',
+  failed: 'Operação não concluída',
 };
 const date = (s?: string | null) =>
   s ? new Date(s).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }) : '—';
@@ -60,6 +65,7 @@ type Decision = {
   context: DecisionContext;
   reason: string;
   created_at: string;
+  operation_id: string | null;
 };
 type Row = {
   id: string;
@@ -69,7 +75,7 @@ type Row = {
   rule_id: string;
   severity: string;
   state: string;
-  item_id: string;
+  item_id: string | null;
   group_id: string | null;
   created_at: string;
   merged_into: string | null;
@@ -82,6 +88,7 @@ type Detail = {
   history: Array<{ id: number; kind: string; actorName: string | null; reason: string; created_at: string }>;
   canManage: boolean;
   hasMore: boolean;
+  executionBlocked: boolean;
 };
 const api = '/api/pricing/decisions';
 async function read(url: string, init?: RequestInit) {
@@ -123,6 +130,8 @@ export default function PricingDecisionCenter() {
   const [reason, setReason] = useState('');
   const [until, setUntil] = useState('');
   const [busy, setBusy] = useState(false);
+  const executionCommand = useRef<{ decisionId: string; operationId: string } | null>(null);
+  const [operation, setOperation] = useState<{ id: string; state: string } | null>(null);
   const list = useCallback(async () => {
     const request = ++generation.current;
     setLoading(true);
@@ -169,6 +178,7 @@ export default function PricingDecisionCenter() {
       const d = await read(`${api}?alertId=${id}&page=${p}`);
       if (request === generation.current) {
         setDetail(d);
+        setOperation(null);
         setHistoryPage(p);
       }
     } catch (e) {
@@ -180,6 +190,34 @@ export default function PricingDecisionCenter() {
   const current = detail?.alert.decisions
     ?.slice()
     .sort((a, b) => b.created_at.localeCompare(a.created_at))[0];
+  useEffect(() => {
+    const openProposal = (event: Event) => {
+      const id = (event as CustomEvent<{ alertId?: string }>).detail?.alertId;
+      if (!id) return;
+      setOpen(true);
+      void show(id);
+    };
+    window.addEventListener('pricing-decision-open', openProposal);
+    return () => window.removeEventListener('pricing-decision-open', openProposal);
+  });
+  async function checkOperation(id: string) {
+    try { setOperation(await read(`${api}/execute?operationId=${encodeURIComponent(id)}`)); }
+    catch (e) { message.error((e as Error).message); }
+  }
+  async function applyApproved() {
+    if (!current || busy || detail?.executionBlocked) return;
+    if (executionCommand.current?.decisionId !== current.id)
+      executionCommand.current = { decisionId: current.id, operationId: current.operation_id || crypto.randomUUID() };
+    setBusy(true);
+    try {
+      const r = await read(`${api}/execute`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(executionCommand.current) });
+      message.info('Operação registrada na fila. O preço só será considerado aplicado após conferência no ML.');
+      await show(detail!.alert.id);
+      await checkOperation(r.operationId);
+    } catch (e) { message.error((e as Error).message); }
+    finally { setBusy(false); }
+  }
   async function handleSubmit() {
     if (!current || !action || !reason.trim()) return;
     // The server owns the clock and checks that the requested date is future.
@@ -399,7 +437,7 @@ export default function PricingDecisionCenter() {
                   items={[
                     { key: 'status', label: 'Estado', children: labels[detail.alert.state] },
                     { key: 'group', label: 'Grupo', children: detail.alert.group_id || 'Não confirmado' },
-                    { key: 'item', label: 'Anúncio', children: detail.alert.item_id },
+                    { key: 'item', label: 'Anúncio', children: detail.alert.item_id || 'Novo — ID somente após criação confirmada' },
                     { key: 'reason', label: 'Motivo', children: detail.alert.reason },
                     ...(current
                       ? [
@@ -421,6 +459,19 @@ export default function PricingDecisionCenter() {
                   ]}
                 />
                 <PricingQuoteSummary pricing={detail.evaluation.result} />
+                {current?.state === 'approved' && (
+                  <Space direction="vertical">
+                    {detail.executionBlocked && <Alert type="info" message="Proposta aprovada; aplicação bloqueada pelo gate. Execução de teste não habilitada." />}
+                    {detail.canManage && !current.operation_id && <Button type="primary" loading={busy}
+                      disabled={detail.executionBlocked} onClick={() => void applyApproved()}>Aplicar na conta de teste</Button>}
+                    {current.operation_id && <Button onClick={() => void checkOperation(current.operation_id!)}>Conferir operação</Button>}
+                    {current.operation_id && detail.canManage && !detail.executionBlocked && operation
+                      && ['requested', 'inconclusive'].includes(operation.state) && <Button loading={busy}
+                        onClick={() => void applyApproved()}>Consultar ML novamente — sem reenviar</Button>}
+                    {operation && <Alert type={operation.state === 'confirmed' ? 'success' : 'info'}
+                      message={labels[operation.state] || operation.state} description={`Operação ${operation.id}`} />}
+                  </Space>
+                )}
                 {current && detail.canManage && ['pending', 'deferred'].includes(current.state) && (
                   <Space wrap>
                     {(['approve', 'reject', 'defer'] as const).map((a) => (
@@ -445,7 +496,7 @@ export default function PricingDecisionCenter() {
                     message="A validade econômica expirou. Reavalie e registre uma nova proposta antes de decidir."
                   />
                 )}
-                {detail.canManage && (
+                {detail.canManage && detail.alert.item_id && (
                   <PricingProposalButton
                     productId={detail.alert.produto_id}
                     itemId={detail.alert.item_id}

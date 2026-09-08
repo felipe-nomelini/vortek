@@ -12,7 +12,7 @@ begin
    'reasons','[]'::jsonb,'evidence',jsonb_build_array(jsonb_build_object('condition','valid','reference','TEST','collectedAt',clock_timestamp())))));
  select id into g from public.ml_pricing_groups where seller_id=9901301 and anchor_item_id='MLB990130001';
  perform public.persist_ml_pricing_observations('anuncios_ml',jsonb_build_array(jsonb_build_object('ml_item_id','MLB990130001','produto_id',p,'sku','DECISION_TEST','titulo','TEST','preco_ml',100,'status','ativo')),clock_timestamp());
- ctx:=jsonb_build_object('sellerId','9901301','itemId','MLB990130001','groupId',g,'groupVersion',1,'previousPriceCents',10000,'priceCents',11000,'fingerprint','TEST_A','executable',true,'reasons','[]'::jsonb,'clearance',null);
+ ctx:=jsonb_build_object('sellerId','9901301','itemId','MLB990130001','groupId',g,'groupVersion',1,'previousPriceCents',10000,'priceCents',11000,'fingerprint','TEST_A','executable',true,'reasons','[]'::jsonb,'clearance',null,'expiresAt',clock_timestamp()+interval '15 minutes');
  insert into public.pricing_evaluations(produto_id,actor_id,result,fingerprint) values(p,actor,jsonb_build_object('decisionContext',ctx),'TEST') returning id into ev;
  observation:='[{"rule":"buy_box_economy","severity":"P1","active":true,"title":"Teste","reason":"Motivo"}]';
  insert into public.pricing_evaluations(produto_id,actor_id,result,fingerprint) values(p,actor,jsonb_build_object('decisionContext',jsonb_set(ctx,'{groupId}','null')),'UNGROUPED') returning id into ungrouped;
@@ -44,7 +44,11 @@ begin
  if outbox<>public.consume_pricing_decision(d,op,actor,ev) then raise exception 'consumption_not_idempotent'; end if;
  begin perform public.consume_pricing_decision(d,gen_random_uuid(),actor,ev);raise exception 'double_consumption';exception when others then if sqlerrm<>'decision_already_consumed' then raise;end if;end;
  if (select count(*) from public.anuncios_ml_outbox where pricing_operation_id=op)<>1 then raise exception 'duplicate_outbox'; end if;
- perform public.transition_pricing_operation(op,'requested');perform public.transition_pricing_operation(op,'inconclusive');
+ begin perform public.claim_pricing_decision_dispatch(op,old_ev);raise exception 'stale_dispatch_accepted';exception when others then if sqlerrm<>'decision_evaluation_invalid' then raise;end if;end;
+ if not public.claim_pricing_decision_dispatch(op,ev) then raise exception 'dispatch_not_claimed'; end if;
+ if public.claim_pricing_decision_dispatch(op,ev) then raise exception 'duplicate_dispatch'; end if;
+ perform public.transition_pricing_operation(op,'inconclusive');
+ if public.claim_pricing_decision_dispatch(op,ev) then raise exception 'uncertain_dispatch_repeated'; end if;
  begin perform public.transition_pricing_operation(op,'confirmed','{}');raise exception 'confirmation_without_readback';exception when others then if sqlerrm<>'pricing_confirmation_missing' then raise;end if;end;
  begin perform public.prepare_pricing_operation(gen_random_uuid(),ev,g,1,'MLB990130001',12000,'manual',actor,'Concorrente');raise exception 'parallel_operation_accepted';exception when unique_violation then null;end;
  perform public.transition_pricing_operation(op,'confirmed',jsonb_build_object('reference','items/MLB990130001','outcome','readback_verified','item_id','MLB990130001','price_cents',11000,'observed_at',clock_timestamp(),
@@ -68,7 +72,16 @@ begin
  update public.pricing_decisions set expires_at=clock_timestamp()-interval '1 minute' where id=other;
  response:=public.manage_pricing_decision(other,gen_random_uuid(),actor,'approve','Expirada',fresh);
  if response->>'state'<>'expired' then raise exception 'expiration_ignored';end if;
+ -- A local failure before any HTTP consumes its approval, but does not trap the next proposal.
+ ctx:=jsonb_set(ctx,'{fingerprint}','"TEST_RETRY"');
+ insert into public.pricing_evaluations(produto_id,actor_id,result,fingerprint) values(p,actor,jsonb_build_object('decisionContext',ctx),'TEST') returning id into fresh;
+ other:=public.prepare_pricing_decision(gen_random_uuid(),fresh,actor,'Falha antes de enviar');
+ perform public.manage_pricing_decision(other,gen_random_uuid(),actor,'approve','Aprovar',fresh);
+ op:=gen_random_uuid();perform public.consume_pricing_decision(other,op,actor,fresh);
+ perform public.transition_pricing_operation(op,'failed');
+ if other=public.prepare_pricing_decision(gen_random_uuid(),fresh,actor,'Nova revisão após falha local') then raise exception 'failed_approval_reused'; end if;
  if has_table_privilege('service_role','public.pricing_decisions','UPDATE') or has_table_privilege('authenticated','public.pricing_alerts','SELECT')
+  or has_function_privilege('authenticated','public.claim_pricing_decision_dispatch(uuid,uuid)','EXECUTE')
   or has_function_privilege('authenticated','public.consume_pricing_decision(uuid,uuid,uuid,uuid)','EXECUTE') then raise exception 'unsafe_grants'; end if;
  if (select preco_ml from public.anuncios_ml where ml_item_id='MLB990130001')<>100 then raise exception 'test_changed_listing_price';end if;
  raise notice 'Pricing decisions: lifecycle, replay, permissions, invalidation, expiry, outbox and readback passed';

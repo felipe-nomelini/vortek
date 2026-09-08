@@ -10,6 +10,7 @@ function guardedModule(path, dependencies = {}) {
   const imports = ts.preProcessFile(fs.readFileSync(path, 'utf8')).importedFiles;
   const stubs = Object.fromEntries(imports.map(i => [i.fileName, {}]));
   return load(path, { ...stubs, '@/lib/ml/pricing-execution': guard,
+    '@/lib/api-request-auth': { authorizeApiRequest: async () => ({ ok: true, userId: 'test-user' }) },
     'next/server': { NextResponse: { json: (body, options) => Response.json(body, options) } },
     '@/lib/supabase': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: { id: 'test-user' } } }) } }),
       createServiceClient: () => ({ from() { throw Error('consulta/escrita inesperada'); } }) }, ...dependencies });
@@ -96,6 +97,7 @@ function worker(row, executionGuard = guard) {
     }; return query;
   } };
   const route = load('src/app/api/sync/anuncios/publish/route.ts', {
+    '@/services/pricing-dispatch': { dispatchApprovedPricingOperation: async () => { throw Error('Operação aprovada inesperada neste teste de fila legada'); } },
     'next/server': { NextResponse: { json: (body, options) => Response.json(body, options) } },
     '@/lib/supabase': { createServiceClient: () => client },
     '@/lib/ml/pricing-execution': executionGuard,

@@ -4,7 +4,7 @@ const audit=load('src/services/pricing-audit.ts',{zod:require('zod')});
 const gate=require('../src/lib/ml/pricing-execution.js');
 const domain=load('src/services/pricing-decisions.ts',{zod:require('zod'),'node:crypto':require('crypto'),'./pricing-audit':audit,'@/lib/ml/pricing-execution':gate});
 const id='00000000-0000-4000-8000-000000000001';
-function input(){return {sellerId:'123',itemId:'MLB1',currentPriceCents:10000,priceCents:11000,automatic:false,
+function input(){return {sellerId:'123',itemId:'MLB1',currentPriceCents:10000,priceCents:11000,automatic:false,listingSafety:{verified:true,evidence:[]},
   group:{id,version:1,state:'verified',members:[{itemId:'MLB1',variationId:'',catalog:false}],protection:null,inFlight:false},
   pricing:{current:{status:'estimated',memory:{revenueCents:11000,margin:.10,band:{floor:.07},cost:{amountCents:4000,observedAt:'2026-09-08T00:00:00Z',expiresAt:null},fee:{expiresAt:null},shipping:{expiresAt:null}}},target:{ok:true},floor:{ok:true},breakEven:{ok:true},revalidation:{status:'queried'}}};}
 test('contexto canônico exige grupo, memória e revalidação; não calcula preço',()=>{
@@ -12,6 +12,12 @@ test('contexto canônico exige grupo, memória e revalidação; não calcula pre
   for(const change of [x=>x.group=null,x=>x.group.inFlight=true,x=>x.automatic=true,x=>x.pricing.revalidation.status='inconclusive',x=>x.pricing.current.memory.revenueCents=10999,x=>x.pricing.current.memory.margin=.06,x=>x.priceCents=10000]){
     const x=input();change(x);assert.equal(domain.decisionContext(x).executable,false);
   }
+});
+test('identidade e elegibilidade atuais são obrigatórias; evidência material invalida aprovação',()=>{
+  const i=input();delete i.listingSafety;assert.equal(domain.decisionContext(i).executable,false);
+  i.listingSafety={verified:false,evidence:[]};assert.equal(domain.decisionContext(i).executable,false);
+  const a=input(), b=input();b.listingSafety.evidence=[{field:'BRAND',local:'A',remote:'A'}];
+  assert.notEqual(domain.decisionContext(a).fingerprint,domain.decisionContext(b).fingerprint);
 });
 test('impressão material ignora coleta, mas muda com preço/custo/grupo/override',()=>{
   const a=domain.decisionContext(input());const clock=input();clock.pricing.current.memory.cost.observedAt='2026-09-09T00:00:00Z';assert.equal(a.fingerprint,domain.decisionContext(clock).fingerprint);

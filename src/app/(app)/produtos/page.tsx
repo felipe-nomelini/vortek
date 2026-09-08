@@ -12,9 +12,10 @@ import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
 import ResizableTable from '@/components/ResizableTable';
-import ProgressModal from '@/components/modals/ProgressModal';
+import PricingDecisionCenter, { PricingProposalButton } from '@/components/products/PricingDecisionCenter';
+import { PricingQuoteSummary } from '@/components/products/LivePricingQuote';
+import type { ProductPricing } from '@/services/pricing-context';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
-import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import styles from './produtos.module.css';
 import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 import { resolveMlFee } from '@/lib/commercial-pricing';
@@ -171,6 +172,7 @@ interface CategorySchemaResponse {
 }
 
 type MlCreateListingResult = {
+  prepared?: boolean; alertId?: string; pricing?: ProductPricing; priceCents?: number; quantity?: number; expiresAt?: string;
   success?: boolean;
   linked_existing?: boolean;
   error?: string;
@@ -338,12 +340,9 @@ export default function ProductsPage() {
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [filtersDrawerOpen, setFiltersDrawerOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-  const {
-    hasOpenTracking: hasOpenMlPublishTracking,
-    startTracking: startMlPublishTracking,
-    progressModalProps: mlPublishProgressModalProps,
-  } = useMlPricePublishTracking(messageApi);
-  const [updatingPriceProductId, setUpdatingPriceProductId] = useState<string | null>(null);
+  const [priceItemId, setPriceItemId] = useState<string>();
+  const [publicationShipping, setPublicationShipping] = useState<{ mode?: 'me2' | 'not_specified'; logisticType?: string; freeShipping?: boolean }>({});
+  const [publicationListingType, setPublicationListingType] = useState<'gold_special' | 'gold_pro'>('gold_pro');
   const [priceModal, setPriceModal] = useState<{
     open: boolean;
     record: ProductRow | null;
@@ -897,9 +896,9 @@ export default function ProductsPage() {
         body: JSON.stringify({
           produtoId: mlModal.produtoId,
           categoriaId: mlModal.selectedCategory,
-          listingType: 'gold_pro',
-          basePrice: mlModal.editablePrice,
-          fiscal: mlModal.editableFiscal,
+          listingType: publicationListingType,
+          ...(mlModal.editablePrice ? { priceCents: Math.round(mlModal.editablePrice * 100) } : {}),
+          shipping: publicationShipping,
           description: mlModal.description,
           attributes: [...mlModal.editableAttributes, ...mlModal.optionalAttributes].map(attr => ({
             id: attr.id,
@@ -933,6 +932,9 @@ export default function ProductsPage() {
   };
 
   const openPriceEditor = (record: ProductRow) => {
+    if (visualReview) { messageApi.warning('A amostra de homologação é somente leitura.'); return; }
+    const listings = displayMlListings(record);
+    setPriceItemId(listings.length === 1 ? listings[0].itemId : undefined);
     setPriceModal({
       open: true,
       record,
@@ -943,70 +945,6 @@ export default function ProductsPage() {
     });
   };
 
-  const submitPriceChange = async () => {
-    const record = priceModal.record;
-    const targetPrice = Number(priceModal.value);
-    if (!record || !Number.isFinite(targetPrice) || targetPrice <= 0) {
-      setPriceModal(prev => ({ ...prev, error: 'Informe um preço maior que zero.' }));
-      return;
-    }
-    if (visualReview) {
-      setPriceModal(prev => ({ ...prev, error: 'A amostra de homologação é somente leitura.' }));
-      return;
-    }
-    if (updatingPriceProductId || hasOpenMlPublishTracking) {
-      messageApi.warning('Já existe uma publicação de preço em acompanhamento.');
-      return;
-    }
-
-    setUpdatingPriceProductId(record.product.id);
-    setPriceModal(prev => ({ ...prev, saving: true, results: [], error: null }));
-    try {
-      const response = await fetch('/api/ml/anuncio/atualizar-preco', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          produtoId: record.product.id,
-          targetPrice,
-          scope: 'linked',
-        }),
-      });
-      const payload = await response.json().catch(() => ({}));
-      const results: PriceUpdateResult[] = Array.isArray(payload?.results) ? payload.results : [];
-      const error = response.ok ? null : (payload?.error || 'Falha ao alterar o preço no Mercado Livre.');
-      setPriceModal(prev => ({ ...prev, saving: false, results, error }));
-
-      const updated = results.filter(result => result.price_updated).length;
-      const queued = results.filter(result => result.queued_publish).length;
-      const failed = results.length - updated - queued;
-      if (updated > 0 && failed === 0 && queued === 0) {
-        messageApi.success(`Preço alterado em ${updated} anúncio${updated === 1 ? '' : 's'}.`);
-      } else if (updated > 0 || queued > 0) {
-        messageApi.warning(`Preço processado: ${updated} atualizado${updated === 1 ? '' : 's'}, ${queued} em fila e ${failed} com falha.`);
-      } else {
-        messageApi.error(error || 'Nenhum anúncio teve o preço alterado.');
-      }
-
-      const queuedResult = results.length === 1 && results[0]?.queued_publish
-        ? results[0]
-        : null;
-      if (queuedResult?.outboxId) {
-        startMlPublishTracking({
-          outboxId: queuedResult.outboxId,
-          produtoId: record.product.id,
-          retry: () => { void submitPriceChange(); },
-          onTerminal: () => { void fetchProducts(); },
-        });
-      }
-      await fetchProducts();
-    } catch {
-      const error = 'Erro ao conectar com a API de atualização de preço.';
-      setPriceModal(prev => ({ ...prev, saving: false, error }));
-      messageApi.error(error);
-    } finally {
-      setUpdatingPriceProductId(null);
-    }
-  };
 
   const fetchProducts = useCallback(async () => {
     const requestId = productsRequestRef.current + 1;
@@ -1275,7 +1213,7 @@ export default function ProductsPage() {
       );
     }
 
-    const isUpdatingCurrent = updatingPriceProductId === record.product.id;
+    const isUpdatingCurrent = false;
     const primaryIcon = primary.key === 'price' && isUpdatingCurrent
       ? <LoadingOutlined spin />
       : primary.icon;
@@ -1303,7 +1241,7 @@ export default function ProductsPage() {
           type={primary.key === 'open' ? 'default' : 'primary'}
           icon={primaryIcon}
           loading={isUpdatingCurrent}
-          disabled={Boolean(updatingPriceProductId && !isUpdatingCurrent)}
+          disabled={false}
           onClick={() => runAction(primary.key)}
         >
           {primary.label}
@@ -1534,6 +1472,7 @@ export default function ProductsPage() {
           <Text type="secondary">Compare disponibilidade, fornecedor, preço, rentabilidade e publicação em uma única leitura.</Text>
         </div>
         <Space>
+          <PricingDecisionCenter />
           <Button icon={<ReloadOutlined />} loading={loading} onClick={() => { void fetchProducts(); void fetchStats(); }}>
             Atualizar
           </Button>
@@ -1678,86 +1617,20 @@ export default function ProductsPage() {
         {renderAdvancedFilters()}
       </Drawer>
 
-      <ProgressModal {...mlPublishProgressModalProps} />
-
-      <Modal
-        title={priceModal.record ? `Alterar preço — ${priceModal.record.product.sku}` : 'Alterar preço'}
-        open={priceModal.open}
-        onCancel={() => setPriceModal(prev => ({ ...prev, open: false }))}
-        onOk={() => { void submitPriceChange(); }}
-        okText={priceModal.results.length > 0 ? 'Aplicar novamente' : 'Aplicar nos anúncios'}
-        cancelText="Fechar"
-        confirmLoading={priceModal.saving}
-        okButtonProps={{ disabled: true }}
-        destroyOnClose
-      >
-        {priceModal.record && (() => {
-          const record = priceModal.record;
-          const value = Number(priceModal.value || 0);
-          const view = pricingView(record.product.pricing);
-          const previewProfit = value === view.displayPrice ? view.profit : null;
-          const previewMargin = value === view.displayPrice ? view.margin : null;
-          const suggestedPrice = view.suggestedPrice;
-          const listings = displayMlListings(record).filter(listing => ['ativo', 'pausado'].includes(listing.status));
-          return (
-            <div className={styles.priceModalContent}>
-              <div className={styles.priceModalProduct}>
-                <strong>{record.product.name}</strong>
-                <span>Alteração de preço indisponível até a homologação das proteções comerciais.</span>
-              </div>
-              <label className={styles.priceInputLabel}>
-                <span>Novo preço de venda</span>
-                <InputNumber
-                  value={priceModal.value}
-                  onChange={value => setPriceModal(prev => ({ ...prev, value: value ?? null, results: [], error: null }))}
-                  min={0.01}
-                  precision={2}
-                  decimalSeparator=","
-                  prefix="R$"
-                  autoFocus
-                  className={styles.priceInput}
-                />
-              </label>
-              <div className={styles.pricePreview}>
-                <div><span>Custo</span><strong>{formatCurrency(record.effectiveCost)}</strong></div>
-                <div><span>Preço sugerido</span><strong>{formatCurrency(suggestedPrice)}</strong></div>
-                <div>
-                  <span>Lucro estimado</span>
-                  <strong className={previewProfit !== null && previewProfit < 0 ? styles.negativeText : styles.positiveText}>
-                    {previewProfit === null ? '—' : formatCurrency(previewProfit)}
-                  </strong>
-                </div>
-                <div><span>Margem</span><strong>{previewMargin === null ? '—' : `${previewMargin.toFixed(2).replace('.', ',')}%`}</strong></div>
-              </div>
-              {previewProfit !== null && previewProfit < 0 && (
-                <Alert type="warning" showIcon message="Este preço gera prejuízo" description="A alteração continua permitida, mas revise custo, frete e taxas antes de confirmar." />
-              )}
-              <div className={styles.priceListingTargets}>
-                <strong>Anúncios que receberão o preço</strong>
-                {listings.map(listing => (
-                  <div key={listing.itemId}>
-                    <span>{listing.type === 'catalog' ? 'Catálogo' : 'Padrão'} · {listing.itemId}</span>
-                    <small>Atual {formatCurrency(listing.price)}</small>
-                  </div>
-                ))}
-              </div>
-              {priceModal.error && <Alert type="error" showIcon message="Preço não aplicado" description={priceModal.error} />}
-              {priceModal.results.length > 0 && (
-                <div className={styles.priceResults}>
-                  {priceModal.results.map(result => (
-                    <div key={result.mlItemId}>
-                      <span>{result.type === 'catalog' ? 'Catálogo' : 'Padrão'} · {result.mlItemId}</span>
-                      <strong className={result.price_updated ? styles.positiveText : result.queued_publish ? styles.pendingText : styles.negativeText}>
-                        {result.price_updated ? 'Atualizado' : result.queued_publish ? 'Em fila' : 'Falhou'}
-                      </strong>
-                      {result.error && <small>{result.error}</small>}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          );
-        })()}
+      <Modal title="Preparar alteração de preço" open={priceModal.open} footer={null}
+        onCancel={() => setPriceModal(prev => ({ ...prev, open: false }))} destroyOnHidden>
+        {priceModal.record && <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+          <Text>{priceModal.record.product.name}</Text>
+          <Alert type="info" message="Escolha o anúncio de origem. O grupo sincronizado será conferido; nenhuma escrita acontece nesta consulta." />
+          <Select style={{ width: '100%' }} placeholder="Anúncio de origem" value={priceItemId} onChange={setPriceItemId}
+            options={displayMlListings(priceModal.record).map(l => ({ value: l.itemId, label: (l.type === 'catalog' ? 'Catálogo' : 'Padrão') + ' · ' + l.itemId }))} />
+          <Text>Novo preço de venda</Text>
+          <InputNumber min={0.01} precision={2} prefix="R$" value={priceModal.value}
+            onChange={value => setPriceModal(prev => ({ ...prev, value }))} />
+          {priceItemId && <PricingProposalButton productId={priceModal.record.product.id} itemId={priceItemId}
+            priceCents={priceModal.value ? Math.round(priceModal.value * 100) : undefined}
+            onRecorded={() => { setPriceModal(prev => ({ ...prev, open: false })); messageApi.info('Proposta registrada. Abra Alertas e decisões para revisar.'); }} />}
+        </Space>}
       </Modal>
 
       <Drawer
@@ -1783,6 +1656,13 @@ export default function ProductsPage() {
         )}
         {mlModal.result ? (() => {
           const result = mlModal.result;
+          if (result.prepared) return <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+            <Alert type="info" showIcon message="Anúncio preparado — ainda não publicado" description="Revise a memória econômica e aprove a proposta na central. O worker fará a execução e a conferência na conta de teste." />
+            <Text>Quantidade: {result.quantity} · Validade: {result.expiresAt ? new Date(result.expiresAt).toLocaleString('pt-BR') : '—'}</Text>
+            <PricingQuoteSummary pricing={result.pricing} />
+            <Button type="primary" onClick={() => { setMlModal(prev => ({ ...prev, open: false }));
+              window.dispatchEvent(new CustomEvent('pricing-decision-open', { detail: { alertId: result.alertId } })); }}>Revisar aprovação</Button>
+          </Space>;
           const anuncio = result.anuncio || {};
           const warnings = Array.isArray(result.warnings) ? result.warnings : [];
           const fiscalDetails = Array.isArray(result.fiscal_details) ? result.fiscal_details : [];
@@ -1993,6 +1873,7 @@ export default function ProductsPage() {
                       <Text style={{ color: '#888' }}>GTIN: </Text>
                       <Input
                         size="small"
+                        disabled
                         value={mlModal.editableFiscal.gtin}
                         onChange={(e) => setMlModal(prev => ({ ...prev, editableFiscal: { ...prev.editableFiscal, gtin: e.target.value } }))}
                       />
@@ -2001,6 +1882,7 @@ export default function ProductsPage() {
                       <Text style={{ color: '#888' }}>NCM: </Text>
                       <Input
                         size="small"
+                        disabled
                         value={mlModal.editableFiscal.ncm}
                         onChange={(e) => setMlModal(prev => ({ ...prev, editableFiscal: { ...prev.editableFiscal, ncm: e.target.value } }))}
                         status={mlModal.editableFiscal.ncm ? undefined : 'error'}
@@ -2010,6 +1892,7 @@ export default function ProductsPage() {
                       <Text style={{ color: '#888' }}>CEST: </Text>
                       <Input
                         size="small"
+                        disabled
                         value={mlModal.editableFiscal.cest}
                         onChange={(e) => setMlModal(prev => ({ ...prev, editableFiscal: { ...prev.editableFiscal, cest: e.target.value } }))}
                       />
@@ -2019,6 +1902,7 @@ export default function ProductsPage() {
                       <Select
                         size="small"
                         style={{ width: '100%' }}
+                        disabled
                         value={mlModal.editableFiscal.origem_fiscal}
                         onChange={(value) => setMlModal(prev => ({ ...prev, editableFiscal: { ...prev.editableFiscal, origem_fiscal: value } }))}
                         options={[
@@ -2036,6 +1920,7 @@ export default function ProductsPage() {
                       <Text style={{ color: '#888' }}>CSOSN: </Text>
                       <Input
                         size="small"
+                        disabled
                         value={mlModal.editableFiscal.csosn}
                         onChange={(e) => setMlModal(prev => ({ ...prev, editableFiscal: { ...prev.editableFiscal, csosn: e.target.value } }))}
                       />
@@ -2356,6 +2241,22 @@ export default function ProductsPage() {
               </div>
             )}
 
+            <Space direction="vertical" size="small" style={{ width: '100%' }}>
+              <Title level={5}>Contexto da publicação</Title>
+              <Text type="secondary">Dados fiscais vêm do cadastro do produto; corrija-os no produto antes de preparar.</Text>
+              <Text type="secondary">Conta de teste. A logística escolhida será validada no ML antes de preparar.</Text>
+              <Select aria-label="Tipo de anúncio" value={publicationListingType} onChange={setPublicationListingType}
+                options={[{ value: 'gold_special', label: 'Clássico' }, { value: 'gold_pro', label: 'Premium' }]} />
+              <Select aria-label="Modalidade de envio" placeholder="Modalidade de envio" value={publicationShipping.mode}
+                onChange={mode => setPublicationShipping(prev => ({ ...prev, mode, logisticType: undefined }))}
+                options={[{ value: 'me2', label: 'Mercado Envios 2' }, { value: 'not_specified', label: 'A combinar — teste' }]} />
+              <Select aria-label="Logística" placeholder="Logística habilitada na conta" value={publicationShipping.logisticType}
+                onChange={logisticType => setPublicationShipping(prev => ({ ...prev, logisticType }))}
+                options={(publicationShipping.mode === 'not_specified' ? ['not_specified'] : ['drop_off', 'xd_drop_off', 'cross_docking', 'fulfillment', 'self_service']).map(value => ({ value, label: value }))} />
+              <Select aria-label="Frete grátis" placeholder="Frete grátis ao comprador?" value={publicationShipping.freeShipping === undefined ? undefined : String(publicationShipping.freeShipping)}
+                onChange={value => setPublicationShipping(prev => ({ ...prev, freeShipping: value === 'true' }))}
+                options={[{ value: 'true', label: 'Sim' }, { value: 'false', label: 'Não' }]} />
+            </Space>
             {/* Botões */}
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12, marginTop: 8 }}>
               <Button onClick={() => setMlModal(prev => ({ ...prev, open: false }))}>
@@ -2367,7 +2268,7 @@ export default function ProductsPage() {
                 disabled={!mlModal.selectedCategory || mlModal.loading}
                 loading={mlModal.loading}
               >
-                Criar Anúncio
+                Preparar anúncio
               </Button>
             </div>
           </div>

@@ -138,15 +138,14 @@ test("sync encerra bloqueio somente após identidade válida e mantém fornecedo
   assert.equal(syncRouteSource.includes("ensureMlIdentityManualBlock"), false);
 });
 
-test("criação e vínculo reconciliam bloqueio resolvido sem remover o gate de conflito", () => {
-  const assessments = createRouteSource.match(/assessMlProductIdentity\(/g) || [];
-  const reconciliations = createRouteSource.match(/clearAutomaticMlIdentityBlock\(/g) || [];
-
-  assert.equal(assessments.length, 2);
-  assert.equal(reconciliations.length, 2);
-  assert.match(createRouteSource, /const identityConflicts = identityAssessment\.comparisons/);
-  assert.doesNotMatch(createRouteSource, /canonicalBrand|blockingConflicts/);
-  assert.match(createRouteSource, /if \(hasConfirmedMlIdentityConflict\(identityAssessment\)\)/);
-  assert.match(createRouteSource, /identity_conflicts: identityConflicts/);
-  assert.match(createRouteSource, /pauseCreatedListing\(result\.id\)/);
+test("criação canônica exige identidade antes e depois; não limpa bloqueios de anúncios existentes", () => {
+  const prepare = fs.readFileSync(path.join(root, 'src/services/publication-preparation.ts'), 'utf8');
+  const readback = fs.readFileSync(path.join(root, 'src/services/publication-readback.ts'), 'utf8');
+  for (const code of [prepare, readback]) {
+    assert.match(code, /assessMlProductIdentity/);
+    assert.match(code, /!isMlIdentityComplete\(identity\)/);
+    assert.doesNotMatch(code, /canonicalBrand|clearAutomaticMlIdentityBlock|pauseCreatedListing/);
+  }
+  assert.match(prepare, /publication_existing_or_inconclusive_link/);
+  assert.match(createRouteSource, /preparePublication/);
 });

@@ -16,6 +16,11 @@ import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { extractQuantityPricingTiers, serializeQuantityPricingTiers } from '@/lib/ml/quantity-pricing';
 import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
 import { normalizeBuyBoxStatus, normalizePriceToWin, resolveCatalogCompetitionStatus } from '@/lib/catalogo/no-catalogo';
+import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
+import { isMlIdentityComplete } from '@/lib/ml-listing-identity';
+import { classifyMlPublishEligibility } from '@/lib/ml/operational-listing';
+import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
+import { getCategoryAttributes } from './mercadolibre';
 
 const contextSchema = z.object({
   categoryId: z.string().regex(/^MLB\d+$/), listingType: z.enum(['gold_special', 'gold_pro']),
@@ -66,9 +71,9 @@ async function preparationValid(context: z.infer<typeof contextSchema>, sellerId
       && Array.isArray(row.types) && row.types.includes(context.logisticType));
 }
 
-export async function loadPricingDetail(raw: unknown) {
-  const auth = await createClient();
-  const { data: { user } } = await auth.auth.getUser();
+export async function loadPricingDetail(raw: unknown, worker?: { actorId: string }) {
+  // Internal worker identity is never parsed from the HTTP body.
+  const user = worker ? { id: worker.actorId } : (await (await createClient()).auth.getUser()).data.user;
   if (!user) return json({ error: 'Não autenticado' }, 401);
   const parsed = inputSchema.safeParse(raw);
   if (!parsed.success) return json({ error: 'Contexto de cotação inválido' }, 422);
@@ -124,6 +129,7 @@ export async function loadPricingDetail(raw: unknown) {
   let competitiveEvidence = competitionPath ? competitionEvidence(competitionResult?.data, {
     itemId: itemId!, catalogProductId: context.catalogProductId, currentPriceCents: currentPrice!,
   }, new Date().toISOString(), competitionResult?.ok === true) : null;
+  let listingSafety: { verified: boolean; evidence: unknown[] } = { verified: false, evidence: [] };
   const pricing = await loadLiveProductPricing(service, product, context, input.priceCents ?? currentPrice, async () => {
     const account = await fetchMLResult<any>('/users/me');
     if (!account.ok) return null;
@@ -133,6 +139,32 @@ export async function loadPricingDetail(raw: unknown) {
     if (!fresh.ok) return null;
     const next = itemContext(fresh.data, sellerId);
     if (JSON.stringify({ context: next, price: fresh.data?.price ?? null, tags: fresh.data?.tags ?? [], shipping: fresh.data?.shipping ?? null }) !== expected) return false;
+    // A verified stored group is not proof of current identity or operational eligibility.
+    const [currentProduct, offers, kit, suppliers] = await Promise.all([
+      service.from('produtos').select('*').eq('id', product.id).single(),
+      service.from('produto_fornecedor_ofertas').select('*').eq('produto_id', product.id),
+      loadMlIdentityKit(service, product.id), loadOperationalDropshippingSupplierIds(service),
+    ]);
+    if (currentProduct.error || offers.error) return null;
+    if (currentProduct.data?.ativo !== true) return false;
+    const evidence: unknown[] = [];
+    const verifyListing = async (remote: any) => {
+      const [attributes, block] = await Promise.all([
+        getCategoryAttributes(remote.category_id),
+        service.from('anuncios_ml').select('ml_sync_block_reason,ml_sync_blocked_until').eq('ml_item_id', remote.id).maybeSingle(),
+      ]);
+      if (!attributes || block.error) return false;
+      const eligibility = classifyMlPublishEligibility({ observedStatus: remote.status,
+        blockReason: block.data?.ml_sync_block_reason, blockedUntil: block.data?.ml_sync_blocked_until });
+      const identity = assessMlProductIdentity(remote, currentProduct.data, offers.data || [], suppliers, {
+        categoryAttributes: attributes, kit, remoteEvidence: { source: 'mercado_livre', reference: remote.id,
+          collectedAt: new Date().toISOString(), condition: 'valid' },
+      });
+      evidence.push({ itemId: remote.id, status: remote.status,
+        comparisons: identity.comparisons.map(({ field, local, remote, status, reason }) => ({ field, local, remote, status, reason })) });
+      return eligibility.eligible && eligibility.kind === 'modifiable' && isMlIdentityComplete(identity);
+    };
+    if (!await verifyListing(fresh.data)) return false;
     if (competitiveEvidence?.condition === 'valid' && competitionPath) {
       const refreshed = await fetchMLResult<any>(competitionPath);
       const evidence = competitionEvidence(refreshed.data, { itemId: itemId!, catalogProductId: context!.catalogProductId,
@@ -158,7 +190,9 @@ export async function loadPricingDetail(raw: unknown) {
           if (!result.ok) return null;
           const peerPrice = peer.variationId ? result.data?.variations?.find((v: any) => String(v.id) === peer.variationId)?.price : result.data?.price;
           if (result.data?.id !== peer.itemId || String(result.data.seller_id) !== sellerId
-            || result.data.currency_id !== 'BRL' || quoteMoney(peerPrice) !== currentPrice) return false;
+            || result.data.currency_id !== 'BRL' || hasMlAutomaticPrice(result.data)
+            || quoteMoney(peerPrice) !== currentPrice) return false;
+          if (!await verifyListing(result.data)) return false;
         }
       }
     }
@@ -167,6 +201,7 @@ export async function loadPricingDetail(raw: unknown) {
       if (pricingMaterialFingerprint({ stock: latest.stock, rows: latest.clearances })
         !== pricingMaterialFingerprint({ stock: clearanceSnapshot?.stock, rows: clearanceSnapshot?.clearances })) return false;
     }
+    listingSafety = { verified: true, evidence };
     return true;
   }, { competitivePriceCents: competitiveEvidence?.priceCents, actualPriceCents: currentPrice, groupId: group?.id });
   const view = pricingView(pricing);
@@ -208,6 +243,7 @@ export async function loadPricingDetail(raw: unknown) {
   }) : null;
   const decision = itemId && currentPrice ? decisionContext({ pricing, sellerId, itemId, currentPriceCents: currentPrice,
     priceCents: input.priceCents ?? currentPrice, group, automatic: hasMlAutomaticPrice(item), clearance: input.clearance,
+    listingSafety,
     clearanceState: clearanceSnapshot ? { stock: clearanceSnapshot.stock, clearances: clearanceSnapshot.clearances } : null }) : null;
   const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing, competitiveAssessment, decision);
   if (decision) await syncPricingAlerts(service, evaluationId, decision, competitiveAssessment);

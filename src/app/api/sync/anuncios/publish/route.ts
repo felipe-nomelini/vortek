@@ -20,6 +20,7 @@ import {
   mlNonModifiableBlockReason,
 } from '@/lib/ml/operational-listing';
 import { isSafeInactiveSupplierPause } from '@/lib/supplier-deactivation';
+import { dispatchApprovedPricingOperation } from '@/services/pricing-dispatch';
 
 export const maxDuration = 300;
 
@@ -295,7 +296,7 @@ export async function POST(request: Request) {
 
     let outboxQuery = client
       .from('anuncios_ml_outbox' as any)
-      .select('id, produto_id, ml_item_id, desired_status, desired_price, desired_quantity, status, attempts, payload, source')
+      .select('id, produto_id, ml_item_id, desired_status, desired_price, desired_quantity, status, attempts, payload, source, pricing_operation_id')
       .in('status', ['pending', 'retry']);
 
     if (targetOutboxId) {
@@ -409,6 +410,19 @@ export async function POST(request: Request) {
 
     for (const row of rows) {
       const outboxId = String(row.id);
+      if (row.pricing_operation_id) {
+        try {
+          const state = await dispatchApprovedPricingOperation(client, outboxId, String(row.pricing_operation_id));
+          if (state === 'confirmed') done++; else failed++;
+        } catch {
+          // Preserve the intent. Never downgrade an approved operation to the legacy writer.
+          warnings.push({ code: 'pricing_approved_dispatch_unavailable',
+            message: 'Operação aprovada aguarda conferência de acesso/evidências. Nenhum reenvio automático de preço.',
+            context: { outboxId } });
+          retry++;
+        }
+        continue;
+      }
       const mlItemId = String(row.ml_item_id || '').trim();
       const attempts = Number(row.attempts || 0) + 1;
       const outboxPayloadBase = retireQuantityPricingPayload(normalizeOutboxPayload((row as any).payload));

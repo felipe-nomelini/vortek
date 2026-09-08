@@ -37,7 +37,8 @@ const normalize = (row: any) => {
     !d.operation_id &&
     ['pending', 'deferred', 'approved'].includes(d.state) &&
     Date.parse(d.expires_at) <= Date.now();
-  return { ...row, title: row.rule_id === 'manual_proposal' ? 'Proposta de preço' : row.title,
+  return { ...row, title: row.rule_id === 'manual_proposal'
+    ? (d?.context?.operationKind === 'listing_create' ? 'Preparação de novo anúncio' : 'Proposta de preço') : row.title,
     decisions: d ? [{ ...d, state: expired ? 'expired' : d.state }] : [] };
 };
 
@@ -89,7 +90,7 @@ export async function GET(request: Request) {
         })),
         hasMore: history.data?.length === 30,
         canManage,
-        executionBlocked: true,
+        executionBlocked: process.env.ML_PRICING_EXECUTION_MODE !== 'test_only',
       });
     }
     let query = client
@@ -138,7 +139,7 @@ export async function GET(request: Request) {
       total: result.count,
       pendingCount: count.count,
       canManage,
-      executionBlocked: true,
+      executionBlocked: process.env.ML_PRICING_EXECUTION_MODE !== 'test_only',
     });
   } catch {
     return json({ error: 'Central de decisões indisponível' }, 503);
@@ -182,6 +183,10 @@ export async function POST(request: Request) {
     if (replay.error) throw new Error('read_failed');
     let freshId: string | undefined;
     if (c.action === 'approve' && !replay.data && ['pending', 'deferred'].includes(row.state)) {
+      if (row.context.operationKind === 'listing_create') {
+        const { preparePublication } = await import('@/services/publication-preparation');
+        freshId = (await preparePublication(row.context.preparation.input, auth.userId)).evaluationId;
+      } else {
       const response = await loadPricingDetail({
         produtoId: row.alert.produto_id,
         mlItemId: row.context.itemId,
@@ -190,6 +195,7 @@ export async function POST(request: Request) {
       });
       if (!response.ok) return response;
       freshId = (await response.json()).evaluationId;
+      }
     }
     const { data, error } = await client.rpc('manage_pricing_decision' as any, {
       p_id: decisionId,
