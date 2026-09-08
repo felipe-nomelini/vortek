@@ -29,13 +29,24 @@ Esses links são resultados coletados, não declaração de aplicabilidade de ga
 
 ## Roteiro disponível ao usuário
 
+- [Produto real em cadastro de teste inativo — VTK000002](http://localhost:3001/produtos/55f0d5e5-1aeb-4553-8247-5f80d158528f): **Comercial e estoque → Garantia**. Fonte, pesquisa e revisão persistidas; permite consultar evidência e histórico e repetir a pesquisa. Esse cadastro não é uma venda/lote real e não tem anúncio.
 - [Cadastro fictício com pesquisa/histórico habilitados](http://localhost:3001/produtos/8b61221f-ef58-49c7-9d06-fdb77ab8e0f0): entrar com a conta existente; **Comercial e estoque → Garantia**. É adequado para conferir botões, pesquisa inconclusiva e histórico. Não atribuir garantia contratual real a produto fictício.
 - [Amostra real protegida TS Shara](http://localhost:3001/produtos/bnt-d07-review-001): mesma aba, exemplos visuais identificados como demonstração. Pesquisa e decisões permanecem bloqueadas nessa amostra.
 
+## Complemento autorizado — cadastro real e prova positiva
+
+- Em 08/09/2026 o usuário autorizou criar um cadastro inativo a partir de uma amostra real. Criado pela API existente `/api/produtos`: `55f0d5e5-1aeb-4553-8247-5f80d158528f`, SKU gerado `VTK000002`, nome/marca/GTIN/descrição/imagens da amostra `bnt-d07-review-001`. Descrição sinaliza homologação. Não copiadas ofertas, preço, estoque, identificadores DSLite ou anúncios.
+- Preflight repetido antes das operações: TCP `.162`, hostname `supabase-dev`, histórico `20260907213000`, schema/constraints/triggers conferidos. Sem migration/DDL, alteração de autenticação ou mudança de código funcional.
+- Pelo navegador, registrado domínio oficial `tsshara.com.br` para a marca TS SHARA, sem aprovar prazos de outros produtos. Pesquisa real limitada pelo botão completou em 10.140 ms, com resultado inconclusivo; não foi convertida em confirmação automática.
+- Revisão explícita pelo formulário: quatro anos, trecho literal da página oficial específica do **PowerEst Home #9010 115/115V**, vinculada à identidade da amostra pela descrição da oferta e seu GTIN. Rejeitada variante PRO #9011 retornada na pesquisa; catálogo genérico de 2019 não foi usado como termo específico do produto atual. [Página oficial](https://tsshara.com.br/produto/estabilizador-powerest-home-2000-monovolt-115v/). O [manual vinculado](https://tsshara.com.br/wp-content/uploads/2019/07/manual-powerest-home.pdf) remete o termo à embalagem: a validação de interface não certifica cobertura de lote/venda real, que continua fora do ensaio.
+- Avaliação de revisão `f4fcc64b-ba62-434b-85ec-6bb601304577`, 08/09/2026 00:20:20, responsável Felipe. HTTP 200, `comprovada`, fabricante, quatro anos, origem manual/revisada. Após reload, painel manteve a evidência e histórico exibiu fonte, pesquisa e revisão. Nenhum resultado positivo foi atribuído à extração automática.
+- Leitura final: `ativo=false`, `estoque=0`, `ml_item_id=null`, `ml_status=sem_anuncio`, `custom_price=null`, `oferta_preferencial_id=null`; zero registros desse produto em `anuncios_ml`, `anuncios_ml_outbox` e `produto_fornecedor_ofertas`.
+- Payload completo da amostra original inalterado, SHA-256 antes/depois `e1082cbd186b6854b6405ac370c39afda9430904ac16dc4da0f7dfc9aab4333e`. Sessão automatizada encerrada com escopo local, sem desconectar outras sessões do usuário.
+- Novamente executados: 50 testes direcionados aprovados, um LIVE opt-in omitido, `npm run validate` aprovado. Build anterior segue como evidência da mesma aplicação; não repetido por não haver mudança funcional/configuração neste complemento. Produção, porta 3000 e Easypanel preservados; sem push/deploy.
+
 ## Pendências reais — não marcar homologado
 
-- O cadastro `produtos` do DEV contém somente cinco itens fictícios da marca Bentevi Demo. Os produtos reais exibidos nas telas são amostras protegidas em `sync_runtime_config`, não cadastros graváveis. Foi solicitada autorização para criar uma cópia de teste inativa, sem anúncio, a partir de uma dessas amostras; nenhuma cópia criada nesta entrega.
-- Ainda não foi demonstrada a sequência positiva **produto real gravável → fonte oficial aprovada → revisão com evidência real → persistência**. A abertura dos modais e os testes automatizados não substituem essa prova. Não foram aprovados domínios nem gravadas garantias inventadas para obter um resultado positivo.
+- Prova técnica de **cadastro real de teste → fonte oficial → pesquisa → revisão documentada → persistência** concluída. Roteiro disponível no link acima, sem necessidade de novos dados para o aceite visual.
 - Aceite visual humano pendente. Conciliação da política `VORTEK-WARRANTY-2026-09-06-SELLER-30` de main permanece separada, conforme [evidência do piloto](BNT-AI-PROVIDER-01-validacao.md). Nenhuma regra comercial foi alterada.
 - Uso compartilhado, Easypanel e futura página de chat continuam fora do piloto individual.
 

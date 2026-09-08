@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 07/09/2026
+**Última atualização:** 08/09/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** piloto individual ChatGPT/Codex + Firecrawl configurado em `http://localhost:3001`, conectado somente ao Supabase DEV `.162`. Pesquisa pelo navegador e persistência do histórico validadas em cadastro fictício; coleta/extração de produto real testada sem gravar a amostra protegida. [Runtime, links e limites](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md). Ainda faltam produto real gravável para a prova positiva de fonte/revisão, aceite visual e conciliação da política de garantia. Não marcar WARRANTY-01 homologada nem avançar para Buy Box antes desses gates. Sem push/deploy, uso compartilhado ou substituição geral do OpenRouter; futuro chat permanece após `BNT-D20`. Frete vivo ME2 e `pricing_execution_not_ready` continuam pendentes/bloqueados.
+**Situação vigente (08/09/2026):** piloto individual ChatGPT/Codex + Firecrawl disponível em `http://localhost:3001`, somente Supabase DEV `.162`. Cadastro real de teste inativo `VTK000002` criado com autorização; fonte oficial, pesquisa, revisão documentada e persistência do histórico validadas pelo navegador. [Link direto, evidências e limites](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md). Pendentes aceite visual e conciliação da política de garantia; não fechar WARRANTY-01 nem avançar para Buy Box antes desses gates. Sem push/deploy, uso compartilhado ou substituição geral do OpenRouter; futuro chat permanece após `BNT-D20`. Frete vivo ME2 e `pricing_execution_not_ready` continuam pendentes/bloqueados.
 
 ---
 
@@ -3597,7 +3597,7 @@ Sem push, deploy, chamada autenticada ML ou acesso à produção. Guard comercia
 
 ### BNT-CANON-WARRANTY-01 — 07/09/2026
 
-**Estado: implementação/SQL DEV validados; pesquisa real e aceite visual pendentes.** [Evidências e rollback](evidencias/BNT-CANON-WARRANTY-01-validacao.md).
+**Estado: implementação/SQL DEV e fluxo local de pesquisa/revisão/histórico validados; aceite visual e conciliação comercial pendentes.** [Evidências e rollback](evidencias/BNT-CANON-WARRANTY-01-validacao.md); [cadastro real de teste e link](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md).
 
 - [x] Remover garantia global do fluxo novo e preservar histórico;
 - [x] Resolvedor único por produto, hierarquia fabricante/fornecedor/legal, equivalência de unidades e conflitos explícitos;
@@ -3606,7 +3606,8 @@ Sem push, deploy, chamada autenticada ML ou acesso à produção. Guard comercia
 - [x] Preparação/sugestão/criação compartilham resolução; descrição e termos não podem contradizer evidência;
 - [x] Migration `20260907213000` somente no `.162`, tipos gerados, SQL/concorrência/PostgREST, testes locais e build;
 - [x] Executar `BNT-AI-PROVIDER-01` antes de exigir chave OpenRouter — piloto individual/local validado, conforme evidência própria;
-- [ ] Configurar Firecrawl DEV/runtime local e homologar pesquisa real limitada da garantia; a prova sintética do extrator não fecha essa pendência;
+- [x] Configurar Firecrawl DEV/runtime local e validar tecnicamente pesquisa real limitada, fonte oficial, revisão e histórico em cadastro real de teste inativo, autorizado pelo usuário, sem ML; evidência em 08/09/2026. Pesquisa inconclusiva não foi apresentada como aprovação automática;
+- [ ] Aceite visual do piloto local em `localhost:3001`, Comercial e estoque → Garantia do produto `VTK000002`;
 - [ ] Reconciliar a garantia padrão de `main` (`4a40832`, fallback comercial vendedor 30 dias) com o contrato V2 de evidência/classificação legal antes de fechar WARRANTY-01; diferença identificada e documentada no piloto, sem mudança de regra implícita;
 - [ ] Push/deploy quando solicitado e aceite visual em `dev.bentevi.shop`;
 - [ ] Manter a etapa aberta até estas validações; depois planejar V2-08 / CFL-04 — Buy Box econômica.
