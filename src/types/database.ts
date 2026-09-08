@@ -14,6 +14,266 @@ export type Database = {
   }
   public: {
     Tables: {
+      pricing_alerts: {
+        Row: {
+          created_at: string
+          evaluation_id: string
+          fingerprint: string
+          group_id: string | null
+          id: string
+          item_id: string
+          last_seen_at: string
+          latest_decision_id: string | null
+          merged_into: string | null
+          observed_at: string
+          produto_id: string
+          reason: string
+          resolved_at: string | null
+          rule_id: string
+          seller_id: string
+          severity: string
+          severity_order: number | null
+          state: string
+          subject_key: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          evaluation_id: string
+          fingerprint: string
+          group_id?: string | null
+          id?: string
+          item_id: string
+          last_seen_at: string
+          latest_decision_id?: string | null
+          merged_into?: string | null
+          observed_at: string
+          produto_id: string
+          reason: string
+          resolved_at?: string | null
+          rule_id: string
+          seller_id: string
+          severity: string
+          severity_order?: never
+          state: string
+          subject_key: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          evaluation_id?: string
+          fingerprint?: string
+          group_id?: string | null
+          id?: string
+          item_id?: string
+          last_seen_at?: string
+          latest_decision_id?: string | null
+          merged_into?: string | null
+          observed_at?: string
+          produto_id?: string
+          reason?: string
+          resolved_at?: string | null
+          rule_id?: string
+          seller_id?: string
+          severity?: string
+          severity_order?: never
+          state?: string
+          subject_key?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_alerts_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_evaluations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_alerts_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "ml_pricing_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_alerts_latest_decision_id_fkey"
+            columns: ["latest_decision_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_decisions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_alerts_merged_into_fkey"
+            columns: ["merged_into"]
+            isOneToOne: false
+            referencedRelation: "pricing_alerts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_alerts_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pricing_decisions: {
+        Row: {
+          actor_id: string
+          alert_id: string
+          context: Json
+          created_at: string
+          decided_at: string | null
+          deferred_until: string | null
+          evaluation_id: string
+          expires_at: string
+          fingerprint: string
+          id: string
+          operation_id: string | null
+          reason: string
+          state: string
+          updated_at: string
+        }
+        Insert: {
+          actor_id: string
+          alert_id: string
+          context: Json
+          created_at?: string
+          decided_at?: string | null
+          deferred_until?: string | null
+          evaluation_id: string
+          expires_at: string
+          fingerprint: string
+          id?: string
+          operation_id?: string | null
+          reason: string
+          state?: string
+          updated_at?: string
+        }
+        Update: {
+          actor_id?: string
+          alert_id?: string
+          context?: Json
+          created_at?: string
+          decided_at?: string | null
+          deferred_until?: string | null
+          evaluation_id?: string
+          expires_at?: string
+          fingerprint?: string
+          id?: string
+          operation_id?: string | null
+          reason?: string
+          state?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_decisions_actor_id_fkey"
+            columns: ["actor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_decisions_alert_id_fkey"
+            columns: ["alert_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_alerts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_decisions_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_evaluations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_decisions_operation_id_fkey"
+            columns: ["operation_id"]
+            isOneToOne: true
+            referencedRelation: "pricing_operations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      anuncios_ml_outbox: {
+        Row: {
+          attempts: number
+          available_at: string
+          created_at: string
+          desired_price: number | null
+          desired_quantity: number | null
+          desired_status: string | null
+          id: string
+          last_error: string | null
+          ml_item_id: string
+          payload: Json
+          pricing_operation_id: string | null
+          processed_at: string | null
+          produto_id: string
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          available_at?: string
+          created_at?: string
+          desired_price?: number | null
+          desired_quantity?: number | null
+          desired_status?: string | null
+          id?: string
+          last_error?: string | null
+          ml_item_id: string
+          payload?: Json
+          pricing_operation_id?: string | null
+          processed_at?: string | null
+          produto_id: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          available_at?: string
+          created_at?: string
+          desired_price?: number | null
+          desired_quantity?: number | null
+          desired_status?: string | null
+          id?: string
+          last_error?: string | null
+          ml_item_id?: string
+          payload?: Json
+          pricing_operation_id?: string | null
+          processed_at?: string | null
+          produto_id?: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anuncios_ml_outbox_pricing_operation_id_fkey"
+            columns: ["pricing_operation_id"]
+            isOneToOne: true
+            referencedRelation: "pricing_operations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "anuncios_ml_outbox_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       product_warranty_assessments: {
         Row: {
           action: string
@@ -466,9 +726,11 @@ export type Database = {
       pricing_events: {
         Row: {
           actor_id: string | null
+          alert_id: string | null
           clearance_id: string | null
           command_id: string | null
           created_at: string
+          decision_id: string | null
           evaluation_id: string | null
           evidence: Json
           group_id: string | null
@@ -490,14 +752,16 @@ export type Database = {
         }
         Insert: {
           actor_id?: string | null
+          alert_id?: string | null
           clearance_id?: string | null
           command_id?: string | null
           created_at?: string
+          decision_id?: string | null
           evaluation_id?: string | null
           evidence?: Json
           group_id?: string | null
           group_version?: number | null
-          id?: never
+          id?: number
           item_id?: string | null
           job_id?: string | null
           kind: string
@@ -514,14 +778,16 @@ export type Database = {
         }
         Update: {
           actor_id?: string | null
+          alert_id?: string | null
           clearance_id?: string | null
           command_id?: string | null
           created_at?: string
+          decision_id?: string | null
           evaluation_id?: string | null
           evidence?: Json
           group_id?: string | null
           group_version?: number | null
-          id?: never
+          id?: number
           item_id?: string | null
           job_id?: string | null
           kind?: string
@@ -538,26 +804,44 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "pricing_events_alert_id_fkey"
+            columns: ["alert_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_alerts"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "pricing_events_clearance_id_fkey"
             columns: ["clearance_id"]
+            isOneToOne: false
             referencedRelation: "internal_stock_clearance"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pricing_events_decision_id_fkey"
+            columns: ["decision_id"]
+            isOneToOne: false
+            referencedRelation: "pricing_decisions"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "pricing_events_evaluation_id_fkey"
             columns: ["evaluation_id"]
+            isOneToOne: false
             referencedRelation: "pricing_evaluations"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "pricing_events_operation_id_fkey"
             columns: ["operation_id"]
+            isOneToOne: false
             referencedRelation: "pricing_operations"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "pricing_events_override_id_fkey"
             columns: ["override_id"]
+            isOneToOne: false
             referencedRelation: "manual_pricing_overrides"
             referencedColumns: ["id"]
           },
@@ -2533,6 +2817,43 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      consume_pricing_decision: {
+        Args: {
+          p_id: string
+          p_operation_id: string
+          p_actor_id: string
+          p_fresh_evaluation_id: string
+        }
+        Returns: string
+      }
+      manage_pricing_decision: {
+        Args: {
+          p_id: string
+          p_command_id: string
+          p_actor_id: string
+          p_action: string
+          p_reason: string
+          p_fresh_evaluation_id?: string
+          p_deferred_until?: string
+        }
+        Returns: Json
+      }
+      prepare_pricing_decision: {
+        Args: {
+          p_command_id: string
+          p_evaluation_id: string
+          p_actor_id: string
+          p_reason: string
+        }
+        Returns: string
+      }
+      sync_pricing_alerts: {
+        Args: {
+          p_evaluation_id: string
+          p_observations: Json
+        }
+        Returns: undefined
+      }
       begin_product_warranty_command: {
         Args: { p_actor_id: string; p_command: Json; p_product_id: string }
         Returns: Json

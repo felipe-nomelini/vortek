@@ -1,6 +1,8 @@
 import type { Database } from "@/types/database";
 
 export const VORTEK_PERMISSIONS = [
+  "pricing.read",
+  "pricing.decisions.manage",
   "products.warranty.manage",
   "pricing.clearance.manage",
   "pricing.override.manage",
@@ -28,6 +30,7 @@ export type VortekPermission = (typeof VORTEK_PERMISSIONS)[number];
 export type VortekRole = Database["public"]["Enums"]["user_role"];
 
 const READ_ONLY_PERMISSIONS: VortekPermission[] = [
+  "pricing.read",
   "tv.read",
   "sales.read",
   "purchases.read",

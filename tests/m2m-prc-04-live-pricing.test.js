@@ -196,7 +196,7 @@ test('atualização não material preserva resultado e falha viva não confirma 
 test('sem oferta não faz consulta comercial; escrita não faz parte desta entrega', async () => {
   const h = liveHarness({ rows: { produto_fornecedor_ofertas: [] } });
   const result = await h.run(); assert.equal(result.revalidation.status, 'inconclusive'); assert.equal(h.calls.length, 0);
-  for (const file of ['src/services/pricing-live.ts', 'src/services/pricing-market-quote.ts', 'src/app/api/ml/anuncio/preco-detalhe/route.ts']) {
+  for (const file of ['src/services/pricing-live.ts', 'src/services/pricing-market-quote.ts', 'src/services/pricing-detail.ts', 'src/app/api/ml/anuncio/preco-detalhe/route.ts']) {
     const source = fs.readFileSync(file, 'utf8'); assert.doesNotMatch(source, /\.(insert|update|upsert|delete)\(/);
   }
 });

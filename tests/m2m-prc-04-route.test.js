@@ -13,7 +13,8 @@ function harness(options = {}) {
   const calls = []; const captured = []; const evaluations = []; const p = { ...product, ...options.product }; let itemReads = 0; let competitionReads = 0; let groupReads = 0;
   const client = { from(table) { return { select() { return this; }, eq() { return this; },
     maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p : options.unlinked ? null : { ml_item_id: 'MLB1' } }) }; } };
-  const routes = load('src/app/api/ml/anuncio/preco-detalhe/route.ts', {
+  const detail = load('src/services/pricing-detail.ts', {
+    '@/services/pricing-decisions': { decisionContext: () => null, syncPricingAlerts: async () => {} },
     '@/services/pricing-audit': { recordPricingEvaluation: async (...args) => { evaluations.push(args); return 'evaluation-test'; }, pricingMaterialFingerprint: JSON.stringify },
     '@/services/pricing-competition': load('src/services/pricing-competition.ts'),
     '@/services/commercial-conflicts': load('src/services/commercial-conflicts.ts'),
@@ -54,6 +55,10 @@ function harness(options = {}) {
     '@/lib/ml/quantity-pricing': require('../src/lib/ml/quantity-pricing.ts'),
     '@/lib/ml/item-price-policy': require('../src/lib/ml/item-price-policy.ts'),
     '@/lib/catalogo/no-catalogo': require('../src/lib/catalogo/no-catalogo.ts'),
+  });
+  const routes = load('src/app/api/ml/anuncio/preco-detalhe/route.ts', {
+    '@/services/pricing-detail': detail,
+    'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
   });
   return { calls, captured, evaluations, get: query => routes.GET(new Request('http://localhost/api/ml/anuncio/preco-detalhe?' + query)),
     post: body => routes.POST(new Request('http://localhost/api/ml/anuncio/preco-detalhe', { method: 'POST', body: JSON.stringify(body) })) };

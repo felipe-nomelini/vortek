@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-08 / M2M-CFL-04` implementada e validada: 408 regressões, validate/build aprovados. Push e deploy solicitados concluídos; `vortek-erp-dev` executa `a71873d`, com login HTTP 200 e API de preços protegida (401 sem sessão). [Evidências e limites](evidencias/M2M-CFL-04-validacao.md). Pendente conferência autenticada dos drawers/aceite visual; frete ME2, conta autorizada, PUB-GATE e `pricing_execution_not_ready` permanecem gates comerciais. Produção inalterada. Próxima ação da fila: V2-13 — alertas e confirmações.
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-13` implementada e validada localmente/SQL DEV: central compartilhada de alertas e decisões, aprovação/rejeição/adiamento auditáveis e idempotentes. 441 testes passaram (1 LIVE opcional de garantia não executado), testes SQL com rollback, navegador isolado, validate/build aprovados. [Evidências, contratos e rollback](evidencias/BNT-PRICING-V2-13-validacao.md). Migrations somente em `.162`; nenhum push/deploy ou acesso à produção nesta entrega. Pendentes publicação DEV e aceite autenticado/visual; V2-08 também conserva sua pendência visual. PUB-GATE, frete ME2 e `pricing_execution_not_ready` continuam bloqueando execução comercial.
 
 ---
 
@@ -71,7 +71,7 @@ Regras de uso:
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 08/09/2026:** V2-08/CFL-04 validada e publicada em DEV; [evidências e pendências](evidencias/M2M-CFL-04-validacao.md). Não repetir WARRANTY-01 nem liberar execução comercial. Conferência autenticada dos drawers/aceite visual pendentes; ME2 continua no gate de conta autorizada. Próxima implementação da fila: **BNT-PRICING-V2-13 — alertas e confirmações**, em tarefa própria.
+**Prioridade vigente — atualização de 08/09/2026:** concluir publicação DEV e conferência visual/autenticada de **BNT-PRICING-V2-13** quando solicitadas. Implementação e testes locais/SQL concluídos; [evidências](evidencias/BNT-PRICING-V2-13-validacao.md). Depois, planejar `BNT-CANON-PUB-GATE`, mantendo frete ME2/conta autorizada como pré-requisitos. Não iniciar prova externa nem liberar writers nesta tarefa.
 
 - [x] Executar somente `ML-03 — Não publicar estoque igual`.
 - [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
@@ -3117,7 +3117,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-AI-PROVIDER-01` — integração e extração real validadas no piloto individual/local de Felipe; não certifica pesquisa ponta a ponta, uso compartilhado ou deploy. Evidências e limites abaixo;
 - [x] `BNT-CANON-WARRANTY-01` — contrato conciliado sem fallback vendedor universal, interface simplificada aprovada/publicada/conferida em DEV; API, evidências e histórico preservados; [fechamento e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md#fechamento-dev--08092026);
 - [x] `BNT-PRICING-V2-08` / `M2M-CFL-04` — implementada, validada e publicada em DEV (`a71873d`); [evidências](evidencias/M2M-CFL-04-validacao.md). Pendente conferência autenticada/aceite visual; sem liberar gates comerciais;
-- [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa;
+- [x] `BNT-PRICING-V2-13` — implementação e validação local/SQL DEV concluídas; alertas, decisão auditável/idempotente, validade e contrato de consumo. [Evidências](evidencias/BNT-PRICING-V2-13-validacao.md). Publicação DEV e aceite visual/autenticado pendentes; nenhum gate comercial liberado;
 - [ ] **Pendência PRC-04 — Frete ME2 na conexão da conta real:** retomar quando a conta real estiver conectada em ambiente autorizado; comprovar cotação do vendedor no contexto real e recotação de alvo/piso/equilíbrio com oferta de origem conhecida. Registrar evidências e inconclusivo quando a fonte falhar. Não bloqueia o planejamento/desenvolvimento de CFL-01; bloqueia o aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e a liberação comercial em produção enquanto não validada. Esta anotação não autoriza conectar conta, copiar credenciais de produção para DEV, publicar, reprecificar ou pausar anúncios;
 - [ ] `BNT-CANON-PUB-GATE` — validar sugestão, preparação, confirmação e publicação/read-back em homologação; não substitui gate final nem libera massa autônoma;
 - [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
