@@ -57,6 +57,14 @@ export interface ConflictAssessment {
 }
 const normalize = normalizeIdentityText;
 const gtin = (v: unknown): string => String(v ?? '').replace(/\D/g, '').replace(/^0+(?=\d)/, '');
+// O ML pode devolver LENGTH convertido para outra unidade de comprimento.
+function lengthInMillimeters(value: string): number | null {
+    const match = value.trim().match(/^(\d+(?:[.,]\d+)?)\s*(mm|cm|m|km|in|ft|pulgadas|polegadas|pol|["″])$/i);
+    if (!match) return null;
+    const factors: Record<string, number> = { mm: 1, cm: 10, m: 1000, km: 1000000, in: 25.4, ft: 304.8, pulgadas: 25.4, polegadas: 25.4, pol: 25.4, '"': 25.4, '″': 25.4 };
+    const result = Number(match[1].replace(',', '.')) * factors[match[2].toLowerCase()];
+    return Number.isFinite(result) ? result : null;
+}
 export function assessIdentity(evidence: IdentityEvidence): Pick<ConflictAssessment, 'identity' | 'comparisons' | 'reasons' | 'warnings' | 'identityRuleVersion'> {
     const comparisons: ConflictAssessment['comparisons'] = [];
     const reasons: string[] = [];
@@ -84,7 +92,11 @@ export function assessIdentity(evidence: IdentityEvidence): Pick<ConflictAssessm
         const right = evidence.remote.critical?.[field];
         if (!left || !right)
             continue;
-        const matches = normalize(left) === normalize(right);
+        const leftLength = field === 'LENGTH' ? lengthInMillimeters(left) : null;
+        const rightLength = field === 'LENGTH' ? lengthInMillimeters(right) : null;
+        const matches = leftLength !== null && rightLength !== null
+            ? Math.abs(leftLength - rightLength) <= Number.EPSILON * Math.max(1, Math.abs(leftLength), Math.abs(rightLength)) * 4
+            : normalize(left) === normalize(right);
         comparisons.push({ field, local: left, remote: right, matches });
         if (!matches)
             reasons.push(`DIVERGENCIA_ATRIBUTO_${field}`);

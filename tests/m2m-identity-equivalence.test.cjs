@@ -124,3 +124,10 @@ test('kit de montagem não transforma o produto principal em kit comercial',()=>
  assert.equal(presentationFacts('Tubo 60 Pilhas AAA - 15 Packs Com 4 Unidades').quantity,60);
  assert.equal(presentationFacts('Pilha AAA Elgin blister grande com 10x2','Cartelão 10 blisters com 2 unidades').quantity,20);
 });
+
+test('leitura do ML aceita comprimento equivalente em outra unidade sem aceitar medidas distintas',()=>{
+ const check=(left,right,field='LENGTH')=>assessIdentity({local:{brand:'Western',model:'V-318',critical:{[field]:left}},remote:{brand:'Western',model:'V-318',critical:{[field]:right}},source:'supplier+ml'}).identity;
+ for(const [left,right] of [['8.5 "','21.59 cm'],['8,5 in','215.9 mm'],['1 m','100 cm'],['52.5 mm','5.25 cm']])assert.equal(check(left,right),'IDENTIDADE_COHERENTE');
+ for(const [left,right] of [['8.5 "','21.6 cm'],['8.5 cm','21.59 cm'],['8.5','21.59 cm'],['8.5 widgets','21.59 cm'],['52.5 mm','5.2 cm']])assert.equal(check(left,right),'IDENTIDADE_DIVERGENTE');
+ assert.equal(check('8.5 "','21.59 cm','CONNECTOR_TYPE'),'IDENTIDADE_DIVERGENTE');
+});
