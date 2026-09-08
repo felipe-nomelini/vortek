@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Situação vigente (08/09/2026):** `BNT-CANON-WARRANTY-01` encerrada no escopo DEV: contrato conciliado sem importar fallback vendedor 30 dias, retirada dos controles aprovada, código `e036397` publicado em `dev.bentevi.shop` e conferido em navegador autenticado; API, evidências e histórico preservados. 428 regressões passaram, um LIVE omitido, validate/build aprovados. [Fechamento e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md#fechamento-dev--08092026). **Próxima ação: planejar BNT-PRICING-V2-08 / M2M-CFL-04 — Buy Box econômica.** Frete vivo ME2, reconexão autorizada da conta de teste, PUB-GATE e `pricing_execution_not_ready` permanecem nos gates comerciais; produção não foi alterada. Codex continua piloto individual/local, sem certificar uso compartilhado ou adiantar o futuro chat.
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-08 / M2M-CFL-04` implementada e validada localmente: Buy Box econômica canônica, cotação por cenário, proteções e interface sem aplicação de preço. 408 regressões passaram; validate/build aprovados. [Evidências e limites](evidencias/M2M-CFL-04-validacao.md). Sem push/deploy nesta tarefa; pendente conferência autenticada após publicação em DEV. Frete ME2, conta autorizada, PUB-GATE e `pricing_execution_not_ready` permanecem gates comerciais. Próxima ação da fila: V2-13 — alertas e confirmações.
 
 ## 1. Escopo, autoridade e fotografia
 

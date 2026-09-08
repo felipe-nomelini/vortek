@@ -136,8 +136,20 @@ function liveHarness({ mutate = () => {}, transform = x => x, verify = async () 
   });
   const live = load('src/services/pricing-live.ts', { 'server-only': {}, './integration': { fetchMLResult: mlFetch(calls, transform) },
     './pricing-economy': economy, './pricing-context': contextModule, './pricing-market-quote': market });
-  return { calls, run: () => live.loadLiveProductPricing(client, structuredClone(product), context, 10000, verify) };
+  return { calls, run: options => live.loadLiveProductPricing(client, structuredClone(product), context, 10000, verify, options) };
 }
+test('CFL-04 cota a referência competitiva separadamente sem repetir consulta ou fórmula', async () => {
+  const h = liveHarness();
+  const result = await h.run({ competitivePriceCents: 9000, actualPriceCents: 10000, groupId: 'G1' });
+  assert.equal(result.comparisons.competitive.memory.revenueCents, 9000);
+  assert.equal(result.comparisons.actual.memory.revenueCents, 10000);
+  assert.equal(result.comparisons.competitive.memory.fee.quotedPriceCents, 9000);
+  assert.equal(result.comparisons.competitive.memory.shipping.quotedPriceCents, 9000);
+  assert.equal(result.comparisons.competitive.memory.context.pricingGroupId, 'G1');
+  assert.equal(new Set(h.calls).size, h.calls.length);
+  const changed = await liveHarness({ verify: async () => false }).run({ competitivePriceCents: 9000 });
+  assert.equal(changed.comparisons, undefined);
+});
 test('integração usa oferta real e serviço canônico, deduplica por preço somente dentro da consulta', async () => {
   const h = liveHarness(); const result = await h.run();
   assert.equal(result.revalidation.status, 'queried', JSON.stringify(result));

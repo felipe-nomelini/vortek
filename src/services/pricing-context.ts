@@ -14,6 +14,7 @@ type KitComponent = { kit_produto_id: string; componente_produto_id: string; qua
 type Offer = Pick<Database['public']['Tables']['produto_fornecedor_ofertas']['Row'],
   'id' | 'produto_id' | 'dslite_fornecedor_id' | 'ativo' | 'estoque' | 'custo' | 'prioridade' | 'updated_at'>;
 export type ProductPricing = {
+  comparisons?: Record<string, EconomicResult>;
   costCents: number | null;
   currentPriceCents: number | null;
   current: EconomicResult;

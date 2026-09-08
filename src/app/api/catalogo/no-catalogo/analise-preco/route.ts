@@ -6,6 +6,7 @@ import { loadProductPricing, loadPricingRequestContext, type ProductPricing } fr
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 import { resolveMlFee } from '@/lib/commercial-pricing';
+import { assessCompetitivePricing, type CompetitiveClassification } from '@/services/pricing-competition';
 
 type SnapshotRow = Pick<
   Database['public']['Tables']['catalogo_ml_snapshot']['Row'],
@@ -14,10 +15,7 @@ type SnapshotRow = Pick<
 
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
 
-type ClasseAnalise =
-  | 'ajustar_para_ganhar_sem_prejuizo'
-  | 'nao_viavel_ganhar_sem_prejuizo'
-  | 'dados_insuficientes';
+type ClasseAnalise = CompetitiveClassification;
 
 interface AnaliseRow {
   ml_item_id: string;
@@ -50,8 +48,8 @@ function toFiniteNumber(value: unknown): number | null {
 }
 
 function classPriority(classe: ClasseAnalise): number {
-  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 0;
-  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 1;
+  if (classe === 'VIAVEL_NO_ALVO' || classe === 'VIAVEL_ACIMA_DO_PISO') return 0;
+  if (classe !== 'INCONCLUSIVO') return 1;
   return 2;
 }
 
@@ -218,17 +216,20 @@ export async function POST(request: Request) {
     const p = pricingByListing.get(row.ml_item_id);
     const memory = p?.current.memory;
     const priceToWin = toFiniteNumber(row.price_to_win);
-    const floor = p?.floor.ok ? p.floor.priceCents / 100 : null;
-    const positive = memory && memory.resultCents >= 0 && memory.margin >= memory.band.floor;
+    const competitiveAssessment = assessCompetitivePricing({ pricing: p ?? null, competitive: p?.current ?? null,
+      evidence: { itemId: row.ml_item_id, catalogProductId: null, observedAt: snapshotMaxSyncedAt || '',
+        condition: 'stale', priceCents: priceToWin === null ? null : Math.round(priceToWin * 100),
+        currentPriceCents: Math.round(Number(row.price) * 100), status: null },
+      evaluatedAt: requestContext.evaluatedAt });
     return {
       ml_item_id: row.ml_item_id, permalink: row.permalink || null, titulo: row.title || '',
       sku_local: row.sku_local, produto_id: row.produto_id, preco_atual: Number(row.price || 0),
       price_to_win: priceToWin, preco_piso_sem_prejuizo: p?.breakEven.ok ? p.breakEven.priceCents / 100 : null,
-      preco_recomendado: memory && priceToWin !== null ? positive ? priceToWin : floor : null,
+      preco_recomendado: null,
       delta_preco: priceToWin === null ? null : round2(priceToWin - Number(row.price || 0)),
       lucro_unitario_estimado: memory ? memory.resultCents / 100 : null,
-      classe: !memory ? 'dados_insuficientes' : positive ? 'ajustar_para_ganhar_sem_prejuizo' : 'nao_viavel_ganhar_sem_prejuizo',
-      motivo: !memory ? 'memoria_economica_inconclusiva' : positive ? 'price_to_win_atende_piso_canonico' : 'CONFLITO_ECONOMICO_DE_BUY_BOX',
+      classe: competitiveAssessment.classification,
+      motivo: competitiveAssessment.reasons[0], competitiveAssessment,
       pricing: p || null,
     };
   });
@@ -281,6 +282,8 @@ export async function POST(request: Request) {
     snapshot_max_synced_at: snapshotMaxSyncedAt,
     snapshot_age_seconds: snapshotAgeSeconds,
     total_analisado: sorted.length,
+    preliminary: true,
+    notice: 'Triagem por anúncio/snapshot, não oportunidades aprovadas nem contagem de grupos. Consulte a disputa para revalidar as fontes.',
     classes,
     data: sorted,
   });

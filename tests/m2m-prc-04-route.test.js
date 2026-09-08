@@ -10,12 +10,17 @@ const context = { categoryId: 'MLB10', listingType: 'gold_special', condition: '
 const pricing = { currentPriceCents: 10000, costCents: 4000, current: { status: 'inconclusive', memory: null, reasons: [] },
   target: { ok: false, reasons: [] }, floor: { ok: false, reasons: [] }, breakEven: { ok: false, reasons: [] } };
 function harness(options = {}) {
-  const calls = []; const captured = []; const p = { ...product, ...options.product }; let itemReads = 0;
+  const calls = []; const captured = []; const evaluations = []; const p = { ...product, ...options.product }; let itemReads = 0; let competitionReads = 0; let groupReads = 0;
   const client = { from(table) { return { select() { return this; }, eq() { return this; },
     maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p : options.unlinked ? null : { ml_item_id: 'MLB1' } }) }; } };
   const routes = load('src/app/api/ml/anuncio/preco-detalhe/route.ts', {
-    '@/services/pricing-audit': { recordPricingEvaluation: async () => 'evaluation-test' },
-    '@/services/pricing-overrides': { loadPricingOverrides: async () => { if (options.protectionDown) throw new Error('database unavailable'); return { status: 'available', groups: [] }; } },
+    '@/services/pricing-audit': { recordPricingEvaluation: async (...args) => { evaluations.push(args); return 'evaluation-test'; }, pricingMaterialFingerprint: JSON.stringify },
+    '@/services/pricing-competition': load('src/services/pricing-competition.ts'),
+    '@/services/commercial-conflicts': load('src/services/commercial-conflicts.ts'),
+    '@/services/pricing-clearances': { loadPricingClearances: async () => { throw new Error('Unexpected clearance read'); } },
+    '@/services/pricing-overrides': { loadPricingOverrides: async () => { if (options.protectionDown) throw new Error('database unavailable');
+      const groups = structuredClone(options.groups || []); if (++groupReads > 1 && options.groupChanged && groups[0]) groups[0].version++;
+      return { status: 'available', groups }; } },
     'next/server': { NextResponse: { json: (data, init) => Response.json(data, init) } }, zod: require('zod'),
     '@/lib/supabase': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: options.anonymous ? null : { id: 'U1' } } }) } }), createServiceClient: () => client },
     '@/services/integration': { fetchMLResult: async path => {
@@ -24,14 +29,24 @@ function harness(options = {}) {
       if (path === '/users/me') return { ok: true, data: { id: 123, site_id: 'MLB' } };
       if (path === '/items/MLB1') return { ok: true, data: { ...item, ...(options.item || {}),
         ...(++itemReads > 1 && options.changed ? { price: 101 } : {}) } };
+      if (path.includes('/price_to_win?')) {
+        competitionReads++;
+        return options.competitionDown ? { ok: false } : { ok: true, data: {
+          item_id: 'MLB1', catalog_product_id: 'MLB10', currency_id: 'BRL', current_price: 100,
+          price_to_win: competitionReads > 1 && options.competitionChanged ? 95 : 90, status: 'competing', consistent: true,
+          ...(options.competition || {}),
+        } };
+      }
+      if (path === '/public/buybox/sync/MLB1') return { ok: true, data: { item_id: 'MLB1', status: options.unsynced ? 'UNSYNC' : 'SYNC', relations: ['MLB2'] } };
+      if (path === '/items/MLB2') return { ok: true, data: { id: 'MLB2', seller_id: 123, currency_id: 'BRL', price: options.peerChanged ? 99 : 100 } };
       if (path === '/categories/MLB10') return { ok: true, data: { id: 'MLB10', settings: { listing_allowed: true }, children_categories: [] } };
       if (path === '/users/123/shipping_preferences') return { ok: true, data: { logistics: [{ mode: 'me2', types: [{ type: 'drop_off' }] }] } };
       if (path === '/categories/MLB10/shipping_preferences') return { ok: true, data: { logistics: [{ mode: 'me2', types: ['drop_off'] }] } };
       if (path.includes('/prices')) return { ok: true, data: { prices: [] } };
       throw new Error('Unexpected endpoint');
     } },
-    '@/services/pricing-live': { loadLiveProductPricing: async (_client, _product, market, price, verify) => {
-      captured.push({ market, price, valid: await verify() }); return pricing;
+    '@/services/pricing-live': { loadLiveProductPricing: async (_client, _product, market, price, verify, comparisonOptions) => {
+      captured.push({ market, price, valid: await verify(), comparisonOptions }); return pricing;
     } },
     '@/services/pricing-market-quote': quote,
     '@/lib/pricing-view': require('../src/lib/pricing-view.ts'),
@@ -40,7 +55,7 @@ function harness(options = {}) {
     '@/lib/ml/item-price-policy': require('../src/lib/ml/item-price-policy.ts'),
     '@/lib/catalogo/no-catalogo': require('../src/lib/catalogo/no-catalogo.ts'),
   });
-  return { calls, captured, get: query => routes.GET(new Request('http://localhost/api/ml/anuncio/preco-detalhe?' + query)),
+  return { calls, captured, evaluations, get: query => routes.GET(new Request('http://localhost/api/ml/anuncio/preco-detalhe?' + query)),
     post: body => routes.POST(new Request('http://localhost/api/ml/anuncio/preco-detalhe', { method: 'POST', body: JSON.stringify(body) })) };
 }
 test('401, contrato estrito e fixture são recusados antes de qualquer chamada ML', async () => {
@@ -50,6 +65,39 @@ test('401, contrato estrito e fixture são recusados antes de qualquer chamada M
   }
   const h = harness({ review: { items: [{ product: { id: 'bnt-d07-review-X' }, mlListings: [{ itemId: 'MLB1' }] }] } });
   assert.equal((await h.post({ produtoId: 'P1', mlItemId: 'MLB1' })).status, 409); assert.equal(h.calls.length, 0);
+});
+test('CFL-04 consulta competitiva tipada chega ao motor e à auditoria, sem escrita ML', async () => {
+  const h = harness({ item: { catalog_listing: true, catalog_product_id: 'MLB10' } });
+  const response = await h.get('produtoId=P1'); assert.equal(response.status, 200);
+  const body = await response.json();
+  assert.equal(h.captured[0].comparisonOptions.competitivePriceCents, 9000);
+  assert.equal(h.captured[0].comparisonOptions.actualPriceCents, 10000);
+  assert.deepEqual(h.evaluations[0][4], body.competitiveAssessment);
+  assert.equal(body.competitiveAssessment.version, 'M2M-CFL-04-v1');
+  assert.equal(body.competitiveAssessment.executionBlocked, true);
+  assert.notEqual(body.commercialConflicts.status, 'SEM_CONFLITO');
+  assert.equal(h.calls.filter(p => p.includes('/price_to_win?')).length, 2);
+  assert.ok(h.calls.every(path => path.startsWith('/users/') || path.startsWith('/items/')));
+});
+test('CFL-04 preço ausente não usa vencedor; mudança durante consulta invalida contexto', async () => {
+  for (const options of [{ competition: { price_to_win: null, winner: { price: 80 } } },
+    { competitionDown: true }, { competition: { consistent: false } }]) {
+    const h = harness({ ...options, item: { catalog_listing: true, catalog_product_id: 'MLB10' } });
+    const body = await (await h.get('produtoId=P1')).json();
+    assert.equal(body.competitiveAssessment.classification, 'INCONCLUSIVO');
+    assert.equal(h.captured[0].comparisonOptions.competitivePriceCents, null);
+  }
+  const h = harness({ competitionChanged: true, item: { catalog_listing: true, catalog_product_id: 'MLB10' } });
+  await h.get('produtoId=P1'); assert.equal(h.captured[0].valid, false);
+});
+test('CFL-04 grupo/pares precisam preservar versão, sincronização e preço', async () => {
+  const group = { id: 'G1', version: 1, state: 'verified', protection: null, inFlight: false,
+    members: [{ itemId: 'MLB1', variationId: '', catalog: true }, { itemId: 'MLB2', variationId: '', catalog: false }] };
+  for (const [options, expected] of [[{}, true], [{ groupChanged: true }, false], [{ unsynced: true }, false], [{ peerChanged: true }, false]]) {
+    const h = harness({ ...options, groups: [group], item: { catalog_listing: true, catalog_product_id: 'MLB10' } });
+    await h.get('produtoId=P1'); assert.equal(h.captured[0].valid, expected);
+    assert.equal(h.captured[0].comparisonOptions.groupId, 'G1');
+  }
 });
 test('GET mantém preço, descontos e automação; avaliação identificada não altera preço', async () => {
   const h = harness(); const response = await h.get('produtoId=P1&mlItemId=MLB1');

@@ -121,25 +121,9 @@ export function normalizeBuyBoxStatus(payload: any): string | null {
 }
 
 export function normalizePriceToWin(payload: any): number | null {
-  if (!payload || typeof payload !== 'object') return null;
-
-  const numericCandidates = [
-    payload.price_to_win,
-    payload.price,
-    payload.suggested_price,
-    payload.winning_price,
-    payload?.price_to_win?.price,
-    payload?.price_to_win?.amount,
-    payload?.price_to_win?.value,
-    payload?.result?.price_to_win,
-    payload?.result?.price,
-  ];
-
-  for (const candidate of numericCandidates) {
-    const num = Number(candidate);
-    if (Number.isFinite(num) && num >= 0) return num;
-  }
-  return null;
+  const value = payload?.price_to_win;
+  return typeof value === 'number' && Number.isFinite(value) && value > 0
+    && Number.isSafeInteger(Math.round(value * 100)) ? value : null;
 }
 
 export function extractRelatedItemId(itemRelations: any): string | null {

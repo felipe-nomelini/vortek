@@ -1,10 +1,40 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Alert, Button, Form, Input, InputNumber, Modal, Select, Space, Table, Typography } from 'antd';
+import { Alert, Button, Form, Input, InputNumber, Modal, Select, Space, Table, Typography, theme } from 'antd';
 import type { ProductPricing } from '@/services/pricing-context';
 import type { EconomicIssue, EconomicMemory } from '@/types/pricing';
 import { formatCurrency } from '@/lib/format';
+import type { CompetitiveAssessment } from '@/services/pricing-competition';
+
+const competitiveLabels: Record<CompetitiveAssessment['classification'], string> = {
+  VIAVEL_NO_ALVO: 'Referência competitiva atende ao alvo', VIAVEL_ACIMA_DO_PISO: 'Referência competitiva atende ao piso',
+  ABAIXO_DO_PISO_MAS_POSITIVO: 'Resultado positivo, mas abaixo do piso — revisar',
+  EQUILIBRIO_SEM_MARGEM: 'Equilíbrio sem margem operacional — revisar',
+  PREJUIZO_NO_PRECO_COMPETITIVO: 'Prejuízo projetado no preço competitivo', INCONCLUSIVO: 'Avaliação competitiva inconclusiva',
+};
+
+export function CompetitivePricingSummary({ assessment }: { assessment?: CompetitiveAssessment | null }) {
+  if (!assessment) return null;
+  const pricing: ProductPricing | null = assessment.references ? { ...assessment.references,
+    current: assessment.current ?? { status: 'inconclusive', memory: null, reasons: [] },
+    costCents: assessment.current?.memory?.cost.amountCents ?? null,
+    currentPriceCents: assessment.current?.memory?.revenueCents ?? null,
+    comparisons: assessment.competitive ? { competitive: assessment.competitive } : {},
+    revalidation: { status: assessment.classification === 'INCONCLUSIVO' ? 'inconclusive' : 'queried',
+      evaluatedAt: assessment.current?.memory?.evaluatedAt || assessment.evidence.observedAt, contextKey: assessment.current?.memory?.context.marketContextKey || '' },
+  } : null;
+  return <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+    <Alert showIcon type={assessment.classification === 'INCONCLUSIVO' ? 'warning'
+      : assessment.buyBoxConflict ? 'warning' : 'info'} message={competitiveLabels[assessment.classification]}
+      description={assessment.clearanceApplied ? 'Liquidação autorizada neste cenário interno; o impacto continua visível. Nenhuma alteração executada.'
+        : 'Referência do Mercado Livre, não ordem de desconto nem garantia de vencer. Nenhum preço será aplicado nesta etapa.'} />
+    <Typography.Text>Referência competitiva: {assessment.evidence.priceCents == null ? 'Não informada' : money(assessment.evidence.priceCents)} · Fonte: {assessment.evidence.condition === 'valid' ? 'ML consultado' : 'Sem evidência viva válida'}</Typography.Text>
+    <Typography.Text type="secondary">Grupo: {assessment.group ? `${assessment.group.id} · versão ${assessment.group.version} · ${assessment.group.memberIds.join(', ')}` : 'Vínculo pendente'} · Override: {assessment.overrideActive === null ? 'não verificado' : assessment.overrideActive ? 'ativo' : 'não ativo'}</Typography.Text>
+    {assessment.reasons.includes('GRUPO_REQUER_VALIDACAO') && <Typography.Text type="warning">Grupo precisa de validação. Economia favorável não libera publicação.</Typography.Text>}
+    {pricing && <PricingQuoteSummary pricing={pricing} currentLabel="Preço atual" showContextAlert={false} />}
+  </Space>;
+}
 
 const explanations: Partial<Record<EconomicIssue['code'], string>> = {
   INCONCLUSIVO_FONTE_ML_INDISPONIVEL: 'O Mercado Livre não forneceu uma cotação suficiente. Nenhuma decisão comercial foi executada.',
@@ -19,23 +49,27 @@ const money = (cents: number | null) => formatCurrency(cents === null ? null : c
 const percent = (value: number) => `${(value * 100).toFixed(2).replace('.', ',')}%`;
 
 /** Apresentação apenas: cada linha usa sua própria memória, sem fórmula no browser. */
-export function PricingQuoteSummary({ pricing }: { pricing?: ProductPricing | null }) {
+export function PricingQuoteSummary({ pricing, currentLabel = 'Preço consultado', showContextAlert = true }: { pricing?: ProductPricing | null; currentLabel?: string; showContextAlert?: boolean }) {
+  const { token } = theme.useToken();
   if (!pricing) return null;
   const rows: Array<{ key: string; label: string; memory: EconomicMemory | null; issues: string }> = [];
   const explain = (issues: readonly EconomicIssue[]) => issues.map(issue => explanations[issue.code] || issue.code).join(' ');
-  if (pricing.currentPriceCents !== null) rows.push({ key: 'current', label: 'Preço consultado',
+  if (pricing.currentPriceCents !== null) rows.push({ key: 'current', label: currentLabel,
     memory: pricing.current.memory, issues: pricing.current.status === 'inconclusive' ? explain(pricing.current.reasons) : '' });
+  const competitive = pricing.comparisons?.competitive;
+  if (competitive) rows.push({ key: 'competitive', label: 'Referência competitiva', memory: competitive.memory,
+    issues: competitive.status === 'inconclusive' ? explain(competitive.reasons) : '' });
   for (const [key, label] of [['target', 'Alvo'], ['floor', 'Piso'], ['breakEven', 'Equilíbrio']] as const) {
     const result = pricing[key];
     rows.push({ key, label, memory: result.ok ? result.evaluation.memory : null, issues: result.ok ? '' : explain(result.reasons) });
   }
   const queried = pricing.revalidation?.status === 'queried';
   return <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-    <Alert showIcon type={queried ? 'info' : 'warning'} message={queried ? 'Fontes consultadas no Mercado Livre' : 'Consulta econômica inconclusiva'}
+    {showContextAlert && <Alert showIcon type={queried ? 'info' : 'warning'} message={queried ? 'Fontes consultadas no Mercado Livre' : 'Consulta econômica inconclusiva'}
       description={pricing.revalidation?.code ? explanations[pricing.revalidation.code as EconomicIssue['code']] || pricing.revalidation.code
-        : 'Cotação sob demanda, não autorização para publicar. Frete é estimado; não é o custo realizado do shipment. Alterações automáticas continuam bloqueadas.'} />
+        : 'Cotação sob demanda, não autorização para publicar. Frete é estimado; não é o custo realizado do shipment. Alterações automáticas continuam bloqueadas.'} />}
     <Typography.Text type="secondary">CMV: {money(pricing.costCents)} · Consulta: {pricing.revalidation ? new Date(pricing.revalidation.evaluatedAt).toLocaleString('pt-BR') : 'sem revalidação viva'}</Typography.Text>
-    <Table size="small" pagination={false} dataSource={rows} rowKey="key" scroll={{ x: 810 }} columns={[
+    <Table size="small" pagination={false} dataSource={rows} rowKey="key" scroll={{ x: 810 }} onRow={() => ({ style: { color: token.colorText } })} columns={[
       { title: 'Referência', dataIndex: 'label', width: 130 },
       { title: 'Preço', key: 'price', render: (_, row) => money(row.memory?.revenueCents ?? null) },
       { title: 'Tarifa ML total', key: 'fee', render: (_, row) => <span>{money(row.memory?.fee.amountCents ?? null)}<br /><small>{row.memory?.fee.source === 'ml_live' ? 'ML vivo · inclui fixa' : row.memory ? 'Fallback estimado' : '—'}</small></span> },

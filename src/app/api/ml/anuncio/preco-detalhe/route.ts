@@ -5,6 +5,10 @@ import { fetchMLResult } from '@/services/integration';
 import { loadLiveProductPricing } from '@/services/pricing-live';
 import { recordPricingEvaluation } from '@/services/pricing-audit';
 import { loadPricingOverrides, type PricingProtection } from '@/services/pricing-overrides';
+import { assessCompetitivePricing, competitionEvidence } from '@/services/pricing-competition';
+import { pricingMaterialFingerprint } from '@/services/pricing-audit';
+import { loadPricingClearances } from '@/services/pricing-clearances';
+import { classifyCommercialConflicts } from '@/services/commercial-conflicts';
 import { quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
 import { pricingView } from '@/lib/pricing-view';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
@@ -22,6 +26,8 @@ const inputSchema = z.object({
   mlItemId: z.string().regex(/^MLB\d+$/).optional(),
   priceCents: z.number().int().positive().max(Number.MAX_SAFE_INTEGER).optional(),
   context: contextSchema.optional(),
+  clearance: z.object({ id: z.string().uuid(), quantity: z.number().int().positive().max(2147483647),
+    fulfillmentSource: z.literal('internal') }).strict().optional(),
 }).strict();
 // Um item existente preserva o tipo observado, inclusive Gratuito; não o converte em Clássico.
 const observedContextSchema = contextSchema.extend({ listingType: z.enum(['free', 'gold_special', 'gold_pro']) });
@@ -107,6 +113,16 @@ async function details(raw: unknown) {
     if (context.mode === 'me2' && !context.dimensions) return json({ error: 'Dimensões e peso bruto comprovados são necessários.' }, 422);
   }
   const expected = JSON.stringify({ context, price: item?.price ?? null, tags: item?.tags ?? [], shipping: item?.shipping ?? null });
+  const protection: PricingProtection = await loadPricingOverrides(service, product.id).catch(() => ({ status: 'unavailable', groups: [] }));
+  const groups = protection.groups.filter(g => g.state !== 'retired' && g.members.some(m => m.itemId === itemId));
+  const group = groups.length === 1 ? groups[0] : null;
+  const clearanceSnapshot = input.clearance ? await loadPricingClearances(service, product) : null;
+  const clearance = clearanceSnapshot?.clearances.find(c => c.id === input.clearance?.id);
+  const competitionPath = item?.catalog_listing ? '/items/' + encodeURIComponent(itemId!) + '/price_to_win?siteId=MLB&version=v2' : null;
+  const competitionResult = competitionPath ? await fetchMLResult<any>(competitionPath) : null;
+  let competitiveEvidence = competitionPath ? competitionEvidence(competitionResult?.data, {
+    itemId: itemId!, catalogProductId: context.catalogProductId, currentPriceCents: currentPrice!,
+  }, new Date().toISOString(), competitionResult?.ok === true) : null;
   const pricing = await loadLiveProductPricing(service, product, context, input.priceCents ?? currentPrice, async () => {
     const account = await fetchMLResult<any>('/users/me');
     if (!account.ok) return null;
@@ -115,8 +131,43 @@ async function details(raw: unknown) {
     const fresh = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId));
     if (!fresh.ok) return null;
     const next = itemContext(fresh.data, sellerId);
-    return JSON.stringify({ context: next, price: fresh.data?.price ?? null, tags: fresh.data?.tags ?? [], shipping: fresh.data?.shipping ?? null }) === expected;
-  });
+    if (JSON.stringify({ context: next, price: fresh.data?.price ?? null, tags: fresh.data?.tags ?? [], shipping: fresh.data?.shipping ?? null }) !== expected) return false;
+    if (competitiveEvidence?.condition === 'valid' && competitionPath) {
+      const refreshed = await fetchMLResult<any>(competitionPath);
+      const evidence = competitionEvidence(refreshed.data, { itemId: itemId!, catalogProductId: context!.catalogProductId,
+        currentPriceCents: currentPrice! }, new Date().toISOString(), refreshed.ok);
+      if (evidence.condition !== 'valid') { competitiveEvidence = evidence; return null; }
+      if (evidence.priceCents !== competitiveEvidence.priceCents || evidence.status !== competitiveEvidence.status) {
+        competitiveEvidence = { ...evidence, condition: 'inconsistent' }; return false;
+      }
+    }
+    if (group) {
+      const latest = await loadPricingOverrides(service, product.id).catch(() => null);
+      const nextGroup = latest?.groups.find(g => g.id === group.id);
+      if (!nextGroup || pricingMaterialFingerprint(group) !== pricingMaterialFingerprint(nextGroup)) return false;
+      // A stored group is not live proof that its members still share one price.
+      if (group.members.length > 1) {
+        const sync = await fetchMLResult<any>('/public/buybox/sync/' + encodeURIComponent(itemId!));
+        if (!sync.ok) return null;
+        const peers = group.members.filter(m => m.itemId !== itemId);
+        if (sync.data?.status !== 'SYNC' || sync.data?.item_id !== itemId || !Array.isArray(sync.data?.relations)
+          || peers.some(m => !sync.data.relations.includes(m.itemId))) return false;
+        for (const peer of peers) {
+          const result = await fetchMLResult<any>('/items/' + encodeURIComponent(peer.itemId));
+          if (!result.ok) return null;
+          const peerPrice = peer.variationId ? result.data?.variations?.find((v: any) => String(v.id) === peer.variationId)?.price : result.data?.price;
+          if (result.data?.id !== peer.itemId || String(result.data.seller_id) !== sellerId
+            || result.data.currency_id !== 'BRL' || quoteMoney(peerPrice) !== currentPrice) return false;
+        }
+      }
+    }
+    if (input.clearance) {
+      const latest = await loadPricingClearances(service, product);
+      if (pricingMaterialFingerprint({ stock: latest.stock, rows: latest.clearances })
+        !== pricingMaterialFingerprint({ stock: clearanceSnapshot?.stock, rows: clearanceSnapshot?.clearances })) return false;
+    }
+    return true;
+  }, { competitivePriceCents: competitiveEvidence?.priceCents, actualPriceCents: currentPrice, groupId: group?.id });
   const view = pricingView(pricing);
   const memory = pricing.current.memory;
   let quantityPricing: ReturnType<typeof serializeQuantityPricingTiers> = [];
@@ -127,7 +178,7 @@ async function details(raw: unknown) {
     if (prices.ok) quantityPricing = serializeQuantityPricingTiers(extractQuantityPricingTiers(prices.data, (currentPrice ?? 0) / 100));
     else quantityPricingWarning = 'Descontos existentes indisponíveis para consulta.';
     if (item?.catalog_listing) {
-      const competition = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId) + '/price_to_win?version=v2');
+      const competition = { ok: competitiveEvidence?.condition === 'valid', data: competitionResult?.data };
       const rawStatus = competition.ok ? normalizeBuyBoxStatus(competition.data) : null;
       catalog = { status: resolveCatalogCompetitionStatus({ catalogListing: true, buyBoxStatus: rawStatus }),
         rawStatus, priceToWin: competition.ok ? normalizePriceToWin(competition.data) : null,
@@ -144,11 +195,22 @@ async function details(raw: unknown) {
         reasons: competition.ok ? [competition.data?.reason ?? competition.data?.reasons ?? []].flat().map((r: any) => String(r?.message ?? r?.id ?? r)) : [] };
     }
   }
-  const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing);
-  const protection: PricingProtection = await loadPricingOverrides(service, product.id).catch(() => ({ status: 'unavailable', groups: [] }));
+  const competitiveAssessment = competitiveEvidence ? assessCompetitivePricing({
+    pricing: { ...pricing, current: pricing.comparisons?.actual ?? pricing.current },
+    competitive: pricing.comparisons?.competitive ?? null, evidence: competitiveEvidence,
+    group, evaluatedAt: new Date().toISOString(),
+    clearance: clearance && input.clearance && group ? { id: clearance.id, groupId: group.id, groupVersion: group.version,
+      state: clearance.state, endsAt: clearance.endsAt, available: clearance.available, quantity: input.clearance.quantity,
+      maxLossCents: clearance.maxLossCents, fulfillmentSource: 'internal',
+      stockVerified: (clearanceSnapshot?.stock.capacity ?? 0) >= input.clearance.quantity,
+      conflict: !clearance.groups.some(g => g.id === group.id && g.version === group.version && !g.conflict && g.state === 'verified') } : null,
+  }) : null;
+  const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing, competitiveAssessment);
   return json({ success: true, evaluationId, protection, mlItemId: itemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
     currentProfit: input.priceCents != null && input.priceCents !== currentPrice ? null : view.profit,
-    pricing, quantityPricing, quantityPricingWarning, catalog,
+    pricing, competitiveAssessment,
+    commercialConflicts: competitiveAssessment ? classifyCommercialConflicts({ economy: competitiveAssessment.assessment }) : null,
+    quantityPricing, quantityPricingWarning, catalog,
     calculator: { cost: view.cost, shipping: memory ? memory.shipping.amountCents! / 100 : null,
       mlFee: null, taxRate: memory?.tax.context.appliedRate ?? null },
     automaticPricing: { active: item ? hasMlAutomaticPrice(item) : false, tag: ML_DYNAMIC_STANDARD_PRICE_TAG } });

@@ -1,6 +1,6 @@
 'use client';
 
-import { PricingQuoteSummary } from '@/components/products/LivePricingQuote';
+import { CompetitivePricingSummary, PricingQuoteSummary } from '@/components/products/LivePricingQuote';
 import type { ProductPricing } from '@/services/pricing-context';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -73,6 +73,7 @@ type ListingRow = MlListingDashboardRow & {
 };
 
 type PricingDetails = {
+  competitiveAssessment?: import('@/services/pricing-competition').CompetitiveAssessment | null;
   pricing?: ProductPricing;
   currentPrice: number;
   currentProfit: number | null;
@@ -213,6 +214,7 @@ function batchOutcomeLabel(outcome: string) {
 }
 
 export default function AnunciosPage() {
+  const pricingRequest = useRef(0);
   const router = useRouter();
   const { message, modal } = App.useApp();
   const [rows, setRows] = useState<ListingRow[]>([]);
@@ -301,6 +303,7 @@ export default function AnunciosPage() {
   useEffect(() => { void fetchListings(); }, [fetchListings]);
 
   const loadPriceDetails = useCallback(async (row: ListingRow) => {
+    const requestId = ++pricingRequest.current;
     if (row.isHomologationFixture) {
       setDetails(null);
       setDetailsError(null);
@@ -317,12 +320,14 @@ export default function AnunciosPage() {
       const response = await fetch(`/api/ml/anuncio/preco-detalhe?${params}`, { cache: 'no-store' });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.success) throw new Error(payload?.error || 'Falha ao analisar preço e catálogo');
+      if (requestId !== pricingRequest.current) return;
       setDetails(payload as PricingDetails);
       setNewPrice(Number(payload.currentPrice));
     } catch (loadError: any) {
+      if (requestId !== pricingRequest.current) return;
       setDetailsError(loadError?.message || 'Falha ao analisar preço e catálogo');
     } finally {
-      setDetailsLoading(false);
+      if (requestId === pricingRequest.current) setDetailsLoading(false);
     }
   }, []);
 
@@ -337,6 +342,7 @@ export default function AnunciosPage() {
 
   const closeAnalysis = () => {
     if (savingPrice) return;
+    pricingRequest.current++;
     setAnalysis({ open: false, row: null });
     setDetails(null);
     setDetailsError(null);
@@ -370,6 +376,23 @@ export default function AnunciosPage() {
     return () => { cancelled = true; window.clearTimeout(timer); };
   }, [fetchListings, message, priceResults]);
 
+  const simulateCompetitivePrice = async () => {
+    const requestId = ++pricingRequest.current;
+    const row = analysis.row;
+    if (!row?.productId || visualReview) return;
+    setDetailsLoading(true);
+    try {
+      const params = new URLSearchParams({ produtoId: row.productId, mlItemId: row.itemId });
+      const response = await fetch(`/api/ml/anuncio/preco-detalhe?${params}`, { cache: 'no-store' });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload?.error || 'Consulta indisponível');
+      if (requestId !== pricingRequest.current) return;
+      setDetails(payload);
+      setNewPrice(payload.competitiveAssessment?.competitive?.memory?.revenueCents != null
+        ? payload.competitiveAssessment.competitive.memory.revenueCents / 100 : null);
+    } catch { if (requestId === pricingRequest.current) { setDetails(null); setNewPrice(null); setDetailsError('Não foi possível revalidar a referência competitiva.'); } }
+    finally { if (requestId === pricingRequest.current) setDetailsLoading(false); }
+  };
   const savePrice = useCallback(async () => {
     const row = analysis.row;
     const targetPrice = Number(newPrice);
@@ -680,7 +703,9 @@ export default function AnunciosPage() {
   };
 
   const activeAnalysis = analysis.row;
-  const nextProfit = details && newPrice === details.currentPrice ? details.currentProfit : null;
+  const competitiveMemory = details?.competitiveAssessment?.competitive?.memory;
+  const nextProfit = details && newPrice === details.currentPrice ? details.currentProfit
+    : competitiveMemory && newPrice === competitiveMemory.revenueCents / 100 ? competitiveMemory.resultCents / 100 : null;
   const qualityItems = Array.isArray((activeAnalysis?.qualityInfo as any)?.itens) ? (activeAnalysis?.qualityInfo as any).itens : [];
   const syncing = Boolean(syncJob && !TERMINAL_JOB_STATUSES.has(syncJob.status));
 
@@ -737,15 +762,15 @@ export default function AnunciosPage() {
         <Spin spinning={detailsLoading}>
           <section className={styles.analysisGrid}>
             <article><DollarOutlined /><span>Preço atual</span><strong>{formatCurrency(details?.currentPrice ?? activeAnalysis.price)}</strong><small className={(details?.currentProfit ?? activeAnalysis.profit ?? 0) >= 0 ? styles.positive : styles.negative}>Lucro {details ? formatCurrency(details.currentProfit) : activeAnalysis.profit === null ? 'indisponível' : formatCurrency(activeAnalysis.profit)}</small></article>
-            <article><ShopOutlined /><span>Catálogo / Buy Box</span><strong>{catalogPresentation[activeAnalysis.catalogStatus].label}</strong><small>{(details?.catalog?.priceToWin ?? activeAnalysis.priceToWin) ? `Preço para ganhar ${formatCurrency(details?.catalog?.priceToWin ?? activeAnalysis.priceToWin ?? 0)}` : 'Sem preço-alvo disponível'}</small></article>
+            <article><ShopOutlined /><span>Catálogo / Buy Box</span><strong>{catalogPresentation[activeAnalysis.catalogStatus].label}</strong><small>{(details?.catalog?.priceToWin) ? `Preço para ganhar ${formatCurrency(details?.catalog?.priceToWin ?? 0)}` : 'Sem preço-alvo disponível'}</small></article>
             <article><BarChartOutlined /><span>Desempenho</span><strong>{formatInteger(activeAnalysis.sold)} vendidos</strong><small>{formatInteger(activeAnalysis.visits)} visitas acumuladas</small></article>
             <article><CheckCircleOutlined /><span>Qualidade</span><strong>{activeAnalysis.qualityAvailable ? `${activeAnalysis.qualityScore}%` : 'Sem leitura'}</strong><small>{activeAnalysis.qualityPrimaryIssue || 'Nenhuma melhoria prioritária'}</small></article>
           </section>
 
           <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Preço e rentabilidade</span><strong>Um preço para os anúncios vinculados</strong></div></div>
-            <PricingQuoteSummary pricing={details?.pricing} />
+            <CompetitivePricingSummary assessment={details?.competitiveAssessment} />{!details?.competitiveAssessment && <PricingQuoteSummary pricing={details?.pricing} />}
             {details?.automaticPricing?.active && <Alert type="warning" showIcon message="Preço automático ativo no Mercado Livre" description="A edição manual está bloqueada para evitar uma rejeição do provedor. Desative a automação no Mercado Livre antes de alterar aqui." />}
-            <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || details.automaticPricing?.active || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => setNewPrice(details.catalog?.priceToWin || null)}>Usar preço para ganhar</Button>}<Button type="primary" loading={savingPrice} disabled={!details || details.automaticPricing?.active || Boolean(visualReview)} onClick={() => void savePrice()}>Aplicar nos anúncios</Button></div>
+            <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || details.automaticPricing?.active || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => void simulateCompetitivePrice()}>Simular referência competitiva</Button>}<Button type="primary" loading={savingPrice} disabled onClick={() => void savePrice()}>Aplicação bloqueada nesta etapa</Button></div>
             <small className={styles.scopeNotice}>O mesmo preço será aplicado ao anúncio padrão e ao anúncio de catálogo ativos ou pausados vinculados a este produto. O resultado aparece separadamente por item.</small>
             {priceResults.length > 0 && <div className={styles.resultList}>{priceResults.map((result) => <div key={result.mlItemId}><span className={styles.typeMark}>{result.type === 'catalog' ? 'CATÁLOGO' : 'PADRÃO'}</span><strong>{result.mlItemId}</strong><span>{result.trackingStatus === 'pending' || result.trackingStatus === 'processing' || result.trackingStatus === 'retry' ? 'Publicação em processamento' : result.success ? 'Preço processado' : 'Falhou'}</span>{result.trackingError && <small className={styles.negative}>{result.trackingError}</small>}{[...result.warnings, ...result.errors].map((notice, index) => <small key={`${result.mlItemId}-${index}`}>{notice}</small>)}</div>)}</div>}
             {details?.quantityPricing?.length ? <div className={styles.wholesale}><span>Descontos existentes no ML — somente consulta</span>{details.quantityPricing.map((tier) => <small key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ unidades · {tier.pricing_model === 'percentage' ? `${tier.discount_percent}% de desconto` : formatCurrency(tier.amount)}</small>)}</div> : null}

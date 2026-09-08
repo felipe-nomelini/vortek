@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** `BNT-CANON-WARRANTY-01` encerrada no escopo DEV: contrato conciliado sem importar fallback vendedor 30 dias, retirada dos controles aprovada, código `e036397` publicado em `dev.bentevi.shop` e conferido em navegador autenticado; API, evidências e histórico preservados. 428 regressões passaram, um LIVE omitido, validate/build aprovados. [Fechamento e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md#fechamento-dev--08092026). **Próxima ação: planejar BNT-PRICING-V2-08 / M2M-CFL-04 — Buy Box econômica.** Frete vivo ME2, reconexão autorizada da conta de teste, PUB-GATE e `pricing_execution_not_ready` permanecem nos gates comerciais; produção não foi alterada. Codex continua piloto individual/local, sem certificar uso compartilhado ou adiantar o futuro chat.
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-08 / M2M-CFL-04` implementada e validada localmente: Buy Box econômica canônica, cotação por cenário, proteções e interface sem aplicação de preço. 408 regressões passaram; validate/build aprovados. [Evidências e limites](evidencias/M2M-CFL-04-validacao.md). Sem push/deploy nesta tarefa; pendente conferência autenticada após publicação em DEV. Frete ME2, conta autorizada, PUB-GATE e `pricing_execution_not_ready` permanecem gates comerciais. Próxima ação da fila: V2-13 — alertas e confirmações.
 
 ---
 
@@ -65,13 +65,13 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | WARRANTY-01 encerrada em DEV: política conciliada, interface simplificada publicada e conferida; API/histórico preservados | Planejar V2-08 / CFL-04 — Buy Box econômica; ME2, conta de teste e demais gates comerciais permanecem |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-08/CFL-04 implementada e validada localmente, com fontes e proteções canônicas | Publicação DEV/conferência autenticada pendentes; próxima implementação da fila: V2-13. Gates comerciais preservados |
 | 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Executar após `BNT-D20`, com contratos e indicadores estabilizados; homologação obrigatória antes do primeiro lançamento |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 08/09/2026:** WARRANTY-01 encerrada em DEV; planejar **BNT-PRICING-V2-08 / M2M-CFL-04 — Buy Box econômica**, sem implementá-la antecipadamente. Não repetir coleta/runtime ou reintroduzir os controles de garantia retirados. A lista abaixo preserva o histórico e as demais dependências; o piloto não antecipa o futuro chat nem certifica uso compartilhado.
+**Prioridade vigente — atualização de 08/09/2026:** V2-08/CFL-04 implementada e validada localmente; [evidências e pendências](evidencias/M2M-CFL-04-validacao.md). Não repetir WARRANTY-01 nem liberar execução comercial. A publicação DEV e a conferência autenticada dependem da solicitação de deploy; ME2 continua no gate de conta autorizada. Próxima implementação da fila: **BNT-PRICING-V2-13 — alertas e confirmações**, em tarefa própria.
 
 - [x] Executar somente `ML-03 — Não publicar estoque igual`.
 - [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
@@ -3116,7 +3116,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-06` — liquidação interna: implementação, testes locais e SQL DEV concluídos; sem liberar execução comercial; interface pendente do deploy/aceite conjunto. [Evidências](evidencias/BNT-PRICING-V2-06-validacao.md);
 - [x] `BNT-AI-PROVIDER-01` — integração e extração real validadas no piloto individual/local de Felipe; não certifica pesquisa ponta a ponta, uso compartilhado ou deploy. Evidências e limites abaixo;
 - [x] `BNT-CANON-WARRANTY-01` — contrato conciliado sem fallback vendedor universal, interface simplificada aprovada/publicada/conferida em DEV; API, evidências e histórico preservados; [fechamento e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md#fechamento-dev--08092026);
-- [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
+- [x] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica implementadas/validadas localmente; [evidências](evidencias/M2M-CFL-04-validacao.md). Pendente publicação DEV solicitada e conferência autenticada; sem liberar gates comerciais;
 - [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa;
 - [ ] **Pendência PRC-04 — Frete ME2 na conexão da conta real:** retomar quando a conta real estiver conectada em ambiente autorizado; comprovar cotação do vendedor no contexto real e recotação de alvo/piso/equilíbrio com oferta de origem conhecida. Registrar evidências e inconclusivo quando a fonte falhar. Não bloqueia o planejamento/desenvolvimento de CFL-01; bloqueia o aceite comercial do `BNT-CANON-PUB-GATE`, do `M2M-GATE` e a liberação comercial em produção enquanto não validada. Esta anotação não autoriza conectar conta, copiar credenciais de produção para DEV, publicar, reprecificar ou pausar anúncios;
 - [ ] `BNT-CANON-PUB-GATE` — validar sugestão, preparação, confirmação e publicação/read-back em homologação; não substitui gate final nem libera massa autônoma;

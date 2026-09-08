@@ -34,9 +34,12 @@ function material(product: Product, base: Base, request: PricingRequestContext) 
 
 /** Consulta efêmera, nenhuma escrita de preço/configuração/outbox. */
 export async function loadLiveProductPricing(client: Client, product: Product, context: MarketContext,
-  priceCents: number | null, verifyMarket: () => Promise<boolean | null>): Promise<ProductPricing> {
+  priceCents: number | null, verifyMarket: () => Promise<boolean | null>,
+  options: { competitivePriceCents?: number | null; actualPriceCents?: number | null; groupId?: string | null } = {}): Promise<ProductPricing> {
   const request = await loadPricingRequestContext(client);
   const initial = await sources(client, product, request, context, priceCents);
+  // Group is resolved by the authenticated caller; never inferred from custom_price.
+  const evaluationBase = { ...initial.base, context: { ...initial.base.context, pricingGroupId: options.groupId ?? null } };
   const key = marketContextKey(context);
   const cache = new Map<number, Promise<EconomicMarketQuote>>();
   let missingLive = false;
@@ -62,10 +65,17 @@ export async function loadLiveProductPricing(client: Client, product: Product, c
   let current: EconomicResult = initial.pricing.current;
   if (priceCents !== null) {
     const observed = await quote(priceCents);
-    current = evaluateEconomicMemory({ ...initial.base, evaluatedAt: new Date().toISOString(),
+    current = evaluateEconomicMemory({ ...evaluationBase, evaluatedAt: new Date().toISOString(),
       priceCents, fee: observed.fee, shipping: observed.shipping });
   }
-  const { shipping: _shipping, ...base } = initial.base;
+  const comparisons: Record<string, EconomicResult> = {};
+  for (const [name, price] of Object.entries({ competitive: options.competitivePriceCents, actual: options.actualPriceCents })) {
+    if (price == null) continue;
+    const observed = await quote(price);
+    comparisons[name] = evaluateEconomicMemory({ ...evaluationBase, evaluatedAt: new Date().toISOString(),
+      priceCents: price, fee: observed.fee, shipping: observed.shipping });
+  }
+  const { shipping: _shipping, ...base } = evaluationBase;
   const project = (objective: 'target' | 'floor' | 'break_even') => projectQuotedEconomicPrice({
     base, seedCents: priceCents ?? initial.pricing.costCents!, objective, quote });
   // Sequencial por objetivo: compartilha cotações e limita pressão no ML.
@@ -82,7 +92,7 @@ export async function loadLiveProductPricing(client: Client, product: Product, c
   if (marketValid === null) return failure('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
   if (!marketValid) return failure('CONTEXTO_ALTERADO');
   if (missingLive) return failure('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
-  return { costCents: initial.pricing.costCents, currentPriceCents: priceCents, current, target, floor, breakEven,
+  return { costCents: initial.pricing.costCents, currentPriceCents: priceCents, current, target, floor, breakEven, comparisons,
     revalidation: { status: target.ok && floor.ok && breakEven.ok ? 'queried' : 'inconclusive',
       evaluatedAt: new Date().toISOString(), contextKey: key } };
 }
