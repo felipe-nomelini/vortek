@@ -2,7 +2,7 @@
 
 **Data:** 05/09/2026. **Entrega:** documental, em `dev`. **Resultado:** dossiê concluído; liberado o planejamento de V2-01, não sua execução automática.
 
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-08 / M2M-CFL-04` implementada e validada localmente: Buy Box econômica canônica, cotação por cenário, proteções e interface sem aplicação de preço. 408 regressões passaram; validate/build aprovados. [Evidências e limites](evidencias/M2M-CFL-04-validacao.md). Sem push/deploy nesta tarefa; pendente conferência autenticada após publicação em DEV. Frete ME2, conta autorizada, PUB-GATE e `pricing_execution_not_ready` permanecem gates comerciais. Próxima ação da fila: V2-13 — alertas e confirmações.
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-08 / M2M-CFL-04` implementada e validada: 408 regressões, validate/build aprovados. Push e deploy solicitados concluídos; `vortek-erp-dev` executa `a71873d`, com login HTTP 200 e API de preços protegida (401 sem sessão). [Evidências e limites](evidencias/M2M-CFL-04-validacao.md). Pendente conferência autenticada dos drawers/aceite visual; frete ME2, conta autorizada, PUB-GATE e `pricing_execution_not_ready` permanecem gates comerciais. Produção inalterada. Próxima ação da fila: V2-13 — alertas e confirmações.
 
 ## 1. Escopo, autoridade e fotografia
 

@@ -2,6 +2,16 @@
 
 Data: 08/09/2026. Escopo: implementação e validação local em `dev`; sem liberação comercial.
 
+## Publicação DEV — solicitação posterior de 08/09/2026
+
+Push `dev` de `0bd31f6` para `a71873d299de676fa142a84fdad0f6cca7a63293`, seguido do script `npm run deploy:easypanel`. Preflight confirmou correspondência do webhook ao serviço `local/vortek-erp-dev`, origem `dev` e autoDeploy desabilitado, sem expor token.
+
+Ação Easypanel `cmts82kt0000307o90yjk8v2y`: build concluído. Serviço DEV versão `9606`, atualização concluída às `2026-09-08T05:24:09Z`, GIT_SHA `a71873d299de676fa142a84fdad0f6cca7a63293`, tarefa em execução. Login HTTPS respondeu 200 e consulta econômica sem sessão respondeu 401 antes de consultar produto/ML.
+
+Produção permaneceu versão `9592`, GIT_SHA `8ef8e7b7fe65f6aad049ca646bb1d8152309f9b1`, UpdatedAt `2026-09-08T05:18:09.29887291Z`, iguais ao preflight. Nenhuma operação de banco, configuração ou preço foi executada nesta publicação.
+
+O registro documental posterior não muda o bundle publicado. Publicação DEV deixa de ser pendência; conferência autenticada dos drawers/aceite visual e frete ME2 continuam pendentes. Os registros abaixo descrevem a implementação anterior ao pedido de deploy.
+
 ## AS_IS → TO_BE
 
 | Antes | Entrega |

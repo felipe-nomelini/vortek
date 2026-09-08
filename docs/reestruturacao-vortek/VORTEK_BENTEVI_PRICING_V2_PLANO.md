@@ -4,7 +4,7 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-08 / M2M-CFL-04` implementada e validada localmente: Buy Box econômica canônica, cotação por cenário, proteções e interface sem aplicação de preço. 408 regressões passaram; validate/build aprovados. [Evidências e limites](evidencias/M2M-CFL-04-validacao.md). Sem push/deploy nesta tarefa; pendente conferência autenticada após publicação em DEV. Frete ME2, conta autorizada, PUB-GATE e `pricing_execution_not_ready` permanecem gates comerciais. Próxima ação da fila: V2-13 — alertas e confirmações.
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-08 / M2M-CFL-04` implementada e validada: 408 regressões, validate/build aprovados. Push e deploy solicitados concluídos; `vortek-erp-dev` executa `a71873d`, com login HTTP 200 e API de preços protegida (401 sem sessão). [Evidências e limites](evidencias/M2M-CFL-04-validacao.md). Pendente conferência autenticada dos drawers/aceite visual; frete ME2, conta autorizada, PUB-GATE e `pricing_execution_not_ready` permanecem gates comerciais. Produção inalterada. Próxima ação da fila: V2-13 — alertas e confirmações.
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
 **Reconciliação documental — BNT-M2M-RECON-01 (06/09/2026):** concluída sem alteração funcional. Autoridade e dependências corrigidas na seção 14; aceites vigentes na seção 18 do dossiê e evidência no fechamento do checklist. Nenhuma etapa funcional posterior foi executada; próxima ação continua sendo planejar PRC-04.
