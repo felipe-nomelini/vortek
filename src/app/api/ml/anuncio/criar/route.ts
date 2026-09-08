@@ -693,7 +693,7 @@ async function persistListingLink(params: {
 async function loadCatalogExpansionSafetyEvents(client: any, batchId: string) {
   const batchEvents: any[] = [];
   for (let offset = 0; ; offset += 1000) {
-    const events = await client.from('pricing_events').select('id,event_type,produto_id,ml_item_id,created_at,payload').contains('payload',{batchId}).in('event_type',['CREATE_REQUESTED','CREATED_REMOTE','CATALOG_EXPANSION_VALIDATED','CATALOG_EXPANSION_SAFETY_STOP','CATALOG_EXPANSION_RETRY_AUTHORIZED','CATALOG_EXPANSION_REPLACEMENT_AUTHORIZED']).order('created_at').order('id').range(offset, offset + 999);
+    const events = await client.from('pricing_events').select('id,event_type,produto_id,ml_item_id,created_at,payload').contains('payload',{batchId}).in('event_type',['CREATE_REQUESTED','CREATED_REMOTE','CATALOG_EXPANSION_VALIDATED','CATALOG_EXPANSION_SAFETY_STOP','CATALOG_EXPANSION_SAFETY_STOP_RESOLVED','CATALOG_EXPANSION_RETRY_AUTHORIZED','CATALOG_EXPANSION_REPLACEMENT_AUTHORIZED']).order('created_at').order('id').range(offset, offset + 999);
     if (events.error) throw Error('AUDITORIA_LOTE_INDISPONIVEL');
     batchEvents.push(...(events.data ?? []));
     if ((events.data?.length ?? 0) < 1000) break;
@@ -768,6 +768,7 @@ export async function POST(req: Request) {
       if (!lock.acquired) return NextResponse.json({error:'LOTE_EM_EXECUCAO'},{status:409});
       batchLock = {domain,ownerToken:lock.ownerToken};
       const batchEvents = await loadCatalogExpansionSafetyEvents(supabase, batch.batchId);
+      if (batchEvents.some(event => event.produto_id === produto.id && event.event_type === 'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED' && event.payload?.outcome === 'EXCLUDED')) throw Error('PRODUTO_EXCLUIDO_DO_LOTE');
       assertCatalogExpansionCanAdvance(batchEvents, batch.batchId, batch.retryAuthorizationId ? {productId:produto.id,authorizationId:batch.retryAuthorizationId} : undefined);
       const prepared = await (supabase as any).from('pricing_events').select('payload').eq('id',batch.preparationId).eq('produto_id',produto.id).eq('event_type','CATALOG_EXPANSION_PREPARED').maybeSingle();
       if (prepared.error || !prepared.data) throw Error('PREPARACAO_LOTE_INDISPONIVEL');

@@ -28,7 +28,16 @@ export function catalogExpansionKey(productId: string, batchId: CatalogExpansion
 /** Uma tentativa cujo efeito não foi conciliado bloqueia o próximo produto, mesmo após reinício. */
 export function assertCatalogExpansionCanAdvance(events: any[], batchId: CatalogExpansionBatchId = CATALOG_EXPANSION_BATCH, retry?: { productId: string; authorizationId: string }) {
   const unresolvedStop = events.some(stop => stop.event_type === 'CATALOG_EXPANSION_SAFETY_STOP' && !events.some(done =>
-    done.event_type === 'CATALOG_EXPANSION_VALIDATED' && stop.id && stop.ml_item_id
+    (done.event_type === 'CATALOG_EXPANSION_VALIDATED'
+      || (done.event_type === 'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED'
+        && done.payload?.batchId === batchId
+        && done.payload?.outcome === 'EXCLUDED'
+        && done.payload?.explicitUserAuthorization === true
+        && done.payload?.deletedReadback?.id === stop.ml_item_id
+        && ['closed', 'inactive'].includes(done.payload?.deletedReadback?.status)
+        && done.payload?.deletedReadback?.sub_status?.includes('deleted')
+        && Date.parse(done.payload?.observedAt) > Date.parse(stop.created_at)
+        && Date.parse(done.created_at) >= Date.parse(done.payload?.observedAt))) && stop.id && stop.ml_item_id
     && done.produto_id === stop.produto_id && done.ml_item_id === stop.ml_item_id
     && done.payload?.reconciliation?.resolvedSafetyStopId === stop.id
     && Date.parse(done.created_at) > Date.parse(stop.created_at)));
