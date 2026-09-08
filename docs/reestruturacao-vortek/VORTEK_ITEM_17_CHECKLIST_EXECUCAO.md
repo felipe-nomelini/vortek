@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-15` operacional implementado e validado localmente: faixas fixas somente leitura, três parâmetros auditáveis e simulação canônica; 87 testes Node, 13 cenários de navegador isolado, validate/build aprovados. [Evidências V2-15 operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). Sem push/deploy desta ação; próxima ação técnica: aceite inicial de `BNT-D20`, após disponibilizar o candidato para conferência mediante solicitação. Marco 2 e V2-15/D20 integrais continuam abertos. PUB-GATE técnico permanece publicado em DEV (`9a18ff8f`); aceite autenticado/prova externa e ME2 pendentes no marco 6, capacidade produtiva no marco 5. Execução comercial não habilitada e produção não alterada. [Limites PUB-GATE](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
+**Situação vigente (08/09/2026):** `BNT-PRICING-V2-15` operacional publicado em DEV no candidato `982be7b2`: faixas fixas somente leitura, três parâmetros auditáveis e simulação canônica. Revalidados 100 testes Node (incluindo deploy), 13 checkpoints de navegador isolado, validate/build e smoke remoto sem sessão; Easypanel `done` e SHA confirmado no runtime. [Evidências V2-15 operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). Próxima ação: conferência e aceite inicial de `BNT-D20` pelo usuário em Configurações → Comercial. Marco 2 e V2-15/D20 integrais continuam abertos. Aceite autenticado/prova externa PUB-GATE e ME2 pendentes no marco 6, capacidade produtiva no marco 5. Execução comercial não habilitada; produção e banco não alterados. [Limites PUB-GATE](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
 
 ---
 
@@ -65,13 +65,13 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-15 operacional implementado e validado localmente | Disponibilizar candidato quando solicitado e conferir D20 inicial; prova externa e ME2 mantidos no marco 6 |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-15 operacional publicado em DEV (`982be7b2`) | Conferir D20 inicial; prova externa e ME2 mantidos no marco 6 |
 | 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Marco 3, após o aceite inicial de Configurações; não depende do Radar futuro; obrigatório no primeiro lançamento |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 08/09/2026:** realizar o aceite inicial de `BNT-D20` (marco 2), depois de disponibilizar por push/deploy solicitado o candidato de `BNT-PRICING-V2-15` operacional já validado localmente. [Entrega técnica e limites](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). O marco 2 ainda não está aprovado. A prova externa e o aceite autenticado de publicação/preço do `BNT-CANON-PUB-GATE` continuam no marco 6 por decisão do usuário, sem novo produto de teste como pré-requisito. Capacidade produtiva deve ser preparada/testada no marco 5; escritores legados e execução atual permanecem bloqueados. Não iniciar o Assistente nesta tarefa.
+**Prioridade vigente — atualização de 08/09/2026:** realizar o aceite inicial de `BNT-D20` (marco 2). Push/deploy do candidato `982be7b2` concluídos: Configurações → Comercial disponível em `dev.bentevi.shop` para conferência do usuário. [Entrega técnica, publicação e limites](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). O marco 2 ainda não está aprovado. A prova externa e o aceite autenticado de publicação/preço do `BNT-CANON-PUB-GATE` continuam no marco 6 por decisão do usuário, sem novo produto de teste como pré-requisito. Capacidade produtiva deve ser preparada/testada no marco 5; escritores legados e execução atual permanecem bloqueados. Não iniciar o Assistente nesta tarefa.
 
 <a id="bentevi-em-operacao"></a>
 
@@ -86,7 +86,7 @@ Regras de uso:
 | Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
 |---|---|---|---|---|
 | 1 — Execução comercial | Recorte técnico concluído para sequência; aceite operacional transferido | Implementação/testes técnicos concluídos; prova externa e aceite autenticado pendentes no marco 6 | Manter execução desabilitada durante o marco 2, sem novo produto de teste | [219 testes anteriores, SQL/rollback, validate/build, deploy e smoke](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md); sem declarar prova externa ou gate integral concluídos |
-| 2 — Configurações iniciais | V2-15 operacional validado localmente; aceite inicial pendente | Disponibilização do candidato e aceite D20 dos controles liberados; V2-15 integral continua aberto | Push/deploy quando solicitado, depois conferência e aceite inicial D20 | [87 testes Node, 13 cenários de navegador isolado, validate/build](evidencias/BNT-PRICING-V2-15-operacional-validacao.md); sem aceite visual do usuário antecipado |
+| 2 — Configurações iniciais | V2-15 operacional publicado em DEV (`982be7b2`); aceite inicial pendente | Aceite D20 dos controles liberados; V2-15 integral continua aberto | Usuário conferir Configurações → Comercial e conceder aceite inicial D20 | [100 testes Node, 13 checkpoints de navegador isolado, validate/build, deploy e smoke](evidencias/BNT-PRICING-V2-15-operacional-validacao.md); sem aceite visual do usuário antecipado |
 | 3 — Assistente Bentevi | Pendente | AI-00 → AI-01 → AI-02 → AI-GATE; consultas e histórico individual dos dois administradores | Após marco 2, planejar AI-00 reutilizando o piloto existente | Provedor adequado, precisão, isolamento e aceite de ambos; sem depender de indicadores futuros |
 | 4 — Operação ponta a ponta | Pendente | Regressão do candidato: vendas, compras DSLite, estoque, fiscal, entrega e notificações, inclusive falhas/reprocessamento | Reutilizar testes e fluxos existentes; corrigir divergências individualmente | Relatório por fluxo, testes direcionados, validate e build do candidato; não repetir etapas já validadas sem motivo |
 | 5 — Preparação da transição | Pendente | DELTA_PROMOCAO ensaiado; PARITY-FINAL; capacidade produtiva canônica preparada/testada; domínio/configurações; dados preservados; backup/recuperação; destino de jobs e experimentos produtivos | Preparar e testar a capacidade produtiva sem remover guards sem substituto; ensaiar delta em DEV e conferir checklist de release | SHAs, ensaio, testes dos controles produtivos, inventário sem secrets, recuperação inclusive de efeitos externos e janela acordada; reconfirmar deltas até a virada |
@@ -3180,7 +3180,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [ ] `M2M-RAD-01` — funil e priorização explicável, com demanda separada de conflito;
 - [ ] `BNT-PRICING-V2-12` / `M2M-RAD-02` — rotina única noturna de pricing/Radar, idempotente e observável;
 - [ ] `BNT-PRICING-V2-14` / `M2M-RAD-03` — Dashboard com filas acionáveis e sete filas do Radar;
-- [ ] `BNT-PRICING-V2-15` — ação integral aberta; recorte operacional implementado e validado localmente no marco 2, com faixas fixas somente leitura. Publicação/aceite inicial pendentes e parâmetros das capacidades futuras adiados; [evidência operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md);
+- [ ] `BNT-PRICING-V2-15` — ação integral aberta; recorte operacional publicado em DEV (`982be7b2`) no marco 2, com faixas fixas somente leitura. Aceite inicial pendente e parâmetros das capacidades futuras adiados; [evidência operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md);
 - [ ] `M2M-RAD-04` — reprocessar universo da planilha e candidatos revisados, sem pesquisa externa pesada;
 - [ ] `BNT-CFG-08` — integrar Dashboard, TV e metas aos contratos estabilizados;
 - [ ] `BNT-CFG-09` — integrar agenda e saúde operacional do job noturno;
@@ -3198,10 +3198,11 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] Distinguir valores salvos/alterações, confirmar antes/depois e descarte, tratar erros e persistência parcial sem repetir gravação.
 - [x] Simular valores salvos ou formulário, com custo explícito e preço opcional; memória canônica completa, sem fórmula paralela nem cotação viva fictícia.
 - [x] Validar 87 testes Node, 13 checkpoints de navegador isolado, lint/typecheck, build e diff; zero acessos externos no ensaio de UI.
-- [ ] Disponibilizar candidato por push/deploy quando solicitado e obter aceite inicial de BNT-D20; marco 2 ainda aberto.
+- [x] Disponibilizar candidato por push/deploy autorizado: `982be7b2`, Easypanel `done`, runtime e smoke remoto confirmados em 08/09/2026.
+- [ ] Obter aceite inicial de BNT-D20 pelo usuário; marco 2 ainda aberto.
 - [ ] Manter o restante de V2-15 pendente: configurações de Radar, experimentos, observação e autonomia dependem dos consumidores futuros; edição das faixas exige nova homologação.
 
-Sem commit/push/deploy, acesso ao banco ou produção. PUB-GATE externo e ME2 mantidos no marco 6; não iniciar a próxima etapa nesta tarefa.
+Implementação inicialmente local; publicação posterior autorizada registrada na evidência. Sem migration, acesso ao PostgreSQL ou alteração de produção. PUB-GATE externo e ME2 mantidos no marco 6; não iniciar a próxima etapa nesta tarefa.
 
 #### BNT-AI-PROVIDER-01 — Integração ChatGPT/Codex e teste em DEV
 

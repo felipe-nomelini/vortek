@@ -1,7 +1,7 @@
 # BNT-PRICING-V2-15 operacional — Configurações iniciais
 
 **Data:** 08/09/2026. **Ambiente:** worktree `vortek-dev`, branch `dev`.
-**Estado:** implementação e validação local concluídas; sem commit, push/deploy ou aceite visual do usuário nesta ação. V2-15 integral e marco 2 permanecem abertos.
+**Estado vigente:** implementação validada e publicada em DEV pelo candidato `982be7b2`, conforme autorização posterior do usuário. Aceite visual inicial de BNT-D20 pendente; V2-15 integral e marco 2 permanecem abertos. Os registros de ausência de infraestrutura abaixo descrevem a implementação local, anterior à publicação documentada ao final.
 
 ## Escopo e decisão
 
@@ -67,3 +67,15 @@ Respostas fora de ordem são invalidadas conforme o [React — carregamento em E
 - `origin/main` local observado em `518bcd40`; não foi feito fetch/auditoria de delta produtivo nesta tarefa. Paridade final permanece no marco próprio de transição.
 - Próxima ação técnica: **aceite inicial de BNT-D20**, depois de disponibilizar o candidato mediante solicitação de push/deploy. Sem antecipar marco 2 integral, Assistente ou capacidades futuras.
 - Aceite autenticado/prova externa PUB-GATE e frete ME2 permanecem no marco 6; capacidade produtiva no marco 5. Nenhum controle comercial foi habilitado por esta entrega.
+
+## Publicação DEV autorizada — 08/09/2026
+
+- Implementação/testes no commit `1076f849`; documentação e sequência aprovada no candidato `982be7b201359ae64a867a3ff7f804b1fae20611`. Push normal somente de `dev`, confirmado no remoto antes do deploy.
+- Preflight conferiu webhook com o token do serviço `local/vortek-erp-dev`, origem `felipe-nomelini/vortek`, ref `dev`, autoDeploy desabilitado e host Easypanel `192.168.1.160`. Nenhum token foi reproduzido. Usados `npm run deploy:easypanel -- --dry-run` e um único disparo de `npm run deploy:easypanel`, conforme [contrato oficial de deployments](https://easypanel.io/docs/services/app#deployments).
+- Validação repetida antes da publicação: **100 testes Node aprovados** (87 do lote e 13 do contrato de deploy), **13 checkpoints de navegador isolado**, `npm run validate`, `npm run build` e `git diff --check`. Sem novas dependências. Screenshots desta repetição: `/tmp/bnt-v2-15-ui-AnHaho/`.
+- Ação Easypanel `cmtt1aeq9000907o99o0791ga`: `done`; criada às **18:59:42 UTC**, concluída às **19:02:17 UTC (16:02:17 BRT)**. Build remoto compilado e 122 páginas geradas.
+- Serviço DEV: versão Docker `9692`, atualização `completed`, réplica em execução e `GIT_SHA` igual ao candidato. Apenas `GIT_SHA` e `DEPLOY_TIMESTAMP` mudaram no ambiente do serviço. Endpoint Supabase preservado; `ML_PRICING_EXECUTION_MODE` continua ausente/desabilitado.
+- Smoke via `https://dev.bentevi.shop`: `/login` HTTP 200; `/configuracoes?tab=comercial` redireciona ao login sem sessão (307); GET/PUT `/api/configuracoes/comercial` e POST `/api/configuracoes/comercial/simular` retornam 401 sem sessão. O novo asset comercial retorna HTTP 200 e contém os três blocos: política de consulta, parâmetros e simulador. Não houve salvamento de parâmetros nem simulação autenticada no ambiente remoto.
+- Produção comparada apenas por metadados do serviço: `local_vortek-erp` permaneceu na versão `9677`, `UpdatedAt=2026-09-08T16:48:05.797525575Z`, SHA `518bcd40bd092a6f04abc0bf1abd261cfa44b517`. Sem acesso ao PostgreSQL, migration, alteração de configuração, execução comercial ou deploy produtivo.
+- `AGENTS.md`, `.gitignore`, dependências e migrations preservados. Regras e skills locais continuam ignoradas. Registro pós-deploy enviado em commit documental; autoDeploy desligado, sem necessidade de outra imagem.
+- **Próximo passo:** usuário conferir Configurações → Comercial e conceder o aceite inicial BNT-D20. O smoke não equivale a esse aceite nem encerra o marco 2 automaticamente.
