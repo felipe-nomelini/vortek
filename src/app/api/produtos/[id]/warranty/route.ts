@@ -17,7 +17,7 @@ export async function GET(_request: Request, context: Context) {
   try {
     const profile = await auth.from('profiles').select('cargo').eq('id', user.id).maybeSingle();
     if (!profile.data || profile.error) return json({ error: 'Permissões indisponíveis' }, 403);
-    const { context: _context, ...data } = await loadProductWarranty(createServiceClient(), id);
+    const { context: _context, ...data } = await loadProductWarranty(createServiceClient(), id, user.id);
     return json({ ...data, canManage: hasPermission(profile.data.cargo, 'products.warranty.manage') });
   } catch { return json({ error: 'Não foi possível consultar a garantia' }, 503); }
 }
@@ -34,6 +34,7 @@ export async function POST(request: Request, context: Context) {
     return json({ ...data, canManage: true, externalListingChanged: false });
   } catch (error) {
     const code = error instanceof Error && error.message.startsWith('warranty_') ? error.message : 'warranty_write_failed';
+    if (code === 'warranty_pilot_forbidden') return json({ error: 'Pesquisa ChatGPT restrita ao usuário do piloto local DEV.', code }, 403);
     if (code === 'warranty_review_invalid') return json({ error: 'A revisão precisa comprovar este produto, a aplicação no Brasil e um prazo sem divergências. Kits exigem cobertura do conjunto.', code }, 422);
     return json({ error: 'Não foi possível concluir. Consulte o estado antes de reenviar.', code }, /conflict|changed|progress/.test(code) ? 409 : 503);
   }

@@ -189,7 +189,7 @@ Rotas-wrapper e aliases reutilizam a página responsável; não receberão imple
 
 Todas as ações estão pendentes. Os critérios funcionais completos ficam no checklist, sem duplicar regras comerciais aqui. A seleção de provedor não altera automaticamente os consumidores atuais do OpenRouter.
 
-`BNT-AI-PROVIDER-01` pertence à fila imediata de integração/garantia e será testada antes do fechamento de WARRANTY-01; não depende do chat. Seu resultado deve ser reaproveitado aqui, sem remontar a integração nem antecipar `/assistente` sobre `BNT-D20`.
+`BNT-AI-PROVIDER-01` foi implementado e validado em 07/09/2026 como piloto individual/local de Felipe para extração de garantia; [evidência](evidencias/BNT-AI-PROVIDER-01-validacao.md). Não fecha pesquisa/aceite visual de WARRANTY-01 nem comprova uso compartilhado no chat. Reaproveitar seu resultado sem remontar a integração ou antecipar `/assistente` sobre `BNT-D20`.
 
 **Direção visual:** priorizar a conversa, com histórico secundário e fontes acessíveis em cada resposta; reaproveitar shell, tokens e componentes existentes. Mostrar carregamento, resposta em andamento, vazio, erro e indisponibilidade de dados sem parecer resultado confirmado. Permitir navegação do diagnóstico ao registro do ERP sem executar ações comerciais pelo chat.
 

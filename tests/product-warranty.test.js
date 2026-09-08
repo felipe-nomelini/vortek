@@ -4,9 +4,10 @@ const fs = require('node:fs');
 const load = require('./helpers/load-integration-module');
 const terms = require('../src/lib/ml-sale-terms.ts');
 const domain = load('src/lib/product-warranty.ts', { zod: require('zod'), './ml-sale-terms': terms });
+const codex = load('src/services/warranty-codex.ts', { 'server-only': {}, 'node:child_process': require('node:child_process'), 'node:fs': fs, 'node:path': require('node:path') });
 const service = load('src/services/product-warranty.ts', { 'server-only': {}, 'node:crypto': require('node:crypto'), zod: require('zod'),
   '@/lib/preferred-offer': require('../src/lib/preferred-offer.ts'), '@/lib/ml-product-facts': require('../src/lib/ml-product-facts.ts'),
-  '@/lib/product-warranty': domain, '@/lib/ml-sale-terms': terms, './product-attribute-research': { researchWarrantySources: async () => [] } });
+  '@/lib/product-warranty': domain, '@/lib/ml-sale-terms': terms, './warranty-codex': codex, './product-attribute-research': { researchWarrantySources: async () => [] } });
 const id = '00000000-0000-4000-8000-000000000091';
 const base = { kind: 'manufacturer', duration: 12, unit: 'meses', url: 'https://marca.example.com/manual',
   excerpt: 'Produto Exato tem garantia de 12 meses no Brasil.', identity: 'Produto Exato', brazil: true, coversKit: false,
@@ -100,7 +101,7 @@ function harness(options = {}) {
     '@/lib/supabase': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: options.anonymous ? null : { id } } }) }, from: () => query }), createServiceClient: () => ({}) },
     '@/lib/api-request-auth': { authorizeApiRequest: async () => options.denied ? { ok: false, response: Response.json({}, { status: 403 }) } : { ok: true, userId: id } },
     '@/lib/permissions': permissions, '@/lib/products/bnt-d07-visual-review': { loadBntD07VisualReview: async () => options.fixture ? { items: [{ product: { id } }] } : null },
-    '@/lib/product-warranty': domain, '@/services/product-warranty': { loadProductWarranty: async () => ({ context, resolution: resolve() }), manageProductWarranty: async () => { writes++; if (options.conflict) throw Error('warranty_context_changed'); return { context, resolution: resolve() }; } },
+    '@/lib/product-warranty': domain, '@/services/product-warranty': { loadProductWarranty: async (_client, _product, actor) => { assert.equal(actor, id); return { context, resolution: resolve() }; }, manageProductWarranty: async () => { writes++; if (options.forbiddenPilot) throw Error('warranty_pilot_forbidden'); if (options.conflict) throw Error('warranty_context_changed'); return { context, resolution: resolve() }; } },
   });
   return { writes: () => writes, get: () => route.GET(new Request('http://test/'), { params: Promise.resolve({ id }) }),
     post: (body = command) => route.POST(new Request('http://test/', { method: 'POST', body: JSON.stringify(body) }), { params: Promise.resolve({ id }) }) };
@@ -118,6 +119,7 @@ test('POST protege fixture e permissão antes de efeitos; não afirma escrita ML
   }
   assert.equal((await harness().post({ ...command, actorId: id })).status, 422);
   assert.equal((await harness({ conflict: true }).post()).status, 409);
+  assert.equal((await harness({ forbiddenPilot: true }).post()).status, 403);
   assert.equal((await (await harness().post()).json()).externalListingChanged, false);
 });
 test('todos os consumidores usam resolução canônica e o bloqueio comercial permanece', () => {
@@ -219,7 +221,7 @@ test('pesquisa completa persiste candidatos, usa prazo único e sanitiza falha d
     : Response.json({ choices: [{ message: { content: JSON.stringify({ evidence: [evidence] }) } }] }); });
   const module = load('src/services/product-warranty.ts', { 'server-only': {}, 'node:crypto': require('node:crypto'), zod: require('zod'),
     '@/lib/preferred-offer': require('../src/lib/preferred-offer.ts'), '@/lib/ml-product-facts': require('../src/lib/ml-product-facts.ts'),
-    '@/lib/product-warranty': domain, '@/lib/ml-sale-terms': terms,
+    '@/lib/product-warranty': domain, '@/lib/ml-sale-terms': terms, './warranty-codex': codex,
     './product-attribute-research': { researchWarrantySources: async (_query, signal) => { assert.ok(signal); return [{ url: base.url, content: base.excerpt }]; } } });
   let finish;
   const client = { rpc: async (name, args) => {
@@ -233,4 +235,52 @@ test('pesquisa completa persiste candidatos, usa prazo único e sanitiza falha d
   assert.equal(finish.p_result.candidates[0].reviewed, false);
   invalid = true; await module.manageProductWarranty(client, id, id, { ...command, commandId: require('node:crypto').randomUUID() });
   assert.equal(requests.length, 2); assert.deepEqual(finish.p_result.candidates, []); assert.equal(finish.p_result.failure, 'warranty_extraction_unavailable');
+});
+
+test('piloto impede pesquisa direta e preparação por outro usuário antes de qualquer escrita', async t => {
+  const old = { NODE_ENV: process.env.NODE_ENV, WARRANTY_RESEARCH_PROVIDER: process.env.WARRANTY_RESEARCH_PROVIDER, WARRANTY_CODEX_PILOT_USER_ID: process.env.WARRANTY_CODEX_PILOT_USER_ID };
+  Object.assign(process.env, { NODE_ENV: 'development', WARRANTY_RESEARCH_PROVIDER: 'codex', WARRANTY_CODEX_PILOT_USER_ID: id });
+  t.after(() => { for (const [k,v] of Object.entries(old)) { if (v === undefined) delete process.env[k]; else process.env[k] = v; } });
+  const calls = []; const client = { rpc: async name => { calls.push(name); return { data: snapshot() }; } };
+  await assert.rejects(service.manageProductWarranty(client, id, 'other', command), /warranty_pilot_forbidden/);
+  assert.deepEqual(calls, []);
+  const prepared = await service.prepareProductWarranty(client, id, 'other');
+  assert.equal(prepared.researchAvailable, false); assert.deepEqual(calls, ['get_product_warranty_snapshot']);
+});
+
+test('Codex reutiliza validação canônica, minimiza entrada e não chama OpenRouter em sucesso ou falha', async t => {
+  const requests = []; let sourceSignal, invalid = false, failure = false, finish;
+  t.mock.method(globalThis, 'fetch', async () => { throw Error('unexpected_paid_provider'); });
+  const evidence = Object.fromEntries(Object.entries(base).filter(([k]) => !['scope','collectedAt','origin','reviewed'].includes(k)));
+  const module = load('src/services/product-warranty.ts', { 'server-only': {}, 'node:crypto': require('node:crypto'), zod: require('zod'),
+    '@/lib/preferred-offer': require('../src/lib/preferred-offer.ts'), '@/lib/ml-product-facts': require('../src/lib/ml-product-facts.ts'),
+    '@/lib/product-warranty': domain, '@/lib/ml-sale-terms': terms,
+    './warranty-codex': { ...codex, isWarrantyCodexActor: actor => actor === id,
+      getWarrantyResearchAccess: () => ({ researchProvider: 'codex', researchAvailable: true, researchConfigured: true }),
+      extractWarrantyWithCodex: async (payload, signal, actor) => {
+        requests.push(payload); assert.equal(actor, id); assert.equal(signal, sourceSignal);
+        if (failure) throw Error('warranty_codex_auth_required');
+        return invalid ? [{ ...evidence, excerpt: 'Texto inventado garantia 36 meses' }] : [evidence];
+      } },
+    './product-attribute-research': { researchWarrantySources: async (_q, signal) => { sourceSignal = signal; return [{ url: base.url, content: base.excerpt }]; } } });
+  const client = { rpc: async (name, args) => {
+    if (name === 'get_product_warranty_snapshot') return { data: snapshot() };
+    if (name === 'begin_product_warranty_command') return { data: { acquired: true } };
+    if (name === 'finish_product_warranty_command') { finish = args; return {}; }
+    throw Error('unexpected_rpc');
+  } };
+  await module.manageProductWarranty(client, id, id, command);
+  assert.equal(finish.p_result.candidates[0].duration, 12); assert.equal(finish.p_result.candidates[0].reviewed, false);
+  assert.deepEqual(Object.keys(requests[0].product).sort(), ['gtin','marca','nome']);
+  assert.deepEqual(Object.keys(requests[0]).sort(), ['isKit','pages','product']);
+  invalid = true; await module.manageProductWarranty(client, id, id, command); assert.deepEqual(finish.p_result.candidates, []);
+  failure = true; await module.manageProductWarranty(client, id, id, command);
+  assert.equal(finish.p_result.failure, 'warranty_codex_auth_required'); assert.equal(requests.length, 3);
+});
+
+test('SSR identifica piloto e separa dependência de coleta da extração', () => {
+  const state = { resolution: resolve(), researchConfigured: false, researchAvailable: false, researchProvider: 'codex',
+    researchUnavailableReason: 'Firecrawl DEV precisa ser configurado para coletar as fontes.', researchWarning: null, currentId: id, history: [], canManage: true };
+  const html = render(state); assert.match(html, /ChatGPT\/Codex/); assert.match(html, /piloto individual local/); assert.match(html, /Firecrawl DEV precisa/);
+  assert.doesNotMatch(html, /OPENAI_API_KEY|OPENROUTER_API_KEY|auth.json/);
 });

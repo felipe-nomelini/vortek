@@ -53,10 +53,11 @@ node --test tests/m2m-*.test.js tests/pricing-audit*.test.js tests/pricing-overr
 
 ## Pendências e próxima ação
 
-1. **Decisão de 07/09/2026:** executar primeiro `BNT-AI-PROVIDER-01 — Integração ChatGPT/Codex e teste em DEV`, conforme [contrato no checklist](../VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bnt-ai-provider-01--integração-chatgptcodex-e-teste-em-dev). A chave OpenRouter deixa de ser exigida antes dessa avaliação; o código ainda usa OpenRouter e nenhuma substituição foi validada. Comprovar modalidade suportada e uso da assinatura no piloto de extração, sem migração em lote dos demais consumidores ou ativação automática de API paga.
-   Manter `FIRECRAWL_API_KEY` **de desenvolvimento** como dependência independente de coleta e, após o piloto validado, executar a pesquisa real limitada com domínio oficial aprovado e evidência do produto. A inspeção anterior não encontrou credenciais utilizáveis de pesquisa (placeholder de `.env.example` não é credencial); essa fotografia não comprova configuração atual nem conclusão do novo piloto. Não reutilizar credenciais de produção.
+1. **Piloto concluído em 07/09/2026:** `BNT-AI-PROVIDER-01` comprovou extração real com login ChatGPT no escopo individual/local de Felipe; [evidência própria](BNT-AI-PROVIDER-01-validacao.md). OpenRouter não é exigido nesse caminho. Demais consumidores, modalidade compartilhada e Easypanel não foram migrados/homologados.
+   **Pendência vigente:** configurar `FIRECRAWL_API_KEY` **de desenvolvimento** e o runtime local completo; executar pesquisa real limitada com domínio oficial aprovado e evidência do produto. O extrator passou com amostras sintéticas, sem coleta Firecrawl real nem gravação desses exemplos no banco. Não reutilizar credenciais de produção.
 2. Push/deploy desta entrega somente quando solicitado e aceite visual em `dev.bentevi.shop`: fabricante, fornecedor, legal, pendência, conflito e indisponibilidade; revisão e histórico. Nenhuma aprovação visual desta etapa foi presumida.
 3. Contrato de representação real de garantia no ML permanece sob o gate de publicação, sem POST/PUT externo nesta etapa.
+4. **Paridade identificada em BNT-AI-PROVIDER-01:** reconciliar o fallback comercial `VORTEK-WARRANTY-2026-09-06-SELLER-30` de `main` (commit `4a40832`, presente no ref `dd34980`) com o contrato de evidência/classificação legal da V2. Não concluir a garantia ou copiar os 30 dias silenciosamente; [classificação e fontes de código](BNT-AI-PROVIDER-01-validacao.md#decisão-e-estado-encontrado).
 
 Depois de validar a etapa, a fila segue para **BNT-PRICING-V2-08 / M2M-CFL-04 — Buy Box econômica**. Frete vivo ME2 na conexão autorizada da conta real e os demais gates comerciais continuam pendentes; esta entrega não os substitui.
 

@@ -67,7 +67,8 @@ export default function ProductWarrantyControl({ productId, disabled }: { produc
       <Typography.Text strong>{warrantyLabels[state.resolution.status]}</Typography.Text>
       <Typography.Text>{state.resolution.reason}</Typography.Text>
       {state.researchWarning && <Alert type="warning" showIcon message={state.researchWarning} />}
-      {!state.researchConfigured && <Alert type="info" message="Pesquisa indisponível" description="Firecrawl e OpenRouter precisam de credenciais próprias no ambiente DEV. A revisão documentada permanece disponível." />}
+      {!state.researchAvailable && <Alert type="info" message="Pesquisa indisponível" description={`${state.researchUnavailableReason || 'Configuração de pesquisa indisponível.'} A revisão documentada permanece disponível.`} />}
+      {state.researchProvider === 'codex' && <Typography.Text type="secondary">Extração: ChatGPT/Codex · piloto individual local. Coleta: Firecrawl.</Typography.Text>}
       {state.resolution.candidates.map((e, i) => <div key={`${e.url}-${i}`} style={{ borderLeft: '3px solid var(--bentevi-primary)', paddingLeft: 12 }}>
         <Space direction="vertical" size={4}>
           <Typography.Text strong>{kinds.find(k => k.value === e.kind)?.label} · {e.duration} {e.unit}</Typography.Text>
@@ -79,7 +80,7 @@ export default function ProductWarrantyControl({ productId, disabled }: { produc
       </div>)}
       {!state.resolution.candidates.length && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhuma evidência aplicável registrada" />}
       <Space wrap>
-        {state.canManage && <><Button loading={saving} disabled={!state.researchConfigured || saving} onClick={() => void submit({ action: 'research', commandId: crypto.randomUUID(), fingerprint: state.fingerprint, reason: 'Pesquisa solicitada no produto' })}>Pesquisar garantia</Button>
+        {state.canManage && <><Button loading={saving} disabled={!state.researchAvailable || saving} onClick={() => void submit({ action: 'research', commandId: crypto.randomUUID(), fingerprint: state.fingerprint, reason: 'Pesquisa solicitada no produto' })}>Pesquisar garantia</Button>
           <Button disabled={saving} onClick={() => open('review')}>Revisar evidência</Button><Button disabled={saving} onClick={() => open('source')}>Validar fonte oficial</Button>
           <Button disabled={saving || !state.currentId} onClick={() => open('revoke')}>Revogar evidência</Button></>}
         <Button onClick={() => setHistory(true)}>Ver histórico</Button>

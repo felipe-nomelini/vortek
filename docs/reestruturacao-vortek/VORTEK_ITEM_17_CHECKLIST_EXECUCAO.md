@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (07/09/2026):** próxima ação `BNT-AI-PROVIDER-01 — Integração ChatGPT/Codex e teste em DEV`, antes de fechar `BNT-CANON-WARRANTY-01`. Garantia implementada e validada localmente e no Supabase DEV `.162`, ainda pendente de pesquisa real e aceite visual. Avaliar/testar a substituição do OpenRouter pela assinatura antes de exigir sua chave; Firecrawl permanece como dependência de coleta. [Evidências e pendências da garantia](evidencias/BNT-CANON-WARRANTY-01-validacao.md). Integração nova apenas planejada, sem modalidade compartilhada ou funcionamento presumidos. Depois do piloto validado, concluir a garantia e seguir para Buy Box econômica. O futuro chat permanece após `BNT-D20`. Frete vivo ME2 continua reservado à conexão autorizada da conta real; `pricing_execution_not_ready` e gates comerciais permanecem bloqueando escritas.
+**Situação vigente (07/09/2026):** `BNT-AI-PROVIDER-01` implementado e validado como piloto **individual/local de Felipe**, com login ChatGPT e extração real por `gpt-5.4-mini/low`; [evidências](evidencias/BNT-AI-PROVIDER-01-validacao.md). Sem uso compartilhado, substituição geral do OpenRouter ou deploy. Próxima ação: configurar Firecrawl DEV/runtime local e concluir pesquisa real e aceite visual de `BNT-CANON-WARRANTY-01`, conforme [pendências da garantia](evidencias/BNT-CANON-WARRANTY-01-validacao.md); depois seguir para Buy Box econômica. OpenRouter não é exigido no caminho Codex do piloto. O futuro chat permanece após `BNT-D20`. Frete vivo ME2 continua reservado à conexão autorizada da conta real; `pricing_execution_not_ready` e gates comerciais permanecem bloqueando escritas.
 
 ---
 
@@ -65,13 +65,13 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-05/06 aprovadas visualmente; WARRANTY-01 implementada, pesquisa real e visual pendentes | Executar `BNT-AI-PROVIDER-01`; concluir homologação WARRANTY-01; depois Buy Box econômica; ME2 e demais gates comerciais permanecem |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-05/06 aprovadas visualmente; piloto ChatGPT individual/local validado; WARRANTY-01 com pesquisa real e visual pendentes | Configurar coleta/runtime e concluir homologação WARRANTY-01; depois Buy Box econômica; ME2 e demais gates comerciais permanecem |
 | 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Executar após `BNT-D20`, com contratos e indicadores estabilizados; homologação obrigatória antes do primeiro lançamento |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — decisão de 07/09/2026:** executar `BNT-AI-PROVIDER-01` antes de fechar a garantia. A lista abaixo preserva o histórico e as demais dependências; a integração está pendente e não antecipa o futuro chat.
+**Prioridade vigente — decisão de 07/09/2026:** piloto `BNT-AI-PROVIDER-01` individual/local validado; concluir coleta real e aceite visual da garantia. A lista abaixo preserva o histórico e as demais dependências; o piloto não antecipa o futuro chat nem certifica uso compartilhado.
 
 - [x] Executar somente `ML-03 — Não publicar estoque igual`.
 - [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
@@ -3114,7 +3114,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] `BNT-PRICING-V2-04` — origem e audit trail vinculados ao grupo existente; implementação e validação local/SQL DEV concluídas, sem deploy ou homologação ML externa;
 - [x] `BNT-PRICING-V2-05` — override explícito por grupo até revogação manual; validação local/SQL DEV concluída, interface pendente do deploy/aceite conjunto;
 - [x] `BNT-PRICING-V2-06` — liquidação interna: implementação, testes locais e SQL DEV concluídos; sem liberar execução comercial; interface pendente do deploy/aceite conjunto. [Evidências](evidencias/BNT-PRICING-V2-06-validacao.md);
-- [ ] `BNT-AI-PROVIDER-01` — integração ChatGPT/Codex e teste em DEV; piloto de extração da garantia antes de exigir chave OpenRouter, conforme contrato abaixo;
+- [x] `BNT-AI-PROVIDER-01` — integração e extração real validadas no piloto individual/local de Felipe; não certifica pesquisa ponta a ponta, uso compartilhado ou deploy. Evidências e limites abaixo;
 - [ ] `BNT-CANON-WARRANTY-01` — implementação/SQL DEV validados; após o piloto de provedor, concluir pesquisa real com Firecrawl DEV e aceite visual; [evidências](evidencias/BNT-CANON-WARRANTY-01-validacao.md);
 - [ ] `BNT-PRICING-V2-08` / `M2M-CFL-04` — viabilidade competitiva e Buy Box econômica;
 - [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe; decisão auditável/idempotente antes da prova externa;
@@ -3138,19 +3138,19 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 #### BNT-AI-PROVIDER-01 — Integração ChatGPT/Codex e teste em DEV
 
-**Estado:** planejada, não implementada. Decisão de 07/09/2026: testar o uso da assinatura ChatGPT da empresa nas funções atuais de IA, começando pela extração de evidências da garantia, sem esperar pelo chat. É uma ação de integração anterior ao fechamento de WARRANTY-01, não uma nova política comercial.
+**Estado:** implementada e validada no escopo aprovado **individual/local de Felipe**, em 07/09/2026. Login ChatGPT oficial concluído; modelo `gpt-5.4-mini/low` disponível e extração real comprovada com amostras sintéticas. Sem Firecrawl/runtime local completo, a pesquisa real e o visual de WARRANTY-01 permanecem pendentes. [Evidência detalhada, operação e rollback](evidencias/BNT-AI-PROVIDER-01-validacao.md). Não é uma nova política comercial nem substituição geral do OpenRouter.
 
-- [ ] Confirmar em documentação oficial vigente a modalidade suportada para login pela assinatura, distinguindo uso individual e compartilhado entre os dois administradores. Autenticação técnica não prova autorização multiusuário. Registrar limites, tratamento dos dados e modalidade de cobrança; sem ativar API paga ou contratar outro provedor automaticamente.
-- [ ] Montar a integração oficial pelo Codex App Server em DEV e comprovar o uso da assinatura, com credenciais apenas na configuração autorizada, nunca no browser, logs ou Git. Sem integração funcional homologada, não declarar OpenRouter substituído.
-- [ ] Usar a extração de evidências da garantia como piloto, preservando validação de resposta, fonte/trecho, identidade, confiança, estados inconclusivos, revisão e contratos existentes. Manter os limites atuais: até três páginas e um PDF da mesma origem, orçamento total de pesquisa de 45 segundos e descarte tardio/contexto alterado; sem ampliar timeout ou adicionar retries para acomodar o provedor.
-- [ ] Manter Firecrawl como coleta/pesquisa atual; sua credencial DEV continua uma pendência independente. Remover OpenRouter não implica substituir Firecrawl nem autoriza reconstruir o fluxo de pesquisa.
-- [ ] Inventariar preenchimento inteligente e sugestão de campos como consumidores posteriores, sem migrá-los junto do piloto antes de sua validação. A decisão de migração desses consumidores será registrada separadamente.
-- [ ] Testar resposta estruturada válida/inválida, evidência insuficiente, timeout, sessão expirada, limite de uso e solicitações concorrentes sem mistura de contexto. Preservar resultados anteriores aplicáveis em falhas e todos os bloqueios comerciais.
-- [ ] Executar testes direcionados, `npm run validate`, build quando aplicável e prova real em DEV com evidências sanitizadas; confirmar que não houve chamadas OpenRouter no caminho do piloto aprovado nem uso inadvertido de cobrança por API. Documentar rollback restrito à integração, sem alterar garantia, histórico ou regras comerciais.
+- [x] Modalidade individual registrada com fontes oficiais, distinguindo assinatura de API e de serviço compartilhado. Uso pelo sócio/futuro Assistente ainda não homologado; sem ativação de API paga. Limites e controles pessoais da conta não foram modificados.
+- [x] App Server oficial por stdio com perfil exclusivo, login ChatGPT e thread efêmera; modelo/permissões conferidos em execução. Credenciais fora do Git e do browser do ERP; apenas extração local validada, não substituição geral do OpenRouter.
+- [x] Validação canônica de fonte/trecho, identidade, prazo, confiança, revisão e estados preservada. Coleta mantém três páginas/um PDF e deadline total de 45 segundos. Zero retries adicionados pelo ERP; limitação das tentativas internas do Codex documentada, sem provedor alternativo.
+- [x] Firecrawl preservado como coleta; configuração DEV continua pendência independente de WARRANTY-01.
+- [x] Consumidores posteriores inventariados na evidência, sem migração de preenchimento inteligente/sugestão de campos junto do piloto.
+- [x] Resposta válida/inválida, evidência insuficiente, timeout, sessão expirada, limite de uso, isolamento, permissões e preservação de evidências cobertos por testes; falhas de sessão/cota simuladas, sem esgotar a conta real.
+- [x] 50 testes direcionados, 414 na regressão ampliada, lint/typecheck/build passaram; teste LIVE opt-in passou com validador canônico. Extração real sem OpenRouter/API key. Rollback documentado, sem mudança de regras, banco, push ou deploy.
 
 **Aceite e sequência:** modalidade pretendida suportada e comprovada no piloto → concluir pesquisa real e aprovação visual de WARRANTY-01 → Buy Box econômica. Se a modalidade não for suportada, registrar o impedimento e apresentar a decisão necessária; não marcar a integração como concluída nem retomar a exigência de OpenRouter/ativar API paga silenciosamente. Sem novas escritas ML, acesso produtivo ou habilitação comercial neste piloto.
 
-**Fontes a reconfirmar na execução:** [Codex App Server](https://learn.chatgpt.com/docs/app-server), [autenticação](https://learn.chatgpt.com/docs/auth) e [planos/limites](https://learn.chatgpt.com/docs/pricing). A inclusão desta ação é exclusivamente documental; integração, testes externos e eventual deploy continuam pendentes de sua tarefa própria.
+**Fontes consultadas e a reconfirmar em evolução:** [Codex App Server](https://learn.chatgpt.com/docs/app-server), [autenticação](https://learn.chatgpt.com/docs/auth) e [planos/limites](https://learn.chatgpt.com/docs/pricing). Diferenças entre documentação/schema e a CLI 0.153.4 foram resolvidas por contrato estrito e teste real, conforme evidência. Nenhuma homologação de uso compartilhado/Easypanel ou aceite visual da garantia foi presumido.
 
 **Dependências e aceites vigentes:** seção 14 do [plano](VORTEK_BENTEVI_PRICING_V2_PLANO.md) e seção 18 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md). Grupos antes de trilha/override; confirmação antes da prova externa; performance antes de classificação comercial. Etapas posteriores reutilizam contratos já entregues. RAD-04 exige insumo identificado: ausência da planilha não equivale a reprocessamento concluído. Esta fila não autoriza a próxima implementação automaticamente.
 
@@ -3605,7 +3605,9 @@ Sem push, deploy, chamada autenticada ML ou acesso à produção. Guard comercia
 - [x] Fonte, trecho, identidade, contexto, responsável, revisão/revogação e histórico; admin/gerente gerenciam, demais consultam;
 - [x] Preparação/sugestão/criação compartilham resolução; descrição e termos não podem contradizer evidência;
 - [x] Migration `20260907213000` somente no `.162`, tipos gerados, SQL/concorrência/PostgREST, testes locais e build;
-- [ ] Executar `BNT-AI-PROVIDER-01` antes de exigir chave OpenRouter; manter Firecrawl DEV e homologar pesquisa real limitada após o piloto validado;
+- [x] Executar `BNT-AI-PROVIDER-01` antes de exigir chave OpenRouter — piloto individual/local validado, conforme evidência própria;
+- [ ] Configurar Firecrawl DEV/runtime local e homologar pesquisa real limitada da garantia; a prova sintética do extrator não fecha essa pendência;
+- [ ] Reconciliar a garantia padrão de `main` (`4a40832`, fallback comercial vendedor 30 dias) com o contrato V2 de evidência/classificação legal antes de fechar WARRANTY-01; diferença identificada e documentada no piloto, sem mudança de regra implícita;
 - [ ] Push/deploy quando solicitado e aceite visual em `dev.bentevi.shop`;
 - [ ] Manter a etapa aberta até estas validações; depois planejar V2-08 / CFL-04 — Buy Box econômica.
 
