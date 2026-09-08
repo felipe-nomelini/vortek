@@ -316,6 +316,25 @@ test('substituição tem tentativa própria e histórico validado não encobre n
  assert.throws(()=>validateCatalogExpansionContext({...c,retryAuthorizationId:c.replacementAuthorizationId},'VTK002091'),/SUBSTITUICAO/);
 });
 
+test('rota permite substituir produto excluído somente com autorização válida para a preparação atual',()=>{
+ const fs=require('node:fs'),ts=require('typescript'),vm=require('node:vm');
+ const {assertCatalogExpansionReplacement}=require('../src/lib/ml/catalog-expansion.ts');
+ const source=ts.createSourceFile('route.ts',fs.readFileSync('src/app/api/ml/anuncio/criar/route.ts','utf8'),ts.ScriptTarget.Latest,true);let guard;
+ function visit(n){if(ts.isIfStatement(n)&&n.expression.getText(source).includes("event_type === 'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED'")&&n.getText(source).includes('PRODUTO_EXCLUIDO_DO_LOTE'))guard=n;ts.forEachChild(n,visit);}visit(source);assert.ok(guard);
+ const code=ts.transpileModule(guard.getText(source),{compilerOptions:{target:ts.ScriptTarget.ES2022}}).outputText;
+ const old={event_type:'CATALOG_EXPANSION_VALIDATED',produto_id:'p',ml_item_id:'MLBOLD'};
+ const excluded={event_type:'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED',produto_id:'p',ml_item_id:'MLBOLD',payload:{batchId:context.batchId,outcome:'EXCLUDED'}};
+ const batch={...context,replacementAuthorizationId:'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb'};
+ const auth={id:batch.replacementAuthorizationId,event_type:'CATALOG_EXPANSION_REPLACEMENT_AUTHORIZED',produto_id:'p',payload:{batchId:batch.batchId,preparationId:batch.preparationId,explicitUserAuthorization:true,oldItemId:'MLBOLD',archive:{item:{id:'MLBOLD'}},deletedReadback:{id:'MLBOLD',sold_quantity:0,sub_status:['deleted']},orders:{complete:true,total:0}}};
+ const run=(batchEvents,c=batch)=>vm.runInNewContext(code,{batchEvents,batch:c,produto:{id:'p'},assertCatalogExpansionReplacement});
+ assert.throws(()=>run([old,excluded],context),/PRODUTO_EXCLUIDO_DO_LOTE/);
+ assert.throws(()=>run([old,excluded]),/SUBSTITUICAO/);
+ assert.doesNotThrow(()=>run([old,excluded,auth]));
+ for(const patch of [{preparationId:'outra'},{explicitUserAuthorization:false},{policyRestriction:'PRODUTO_PROIBIDO'},{orders:{complete:true,total:1}},{deletedReadback:{id:'MLBOLD',sold_quantity:0,sub_status:[]}}])assert.throws(()=>run([old,excluded,{...auth,payload:{...auth.payload,...patch}}]),/SUBSTITUICAO/);
+ assert.throws(()=>run([old,excluded,{...auth,produto_id:'outro'}]),/SUBSTITUICAO/);
+ assert.throws(()=>run([old,excluded,auth,{event_type:'CREATE_REQUESTED',produto_id:'p',payload:{replacementAuthorizationId:auth.id}}]),/CONSUMIDA/);
+});
+
 test('menção a controle na descrição e departamento Antenas não mudam o tipo do produto',()=>{
  const {assertMlCategoryReview}=require('../src/lib/ml-category-guard.ts');
  const cases=[

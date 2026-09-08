@@ -768,7 +768,10 @@ export async function POST(req: Request) {
       if (!lock.acquired) return NextResponse.json({error:'LOTE_EM_EXECUCAO'},{status:409});
       batchLock = {domain,ownerToken:lock.ownerToken};
       const batchEvents = await loadCatalogExpansionSafetyEvents(supabase, batch.batchId);
-      if (batchEvents.some(event => event.produto_id === produto.id && event.event_type === 'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED' && event.payload?.outcome === 'EXCLUDED')) throw Error('PRODUTO_EXCLUIDO_DO_LOTE');
+      if (batchEvents.some(event => event.produto_id === produto.id && event.event_type === 'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED' && event.payload?.outcome === 'EXCLUDED')) {
+        if (!batch.replacementAuthorizationId) throw Error('PRODUTO_EXCLUIDO_DO_LOTE');
+        assertCatalogExpansionReplacement(batchEvents, produto.id, batch);
+      }
       assertCatalogExpansionCanAdvance(batchEvents, batch.batchId, batch.retryAuthorizationId ? {productId:produto.id,authorizationId:batch.retryAuthorizationId} : undefined);
       const prepared = await (supabase as any).from('pricing_events').select('payload').eq('id',batch.preparationId).eq('produto_id',produto.id).eq('event_type','CATALOG_EXPANSION_PREPARED').maybeSingle();
       if (prepared.error || !prepared.data) throw Error('PREPARACAO_LOTE_INDISPONIVEL');
