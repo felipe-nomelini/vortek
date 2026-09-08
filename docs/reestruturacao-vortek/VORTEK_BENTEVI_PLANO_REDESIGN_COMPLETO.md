@@ -31,6 +31,8 @@ Não faz parte desta iniciativa:
 - implementar silenciosamente novos cálculos, campos, APIs ou regras;
 - alterar produção, fazer merge em `main` ou promover domínio automaticamente.
 
+**Adição aprovada em 07/09/2026:** o Assistente Bentevi é uma nova funcionalidade com trilha própria `BNT-AI-*`, não uma mudança implícita de layout. Seu contrato e acompanhamento pertencem à Etapa 11.3 do [checklist do Item 17](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#etapa-113--assistente-bentevi--chat-operacional).
+
 ---
 
 ## 2. Momento correto
@@ -172,11 +174,30 @@ Padrões compartilhados só serão criados quando tiverem consumidores reais: ca
 
 Rotas-wrapper e aliases reutilizam a página responsável; não receberão implementações visuais paralelas.
 
+### 6.1 Assistente Bentevi — nova superfície
+
+**Página planejada:** `/assistente`, com entrada “Assistente Bentevi” no menu. Público inicial: Felipe e seu sócio, cada um autenticado com seu usuário administrador do ERP. Históricos e contexto de conversa privados por usuário, sem compartilhamento automático mesmo entre administradores.
+
+**Momento:** após `BNT-D20` e estabilização de contratos de negócio, indicadores e configurações; antes da homologação final para o primeiro lançamento. Preservar os IDs e a ordem relativa de `BNT-D01` a `BNT-D24`, assim como a etapa corrente. Uma ação validada por vez:
+
+| ID | Entrega |
+|---|---|
+| `BNT-AI-00` | Contrato e modalidade de provedor suportada para os dois usuários, avaliando a conta ChatGPT da empresa sem presumir autorização de uso compartilhado ou créditos de API. |
+| `BNT-AI-01` | Conhecimento e consultas autorizadas, reutilizando documentação vigente, serviços e cálculos canônicos do ERP. |
+| `BNT-AI-02` | Página de chat, novas conversas, histórico individual, respostas progressivas, fontes e links para os registros consultados. |
+| `BNT-AI-GATE` | Testes de precisão, isolamento, permissões, consumo e falhas; aprovação visual de ambos e gate obrigatório de lançamento. |
+
+Todas as ações estão pendentes. Os critérios funcionais completos ficam no checklist, sem duplicar regras comerciais aqui. A seleção de provedor não altera automaticamente os consumidores atuais do OpenRouter.
+
+**Direção visual:** priorizar a conversa, com histórico secundário e fontes acessíveis em cada resposta; reaproveitar shell, tokens e componentes existentes. Mostrar carregamento, resposta em andamento, vazio, erro e indisponibilidade de dados sem parecer resultado confirmado. Permitir navegação do diagnóstico ao registro do ERP sem executar ações comerciais pelo chat.
+
+**Aceite:** aplicar o gate da seção 10, incluindo screenshots desktop e testes com os dois usuários simultâneos. O backend deve impedir acesso ao histórico alheio por identificador, não apenas escondê-lo na interface. A primeira versão é somente consultiva; o modelo explica os cálculos oficiais, não implementa outro motor econômico. Incluir a adaptação web celular na seção 7; esta adição não cria uma tela no aplicativo nativo.
+
 ---
 
 ## 7. Web celular
 
-Somente depois de `BNT-D01` a `BNT-D24` aprovados, adaptar as mesmas páginas na mesma ordem:
+Somente depois de `BNT-D01` a `BNT-D24` e do aceite desktop do Assistente em `BNT-AI-GATE` aprovados, adaptar as mesmas páginas na mesma ordem, incluindo `/assistente` após seu aceite desktop:
 
 - menu em `Drawer`;
 - listas/cartões com detalhe progressivo no lugar de tabelas comprimidas;

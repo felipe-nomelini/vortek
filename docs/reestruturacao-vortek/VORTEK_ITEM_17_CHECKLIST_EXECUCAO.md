@@ -66,6 +66,7 @@ Regras de uso:
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
 | 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-05/06 aprovadas visualmente; WARRANTY-01 implementada, pesquisa real e visual pendentes | Concluir homologação WARRANTY-01; depois Buy Box econômica; ME2 e demais gates comerciais permanecem |
+| 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Executar após `BNT-D20`, com contratos e indicadores estabilizados; homologação obrigatória antes do primeiro lançamento |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -223,6 +224,7 @@ Regras de uso:
 - [ ] Executar `BNT-CFG-09` incluindo agenda, limites e saúde do job noturno já validado.
 - [ ] Executar `BNT-PRICING-V2-16 — Gate de autonomia` antes de permitir qualquer escrita autônoma de preço.
 - [ ] Concluir `BNT-D20` somente depois do gate de autonomia e da composição final das Configurações.
+- [ ] Após `BNT-D20`, executar `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE`, uma ação por tarefa; não antecipar o chat sobre a etapa corrente.
 
 ---
 
@@ -2027,6 +2029,8 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [ ] `BNT-D23` — Página pública BKR1;
 - [ ] `BNT-D24` — Página pública Evolusom.
 
+**Nova superfície aprovada para planejamento:** Assistente Bentevi `/assistente`, sob `BNT-AI-02`, após `BNT-D20`. O bloco da Etapa 11.3 controla seus requisitos funcionais e aceite, sem renumerar `BNT-D01` a `BNT-D24` nem mudar a ordem relativa dessas páginas.
+
 #### PDFs operacionais — parte do aceite da página
 
 Uma página que expõe `Exportar PDF` somente pode ser encerrada depois de o documento usar a identidade Bentevi, refletir os dados e a hierarquia aprovados e receber aprovação visual em homologação. A atualização deve ocorrer junto da própria página, sem agrupar relatórios de etapas futuras.
@@ -3135,11 +3139,40 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
-Não iniciar web celular antes de `BNT-D01` a `BNT-D24` estarem aprovados.
+### `Etapa 11.3 — Assistente Bentevi — chat operacional`
+
+**Decisão aprovada em 07/09/2026:** incluir o Assistente na primeira versão em produção. Público inicial: Felipe e seu sócio, cada um com seu login administrativo no ERP e suas próprias conversas. A credencial do provedor, se compartilhada por modalidade oficialmente suportada, não define o dono do histórico.
+
+**Situação:** inclusão documental realizada; nenhuma ação funcional abaixo foi iniciada ou homologada. Não altera a próxima ação vigente de garantia/pricing, não troca OpenRouter e não autoriza acesso ou escrita em produção.
+
+**Sequência:** contratos de negócio, indicadores e configurações estabilizados → `BNT-D20` aprovado → `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE`. Validar cada ação antes da seguinte; manter os demais gates de pricing, paridade, interface e promoção. O Assistente não é pré-requisito dos cálculos ou serviços que consulta.
+
+#### Ações e critérios de aceite
+
+- [ ] `BNT-AI-00 — Contrato e provedor`: avaliar primeiro se a conta ChatGPT Pro da empresa pode atender oficialmente os dois usuários através do Codex App Server. Distinguir viabilidade técnica de autorização de uso compartilhado; verificar autenticação, limites, custos, retenção e tratamento dos dados em documentação oficial vigente. Não presumir que assinatura equivale a créditos de API. Se o uso pretendido não for confirmado, apresentar integração por API e estimativa de custo para decisão, sem substituição automática. Aceite: modalidade suportada e aprovada, limites de consumo e contrato de consultas definidos; a troca dos consumidores atuais do OpenRouter permanece fora deste bloco.
+- [ ] `BNT-AI-01 — Conhecimento e consultas`: conectar documentação vigente e consultas autorizadas aos serviços existentes de vendas, compras, produtos, estoque, fiscal, pricing e indicadores. Reutilizar cálculos e contratos canônicos; identificar fonte, período, ambiente e atualização dos dados, sinalizando ausência ou desatualização. Aceite: perguntas de referência conferidas contra documentação e resultados dos serviços, sem fórmulas paralelas ou números inventados.
+- [ ] `BNT-AI-02 — Chat e histórico individual`: criar `/assistente` e menu “Assistente Bentevi”, com novas conversas, histórico individual, respostas progressivas e links para registros do ERP. Aplicar propriedade da conversa no backend; ser administrador não permite consultar automaticamente o histórico do outro administrador. Aceite: contexto e histórico isolados entre os dois usuários, inclusive por acesso direto ao identificador e durante consultas simultâneas; interface pronta para homologação.
+- [ ] `BNT-AI-GATE — Homologação`: comprovar precisão das respostas, isolamento, permissões, consumo e tratamento de indisponibilidade/limites do provedor, com testes direcionados, `npm run validate`, build aplicável e evidências. Obter aprovação visual de ambos em homologação. Aceite obrigatório antes do primeiro lançamento; não substitui `BNT-PARITY-FINAL` nem autoriza promoção.
+
+#### Contrato da primeira versão e cenários obrigatórios
+
+- Somente consultas e explicações sobre operações, resultados e funcionamento do ERP. A persistência do histórico do chat não autoriza alterar dados operacionais: sem mudar preços, publicar anúncios, movimentar estoque ou executar ações fiscais.
+- O modelo consulta fontes autorizadas; não recebe acesso irrestrito ao banco, SQL arbitrário, terminal ou credenciais. Usar apenas os dados necessários à resposta, respeitando permissões também no backend.
+- Separar dados operacionais compartilhados da empresa de mensagens, resumos, contexto e histórico privados de cada usuário. Não compartilhar conversas automaticamente nem importar conversas pessoais do ChatGPT.
+- Validar perguntas como “qual foi o resultado do período?”, “por que esta venda está pendente?” e “como o preço sugerido é calculado?”, confrontando fontes e cálculos oficiais. Dados ausentes ou antigos devem gerar explicação explícita, não uma resposta inventada.
+- Testar acesso cruzado entre os dois administradores, sessões simultâneas, perda de acesso, instruções maliciosas nos conteúdos consultados, falha do provedor e esgotamento de limites. Falhas não podem liberar ações operacionais ou misturar conversas.
+- Preservar a identidade visual, os estados de carregamento/vazio/erro e o gate visual do [plano de redesign](VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md#61-assistente-bentevi--nova-superfície). A modalidade do provedor deve ser definida antes de escolher infraestrutura ou dependências.
+
+**Referências para reconfirmar em `BNT-AI-00`:** [Codex App Server](https://learn.chatgpt.com/docs/app-server), [autenticação e cobrança por API](https://learn.chatgpt.com/docs/auth) e [planos e limites](https://learn.chatgpt.com/docs/pricing). Login ChatGPT disponível tecnicamente não constitui, sozinho, evidência de autorização para usar um único Pro como serviço multiusuário do ERP.
+
+**Limite desta inclusão:** apenas checklist e plano de redesign; sem implementação do chat, alteração de provedor, migration, push ou deploy. Todas as ações `BNT-AI-*` permanecem pendentes.
+
+Não iniciar web celular antes de `BNT-D01` a `BNT-D24` e do aceite desktop do Assistente em `BNT-AI-GATE` estarem aprovados.
 
 #### Web celular
 
 - [ ] adaptar as 24 páginas na mesma ordem do desktop;
+- [ ] adaptar também `/assistente` após o aceite desktop, mantendo histórico individual, fontes e isolamento do contexto;
 - [ ] validar cada página em `390×844` antes da seguinte;
 - [ ] confirmar menu em `Drawer`, ações essenciais e ausência de overflow;
 - [ ] concluir o gate obrigatório da seção 3 para cada página.
@@ -3262,6 +3295,7 @@ Esta seção prepara a promoção. Ela não autoriza merge nem deploy.
 - [ ] build aprovado quando aplicável;
 - [ ] migrations aplicadas e testadas somente em staging;
 - [ ] `dev.bentevi.shop` funcional;
+- [ ] `BNT-AI-GATE` concluído com modalidade de provedor suportada, conversas individuais isoladas e aprovação dos dois administradores; Assistente incluído na primeira versão;
 - [ ] reconfirmar `BNT-PARITY-GATE` e resolver as divergências críticas exigidas para release; o aceite de encaminhamento à V2 permite apenas a sequência DEV, não a promoção;
 - [ ] `BNT-PARITY-FINAL` executado contra o SHA atual de `origin/main`, sem commit ou regra pendente de classificação;
 - [ ] matriz `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` atualizada com os SHAs finais;
