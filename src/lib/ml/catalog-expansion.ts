@@ -42,7 +42,24 @@ export function assertCatalogExpansionCanAdvance(events: any[], batchId: Catalog
     && done.payload?.reconciliation?.resolvedSafetyStopId === stop.id
     && Date.parse(done.created_at) > Date.parse(stop.created_at)));
   if (unresolvedStop) throw Error(`${batchId}_SAFETY_STOP`);
-  const completed = (claim: any) => events.some(done => done.event_type === 'CATALOG_EXPANSION_VALIDATED'
+  const excludedClaim = (claim: any) => events.some(done =>
+    done.event_type === 'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED'
+    && done.produto_id === claim.produto_id && done.payload?.batchId === batchId
+    && done.payload?.outcome === 'EXCLUDED' && done.payload?.explicitUserAuthorization === true
+    && done.ml_item_id && done.payload?.deletedReadback?.id === done.ml_item_id
+    && ['closed', 'inactive'].includes(done.payload?.deletedReadback?.status)
+    && done.payload?.deletedReadback?.sub_status?.includes('deleted')
+    && Date.parse(done.payload?.observedAt) > Date.parse(claim.created_at)
+    && Date.parse(done.created_at) >= Date.parse(done.payload?.observedAt)
+    && claim.payload?.approvalId && claim.payload?.preparationId
+    && events.some(created => created.event_type === 'CREATED_REMOTE'
+      && created.produto_id === claim.produto_id && created.ml_item_id === done.ml_item_id
+      && created.payload?.batchId === batchId
+      && created.payload?.approvalId === claim.payload.approvalId
+      && created.payload?.preparationId === claim.payload.preparationId
+      && Date.parse(created.created_at) >= Date.parse(claim.created_at)
+      && Date.parse(done.payload.observedAt) > Date.parse(created.created_at)));
+  const completed = (claim: any) => excludedClaim(claim) || events.some(done => done.event_type === 'CATALOG_EXPANSION_VALIDATED'
     && done.produto_id === claim.produto_id
     && (claim.payload?.replacementAuthorizationId
       ? done.payload?.replacementAuthorizationId === claim.payload.replacementAuthorizationId

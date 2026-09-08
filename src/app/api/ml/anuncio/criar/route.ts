@@ -1097,6 +1097,21 @@ export async function POST(req: Request) {
     if (gtinAttr?.tags?.read_only) attributesMap.delete("GTIN");
     const emptyGtinReasonAttr = categoryAttrsById.get("EMPTY_GTIN_REASON");
     const hasGtinValue = hasValue(attributesMap.get("GTIN") || { id: "GTIN" });
+    // O GTIN editado pode vir do texto do fornecedor mesmo com o cadastro vazio.
+    // Packs resolvidos pelo fluxo de kits já possuem gtinForMl e continuam válidos.
+    if (batch && !gtinForMl && hasGtinValue) {
+      const submittedGtin = String(attributesMap.get("GTIN")?.value_name || "").replace(/\D/g, "");
+      if (submittedGtin) {
+        const { data: otherProducts, error: duplicateError } = await supabase
+          .from("produtos").select("id,sku").eq("gtin", submittedGtin).neq("id", produtoId);
+        if (duplicateError) throw Error('CONSULTA_DUPLICIDADE_GTIN_INDISPONIVEL');
+        if (otherProducts?.length) return NextResponse.json({
+          error: 'GTIN_EM_OUTRO_CADASTRO',
+          message: 'O código de barras informado já pertence a outro cadastro. Revise os produtos antes de publicar.',
+          conflictingSkus: otherProducts.map(product => product.sku),
+        }, { status: 409 });
+      }
+    }
     if (!gtinAttr?.tags?.read_only && !hasGtinValue && emptyGtinReasonAttr && !hasExplicitEmptyGtinReason) {
       const reason = pickEmptyGtinReasonValue(emptyGtinReasonAttr, produto.nome);
       if (reason) {

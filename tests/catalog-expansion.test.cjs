@@ -214,9 +214,9 @@ test('categoria preserva metadados do GTIN oculto e publicação não reenvia c�
 });
 test('preparação aceita mínimo ML de 500 pixels e rejeita dimensões abaixo do limite',()=>{
  const fs=require('node:fs'),vm=require('node:vm'),s=fs.readFileSync('scripts/catalog-expansion-batch-01.cjs','utf8');
- const check=s.match(/if\(Math\.min\(meta\.width[^\n]+IMAGEM_DIMENSAO_INSUFICIENTE'\);/)[0];
- for(const meta of [{width:500,height:500},{width:1000,height:250}])assert.doesNotThrow(()=>vm.runInNewContext(check,{meta}));
- for(const meta of [{width:499,height:499},{width:1000,height:249}])assert.throws(()=>vm.runInNewContext(check,{meta}),/IMAGEM_DIMENSAO/);
+ const check=s.match(/const smallSourceImage=[^\n]+/)[0]+"\nif(smallSourceImage)throw Error('IMAGEM_DIMENSAO_INSUFICIENTE');";
+ for(const meta of [{width:500,height:500},{width:1000,height:250},{width:1000,height:99}])assert.doesNotThrow(()=>vm.runInNewContext(check,{meta}));
+ for(const meta of [{width:499,height:499},{width:499,height:99}])assert.throws(()=>vm.runInNewContext(check,{meta}),/IMAGEM_DIMENSAO/);
 });
 test('marca antiga divergente bloqueia antes do pedido de criação mesmo com GTIN igual',()=>{
  const fs=require('node:fs'),ts=require('typescript'),vm=require('node:vm'),path=require('node:path');
@@ -233,9 +233,9 @@ test('diâmetro de montagem da lente preserva valor sem o símbolo recusado pelo
 });
 test('preparação confere dimensão após o recorte do ML, não apenas a imagem original',()=>{
  const fs=require('node:fs'),vm=require('node:vm'),source=fs.readFileSync('scripts/catalog-expansion-batch-01.cjs','utf8');
- const code=source.match(/const mlDimensions=[^\n]+\n\s*if\(mlDimensions[^\n]+/)[0];
- for(const max_size of ['683x414','343x738','500x250'])assert.doesNotThrow(()=>vm.runInNewContext(code,{uploaded:{max_size}}));
- for(const max_size of ['434x434','1000x249',undefined,'unknown'])assert.throws(()=>vm.runInNewContext(code,{uploaded:{max_size}}),/IMAGEM_DIMENSAO_ML/);
+ const code=source.match(/const mlDimensions=[^\n]+\n\s*if\(mlDimensions[^\n]+\n\s*if\(Math\.max[^\n]+/)[0];
+ for(const max_size of ['683x414','343x738','500x250','1000x99'])assert.doesNotThrow(()=>vm.runInNewContext(code,{uploaded:{max_size}}));
+ for(const max_size of ['434x434','499x99',undefined,'unknown'])assert.throws(()=>vm.runInNewContext(code,{uploaded:{max_size}}),/IMAGEM_DIMENSAO_ML/);
 });
 test('marcadores invisíveis de direção não contaminam peso e dimensões do fornecedor',()=>{
  const {supplierTextToDescription}=require('../src/lib/ml-listing-description.ts');
@@ -354,7 +354,7 @@ test('retomada não confia no alvo em cache quando o anúncio foi moderado depoi
 test('executor bloqueia antes do login e interrompe no primeiro erro sem processar próximo produto',async()=>{
  const fs=require('fs'),ts=require('typescript'),vm=require('vm');const source=ts.createSourceFile('runner.js',fs.readFileSync('scripts/catalog-expansion-batch-01.cjs','utf8'),ts.ScriptTarget.Latest,true);const code=source.statements.find(n=>ts.isFunctionDeclaration(n)&&n.name?.text==='execute').getText(source);
  let blocked=true,publicationFailure=false,logins=0;const calls=[],candidates=['A','B'].map(sku=>({sku,productId:sku,status:'PREPARADO',preparationId:sku,categoryReview:{version:1},draft:{familyName:sku,attributes:[]}}));
- const scope={batchEvents:async()=>[],assertBatchReady:async()=>{if(blocked)throw Error('SAFETY_STOP');},appRuntime:async()=>{logins++;return{app:async(path)=>{calls.push(path);return publicationFailure&&path==='/api/pricing/simulate'?{ok:true,data:{success:true,memory:{price:100},evaluationId:'e'}}:publicationFailure&&path==='/api/pricing/approve'?{ok:true,data:{success:true,approvalId:'approval'}}:{ok:false,data:{success:false}}}};},verifyPublicationTarget:async()=>{throw Error('Não deve recuperar preço');},dir:'/batch',SKUS:['A','B'],BATCH:'batch',console:{log(){}},save(){},fs:{existsSync:()=>false,readFileSync:path=>JSON.stringify(path.endsWith('/review.json')?candidates.map(c=>({sku:c.sku,title:c.sku,status:'APTO_PREPARACAO',attributes:[]})):{results:candidates})},db:{from(){return{select(){return this;},eq(){return this;},contains(){return this;},order(){return this;},limit(){this.value=[];return this;},maybeSingle(){this.value=null;return this;}}}},checked:async q=>q.value};
+ const scope={assertDraftGtinIsUnique:async()=>{},batchEvents:async()=>[],assertBatchReady:async()=>{if(blocked)throw Error('SAFETY_STOP');},appRuntime:async()=>{logins++;return{app:async(path)=>{calls.push(path);return publicationFailure&&path==='/api/pricing/simulate'?{ok:true,data:{success:true,memory:{price:100},evaluationId:'e'}}:publicationFailure&&path==='/api/pricing/approve'?{ok:true,data:{success:true,approvalId:'approval'}}:{ok:false,data:{success:false}}}};},verifyPublicationTarget:async()=>{throw Error('Não deve recuperar preço');},dir:'/batch',SKUS:['A','B'],BATCH:'batch',console:{log(){}},save(){},fs:{existsSync:()=>false,readFileSync:path=>JSON.stringify(path.endsWith('/review.json')?candidates.map(c=>({sku:c.sku,title:c.sku,status:'APTO_PREPARACAO',attributes:[]})):{results:candidates})},db:{from(){return{select(){return this;},eq(){return this;},contains(){return this;},order(){return this;},limit(){this.value=[];return this;},maybeSingle(){this.value=null;return this;}}}},checked:async q=>q.value};
  vm.runInNewContext(code,scope);await assert.rejects(scope.execute(),/SAFETY_STOP/);assert.equal(logins,0);blocked=false;await assert.rejects(scope.execute(),/SIMULACAO_PENDENTE_A/);assert.deepEqual(calls,['/api/pricing/simulate']);calls.length=0;publicationFailure=true;await assert.rejects(scope.execute(),/PUBLICACAO_PENDENTE_A/);assert.deepEqual(calls,['/api/pricing/simulate','/api/pricing/approve','/api/ml/anuncio/criar']);
 });
 
@@ -364,4 +364,29 @@ test('relatório conta produtos únicos e estado atual sem reescrever manifesto'
  const tables={produtos:[{id:'p',sku:'A',nome:'A',ml_item_id:'new'},{id:'q',sku:'B',nome:'B',ml_item_id:null}],anuncios_ml:[{produto_id:'p',ml_item_id:'new'}],integracoes:{access_token:'test'}};
  const scope={batchEvents:async()=>events,SKUS:['A','B'],BATCH:'batch',dir:'/batch',path:require('path'),console:{log(){}},AbortSignal,require:()=>({assertCatalogExpansionCanAdvance(){throw Error('STOP');}}),db:{from(table){return{value:tables[table],select(){return this;},in(){return this;},eq(){return this;},single(){return this;}}}},checked:async q=>q.value,fetch:async()=>({ok:true,json:async()=>({id:'new',status:'under_review',sub_status:['forbidden'],seller_custom_field:'A'})}),save:(name,data)=>{files.push(name);result=data;},fs:{writeFileSync:name=>files.push(name)}};
  vm.runInNewContext(code,scope);await scope.report();assert.equal(result.summary.manifestProducts,2);assert.equal(result.summary.productsWithCreatedListing,1);assert.equal(result.summary.replacementListingsCreated,1);assert.equal(result.summary.underReview,1);assert.equal(result.summary.active,0);assert.equal(result.summary.currentlyWithoutListing,1);assert.ok(!files.some(f=>f.includes('manifest')));
+});
+
+test('exclusão confirmada concilia somente a tentativa que criou aquele anúncio',()=>{
+ const batch=CATALOG_EXPANSION_BATCH;
+ const claim={event_type:'CREATE_REQUESTED',produto_id:'p',created_at:'2026-09-08T01:00:00Z',payload:{batchId:batch,approvalId:'a',preparationId:'prep'}};
+ const created={event_type:'CREATED_REMOTE',produto_id:'p',ml_item_id:'MLB1',created_at:'2026-09-08T01:01:00Z',payload:{...claim.payload}};
+ const done={event_type:'CATALOG_EXPANSION_SAFETY_STOP_RESOLVED',produto_id:'p',ml_item_id:'MLB1',created_at:'2026-09-08T01:03:00Z',payload:{batchId:batch,outcome:'EXCLUDED',explicitUserAuthorization:true,observedAt:'2026-09-08T01:02:00Z',deletedReadback:{id:'MLB1',status:'closed',sub_status:['deleted']}}};
+ assert.doesNotThrow(()=>assertCatalogExpansionCanAdvance([claim,created,done],batch));
+ assert.throws(()=>assertCatalogExpansionCanAdvance([claim,done],batch),/RECONCILIACAO/);
+ for(const payload of [{approvalId:'another'},{preparationId:'another'},{batchId:'another'}])assert.throws(()=>assertCatalogExpansionCanAdvance([claim,{...created,payload:{...created.payload,...payload}},done],batch),/RECONCILIACAO/);
+ for(const payload of [{explicitUserAuthorization:false},{observedAt:created.created_at},{deletedReadback:{id:'MLB2',status:'closed',sub_status:['deleted']}},{deletedReadback:{id:'MLB1',status:'paused',sub_status:[]}}])assert.throws(()=>assertCatalogExpansionCanAdvance([claim,created,{...done,payload:{...done.payload,...payload}}],batch),/RECONCILIACAO/);
+ assert.throws(()=>assertCatalogExpansionCanAdvance([claim,created,done,{...claim,payload:{...claim.payload,approvalId:'second'}}],batch),/RECONCILIACAO/);
+});
+
+test('GTIN informado no anúncio bloqueia outro cadastro mesmo com GTIN mestre vazio; kit resolvido não é bloqueado',async()=>{
+ const fs=require('node:fs'),ts=require('typescript'),vm=require('node:vm');
+ const source=ts.createSourceFile('route.ts',fs.readFileSync('src/app/api/ml/anuncio/criar/route.ts','utf8'),ts.ScriptTarget.Latest,true);
+ let gate;function visit(n){if(ts.isIfStatement(n)&&n.expression.getText(source)==='batch && !gtinForMl && hasGtinValue')gate=n;ts.forEachChild(n,visit);}visit(source);assert.ok(gate);
+ const code=ts.transpileModule('async function run(){'+gate.getText(source)+'}',{compilerOptions:{target:9}}).outputText;
+ for(const [resolved,data,error,expected] of [[null,[{sku:'EXISTENTE'}],null,409],[null,[],null,null],['7898597133125',[{sku:'COMPONENTE'}],null,null],[null,null,{message:'DB unavailable'},'error']]){
+  let calls=0;const scope={batch:{},gtinForMl:resolved,hasGtinValue:true,attributesMap:new Map([['GTIN',{value_name:'7898597133125'}]]),produtoId:'novo',NextResponse:{json:(body,options)=>({body,status:options.status})},supabase:{from(table){calls++;assert.equal(table,'produtos');return{select(){return this;},eq(k,v){assert.equal(k,'gtin');assert.equal(v,'7898597133125');return this;},neq(k,v){assert.equal(k,'id');assert.equal(v,'novo');return Promise.resolve({data,error});}};}}};
+  vm.runInNewContext(code,scope);
+  if(expected==='error')await assert.rejects(scope.run(),/DUPLICIDADE_GTIN/);else{const result=await scope.run();assert.equal(result?.status??null,expected);}
+  assert.equal(calls,resolved?0:1);
+ }
 });

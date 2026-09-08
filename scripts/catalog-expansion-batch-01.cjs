@@ -12,6 +12,12 @@ const LISTING_TYPE=IS_EVOLUSOM?'gold_pro':'gold_special';
 const db=createClient(process.env.SUPABASE_SERVICE_URL||process.env.NEXT_PUBLIC_SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
 const checked=async p=>{const r=await p;if(r.error)throw Error(r.error.message);return r.data;};
 const save=(name,data)=>{fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,name),JSON.stringify(data,null,2)+'\n');};
+async function assertDraftGtinIsUnique(productId,attributes) {
+ const gtin=String(attributes?.find(a=>a.id==='GTIN')?.value_name||'').replace(/\D/g,'');
+ if(!gtin)return;
+ const matches=await checked(db.from('produtos').select('id,sku,ml_item_id').eq('gtin',gtin).neq('id',productId));
+ if(matches.length)throw Error('GTIN_EM_OUTRO_CADASTRO_'+matches.map(p=>p.sku).join(','));
+}
 async function inspect(){
  const token=(await checked(db.from('integracoes').select('access_token').eq('tipo','mercadolivre').single())).access_token;
  const supplier=await checked(db.from('integracoes').select('url,access_token').eq('tipo','dslite').single());
@@ -68,7 +74,7 @@ async function prepare() {
  const {identityFacts,supplierIdentityFacts}=require('../src/lib/ml/opportunity-identity.ts');
  const {assessIdentity}=require('../src/lib/ml/opportunity-conflicts.ts');
  const results=fs.existsSync(path.join(dir,'preparation.json'))?JSON.parse(fs.readFileSync(path.join(dir,'preparation.json'))).results.filter(r=>SKUS.includes(r.sku)):[];
- const pending=reviews.filter(review=>review.status==='APTO_PREPARACAO'&&review.categoryReview?.version===1&&!results.some(r=>r.sku===review.sku&&r.status==='PREPARADO'&&JSON.stringify(r.categoryReview)===JSON.stringify(review.categoryReview)));
+ const pending=reviews.filter(review=>review.status==='APTO_PREPARACAO'&&review.categoryReview?.version===1&&!results.some(r=>r.sku===review.sku&&r.status==='PREPARADO'&&JSON.stringify(r.categoryReview)===JSON.stringify(review.categoryReview)&&JSON.stringify(r.upscaylImages||{})===JSON.stringify(review.upscaylImages||{})&&r.draft?.familyName===review.title&&r.draft?.description===review.description&&JSON.stringify(r.draft?.attributes)===JSON.stringify(review.attributes)));
  if(new Set(pending.map(review=>review.sku)).size!==pending.length)throw Error('REVISOES_DUPLICADAS');
  let next=0;
  await Promise.all(Array.from({length:Math.min(4,pending.length)},async()=>{while(next<pending.length){
@@ -78,6 +84,7 @@ async function prepare() {
   if(!SKUS.includes(review.sku)||!review.categoryId||(IS_EVOLUSOM&&!Array.isArray(review.attributes)))throw Error('REVISAO_INCOMPLETA_'+review.sku);
   if(review.catalogProductId && !catalog)throw Error('CATALOGO_REVISADO_AUSENTE_'+review.sku);
   if(IS_EVOLUSOM && String(o.dslite_fornecedor_id)!=='133')throw Error('FORNECEDOR_LOTE_DIVERGENTE');
+  await assertDraftGtinIsUnique(p.id,review.attributes);
   if(duplicates.matches.some(x=>x.sku===review.sku || (catalog && x.catalog_product_id===catalog.id)))throw Error('ANUNCIO_EXISTENTE_'+review.sku);
   if((duplicates.excluded||[]).some(x=>x.sku===review.sku))throw Error('ANUNCIO_EXCLUIDO_PELA_DIRETORIA_'+review.sku);
   if((duplicates.canonicalConflicts||[]).some(x=>x.sku===review.sku))throw Error('GTIN_CANONICO_EM_CONFLITO_'+review.sku);
@@ -94,7 +101,7 @@ async function prepare() {
    const changed=await checked(db.from('produtos').update(patch).eq('id',p.id).eq('updated_at',previous.updated_at).select('id'));
    if(changed.length!==1)throw Error('PRODUTO_ALTERADO_DURANTE_PREPARACAO');
   }
-  const warrantyInput={evidence:[{origin:'GARANTIA_FORNECEDOR',productId:p.id,gtin:p.gtin,offerId:o.id,duration:Number(v.tempo_garantia),unit:'dias',source:`DSLite /v1/CrossDocking/Catalogo/${o.dslite_fornecedor_id}/${o.dslite_produto_id}:tempo_garantia; inspection.json`,observedAt:row.liveOffer.at}]};
+  const warrantyInput={evidence:[{origin:'GARANTIA_FORNECEDOR',productId:p.id,gtin:p.gtin||null,offerId:o.id,duration:Number(v.tempo_garantia),unit:'dias',source:`DSLite /v1/CrossDocking/Catalogo/${o.dslite_fornecedor_id}/${o.dslite_produto_id}:tempo_garantia; inspection.json`,observedAt:row.liveOffer.at}]};
   const warranty=await app('/api/produtos/'+p.id,'PATCH',{reason:'Garantia específica documentada na oferta viva do fornecedor',warrantyEvidence:warrantyInput});
   if(!warranty.ok)throw Error('GARANTIA_'+JSON.stringify(warranty.data));
   const images=[];
@@ -106,8 +113,21 @@ async function prepare() {
   for(const original of selectedImages){
    const url=original.replace('://evolusom.com.br/','://www.evolusom.com.br/');
    const r=await fetch(url,{signal:AbortSignal.timeout(20000)});if(!r.ok||!r.headers.get('content-type')?.startsWith('image/'))throw Error('IMAGEM_INDISPONIVEL');
-   const bytes=Buffer.from(await r.arrayBuffer()),meta=await require('sharp')(bytes).metadata();
-   if(Math.min(meta.width||0,meta.height||0)<250||Math.max(meta.width||0,meta.height||0)<500)throw Error('IMAGEM_DIMENSAO_INSUFICIENTE');
+   let bytes=Buffer.from(await r.arrayBuffer()),meta=await require('sharp')(bytes).metadata();
+   let contentType=r.headers.get('content-type');
+   const sourceHash=crypto.createHash('sha256').update(bytes).digest('hex');
+   const upscale=review.upscaylImages?.[original];
+   if(upscale){
+    if(upscale.visuallyReviewed!==true||upscale.sourceHash!==sourceHash)throw Error('UPSCAYL_ORIGEM_OU_REVISAO_DIVERGENTE_'+JSON.stringify({url,expectedHash:upscale.sourceHash,sourceHash,visuallyReviewed:upscale.visuallyReviewed}));
+    bytes=fs.readFileSync(upscale.path);
+    if(crypto.createHash('sha256').update(bytes).digest('hex')!==upscale.outputHash)throw Error('UPSCAYL_RESULTADO_DIVERGENTE');
+    meta=await require('sharp')(bytes).metadata();
+    if(meta.format!=='png')throw Error('UPSCAYL_FORMATO_INVALIDO');
+    contentType='image/png';
+   }
+   if(!meta.width||!meta.height)throw Error('IMAGEM_DIMENSAO_INVALIDA');
+   const smallSourceImage=Math.max(meta.width,meta.height)<500;
+   if(smallSourceImage)throw Error('IMAGEM_DIMENSAO_INSUFICIENTE');
    const hash=crypto.createHash('sha256').update(bytes).digest('hex'),object=`catalog-expansion/${BATCH}/${p.sku}/${hash}.${meta.format==='jpeg'?'jpg':meta.format}`;
    const publicUrl=new URL(`/storage/v1/object/public/product-images/${object}`,process.env.NEXT_PUBLIC_SUPABASE_URL).href;
    // O caminho contém o hash: retomar preparação reutiliza a mesma imagem imutável.
@@ -118,18 +138,19 @@ async function prepare() {
     if(![400,404].includes(existing.status))throw Error('IMAGEM_PUBLICA_INDISPONIVEL');
     const missing=await existing.json();
     if(!['404','NoSuchKey','not_found'].includes(String(missing.statusCode??missing.code)))throw Error('IMAGEM_PUBLICA_INDISPONIVEL');
-    const upload=await db.storage.from('product-images').upload(object,bytes,{contentType:r.headers.get('content-type'),upsert:false});
+    const upload=await db.storage.from('product-images').upload(object,bytes,{contentType,upsert:false});
     if(upload.error && !['409','Duplicate'].includes(String(upload.error.statusCode)) && !/already exists/i.test(upload.error.message))throw Error(upload.error.message);
     const remote=await fetch(publicUrl,{method:'HEAD',signal:AbortSignal.timeout(10000),redirect:'error'});if(!remote.ok||!remote.headers.get('content-type')?.startsWith('image/'))throw Error('IMAGEM_PUBLICA_INDISPONIVEL');
    }
-   images.push(publicUrl);imageEvidence.push({original,url:publicUrl,hash,width:meta.width,height:meta.height});
+   images.push(publicUrl);imageEvidence.push({original,url:publicUrl,hash,width:meta.width,height:meta.height,...(upscale?{upscayl:upscale}:{})});
    if(IS_EVOLUSOM&&review.catalogProductId===null){
     const token=(await checked(db.from('integracoes').select('access_token').eq('tipo','mercadolivre').single())).access_token;
-    const form=new FormData();form.append('file',new Blob([bytes],{type:r.headers.get('content-type')}),`${p.sku}.${meta.format==='jpeg'?'jpg':meta.format}`);
+    const form=new FormData();form.append('file',new Blob([bytes],{type:contentType}),`${p.sku}.${meta.format==='jpeg'?'jpg':meta.format}`);
     const upload=await fetch('https://api.mercadolibre.com/pictures/items/upload',{method:'POST',headers:{Authorization:`Bearer ${token}`},body:form,signal:AbortSignal.timeout(30000)}),uploaded=await upload.json();
-    if(!upload.ok||typeof uploaded.id!=='string'||!uploaded.id)throw Error('IMAGEM_UPLOAD_ML_'+upload.status);
+    if(!upload.ok||typeof uploaded.id!=='string'||!uploaded.id)throw Error('IMAGEM_UPLOAD_ML_'+upload.status+': '+JSON.stringify({message:uploaded.message,error:uploaded.error,cause:uploaded.cause}));
     const mlDimensions=String(uploaded.max_size||'').split('x').map(Number);
-    if(mlDimensions.length!==2||!mlDimensions.every(Number.isFinite)||Math.min(...mlDimensions)<250||Math.max(...mlDimensions)<500)throw Error('IMAGEM_DIMENSAO_ML_INSUFICIENTE_'+uploaded.max_size);
+    if(mlDimensions.length!==2||!mlDimensions.every(n=>Number.isFinite(n)&&n>0))throw Error('IMAGEM_DIMENSAO_ML_INVALIDA_'+uploaded.max_size);
+    if(Math.max(...mlDimensions)<500)throw Error('IMAGEM_DIMENSAO_ML_INSUFICIENTE_'+uploaded.max_size);
     imageEvidence[imageEvidence.length-1].mlMaxSize=uploaded.max_size;
     pictureIds.push(uploaded.id);imageEvidence[imageEvidence.length-1].mlPictureId=uploaded.id;
    }
@@ -140,10 +161,10 @@ async function prepare() {
   const identity=assessIdentity({local:supplierIdentityFacts(o,identityFacts(attributes,{title:review.title}),identityEvidence?.evidence?.identitySupplement),remote:identityFacts(attributes,{title:review.title}),source:'Diretoria + oferta viva + catálogo vivo'});
   if(identity.identity!=='IDENTIDADE_COHERENTE')throw Error('IDENTIDADE_'+JSON.stringify(identity));
   const simulation=await app('/api/pricing/simulate','POST',{productId:p.id,categoryId:review.categoryId,listingType:LISTING_TYPE,objective:'target'});
-  const record={sku:p.sku,productId:p.id,draft,categoryReview:review.categoryReview,simulation:simulation.data,status:simulation.ok&&simulation.data.success?'PREPARADO':'ECONOMIA_INCONCLUSIVA',warranty:warranty.data.warranty,imageEvidence,identity,...(pictureIds.length?{pictureIds}:{})};
+  const record={sku:p.sku,productId:p.id,draft,categoryReview:review.categoryReview,upscaylImages:review.upscaylImages||{},simulation:simulation.data,status:simulation.ok&&simulation.data.success?'PREPARADO':'ECONOMIA_INCONCLUSIVA',warranty:warranty.data.warranty,imageEvidence,identity,...(pictureIds.length?{pictureIds}:{})};
   if(simulation.ok&&simulation.data.success){
    const id=crypto.randomUUID();
-   const payload={batchId:BATCH,categoryReview:review.categoryReview,identity:identity.identity,conflict:'SEM_CONFLITO',logistics:'CONFIRMED',warrantyPolicyVersion:warranty.data.warranty.policyVersion,offerId:o.id,cost:Number(o.custo),stock:Number(o.estoque),catalogProductId:catalog?.id??null,catalogFingerprint:catalog?crypto.createHash('sha256').update(JSON.stringify({name:catalog.name,attributes:catalog.attributes,description:catalog.short_description})).digest('hex'):null,images,...(pictureIds.length?{pictureIds}:{}),draftHash:crypto.createHash('sha256').update(JSON.stringify(draft)).digest('hex'),draft,review,duplicateCoverage:{complete:true,at:duplicates.at,total:duplicates.total},sourceInspectionAt:inspection.at};
+   const payload={batchId:BATCH,categoryReview:review.categoryReview,identity:identity.identity,conflict:'SEM_CONFLITO',logistics:'CONFIRMED',warrantyPolicyVersion:warranty.data.warranty.policyVersion,offerId:o.id,cost:Number(o.custo),stock:Number(o.estoque),catalogProductId:catalog?.id??null,catalogFingerprint:catalog?crypto.createHash('sha256').update(JSON.stringify({name:catalog.name,attributes:catalog.attributes,description:catalog.short_description})).digest('hex'):null,images,...(pictureIds.length?{pictureIds}:{}),draftHash:crypto.createHash('sha256').update(JSON.stringify(draft)).digest('hex'),draft,review,duplicateCoverage:{complete:true,at:duplicates.at,total:duplicates.total},sourceInspectionAt:inspection.at,imageEvidence};
    await checked(db.from('pricing_events').insert({id,event_type:'CATALOG_EXPANSION_PREPARED',produto_id:p.id,pricing_source:'radar_launch',actor,reason:'Preparação individual revisada pela ordem da Diretoria',rule_id:warranty.data.warranty.policyVersion,payload}));
    record.preparationId=id;
   }
@@ -169,6 +190,7 @@ async function execute() {
  const target=(candidate,itemId)=>verifyPublicationTarget(app,candidate,itemId);
  const reviewRows=JSON.parse(fs.readFileSync(dir+'/review.json'));const prepared=JSON.parse(fs.readFileSync(dir+'/preparation.json')).results.filter(r=>r.status==='PREPARADO'&&r.categoryReview?.version===1).sort((a,b)=>Number(Boolean(reviewRows.find(r=>r.sku===a.sku)?.catalogProductId))-Number(Boolean(reviewRows.find(r=>r.sku===b.sku)?.catalogProductId)));const results=fs.existsSync(dir+'/execution.json')?JSON.parse(fs.readFileSync(dir+'/execution.json')).results:[];
 for(const c of prepared){if(!SKUS.includes(c.sku)||excludedProducts.has(c.productId))continue;const reviewed=reviewRows.find(r=>r.sku===c.sku);if(!reviewed||reviewed.status!=='APTO_PREPARACAO'||reviewed.title!==c.draft.familyName||JSON.stringify(reviewed.attributes)!==JSON.stringify(c.draft.attributes))continue;await assertBatchReady();const completed=await checked(db.from('pricing_events').select('id,ml_item_id').eq('produto_id',c.productId).eq('event_type','CATALOG_EXPANSION_VALIDATED').contains('payload',{batchId:BATCH,...(c.replacementAuthorizationId?{replacementAuthorizationId:c.replacementAuthorizationId}:{})}).order('created_at',{ascending:false}).limit(1).maybeSingle());if(completed){await target(c,completed.ml_item_id);continue;}if(results.some(r=>r.sku===c.sku&&r.stage==='PUBLICACAO_PENDENTE'&&r.preparationId===c.preparationId))throw Error('RECONCILIACAO_PENDENTE_'+c.sku);const pending=await checked(db.from('pricing_events').select('id').eq('produto_id',c.productId).eq('event_type','CREATE_REQUESTED').contains('payload',{batchId:BATCH,...(c.replacementAuthorizationId?{replacementAuthorizationId:c.replacementAuthorizationId}:{})}).limit(1));if(pending.length)throw Error('RECONCILIACAO_PENDENTE_'+c.sku);
+await assertDraftGtinIsUnique(c.productId,c.draft.attributes);
 const simulation=await app('/api/pricing/simulate','POST',{productId:c.productId,categoryId:c.draft.categoriaId,listingType:c.draft.listingType,objective:'target'});if(!simulation.ok||!simulation.data.success){results.push({sku:c.sku,stage:'SIMULACAO',response:simulation});save('execution.json',{results});throw Error('SIMULACAO_PENDENTE_'+c.sku);}
 await assertBatchReady();const approval=await app('/api/pricing/approve','POST',{evaluationId:simulation.data.evaluationId,acknowledgeEstimates:true,reason:'Usuário autorizou expressamente este lote de anúncios da Evolusom. '+BATCH+'; SKU '+c.sku+'; preço alvo canônico R$ '+simulation.data.memory.price+'; tributo estimado registrado.'});if(!approval.ok)throw Error('APROVACAO_'+c.sku+'_'+JSON.stringify(approval.data));
 save('execution-checkpoint.json',{sku:c.sku,productId:c.productId,batchId:BATCH,preparationId:c.preparationId,approvalId:approval.data.approvalId,price:simulation.data.memory.price,at:new Date().toISOString(),state:'ANTES_DA_ROTA_PUBLICACAO'});
@@ -182,13 +204,13 @@ async function verifyPublicationTarget(app,c,itemId) {
  await assertBatchReady();
  const file=dir+'/target-verification.json',rows=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)).rows:[];let row=rows.find(r=>r.sku===c.sku&&r.itemId===itemId);if(!row){row={sku:c.sku,productId:c.productId,itemId,attempts:[]};rows.push(row);}const save=()=>fs.writeFileSync(file,JSON.stringify({at:new Date().toISOString(),rows},null,2));
  if(['APLICACAO_SOLICITADA','APLICACAO_INCONCLUSIVA'].includes(row.status))throw Error('RECONCILIAR_PRECO_'+c.sku);
- const atTarget=m=>m?.result>0&&m.margin+1e-10>=m.band.target&&m.fee.source==='ml_live'&&m.shipping.source==='ml_live';
+ const atTarget=m=>m?.result>0&&m.margin+1e-10>=m.band.target&&m.margin<=m.band.limit&&m.fee.source==='ml_live'&&m.shipping.source==='ml_live';
  const token=(await checked(db.from('integracoes').select('access_token').eq('tipo','mercadolivre').single())).access_token;
  async function read(){const r=await fetch('https://api.mercadolibre.com/items/'+itemId,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error('READBACK_'+r.status);const i=await r.json();if(i.status!=='active'||i.category_id!==c.draft.categoriaId||i.seller_custom_field!==c.sku||i.item_relations?.length)throw Error('ESTADO_IDENTIDADE_'+c.sku);return i;}
  async function sim(body){await assertBatchReady();const r=await app('/api/pricing/simulate','POST',{productId:c.productId,itemId,...body});if(!r.ok||!r.data.success)throw Error('SIMULACAO_ALVO_'+JSON.stringify(r.data));return r.data;}
  const item=await read();if(row.status==='ALVO_VALIDADO'&&row.after?.price===item.price)return;const current=await sim({price:item.price});row.before??={price:item.price,memory:current.memory};row.current=current;save();
  if(!atTarget(current.memory)){
- const target=await sim({objective:'target'});if(!atTarget(target.memory)||target.memory.price<=item.price)throw Error('ALVO_INCONSISTENTE_'+c.sku);const attempt={at:new Date().toISOString(),before:current,target};row.attempts.push(attempt);save();
+ const target=await sim({objective:'target'});if(!atTarget(target.memory)||target.memory.price===item.price)throw Error('ALVO_INCONSISTENTE_'+c.sku);const attempt={at:new Date().toISOString(),before:current,target};row.attempts.push(attempt);save();
  await assertBatchReady();const approval=await app('/api/pricing/approve','POST',{evaluationId:target.evaluationId,acknowledgeEstimates:true,reason:'Usuário autorizou o lote '+BATCH+'. Ajustar novo anúncio '+c.sku+' ao alvo canônico após cotação real por item_id; imposto estimado reconhecido.'});attempt.approval=approval;if(!approval.ok||!approval.data.success)throw Error('APROVACAO_ALVO');row.status='APLICACAO_SOLICITADA';save();
  await assertBatchReady();const apply=await app('/api/ml/anuncio/atualizar-preco','POST',{produtoId:c.productId,mlItemId:itemId,approvalId:approval.data.approvalId,targetPrice:target.memory.price});attempt.apply=apply;row.status=apply.ok&&apply.data.success?'EM_CONFERENCIA':'APLICACAO_INCONCLUSIVA';save();if(row.status==='APLICACAO_INCONCLUSIVA')throw Error('APLICACAO_ALVO_'+c.sku);
  }

@@ -103,6 +103,10 @@ O frete vivo por dimensões anterior à criação pode diferir do frete vivo por
 
 ### Requisito
 
+Autorização da Diretoria em 08/09/2026 para `EVOLUSOM_PREMIUM_BATCH_06`: usar Upscayl nas fotos abaixo do mínimo. Preservar a origem, registrar hashes do original e da saída, modelo, escala e revisão visual em `review.upscaylImages`. O preparador confere esses hashes, publica a imagem ampliada no Storage e envia os mesmos bytes ao ML. Só usar o resultado depois de conferir que continua representando o produto; imagem ampliada não comprova especificações ausentes. A leitura das dimensões após processamento ML continua obrigatória.
+
+O bloqueio de tamanho do preparador segue a validação ML `3703`: pelo menos 500 px em um lado. Os 250 px no lado menor são preferência de qualidade, sem bloquear fotografias estreitas de cabos que atendam ao mínimo oficial. A aprovação efetiva do upload e do payload continua obrigatória.
+
 URL de imagem precisa ser pública, estática, direta, sem redirecionamento e retornar `Content-Type` de imagem. Preferir JPG/PNG, mínimo 250 px em ambos lados e pelo menos 500 px em um lado; preferir resoluções maiores. Conferir também o tamanho após o processamento pelo ML. O limite inclui 500 px, conforme a [validação oficial de imagens](https://developers.mercadolivre.com.br/en_us/authentication-and-authorization/validations).
 
 ### Falha encontrada
