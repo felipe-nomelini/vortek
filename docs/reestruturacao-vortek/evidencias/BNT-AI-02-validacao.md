@@ -1,6 +1,6 @@
 # BNT-AI-02 — Interface e histórico
 
-**Data:** 08/09/2026. **Branch:** `dev`. **Estado vigente:** Assistente ativado para Felipe, com perfil exclusivo autenticado e `gpt-6-astra` por assinatura. Correção da resposta de vendas em validação/publicação; ver atualização ao final. As seções anteriores são fotografias históricas, não pendências atuais de instalação/login.
+**Data:** 08/09/2026. **Branch:** `dev`. **Estado vigente:** Assistente ativado para Felipe, com perfil exclusivo autenticado e `gpt-6-astra` por assinatura. Correção da resposta de vendas publicada e validada com consulta real; ver atualização ao final. As seções anteriores são fotografias históricas, não pendências atuais de instalação/login.
 
 ## Mudança e evidência
 
@@ -96,5 +96,6 @@ Esta subseção complementa a fotografia local acima; não encerra AI-02, AI-GAT
 - Causa confirmada por leitura no `.162`: 99 unidades operacionais, datas de venda entre 27/08 e 31/08/2026. Em 08/09, o intervalo de sete dias começa em 02/09: não contém registros. O handler descartava esse contexto e respondia apenas uma frase genérica.
 - O intervalo vazio passa a consultar somente a data mais recente disponível, mantendo a consulta e os totais originais. A resposta explica datas/fuso, ambiente DEV/amostras e sugere trinta dias somente quando houver evidência nesse intervalo. Não afirma faturamento real zero nem busca produção ou altera datas.
 - 85 testes de chat/conhecimento e `npm run validate` aprovados. Cobertos dados antigos, base vazia, datas futuras/nulas, ausência de sugestão sem evidência e pergunta seguinte com dados.
-- Publicação desta correção e smoke semântico de sete/trinta dias ainda serão registrados após execução. Não há migration ou escrita operacional. Conversas reais são preservadas.
+- Publicação `0de3b139` concluída somente em `origin/dev`, ação `cmttf9fp6000k07o92jx1evbw` do Easypanel `done` às 22:33:50 BRT. Build com 127 páginas aprovado, rollout concluído, hashes dos dois serviços iguais aos locais. Produção web preservada na versão 9706; Supabase produção não acessado.
+- Smoke HTTP publicado com assinatura/modelo reais: sete dias respondeu com período 02/09–08/09, última venda 31/08 e sugestão fundamentada (6,7 s); trinta dias respondeu `concluido`, com faturamento conferido por leitura independente no `.162` e aviso de amostra (15,3 s). Histórico de quatro mensagens reaberto; acesso anônimo recusado. Somente conversa/sessão temporárias do teste foram removidas, sem alterar senha ou conversas do usuário. Nenhuma migration ou escrita operacional.
 - A autorização explícita posterior do titular liberou o piloto com dados; os controles de treinamento da conta não foram verificados independentemente. AI-GATE e liberação do sócio não estão encerrados.
