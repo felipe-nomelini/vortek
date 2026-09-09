@@ -176,24 +176,24 @@ Rotas-wrapper e aliases reutilizam a página responsável; não receberão imple
 
 ### 6.1 Assistente Bentevi — nova superfície
 
-**Página planejada:** `/assistente`, com entrada “Assistente Bentevi” no menu. Público inicial: Felipe e seu sócio, cada um autenticado com seu usuário administrador do ERP. Históricos e contexto de conversa privados por usuário, sem compartilhamento automático mesmo entre administradores.
+**Página implementada localmente:** `/assistente`, com entrada “Assistente Bentevi” após Dashboard. Chat e histórico privado entregues; ativação/publicação e aceite visual pendentes. [Evidências AI-02](evidencias/BNT-AI-02-validacao.md). Primeiro teste individual para Felipe, por decisão explícita de 08/09/2026. O sócio será uma liberação posterior, condicionada à modalidade aplicável e aos testes próprios.
 
-**Momento vigente (08/09/2026):** após o aceite inicial de `BNT-D20` no marco 2 de [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao); Assistente no marco 3, obrigatório no primeiro lançamento. Usar contratos, indicadores e configurações existentes estabilizados, sem dependência do Radar futuro ou de D20 integral. Preservar IDs e ordem relativa das páginas ao retomar o redesign adiado. Uma ação validada por vez:
+**Momento vigente (08/09/2026):** aceite inicial `BNT-D20` concedido, marco 2 encerrado no recorte inicial de [Bentevi em operação](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao). Assistente no marco 3: AI-00/01 concluídas, AI-02 validada localmente; concluir ativação/publicação DEV antes do teste de Felipe. Marco 3 e liberação do sócio ainda abertos. Usar contratos, indicadores e configurações existentes estabilizados, sem dependência do Radar futuro ou de D20 integral. Preservar IDs e ordem relativa das páginas ao retomar o redesign adiado. Uma ação validada por vez:
 
 | ID | Entrega |
 |---|---|
-| `BNT-AI-00` | Reutilizar os resultados de `BNT-AI-PROVIDER-01` e confirmar contrato/modalidade para o chat dos dois usuários, sem presumir autorização de uso compartilhado ou créditos de API. |
+| `BNT-AI-00` | Concluída para o piloto individual de Felipe: contrato, assinatura e modelo comprovados; sem chat pronto ou modalidade compartilhada presumida. |
 | `BNT-AI-01` | Conhecimento e consultas autorizadas, reutilizando documentação vigente, serviços e cálculos canônicos do ERP. |
 | `BNT-AI-02` | Página de chat, novas conversas, histórico individual, respostas progressivas, fontes e links para os registros consultados. |
-| `BNT-AI-GATE` | Testes de precisão, isolamento, permissões, consumo e falhas; aprovação visual de ambos e gate obrigatório de lançamento. |
+| `BNT-AI-GATE` | Testes de precisão, isolamento, permissões, consumo e falhas; primeiro aceite individual de Felipe. Liberação do sócio e aceite de ambos continuam necessários para o gate integral de lançamento. |
 
-Todas as ações estão pendentes. Os critérios funcionais completos ficam no checklist, sem duplicar regras comerciais aqui. A seleção de provedor não altera automaticamente os consumidores atuais do OpenRouter.
+O [contrato canônico do Assistente](VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md) define consultas, isolamento e limites, com somente assinatura ChatGPT e `gpt-6-astra/low`. AI-00/01 concluídas; AI-02 implementada com consultas canônicas e histórico; publicação DEV e smoke antecedem o teste visual/AI-GATE. O modelo foi comprovado anteriormente no piloto de garantia, não no novo perfil de chat. Requisitos técnicos e responsabilidades permanecem na fonte canônica. O checklist acompanha aceites; não duplicar regras comerciais aqui. Nenhum consumidor atual do OpenRouter foi alterado.
 
-`BNT-AI-PROVIDER-01` foi implementado e validado em 07/09/2026 como piloto individual/local de Felipe para extração de garantia; [evidência](evidencias/BNT-AI-PROVIDER-01-validacao.md). Não fecha pesquisa/aceite visual de WARRANTY-01 nem comprova uso compartilhado no chat. Reaproveitar seu resultado sem remontar a integração ou antecipar `/assistente` sobre `BNT-D20`.
+`BNT-AI-PROVIDER-01` foi implementado e validado em 07/09/2026 como piloto individual/local de Felipe para extração de garantia; [evidência histórica e revalidação atual](evidencias/BNT-AI-PROVIDER-01-validacao.md). Não comprova uso compartilhado no chat nem disponibilidade atual do modelo. Reaproveitar seus resultados sem remontar a integração ou criar `/assistente` antes dos contratos e consultas validados.
 
 **Direção visual:** priorizar a conversa, com histórico secundário e fontes acessíveis em cada resposta; reaproveitar shell, tokens e componentes existentes. Mostrar carregamento, resposta em andamento, vazio, erro e indisponibilidade de dados sem parecer resultado confirmado. Permitir navegação do diagnóstico ao registro do ERP sem executar ações comerciais pelo chat.
 
-**Aceite:** aplicar o gate da seção 10, incluindo screenshots desktop e testes com os dois usuários simultâneos. O backend deve impedir acesso ao histórico alheio por identificador, não apenas escondê-lo na interface. A primeira versão é somente consultiva; o modelo explica os cálculos oficiais, não implementa outro motor econômico. Incluir a adaptação web celular na seção 7; esta adição não cria uma tela no aplicativo nativo.
+**Aceite do piloto individual:** aplicar o gate da seção 10 após publicação DEV e smoke, incluindo screenshots desktop, teste de Felipe e recusa de outro usuário/administrador no backend. A liberação do sócio exige comprovação da modalidade, isolamento/simultaneidade e aceite de ambos; não é resolvida pela aprovação individual. O backend deve impedir acesso ao histórico alheio por identificador, não apenas escondê-lo na interface. A primeira versão é somente consultiva; o modelo explica os cálculos oficiais, não implementa outro motor econômico. Incluir a adaptação web celular na seção 7; esta adição não cria uma tela no aplicativo nativo.
 
 ---
 

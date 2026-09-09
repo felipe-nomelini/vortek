@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (08/09/2026):** `BNT-PRICING-V2-15` operacional publicado em DEV no candidato `982be7b2`: faixas fixas somente leitura, três parâmetros auditáveis e simulação canônica. Revalidados 100 testes Node (incluindo deploy), 13 checkpoints de navegador isolado, validate/build e smoke remoto sem sessão; Easypanel `done` e SHA confirmado no runtime. [Evidências V2-15 operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). Próxima ação: conferência e aceite inicial de `BNT-D20` pelo usuário em Configurações → Comercial. Marco 2 e V2-15/D20 integrais continuam abertos. Aceite autenticado/prova externa PUB-GATE e ME2 pendentes no marco 6, capacidade produtiva no marco 5. Execução comercial não habilitada; produção e banco não alterados. [Limites PUB-GATE](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
+**Situação vigente (08/09/2026):** marco 2 encerrado no recorte inicial de Configurações. AI-00/01 concluídas no piloto individual; **BNT-AI-02 implementada e validada localmente**, com chat, histórico privado e migration aplicada somente no `.162`. [Evidências AI-02](evidencias/BNT-AI-02-validacao.md). **Próxima ação: concluir ativação/publicação DEV da AI-02**, não avançar ao AI-GATE ainda. Faltam login oficial do perfil exclusivo, confirmação dos controles da conta antes de enviar dados operacionais, publicação autorizada e smoke em `dev.bentevi.shop`. Assinatura ChatGPT e `gpt-6-astra/low` preservados. Liberação do sócio segue separada. PUB-GATE externo/ME2 no marco 6 e capacidade produtiva no marco 5. Nenhuma promoção ou execução comercial liberada.
 
 ---
 
@@ -65,13 +65,13 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-15 operacional publicado em DEV (`982be7b2`) | Conferir D20 inicial; prova externa e ME2 mantidos no marco 6 |
-| 11.3 | Assistente Bentevi — chat operacional | Planejado; todas as ações pendentes | Marco 3, após o aceite inicial de Configurações; não depende do Radar futuro; obrigatório no primeiro lançamento |
+| 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-15 operacional publicado; D20 inicial aprovado, marco 2 encerrado | Escopos integrais abertos; prova externa e ME2 mantidos no marco 6 |
+| 11.3 | Assistente Bentevi — chat operacional | AI-00/01 concluídas; AI-02 implementada e validada localmente | Concluir login/runtime e publicação DEV autorizada + smoke antes do teste individual; sócio e gate integral separados |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 08/09/2026:** realizar o aceite inicial de `BNT-D20` (marco 2). Push/deploy do candidato `982be7b2` concluídos: Configurações → Comercial disponível em `dev.bentevi.shop` para conferência do usuário. [Entrega técnica, publicação e limites](evidencias/BNT-PRICING-V2-15-operacional-validacao.md). O marco 2 ainda não está aprovado. A prova externa e o aceite autenticado de publicação/preço do `BNT-CANON-PUB-GATE` continuam no marco 6 por decisão do usuário, sem novo produto de teste como pré-requisito. Capacidade produtiva deve ser preparada/testada no marco 5; escritores legados e execução atual permanecem bloqueados. Não iniciar o Assistente nesta tarefa.
+**Prioridade vigente — atualização de 08/09/2026:** concluir ativação/publicação DEV da **`BNT-AI-02 — Interface e histórico`**. Código, testes, schema e smoke local estão entregues; não confundir com chat publicado ou modelo autenticado no perfil novo. [Pendências exatas](evidencias/BNT-AI-02-validacao.md#pendencias-para-o-teste-de-felipe). Guard individual configurado localmente; dados operacionais continuam bloqueados para inferência. Sem push/deploy nesta tarefa. Modalidade e isolamento do sócio continuam gates separados.
 
 <a id="bentevi-em-operacao"></a>
 
@@ -86,8 +86,8 @@ Regras de uso:
 | Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
 |---|---|---|---|---|
 | 1 — Execução comercial | Recorte técnico concluído para sequência; aceite operacional transferido | Implementação/testes técnicos concluídos; prova externa e aceite autenticado pendentes no marco 6 | Manter execução desabilitada durante o marco 2, sem novo produto de teste | [219 testes anteriores, SQL/rollback, validate/build, deploy e smoke](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md); sem declarar prova externa ou gate integral concluídos |
-| 2 — Configurações iniciais | V2-15 operacional publicado em DEV (`982be7b2`); aceite inicial pendente | Aceite D20 dos controles liberados; V2-15 integral continua aberto | Usuário conferir Configurações → Comercial e conceder aceite inicial D20 | [100 testes Node, 13 checkpoints de navegador isolado, validate/build, deploy e smoke](evidencias/BNT-PRICING-V2-15-operacional-validacao.md); sem aceite visual do usuário antecipado |
-| 3 — Assistente Bentevi | Pendente | AI-00 → AI-01 → AI-02 → AI-GATE; consultas e histórico individual dos dois administradores | Após marco 2, planejar AI-00 reutilizando o piloto existente | Provedor adequado, precisão, isolamento e aceite de ambos; sem depender de indicadores futuros |
+| 2 — Configurações iniciais | Concluído no recorte inicial; aceite D20 concedido pelo usuário em 08/09 | Nenhum neste recorte; D20/V2-15 integrais continuam abertos | Preservar controles e seguir para marco 3 | [Entrega técnica, publicação e aceite humano inicial](evidencias/BNT-PRICING-V2-15-operacional-validacao.md#aceite-inicial-do-usuario--08092026); não comprova capacidades adiadas |
+| 3 — Assistente Bentevi | AI-00 concluída para piloto individual; marco ainda aberto | Conhecimento, chat e runtime hospedado ainda não entregues; liberação do sócio não comprovada | Planejar AI-01 → AI-02/publicação DEV → AI-GATE individual; tratar sócio separadamente | [Fechamento e gates restantes](evidencias/BNT-AI-00-validacao.md#fechamento-individual); aprovação individual não substitui precisão, isolamento e aceite de ambos no gate integral |
 | 4 — Operação ponta a ponta | Pendente | Regressão do candidato: vendas, compras DSLite, estoque, fiscal, entrega e notificações, inclusive falhas/reprocessamento | Reutilizar testes e fluxos existentes; corrigir divergências individualmente | Relatório por fluxo, testes direcionados, validate e build do candidato; não repetir etapas já validadas sem motivo |
 | 5 — Preparação da transição | Pendente | DELTA_PROMOCAO ensaiado; PARITY-FINAL; capacidade produtiva canônica preparada/testada; domínio/configurações; dados preservados; backup/recuperação; destino de jobs e experimentos produtivos | Preparar e testar a capacidade produtiva sem remover guards sem substituto; ensaiar delta em DEV e conferir checklist de release | SHAs, ensaio, testes dos controles produtivos, inventário sem secrets, recuperação inclusive de efeitos externos e janela acordada; reconfirmar deltas até a virada |
 | 6 — Ativação real acompanhada | Pendente; exige autorização específica de release | Conta real no ambiente produtivo preparado; tarifas/frete ME2; aceite autenticado e prova externa PUB-GATE transferidos do marco 1 | Pelo workspace vortek-prod, começar por leituras e validar uma publicação comercial selecionada e uma alteração de preço, aprovadas individualmente; conferir antes de ampliar | Preço/custo/tarifa/frete, histórico, ausência de duplicação e read-back; inconclusivo interrompe o fluxo afetado; sem liberação geral antecipada |
@@ -276,7 +276,7 @@ Nenhuma etapa adiada recebe `[x]` ou `N/A` por causa deste recorte. Respeitar a 
 - [ ] Executar `BNT-CFG-08` somente depois de os alertas e indicadores de pricing necessários estarem estabilizados.
 - [ ] Executar `BNT-CFG-09` incluindo agenda, limites e saúde do job noturno já validado.
 - [ ] Executar `BNT-PRICING-V2-16 — Gate de autonomia` antes de permitir qualquer escrita autônoma de preço.
-- [ ] Homologar `BNT-D20` no escopo inicial do marco 2; manter composição integral pendente das capacidades futuras, sem bloquear o lançamento por elas.
+- [x] Homologar `BNT-D20` no escopo inicial do marco 2; aceite do usuário registrado em 08/09/2026. Manter composição integral pendente das capacidades futuras.
 - [ ] Após o aceite inicial de `BNT-D20`, executar `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE` no marco 3, uma ação por tarefa, sem dependência do Radar futuro.
 
 ---
@@ -3180,18 +3180,18 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [ ] `M2M-RAD-01` — funil e priorização explicável, com demanda separada de conflito;
 - [ ] `BNT-PRICING-V2-12` / `M2M-RAD-02` — rotina única noturna de pricing/Radar, idempotente e observável;
 - [ ] `BNT-PRICING-V2-14` / `M2M-RAD-03` — Dashboard com filas acionáveis e sete filas do Radar;
-- [ ] `BNT-PRICING-V2-15` — ação integral aberta; recorte operacional publicado em DEV (`982be7b2`) no marco 2, com faixas fixas somente leitura. Aceite inicial pendente e parâmetros das capacidades futuras adiados; [evidência operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md);
+- [ ] `BNT-PRICING-V2-15` — ação integral aberta; recorte operacional publicado em DEV (`982be7b2`) e aceito no marco 2, com faixas fixas somente leitura. Parâmetros das capacidades futuras adiados; [evidência operacional](evidencias/BNT-PRICING-V2-15-operacional-validacao.md);
 - [ ] `M2M-RAD-04` — reprocessar universo da planilha e candidatos revisados, sem pesquisa externa pesada;
 - [ ] `BNT-CFG-08` — integrar Dashboard, TV e metas aos contratos estabilizados;
 - [ ] `BNT-CFG-09` — integrar agenda e saúde operacional do job noturno;
 - [ ] `BNT-PRICING-V2-16` / `M2M-GATE` — regressão M2M integral, relatórios, manifest, homologação e gate de autonomia; permanece aberto após o lançamento inicial, cujo gate está nos sete marcos;
-- [ ] `BNT-D20` — aceite inicial de Configurações no marco 2; composição visual integral após capacidades adiadas, sem declarar escopo futuro concluído.
+- [ ] `BNT-D20` — aceite inicial de Configurações concedido no marco 2; composição visual integral permanece pendente das capacidades adiadas.
 
 **Regras de transição:** não manter motores paralelos publicando preços; alteração automática permanece `REQUIRES_CONFIRMATION` por padrão; nenhuma migration sai do `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura; cada ação exige teste, evidência e rollback próprios.
 
 #### BNT-PRICING-V2-15 operacional — Configurações iniciais — 08/09/2026
 
-**Aceite técnico local do recorte, não aceite visual nem fechamento integral.** [Evidências, consumidores, testes e rollback](evidencias/BNT-PRICING-V2-15-operacional-validacao.md).
+**Recorte técnico publicado e aceite visual inicial concedido; não fechamento integral.** [Evidências, aceite, consumidores, testes e rollback](evidencias/BNT-PRICING-V2-15-operacional-validacao.md).
 
 - [x] Manter faixas/piso/alvo/limite fixos e somente leitura, conforme decisão do usuário; versão e fiscal vindos do servidor.
 - [x] Reutilizar os três parâmetros existentes, schema estrito, RPC administrativo e auditoria; nenhuma migration ou tabela nova.
@@ -3199,12 +3199,14 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [x] Simular valores salvos ou formulário, com custo explícito e preço opcional; memória canônica completa, sem fórmula paralela nem cotação viva fictícia.
 - [x] Validar 87 testes Node, 13 checkpoints de navegador isolado, lint/typecheck, build e diff; zero acessos externos no ensaio de UI.
 - [x] Disponibilizar candidato por push/deploy autorizado: `982be7b2`, Easypanel `done`, runtime e smoke remoto confirmados em 08/09/2026.
-- [ ] Obter aceite inicial de BNT-D20 pelo usuário; marco 2 ainda aberto.
+- [x] Obter aceite inicial de BNT-D20 pelo usuário; concedido em 08/09/2026, encerrando o marco 2 no recorte inicial.
 - [ ] Manter o restante de V2-15 pendente: configurações de Radar, experimentos, observação e autonomia dependem dos consumidores futuros; edição das faixas exige nova homologação.
 
 Implementação inicialmente local; publicação posterior autorizada registrada na evidência. Sem migration, acesso ao PostgreSQL ou alteração de produção. PUB-GATE externo e ME2 mantidos no marco 6; não iniciar a próxima etapa nesta tarefa.
 
 #### BNT-AI-PROVIDER-01 — Integração ChatGPT/Codex e teste em DEV
+
+**Disponibilidade atual, reconferida em BNT-AI-00:** usuário escolheu `gpt-6-astra`; piloto local atualizado, com dois LIVE sintéticos aprovados por assinatura ChatGPT e esforço `low`. [Correção de 08/09 e limites](evidencias/BNT-AI-00-validacao.md#gpt-6-astra). A conclusão abaixo registra a prova histórica de 07/09 com o modelo anterior, não sua disponibilidade atual.
 
 **Estado:** implementada e validada no escopo aprovado **individual/local de Felipe**, em 07/09/2026. Login ChatGPT oficial concluído; modelo `gpt-5.4-mini/low` disponível e extração real comprovada com amostras sintéticas. Sem Firecrawl/runtime local completo, a pesquisa real e o visual de WARRANTY-01 permanecem pendentes. [Evidência detalhada, operação e rollback](evidencias/BNT-AI-PROVIDER-01-validacao.md). Não é uma nova política comercial nem substituição geral do OpenRouter.
 
@@ -3230,29 +3232,31 @@ Implementação inicialmente local; publicação posterior autorizada registrada
 
 **Decisão aprovada em 07/09/2026:** incluir o Assistente na primeira versão em produção. Público inicial: Felipe e seu sócio, cada um com seu login administrativo no ERP e suas próprias conversas. A credencial do provedor, se compartilhada por modalidade oficialmente suportada, não define o dono do histórico.
 
-**Situação:** inclusão documental realizada; nenhuma ação funcional abaixo foi iniciada ou homologada. Não altera a próxima ação vigente de garantia/pricing, não troca OpenRouter e não autoriza acesso ou escrita em produção.
+**Decisão posterior de 08/09/2026:** primeiro teste **somente para Felipe**; acesso do sócio será uma liberação separada. AI-00/01 concluídas e AI-02 implementada localmente, não para uso compartilhado ou produtivo. Manter somente assinatura ChatGPT, `gpt-6-astra/low`, sem API paga ou substituição automática. Concluir ativação/publicação e smoke DEV antes do AI-GATE. [Contrato canônico](VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md) e [validação AI-02](evidencias/BNT-AI-02-validacao.md).
 
-**Sequência vigente:** contratos e configurações da primeira entrega estabilizados → aceite inicial de `BNT-D20` (marco 2) → `BNT-AI-00` → `BNT-AI-01` → `BNT-AI-02` → `BNT-AI-GATE` (marco 3). Validar cada ação antes da seguinte e manter os gates dos [sete marcos](#bentevi-em-operacao). Não depender de indicadores futuros, Radar ou composição integral de D20. O Assistente consulta serviços existentes e explicita dados/capacidades ausentes; não inventa indicadores nem é pré-requisito dos cálculos que consulta.
+**Sequência vigente:** aceite inicial de `BNT-D20` (marco 2) → `BNT-AI-00` individual → `BNT-AI-01` → `BNT-AI-02` → publicação DEV autorizada + smoke → teste de Felipe/`BNT-AI-GATE` do piloto. Liberação do sócio e gate integral de lançamento permanecem separados e pendentes no marco 3. Validar cada ação antes da seguinte e manter os [sete marcos](#bentevi-em-operacao). Não depender de indicadores futuros, Radar ou D20 integral; reutilizar os serviços existentes, sem inventar indicadores. O agente entrega e valida a parte técnica antes de pedir aceite visual.
 
 #### Ações e critérios de aceite
 
-- [ ] `BNT-AI-00 — Contrato e provedor`: reutilizar os resultados de `BNT-AI-PROVIDER-01`, sem repetir a montagem da integração. Reconfirmar adequação e limites para o chat dos dois administradores: aceite do piloto de garantia não equivale a homologação multiusuário. Verificar autenticação, custos, retenção e tratamento dos dados em documentação oficial vigente. Não presumir que assinatura equivale a créditos de API. Se o uso pretendido não for confirmado, apresentar integração por API e estimativa de custo para decisão, sem substituição automática. Aceite: modalidade suportada e aprovada, limites de consumo e contrato de consultas definidos; a migração dos demais consumidores atuais do OpenRouter permanece fora deste bloco.
-- [ ] `BNT-AI-01 — Conhecimento e consultas`: conectar documentação vigente e consultas autorizadas aos serviços existentes de vendas, compras, produtos, estoque, fiscal, pricing e indicadores. Reutilizar cálculos e contratos canônicos; identificar fonte, período, ambiente e atualização dos dados, sinalizando ausência ou desatualização. Aceite: perguntas de referência conferidas contra documentação e resultados dos serviços, sem fórmulas paralelas ou números inventados.
-- [ ] `BNT-AI-02 — Chat e histórico individual`: criar `/assistente` e menu “Assistente Bentevi”, com novas conversas, histórico individual, respostas progressivas e links para registros do ERP. Aplicar propriedade da conversa no backend; ser administrador não permite consultar automaticamente o histórico do outro administrador. Aceite: contexto e histórico isolados entre os dois usuários, inclusive por acesso direto ao identificador e durante consultas simultâneas; interface pronta para homologação.
-- [ ] `BNT-AI-GATE — Homologação`: comprovar precisão das respostas, isolamento, permissões, consumo e tratamento de indisponibilidade/limites do provedor, com testes direcionados, `npm run validate`, build aplicável e evidências. Obter aprovação visual de ambos em homologação. Aceite obrigatório antes do primeiro lançamento; não substitui `BNT-PARITY-FINAL` nem autoriza promoção.
+- [x] `BNT-AI-00 — Contrato e provedor`: **concluída para o piloto individual de Felipe**. Assinatura e `gpt-6-astra/low` comprovados; 54 regressões e validate reconfirmados, dois LIVE anteriores preservados. Requisitos de hospedagem/dados e liberação do sócio encaminhados às entregas responsáveis. [Evidências](evidencias/BNT-AI-00-validacao.md#fechamento-individual). Sem chat, API paga, compra de créditos ou alteração dos demais consumidores de IA.
+- [x] `BNT-AI-01 — Conhecimento e consultas`: implementada e validada localmente. Consultas canônicas de vendas, pedidos, compras, produtos/ofertas, estoque, fiscal, pricing e documentos, com fontes, cobertura e guard de leitura `.162`/Felipe. 49 testes novos, 175 regressões, validate e build aprovados. Sem escrita operacional, SQL livre, números inventados, endpoint, chat, chamada ao modelo, migration, commit, push ou deploy. [Evidências, contrato de entrada e limites](evidencias/BNT-AI-01-validacao.md). Controles da conta continuam obrigatórios antes do envio futuro de dados operacionais; AI-02 é a próxima ação.
+- [ ] `BNT-AI-02 — Chat e histórico individual`: **implementação e validação local concluídas; ativação/publicação pendentes**. `/assistente`, menu após Dashboard, histórico privado até exclusão, busca/renomeação/exclusão, fases de progresso, cancelamento e Drawer de fontes. 138 testes aprovados, 2 LIVE ignorados, validate/build aprovados; SQL com rollback e migration no `.162`; HTTP autenticado e Chromium local com fontes sintéticas aprovados. Outros usuários/admins negados, propriedade/RLS, dedupe, concorrência, revogação, timeout e saída tardia cobertos. [Evidências e limites](evidencias/BNT-AI-02-validacao.md). Não solicitar aceite visual antes da publicação/smoke abaixo; não houve inferência real do chat nesta entrega.
+- [ ] **Publicação DEV da AI-02:** cumprir os [requisitos do contrato](VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md#hospedagem-do-piloto--requisitos-para-a-publicação-da-ai-02): Codex versionado, perfil persistente exclusivo, login oficial do titular, `stdio` interno e restrição DEV explícita, sem contornar `NODE_ENV`. Executar build, push/deploy autorizados e smoke autenticado em `dev.bentevi.shop`; fornecer URL e roteiro concreto a Felipe.
+- [ ] `BNT-AI-GATE — Homologação`: piloto individual exige precisão, permissões, consumo, tratamento de falhas, testes/validate e aprovação visual de Felipe após publicação. Gate integral permanece aberto até a liberação do sócio e aceite de ambos. Não substitui `BNT-PARITY-FINAL` nem autoriza promoção.
+- [ ] **Liberação do sócio:** comprovar modalidade aplicável aos dois, autorizar acesso explicitamente, testar isolamento/histórico/contexto e simultaneidade, inclusive acesso direto indevido, e obter aceite de ambos. Não declarar essa pendência resolvida pelo piloto individual; requisito preservado antes da liberação e do gate integral de lançamento.
 
-#### Contrato da primeira versão e cenários obrigatórios
+#### Entrega documental AI-00 — 08/09/2026
 
-- Somente consultas e explicações sobre operações, resultados e funcionamento do ERP. A persistência do histórico do chat não autoriza alterar dados operacionais: sem mudar preços, publicar anúncios, movimentar estoque ou executar ações fiscais.
-- O modelo consulta fontes autorizadas; não recebe acesso irrestrito ao banco, SQL arbitrário, terminal ou credenciais. Usar apenas os dados necessários à resposta, respeitando permissões também no backend.
-- Separar dados operacionais compartilhados da empresa de mensagens, resumos, contexto e histórico privados de cada usuário. Não compartilhar conversas automaticamente nem importar conversas pessoais do ChatGPT.
-- Validar perguntas como “qual foi o resultado do período?”, “por que esta venda está pendente?” e “como o preço sugerido é calculado?”, confrontando fontes e cálculos oficiais. Dados ausentes ou antigos devem gerar explicação explícita, não uma resposta inventada.
-- Testar acesso cruzado entre os dois administradores, sessões simultâneas, perda de acesso, instruções maliciosas nos conteúdos consultados, falha do provedor e esgotamento de limites. Falhas não podem liberar ações operacionais ou misturar conversas.
-- Preservar a identidade visual, os estados de carregamento/vazio/erro e o gate visual do [plano de redesign](VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md#61-assistente-bentevi--nova-superfície). A modalidade do provedor deve ser definida antes de escolher infraestrutura ou dependências.
+- [x] Registrar contrato de consultas, fontes, minimização, isolamento, falhas e critérios em [fonte única](VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md), sem duplicar regras econômicas.
+- [x] Reutilizar o piloto sem remontagem: 51 regressões aprovadas e `npm run validate` aprovado; autenticação ChatGPT reconfirmada por preflight sanitizado.
+- [x] Executar tentativa LIVE sintética e registrar a falha real por modelo ausente, sem esconder o resultado nem substituir o modelo.
+- [x] Documentar risco de GET com persistência em pedidos, para seleção de projeção pura em AI-01; nenhum endpoint operacional executado.
+- [x] Resolver a pendência de modelo por escolha explícita de `gpt-6-astra/low`: código/perfil/testes alinhados, 54 regressões, dois LIVE e validate aprovados; [evidência](evidencias/BNT-AI-00-validacao.md#gpt-6-astra).
+- [x] Aplicar o recorte individual aprovado e fechar AI-00 nesse escopo, com responsabilidades e critérios de passagem definidos. A modalidade compartilhada não bloqueia mais esse contrato; permanece pendente no item de liberação do sócio, sem homologação presumida.
 
-**Referências para reconfirmar em `BNT-AI-00`:** [Codex App Server](https://learn.chatgpt.com/docs/app-server), [autenticação e cobrança por API](https://learn.chatgpt.com/docs/auth) e [planos e limites](https://learn.chatgpt.com/docs/pricing). Login ChatGPT disponível tecnicamente não constitui, sozinho, evidência de autorização para usar um único Pro como serviço multiusuário do ERP.
+Contrato e cenários obrigatórios estão nas seções 4–6 do [contrato do Assistente](VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md). Identidade visual e gate de interface permanecem no [plano de redesign](VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md#61-assistente-bentevi--nova-superfície). Fontes oficiais efetivamente consultadas e limites da prova constam da [evidência AI-00](evidencias/BNT-AI-00-validacao.md).
 
-**Limite desta inclusão:** apenas checklist e plano de redesign; sem implementação do chat, alteração de provedor, migration, push ou deploy. Todas as ações `BNT-AI-*` permanecem pendentes.
+**Limite desta entrega:** documentação e piloto local; correção posterior autorizada do modelo para Astra, sem implementação do chat, troca de provedor, migration, commit, push ou deploy. Nenhum gate de produção foi liberado.
 
 Não iniciar web celular antes de `BNT-D01` a `BNT-D24` e do aceite desktop do Assistente em `BNT-AI-GATE` estarem aprovados.
 

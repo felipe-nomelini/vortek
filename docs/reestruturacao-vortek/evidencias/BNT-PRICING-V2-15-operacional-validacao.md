@@ -1,7 +1,7 @@
 # BNT-PRICING-V2-15 operacional — Configurações iniciais
 
 **Data:** 08/09/2026. **Ambiente:** worktree `vortek-dev`, branch `dev`.
-**Estado vigente:** implementação validada e publicada em DEV pelo candidato `982be7b2`, conforme autorização posterior do usuário. Aceite visual inicial de BNT-D20 pendente; V2-15 integral e marco 2 permanecem abertos. Os registros de ausência de infraestrutura abaixo descrevem a implementação local, anterior à publicação documentada ao final.
+**Estado vigente:** implementação validada e publicada em DEV pelo candidato `982be7b2`, conforme autorização posterior do usuário. Aceite visual inicial de BNT-D20 concedido em 08/09/2026; marco 2 encerrado no recorte inicial, V2-15/D20 integrais permanecem abertos. O aceite está registrado ao final; referências anteriores à pendência descrevem a situação antes dessa decisão.
 
 ## Escopo e decisão
 
@@ -79,3 +79,11 @@ Respostas fora de ordem são invalidadas conforme o [React — carregamento em E
 - Produção comparada apenas por metadados do serviço: `local_vortek-erp` permaneceu na versão `9677`, `UpdatedAt=2026-09-08T16:48:05.797525575Z`, SHA `518bcd40bd092a6f04abc0bf1abd261cfa44b517`. Sem acesso ao PostgreSQL, migration, alteração de configuração, execução comercial ou deploy produtivo.
 - `AGENTS.md`, `.gitignore`, dependências e migrations preservados. Regras e skills locais continuam ignoradas. Registro pós-deploy enviado em commit documental; autoDeploy desligado, sem necessidade de outra imagem.
 - **Próximo passo:** usuário conferir Configurações → Comercial e conceder o aceite inicial BNT-D20. O smoke não equivale a esse aceite nem encerra o marco 2 automaticamente.
+
+<a id="aceite-inicial-do-usuario--08092026"></a>
+
+## Aceite inicial do usuário — 08/09/2026
+
+Após o deploy, o usuário concedeu o aceite inicial de Configurações e solicitou o planejamento de BNT-AI-00. **Marco 2 encerrado somente no recorte inicial**: controles existentes, faixas fixas de consulta, parâmetros e simulador já publicados. D20/V2-15 integrais e capacidades adiadas continuam abertos.
+
+É um aceite humano explícito, separado dos testes e smoke acima; não foi produzida nova prova funcional autenticada, publicação comercial ou validação ME2 nesta confirmação. Nenhum controle comercial foi habilitado. Continuação em [BNT-AI-00](BNT-AI-00-validacao.md), com assinatura ChatGPT como única modalidade escolhida; o gate dessa ação depende de suas próprias evidências.

@@ -1,5 +1,7 @@
 # BNT-AI-PROVIDER-01 — Piloto individual ChatGPT/Codex
 
+**Revalidação posterior — BNT-AI-00, 08/09/2026:** após a indisponibilidade de `gpt-5.4-mini`, o usuário definiu **`gpt-6-astra`**. Modelo/perfil atualizados, esforço `low` preservado; dois LIVE sintéticos aprovados pela assinatura ChatGPT. Os sucessos abaixo com o modelo anterior permanecem históricos. [Mudança e testes do modelo](BNT-AI-00-validacao.md#gpt-6-astra). Posteriormente o usuário aprovou o [fechamento AI-00 individual](BNT-AI-00-validacao.md#fechamento-individual), liberando planejar AI-01; isso não entrega chat hospedado nem acesso do sócio. [Contrato do futuro Assistente](../VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md).
+
 **Atualização operacional de 08/09/2026:** `.env.local` agora contém Firecrawl e conexão DEV `.162`; aplicação em `http://localhost:3001`, com pesquisa/histórico verificados no navegador e coleta/extração de produto real testadas sem gravar amostra. [Runtime e limites atuais](BNT-CANON-WARRANTY-01-runtime-local.md). As ausências de configuração e de coleta mencionadas abaixo descrevem a fotografia original de 07/09.
 
 Data: 07/09/2026. Branch: `dev`. Base local: `b327031`.
