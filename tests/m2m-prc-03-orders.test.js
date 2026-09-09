@@ -66,18 +66,14 @@ test('sync não sobrescreve lucro histórico e não aceita cobertura parcial', (
   assert.match(source, /existingPedido\?\.lucro == null && typeof lucro === 'number'/);
   assert.match(source, /lucro === null \|\| !freteDisponivel \|\| custoProdutoPendente/);
 });
-test('todos os entrypoints comerciais aposentados bloqueiam antes de inicializar dependências', () => {
+test('entrypoints e comandos de campanhas aposentadas não permanecem disponíveis', () => {
   const scripts = fs.readdirSync('scripts').filter(name =>
     /^(run-ml-p0-.+|finalize-ml-p0-.+|cleanup-ml-listings|seo-reactivation|apply-supplier-pricing-campaign|create-ml-batch-from-manifest|create-profitable-shelf-listings|prepare-ml-anuncio-batches|prepare-profitable-shelf-2)\.js$/.test(name));
-  assert.ok(scripts.length >= 30);
-  for (const name of scripts) {
-    const source = fs.readFileSync('scripts/' + name, 'utf8').replace(/^#![^\n]*\n/, '');
-    const stopped = new Error('stopped');
-    assert.throws(() => new Function('require', source)((dependency) => {
-      assert.equal(dependency, '../src/lib/ml/pricing-execution.js', name);
-      return { assertPricingExecutionReady() { throw stopped; } };
-    }), error => error === stopped, name);
-  }
+  assert.deepEqual(scripts, []);
+  const commands = JSON.parse(fs.readFileSync('package.json', 'utf8')).scripts;
+  assert.deepEqual(Object.keys(commands).filter(name =>
+    /^(ml:p0:|test:ml-p0-|ml:shelf:|ml:family-names:|ml:seo-|seo-reactivation:|cleanup:ml-listings:)/.test(name)), []);
+  assert.equal(commands['test:ml-quantity-pricing'], 'node --test tests/ml-quantity-pricing.test.js');
 });
 
 for (const quantity of [1, 3, 5, 10]) {

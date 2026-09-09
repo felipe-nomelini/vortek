@@ -7,7 +7,6 @@ MATCHES="$(
     --glob '!.git' \
     --glob '!node_modules' \
     --glob '!scripts/**' \
-    --glob '!GUIDE.md' \
     --glob '!AGENTS.md' \
     --glob '!*.jsonl' \
     "$PATTERN" \

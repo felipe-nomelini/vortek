@@ -38,6 +38,14 @@ Regras de uso:
 - nunca registrar secrets, tokens, senhas ou valores sensíveis;
 - não fazer merge em `main`, migration ou deploy em produção por meio deste checklist.
 
+### Modelo permanente de branches — decisão de 09/09/2026
+
+- `main` permanece como o sistema legado atualmente em produção; não é base de integração do Bentevi.
+- `dev` contém a nova versão Bentevi e pode divergir integralmente de `main`; quantidade de commits e ancestralidade entre elas não são critérios de prontidão.
+- Não executar merge, rebase ou cherry-pick em massa entre `main` e `dev`. A leitura de `main` serve apenas para auditar comportamentos produtivos essenciais; quando necessários, eles são reimplementados nativamente em `dev`, com ação e testes próprios.
+- A futura produção Bentevi usará a branch canônica `bentevi-prod`, criada diretamente no SHA aprovado de `dev`, sem merge com `main`. Essa branch ainda não existe e só pode ser criada durante release especificamente autorizado.
+- `main` deve permanecer preservada após a virada inicial. Isso não basta como rollback: compatibilidade de schema, dados e efeitos externos precisa ser provada separadamente.
+
 ### Legenda
 
 - `[x]` — executado e validado no nível aplicável;
@@ -64,7 +72,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
-| 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
+| 11.1 | Auditoria comportamental contínua da produção legada | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Auditar `main` somente por leitura, sem integrar branches; ativação Evolusom, delta de schema, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
 | 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-15 operacional publicado; D20 inicial aprovado, marco 2 encerrado | Escopos integrais abertos; prova externa e ME2 mantidos no marco 6 |
 | 11.3 | Assistente Bentevi — chat operacional | AI-00/01 concluídas; AI-02 implementada e validada localmente | Concluir login/runtime e publicação DEV autorizada + smoke antes do teste individual; sócio e gate integral separados |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
@@ -89,9 +97,11 @@ Regras de uso:
 | 2 — Configurações iniciais | Concluído no recorte inicial; aceite D20 concedido pelo usuário em 08/09 | Nenhum neste recorte; D20/V2-15 integrais continuam abertos | Preservar controles e seguir para marco 3 | [Entrega técnica, publicação e aceite humano inicial](evidencias/BNT-PRICING-V2-15-operacional-validacao.md#aceite-inicial-do-usuario--08092026); não comprova capacidades adiadas |
 | 3 — Assistente Bentevi | AI-00 concluída para piloto individual; marco ainda aberto | Conhecimento, chat e runtime hospedado ainda não entregues; liberação do sócio não comprovada | Planejar AI-01 → AI-02/publicação DEV → AI-GATE individual; tratar sócio separadamente | [Fechamento e gates restantes](evidencias/BNT-AI-00-validacao.md#fechamento-individual); aprovação individual não substitui precisão, isolamento e aceite de ambos no gate integral |
 | 4 — Operação ponta a ponta | Pendente | Regressão do candidato: vendas, compras DSLite, estoque, fiscal, entrega e notificações, inclusive falhas/reprocessamento | Reutilizar testes e fluxos existentes; corrigir divergências individualmente | Relatório por fluxo, testes direcionados, validate e build do candidato; não repetir etapas já validadas sem motivo |
-| 5 — Preparação da transição | Pendente | DELTA_PROMOCAO ensaiado; PARITY-FINAL; capacidade produtiva canônica preparada/testada; domínio/configurações; dados preservados; backup/recuperação; destino de jobs e experimentos produtivos | Preparar e testar a capacidade produtiva sem remover guards sem substituto; ensaiar delta em DEV e conferir checklist de release | SHAs, ensaio, testes dos controles produtivos, inventário sem secrets, recuperação inclusive de efeitos externos e janela acordada; reconfirmar deltas até a virada |
+| 5 — Preparação da transição | Pendente | DELTA_PROMOCAO ensaiado; PARITY-FINAL comportamental; snapshot candidato e futura `bentevi-prod`; capacidade produtiva canônica preparada/testada; domínio/configurações; dados preservados; backup/recuperação; destino de jobs e experimentos produtivos | Preparar e testar a capacidade produtiva sem remover guards sem substituto; ensaiar delta de schema no DEV e conferir checklist de release | SHA candidato, ensaio, testes dos controles produtivos, inventário sem secrets, recuperação inclusive de efeitos externos e janela acordada; reconfirmar fatos até a virada |
 | 6 — Ativação real acompanhada | Pendente; exige autorização específica de release | Conta real no ambiente produtivo preparado; tarifas/frete ME2; aceite autenticado e prova externa PUB-GATE transferidos do marco 1 | Pelo workspace vortek-prod, começar por leituras e validar uma publicação comercial selecionada e uma alteração de preço, aprovadas individualmente; conferir antes de ampliar | Preço/custo/tarifa/frete, histórico, ausência de duplicação e read-back; inconclusivo interrompe o fluxo afetado; sem liberação geral antecipada |
 | 7 — Bentevi em operação | Pendente | Marcos anteriores aceitos; sistema novo como único executor; verificações iniciais aprovadas | Transferir operação diária e acompanhar os primeiros pedidos | Horário da virada, versão, primeiros resultados e registro de acompanhamento; não exige esperar sete dias para começar a usar |
+
+**Preparação do DEV local — 09/09/2026:** aprovada a topologia em que o `PCBAO` receberá o DEV local privado e a `.162` será reaproveitada futuramente como Supabase Bentevi PROD. Foram adicionados `supabase/config.toml`, comandos npm, seed sintético sem produtos/credenciais externas, documentação e teste de contrato. Com Docker Desktop 4.90 integrado ao WSL, o projeto `bentevi-dev-local` aplicou as 124 migrations em banco vazio; duas incompatibilidades do seed com o schema final foram identificadas e corrigidas, e o replay seguinte concluiu migrations e seed. A opção global **Localhost by default** foi aplicada no Docker Desktop: um container descartável e os containers do Supabase comprovaram binds exclusivos em `127.0.0.1`/`::1`, nas portas 54321–54324, antes e depois de reiniciar o Docker Desktop. O wrapper confere os binds reais, desliga automaticamente uma inicialização insegura, redige valores sensíveis da inicialização e omite chaves no status. O banco ativo confirmou PostgreSQL 17.6, 124 migrations, uma empresa sintética, três integrações locais desconectadas e zero produtos. Passaram cinco testes direcionados, `bash -n`, `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`. Esta é evidência parcial do marco 5, não o fecha: autenticação e fluxos web locais ainda precisam de validação própria. A `.162` continua DEV e não foi acessada ou alterada; `.160` e produção permaneceram intocadas.
 
 **Gate da primeira operação:** ao fechar o marco 5, autorizar apenas a preparação/ativação controlada prevista no release; ao fechar o marco 6, liberar a operação inicial. Ele não fecha `BNT-PRICING-V2-16` / `M2M-GATE`: esses continuam abertos para a entrega integral e futura autonomia. Até lá, publicação e alteração de preço exigem confirmação humana e todos os controles técnicos correspondentes. Não basta remover `pricing_execution_not_ready`: consumo, execução, recuperação e read-back ainda precisam ser comprovados. Jobs operacionais já existentes não são adiados com o novo job noturno e exigem validação no marco 4.
 
@@ -110,8 +120,8 @@ Nenhuma etapa adiada recebe `[x]` ou `N/A` por causa deste recorte. Respeitar a 
 
 #### Ativação, interrupção e acompanhamento
 
-- **Pendência bloqueadora do marco 5 — capacidade produtiva canônica:** o código atual exige `test_only`, conta `test_user` e destino `.162`; conectar a conta real não libera execução. Preparar e testar a política produtiva antes do marco 6, em ação técnica própria, mantendo confirmação humana, trilha, idempotência, revalidação, prevenção de duplicação e conferência. Não remover os guards sem substituto, reutilizar escritores legados ou autorizar `.160` como gravável neste worktree. Ensaios de desenvolvimento continuam em `.162`; configuração/ativação produtivas pertencem ao release autorizado em `vortek-prod`.
-- Conta real somente na ativação produtiva autorizada, nunca por cópia de tokens de produção para DEV. Preparação e ensaios neste worktree usam exclusivamente o Supabase DEV `.162`; banco `.160` é produção/somente leitura aqui. Mutações produtivas ficam no workspace `vortek-prod`, com autorização própria. Este documento não executa nem autoriza a virada.
+- **Pendência bloqueadora do marco 5 — capacidade produtiva canônica:** o código atual exige `test_only`, conta `test_user` e destino `.162`; conectar a conta real não libera execução. Preparar e testar a política produtiva antes do marco 6, em ação técnica própria, mantendo confirmação humana, trilha, idempotência, revalidação, prevenção de duplicação e conferência. Não remover os guards sem substituto, reutilizar escritores legados ou autorizar `.160` como gravável neste worktree. Ensaios de desenvolvimento usam `.162` enquanto ela conservar a classificação DEV ou o projeto local `bentevi-dev-local`; configuração/ativação produtivas pertencem ao release autorizado em workspace dedicado.
+- Conta real somente na ativação produtiva autorizada, nunca por cópia de tokens de produção para DEV. Preparação e ensaios neste worktree usam o Supabase DEV `.162` enquanto ele conservar essa classificação ou o DEV local restrito a loopback e dados sintéticos; banco `.160` é produção/somente leitura aqui. Mutações produtivas ficam no workspace dedicado, com autorização própria. Este documento não executa nem autoriza a virada.
 - Não copiar banco de homologação sobre produção, transportar fixtures ou retirar suas proteções. Preservar dados, filas e eventos reais. A exclusão das amostras DEV antes prevista em D24 será resolvida no marco 5, independentemente do adiamento visual de D24, com escopo e validação próprios.
 - Confirmar um único executor por fluxo: sistema antigo e novo não podem consumir/processar simultaneamente a mesma operação. Inventariar pendências, checkpoints, agendamentos e webhooks; preservar recepção/retomada de eventos durante a troca. Não ativar silenciosamente experimentos ou decisões históricas.
 - No marco 6, começar por leituras reais de preço, custo, tarifa e frete/ME2; depois validar o fluxo autenticado com uma publicação comercial selecionada e uma alteração de preço, ambas aprovadas individualmente. Conferir resultados, histórico e ausência de duplicação antes de ampliar o uso. Não publicar anúncio fictício como teste na conta real. Provas externas com efeito dependem do escopo e release autorizados; homologação técnica anterior não equivale a essa evidência.
@@ -2687,7 +2697,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Motivo atual confirmado:** no início desta etapa, `origin/main` está em `95941f1924efa42e890fba592fe400f9e25ae706`, `origin/dev` está em `e83ceb2ffee210de55fab4e56e242849d50d2715` e o ancestral comum é `08b6237428c406b55a876578b63dbc553e8c9584`. `main` possui 13 commits exclusivos que afetam 83 arquivos e incluem quatro migrations. Há mudanças em venda concretizada, identidade Mercado Livre, retomada DSLite, inativação de fornecedores e produtos, estoque interno, etiquetas, jobs, runtime e alertas. A fotografia deve reconfirmar os três SHAs antes de produzir conclusões.
 
-**Princípio:** paridade não significa copiar produção cegamente nem fazer merge geral de `main` em `dev`. A regra produtiva deve ser entendida, confrontada com as decisões posteriores do Item 17 e então reaplicada na arquitetura atual da Bentevi. Bugs, compatibilidades encerradas e fluxos obsoletos não devem ser importados.
+**Princípio vigente:** `main` e `dev` são sistemas intencionalmente independentes. Paridade é somente auditoria comportamental da produção legada, não convergência Git. Nunca fazer merge, rebase ou cherry-pick em massa entre elas. A regra produtiva essencial deve ser entendida, confrontada com as decisões posteriores do Item 17 e, quando ainda aplicável, reimplementada nativamente na arquitetura atual da Bentevi. Bugs, compatibilidades encerradas e fluxos obsoletos não devem ser importados. A divergência ou quantidade de commits entre as branches não bloqueia o release por si só.
 
 #### `BNT-PARITY-00 — Fotografia e catálogo de regras`
 
@@ -3129,12 +3139,12 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 #### Controle contínuo e `BNT-PARITY-FINAL`
 
 - [ ] antes de cada nova ação do Item 17, comparar por leitura o SHA atual de `origin/main` com o último SHA auditado;
-- [ ] se houver mudança produtiva no domínio da ação atual, reconciliar esse delta antes de continuar; mudanças de outros domínios entram na fila sem merge automático;
-- [ ] imediatamente antes da promoção, executar `BNT-PARITY-FINAL`, repetir a comparação desde o último SHA auditado e bloquear o release enquanto existir commit ou regra sem classificação;
+- [ ] se houver mudança produtiva no domínio da ação atual, classificar apenas seu comportamento antes de continuar; mudanças de outros domínios entram na fila sem integrar código ou histórico;
+- [ ] imediatamente antes da promoção, executar `BNT-PARITY-FINAL`, repetir a auditoria desde o último SHA produtivo lido e bloquear o release somente enquanto houver comportamento essencial sem classificação ou destino explícito no Bentevi;
 - [ ] na promoção, reconfirmar experimentos produtivos ativos/aguardando decisão e aprovar continuidade ou encerramento sem perder baseline, checkpoints ou proteção de preço;
-- [ ] executar novamente os testes dos domínios afetados e registrar o SHA final de produção, o SHA final de `dev` e a matriz atualizada.
+- [ ] executar novamente os testes dos domínios afetados e registrar separadamente o SHA legado de `main`, o SHA candidato de `dev` e a matriz atualizada.
 
-**Aceite da etapa:** zero commit exclusivo de produção sem classificação, zero regra ou parâmetro produtivo identificado sem destino explícito e zero divergência crítica aberta sem aceite. O gate de sequência liberou o planejamento de `BNT-CFG-07` em 05/09/2026; o release permanece bloqueado até `BNT-PARITY-FINAL` e os demais aceites produtivos.
+**Aceite da etapa:** todo comportamento produtivo essencial surgido desde a última fotografia possui classificação e destino explícito; zero divergência crítica aberta sem aceite. Commits exclusivos de `main`, a ancestralidade distinta e a diferença numérica entre branches são esperados e não exigem incorporação. O gate de sequência liberou o planejamento de `BNT-CFG-07` em 05/09/2026; o release permanece bloqueado até `BNT-PARITY-FINAL` e os demais aceites produtivos.
 
 **Limites:** o worktree `vortek-prod`, a branch `main`, o serviço produtivo e `192.168.1.160` são estritamente de leitura nesta etapa. Nenhum merge, cherry-pick em massa, deploy, migration, teste destrutivo ou correção de produção é autorizado por este checklist.
 
@@ -3294,14 +3304,22 @@ Não iniciar web celular antes de `BNT-D01` a `BNT-D24` e do aceite desktop do A
 
 Executar somente depois do sistema funcional e validado. Cada remoção exige busca de consumers e rollback conhecido.
 
+**Recorte local antecipado aprovado em 09/09/2026:** o responsável solicitou a
+limpeza para continuar o desenvolvimento, confirmou encerradas as campanhas ML,
+importações pontuais, experimento de dataset e propostas visuais antigas, e escolheu
+exclusão local definitiva e uso somente de Codex. Este recorte retira arquivos do
+repositório; não conclui os gates integrais do Item 17 nem autoriza remoção de
+objetos/dados de banco, homologação externa ou produção. Evidências e documentos
+necessários ao produto e aos testes permanecem. Registro da execução abaixo.
+
 ### HIST-01 — Cluster `ml-p0-*`
 
-- [ ] confirmar campanha encerrada;
-- [ ] localizar todos os consumers;
-- [ ] separar testes permanentes e preservar evidências necessárias;
-- [ ] remover o cluster por conjunto coerente;
+- [x] confirmar campanha encerrada pelo responsável;
+- [x] localizar consumers no repositório;
+- [x] separar testes permanentes e preservar evidências necessárias;
+- [x] remover scripts, bibliotecas exclusivas, testes, relatórios e comandos npm do cluster;
 - [ ] remover objetos atuais de banco somente por nova migration;
-- [ ] preservar migrations históricas;
+- [x] preservar migrations históricas;
 - [ ] concluir o gate obrigatório da seção 3.
 
 ### HIST-02 + HIST-03 — WhatsApp histórico
@@ -3314,36 +3332,83 @@ Executar somente depois do sistema funcional e validado. Cada remoção exige bu
 
 ### HIST-04 — Scripts e reports one-off
 
-- [ ] agrupar candidatos por finalidade/campanha;
-- [ ] confirmar que cada processo encerrou;
-- [ ] remover por cluster, nunca por arquivo aleatório;
+- [x] agrupar candidatos por finalidade/campanha;
+- [x] confirmar que os processos de campanha/importação do recorte encerraram;
+- [x] remover os conjuntos encerrados, preservando recuperação e evidências de schema/paridade;
 - [ ] concluir o gate obrigatório da seção 3.
 
 ### HIST-05 — Panasonic
 
-- [ ] confirmar encerramento do onboarding/importação;
-- [ ] remover ou arquivar juntos `Panasonic.xls` e seu importador;
+- [x] confirmar encerramento do onboarding/importação;
+- [x] remover juntos `Panasonic.xls` e seu importador;
 - [ ] concluir o gate obrigatório da seção 3.
 
 ### HIST-06 — Dataset
 
-- [ ] confirmar ausência de iniciativa atual que use `scripts/build_dataset/`;
-- [ ] remover o cluster somente após essa confirmação;
+- [x] confirmar ausência de iniciativa atual que use `scripts/build_dataset/`;
+- [x] remover o cluster após confirmação do responsável;
 - [ ] concluir o gate obrigatório da seção 3.
 
 ### HIST-07 — OpenCode
 
-- [ ] confirmar se `opencode.json` possui consumidor atual;
-- [ ] corrigir a referência se estiver em uso;
-- [ ] remover o arquivo se estiver sem uso;
+- [x] confirmar ausência de uso de OpenCode (ferramenta escolhida: Codex);
+- [x] remover `opencode.json`; correção da referência não aplicável;
 - [ ] concluir o gate obrigatório da seção 3.
 
 ### HIST-08 — RTK.md
 
-- [ ] confirmar se `RTK.md` possui consumidor atual;
-- [ ] alinhar com `AGENTS.md` se for consumido;
-- [ ] remover se estiver sem consumidor;
+- [x] confirmar ausência de consumidor de `RTK.md`;
+- [x] remover o arquivo; alinhamento de política não aplicável;
 - [ ] concluir o gate obrigatório da seção 3.
+
+### Registro — Limpeza local aprovada de 09/09/2026
+
+- **Situação:** limpeza de arquivos implementada e validada no recorte local;
+  gates integrais de homologação/banco permanecem abertos.
+- **Base:** branch `dev`, commit `3edb5df831fb277cee3be0baf47d8bfa6da303f9`.
+  Execução por Codex a pedido do responsável; nenhum commit ou push realizado.
+- **Causa confirmada:** campanhas encerradas acumulavam 13.856 relatórios e
+  comandos comerciais já aposentados. A cópia Windows→Linux também deixou links
+  dos executáveis npm inválidos. Node.js estava ausente.
+- **Ambiente:** Node.js 22.23.2/npm 10.9.8 instalados localmente; dependências web
+  e mobile reinstaladas pelos lockfiles. Nenhuma atualização de framework.
+- **Retirado:** 99 arquivos de scripts/experimentos, 23 testes exclusivos,
+  13.853 relatórios, 15 propostas visuais, relatório HTML avulso, som não utilizado,
+  planilha Panasonic, ZIP duplicado e configurações Claude/OpenCode/RTK. `GUIDE.md`
+  retirado após consolidar seu runbook OAuth na documentação operacional ML.
+- **Manifesto:** 50 comandos npm retirados; `xlsx` e sua árvore exclusiva removidos.
+  Ignore de relatórios gerados e arquivos de ambiente ajustado, com exceções
+  explícitas para exemplos e evidências de banco.
+- **Preservado:** 33 arquivos de scripts operacionais/recuperação; os três JSONs
+  de `reports/db-03/` e `reports/bnt-parity-13/`; regras comerciais, aplicação web,
+  mobile, migrations, skills, configuração Codex e documentação de reestruturação.
+  Hash agregado dos 725 arquivos protegidos (incluindo configurações locais)
+  permaneceu idêntico. Nenhum conteúdo de credencial foi registrado.
+- **Testes direcionados:** 55 testes de atividade, pricing, execução, pedidos,
+  documentos do assistente e schema aprovados; a asserção atualizada de retirada
+  das campanhas Hayamax também passou isoladamente (1 teste).
+- **Suíte completa antes:** 1.421 testes; 1.400 passaram, 18 falharam, 3 ignorados.
+- **Suíte completa depois:** 1.300 testes; 1.280 passaram, 17 falharam, 3 ignorados.
+  Nenhuma falha nova. A falha retirada pertencia ao teste exclusivo
+  `ml-p0-phase4b3-transaction`, excluído com a campanha.
+- **Pendências preexistentes:** uma falha em cada teste de shell Bentevi,
+  política Hayamax, idempotência de jobs, consumers CFL-03, permissões e estado
+  operacional de produtos; onze falhas em `m2m-prc-04-route`. A limpeza não altera
+  essas regras nem suprime os testes para declarar a suíte verde.
+- **Validação:** `npm run validate` aprovado antes e depois; typecheck mobile
+  aprovado após reinstalação; `check:build-secrets` aprovado; nenhum comando npm
+  remanescente aponta para arquivo ausente; `git diff --check` aprovado.
+- **Build:** aprovado com endpoints Supabase locais inativos e chaves sintéticas,
+  sem usar banco real. Artefatos desse build de validação descartados ao concluir;
+  tipos de rotas regenerados para continuar o desenvolvimento.
+- **Migration/homologação/deploy:** não executados; não necessários para o recorte
+  de arquivos. Não houve execução de scripts operacionais nem escrita em serviços.
+- **Rollback:** arquivos versionados permanecem recuperáveis pelo Git; exclusões
+  estão somente no working tree. O ZIP não versionado era duplicado da documentação
+  preservada. Dependências e caches podem ser regenerados; não foi criado arquivo
+  histórico paralelo nem reescrito o histórico Git.
+- **Próxima ação:** retomar o desenvolvimento e tratar as falhas preexistentes em
+  tarefas próprias; esta limpeza não libera uma etapa comercial ou de produção.
 
 ---
 
@@ -3374,9 +3439,20 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 
 ---
 
-## 18. Checklist de promoção controlada `dev → main`
+## 18. Checklist de promoção controlada `dev → bentevi-prod`
 
-Esta seção prepara a promoção. Ela não autoriza merge nem deploy. Na primeira entrega, aplicar o [gate Bentevi em operação](#bentevi-em-operacao): marco 5 libera somente a solicitação da ativação controlada; marco 6 exige provas reais antes do uso diário no marco 7. O gate integral M2M permanece aberto, sem dispensar proteções da operação liberada. A execução produtiva pertence ao workspace `vortek-prod` em autorização própria.
+`main` é o sistema legado em produção e permanece independente. `bentevi-prod` ainda não existe; no release autorizado, ela será criada diretamente no SHA candidato aprovado de `dev`, sem merge, rebase ou cherry-pick de `main`. Esta seção apenas prepara a promoção e não autoriza criar/pushar a branch, alterar o serviço, migrar ou fazer deploy. Na primeira entrega, aplicar o [gate Bentevi em operação](#bentevi-em-operacao): marco 5 libera somente a solicitação da ativação controlada; marco 6 exige provas reais antes do uso diário no marco 7. O gate integral M2M permanece aberto, sem dispensar proteções da operação liberada. A execução produtiva pertence a tarefa e ambiente próprios, com autorização específica.
+
+### Preflight inicial da primeira promoção — 09/09/2026
+
+- **Situação:** preparação iniciada; ainda não existe SHA candidato promovível.
+- **Git:** branch `dev` no SHA base `3edb5df831fb277cee3be0baf47d8bfa6da303f9`, igual a `origin/dev`, com zero arquivo em stage. A árvore contém a limpeza e o DEV local já aprovados, ainda não commitados: 15 arquivos rastreados modificados, 13.998 removidos e oito novos. O nome remoto `bentevi-prod` foi confirmado livre. Commit e push dependem de solicitação explícita.
+- **Validação disponível:** limpeza sem regressão nova na suíte conhecida; DEV local em loopback com 124 migrations e seed sintético; testes direcionados, lint/typecheck, build, verificação de secrets e `git diff --check` aprovados nos respectivos registros. A suíte completa da limpeza ainda conserva 17 falhas preexistentes, que precisam ser classificadas para o recorte de lançamento e não podem ser ocultadas.
+- **Paridade comportamental:** após `git fetch --prune`, `origin/main` está em `2fc441f67d1457a154b3bd475d4f0e68b032551a` e `origin/dev` em `3edb5df831fb277cee3be0baf47d8bfa6da303f9`; o ancestral comum permanece `08b6237428c406b55a876578b63dbc553e8c9584`. Vinte commits de `main` posteriores ao último delta consolidado em `7f0a2921` exigem fechamento de `BNT-PARITY-FINAL` por comportamento, sem integrar código ou histórico. Parte deles já possui conciliações específicas nas evidências V2/PUB-GATE; o restante ainda não está consolidado.
+- **Deploy:** a configuração privada disponível neste worktree aponta exclusivamente para o webhook de homologação e espera a branch `dev`. Ela não é configuração produtiva e não será reaproveitada no corte.
+- **Banco e dados:** `.162` continua classificado como DEV e `.160` como produção somente leitura. Converter `.162` exige tarefa produtiva própria com backup verificado, inventário e tratamento das fixtures, plano de migração/preservação dos dados reais de `.160`, delta de schema ensaiado, recuperação e reclassificação explícita. O replay das migrations DEV não é estratégia de promoção.
+- **Ativação controlada:** provas comerciais autenticadas e ME2 permanecem no marco 6, depois do deploy e antes da liberação diária, conforme decisão já registrada. Não podem ser adiados: autenticação e autorização, writers produtivos protegidos, variáveis obrigatórias, um único executor por fluxo, preservação de eventos/pedidos, smoke seguro e condições de interrupção.
+- **Próximo gate imediato:** autorizar commit e push somente do lote aprovado; em seguida fixar o novo SHA de `dev`, reexecutar a regressão do candidato e fechar inventários de paridade, schema/dados e runtime antes de solicitar a tarefa produtiva de corte.
 
 ### Antes de solicitar autorização
 
@@ -3389,11 +3465,12 @@ Esta seção prepara a promoção. Ela não autoriza merge nem deploy. Na primei
 - [ ] `dev.bentevi.shop` funcional;
 - [ ] `BNT-AI-GATE` concluído com modalidade de provedor suportada, conversas individuais isoladas e aprovação dos dois administradores; Assistente incluído na primeira versão;
 - [ ] reconfirmar `BNT-PARITY-GATE` e resolver as divergências críticas exigidas para release; o aceite de encaminhamento à V2 permite apenas a sequência DEV, não a promoção;
-- [ ] `BNT-PARITY-FINAL` executado contra o SHA atual de `origin/main`, sem commit ou regra pendente de classificação;
-- [ ] matriz `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` atualizada com os SHAs finais;
-- [ ] commits e diff destinados à `main` revisados;
+- [ ] `BNT-PARITY-FINAL` executado por leitura contra o SHA atual de `origin/main`, com todo comportamento essencial classificado; não exigir convergência de commits;
+- [ ] matriz `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` atualizada com o SHA legado de `main` e o SHA candidato de `dev`;
+- [ ] SHA candidato de `dev` fixado e snapshot revisado por si mesmo, sem usar o diff contra `main` como pacote de promoção;
+- [ ] nome `bentevi-prod` confirmado livre no remoto e plano para criá-la exatamente no SHA candidato, sem criação antecipada;
 - [ ] nenhuma secret adicionada ao Git;
-- [ ] migrations da promoção identificadas;
+- [ ] delta entre o schema produtivo lido e o schema exigido pelo candidato identificado; migrations novas, mínimas e ordenadas preparadas e ensaiadas no DEV, sem replay do diretório ou fabricação de igualdade entre históricos;
 - [ ] novas variáveis de produção identificadas sem expor valores;
 - [ ] rollback e condição de interrupção conhecidos;
 - [ ] marcos 1 a 5 aceitos para preparar ativação; prova comercial/ME2 ainda pendente explicitada no marco 6, sem autorização ampla de escrita;
@@ -3402,18 +3479,20 @@ Esta seção prepara a promoção. Ela não autoriza merge nem deploy. Na primei
 - [ ] nenhuma mudança fora do escopo;
 - [ ] autorização explícita do responsável recebida.
 
-### Depois de merge autorizado
+### Durante e depois da ativação autorizada
 
 - [ ] backup realizado quando exigido pela mudança;
+- [ ] `bentevi-prod` criada e pushada diretamente no SHA candidato aprovado de `dev`, sem merge/rebase/cherry-pick com `main`;
+- [ ] `main` preservada sem alteração e SHA de ambas as branches registrado;
 - [ ] migration de produção aplicada quando autorizada e aplicável;
-- [ ] deploy executado pelo caminho oficial do Easypanel;
+- [ ] serviço produtivo apontado para `bentevi-prod` e deploy executado pelo caminho oficial do Easypanel;
 - [ ] smoke test seguro executado;
 - [ ] logs verificados;
 - [ ] operação confirmada;
 - [ ] marco 6 aceito com tarifa/frete ME2, provas autorizadas e read-back antes da liberação diária;
 - [ ] marco 7 registrado com versão, horário, executor único e acompanhamento dos primeiros sete dias e de um ciclo completo de pedido real;
 - [ ] release registrada;
-- [ ] branch `dev` reconciliada com a nova base de produção.
+- [ ] `dev` mantida como linha independente de desenvolvimento; nenhuma reconciliação automática com `main` ou `bentevi-prod` executada.
 
 ---
 

@@ -1,881 +1,163 @@
-# Vortek — Engineering Agent Instructions
+# Vortek / Bentevi — Instruções do projeto DEV
 
-**Always-on engineering rules for every agent working in this repository.**
+Última revisão: 2026-09-09.
 
-_Last reviewed: 2026-08-30_
+Este repositório é exclusivo de desenvolvimento e homologação. Estas regras se aplicam a análises, planos, implementação, validação, Git e operações de infraestrutura.
 
----
+## 1. Autoridade e escopo
 
-## 0. Authority and precedence
+Restrições de plataforma, segurança e execução prevalecem. Dentro desses limites, siga o pedido explícito atual do usuário, este `AGENTS.md` e a documentação específica da tarefa, nessa ordem. Skills e instruções complementares não ampliam autorizações nem substituem as restrições deste projeto.
 
-These instructions apply to **every technical response, investigation, plan, code change, database change, integration task, Git operation, and deployment task** in Vortek.
+O código, schema, configuração e testes atuais demonstram o comportamento implementado; documentos vigentes definem o comportamento pretendido. Havendo divergência, investigue e relate, sem assumir que uma implementação incorreta substitui o contrato. Auditorias e evidências históricas não comprovam o estado atual.
 
-If instructions conflict, follow this order:
+- Diferencie análise, planejamento e implementação. Um pedido de diagnóstico não autoriza corrigir; quando implementar foi solicitado, execute o trabalho seguro dentro do escopo.
+- Trabalhe somente na branch `dev`. Confira a branch e o estado do Git antes de editar; se estiver em outra branch, pare e informe, sem trocar automaticamente.
+- `main` é o sistema legado atualmente em produção; `dev` é a nova versão Bentevi, desenvolvida de forma independente. A divergência entre as branches é intencional e sua contagem de commits não mede prontidão.
+- Não misture os históricos: nenhum merge, rebase ou cherry-pick em massa entre `main` e `dev`. Use `main` somente como evidência de leitura para identificar comportamentos produtivos essenciais; quando um deles ainda for necessário, implemente-o nativamente na arquitetura de `dev`, em ação própria e com testes.
+- Não altere produção, não use `app.vortek.shop` para testes e não leve mudanças de `dev` ao sistema legado durante o desenvolvimento.
+- Uma solicitação de mudança não autoriza automaticamente commit, push, deploy ou operações externas de outro escopo.
+- Preserve alterações preexistentes do usuário. Não acrescente correções, refatorações ou mudanças de regra de negócio fora da tarefa.
+- Uma ação técnica do Item 17 por tarefa; não avance para outra etapa sem validação e sem respeitar os gates e aceites vigentes.
 
-1. current explicit user instruction;
-2. this `AGENTS.md`;
-3. task-specific Vortek operational documentation;
-4. current Vortek code, schema, configuration, migrations, tests, and scripts;
-5. current official documentation for external technologies and services;
-6. project skills;
-7. trustworthy secondary sources, only when official sources are insufficient.
+## 2. Ambientes e Supabase — proteção obrigatória
 
-Platform, runtime, sandbox, and security restrictions always take precedence when applicable.
+O Supabase do projeto é **self-hosted**, não Supabase Cloud. Não exija project refs, tokens pessoais, dashboard ou autenticação MCP do Supabase Cloud para operar este ambiente.
 
-**A generic skill must never override a Vortek-specific rule in this file or the actual state of the repository.**
+| Recurso | Destino | Permissão neste projeto |
+|---|---|---|
+| Supabase DEV/homologação remoto | `192.168.1.162` | Destino DEV gravável até a conversão produtiva explicitamente autorizada |
+| Supabase DEV local | `127.0.0.1`, projeto `bentevi-dev-local` | Escritas locais autorizadas somente com dados sintéticos e `VORTEK_RUNTIME_ENVIRONMENT=local_dev` |
+| Supabase de produção | `192.168.1.160` | Exclusivamente leitura para consultas e diagnósticos necessários |
+| Web de homologação | `dev.bentevi.shop`, serviço `vortek-erp-dev` no Easypanel `.160` | Homologação e deploy DEV somente no escopo autorizado |
 
----
+A hospedagem da aplicação DEV em `.160` **não** torna o Supabase desse servidor um banco de desenvolvimento. Nomes de containers, diretórios, labels, URLs ou variáveis contendo `dev` não mudam essa classificação.
 
-## 0.1 Reestruturação — base de conhecimento dos Itens 1 a 17
+A topologia futura aprovada reaproveitará `.162` como produção Bentevi e moverá o DEV para o `PCBAO`. Essa reclassificação ainda não ocorreu: exige backup, corte produtivo e atualização própria destas regras. Até lá, `.162` continua DEV. O projeto local deve permanecer em loopback e nunca receber cópia de dados ou credenciais de produção.
 
-A base canônica da auditoria, consolidação e execução da reestruturação está em:
+### Produção é somente leitura
 
-`docs/reestruturacao-vortek/`
+Nunca execute no Supabase de produção alterações de dados, migrations, DDL, funções/RPC com efeitos de escrita, triggers, grants, RLS, Auth, Storage, secrets, configurações ou operações administrativas mutantes. Ensaiar uma alteração com `ROLLBACK` também não é permitido em produção.
 
-Ela foi incorporada em 2026-08-27 e deve ser usada como referência especializada, sem substituir a inspeção do código, schema, configuração, testes e documentação oficial atuais.
+Para consultas e diagnósticos, confirme o destino e use acesso somente leitura quando disponível. Não presuma que uma RPC ou chamada HTTP seja inofensiva pelo nome ou método: confira seus efeitos antes de executá-la.
 
-### Roteamento obrigatório
+Se uma solicitação exigir alteração em produção, interrompa essa parte e informe que deve ser tratada em tarefa própria no ambiente dedicado de produção. Isso não autoriza este agente a abrir outro workspace ou executar a alteração por outro caminho.
 
-Para qualquer tarefa ligada à reestruturação, à nova versão ou ao Item 17:
+### Antes de qualquer escrita no DEV
 
-1. leia primeiro este `AGENTS.md`;
-2. leia `docs/reestruturacao-vortek/INSTRUCOES_AGENTE_VORTEK.md` como contexto complementar, mantendo a precedência definida na seção 0;
-3. leia a etapa aplicável de `docs/reestruturacao-vortek/VORTEK_ITEM_17_PLANO_COMPLETO_EXECUCAO_HOMOLOGACAO.md`;
-4. use `docs/reestruturacao-vortek/VORTEK_AUDITORIA_ITEM_16_CONSOLIDACAO.md` para localizar o identificador, a prioridade e as dependências do achado;
-5. leia a auditoria detalhada do domínio afetado antes de concluir ou alterar;
-6. confronte os achados com o estado atual do repositório e reconfirme contratos externos na documentação oficial atual.
+1. Confirme que a escrita é necessária e está no escopo autorizado.
+2. Resolva e confira o destino real da conexão, inclusive quando houver proxy ou túnel; registre apenas host/identidade, sem credenciais.
+3. Comprove que o destino é `192.168.1.162` e ainda corresponde ao Supabase DEV independente, ou que é o projeto local `bentevi-dev-local` resolvido exclusivamente para loopback, com `VORTEK_RUNTIME_ENVIRONMENT=local_dev`.
+4. Inspecione o histórico de migrations e o schema afetado nesse mesmo destino; confira dados, consumidores, RLS, grants, funções, triggers e constraints pertinentes.
+5. Para mudanças destrutivas, defina backup, recuperação, compatibilidade e efeitos externos; ensaie com rollback quando aplicável, somente no DEV.
+6. Interrompa se o destino for `.160`, se `.162` já tiver sido reclassificado como produção, se o ambiente local não estiver restrito a loopback ou se a identidade não puder ser comprovada.
 
-Os documentos registram uma fotografia datada da auditoria. Status, versões, prazos, hipóteses e evidências operacionais podem envelhecer; não os apresente como estado atual sem nova verificação.
+Antes de solicitar credenciais ausentes, confira a configuração local ou do servidor já autorizada, sem imprimir seus valores. Não adote caminhos de configuração de produção como padrão do DEV.
 
-Execute somente uma ação do Item 17 por tarefa. Não avance para a ação ou etapa seguinte enquanto a atual não estiver validada. A base não autoriza merge em `main`, migration ou deploy em produção.
+Confira o chamador e suas permissões em mudanças de segurança. Nunca desabilite RLS globalmente para contornar erros nem exponha credenciais privilegiadas ao cliente. Consulte a documentação oficial da funcionalidade Supabase/PostgreSQL envolvida, respeitando as diferenças do self-hosted.
 
-### Índice por domínio
+## 3. Fontes e roteiro de desenvolvimento
 
-- Item 1 — mapa geral: `VORTEK_AUDITORIA_ITEM_01_MAPA_GERAL_DO_SISTEMA.md`;
-- Item 2 — pedidos, fulfillment e estoque interno: `VORTEK_AUDITORIA_ITEM_02_PEDIDOS_FULFILLMENT_ESTOQUE_INTERNO_ATUALIZADO.md`;
-- Item 3 — produtos, fornecedores e kits: `VORTEK_AUDITORIA_ITEM_03_PRODUTOS_FORNECEDORES_KITS.md`;
-- Item 4 — Mercado Livre, anúncios e catálogo: `VORTEK_AUDITORIA_ITEM_04_MERCADO_LIVRE_ANUNCIOS_CATALOGO.md`;
-- Item 5 — fiscal: `VORTEK_AUDITORIA_ITEM_05_FISCAL.md`;
-- Item 6 — compras, fornecedores e financeiro: `VORTEK_AUDITORIA_ITEM_06_COMPRAS_FORNECEDORES_FINANCEIRO.md`;
-- Item 7 — sincronizações, jobs e scheduler: `VORTEK_AUDITORIA_ITEM_07_SINCRONIZACOES_JOBS_SCHEDULER.md`;
-- Item 8 — webhooks e eventos: `VORTEK_AUDITORIA_ITEM_08_WEBHOOKS_EVENTOS.md`;
-- Item 9 — autenticação, segurança e permissões: `VORTEK_AUDITORIA_ITEM_09_AUTH_SEGURANCA_PERMISSOES.md`;
-- Item 10 — banco de dados: `VORTEK_AUDITORIA_ITEM_10_BANCO_DE_DADOS.md`;
-- Item 11 — interface web: `VORTEK_AUDITORIA_ITEM_11_INTERFACE_WEB.md`;
-- Item 12 — regras de negócio compartilhadas: `VORTEK_AUDITORIA_ITEM_12_REGRAS_NEGOCIO_COMPARTILHADAS.md`;
-- Item 13 — performance e saúde operacional: `VORTEK_AUDITORIA_ITEM_13_PERFORMANCE_SAUDE_OPERACIONAL.md`;
-- Item 14 — testes e validação: `VORTEK_AUDITORIA_ITEM_14_TESTES_VALIDACAO.md`;
-- Item 15 — scripts, documentação e históricos: `VORTEK_AUDITORIA_ITEM_15_SCRIPTS_DOCUMENTACAO_HISTORICOS.md`;
-- Item 16 — coleta e consolidação: `CHECKLIST_COLETA_PLANEJAMENTO_LIMPEZA_VORTEK_ITEM_16_ATUALIZADO.md` e `VORTEK_AUDITORIA_ITEM_16_CONSOLIDACAO.md`;
-- Item 17 — plano completo e homologação: `VORTEK_ITEM_17_PLANO_COMPLETO_EXECUCAO_HOMOLOGACAO.md`.
+Para tarefas da nova versão ou do Item 17, consulte primeiro o [checklist de execução](docs/reestruturacao-vortek/VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md), especialmente o recorte **Bentevi em operação**, os gates, dependências e aceites aplicáveis. Não copie status transitórios para este arquivo nem confunda implementação, publicação DEV e aceite de produção.
 
-Todos os nomes acima são relativos a `docs/reestruturacao-vortek/`.
+Leia somente as referências pertinentes:
 
----
+| Assunto | Referência |
+|---|---|
+| Contexto de engenharia | [Instruções complementares](docs/reestruturacao-vortek/INSTRUCOES_AGENTE_VORTEK.md), subordinadas a este arquivo |
+| Etapas e achados do Item 17 | [Plano de execução e homologação](docs/reestruturacao-vortek/VORTEK_ITEM_17_PLANO_COMPLETO_EXECUCAO_HOMOLOGACAO.md), [consolidação do Item 16](docs/reestruturacao-vortek/VORTEK_AUDITORIA_ITEM_16_CONSOLIDACAO.md) e auditoria do domínio identificado |
+| Redesign e páginas Bentevi | [Plano de redesign](docs/reestruturacao-vortek/VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md) |
+| Configurações Bentevi | [Dossiê de configurações](docs/reestruturacao-vortek/VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md) |
+| Regras comerciais e Pricing/M2M | [Cânon comercial](docs/reestruturacao-vortek/VORTEK_CANON_COMERCIAL_V1.md), [ordem canônica](docs/reestruturacao-vortek/VORTEK_M2M_ORDEM_CANONICA_PRICING_RADAR.md), [plano Pricing V2](docs/reestruturacao-vortek/VORTEK_BENTEVI_PRICING_V2_PLANO.md) e [dossiê Pricing V2](docs/reestruturacao-vortek/VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) |
+| Assistente Bentevi | [Contrato do Assistente](docs/reestruturacao-vortek/VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md) e evidências da ação no checklist |
+| Anúncios Mercado Livre | [Publicação operacional](docs/mercado-livre-publicacao-operacional.md), obrigatória antes de criar, alterar, reparar, validar ou diagnosticar anúncios |
+| Deploy DEV | [Procedimento Easypanel](docs/easypanel-deploys.md) |
 
-# 1. Non-negotiable rules
+Atualize o checklist somente com evidência real e quando pertinente à tarefa. Não marque como concluído algo apenas planejado, parcialmente testado ou sem o aceite necessário; risco aceito não é risco eliminado.
 
-These rules are mandatory.
+## 4. Investigar e implementar
 
-1. **Never give a technical conclusion from model memory alone.**
-   Inspect the current Vortek implementation relevant to the request first.
+1. Inspecione os arquivos e consumidores relacionados; confirme versões e configuração quando influírem na decisão.
+2. Para comportamento dependente de tecnologia externa, leia a documentação oficial atual da funcionalidade e versão pertinentes. Não basta a página inicial. Se insuficiente, consulte código/SDK, changelog ou schema oficial; só então fontes secundárias, distinguindo inferência de fato.
+3. Em bugs, identifique comportamento esperado, observado, ponto de divergência e causa com evidências. Se a causa não puder ser confirmada, explicite a limitação.
+4. Escolha a menor solução correta: corrigir, remover, reutilizar ou consolidar antes de acrescentar mecanismos.
+5. Implemente apenas o necessário e valide o comportamento afetado.
 
-2. **Never assume the behavior of an external API, framework, library, service, CLI, or platform.**
-   Consult its current official documentation before explaining, deciding, planning, or implementing behavior that depends on it.
+Não esconda erros, duplique fontes de verdade ou introduza fallbacks, fluxos paralelos, wrappers, dependências, caches, retries ou jobs sem necessidade demonstrada. Mitigações temporárias precisam de motivo explícito quando a causa não puder ser corrigida com segurança; não as apresente como solução definitiva.
 
-3. **Never implement a fix before identifying the root cause, or proving why the root cause cannot currently be identified.**
+Nas integrações, confira autenticação, contratos, estados, paginação, limites e efeitos externos relevantes. Não invente atributos ou especificações de produtos. Use contas/ambientes de teste ou mantenha integrações desabilitadas; credenciais produtivas não devem alimentar a aplicação de homologação. Leituras diagnósticas de produção seguem exclusivamente a seção 2, sem copiar credenciais para o DEV.
 
-4. **Never fix only the symptom when the root cause can be corrected safely inside Vortek.**
+Em jobs, webhooks e sincronizações, verifique idempotência, duplicação, concorrência, falhas parciais, reprocessamento e eventos fora de ordem. Não use atrasos arbitrários ou reparos periódicos para encobrir uma transição determinística incorreta. Otimize somente com evidência de custo ou latência.
 
-5. **Always choose the smallest correct, safe, maintainable, and reversible solution.**
+## 5. Arquitetura e validação
 
-6. **Do not create fallback paths, compatibility layers, parallel flows, extra retries, wrappers, helpers, services, abstractions, tables, jobs, queues, caches, scripts, or dependencies unless there is a proven need.**
+A aplicação web está na raiz: Next.js App Router, React, TypeScript, Ant Design, Supabase e Zod. `mobile/` é uma aplicação separada Expo/React Native, com dependências próprias, incluindo TanStack Query. Não transporte padrões ou dependências entre web e mobile sem verificar os manifests e o código.
 
-7. **Never claim that something was tested, validated, executed, deployed, migrated, pushed, or verified unless it actually was.**
+- Confirme runtime e versões em `package.json`, lockfiles e configuração; o requisito atual de Node da raiz é `>=22 <23`.
+- Preserve a consistência dos manifests e lockfiles; não atualize dependências incidentalmente.
+- Em mudanças de Next.js, leia o guia pertinente em `node_modules/next/dist/docs/`; se indisponível, consulte a documentação oficial da versão instalada. Confira mudanças de contrato e avisos de depreciação.
+- `@openai/codex` também é dependência de runtime do Assistente, não apenas ferramenta do editor. Não remova dependências pela aparência ou pelo nome.
 
-8. **Never expose credentials, secrets, tokens, cookies, private keys, passwords, webhook secrets, or sensitive environment values.**
+### Validação proporcional
 
-These rules may be repeated later intentionally. Repetition of these core rules is reinforcement, not permission to weaken them.
+| Mudança | Verificação |
+|---|---|
+| Código web | Testes direcionados existentes e `npm run validate` na raiz; acrescentar regressão quando necessário |
+| Build, framework ou configuração sensível | Acrescentar `npm run build` e verificações de secrets pertinentes |
+| Mobile | `npm run typecheck` dentro de `mobile/`; `npm run doctor` quando dependências/configuração exigirem |
+| Banco ou integração | Contrato e comportamento afetado, com mocks ou ambiente autorizado e preflight antes de qualquer escrita |
+| Instruções ou documentação sem consumo em runtime | Revisar referências, consistência e `git diff --check`; não executar build ou banco sem necessidade |
+| Documento consumido em runtime | Conferir consumidores e executar testes correspondentes |
 
----
+`npm run validate` executa lint e typecheck. A configuração atual do Next.js usa `typescript.ignoreBuildErrors: true`: **build aprovado não substitui checagem de tipos**.
 
-# 2. Mandatory engineering cycle
+Confira os scripts antes de executá-los: fixtures, reparos, backfills, smoke tests e testes de integração podem escrever no banco ou afetar serviços externos. `--dry-run` no nome não dispensa inspeção de efeitos. Não habilite `RUN_VORTEK_DEV_DB_TESTS=1` sem que o teste com escrita esteja no escopo e o destino DEV esteja comprovado. Não execute comandos de aplicação de dados como validação automática.
 
-For every technical request, follow this sequence.
+Compare resultados anteriores e posteriores quando houver falhas preexistentes. Relate falhas, testes ignorados e verificações não executadas; não suprima testes, aceite regressões silenciosamente ou declare toda a suíte aprovada por terem passado apenas os testes direcionados. Registre evidências na documentação da tarefa, sem congelar contagens de falhas neste arquivo.
 
-## Gate A — Understand the real scope
+## 6. Limpeza, segurança e preservação
 
-Before acting:
+- Antes de remover ou mover arquivos, procure imports, scripts, configuração, links, consumidores de runtime e testes. Ausência de import não prova que um arquivo é inútil.
+- Documentos em `docs/` podem ser entradas da aplicação: `src/services/assistant-documents.ts` depende de caminhos e títulos exatos. Alterar essas referências exige verificar o contrato e os testes; não renomeie nem remova seções como simples limpeza.
+- Preserve migrations, código web/mobile, documentação operacional e evidências necessárias aos gates e à recuperação. Não remova histórico apenas por ser antigo.
+- Artefatos regeneráveis de build, caches, logs e relatórios descartáveis devem ficar fora do Git, respeitando as exceções atuais de `.gitignore`. Remoções materiais precisam estar no escopo; informe o que foi removido e como recuperar, quando possível.
+- Nunca exponha ou versione passwords, tokens, cookies, chaves privadas, service-role, webhooks completos ou valores sensíveis de ambiente. Inspecione somente a configuração autorizada e necessária, sem reproduzir secrets em saída, código ou relatório.
+- Se encontrar um secret versionado, não o reproduza; informe a exposição e a necessidade de rotação. Remova-o da fonte ativa quando autorizado e pertinente; não reescreva histórico nem altere secrets de produção por conta própria.
 
-1. identify exactly what the user asked;
-2. identify the affected Vortek flow;
-3. avoid expanding the task beyond that flow;
-4. determine whether the user is asking for:
-   - explanation;
-   - investigation;
-   - plan;
-   - implementation;
-   - validation;
-   - Git operation;
-   - deployment.
+## 7. Git, homologação e release
 
-Do not turn a focused task into a broad audit or refactor.
+Use o repositório local existente. Não crie clones auxiliares, worktrees ou checkouts paralelos sem pedido explícito ou sem demonstrar que o diretório atual é inutilizável.
 
-If the user already asked to fix or implement something, do not stop after diagnosis to ask whether you should implement. Investigate first, then continue with the requested implementation when safe.
+- Não descarte nem sobrescreva alterações alheias. Stage e commit somente quando solicitados e somente dos arquivos da tarefa; push exige solicitação própria ou inclusão explícita no pedido.
+- Não use reset/checkout destrutivo, reescrita de histórico ou force push sem necessidade e autorização explícita.
+- Não publique trabalho alheio apenas para obter uma árvore limpa.
+- `npm run sync:main` não é o fluxo deste ambiente DEV; não troque para `main` para satisfazer o script.
 
----
+### Modelo de branches — decisão permanente
 
-## Gate B — Gather local evidence
+- `main`: código legado do Vortek atualmente em produção. Deve permanecer preservada e independente durante o desenvolvimento e a primeira virada do Bentevi.
+- `dev`: fonte integrada da nova versão Bentevi e do ambiente de homologação.
+- `bentevi-prod`: nome canônico da futura branch produtiva do Bentevi. Ela ainda não existe e só poderá ser criada, mediante autorização específica de release, apontando diretamente para o SHA exato de `dev` aprovado nos gates.
 
-Before forming a technical conclusion:
+A futura `bentevi-prod` não nasce de merge com `main`, não recebe o diff entre as duas branches e não inclui código legado por ancestralidade. Comparações com `main` servem somente para auditoria comportamental e de schema. A promoção deve revisar o snapshot de `dev` por si mesmo e comprovar que regras produtivas essenciais receberam um destino explícito no Bentevi.
 
-1. inspect the current repository;
-2. read the files directly related to the request;
-3. trace callers and consumers when necessary;
-4. inspect relevant:
-   - routes;
-   - services;
-   - components;
-   - hooks;
-   - types;
-   - schemas;
-   - migrations;
-   - tests;
-   - jobs;
-   - workers;
-   - webhooks;
-   - scripts;
-   - configuration;
-   - logs, when available;
-5. confirm dependency/runtime versions from the repository when the answer depends on versions.
+Fluxo de publicação deste projeto: **código validado em `dev` → commit/push autorizados → deploy no serviço de homologação → conferência do resultado**.
 
-Use the current code as evidence of **how Vortek behaves now**.
+Para deploy solicitado, siga o procedimento Easypanel e use `npm run deploy:easypanel` com configuração autorizada. Confirme branch `dev`, commits pretendidos disponíveis no remoto, destino `vortek-erp-dev` e `EASYPANEL_DEPLOY_EXPECTED_BRANCH=dev`. O script assume `main` na ausência dessa configuração; esse padrão não autoriza produção. Não use `--skip-git-check` para contornar verificações.
 
-Do not rely on old architecture descriptions when current code proves otherwise.
+O webhook vem da configuração privada, nunca de documentação ou código versionado. Não edite arquivos dentro do container nem use deploy direto por Docker como procedimento normal. Aceite HTTP do webhook não comprova build, implantação ou validação funcional; confira o resultado no nível aplicável.
 
-Do not read the entire repository without reason. Investigate only as far as necessary to understand the affected flow and its real dependencies.
+Preparar release significa fixar o SHA candidato de `dev`, levantar testes, delta mínimo de schema, variáveis sem valores, gates, riscos e recuperação. Não significa criar/pushar `bentevi-prod`, aplicar migrations ou apontar o serviço produtivo. Essas ações pertencem a uma tarefa de release própria e explicitamente autorizada; o Supabase de produção permanece somente leitura aqui.
 
----
+No corte autorizado, preserve `main` sem alterações e crie `bentevi-prod` diretamente no SHA aprovado de `dev`. Só então o serviço produtivo poderá ser reconfigurado para essa branch. Não presuma que voltar o serviço para `main` seja rollback suficiente: compatibilidade de schema, dados e efeitos externos precisa de plano próprio.
 
-## Gate C — Consult official documentation
+## 8. Skills e comunicação
 
-For every external technology, platform, API, library, framework, CLI, or service involved:
+`AGENTS.md` é a fonte central das restrições do projeto. `.rules` e skills devem encaminhar a ele, sem manter mapas de ambiente conflitantes.
 
-1. identify the exact product and feature involved;
-2. confirm the version used by Vortek when version matters;
-3. consult the current official documentation;
-4. read the documentation directly related to the exact behavior, endpoint, method, contract, error, configuration, or lifecycle involved;
-5. compare the official contract with the current Vortek implementation.
+- `vortek-dev-implementation`: implementação de uma ação DEV e validação proporcional.
+- `vortek-dev-release`: preparação de promoção, sem execução em produção.
+- `supabase-postgres-best-practices`: apoio especializado quando pertinente; não altera o modelo self-hosted nem autoriza operações.
 
-**Finding the documentation homepage is not enough. Read the relevant documentation.**
+Use ferramentas disponíveis e equivalentes seguros, sem criar infraestrutura auxiliar por conveniência. Skills herdadas ou instruções históricas não autorizam escritas em produção.
 
-Do not say or imply that documentation was consulted if it was not.
-
-Official documentation is the primary source.
-
-If official documentation does not answer the question:
-
-1. say so briefly;
-2. prefer the provider's official SDK source, official GitHub repository, changelog, release notes, or API schema;
-3. use a trustworthy secondary source only when still necessary;
-4. clearly separate verified fact from inference.
-
-Never present a hypothesis or inference as a confirmed fact.
-
----
-
-## Gate D — Find the root cause
-
-For bugs or unexpected behavior, determine:
-
-**Expected behavior → actual behavior → exact divergence point → root cause.**
-
-Trace the complete relevant flow when applicable:
-
-`input → auth → route → business rule → database → async processing → external integration → webhook/callback → persistence → UI`
-
-Check, when relevant:
-
-- origin of the data;
-- business rules;
-- state transitions;
-- filters;
-- permissions;
-- authentication;
-- authorization;
-- RLS;
-- database constraints;
-- async ordering;
-- retries;
-- idempotency;
-- concurrency;
-- race conditions;
-- cache;
-- stale data;
-- external API contracts;
-- token expiration;
-- pagination;
-- rate limits;
-- silent failures;
-- incomplete error handling;
-- duplicate processing.
-
-Before implementing, be able to point to concrete evidence supporting the diagnosis.
-
-For complex problems, maintain a small set of hypotheses and eliminate them with evidence. Do not expose hidden chain-of-thought; report only conclusions, evidence, and unresolved uncertainty.
-
----
-
-## Gate E — Design the smallest correct fix
-
-Before creating anything new, ask:
-
-**Can this be solved by correcting, removing, consolidating, or reusing something that already exists?**
-
-Prefer, in this order:
-
-1. correct an existing rule or flow;
-2. remove incorrect or unnecessary behavior;
-3. reuse an existing implementation;
-4. consolidate duplicated behavior;
-5. simplify an existing implementation;
-6. only then add something new.
-
-If two solutions solve the problem correctly, prefer the one with:
-
-- fewer concepts;
-- fewer files;
-- fewer states;
-- fewer dependencies;
-- fewer network calls;
-- fewer moving parts;
-- less duplicated data;
-- less operational burden.
-
-Do not add architecture for hypothetical future needs.
-
-Do not create a generic abstraction for one isolated use case unless it solves a proven existing problem.
-
-Do not introduce a second source of truth when one source can own the data.
-
----
-
-## Gate F — Implement only what is necessary
-
-When implementation was requested:
-
-1. change only the responsible area;
-2. preserve established Vortek patterns unless they are part of the proven problem;
-3. do not silently change business rules;
-4. do not mix cosmetic refactors with functional fixes;
-5. do not modify unrelated areas merely because they could be improved;
-6. do not add fallbacks "just in case";
-7. do not suppress errors instead of fixing their cause;
-8. do not use arbitrary delays, polling, retries, or cleanup jobs as a substitute for fixing deterministic logic.
-
-A workaround is allowed only when:
-
-- the real cause is outside Vortek's control, or cannot safely be fixed now;
-- the workaround is operationally necessary;
-- its temporary nature is explicit;
-- it does not create a hidden parallel architecture.
-
-When a permanent root fix is available and safe, use it instead.
-
----
-
-## Gate G — Validate the affected behavior
-
-After a change, run the smallest meaningful validation that proves the affected behavior.
-
-Use repository scripts and existing tests whenever possible.
-
-Current root project includes:
-
-- `npm run typecheck`
-- `npm run lint`
-- `npm run validate`
-- `npm run build`
-- targeted `npm run test:*` scripts
-
-Current mobile project includes:
-
-- `npm run typecheck`
-- `npm run doctor`
-
-Choose validation based on the changed area.
-
-Examples:
-
-- type-only change → typecheck may be sufficient;
-- logic bug with an existing test area → run the targeted test;
-- build-sensitive framework/config change → build;
-- mobile dependency/config change → mobile typecheck and/or doctor;
-- database change → verify schema/behavior safely;
-- integration change → validate the relevant contract or safe test path.
-
-Do not run destructive operations merely to "validate".
-
-If validation cannot be executed, state exactly what was not validated and why.
-
----
-
-## Gate H — Report concisely
-
-For a bug fix, normally report only:
-
-1. **cause**;
-2. **evidence**;
-3. **change**;
-4. **validation executed**;
-5. **remaining risk**, only if relevant.
-
-For a technical question, answer the conclusion first and include only the evidence necessary to support it.
-
-Do not dump the investigation process unless the user asks for it.
-
----
-
-# 3. Root-cause rule
-
-The objective is not to make the visible error disappear.
-
-The objective is to make the underlying Vortek behavior correct.
-
-Forbidden as default fixes when the actual cause can be fixed:
-
-- catching and ignoring an error;
-- retrying an invalid operation;
-- adding arbitrary `setTimeout` or delay;
-- refreshing the page to hide stale state;
-- periodically repairing data that is being written incorrectly;
-- duplicating data to avoid fixing ownership;
-- adding a second endpoint around a broken endpoint;
-- keeping both old and new flows "for safety";
-- adding a fallback provider without a proven availability requirement;
-- adding a cron to repair a deterministic state-transition bug;
-- adding client-side compensation for incorrect backend state.
-
-If a symptom-level mitigation is temporarily necessary, label it as mitigation and continue to identify the root cause whenever that root cause is controllable by Vortek.
-
----
-
-# 4. Simplicity rule
-
-Vortek should remain easy to understand and hard to break.
-
-Before adding any of the following:
-
-- file;
-- helper;
-- hook;
-- service;
-- wrapper;
-- abstraction;
-- endpoint;
-- table;
-- column duplicating existing data;
-- queue;
-- worker;
-- cron;
-- cache;
-- retry layer;
-- dependency;
-- script;
-- deployment path;
-
-first search for the existing mechanism that should own the behavior.
-
-**Removal, consolidation, and reuse are preferred to addition.**
-
-Do not over-engineer.
-
-Do not refactor for aesthetics.
-
-Do not introduce patterns only because they are fashionable or common in other projects.
-
-A pattern is justified only when it solves a real Vortek problem.
-
----
-
-# 5. One-solution rule
-
-When one solution is clearly best, recommend and implement that solution.
-
-Do not present multiple alternatives merely to appear thorough.
-
-Only present alternatives when there is a real unresolved tradeoff that materially affects the user's decision.
-
-Do not add optional complexity without a concrete requirement.
-
----
-
-# 6. Scope control
-
-Do only what was requested.
-
-If you find another issue outside the task:
-
-- do not modify it automatically;
-- mention it briefly only if it is important, dangerous, or directly affects the requested work.
-
-Do not fix unrelated bugs merely because they are easy.
-
-Do not broaden a bug fix into a redesign.
-
-Do not broaden a question into an audit.
-
-Do not change schema, business rules, API contracts, or public behavior without evidence that the requested task requires it.
-
----
-
-# 7. Current Vortek architecture
-
-Treat this section as orientation, **not as a permanent version source**.
-
-Before any version-sensitive decision, read the current `package.json`, lockfile, configuration, and relevant code.
-
-## Web application
-
-The root application currently uses the Vortek web stack centered on:
-
-- Next.js App Router;
-- React;
-- TypeScript;
-- Ant Design;
-- Supabase;
-- Zod.
-
-Do not assume Axios or TanStack Query are part of the root web architecture. Verify current dependencies before introducing or using them.
-
-Prefer existing project patterns over adding a new client/data layer.
-
-## Mobile application
-
-The `mobile/` application is a separate Expo/React Native application and currently uses, among other project dependencies:
-
-- Expo;
-- React Native;
-- TypeScript;
-- TanStack Query;
-- Supabase;
-- Zod.
-
-Do not apply web-only architectural assumptions to mobile.
-
-Do not apply mobile dependencies or patterns to the web app unless there is a proven reason.
-
----
-
-# 8. Database and Supabase
-
-Vortek uses **self-hosted/local Supabase**, not Supabase Cloud as its operational project environment.
-
-This project-specific rule overrides generic skills or documentation examples that assume Supabase Cloud project setup.
-
-Do not ask for:
-
-- Supabase Cloud project refs;
-- Supabase Cloud dashboard access;
-- Supabase Cloud personal access tokens;
-- Supabase Cloud MCP authentication
-
-as a prerequisite for operating the Vortek self-hosted environment.
-
-For a Supabase/database task:
-
-1. inspect current Vortek schema and migrations;
-2. inspect code that reads and writes the affected data;
-3. inspect RLS, grants, functions, triggers, indexes, and constraints when relevant;
-4. consult current official Supabase/PostgreSQL documentation for the exact feature involved;
-5. verify the self-hosted environment before assuming cloud behavior.
-
-## Environment identity — non-negotiable
-
-For every database or Supabase operation in this `vortek-dev` worktree, the environments are:
-
-### Production — read only
-
-- `192.168.1.160` is **PRODUCTION** for database/Supabase purposes.
-- Access to the Supabase/PostgreSQL stack on `192.168.1.160` from this worktree is restricted to necessary **READ ONLY** diagnostics.
-- Never execute migrations, DDL, DML, RPC/function changes, grants, secret changes, configuration changes, administrative writes, test writes, or any other mutation on `192.168.1.160`.
-- A container name, Docker label, directory, DNS name, endpoint, application environment variable, or service name containing `dev` or `supabase-dev` on `192.168.1.160` does **not** change its classification as production and does **not** authorize writes.
-- The homologation web service may run on the Easypanel host `192.168.1.160`; this does not make the Supabase/PostgreSQL stack on that host a development database.
-- If the user requests an urgent production correction while working in this directory, stop and state that it must be executed from the dedicated `vortek-prod` workspace.
-
-### Development and homologation — writable
-
-- `192.168.1.162` is the **only** `supabase-dev` authorized for development/homologation writes.
-- Apply migrations, DDL, DML, test data, function/RPC changes, grants, configuration changes, and every other database mutation only to `192.168.1.162`.
-- Do not infer the target environment from a public URL, container location, label, hostname, runtime variable, or previously opened connection. Confirm the network destination itself.
-
-### Mandatory preflight before every database write
-
-Before opening a writable transaction or executing any mutating command:
-
-1. resolve and display the actual destination host without printing credentials;
-2. confirm that the destination is exactly `192.168.1.162`;
-3. confirm that the environment is the independent `supabase-dev`;
-4. inspect the migration history and current affected schema on that same destination;
-5. rehearse the migration with `ROLLBACK` when applicable;
-6. stop immediately if the destination is `192.168.1.160`, differs from `192.168.1.162`, or remains ambiguous.
-
-Never treat indirect runtime evidence as authorization to override this environment map.
-
-Before asking the user for a missing Supabase credential, first inspect the authorized local project/server configuration when access is available.
-
-Never print secret values discovered in `.env`, server configuration, logs, or command output.
-
-For destructive database changes, consider:
-
-- existing data;
-- compatibility;
-- migration path;
-- backup;
-- rollback;
-- dry-run or preview;
-- reprocessing requirements.
-
-Do not create duplicate persistent fields merely to avoid correcting the real source of truth.
-
----
-
-# 9. External integrations
-
-Never guess external API behavior.
-
-For integrations such as:
-
-- Mercado Livre;
-- Mercado Pago;
-- DSLite;
-- Brasil NFe;
-- WAHA / WhatsApp;
-- e-mail providers;
-- notification providers;
-- GitHub;
-- Easypanel;
-- Supabase;
-- any SDK or external API;
-
-verify the exact official contract involved.
-
-Check as relevant:
-
-- authentication;
-- request contract;
-- response contract;
-- documented states/statuses;
-- errors;
-- retries;
-- rate limits;
-- pagination;
-- idempotency;
-- token expiration;
-- webhook delivery;
-- ordering;
-- duplicate delivery;
-- side effects.
-
-Do not implement behavior the official API does not support.
-
----
-
-# 10. Mercado Livre special rule
-
-Before creating, updating, repairing, validating, or diagnosing a Mercado Livre listing, read:
-
-`docs/mercado-livre-publicacao-operacional.md`
-
-This is mandatory.
-
-Also consult the current official Mercado Livre documentation relevant to the exact operation.
-
-Do not invent product specifications, attributes, category behavior, status behavior, image requirements, shipping behavior, or API contracts.
-
----
-
-# 11. Async flows
-
-For queues, jobs, workers, cron, synchronization, webhooks, callbacks, and background processing, always verify:
-
-- can it run twice?
-- can events arrive out of order?
-- can it fail halfway?
-- is retry safe?
-- is the operation idempotent?
-- is concurrency controlled?
-- are failures observable?
-- can it be safely reprocessed?
-- can stale state overwrite newer state?
-
-A flow is not reliable merely because it succeeds on the happy path.
-
-Prefer correcting event ownership/state transitions over adding compensating background repair.
-
----
-
-# 12. Performance
-
-Do not optimize without evidence.
-
-First identify the actual source of cost or latency.
-
-Check:
-
-- query count;
-- external-call count;
-- repeated processing;
-- N+1 patterns;
-- pagination;
-- unnecessary data loading;
-- large client-side processing;
-- sequential work that is safely independent;
-- missing indexes;
-- repeated network fetches.
-
-Prefer eliminating unnecessary work before adding cache.
-
-Do not add caching merely as a workaround for an inefficient or incorrect flow.
-
----
-
-# 13. Security
-
-Security and data integrity outrank convenience and aesthetic cleanup.
-
-Never expose or commit:
-
-- passwords;
-- tokens;
-- cookies;
-- API keys;
-- webhook secrets;
-- private keys;
-- service-role credentials;
-- database passwords;
-- SSH secrets.
-
-You may inspect authorized secret configuration when necessary for the task, but never reproduce secret values in user-facing output or source code.
-
-If a secret appears to be versioned:
-
-1. do not repeat it;
-2. report the exposure;
-3. remove it from active source/config where appropriate;
-4. recommend rotation;
-5. consider repository history if relevant.
-
-Check authentication, authorization, permissions, and RLS when they are part of the affected flow.
-
----
-
-# 14. Git working rules
-
-Use the existing local Vortek project folder.
-
-Do not create:
-
-- helper clones;
-- temporary repositories;
-- alternate worktrees;
-- side checkouts
-
-unless the user explicitly requests one or the existing project folder is unusable.
-
-Before editing project files, inspect the working tree state.
-
-**Preserve pre-existing user changes.**
-
-Do not:
-
-- overwrite unrelated local modifications;
-- discard unrelated changes;
-- stage unrelated changes;
-- commit unrelated changes;
-- push unrelated changes
-
-without explicit user instruction.
-
-Stage and commit the files belonging to the requested task.
-
-Do not use destructive Git operations such as force reset, force checkout, history rewriting, or force push without explicit need and user authorization.
-
-If paths contain spaces, parentheses, or shell metacharacters, quote them correctly.
-
-Use `rtk` when it is available and provides a correct equivalent, because it can reduce command-output noise. `rtk` is a convenience, not a reason to block or complicate the task.
-
----
-
-# 15. Deployment
-
-Normal Vortek deployment path:
-
-`local project → validated code → GitHub main → Easypanel deployment`
-
-Never edit application files directly inside Easypanel as a normal deployment method.
-
-Use the repository deployment script and its configured environment:
-
-`npm run deploy:easypanel`
-
-The deploy webhook URL must come from authorized environment configuration such as `EASYPANEL_DEPLOY_WEBHOOK_URL`.
-
-**Never hardcode the deploy webhook URL or secret in `AGENTS.md`, source code, or committed configuration.**
-
-Do not deploy unless deployment was requested or clearly included in the current task.
-
-Before deployment, ensure the code intended for deployment is committed and available on the expected Git branch.
-
-Do not publish unrelated local work merely to obtain a clean working tree.
-
----
-
-# 16. Tools and skills
-
-Tools and skills are implementation aids, not sources of truth.
-
-Use the simplest available tools that let you:
-
-- read/search the repository;
-- inspect Git state;
-- run validation;
-- inspect logs;
-- access official documentation;
-- interact safely with authorized infrastructure.
-
-If a tool is unavailable, use the simplest safe equivalent.
-
-Do not build workaround machinery merely because a preferred tool is missing.
-
-## Skills
-
-A skill may provide specialized workflow knowledge.
-
-A skill must not override:
-
-- this `AGENTS.md`;
-- current Vortek code;
-- current Vortek infrastructure;
-- task-specific Vortek documentation;
-- verified official API behavior.
-
-Generic skills often contain generic assumptions. Verify those assumptions against Vortek before following them.
-
-In particular, generic Supabase skills must not change the project's self-hosted Supabase model into a Supabase Cloud workflow.
-
-Any skill or cached instruction that identifies `192.168.1.160` as the writable Vortek Supabase environment is stale for this worktree. `AGENTS.md` and the explicit environment map in section 8 take precedence: `.160` is production/read-only and `.162` is the only writable `supabase-dev`.
-
-Caveman or other response-compression skills are not required. Follow the communication rules in this file directly.
-
----
-
-# 17. Communication with the user
-
-Default language: **Brazilian Portuguese**.
-
-Be technical internally and simple externally.
-
-Every response should be:
-
-- direct;
-- short;
-- precise;
-- evidence-based;
-- focused on the requested task.
-
-Start with the conclusion.
-
-Do not give a long explanation followed by a short conclusion.
-
-Do not give an architecture lesson unless requested.
-
-Do not use unnecessary jargon.
-
-If a technical term is necessary, explain it in one short sentence when needed.
-
-Do not repeat the same conclusion in multiple sections.
-
-Do not list many alternatives when one solution is clearly better.
-
-When uncertainty remains, state exactly what is confirmed and what is not.
-
-Do not expose internal chain-of-thought. Provide evidence and conclusions instead.
-
----
-
-# 18. Forbidden behaviors
-
-The following are prohibited:
-
-- answering external API behavior from memory;
-- saying "according to the docs" without reading the relevant official docs;
-- implementing before understanding the affected flow;
-- trial-and-error coding without evidence;
-- treating a symptom when the root cause can be fixed;
-- hiding an error instead of correcting it;
-- adding retries as a default fix;
-- adding arbitrary delays as a default fix;
-- adding a cron/job to compensate for deterministic broken logic;
-- creating duplicate sources of truth;
-- creating unnecessary fallback flows;
-- keeping old and new implementations in parallel without a real compatibility requirement;
-- broad refactors for narrow bugs;
-- changing business rules implicitly;
-- adding new dependencies when existing capabilities solve the problem;
-- fixing unrelated issues without authorization;
-- editing production files directly as a shortcut;
-- exposing secrets;
-- claiming tests or operations that were not executed.
-
----
-
-# 19. Final self-check before every technical conclusion
-
-Before giving a final technical answer or completing an implementation, verify:
-
-- [ ] Did I inspect the current Vortek files relevant to this request?
-- [ ] Did I confirm current versions/configuration when the answer depends on them?
-- [ ] Did I identify every external service or library whose behavior matters?
-- [ ] Did I read the relevant current official documentation for those external dependencies?
-- [ ] Is my conclusion supported by code, logs, contracts, or other concrete evidence?
-- [ ] For a bug, did I identify the root cause rather than only the symptom?
-- [ ] Is the proposed/implemented solution the smallest correct solution?
-- [ ] Did I avoid unnecessary abstractions, fallbacks, parallel flows, retries, services, and dependencies?
-- [ ] Did I stay inside the requested scope?
-- [ ] Did I preserve unrelated user work?
-- [ ] Did I validate the affected behavior when implementation occurred?
-- [ ] Am I accurately stating what was and was not executed?
-- [ ] Did I avoid exposing any secret?
-
-If a mandatory item is not satisfied, do not present the missing conclusion as confirmed fact.
-
----
-
-# 20. Final principle
-
-The goal is not the most sophisticated architecture.
-
-The goal is the **simplest architecture that solves Vortek's real problem correctly**.
-
-Investigate deeply.
-
-Verify external behavior in official sources.
-
-Fix the cause.
-
-Change the minimum necessary.
-
-Validate the result.
-
-Explain simply.
-
-Stop when the requested task is complete.
-
-<!-- BEGIN:nextjs-agent-rules -->
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-<!-- END:nextjs-agent-rules -->
+Responda em português brasileiro, com conclusão primeiro, evidências necessárias, mudanças, validações realmente executadas e pendências relevantes. Diferencie fatos de hipóteses e não exponha raciocínio interno. Nunca afirme que testou, publicou, migrou ou verificou algo que não executou. Encerre ao cumprir o escopo solicitado.

@@ -55,7 +55,7 @@ A versão de homologação **não deve apontar para o Supabase de produção** e
 ### Produção
 
 ```text
-GitHub main
+GitHub main (Vortek legado atual; preservado)
     ↓
 Easypanel: serviço vortek-erp
     ↓
@@ -70,6 +70,8 @@ DSLite real
 WAHA real
 e-mail/push reais
 ```
+
+Na virada autorizada do Bentevi, o serviço produtivo deixará de usar `main` e passará a usar `bentevi-prod`, criada diretamente no SHA aprovado de `dev`. Não haverá merge, rebase ou cherry-pick em massa com o legado.
 
 ### Homologação
 
@@ -193,7 +195,7 @@ O Easypanel permite selecionar uma branch por serviço GitHub/Git. Portanto, os 
 
 ### Produção
 
-Recomenda-se manter o deploy de produção manual/controlado após merge para `main`.
+O sistema legado permanece em `main` durante o desenvolvimento. A produção Bentevi será manual/controlada a partir da futura `bentevi-prod`, criada diretamente do snapshot aprovado de `dev` somente no release autorizado. Preservar `main`; não integrar os históricos.
 
 ---
 
@@ -412,15 +414,15 @@ Não criar uma infraestrutura de IAM separada apenas para staging.
 
 ### Branch `main`
 
-Representa somente produção.
+Representa o Vortek legado atualmente em produção e não é a base de integração do Bentevi.
 
 Regras:
 
 - proteger contra force push;
 - evitar push direto;
-- mudanças entram por merge da `dev`;
-- produção só é deployada após homologação;
-- nunca usar `main` para experimentos.
+- não receber merge, rebase ou cherry-pick em massa de `dev`;
+- servir somente como fonte de leitura para auditoria comportamental e preservação do legado;
+- implementar nativamente em `dev`, em ação própria, qualquer comportamento produtivo essencial que ainda seja necessário no Bentevi.
 
 ### Branch `dev`
 
@@ -448,23 +450,27 @@ Como existe apenas um executor principal e o plano já obriga uma mudança por v
 
 Se uma alteração específica ficar grande ou experimental, a IA Dev pode criar uma branch curta a partir de `dev` e só integrá-la depois de validada.
 
+### Branch `bentevi-prod`
+
+É o nome canônico da futura branch produtiva do Bentevi. Ainda não existe e só pode ser criada no release autorizado, apontando diretamente para o SHA candidato aprovado de `dev`. Depois da virada, `dev` continua sendo a linha de desenvolvimento e `main` permanece como legado preservado.
+
 ### Promoção
 
 ```text
 dev validada
 ↓
-PR dev → main
+fixar e aprovar o SHA candidato
 ↓
-confirmar diff
+auditar comportamentos essenciais de main somente por leitura
 ↓
-confirmar migrations
+confirmar o delta mínimo de schema e variáveis
 ↓
-confirmar variáveis necessárias
+criar bentevi-prod diretamente no SHA aprovado
 ↓
-merge
-↓
-deploy produção
+apontar o serviço produtivo para bentevi-prod e executar a ativação controlada
 ```
+
+A ancestralidade e a diferença de commits entre `main` e `dev` são intencionais e não são critérios de prontidão. O conteúdo promovido é o snapshot aprovado de `dev`, não um diff destinado a `main`.
 
 ---
 
@@ -519,7 +525,7 @@ Objetivo:
 
 ### Nível 3 — Produção
 
-Depois do merge:
+Depois da ativação autorizada do snapshot Bentevi:
 
 Executar somente smoke tests seguros:
 
@@ -1339,39 +1345,33 @@ sem consumidor → remover
 
 **Atualização de sequência após o deploy PUB-GATE, aprovada em 08/09/2026:** o recorte técnico do marco 1 está concluído para liberar Configurações iniciais (V2-15 operacional/D20 inicial). Aceite autenticado e prova externa de publicação/preço ficam pendentes no marco 6, sem novo produto de teste como pré-requisito do marco 2. Preparar/testar capacidade produtiva canônica no marco 5, preservando controles e testes automatizados; a transferência da prova não habilita produção nem encerra o gate integral.
 
-Nenhuma etapa inteira precisa esperar todas as outras para chegar à produção.
+Cada ação continua pequena e validada dentro de `dev`, mas a primeira substituição produtiva ocorre somente após os sete marcos do recorte Bentevi. Mudanças intermediárias não cruzam para o sistema legado.
 
-A regra é por mudança validada.
-
-Exemplo:
+Fluxo:
 
 ```text
-SEC-01 concluída
+ações concluídas em dev
 ↓
-validada staging
+homologação e marcos 1 a 5 aprovados
 ↓
-aprovada
+SHA candidato fixado e release autorizado
 ↓
-merge dev → main
+criar bentevi-prod diretamente do SHA aprovado
 ↓
-deploy produção
+ativação controlada e provas dos marcos 6 e 7
 ```
 
-Depois a `dev` continua da nova base.
-
-Isso evita manter por semanas uma branch `dev` muito diferente da produção.
+`main` permanece intacta como legado. `dev` e `bentevi-prod` continuam independentes; nenhuma reconciliação automática é realizada depois da virada.
 
 ### Regra recomendada
 
-Promover para produção em lotes pequenos e coerentes.
-
-Não acumular todo o Item 17 em um único merge final.
+Consolidar um snapshot coerente do recorte inicial aprovado. Capacidades explicitamente adiadas permanecem em `dev`; isso não autoriza omitir proteções necessárias aos fluxos ativados.
 
 ---
 
 ## 29. Procedimento de release
 
-Antes de PR `dev → main`:
+Antes de criar `bentevi-prod`:
 
 - [ ] branch dev atualizada;
 - [ ] testes direcionados verdes;
@@ -1379,17 +1379,21 @@ Antes de PR `dev → main`:
 - [ ] build se aplicável;
 - [ ] migrations aplicadas e testadas somente em staging;
 - [ ] staging funcional;
-- [ ] diff revisado;
+- [ ] SHA candidato e snapshot de `dev` revisados por si mesmos;
+- [ ] auditoria comportamental de `main` concluída sem exigir integração das branches;
+- [ ] `bentevi-prod` confirmada livre e planejada diretamente no SHA candidato;
 - [ ] nenhuma secret adicionada ao Git;
 - [ ] rollback conhecido;
 - [ ] variáveis de produção identificadas sem expor valores;
 - [ ] nenhuma mudança estranha fora do escopo.
 
-Depois do merge:
+Durante e depois da ativação autorizada:
 
 - [ ] backup quando a mudança exigir;
+- [ ] criar `bentevi-prod` diretamente no SHA aprovado, sem merge/rebase/cherry-pick com `main`;
+- [ ] preservar `main` sem alteração;
 - [ ] aplicar migration de produção quando aplicável;
-- [ ] deploy pelo caminho oficial Easypanel;
+- [ ] apontar o serviço produtivo para `bentevi-prod` e fazer deploy pelo caminho oficial Easypanel;
 - [ ] smoke test seguro;
 - [ ] verificar logs;
 - [ ] confirmar operação;
@@ -1520,8 +1524,9 @@ A IA Dev não deve:
 A estrutura recomendada é:
 
 ```text
-main = produção
-dev = homologação
+main = Vortek legado atualmente em produção e preservado
+dev = desenvolvimento/homologação da nova versão Bentevi
+bentevi-prod = futura produção Bentevi criada do SHA aprovado de dev
 ```
 
 mas com isolamento completo:

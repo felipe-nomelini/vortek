@@ -33,7 +33,7 @@ test('usa evento e mensagem neutros no fluxo compartilhado de etiqueta provisór
   assert.match(autoRoute, /allowed_fornecedores: \['97', '108', '133'\]/);
 });
 
-test('remove scripts operacionais exclusivos e preserva campanhas históricas coordenadas', () => {
+test('remove scripts exclusivos e campanhas encerradas sem retirar regras compartilhadas', () => {
   const removedScripts = [
     'apply-hayamax-audit-corrections.js',
     'apply-hayamax-cash-tourniquet.js',
@@ -44,26 +44,23 @@ test('remove scripts operacionais exclusivos e preserva campanhas históricas co
     'prepare-hayamax-listing-audit.js',
     'reconcile-hayamax-balance-2026-06-16.mjs',
     'repair-ml-kit-image-2026-08-03.js',
+    'apply-supplier-pricing-campaign.js',
+    'create-profitable-shelf-listings.js',
+    'run-ml-p0-audit.js',
   ];
 
   for (const script of removedScripts) {
     assert.equal(fs.existsSync(path.join(root, 'scripts', script)), false, script);
   }
 
-  const supplierCampaign = read('scripts/apply-supplier-pricing-campaign.js');
-  const profitableShelf = read('scripts/create-profitable-shelf-listings.js');
-  assert.doesNotMatch(supplierCampaign, /Hayamax|HAYAMAX|hayamax/);
-  assert.doesNotMatch(profitableShelf, /Hayamax|HAYAMAX|hayamax/);
-  assert.match(supplierCampaign, /bkr1-batteries/);
-  assert.match(supplierCampaign, /vanral-instruments/);
-  assert.match(supplierCampaign, /evolusom-cash-tourniquet/);
-  assert.equal(fs.existsSync(path.join(root, 'scripts/run-ml-p0-audit.js')), true);
-  assert.equal(fs.existsSync(path.join(root, 'reports/hayamax-cash-tourniquet')), true);
+  assert.equal(fs.existsSync(path.join(root, 'reports/hayamax-cash-tourniquet')), false);
 });
 
 test('mantém bloqueio operacional e documentação histórica', () => {
   const supplierPolicy = read('src/lib/dslite/supplier-policy.ts');
-  assert.match(supplierPolicy, /\['2', '134'\]/);
+  assert.doesNotMatch(supplierPolicy, /\['2', '134'\]/);
+  assert.match(supplierPolicy, /\.eq\('ativo', true\)/);
+  assert.match(supplierPolicy, /\.is\('dropshipping_retired_at', null\)/);
   assert.equal(
     fs.existsSync(
       path.join(

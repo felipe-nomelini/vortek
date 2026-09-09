@@ -188,6 +188,38 @@ Contrato obrigatório:
 
 O helper canônico para rotas web é `src/lib/ml/items-bulk.ts`. Scripts operacionais isolados devem preservar o mesmo contrato.
 
+## Runbook — Incidente OAuth Mercado Livre (`auth_fatal`)
+
+Consolidado do antigo `GUIDE.md` em 09/09/2026. Conferido com `getMLAuthDiagnostics`,
+os endpoints de saúde e o dispatcher atuais. Este procedimento é de recuperação;
+a limpeza do repositório não executa sincronizações nem reautenticações.
+
+### Sintomas e diagnóstico
+
+- Respostas `401 auth_fatal`, jobs em `failed_auth` ou integração desconectada.
+- Consultar `/api/ops/health` ou `/api/sync/cron-status`: `ml_auth.state = reauth_required`
+  ou `blocked_until` ativo identifica o bloqueio. `state = degraded` exige investigar
+  o erro de leitura/refresh antes de concluir que a reautenticação é necessária.
+- Conferir em `integracoes` do tipo `mercadolivre`: `conectado`, `last_refresh_at`,
+  `last_refresh_error` e `last_refresh_error_code`, sem reproduzir tokens.
+- Erros fatais incluem `invalid_grant`, `invalid_client`, `unauthorized_client` e
+  `unauthorized_application`. O dispatcher registra `skipped_auth_block` para
+  tarefas ML e `queue_skipped_auth_block` para a fila enquanto houver bloqueio.
+
+### Recuperação e aceite
+
+1. Reautenticar a integração no painel pelo fluxo OAuth connect/callback.
+2. Confirmar `conectado = true`, ausência de erro fatal e `ml_auth.state = ok`.
+3. Quando houver autorização para sincronizar nesse ambiente/conta, validar
+   `POST /api/sync/anuncios` e `POST /api/sync/pedidos` e acompanhar o scheduler.
+4. Encerrar após dois ciclos de cron sem novos `401 auth_fatal`, jobs concluindo
+   como `completo` e `ml_auth.blocked_until` nulo.
+
+Em desenvolvimento, aplicar as restrições de homologação: banco `.162` e conta
+de teste ou integração desabilitada. Recuperação de produção pertence ao workspace
+`vortek-prod` com autorização própria. Não publicar nem reprecificar anúncios como
+parte deste procedimento.
+
 ## Fontes oficiais
 
 - https://developers.mercadolivre.com.br/pt_br/pt_br/publicacao-de-produtos

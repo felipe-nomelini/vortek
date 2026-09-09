@@ -20,6 +20,8 @@
 
 **Estado atual após o gate de 05/09/2026:** `BNT-PARITY-GATE` concluído exclusivamente para a sequência DEV, com aceite explícito do responsável para encaminhar as lacunas de pricing à V2. `BNT-CFG-07` liberada para planejamento. A seção 8 registra a decisão vigente; as referências anteriores a gate pendente são históricas. Produção, ativação Evolusom, delta de migrations, continuidade dos experimentos e gate de autonomia não foram liberados.
 
+**Modelo de branches vigente desde 09/09/2026:** `main` é o sistema legado atualmente em produção e `dev` é a nova versão Bentevi independente. A divergência entre elas é intencional: este catálogo não prescreve merge, rebase, cherry-pick em massa ou convergência de históricos. Ele audita comportamentos produtivos essenciais; quando ainda aplicáveis, eles recebem implementação nativa em `dev`. A futura branch `bentevi-prod` será criada diretamente no SHA aprovado de `dev`, somente em release autorizado, mantendo `main` preservada.
+
 ---
 
 ## 1. Conclusão executiva

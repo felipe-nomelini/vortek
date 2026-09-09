@@ -48,16 +48,12 @@ test('transporte não permite contornar rotas para criar, reprecificar ou aplica
   }
 });
 
-test('scripts comerciais legados falham no primeiro comando, antes de ambiente/clientes', () => {
+test('scripts comerciais encerrados foram retirados e o bloqueio de execução permanece', () => {
   for (const name of ['create-ml-batch-from-manifest', 'prepare-ml-anuncio-batches', 'create-profitable-shelf-listings',
     'prepare-profitable-shelf-2', 'apply-supplier-pricing-campaign']) {
-    const source = fs.readFileSync(`scripts/${name}.js`, 'utf8');
-    const parsed = ts.createSourceFile(`${name}.js`, source, ts.ScriptTarget.Latest, true);
-    const first = parsed.statements[0].getText(parsed);
-    assert.match(first, /pricing-execution\.js.*assertPricingExecutionReady/);
-    // Executa só o primeiro comando isolado, nunca o script operacional.
-    assert.throws(() => new Function('require', first)(() => guard), /pricing_execution_not_ready/);
+    assert.equal(fs.existsSync(`scripts/${name}.js`), false, name);
   }
+  assert.throws(() => guard.assertPricingExecutionReady(), /pricing_execution_not_ready/);
 });
 
 test('sync de anúncios não possui mais recálculo/gravação de preço por frete', () => {

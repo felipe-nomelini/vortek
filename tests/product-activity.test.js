@@ -69,12 +69,3 @@ test('rota de custo alto processa ofertas e preserva produtos.ativo', () => {
     /isInternalProductMaintenanceRoute[\s\S]{0,160}apiKey === process\.env\.API_SECRET_KEY/,
   );
 });
-
-test('importador Panasonic não sobrescreve a atividade de produto existente', () => {
-  const source = read('scripts/import-panasonic-kits.js');
-
-  assert.doesNotMatch(
-    source,
-    /\.from\('produtos'\)\s*\.update\(\{\s*ativo:\s*canFulfillInOneDsliteItem/,
-  );
-});

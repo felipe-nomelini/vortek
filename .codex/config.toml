@@ -1,0 +1,25 @@
+[mcp_servers.mercadopago_dev]
+url = "https://mcp.mercadopago.com/mcp"
+# Desabilitado enquanto o OAuth do MCP beta do Mercado Pago for incompatível
+# com a validação de segurança do Codex. Reabilitar somente após
+# `codex mcp login mercadopago_dev` concluir com sucesso.
+enabled = false
+required = false
+enabled_tools = [
+  "search-documentation",
+  "quality_checklist",
+  "save_webhook",
+  "notifications_history_diagnostics",
+  "create_test_user",
+  "add_money_test_user",
+]
+default_tools_approval_mode = "writes"
+
+[mcp_servers.mercadopago_dev.tools.save_webhook]
+approval_mode = "prompt"
+
+[mcp_servers.mercadopago_dev.tools.create_test_user]
+approval_mode = "prompt"
+
+[mcp_servers.mercadopago_dev.tools.add_money_test_user]
+approval_mode = "prompt"
