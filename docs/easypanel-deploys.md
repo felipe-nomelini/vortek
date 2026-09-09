@@ -49,3 +49,13 @@ Use o webhook para deploy normal. Não use `docker build` + `docker service upda
 Deploy direto por Docker fica reservado para emergência e deve ser comunicado como deploy invisível no Easypanel.
 
 Serviços fora do Easypanel, como Supabase local e Cloudflare Tunnel, não aparecem no histórico do Easypanel.
+
+## Runtime do Assistente Bentevi
+
+Na conferência de 08/09/2026, `local/vortek-erp-dev` usa **Railpack 0.35.0**, não Nixpacks. A presença de `nixpacks.toml` no repositório não comprova que suas fases serão executadas pelo serviço.
+
+O Codex `0.153.4` é uma dependência de runtime fixa em `package.json`/lockfile, instalada pelo `npm ci` existente. `npm run start` disponibiliza `node_modules/.bin` no PATH do servidor e dos processos filhos. Não depende de instalação global ou mudança manual dentro do container. Após o deploy, confirmar o binário efetivamente incluído na imagem.
+
+Perfil e autenticação continuam fora da imagem: diretório persistente privado exclusivo `assistant-codex`, configuração canônica, workspace vazio e login oficial do titular. Instalar o executável não autentica a assinatura nem habilita o envio de dados. As pendências operacionais estão na [evidência AI-02](reestruturacao-vortek/evidencias/BNT-AI-02-validacao.md#pendencias-para-o-teste-de-felipe).
+
+Referências: [Railpack — Node/install](https://railpack.com/languages/node/#install) e [npm run — PATH das dependências](https://docs.npmjs.com/cli/v11/commands/npm-run/#description).

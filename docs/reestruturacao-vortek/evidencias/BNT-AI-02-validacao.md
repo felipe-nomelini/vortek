@@ -66,3 +66,15 @@ As skills de implementação DEV, Supabase/Postgres e documentação OpenAI orie
 HEAD preservado em `5c7f28a1a6132618c724078b040e6b1b6877ebf9`. Sem commit, push, deploy ou alteração de `AGENTS.md`. Mudanças preexistentes AI-00/AI-01 e de outras tarefas preservadas, sem staging.
 
 Rollback inicial: desabilitar `BENTEVI_ASSISTANT_ENABLED` e manter inferência bloqueada; reverter apenas alterações desta ação, preservando AI-01 e extrator de garantia. Não apagar tabelas com histórico real automaticamente. Se for necessário desfazer schema, usar nova migration autorizada somente no `.162`, após exportar/avaliar o histórico e ensaiar rollback. Credencial do perfil exclusivo deve ser desconectada pelo fluxo oficial; nunca removida junto à sessão de engenharia. Produção permanece fora do escopo.
+
+## Publicação autorizada — 08/09/2026
+
+O usuário autorizou push/deploy para teste. Commits `c788f538` (conhecimento), `a30e2600` (interface/histórico) e `68f4ebab` (contrato/evidências) enviados somente a `origin/dev`. O primeiro deploy terminou `done` no Easypanel, ação `cmttd489b000b07o9g3ya5ij7`, às 21:33:34 BRT.
+
+**Divergência de empacotamento confirmada:** o serviço usa Railpack 0.35.0; a fase Codex preparada no Nixpacks não foi executada. A primeira imagem contém os documentos, mas não o binário. Corrigido no repositório com `@openai/codex=0.153.4` como dependência de runtime e lockfile, removendo a fase global duplicada do Nixpacks. Regressão reproduziu a ausência antes da correção. Depois passaram **162 testes**, com dois LIVE pulados, `npm run validate`, `npm run build` e `node_modules/.bin/codex --version`. A publicação da correção será registrada abaixo quando confirmada.
+
+**Ativação ainda pendente:** o serviço DEV não tem variáveis `BENTEVI_ASSISTANT_*`, perfil persistente nem login exclusivo; `SUPABASE_SERVICE_URL` usa endereço indireto recusado pelo guard do Assistente. O webhook foi comparado com o token do serviço exato `local/vortek-erp-dev`, branch `dev`, autoDeploy desligado. O acesso de deploy não equivale a acesso administrativo: a configuração local do painel não contém API token e a sessão encontrada estava expirada. Nenhuma credencial foi criada, nenhuma sessão foi forjada/renovada diretamente e nenhuma configuração do painel foi alterada. Solicitado ao usuário login no Easypanel para prosseguir pela interface/API oficial.
+
+Para ativar **somente o serviço web DEV**, preservar as demais variáveis e configurar `SUPABASE_SERVICE_URL=http://192.168.1.162:8000`, `BENTEVI_ASSISTANT_ENABLED=1`, UUID do titular DEV em `BENTEVI_ASSISTANT_PILOT_USER_ID`, caminho privado persistente terminado em `assistant-codex` em `BENTEVI_ASSISTANT_CODEX_HOME` e `BENTEVI_ASSISTANT_DATA_APPROVED=0`. O último permanece bloqueado até confirmar os controles da conta; habilitar interface não autoriza inferência. Não mudar URL pública de Auth/cookies nem credenciais Supabase. Reaplicar o serviço pelo deploy oficial depois de configurar o perfil/mount.
+
+Esta subseção complementa a fotografia local acima; não encerra AI-02, AI-GATE ou marco 3. Publicação de código não é teste conversacional da assinatura.

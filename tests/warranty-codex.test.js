@@ -1,5 +1,12 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+test('Codex runtime é uma dependência fixa, instalada pelo npm ci também no Railpack', () => {
+  const manifest = require('../package.json');
+  const lock = require('../package-lock.json');
+  assert.equal(manifest.dependencies['@openai/codex'], '0.153.4');
+  assert.equal(lock.packages['node_modules/@openai/codex'].version, '0.153.4');
+  assert.equal(lock.packages['node_modules/@openai/codex'].bin.codex, 'bin/codex.js');
+});
 const { EventEmitter } = require('node:events');
 const { PassThrough } = require('node:stream');
 const load = require('./helpers/load-integration-module');
