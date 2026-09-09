@@ -43,7 +43,8 @@ test('dashboard compara métricas reais e preserva o acesso ao Drawer de Vendas'
 });
 
 test('resumo usa a venda operacional, períodos equivalentes e exclui cancelamentos', () => {
-  const route = source(dashboardRoutePath);
+  assert.match(source(dashboardRoutePath), /from '@\/services\/dashboard-read-model'/);
+  const route = source(path.join(__dirname, '../src/services/dashboard-read-model.ts'));
 
   assert.match(route, /type DashboardPreset = "today" \| "7d" \| "30d"/);
   assert.match(route, /previousStart = new Date\(currentStart\.getTime\(\) - days \* DAY_MS\)/);
@@ -59,9 +60,9 @@ test('resumo reutiliza filas operacionais e agrega produtos vendidos no período
   const route = source(dashboardRoutePath);
 
   assert.match(route, /enrichOrdersWithWhatsappStatus/);
-  assert.match(route, /matchesOrdersOperationalView\(row, "urgent"\)/);
-  assert.match(route, /matchesOrdersOperationalView\(row, "preparation"\)/);
-  assert.match(route, /matchesOrdersOperationalView\(row, "shipping"\)/);
+  assert.match(route, /matchesOrdersOperationalView\(row, "urgent", operationConfiguration\.delayedAfterMinutes\)/);
+  assert.match(route, /matchesOrdersOperationalView\(row, "preparation", operationConfiguration\.delayedAfterMinutes\)/);
+  assert.match(route, /matchesOrdersOperationalView\(row, "shipping", operationConfiguration\.delayedAfterMinutes\)/);
   assert.match(route, /from\("pedido_itens"\)/);
   assert.match(route, /valor_total_liquido/);
   assert.doesNotMatch(route, /from\("anuncios_ml"\)/);

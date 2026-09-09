@@ -32,11 +32,12 @@ export function clearanceEconomicDecision(result: EconomicResult, maxLossCents: 
 }
 
 type Client = SupabaseClient<Database>;
-export async function loadPricingClearances(client: Client, product: PricingProduct) {
+export async function loadPricingClearances(client: Client, product: PricingProduct, evaluatedPricing?: ProductPricing) {
   const [stock, clearances, protection, pricingMap] = await Promise.all([
     client.rpc('get_internal_clearance_stock', { p_product_id: product.id }),
     client.rpc('get_product_pricing_clearances', { p_product_id: product.id }),
-    loadPricingOverrides(client, product.id), loadProductPricing(client, [product]),
+    loadPricingOverrides(client, product.id), evaluatedPricing
+      ? Promise.resolve(new Map([[product.id, evaluatedPricing]])) : loadProductPricing(client, [product]),
   ]);
   if (stock.error || clearances.error) throw new Error('clearance_read_failed');
   const stockResult = z.object({ capacity: z.number().int().nonnegative(), fingerprint: z.string() }).parse(stock.data);

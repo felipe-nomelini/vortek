@@ -42,7 +42,8 @@ test('balance_account permanece somente para retomada histórica explícita', ()
 });
 
 test('preview e execução usam o mesmo resolvedor e a mesma oferta como fonte', () => {
-  const previewSource = read('src/app/api/pedidos/route.ts');
+  assert.match(read('src/app/api/pedidos/route.ts'), /from '@\/services\/order-read-projection'/);
+  const previewSource = read('src/services/order-read-projection.ts');
   const executionSource = read('src/app/api/dslite/pedido/route.ts');
 
   assert.match(previewSource, /prioridade,payment_mode/);
@@ -68,7 +69,7 @@ test('preview e execução usam o mesmo resolvedor e a mesma oferta como fonte',
 });
 
 test('preview não cria expectativa de pagamento sem fornecedor único', () => {
-  const previewSource = read('src/app/api/pedidos/route.ts');
+  const previewSource = read('src/services/order-read-projection.ts');
 
   assert.match(previewSource, /const paymentMode = singleSupplier && first\.fornecedorId/);
   assert.match(previewSource, /supplier_payment_mode: paymentMode/);

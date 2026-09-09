@@ -38,13 +38,13 @@ export async function createClient() {
   );
 }
 
-export function createServiceClient() {
+export function createServiceClient(options?: { fetch: typeof fetch }) {
   const serviceUrl = resolveSupabaseServiceUrl();
 
   return createSupabaseClient<Database>(
     serviceUrl,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { autoRefreshToken: false, persistSession: false } },
+    { auth: { autoRefreshToken: false, persistSession: false }, ...(options ? { global: options } : {}) },
   );
 }
 
