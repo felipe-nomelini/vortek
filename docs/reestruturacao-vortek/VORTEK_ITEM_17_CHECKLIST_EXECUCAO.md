@@ -74,41 +74,46 @@ Regras de uso:
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Auditoria comportamental contínua da produção legada | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Auditar `main` somente por leitura, sem integrar branches; ativação Evolusom, delta de schema, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
 | 11.2 | Política canônica de Pricing Bentevi V2 / M2M | V2-15 operacional publicado; D20 inicial aprovado, marco 2 encerrado | Escopos integrais abertos; prova externa e ME2 mantidos no marco 6 |
-| 11.3 | Assistente Bentevi — chat operacional | AI-00/01 concluídas; AI-02 implementada e validada localmente | Concluir login/runtime e publicação DEV autorizada + smoke antes do teste individual; sócio e gate integral separados |
+| 11.3 | Assistente Bentevi — chat operacional | Implementação técnica disponível; excluída do primeiro corte produtivo por decisão do responsável em 09/09/2026 | Manter bloqueado no runtime inicial; retomar homologação e gate em ação posterior |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 08/09/2026:** validar a resposta de vendas da **`BNT-AI-02 — Interface e histórico`**. Instalação, variáveis, login e acesso do piloto já funcionam. O primeiro smoke retornou `sem_dados` porque as amostras terminam em 31/08, fora dos sete dias consultados; isso não provou utilidade da resposta. Correção `0de3b139`, 85 testes direcionados e validate aprovados, publicação e smoke semântico aprovados. [Evidências](evidencias/BNT-AI-02-validacao.md). Não confundir HTTP 200 com precisão semântica. AI-GATE e liberação do sócio continuam pendentes.
+**Prioridade vigente — atualização de 09/09/2026:** preparar a entrada imediata do núcleo Bentevi com dados reais, Assistente bloqueado e criação/alteração de preços no Mercado Livre desabilitadas. A preparação usa o snapshot atual de `dev`, o serviço reservado `local/bentevi-prod` e a futura migração controlada `.160 → .162`. Homologação do Assistente, `BNT-AI-GATE` e capacidades comerciais adiadas permanecem pendentes sem bloquear este recorte restrito.
 
 <a id="bentevi-em-operacao"></a>
 
 ### Marco de lançamento — Bentevi em operação
 
-**Decisão aprovada em 08/09/2026:** separar a primeira operação desktop da conclusão integral do Item 17/Pricing V2/M2M. O Assistente permanece na primeira entrega. Esta seção é a fonte única do recorte de lançamento e substitui dependências anteriores que exigiam todas as evoluções antes de operar; não altera o cânon econômico nem declara funcionalidades prontas.
+**Decisão aprovada em 08/09/2026 e revisada pelo responsável em 09/09/2026:** separar a primeira operação desktop da conclusão integral do Item 17/Pricing V2/M2M. O primeiro corte contém apenas o núcleo operacional; Assistente, criação de anúncios e alteração de preços no Mercado Livre ficam bloqueados e serão retomados depois da entrada em produção. Esta seção é a fonte única do recorte de lançamento e substitui dependências anteriores que exigiam essas capacidades antes de operar; não altera o cânon econômico nem declara funcionalidades adiadas como prontas.
 
-**Atualização aprovada após o deploy PUB-GATE (08/09/2026):** avançar pelo recorte técnico já validado do marco 1 e transferir seu aceite autenticado/prova externa de publicação e preço ao marco 6. Risco aceito para sequência de desenvolvimento, não risco eliminado nem aprovação de produção: divergências ainda podem aparecer no primeiro uso real. A preparação de um novo produto de teste e a ampliação da homologação visual dessa ação deixam de ser pré-requisitos do marco 2. Testes automatizados continuam obrigatórios por mudança; nenhuma configuração, amostra protegida ou capacidade de execução foi alterada por esta decisão.
+**Risco aceito para entrada antecipada:** validações funcionais amplas serão continuadas com o sistema já publicado, sem retirar os controles que impedem efeitos externos ainda não homologados. Migração íntegra dos dados reais, autenticação, ambiente fiscal correto, um único executor por fluxo, backup, recuperação, smoke e preservação de eventos continuam bloqueadores técnicos do corte.
 
-**Quando começaremos a usar:** no marco 7, depois dos aceites 1 a 6, considerando o marco 1 técnico e seu aceite operacional transferido ao marco 6. São sete marcos de aceite, não sete tarefas ou uma estimativa de dias. A janela da virada será combinada ao concluir o marco 5, com os pré-requisitos do marco 6 preparados. Até lá, sem data prometida. Uma ação técnica validada por tarefa; novas ideias não ampliam automaticamente o lançamento.
+**Histórico substituído — decisão após o deploy PUB-GATE (08/09/2026):** a prova externa de publicação/preço seria transferida ao marco 6. A revisão de 09/09/2026 acima prevalece: essa capacidade inteira foi retirada do primeiro corte e permanece tecnicamente bloqueada até release posterior. Testes automatizados continuam obrigatórios por mudança; nenhuma evidência anterior libera writer produtivo.
+
+**Quando começaremos a usar:** depois do corte mínimo do marco 5 e do smoke/primeiro fluxo do marco 6. Os marcos 1 e 3 ficam formalmente adiados e não impedem o núcleo restrito; o marco 7 inicia a operação acompanhada. A janela depende do ensaio de migração dos dados, sem exigir a conclusão das funcionalidades bloqueadas. Uma ação técnica validada por tarefa; novas ideias não ampliam automaticamente o lançamento.
 
 | Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
 |---|---|---|---|---|
-| 1 — Execução comercial | Recorte técnico concluído para sequência; aceite operacional transferido | Implementação/testes técnicos concluídos; prova externa e aceite autenticado pendentes no marco 6 | Manter execução desabilitada durante o marco 2, sem novo produto de teste | [219 testes anteriores, SQL/rollback, validate/build, deploy e smoke](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md); sem declarar prova externa ou gate integral concluídos |
+| 1 — Execução comercial | Adiada no primeiro corte | Criação de anúncio e alteração de preço permanecem bloqueadas por configuração | Manter `ML_PRICING_EXECUTION_MODE=disabled`; retomar em release posterior | Preflight produtivo confirma capacidade desativada; evidências técnicas anteriores não equivalem a liberação |
 | 2 — Configurações iniciais | Concluído no recorte inicial; aceite D20 concedido pelo usuário em 08/09 | Nenhum neste recorte; D20/V2-15 integrais continuam abertos | Preservar controles e seguir para marco 3 | [Entrega técnica, publicação e aceite humano inicial](evidencias/BNT-PRICING-V2-15-operacional-validacao.md#aceite-inicial-do-usuario--08092026); não comprova capacidades adiadas |
-| 3 — Assistente Bentevi | AI-00 concluída para piloto individual; marco ainda aberto | Conhecimento, chat e runtime hospedado ainda não entregues; liberação do sócio não comprovada | Planejar AI-01 → AI-02/publicação DEV → AI-GATE individual; tratar sócio separadamente | [Fechamento e gates restantes](evidencias/BNT-AI-00-validacao.md#fechamento-individual); aprovação individual não substitui precisão, isolamento e aceite de ambos no gate integral |
-| 4 — Operação ponta a ponta | Pendente | Regressão do candidato: vendas, compras DSLite, estoque, fiscal, entrega e notificações, inclusive falhas/reprocessamento | Reutilizar testes e fluxos existentes; corrigir divergências individualmente | Relatório por fluxo, testes direcionados, validate e build do candidato; não repetir etapas já validadas sem motivo |
-| 5 — Preparação da transição | Pendente; writers produtivos preparados tecnicamente em DEV | DELTA_PROMOCAO ensaiado; PARITY-FINAL comportamental; snapshot candidato e futura `bentevi-prod`; domínio/configurações; dados preservados; backup/recuperação; destino de jobs e experimentos produtivos | Fechar BNT-PARITY-FINAL, ensaiar delta de schema no DEV e conferir checklist de release | SHA candidato, ensaio, testes dos controles produtivos, inventário sem secrets, recuperação inclusive de efeitos externos e janela acordada; reconfirmar fatos até a virada |
-| 6 — Ativação real acompanhada | Pendente; exige autorização específica de release | Conta real no ambiente produtivo preparado; tarifas/frete ME2; aceite autenticado e prova externa PUB-GATE transferidos do marco 1 | Pelo workspace vortek-prod, começar por leituras e validar uma publicação comercial selecionada e uma alteração de preço, aprovadas individualmente; conferir antes de ampliar | Preço/custo/tarifa/frete, histórico, ausência de duplicação e read-back; inconclusivo interrompe o fluxo afetado; sem liberação geral antecipada |
-| 7 — Bentevi em operação | Pendente | Marcos anteriores aceitos; sistema novo como único executor; verificações iniciais aprovadas | Transferir operação diária e acompanhar os primeiros pedidos | Horário da virada, versão, primeiros resultados e registro de acompanhamento; não exige esperar sete dias para começar a usar |
+| 3 — Assistente Bentevi | Adiado no primeiro corte | Nenhum para o núcleo inicial; runtime deve permanecer bloqueado | Retomar AI-GATE depois da entrada em produção | `BENTEVI_ASSISTANT_ENABLED=0` e `BENTEVI_ASSISTANT_DATA_APPROVED=0` no preflight produtivo |
+| 4 — Operação ponta a ponta | Validação inicial transferida para depois do deploy | O smoke seguro não pode falhar; validação real continua com acompanhamento | Validar login e leituras críticas antes do tráfego; exercitar fluxos reais depois da publicação | Logs, health, autenticação e primeiros fluxos reais; erro material interrompe somente o fluxo afetado |
+| 5 — Preparação da transição | Em andamento | Snapshot candidato, inventário de runtime, backup e migração ensaiada `.160 → .162`, Auth/Storage preservados e executor único | Executar `BNT-REL-EARLY-01` e preparar a tarefa produtiva de corte | Preflight sem secrets, ensaio repetível, contagens/vínculos, recuperação e janela acordada |
+| 6 — Ativação real acompanhada | Pendente; exige tarefa produtiva | Dados reais carregados, serviço configurado, domínio, login, health e integrações essenciais sem dupla execução | Executar o corte pelo workspace produtivo e validar o primeiro fluxo operacional real | Read-back de dados, logs, pedido/evento real e ausência de duplicação; sem criar anúncio nem alterar preço |
+| 7 — Bentevi em operação | Pendente | Corte mínimo concluído e sistema novo como único executor dos fluxos habilitados | Transferir a operação diária e continuar validações/correções por snapshots de `dev` | Horário, versão e primeiros resultados; funcionalidades adiadas continuam bloqueadas |
 
 **Preparação do DEV local — 09/09/2026:** aprovada a topologia em que o `PCBAO` receberá o DEV local privado e a `.162` será reaproveitada futuramente como Supabase Bentevi PROD. Foram adicionados `supabase/config.toml`, comandos npm, seed sintético sem produtos/credenciais externas, documentação e teste de contrato. Com Docker Desktop 4.90 integrado ao WSL, o projeto `bentevi-dev-local` aplicou as 124 migrations em banco vazio; duas incompatibilidades do seed com o schema final foram identificadas e corrigidas, e o replay seguinte concluiu migrations e seed. A opção global **Localhost by default** foi aplicada no Docker Desktop: um container descartável e os containers do Supabase comprovaram binds exclusivos em `127.0.0.1`/`::1`, nas portas 54321–54324, antes e depois de reiniciar o Docker Desktop. O wrapper confere os binds reais, desliga automaticamente uma inicialização insegura, redige valores sensíveis da inicialização e omite chaves no status. O banco ativo confirmou PostgreSQL 17.6, 124 migrations, uma empresa sintética, três integrações locais desconectadas e zero produtos. Passaram cinco testes direcionados, `bash -n`, `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`. Esta é evidência parcial do marco 5, não o fecha: autenticação e fluxos web locais ainda precisam de validação própria. A `.162` continua DEV e não foi acessada ou alterada; `.160` e produção permaneceram intocadas.
 
-**Gate da primeira operação:** ao fechar o marco 5, autorizar apenas a preparação/ativação controlada prevista no release; ao fechar o marco 6, liberar a operação inicial. Ele não fecha `BNT-PRICING-V2-16` / `M2M-GATE`: esses continuam abertos para a entrega integral e futura autonomia. Até lá, publicação e alteração de preço exigem confirmação humana e todos os controles técnicos correspondentes. Não basta remover `pricing_execution_not_ready`: consumo, execução, recuperação e read-back ainda precisam ser comprovados. Jobs operacionais já existentes não são adiados com o novo job noturno e exigem validação no marco 4.
+**Gate da primeira operação:** ao fechar o marco 5, executar somente a ativação mínima prevista no release; o marco 6 comprova o núcleo com tráfego real. Ele não fecha `BNT-PRICING-V2-16`, `M2M-GATE` ou `BNT-AI-GATE`. Publicação de anúncios e alteração de preço permanecem tecnicamente indisponíveis; não basta remover `pricing_execution_not_ready` em produção. Jobs essenciais habilitados precisam ter um único executor e acompanhamento após o deploy.
 
 #### Adiado — não concluído; não bloqueia a primeira operação por si só
 
 | Etapas existentes | Tratamento |
 |---|---|
+| BNT-AI-GATE e Assistente Bentevi | Retomar depois da entrada em produção; manter ambas as flags de runtime bloqueadas no primeiro release |
+| BNT-REL-ML-DELETE-01, CATEGORY-01, PREFLIGHT-01 e UNITS-01 | Obrigatórias antes de habilitar criação de anúncios; não bloqueiam o núcleo enquanto pricing/publicação permanecerem desativados |
+| Prova real PUB-GATE, tarifa/frete ME2 e alteração de preço | Executar somente em release posterior que habilite a capacidade comercial; não realizar no primeiro corte |
 | V2-09, V2-08A, V2-10, V2-11 | Performance, diagnósticos comerciais avançados, experimentos e zero tráfego após a entrada em operação |
 | M2M-RAD-01/02/03/04; V2-12 e V2-14 equivalentes | Funil, rotina noturna nova, Dashboard avançado e reprocessamento após a entrada; preservar equivalências, sem tarefas duplicadas |
 | Parte futura V2-15; BNT-CFG-08/09 | Configurações das capacidades adiadas somente quando houver consumidor validado; controles operacionais necessários ficam no marco 2 |
@@ -124,8 +129,8 @@ Nenhuma etapa adiada recebe `[x]` ou `N/A` por causa deste recorte. Respeitar a 
 - Conta real somente na ativação produtiva autorizada, nunca por cópia de tokens de produção para DEV. Preparação e ensaios neste worktree usam o Supabase DEV `.162` enquanto ele conservar essa classificação ou o DEV local restrito a loopback e dados sintéticos; banco `.160` é produção/somente leitura aqui. Mutações produtivas ficam no workspace dedicado, com autorização própria. Este documento não executa nem autoriza a virada.
 - Não copiar banco de homologação sobre produção, transportar fixtures ou retirar suas proteções. Preservar dados, filas e eventos reais. A exclusão das amostras DEV antes prevista em D24 será resolvida no marco 5, independentemente do adiamento visual de D24, com escopo e validação próprios.
 - Confirmar um único executor por fluxo: sistema antigo e novo não podem consumir/processar simultaneamente a mesma operação. Inventariar pendências, checkpoints, agendamentos e webhooks; preservar recepção/retomada de eventos durante a troca. Não ativar silenciosamente experimentos ou decisões históricas.
-- No marco 6, começar por leituras reais de preço, custo, tarifa e frete/ME2; depois validar o fluxo autenticado com uma publicação comercial selecionada e uma alteração de preço, ambas aprovadas individualmente. Conferir resultados, histórico e ausência de duplicação antes de ampliar o uso. Não publicar anúncio fictício como teste na conta real. Provas externas com efeito dependem do escopo e release autorizados; homologação técnica anterior não equivale a essa evidência.
-- Testar aprovação repetida, mudança material de custo após aprovação, falha externa, sucesso remoto sem checkpoint local, resultado incerto e recuperação sem efeito duplicado. Validar preço/imposto/frete/quantidade e transições fiscais, não apenas abertura das páginas.
+- No primeiro marco 6, não criar anúncio nem alterar preço. Validar autenticação, dados migrados, recepção de eventos, pedidos, compras, estoque e fiscal; qualquer prova comercial com efeito fica para a liberação posterior da capacidade.
+- Testes de aprovação repetida, preço e publicação permanecem pendentes para o release que habilitar esses writers. No núcleo inicial, validar falhas, reprocessamento, transições fiscais e ausência de dupla execução, não apenas abertura das páginas.
 - Divergência material de preço, duplicação, inconsistência fiscal ou perda de eventos interrompe o fluxo afetado, preserva evidência e exige correção antes da retomada. Falhas menores entram na fila posterior, sem prometer que todo efeito externo é reversível.
 - Recuperação deve preservar pedidos/eventos recebidos após a virada. Reverter código não desfaz vendas, mensagens ou documentos externos; restauração de backup não é solução automática para esses efeitos.
 - Acompanhar diariamente os primeiros **sete dias e até observar o ciclo completo de um pedido real**, o que ocorrer por último. Registrar ocorrências, correções, revalidações e resultados; este acompanhamento sucede a entrada em uso, não adia o marco 7.
@@ -3496,7 +3501,7 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 
 ### BNT-PARITY-FINAL — Auditoria comportamental final — 09/09/2026
 
-**Situação:** inventário e classificação concluídos; release continua bloqueado.
+**Situação:** inventário e classificação concluídos; a liberação comercial integral continua bloqueada, enquanto o núcleo restrito segue a decisão posterior de `BNT-REL-EARLY-01`.
 
 - `git fetch --prune` confirmou `origin/main@2fc441f67d1457a154b3bd475d4f0e68b032551a` e `origin/dev@2c910ae761e902a2797dee8e404826cbe2086ea9`. A última leitura oficial do serviço legado registrada no mesmo dia também aponta para `main@2fc441f6`.
 - Os 20 commits após `7f0a2921` foram inspecionados individualmente. Não há migration no intervalo e nenhum código ou histórico foi integrado entre as branches.
@@ -3510,29 +3515,44 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 
 **Sem efeito produtivo:** nenhum banco, conta ML, serviço, domínio, preço ou anúncio foi alterado. Não houve deploy, migration, criação de `bentevi-prod` ou reclassificação da `.162`.
 
-**Próxima ação:** implementar somente `BNT-REL-ML-DELETE-01` em DEV. Não iniciar `DELTA_PROMOCAO` enquanto os quatro bloqueadores de publicação não forem validados.
+**Próxima ação:** para habilitar criação de anúncios, implementar somente `BNT-REL-ML-DELETE-01` em DEV. Para o núcleo restrito, manter criação/preço bloqueados e seguir `BNT-REL-EARLY-01` até a tarefa produtiva de migração/corte.
+
+### BNT-REL-EARLY-01 — Preparação do corte inicial restrito — 09/09/2026
+
+**Situação:** preparação técnica DEV concluída; migração e ativação produtivas não executadas.
+
+- Decisão do responsável registrada: colocar o núcleo Bentevi em produção agora e continuar desenvolvimento/validação depois; Assistente, criação de anúncios e alteração de preços ficam bloqueados no primeiro release.
+- Adicionado o preflight `npm run release:check-prod-env`, que valida o arquivo privado sem exibir secrets e exige domínio canônico, runtime `production`, Supabase de serviço na `.162`, ambiente fiscal `1`, Assistente bloqueado e pricing/publicação desativados.
+- Publicado o runbook [Corte produtivo inicial do Bentevi](../bentevi-prod-cutover.md), com backup, migração de dados/Auth/Storage, exclusão de fixtures, executor único, smoke e recuperação.
+- A leitura da `.162` confirmou uma base DEV incompleta: 6 produtos, 100 pedidos, 92 clientes, 5 fornecedores, 85 compras, 1 perfil e zero anúncios. Os dados reais da `.160` precisam ser exportados em modo somente leitura e carregados na `.162` durante o corte.
+- Este workspace não possui credencial PostgreSQL atual da `.160` nem sessão administrativa válida do Easypanel. Nenhum acesso foi improvisado; produção, `.160`, `.162`, serviços, branches e integrações permaneceram sem mutação.
+- Passaram 4/4 testes do preflight, 34/34 testes do documento consumido, a suíte integral com 1.315 casos coletados (1.312 aprovados, zero falhas e três LIVE ignorados), `npm run validate`, `npm run build` com 127 páginas/rotas, `npm run check:build-secrets` e `git diff --check`.
+
+[Evidência detalhada](evidencias/BNT-REL-EARLY-01-validacao.md).
+
+**Próxima ação:** em tarefa/workspace produtivos, obter leitura atual da `.160`, ensaiar backup e migração `.160 → .162` e validar o arquivo privado do serviço. Somente com o ensaio aprovado fixar o SHA final, criar `bentevi-prod` e executar o corte.
 
 ### Antes de solicitar autorização
 
-- [ ] ação individual concluída e registrada;
+- [x] ação individual `BNT-REL-EARLY-01` concluída e registrada;
 - [ ] branch `dev` atualizada e limpa;
-- [ ] testes direcionados verdes;
-- [ ] `npm run validate` aprovado;
-- [ ] build aprovado quando aplicável;
-- [ ] migrations aplicadas e testadas somente em staging;
+- [x] testes direcionados e suíte integral verdes, com casos LIVE ignorados explicitamente;
+- [x] `npm run validate` aprovado;
+- [x] build aprovado;
+- [x] nenhuma migration faz parte deste lote; carga/migração continuam para ensaio produtivo próprio;
 - [ ] `dev.bentevi.shop` funcional;
-- [ ] `BNT-AI-GATE` concluído com modalidade de provedor suportada, conversas individuais isoladas e aprovação dos dois administradores; Assistente incluído na primeira versão;
-- [ ] reconfirmar `BNT-PARITY-GATE` e resolver as divergências críticas exigidas para release; o aceite de encaminhamento à V2 permite apenas a sequência DEV, não a promoção;
-- [x] `BNT-PARITY-FINAL` executado por leitura contra `origin/main@2fc441f6`, com todo comportamento essencial classificado e destino explícito; quatro implementações nativas permanecem bloqueadoras;
+- [x] `BNT-AI-GATE` formalmente adiado no primeiro corte; Assistente deve permanecer bloqueado nas duas flags produtivas;
+- [x] divergências de publicação classificadas e formalmente adiadas somente enquanto criação de anúncios e alteração de preço permanecerem desativadas;
+- [x] `BNT-PARITY-FINAL` executado por leitura contra `origin/main@2fc441f6`, com todo comportamento essencial classificado e destino explícito;
 - [ ] matriz `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` atualizada com o SHA legado de `main` e o SHA candidato de `dev`;
 - [ ] SHA candidato de `dev` fixado e snapshot revisado por si mesmo, sem usar o diff contra `main` como pacote de promoção;
-- [ ] nome `bentevi-prod` confirmado livre no remoto e plano para criá-la exatamente no SHA candidato, sem criação antecipada;
+- [x] nome `bentevi-prod` confirmado livre no remoto e serviço Easypanel homônimo reservado; branch será criada exatamente no SHA candidato;
 - [ ] nenhuma secret adicionada ao Git;
-- [ ] delta entre o schema produtivo lido e o schema exigido pelo candidato identificado; migrations novas, mínimas e ordenadas preparadas e ensaiadas no DEV, sem replay do diretório ou fabricação de igualdade entre históricos;
-- [ ] novas variáveis de produção identificadas sem expor valores;
-- [ ] rollback e condição de interrupção conhecidos;
-- [ ] marcos 1 a 5 aceitos para preparar ativação; prova comercial/ME2 ainda pendente explicitada no marco 6, sem autorização ampla de escrita;
-- [ ] nenhum requisito essencial foi adiado junto com Radar/experimentos; escritores do escopo inicial protegidos, confirmados e testados;
+- [ ] schemas atuais `.160`/`.162`, mapeamento de dados e carga de Auth/Storage identificados e ensaiados sem replay do diretório de migrations;
+- [x] variáveis obrigatórias do runtime restrito identificadas sem expor valores; arquivo real ainda deve passar no preflight;
+- [x] recuperação e condições de interrupção documentadas no runbook;
+- [ ] gate mínimo de transição aceito: backup, migração, runtime, autenticação, smoke e executor único;
+- [x] requisitos essenciais das capacidades adiadas permanecem protegidos por configuração, sem declarar conclusão funcional;
 - [ ] fixtures excluídas da promoção; dados e eventos reais preservados; um único executor por fluxo planejado;
 - [ ] nenhuma mudança fora do escopo;
 - [ ] autorização explícita do responsável recebida.
@@ -3547,7 +3567,7 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 - [ ] smoke test seguro executado;
 - [ ] logs verificados;
 - [ ] operação confirmada;
-- [ ] marco 6 aceito com tarifa/frete ME2, provas autorizadas e read-back antes da liberação diária;
+- [ ] marco 6 mínimo aceito com autenticação, dados, eventos e primeiro fluxo operacional; criação/preço/ME2 continuam adiados e bloqueados;
 - [ ] marco 7 registrado com versão, horário, executor único e acompanhamento dos primeiros sete dias e de um ciclo completo de pedido real;
 - [ ] release registrada;
 - [ ] `dev` mantida como linha independente de desenvolvimento; nenhuma reconciliação automática com `main` ou `bentevi-prod` executada.

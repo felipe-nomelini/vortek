@@ -480,10 +480,10 @@ produção. A matriz individual e as validações estão na
 
 | Ordem | Ação DEV | Aceite mínimo | Estado |
 | ---: | --- | --- | --- |
-| 1 | `BNT-REL-ML-DELETE-01` | item antigo permanece `deleted`; novo item exige nova autorização, buscas completas e zero vínculo concorrente | bloqueador P0 |
-| 2 | `BNT-REL-ML-CATEGORY-01` | categoria/árvore/domínio vinculados à evidência viva da oferta e revalidados antes do claim | bloqueador P0 |
-| 3 | `BNT-REL-ML-PREFLIGHT-01` | imagem pública comprovada; somente warnings conhecidos e satisfeitos podem passar | bloqueador P0 |
-| 4 | `BNT-REL-ML-UNITS-01` | `LENGTH` equivalente por unidade não conflita; diferença real e campo não dimensional continuam bloqueando | bloqueador P1 |
+| 1 | `BNT-REL-ML-DELETE-01` | item antigo permanece `deleted`; novo item exige nova autorização, buscas completas e zero vínculo concorrente | bloqueador P0 para habilitar criação de anúncios |
+| 2 | `BNT-REL-ML-CATEGORY-01` | categoria/árvore/domínio vinculados à evidência viva da oferta e revalidados antes do claim | bloqueador P0 para habilitar criação de anúncios |
+| 3 | `BNT-REL-ML-PREFLIGHT-01` | imagem pública comprovada; somente warnings conhecidos e satisfeitos podem passar | bloqueador P0 para habilitar criação de anúncios |
+| 4 | `BNT-REL-ML-UNITS-01` | `LENGTH` equivalente por unidade não conflita; diferença real e campo não dimensional continuam bloqueando | bloqueador P1 para habilitar criação de anúncios |
 
 A decisão de transição é não migrar nem continuar experimentos de pricing da
 `main`. Preços vigentes são preservados, o Bentevi começa com confirmação
@@ -492,6 +492,8 @@ viva do estado ainda precisa ser repetida no preflight produtivo por acesso
 somente leitura; ela não altera esse destino.
 
 **Resultado do gate:** inventário e classificação de `BNT-PARITY-FINAL`
-concluídos, com zero comportamento essencial sem destino. Isso não libera a
-promoção: as quatro ações acima, `DELTA_PROMOCAO`, dados/backup/recuperação,
-runtime e os demais aceites do marco 5 permanecem abertos.
+concluídos, com zero comportamento essencial sem destino. Para o primeiro corte
+restrito aprovado em 09/09/2026, as quatro ações acima podem permanecer abertas
+somente enquanto criação de anúncios e alteração de preços estiverem bloqueadas
+por configuração. Dados/backup/recuperação, runtime, autenticação e executor
+único continuam obrigatórios antes da entrada do núcleo em produção.
