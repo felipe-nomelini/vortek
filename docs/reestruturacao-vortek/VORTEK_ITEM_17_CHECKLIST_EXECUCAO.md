@@ -3488,11 +3488,29 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 - A criação usa o nome real comprovado somente no modo produtivo; `Item de Teste` permanece exclusivo de `test_only`. O descritor devolvido ao cliente não contém seller, IP ou credencial.
 - Passaram 46 testes direcionados, a regressão completa com 1.311 casos coletados (1.308 aprovados, zero falhas e três LIVE ignorados), `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`.
 
-**Sem efeito externo:** nenhum Supabase, conta Mercado Livre, Easypanel, domínio, branch remota ou serviço foi acessado ou alterado. Não houve migration, commit, push ou deploy. O runtime local/homologação permanece desabilitado por padrão.
+**Registro Git:** commit `2c910ae761e902a2797dee8e404826cbe2086ea9` (`feat(release): gate production writers`) enviado somente para `origin/dev`. Antes do commit foram repetidos 46/46 testes direcionados, `npm run validate`, `npm run build` com 127 páginas/rotas, `npm run check:build-secrets` e `git diff --check`, todos aprovados. Não houve Supabase, Mercado Livre, Easypanel, domínio, deploy ou migration. O runtime local/homologação permanece desabilitado por padrão.
 
 **Rollback:** manter `ML_PRICING_EXECUTION_MODE=disabled` e reverter este lote de código se necessário. Operações já enviadas no futuro não poderão ser desfeitas por rollback de código; estados inconclusivos devem continuar somente em read-back.
 
 **Próxima ação:** executar `BNT-PARITY-FINAL` como ação independente; depois fechar `DELTA_PROMOCAO`, dados/backup/recuperação e o restante do marco 5 antes de solicitar ativação produtiva.
+
+### BNT-PARITY-FINAL — Auditoria comportamental final — 09/09/2026
+
+**Situação:** inventário e classificação concluídos; release continua bloqueado.
+
+- `git fetch --prune` confirmou `origin/main@2fc441f67d1457a154b3bd475d4f0e68b032551a` e `origin/dev@2c910ae761e902a2797dee8e404826cbe2086ea9`. A última leitura oficial do serviço legado registrada no mesmo dia também aponta para `main@2fc441f6`.
+- Os 20 commits após `7f0a2921` foram inspecionados individualmente. Não há migration no intervalo e nenhum código ou histórico foi integrado entre as branches.
+- Todo comportamento essencial recebeu classificação e destino. Garantia fixa, runners/coortes, experimento legado e recuperação de excluídos não serão copiados. Memória/readback, tributo, preview e dedupe já possuem implementação nativa equivalente.
+- Quatro lacunas foram abertas como bloqueadores próprios: `BNT-REL-ML-DELETE-01`, `BNT-REL-ML-CATEGORY-01`, `BNT-REL-ML-PREFLIGHT-01` e `BNT-REL-ML-UNITS-01`.
+- Decisão do responsável: anúncio `deleted` é permanente; uma necessidade posterior cria outro anúncio, sem recuperar/reutilizar o antigo e somente após busca completa. Experimentos de pricing da `main` não serão migrados ou continuados; preços vigentes permanecem e o Bentevi começa com confirmação explícita.
+- A consulta agregada viva do experimento no `.160` não foi renovada porque este workspace só possui configuração da `.162` e a sessão administrativa temporária do Easypanel foi revogada. Nenhuma credencial foi improvisada. O readback agregado e a parada do scheduler legado permanecem obrigatórios no preflight do corte.
+- Passaram 193/193 testes direcionados de economia/tributo, identidade, vínculos, garantia, PUB-GATE, writers e Anúncios, além de 85/85 regressões do Assistente porque o checklist é consumido em runtime. `git diff --check` será repetido no fechamento documental; build é N/A porque esta parcela altera somente documentação.
+
+[Evidência detalhada e matriz dos 20 commits](evidencias/BNT-PARITY-FINAL-validacao.md).
+
+**Sem efeito produtivo:** nenhum banco, conta ML, serviço, domínio, preço ou anúncio foi alterado. Não houve deploy, migration, criação de `bentevi-prod` ou reclassificação da `.162`.
+
+**Próxima ação:** implementar somente `BNT-REL-ML-DELETE-01` em DEV. Não iniciar `DELTA_PROMOCAO` enquanto os quatro bloqueadores de publicação não forem validados.
 
 ### Antes de solicitar autorização
 
@@ -3505,7 +3523,7 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 - [ ] `dev.bentevi.shop` funcional;
 - [ ] `BNT-AI-GATE` concluído com modalidade de provedor suportada, conversas individuais isoladas e aprovação dos dois administradores; Assistente incluído na primeira versão;
 - [ ] reconfirmar `BNT-PARITY-GATE` e resolver as divergências críticas exigidas para release; o aceite de encaminhamento à V2 permite apenas a sequência DEV, não a promoção;
-- [ ] `BNT-PARITY-FINAL` executado por leitura contra o SHA atual de `origin/main`, com todo comportamento essencial classificado; não exigir convergência de commits;
+- [x] `BNT-PARITY-FINAL` executado por leitura contra `origin/main@2fc441f6`, com todo comportamento essencial classificado e destino explícito; quatro implementações nativas permanecem bloqueadoras;
 - [ ] matriz `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` atualizada com o SHA legado de `main` e o SHA candidato de `dev`;
 - [ ] SHA candidato de `dev` fixado e snapshot revisado por si mesmo, sem usar o diff contra `main` como pacote de promoção;
 - [ ] nome `bentevi-prod` confirmado livre no remoto e plano para criá-la exatamente no SHA candidato, sem criação antecipada;

@@ -50,8 +50,17 @@ Os testes usam mocks e dados sintéticos. Nenhuma chamada externa de escrita, ba
 - [Realização de testes](https://developers.mercadolivre.com.br/devcenter/realizacao-de-testes)
 - [Validador de publicações](https://developers.mercadolivre.com.br/pt_br/publicacao-de-produtos/validador-de-publicacoes)
 
+## Registro Git
+
+Commit `2c910ae761e902a2797dee8e404826cbe2086ea9` —
+`feat(release): gate production writers`, enviado somente para `origin/dev` em
+09/09/2026. Antes do commit, foram repetidos 46/46 testes direcionados,
+`npm run validate`, `npm run build` com 127 páginas/rotas,
+`npm run check:build-secrets` e `git diff --check`, todos aprovados. Não houve
+deploy.
+
 ## Limites e próxima etapa
 
-Esta ação não reclassifica a `.162`, não configura `local/bentevi-prod`, não cria a branch `bentevi-prod`, não publica o código e não executa uma operação real. O primeiro anúncio e a primeira alteração de preço reais permanecem no marco 6, em tarefa produtiva autorizada e depois do fechamento dos demais gates do marco 5.
+Esta ação não reclassifica a `.162`, não configura `local/bentevi-prod`, não cria a branch `bentevi-prod`, não faz deploy e não executa uma operação real. O primeiro anúncio e a primeira alteração de preço reais permanecem no marco 6, em tarefa produtiva autorizada e depois do fechamento dos demais gates do marco 5.
 
 Rollback técnico antes da ativação: manter `ML_PRICING_EXECUTION_MODE=disabled` e reverter o lote. Depois de qualquer efeito real futuro, rollback de código não substitui reconciliação do Mercado Livre nem desfaz efeitos externos.

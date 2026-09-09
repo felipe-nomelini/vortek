@@ -10,7 +10,7 @@
 
 **Ancestral comum:** `08b6237428c406b55a876578b63dbc553e8c9584`
 
-**Último delta remoto classificado:** `origin/main` em `7f0a2921fe986562c348e75b16c319ab25076a97`, confirmado por consulta ao ref remoto em 06/09/2026. A seção 4.1 conserva o delta até `b6e1b17`; a seção 4 do dossiê de pricing classifica o complemento até `cffc64d`; a seção 11 abaixo classifica os 18 commits seguintes. Classificação documental não significa incorporação funcional ou liberação do gate. O SHA atualmente implantado em produção não foi confirmado.
+**Último delta remoto classificado:** `origin/main` em `2fc441f67d1457a154b3bd475d4f0e68b032551a`, confirmado após `git fetch --prune` em 09/09/2026. A seção 4.1 conserva o delta até `b6e1b17`; a seção 4 do dossiê de pricing classifica o complemento até `cffc64d`; a seção 11 classifica os 18 commits seguintes até `7f0a2921`; e a seção 12 classifica os 20 commits finais até `2fc441f6`. Classificação documental não significa incorporação funcional ou liberação do release.
 
 **Autoridade comercial atual:** [Cânon Comercial 1.0](VORTEK_CANON_COMERCIAL_V1.md). Regras antigas das seções 5/6 que mandavam manter faixas por custo, lucro nominal ou desconto por quantidade são fotografias históricas, não instruções vigentes. A seção 11 resolve seus destinos; nenhuma paridade anteriormente concluída é desfeita por esta classificação.
 
@@ -21,6 +21,8 @@
 **Estado atual após o gate de 05/09/2026:** `BNT-PARITY-GATE` concluído exclusivamente para a sequência DEV, com aceite explícito do responsável para encaminhar as lacunas de pricing à V2. `BNT-CFG-07` liberada para planejamento. A seção 8 registra a decisão vigente; as referências anteriores a gate pendente são históricas. Produção, ativação Evolusom, delta de migrations, continuidade dos experimentos e gate de autonomia não foram liberados.
 
 **Modelo de branches vigente desde 09/09/2026:** `main` é o sistema legado atualmente em produção e `dev` é a nova versão Bentevi independente. A divergência entre elas é intencional: este catálogo não prescreve merge, rebase, cherry-pick em massa ou convergência de históricos. Ele audita comportamentos produtivos essenciais; quando ainda aplicáveis, eles recebem implementação nativa em `dev`. A futura branch `bentevi-prod` será criada diretamente no SHA aprovado de `dev`, somente em release autorizado, mantendo `main` preservada.
+
+**BNT-PARITY-FINAL em 09/09/2026:** a auditoria final classificou todo o intervalo `7f0a2921..2fc441f6` contra `origin/dev@2c910ae7`. A última confirmação oficial do serviço legado, registrada no mesmo dia, também aponta para `main@2fc441f6`. Quatro destinos nativos de publicação permanecem bloqueadores antes do release; experimentos legados não serão continuados. [Evidência e matriz do delta](evidencias/BNT-PARITY-FINAL-validacao.md).
 
 ---
 
@@ -452,3 +454,44 @@ Consumidores a migrar/revalidar continuam no inventário do dossiê: serviços d
 - Gate funcional antecipado não encerra performance/Radar, migrações, paridade final nem autoriza promoção.
 
 **Resultado:** reconciliação documental concluída; próxima ação: planejar `M2M-PRC-02A`. Critérios e dependências das ações adicionais estão na seção 13 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md); ordem operacional única na seção 14 do [plano](VORTEK_BENTEVI_PRICING_V2_PLANO.md).
+
+## 12. BNT-PARITY-FINAL — Delta final de produção (09/09/2026)
+
+O intervalo final contém 20 commits entre `7f0a2921` e `2fc441f6`, sem
+migrations. Todos os comportamentos foram classificados por diff e confrontados
+com `dev@2c910ae7`; não houve merge, rebase, cherry-pick ou acesso mutante à
+produção. A matriz individual e as validações estão na
+[evidência final](evidencias/BNT-PARITY-FINAL-validacao.md).
+
+### 12.1 Saldo comportamental
+
+- `EQUIVALENTE`: memória e readback da publicação, economia pré/pós, tributo em
+  centavos, preview de lucro, dedupe/propriedade de SKUs e parada segura sem
+  repetição de mutação.
+- `SUBSTITUÍDA`: garantia fixa de 30 dias, runner de lote, estado de experimento
+  legado e recuperação/substituição de anúncio deletado.
+- `NÃO COPIAR`: relatórios, logs, coortes, executores pontuais e autorizações
+  históricas da `main`.
+- `INCORPORAR`: regra terminal de `deleted` com nova publicação independente,
+  revisão completa de categoria, preflight de imagens/warnings e equivalência de
+  `LENGTH` entre unidades.
+
+### 12.2 Destinos obrigatórios
+
+| Ordem | Ação DEV | Aceite mínimo | Estado |
+| ---: | --- | --- | --- |
+| 1 | `BNT-REL-ML-DELETE-01` | item antigo permanece `deleted`; novo item exige nova autorização, buscas completas e zero vínculo concorrente | bloqueador P0 |
+| 2 | `BNT-REL-ML-CATEGORY-01` | categoria/árvore/domínio vinculados à evidência viva da oferta e revalidados antes do claim | bloqueador P0 |
+| 3 | `BNT-REL-ML-PREFLIGHT-01` | imagem pública comprovada; somente warnings conhecidos e satisfeitos podem passar | bloqueador P0 |
+| 4 | `BNT-REL-ML-UNITS-01` | `LENGTH` equivalente por unidade não conflita; diferença real e campo não dimensional continuam bloqueando | bloqueador P1 |
+
+A decisão de transição é não migrar nem continuar experimentos de pricing da
+`main`. Preços vigentes são preservados, o Bentevi começa com confirmação
+explícita e o scheduler legado será interrompido no corte. A leitura agregada
+viva do estado ainda precisa ser repetida no preflight produtivo por acesso
+somente leitura; ela não altera esse destino.
+
+**Resultado do gate:** inventário e classificação de `BNT-PARITY-FINAL`
+concluídos, com zero comportamento essencial sem destino. Isso não libera a
+promoção: as quatro ações acima, `DELTA_PROMOCAO`, dados/backup/recuperação,
+runtime e os demais aceites do marco 5 permanecem abertos.
