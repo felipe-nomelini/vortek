@@ -42,10 +42,10 @@ const identifierSchema = { type: 'object', additionalProperties: false, required
   by: { type: 'string', enum: ['id', 'sale', 'pack', 'sku'] }, value: { type: 'string' },
 } };
 const queryVariants = [
-  { kind: { const: 'sales' }, period: { type: 'string', enum: ['today', '7d', '30d'] } },
-  ...['order','invoice','product','inventory','pricing'].map(kind => ({ kind: { const: kind }, record: identifierSchema })),
-  { kind: { const: 'purchase' }, dsliteId: { type: 'string' } }, { kind: { const: 'tax' } },
-  { kind: { const: 'documentation' }, topic: { type: 'string', enum: ['pricing','orders','inventory','settings','assistant','pricing_history'] } },
+  { kind: { type: 'string', const: 'sales' }, period: { type: 'string', enum: ['today', '7d', '30d'] } },
+  ...['order','invoice','product','inventory','pricing'].map(kind => ({ kind: { type: 'string', const: kind }, record: identifierSchema })),
+  { kind: { type: 'string', const: 'purchase' }, dsliteId: { type: 'string' } }, { kind: { type: 'string', const: 'tax' } },
+  { kind: { type: 'string', const: 'documentation' }, topic: { type: 'string', enum: ['pricing','orders','inventory','settings','assistant','pricing_history'] } },
 ];
 const plannerOutputSchema = { type: 'object', additionalProperties: false, required: ['queries','clarification'], properties: {
   queries: { type: 'array', maxItems: 3, items: { anyOf: queryVariants.map(properties => ({ type: 'object', additionalProperties: false, required: Object.keys(properties), properties })) } },

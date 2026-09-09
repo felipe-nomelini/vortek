@@ -22,6 +22,29 @@ function modules(mocks={}){
 const read=modules();
 const contracts=read('src/lib/assistant-chat.ts');
 const model=read('src/services/assistant-chat-model.ts');
+test('planejador declara type em todos os discriminadores do schema enviado à OpenAI',async t=>{
+  const previous=process.env.BENTEVI_ASSISTANT_CODEX_HOME;
+  process.env.BENTEVI_ASSISTANT_CODEX_HOME='/tmp/schema-test/assistant-codex';
+  t.after(()=>{if(previous===undefined)delete process.env.BENTEVI_ASSISTANT_CODEX_HOME;else process.env.BENTEVI_ASSISTANT_CODEX_HOME=previous;});
+  let isolated,captured;
+  const loadModel=modules({
+    'node:fs':{...fs,realpathSync:p=>p,readFileSync:()=>isolated.assistantCodexConfig},
+    './codex-json-transport':{runCodexJson:async options=>{
+      captured=options.schema;
+      return {queries:[{kind:'sales',period:'7d'}],clarification:''};
+    }},
+  });
+  isolated=loadModel('src/services/assistant-chat-model.ts');
+  await isolated.planAssistantQueries('Vendas dos últimos sete dias?',[],new AbortController().signal);
+  const variants=captured.properties.queries.items.anyOf;
+  assert.equal(variants.length,9);
+  for(const variant of variants){
+    assert.equal(variant.properties.kind.type,'string');
+    assert.equal(typeof variant.properties.kind.const,'string');
+    assert.equal(variant.additionalProperties,false);
+    assert.deepEqual(variant.required,Object.keys(variant.properties));
+  }
+});
 function result(overrides={}){return {facts:{kind:'sales',summary:{revenue:1234.56,profit:75,orders:4,margin:6.07}},state:'concluido',coverage:'completa',
   references:[{id:'dashboard',label:'Dashboard',path:'/dashboard',updatedAt:null}],warnings:[],sourceUpdatedAt:null,includesFixtures:false,
   period:{start:'2026-09-01T03:00:00Z',end:'2026-09-08T12:00:00Z',timezone:'America/Sao_Paulo'},environment:'dev',queriedAt:'2026-09-08T12:00:00Z',filters:{kind:'sales',period:'7d'},contentIsUntrusted:true,...overrides};}
