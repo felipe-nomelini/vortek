@@ -38,8 +38,9 @@ function harness(t, options = {}) {
           reply({});
         }
         if (message.method === 'account/read') reply({ account: options.loggedOut ? null : { type: options.apiKey ? 'apiKey' : 'chatgpt' } });
-        if (message.method === 'model/list') reply({ data: options.noModel ? [] : [{ model: 'gpt-5.4-mini', supportedReasoningEfforts: [{ reasoningEffort: 'low' }] }], nextCursor: null });
-        if (message.method === 'thread/start') reply({ thread: { id: `thread-${children.length}`, ephemeral: true }, model: 'gpt-5.4-mini', modelProvider: 'openai', activePermissionProfile: { id: 'warranty-extract' }, instructionSources: [] });
+        if (message.method === 'account/rateLimits/read') reply({rateLimits:{primary:{usedPercent:options.exhausted?100:20},secondary:{usedPercent:30}}});
+        if (message.method === 'model/list') reply({ data: options.noModel ? [] : [{ model: options.listedModel || 'gpt-6-astra', supportedReasoningEfforts: [{ reasoningEffort: options.noLow ? 'medium' : 'low' }] }], nextCursor: null });
+        if (message.method === 'thread/start') reply({ thread: { id: `thread-${children.length}`, ephemeral: true }, model: options.returnedModel || 'gpt-6-astra', modelProvider: 'openai', activePermissionProfile: { id: 'warranty-extract' }, instructionSources: [] });
         if (message.method === 'turn/start') {
           const threadId = message.params.threadId, turn = { id: 'turn-1' };
           reply({ turn }); child.send({ method: 'turn/started', params: { threadId, turn } });
@@ -55,24 +56,40 @@ function harness(t, options = {}) {
     });
     return child;
   }
-  module = load('src/services/warranty-codex.ts', { 'server-only': {}, 'node:child_process': { spawn }, 'node:path': require('node:path'),
+  const transport = load('src/services/codex-json-transport.ts', { 'server-only': {}, 'node:child_process': { spawn }, 'node:path': require('node:path') });
+  module = load('src/services/warranty-codex.ts', { 'server-only': {}, './codex-json-transport': transport, 'node:path': require('node:path'),
     'node:fs': { existsSync: () => !options.noAuth, realpathSync: p => options.symlink ? '/wrong-path' : p,
       readFileSync: () => options.changedConfig ? 'model="another"' : module.warrantyCodexConfig } });
-  return { module, requests, spawns, children, run: (signal = new AbortController().signal, user = actor, payload = { pages: [] }) => module.extractWarrantyWithCodex(payload, signal, user) };
+  return { module, requests, spawns, children,
+    runChat:()=>transport.runCodexJson({home,model:'gpt-6-astra',profile:'warranty-extract',instructions:'Synthetic test',schema:{type:'object'},payload:{synthetic:true},signal:AbortSignal.timeout(5000),service:'assistant_test',checkLimits:true}),
+    run: (signal = new AbortController().signal, user = actor, payload = { pages: [] }) => module.extractWarrantyWithCodex(payload, signal, user) };
 }
+
+test('chat consulta cota antes de iniciar turno, sem comprar ou usar API',async t=>{
+  const h=harness(t);await h.runChat();assert.ok(h.requests.find(r=>r.method==='account/rateLimits/read'));
+});
+for(const [options,code] of [[{exhausted:true},'rate_limit'],[{providerError:'429'},'rate_limit'],[{providerError:'401'},'auth_required']])
+test('chat classifica limite/autenticação sem fallback: '+JSON.stringify(options),async t=>{
+  const h=harness(t,options);await assert.rejects(h.runChat(),new RegExp('^Error: codex_'+code+'$'));
+  if(options.exhausted)assert.equal(h.requests.some(r=>r.method==='turn/start'),false);
+  assert.equal(h.spawns.length,1);
+});
 
 test('App Server: JSONL fragmentado, resultado de item/completed e perfil isolado', async t => {
   const h = harness(t, { fragmented: true });
   assert.deepEqual(await h.run(), []);
+  assert.equal(h.module.warrantyCodexModel, 'gpt-6-astra');
+  assert.equal(h.module.warrantyCodexConfig.split('\n')[0], 'model = "gpt-6-astra"');
   assert.deepEqual(h.requests.filter(r => r.id).map(r => r.method), ['initialize','account/read','model/list','thread/start','turn/start']);
   const { binary, args, config } = h.spawns[0];
   assert.equal(binary, 'codex'); assert.ok(args.includes('--strict-config')); assert.ok(args.includes('stdio://')); assert.equal(config.shell, false);
   assert.deepEqual(Object.keys(config.env).sort(), ['CODEX_HOME','HOME','LANG','NODE_ENV','PATH']);
   assert.equal(config.env.CODEX_HOME, home); assert.equal(config.cwd, home + '/workspace');
   const thread = h.requests.find(r => r.method === 'thread/start').params;
+  assert.equal(thread.model, 'gpt-6-astra');
   assert.equal(thread.ephemeral, true); assert.equal(thread.modelProvider, 'openai'); assert.equal(thread.permissions, 'warranty-extract');
   const turn = h.requests.find(r => r.method === 'turn/start').params;
-  assert.equal(turn.effort, 'low'); assert.equal(turn.model, 'gpt-5.4-mini');
+  assert.equal(turn.effort, 'low'); assert.equal(turn.model, 'gpt-6-astra');
   assert.equal(turn.outputSchema.additionalProperties, false);
   assert.equal(turn.permissions, 'warranty-extract');
   assert.deepEqual(h.children[0].kills, ['SIGTERM']);
@@ -81,6 +98,9 @@ test('App Server: JSONL fragmentado, resultado de item/completed e perfil isolad
 for (const [name, options, error] of [
   ['sessão ausente', { loggedOut: true }, 'auth_required'], ['API key recusada', { apiKey: true }, 'auth_required'],
   ['modelo indisponível', { noModel: true }, 'model_unavailable'], ['JSONL inválido', { badProtocol: true }, 'protocol_invalid'],
+  ['catálogo só com modelo anterior', { listedModel: 'gpt-5.4-mini' }, 'model_unavailable'],
+  ['modelo sem esforço low', { noLow: true }, 'model_unavailable'],
+  ['thread devolve modelo diferente', { returnedModel: 'gpt-5.4-mini' }, 'protocol_invalid'],
   ['resposta estranha', { unknownId: true }, 'protocol_invalid'], ['limite de saída', { outputLimit: true }, 'output_limit'],
   ['processo encerrado', { exitEarly: true }, 'unavailable'], ['sessão expirada em turno', { providerError: '401' }, 'unavailable'],
   ['limite de uso', { providerError: '429' }, 'unavailable'], ['pedido de aprovação', { serverRequest: true }, 'tool_forbidden'],
@@ -91,6 +111,9 @@ for (const [name, options, error] of [
   const h = harness(t, options);
   await assert.rejects(h.run(), new RegExp('^Error: warranty_codex_' + error + '$'));
   assert.equal(h.spawns.length, 1); assert.equal(h.children[0].kills.length <= 1, true);
+  if (options.noModel || options.listedModel || options.noLow || options.returnedModel) {
+    assert.equal(h.requests.some(r => r.method === 'turn/start'), false);
+  }
 });
 
 test('resposta sem JSON não vira garantia', async t => {
@@ -139,9 +162,16 @@ test('perfil sem login não é apresentado como disponível', t => {
 });
 
 // Opt-in only: consumes the authenticated individual's Codex allowance. No DB or Firecrawl.
-test('LIVE: assinatura ChatGPT extrai evidência que passa pelo validador canônico', { skip: process.env.WARRANTY_CODEX_LIVE_TEST !== '1' }, async () => {
+// Both sources are synthetic. Keep the original disclaimer as a negative case:
+// a page explicitly denying a real warranty cannot be the positive-case proof.
+const liveWarrantyClaim = 'Produto Teste Bentevi X1 tem garantia do fabricante Marca Teste de 12 meses no Brasil.';
+for (const [scenario, content, expectedCount] of [
+  ['declaração explícita', liveWarrantyClaim, 1],
+  ['declaração negada pela própria fonte', liveWarrantyClaim + ' Amostra sintética de validação, não uma garantia comercial real.', 0],
+]) test(`LIVE: assinatura ChatGPT e validador canônico — ${scenario}`, { skip: process.env.WARRANTY_CODEX_LIVE_TEST !== '1' }, async () => {
   const fs = require('node:fs');
-  const real = load('src/services/warranty-codex.ts', { 'server-only': {}, 'node:child_process': require('node:child_process'), 'node:fs': fs, 'node:path': require('node:path') });
+  const transport = load('src/services/codex-json-transport.ts', { 'server-only': {}, 'node:child_process': require('node:child_process'), 'node:path': require('node:path') });
+  const real = load('src/services/warranty-codex.ts', { 'server-only': {}, './codex-json-transport': transport, 'node:fs': fs, 'node:path': require('node:path') });
   const terms = require('../src/lib/ml-sale-terms.ts');
   const domain = load('src/lib/product-warranty.ts', { zod: require('zod'), './ml-sale-terms': terms });
   const service = load('src/services/product-warranty.ts', { 'server-only': {}, 'node:crypto': require('node:crypto'), zod: require('zod'),
@@ -149,11 +179,14 @@ test('LIVE: assinatura ChatGPT extrai evidência que passa pelo validador canôn
     '@/lib/product-warranty': domain, '@/lib/ml-sale-terms': terms, './warranty-codex': real,
     './product-attribute-research': { researchWarrantySources: async () => { throw Error('unexpected_collection'); } } });
   const product = { nome: 'Produto Teste Bentevi X1', marca: 'Marca Teste', gtin: '' };
-  const pages = [{ url: 'https://marca.example.com/manual', content: 'Produto Teste Bentevi X1 tem garantia do fabricante Marca Teste de 12 meses no Brasil. Amostra sintética de validação, não uma garantia comercial real.' }];
+  const pages = [{ url: 'https://marca.example.com/manual', content }];
   const start = Date.now();
   const evidence = await real.extractWarrantyWithCodex({ product, isKit: false, pages }, AbortSignal.timeout(45000), process.env.WARRANTY_CODEX_PILOT_USER_ID);
   const candidates = service.validateExtractedWarranty(evidence, pages, { product, offers: [], kit: null, components: [] });
-  assert.equal(candidates.length, 1); assert.equal(candidates[0].duration, 12); assert.equal(candidates[0].reviewed, false);
-  assert.equal(candidates[0].brazil, true); assert.equal(candidates[0].kind, 'manufacturer');
-  console.log(JSON.stringify({ livePilot: 'chatgpt', model: real.warrantyCodexModel, elapsedMs: Date.now() - start, canonicalCandidates: candidates.length }));
+  assert.equal(candidates.length, expectedCount);
+  if (expectedCount) {
+    assert.equal(candidates[0].duration, 12); assert.equal(candidates[0].reviewed, false);
+    assert.equal(candidates[0].brazil, true); assert.equal(candidates[0].kind, 'manufacturer');
+  } else assert.deepEqual(evidence, []);
+  console.log(JSON.stringify({ livePilot: 'chatgpt', model: real.warrantyCodexModel, scenario, elapsedMs: Date.now() - start, canonicalCandidates: candidates.length }));
 });

@@ -2,6 +2,7 @@ import type { VortekRole } from './permissions';
 
 export type AppNavigationIcon =
   | 'dashboard'
+  | 'assistant'
   | 'tv'
   | 'offers'
   | 'products'
@@ -26,6 +27,7 @@ export interface AppNavigationItem {
   label: string;
   icon: AppNavigationIcon;
   adminOnly?: boolean;
+  assistantOnly?: boolean;
   aliases?: string[];
   matchPrefixes?: string[];
 }
@@ -49,6 +51,7 @@ export interface ResolvedNavigation {
 
 export const APP_NAVIGATION: AppNavigationEntry[] = [
   { type: 'item', key: '/dashboard', href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
+  { type: 'item', key: '/assistente', href: '/assistente', label: 'Assistente Bentevi', icon: 'assistant', adminOnly: true, assistantOnly: true },
   { type: 'item', key: '/tv', href: '/tv', label: 'TV ao Vivo', icon: 'tv' },
   { type: 'item', key: '/produtos/ofertas', href: '/produtos/ofertas', label: 'Ofertas', icon: 'offers' },
   { type: 'item', key: '/produtos', href: '/produtos', label: 'Produtos', icon: 'products' },
@@ -126,18 +129,18 @@ export const APP_NAVIGATION: AppNavigationEntry[] = [
   },
 ];
 
-function isVisible(item: AppNavigationItem, role: VortekRole | null): boolean {
-  return !item.adminOnly || role === 'admin';
+function isVisible(item: AppNavigationItem, role: VortekRole | null, assistantAllowed = false): boolean {
+  return (!item.adminOnly || role === 'admin') && (!item.assistantOnly || assistantAllowed);
 }
 
-export function navigationForRole(role: VortekRole | null): AppNavigationEntry[] {
+export function navigationForRole(role: VortekRole | null, assistantAllowed = false): AppNavigationEntry[] {
   return APP_NAVIGATION.reduce<AppNavigationEntry[]>((visible, entry) => {
     if (entry.type === 'item') {
-      if (isVisible(entry, role)) visible.push(entry);
+      if (isVisible(entry, role, assistantAllowed)) visible.push(entry);
       return visible;
     }
 
-    const children = entry.children.filter((item) => isVisible(item, role));
+    const children = entry.children.filter((item) => isVisible(item, role, assistantAllowed));
     if (children.length > 0) visible.push({ ...entry, children });
     return visible;
   }, []);

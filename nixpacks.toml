@@ -7,8 +7,13 @@ dependsOn = ["setup"]
 cmds = ["npm ci --no-audit --prefer-offline --progress=false"]
 onlyIncludeFiles = ["package.json", "package-lock.json"]
 
-[phases.build]
+# BNT-AI-02: runtime only; credentials/profile belong to a private persistent mount.
+[phases.codex]
 dependsOn = ["install"]
+cmds = ["npm install --global @openai/codex@0.153.4 --no-audit --progress=false", "codex --version"]
+
+[phases.build]
+dependsOn = ["install", "codex"]
 cmds = ["npm run build"]
 cacheDirectories = [".next/cache", "node_modules/.cache"]
 

@@ -10,6 +10,7 @@ import {
   FundProjectionScreenOutlined,
   LogoutOutlined,
   MenuFoldOutlined,
+  MessageOutlined,
   MenuUnfoldOutlined,
   OrderedListOutlined,
   QuestionCircleOutlined,
@@ -63,6 +64,7 @@ const COLLAPSED_WIDTH = 80;
 
 const navigationIcons: Record<AppNavigationIcon, React.ReactNode> = {
   dashboard: <DashboardOutlined />,
+  assistant: <MessageOutlined />,
   tv: <FundProjectionScreenOutlined />,
   offers: <TagsOutlined />,
   products: <ShoppingCartOutlined />,
@@ -142,6 +144,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [profile, setProfile] = useState<ShellProfile | null>(null);
   const [profileLoading, setProfileLoading] = useState(true);
+  const [assistantAllowed, setAssistantAllowed] = useState(false);
   const [integrations, setIntegrations] = useState<IntegrationStatus[]>([]);
   const [integrationsLoading, setIntegrationsLoading] = useState(true);
   const [integrationsUnavailable, setIntegrationsUnavailable] = useState(false);
@@ -149,12 +152,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   const currentNavigation = useMemo(() => resolveNavigation(pathname), [pathname]);
   const menuItems = useMemo(
-    () => toMenuItems(navigationForRole(profile?.cargo || null)),
-    [profile?.cargo],
+    () => toMenuItems(navigationForRole(profile?.cargo || null, assistantAllowed)),
+    [profile?.cargo, assistantAllowed],
   );
 
   useEffect(() => {
     const controller = new AbortController();
+    void fetch('/api/assistente/status', { cache: 'no-store', signal: controller.signal })
+      .then(response => response.ok ? response.json() : null)
+      .then(data => { if (!controller.signal.aborted) setAssistantAllowed(data?.allowed === true); })
+      .catch(() => { if (!controller.signal.aborted) setAssistantAllowed(false); });
 
     async function loadProfile() {
       try {

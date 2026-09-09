@@ -4,7 +4,8 @@ const fs = require('node:fs');
 const load = require('./helpers/load-integration-module');
 const terms = require('../src/lib/ml-sale-terms.ts');
 const domain = load('src/lib/product-warranty.ts', { zod: require('zod'), './ml-sale-terms': terms });
-const codex = load('src/services/warranty-codex.ts', { 'server-only': {}, 'node:child_process': require('node:child_process'), 'node:fs': fs, 'node:path': require('node:path') });
+const transport = load('src/services/codex-json-transport.ts', { 'server-only': {}, 'node:child_process': require('node:child_process'), 'node:path': require('node:path') });
+const codex = load('src/services/warranty-codex.ts', { 'server-only': {}, './codex-json-transport': transport, 'node:fs': fs, 'node:path': require('node:path') });
 const service = load('src/services/product-warranty.ts', { 'server-only': {}, 'node:crypto': require('node:crypto'), zod: require('zod'),
   '@/lib/preferred-offer': require('../src/lib/preferred-offer.ts'), '@/lib/ml-product-facts': require('../src/lib/ml-product-facts.ts'),
   '@/lib/product-warranty': domain, '@/lib/ml-sale-terms': terms, './warranty-codex': codex, './product-attribute-research': { researchWarrantySources: async () => [] } });

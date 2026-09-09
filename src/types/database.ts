@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      assistant_conversations: {
+        Row: {
+          id: string
+          user_id: string
+          title: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          title?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          title?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      assistant_messages: {
+        Row: {
+          id: string
+          conversation_id: string
+          user_id: string
+          request_id: string
+          role: string
+          content: string
+          state: string
+          answer: Json | null
+          created_at: string
+          deadline_at: string | null
+        }
+        Insert: {
+          id?: string
+          conversation_id: string
+          user_id: string
+          request_id: string
+          role: string
+          content?: string
+          state: string
+          answer?: Json | null
+          created_at?: string
+          deadline_at?: string | null
+        }
+        Update: {
+          id?: string
+          conversation_id?: string
+          user_id?: string
+          request_id?: string
+          role?: string
+          content?: string
+          state?: string
+          answer?: Json | null
+          created_at?: string
+          deadline_at?: string | null
+        }
+        Relationships: []
+      }
       pricing_alerts: {
         Row: {
           created_at: string
@@ -2842,6 +2905,18 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      begin_assistant_message: {
+        Args: { p_user: string; p_conversation: string; p_request: string; p_question: string }
+        Returns: Json
+      }
+      finish_assistant_message: {
+        Args: { p_user: string; p_message: string; p_state: string; p_content: string; p_answer: Json }
+        Returns: Json
+      }
+      delete_assistant_conversation: {
+        Args: { p_user: string; p_conversation: string }
+        Returns: undefined
+      }
       assert_publication_evaluation: {
         Args: { p_actor_id: string; p_evaluation_id: string }
         Returns: undefined
