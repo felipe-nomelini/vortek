@@ -1,6 +1,6 @@
 # BNT-AI-02 — Interface e histórico
 
-**Data:** 08/09/2026. **Branch:** `dev`. **Estado:** implementação e validação local concluídas; ativação/publicação DEV e homologação do chat com modelo real pendentes.
+**Data:** 08/09/2026. **Branch:** `dev`. **Estado vigente:** código publicado em DEV no candidato `32a1685d`, com Codex confirmado na imagem. Ativação administrativa, perfil/login e homologação do chat com modelo real pendentes. A fotografia local abaixo antecede os deploys registrados ao final.
 
 ## Mudança e evidência
 
@@ -49,9 +49,9 @@ As capturas abaixo usam conteúdo claramente sintético, não respostas de um mo
 
 ## Pendências para o teste de Felipe
 
-1. Conectar o titular pelo login oficial no **perfil exclusivo do Assistente**, sem copiar a sessão de engenharia ou assumir a autenticação do perfil de garantia. Em publicação DEV autorizada, provisionar diretório persistente privado no serviço `vortek-erp-dev`; nunca no Supabase de produção.
+1. Com acesso administrativo válido ao Easypanel, configurar **somente `local/vortek-erp-dev`** conforme o registro de publicação abaixo e provisionar diretório persistente privado. Conectar o titular pelo login oficial no **perfil exclusivo do Assistente**, sem copiar a sessão de engenharia ou assumir a autenticação do perfil de garantia; nunca no Supabase de produção.
 2. Confirmar os controles de dados aplicáveis à conta descritos na [seção 3 do contrato](../VORTEK_BENTEVI_ASSISTENTE_CONTRATO.md#3-provedor-e-limites) antes de habilitar `BENTEVI_ASSISTANT_DATA_APPROVED`. A existência da assinatura não comprova esses controles. Primeiro executar uma pergunta sintética com o perfil real, validando conta/modelo/cota.
-3. Fazer commit/push/deploy **quando autorizados**, conferir Codex/documentos/perfil persistente e executar smoke autenticado em `https://dev.bentevi.shop/assistente`, incluindo consulta canônica real sem mutações. Só então fornecer roteiro de teste visual e avançar ao AI-GATE.
+3. O código já recebeu commit/push/deploy autorizados; Codex/documentos e publicação foram conferidos. Após configurar perfil/variáveis e reaplicar o serviço, repetir smoke autenticado em `https://dev.bentevi.shop/assistente`, incluindo consulta canônica real sem mutações. O smoke atual confirmou o bloqueio por configuração, não a inferência. Só então fornecer roteiro de teste visual e avançar ao AI-GATE.
 
 Não foi executado LIVE de inferência do chat. A prova anterior de `gpt-6-astra` no extrator de garantia permanece histórica; não equivale à validação deste perfil/hospedagem. Precisão semântica, uso efetivo de cota, reconexão/renovação e comportamento multi-instância em hospedagem ainda exigem homologação. A UI classifica limite atingido, mas ainda não apresenta uma data específica de renovação da cota. A retenção pessoal é limitada pelo contrato do provedor; exclusão no ERP não a redefine.
 
@@ -78,3 +78,14 @@ O usuário autorizou push/deploy para teste. Commits `c788f538` (conhecimento), 
 Para ativar **somente o serviço web DEV**, preservar as demais variáveis e configurar `SUPABASE_SERVICE_URL=http://192.168.1.162:8000`, `BENTEVI_ASSISTANT_ENABLED=1`, UUID do titular DEV em `BENTEVI_ASSISTANT_PILOT_USER_ID`, caminho privado persistente terminado em `assistant-codex` em `BENTEVI_ASSISTANT_CODEX_HOME` e `BENTEVI_ASSISTANT_DATA_APPROVED=0`. O último permanece bloqueado até confirmar os controles da conta; habilitar interface não autoriza inferência. Não mudar URL pública de Auth/cookies nem credenciais Supabase. Reaplicar o serviço pelo deploy oficial depois de configurar o perfil/mount.
 
 Esta subseção complementa a fotografia local acima; não encerra AI-02, AI-GATE ou marco 3. Publicação de código não é teste conversacional da assinatura.
+
+### Resultado da publicação corrigida
+
+- Commit `32a1685d` publicado somente em `origin/dev`; segundo acionamento pelo script oficial, com dry-run anterior, sem deploy paralelo. Ação `cmttdbkyj000c07o92hkbf4qx`: `done` às **21:39:29 BRT**. Serviço DEV: atualização `completed` às **21:39:36 BRT**, uma réplica, versão Docker `9734`.
+- Container novo `79a78eae9dd4`: `npm exec --offline -- codex --version` retornou `codex-cli 0.153.4`. SHA-256 de `package.json`, lockfile, autorização/histórico e configuração do modelo coincidem com o candidato local. Documento canônico incluído na imagem. Nenhum perfil, cookie ou credencial de engenharia foi copiado.
+- Smoke remoto sem mocks: `/api/auth/me` e `/assistente` HTTP 200 com sessão temporária DEV; `/api/assistente/status` HTTP 403 `ambiente_bloqueado` por configuração ausente; acesso anônimo HTTP 401. Nenhum histórico criado/excluído e nenhuma pergunta enviada. Sessão temporária encerrada com escopo local, sem mudar senha ou invalidar outras sessões. O harness usou o nome de cookie da URL pública da hospedagem, separado do transporte literal `.162`.
+- Preflight confirmou TCP `.162`, hostname `supabase-dev`, migration `20260908190000` já registrada e tabelas existentes; nenhuma migration reaplicada, DDL ou escrita operacional. Auth de smoke somente no `.162`.
+- Serviço de produção `local_vortek-erp` permaneceu na versão `9706`, `UpdatedAt=2026-09-08T20:01:30.596084878Z`, iguais à fotografia inicial. Inspeção limitada a metadados do Docker; nenhum acesso ao Supabase/PostgreSQL de produção.
+- `AGENTS.md`/`.gitignore` preservados; regras, skills e credenciais locais continuam ignoradas. Evidência/checklist pós-deploy enviados em commit documental, com autoDeploy desligado; não exigem outra imagem.
+
+**Resultado para o usuário:** push/deploy concluídos, mas o teste conversacional continua bloqueado pelas pendências administrativas e pelo login do perfil exclusivo. Não solicitar aceite de um chat indisponível.
