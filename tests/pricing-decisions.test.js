@@ -2,7 +2,8 @@ const test=require('node:test');const assert=require('node:assert/strict');const
 const load=require('./helpers/load-integration-module');
 const audit=load('src/services/pricing-audit.ts',{zod:require('zod')});
 const gate=require('../src/lib/ml/pricing-execution.js');
-const domain=load('src/services/pricing-decisions.ts',{zod:require('zod'),'node:crypto':require('crypto'),'./pricing-audit':audit,'@/lib/ml/pricing-execution':gate});
+const domain=load('src/services/pricing-decisions.ts',{zod:require('zod'),'node:crypto':require('crypto'),'./pricing-audit':audit,
+  '@/lib/ml/pricing-execution':gate,'./pricing-execution-access':{requirePricingExecutionAccount:async()=>{throw Error('pricing_execution_not_ready')}}});
 const id='00000000-0000-4000-8000-000000000001';
 function input(){return {sellerId:'123',itemId:'MLB1',currentPriceCents:10000,priceCents:11000,automatic:false,listingSafety:{verified:true,evidence:[]},
   group:{id,version:1,state:'verified',members:[{itemId:'MLB1',variationId:'',catalog:false}],protection:null,inFlight:false},
@@ -53,6 +54,7 @@ function harness(options={}){
     '@/lib/permissions':{hasPermission:()=>true},'@/lib/supabase':{createServiceClient:()=>client},
     '@/services/pricing-detail':{loadPricingDetail:async()=>{live++;return Response.json(options.liveError?{error:'ML indisponível'}:{evaluationId:id},{status:options.liveError?503:200});}},
     '@/services/pricing-decisions':domain,
+    '@/services/pricing-execution-access':{configuredPricingExecutionCapability:()=>({mode:'disabled',enabled:false,target:null})},
   });
   return {calls,live:()=>live,post:body=>routes.POST(new Request('http://local',{method:'POST',body:JSON.stringify(body)}))};
 }
@@ -72,7 +74,9 @@ test('erros desconhecidos não vazam payloads de backend',async()=>{
 });
 test('interface única conserva ações explícitas, estados separados e não publica',()=>{
   const ui=fs.readFileSync('src/components/products/PricingDecisionCenter.tsx','utf8');
-  for(const label of ['Alertas e decisões','Aprovar proposta','Rejeitar','Adiar','aplicação bloqueada pelo gate','Motivo obrigatório','Histórico','Registrar proposta'])assert.ok(ui.includes(label));
+  for(const label of ['Alertas e decisões','Aprovar proposta','Rejeitar','Adiar','aplicação bloqueada pelo gate','Motivo obrigatório','Histórico','Registrar proposta',
+    'Aplicar no Mercado Livre','Confirmar criação de anúncio real','Confirmar alteração de preço real','Esta operação produz efeito comercial real'])assert.ok(ui.includes(label));
+  assert.match(ui,/onClick=\{requestApprovedExecution\}/);assert.match(ui,/setExecutionConfirmationOpen\(true\)/);
   assert.doesNotMatch(ui,/setInterval|setTimeout|atualizar-preco|enqueueMlPublishOutbox/);assert.match(ui,/command\s*\?\?/);assert.match(ui,/generation\.current/);
   const roles=load('src/lib/permissions.ts');for(const role of ['admin','gerente'])assert.equal(roles.hasPermission(role,'pricing.decisions.manage'),true);
   for(const role of ['operador','visualizador']){assert.equal(roles.hasPermission(role,'pricing.decisions.manage'),false);assert.equal(roles.hasPermission(role,'pricing.read'),true);}
@@ -93,9 +97,11 @@ test('leitura deriva expiração e filtra a decisão atual, sem alterar a audito
     '@/lib/permissions':{hasPermission:()=>true},'@/lib/supabase':{createServiceClient:()=>client},
     '@/services/pricing-detail':{loadPricingDetail:async()=>{throw Error('unexpected_live_read')}},
     '@/services/pricing-decisions':domain,
+    '@/services/pricing-execution-access':{configuredPricingExecutionCapability:()=>({mode:'disabled',enabled:false,target:null})},
   });
   const r=await routes.GET(new Request('http://local/api/pricing/decisions?decision=expired'));
   assert.equal(r.status,200);const data=await r.json();assert.equal(data.data[0].decisions[0].state,'expired');assert.equal(expired.state,'approved');
+  assert.deepEqual(data.execution,{mode:'disabled',enabled:false,target:null});assert.equal(data.executionBlocked,true);
   assert.ok(calls.some(c=>c[0]==='select'&&c[2].includes('pricing_alerts_latest_decision_id_fkey!inner')));
   assert.ok(calls.some(c=>c[0]==='or'&&c[1].includes('operation_id.is.null')));
   assert.deepEqual(calls.find(c=>c[0]==='order'),['order','severity_order',{ascending:true}]);

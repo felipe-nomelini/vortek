@@ -2,11 +2,21 @@
 
 Este documento registra regras práticas validadas na criação de anúncios do Vortek.
 
-## Estado da execução Bentevi DEV — 08/09/2026
+## Estado da execução Bentevi DEV — 09/09/2026
 
 O PUB-GATE publicado em DEV (`9a18ff8f`) substitui a criação direta por preparação, aprovação explícita, operação/outbox, worker e conferência. O formulário de preço também encaminha proposta à central; a rota de preço bruto continua bloqueada. A capacidade nova está **desabilitada por padrão**, restrita à conta de teste/allowlist/DEV e banco `.162`. Os testes locais não substituem a prova no ML: o seller de teste está conectado/verificado, mas o aceite autenticado e a prova externa limitada ainda estão pendentes. [Contrato, evidências, rollback e pendências do marco 1](reestruturacao-vortek/evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
 
-**Sequência atualizada por decisão do usuário, após o deploy de 08/09/2026:** recorte técnico do marco 1 concluído para sequência; seguir para V2-15 operacional/D20 inicial. Aceite autenticado e prova externa transferidos ao marco 6 de [Bentevi em operação](reestruturacao-vortek/VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao), sem exigir agora novo produto de teste. Preparar/testar capacidade produtiva no marco 5; conta real e escritas somente na ativação autorizada pelo workspace `vortek-prod`. Esta decisão não altera o código, não habilita execução e não encerra PUB-GATE integral.
+**Estado atual:** o recorte técnico do marco 1 continua concluído para sequência e seu aceite autenticado/prova externa permanece transferido ao marco 6 de [Bentevi em operação](reestruturacao-vortek/VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao). A capacidade produtiva controlada foi preparada e validada em `dev` por `BNT-REL-WRITER-01`, mas segue `disabled` por padrão e não foi publicada nem ativada. Conta real e escritas continuam permitidas somente na ativação autorizada pelo workspace produtivo. [Evidência técnica](reestruturacao-vortek/evidencias/BNT-REL-WRITER-01-validacao.md).
+
+### Modo produtivo controlado — preparado, não ativado
+
+- `ML_PRICING_EXECUTION_MODE=production_controlled` somente produz capacidade quando o runtime é `production`, a origem é exatamente `https://app.bentevi.shop`, o Supabase resolve exclusivamente para `.162`, o seller está na allowlist e `/users/me` comprova conta `MLB` sem a tag `test_user`.
+- `test_only` preserva o contrato de homologação, incluindo conta `test_user`; `disabled` permanece o padrão.
+- Aprovação e aplicação continuam separadas e feitas pela mesma pessoa autorizada (`admin` ou `gerente`). Produção acrescenta confirmação final explícita com produto, SKU e preço antes de enfileirar.
+- O executor canônico conserva claim único, revalidação imediatamente antes do envio, auditoria, captura do ID remoto, read-back e recuperação sem reenvio após resultado incerto. Escritores legados permanecem bloqueados.
+- Em criação produtiva, o anúncio usa o nome comprovado do produto. O aviso `Item de Teste` existe somente em `test_only`.
+
+Essas condições não reclassificam a `.162`, não configuram o serviço `local/bentevi-prod` e não autorizam testes reais. A ativação continua subordinada ao corte produtivo e ao marco 6.
 
 Não reenviar criação ou preço após resultado incerto. A central pode solicitar nova conferência da mesma operação, sem repetir a mutação. Nenhuma destas regras autoriza anúncio real, publicação em massa ou escrita em produção.
 

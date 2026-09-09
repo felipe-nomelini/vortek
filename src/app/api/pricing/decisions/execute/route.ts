@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   try {
     return json(await enqueueApprovedPricingDecision(parsed.data.decisionId, parsed.data.operationId, auth.userId), 202);
   } catch {
-    return json({ error: 'Aplicação não confirmada. Confira a operação e a validade da aprovação. Execução permitida somente na conta de teste em DEV.' }, 409);
+    return json({ error: 'Aplicação não confirmada. Confira a operação, a validade da aprovação e a configuração protegida do ambiente.' }, 409);
   }
 }
 

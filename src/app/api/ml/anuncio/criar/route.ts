@@ -4,6 +4,7 @@ import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { createServiceClient } from '@/lib/supabase';
 import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { preparePublication, publicationInputSchema } from '@/services/publication-preparation';
+import { configuredPricingExecutionCapability } from '@/services/pricing-execution-access';
 
 export const maxDuration = 300;
 
@@ -11,7 +12,7 @@ export const maxDuration = 300;
 export async function POST(request: Request) {
   const auth = await authorizeApiRequest(request, 'pricing.decisions.manage');
   if (!auth.ok) return auth.response;
-  if (process.env.ML_PRICING_EXECUTION_MODE !== 'test_only')
+  if (!configuredPricingExecutionCapability().enabled)
     return NextResponse.json(getPricingExecutionBlock(), { status: 409 });
   const input = publicationInputSchema.safeParse(await request.json().catch(() => null));
   if (!input.success) return NextResponse.json({ error: 'Preparação inválida. Preço, logística e evidências precisam estar explícitos.' }, { status: 422 });
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
     const client = createServiceClient();
     const decision = await client.rpc('prepare_pricing_decision', {
       p_command_id: randomUUID(), p_evaluation_id: prepared.evaluationId, p_actor_id: auth.userId,
-      p_reason: 'Preparação de um novo anúncio na conta de teste',
+      p_reason: 'Preparação de um novo anúncio para confirmação humana',
     });
     if (decision.error || !decision.data) throw new Error('publication_decision_persistence_failed');
     const row = await client.from('pricing_decisions').select('alert_id').eq('id', decision.data).single();

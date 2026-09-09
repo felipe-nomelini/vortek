@@ -3,7 +3,7 @@
 export function getPricingExecutionBlock() {
   return {
     code: 'pricing_execution_not_ready',
-    error: 'Criação e alteração de preço aguardam os contratos canônicos de execução e homologação. Nenhum preço foi alterado.',
+    error: 'A execução comercial canônica não está habilitada neste ambiente. Nenhum anúncio ou preço foi alterado.',
   };
 }
 
@@ -12,16 +12,44 @@ export function assertPricingExecutionReady() {
   if (block) throw new Error(`${block.code}: ${block.error}`);
 }
 
-/** A capability for the approved test operation, never a global switch for legacy writers. */
-export function testPricingExecutionAllowed({ mode, appUrl, allowedSellerIds, account, sellerId }) {
+const TEST_HOSTS = ['dev.bentevi.shop', 'localhost', '127.0.0.1'];
+const PRODUCTION_ORIGIN = 'https://app.bentevi.shop';
+
+function executionUrl(appUrl) {
   let url;
-  try { url = new URL(appUrl); } catch { return false; }
-  return mode === 'test_only'
-    && ['http:', 'https:'].includes(url.protocol) && !url.username && !url.password
-    && ['dev.bentevi.shop', 'localhost', '127.0.0.1'].includes(url.hostname)
+  try { url = new URL(appUrl); } catch { return null; }
+  return ['http:', 'https:'].includes(url.protocol) && !url.username && !url.password ? url : null;
+}
+
+/** Sanitized server capability. It never grants access to a seller or unlocks legacy writers. */
+export function getPricingExecutionCapability({ mode, runtimeEnvironment, appUrl, allowedSellerIds }) {
+  const normalizedMode = ['test_only', 'production_controlled'].includes(mode) ? mode : 'disabled';
+  const target = normalizedMode === 'test_only' ? 'test'
+    : normalizedMode === 'production_controlled' ? 'production' : null;
+  const url = executionUrl(appUrl);
+  const environmentAllowed = normalizedMode === 'test_only'
+    ? !!url && TEST_HOSTS.includes(url.hostname)
+    : normalizedMode === 'production_controlled'
+      && runtimeEnvironment === 'production'
+      && url?.origin === PRODUCTION_ORIGIN
+      && url.pathname === '/'
+      && !url.search
+      && !url.hash;
+  const enabled = environmentAllowed && Array.isArray(allowedSellerIds) && allowedSellerIds.length > 0;
+  return { mode: normalizedMode, enabled: Boolean(enabled), target };
+}
+
+/** Account-bound capability for the single canonical commercial executor. */
+export function pricingExecutionAllowed({
+  mode, runtimeEnvironment, appUrl, allowedSellerIds, account, sellerId,
+}) {
+  const capability = getPricingExecutionCapability({ mode, runtimeEnvironment, appUrl, allowedSellerIds });
+  const tags = account?.tags;
+  return capability.enabled
     && Array.isArray(allowedSellerIds) && allowedSellerIds.includes(String(sellerId))
     && String(account?.id) === String(sellerId) && account?.site_id === 'MLB'
-    && Array.isArray(account?.tags) && account.tags.includes('test_user');
+    && Array.isArray(tags)
+    && (capability.target === 'test' ? tags.includes('test_user') : !tags.includes('test_user'));
 }
 
 /** A price write is confirmed by the read-back, not by HTTP 2xx. */

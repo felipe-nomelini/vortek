@@ -27,11 +27,12 @@ function harness(options={}) {
     '@/lib/product-warranty':{warrantySaleTerms:()=>({compatible:true,terms:[{id:'WARRANTY_TIME',value_name:'12 meses'}]}),warrantyDescription:x=>x,warrantyDescriptionConflicts:()=>false},
     './product-warranty':{loadProductWarranty:async()=>({resolution:{revision:options.warrantyChanged?'r2':'r1'}})},
     './mercadolibre':{getCategoryAttributes:async()=>[],getCategorySaleTerms:async()=>[]},
-    './integration':{fetchMLResult:async(path,init)=>{calls.push([path,init]);return path==='/users/me'?{ok:true,data:{id:123,tags:['test_user']}}:
+    './integration':{fetchMLResult:async(path,init)=>{calls.push([path,init]);return path==='/users/me'?{ok:true,data:{id:123,tags:[options.production?'normal':'test_user']}}:
       path.endsWith('/conditional')?{ok:true,data:{required_attributes:options.conditionalMissing?[{id:'GTIN'}]:[]}}:{ok:!options.validationFailed};}},
     './pricing-detail':{loadPricingDetail:async()=>Response.json({pricing})},'./pricing-audit':audit,
     './ml-listing-links':{resolveProductMlLinks:async()=>({classification:options.uncertainLink?'VINCULO_INCONCLUSIVO':'NOVO_ANUNCIO_CANDIDATO',candidates:[]})},
-    './pricing-execution-access':{requireTestPricingAccount:async()=> '123',testPricingTransport:()=>({})},
+    './pricing-execution-access':{requirePricingExecutionAccount:async()=>({sellerId:'123',capability:{
+      mode:options.production?'production_controlled':'test_only',enabled:true,target:options.production?'production':'test'}}),pricingExecutionTransport:()=>({})},
   });
   return {module:load(source,mocks),calls,saved};
 }
@@ -43,6 +44,12 @@ test('preparation uses the canonical memory, safe capacity, real images and null
   assert.ok(h.calls.some(([path])=>path==='/items/validate'));
   assert.ok(!h.calls.some(([path])=>path==='/items'));
   const again=await h.module.preparePublication(input(),id);assert.equal(again.decisionContext.fingerprint,prepared.decisionContext.fingerprint);
+});
+test('production preparation uses the real product name while test mode keeps an unmistakable test title',async()=>{
+  const production=await harness({production:true}).module.preparePublication(input(),id);
+  assert.equal(production.preparation.payload.title,'Produto comprovado');
+  const testOnly=await harness().module.preparePublication(input(),id);
+  assert.match(testOnly.preparation.payload.title,/Item de Teste/);
 });
 test('legacy modes, fabricated identity fields and actor injection are rejected by the contract',()=>{
   const h=harness();for(const extra of [{pricingMode:'profitable_shelf_2'},{targetNetProfit:20},{basePrice:110},{actorId:id},{allowOutOfStockListing:true}])

@@ -4,13 +4,13 @@ import { fetchMLResult } from './integration';
 import { loadPricingDetail } from './pricing-detail';
 import { persistPricingObservations, transitionPricingOperation } from './pricing-audit';
 import { consumePricingDecision } from './pricing-decisions';
-import { requireTestPricingAccount, testPricingTransport } from './pricing-execution-access';
+import { requirePricingExecutionAccount, pricingExecutionTransport } from './pricing-execution-access';
 import { pricingReadbackMatches } from '@/lib/ml/pricing-execution';
 
 type Client = ReturnType<typeof createServiceClient>;
 
 async function revalidate(client: Client, decision: any, productId: string, actorId: string) {
-  await requireTestPricingAccount(decision.context.sellerId);
+  await requirePricingExecutionAccount(decision.context.sellerId);
   if (decision.context.operationKind === 'listing_create') {
     const { preparePublication } = await import('./publication-preparation');
     const fresh = await preparePublication(decision.context.preparation.input, actorId);
@@ -30,13 +30,13 @@ async function revalidate(client: Client, decision: any, productId: string, acto
 
 /** Authenticated command only enqueues the stored approval. It accepts no new price/payload. */
 export async function enqueueApprovedPricingDecision(decisionId: string, operationId: string, actorId: string) {
-  await requireTestPricingAccount();
+  await requirePricingExecutionAccount();
   const client = createServiceClient();
   const found = await client.from('pricing_decisions').select('*,alert:pricing_alerts!pricing_decisions_alert_id_fkey(produto_id)')
     .eq('id', decisionId).single();
   if (found.error || !found.data) throw new Error('decision_missing');
   const decision = found.data as any;
-  await requireTestPricingAccount(decision.context.sellerId);
+  await requirePricingExecutionAccount(decision.context.sellerId);
   const outboxId = await consumePricingDecision(client, { decisionId, operationId, actorId }, async () => {
     // Consumption is idempotent in SQL; no stale-price comparison after a completed operation.
     if (decision.operation_id) return decision.evaluation_id;
@@ -62,7 +62,7 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
   if (result.error || approval.error || !result.data || !approval.data) throw new Error('decision_operation_missing');
   let operation = result.data;
   const decision = approval.data as any;
-  const sellerId = await requireTestPricingAccount(decision.context.sellerId);
+  const { sellerId } = await requirePricingExecutionAccount(decision.context.sellerId);
   const finish = async (state: string) => {
     const terminal = state === 'confirmed' ? 'done' : 'failed';
     const saved = await client.from('anuncios_ml_outbox').update({ status: terminal,
@@ -89,7 +89,7 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
       // Leave the approval untouched for inspection; no price is sent.
       throw error;
     }
-    const transport = testPricingTransport(sellerId, async () => {
+    const transport = pricingExecutionTransport(sellerId, async () => {
       const claimed = await client.rpc('claim_pricing_decision_dispatch' as any, {
         p_operation_id: operationId, p_fresh_evaluation_id: evaluationId,
       });
@@ -110,7 +110,7 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
       await fetchMLResult('/items/' + encodeURIComponent(sent.data.id) + '/description', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ plain_text: decision.context.preparation.description }),
-      }, testPricingTransport(sellerId)).catch(() => null);
+      }, pricingExecutionTransport(sellerId)).catch(() => null);
     }
     const freshOperation = await client.from('pricing_operations').select('*').eq('id', operationId).single();
     if (freshOperation.error || !freshOperation.data) throw new Error('decision_operation_unavailable');

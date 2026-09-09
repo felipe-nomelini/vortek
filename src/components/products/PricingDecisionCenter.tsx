@@ -89,6 +89,11 @@ type Detail = {
   canManage: boolean;
   hasMore: boolean;
   executionBlocked: boolean;
+  execution: {
+    mode: 'disabled' | 'test_only' | 'production_controlled';
+    enabled: boolean;
+    target: 'test' | 'production' | null;
+  };
 };
 const api = '/api/pricing/decisions';
 async function read(url: string, init?: RequestInit) {
@@ -130,6 +135,7 @@ export default function PricingDecisionCenter() {
   const [reason, setReason] = useState('');
   const [until, setUntil] = useState('');
   const [busy, setBusy] = useState(false);
+  const [executionConfirmationOpen, setExecutionConfirmationOpen] = useState(false);
   const executionCommand = useRef<{ decisionId: string; operationId: string } | null>(null);
   const [operation, setOperation] = useState<{ id: string; state: string } | null>(null);
   const list = useCallback(async () => {
@@ -179,6 +185,7 @@ export default function PricingDecisionCenter() {
       if (request === generation.current) {
         setDetail(d);
         setOperation(null);
+        setExecutionConfirmationOpen(false);
         setHistoryPage(p);
       }
     } catch (e) {
@@ -205,7 +212,7 @@ export default function PricingDecisionCenter() {
     catch (e) { message.error((e as Error).message); }
   }
   async function applyApproved() {
-    if (!current || busy || detail?.executionBlocked) return;
+    if (!current || busy || detail?.executionBlocked) return false;
     if (executionCommand.current?.decisionId !== current.id)
       executionCommand.current = { decisionId: current.id, operationId: current.operation_id || crypto.randomUUID() };
     setBusy(true);
@@ -215,8 +222,16 @@ export default function PricingDecisionCenter() {
       message.info('Operação registrada na fila. O preço só será considerado aplicado após conferência no ML.');
       await show(detail!.alert.id);
       await checkOperation(r.operationId);
-    } catch (e) { message.error((e as Error).message); }
+      return true;
+    } catch (e) { message.error((e as Error).message); return false; }
     finally { setBusy(false); }
+  }
+  function requestApprovedExecution() {
+    if (detail?.execution.target === 'production') setExecutionConfirmationOpen(true);
+    else void applyApproved();
+  }
+  async function confirmProductionExecution() {
+    if (await applyApproved()) setExecutionConfirmationOpen(false);
   }
   async function handleSubmit() {
     if (!current || !action || !reason.trim()) return;
@@ -280,6 +295,7 @@ export default function PricingDecisionCenter() {
           setLoading(false);
           setOpen(false);
           setDetail(null);
+          setExecutionConfirmationOpen(false);
           setError('');
         }}
       >
@@ -288,7 +304,11 @@ export default function PricingDecisionCenter() {
             type="info"
             showIcon
             message="Decidir não significa aplicar"
-            description="Nenhum preço será enviado ao Mercado Livre nesta etapa. Aprovações antigas não serão executadas quando o gate for liberado."
+            description={detail?.execution.target === 'production' && detail.execution.enabled
+              ? 'A aprovação não envia nada. A operação real exige uma confirmação final e nova validação no servidor.'
+              : detail?.execution.target === 'test' && detail.execution.enabled
+                ? 'A aprovação não envia nada. A aplicação permanece limitada à conta de teste autorizada.'
+                : 'Nenhuma operação comercial será enviada enquanto o gate de execução estiver desabilitado.'}
           />
           {error && (
             <Alert
@@ -461,9 +481,11 @@ export default function PricingDecisionCenter() {
                 <PricingQuoteSummary pricing={detail.evaluation.result} />
                 {current?.state === 'approved' && (
                   <Space direction="vertical">
-                    {detail.executionBlocked && <Alert type="info" message="Proposta aprovada; aplicação bloqueada pelo gate. Execução de teste não habilitada." />}
+                    {detail.executionBlocked && <Alert type="info" message="Proposta aprovada; aplicação bloqueada pelo gate protegido do ambiente." />}
                     {detail.canManage && !current.operation_id && <Button type="primary" loading={busy}
-                      disabled={detail.executionBlocked} onClick={() => void applyApproved()}>Aplicar na conta de teste</Button>}
+                      disabled={detail.executionBlocked} onClick={requestApprovedExecution}>
+                      {detail.execution.target === 'production' ? 'Aplicar no Mercado Livre' : 'Aplicar na conta de teste'}
+                    </Button>}
                     {current.operation_id && <Button onClick={() => void checkOperation(current.operation_id!)}>Conferir operação</Button>}
                     {current.operation_id && detail.canManage && !detail.executionBlocked && operation
                       && ['requested', 'inconclusive'].includes(operation.state) && <Button loading={busy}
@@ -551,6 +573,38 @@ export default function PricingDecisionCenter() {
         </Space>
       </Drawer>
       <Modal
+        open={executionConfirmationOpen && detail?.execution.target === 'production'}
+        title={current?.context.operationKind === 'listing_create'
+          ? 'Confirmar criação de anúncio real'
+          : 'Confirmar alteração de preço real'}
+        onCancel={() => {
+          if (!busy) setExecutionConfirmationOpen(false);
+        }}
+        onOk={() => void confirmProductionExecution()}
+        confirmLoading={busy}
+        okText={current?.context.operationKind === 'listing_create' ? 'Criar anúncio real' : 'Alterar preço real'}
+        okButtonProps={{ danger: true }}
+      >
+        <Space direction="vertical" size={16} style={{ width: '100%' }}>
+          <Alert
+            type="warning"
+            showIcon
+            message="Esta operação produz efeito comercial real no Mercado Livre."
+            description="A conta e as evidências serão revalidadas antes de um único envio. Resultado incerto será apenas consultado, nunca reenviado automaticamente."
+          />
+          <Descriptions
+            column={1}
+            size="small"
+            items={[
+              { key: 'product', label: 'Produto', children: detail?.alert.product?.nome || '—' },
+              { key: 'sku', label: 'SKU', children: detail?.alert.product?.sku || '—' },
+              { key: 'current', label: 'Preço observado', children: money(current?.context.previousPriceCents) },
+              { key: 'proposed', label: 'Preço proposto', children: money(current?.context.priceCents) },
+            ]}
+          />
+        </Space>
+      </Modal>
+      <Modal
         open={Boolean(action)}
         title={
           action === 'approve'
@@ -573,7 +627,7 @@ export default function PricingDecisionCenter() {
         <Space direction="vertical" size={16} style={{ width: '100%' }}>
           <Alert
             type="info"
-            message="Aprovação sujeita à revalidação; aplicação comercial permanece bloqueada."
+            message="Aprovação sujeita à revalidação; ela não executa a operação comercial."
           />
           <Input.TextArea
             aria-label="Motivo da decisão"

@@ -170,11 +170,15 @@ export async function consumePricingDecision(
   input: { decisionId: string; operationId: string; actorId: string },
   revalidate: () => Promise<string>,
 ) {
-  if (process.env.ML_PRICING_EXECUTION_MODE !== 'test_only')
-    throw new Error(getPricingExecutionBlock()!.code);
   // Server-owned account/destination checks; no browser flag grants execution.
-  const { requireTestPricingAccount } = await import('./pricing-execution-access');
-  await requireTestPricingAccount();
+  const { requirePricingExecutionAccount } = await import('./pricing-execution-access');
+  try {
+    await requirePricingExecutionAccount();
+  } catch (error) {
+    if (error instanceof Error && error.message === 'pricing_execution_not_ready')
+      throw new Error(getPricingExecutionBlock()!.code);
+    throw error;
+  }
   const evaluationId = await revalidate();
   const { data, error } = await client.rpc('consume_pricing_decision', {
     p_id: z.string().uuid().parse(input.decisionId),

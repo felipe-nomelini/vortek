@@ -5,6 +5,7 @@ import { hasPermission } from '@/lib/permissions';
 import { createServiceClient } from '@/lib/supabase';
 import { loadPricingDetail } from '@/services/pricing-detail';
 import { decisionCommandSchema } from '@/services/pricing-decisions';
+import { configuredPricingExecutionCapability } from '@/services/pricing-execution-access';
 
 const json = (body: unknown, status = 200) =>
   NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
@@ -49,6 +50,7 @@ export async function GET(request: Request) {
   if (!parsed.success) return json({ error: 'Filtros inválidos' }, 422);
   const f = parsed.data;
   try {
+    const execution = configuredPricingExecutionCapability();
     const client = createServiceClient();
     const profile = await client.from('profiles').select('cargo').eq('id', auth.userId).single();
     if (profile.error) return json({ error: 'Permissões indisponíveis' }, 403);
@@ -90,7 +92,8 @@ export async function GET(request: Request) {
         })),
         hasMore: history.data?.length === 30,
         canManage,
-        executionBlocked: process.env.ML_PRICING_EXECUTION_MODE !== 'test_only',
+        execution,
+        executionBlocked: !execution.enabled,
       });
     }
     let query = client
@@ -139,7 +142,8 @@ export async function GET(request: Request) {
       total: result.count,
       pendingCount: count.count,
       canManage,
-      executionBlocked: process.env.ML_PRICING_EXECUTION_MODE !== 'test_only',
+      execution,
+      executionBlocked: !execution.enabled,
     });
   } catch {
     return json({ error: 'Central de decisões indisponível' }, 503);

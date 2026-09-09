@@ -16,7 +16,7 @@ import { fetchMLResult } from './integration';
 import { loadPricingDetail } from './pricing-detail';
 import { pricingMaterialFingerprint } from './pricing-audit';
 import { resolveProductMlLinks } from './ml-listing-links';
-import { requireTestPricingAccount, testPricingTransport } from './pricing-execution-access';
+import { requirePricingExecutionAccount, pricingExecutionTransport } from './pricing-execution-access';
 
 const attribute = z.object({ id: z.string().min(1).max(100), value_id: z.string().max(100).optional(),
   value_name: z.string().max(1000).optional() }).strict();
@@ -33,7 +33,8 @@ export type PublicationInput = z.infer<typeof publicationInputSchema>;
 /** Preparation is repeatable and creates no listing. All commercial calculations remain in pricing-detail. */
 export async function preparePublication(raw: unknown, actorId: string) {
   const input = publicationInputSchema.parse(raw);
-  const sellerId = await requireTestPricingAccount();
+  const execution = await requirePricingExecutionAccount();
+  const { sellerId } = execution;
   const client = createServiceClient();
   const productResult = await client.from('produtos').select('*').eq('id', input.produtoId).single();
   const product = productResult.data;
@@ -92,9 +93,12 @@ export async function preparePublication(raw: unknown, actorId: string) {
     ...[memory.cost.expiresAt, memory.fee.expiresAt, memory.shipping.expiresAt].filter(Boolean).map(Date.parse))).toISOString();
   if (Date.parse(expiresAt) <= Date.now()) throw new Error('publication_evidence_expired');
   const description = warrantyDescription(buildEvidenceBasedMlDescription(product, input.description), warranty.resolution);
+  const listingName = execution.capability.target === 'test'
+    ? 'Item de Teste – Por favor, NÃO OFERTAR!'
+    : product.nome.trim();
   const payload = {
     ...(account.data.tags?.includes('user_product_seller')
-      ? { family_name: 'Item de Teste – Por favor, NÃO OFERTAR!' } : { title: 'Item de Teste – Por favor, NÃO OFERTAR!' }),
+      ? { family_name: listingName } : { title: listingName }),
     category_id: input.categoriaId, price: memory.revenueCents / 100, currency_id: 'BRL',
     available_quantity: capacity.safe, buying_mode: 'buy_it_now', listing_type_id: input.listingType, condition: 'new',
     attributes, seller_custom_field: product.sku, pictures: pictures.map(source => ({ source })),
@@ -105,13 +109,13 @@ export async function preparePublication(raw: unknown, actorId: string) {
     '/categories/' + encodeURIComponent(input.categoriaId) + '/attributes/conditional', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...payload, description: { plain_text: description } }),
-    }, testPricingTransport(sellerId));
+    }, pricingExecutionTransport(sellerId));
   if (!conditional.ok || !Array.isArray(conditional.data?.required_attributes)
     || conditional.data.required_attributes.some(required => !required.id || !attributes.some(a =>
       a.id === required.id && Boolean(a.value_id?.trim() || a.value_name?.trim()))))
     throw new Error('publication_conditional_attributes_required');
   const validation = await fetchMLResult('/items/validate', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload) }, testPricingTransport(sellerId));
+    body: JSON.stringify(payload) }, pricingExecutionTransport(sellerId));
   if (!validation.ok) throw new Error('publication_ml_validation_failed');
   const preparation = { input: { ...input, priceCents: memory.revenueCents }, payload, description,
     warrantyRevision: warranty.resolution.revision, identity, capacity: capacity.safe, fiscal: fiscal.data };
