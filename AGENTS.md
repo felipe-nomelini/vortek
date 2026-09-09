@@ -29,6 +29,7 @@ O Supabase do projeto é **self-hosted**, não Supabase Cloud. Não exija projec
 | Supabase DEV local | `127.0.0.1`, projeto `bentevi-dev-local` | Escritas locais autorizadas somente com dados sintéticos e `VORTEK_RUNTIME_ENVIRONMENT=local_dev` |
 | Supabase de produção | `192.168.1.160` | Exclusivamente leitura para consultas e diagnósticos necessários |
 | Web de homologação | `dev.bentevi.shop`, serviço `vortek-erp-dev` no Easypanel `.160` | Homologação e deploy DEV somente no escopo autorizado |
+| App produtivo Bentevi reservado | serviço `local/bentevi-prod` no Easypanel `.160` | Inativo e vazio; configuração, domínio, branch e deploy somente em tarefa produtiva autorizada |
 
 A hospedagem da aplicação DEV em `.160` **não** torna o Supabase desse servidor um banco de desenvolvimento. Nomes de containers, diretórios, labels, URLs ou variáveis contendo `dev` não mudam essa classificação.
 
@@ -145,6 +146,8 @@ Fluxo de publicação deste projeto: **código validado em `dev` → commit/push
 Para deploy solicitado, siga o procedimento Easypanel e use `npm run deploy:easypanel` com configuração autorizada. Confirme branch `dev`, commits pretendidos disponíveis no remoto, destino `vortek-erp-dev` e `EASYPANEL_DEPLOY_EXPECTED_BRANCH=dev`. O script assume `main` na ausência dessa configuração; esse padrão não autoriza produção. Não use `--skip-git-check` para contornar verificações.
 
 O webhook vem da configuração privada, nunca de documentação ou código versionado. Não edite arquivos dentro do container nem use deploy direto por Docker como procedimento normal. Aceite HTTP do webhook não comprova build, implantação ou validação funcional; confira o resultado no nível aplicável.
+
+O App Service `local/bentevi-prod` está reservado e desabilitado, sem source, build, domínio, variáveis, volumes, portas ou deploy. Ele não é o serviço DEV e sua existência não autoriza configurá-lo, iniciá-lo ou associá-lo à branch `dev`. O webhook de `vortek-erp-dev` nunca deve ser usado como credencial ou caminho de publicação desse app.
 
 Preparar release significa fixar o SHA candidato de `dev`, levantar testes, delta mínimo de schema, variáveis sem valores, gates, riscos e recuperação. Não significa criar/pushar `bentevi-prod`, aplicar migrations ou apontar o serviço produtivo. Essas ações pertencem a uma tarefa de release própria e explicitamente autorizada; o Supabase de produção permanece somente leitura aqui.
 

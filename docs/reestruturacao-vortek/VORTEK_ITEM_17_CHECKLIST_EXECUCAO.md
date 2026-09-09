@@ -3454,6 +3454,30 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 - **Ativação controlada:** provas comerciais autenticadas e ME2 permanecem no marco 6, depois do deploy e antes da liberação diária, conforme decisão já registrada. Não podem ser adiados: autenticação e autorização, writers produtivos protegidos, variáveis obrigatórias, um único executor por fluxo, preservação de eventos/pedidos, smoke seguro e condições de interrupção.
 - **Próximo gate imediato:** autorizar commit e push somente do lote aprovado; em seguida fixar o novo SHA de `dev`, reexecutar a regressão do candidato e fechar inventários de paridade, schema/dados e runtime antes de solicitar a tarefa produtiva de corte.
 
+### BNT-REL-INFRA-01 — Reserva isolada do App Service produtivo — 09/09/2026
+
+**Situação:** concluída apenas a reserva de infraestrutura, sem configuração ou ativação produtiva.
+
+- A API administrativa oficial do Easypanel confirmou o projeto `local` e a ausência prévia de `bentevi-prod`; foi criado exatamente um App Service `local/bentevi-prod` e ele foi imediatamente parado/desabilitado.
+- O read-back final confirmou o serviço vazio: sem source, build, domínio, variáveis, volumes, portas, commit ou deployment. Nenhuma branch Git foi criada e `app.bentevi.shop` não foi associado.
+- `local/vortek-erp` permaneceu ativo em `main@2fc441f67d1457a154b3bd475d4f0e68b032551a`; `local/vortek-erp-dev` permaneceu ativo em `dev@908646a1147c4b85212ba2d389c0ed2a4569b3d2`; `dev.bentevi.shop/api/ops/health` continuou saudável.
+- Nenhum Supabase, banco, dado, integration writer, container existente ou configuração dos serviços legado/DEV foi alterado. O token administrativo temporário foi revogado, recebeu HTTP `401` no read-back e seu arquivo local foi removido.
+
+**Rollback:** como o serviço reservado nunca recebeu source, domínio, variável, volume ou deploy, a recuperação consiste em manter `local/bentevi-prod` desabilitado; sua remoção exige autorização destrutiva própria e confirmação do identificador exato.
+
+**Próxima ação:** somente depois de fixar e aprovar o SHA candidato, criar a branch Git `bentevi-prod` diretamente desse SHA e preparar a configuração produtiva em tarefa própria. A reserva não libera deploy, banco ou domínio.
+
+### BNT-REL-GATE-02 — Reconciliação da regressão local de release — 09/09/2026
+
+**Situação:** concluída a reconciliação dos testes locais; o snapshot ainda não é candidato produtivo.
+
+- As 16 falhas reproduzidas no início da ação eram contratos de teste desatualizados após entregas já integradas: navegação do Assistente, leitura de pricing pelo visualizador, aposentadoria do cálculo comercial legado, delegação da criação para `preparePublication`, carregamento isolado do contrato de jobs e novo preflight de identidade/elegibilidade da cotação M2M.
+- Os testes foram alinhados ao comportamento vigente sem alterar código de runtime, remover guardas, suprimir casos ou habilitar writers. O recorte afetado passou com 52/52 testes.
+- A regressão integral passou com 1.305 testes, 0 falhas e 3 casos LIVE explicitamente ignorados. Também passaram `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`.
+- Os casos LIVE ignorados não constituem aceite operacional: dependem de declaração/conta real e permanecem no marco correspondente. A guarda comercial continua restrita a `ML_PRICING_EXECUTION_MODE=test_only`, conta `test_user`, seller allowlisted e ambiente DEV/local.
+
+**Próxima ação:** implementar e validar, em ação própria, o modo produtivo controlado dos writers com confirmação humana, allowlist, claim idempotente, revalidação, auditoria, checkpoint e read-back. Depois disso ainda serão necessários `BNT-PARITY-FINAL`, `DELTA_PROMOCAO`, ensaio de restauração/migração e aceite operacional antes de fixar o SHA candidato.
+
 ### Antes de solicitar autorização
 
 - [ ] ação individual concluída e registrada;

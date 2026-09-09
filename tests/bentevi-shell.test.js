@@ -25,6 +25,7 @@ test('preserva ordem, grupos e URLs da navegação desktop', async () => {
 
   assert.deepEqual(itemKeys(APP_NAVIGATION), [
     '/dashboard',
+    '/assistente',
     '/tv',
     '/produtos/ofertas',
     '/produtos',

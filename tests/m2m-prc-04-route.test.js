@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const load = require('./helpers/load-integration-module');
 const quote = load('src/services/pricing-market-quote.ts', { './pricing-economy': {} });
-const product = { id: 'P1', ml_item_id: 'MLB1', altura: 10, largura: 20, profundidade: 30, peso_bruto: .7605 };
+const product = { id: 'P1', ativo: true, ml_item_id: 'MLB1', altura: 10, largura: 20, profundidade: 30, peso_bruto: .7605 };
 const item = { id: 'MLB1', seller_id: 123, currency_id: 'BRL', price: 100, listing_type_id: 'gold_special',
   category_id: 'MLB10', condition: 'new', catalog_listing: false, tags: ['dynamic_standard_price'],
   shipping: { mode: 'me2', logistic_type: 'drop_off', free_shipping: true } };
@@ -11,8 +11,11 @@ const pricing = { currentPriceCents: 10000, costCents: 4000, current: { status: 
   target: { ok: false, reasons: [] }, floor: { ok: false, reasons: [] }, breakEven: { ok: false, reasons: [] } };
 function harness(options = {}) {
   const calls = []; const captured = []; const evaluations = []; const p = { ...product, ...options.product }; let itemReads = 0; let competitionReads = 0; let groupReads = 0;
-  const client = { from(table) { return { select() { return this; }, eq() { return this; },
-    maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p : options.unlinked ? null : { ml_item_id: 'MLB1' } }) }; } };
+  const client = { from(table) { const query = { select() { return query; }, eq() { return query; },
+    maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p : options.unlinked ? null : { ml_item_id: 'MLB1' } }),
+    single: async () => ({ error: null, data: table === 'produtos' ? p : null }),
+    then(resolve) { return Promise.resolve({ error: null, data: table === 'produto_fornecedor_ofertas' ? [] : [] }).then(resolve); } };
+    return query; } };
   const detail = load('src/services/pricing-detail.ts', {
     '@/services/pricing-decisions': { decisionContext: () => null, syncPricingAlerts: async () => {} },
     '@/services/pricing-audit': { recordPricingEvaluation: async (...args) => { evaluations.push(args); return 'evaluation-test'; }, pricingMaterialFingerprint: JSON.stringify },
@@ -55,6 +58,13 @@ function harness(options = {}) {
     '@/lib/ml/quantity-pricing': require('../src/lib/ml/quantity-pricing.ts'),
     '@/lib/ml/item-price-policy': require('../src/lib/ml/item-price-policy.ts'),
     '@/lib/catalogo/no-catalogo': require('../src/lib/catalogo/no-catalogo.ts'),
+    '@/lib/ml-critical-attributes': { loadMlIdentityKit: async () => ({ status: 'not_kit', components: [] }),
+      assessMlProductIdentity: () => ({ identity: { status: 'SEM_CONFLITO', coverage: 'complete' },
+        packaging_quantity: { status: 'SEM_CONFLITO', coverage: 'complete' }, comparisons: [] }) },
+    '@/lib/ml-listing-identity': { isMlIdentityComplete: () => true },
+    '@/lib/ml/operational-listing': { classifyMlPublishEligibility: () => ({ eligible: true, kind: 'modifiable' }) },
+    '@/lib/dslite/supplier-policy': { loadOperationalDropshippingSupplierIds: async () => new Set() },
+    './mercadolibre': { getCategoryAttributes: async () => [] },
   });
   const routes = load('src/app/api/ml/anuncio/preco-detalhe/route.ts', {
     '@/services/pricing-detail': detail,

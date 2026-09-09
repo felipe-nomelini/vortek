@@ -47,6 +47,7 @@ test("desvínculo corretivo fica restrito à gestão", () => {
 
 test("visualizador permanece somente leitura", () => {
   assert.deepEqual(permissionsForRole("visualizador"), [
+    "pricing.read",
     "tv.read",
     "sales.read",
     "purchases.read",

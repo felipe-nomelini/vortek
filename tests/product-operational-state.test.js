@@ -97,12 +97,12 @@ test('reconciliação persiste bloqueio terminal e limpa quando volta a ser modi
   });
 });
 
-test('lucro usa a alíquota explícita informada pelo contexto tributário', () => {
-  assert.equal(calculateNetProfitAtPrice({
+test('lucro comercial legado permanece aposentado', () => {
+  assert.throws(() => calculateNetProfitAtPrice({
     price: 364.13,
     cost: 215,
     shipping: 44.05,
     mlFee: 0.16,
     taxRate: 0.05,
-  }), 28.61);
+  }), /Cálculo legado aposentado/);
 });

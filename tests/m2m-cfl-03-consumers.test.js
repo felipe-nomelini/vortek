@@ -61,7 +61,11 @@ test('rota de vinculação reutiliza job autenticado e não contém writer por S
   const s=fs.readFileSync('src/app/api/sync/vincular-produtos/route.ts','utf8');assert.match(s,/export \{ POST \} from '\.\.\/anuncios\/job\/route'/);assert.doesNotMatch(s,/\.update\(|\.eq\('sku'/);
 });
 test('criação e fiscal abandonaram seleção do primeiro resultado',()=>{
-  for(const name of ['criar','testar-fiscal']) {const s=fs.readFileSync(`src/app/api/ml/anuncio/${name}/route.ts`,'utf8');assert.match(s,/resolveProductMlLinks/);assert.match(s,/existing_listings_require_selection/);assert.doesNotMatch(s,/searchItemBySellerSku/);}
+  const create=fs.readFileSync('src/app/api/ml/anuncio/criar/route.ts','utf8');
+  const preparation=fs.readFileSync('src/services/publication-preparation.ts','utf8');
+  assert.match(create,/preparePublication/);assert.match(preparation,/resolveProductMlLinks/);assert.match(preparation,/publication_existing_or_inconclusive_link/);
+  const fiscal=fs.readFileSync('src/app/api/ml/anuncio/testar-fiscal/route.ts','utf8');assert.match(fiscal,/resolveProductMlLinks/);assert.match(fiscal,/existing_listings_require_selection/);
+  assert.doesNotMatch(create,/searchItemBySellerSku/);assert.doesNotMatch(preparation,/searchItemBySellerSku/);assert.doesNotMatch(fiscal,/searchItemBySellerSku/);
   assert.doesNotMatch(fs.readFileSync('src/services/mercadolibre.ts','utf8'),/searchItemBySellerSku/);
 });
 test('nenhum executor de sincronismo de catálogo foi criado',()=>{

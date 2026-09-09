@@ -1,5 +1,6 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
+const load = require("./helpers/load-integration-module");
 
 const {
   getJobIdempotencyKey,
@@ -8,7 +9,9 @@ const {
   isJobUniqueViolation,
   jobBelongsToPedido,
   normalizeIdempotencyKey,
-} = require("../src/services/job-idempotency.ts");
+} = load("src/services/job-idempotency.ts", {
+  "@/lib/jobs/contract": require("../src/lib/jobs/contract.ts"),
+});
 
 test("aceita chave móvel válida e rejeita entrada insegura", () => {
   assert.equal(
