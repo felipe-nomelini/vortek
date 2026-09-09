@@ -1,6 +1,6 @@
 # BNT-AI-02 — Interface e histórico
 
-**Data:** 08/09/2026. **Branch:** `dev`. **Estado vigente:** código publicado em DEV no candidato `32a1685d`, com Codex confirmado na imagem. Ativação administrativa, perfil/login e homologação do chat com modelo real pendentes. A fotografia local abaixo antecede os deploys registrados ao final.
+**Data:** 08/09/2026. **Branch:** `dev`. **Estado vigente:** Assistente ativado para Felipe, com perfil exclusivo autenticado e `gpt-6-astra` por assinatura. Correção da resposta de vendas em validação/publicação; ver atualização ao final. As seções anteriores são fotografias históricas, não pendências atuais de instalação/login.
 
 ## Mudança e evidência
 
@@ -89,3 +89,12 @@ Esta subseção complementa a fotografia local acima; não encerra AI-02, AI-GAT
 - `AGENTS.md`/`.gitignore` preservados; regras, skills e credenciais locais continuam ignoradas. Evidência/checklist pós-deploy enviados em commit documental, com autoDeploy desligado; não exigem outra imagem.
 
 **Resultado para o usuário:** push/deploy concluídos, mas o teste conversacional continua bloqueado pelas pendências administrativas e pelo login do perfil exclusivo. Não solicitar aceite de um chat indisponível.
+
+## Correção da resposta sem dados — 08/09/2026, após ativação
+
+- Perfil exclusivo autenticado, persistência e ativação DEV concluídos. O commit `6e3c6d7d` corrigiu o discriminador do schema do planejador e foi publicado. O smoke anterior retornou `sem_dados`: provou transporte/histórico, **não uma resposta útil de vendas**.
+- Causa confirmada por leitura no `.162`: 99 unidades operacionais, datas de venda entre 27/08 e 31/08/2026. Em 08/09, o intervalo de sete dias começa em 02/09: não contém registros. O handler descartava esse contexto e respondia apenas uma frase genérica.
+- O intervalo vazio passa a consultar somente a data mais recente disponível, mantendo a consulta e os totais originais. A resposta explica datas/fuso, ambiente DEV/amostras e sugere trinta dias somente quando houver evidência nesse intervalo. Não afirma faturamento real zero nem busca produção ou altera datas.
+- 85 testes de chat/conhecimento e `npm run validate` aprovados. Cobertos dados antigos, base vazia, datas futuras/nulas, ausência de sugestão sem evidência e pergunta seguinte com dados.
+- Publicação desta correção e smoke semântico de sete/trinta dias ainda serão registrados após execução. Não há migration ou escrita operacional. Conversas reais são preservadas.
+- A autorização explícita posterior do titular liberou o piloto com dados; os controles de treinamento da conta não foram verificados independentemente. AI-GATE e liberação do sócio não estão encerrados.

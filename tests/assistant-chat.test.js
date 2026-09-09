@@ -123,7 +123,7 @@ function harness(options={}){
     cancelMessage:async(user,conversation,request)=>{const item=messages.get(request);messages.set(request,{...item,state:'cancel_requested'});},
     emptyChatAnswer:text=>({text,sources:[],evidence:[],model:'gpt-6-astra'}),
   };
-  const query=async()=>{reads++;if(options.queryFails)return result({state:'fonte_indisponivel',facts:null});return result(options.empty?{facts:null,state:'sem_dados',coverage:'sem_dados'}:{});};
+  const query=async()=>{reads++;if(options.queryFails)return result({state:'fonte_indisponivel',facts:null});return options.queryResult||result(options.empty?{facts:null,state:'sem_dados',coverage:'sem_dados'}:{});};
   let release;const wait=new Promise(resolve=>release=resolve);
   const handler=load('src/services/assistant-chat-handler.ts',{'server-only':{},zod:require('zod'),'@/lib/assistant-chat':{...contracts,CHAT_TIMEOUT_MS:options.shortTimeout?20:contracts.CHAT_TIMEOUT_MS},'./assistant-history':history,
     './assistant-knowledge':{queryAssistantKnowledge:query},'./assistant-chat-model':{...model,
@@ -182,6 +182,22 @@ test('guard real exige DEV, piloto exato e cargo atual; contexto é limitado',as
 });
 test('sem dados e esclarecimento não disparam segunda inferência',async()=>{
   for(const options of [{empty:true},{clarify:true}]){const h=harness(options);await(await h.handler.sendHandler(h.request())).text();assert.equal(h.stats().modelCalls,1);assert.equal(h.messages.get(REQ).state,options.empty?'sem_dados':'esclarecimento_necessario');}
+});
+test('período sem vendas explica intervalo, última data e consulta disponível sem inventar faturamento',async()=>{
+  const h=harness({queryResult:result({state:'sem_dados',coverage:'sem_dados',includesFixtures:true,
+    period:{start:'2026-09-02T03:00:00Z',end:'2026-09-09T01:18:40Z',timezone:'America/Sao_Paulo'},
+    facts:{kind:'sales',countedRows:0,summary:{revenue:0},latestAvailableSaleAt:'2026-08-31T21:59:23Z',suggestedPeriod:'30d'}})});
+  await(await h.handler.sendHandler(h.request())).text();
+  const message=h.messages.get(REQ);
+  assert.equal(message.state,'sem_dados');assert.equal(h.stats().modelCalls,1);
+  for(const text of ['02/09/2026','08/09/2026','31/08/2026','DEV','amostras de homologação','últimos 30 dias','não comprova'])assert.ok(message.answer.text.includes(text));
+  assert.doesNotMatch(message.answer.text,/R\$|09\/09\/2026|faturamento zero/);assert.equal(message.answer.sources.length,1);
+});
+test('base vazia não inventa última venda nem sugere intervalo sem evidência',async()=>{
+  const h=harness({queryResult:result({state:'sem_dados',facts:{kind:'sales',latestAvailableSaleAt:null,suggestedPeriod:null}})});
+  await(await h.handler.sendHandler(h.request())).text();
+  const text=h.messages.get(REQ).answer.text;
+  assert.match(text,/Não há registros de vendas com data válida/);assert.doesNotMatch(text,/mais recente|últimos 30 dias/);
 });
 for(const code of ['codex_rate_limit','codex_model_unavailable','codex_auth_required','codex_output_invalid'])test('falha sanitizada: '+code,async()=>{
   const h=harness({modelError:code});const text=await(await h.handler.sendHandler(h.request())).text();assert.equal(h.messages.get(REQ).state,model.modelErrorState(new Error(code)));assert.equal(text.includes('codex_'),false);assert.equal(h.messages.get(REQ).answer,null);

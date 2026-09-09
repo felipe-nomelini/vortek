@@ -153,6 +153,28 @@ test('Quanto vendemos? usa exatamente o resumo do Dashboard, exclui cancelamento
 test('período vazio distingue sem_dados de faturamento zero', async () => {
   const result = await harness().query({ kind: 'sales', period: 'today' });
   assert.equal(result.state, 'sem_dados'); assert.equal(result.facts.summary.revenue, 0); assert.equal(result.coverage, 'sem_dados');
+  assert.equal(result.facts.latestAvailableSaleAt, null); assert.equal(result.facts.suggestedPeriod, null);
+});
+
+test('vendas antigas explicam período vazio sem ampliar silenciosamente a consulta', async () => {
+  const latest = new Date(Date.now() - 10 * 86400000).toISOString();
+  const rows = [sale({ data_venda: latest, snapshot_source: 'bnt_d01_production_clone' }),
+    sale({ id: OTHER, data_venda: new Date(Date.now() + 86400000).toISOString() }),
+    sale({ id: 'undated', data_venda: null })];
+  const h = harness({ pedidos_operacionais: rows });
+  const result = await h.query({ kind: 'sales', period: '7d' });
+  assert.equal(result.state, 'sem_dados'); assert.equal(result.facts.countedRows, 0);
+  assert.equal(result.facts.latestAvailableSaleAt, latest); assert.equal(result.facts.suggestedPeriod, '30d');
+  assert.equal(result.includesFixtures, true); assert.equal(result.facts.summary.revenue, 0);
+  assert.deepEqual(h.db.calls.filter(c => c.table === 'pedidos_operacionais').at(-1).span, [0, 0]);
+  const expanded = await h.query({ kind: 'sales', period: '30d' });
+  assert.equal(expanded.state, 'concluido'); assert.equal(expanded.facts.summary.revenue, 100);
+});
+
+test('não sugere trinta dias quando a última venda também está fora desse período', async () => {
+  const latest = new Date(Date.now() - 40 * 86400000).toISOString();
+  const result = await harness({ pedidos_operacionais: [sale({ data_venda: latest })] }).query({ kind: 'sales' });
+  assert.equal(result.facts.latestAvailableSaleAt, latest); assert.equal(result.facts.suggestedPeriod, null);
 });
 
 test('resultado com mais de uma página é ordenado por data e ID, sem duplicar ou truncar totais', async () => {

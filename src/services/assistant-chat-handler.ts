@@ -113,7 +113,24 @@ export async function sendHandler(request:Request) {
               await checkpoint();
               const rejected=results.find(result=>!['concluido','sem_dados','esclarecimento_necessario'].includes(result.state));
               if(rejected) throw new ChatError(rejected.state);
-              if(results.every(result=>result.state==='sem_dados')){state='sem_dados';answer=evidenceAnswer(chatStateLabels.sem_dados,results);}
+              if(results.every(result=>result.state==='sem_dados')){
+                state='sem_dados';
+                const text=results.map(result=>{
+                  if(result.facts?.kind!=='sales'||!result.period)return chatStateLabels.sem_dados;
+                  const date=new Intl.DateTimeFormat('pt-BR',{timeZone:result.period.timezone});
+                  const facts=result.facts;
+                  return [
+                    `Não há vendas registradas no DEV entre ${date.format(new Date(result.period.start))} e ${date.format(new Date(result.period.end))} (horário de São Paulo).`,
+                    facts.latestAvailableSaleAt
+                      ? `O registro de venda mais recente disponível é de ${date.format(new Date(facts.latestAvailableSaleAt))}.`
+                      : 'Não há registros de vendas com data válida disponíveis nesta base até o momento da consulta.',
+                    result.includesFixtures ? 'Os dados disponíveis são amostras de homologação.' : '',
+                    'Isso não comprova ausência de vendas na operação real.',
+                    facts.suggestedPeriod==='30d' ? 'Para analisar os dados disponíveis, pergunte: “Como foram as vendas nos últimos 30 dias?”' : '',
+                  ].filter(Boolean).join(' ');
+                }).join('\n\n');
+                answer=evidenceAnswer(text,results);
+              }
               else {emit({type:'phase',phase:'Preparando a resposta com as fontes'});answer=await abortable(composeAssistantAnswer(body.question,results,signal),signal);
                 if(results.some(result=>result.state==='esclarecimento_necessario'))state='esclarecimento_necessario';}
             }

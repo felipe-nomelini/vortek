@@ -80,10 +80,24 @@ async function readFacts(db: Client, input: AssistantQuery, now: Date, meta: Met
     meta.period = { start: bounds.currentStart.toISOString(), end: bounds.currentEnd.toISOString(), timezone: 'America/Sao_Paulo' };
     const result = await loadRowsInRange(db, bounds.currentStart, bounds.currentEnd);
     if (result.error) throw new Error('assistant_sales_read_failed');
-    if (!result.data.length) noRows(meta);
+    let latestAvailableSaleAt: string | null = null;
+    let suggestedPeriod: '30d' | null = null;
+    if (!result.data.length) {
+      noRows(meta);
+      // Uma ausência no intervalo não significa banco vazio nem ausência de vendas reais.
+      // Consulte somente a data mais recente; não altere o período nem some vendas de fora dele.
+      const latest = await (db as any).from('pedidos_operacionais')
+        .select('id,data_venda,snapshot_source').lte('data_venda', bounds.currentEnd.toISOString())
+        .order('data_venda', { ascending: false }).order('id').range(0, 0);
+      if (latest.error) throw new Error('assistant_sales_read_failed');
+      latestAvailableSaleAt = timestamp(latest.data?.[0]?.data_venda);
+      meta.includesFixtures = (latest.data || []).some(fixture);
+      if (latestAvailableSaleAt && input.period !== '30d'
+        && Date.parse(latestAvailableSaleAt) >= periodBounds('30d', now).currentStart.getTime()) suggestedPeriod = '30d';
+    }
     const summary = summarize(result.data);
     // A soma preserva exatamente o Dashboard, inclusive amostras já presentes no DEV.
-    meta.includesFixtures = result.data.some(row => fixture(row));
+    meta.includesFixtures ||= result.data.some(row => fixture(row));
     if (summary.profitPending) {
       meta.coverage = 'parcial';
       meta.warnings.push('Lucro e margem calculados somente sobre o lucro conhecido; existem vendas com apuração pendente.');
@@ -93,7 +107,7 @@ async function readFacts(db: Client, input: AssistantQuery, now: Date, meta: Met
       meta.warnings.push('Há vendas sem valor informado; o resumo segue a convenção atual do Dashboard.');
     }
     reference(meta, 'dashboard', 'Resumo do Dashboard', `/dashboard`, null);
-    return { kind: input.kind, currency: 'BRL', summary, countedRows: result.data.length } as const;
+    return { kind: input.kind, currency: 'BRL', summary, countedRows: result.data.length, latestAvailableSaleAt, suggestedPeriod } as const;
   }
   if (input.kind === 'tax') {
     const projection = await loadPricingTaxProjection(db, now);
