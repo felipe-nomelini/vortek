@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { Card, Input, Button, Typography, message } from 'antd';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase-client';
 
 const { Title, Text } = Typography;
 
@@ -17,18 +16,26 @@ export default function LoginPage() {
     if (!email || !senha) { message.warning('Preencha todos os campos'); return; }
     setLoading(true);
     try {
-      const supabase = createClient();
-      const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        cache: 'no-store',
+        body: JSON.stringify({ email, senha }),
+      });
+      const payload = await response.json().catch(() => null) as { erro?: string } | null;
 
-      if (error) {
-        message.error('Credenciais inválidas');
+      if (!response.ok) {
+        message.error(response.status === 401
+          ? 'Credenciais inválidas'
+          : payload?.erro || 'Não foi possível conectar ao Supabase. Verifique a configuração do sistema.');
         return;
       }
 
-      router.push('/dashboard');
+      router.replace('/dashboard');
       router.refresh();
     } catch (error) {
-      console.error('[auth.login] signInWithPassword failed', error);
+      console.error('[auth.login] request failed', error);
       message.error('Não foi possível conectar ao Supabase. Verifique a configuração do sistema.');
     } finally {
       setLoading(false);
