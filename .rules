@@ -4,11 +4,11 @@ Este repositório é exclusivo de desenvolvimento e homologação do Vortek/Bent
 
 - Antes de qualquer tarefa técnica, leia e siga integralmente o `AGENTS.md`.
 - Trabalhe somente em `dev`; se a branch for outra, pare e informe. Preserve as mudanças preexistentes.
-- `main` é o sistema legado em produção e `dev` é a nova versão independente. Não faça merge, rebase ou cherry-pick em massa entre elas; leia `main` apenas para auditoria comportamental e implemente nativamente em `dev` somente o que continuar essencial.
-- A futura produção Bentevi usará `bentevi-prod`, criada diretamente do SHA aprovado de `dev` em release autorizada. Não crie essa branch nem altere o serviço produtivo durante tarefas DEV.
-- Supabase DEV remoto (`192.168.1.162`, até o corte) e DEV local (`127.0.0.1`, projeto `bentevi-dev-local`) são os únicos destinos de escrita autorizados, sempre com o preflight definido no `AGENTS.md`; o local aceita somente dados sintéticos.
-- Supabase de produção (`192.168.1.160`) é exclusivamente somente leitura para consultas e diagnósticos necessários. Nunca o altere, nem para ensaios com rollback.
-- A aplicação web DEV hospedada em `.160` não muda a permissão do banco de produção.
+- `main` é o sistema legado preservado e `dev` é a nova versão independente. Não faça merge, rebase ou cherry-pick em massa entre elas; leia `main` apenas para auditoria comportamental e implemente nativamente em `dev` somente o que continuar essencial.
+- A produção Bentevi usa `bentevi-prod`, criada diretamente do SHA aprovado de `dev`. Não altere essa branch nem o serviço produtivo durante tarefas DEV.
+- O único destino de escrita DEV disponível é `127.0.0.1`, projeto `bentevi-dev-local`, restrito a loopback, dados sintéticos e ao preflight do `AGENTS.md`. O DEV remoto no `PCBAO` ainda não foi ativado.
+- Os Supabases remotos `.162` (produção Bentevi) e `.160` (legado) são exclusivamente leitura neste repositório. Nunca os altere, nem para ensaios com rollback; o hostname histórico contendo `dev` não muda essa classificação.
+- O serviço web DEV anterior em `.160` está desabilitado e não constitui ambiente de homologação disponível.
 - Siga o checklist e os documentos pertinentes à ação; implemente somente quando solicitado e valide conforme a área alterada.
-- Não transforme implementação em autorização automática de commit, push ou deploy. Não leve código à `main`, não crie `bentevi-prod` antecipadamente e não execute alterações em produção por outro workspace ou ferramenta.
+- Não transforme implementação em autorização automática de commit, push ou deploy. Não leve código à `main`, não mova `bentevi-prod` e não execute alterações em produção por outro workspace ou ferramenta.
 - Para integração, secrets, homologação e preparação de release, siga as seções correspondentes do `AGENTS.md`.

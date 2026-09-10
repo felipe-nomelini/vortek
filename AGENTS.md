@@ -12,7 +12,7 @@ O código, schema, configuração e testes atuais demonstram o comportamento imp
 
 - Diferencie análise, planejamento e implementação. Um pedido de diagnóstico não autoriza corrigir; quando implementar foi solicitado, execute o trabalho seguro dentro do escopo.
 - Trabalhe somente na branch `dev`. Confira a branch e o estado do Git antes de editar; se estiver em outra branch, pare e informe, sem trocar automaticamente.
-- `main` é o sistema legado atualmente em produção; `dev` é a nova versão Bentevi, desenvolvida de forma independente. A divergência entre as branches é intencional e sua contagem de commits não mede prontidão.
+- `main` é o sistema legado preservado, retirado do tráfego na virada de 2026-09-09; `dev` é a linha de desenvolvimento da nova versão Bentevi. A divergência entre as branches é intencional e sua contagem de commits não mede prontidão.
 - Não misture os históricos: nenhum merge, rebase ou cherry-pick em massa entre `main` e `dev`. Use `main` somente como evidência de leitura para identificar comportamentos produtivos essenciais; quando um deles ainda for necessário, implemente-o nativamente na arquitetura de `dev`, em ação própria e com testes.
 - Não altere produção, não use `app.vortek.shop` para testes e não leve mudanças de `dev` ao sistema legado durante o desenvolvimento.
 - Uma solicitação de mudança não autoriza automaticamente commit, push, deploy ou operações externas de outro escopo.
@@ -25,15 +25,15 @@ O Supabase do projeto é **self-hosted**, não Supabase Cloud. Não exija projec
 
 | Recurso | Destino | Permissão neste projeto |
 |---|---|---|
-| Supabase DEV/homologação remoto | `192.168.1.162` | Destino DEV gravável até a conversão produtiva explicitamente autorizada |
+| Supabase de produção Bentevi | `192.168.1.162` | Exclusivamente leitura neste repositório DEV; foi reclassificado no corte de 2026-09-09 |
 | Supabase DEV local | `127.0.0.1`, projeto `bentevi-dev-local` | Escritas locais autorizadas somente com dados sintéticos e `VORTEK_RUNTIME_ENVIRONMENT=local_dev` |
-| Supabase de produção | `192.168.1.160` | Exclusivamente leitura para consultas e diagnósticos necessários |
-| Web de homologação | `dev.bentevi.shop`, serviço `vortek-erp-dev` no Easypanel `.160` | Homologação e deploy DEV somente no escopo autorizado |
-| App produtivo Bentevi reservado | serviço `local/bentevi-prod` no Easypanel `.160` | Inativo e vazio; configuração, domínio, branch e deploy somente em tarefa produtiva autorizada |
+| Supabase legado | `192.168.1.160` | Exclusivamente leitura para consultas e diagnósticos necessários |
+| Web de homologação anterior | `dev.bentevi.shop`, serviço `local/vortek-erp-dev` no Easypanel `.160` | Serviço desabilitado após a virada; não reativar nem publicar sem recriar um destino DEV independente |
+| App produtivo Bentevi | `app.vortek.shop`, serviço `local/bentevi-prod` no Easypanel `.160` | Produção ativa na branch `bentevi-prod`; não alterar nem usar para testes a partir deste repositório DEV |
 
 A hospedagem da aplicação DEV em `.160` **não** torna o Supabase desse servidor um banco de desenvolvimento. Nomes de containers, diretórios, labels, URLs ou variáveis contendo `dev` não mudam essa classificação.
 
-A topologia futura aprovada reaproveitará `.162` como produção Bentevi e moverá o DEV para o `PCBAO`. Essa reclassificação ainda não ocorreu: exige backup, corte produtivo e atualização própria destas regras. Até lá, `.162` continua DEV. O projeto local deve permanecer em loopback e nunca receber cópia de dados ou credenciais de produção.
+A virada de 2026-09-09 reaproveitou `.162` como produção Bentevi e desabilitou os serviços web legado e DEV. O novo DEV remoto no `PCBAO` ainda não foi ativado; até que isso ocorra em tarefa própria, o único destino gravável deste repositório é `bentevi-dev-local`, estritamente em loopback e com dados sintéticos. O hostname histórico `supabase-dev.vortek.shop` ainda pode resolver para `.162`, mas o nome não muda sua classificação produtiva nem autoriza escrita.
 
 ### Produção é somente leitura
 
@@ -47,10 +47,10 @@ Se uma solicitação exigir alteração em produção, interrompa essa parte e i
 
 1. Confirme que a escrita é necessária e está no escopo autorizado.
 2. Resolva e confira o destino real da conexão, inclusive quando houver proxy ou túnel; registre apenas host/identidade, sem credenciais.
-3. Comprove que o destino é `192.168.1.162` e ainda corresponde ao Supabase DEV independente, ou que é o projeto local `bentevi-dev-local` resolvido exclusivamente para loopback, com `VORTEK_RUNTIME_ENVIRONMENT=local_dev`.
+3. Comprove que o destino é o projeto local `bentevi-dev-local`, resolvido exclusivamente para loopback, com `VORTEK_RUNTIME_ENVIRONMENT=local_dev`. Não use `.162` como DEV: ele é produção Bentevi.
 4. Inspecione o histórico de migrations e o schema afetado nesse mesmo destino; confira dados, consumidores, RLS, grants, funções, triggers e constraints pertinentes.
 5. Para mudanças destrutivas, defina backup, recuperação, compatibilidade e efeitos externos; ensaie com rollback quando aplicável, somente no DEV.
-6. Interrompa se o destino for `.160`, se `.162` já tiver sido reclassificado como produção, se o ambiente local não estiver restrito a loopback ou se a identidade não puder ser comprovada.
+6. Interrompa se o destino for `.160` ou `.162`, se o ambiente local não estiver restrito a loopback ou se a identidade não puder ser comprovada.
 
 Antes de solicitar credenciais ausentes, confira a configuração local ou do servidor já autorizada, sem imprimir seus valores. Não adote caminhos de configuração de produção como padrão do DEV.
 
@@ -135,23 +135,23 @@ Use o repositório local existente. Não crie clones auxiliares, worktrees ou ch
 
 ### Modelo de branches — decisão permanente
 
-- `main`: código legado do Vortek atualmente em produção. Deve permanecer preservada e independente durante o desenvolvimento e a primeira virada do Bentevi.
+- `main`: código legado do Vortek, preservado e independente após ter sido retirado do tráfego na virada do Bentevi.
 - `dev`: fonte integrada da nova versão Bentevi e do ambiente de homologação.
-- `bentevi-prod`: nome canônico da futura branch produtiva do Bentevi. Ela ainda não existe e só poderá ser criada, mediante autorização específica de release, apontando diretamente para o SHA exato de `dev` aprovado nos gates.
+- `bentevi-prod`: branch produtiva do Bentevi, criada diretamente no SHA aprovado de `dev` e sem integração com `main`. Na primeira virada, `dev` e `bentevi-prod` apontavam para `f4fb50c6081cae461857e1ddee514a15b5bc87f9`; promoções posteriores exigem nova autorização e snapshot validado.
 
-A futura `bentevi-prod` não nasce de merge com `main`, não recebe o diff entre as duas branches e não inclui código legado por ancestralidade. Comparações com `main` servem somente para auditoria comportamental e de schema. A promoção deve revisar o snapshot de `dev` por si mesmo e comprovar que regras produtivas essenciais receberam um destino explícito no Bentevi.
+`bentevi-prod` não nasceu de merge com `main`, não recebe o diff entre as duas branches e não inclui código legado por ancestralidade. Comparações com `main` servem somente para auditoria comportamental e de schema. Cada promoção deve revisar o snapshot de `dev` por si mesmo e comprovar que regras produtivas essenciais receberam um destino explícito no Bentevi.
 
 Fluxo de publicação deste projeto: **código validado em `dev` → commit/push autorizados → deploy no serviço de homologação → conferência do resultado**.
 
-Para deploy solicitado, siga o procedimento Easypanel e use `npm run deploy:easypanel` com configuração autorizada. Confirme branch `dev`, commits pretendidos disponíveis no remoto, destino `vortek-erp-dev` e `EASYPANEL_DEPLOY_EXPECTED_BRANCH=dev`. O script assume `main` na ausência dessa configuração; esse padrão não autoriza produção. Não use `--skip-git-check` para contornar verificações.
+Para deploy DEV solicitado, siga o procedimento Easypanel somente depois que existir novamente um serviço e banco DEV independentes. Confirme branch `dev`, commits pretendidos disponíveis no remoto e o destino expressamente autorizado. A configuração anterior de `vortek-erp-dev` está desabilitada e não deve ser tratada como homologação disponível. O script assume `main` na ausência de configuração explícita; esse padrão não autoriza produção. Não use `--skip-git-check` para contornar verificações.
 
 O webhook vem da configuração privada, nunca de documentação ou código versionado. Não edite arquivos dentro do container nem use deploy direto por Docker como procedimento normal. Aceite HTTP do webhook não comprova build, implantação ou validação funcional; confira o resultado no nível aplicável.
 
-O App Service `local/bentevi-prod` está reservado e desabilitado, sem source, build, domínio, variáveis, volumes, portas ou deploy. Ele não é o serviço DEV e sua existência não autoriza configurá-lo, iniciá-lo ou associá-lo à branch `dev`. O webhook de `vortek-erp-dev` nunca deve ser usado como credencial ou caminho de publicação desse app.
+O App Service `local/bentevi-prod` está ativo em produção, associado exclusivamente à branch `bentevi-prod` e ao domínio `app.vortek.shop`. Ele não é o serviço DEV e sua existência não autoriza configurá-lo, reiniciá-lo, publicá-lo nem associá-lo à branch `dev`. O serviço anterior `vortek-erp-dev` permanece desabilitado e seu webhook nunca deve ser usado como credencial ou caminho de publicação produtiva.
 
-Preparar release significa fixar o SHA candidato de `dev`, levantar testes, delta mínimo de schema, variáveis sem valores, gates, riscos e recuperação. Não significa criar/pushar `bentevi-prod`, aplicar migrations ou apontar o serviço produtivo. Essas ações pertencem a uma tarefa de release própria e explicitamente autorizada; o Supabase de produção permanece somente leitura aqui.
+Preparar uma próxima release significa fixar o SHA candidato de `dev`, levantar testes, delta mínimo de schema, variáveis sem valores, gates, riscos e recuperação. Não significa atualizar/pushar `bentevi-prod`, aplicar migrations ou apontar o serviço produtivo. Essas ações pertencem a uma tarefa de release própria e explicitamente autorizada; os dois Supabases remotos permanecem somente leitura aqui.
 
-No corte autorizado, preserve `main` sem alterações e crie `bentevi-prod` diretamente no SHA aprovado de `dev`. Só então o serviço produtivo poderá ser reconfigurado para essa branch. Não presuma que voltar o serviço para `main` seja rollback suficiente: compatibilidade de schema, dados e efeitos externos precisa de plano próprio.
+Em uma promoção autorizada posterior, preserve `main` sem alterações e mova `bentevi-prod` somente para o SHA aprovado de `dev`, sem integração entre históricos. Só então o serviço produtivo poderá receber esse snapshot. Não presuma que apontar o serviço para `main` seja rollback suficiente: compatibilidade de schema, dados e efeitos externos precisa de plano próprio.
 
 ## 8. Skills e comunicação
 
