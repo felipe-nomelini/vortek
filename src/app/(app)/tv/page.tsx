@@ -32,6 +32,7 @@ import { formatCurrency } from "@/lib/format";
 import {
   dynamicTvGoals,
   mergeTvLiveMetrics,
+  pickTvSaleSoundIndex,
   tvConnectionState,
   TV_FULL_REFRESH_MS,
   TV_LIVE_REFRESH_MS,
@@ -42,7 +43,12 @@ import {
 } from "@/lib/tv/dashboard";
 import styles from "./tv.module.css";
 
-const SALE_SOUND_SRC = "/sounds/dreigue.mp3";
+const SALE_SOUND_SOURCES = [
+  "/sounds/dreigue.mp3",
+  "/sounds/para-de-ser-doida.m4a",
+  "/sounds/rupaul1.m4a",
+  "/sounds/viaaaadoooo.m4a",
+] as const;
 const QUESTION_SOUND_SRC = "/sounds/ala-nem-vou-ler-ines-brasil.mp3";
 
 type SaleCelebration = {
@@ -86,7 +92,7 @@ export default function TvDashboardPage() {
   const [questionQueue, setQuestionQueue] = useState<TvQuestionSummary[]>([]);
 
   const shellRef = useRef<HTMLElement | null>(null);
-  const saleAudioRef = useRef<HTMLAudioElement | null>(null);
+  const saleAudioRefs = useRef<Array<HTMLAudioElement | null>>([]);
   const questionAudioRef = useRef<HTMLAudioElement | null>(null);
   const soundEnabledRef = useRef(true);
   const fullRefreshInFlightRef = useRef(false);
@@ -103,10 +109,21 @@ export default function TvDashboardPage() {
 
   const playSound = useCallback((kind: "sale" | "question") => {
     if (!soundEnabledRef.current) return;
-    const audio = kind === "sale" ? saleAudioRef.current : questionAudioRef.current;
-    if (!audio) return;
-    audio.currentTime = 0;
-    audio.play().catch(() => undefined);
+    if (kind === "question") {
+      const questionAudio = questionAudioRef.current;
+      if (!questionAudio) return;
+      questionAudio.currentTime = 0;
+      questionAudio.play().catch(() => undefined);
+      return;
+    }
+
+    const soundIndex = pickTvSaleSoundIndex(SALE_SOUND_SOURCES.length, Math.random());
+    if (soundIndex === null) return;
+    saleAudioRefs.current.forEach((saleAudio) => {
+      saleAudio?.pause();
+      if (saleAudio) saleAudio.currentTime = 0;
+    });
+    saleAudioRefs.current[soundIndex]?.play().catch(() => undefined);
   }, []);
 
   const handleNewestOrder = useCallback((orders: TvOrderSummary[] | undefined) => {
@@ -280,7 +297,16 @@ export default function TvDashboardPage() {
 
   return (
     <main ref={shellRef} className={styles.tvShell}>
-      <audio ref={saleAudioRef} src={SALE_SOUND_SRC} preload="auto" />
+      {SALE_SOUND_SOURCES.map((source, index) => (
+        <audio
+          key={source}
+          ref={(audio) => {
+            saleAudioRefs.current[index] = audio;
+          }}
+          src={source}
+          preload="auto"
+        />
+      ))}
       <audio ref={questionAudioRef} src={QUESTION_SOUND_SRC} preload="auto" />
 
       <header className={styles.header}>
@@ -313,7 +339,7 @@ export default function TvDashboardPage() {
             icon={soundEnabled ? <SoundFilled /> : <MutedOutlined />}
             onClick={() => {
               setSoundEnabled((current) => !current);
-              saleAudioRef.current?.load();
+              saleAudioRefs.current.forEach((saleAudio) => saleAudio?.load());
               questionAudioRef.current?.load();
             }}
           >

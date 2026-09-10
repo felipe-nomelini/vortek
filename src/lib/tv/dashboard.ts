@@ -98,6 +98,17 @@ export type TvLiveMetrics = Pick<
 
 export type TvConnectionState = "loading" | "live" | "delayed" | "offline";
 
+export function pickTvSaleSoundIndex(
+  soundCount: number,
+  randomValue: number,
+): number | null {
+  if (!Number.isInteger(soundCount) || soundCount <= 0) return null;
+  const boundedRandomValue = Number.isFinite(randomValue)
+    ? Math.min(Math.max(randomValue, 0), 1 - Number.EPSILON)
+    : 0;
+  return Math.floor(boundedRandomValue * soundCount);
+}
+
 export function tvConnectionState(
   lastSuccessAt: number | null,
   now: number,

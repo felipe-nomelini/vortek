@@ -38,6 +38,41 @@ test('saúde ao vivo distingue atraso e interrupção em limites estáveis', asy
   assert.equal(dashboard.tvConnectionState(10_000, 40_001), 'offline');
 });
 
+test('cada venda escolhe aleatoriamente um dos quatro sons e permite repetição', async () => {
+  const { pickTvSaleSoundIndex } = await import(dashboardUrl);
+  assert.equal(pickTvSaleSoundIndex(4, 0), 0);
+  assert.equal(pickTvSaleSoundIndex(4, 0.2499), 0);
+  assert.equal(pickTvSaleSoundIndex(4, 0.25), 1);
+  assert.equal(pickTvSaleSoundIndex(4, 0.5), 2);
+  assert.equal(pickTvSaleSoundIndex(4, 0.75), 3);
+  assert.equal(pickTvSaleSoundIndex(4, 0.999999), 3);
+  assert.equal(pickTvSaleSoundIndex(4, 0.75), pickTvSaleSoundIndex(4, 0.75));
+  assert.equal(pickTvSaleSoundIndex(0, 0.5), null);
+});
+
+test('TV pré-carrega os quatro sons de venda sem alterar o som de pergunta', () => {
+  const page = source(pagePath);
+  const saleSounds = [
+    'dreigue.mp3',
+    'para-de-ser-doida.m4a',
+    'rupaul1.m4a',
+    'viaaaadoooo.m4a',
+  ];
+
+  for (const filename of saleSounds) {
+    const assetPath = path.join(__dirname, '../public/sounds', filename);
+    const contents = fs.readFileSync(assetPath);
+    assert.ok(contents.length > 0, `${filename} deve conter áudio`);
+    assert.match(page, new RegExp(`/sounds/${filename.replace('.', '\\.')}`));
+  }
+
+  assert.match(page, /SALE_SOUND_SOURCES\.map/);
+  assert.match(page, /pickTvSaleSoundIndex\(SALE_SOUND_SOURCES\.length, Math\.random\(\)\)/);
+  assert.match(page, /saleAudioRefs\.current\.forEach/);
+  assert.match(page, /saleAudio\?\.pause\(\)/);
+  assert.match(page, /QUESTION_SOUND_SRC = "\/sounds\/ala-nem-vou-ler-ines-brasil\.mp3"/);
+});
+
 test('atualização leve não apaga projeção, perguntas ou anúncios válidos', async () => {
   const { mergeTvLiveMetrics } = await import(dashboardUrl);
   const summary = { orders: 1, revenue: 10, profit: 2, averageTicket: 10, statusCounts: {} };
