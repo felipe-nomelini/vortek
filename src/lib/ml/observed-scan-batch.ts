@@ -23,7 +23,7 @@ export function hasCompletedMlObservedManifest(log: unknown): boolean {
 
 export function resolveMlObservedScrollId(current: string | null, returned: unknown): string | null {
   const next = String(returned || '').trim();
-  return current || next || null;
+  return next || current || null;
 }
 
 export function isMlObservedItemFailureTerminal(attemptsAfterIncrement: number): boolean {

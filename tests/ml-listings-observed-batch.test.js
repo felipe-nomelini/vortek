@@ -33,12 +33,13 @@ test('somente o marcador completo permite retomar sem novo scan', () => {
   assert.equal(hasCompletedMlObservedManifest([{ event_type: ML_OBSERVED_MANIFEST_EVENT, total: 250 }]), true);
 });
 
-test('todas as páginas do scan reutilizam o cursor retornado na primeira página', () => {
+test('cada página do scan usa o cursor mais recente retornado pelo Mercado Livre', () => {
   const first = resolveMlObservedScrollId(null, 'scroll-inicial');
   const second = resolveMlObservedScrollId(first, 'scroll-diferente');
 
   assert.equal(first, 'scroll-inicial');
-  assert.equal(second, 'scroll-inicial');
+  assert.equal(second, 'scroll-diferente');
+  assert.equal(resolveMlObservedScrollId(second, ''), 'scroll-diferente');
 });
 
 test('item individual só encerra com erro na terceira tentativa', () => {

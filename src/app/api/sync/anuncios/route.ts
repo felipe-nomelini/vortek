@@ -332,7 +332,7 @@ async function fetchAllMlItemIds(sellerId: string | number): Promise<{
 
   while (true) {
     const requestPath: string = scrollId
-      ? `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
+      ? `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}&scroll_id=${encodeURIComponent(scrollId)}`
       : `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}`;
 
     const scanCheck: { result: MLRequestResult<any>; retries: number } = await fetchMLResultWithRetry<any>(requestPath);
@@ -360,9 +360,28 @@ async function fetchAllMlItemIds(sellerId: string | number): Promise<{
     pagesFetched += 1;
     const payload: any = scanResult.data;
     const results: any[] = Array.isArray(payload?.results) ? payload.results : [];
+    const uniqueBeforePage = uniqueIds.size;
     for (const rawId of results) {
       const itemId = String(rawId || '').trim();
       if (itemId) uniqueIds.add(itemId);
+    }
+
+    if (results.length > 0 && uniqueIds.size === uniqueBeforePage) {
+      return {
+        ok: false,
+        itemIds: [],
+        pagesFetched,
+        retriesTransient,
+        error: {
+          code: 'ml_items_scan_repeated_page',
+          category: 'retryable',
+          upstream_status: scanResult.status,
+          trace_id: scanResult.error?.traceId || null,
+          message: 'O Mercado Livre repetiu uma página do scan sem avançar o cursor.',
+          endpoint: '/users/{seller_id}/items/search?search_type=scan',
+          retries: scanCheck.retries,
+        },
+      };
     }
 
     const nextScrollId: string = String(payload?.scroll_id || '').trim();
@@ -375,8 +394,8 @@ async function fetchAllMlItemIds(sellerId: string | number): Promise<{
       };
     }
 
-    // O scroll retornado na primeira página identifica toda a varredura.
-    // Não persistimos esse cursor: ele é efêmero e vive somente nesta chamada.
+    // O cursor é efêmero e vive somente nesta chamada. O ML pode devolver um
+    // novo valor a cada página, que deve substituir o valor anterior.
     scrollId = resolveMlObservedScrollId(scrollId, nextScrollId);
   }
 }
