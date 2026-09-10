@@ -14,3 +14,21 @@ export function parseOrderReconciliationMode(value: unknown): OrderReconciliatio
 export function shouldDispatchExternalOrderAlerts(mode: OrderReconciliationMode): boolean {
   return mode !== 'cutover';
 }
+
+export function shouldPersistCalculatedOrderProfit(params: {
+  existingProfit: unknown;
+  existingSnapshotPendencias: unknown;
+  calculatedProfit: unknown;
+  profitPending: boolean;
+}): boolean {
+  if (
+    typeof params.calculatedProfit !== 'number'
+    || !Number.isFinite(params.calculatedProfit)
+  ) return false;
+
+  if (params.existingProfit == null) return true;
+
+  const previousProfitWasProvisional = Array.isArray(params.existingSnapshotPendencias)
+    && params.existingSnapshotPendencias.includes('lucro_pendente_produto');
+  return previousProfitWasProvisional && !params.profitPending;
+}

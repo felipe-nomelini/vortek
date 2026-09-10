@@ -52,6 +52,7 @@ import {
 import {
   parseOrderReconciliationMode,
   shouldDispatchExternalOrderAlerts,
+  shouldPersistCalculatedOrderProfit,
 } from '@/lib/sync/order-reconciliation';
 
 export const maxDuration = 300;
@@ -942,7 +943,7 @@ async function processOrder(params: {
 
   const { data: existingPedido } = await serviceClient
     .from('pedidos')
-    .select('id, situacao, ml_pack_id, ml_bundle_type, ml_bundle_parent_item_id, ml_bundle_primary, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto, snapshot_source')
+    .select('id, situacao, ml_pack_id, ml_bundle_type, ml_bundle_parent_item_id, ml_bundle_primary, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto, snapshot_pendencias, snapshot_source')
     .eq('ml_order_id', String(o.id))
     .maybeSingle();
   existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
@@ -1569,7 +1570,12 @@ async function processOrder(params: {
 
   const hasFutureRelease = Boolean(releaseWindow.releaseAt && releaseWindow.isBlockedNow);
   const hadReleaseBefore = Boolean((existingPedido as any)?.ml_fiscal_release_at);
-  const profitUpdate = existingPedido?.lucro == null && typeof lucro === 'number' && Number.isFinite(lucro)
+  const profitUpdate = shouldPersistCalculatedOrderProfit({
+    existingProfit: existingPedido?.lucro,
+    existingSnapshotPendencias: (existingPedido as any)?.snapshot_pendencias,
+    calculatedProfit: lucro,
+    profitPending: lucroPendente,
+  })
     ? { lucro }
     : {};
   const persistedFreight = (

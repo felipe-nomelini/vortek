@@ -63,7 +63,8 @@ test('alíquota de outra competência, PGDAS pendente e receita ausente não vir
 });
 test('sync não sobrescreve lucro histórico e não aceita cobertura parcial', () => {
   const source = fs.readFileSync('src/app/api/sync/pedidos/route.ts', 'utf8');
-  assert.match(source, /existingPedido\?\.lucro == null && typeof lucro === 'number'/);
+  assert.match(source, /shouldPersistCalculatedOrderProfit/);
+  assert.match(source, /snapshot_incompleto, snapshot_pendencias, snapshot_source/);
   assert.match(source, /lucro === null \|\| !freteDisponivel \|\| custoProdutoPendente/);
   assert.match(source, /historicalCosts,/);
   assert.match(source, /loadOrderItemCmvSnapshots/);

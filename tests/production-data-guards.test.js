@@ -7,6 +7,7 @@ const { canUseHomologationFixtures } = require('../src/lib/homologation-fixture.
 const {
   parseOrderReconciliationMode,
   shouldDispatchExternalOrderAlerts,
+  shouldPersistCalculatedOrderProfit,
 } = require('../src/lib/sync/order-reconciliation.ts');
 
 const root = process.cwd();
@@ -81,4 +82,31 @@ test('modo cutover é explícito e desabilita somente alertas externos', () => {
   assert.match(source, /params\.dispatchExternalAlerts[\s\S]*alertNewSale/);
   assert.match(source, /params\.dispatchExternalAlerts[\s\S]*alertClaimOpened/);
   assert.match(source, /if \(params\.dispatchExternalAlerts\) \{[\s\S]*alertMlLabelReleased/);
+});
+
+test('lucro provisório por falta de produto é substituído somente após cálculo completo', () => {
+  assert.equal(shouldPersistCalculatedOrderProfit({
+    existingProfit: 0,
+    existingSnapshotPendencias: ['lucro_pendente_produto'],
+    calculatedProfit: 123.45,
+    profitPending: false,
+  }), true);
+  assert.equal(shouldPersistCalculatedOrderProfit({
+    existingProfit: 0,
+    existingSnapshotPendencias: ['lucro_pendente_produto'],
+    calculatedProfit: 123.45,
+    profitPending: true,
+  }), false);
+  assert.equal(shouldPersistCalculatedOrderProfit({
+    existingProfit: 87.65,
+    existingSnapshotPendencias: [],
+    calculatedProfit: 123.45,
+    profitPending: false,
+  }), false);
+  assert.equal(shouldPersistCalculatedOrderProfit({
+    existingProfit: null,
+    existingSnapshotPendencias: [],
+    calculatedProfit: 123.45,
+    profitPending: false,
+  }), true);
 });
