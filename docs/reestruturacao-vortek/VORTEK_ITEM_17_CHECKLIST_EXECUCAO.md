@@ -2131,6 +2131,8 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Estado de `BNT-D01`:** concluído e aprovado visualmente pelo usuário em homologação em `2026-08-31`. Tabela operacional, carga visual protegida, detalhe completo em `Drawer` e acompanhamento de entrega compartilhado entre aba e modal permanecem como contrato aprovado.
 
+**Ajuste produtivo de `BNT-D01` em `2026-09-10`:** a tabela de Vendas recebeu a coluna `Compra` imediatamente após `Progresso`. O `dslite_id` canônico já presente no contrato da listagem é exibido como link para `https://app.dslite.com.br/modules/admin/Pedido/exibir/{dslite_id}`, em nova aba; vendas sem esse vínculo mostram `Não Criado`. A regra operacional confirmada mantém no máximo uma compra DSLite por venda. Não houve mudança de API, schema, banco, integração ou dependência. O commit funcional `e933030a` passou pelos 7 cenários direcionados de Pedidos, `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`; foi confirmado no mesmo SHA em `origin/dev`, `origin/bentevi-prod` e `local/bentevi-prod`. Em `app.bentevi.shop`, health e proteções de acesso passaram; uma leitura autenticada com `x-vortek-read-only: 1` confirmou vendas reais nos dois estados, e o destino administrativo de uma compra existente respondeu sem erro de servidor. O rollback é reverter `e933030a`, promover o SHA da reversão e reimplantar `local/bentevi-prod`.
+
 **Estado de `BNT-D02`:** proposta inicial rejeitada e substituída por um cockpit comercial gamificado; revisão aprovada visualmente pelo usuário em homologação em `2026-09-01`. `BNT-D03` foi liberado.
 
 #### Resultado técnico de `BNT-D02 — Dashboard`
