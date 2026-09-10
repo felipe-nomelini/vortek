@@ -1,4 +1,5 @@
 import { createServiceClient } from '@/lib/supabase';
+import { startProductionScheduler } from '@/services/production-scheduler';
 
 declare global {
   var __vortekRuntimeTelemetryRegistered: boolean | undefined;
@@ -76,3 +77,5 @@ if (!global.__vortekRuntimeTelemetryRegistered) {
     });
   });
 }
+
+startProductionScheduler();
