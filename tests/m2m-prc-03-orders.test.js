@@ -65,6 +65,9 @@ test('sync não sobrescreve lucro histórico e não aceita cobertura parcial', (
   const source = fs.readFileSync('src/app/api/sync/pedidos/route.ts', 'utf8');
   assert.match(source, /existingPedido\?\.lucro == null && typeof lucro === 'number'/);
   assert.match(source, /lucro === null \|\| !freteDisponivel \|\| custoProdutoPendente/);
+  assert.match(source, /historicalCosts,/);
+  assert.match(source, /loadOrderItemCmvSnapshots/);
+  assert.doesNotMatch(source, /lucro_pendente_produto'[\s\S]{0,180}snapshot\.incompleto = true/);
 });
 test('entrypoints e comandos de campanhas aposentadas não permanecem disponíveis', () => {
   const scripts = fs.readdirSync('scripts').filter(name =>

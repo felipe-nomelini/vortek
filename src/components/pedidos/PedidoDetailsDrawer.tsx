@@ -76,6 +76,9 @@ function detailItems(group: PedidoVendaGrupoDetalheApiDto): DetailProductRow[] {
     ml_item_id: null,
     valor_unitario: null,
     valor_total_liquido: group.purchase.valor_total,
+    cmv_unitario_snapshot: null,
+    cmv_total_snapshot: null,
+    cmv_capturado_em: null,
   }];
 }
 
@@ -108,6 +111,16 @@ export default function PedidoDetailsDrawer({
   const profitColor = order?.lucro == null || order.lucro === 0
     ? token.colorTextSecondary
     : order.lucro > 0 ? token.colorSuccess : token.colorError;
+  const hasPendingCmv = Boolean(detail?.groups.some((group) => (
+    group.items.some((item) => item.cmv_total_snapshot == null)
+  )));
+  const profitDisplay = order?.lucro == null
+    ? order?.profit_pending
+      ? hasPendingCmv
+        ? 'Pendente: custo do produto'
+        : 'Pendente: frete, tarifa ou tributo'
+      : '—'
+    : formatCurrency(order.lucro);
   const address = (order?.billing_endereco || {}) as {
     street_name?: string; street_number?: string; complement?: string;
     neighborhood?: string; city_name?: string; state_id?: string; zip_code?: string;
@@ -143,7 +156,7 @@ export default function PedidoDetailsDrawer({
                 pagination={false}
                 rowKey={(item, index) => `${item.ml_item_id || item.seller_sku || item.titulo}-${index}`}
                 dataSource={items}
-                scroll={{ x: 680 }}
+                scroll={{ x: 880 }}
                 columns={[
                   { title: 'Produto', dataIndex: 'titulo', key: 'titulo', width: 300, render: (value: string) => value || 'Produto não informado' },
                   {
@@ -156,6 +169,8 @@ export default function PedidoDetailsDrawer({
                   { title: 'Qtd.', dataIndex: 'quantidade', key: 'quantidade', width: 70, align: 'right', render: (value: number | null) => value ?? '—' },
                   { title: 'Unitário', dataIndex: 'valor_unitario', key: 'valor_unitario', width: 100, align: 'right', render: (value: number | null) => value == null ? '—' : formatCurrency(value) },
                   { title: 'Total', dataIndex: 'valor_total_liquido', key: 'valor_total_liquido', width: 100, align: 'right', render: (value: number | null) => value == null ? '—' : formatCurrency(value) },
+                  { title: 'Custo unit.', dataIndex: 'cmv_unitario_snapshot', key: 'cmv_unitario_snapshot', width: 110, align: 'right', render: (value: number | null) => value == null ? 'Pendente' : formatCurrency(value) },
+                  { title: 'CMV', dataIndex: 'cmv_total_snapshot', key: 'cmv_total_snapshot', width: 110, align: 'right', render: (value: number | null) => value == null ? 'Pendente' : formatCurrency(value) },
                 ]}
               />
             ) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Itens ainda não sincronizados" />}
@@ -298,7 +313,7 @@ export default function PedidoDetailsDrawer({
               <Descriptions size="small" column={{ xs: 1, sm: 2, md: 4 }}>
                 <Descriptions.Item label="Cliente" span={2}>{getDisplayClientName(order)}</Descriptions.Item>
                 <Descriptions.Item label="Total">{formatCurrency(order.total)}</Descriptions.Item>
-                <Descriptions.Item label="Lucro"><Text style={{ color: profitColor }}>{order.lucro == null ? (order.profit_pending ? 'Calculando' : '—') : formatCurrency(order.lucro)}</Text></Descriptions.Item>
+                <Descriptions.Item label="Lucro"><Text style={{ color: profitColor }}>{profitDisplay}</Text></Descriptions.Item>
               </Descriptions>
               {progress && (
                 <div style={{ marginTop: 8 }}>

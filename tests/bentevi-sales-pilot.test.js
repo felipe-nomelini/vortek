@@ -23,6 +23,7 @@ test('BNT-D01 persiste o estado operacional relevante na URL', () => {
 
 test('BNT-D01 abre o detalhe completo em Drawer navegável e somente leitura', () => {
   const detailRoute = source('src/app/api/pedidos/[id]/route.ts');
+  const detailLookup = source('src/lib/mobile-sale-lookup.ts');
   assert.match(page, /fetch\(`\/api\/pedidos\/\$\{encodeURIComponent\(drawerOrderId\)\}`/);
   assert.match(page, /window\.history\.pushState/);
   assert.match(page, /params\.set\('venda', order\.dbId\)/);
@@ -34,6 +35,12 @@ test('BNT-D01 abre o detalhe completo em Drawer navegável e somente leitura', (
   assert.match(detailRoute, /authorizeApiRequest\(request, 'sales\.read'\)/);
   assert.match(detailRoute, /readOnlyHeaders\.set\('x-vortek-read-only', '1'\)/);
   assert.match(detailRoute, /buildSaleDetailGroups/);
+  assert.doesNotMatch(detailLookup, /GET as getOrders|\/api\/pedidos.*search/);
+  assert.match(detailLookup, /\.eq\("id", id\)/);
+  assert.match(detailLookup, /\.contains\("operational_order_ids", \[id\]\)/);
+  assert.match(detailRoute, /cmv_unitario_snapshot,cmv_total_snapshot,cmv_capturado_em/);
+  assert.match(drawer, /Custo unit\./);
+  assert.match(drawer, /Pendente: custo do produto/);
 });
 
 test('BNT-D01 apresenta somente ações autorizadas para o cargo atual', () => {

@@ -1,12 +1,13 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { GET as getOrders } from "@/app/api/pedidos/route";
-import {
-  getMobileSaleSearchReference,
-  isMobileSaleDatabaseId,
-} from "@/lib/mobile-sale-id";
+import { isMobileSaleDatabaseId } from "@/lib/mobile-sale-id";
 import { createServiceClient } from "@/lib/supabase";
+import {
+  enrichPedidosWithCompras,
+  reconcileNotaFiscalEmitidaRow,
+} from "@/services/order-read-projection";
+import { enrichOrdersWithWhatsappStatus } from "@/services/order-operational-status";
 
 export const mobileSaleIdSchema = z.string()
   .trim()
@@ -25,31 +26,44 @@ export function matchesMobileSale(row: any, id: string): boolean {
   return candidates.some((value) => String(value || "") === id);
 }
 
-async function resolveMobileSaleSearchReference(id: string): Promise<{
-  reference: string;
+async function loadExactOperationalCandidates(id: string): Promise<{
+  rows: any[];
   error: unknown | null;
 }> {
+  const client = createServiceClient() as any;
   if (!isMobileSaleDatabaseId(id)) {
-    return { reference: id, error: null };
+    const lookups = [
+      client.from("pedidos_operacionais").select("*").eq("ml_order_id", id).limit(2),
+      client.from("pedidos_operacionais").select("*").eq("ml_pack_id", id).limit(2),
+      client.from("pedidos_operacionais").select("*").contains("operational_order_ids", [id]).limit(2),
+      ...(/^\d+$/.test(id)
+        ? [client.from("pedidos_operacionais").select("*").eq("numero", id).limit(2)]
+        : []),
+    ];
+    const results = await Promise.all(lookups);
+    const failed = results.find((result) => result.error);
+    if (failed?.error) return { rows: [], error: failed.error };
+    const rows = Array.from(new Map(
+      results
+        .flatMap((result) => result.data || [])
+        .map((row: any) => [String(row.id), row]),
+    ).values());
+    return { rows, error: null };
   }
 
-  const { data, error } = await (createServiceClient() as any)
+  const { data, error } = await client
     .from("pedidos_operacionais")
-    .select("numero,ml_order_id,ml_pack_id")
+    .select("*")
     .eq("id", id)
     .maybeSingle();
 
-  if (error) return { reference: id, error };
-  return {
-    reference: getMobileSaleSearchReference(id, data),
-    error: null,
-  };
+  return { rows: data ? [data] : [], error };
 }
 
 export async function loadMobileOperationalSale(request: Request, id: string) {
   const requestId = request.headers.get("x-request-id")?.trim() || randomUUID();
-  const resolved = await resolveMobileSaleSearchReference(id);
-  if (resolved.error) {
+  const lookup = await loadExactOperationalCandidates(id);
+  if (lookup.error) {
     return {
       ok: false as const,
       response: NextResponse.json(
@@ -65,38 +79,38 @@ export async function loadMobileOperationalSale(request: Request, id: string) {
       ),
     };
   }
-  const legacyUrl = new URL("/api/pedidos", request.url);
-  legacyUrl.searchParams.set("operationalView", "all");
-  legacyUrl.searchParams.set("search", resolved.reference);
-  legacyUrl.searchParams.set("page", "1");
-  legacyUrl.searchParams.set("pageSize", "25");
-  const legacyResponse = await getOrders(new Request(legacyUrl, {
-    headers: request.headers,
-  }));
-  const body = await legacyResponse.json();
-
-  if (!legacyResponse.ok) {
+  const client = createServiceClient();
+  let rows: any[];
+  try {
+    const reconciled = lookup.rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
+    const withPurchases = await enrichPedidosWithCompras(reconciled, client);
+    rows = await enrichOrdersWithWhatsappStatus(withPurchases, client);
+  } catch (error) {
+    console.error("[mobile-sale-lookup] Falha ao enriquecer venda", {
+      requestId,
+      saleId: id,
+      error: error instanceof Error ? error.message : "unknown",
+    });
     return {
       ok: false as const,
       response: NextResponse.json(
         {
           data: null,
           error: {
-            code: body?.error?.code || "SALE_LOOKUP_FAILED",
-            message: body?.error?.message || body?.erro || "Falha ao carregar venda",
+            code: "SALE_LOOKUP_FAILED",
+            message: "Falha ao carregar venda",
           },
-          meta: { requestId: body?.meta?.requestId || requestId },
+          meta: { requestId },
         },
         {
-          status: legacyResponse.status,
+          status: 500,
           headers: { "Cache-Control": "no-store", "X-Request-Id": requestId },
         },
       ),
     };
   }
 
-  const row = (Array.isArray(body?.data) ? body.data : [])
-    .find((candidate: any) => matchesMobileSale(candidate, id));
+  const row = rows.find((candidate: any) => matchesMobileSale(candidate, id));
   if (!row) {
     return {
       ok: false as const,

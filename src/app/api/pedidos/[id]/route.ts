@@ -89,7 +89,7 @@ export async function GET(
     operationalPedidoIds.length
       ? client
           .from('pedido_itens')
-          .select('pedido_id,titulo,quantidade,seller_sku,ml_item_id,valor_unitario,valor_total_liquido')
+          .select('pedido_id,titulo,quantidade,seller_sku,ml_item_id,valor_unitario,valor_total_liquido,cmv_unitario_snapshot,cmv_total_snapshot,cmv_capturado_em')
           .in('pedido_id', operationalPedidoIds)
       : Promise.resolve({ data: [], error: null }),
     operationalDsliteIds.length

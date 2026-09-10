@@ -50,6 +50,13 @@ export function buildSaleDetailGroups({
       ml_item_id: item.ml_item_id || null,
       valor_unitario: Number(item.valor_unitario || 0),
       valor_total_liquido: Number(item.valor_total_liquido || 0),
+      cmv_unitario_snapshot: item.cmv_unitario_snapshot == null
+        ? null
+        : Number(item.cmv_unitario_snapshot),
+      cmv_total_snapshot: item.cmv_total_snapshot == null
+        ? null
+        : Number(item.cmv_total_snapshot),
+      cmv_capturado_em: item.cmv_capturado_em || null,
     });
     itemsByOrderId.set(orderId, current);
   }

@@ -42,6 +42,9 @@ export type PedidoOperacionalItemApiDto = {
   ml_item_id: string | null;
   valor_unitario: number;
   valor_total_liquido: number;
+  cmv_unitario_snapshot?: number | null;
+  cmv_total_snapshot?: number | null;
+  cmv_capturado_em?: string | null;
 };
 
 type PedidoRow = Database['public']['Tables']['pedidos']['Row'];

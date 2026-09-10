@@ -35,12 +35,15 @@ test('detalhe associa itens e compra ao pedido operacional correto', () => {
     items: [{
       pedido_id: 'pedido-a', titulo: 'Produto A', quantidade: 2, seller_sku: 'VTKA',
       ml_item_id: 'MLB1', valor_unitario: 50, valor_total_liquido: 100,
+      cmv_unitario_snapshot: 30, cmv_total_snapshot: 60,
+      cmv_capturado_em: '2026-09-10T01:00:00Z',
     }],
     purchases: [purchase('compra-a', 'DSL-10', 'Fornecedor A')],
   });
 
   assert.equal(result.groups.length, 1);
   assert.equal(result.groups[0].items[0].seller_sku, 'VTKA');
+  assert.equal(result.groups[0].items[0].cmv_total_snapshot, 60);
   assert.equal(result.groups[0].purchase.id, 'compra-a');
   assert.deepEqual(result.unmatchedPurchases, []);
 });

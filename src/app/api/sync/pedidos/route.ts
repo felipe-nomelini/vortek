@@ -41,6 +41,11 @@ import { createSupplierCancellationCreditCandidate } from '@/lib/supplier-credit
 import { loadOperationRuntimeConfiguration } from '@/services/operation-configuration';
 import { getMercadoPagoPaymentForMlSale } from '@/services/mercadopago';
 import {
+  buildOrderHistoricalCosts,
+  loadOrderItemCmvSnapshots,
+  type OrderItemCmvSnapshot,
+} from '@/services/order-cmv-snapshot';
+import {
   assessMlSaleConcretization,
   type MlSalePaymentRelease,
 } from '@/lib/ml/sale-concretization';
@@ -103,6 +108,13 @@ interface OrderItemSnapshot {
   origem_fiscal: string | null;
   csosn: string | null;
   cfop_sugerido: string | null;
+  cmv_unitario_snapshot: number | null;
+  cmv_total_snapshot: number | null;
+  cmv_fonte: OrderItemCmvSnapshot['cmv_fonte'] | null;
+  cmv_evidencia_id: string | null;
+  cmv_fonte_observada_em: string | null;
+  cmv_capturado_em: string | null;
+  cmv_composicao: OrderItemCmvSnapshot['cmv_composicao'];
 }
 
 interface OrderFiscalSnapshot {
@@ -824,6 +836,13 @@ async function buildOrderItemsSnapshot(params: {
       origem_fiscal: produto?.origem_fiscal || null,
       csosn: produto?.csosn || null,
       cfop_sugerido: cfop,
+      cmv_unitario_snapshot: null,
+      cmv_total_snapshot: null,
+      cmv_fonte: null,
+      cmv_evidencia_id: null,
+      cmv_fonte_observada_em: null,
+      cmv_capturado_em: null,
+      cmv_composicao: null,
     };
   });
 }
@@ -1331,6 +1350,26 @@ async function processOrder(params: {
     }
   }
 
+  const orderItemsForProfit = Array.isArray(detail?.order_items) ? detail.order_items : [];
+  const existingCmvItemsResult = existingPedidoId
+    ? await serviceClient
+      .from('pedido_itens')
+      .select('ml_item_id,seller_sku,quantidade,cmv_unitario_snapshot,cmv_total_snapshot,cmv_fonte,cmv_evidencia_id,cmv_fonte_observada_em,cmv_capturado_em,cmv_composicao')
+      .eq('pedido_id', existingPedidoId)
+    : { data: [], error: null };
+  if (existingCmvItemsResult.error) {
+    throw new Error(`Falha ao carregar CMV histórico do pedido: ${existingCmvItemsResult.error.message}`);
+  }
+  const itemCmvSnapshots = ORDER_SNAPSHOT_V2_ENABLED
+    ? await loadOrderItemCmvSnapshots({
+      client: serviceClient,
+      mlOrderId: String(o.id),
+      orderItems: orderItemsForProfit,
+      existingItems: existingCmvItemsResult.data || [],
+    })
+    : [];
+  const historicalCosts = buildOrderHistoricalCosts(orderItemsForProfit, itemCmvSnapshots);
+
   const {
     lucro,
     rastreio,
@@ -1340,6 +1379,7 @@ async function processOrder(params: {
     allowShipmentFetch: false,
     sellerShippingCost,
     taxContexts: params.taxContexts,
+    historicalCosts,
   });
   const quantidadeItensPedido = Array.isArray(detail?.order_items) ? detail.order_items.length : 0;
   const custoProdutoPendente = quantidadeItensPedido > 0 && itensEncontrados < quantidadeItensPedido;
@@ -1463,13 +1503,17 @@ async function processOrder(params: {
   let snapshot: OrderFiscalSnapshot | null = null;
   if (ORDER_SNAPSHOT_V2_ENABLED) {
     const orderItems = Array.isArray(detail?.order_items) ? detail.order_items : [];
-    const itemsSnapshot = await buildOrderItemsSnapshot({
+    const fiscalItemsSnapshot = await buildOrderItemsSnapshot({
       serviceClient,
       orderItems,
       emitUf,
       destUf,
       freteTotal,
     });
+    const itemsSnapshot = fiscalItemsSnapshot.map((item, index) => ({
+      ...item,
+      ...(itemCmvSnapshots[index] || {}),
+    }));
     snapshot = buildOrderSnapshot({
       detail,
       billingSnapshot,
@@ -1488,7 +1532,6 @@ async function processOrder(params: {
     }
     if (custoProdutoPendente && !snapshot.pendencias.includes('lucro_pendente_produto')) {
       snapshot.pendencias.push('lucro_pendente_produto');
-      snapshot.incompleto = true;
     }
     await registrarEventoNfAuditoria({
       mlOrderId: String(o.id),
@@ -1810,6 +1853,13 @@ async function processOrder(params: {
       origem_fiscal: it.origem_fiscal,
       csosn: it.csosn,
       cfop_sugerido: it.cfop_sugerido,
+      cmv_unitario_snapshot: it.cmv_unitario_snapshot,
+      cmv_total_snapshot: it.cmv_total_snapshot,
+      cmv_fonte: it.cmv_fonte,
+      cmv_evidencia_id: it.cmv_evidencia_id,
+      cmv_fonte_observada_em: it.cmv_fonte_observada_em,
+      cmv_capturado_em: it.cmv_capturado_em,
+      cmv_composicao: it.cmv_composicao,
     }));
 
     await serviceClient.from('pedido_itens').delete().eq('pedido_id', pedidoId);

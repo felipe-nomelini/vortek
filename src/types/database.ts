@@ -2022,6 +2022,13 @@ ml_pricing_groups: {
         Row: {
           cest: string | null
           cfop_sugerido: string | null
+          cmv_capturado_em: string | null
+          cmv_composicao: Json | null
+          cmv_evidencia_id: string | null
+          cmv_fonte: string | null
+          cmv_fonte_observada_em: string | null
+          cmv_total_snapshot: number | null
+          cmv_unitario_snapshot: number | null
           created_at: string
           csosn: string | null
           desconto_item: number
@@ -2045,6 +2052,13 @@ ml_pricing_groups: {
         Insert: {
           cest?: string | null
           cfop_sugerido?: string | null
+          cmv_capturado_em?: string | null
+          cmv_composicao?: Json | null
+          cmv_evidencia_id?: string | null
+          cmv_fonte?: string | null
+          cmv_fonte_observada_em?: string | null
+          cmv_total_snapshot?: number | null
+          cmv_unitario_snapshot?: number | null
           created_at?: string
           csosn?: string | null
           desconto_item?: number
@@ -2068,6 +2082,13 @@ ml_pricing_groups: {
         Update: {
           cest?: string | null
           cfop_sugerido?: string | null
+          cmv_capturado_em?: string | null
+          cmv_composicao?: Json | null
+          cmv_evidencia_id?: string | null
+          cmv_fonte?: string | null
+          cmv_fonte_observada_em?: string | null
+          cmv_total_snapshot?: number | null
+          cmv_unitario_snapshot?: number | null
           created_at?: string
           csosn?: string | null
           desconto_item?: number
