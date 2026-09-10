@@ -16,12 +16,30 @@ do corte, este repositório DEV não autoriza novas ações produtivas; `.160` e
 - Aplicação: `https://app.bentevi.shop`.
 - Banco Bentevi: stack self-hosted em `192.168.1.162`, reclassificada como
   produção no corte.
+- API canônica do banco: `https://supabase.bentevi.shop`, encaminhada pelo
+  túnel `vortek-local` para `http://192.168.1.162:8000`. O hostname histórico
+  `supabase-dev.vortek.shop` permanece somente como compatibilidade temporária.
 - Origem dos dados reais: stack legada em `192.168.1.160`, sempre somente
   leitura neste processo.
 - Compatibilidade de domínio: `https://app.vortek.shop` responde com `308` para
   o domínio canônico, preservando método, caminho e query.
 - Cloudflare: CNAME proxied de `app.bentevi.shop` para o túnel `vortek-local`;
   ingress direto para `http://local-bentevi-prod:80`.
+
+## Estado operacional confirmado
+
+- `dev` e `bentevi-prod` foram promovidas para o SHA `c8340c4d` após validação
+  completa; `main` permaneceu inalterada.
+- O login usa `POST /api/auth/login` no próprio domínio. A rota resolve o
+  Supabase server-side, cria os cookies de sessão no servidor e não depende de
+  `NEXT_PUBLIC_SUPABASE_URL` ou da chave anônima dentro do bundle do navegador.
+- O build Railpack produtivo remove variáveis e secrets do processo de build e
+  executa `npm run build`; as variáveis produtivas existem somente no runtime.
+- Após o deploy, foram confirmados `/login` e `/api/ops/health` com HTTP 200,
+  redirecionamento legado com HTTP 308, API Supabase canônica com HTTP 200 e
+  CORS para `app.bentevi.shop`, e login inválido controlado com HTTP 401 pela
+  rota server-side. A autenticação com senha real continua sendo o aceite
+  funcional do titular, sem redefinição automática de credenciais.
 
 O arquivo privado de variáveis produtivas deve permanecer fora do Git. Antes de
 configurar o Easypanel, validá-lo sem exibir valores:

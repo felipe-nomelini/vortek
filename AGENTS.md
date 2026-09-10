@@ -25,7 +25,7 @@ O Supabase do projeto é **self-hosted**, não Supabase Cloud. Não exija projec
 
 | Recurso | Destino | Permissão neste projeto |
 |---|---|---|
-| Supabase de produção Bentevi | `192.168.1.162` | Exclusivamente leitura neste repositório DEV; foi reclassificado no corte de 2026-09-09 |
+| Supabase de produção Bentevi | `supabase.bentevi.shop` → `192.168.1.162` | Exclusivamente leitura neste repositório DEV; foi reclassificado no corte de 2026-09-09 |
 | Supabase DEV local | `127.0.0.1`, projeto `bentevi-dev-local` | Escritas locais autorizadas somente com dados sintéticos e `VORTEK_RUNTIME_ENVIRONMENT=local_dev` |
 | Supabase legado | `192.168.1.160` | Exclusivamente leitura para consultas e diagnósticos necessários |
 | Web de homologação anterior | `dev.bentevi.shop`, serviço `local/vortek-erp-dev` no Easypanel `.160` | Serviço desabilitado após a virada; não reativar nem publicar sem recriar um destino DEV independente |
@@ -33,7 +33,7 @@ O Supabase do projeto é **self-hosted**, não Supabase Cloud. Não exija projec
 
 A hospedagem da aplicação DEV em `.160` **não** torna o Supabase desse servidor um banco de desenvolvimento. Nomes de containers, diretórios, labels, URLs ou variáveis contendo `dev` não mudam essa classificação.
 
-A virada de 2026-09-09 reaproveitou `.162` como produção Bentevi e desabilitou os serviços web legado e DEV. O novo DEV remoto no `PCBAO` ainda não foi ativado; até que isso ocorra em tarefa própria, o único destino gravável deste repositório é `bentevi-dev-local`, estritamente em loopback e com dados sintéticos. O hostname histórico `supabase-dev.vortek.shop` ainda pode resolver para `.162`, mas o nome não muda sua classificação produtiva nem autoriza escrita.
+A virada de 2026-09-09 reaproveitou `.162` como produção Bentevi e desabilitou os serviços web legado e DEV. O novo DEV remoto no `PCBAO` ainda não foi ativado; até que isso ocorra em tarefa própria, o único destino gravável deste repositório é `bentevi-dev-local`, estritamente em loopback e com dados sintéticos. O hostname canônico da API produtiva é `supabase.bentevi.shop`; o hostname histórico `supabase-dev.vortek.shop` ainda pode resolver para `.162` apenas por compatibilidade, mas o nome não muda sua classificação produtiva nem autoriza escrita.
 
 ### Produção é somente leitura
 
@@ -97,6 +97,7 @@ A aplicação web está na raiz: Next.js App Router, React, TypeScript, Ant Desi
 - Preserve a consistência dos manifests e lockfiles; não atualize dependências incidentalmente.
 - Em mudanças de Next.js, leia o guia pertinente em `node_modules/next/dist/docs/`; se indisponível, consulte a documentação oficial da versão instalada. Confira mudanças de contrato e avisos de depreciação.
 - `@openai/codex` também é dependência de runtime do Assistente, não apenas ferramenta do editor. Não remova dependências pela aparência ou pelo nome.
+- O login web autentica pela rota same-origin `POST /api/auth/login`; não volte a acoplar a página de login ao cliente Supabase do navegador. A aplicação produtiva deve resolver o Supabase server-side por `SUPABASE_SERVICE_URL`, mantendo chaves privilegiadas fora do bundle público.
 
 ### Validação proporcional
 
@@ -147,7 +148,7 @@ Para deploy DEV solicitado, siga o procedimento Easypanel somente depois que exi
 
 O webhook vem da configuração privada, nunca de documentação ou código versionado. Não edite arquivos dentro do container nem use deploy direto por Docker como procedimento normal. Aceite HTTP do webhook não comprova build, implantação ou validação funcional; confira o resultado no nível aplicável.
 
-O App Service `local/bentevi-prod` está ativo em produção, associado exclusivamente à branch `bentevi-prod` e ao domínio canônico `app.bentevi.shop`. Na Cloudflare, `app.vortek.shop` responde com redirecionamento permanente `308`, preservando método, caminho e query. Ele não é o serviço DEV e sua existência não autoriza configurá-lo, reiniciá-lo, publicá-lo nem associá-lo à branch `dev`. O serviço anterior `vortek-erp-dev` permanece desabilitado e seu webhook nunca deve ser usado como credencial ou caminho de publicação produtiva.
+O App Service `local/bentevi-prod` está ativo em produção, associado exclusivamente à branch `bentevi-prod` e ao domínio canônico `app.bentevi.shop`. Na Cloudflare, `app.vortek.shop` responde com redirecionamento permanente `308`, preservando método, caminho e query; `supabase.bentevi.shop` encaminha pelo túnel autorizado à API self-hosted da `.162`. Ele não é o serviço DEV e sua existência não autoriza configurá-lo, reiniciá-lo, publicá-lo nem associá-lo à branch `dev`. O serviço anterior `vortek-erp-dev` permanece desabilitado e seu webhook nunca deve ser usado como credencial ou caminho de publicação produtiva.
 
 Preparar uma próxima release significa fixar o SHA candidato de `dev`, levantar testes, delta mínimo de schema, variáveis sem valores, gates, riscos e recuperação. Não significa atualizar/pushar `bentevi-prod`, aplicar migrations ou apontar o serviço produtivo. Essas ações pertencem a uma tarefa de release própria e explicitamente autorizada; os dois Supabases remotos permanecem somente leitura aqui.
 
