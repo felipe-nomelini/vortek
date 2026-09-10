@@ -3,6 +3,7 @@ export type IntegrationEnvironment = Record<string, string | undefined>;
 export type IntegrationRecord = Record<string, unknown>;
 export type CredentialOrigin = "erp" | "runtime" | "default" | "missing";
 export type EditableIntegration = "dslite" | "brasilnfe" | "mercadopago";
+export type IntegrationTestEnvironment = "production" | "homologation";
 export const FATAL_REFRESH_ERROR_CODES = ["invalid_grant", "invalid_client", "unauthorized_client", "unauthorized_application"];
 
 export function configured(value: unknown): boolean {
@@ -34,6 +35,45 @@ export function integrationUrlAllowed(tipo: string, value: string, homologationO
   } catch { return false; }
 }
 
+export function integrationTestEnvironment(env: IntegrationEnvironment): IntegrationTestEnvironment {
+  return env.VORTEK_RUNTIME_ENVIRONMENT === "production" ? "production" : "homologation";
+}
+
+function integrationTestUrlAllowed(tipo: "dslite" | "brasilnfe", value: string, environment: IntegrationTestEnvironment): boolean {
+  if (!integrationUrlAllowed(tipo, value)) return false;
+  if (tipo === "brasilnfe") return true;
+  try {
+    return new URL(value).hostname === (environment === "production" ? "api.dslite.com.br" : "api.master.dev.dslite.com.br");
+  } catch { return false; }
+}
+
+function integrationTestRestriction(
+  tipo: "dslite" | "brasilnfe",
+  url: string,
+  env: IntegrationEnvironment,
+): string | null {
+  const environment = integrationTestEnvironment(env);
+  if (!integrationTestUrlAllowed(tipo, url, environment)) {
+    if (tipo === "dslite") {
+      return environment === "production"
+        ? "Teste bloqueado: configure a URL oficial de produção da DSLite (sem /v1). Nenhuma URL foi alterada automaticamente."
+        : "Teste bloqueado: configure a URL oficial de homologação da DSLite (sem /v1). Nenhuma URL foi alterada automaticamente.";
+    }
+    return "URL fora dos destinos oficiais permitidos.";
+  }
+  if (tipo === "brasilnfe") {
+    const configuredEnvironment = env.BRASILNFE_TIPO_AMBIENTE;
+    const expectedEnvironment = environment === "production" ? "1" : "2";
+    if (configuredEnvironment && configuredEnvironment !== expectedEnvironment) {
+      return `Teste bloqueado: o ambiente fiscal configurado não corresponde ao runtime de ${environment === "production" ? "produção" : "homologação"}.`;
+    }
+    if (environment === "production" && configuredEnvironment !== "1") {
+      return "Teste bloqueado: configure BRASILNFE_TIPO_AMBIENTE=1 no runtime de produção.";
+    }
+  }
+  return null;
+}
+
 export type IntegrationState = "missing" | "incomplete" | "configured" | "validated" | "reconnect" | "error";
 export const INTEGRATION_STATE_LABELS: Record<IntegrationState, string> = {
   missing: "Não configurado", incomplete: "Configuração incompleta", configured: "Configurado — não verificado",
@@ -51,13 +91,14 @@ export function integrationState(tipo: string, row: IntegrationRecord, env: Inte
   const config = resolveIntegrationConfiguration(tipo, row, env);
   if (!config.token.value) return configured(row.url) || config.userToken.value ? "incomplete" : "missing";
   if (tipo !== "mercadopago" && !integrationUrlAllowed(tipo, config.url.value)) return "incomplete";
-  // Legacy connected flags and configuration timestamps are not evidence of a connection test.
+  if (["dslite", "brasilnfe"].includes(tipo) && row.conectado === true) return "validated";
   return "configured";
 }
 
 export type IntegrationSummary = {
   tipo: string; name: string; group: string; purpose: string; state: IntegrationState;
   action: string; href?: string; editable: boolean; testable: boolean; restriction: string | null;
+  testEnvironment: IntegrationTestEnvironment | null;
 };
 
 export function integrationSummaries(rows: IntegrationRecord[], env: IntegrationEnvironment): IntegrationSummary[] {
@@ -71,16 +112,16 @@ export function integrationSummaries(rows: IntegrationRecord[], env: Integration
     const row = rows.find((item) => item.tipo === tipo) || {};
     const config = resolveIntegrationConfiguration(tipo, row, env);
     const state = integrationState(tipo, row, env);
-    const restriction = tipo === "dslite" && config.url.value && !integrationUrlAllowed(tipo, config.url.value, true)
-      ? "Teste bloqueado: configure a URL oficial de homologação da DSLite (sem /v1). Nenhuma URL foi alterada automaticamente."
-      : tipo === "brasilnfe" && !integrationUrlAllowed(tipo, config.url.value)
-        ? "URL fora dos destinos oficiais permitidos."
-        : tipo === "mercadopago" && config.token.origin === "runtime"
-          ? "A credencial do servidor prevalece. Sua alteração é feita no runtime; a edição pelo ERP está bloqueada."
-          : null;
+    const testEnvironment = ["dslite", "brasilnfe"].includes(tipo) ? integrationTestEnvironment(env) : null;
+    const restriction = ["dslite", "brasilnfe"].includes(tipo)
+      ? integrationTestRestriction(tipo as "dslite" | "brasilnfe", config.url.value, env)
+      : tipo === "mercadopago" && config.token.origin === "runtime"
+        ? "A credencial do servidor prevalece. Sua alteração é feita no runtime; a edição pelo ERP está bloqueada."
+        : null;
     return { tipo, name, group, purpose, state, action, href: tab ? `/configuracoes?tab=${tab}` : undefined,
       editable: !tab && !(tipo === "mercadopago" && config.token.origin === "runtime"),
-      testable: ["dslite", "brasilnfe"].includes(tipo) && state === "configured" && !restriction, restriction };
+      testable: ["dslite", "brasilnfe"].includes(tipo) && ["configured", "validated"].includes(state) && !restriction,
+      restriction, testEnvironment };
   });
   const runtime: Array<[string, string, string, string, boolean[], string | undefined]> = [
     ["waha", "WhatsApp / WAHA", "Comunicação", "Entrega de mensagens e sessão WhatsApp", [configured(env.WAHA_BASE_URL || env.WAHA_URL), configured(env.WAHA_API_KEY)], "notificacoes"],
@@ -93,37 +134,50 @@ export function integrationSummaries(rows: IntegrationRecord[], env: Integration
   for (const [tipo, name, group, purpose, fields, tab] of runtime) result.push({
     tipo, name, group, purpose, state: fields.every(Boolean) ? "configured" : fields.some(Boolean) ? "incomplete" : "missing",
     action: tab ? "Abrir Notificações" : "Ver estado", href: tab ? `/configuracoes?tab=${tab}` : undefined,
-    editable: false, testable: false, restriction: "Administrada pelo servidor. Presença de configuração não comprova disponibilidade. Nenhuma chamada externa foi executada nesta leitura.",
+    editable: false, testable: false, restriction: "Administrada pelo servidor. Presença de configuração não comprova disponibilidade. Nenhuma chamada externa foi executada nesta leitura.", testEnvironment: null,
   });
   return result;
 }
 
-export type IntegrationTestResult = { ok: boolean; message: string; checkedAt: string; code: string };
+export type IntegrationTestResult = { ok: boolean; message: string; checkedAt: string; code: string; environment: IntegrationTestEnvironment };
+
+function isBrasilNfeEmptyResult(message: unknown): boolean {
+  if (typeof message !== "string") return false;
+  const normalized = message.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase().replace(/[.!]+$/, "");
+  return normalized === "nao existe notas fiscais para o periodo informado"
+    || normalized === "nao existem notas fiscais para o periodo informado";
+}
 
 export async function probeIntegration(
   tipo: "dslite" | "brasilnfe", row: IntegrationRecord, env: IntegrationEnvironment,
   fetcher: typeof fetch = fetch, now = new Date(),
 ): Promise<IntegrationTestResult> {
-  const result = (ok: boolean, code: string, message: string) => ({ ok, code, message, checkedAt: now.toISOString() });
+  const environment = integrationTestEnvironment(env);
+  const environmentLabel = environment === "production" ? "produção" : "homologação";
+  const result = (ok: boolean, code: string, message: string) => ({ ok, code, message, checkedAt: now.toISOString(), environment });
   const config = resolveIntegrationConfiguration(tipo, row, env);
   if (!config.token.value) return result(false, "missing", "Configure a credencial antes de testar.");
-  if (!integrationUrlAllowed(tipo, config.url.value, true)) return result(false, "blocked", "Destino não permitido para teste de homologação.");
+  const restriction = integrationTestRestriction(tipo, config.url.value, env);
+  if (restriction) return result(false, "blocked", restriction);
   const base = config.url.value.replace(/\/+$/, "");
   const day = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
   try {
     const response = await fetcher(tipo === "dslite" ? `${base}/v1/CrossDocking/Categoria?limit=1&only_root=true` : `${base}/fiscal/ObterNotasFiscais`, {
       method: tipo === "dslite" ? "GET" : "POST", redirect: "error", cache: "no-store", signal: AbortSignal.timeout(20000),
       headers: { "Content-Type": "application/json", Accept: "application/json", Token: config.token.value },
-      ...(tipo === "brasilnfe" ? { body: JSON.stringify({ TipoDocumentoFiscal: 1, TipoAmbiente: 2, DtInicio: `${day}T00:00:00`, DtFim: `${day}T23:59:59`, IdentificadorInterno: "BENTEVI_DEV_CONNECTION_CHECK" }) } : {}),
+      ...(tipo === "brasilnfe" ? { body: JSON.stringify({ TipoDocumentoFiscal: 1, TipoAmbiente: environment === "production" ? 1 : 2, DtInicio: `${day}T00:00:00`, DtFim: `${day}T23:59:59`, IdentificadorInterno: environment === "production" ? "BENTEVI_PROD_CONNECTION_CHECK" : "BENTEVI_DEV_CONNECTION_CHECK" }) } : {}),
     });
     if (!response.ok) return result(false, "http_error", `Consulta recusada pelo provedor (HTTP ${response.status}).`);
     const data = await response.json().catch(() => null);
     if (tipo === "dslite") {
       if (!data || !Array.isArray(data.categorias) || data.error) return result(false, "invalid_payload", "O provedor não retornou uma lista de categorias válida.");
-    } else if (!data || !Array.isArray(data.Notas) || data.Error || data.error || (Array.isArray(data.erros) && data.erros.length) || (data.status !== undefined && data.status !== 0)) {
-      return result(false, "invalid_payload", "O provedor não confirmou a consulta fiscal de homologação.");
+    } else {
+      const emptyResult = Array.isArray(data?.Notas) && data.Notas.length === 0 && isBrasilNfeEmptyResult(data.Error);
+      if (!data || !Array.isArray(data.Notas) || (data.Error && !emptyResult) || data.error || (Array.isArray(data.erros) && data.erros.length) || (data.status !== undefined && data.status !== 0)) {
+        return result(false, "invalid_payload", `O provedor não confirmou a consulta fiscal de ${environmentLabel}.`);
+      }
     }
-    return result(true, "ok", "Conexão validada por consulta somente de leitura em homologação.");
+    return result(true, "ok", `Conexão validada por consulta somente de leitura em ${environmentLabel}.`);
   } catch (error) {
     const timeout = error instanceof Error && ["AbortError", "TimeoutError"].includes(error.name);
     return result(false, timeout ? "timeout" : "network_error", timeout ? "Tempo limite de consulta atingido." : "Não foi possível consultar o provedor.");

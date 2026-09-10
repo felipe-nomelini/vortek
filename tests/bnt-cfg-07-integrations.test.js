@@ -23,6 +23,34 @@ test('painel tem dez integrações e distingue ausência, cadastro parcial e cre
   assert.doesNotMatch(JSON.stringify(overview), /SENTINEL_PRIVATE/);
 });
 
+test('painel produtivo permite URL produtiva e preserva homologação no DEV local', () => {
+  const production = config.integrationSummaries([{ ...dslite, url: 'https://api.dslite.com.br' }], {
+    VORTEK_RUNTIME_ENVIRONMENT: 'production', BRASILNFE_TIPO_AMBIENTE: '1',
+  }).find(item => item.tipo === 'dslite');
+  assert.equal(production.testEnvironment, 'production');
+  assert.equal(production.testable, true);
+  assert.equal(production.restriction, null);
+
+  const local = config.integrationSummaries([dslite], {}).find(item => item.tipo === 'dslite');
+  assert.equal(local.testEnvironment, 'homologation');
+  assert.equal(local.testable, true);
+  assert.equal(local.restriction, null);
+
+  const mismatch = config.integrationSummaries([dslite], {
+    VORTEK_RUNTIME_ENVIRONMENT: 'production', BRASILNFE_TIPO_AMBIENTE: '1',
+  }).find(item => item.tipo === 'dslite');
+  assert.equal(mismatch.testable, false);
+  assert.match(mismatch.restriction, /URL oficial de produção/);
+});
+
+test('teste aprovado persiste como validado e continua disponível para nova verificação', () => {
+  const validated = config.integrationSummaries([{ ...dslite, url: 'https://api.dslite.com.br', conectado: true }], {
+    VORTEK_RUNTIME_ENVIRONMENT: 'production', BRASILNFE_TIPO_AMBIENTE: '1',
+  }).find(item => item.tipo === 'dslite');
+  assert.equal(validated.state, 'validated');
+  assert.equal(validated.testable, true);
+});
+
 test('precedência efetiva preserva MP runtime e Brasil NFe ERP', () => {
   const row = { access_token: 'erp', refresh_token: 'erp-user' };
   assert.equal(config.resolveIntegrationConfiguration('mercadopago', row, { MERCADOPAGO_ACCESS_TOKEN: 'runtime' }).token.value, 'runtime');
@@ -71,6 +99,49 @@ test('teste fiscal é leitura em ambiente 2 e não retorna documentos', async ()
     return Response.json({ Notas: [{ private: sentinel }], Error: null });
   }, new Date('2026-09-05T01:00:00Z'));
   assert.equal(result.ok, true); assert.doesNotMatch(JSON.stringify(result), /SENTINEL_PRIVATE/);
+  assert.equal(result.environment, 'homologation');
+});
+
+test('testes produtivos usam os destinos e o ambiente produtivos sem criar documentos', async () => {
+  const env = { VORTEK_RUNTIME_ENVIRONMENT: 'production', BRASILNFE_TIPO_AMBIENTE: '1' };
+  const dsliteResult = await config.probeIntegration('dslite', { ...dslite, url: 'https://api.dslite.com.br' }, env, async (url, init) => {
+    assert.match(url, /^https:\/\/api\.dslite\.com\.br\/v1\/CrossDocking\/Categoria\?/);
+    assert.equal(init.method, 'GET');
+    return Response.json({ categorias: [] });
+  });
+  assert.equal(dsliteResult.ok, true);
+  assert.equal(dsliteResult.environment, 'production');
+
+  const fiscalResult = await config.probeIntegration('brasilnfe', fiscal, env, async (url, init) => {
+    assert.equal(url, 'https://api.brasilnfe.com.br/services/fiscal/ObterNotasFiscais');
+    const body = JSON.parse(init.body);
+    assert.equal(body.TipoAmbiente, 1);
+    assert.equal(body.IdentificadorInterno, 'BENTEVI_PROD_CONNECTION_CHECK');
+    return Response.json({ Notas: [], Error: 'Não existe notas fiscais para o período informado.', Avisos: [] });
+  });
+  assert.equal(fiscalResult.ok, true);
+  assert.equal(fiscalResult.environment, 'production');
+  assert.match(fiscalResult.message, /produção/);
+});
+
+test('Brasil NFe aceita apenas a ausência conhecida de notas como sucesso', async () => {
+  const env = { VORTEK_RUNTIME_ENVIRONMENT: 'production', BRASILNFE_TIPO_AMBIENTE: '1' };
+  for (const message of ['Não existe notas fiscais para o período informado.', 'Não existem notas fiscais para o período informado']) {
+    const result = await config.probeIntegration('brasilnfe', fiscal, env, async () => Response.json({ Notas: [], Error: message, Avisos: [] }));
+    assert.equal(result.ok, true);
+  }
+  const failure = await config.probeIntegration('brasilnfe', fiscal, env, async () => Response.json({ Notas: [], Error: 'Credencial inválida', Avisos: [] }));
+  assert.equal(failure.ok, false);
+});
+
+test('Brasil NFe bloqueia ambiente fiscal incompatível com o runtime produtivo', async () => {
+  let called = false;
+  const result = await config.probeIntegration('brasilnfe', fiscal, {
+    VORTEK_RUNTIME_ENVIRONMENT: 'production', BRASILNFE_TIPO_AMBIENTE: '2',
+  }, async () => { called = true; });
+  assert.equal(result.code, 'blocked');
+  assert.equal(result.environment, 'production');
+  assert.equal(called, false);
 });
 
 test('testes recusam HTTP 200 com payload inválido, erros, timeout e falha de rede', async () => {
@@ -152,6 +223,8 @@ test('interface mantém salvamento explícito e responsáveis existentes', () =>
   const source = fs.readFileSync('src/components/configuracoes/IntegracoesTab.tsx', 'utf8');
   assert.doesNotMatch(source, /onBlur|values:.*conectado|\/api\/integracao\/ml\/connect/);
   for (const text of ['Salvar alterações', 'Cancelar', '<Drawer', 'Remover valor cadastrado', 'tab=operacao']) assert.ok(source.includes(text));
+  assert.doesNotMatch(source, /Testar conexão em homologação|testes usam exclusivamente homologação/);
+  assert.match(source, /Testar conexão em \{testEnvironmentLabel\}/);
 });
 
 test('shell reserva 24px abaixo das oito abas sem borda adicional', () => {

@@ -54,6 +54,7 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
   const [results, setResults] = useState<Record<string, IntegrationTestResult>>({});
   const selected = data?.resumo.find((item) => item.tipo === selectedId);
   const record = data?.integracoes.find((item) => item.tipo === selectedId);
+  const testEnvironmentLabel = selected?.testEnvironment === "production" ? "produção" : "homologação";
   const dirty = Boolean(secrets.access_token.trim() || secrets.refresh_token.trim() || url !== (record?.url || ""));
   const busy = saving || testing;
 
@@ -126,7 +127,13 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
       if (typeof result.ok !== "boolean" || typeof result.checkedAt !== "string") throw new Error(result.erro || "Falha ao registrar o diagnóstico.");
       setResults((current) => ({ ...current, [selected.tipo]: result as IntegrationTestResult }));
     } catch (err) {
-      setResults((current) => ({ ...current, [selected.tipo]: { ok: false, code: "request_failed", message: err instanceof Error ? err.message : "Falha ao testar.", checkedAt: new Date().toISOString() } }));
+      setResults((current) => ({ ...current, [selected.tipo]: {
+        ok: false,
+        code: "request_failed",
+        message: err instanceof Error ? err.message : "Falha ao testar.",
+        checkedAt: new Date().toISOString(),
+        environment: selected.testEnvironment || "homologation",
+      } }));
     } finally { setTesting(false); }
   };
 
@@ -180,9 +187,9 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
         ]} />}
         {selected.editable && <>
           {selected.tipo !== "mercadopago" && <div className={styles.field}><label htmlFor="integration-url">URL cadastrada no ERP</label>
-            <Input id="integration-url" value={url} disabled={busy} placeholder={selected.tipo === "dslite" ? "https://api.master.dev.dslite.com.br" : "https://api.brasilnfe.com.br/services/"}
+            <Input id="integration-url" value={url} disabled={busy} placeholder={selected.tipo === "dslite" && selected.testEnvironment === "production" ? "https://api.dslite.com.br" : selected.tipo === "dslite" ? "https://api.master.dev.dslite.com.br" : "https://api.brasilnfe.com.br/services/"}
               onChange={(event) => setUrl(event.target.value)} />
-            <small>{selected.tipo === "dslite" ? "Informe somente a origem, sem /v1. Os testes usam exclusivamente homologação." : "Em branco, utiliza a configuração do servidor ou o padrão do provedor."}</small>
+            <small>{selected.tipo === "dslite" ? `Informe somente a origem, sem /v1. O teste usa ${testEnvironmentLabel}.` : "Em branco, utiliza a configuração do servidor ou o padrão do provedor."}</small>
           </div>}
           <SecretCredentialField label={selected.tipo === "brasilnfe" ? "Token da empresa" : "Token de acesso"}
             value={secrets.access_token} configured={Boolean(record?.access_token_configurado)} runtimeConfigured={Boolean(record?.runtime.tokenConfigured)} disabled={busy}
@@ -192,7 +199,7 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
             onChange={(value) => setSecrets((current) => ({ ...current, refresh_token: value }))} onRemove={() => remove("refresh_token")} />}
         </>}
         {["dslite", "brasilnfe"].includes(selected.tipo) && <div>
-          <Button loading={testing} disabled={!selected.testable || dirty || saving || Boolean(error)} onClick={testConnection}>Testar conexão em homologação</Button>
+          <Button loading={testing} disabled={!selected.testable || dirty || saving || Boolean(error)} onClick={testConnection}>Testar conexão em {testEnvironmentLabel}</Button>
           <p className={styles.hint}>{dirty ? "Salve as alterações antes de testar." : "O teste consulta dados; não cria pedidos, não emite notas e não importa documentos."}</p>
           {results[selected.tipo] && <Alert showIcon type={results[selected.tipo].ok ? "success" : "error"} message={results[selected.tipo].message}
             description={`Consulta desta sessão: ${new Date(results[selected.tipo].checkedAt).toLocaleString("pt-BR")}`} />}
