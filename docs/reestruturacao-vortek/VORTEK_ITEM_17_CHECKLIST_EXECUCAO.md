@@ -2092,12 +2092,30 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D18` — Reputação;
 - [x] `BNT-D19` — Reclamações;
 - [ ] `BNT-D20` — Configurações;
-- [ ] `BNT-D21` — TV ao Vivo;
+- [ ] `BNT-D21` — TV ao Vivo; implementação técnica publicada em produção em `2026-09-10`, com aceite visual pendente;
 - [ ] `BNT-D22` — Login;
 - [ ] `BNT-D23` — Página pública BKR1;
 - [ ] `BNT-D24` — Página pública Evolusom.
 
 **Nova superfície aprovada para planejamento:** Assistente Bentevi `/assistente`, sob `BNT-AI-02`, após `BNT-D20`. O bloco da Etapa 11.3 controla seus requisitos funcionais e aceite, sem renumerar `BNT-D01` a `BNT-D24` nem mudar a ordem relativa dessas páginas.
+
+#### Resultado técnico de `BNT-D21 — TV ao Vivo`
+
+**Situação:** reestruturação implementada, validada tecnicamente e publicada no serviço produtivo `local/bentevi-prod` em `2026-09-10`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** `/tv` concentrava 1.381 linhas em um único componente, com estilos `styled-jsx`, hierarquia extensa de cartões e tabelas e nenhuma distinção operacional entre uma atualização atrasada e uma conexão interrompida. A tela preservava vendas, perguntas, metas, projeções, anúncios e avisos sonoros, mas não organizava esses contratos para leitura contínua em uma TV 16:9.
+
+**Mudança realizada:** a tela passou a usar composição Bentevi em CSS Module, com faturamento, vendas e lucro de hoje como faixa dominante; metas, vendas por hora e projeção como leitura intermediária; vendas, perguntas e saúde dos anúncios como atividade recente. Foram preservados tela cheia, sons e celebrações. O polling leve de 1 segundo e o completo de 15 segundos agora possuem guards independentes contra concorrência, preservam os últimos dados válidos e mostram estados de conexão normal, atrasada ou interrompida. O layout recebeu pontos de quebra responsivos e respeita `prefers-reduced-motion`.
+
+**Contrato e isolamento:** os contratos existentes de `GET /api/tv/live` e `GET /api/tv/metrics`, suas fontes reais e a proteção por `tv.read` permaneceram inalterados. Não houve migration, escrita no Supabase, alteração de integração externa, dependência nova ou uso dos três áudios `.m4a` não versionados do usuário.
+
+**Commit e validação:** `50944929` — `feat(tv): reestruturar painel ao vivo Bentevi`, confirmado no mesmo SHA em `origin/dev` e `origin/bentevi-prod`. Passaram 5 cenários direcionados de polling, saúde, preservação de dados, hierarquia, responsividade e movimento reduzido; `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` também passaram.
+
+**Produção:** o Easypanel confirmou o serviço `local/bentevi-prod` na branch `bentevi-prod` e no commit `50944929`. Em `app.bentevi.shop`, o health respondeu `200` com Mercado Livre conectado e leitura válida; `/tv` redirecionou a sessão ausente para `/login`; as APIs recusaram acesso anônimo com `401`; e o smoke autenticado somente leitura respondeu `200` nas duas APIs, com 24 faixas horárias e os contratos de vendas recentes, perguntas, projeção, metas e anúncios presentes.
+
+**Rollback:** reverter o commit `50944929`, promover o novo SHA de reversão para `bentevi-prod` e reimplantar `local/bentevi-prod`. Não existe migration ou mudança de dados a reverter.
+
+**Pendência:** conferir visualmente `/tv` autenticada em `app.bentevi.shop`, inclusive em tela cheia. O item permanece desmarcado até esse aceite.
 
 #### PDFs operacionais — parte do aceite da página
 
