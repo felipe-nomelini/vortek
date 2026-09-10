@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { parseDsliteXmlFeedUrl } from '@/lib/dslite/xml-feed-url.js';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
@@ -59,17 +60,6 @@ function parseXmlCatalog(xml: string): XmlCatalogItem[] {
 
   if (products.length === 0) throw new Error('XML DSLite sem produtos válidos');
   return products;
-}
-
-function validateFeedUrl(value: string): string | null {
-  try {
-    const url = new URL(value);
-    if (url.protocol !== 'https:' || url.hostname !== 'app.dslite.com.br') return null;
-    if (!url.pathname.includes('/getXMLCrossdocking/')) return null;
-    return url.toString();
-  } catch {
-    return null;
-  }
 }
 
 function sleep(ms: number): Promise<void> {
@@ -199,9 +189,9 @@ export async function POST(request: Request) {
       const feedErrors = new Map<string, Error>();
       await Promise.all(supplierBatch.map(async (supplierId) => {
         try {
-          const feedUrl = validateFeedUrl(String(configuredFeeds.get(supplierId) || ''));
-          if (!feedUrl) throw new Error('URL XML DSLite inválida ou não permitida');
-          downloadedFeeds.set(supplierId, await downloadFeed(feedUrl));
+          const feed = parseDsliteXmlFeedUrl(configuredFeeds.get(supplierId), supplierId);
+          if (!feed) throw new Error('URL XML DSLite inválida, não permitida ou vinculada a outro fornecedor');
+          downloadedFeeds.set(supplierId, await downloadFeed(feed.normalizedUrl));
         } catch (error: any) {
           feedErrors.set(supplierId, error instanceof Error ? error : new Error('Falha ao baixar XML DSLite'));
         }

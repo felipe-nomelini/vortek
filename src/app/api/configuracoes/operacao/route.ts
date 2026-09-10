@@ -4,6 +4,7 @@ import {
   configurationValidationMessage,
   operationConfigurationPatchSchema,
 } from '@/lib/configuracoes/contracts';
+import { parseDsliteXmlFeedUrl } from '@/lib/dslite/xml-feed-url.js';
 import { listarEnderecosUsuarioMl, type MlUserAddress } from '@/lib/estoque-interno';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import {
@@ -140,13 +141,19 @@ export async function PATCH(request: Request) {
     } else {
       const { data: supplier, error: loadError } = await serviceClient
         .from('fornecedores')
-        .select('id,dslite_catalog_xml_url,dropshipping_retired_at')
+        .select('id,dslite_id,dslite_catalog_xml_url,dropshipping_retired_at')
         .eq('id', parsed.data.supplierId)
         .maybeSingle();
       if (loadError) throw new Error(loadError.message);
       if (!supplier) return noStore({ erro: 'Fornecedor não encontrado' }, 404);
       if (supplier.dropshipping_retired_at) return noStore({ erro: 'Fornecedor aposentado não aceita feed operacional' }, 422);
-      const xmlUrl = parsed.data.xmlUrl ? parsed.data.xmlUrl.trim() : null;
+      const parsedFeed = parsed.data.xmlUrl
+        ? parseDsliteXmlFeedUrl(parsed.data.xmlUrl, supplier.dslite_id)
+        : null;
+      if (parsed.data.xmlUrl && !parsedFeed) {
+        return noStore({ erro: 'A URL do feed não pertence ao fornecedor DSLite selecionado' }, 422);
+      }
+      const xmlUrl = parsedFeed?.normalizedUrl || null;
       const { error } = await serviceClient
         .from('fornecedores')
         .update({ dslite_catalog_xml_url: xmlUrl })

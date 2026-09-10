@@ -3,6 +3,7 @@ import type { Json } from "@/types/database";
 import type { FinalPricePolicy } from "@/types/pricing";
 import type { PricingTaxContext } from "@/services/pricing";
 import type { ProductPricing } from "@/services/pricing-context";
+import { parseDsliteXmlFeedUrl } from "../dslite/xml-feed-url.js";
 import { isValidCnpj, normalizeCnpj } from "../fiscal/cnpj.js";
 
 export const CONFIGURATION_CLASSIFICATIONS = [
@@ -257,17 +258,8 @@ export type CommercialSimulationDto = {
 };
 
 const dsliteXmlFeedUrlSchema = z.string().trim().max(2048).superRefine((value, context) => {
-  try {
-    const url = new URL(value);
-    if (
-      url.protocol !== "https:"
-      || url.hostname !== "app.dslite.com.br"
-      || !url.pathname.startsWith("/getXMLCrossdocking/")
-    ) {
-      context.addIssue({ code: "custom", message: "Informe uma URL HTTPS válida do feed Crossdocking da DSLite" });
-    }
-  } catch {
-    context.addIssue({ code: "custom", message: "URL do feed XML inválida" });
+  if (!parseDsliteXmlFeedUrl(value)) {
+    context.addIssue({ code: "custom", message: "Informe uma URL HTTPS válida do feed Crossdocking da DSLite" });
   }
 });
 

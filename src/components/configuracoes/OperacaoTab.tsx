@@ -121,7 +121,7 @@ export default function OperacaoTab({ messageApi }: { messageApi: MessageInstanc
         <Space direction="vertical" size={8} style={{ width: "100%" }}>
           <Text type="secondary">A URL é confidencial e nunca volta a ser exibida após o salvamento.</Text>
           <Input.Password
-            placeholder={supplier.xmlFeedConfigured ? "Informe uma nova URL para substituir" : "https://app.dslite.com.br/getXMLCrossdocking/..."}
+            placeholder={supplier.xmlFeedConfigured ? "Informe uma nova URL para substituir" : "https://app.dslite.com.br/modules/admin/Empresa/getXMLCrossdocking/..."}
             onChange={(event) => { xmlUrl = event.target.value; }}
           />
           {supplier.xmlFeedConfigured && (
