@@ -411,7 +411,18 @@ export async function GET(request: Request) {
         )
         .order("vendidos", { ascending: false })
         .limit(8),
-      service.from("anuncios_ml").select("status,catalogo"),
+      service
+        .from("anuncios_ml")
+        .select("*", { count: "exact", head: true }),
+      service
+        .from("anuncios_ml")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "pausado"),
+      service
+        .from("anuncios_ml")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "ativo")
+        .eq("catalogo", true),
       service
         .from("catalogo_ml_snapshot")
         .select("*", { count: "exact", head: true })
@@ -439,7 +450,9 @@ export async function GET(request: Request) {
     claimsResult,
     visitsResult,
     topProductsResult,
-    adsStatsResult,
+    adsTotalResult,
+    pausedAdsResult,
+    activeCatalogResult,
     catalogWinningResult,
     historicalResult,
   ] = await runOrderQueries(true);
@@ -469,7 +482,9 @@ export async function GET(request: Request) {
       claimsResult,
       visitsResult,
       topProductsResult,
-      adsStatsResult,
+      adsTotalResult,
+      pausedAdsResult,
+      activeCatalogResult,
       catalogWinningResult,
       historicalResult,
     ] = await runOrderQueries(false);
@@ -483,6 +498,18 @@ export async function GET(request: Request) {
   if (yesterdayResult.error)
     return NextResponse.json(
       { erro: yesterdayResult.error.message },
+      { status: 500 },
+    );
+
+  const adsCountError =
+    adsTotalResult.error ||
+    activeAdsResult.error ||
+    pausedAdsResult.error ||
+    activeCatalogResult.error ||
+    catalogWinningResult.error;
+  if (adsCountError)
+    return NextResponse.json(
+      { erro: `Falha ao contar anúncios: ${adsCountError.message}` },
       { status: 500 },
     );
 
@@ -563,19 +590,6 @@ export async function GET(request: Request) {
     }),
   );
 
-  let adsTotal = 0;
-  let adsActive = 0;
-  let adsPaused = 0;
-  let activeCatalog = 0;
-  for (const row of adsStatsResult.data || []) {
-    adsTotal++;
-    const status = String(row.status || "").toLowerCase();
-    const isActive = status === "ativo";
-    if (isActive) adsActive++;
-    if (status === "pausado") adsPaused++;
-    if (isActive && row.catalogo === true) activeCatalog++;
-  }
-
   const recentQuestions = await loadRecentQuestions().catch(() => []);
 
   return NextResponse.json({
@@ -615,11 +629,11 @@ export async function GET(request: Request) {
     recentQuestions,
     projection,
     ads: {
-      total: adsTotal,
-      active: adsActive,
-      paused: adsPaused,
-      activeCatalog,
-      winningCatalog: catalogWinningResult.count || 0,
+      total: Number(adsTotalResult.count ?? 0),
+      active: Number(activeAdsResult.count ?? 0),
+      paused: Number(pausedAdsResult.count ?? 0),
+      activeCatalog: Number(activeCatalogResult.count ?? 0),
+      winningCatalog: Number(catalogWinningResult.count ?? 0),
     },
     actionQueue,
     topProducts,

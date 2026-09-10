@@ -387,7 +387,7 @@ export default function TvDashboardPage() {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={hourly} barCategoryGap={4} margin={{ top: 8, right: 2, left: 2, bottom: 0 }}>
                     <CartesianGrid stroke="#34313a" vertical={false} />
-                    <XAxis dataKey="label" stroke="#8c8c8c" tickLine={false} axisLine={false} interval={2} fontSize={9} />
+                    <XAxis dataKey="label" stroke="#8c8c8c" tickLine={false} axisLine={false} interval={2} fontSize={11} />
                     <Tooltip
                       cursor={{ fill: "rgba(255, 189, 14, .08)" }}
                       contentStyle={{ background: "#141316", border: "1px solid #34313a", borderRadius: 8, color: "#f7f7f8" }}

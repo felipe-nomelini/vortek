@@ -316,9 +316,17 @@
   min-height: 218px;
 }
 
-.activityPanel { padding-bottom: 10px; }
+.activityPanel {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
 .salesList,
-.questionList { display: grid; }
+.questionList {
+  display: grid;
+  flex: 1;
+}
 
 .saleRow {
   display: grid;
@@ -498,6 +506,148 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@media (min-width: 1451px) and (min-height: 900px) {
+  .tvShell {
+    height: calc(100dvh - 96px);
+  }
+
+  .header {
+    min-height: 54px;
+  }
+
+  .brandStatus strong {
+    font-size: 15px;
+  }
+
+  .brandStatus small,
+  .healthCopy small {
+    font-size: 12px;
+  }
+
+  .healthCopy strong {
+    font-size: 14px;
+  }
+
+  .metricStrip {
+    flex: 0 0 clamp(145px, 15dvh, 170px);
+  }
+
+  .metric span {
+    font-size: 14px;
+  }
+
+  .metric small {
+    font-size: 13px;
+  }
+
+  .insightGrid {
+    flex: 0 0 clamp(220px, 24dvh, 260px);
+  }
+
+  .panel {
+    padding: 16px 18px;
+  }
+
+  .panelHeader {
+    margin-bottom: 13px;
+  }
+
+  .panelHeader h2 {
+    font-size: 22px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .panelHint {
+    font-size: 12px;
+  }
+
+  .goals {
+    height: calc(100% - 50px);
+    align-content: space-between;
+  }
+
+  .goalHeader {
+    font-size: 13px;
+  }
+
+  .goalPeriods {
+    font-size: 11px;
+  }
+
+  .goalLine :global(.ant-progress-inner),
+  .goalLine :global(.ant-progress-bg) {
+    height: 7px !important;
+  }
+
+  .chart {
+    min-height: 160px;
+  }
+
+  .projectionGrid {
+    gap: 10px;
+  }
+
+  .projectionGrid span,
+  .projectionGrid small {
+    font-size: 12px;
+  }
+
+  .projectionGrid strong {
+    font-size: 20px;
+  }
+
+  .trendGrid span {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .trendGrid strong {
+    font-size: 15px;
+  }
+
+  .activityGrid {
+    flex: 1 1 300px;
+    min-height: 260px;
+  }
+
+  .salesList,
+  .questionList {
+    grid-auto-rows: minmax(0, 1fr);
+  }
+
+  .saleIdentity strong,
+  .saleDescription strong,
+  .saleValue strong {
+    font-size: 14px;
+  }
+
+  .saleRow small,
+  .saleRow :global(.ant-tag) {
+    font-size: 12px;
+  }
+
+  .questionRow strong,
+  .questionRow small {
+    font-size: 12px;
+  }
+
+  .questionRow > :global(.ant-typography) {
+    font-size: 14px;
+  }
+
+  .channelFooter span {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .channelFooter strong {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 1450px) {

@@ -12,6 +12,7 @@ import type {
 import styles from "@/app/(app)/tv/tv.module.css";
 
 const { Text } = Typography;
+const integerFormatter = new Intl.NumberFormat("pt-BR");
 
 function compactCurrency(value: number) {
   if (Math.abs(value) >= 1_000) {
@@ -249,11 +250,11 @@ export function TvRecentQuestions({ questions }: { questions: TvQuestionSummary[
 export function TvChannelFooter({ ads }: { ads: TvMetrics["ads"] }) {
   return (
     <footer className={styles.channelFooter} aria-label="Saúde dos anúncios">
-      <span>Anúncios <strong>{ads.total}</strong></span>
-      <span>Ativos <strong className={styles.positive}>{ads.active}</strong></span>
-      <span>Pausados <strong className={styles.warning}>{ads.paused}</strong></span>
-      <span>Catálogo ativo <strong>{ads.activeCatalog}</strong></span>
-      <span>Ganhando catálogo <strong className={styles.positive}>{ads.winningCatalog}</strong></span>
+      <span>Anúncios <strong>{integerFormatter.format(ads.total)}</strong></span>
+      <span>Ativos <strong className={styles.positive}>{integerFormatter.format(ads.active)}</strong></span>
+      <span>Pausados <strong className={styles.warning}>{integerFormatter.format(ads.paused)}</strong></span>
+      <span>Catálogo ativo <strong>{integerFormatter.format(ads.activeCatalog)}</strong></span>
+      <span>Ganhando catálogo <strong className={styles.positive}>{integerFormatter.format(ads.winningCatalog)}</strong></span>
     </footer>
   );
 }

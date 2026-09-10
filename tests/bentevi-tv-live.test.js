@@ -7,6 +7,7 @@ const test = require('node:test');
 const pagePath = path.join(__dirname, '../src/app/(app)/tv/page.tsx');
 const stylePath = path.join(__dirname, '../src/app/(app)/tv/tv.module.css');
 const panelsPath = path.join(__dirname, '../src/components/tv/TvDashboardPanels.tsx');
+const metricsRoutePath = path.join(__dirname, '../src/app/api/tv/metrics/route.ts');
 const dashboardUrl = pathToFileURL(
   path.join(__dirname, '../src/lib/tv/dashboard.ts'),
 ).href;
@@ -125,6 +126,26 @@ test('hierarquia destaca resultado, metas, tendências e atividade recente', () 
   assert.match(page, /Som \{soundEnabled \? "ligado" : "desligado"\}/);
 });
 
+test('contagem de anúncios usa totais exatos sem o limite de linhas do PostgREST', () => {
+  const route = source(metricsRoutePath);
+  assert.doesNotMatch(route, /\.select\("status,catalogo"\)/);
+  assert.doesNotMatch(route, /for \(const row of adsStatsResult/);
+  assert.match(route, /adsTotalResult\.count \?\? 0/);
+  assert.match(route, /activeAdsResult\.count \?\? 0/);
+  assert.match(route, /pausedAdsResult\.count \?\? 0/);
+  assert.match(route, /activeCatalogResult\.count \?\? 0/);
+  assert.match(route, /\.eq\("status", "pausado"\)/);
+  assert.match(route, /\.eq\("catalogo", true\)/);
+  assert.match(route, /Falha ao contar anúncios/);
+});
+
+test('rodapé formata contagens grandes para leitura em português', () => {
+  const panels = source(panelsPath);
+  assert.match(panels, /new Intl\.NumberFormat\("pt-BR"\)/);
+  assert.match(panels, /integerFormatter\.format\(ads\.total\)/);
+  assert.match(panels, /integerFormatter\.format\(ads\.activeCatalog\)/);
+});
+
 test('layout é Bentevi, responsivo e respeita movimento reduzido', () => {
   const styles = source(stylePath);
   assert.match(styles, /var\(--bentevi-primary/);
@@ -132,6 +153,11 @@ test('layout é Bentevi, responsivo e respeita movimento reduzido', () => {
   assert.match(styles, /@media \(max-width: 1180px\)/);
   assert.match(styles, /@media \(max-width: 820px\)/);
   assert.match(styles, /@media \(max-width: 520px\)/);
+  assert.match(styles, /@media \(min-width: 1451px\) and \(min-height: 900px\)/);
+  assert.match(styles, /flex: 1 1 300px/);
+  assert.match(styles, /grid-auto-rows: minmax\(0, 1fr\)/);
+  assert.match(styles, /\.panelHeader h2 \{[\s\S]*?font-size: 22px/);
+  assert.match(styles, /\.questionRow > :global\(\.ant-typography\) \{[\s\S]*?font-size: 14px/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(styles, /animation: none !important/);
 });
