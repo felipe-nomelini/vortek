@@ -1,22 +1,27 @@
 # Corte produtivo inicial do Bentevi
 
-Este runbook executa a decisão de entrada antecipada do Bentevi. O primeiro
-release opera o núcleo existente enquanto Assistente, criação de anúncios e
-alteração de preços no Mercado Livre permanecem bloqueados. Ele não autoriza
-ações produtivas a partir do repositório DEV: o corte ocorre em tarefa e
-workspace produtivos, com a `.160` somente para leitura e exportação.
+Este documento registra a decisão e o procedimento da entrada antecipada do
+Bentevi, executada em 2026-09-09 mediante autorização produtiva explícita. O
+primeiro release opera o núcleo existente enquanto Assistente, criação de
+anúncios e alteração de preços no Mercado Livre permanecem bloqueados. Depois
+do corte, este repositório DEV não autoriza novas ações produtivas; `.160` e
+`.162` são exclusivamente leitura neste contexto.
 
 ## Snapshot e configuração
 
 - Candidato inicial: branch `bentevi-prod` criada diretamente do SHA aprovado de
   `dev`, sem merge, rebase ou cherry-pick com a `main` legada.
-- Serviço: `local/bentevi-prod`, atualmente reservado e desabilitado no
-  Easypanel.
+- Serviço: `local/bentevi-prod`, ativo no Easypanel e associado somente à
+  branch produtiva.
 - Aplicação: `https://app.bentevi.shop`.
 - Banco Bentevi: stack self-hosted em `192.168.1.162`, reclassificada como
-  produção somente durante o corte.
+  produção no corte.
 - Origem dos dados reais: stack legada em `192.168.1.160`, sempre somente
   leitura neste processo.
+- Compatibilidade de domínio: `https://app.vortek.shop` responde com `308` para
+  o domínio canônico, preservando método, caminho e query.
+- Cloudflare: CNAME proxied de `app.bentevi.shop` para o túnel `vortek-local`;
+  ingress direto para `http://local-bentevi-prod:80`.
 
 O arquivo privado de variáveis produtivas deve permanecer fora do Git. Antes de
 configurar o Easypanel, validá-lo sem exibir valores:

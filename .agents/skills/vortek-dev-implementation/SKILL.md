@@ -24,7 +24,7 @@ Use esta skill somente para uma mudança por vez do Item 17 ou da nova versão n
 13. Antes de testes ou scripts com efeitos externos, confira seus efeitos e o escopo autorizado. Não execute fixtures ou reparos como testes automáticos.
 14. Para qualquer escrita de banco, cumpra o preflight do `AGENTS.md`: comprove o projeto `bentevi-dev-local` restrito a loopback e dados sintéticos. `.162` é produção Bentevi e `.160` é o legado; ambos são exclusivamente leitura neste repositório. Destino diferente ou incerto interrompe a operação.
 15. A homologação web remota anterior está desabilitada. Valide localmente até que um novo serviço e banco DEV independentes sejam ativados em tarefa própria; deploy precisa de solicitação explícita e conferência do destino conforme o `AGENTS.md`.
-16. Não altere produção, não troque para `main`, não mova `bentevi-prod` e não use `app.vortek.shop` para testes. Implementação não autoriza commit, push ou publicação automaticamente.
+16. Não altere produção, não troque para `main`, não mova `bentevi-prod` e não use `app.bentevi.shop` nem o redirecionamento `app.vortek.shop` para testes. Implementação não autoriza commit, push ou publicação automaticamente.
 17. Relate concisamente a mudança, a validação executada, o resultado e qualquer pendência real.
 
 Não crie arquitetura nova sem necessidade nem replique regras que já possuem fonte no Vortek. Não combine várias etapas do Item 17 em uma única tarefa. Siga o `AGENTS.md` para proteger documentos consumidos em runtime, credenciais e alterações preexistentes; não alimente a homologação com secrets de produção.

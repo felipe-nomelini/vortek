@@ -5,7 +5,7 @@ Este repositório é exclusivo de desenvolvimento e homologação do Vortek/Bent
 - Antes de qualquer tarefa técnica, leia e siga integralmente o `AGENTS.md`.
 - Trabalhe somente em `dev`; se a branch for outra, pare e informe. Preserve as mudanças preexistentes.
 - `main` é o sistema legado preservado e `dev` é a nova versão independente. Não faça merge, rebase ou cherry-pick em massa entre elas; leia `main` apenas para auditoria comportamental e implemente nativamente em `dev` somente o que continuar essencial.
-- A produção Bentevi usa `bentevi-prod`, criada diretamente do SHA aprovado de `dev`. Não altere essa branch nem o serviço produtivo durante tarefas DEV.
+- A produção Bentevi usa `bentevi-prod` em `app.bentevi.shop`; `app.vortek.shop` é apenas o redirecionamento permanente legado. Não altere a branch nem o serviço produtivo durante tarefas DEV e não use nenhum dos dois domínios para testes.
 - O único destino de escrita DEV disponível é `127.0.0.1`, projeto `bentevi-dev-local`, restrito a loopback, dados sintéticos e ao preflight do `AGENTS.md`. O DEV remoto no `PCBAO` ainda não foi ativado.
 - Os Supabases remotos `.162` (produção Bentevi) e `.160` (legado) são exclusivamente leitura neste repositório. Nunca os altere, nem para ensaios com rollback; o hostname histórico contendo `dev` não muda essa classificação.
 - O serviço web DEV anterior em `.160` está desabilitado e não constitui ambiente de homologação disponível.

@@ -14,7 +14,7 @@ O código, schema, configuração e testes atuais demonstram o comportamento imp
 - Trabalhe somente na branch `dev`. Confira a branch e o estado do Git antes de editar; se estiver em outra branch, pare e informe, sem trocar automaticamente.
 - `main` é o sistema legado preservado, retirado do tráfego na virada de 2026-09-09; `dev` é a linha de desenvolvimento da nova versão Bentevi. A divergência entre as branches é intencional e sua contagem de commits não mede prontidão.
 - Não misture os históricos: nenhum merge, rebase ou cherry-pick em massa entre `main` e `dev`. Use `main` somente como evidência de leitura para identificar comportamentos produtivos essenciais; quando um deles ainda for necessário, implemente-o nativamente na arquitetura de `dev`, em ação própria e com testes.
-- Não altere produção, não use `app.vortek.shop` para testes e não leve mudanças de `dev` ao sistema legado durante o desenvolvimento.
+- Não altere produção, não use `app.bentevi.shop` nem `app.vortek.shop` para testes e não leve mudanças de `dev` ao sistema legado durante o desenvolvimento.
 - Uma solicitação de mudança não autoriza automaticamente commit, push, deploy ou operações externas de outro escopo.
 - Preserve alterações preexistentes do usuário. Não acrescente correções, refatorações ou mudanças de regra de negócio fora da tarefa.
 - Uma ação técnica do Item 17 por tarefa; não avance para outra etapa sem validação e sem respeitar os gates e aceites vigentes.
@@ -29,7 +29,7 @@ O Supabase do projeto é **self-hosted**, não Supabase Cloud. Não exija projec
 | Supabase DEV local | `127.0.0.1`, projeto `bentevi-dev-local` | Escritas locais autorizadas somente com dados sintéticos e `VORTEK_RUNTIME_ENVIRONMENT=local_dev` |
 | Supabase legado | `192.168.1.160` | Exclusivamente leitura para consultas e diagnósticos necessários |
 | Web de homologação anterior | `dev.bentevi.shop`, serviço `local/vortek-erp-dev` no Easypanel `.160` | Serviço desabilitado após a virada; não reativar nem publicar sem recriar um destino DEV independente |
-| App produtivo Bentevi | `app.vortek.shop`, serviço `local/bentevi-prod` no Easypanel `.160` | Produção ativa na branch `bentevi-prod`; não alterar nem usar para testes a partir deste repositório DEV |
+| App produtivo Bentevi | `app.bentevi.shop`, serviço `local/bentevi-prod` no Easypanel `.160` | Produção ativa na branch `bentevi-prod`; `app.vortek.shop` redireciona permanentemente para este domínio; não alterar nem usar para testes a partir deste repositório DEV |
 
 A hospedagem da aplicação DEV em `.160` **não** torna o Supabase desse servidor um banco de desenvolvimento. Nomes de containers, diretórios, labels, URLs ou variáveis contendo `dev` não mudam essa classificação.
 
@@ -147,7 +147,7 @@ Para deploy DEV solicitado, siga o procedimento Easypanel somente depois que exi
 
 O webhook vem da configuração privada, nunca de documentação ou código versionado. Não edite arquivos dentro do container nem use deploy direto por Docker como procedimento normal. Aceite HTTP do webhook não comprova build, implantação ou validação funcional; confira o resultado no nível aplicável.
 
-O App Service `local/bentevi-prod` está ativo em produção, associado exclusivamente à branch `bentevi-prod` e ao domínio `app.vortek.shop`. Ele não é o serviço DEV e sua existência não autoriza configurá-lo, reiniciá-lo, publicá-lo nem associá-lo à branch `dev`. O serviço anterior `vortek-erp-dev` permanece desabilitado e seu webhook nunca deve ser usado como credencial ou caminho de publicação produtiva.
+O App Service `local/bentevi-prod` está ativo em produção, associado exclusivamente à branch `bentevi-prod` e ao domínio canônico `app.bentevi.shop`. Na Cloudflare, `app.vortek.shop` responde com redirecionamento permanente `308`, preservando método, caminho e query. Ele não é o serviço DEV e sua existência não autoriza configurá-lo, reiniciá-lo, publicá-lo nem associá-lo à branch `dev`. O serviço anterior `vortek-erp-dev` permanece desabilitado e seu webhook nunca deve ser usado como credencial ou caminho de publicação produtiva.
 
 Preparar uma próxima release significa fixar o SHA candidato de `dev`, levantar testes, delta mínimo de schema, variáveis sem valores, gates, riscos e recuperação. Não significa atualizar/pushar `bentevi-prod`, aplicar migrations ou apontar o serviço produtivo. Essas ações pertencem a uma tarefa de release própria e explicitamente autorizada; os dois Supabases remotos permanecem somente leitura aqui.
 
