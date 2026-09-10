@@ -69,7 +69,7 @@ Regras de uso:
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
-| 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
+| 9 | Plataforma e banco | Concluída no recorte produtivo em operação | Manter migrations versionadas, runtime produtivo e observabilidade sem reativar os dispatchers `pg_net` sem saída de rede |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Auditoria comportamental contínua da produção legada | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Auditar `main` somente por leitura, sem integrar branches; ativação Evolusom, delta de schema, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
@@ -79,7 +79,7 @@ Regras de uso:
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 09/09/2026:** preparar a entrada imediata do núcleo Bentevi com dados reais, Assistente bloqueado e criação/alteração de preços no Mercado Livre desabilitadas. A preparação usa o snapshot atual de `dev`, o serviço reservado `local/bentevi-prod` e a futura migração controlada `.160 → .162`. Homologação do Assistente, `BNT-AI-GATE` e capacidades comerciais adiadas permanecem pendentes sem bloquear este recorte restrito.
+**Prioridade vigente — atualização de 10/09/2026:** o núcleo Bentevi já opera com dados reais em `app.bentevi.shop`, serviço `local/bentevi-prod` e Supabase produtivo `.162`. Assistente, criação de anúncios e alteração de preços no Mercado Livre permanecem bloqueados. A etapa operacional atual é acompanhar o primeiro ciclo completo das sincronizações liberadas, concluir o backlog de estoque/status e continuar as validações reais sem liberar as capacidades comerciais adiadas.
 
 <a id="bentevi-em-operacao"></a>
 
@@ -99,9 +99,9 @@ Regras de uso:
 | 2 — Configurações iniciais | Concluído no recorte inicial; aceite D20 concedido pelo usuário em 08/09 | Nenhum neste recorte; D20/V2-15 integrais continuam abertos | Preservar controles e seguir para marco 3 | [Entrega técnica, publicação e aceite humano inicial](evidencias/BNT-PRICING-V2-15-operacional-validacao.md#aceite-inicial-do-usuario--08092026); não comprova capacidades adiadas |
 | 3 — Assistente Bentevi | Adiado no primeiro corte | Nenhum para o núcleo inicial; runtime deve permanecer bloqueado | Retomar AI-GATE depois da entrada em produção | `BENTEVI_ASSISTANT_ENABLED=0` e `BENTEVI_ASSISTANT_DATA_APPROVED=0` no preflight produtivo |
 | 4 — Operação ponta a ponta | Validação inicial transferida para depois do deploy | O smoke seguro não pode falhar; validação real continua com acompanhamento | Validar login e leituras críticas antes do tráfego; exercitar fluxos reais depois da publicação | Logs, health, autenticação e primeiros fluxos reais; erro material interrompe somente o fluxo afetado |
-| 5 — Preparação da transição | Em andamento | Snapshot candidato, inventário de runtime, backup e migração ensaiada `.160 → .162`, Auth/Storage preservados e executor único | Executar `BNT-REL-EARLY-01` e preparar a tarefa produtiva de corte | Preflight sem secrets, ensaio repetível, contagens/vínculos, recuperação e janela acordada |
-| 6 — Ativação real acompanhada | Pendente; exige tarefa produtiva | Dados reais carregados, serviço configurado, domínio, login, health e integrações essenciais sem dupla execução | Executar o corte pelo workspace produtivo e validar o primeiro fluxo operacional real | Read-back de dados, logs, pedido/evento real e ausência de duplicação; sem criar anúncio nem alterar preço |
-| 7 — Bentevi em operação | Pendente | Corte mínimo concluído e sistema novo como único executor dos fluxos habilitados | Transferir a operação diária e continuar validações/correções por snapshots de `dev` | Horário, versão e primeiros resultados; funcionalidades adiadas continuam bloqueadas |
+| 5 — Preparação da transição | Concluída em 09/09/2026 | Nenhum bloqueador de corte permanece para o núcleo restrito | Preservar recuperação, dados/Auth/Storage e a separação permanente de `main` | `.162` reclassificada, `bentevi-prod` criada sem integração com `main` e serviço produtivo configurado |
+| 6 — Ativação real acompanhada | Concluída no núcleo restrito | Nenhum; capacidades comerciais adiadas continuam bloqueadas | Manter smoke e read-back por mudança | Dados reais, login, health, vendas e integrações essenciais conferidos; sem criar anúncio nem alterar preço |
+| 7 — Bentevi em operação | Em andamento desde 09/09/2026 | Completar acompanhamento inicial e um ciclo operacional integral | Continuar desenvolvimento em `dev`, promover por SHA e acompanhar sincronizações reais | Versão produtiva, jobs, canário de estoque/status e bloqueios comerciais registrados; primeiros sete dias ainda em acompanhamento |
 
 **Preparação do DEV local — 09/09/2026:** aprovada a topologia em que o `PCBAO` receberá o DEV local privado e a `.162` será reaproveitada futuramente como Supabase Bentevi PROD. Foram adicionados `supabase/config.toml`, comandos npm, seed sintético sem produtos/credenciais externas, documentação e teste de contrato. Com Docker Desktop 4.90 integrado ao WSL, o projeto `bentevi-dev-local` aplicou as 124 migrations em banco vazio; duas incompatibilidades do seed com o schema final foram identificadas e corrigidas, e o replay seguinte concluiu migrations e seed. A opção global **Localhost by default** foi aplicada no Docker Desktop: um container descartável e os containers do Supabase comprovaram binds exclusivos em `127.0.0.1`/`::1`, nas portas 54321–54324, antes e depois de reiniciar o Docker Desktop. O wrapper confere os binds reais, desliga automaticamente uma inicialização insegura, redige valores sensíveis da inicialização e omite chaves no status. O banco ativo confirmou PostgreSQL 17.6, 124 migrations, uma empresa sintética, três integrações locais desconectadas e zero produtos. Passaram cinco testes direcionados, `bash -n`, `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`. Esta é evidência parcial do marco 5, não o fecha: autenticação e fluxos web locais ainda precisam de validação própria. A `.162` continua DEV e não foi acessada ou alterada; `.160` e produção permaneceram intocadas.
 
@@ -3575,6 +3575,58 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 
 **Próxima ação:** uma tarefa no ambiente produtivo deve promover o SHA aprovado, remover as configurações e linhas sintéticas após backup, reconciliar o delta real, reconectar `BENTEVITECNOLOGIA` e executar o catch-up com início fixo e `reconciliationMode: cutover`. `.160` permanece somente leitura; `.162` não foi alterada por esta implementação DEV.
 
+### BNT-PROD-SUPPLIER-SYNC-01 — Fornecedores, estoque/status e feed DSLite — 10/09/2026
+
+**Situação:** implementada e ativada no Bentevi produtivo; drenagem inicial da
+outbox e scan observado seguem acompanhados como trabalho durável.
+
+- [x] Aceitar somente a URL HTTPS oficial atual do XML Crossdocking DSLite,
+  exigir o `dslite_id` do fornecedor no caminho e preservar o token fora das
+  respostas da API. A URL da Vanral não foi salva automaticamente por decisão
+  do responsável.
+- [x] Sincronizar fornecedores e executar um ciclo completo de preço/estoque
+  DSLite: quatro fornecedores percorridos até `cursor_exhausted`, sem erro e
+  sem enfileirar preço.
+- [x] Corrigir o scan observado do Mercado Livre para substituir o `scroll_id`
+  a cada página e recusar página repetida. O manifesto real registrou 7.052
+  anúncios em 72 páginas, sem falha de item nos primeiros 1.700 processados.
+- [x] Auditar a fila antes da liberação: 4.895 linhas abertas, exclusivamente
+  quantidade/status das automações de estoque DSLite, interno e kits; zero
+  `desired_price`.
+- [x] Executar canário real único: quantidade `4 → 5`, status ativo preservado,
+  preço `R$ 648,02` inalterado, outbox e job concluídos sem erro.
+- [x] Confirmar que `pg_net` da `.162` alcança a rede interna da stack, mas não
+  possui saída para LAN/Internet. Os jobs `pg_cron` 2/3 foram testados,
+  interrompidos diante de `Couldn't connect to server` e permaneceram inativos
+  junto com o job 4 de preço.
+- [x] Transferir somente os dispatchers central e estoque/status para o runtime
+  produtivo: loopback a cada 60/15 segundos, uma execução em voo por timer,
+  mantendo as rotas, locks, deduplicação e lotes máximos existentes. Nenhum
+  timer de criação ou preço foi adicionado.
+- [x] Aplicar e registrar em `.162` as migrations `20260910150000` e
+  `20260910153000`, ambas ensaiadas com rollback; promover os SHAs `4b9ca1bc`,
+  `8c2b7d44` e `e39f0c5c` por fast-forward de `dev` para `bentevi-prod`, sem
+  alterar `main@2fc441f6`.
+- [x] Publicar `e39f0c5c` no serviço `local/bentevi-prod` pela ação Easypanel
+  `cmtvoid3600d707mfaebsbpcx`; SHA executado e health HTTP 200 conferidos.
+- [x] Confirmar os primeiros ciclos automáticos: jobs DSLite completos, fila
+  de publicação reduzida de 4.894 para 4.406, 488 linhas concluídas, zero falhas
+  e zero preços abertos na leitura de 12:39 BRT. O deploy interrompeu o scan em
+  1.600; o scheduler o recuperou pelo contrato stale e retomou o mesmo manifesto
+  em 1.700, sem repetir a varredura.
+
+**Validação:** 18 testes direcionados; suíte integral com 1.348 casos coletados,
+1.345 aprovados, zero falhas e três LIVE ignorados; `npm run validate`, build
+Next.js 16.3.3 com 127 páginas/rotas, `npm run check:build-secrets` e
+`git diff --check` aprovados. A migration do scheduler foi ensaiada integralmente
+com rollback no destino comprovado `.162` antes da aplicação.
+
+**Pendência operacional:** aguardar o estado terminal do scan observado e a
+drenagem da fila inicial. O scheduler já retoma trabalho interrompido e novas
+alterações de estoque continuam entrando de forma idempotente. Cadastrar a URL
+da Vanral pela interface para habilitar também a reconciliação XML desse
+fornecedor; a API principal DSLite já permanece automática.
+
 ### Antes de solicitar autorização
 
 - [x] ação individual `BNT-REL-EARLY-01` concluída e registrada;
@@ -3603,17 +3655,17 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 ### Durante e depois da ativação autorizada
 
 - [ ] backup realizado quando exigido pela mudança;
-- [ ] `bentevi-prod` criada e pushada diretamente no SHA candidato aprovado de `dev`, sem merge/rebase/cherry-pick com `main`;
-- [ ] `main` preservada sem alteração e SHA de ambas as branches registrado;
-- [ ] migration de produção aplicada quando autorizada e aplicável;
-- [ ] serviço produtivo apontado para `bentevi-prod` e deploy executado pelo caminho oficial do Easypanel;
-- [ ] smoke test seguro executado;
-- [ ] logs verificados;
-- [ ] operação confirmada;
-- [ ] marco 6 mínimo aceito com autenticação, dados, eventos e primeiro fluxo operacional; criação/preço/ME2 continuam adiados e bloqueados;
+- [x] `bentevi-prod` criada e pushada diretamente no SHA candidato aprovado de `dev`, sem merge/rebase/cherry-pick com `main`;
+- [x] `main` preservada sem alteração e SHA de ambas as branches registrado;
+- [x] migration de produção aplicada quando autorizada e aplicável;
+- [x] serviço produtivo apontado para `bentevi-prod` e deploy executado pelo caminho oficial do Easypanel;
+- [x] smoke test seguro executado;
+- [x] logs verificados;
+- [x] operação confirmada;
+- [x] marco 6 mínimo aceito com autenticação, dados, eventos e primeiro fluxo operacional; criação/preço/ME2 continuam adiados e bloqueados;
 - [ ] marco 7 registrado com versão, horário, executor único e acompanhamento dos primeiros sete dias e de um ciclo completo de pedido real;
 - [ ] release registrada;
-- [ ] `dev` mantida como linha independente de desenvolvimento; nenhuma reconciliação automática com `main` ou `bentevi-prod` executada.
+- [x] `dev` mantida como linha independente de desenvolvimento; nenhuma reconciliação automática com `main` ou `bentevi-prod` executada.
 
 ---
 
@@ -3645,7 +3697,7 @@ O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tive
 - [ ] interface foi simplificada somente onde havia mistura real;
 - [ ] clusters históricos confirmados foram removidos;
 - [ ] testes críticos permanentes estão identificados;
-- [ ] produção permaneceu operacional durante toda a execução.
+- [x] produção permaneceu operacional durante toda a execução.
 
 Quando estes critérios estiverem concluídos, fazer uma revisão final das auditorias e registrar qualquer item formalmente reclassificado antes de declarar o Item 17 encerrado.
 

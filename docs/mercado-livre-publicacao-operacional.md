@@ -2,6 +2,35 @@
 
 Este documento registra regras práticas validadas na criação de anúncios do Vortek.
 
+## Estado produtivo Bentevi — 10/09/2026
+
+O Bentevi está em produção em `app.bentevi.shop`, com o Supabase self-hosted
+produtivo em `.162`. Criação de anúncios e alteração automática de preços
+continuam bloqueadas por `ML_PRICING_EXECUTION_MODE=disabled`. A publicação
+automática liberada neste recorte é exclusivamente de **quantidade e status** de
+anúncios existentes, por meio de `anuncios_ml_outbox` e do publicador canônico.
+
+- O sincronizador central é disparado no runtime produtivo a cada minuto; o
+  publicador de estoque/status é consultado a cada 15 segundos e mantém lote
+  máximo de 20 itens, lock de domínio, deduplicação, retry e read-back.
+- Os jobs `pg_cron` 2, 3 e 4 permanecem inativos. A rede interna do Supabase
+  permite ao `pg_net` alcançar a própria stack, mas não o app no servidor `.160`;
+  por isso os dois dispatchers liberados rodam por loopback no processo Bentevi.
+  O job 4 de preço de catálogo não foi transferido nem ativado.
+- A ativação foi precedida por um canário real de estoque: quantidade remota
+  `4 → 5`, status preservado como ativo, preço preservado em `R$ 648,02` e outbox
+  concluída sem erro. A fila aberta foi auditada com zero `desired_price` antes
+  do início do processamento contínuo.
+- O scan observado deve atualizar o `scroll_id` com o valor devolvido em cada
+  página. Reutilizar sempre o cursor inicial repete a segunda página e prende o
+  job; o manifesto produtivo corrigido encontrou 7.052 anúncios em 72 páginas.
+
+O feed XML Crossdocking da DSLite, quando usado, deve seguir exatamente
+`https://app.dslite.com.br/modules/admin/Empresa/getXMLCrossdocking/{fornecedor}/{token}`.
+O identificador do caminho precisa coincidir com o `dslite_id` do fornecedor.
+O feed da Vanral não foi salvo automaticamente nesta ação; deve ser cadastrado
+pela interface com a URL fornecida pelo responsável.
+
 ## Estado da execução Bentevi DEV — 09/09/2026
 
 O PUB-GATE publicado em DEV (`9a18ff8f`) substitui a criação direta por preparação, aprovação explícita, operação/outbox, worker e conferência. O formulário de preço também encaminha proposta à central; a rota de preço bruto continua bloqueada. A capacidade nova está **desabilitada por padrão**, restrita à conta de teste/allowlist/DEV e banco `.162`. Os testes locais não substituem a prova no ML: o seller de teste está conectado/verificado, mas o aceite autenticado e a prova externa limitada ainda estão pendentes. [Contrato, evidências, rollback e pendências do marco 1](reestruturacao-vortek/evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
