@@ -39,9 +39,10 @@ test('DTO operacional representa a resposta real de Pedidos sem casts compensat�
 });
 
 test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
-  for (const label of ['Data', 'Pedido', 'Cliente', 'Valor', 'Status', 'Progresso', 'Próxima ação']) {
+  for (const label of ['Data', 'Pedido', 'Cliente', 'Valor', 'Status', 'Progresso', 'Compra', 'Próxima ação']) {
     assert.match(page, new RegExp(`title: '${label}'`));
   }
+  assert.match(page, /title: 'Progresso'[\s\S]*title: 'Compra'[\s\S]*title: 'Próxima ação'/);
   assert.doesNotMatch(page, /title: 'Pendência'/);
   assert.doesNotMatch(page, /title: 'Idade'/);
   assert.match(page, /Venda #\{saleId\}/);
@@ -69,6 +70,17 @@ test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
   assert.match(detailsDrawer, /Histórico operacional/);
   assert.match(detailsDrawer, /Pedido DSLite/);
   assert.match(detailsDrawer, /width="min\(960px, 100vw\)"/);
+});
+
+test('coluna Compra abre o único pedido DSLite e diferencia venda sem compra', () => {
+  assert.match(page, /const dsliteId = isValidDsliteId\(order\.dslite_id\)/);
+  assert.match(page, /https:\/\/app\.dslite\.com\.br\/modules\/admin\/Pedido\/exibir\/\$\{encodeURIComponent\(dsliteId\)\}/);
+  assert.match(page, /target="_blank"/);
+  assert.match(page, /rel="noopener noreferrer"/);
+  assert.match(page, /aria-label=\{`Abrir pedido DSLite \$\{dsliteId\}`\}/);
+  assert.match(page, />Não Criado<\/Text>/);
+  assert.doesNotMatch(page, /title: 'Compra'[\s\S]{0,120}sorter:/);
+  assert.match(page, /scroll=\{\{ x: 1525 \}\}/);
 });
 
 test('Pedidos não mantém endpoints, timers ou modais dos fluxos extraídos', () => {

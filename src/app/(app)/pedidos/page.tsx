@@ -715,6 +715,25 @@ export default function PedidosPage() {
         );
       },
     },
+    {
+      title: 'Compra', key: 'compra', width: 140,
+      render: (_: unknown, order: Order) => {
+        const dsliteId = isValidDsliteId(order.dslite_id);
+        if (!dsliteId) return <Text type="secondary">Não Criado</Text>;
+        return (
+          <Tooltip title="Abrir pedido na DSLite">
+            <a
+              href={`https://app.dslite.com.br/modules/admin/Pedido/exibir/${encodeURIComponent(dsliteId)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Abrir pedido DSLite ${dsliteId}`}
+            >
+              {dsliteId}
+            </a>
+          </Tooltip>
+        );
+      },
+    },
     { title: 'Próxima ação', key: 'next_action', width: 220, fixed: 'right', render: (_: unknown, order: Order) => renderActions(order) },
   ], [openOrderDetails, openTracking, renderActions, role, sort, token]);
 
@@ -806,7 +825,7 @@ export default function PedidosPage() {
           <ResizableTable<Order>
             storageKey="pedidos-bentevi-v3" dataSource={orders} columns={columns} rowKey="id" loading={listLoading}
             pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} pedidos` }}
-            onChange={handleTableChange} scroll={{ x: 1385 }} size="small"
+            onChange={handleTableChange} scroll={{ x: 1525 }} size="small"
           />
         )}
       </Card>
