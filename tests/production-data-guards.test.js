@@ -84,13 +84,21 @@ test('modo cutover é explícito e desabilita somente alertas externos', () => {
   assert.match(source, /if \(params\.dispatchExternalAlerts\) \{[\s\S]*alertMlLabelReleased/);
 });
 
-test('lucro provisório por falta de produto é substituído somente após cálculo completo', () => {
-  assert.equal(shouldPersistCalculatedOrderProfit({
-    existingProfit: 0,
-    existingSnapshotPendencias: ['lucro_pendente_produto'],
-    calculatedProfit: 123.45,
-    profitPending: false,
-  }), true);
+test('lucro provisório é substituído somente após cálculo completo', () => {
+  for (const marker of [
+    'pedido_sem_itens',
+    'webhook_hydration_pending',
+    'snapshot_origem_webhook_stub',
+    'lucro_pendente_frete',
+    'lucro_pendente_produto',
+  ]) {
+    assert.equal(shouldPersistCalculatedOrderProfit({
+      existingProfit: 0,
+      existingSnapshotPendencias: [marker],
+      calculatedProfit: 123.45,
+      profitPending: false,
+    }), true, marker);
+  }
   assert.equal(shouldPersistCalculatedOrderProfit({
     existingProfit: 0,
     existingSnapshotPendencias: ['lucro_pendente_produto'],
@@ -98,8 +106,14 @@ test('lucro provisório por falta de produto é substituído somente após cálc
     profitPending: true,
   }), false);
   assert.equal(shouldPersistCalculatedOrderProfit({
-    existingProfit: 87.65,
+    existingProfit: 0,
     existingSnapshotPendencias: [],
+    calculatedProfit: 123.45,
+    profitPending: false,
+  }), false);
+  assert.equal(shouldPersistCalculatedOrderProfit({
+    existingProfit: 87.65,
+    existingSnapshotPendencias: ['lucro_pendente_frete'],
     calculatedProfit: 123.45,
     profitPending: false,
   }), false);
@@ -109,4 +123,20 @@ test('lucro provisório por falta de produto é substituído somente após cálc
     calculatedProfit: 123.45,
     profitPending: false,
   }), true);
+});
+
+test('novos pedidos usam null enquanto o lucro ainda não foi calculado', () => {
+  const syncRoute = read('src/app/api/sync/pedidos/route.ts');
+  const webhookRoute = read('src/app/api/webhooks/ml/notifications/route.ts');
+  const migration = read('supabase/migrations/20260910120000_bnt_order_profit_nullable.sql');
+  const databaseTypes = read('src/types/database.ts');
+
+  assert.match(syncRoute, /!existingPedido\?\.id[\s\S]{0,80}\{ lucro: null \}/);
+  assert.equal((webhookRoute.match(/!existing\?\.id \? \{ lucro: null \} : \{\}/g) || []).length, 2);
+  assert.match(migration, /alter column lucro drop default/);
+  assert.match(migration, /alter column lucro drop not null/);
+  assert.match(migration, /lock_timeout = '5s'/);
+  assert.match(migration, /statement_timeout = '30s'/);
+  assert.match(databaseTypes, /lucro: number \| null/);
+  assert.match(databaseTypes, /lucro\?: number \| null/);
 });

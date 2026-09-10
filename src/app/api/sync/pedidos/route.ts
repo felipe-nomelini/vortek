@@ -1577,7 +1577,9 @@ async function processOrder(params: {
     profitPending: lucroPendente,
   })
     ? { lucro }
-    : {};
+    : !existingPedido?.id
+      ? { lucro: null }
+      : {};
   const persistedFreight = (
     shippingMode.isNoShipping
     && String((existingPedido as any)?.dslite_label_source || '') === 'dslite_paid_shipping'

@@ -1827,7 +1827,7 @@ ml_pricing_groups: {
           fulfillment_source: string | null
           frete: number
           id: string
-          lucro: number
+          lucro: number | null
           ml_claim_id: string | null
           ml_claim_status: string | null
           ml_invoice_id: string | null
@@ -1898,7 +1898,7 @@ ml_pricing_groups: {
           fulfillment_source?: string | null
           frete?: number
           id?: string
-          lucro?: number
+          lucro?: number | null
           ml_claim_id?: string | null
           ml_claim_status?: string | null
           ml_invoice_id?: string | null
@@ -1969,7 +1969,7 @@ ml_pricing_groups: {
           fulfillment_source?: string | null
           frete?: number
           id?: string
-          lucro?: number
+          lucro?: number | null
           ml_claim_id?: string | null
           ml_claim_status?: string | null
           ml_invoice_id?: string | null

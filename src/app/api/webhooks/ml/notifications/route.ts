@@ -70,6 +70,7 @@ function buildWebhookStubPayload(order: any, existing: any) {
     }),
     ml_order_id: String(order.id || ''),
     ml_pack_id: order.pack_id ? String(order.pack_id) : null,
+    ...(!existing?.id ? { lucro: null } : {}),
     ...(needsHydration
       ? {
           snapshot_incompleto: true,
@@ -142,6 +143,7 @@ async function persistWebhookOrderPendingStub(params: {
     total: existing?.total || 0,
     situacao: existing?.situacao || 'aberto',
     ml_order_id: normalizedMlOrderId,
+    ...(!existing?.id ? { lucro: null } : {}),
     snapshot_incompleto: true,
     snapshot_pendencias: mergePendingTags(existing?.snapshot_pendencias, WEBHOOK_STUB_PENDING_TAGS),
     snapshot_source: 'webhook_orders_v2_pending',

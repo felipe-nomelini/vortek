@@ -15,6 +15,14 @@ export function shouldDispatchExternalOrderAlerts(mode: OrderReconciliationMode)
   return mode !== 'cutover';
 }
 
+const PROVISIONAL_PROFIT_MARKERS = new Set([
+  'pedido_sem_itens',
+  'webhook_hydration_pending',
+  'snapshot_origem_webhook_stub',
+  'lucro_pendente_frete',
+  'lucro_pendente_produto',
+]);
+
 export function shouldPersistCalculatedOrderProfit(params: {
   existingProfit: unknown;
   existingSnapshotPendencias: unknown;
@@ -27,8 +35,11 @@ export function shouldPersistCalculatedOrderProfit(params: {
   ) return false;
 
   if (params.existingProfit == null) return true;
+  if (params.existingProfit !== 0) return false;
 
   const previousProfitWasProvisional = Array.isArray(params.existingSnapshotPendencias)
-    && params.existingSnapshotPendencias.includes('lucro_pendente_produto');
+    && params.existingSnapshotPendencias.some((marker) => (
+      PROVISIONAL_PROFIT_MARKERS.has(String(marker))
+    ));
   return previousProfitWasProvisional && !params.profitPending;
 }
