@@ -5,6 +5,7 @@ import {
   type ReputationMetric,
   type SellerReputationResponse,
 } from '@/lib/ml/seller-reputation';
+import { canUseHomologationFixtures } from '@/lib/homologation-fixture';
 
 const ENABLED_KEY = 'bnt_d18_visual_review_enabled';
 const DATA_KEY = 'bnt_d18_visual_review_reputation';
@@ -74,6 +75,8 @@ function isSafeResponse(value: unknown): value is SellerReputationResponse {
 }
 
 export async function loadReputationVisualReview(): Promise<SellerReputationResponse | null> {
+  if (!canUseHomologationFixtures()) return null;
+
   const enabled = await getSyncRuntimeConfigValue(ENABLED_KEY);
   if (!isEnabled(enabled)) return null;
 

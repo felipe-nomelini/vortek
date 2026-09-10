@@ -2,12 +2,18 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
-import { isHomologationFixtureId, isHomologationFixtureSource } from '@/lib/homologation-fixture';
+import {
+  canUseHomologationFixtures,
+  isHomologationFixtureId,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export const SUPABASE_IN_FILTER_CHUNK_SIZE = 100;
 
 type CompraSortKey =
   | 'dsid'
@@ -143,8 +149,8 @@ export async function GET(request: Request) {
 
     if (dsids.length > 0) {
       const pedidosVinculados: any[] = [];
-      for (let index = 0; index < dsids.length; index += 500) {
-        const chunk = dsids.slice(index, index + 500);
+      for (let index = 0; index < dsids.length; index += SUPABASE_IN_FILTER_CHUNK_SIZE) {
+        const chunk = dsids.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE);
         const { data, error } = await client
           .from('pedidos')
           .select('id,dslite_id,numero,ml_order_id,ml_pack_id,ml_fiscal_release_at,dslite_label_source,snapshot_source,nota_fiscal_emitida,nfe_status')
@@ -171,8 +177,8 @@ export async function GET(request: Request) {
         .filter(Boolean),
     ));
     const fornecedores: any[] = [];
-    for (let index = 0; index < fornecedorIds.length; index += 500) {
-      const chunk = fornecedorIds.slice(index, index + 500);
+    for (let index = 0; index < fornecedorIds.length; index += SUPABASE_IN_FILTER_CHUNK_SIZE) {
+      const chunk = fornecedorIds.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE);
       const { data, error } = await client
         .from('fornecedores')
         .select('dslite_id,apelido,supplier_pix_key')
@@ -192,8 +198,8 @@ export async function GET(request: Request) {
         .filter(Boolean),
     ));
     const ofertas: any[] = [];
-    for (let index = 0; index < ofertaIds.length; index += 500) {
-      const chunk = ofertaIds.slice(index, index + 500);
+    for (let index = 0; index < ofertaIds.length; index += SUPABASE_IN_FILTER_CHUNK_SIZE) {
+      const chunk = ofertaIds.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE);
       const { data, error } = await client
         .from('produto_fornecedor_ofertas')
         .select('id,produto_id,sku_fornecedor,sku_oferta,dslite_produto_id')
@@ -213,8 +219,8 @@ export async function GET(request: Request) {
         .filter(Boolean),
     ));
     const produtos: any[] = [];
-    for (let index = 0; index < produtoIds.length; index += 500) {
-      const chunk = produtoIds.slice(index, index + 500);
+    for (let index = 0; index < produtoIds.length; index += SUPABASE_IN_FILTER_CHUNK_SIZE) {
+      const chunk = produtoIds.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE);
       const { data, error } = await client
         .from('produtos')
         .select('id,sku')
@@ -234,8 +240,8 @@ export async function GET(request: Request) {
         .filter(Boolean),
     ));
     const pedidoItens: any[] = [];
-    for (let index = 0; index < pedidoIds.length; index += 500) {
-      const chunk = pedidoIds.slice(index, index + 500);
+    for (let index = 0; index < pedidoIds.length; index += SUPABASE_IN_FILTER_CHUNK_SIZE) {
+      const chunk = pedidoIds.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE);
       const { data, error } = await client
         .from('pedido_itens')
         .select('pedido_id,titulo,quantidade,seller_sku,ml_item_id')
@@ -288,14 +294,18 @@ export async function GET(request: Request) {
       };
     });
 
-    sortCompras(comprasEnriquecidas, sortBy, sortOrder);
+    const visibleCompras = canUseHomologationFixtures()
+      ? comprasEnriquecidas
+      : comprasEnriquecidas.filter((item: any) => item.is_homologation_fixture !== true);
+
+    sortCompras(visibleCompras, sortBy, sortOrder);
 
     const from = (page - 1) * limit;
     const to = from + limit;
 
     return NextResponse.json({
-      data: comprasEnriquecidas.slice(from, to),
-      total: comprasEnriquecidas.length,
+      data: visibleCompras.slice(from, to),
+      total: visibleCompras.length,
       page,
       pageSize: limit,
     });

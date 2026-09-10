@@ -3532,6 +3532,19 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 
 **Próxima ação:** em tarefa/workspace produtivos, obter leitura atual da `.160`, ensaiar backup e migração `.160 → .162` e validar o arquivo privado do serviço. Somente com o ensaio aprovado fixar o SHA final, criar `bentevi-prod` e executar o corte.
 
+### BNT-PROD-DATA-RECOVERY-01 — Proteção da correção pós-corte — 09/09/2026
+
+**Situação:** causa confirmada por leitura e correções defensivas implementadas somente em `dev`; publicação e reconciliação produtivas não executadas neste workspace.
+
+- A comparação somente leitura confirmou que o núcleo copiado mantém as contagens principais do legado, mas o runtime produtivo ainda podia carregar amostras `bnt_*_visual_review_*` e linhas persistidas `BNT-D05`, mascarando os dados reais em Produtos, Estoque, Anúncios, Catálogo, Perguntas, Reputação e Reclamações.
+- A lista de Compras reproduziu `TypeError: fetch failed` ao enviar 500 UUIDs em um único filtro PostgREST. Todas as consultas `in` dessa rota passaram a usar lotes de 100 identificadores.
+- Fixtures agora são permitidas somente com `VORTEK_RUNTIME_ENVIRONMENT=local_dev` e são recusadas também quando a URL configurada aponta para `app.bentevi.shop` ou `app.vortek.shop`. As rotas de Compras, Estoque e NF-e de entrada excluem amostras persistidas das respostas fora desse runtime.
+- O sincronizador de pedidos recebeu `reconciliationMode: cutover`, aceito somente após a autenticação interna já obrigatória. O modo conserva pedidos, estoque, créditos e auditoria, mas não envia alertas retroativos de venda, reclamação ou liberação de etiqueta.
+- A integração Mercado Livre produtiva permanece pendente de reconexão com `BENTEVITECNOLOGIA` e validação de `/users/me`; nenhum token, seller, webhook ou configuração externa foi alterado nesta ação.
+- Passaram 46 testes direcionados, a suíte integral com 1.322 casos coletados (1.319 aprovados, zero falhas e três LIVE ignorados), `npm run validate`, `npm run build` com 127 páginas/rotas, `npm run check:build-secrets` e `git diff --check`.
+
+**Próxima ação:** uma tarefa no ambiente produtivo deve promover o SHA aprovado, remover as configurações e linhas sintéticas após backup, reconciliar o delta real, reconectar `BENTEVITECNOLOGIA` e executar o catch-up com início fixo e `reconciliationMode: cutover`. `.160` permanece somente leitura; `.162` não foi alterada por esta implementação DEV.
+
 ### Antes de solicitar autorização
 
 - [x] ação individual `BNT-REL-EARLY-01` concluída e registrada;

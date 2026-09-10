@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
+import { canUseHomologationFixtures, isHomologationFixtureId } from '@/lib/homologation-fixture';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -40,7 +41,7 @@ export async function GET(request: Request) {
     const client = createServiceClient();
     let query = client
       .from('compras')
-      .select('status, valor_total, valor_frete, supplier_payment_mode, supplier_payment_status, supplier_payment_amount');
+      .select('id, status, valor_total, valor_frete, supplier_payment_mode, supplier_payment_status, supplier_payment_amount');
 
     if (status) query = query.eq('status', status);
     if (fornecedorId) query = query.eq('fornecedor_id', fornecedorId);
@@ -55,7 +56,9 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    const rows = data || [];
+    const rows = canUseHomologationFixtures()
+      ? data || []
+      : (data || []).filter((row: any) => !isHomologationFixtureId(row.id));
     let pendentes = 0;
     let faturado = 0;
     let aguardandoInformacoes = 0;

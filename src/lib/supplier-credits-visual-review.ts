@@ -1,5 +1,6 @@
 import { getSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import type { SupplierLedgerMovementType } from '@/lib/supplier-ledger';
+import { canUseHomologationFixtures } from '@/lib/homologation-fixture';
 
 const ENABLED_KEY = 'bnt_d17_visual_review_enabled';
 const DATA_KEY = 'bnt_d17_visual_review_credits';
@@ -145,6 +146,8 @@ function isMovement(value: unknown, supplierIds: Set<string>): value is Supplier
 }
 
 export async function loadSupplierCreditsVisualReview(): Promise<SupplierCreditsVisualReview | null> {
+  if (!canUseHomologationFixtures()) return null;
+
   const enabled = await getSyncRuntimeConfigValue(ENABLED_KEY);
   if (!isEnabled(enabled)) return null;
 

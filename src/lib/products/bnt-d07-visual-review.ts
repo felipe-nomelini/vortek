@@ -4,6 +4,7 @@ import { pricingView } from '@/lib/pricing-view';
 import type { SupplierFilterOption } from '@/lib/produto-filtering';
 import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 import { resolveMlFee } from '@/lib/commercial-pricing';
+import { canUseHomologationFixtures } from '@/lib/homologation-fixture';
 
 const ENABLED_KEY = 'bnt_d07_visual_review_enabled';
 const PRODUCTS_KEY = 'bnt_d07_visual_review_products';
@@ -86,6 +87,8 @@ function isSafeFixtureItem(value: unknown): value is VisualReviewItem {
 }
 
 export async function loadBntD07VisualReview(): Promise<BntD07VisualReview | null> {
+  if (!canUseHomologationFixtures()) return null;
+
   const enabled = await getSyncRuntimeConfigValue(ENABLED_KEY);
   if (!isEnabled(enabled)) return null;
 

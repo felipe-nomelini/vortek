@@ -1,5 +1,6 @@
 import { getSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { classifyClaimPriority, type ClaimDetailResponse, type ClaimListItem } from '@/lib/ml/claims';
+import { canUseHomologationFixtures } from '@/lib/homologation-fixture';
 
 const ENABLED_KEY = 'bnt_d19_visual_review_enabled';
 const DATA_KEY = 'bnt_d19_visual_review_claims';
@@ -54,6 +55,8 @@ function isSafeFixtureDetail(value: unknown, id: string): value is ClaimDetailRe
 }
 
 export async function loadClaimsVisualReview(): Promise<ClaimsVisualReview | null> {
+  if (!canUseHomologationFixtures()) return null;
+
   const enabled = await getSyncRuntimeConfigValue(ENABLED_KEY);
   if (!isEnabled(enabled)) return null;
 

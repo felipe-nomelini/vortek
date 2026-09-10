@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
-import { BNT_D05_INVENTORY_FIXTURE_SOURCE } from '@/lib/homologation-fixture';
+import {
+  BNT_D05_INVENTORY_FIXTURE_SOURCE,
+  canUseHomologationFixtures,
+} from '@/lib/homologation-fixture';
 import { createServiceClient } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
@@ -24,7 +27,11 @@ export async function GET(request: Request) {
     .limit(500);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  const ids = (receipts || []).map((receipt: any) => receipt.id);
+  const visibleReceipts = (receipts || []).filter((receipt: any) => (
+    canUseHomologationFixtures()
+    || receipt.snapshot_source !== BNT_D05_INVENTORY_FIXTURE_SOURCE
+  ));
+  const ids = visibleReceipts.map((receipt: any) => receipt.id);
   const { data: manifestations, error: manifestationError } = ids.length
     ? await (db as any).from('estoque_manifestacoes_nfe')
         .select('id,recebimento_id,tipo_manifestacao,status,protocolo,motivo,justificativa,numero_sequencial,codigo_sefaz,provider_evento,requested_at,completed_at')
@@ -38,7 +45,7 @@ export async function GET(request: Request) {
     const key = String(manifestation.recebimento_id);
     historyByReceipt.set(key, [...(historyByReceipt.get(key) || []), manifestation]);
   }
-  const all = (receipts || []).map((receipt: any) => {
+  const all = visibleReceipts.map((receipt: any) => {
     const items = receipt.estoque_recebimento_itens || [];
     const expected = items.reduce((total: number, item: any) => total + Number(item.quantidade_esperada || 0), 0);
     const checked = items.reduce((total: number, item: any) => total + Number(item.quantidade_liberada || 0) + Number(item.quantidade_nao_aproveitavel || 0), 0);

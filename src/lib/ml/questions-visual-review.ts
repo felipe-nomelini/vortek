@@ -1,4 +1,5 @@
 import { getSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
+import { canUseHomologationFixtures } from '@/lib/homologation-fixture';
 
 const ENABLED_KEY = 'bnt_d06_visual_review_enabled';
 const QUESTIONS_KEY = 'bnt_d06_visual_review_questions';
@@ -96,6 +97,8 @@ function isSafeItem(value: unknown): value is QuestionVisualReviewItem {
 }
 
 export async function loadQuestionVisualReview(): Promise<QuestionVisualReview | null> {
+  if (!canUseHomologationFixtures()) return null;
+
   const enabled = await getSyncRuntimeConfigValue(ENABLED_KEY);
   if (!isEnabled(enabled)) return null;
 

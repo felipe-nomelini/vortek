@@ -44,6 +44,10 @@ import {
   assessMlSaleConcretization,
   type MlSalePaymentRelease,
 } from '@/lib/ml/sale-concretization';
+import {
+  parseOrderReconciliationMode,
+  shouldDispatchExternalOrderAlerts,
+} from '@/lib/sync/order-reconciliation';
 
 export const maxDuration = 300;
 
@@ -905,6 +909,7 @@ async function processOrder(params: {
   serviceClient: ReturnType<typeof createServiceClient>;
   returnAddress: { addressId: string | null; zipCode: string | null };
   taxContexts: Map<string, Promise<import('@/services/pricing-tax-context').PricingTaxContext>>;
+  dispatchExternalAlerts: boolean;
 }): Promise<SyncOrderResult> {
   const startedAt = Date.now();
   const { order: o, serviceClient, returnAddress } = params;
@@ -1631,7 +1636,8 @@ async function processOrder(params: {
   const wasPendingWebhookStub =
     String((existingPedido as any)?.snapshot_source || '') === 'webhook_orders_v2_pending';
   if (
-    !error
+    params.dispatchExternalAlerts
+    && !error
     && upsertedPedido?.id
     && isMlOrderPaid(sourceOrder)
     && (!existingPedidoId || wasPendingWebhookStub)
@@ -1702,7 +1708,13 @@ async function processOrder(params: {
     }
   }
 
-  if (!error && upsertedPedido?.id && mlClaimId && !(existingPedido as any)?.ml_claim_id) {
+  if (
+    params.dispatchExternalAlerts
+    && !error
+    && upsertedPedido?.id
+    && mlClaimId
+    && !(existingPedido as any)?.ml_claim_id
+  ) {
     void alertClaimOpened({
       id: String(upsertedPedido.id),
       numero: sourceOrder?.id || o.id,
@@ -1761,16 +1773,18 @@ async function processOrder(params: {
         },
         statusResultante: 'cleared',
       });
-      void alertMlLabelReleased({
-        id: String(upsertedPedido.id),
-        numero: sourceOrder?.id || o.id,
-        ml_order_id: String(o.id),
-        ml_shipment_id: mlShipmentId,
-        ml_fiscal_release_at: (existingPedido as any)?.ml_fiscal_release_at || null,
-        contato_nome: contatoNome,
-        total: Number(sourceOrder?.total_amount || o.total_amount || 0),
-        situacao,
-      });
+      if (params.dispatchExternalAlerts) {
+        void alertMlLabelReleased({
+          id: String(upsertedPedido.id),
+          numero: sourceOrder?.id || o.id,
+          ml_order_id: String(o.id),
+          ml_shipment_id: mlShipmentId,
+          ml_fiscal_release_at: (existingPedido as any)?.ml_fiscal_release_at || null,
+          contato_nome: contatoNome,
+          total: Number(sourceOrder?.total_amount || o.total_amount || 0),
+          situacao,
+        });
+      }
     }
   }
 
@@ -1875,6 +1889,15 @@ export async function POST(request: Request) {
   } catch {
     body = null;
   }
+  const reconciliation = parseOrderReconciliationMode(body?.reconciliationMode);
+  if (!reconciliation.ok) {
+    return NextResponse.json({
+      ok: false,
+      error: 'reconciliationMode inválido',
+      code: 'invalid_reconciliation_mode',
+    }, { status: 400 });
+  }
+  const dispatchExternalAlerts = shouldDispatchExternalOrderAlerts(reconciliation.mode);
   const syncJobIdRaw = String(body?.syncJobId || '').trim();
   const syncJobId = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(syncJobIdRaw)
     ? syncJobIdRaw
@@ -2070,6 +2093,7 @@ export async function POST(request: Request) {
         serviceClient,
         returnAddress: operationConfiguration.returnAddress,
         taxContexts,
+        dispatchExternalAlerts,
       });
       localResults.push(processed);
       if (processed.authFatal) {
@@ -2223,6 +2247,7 @@ export async function POST(request: Request) {
     invoices_404: semNfCount,
     concurrency: workerCount,
     aborted_by_auth: false,
+    reconciliation_mode: reconciliation.mode,
     cursor: acabou ? null : { offset: proximo, limit },
     records: {
       seen: results.length,

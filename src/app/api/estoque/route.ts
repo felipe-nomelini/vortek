@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
-import { BNT_D05_INVENTORY_FIXTURE_SOURCE } from '@/lib/homologation-fixture';
+import {
+  BNT_D05_INVENTORY_FIXTURE_SOURCE,
+  canUseHomologationFixtures,
+} from '@/lib/homologation-fixture';
 import { createServiceClient } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
@@ -44,6 +47,14 @@ export async function GET(request: Request) {
     if (result.error) return NextResponse.json({ error: result.error.message }, { status: 500 });
   }
 
+  const includeHomologationFixtures = canUseHomologationFixtures();
+  const receiptRows = (receiptsResult.data || []).filter((row: any) => (
+    includeHomologationFixtures || row.snapshot_source !== BNT_D05_INVENTORY_FIXTURE_SOURCE
+  ));
+  const movementRows = (movementsResult.data || []).filter((row: any) => (
+    includeHomologationFixtures || row.snapshot_source !== BNT_D05_INVENTORY_FIXTURE_SOURCE
+  ));
+
   const receiptTotals = new Map<string, { expected: number; received: number }>();
   for (const item of receiptItemsResult.data || []) {
     const id = String(item.recebimento_id);
@@ -52,13 +63,13 @@ export async function GET(request: Request) {
     current.received += Number(item.quantidade_liberada || 0) + Number(item.quantidade_nao_aproveitavel || 0);
     receiptTotals.set(id, current);
   }
-  const receipts = (receiptsResult.data || []).map((receipt: any) => ({
+  const receipts = receiptRows.map((receipt: any) => ({
     ...receipt,
     itens_esperados: receiptTotals.get(String(receipt.id))?.expected || 0,
     itens_conferidos: receiptTotals.get(String(receipt.id))?.received || 0,
   }));
   const fixtureByProduct = new Map<string, any>();
-  for (const movement of (movementsResult.data || []).filter((row: any) => row.snapshot_source === BNT_D05_INVENTORY_FIXTURE_SOURCE)) {
+  for (const movement of movementRows.filter((row: any) => row.snapshot_source === BNT_D05_INVENTORY_FIXTURE_SOURCE)) {
     const productId = String(movement.produto_id);
     const current = fixtureByProduct.get(productId) || {
       produto_id: `fixture:${productId}`,
@@ -95,7 +106,7 @@ export async function GET(request: Request) {
   return NextResponse.json({
     positions,
     receipts,
-    movements: movementsResult.data || [],
+    movements: movementRows,
     hasHomologationFixtures: fixtureByProduct.size > 0 || receipts.some((receipt: any) => receipt.snapshot_source === BNT_D05_INVENTORY_FIXTURE_SOURCE),
     summary: {
       skus: positions.length,
