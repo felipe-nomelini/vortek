@@ -56,6 +56,20 @@ function itemContext(item: any, sellerId: string): MarketContext | null {
     dimensions: null, currency: 'BRL', quantity: 1 };
 }
 
+/** A API do ML não garante a ordem de coleções como tags entre duas leituras. */
+function listingMaterialSnapshot(context: MarketContext | null, item: any): string {
+  const normalize = (value: unknown): unknown => {
+    if (Array.isArray(value)) {
+      return value.map(normalize).sort((left, right) => JSON.stringify(left).localeCompare(JSON.stringify(right)));
+    }
+    if (!value || typeof value !== 'object') return value;
+    return Object.fromEntries(Object.entries(value as Record<string, unknown>)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, entry]) => [key, normalize(entry)]));
+  };
+  return JSON.stringify(normalize({ context, price: item?.price ?? null, tags: item?.tags ?? [], shipping: item?.shipping ?? null }));
+}
+
 async function preparationValid(context: z.infer<typeof contextSchema>, sellerId: string): Promise<boolean | null> {
   const [category, seller, shipping] = await Promise.all([
     fetchMLResult<any>('/categories/' + encodeURIComponent(context.categoryId)),
@@ -118,7 +132,7 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     context = { ...input.context, sellerId, itemId: null, catalogProductId: null, dimensions: dimensions(product), currency: 'BRL', quantity: 1 };
     if (context.mode === 'me2' && !context.dimensions) return json({ error: 'Dimensões e peso bruto comprovados são necessários.' }, 422);
   }
-  const expected = JSON.stringify({ context, price: item?.price ?? null, tags: item?.tags ?? [], shipping: item?.shipping ?? null });
+  const expected = listingMaterialSnapshot(context, item);
   const protection: PricingProtection = await loadPricingOverrides(service, product.id).catch(() => ({ status: 'unavailable', groups: [] }));
   const groups = protection.groups.filter(g => g.state !== 'retired' && g.members.some(m => m.itemId === itemId));
   const group = groups.length === 1 ? groups[0] : null;
@@ -158,7 +172,7 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     const fresh = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId));
     if (!fresh.ok) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
     const next = itemContext(fresh.data, sellerId);
-    if (JSON.stringify({ context: next, price: fresh.data?.price ?? null, tags: fresh.data?.tags ?? [], shipping: fresh.data?.shipping ?? null }) !== expected)
+    if (listingMaterialSnapshot(next, fresh.data) !== expected)
       return { valid: false, code: 'ANUNCIO_REMOTO_ALTERADO' } as const;
     // A verified stored group is not proof of current identity or operational eligibility.
     const [currentProduct, offers, kit, suppliers] = await Promise.all([

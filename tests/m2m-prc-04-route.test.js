@@ -31,8 +31,12 @@ function harness(options = {}) {
       calls.push(path);
       if (options.mlDown) return { ok: false };
       if (path === '/users/me') return { ok: true, data: { id: 123, site_id: 'MLB' } };
-      if (path === '/items/MLB1') return { ok: true, data: { ...item, ...(options.item || {}),
-        ...(++itemReads > 1 && options.changed ? { price: 101 } : {}) } };
+      if (path === '/items/MLB1') {
+        const read = ++itemReads;
+        return { ok: true, data: { ...item, ...(options.item || {}),
+          ...(options.reorderedTags ? { tags: read > 1 ? ['immediate_payment', 'cart_eligible'] : ['cart_eligible', 'immediate_payment'] } : {}),
+          ...(read > 1 && options.changed ? { price: 101 } : {}) } };
+      }
       if (path.includes('/price_to_win?')) {
         competitionReads++;
         return options.competitionDown ? { ok: false } : { ok: true, data: {
@@ -153,6 +157,12 @@ test('fonte indisponível é explícita; alteração do anúncio invalida contex
   assert.equal(response.status, 503); assert.equal((await response.json()).code, 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
   const changed = harness({ changed: true }); await changed.get('produtoId=P1'); assert.equal(changed.captured[0].valid, false);
   assert.equal(changed.captured[0].verification.code, 'ANUNCIO_REMOTO_ALTERADO');
+});
+
+test('ordem instável das tags do ML não simula alteração remota', async () => {
+  const h = harness({ reorderedTags: true });
+  await h.get('produtoId=P1');
+  assert.equal(h.captured[0].valid, true);
 });
 
 test('proteção indisponível não vira ausência de override nem impede diagnóstico econômico', async () => {
