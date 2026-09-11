@@ -30,6 +30,11 @@ import {
   runWhatsappLabelJob,
 } from '@/services/whatsapp-label-job';
 import { ML_OBSERVED_CYCLE_DEDUPE_KEY } from '@/lib/ml/observed-scan-batch';
+import {
+  enqueueStalePricingReanalyses,
+  processPricingReanalysisQueue,
+  PRICING_REANALYSIS_JOB_TYPE,
+} from '@/services/pricing-reanalysis';
 
 export const maxDuration = 300;
 
@@ -363,6 +368,13 @@ export async function POST(request: Request) {
         });
         continue;
       }
+      if (job.tipo === PRICING_REANALYSIS_JOB_TYPE) {
+        if (job.status !== 'rodando' || !isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
+        const recovery = await requeueStaleJob(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES);
+        results.push({ task: job.tipo, action: 'stale_job_queued_for_retry', jobId: job.id,
+          stale_threshold_minutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES, ...recovery });
+        continue;
+      }
       if (!isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
       if (job.tipo === 'whatsapp_label_send') {
         const log = parseWhatsappLabelJobLog(job.log);
@@ -409,6 +421,20 @@ export async function POST(request: Request) {
   } else {
     const hydrationQueueResult = await processMlOrderHydrationQueue(serviceClient);
     results.push({ task: ML_ORDER_HYDRATION_JOB_TYPE, action: 'queue_processed', ...hydrationQueueResult });
+  }
+
+  if (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until)) {
+    results.push({ task: PRICING_REANALYSIS_JOB_TYPE, action: 'queue_skipped_auth_block',
+      auth_state: mlAuth.state, auth_blocked_until: mlAuth.blocked_until });
+  } else {
+    try {
+      const scheduled = await enqueueStalePricingReanalyses(serviceClient);
+      const queue = await processPricingReanalysisQueue(serviceClient);
+      results.push({ task: PRICING_REANALYSIS_JOB_TYPE, action: 'queue_processed', ...scheduled, ...queue });
+    } catch (error: any) {
+      console.error('[cron-dispatch] falha na fila de reanálise de pricing', error?.message || error);
+      results.push({ task: PRICING_REANALYSIS_JOB_TYPE, action: 'queue_error' });
+    }
   }
 
   await Promise.allSettled([

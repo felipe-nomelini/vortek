@@ -9,36 +9,20 @@ const userId = '00000000-0000-4000-8000-000000000003';
 
 function harness(options = {}) {
   const calls = [];
-  const job = { id: commandId, status: options.priorStatus || 'concluido', created_by: userId,
-    log: [{ productId }] };
-  const client = { from(table) {
-    const q = {
-      insert(body) { calls.push(['insert', table, body]); return q; },
-      update(body) { calls.push(['update', table, body]); return q; },
-      select() { return q; }, eq() { return q; },
-      single: async () => options.replay && table === 'jobs'
-        ? { data: null, error: { code: '23505' } }
-        : { data: table === 'jobs' ? job : null, error: null },
-      maybeSingle: async () => ({ data: table === 'jobs' ? job : { id: productId, sku: 'VTK1' }, error: null }),
-      then(resolve) { resolve({ data: null, error: null }); },
-    };
-    return q;
-  } };
   const route = load('src/app/api/pricing/decisions/reanalyze/route.ts', {
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     zod: require('zod'),
     '@/lib/api-request-auth': { authorizeApiRequest: async () => options.denied
       ? { ok: false, response: Response.json({}, { status: 403 }) } : { ok: true, userId } },
-    '@/lib/supabase': { createServiceClient: () => client },
-    '@/services/integration': { fetchMLResult: async path => { calls.push(['ml', path]);
-      return { ok: true, data: { id: 123, site_id: 'MLB' } }; } },
-    '@/services/ml-listing-links': {
-      resolveProductMlLinks: async () => ({ coverage: 'complete', groups: [{}], candidates: [
-        { itemId: 'MLB1', status: 'active', identity: 'complete', variationId: '', catalog: false },
-      ] }),
-      persistProductMlGroups: async () => ({ applied: true }),
+    '@/services/pricing-reanalysis': {
+      enqueuePricingReanalysis: async (input) => { calls.push(['enqueue', input]); return {
+        jobId: commandId, state: 'pendente', replayed: Boolean(options.replay),
+      }; },
+      runPricingReanalysisJob: async (id, runOptions) => { calls.push(['run', id, runOptions]); return options.failed
+        ? { jobId: id, productId, state: 'erro', error: 'pricing_reanalysis_unavailable', replayed: false }
+        : options.hold ? { jobId: id, productId, state: 'on_hold', replayed: false }
+          : { jobId: id, productId, state: 'completo', evaluationId: commandId, itemId: 'MLB1', replayed: false }; },
     },
-    '@/services/pricing-detail': { loadPricingDetail: async () => Response.json({ evaluationId: commandId }) },
   });
   const post = body => route.POST(new Request('http://local', { method: 'POST', body: JSON.stringify(body) }));
   return { calls, post };
@@ -53,25 +37,44 @@ test('reanálise exige permissão e não aceita parâmetros comerciais', async (
   assert.equal(invalid.calls.length, 0);
 });
 
-test('reanálise é unitária, idempotente e não contém writer remoto', async () => {
+test('reanálise manual enfileira e executa o job canônico sem writer comercial', async () => {
   const fresh = harness();
   const response = await fresh.post({ productId, commandId });
   assert.equal(response.status, 200);
-  assert.deepEqual(fresh.calls.filter(call => call[0] === 'ml'), [['ml', '/users/me']]);
-  assert.equal(fresh.calls.some(call => call[0] === 'insert' && call[1] === 'jobs'), true);
-  const replay = harness({ replay: true });
-  const replayResponse = await replay.post({ productId, commandId });
-  assert.equal(replayResponse.status, 200);
-  assert.equal((await replayResponse.json()).replayed, true);
-  assert.equal(replay.calls.some(call => call[0] === 'ml'), false);
-  const source = fs.readFileSync('src/app/api/pricing/decisions/reanalyze/route.ts', 'utf8');
-  assert.doesNotMatch(source, /method:\s*['"](?:PUT|DELETE|PATCH)['"]|enqueueApprovedPricingDecision/);
+  assert.equal((await response.json()).state, 'completo');
+  assert.deepEqual(fresh.calls[0][1], { productId, commandId, actorId: userId, source: 'manual' });
+  assert.deepEqual(fresh.calls[1], ['run', commandId, { force: true }]);
+
+  const source = fs.readFileSync('src/services/pricing-reanalysis.ts', 'utf8');
+  assert.match(source, /status:\s*'completo'/);
+  assert.match(source, /competitionItemId/);
+  assert.match(source, /MATERIAL_RETRY_CODES/);
+  assert.doesNotMatch(source, /method:\s*['"](?:PUT|DELETE|PATCH)['"]|enqueueApprovedPricingDecision|enqueueMlPublishOutbox/);
 });
 
-test('migration pagina por produto e mantém RPC fora de anon/authenticated', () => {
-  const sql = fs.readFileSync('supabase/migrations/20260911100000_pricing_decision_center_products.sql', 'utf8');
-  assert.match(sql, /group by produto_id/);
-  assert.match(sql, /count\(distinct a\.produto_id\).*affected_products/s);
-  assert.match(sql, /revoke all on function public\.search_pricing_decision_product_ids/);
-  assert.match(sql, /grant execute.*service_role/s);
+test('falha transitória fica observável e não é apresentada como concluída', async () => {
+  const hold = harness({ hold: true });
+  assert.equal((await hold.post({ productId, commandId })).status, 202);
+  const failed = harness({ failed: true });
+  const response = await failed.post({ productId, commandId });
+  assert.equal(response.status, 503);
+  assert.match(await response.text(), /Nenhuma alteração foi enviada/);
+});
+
+test('migration pagina por produto, corrige alerta histórico e mantém RPC backend-only', () => {
+  const listSql = fs.readFileSync('supabase/migrations/20260911100000_pricing_decision_center_products.sql', 'utf8');
+  const fixSql = fs.readFileSync('supabase/migrations/20260911130000_pricing_alert_reconciliation.sql', 'utf8');
+  assert.match(listSql, /group by produto_id/);
+  assert.match(listSql, /count\(distinct a\.produto_id\).*affected_products/s);
+  assert.match(fixSql, /resolvedByVerifiedGroup/);
+  assert.match(fixSql, /old\.observed_at<=e\.created_at/);
+  assert.match(fixSql, /revoke all on function public\.sync_pricing_alerts/);
+  assert.match(fixSql, /grant execute.*service_role/s);
+});
+
+test('cron mantém a fila atualizada sem habilitar automação de preço', () => {
+  const cron = fs.readFileSync('src/app/api/sync/cron-dispatch/route.ts', 'utf8');
+  assert.match(cron, /enqueueStalePricingReanalyses/);
+  assert.match(cron, /processPricingReanalysisQueue/);
+  assert.match(cron, /queue_skipped_auth_block/);
 });

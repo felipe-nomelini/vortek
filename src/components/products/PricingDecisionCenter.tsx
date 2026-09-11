@@ -23,9 +23,10 @@ import {
   Typography,
 } from 'antd';
 import { BellOutlined, ReloadOutlined } from '@ant-design/icons';
-import { PricingQuoteSummary } from './LivePricingQuote';
+import { CompetitivePricingSummary, PricingQuoteSummary } from './LivePricingQuote';
 import type { ProductPricing } from '@/services/pricing-context';
 import type { DecisionContext } from '@/services/pricing-decisions';
+import type { CompetitiveAssessment } from '@/services/pricing-competition';
 
 const labels: Record<string, string> = {
   open: 'Aberto',
@@ -71,6 +72,10 @@ const blockerLabels: Record<string, string> = {
   GRUPO_ALTERADO: 'Composição do grupo mudou',
   CONCORRENCIA_ALTERADA: 'Referência competitiva mudou',
   INCONCLUSIVO_FONTE_ML_INDISPONIVEL: 'Fonte do Mercado Livre indisponível',
+  CONTEXTO_ALTERADO: 'Os dados mudaram durante a consulta; atualize o diagnóstico novamente',
+};
+const severityLabels: Record<string, string> = {
+  P0: 'Crítica', P1: 'Alta', P2: 'Atenção', INFO: 'Informativa',
 };
 type Decision = {
   id: string;
@@ -102,7 +107,10 @@ type Row = {
 type Detail = {
   alert: Row;
   alerts: Row[];
-  evaluation: { result: ProductPricing & { decisionContext?: DecisionContext } };
+  evaluation: { created_at: string; result: ProductPricing & {
+    decisionContext?: DecisionContext;
+    competitiveAssessment?: CompetitiveAssessment;
+  } };
   history: Array<{ id: number; kind: string; actorName: string | null; reason: string; created_at: string }>;
   canManage: boolean;
   hasMore: boolean;
@@ -238,11 +246,13 @@ export default function PricingDecisionCenter() {
     if (!detail || reanalyzing) return;
     setReanalyzing(true);
     try {
-      await read(`${api}/reanalyze`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      const result = await read(`${api}/reanalyze`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productId: detail.alert.produto_id, commandId: crypto.randomUUID() }) });
-      message.success('Vínculo e fontes comerciais reanalisados. Nenhum preço foi alterado.');
+      if (result.state === 'completo') message.success('Diagnóstico atualizado. Nenhum preço foi alterado.');
+      else message.info('A atualização foi enfileirada e será retomada automaticamente. Nenhum preço foi alterado.');
       changed();
-      await show(detail.alert.produto_id);
+      setDetail(null);
+      await list();
     } catch (e) { message.error((e as Error).message); }
     finally { setReanalyzing(false); }
   }
@@ -425,7 +435,7 @@ export default function PricingDecisionCenter() {
                       <Tag
                         color={v === 'P0' ? 'red' : v === 'P1' ? 'orange' : v === 'P2' ? 'gold' : 'default'}
                       >
-                        {v}
+                        {severityLabels[v] || v}
                       </Tag>
                     ),
                   },
@@ -493,14 +503,15 @@ export default function PricingDecisionCenter() {
                 </Typography.Text>
                 {detail.alerts.length > 1 && (
                   <Alert type="warning" showIcon message={`${detail.alerts.length} pontos agrupados neste produto`}
-                    description={detail.alerts.map(alert => `${alert.severity}: ${alert.title}`).join(' · ')} />
+                    description={detail.alerts.map(alert => `${severityLabels[alert.severity] || alert.severity}: ${alert.title}`).join(' · ')} />
                 )}
                 <Descriptions
                   column={2}
                   size="small"
                   items={[
                     { key: 'status', label: 'Estado', children: labels[detail.alert.state] },
-                    { key: 'group', label: 'Grupo', children: detail.alert.group_id || 'Não confirmado' },
+                    { key: 'group', label: 'Vínculo', children:
+                      detail.evaluation.result.decisionContext?.groupId ? 'Grupo sincronizado confirmado' : 'Confirmação pendente' },
                     { key: 'item', label: 'Anúncio', children: detail.alert.item_id || 'Novo — ID somente após criação confirmada' },
                     { key: 'reason', label: 'Motivo', children: detail.alert.reason },
                     ...(current
@@ -523,15 +534,19 @@ export default function PricingDecisionCenter() {
                   ]}
                 />
                 {detail.evaluation.result.revalidation?.status === 'queried' ? (
-                  <PricingQuoteSummary pricing={detail.evaluation.result} />
+                  <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+                    <Alert type="success" showIcon message="Diagnóstico comercial atualizado"
+                      description={`Fontes conferidas em ${date(detail.evaluation.created_at)}. Esta leitura não cria proposta e não altera o anúncio.`} />
+                    {detail.evaluation.result.competitiveAssessment
+                      ? <CompetitivePricingSummary assessment={detail.evaluation.result.competitiveAssessment} />
+                      : <PricingQuoteSummary pricing={detail.evaluation.result} />}
+                  </Space>
                 ) : (
-                  <Alert type="warning" showIcon message="Consulta comercial inconclusiva"
-                    description={[
-                      detail.evaluation.result.revalidation?.code,
-                      ...(detail.evaluation.result.decisionContext?.reasons || []),
-                    ].filter((code, index, values): code is string => Boolean(code) && values.indexOf(code) === index)
-                      .map(code => blockerLabels[code] || code).join(' · ')
-                      || 'Os dados não autorizam uma decisão de preço. Reanalise o produto para atualizar as fontes.'} />
+                  <Alert type="warning" showIcon message="Diagnóstico comercial ainda não está pronto"
+                    description={blockerLabels[detail.evaluation.result.revalidation?.code || '']
+                      || (detail.evaluation.result.decisionContext?.reasons || [])
+                        .map(code => blockerLabels[code]).find(Boolean)
+                      || 'Uma das fontes necessárias ainda não foi confirmada. Atualize o diagnóstico; nenhuma proposta ou alteração será enviada.'} />
                 )}
                 {current && (
                   <Alert
@@ -585,16 +600,16 @@ export default function PricingDecisionCenter() {
                 {detail.canManage && detail.alert.item_id && (
                   <Space wrap>
                     <Button icon={<ReloadOutlined />} loading={reanalyzing} onClick={() => void reanalyzeProduct()}>
-                      Corrigir vínculo e reanalisar
+                      Atualizar diagnóstico agora
                     </Button>
-                    <PricingProposalButton
+                    {detail.evaluation.result.revalidation?.status === 'queried' && <PricingProposalButton
                       productId={detail.alert.produto_id}
                       itemId={detail.alert.item_id}
                       priceCents={current?.context.priceCents}
                       clearance={current?.context.clearance}
                       label="Preparar proposta de preço"
                       onRecorded={() => void show(detail.alert.produto_id)}
-                    />
+                    />}
                   </Space>
                 )}
                 {!detail.canManage && (

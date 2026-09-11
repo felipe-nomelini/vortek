@@ -27,7 +27,7 @@ export function pricingMaterialFingerprint(value: unknown): string {
 }
 
 /** A memória já é um contrato sanitizado. Não armazenar item/HTTP/body arbitrários. */
-export async function recordPricingEvaluation(client: Client, productId: string, actorId: string, pricing: ProductPricing, competitiveAssessment?: CompetitiveAssessment | null, decisionContext?: import('./pricing-decisions').DecisionContext | null): Promise<string> {
+export async function recordPricingEvaluation(client: Client, productId: string, actorId: string | null, pricing: ProductPricing, competitiveAssessment?: CompetitiveAssessment | null, decisionContext?: import('./pricing-decisions').DecisionContext | null): Promise<string> {
   const result = { current: pricing.current, target: pricing.target, floor: pricing.floor, breakEven: pricing.breakEven, revalidation: pricing.revalidation ?? null,
     ...(competitiveAssessment ? { competitiveAssessment } : {}), ...(decisionContext ? { decisionContext } : {}) };
   const { data, error } = await client.from('pricing_evaluations').insert({ produto_id: productId, actor_id: actorId,

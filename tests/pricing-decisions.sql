@@ -1,7 +1,7 @@
 -- Execute only on independent DEV, inside BEGIN/ROLLBACK.
 do $$
 declare p uuid; actor uuid; g uuid; ev uuid; fresh uuid; old_ev uuid; ctx jsonb; observation jsonb;
- a uuid; d uuid; cmd uuid; response jsonb; n bigint; op uuid:=gen_random_uuid(); outbox uuid; other uuid; ungrouped uuid; merged_alert uuid;
+ a uuid; d uuid; cmd uuid; response jsonb; n bigint; op uuid:=gen_random_uuid(); outbox uuid; other uuid; ungrouped uuid; merged_alert uuid; old_group_alert uuid;
 begin
  select id into p from public.produtos limit 1;
  select id into actor from public.profiles where cargo='admin' limit 1;
@@ -23,6 +23,15 @@ begin
  if (select merged_into from public.pricing_alerts where id=merged_alert) is distinct from a then raise exception 'group_consolidation_failed'; end if;
  if (select count(*) from public.pricing_events where alert_id=merged_alert)<>2 then raise exception 'merged_history_lost';end if;
  if (select count(*) from public.pricing_events where alert_id=a)<>1 then raise exception 'duplicate_observation_event'; end if;
+ insert into public.pricing_evaluations(produto_id,actor_id,result,fingerprint)
+ values(p,actor,jsonb_build_object('decisionContext',jsonb_set(ctx,'{groupId}','null')),'UNGROUPED_GROUP') returning id into ungrouped;
+ perform public.sync_pricing_alerts(ungrouped,'[{"rule":"pricing_group","severity":"P1","active":true,"title":"Grupo pendente","reason":"Pendente"}]');
+ select id into old_group_alert from public.pricing_alerts where seller_id='9901301' and group_id is null and rule_id='pricing_group';
+ perform public.sync_pricing_alerts(ev,'[{"rule":"pricing_group","severity":"P1","active":false,"title":"Grupo confirmado","reason":"Confirmado"}]');
+ if (select state from public.pricing_alerts where id=old_group_alert)<>'resolved'
+   or (select merged_into from public.pricing_alerts where id=old_group_alert) is not null
+   or not exists(select 1 from public.pricing_events where alert_id=old_group_alert and kind='alert_resolved')
+   then raise exception 'inactive_verified_group_did_not_resolve_item_alert'; end if;
  insert into public.pricing_evaluations(produto_id,actor_id,result,fingerprint,created_at) values(p,actor,jsonb_build_object('decisionContext',ctx),'TEST',clock_timestamp()-interval '1 hour') returning id into old_ev;
  perform public.sync_pricing_alerts(old_ev,jsonb_set(observation,'{0,active}','false'));
  if (select state from public.pricing_alerts where id=a)<>'open' then raise exception 'late_observation_resolved'; end if;

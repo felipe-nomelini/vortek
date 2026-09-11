@@ -62,7 +62,8 @@ export async function GET(request: Request) {
         .from('pricing_alerts' as any)
         .select(alertColumns)
         .is('merged_into', null);
-      detailQuery = f.alertId ? detailQuery.eq('id', f.alertId) : detailQuery.eq('produto_id', f.productId!);
+      detailQuery = f.alertId ? detailQuery.eq('id', f.alertId)
+        : detailQuery.eq('produto_id', f.productId!).eq('state', 'open');
       const found = await detailQuery.order('severity_order', { ascending: true }).order('created_at', { ascending: true });
       if (found.error) throw new Error('read_failed');
       if (!found.data?.length) return json({ error: 'Produto sem alertas' }, 404);

@@ -69,7 +69,11 @@ export function assessCompetitivePricing(input: {
     && pricing?.revalidation?.status === 'queried' && m && contextMatches
     && pricing.target.ok && pricing.floor.ok && pricing.breakEven.ok
     && pricing.current.memory?.revenueCents === evidence.currentPriceCents
-    && m.revenueCents === evidence.priceCents && m.context.mlItemId === evidence.itemId
+    && m.revenueCents === evidence.priceCents
+    && (m.context.mlItemId === evidence.itemId || Boolean(group?.state === 'verified' && !group.inFlight
+      && m.context.pricingGroupId === group.id
+      && group.members.some(member => member.itemId === m.context.mlItemId)
+      && group.members.some(member => member.itemId === evidence.itemId && member.catalog)))
     && m.fee.source === 'ml_live' && m.fee.quotedPriceCents === evidence.priceCents;
   if (!valid) {
     reasons.push(evidence.condition === 'stale' ? 'ANALISE_PRELIMINAR_REQUER_CONSULTA'

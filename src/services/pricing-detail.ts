@@ -71,7 +71,7 @@ async function preparationValid(context: z.infer<typeof contextSchema>, sellerId
       && Array.isArray(row.types) && row.types.includes(context.logisticType));
 }
 
-export async function loadPricingDetail(raw: unknown, worker?: { actorId: string }) {
+export async function loadPricingDetail(raw: unknown, worker?: { actorId: string | null; competitionItemId?: string | null }) {
   // Internal worker identity is never parsed from the HTTP body.
   const user = worker ? { id: worker.actorId } : (await (await createClient()).auth.getUser()).data.user;
   if (!user) return json({ error: 'Não autenticado' }, 401);
@@ -122,12 +122,31 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
   const protection: PricingProtection = await loadPricingOverrides(service, product.id).catch(() => ({ status: 'unavailable', groups: [] }));
   const groups = protection.groups.filter(g => g.state !== 'retired' && g.members.some(m => m.itemId === itemId));
   const group = groups.length === 1 ? groups[0] : null;
+  const competitionItemId = worker?.competitionItemId || (item?.catalog_listing ? itemId : null);
+  if (competitionItemId && competitionItemId !== itemId
+    && (!group || !group.members.some(member => member.itemId === competitionItemId && member.catalog))) {
+    return json({ error: 'Referência competitiva não pertence ao grupo confirmado.' }, 422);
+  }
+  let competitionItem = item;
+  if (competitionItemId && competitionItemId !== itemId) {
+    const competitionItemResult = await fetchMLResult<any>('/items/' + encodeURIComponent(competitionItemId));
+    if (!competitionItemResult.ok || !competitionItemResult.data
+      || competitionItemResult.data.id !== competitionItemId
+      || String(competitionItemResult.data.seller_id) !== sellerId
+      || competitionItemResult.data.catalog_listing !== true
+      || quoteMoney(competitionItemResult.data.price) !== currentPrice) {
+      return json({ error: 'Referência competitiva sincronizada não pôde ser confirmada.', code: 'CONCORRENCIA_ALTERADA' }, 409);
+    }
+    competitionItem = competitionItemResult.data;
+  }
   const clearanceSnapshot = input.clearance ? await loadPricingClearances(service, product) : null;
   const clearance = clearanceSnapshot?.clearances.find(c => c.id === input.clearance?.id);
-  const competitionPath = item?.catalog_listing ? '/items/' + encodeURIComponent(itemId!) + '/price_to_win?siteId=MLB&version=v2' : null;
+  const competitionPath = competitionItemId && competitionItem?.catalog_listing
+    ? '/items/' + encodeURIComponent(competitionItemId) + '/price_to_win?siteId=MLB&version=v2' : null;
   const competitionResult = competitionPath ? await fetchMLResult<any>(competitionPath) : null;
   let competitiveEvidence = competitionPath ? competitionEvidence(competitionResult?.data, {
-    itemId: itemId!, catalogProductId: context.catalogProductId, currentPriceCents: currentPrice!,
+    itemId: competitionItemId!, catalogProductId: competitionItem.catalog_product_id || context.catalogProductId,
+    currentPriceCents: currentPrice!,
   }, new Date().toISOString(), competitionResult?.ok === true) : null;
   let listingSafety: { verified: boolean; evidence: unknown[] } = { verified: false, evidence: [] };
   const pricing = await loadLiveProductPricing(service, product, context, input.priceCents ?? currentPrice, async () => {
@@ -174,7 +193,8 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     if (!verifiedListing.valid) return verifiedListing;
     if (competitiveEvidence?.condition === 'valid' && competitionPath) {
       const refreshed = await fetchMLResult<any>(competitionPath);
-      const evidence = competitionEvidence(refreshed.data, { itemId: itemId!, catalogProductId: context!.catalogProductId,
+      const evidence = competitionEvidence(refreshed.data, { itemId: competitionItemId!,
+        catalogProductId: competitionItem.catalog_product_id || context!.catalogProductId,
         currentPriceCents: currentPrice! }, new Date().toISOString(), refreshed.ok);
       if (evidence.condition !== 'valid') { competitiveEvidence = evidence; return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const; }
       if (evidence.priceCents !== competitiveEvidence.priceCents || evidence.status !== competitiveEvidence.status) {
@@ -223,12 +243,12 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     const prices = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId) + '/prices', { headers: { 'show-all-prices': 'TRUE' } });
     if (prices.ok) quantityPricing = serializeQuantityPricingTiers(extractQuantityPricingTiers(prices.data, (currentPrice ?? 0) / 100));
     else quantityPricingWarning = 'Descontos existentes indisponíveis para consulta.';
-    if (item?.catalog_listing) {
+    if (competitionItemId && competitionItem?.catalog_listing) {
       const competition = { ok: competitiveEvidence?.condition === 'valid', data: competitionResult?.data };
       const rawStatus = competition.ok ? normalizeBuyBoxStatus(competition.data) : null;
       catalog = { status: resolveCatalogCompetitionStatus({ catalogListing: true, buyBoxStatus: rawStatus }),
         rawStatus, priceToWin: competition.ok ? normalizePriceToWin(competition.data) : null,
-        currentPrice: (currentPrice ?? 0) / 100, catalogProductId: item.catalog_product_id,
+        currentPrice: (currentPrice ?? 0) / 100, catalogProductId: competitionItem.catalog_product_id,
         warning: competition.ok ? null : 'Competição indisponível; não é recomendação de preço.',
         syncedAt: competition.ok ? new Date().toISOString() : null,
         currencyId: 'BRL', consistent: typeof competition.data?.consistent === 'boolean' ? competition.data.consistent : null,
@@ -257,7 +277,8 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     clearanceState: clearanceSnapshot ? { stock: clearanceSnapshot.stock, clearances: clearanceSnapshot.clearances } : null }) : null;
   const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing, competitiveAssessment, decision);
   if (decision) await syncPricingAlerts(service, evaluationId, decision, competitiveAssessment);
-  return json({ success: true, evaluationId, decisionContext: decision, protection, mlItemId: itemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
+  return json({ success: true, evaluationId, decisionContext: decision, protection, mlItemId: itemId,
+    competitionItemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
     currentProfit: input.priceCents != null && input.priceCents !== currentPrice ? null : view.profit,
     pricing, competitiveAssessment,
     commercialConflicts: competitiveAssessment ? classifyCommercialConflicts({ economy: competitiveAssessment.assessment }) : null,

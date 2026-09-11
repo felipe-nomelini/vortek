@@ -11,7 +11,7 @@ export const pricingOverrideCommandSchema = z.object({
 });
 export type PricingOverrideCommand = z.infer<typeof pricingOverrideCommandSchema>;
 export type PricingOverrideGroup = {
-  id: string; version: number; state: string;
+  id: string; version: number; state: string; anchorItemId?: string; anchorVariationId?: string;
   members: { itemId: string; variationId: string; catalog: boolean }[];
   protection: { id: string; origin: 'manual' | 'propagated'; createdAt: string; actorId: string | null; actorName: string | null; reason: string } | null;
   inFlight: boolean;
@@ -21,7 +21,7 @@ type Client = SupabaseClient<Database>;
 
 /** Leitura própria de governança: não mistura proteção com fórmula econômica. */
 export async function loadPricingOverrides(client: Client, productId: string): Promise<PricingProtection> {
-  const { data: groups, error } = await client.from('ml_pricing_groups').select('id,current_version,state').eq('produto_id', productId);
+  const { data: groups, error } = await client.from('ml_pricing_groups').select('id,current_version,state,anchor_item_id,anchor_variation_id').eq('produto_id', productId);
   if (error || !groups) throw new Error('pricing_override_read_failed');
   if (!groups.length) return { status: 'available', groups: [] };
   const ids = groups.map(group => group.id);
@@ -38,6 +38,7 @@ export async function loadPricingOverrides(client: Client, productId: string): P
     const protection = overrideResult.data.find(row => row.group_id === group.id);
     if (group.state === 'retired' && !protection) return [];
     return [{ id: group.id, version: group.current_version, state: group.state,
+      anchorItemId: group.anchor_item_id, anchorVariationId: group.anchor_variation_id,
       members: memberResult.data.filter(row => row.group_id === group.id && row.version === group.current_version)
         .map(row => ({ itemId: row.ml_item_id, variationId: row.variation_id, catalog: row.catalog_listing })),
       protection: protection ? { id: protection.id, origin: protection.origin as 'manual' | 'propagated', createdAt: protection.created_at,

@@ -84,6 +84,17 @@ test('positivo abaixo do piso vai à revisão; prejuízo tem conflito; premium n
   assert.equal(result.overrideActive, true); assert.equal(result.competitive.memory.resultCents, 3000);
   assert.ok(result.reasons.includes('NAO_REDUZIR_POR_POSICAO_COMPETITIVA'));
 });
+test('referência de catálogo pode avaliar o anúncio de origem somente dentro do mesmo grupo verificado', () => {
+  const linked = fixture(10000, -100);
+  linked.evidence.itemId = 'MLB2';
+  linked.group.members = [
+    { itemId: 'MLB1', variationId: '', catalog: false },
+    { itemId: 'MLB2', variationId: '', catalog: true },
+  ];
+  assert.equal(domain.assessCompetitivePricing(linked).classification, 'PREJUIZO_NO_PRECO_COMPETITIVO');
+  linked.group.state = 'unverified';
+  assert.equal(domain.assessCompetitivePricing(linked).classification, 'INCONCLUSIVO');
+});
 test('liquidação exige cenário interno explícito, grupo atual e limite; diagnóstico não apaga prejuízo', () => {
   const f = fixture(10000, -100);
   f.clearance = { id: 'C1', groupId: 'G1', groupVersion: 1, state: 'active', endsAt: null,
