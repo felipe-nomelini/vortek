@@ -15,7 +15,11 @@ import {
 import { loadClaimsVisualReview, visualReviewMeta } from '@/lib/ml/claims-visual-review';
 import { createServiceClient } from '@/lib/supabase';
 import { saoPauloDayBounds } from '@/lib/timezone';
-import { fetchMLResult, getMLConnectionStatus } from '@/services/integration';
+import {
+  fetchMLResult,
+  getMLConnectionStatus,
+  type MLRequestResult,
+} from '@/services/integration';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -114,8 +118,8 @@ function buildClaimsSearchPath(
   filters: Partial<ListFilters> & { offset?: number; limit?: number; id?: string; orderId?: string; range?: string },
 ) {
   const params = new URLSearchParams({
-    'players.user_id': sellerId,
-    'players.role': 'respondent',
+    player_user_id: sellerId,
+    player_role: 'respondent',
     resource: 'order',
     offset: String(filters.offset || 0),
     limit: String(filters.limit || 1),
@@ -132,6 +136,16 @@ function buildClaimsSearchPath(
 
 async function searchClaims(path: string) {
   return fetchMLResult<ClaimSearchResponse>(path);
+}
+
+function logClaimsFailure(scope: 'list' | 'detail' | 'summary', result: MLRequestResult<unknown>) {
+  console.warn('[ml-claims] Consulta indisponível', {
+    scope,
+    status: result.status,
+    code: result.error?.code || null,
+    category: result.error?.category || null,
+    trace_id: result.error?.traceId || null,
+  });
 }
 
 function pagingTotal(response: ClaimSearchResponse | null): number {
@@ -291,6 +305,7 @@ export async function GET(request: Request) {
     ]);
     const failedList = listResults.find((result) => !result.ok);
     if (failedList && listResults.every((result) => !result.ok)) {
+      logClaimsFailure('list', failedList);
       return json({
         conectado: true,
         precisaReconectar: failedList.error?.category === 'auth_fatal',
@@ -319,7 +334,10 @@ export async function GET(request: Request) {
       const id = stringValue(claim.id);
       if (!id) return null;
       const result = await fetchMLResult<RawClaimDetail>(`/post-purchase/v1/claims/${encodeURIComponent(id)}/detail`);
-      if (!result.ok) detailFailure = true;
+      if (!result.ok) {
+        detailFailure = true;
+        logClaimsFailure('detail', result);
+      }
       return result.ok ? result.data : null;
     });
     const orderIds = pageClaims.map((claim) => stringValue(claim.resource_id)).filter((value): value is string => Boolean(value));
@@ -373,6 +391,11 @@ export async function GET(request: Request) {
     }).sort(compareClaimPriority);
 
     const summaryFailed = !openedResult.ok || !disputeResult.ok || !todayResult.ok;
+    if (summaryFailed) {
+      for (const result of [openedResult, disputeResult, todayResult]) {
+        if (!result.ok) logClaimsFailure('summary', result);
+      }
+    }
     return json({
       conectado: true,
       precisaReconectar: false,

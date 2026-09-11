@@ -2614,6 +2614,29 @@ produtivos aprovados. [Evidência, pilotos e recuperação](evidencias/BNT-ML-QU
 
 **Pendência:** nenhuma. O usuário aprovou visualmente `/reclamacoes` e autorizou ampliar Configurações mediante mapeamento e implementação por domínio.
 
+#### Correção operacional `BNT-D19-CLAIMS-QUERY` — 11/09/2026
+
+**Causa confirmada:** a fila enviava `players.user_id` e `players.role` para
+`/post-purchase/v1/claims/search`. A API produtiva ignorava esses nomes e, como
+a mesma consulta restringia `resource=order`, respondia `400` por ausência do
+par reconhecido de participante. A leitura direta, sem qualquer escrita no
+Mercado Livre, confirmou que `player_user_id` e `player_role` retornam a fila
+da conta conectada e que as reclamações existentes também possuem vínculo no
+banco Bentevi.
+
+**Correção e validação:** a listagem passou a usar o contrato aceito pela API,
+preservando vendedor, recurso, situação, tipo, etapa, busca, paginação e
+ordenação. Falha externa e fila realmente vazia permanecem estados distintos,
+e o diagnóstico do servidor registra somente status, código, categoria e
+identificador de rastreamento. Foram acrescentados testes funcionais da rota
+para o contrato de busca, filtros, paginação, buscas por reclamação e venda,
+estado vazio e rejeição externa. Passaram os 12 cenários direcionados,
+`npm run validate`, `npm run build` com Next.js `16.3.3`,
+`npm run check:build-secrets` e `git diff --check`.
+
+**Banco e integrações:** não há migration, correção de dados ou operação de
+escrita no Mercado Livre. A publicação altera somente a leitura da fila.
+
 #### Resultado técnico de `BNT-CFG-00 — Dossiê completo de parametrização`
 
 **Situação:** concluído, validado documentalmente e aprovado pelo responsável em `2026-09-04`.
