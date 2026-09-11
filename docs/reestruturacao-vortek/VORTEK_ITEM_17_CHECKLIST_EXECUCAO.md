@@ -2438,6 +2438,18 @@ promoção. Os commits funcionais `7f8d7433` e `7a1044f0` foram promovidos para
 autenticado validou a visão, o score 69 e a ausência explícita de score no
 catálogo. [Evidência, matriz e recuperação](evidencias/BNT-ML-QUALITY-01-validacao.md).
 
+**Qualidade dos anúncios com visitas e sem vendas em `2026-09-10`:** a central
+recebeu a fila `Com visitas, sem vendas`, com contador próprio, ordenação por
+visitas e o mesmo contrato no PDF. A leitura produtiva identificou 1.863
+anúncios ativos nessa condição. Seis pilotos receberam somente atributos
+técnicos comprovados: cinco aumentaram a nota (`76→78`, `61→70`, `76→78`,
+`76→78` e `70→75`) e um permaneceu em 64 apesar da ficha mais completa. Preço,
+quantidade, status e tipo de anúncio foram preservados. A reconciliação viva
+também corrigiu 573 flags locais de catálogo sem alterar anúncios remotos. O
+commit funcional `a4cc282` foi promovido para `bentevi-prod`; a action Easypanel
+`cmtwccde700fu07mf94xi9vsp` terminou como `done`, com smoke e read-back
+produtivos aprovados. [Evidência, pilotos e recuperação](evidencias/BNT-ML-QUALITY-02-validacao.md).
+
 **Rollback:** reverter `c1d0f63` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover `search_ml_listings_paginated`. Restaurar o valor anterior da chave temporária `bnt_d07_visual_review_products` apenas se for necessário retirar o enriquecimento antes da expiração da amostra. Não há ação de rollback em produção.
 
 **Pendência:** nenhuma para `BNT-D11` ou `BNT-D11-PDF`; `BNT-D12` foi liberada e executada.

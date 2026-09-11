@@ -31,6 +31,27 @@ O identificador do caminho precisa coincidir com o `dslite_id` do fornecedor.
 O feed da Vanral não foi salvo automaticamente nesta ação; deve ser cadastrado
 pela interface com a URL fornecida pelo responsável.
 
+### Qualidade com visitas e sem vendas
+
+Desde `2026-09-10`, a central possui a fila `Com visitas, sem vendas`, ordenada
+inicialmente por visitas. A sincronização deve preservar o diagnóstico completo
+de performance e, quando houver objetivo técnico pendente, consultar também a
+qualidade de catálogo para registrar domínio, adoção e atributos faltantes.
+
+Uma melhoria técnica não autoriza preço, promoção, frete, Flex, publicidade,
+vídeo ou mudança de tipo de anúncio. Antes de alterar características, releia o
+item e o User Product, confirme a especificação em fonte confiável e envie
+somente os campos comprovados. Mudanças em características compartilhadas podem
+ser propagadas ou revertidas assincronamente pelo User Product; após a escrita,
+faça read-back tardio e não dispute a fonte canônica com retries.
+
+O indicador local `catalogo` é observacional e deve acompanhar o
+`catalog_listing` vivo. Divergências históricas podem ser reconciliadas somente
+após releitura oficial do item, confirmação do seller e atualização do snapshot
+local; isso não autoriza criar vínculo de catálogo ou alterar o anúncio remoto.
+O recorte validado está registrado em
+[BNT-ML-QUALITY-02](reestruturacao-vortek/evidencias/BNT-ML-QUALITY-02-validacao.md).
+
 ## Estado da execução Bentevi DEV — 09/09/2026
 
 O PUB-GATE publicado em DEV (`9a18ff8f`) substitui a criação direta por preparação, aprovação explícita, operação/outbox, worker e conferência. O formulário de preço também encaminha proposta à central; a rota de preço bruto continua bloqueada. A capacidade nova está **desabilitada por padrão**, restrita à conta de teste/allowlist/DEV e banco `.162`. Os testes locais não substituem a prova no ML: o seller de teste está conectado/verificado, mas o aceite autenticado e a prova externa limitada ainda estão pendentes. [Contrato, evidências, rollback e pendências do marco 1](reestruturacao-vortek/evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
