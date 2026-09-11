@@ -113,6 +113,20 @@ Não houve migration nem alteração de schema.
 - `npm run check:build-secrets` aprovado;
 - `git diff --check` aprovado.
 
+Os commits funcionais `7f8d7433` e `7a1044f0` foram enviados para `dev` e
+promovidos por fast-forward para `bentevi-prod`, sem alteração de `main`. A ação
+Easypanel `cmtwas8ix00ed07mf4f3taq6d` terminou como `done`, com build aprovado,
+e o serviço `local/bentevi-prod` confirmou
+`7a1044f0c5875fd64452a7d9c28d5425b15c2d3e` na branch correta.
+
+O smoke público confirmou health e login HTTP 200, redirecionamento de
+`/anuncios` para login sem sessão e API protegida com HTTP 401. O smoke
+autenticado e somente leitura confirmou HTTP 200 na visão `Com vendas`, todas as
+100 linhas da primeira página com venda, VTK003105 com score 69 e objetivo de
+fotos concluído, e o anúncio de catálogo `MLB7044869292` com score `null`, fonte
+de catálogo e motivo explícito. Não houve erro do serviço nos dez minutos que
+abrangeram o deploy.
+
 ## Recuperação
 
 O código pode ser revertido sem alteração de banco. Para desfazer somente a

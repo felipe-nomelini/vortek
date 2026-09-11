@@ -2433,7 +2433,10 @@ comprovada, 3 dependiam de especificações ausentes e 1 recebeu correção segu
 O `VTK003105/MLB4857622801` passou de 2 para 5 fotos e de nota 65 para 69; preço
 de R$ 66,70, estoque 100 e status ativo foram preservados. O VTK017447 permaneceu
 inalterado porque seus quatro objetivos pendentes são vídeo, preço, Flex e
-promoção. [Evidência, matriz e recuperação](evidencias/BNT-ML-QUALITY-01-validacao.md).
+promoção. Os commits funcionais `7f8d7433` e `7a1044f0` foram promovidos para
+`bentevi-prod`; a ação Easypanel `cmtwas8ix00ed07mf4f3taq6d` concluiu e o smoke
+autenticado validou a visão, o score 69 e a ausência explícita de score no
+catálogo. [Evidência, matriz e recuperação](evidencias/BNT-ML-QUALITY-01-validacao.md).
 
 **Rollback:** reverter `c1d0f63` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover `search_ml_listings_paginated`. Restaurar o valor anterior da chave temporária `bnt_d07_visual_review_products` apenas se for necessário retirar o enriquecimento antes da expiração da amostra. Não há ação de rollback em produção.
 
