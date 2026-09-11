@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
 import {
@@ -46,6 +48,14 @@ const manifestationLabels: Record<number, string> = {
   1: 'Confirmação da operação', 2: 'Ciência da operação',
   3: 'Desconhecimento da operação', 4: 'Operação não realizada',
 };
+const manifestationStatusLabels: Record<string, string> = {
+  pending: 'Pendente', processing: 'Em andamento', completed: 'Concluída', success: 'Concluída',
+  failed: 'Não concluída', error: 'Não concluída', cancelled: 'Cancelada',
+};
+
+function manifestationStatusLabel(value: unknown) {
+  return manifestationStatusLabels[String(value || '').trim().toLowerCase()] || 'Situação não informada';
+}
 
 function formatDate(value: string | null) {
   if (!value) return '—';
@@ -125,7 +135,7 @@ export default function IncomingInvoicesPanel(props: { canManage: boolean }) {
       setSyncOpen(false);
       await load();
     } catch (syncError: any) {
-      messageApi.error(syncError?.message || 'Falha ao sincronizar entradas.');
+      messageApi.error(userSafeMessage(syncError?.message, 'Não foi possível atualizar as notas de entrada. Tente novamente.'));
     } finally {
       setSyncing(false);
     }
@@ -156,7 +166,7 @@ export default function IncomingInvoicesPanel(props: { canManage: boolean }) {
       setManifestTarget(null);
       await load();
     } catch (manifestError: any) {
-      messageApi.error(manifestError?.message || 'Falha ao enviar manifestação.');
+      messageApi.error(userSafeMessage(manifestError?.message, 'Não foi possível enviar a manifestação. Revise os dados e tente novamente.'));
     } finally {
       setManifesting(false);
     }
@@ -173,8 +183,8 @@ export default function IncomingInvoicesPanel(props: { canManage: boolean }) {
         <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void load()}>Atualizar</Button>
       </Space>
     </div>
-    {fixturePresent && <Alert showIcon type="info" message="Amostras protegidas de homologação" description="Documentos e eventos fiscais estão desabilitados nos registros de demonstração." />}
-    {error && <Alert showIcon type="error" message="Falha ao carregar NF-e de entrada" description={error} action={<Button size="small" onClick={() => void load()}>Tentar novamente</Button>} />}
+    {fixturePresent && <Alert showIcon type="info" message="Registros de demonstração protegidos" description="Documentos e ações fiscais estão desabilitados nesses registros." />}
+    {error && <Alert showIcon type="error" message="Não foi possível carregar as NF-e de entrada" description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')} action={<Button size="small" onClick={() => void load()}>Tentar novamente</Button>} />}
 
     <section className={styles.summary}>
       {[
@@ -202,7 +212,7 @@ export default function IncomingInvoicesPanel(props: { canManage: boolean }) {
         { title: 'Fornecedor', width: 290, render: (_, row) => <div className={styles.stack}><strong>{row.emitente_nome}</strong><span>CNPJ {row.emitente_cnpj}</span>{row.emitente_ie && <span>IE {row.emitente_ie}</span>}</div> },
         { title: 'Valor', width: 135, render: (_, row) => <div className={styles.stack}><strong>{formatCurrency(row.valor_total)}</strong>{row.valor_icms != null && <span>ICMS {formatCurrency(row.valor_icms)}</span>}</div> },
         { title: 'Estado fiscal', width: 145, render: (_, row) => fiscalStatus(row.provider_status) },
-        { title: 'Manifestação', width: 220, render: (_, row) => { const event = row.manifestacoes[0]; return event ? <div className={styles.stack}><strong>{manifestationLabels[event.tipo_manifestacao] || 'Evento fiscal'}</strong><span>{event.status.replaceAll('_', ' ')}</span><span>{formatDate(event.requested_at)}</span></div> : <Text type="secondary">Nenhuma manifestação</Text>; } },
+        { title: 'Manifestação', width: 220, render: (_, row) => { const event = row.manifestacoes[0]; return event ? <div className={styles.stack}><strong>{manifestationLabels[event.tipo_manifestacao] || 'Evento fiscal'}</strong><span>{manifestationStatusLabel(event.status)}</span><span>{formatDate(event.requested_at)}</span></div> : <Text type="secondary">Nenhuma manifestação</Text>; } },
         { title: 'Recebimento', width: 250, render: (_, row) => { const percent = row.itens_esperados ? Math.round((row.itens_conferidos / row.itens_esperados) * 100) : 0; return <div className={styles.progress}><strong>{receiptLabel(row)}</strong><Progress percent={percent} size="small" format={() => row.itens_esperados ? `${row.itens_conferidos}/${row.itens_esperados} un.` : 'Aguardando XML'} /></div>; } },
         { title: 'Ações', width: 190, fixed: 'right', render: (_, row) => {
           const protectedRow = row.is_homologation_fixture;
@@ -228,7 +238,7 @@ export default function IncomingInvoicesPanel(props: { canManage: boolean }) {
       {selected && <Tabs items={[
         { key: 'overview', label: 'Visão geral', children: <Descriptions bordered size="small" column={1}><Descriptions.Item label="Fornecedor">{selected.emitente_nome}</Descriptions.Item><Descriptions.Item label="CNPJ">{selected.emitente_cnpj}</Descriptions.Item><Descriptions.Item label="Chave">{selected.chave_nfe}</Descriptions.Item><Descriptions.Item label="Emissão">{formatDate(selected.emitida_em)}</Descriptions.Item><Descriptions.Item label="Recebida pela Brasil NFe">{formatDate(selected.recebida_em)}</Descriptions.Item><Descriptions.Item label="Valor">{formatCurrency(selected.valor_total)}</Descriptions.Item><Descriptions.Item label="CFOPs">{selected.cfops || '—'}</Descriptions.Item><Descriptions.Item label="Estado fiscal">{fiscalStatus(selected.provider_status)}</Descriptions.Item><Descriptions.Item label="Recebimento">{receiptLabel(selected)}</Descriptions.Item></Descriptions> },
         { key: 'items', label: `Itens (${selected.itens.length})`, children: selected.itens.length ? <Table rowKey="id" size="small" pagination={false} dataSource={selected.itens} columns={[{ title: 'Item', render: (_, item) => <div className={styles.stack}><strong>{item.descricao}</strong><span>Cód. fornecedor {item.codigo_fornecedor || '—'} · GTIN {item.gtin || '—'}</span></div> }, { title: 'Produto Bentevi', render: (_, item) => item.produtos ? `${item.produtos.sku} · ${item.produtos.nome}` : <Text type="warning">Mapeamento pendente</Text> }, { title: 'Conferência', width: 150, render: (_, item) => `${item.quantidade_liberada + item.quantidade_nao_aproveitavel}/${item.quantidade_esperada} un.` }]} /> : <Empty description="O XML ainda não foi importado" /> },
-        { key: 'documents', label: 'Documentos e eventos', children: <Space direction="vertical" size={18} style={{ width: '100%' }}><Space><Button icon={<DownloadOutlined />} disabled={selected.is_homologation_fixture} href={`/api/notas-fiscais/entradas/${selected.id}/xml`} target="_blank">Baixar XML</Button><Button icon={<DownloadOutlined />} disabled={selected.is_homologation_fixture} href={`/api/notas-fiscais/entradas/${selected.id}/pdf`} target="_blank">Abrir DANFE</Button></Space>{selected.manifestacoes.length ? <Timeline items={selected.manifestacoes.map((event) => ({ children: <div><strong>{manifestationLabels[event.tipo_manifestacao]}</strong><br /><Text type="secondary">{event.status.replaceAll('_', ' ')} · {formatDate(event.requested_at)}</Text>{event.motivo && <><br /><Text type="secondary">{event.motivo}</Text></>}</div> }))} /> : <Empty description="Nenhum evento fiscal registrado" />}</Space> },
+        { key: 'documents', label: 'Documentos e eventos', children: <Space direction="vertical" size={18} style={{ width: '100%' }}><Space><Button icon={<DownloadOutlined />} disabled={selected.is_homologation_fixture} href={`/api/notas-fiscais/entradas/${selected.id}/xml`} target="_blank">Baixar XML</Button><Button icon={<DownloadOutlined />} disabled={selected.is_homologation_fixture} href={`/api/notas-fiscais/entradas/${selected.id}/pdf`} target="_blank">Abrir DANFE</Button></Space>{selected.manifestacoes.length ? <Timeline items={selected.manifestacoes.map((event) => ({ children: <div><strong>{manifestationLabels[event.tipo_manifestacao] || 'Evento fiscal'}</strong><br /><Text type="secondary">{manifestationStatusLabel(event.status)} · {formatDate(event.requested_at)}</Text>{event.motivo && <><br /><Text type="secondary">{userSafeMessage(event.motivo, 'O documento precisa de atenção.')}</Text></>}</div> }))} /> : <Empty description="Nenhum evento fiscal registrado" />}</Space> },
       ]} />}
     </Drawer>
 

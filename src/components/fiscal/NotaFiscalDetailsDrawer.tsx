@@ -236,7 +236,7 @@ export default function NotaFiscalDetailsDrawer({
         <Alert
           type="info"
           showIcon
-          message="Amostra real protegida para homologação"
+          message="Registro de demonstração protegido"
           description="Documentos e ações externas estão desabilitados neste registro."
         />
       )}

@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert,
@@ -321,7 +323,7 @@ export default function ReputacaoPage() {
     return (
       <div className={styles.page}>
         <PageHeader data={null} refreshing={refreshing} onRefresh={() => void load()} />
-        <Alert type="error" showIcon message="Reputação indisponível" description={error} />
+        <Alert type="error" showIcon message="Reputação indisponível" description={userSafeMessage(error, 'Não foi possível carregar a reputação. Tente novamente.')} />
       </div>
     );
   }
@@ -364,14 +366,14 @@ export default function ReputacaoPage() {
         <Alert
           type="info"
           showIcon
-          message="Amostra visual protegida de homologação"
+          message="Dados de demonstração protegidos"
           description={`Dados sintéticos baseados no contrato oficial do Mercado Livre. Expira em ${formatDateTime(data.visual_review.expires_at)}.`}
           className={styles.reviewAlert}
         />
       )}
 
       {error && (
-        <Alert type="warning" showIcon message="A atualização falhou" description={error} closable />
+        <Alert type="warning" showIcon message="Não foi possível atualizar a reputação" description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')} closable />
       )}
 
       <section className={styles.reputationHero}>

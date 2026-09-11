@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Alert,
@@ -30,6 +32,7 @@ import ResizableTable from '@/components/ResizableTable';
 import {
   claimActionLabel,
   claimRoleLabel,
+  claimStatusLabel,
   type ClaimDetailResponse,
   type ClaimListItem,
   type ClaimPriority,
@@ -235,8 +238,8 @@ export default function ReclamacoesPage() {
     const statuses = detail.status_history.map((entry, index) => ({
       key: `status-${index}`,
       date: entry.date,
-      title: `Estado alterado para ${entry.status || 'não informado'}`,
-      detail: [entry.stage, entry.change_by ? `por ${claimRoleLabel(entry.change_by)}` : null].filter(Boolean).join(' · '),
+      title: 'Situação da reclamação atualizada',
+      detail: [claimStatusLabel(entry.status), entry.change_by ? `por ${claimRoleLabel(entry.change_by)}` : null].filter(Boolean).join(' · '),
     }));
     return [...actions, ...statuses].sort((left, right) => Date.parse(right.date || '') - Date.parse(left.date || ''));
   }, [detail]);
@@ -291,7 +294,7 @@ export default function ReclamacoesPage() {
     {data?.visual_review && <Alert
       type="info"
       showIcon
-      message="Amostra sintética protegida para homologação"
+      message="Dados de demonstração protegidos"
       description={`Os casos representam contratos oficiais do Mercado Livre e não executam ações externas. Amostra válida até ${formatDateTime(data.visual_review.expires_at)}.`}
     />}
 
@@ -299,7 +302,7 @@ export default function ReclamacoesPage() {
       type="error"
       showIcon
       message="Não foi possível atualizar as reclamações"
-      description={`${error}${data?.items.length ? ' Os dados anteriores foram preservados.' : ''}`}
+      description={`${userSafeMessage(error, 'Não foi possível atualizar as reclamações.')}${data?.items.length ? ' Os dados anteriores foram preservados.' : ' Tente novamente.'}`}
       action={<Button size="small" onClick={() => void load()}>Tentar novamente</Button>}
     />}
 
@@ -313,7 +316,7 @@ export default function ReclamacoesPage() {
     {data && (!data.conectado || data.precisaReconectar) ? <section className={styles.emptyState}>
       <MessageOutlined />
       <h2>Mercado Livre desconectado</h2>
-      <p>{data.erro || 'Reconecte a conta para consultar as reclamações.'}</p>
+      <p>{userSafeMessage(data.erro, 'Reconecte a conta para consultar as reclamações.')}</p>
       <Button type="primary" href="/api/integracao/ml/connect">Conectar Mercado Livre</Button>
     </section> : <>
       <section className={styles.summaryBand} aria-label="Resumo de reclamações">
@@ -431,7 +434,7 @@ export default function ReclamacoesPage() {
               ]} />
               <article className={styles.detailBlock}>
                 <h3>Motivo informado</h3>
-                <strong>{detail.reason?.name || detail.claim.problem || detail.claim.detail_title || 'Não informado'}</strong>
+                <strong>{detail.reason?.name || detail.claim.problem || detail.claim.detail_title || 'Motivo não informado'}</strong>
                 <Paragraph>{detail.reason?.detail || detail.claim.detail_description || 'Sem descrição adicional.'}</Paragraph>
               </article>
               <article className={styles.detailBlock}>

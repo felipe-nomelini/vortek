@@ -108,6 +108,7 @@ test('amostra visual é sintética, temporária e bloqueia identificadores reais
   assert.match(visualReview, /\/\^9900\\d/);
   assert.match(visualReview, /\/\^2900\\d/);
   assert.match(visualReview, /customer_name\.startsWith\('Cliente homologação'\)/);
-  assert.match(page, /Amostra sintética protegida para homologação/);
+  assert.match(page, /Dados de demonstração protegidos/);
+  assert.doesNotMatch(page, /Amostra sintética protegida para homologação/);
   assert.match(page, /disabled=\{activeClaim\.is_homologation_fixture\}/);
 });

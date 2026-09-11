@@ -4001,3 +4001,24 @@ O lote visual `e036397` foi publicado em DEV pela ação Easypanel `cmts65gr7000
 - [ ] executar um único canário autenticado e conferir o estado terminal/read-back antes de qualquer segunda alteração.
 
 [Evidências, testes, deploy, preflight e recuperação](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
+
+### BNT-CATALOG-UX-01 — 11/09/2026
+
+**Estado: IMPLEMENTADO E VALIDADO PARA PROMOÇÃO ÚNICA.**
+
+- [x] corrigir a projeção do recurso em lote do Mercado Livre, preservando os
+  identificadores de cada resposta e o limite de 20 anúncios por consulta;
+- [x] repetir falhas pontuais até três vezes e preservar a fotografia anterior
+  quando um anúncio continuar indisponível;
+- [x] retirar a contagem duplicada que transformava 7.017 falhas em 14.034
+  avisos;
+- [x] distinguir visualmente conclusão, pendências e falha total sem exibir o
+  estado interno ao usuário;
+- [x] aplicar uma barreira compartilhada contra mensagens técnicas nas páginas
+  e componentes web, preservando identificadores comerciais úteis;
+- [x] aprovar 33 testes direcionados, a regressão completa com 1.385 cenários,
+  lint, TypeScript, build, verificação de secrets e `git diff --check`;
+- [x] confirmar que não há migration nem escrita em anúncios, preços ou estados
+  do Mercado Livre nesta ação.
+
+[Causa, contrato, validação e recuperação](evidencias/BNT-CATALOG-UX-01-validacao.md).

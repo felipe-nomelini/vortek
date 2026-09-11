@@ -86,6 +86,7 @@ function render(state, disabled = false) {
   const Component = load('src/components/products/PricingClearanceControl.tsx', {
     react: { ...React, useState: initial => [index++ === 0 ? state : initial, () => {}], useEffect: () => {}, useCallback: fn => fn, useRef: initial => ({ current: initial }) },
     'react/jsx-runtime': require('react/jsx-runtime'), antd: require('antd'),
+    '@/lib/user-feedback': require('../src/lib/user-feedback.ts'),
   }).default;
   return require('react-dom/server').renderToStaticMarkup(React.createElement(Component, { productId: id, disabled }));
 }

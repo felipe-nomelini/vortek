@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useEffect, useMemo, useState } from "react";
 import { Alert, Drawer, Empty, Segmented, Spin, Tag } from "antd";
 import type {
@@ -83,7 +85,7 @@ export default function NotificationTemplateGallery({
     setError(null);
     void loadTemplates()
       .then(setTemplates)
-      .catch((reason) => setError(reason instanceof Error ? reason.message : "Falha ao carregar os modelos"))
+      .catch((reason) => setError(userSafeMessage(reason instanceof Error ? reason.message : "", "Não foi possível carregar os modelos. Tente novamente.")))
       .finally(() => setLoading(false));
   }, [open, templates.length]);
 
@@ -101,8 +103,8 @@ export default function NotificationTemplateGallery({
       <Alert
         type="info"
         showIcon
-        message="Amostras de homologação"
-        description="Os modelos usam dados sintéticos e não enviam mensagens ao serem visualizados."
+        message="Pré-visualização segura"
+        description="Os modelos usam dados de exemplo e não enviam mensagens ao serem visualizados."
       />
       <Segmented
         block

@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import {
@@ -236,9 +238,9 @@ export default function PedidoDetailsDrawer({
               ? (order.operational_invoice_numbers || []).join(', ')
               : order.notaFiscal?.numero || 'Não emitida'}
           </Descriptions.Item>
-          <Descriptions.Item label="Status NFe">{formatStatus(order.nfe_status)}</Descriptions.Item>
-          <Descriptions.Item label="Chave NFe" span={2}>{order.nfe_chave || '—'}</Descriptions.Item>
-          <Descriptions.Item label="Shipment ML">{order.ml_shipment_id || '—'}</Descriptions.Item>
+          <Descriptions.Item label="Situação da NF-e">{formatStatus(order.nfe_status)}</Descriptions.Item>
+          <Descriptions.Item label="Chave da NF-e" span={2}>{order.nfe_chave || '—'}</Descriptions.Item>
+          <Descriptions.Item label="Código do envio ML">{order.ml_shipment_id || '—'}</Descriptions.Item>
           <Descriptions.Item label="Código de rastreio">{order.rastreio || '—'}</Descriptions.Item>
           <Descriptions.Item label="Mercado Livre" span={2}>
             {order.is_homologation_fixture
@@ -301,10 +303,10 @@ export default function PedidoDetailsDrawer({
           <Alert type="warning" showIcon message="Fluxo dividido" description="Esta venda reúne mais de um pedido, compra ou documento fiscal. Os vínculos abaixo são exibidos separadamente." />
         )}
         {order?.is_homologation_fixture && (
-          <Alert type="info" showIcon message="Amostra protegida de homologação" description="Os dados são baseados em vendas reais, mas ações externas, etiquetas e documentos fiscais estão desabilitados." />
+          <Alert type="info" showIcon message="Registro de demonstração protegido" description="Os dados podem ser consultados, mas ações externas, etiquetas e documentos fiscais estão desabilitados." />
         )}
         {error && (
-          <Alert type="error" showIcon message="Não foi possível carregar o detalhe completo" description={error} action={<Button size="small" onClick={onRetry}>Tentar novamente</Button>} />
+          <Alert type="error" showIcon message="Não foi possível carregar o detalhe completo" description={userSafeMessage(error, 'Os dados da lista foram preservados. Tente novamente.')} action={<Button size="small" onClick={onRetry}>Tentar novamente</Button>} />
         )}
         {loading && !detail ? <Skeleton active paragraph={{ rows: 10 }} /> : null}
         {order && detail ? (
@@ -342,9 +344,9 @@ export default function PedidoDetailsDrawer({
                     orderStatus={order.situacao.valor}
                     enabled={canTrack && Boolean(order.ml_shipment_id) && !order.is_homologation_fixture}
                     disabledReason={order.is_homologation_fixture
-                      ? 'A consulta ao Mercado Livre está desabilitada para a amostra protegida de homologação.'
+                      ? 'A consulta ao Mercado Livre não está disponível para este registro de demonstração.'
                       : !order.ml_shipment_id
-                        ? 'Esta venda ainda não possui um shipment do Mercado Livre.'
+                        ? 'Esta venda ainda não possui um código de envio do Mercado Livre.'
                         : 'Seu perfil não possui permissão para acompanhar esta entrega.'}
                   />
                 ),

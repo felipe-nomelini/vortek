@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Modal } from 'antd';
 import type { MessageInstance } from 'antd/es/message/interface';
@@ -46,7 +48,7 @@ interface UsePedidosDsliteFlowOptions {
 
 function initDsliteOrderSteps(): ProgressStep[] {
   return [
-    { label: 'Sincronizando pedido no Mercado Livre', status: 'loading', detail: 'Atualizando snapshot fiscal e itens do pedido' },
+    { label: 'Atualizando a venda no Mercado Livre', status: 'loading', detail: 'Conferindo dados fiscais e itens da venda' },
     { label: 'Emitindo NF na Brasil NFe', status: 'pending' },
     { label: 'Aguardando autorização da NF', status: 'pending' },
     { label: 'Baixando XML da NF na Brasil NFe', status: 'pending' },
@@ -117,14 +119,14 @@ export function usePedidosDsliteFlow({
     const res = await fetch(`/api/dslite/pedido/status?jobId=${encodeURIComponent(jobId)}`);
     const data = await res.json();
     if (!res.ok || !data?.success) {
-      throw new Error(data?.error || 'Falha ao consultar status do job DSLite');
+      throw new Error(userSafeMessage(data?.error, 'Não foi possível acompanhar a criação da compra na DSLite.'));
     }
 
     const mapped: ProgressStep[] = (data.steps || []).map((step: any) => ({
       label: step.label,
       status: step.status,
-      detail: step.detail,
-      error: step.error,
+      detail: userSafeMessage(step.detail, 'Etapa atualizada.'),
+      error: step.error ? userSafeMessage(step.error, 'Não foi possível concluir esta etapa.') : undefined,
     }));
     if (mapped.length) setSteps(mapped);
 
@@ -136,7 +138,7 @@ export function usePedidosDsliteFlow({
             const updated = [...previous];
             const firstPending = updated.findIndex((step) => step.status === 'pending' || step.status === 'loading');
             const index = firstPending >= 0 ? firstPending : updated.length - 1;
-            updated[index] = { ...updated[index], status: 'error', error: error.message || 'Erro ao acompanhar job' };
+            updated[index] = { ...updated[index], status: 'error', error: userSafeMessage(error.message, 'Não foi possível acompanhar a criação da compra.') };
             return updated;
           });
         });
@@ -194,7 +196,7 @@ export function usePedidosDsliteFlow({
         if (index === -1) {
           const fallback = updated.findIndex((step) => step.status === 'loading');
           const position = fallback >= 0 ? fallback : updated.length - 1;
-          updated[position] = { ...updated[position], status: 'error', error: data.data?.error || 'Falha ao criar pedido DSLite' };
+          updated[position] = { ...updated[position], status: 'error', error: userSafeMessage(data.data?.error, 'Não foi possível criar a compra na DSLite.') };
         }
         return updated;
       });
@@ -232,7 +234,7 @@ export function usePedidosDsliteFlow({
         const updated = [...previous];
         const firstPending = updated.findIndex((step) => step.status === 'pending' || step.status === 'loading');
         const index = firstPending >= 0 ? firstPending : updated.length - 1;
-        updated[index] = { label: updated[index].label, status: 'error', error: error.message };
+        updated[index] = { label: updated[index].label, status: 'error', error: userSafeMessage(error.message, 'Não foi possível concluir esta etapa.') };
         return updated;
       });
     }
@@ -322,7 +324,7 @@ export function usePedidosDsliteFlow({
         messageApi.success('PIX confirmado. Fluxo DSLite retomado.');
         await pollDsliteJob(String(json.jobId), paymentPrompt.order);
       } else if (paymentPrompt.resumeAfterConfirm && json.resume?.error) {
-        messageApi.warning(`PIX confirmado, mas o fluxo não foi retomado: ${json.resume.error}`);
+        messageApi.warning(userSafeMessage(json.resume.error, 'O PIX foi confirmado, mas a criação da compra ainda precisa ser retomada.'));
         void refreshOrders();
       } else {
         const whatsappDetail = json.whatsapp?.sent
@@ -332,7 +334,7 @@ export function usePedidosDsliteFlow({
         void refreshOrders();
       }
     } catch (error: any) {
-      messageApi.error(error?.message || 'Erro ao confirmar PIX');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível confirmar o PIX. Tente novamente.'));
     } finally {
       setConfirmingPayment(false);
     }
@@ -368,10 +370,10 @@ export function usePedidosDsliteFlow({
 
       closeShippingModal();
       setProgressOpen(false);
-      messageApi.success(data?.data?.message || 'Frete selecionado na DSLite.');
+      messageApi.success(userSafeMessage(data?.data?.message, 'Frete selecionado na DSLite.'));
       void refreshOrders();
     } catch (error: any) {
-      messageApi.error(error?.message || 'Erro ao selecionar frete na DSLite.');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível selecionar o frete na DSLite. Tente novamente.'));
     } finally {
       setConfirmingShipping(false);
     }
@@ -407,7 +409,7 @@ export function usePedidosDsliteFlow({
           });
           messageApi.success('Vínculo local com DSLite removido com sucesso');
         } catch (error: any) {
-          messageApi.error(error?.message || 'Erro ao desvincular compra DSLite');
+          messageApi.error(userSafeMessage(error?.message, 'Não foi possível desvincular a compra da DSLite. Tente novamente.'));
         }
       },
     });

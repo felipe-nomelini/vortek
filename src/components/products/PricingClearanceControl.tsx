@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, Button, Checkbox, Empty, Input, InputNumber, Modal, Select, Space, Spin, Typography } from 'antd';
 import type { PricingClearanceCommand, PricingClearance, loadPricingClearances } from '@/services/pricing-clearances';
@@ -66,7 +68,7 @@ export default function PricingClearanceControl({ productId, disabled }: { produ
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Falha no registro');
       setChoice(null); setCommand(null); await load();
-    } catch (failure) { setSaveError(failure instanceof Error ? failure.message : 'Resultado desconhecido. Consulte novamente.'); await load(); }
+    } catch (failure) { setSaveError(userSafeMessage(failure instanceof Error ? failure.message : '', 'Não foi possível registrar a liquidação. Consulte novamente antes de repetir.')); await load(); }
     finally { setSaving(false); }
   }
   async function history(id: string, before?: string) {
@@ -101,9 +103,9 @@ export default function PricingClearanceControl({ productId, disabled }: { produ
       {!state.groups.length && <Typography.Text type="warning">Nenhum grupo comprovado disponível. Valide o vínculo dos anúncios.</Typography.Text>}
       {state.clearances.length ? state.clearances.map(row => <div key={row.id} style={{ borderLeft: '3px solid var(--bentevi-primary)', paddingLeft: 12 }}>
         <Space direction="vertical" size={4} style={{ width: '100%' }}>
-          <Typography.Text strong>{names[row.state]} · {row.available}/{row.quantity} unidade(s) disponível(is)</Typography.Text>
+          <Typography.Text strong>{names[row.state] || 'Situação não informada'} · {row.available}/{row.quantity} unidade(s) disponível(is)</Typography.Text>
           <Typography.Text>Perda máxima: {money(row.maxLossCents)}/un. · exposição total autorizada: {money(row.quantity * row.maxLossCents)}</Typography.Text>
-          <Typography.Text>{row.reason}</Typography.Text>
+          <Typography.Text>{userSafeMessage(row.reason, 'Motivo registrado pelo responsável.')}</Typography.Text>
           <Typography.Text type="secondary">{row.actorName || 'Responsável registrado'} · {new Date(row.startsAt).toLocaleString('pt-BR')} · {row.endsAt ? `Até ${new Date(row.endsAt).toLocaleString('pt-BR')}` : 'Até revogação manual'}</Typography.Text>
           <Typography.Text type="secondary">{row.groups.map(g => state.groups.find(p => p.id === g.id)?.members.map(m => m.itemId).join(' / ') || `Grupo ${g.id}`).join(' · ')} — quantidade compartilhada, não somar por anúncio.</Typography.Text>
           {row.groups.some(g => g.conflict || g.state !== 'verified') && <Typography.Text type="warning">Vínculo pendente ou conflito de autorizações: aplicação bloqueada.</Typography.Text>}
@@ -135,7 +137,7 @@ export default function PricingClearanceControl({ productId, disabled }: { produ
       </Space>
     </Modal>
     <Modal title="Histórico da liquidação" open={Boolean(historyId)} footer={null} destroyOnHidden onCancel={() => { historyGeneration.current++; setHistoryId(null); }}>
-      <Space direction="vertical" size="middle" style={{ width: '100%' }}>{events.map(event => <div key={event.id}><Typography.Text strong>{names[event.kind] || event.kind}</Typography.Text><br />{event.reason}<br /><Typography.Text type="secondary">{new Date(event.created_at).toLocaleString('pt-BR')}</Typography.Text></div>)}
+      <Space direction="vertical" size="middle" style={{ width: '100%' }}>{events.map(event => <div key={event.id}><Typography.Text strong>{names[event.kind] || 'Atualização registrada'}</Typography.Text><br />{userSafeMessage(event.reason, 'Alteração registrada pelo responsável.')}<br /><Typography.Text type="secondary">{new Date(event.created_at).toLocaleString('pt-BR')}</Typography.Text></div>)}
         {historyError && <Alert type="warning" message="Histórico indisponível" />}{historyLoading && <Spin />}
         {cursor && historyId && <Button disabled={historyLoading} onClick={() => void history(historyId, cursor)}>Carregar anteriores</Button>}
       </Space>

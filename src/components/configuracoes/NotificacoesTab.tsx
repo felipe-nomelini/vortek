@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 import {
@@ -104,7 +106,7 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
       setPushPolicies(dto.pushPolicies);
       setWhatsappRecipients(dto.whatsappRecipients);
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : "Falha ao carregar notificações");
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : "", "Não foi possível carregar as notificações. Tente novamente."));
     } finally {
       setLoading(false);
     }
@@ -179,7 +181,7 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
       }));
       messageApi.success(channel === "email" ? "Conexão SMTP validada" : `Teste de ${channel === "push" ? "Push" : "WhatsApp"} concluído`);
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : "Falha ao testar canal");
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : "", "Não foi possível testar este canal. Confira os dados e tente novamente."));
     } finally {
       setTesting(null);
     }
@@ -207,7 +209,7 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
       setWhatsappRecipients(dto.whatsappRecipients);
       messageApi.success("Configuração de notificações salva");
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : "Falha ao salvar notificações");
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : "", "Não foi possível salvar as notificações. Tente novamente."));
     } finally {
       setSaving(false);
     }
@@ -267,7 +269,7 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
             <div className={styles.channelDescription}>Alertas internos para os dispositivos que cada usuário autorizou.</div>
             <div className={styles.channelMeta}><span>{data?.channels.push.subscriptions || 0} dispositivo(s)</span><span>{data?.channels.push.subscribedUsers || 0} usuário(s)</span></div>
             <div className={styles.channelActions}>
-              <Button icon={<MobileOutlined />} disabled={!data?.channels.push.configured} onClick={() => void configureBrowser(!browserSubscribed).catch((error) => messageApi.error(error.message))}>{browserSubscribed ? "Desativar neste navegador" : "Ativar neste navegador"}</Button>
+              <Button icon={<MobileOutlined />} disabled={!data?.channels.push.configured} onClick={() => void configureBrowser(!browserSubscribed).catch((error) => messageApi.error(userSafeMessage(error.message, "Não foi possível alterar as notificações deste navegador.")))}>{browserSubscribed ? "Desativar neste navegador" : "Ativar neste navegador"}</Button>
               <Button icon={<SendOutlined />} disabled={!browserSubscribed} loading={testing === "push"} onClick={() => void testChannel("push")}>Testar</Button>
             </div>
           </article>

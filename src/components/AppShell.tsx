@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ApiOutlined,
@@ -296,7 +298,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <Text>{integration.label}</Text>
               </Space>
               <Text type="secondary" style={{ fontSize: 12 }}>
-                {integration.status}
+                {userSafeMessage(integration.status, 'Atenção necessária')}
               </Text>
             </Flex>
           ))}

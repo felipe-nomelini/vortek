@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -297,7 +299,7 @@ export default function ClientesPage() {
           type="error"
           showIcon
           message="Não foi possível carregar os clientes"
-          description={error}
+          description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')}
           action={<Button size="small" onClick={() => void fetchClients()}>Tentar novamente</Button>}
         />
       )}

@@ -158,8 +158,8 @@ export default function CompraDetailsDrawer({
 
       <Descriptions title="Relação com a venda" size="small" bordered column={{ xs: 1, sm: 2 }}>
         <Descriptions.Item label="Pack ML">{purchase.pedido_ml_pack_id ? `#${purchase.pedido_ml_pack_id}` : '—'}</Descriptions.Item>
-        <Descriptions.Item label="Venda / Order ML">{purchase.pedido_ml_order_id ? `#${purchase.pedido_ml_order_id}` : '—'}</Descriptions.Item>
-        <Descriptions.Item label="Número interno Vortek">{purchase.pedido_vendas_numero ? `#${purchase.pedido_vendas_numero}` : '—'}</Descriptions.Item>
+        <Descriptions.Item label="Venda no Mercado Livre">{purchase.pedido_ml_order_id ? `#${purchase.pedido_ml_order_id}` : '—'}</Descriptions.Item>
+        <Descriptions.Item label="Número interno Bentevi">{purchase.pedido_vendas_numero ? `#${purchase.pedido_vendas_numero}` : '—'}</Descriptions.Item>
         <Descriptions.Item label="Compra criada em">{formatDateTime(purchase.data_criacao)}</Descriptions.Item>
         <Descriptions.Item label="Destinatário">{purchase.destinatario_nome || '—'}</Descriptions.Item>
         <Descriptions.Item label="Documento">{purchase.destinatario_documento || '—'}</Descriptions.Item>
@@ -198,7 +198,7 @@ export default function CompraDetailsDrawer({
         <Descriptions.Item label="Fornecedor">
           {purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}
         </Descriptions.Item>
-        <Descriptions.Item label="Venda (Vortek)">{formatCurrency(purchase.valor_total || 0)}</Descriptions.Item>
+        <Descriptions.Item label="Venda (Bentevi)">{formatCurrency(purchase.valor_total || 0)}</Descriptions.Item>
         <Descriptions.Item label="Frete da compra">{formatCurrency(purchase.valor_frete || 0)}</Descriptions.Item>
       </Descriptions>
     </Space>
@@ -210,7 +210,7 @@ export default function CompraDetailsDrawer({
         <Alert
           type="info"
           showIcon
-          message="O Vortek não realiza a transferência"
+          message="A Bentevi não realiza a transferência"
           description="Faça o PIX no banco e use esta tela apenas para registrar o pagamento e anexar o comprovante."
         />
       )}
@@ -231,7 +231,7 @@ export default function CompraDetailsDrawer({
       )}
       <Descriptions size="small" bordered column={{ xs: 1, sm: 2 }}>
         <Descriptions.Item label="Modalidade">{paymentModeLabel(purchase.supplier_payment_mode)}</Descriptions.Item>
-        <Descriptions.Item label="Situação no Vortek">{paymentStatusTag(purchase.supplier_payment_status)}</Descriptions.Item>
+        <Descriptions.Item label="Situação na Bentevi">{paymentStatusTag(purchase.supplier_payment_status)}</Descriptions.Item>
         <Descriptions.Item label="Valor do fornecedor">
           {purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}
         </Descriptions.Item>
@@ -254,7 +254,7 @@ export default function CompraDetailsDrawer({
         <Descriptions.Item label="Código de rastreio" span={2}>{purchase.rastreio || '—'}</Descriptions.Item>
       </Descriptions>
 
-      <Descriptions title="Venda / Vortek-Brasil NFe" size="small" bordered column={{ xs: 1, sm: 2 }}>
+      <Descriptions title="Venda / Bentevi-Brasil NFe" size="small" bordered column={{ xs: 1, sm: 2 }}>
         <Descriptions.Item label="Estado fiscal">{formatStatus(purchase.pedido_nfe_status)}</Descriptions.Item>
         <Descriptions.Item label="DANFE">{purchase.pedido_nota_fiscal_emitida ? 'Disponível' : 'Não disponível'}</Descriptions.Item>
       </Descriptions>
@@ -291,7 +291,7 @@ export default function CompraDetailsDrawer({
         <div>
           <Space size={8} wrap>
             <Text strong>Compra DSLite #{purchase.dsid}</Text>
-            <Tag color="gold">{purchase.status || 'Sem status'}</Tag>
+            <Tag color="gold">{formatStatus(purchase.status)}</Tag>
           </Space>
           <Text type="secondary" style={{ display: 'block', marginTop: 3, fontSize: 12 }}>
             {formatDateTime(purchase.data_criacao)}
@@ -308,7 +308,7 @@ export default function CompraDetailsDrawer({
         <Alert
           type="info"
           showIcon
-          message="Amostra real protegida para homologação"
+          message="Registro de demonstração protegido"
           description="Documentos e ações externas estão desabilitados para este registro."
           style={{ marginBottom: 16 }}
         />

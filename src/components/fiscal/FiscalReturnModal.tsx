@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert, Button, Descriptions, Input, InputNumber, Modal, Radio, Select,
@@ -90,7 +92,7 @@ export default function FiscalReturnModal({ open, onClose, onCreated }: Props) {
         if (!response.ok) throw new Error(payload.error || payload.erro || 'Falha ao carregar as vendas');
         setSales((payload.data || []).filter((row: SaleOption) => !row.is_homologation_fixture));
       })
-      .catch((error) => messageApi.error(error instanceof Error ? error.message : 'Falha ao carregar as vendas'))
+      .catch((error) => messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível carregar as vendas. Tente novamente.')))
       .finally(() => setLoadingSales(false));
   }, [messageApi, open, reset]);
 
@@ -107,7 +109,7 @@ export default function FiscalReturnModal({ open, onClose, onCreated }: Props) {
       setOrigin(nextOrigin);
       setQuantities(Object.fromEntries(nextOrigin.itens.map((item) => [item.id, 0])));
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Falha ao carregar a venda');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível carregar a venda. Tente novamente.'));
     } finally {
       setLoadingOrigin(false);
     }
@@ -177,7 +179,7 @@ export default function FiscalReturnModal({ open, onClose, onCreated }: Props) {
       await onCreated();
       onClose();
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Falha ao emitir a nota de retorno');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível emitir a nota de retorno. Revise os dados e tente novamente.'));
     } finally {
       setSubmitting(false);
     }

@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
@@ -306,7 +308,7 @@ export default function DashboardPage() {
           type="error"
           showIcon
           message="Dashboard indisponível"
-          description={`${error}${dashboard ? ' Os últimos dados carregados foram preservados.' : ''}`}
+          description={`${userSafeMessage(error, 'Não foi possível atualizar o painel.')}${dashboard ? ' Os últimos dados carregados foram preservados.' : ' Tente novamente.'}`}
           action={<Button size="small" onClick={() => void fetchDashboard(preset)}>Tentar novamente</Button>}
         />
       )}
@@ -539,7 +541,7 @@ export default function DashboardPage() {
                           </span>
                         </div>
                         <div className={styles.saleMeta}>
-                          <Tag color={statusColors[order.status] || 'default'}>{statusLabels[order.status] || order.status}</Tag>
+                          <Tag color={statusColors[order.status] || 'default'}>{statusLabels[order.status] || 'Situação não informada'}</Tag>
                           <span>{order.date ? dayjs(order.date).format('DD/MM · HH:mm') : '—'}</span>
                         </div>
                         <ArrowRightOutlined />

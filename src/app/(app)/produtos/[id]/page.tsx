@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import LivePricingQuote from '@/components/products/LivePricingQuote';
 import PricingOverrideControl from '@/components/products/PricingOverrideControl';
 import PricingClearanceControl from '@/components/products/PricingClearanceControl';
@@ -230,11 +232,11 @@ export default function ProductDetailPage() {
       });
       const json = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(json.error || 'Erro ao salvar produto');
-      if (json.warning) message.warning(json.warning);
+      if (json.warning) message.warning(userSafeMessage(json.warning, 'O produto foi salvo, mas uma atualização ficou pendente.'));
       else if (json.queued_publish) message.success('Produto salvo e atualização do Mercado Livre enfileirada.');
       else message.success('Produto salvo com sucesso.');
       setIsEditing(false); await fetchDetail();
-    } catch (saveError: any) { message.error(saveError?.message || 'Erro ao salvar produto'); }
+    } catch (saveError: any) { message.error(userSafeMessage(saveError?.message, 'Não foi possível salvar o produto. Tente novamente.')); }
     finally { setSaving(false); }
   };
 
@@ -262,7 +264,7 @@ export default function ProductDetailPage() {
       if (!response.ok) throw new Error(json.error || 'Erro ao alterar fornecedor preferencial');
       message.success(automatic ? 'Seleção automática por menor custo ativada.' : 'Fornecedor preferencial definido manualmente.');
       await fetchDetail();
-    } catch (supplierError: any) { message.error(supplierError?.message || 'Erro ao alterar fornecedor preferencial'); }
+    } catch (supplierError: any) { message.error(userSafeMessage(supplierError?.message, 'Não foi possível alterar o fornecedor preferencial. Tente novamente.')); }
     finally { setSavingSupplier(false); }
   };
 

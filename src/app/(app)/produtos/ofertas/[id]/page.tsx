@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
@@ -149,6 +151,14 @@ function displayValue(value: unknown) {
   return normalized || 'Não informado';
 }
 
+function dsliteStatusLabel(status: unknown) {
+  const value = String(status || '').trim().toLowerCase();
+  if (['active', 'ativo', 'enabled', 'operational'].includes(value)) return 'Ativo';
+  if (['inactive', 'inativo', 'disabled'].includes(value)) return 'Inativo';
+  if (['pending', 'pendente'].includes(value)) return 'Pendente';
+  return 'Não informado';
+}
+
 function sameValue(left: string | null, right: string | null) {
   const normalize = (value: string | null) => String(value || '').replace(/\s+/g, '').toUpperCase();
   if (!normalize(left) || !normalize(right)) return null;
@@ -237,7 +247,7 @@ export default function ProductOfferDetailPage() {
       }
       await fetchDetail();
     } catch (saveError: any) {
-      message.error(saveError?.message || 'Não foi possível atualizar a oferta');
+      message.error(userSafeMessage(saveError?.message, 'Não foi possível atualizar a oferta. Tente novamente.'));
     } finally {
       setSaving(false);
     }
@@ -246,7 +256,7 @@ export default function ProductOfferDetailPage() {
   const confirmSave = () => {
     if (!detail || !draft || !hasChanges) return;
     const effects: string[] = [];
-    if (draft.active !== detail.offer.active) effects.push('reavaliar a oferta preferencial e seu snapshot operacional');
+    if (draft.active !== detail.offer.active) effects.push('reavaliar a oferta preferencial e os dados do produto');
     if (draft.paymentMode !== detail.offer.paymentMode) effects.push('usar a nova modalidade nas próximas compras');
     if (draft.priority !== detail.offer.priority) effects.push('alterar o desempate entre ofertas de mesmo custo');
     Modal.confirm({
@@ -402,7 +412,7 @@ export default function ProductOfferDetailPage() {
           { key: 'legal', label: 'Razão social', children: displayValue(supplier.legalName) },
           { key: 'dslite', label: 'ID DSLite', children: supplier.dsliteId },
           { key: 'active', label: 'Uso operacional', children: supplier.active ? 'Ativo' : 'Inativo ou histórico' },
-          { key: 'status', label: 'Estado DSLite', children: displayValue(supplier.statusDslite) },
+          { key: 'status', label: 'Situação na DSLite', children: dsliteStatusLabel(supplier.statusDslite) },
           { key: 'sync', label: 'Última sincronização', children: formatDateTime(supplier.lastSyncAt) },
           { key: 'drop', label: 'Dropshipping', children: displayValue(supplier.dropshipping) },
           { key: 'cross', label: 'Crossdocking', children: displayValue(supplier.crossdocking) },
@@ -472,7 +482,7 @@ export default function ProductOfferDetailPage() {
         </div>
       </header>
 
-      {detail.visualReview && <Alert type="warning" showIcon message="Amostra real protegida para homologação" description="Os dados foram preservados somente para avaliação visual. Navegação interna está liberada; alterações e links externos continuam bloqueados." />}
+      {detail.visualReview && <Alert type="warning" showIcon message="Amostra protegida, somente leitura" description="Os dados servem somente para avaliar a tela. Navegação interna está liberada; alterações e links externos continuam bloqueados." />}
       {offer.status === 'historical' && <Alert type="info" showIcon message="Histórico somente leitura" description={detail.readOnlyReason || 'Esta oferta não aceita ações operacionais.'} />}
 
       {editing && draft && <section className={styles.editBar}>

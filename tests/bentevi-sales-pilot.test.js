@@ -87,9 +87,9 @@ test('BNT-D01 mantém lista e resumo independentes e preserva dados em falha de 
 
 test('BNT-D01 identifica a amostra real e informa que ela é somente leitura', () => {
   assert.match(page, /isHomologationFixtureSource\(item\.snapshot_source\)/);
-  assert.match(page, /Amostra real protegida para homologação/);
+  assert.match(page, /Registros de demonstração protegidos/);
   assert.match(page, /order\.is_homologation_fixture && operational\.key !== 'view'/);
-  assert.match(drawer, /Amostra protegida de homologação/);
+  assert.match(drawer, /Registro de demonstração protegido/);
   assert.match(drawer, /disabled=\{order\.is_homologation_fixture\}/);
 });
 

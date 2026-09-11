@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+    return NextResponse.json({ error: 'Sua sessão expirou. Entre novamente para continuar.' }, { status: 401 });
   }
 
   const serviceClient = createServiceClient();
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       }
     }
     return NextResponse.json(
-      { error: jobInsertError?.message || 'Falha ao criar job de refresh de catálogo' },
+      { error: 'Não foi possível iniciar a atualização do catálogo.' },
       { status: 500 },
     );
   }
@@ -107,6 +107,6 @@ export async function POST(request: Request) {
     reused: false,
     jobId: insertedJob.id,
     status: insertedJob.status,
-    message: 'Refresh do catálogo iniciado em background',
+    message: 'Atualização do catálogo iniciada.',
   });
 }

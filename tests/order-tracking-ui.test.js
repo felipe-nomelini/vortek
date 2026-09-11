@@ -26,8 +26,8 @@ test('Drawer separa acompanhamento de histórico operacional e consulta de forma
   assert.match(drawer, /label: 'Acompanhamento'/);
   assert.match(drawer, /label: 'Histórico operacional'/);
   assert.match(drawer, /enabled=\{canTrack && Boolean\(order\.ml_shipment_id\) && !order\.is_homologation_fixture\}/);
-  assert.match(drawer, /amostra protegida de homologação/);
-  assert.match(drawer, /ainda não possui um shipment do Mercado Livre/);
+  assert.match(drawer, /registro de demonstração/);
+  assert.match(drawer, /ainda não possui um código de envio do Mercado Livre/);
 });
 
 test('tag de status abre o modal somente quando o acompanhamento é elegível', () => {

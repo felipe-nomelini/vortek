@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useCallback, useEffect, useState } from "react";
 import { Avatar, Button, Input, Modal, Select, Space, Table, Tag, Typography } from "antd";
 import type { TableProps } from "antd";
@@ -65,13 +67,13 @@ export default function UsuariosTab({
       const response = await fetch("/api/configuracoes/usuarios");
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        messageApi.error(data?.erro || "Falha ao carregar usuários");
+        messageApi.error(userSafeMessage(data?.erro, "Não foi possível carregar os usuários. Tente novamente."));
         return;
       }
       setUsuarios(Array.isArray(data?.usuarios) ? data.usuarios : []);
       setCurrentUserId(data?.currentUserId || null);
     } catch {
-      messageApi.error("Falha ao carregar usuários");
+      messageApi.error("Não foi possível carregar os usuários. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -96,7 +98,7 @@ export default function UsuariosTab({
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        messageApi.error(data?.erro || "Falha ao criar usuário");
+        messageApi.error(userSafeMessage(data?.erro, "Não foi possível criar o usuário. Revise os dados e tente novamente."));
         return;
       }
       await loadUsuarios();
@@ -110,7 +112,7 @@ export default function UsuariosTab({
       setModalOpen(false);
       messageApi.success("Usuário criado!");
     } catch {
-      messageApi.error("Falha ao criar usuário");
+      messageApi.error("Não foi possível criar o usuário. Revise os dados e tente novamente.");
     } finally {
       setSaving(false);
     }
@@ -126,13 +128,13 @@ export default function UsuariosTab({
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        messageApi.error(data?.erro || "Falha ao alterar status do usuário");
+        messageApi.error(userSafeMessage(data?.erro, "Não foi possível alterar o acesso do usuário. Tente novamente."));
         return;
       }
       await loadUsuarios();
       messageApi.success(user.ativo ? "Usuário desativado" : "Usuário ativado");
     } catch {
-      messageApi.error("Falha ao alterar status do usuário");
+      messageApi.error("Não foi possível alterar o acesso do usuário. Tente novamente.");
     } finally {
       setSaving(false);
     }
@@ -164,7 +166,7 @@ export default function UsuariosTab({
       );
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        messageApi.error(data?.erro || "Falha ao atualizar usuário");
+        messageApi.error(userSafeMessage(data?.erro, "Não foi possível atualizar o usuário. Tente novamente."));
         return;
       }
       await loadUsuarios();
@@ -172,7 +174,7 @@ export default function UsuariosTab({
       setEditUser(null);
       messageApi.success("Usuário atualizado!");
     } catch {
-      messageApi.error("Falha ao atualizar usuário");
+      messageApi.error("Não foi possível atualizar o usuário. Tente novamente.");
     } finally {
       setSaving(false);
     }

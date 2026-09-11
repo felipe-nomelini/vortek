@@ -83,7 +83,7 @@ test('mantém ações externas explícitas, separadas e protegidas', () => {
   assert.match(page, /Digite CANCELAR somente quando tiver certeza/);
   assert.match(page, /cceText\.trim\(\)\.length < 15/);
   assert.match(page, /note\.is_homologation_fixture/);
-  assert.match(drawer, /Amostra real protegida para homologação/);
+  assert.match(drawer, /Amostra protegida — ação disponível apenas para demonstração/);
   assert.match(page, /hasPermission\(role, 'fiscal\.manage'\)/);
   assert.match(page, /Criar devolução\/retorno/);
 });

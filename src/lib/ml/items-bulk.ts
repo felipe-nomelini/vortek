@@ -15,15 +15,15 @@ export function buildMlItemsBulkPath(itemIds: string[], attributes: string[] = [
   if (!normalizedIds.length) throw new Error('ml_items_bulk_ids_required');
   if (normalizedIds.length > ML_ITEMS_BULK_MAX_IDS) throw new Error('ml_items_bulk_max_20_ids');
 
-  const normalizedAttributes = normalizeValues(
+  const bodyAttributes = normalizeValues(
     attributes.map((attribute) => attribute.replace(/^body\./, '')),
   ).filter((attribute) => attribute !== 'id');
   const idsParam = normalizedIds.map(encodeURIComponent).join(',');
-  const attributesParam = normalizedAttributes
-    .map((attribute) => encodeURIComponent(`body.${attribute}`))
+  const attributesParam = ['id', 'status_code', ...bodyAttributes.map((attribute) => `body.${attribute}`)]
+    .map((attribute) => encodeURIComponent(attribute))
     .join(',');
 
-  return `/items/bulk?ids=${idsParam}${attributesParam ? `&attributes=${attributesParam}` : ''}`;
+  return `/items/bulk?ids=${idsParam}&attributes=${attributesParam}`;
 }
 
 export function getMlItemsBulkBody<T extends Record<string, unknown>>(

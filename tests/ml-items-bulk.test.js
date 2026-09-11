@@ -12,7 +12,14 @@ const {
 test('monta o endpoint bulk atual com atributos do body', () => {
   assert.equal(
     buildMlItemsBulkPath([' MLB1 ', 'MLB2', 'MLB1'], ['id', 'body.title', 'title']),
-    '/items/bulk?ids=MLB1,MLB2&attributes=body.title',
+    '/items/bulk?ids=MLB1,MLB2&attributes=id,status_code,body.title',
+  );
+});
+
+test('sempre solicita os identificadores necessários para associar cada resposta', () => {
+  assert.equal(
+    buildMlItemsBulkPath(['MLB1']),
+    '/items/bulk?ids=MLB1&attributes=id,status_code',
   );
 });
 

@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert,
@@ -240,7 +242,7 @@ export default function PricingDecisionCenter() {
   });
   async function checkOperation(id: string) {
     try { setOperation(await read(`${api}/execute?operationId=${encodeURIComponent(id)}`)); }
-    catch (e) { message.error((e as Error).message); }
+    catch (e) { message.error(userSafeMessage((e as Error).message, 'Não foi possível carregar os alertas. Tente novamente.')); }
   }
   async function reanalyzeProduct() {
     if (!detail || reanalyzing) return;
@@ -253,7 +255,7 @@ export default function PricingDecisionCenter() {
       changed();
       setDetail(null);
       await list();
-    } catch (e) { message.error((e as Error).message); }
+    } catch (e) { message.error(userSafeMessage((e as Error).message, 'Não foi possível carregar o diagnóstico. Tente novamente.')); }
     finally { setReanalyzing(false); }
   }
   async function applyApproved() {
@@ -268,7 +270,7 @@ export default function PricingDecisionCenter() {
       await show(detail!.alert.produto_id);
       await checkOperation(r.operationId);
       return true;
-    } catch (e) { message.error((e as Error).message); return false; }
+    } catch (e) { message.error(userSafeMessage((e as Error).message, 'Não foi possível corrigir o vínculo. Revise o anúncio e tente novamente.')); return false; }
     finally { setBusy(false); }
   }
   function requestApprovedExecution() {
@@ -308,7 +310,7 @@ export default function PricingDecisionCenter() {
       changed();
       await show(detail!.alert.produto_id);
     } catch (e) {
-      message.error((e as Error).message);
+      message.error(userSafeMessage((e as Error).message, 'Não foi possível preparar a proposta. Tente novamente.'));
     } finally {
       setBusy(false);
     }
@@ -393,14 +395,14 @@ export default function PricingDecisionCenter() {
                 />
                 <Select
                   allowClear
-                  placeholder="Gravidade"
+                  placeholder="Prioridade"
                   value={severity}
                   style={{ width: 130 }}
                   onChange={(v) => {
                     setSeverity(v);
                     setPage(1);
                   }}
-                  options={['P0', 'P1', 'P2', 'INFO'].map((value) => ({ value, label: value }))}
+                  options={['P0', 'P1', 'P2', 'INFO'].map((value) => ({ value, label: severityLabels[value] }))}
                 />
                 <Select
                   allowClear
@@ -435,7 +437,7 @@ export default function PricingDecisionCenter() {
                       <Tag
                         color={v === 'P0' ? 'red' : v === 'P1' ? 'orange' : v === 'P2' ? 'gold' : 'default'}
                       >
-                        {severityLabels[v] || v}
+                        {severityLabels[v] || 'Não informada'}
                       </Tag>
                     ),
                   },
@@ -503,7 +505,7 @@ export default function PricingDecisionCenter() {
                 </Typography.Text>
                 {detail.alerts.length > 1 && (
                   <Alert type="warning" showIcon message={`${detail.alerts.length} pontos agrupados neste produto`}
-                    description={detail.alerts.map(alert => `${severityLabels[alert.severity] || alert.severity}: ${alert.title}`).join(' · ')} />
+                    description={detail.alerts.map(alert => `${severityLabels[alert.severity] || 'Atenção'}: ${userSafeMessage(alert.title, 'Revisão necessária')}`).join(' · ')} />
                 )}
                 <Descriptions
                   column={2}
@@ -513,7 +515,7 @@ export default function PricingDecisionCenter() {
                     { key: 'group', label: 'Vínculo', children:
                       detail.evaluation.result.decisionContext?.groupId ? 'Grupo sincronizado confirmado' : 'Confirmação pendente' },
                     { key: 'item', label: 'Anúncio', children: detail.alert.item_id || 'Novo — ID somente após criação confirmada' },
-                    { key: 'reason', label: 'Motivo', children: detail.alert.reason },
+                    { key: 'reason', label: 'Motivo', children: userSafeMessage(detail.alert.reason, 'Confira os dados do anúncio antes de continuar.') },
                     ...(current
                       ? [
                           { key: 'decision', label: 'Decisão', children: labels[current.state] },
@@ -570,7 +572,7 @@ export default function PricingDecisionCenter() {
                       && ['requested', 'inconclusive'].includes(operation.state) && <Button loading={busy}
                         onClick={() => void applyApproved()}>Consultar ML novamente — sem reenviar</Button>}
                     {operation && <Alert type={operation.state === 'confirmed' ? 'success' : 'info'}
-                      message={labels[operation.state] || operation.state} description={`Operação ${operation.id}`} />}
+                      message={labels[operation.state] || 'Situação atualizada'} description="A alteração possui registro de acompanhamento no histórico." />}
                   </Space>
                 )}
                 {current && detail.canManage && ['pending', 'deferred'].includes(current.state) && (
@@ -625,8 +627,8 @@ export default function PricingDecisionCenter() {
                     items={detail.history.map((e) => ({
                       children: (
                         <>
-                          <strong>{labels[e.kind] || e.kind}</strong>
-                          <div>{e.reason}</div>
+                          <strong>{labels[e.kind] || 'Atualização registrada'}</strong>
+                          <div>{userSafeMessage(e.reason, 'Alteração registrada pelo responsável.')}</div>
                           <Typography.Text type="secondary">
                             {date(e.created_at)} · {e.actorName || 'Sistema'}
                           </Typography.Text>
@@ -784,7 +786,7 @@ export function PricingProposalButton({
       });
       if (req === generation.current) setQuote(q);
     } catch (e) {
-      message.error((e as Error).message);
+      message.error(userSafeMessage((e as Error).message, 'Não foi possível registrar a decisão. Tente novamente.'));
     } finally {
       if (req === generation.current) setBusy(false);
     }
@@ -810,7 +812,7 @@ export function PricingProposalButton({
       setOpen(false);
       onRecorded?.();
     } catch (e) {
-      message.error((e as Error).message);
+      message.error(userSafeMessage((e as Error).message, 'Não foi possível executar a alteração. Tente novamente.'));
     } finally {
       setBusy(false);
     }
@@ -875,7 +877,7 @@ export function PricingProposalButton({
                 <Alert
                   type="warning"
                   message="Proposta bloqueada"
-                  description={quote.decisionContext?.reasons.join(' · ') || 'Vínculo não confirmado'}
+                  description={(quote.decisionContext?.reasons || []).map(code => blockerLabels[code] || 'Falta uma informação para concluir a análise.').join(' · ') || 'Vínculo não confirmado'}
                 />
               )}
             </>

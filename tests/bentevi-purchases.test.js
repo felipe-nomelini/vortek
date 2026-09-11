@@ -59,14 +59,14 @@ test('enriquece a compra sem criar uma segunda fonte de verdade', () => {
 
 test('separa as fontes e todos os identificadores no detalhe', () => {
   assert.match(drawer, /Pack ML/);
-  assert.match(drawer, /Venda \/ Order ML/);
-  assert.match(drawer, /Número interno Vortek/);
+  assert.match(drawer, /Venda no Mercado Livre/);
+  assert.match(drawer, /Número interno Bentevi/);
   assert.match(drawer, /Itens da venda/);
   assert.match(drawer, /SKU Bentevi/);
   assert.match(drawer, /SKU do fornecedor/);
   assert.match(drawer, /ID do produto DSLite/);
   assert.match(drawer, /Fornecedor \/ DSLite/);
-  assert.match(drawer, /Venda \/ Vortek-Brasil NFe/);
+  assert.match(drawer, /Venda \/ Bentevi-Brasil NFe/);
   assert.match(drawer, /Fiscal e entrega/);
   assert.match(drawer, /purchase\.fornecedor_apelido \|\| purchase\.fornecedor_nome/);
   assert.doesNotMatch(
@@ -79,9 +79,9 @@ test('deixa explícito que registrar PIX não transfere dinheiro', () => {
   assert.match(page, /Registrar PIX/);
   assert.match(page, /Revisar PIX/);
   assert.match(page, /Ver pagamento/);
-  assert.match(page, /O Vortek não realiza o pagamento/);
+  assert.match(page, /A Bentevi não realiza o pagamento/);
   assert.match(page, /Faça o PIX no banco/);
-  assert.match(drawer, /O Vortek não realiza a transferência/);
+  assert.match(drawer, /A Bentevi não realiza a transferência/);
   assert.doesNotMatch(page, /Confirmar pagamento do fornecedor/);
 });
 
@@ -142,7 +142,7 @@ test('simplifica fornecedor e valores somente na tabela', () => {
   assert.match(drawer, /SKU do fornecedor/);
 });
 
-test('preserva filtros, proteção de homologação e permissão financeira', () => {
+test('preserva filtros, dados de demonstração e permissão financeira', () => {
   for (const source of [listRoute, summaryRoute]) {
     assert.match(source, /searchParams\.get\('fornecedorId'\)/);
     assert.match(source, /\.eq\('fornecedor_id', fornecedorId\)/);
@@ -152,7 +152,7 @@ test('preserva filtros, proteção de homologação e permissão financeira', ()
   assert.match(listRoute, /is_homologation_fixture/);
   assert.match(page, /hasPermission\(role, 'purchases\.payment\.confirm'\)/);
   assert.match(page, /purchase\.is_homologation_fixture/);
-  assert.match(drawer, /Amostra real protegida para homologação/);
+  assert.match(drawer, /Registro de demonstração protegido/);
   assert.doesNotMatch(page, /\/api\/fornecedores\/saldo-hayamax/);
   assert.match(drawer, /Conta-saldo aposentada/);
 });

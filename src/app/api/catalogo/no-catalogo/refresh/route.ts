@@ -204,6 +204,7 @@ export async function POST(request: Request) {
   }
 
   const warnings: string[] = [];
+  let competitionUnavailable = 0;
   const allItemIds: string[] = [];
   let totalMl = 0;
 
@@ -334,6 +335,7 @@ export async function POST(request: Request) {
         ? { status: previous.buy_box_status, price_to_win: previous.price_to_win }
         : { buyBoxStatus: null, priceToWin: null });
       warnings.push(`price_to_win_unavailable:${itemId}`);
+      competitionUnavailable += 1;
       return;
     }
 
@@ -567,7 +569,7 @@ export async function POST(request: Request) {
   const duration = Date.now() - startedAt;
   await reportProgress({
     stage: 'completed',
-    message: `Refresh concluído: ${updated} anúncios atualizados.`,
+    message: `${updated} anúncios atualizados.`,
     processed: updated,
     total: allItemIds.length,
     progress: 100,
@@ -582,6 +584,10 @@ export async function POST(request: Request) {
     total_ml: totalMl,
     duration_ms: duration,
     warnings,
+    issues: {
+      details_unavailable: failedItemIds.size,
+      competition_unavailable: competitionUnavailable,
+    },
     ...(internalAction === 'batch' ? { failed_item_ids: Array.from(failedItemIds) } : {}),
   };
 

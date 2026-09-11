@@ -97,13 +97,13 @@ test('BNT-D07 usa amostra real temporária sem criar produtos operacionais', () 
 });
 
 test('BNT-D07 permite somente detalhe e PDF durante a revisão protegida', () => {
-  assert.match(page, /Amostra real de produção, somente leitura/);
+  assert.match(page, /Amostra protegida, somente leitura/);
   assert.match(page, /O detalhe e o relatório PDF estão disponíveis somente para leitura/);
   assert.match(page, /if \(visualReview\) \{[\s\S]*?router\.push\(`\/produtos\/\$\{record\.product\.id\}`\)/);
   assert.match(page, /Demais ações desabilitadas na amostra protegida/);
   assert.doesNotMatch(page, /visualReview \? \([\s\S]*?productNameReadonly/);
   assert.doesNotMatch(page, /visualReview \? \([\s\S]*?mobileProductNameReadonly/);
-  assert.match(page, /if \(visualReview\) \{[\s\S]*?amostra de homologação é somente leitura/);
+  assert.match(page, /if \(visualReview\) \{[\s\S]*?amostra protegida é somente leitura/);
 });
 
 test('BNT-D07 representa anúncios padrão e catálogo sem multiplicar tags', () => {

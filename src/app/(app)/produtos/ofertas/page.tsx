@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Button, Empty, Input, Segmented, Select, Spin, Tag, Typography } from 'antd';
 import type { TableProps } from 'antd';
@@ -327,7 +329,7 @@ export default function ProductOffersPage() {
           className={styles.visualReviewAlert}
           type="warning"
           showIcon
-          message="Amostra real protegida para homologação"
+          message="Amostra protegida, somente leitura"
           description="As ofertas refletem um recorte somente leitura da produção. Produto e detalhe da oferta podem ser consultados; alterações e links externos permanecem bloqueados."
         />
       )}
@@ -379,7 +381,7 @@ export default function ProductOffersPage() {
             type="error"
             showIcon
             message="Não foi possível carregar as ofertas"
-            description={error}
+            description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')}
             action={<Button size="small" onClick={fetchOffers}>Tentar novamente</Button>}
           />
         )}

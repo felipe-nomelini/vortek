@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Button, Form, Input, InputNumber, Modal, Select, Space, Table, Typography, theme } from 'antd';
 import type { ProductPricing } from '@/services/pricing-context';
@@ -29,8 +31,8 @@ export function CompetitivePricingSummary({ assessment }: { assessment?: Competi
       : assessment.buyBoxConflict ? 'warning' : 'info'} message={competitiveLabels[assessment.classification]}
       description={assessment.clearanceApplied ? 'Liquidação autorizada neste cenário interno; o impacto continua visível. Nenhuma alteração executada.'
         : 'Referência do Mercado Livre, não ordem de desconto nem garantia de vencer. Nenhum preço será aplicado nesta etapa.'} />
-    <Typography.Text>Referência competitiva: {assessment.evidence.priceCents == null ? 'Não informada' : money(assessment.evidence.priceCents)} · Fonte: {assessment.evidence.condition === 'valid' ? 'ML consultado' : 'Sem evidência viva válida'}</Typography.Text>
-    <Typography.Text type="secondary">Grupo: {assessment.group ? `${assessment.group.id} · versão ${assessment.group.version} · ${assessment.group.memberIds.join(', ')}` : 'Vínculo pendente'} · Override: {assessment.overrideActive === null ? 'não verificado' : assessment.overrideActive ? 'ativo' : 'não ativo'}</Typography.Text>
+    <Typography.Text>Referência competitiva: {assessment.evidence.priceCents == null ? 'Não informada' : money(assessment.evidence.priceCents)} · Fonte: {assessment.evidence.condition === 'valid' ? 'Mercado Livre' : 'Consulta indisponível'}</Typography.Text>
+    <Typography.Text type="secondary">Vínculo dos anúncios: {assessment.group ? 'confirmado' : 'pendente'} · Proteção manual: {assessment.overrideActive === null ? 'não verificada' : assessment.overrideActive ? 'ativa' : 'inativa'}</Typography.Text>
     {assessment.reasons.includes('GRUPO_REQUER_VALIDACAO') && <Typography.Text type="warning">Grupo precisa de validação. Economia favorável não libera publicação.</Typography.Text>}
     {pricing && <PricingQuoteSummary pricing={pricing} currentLabel="Preço atual" showContextAlert={false} />}
   </Space>;
@@ -62,7 +64,7 @@ export function PricingQuoteSummary({ pricing, currentLabel = 'Preço consultado
   const { token } = theme.useToken();
   if (!pricing) return null;
   const rows: Array<{ key: string; label: string; memory: EconomicMemory | null; issues: string }> = [];
-  const explain = (issues: readonly EconomicIssue[]) => issues.map(issue => explanations[issue.code] || issue.code).join(' ');
+  const explain = (issues: readonly EconomicIssue[]) => issues.map(issue => explanations[issue.code] || 'Falta uma informação para concluir o cálculo.').join(' ');
   if (pricing.currentPriceCents !== null) rows.push({ key: 'current', label: currentLabel,
     memory: pricing.current.memory, issues: pricing.current.status === 'inconclusive' ? explain(pricing.current.reasons) : '' });
   const competitive = pricing.comparisons?.competitive;
@@ -79,13 +81,13 @@ export function PricingQuoteSummary({ pricing, currentLabel = 'Preço consultado
     {showContextAlert && <Alert showIcon type={simulated || queried ? 'info' : 'warning'} message={simulated ? 'Simulação hipotética — sem consulta ao Mercado Livre' : queried ? 'Fontes consultadas no Mercado Livre' : 'Consulta econômica inconclusiva'}
       description={simulated ? 'Custo, taxa e frete são entradas do cenário. Tributo vem do contexto fiscal central. Nenhuma configuração ou preço foi gravado; esta simulação não libera publicação.'
         : pricing.revalidation?.code ? explanations[pricing.revalidation.code as EconomicIssue['code']] || pricing.revalidation.code
-        : 'Cotação sob demanda, não autorização para publicar. Frete é estimado; não é o custo realizado do shipment. Alterações automáticas continuam bloqueadas.'} />}
-    <Typography.Text type="secondary">CMV: {money(pricing.costCents)} · {simulated ? 'Simulação' : 'Consulta'}: {evaluatedAt ? new Date(evaluatedAt).toLocaleString('pt-BR') : simulated ? 'memória indisponível' : 'sem revalidação viva'}</Typography.Text>
+        : 'Esta consulta não autoriza uma alteração. O frete é estimado e pode ser diferente do valor final da venda. Alterações automáticas continuam bloqueadas.'} />}
+    <Typography.Text type="secondary">CMV: {money(pricing.costCents)} · {simulated ? 'Simulação' : 'Consulta'}: {evaluatedAt ? new Date(evaluatedAt).toLocaleString('pt-BR') : 'ainda não realizada'}</Typography.Text>
     <Table size="small" pagination={false} dataSource={rows} rowKey="key" scroll={{ x: 810 }} onRow={() => ({ style: { color: token.colorText } })} columns={[
       { title: 'Referência', dataIndex: 'label', width: 130 },
       { title: 'Preço', key: 'price', render: (_, row) => money(row.memory?.revenueCents ?? null) },
-      { title: simulated ? 'Taxa ML simulada' : 'Tarifa ML total', key: 'fee', render: (_, row) => <span>{money(row.memory?.fee.amountCents ?? null)}<br /><small>{simulated && row.memory ? 'Taxa do cenário' : row.memory?.fee.source === 'ml_live' ? 'ML vivo · inclui fixa' : row.memory ? 'Fallback estimado' : '—'}</small></span> },
-      { title: 'Frete estimado', key: 'shipping', render: (_, row) => <span>{money(row.memory?.shipping.amountCents ?? null)}<br /><small>{simulated && row.memory ? 'Frete do cenário' : row.memory?.shipping.source === 'ml_live' ? 'Cotação ML' : row.memory ? 'Configuração not_specified' : '—'}</small></span> },
+      { title: simulated ? 'Taxa ML simulada' : 'Tarifa ML total', key: 'fee', render: (_, row) => <span>{money(row.memory?.fee.amountCents ?? null)}<br /><small>{simulated && row.memory ? 'Taxa do cenário' : row.memory?.fee.source === 'ml_live' ? 'Mercado Livre · inclui tarifa fixa' : row.memory ? 'Estimativa do sistema' : '—'}</small></span> },
+      { title: 'Frete estimado', key: 'shipping', render: (_, row) => <span>{money(row.memory?.shipping.amountCents ?? null)}<br /><small>{simulated && row.memory ? 'Frete do cenário' : row.memory?.shipping.source === 'ml_live' ? 'Mercado Livre' : row.memory ? 'Não configurado' : '—'}</small></span> },
       { title: 'Tributo', key: 'tax', render: (_, row) => <span>{money(row.memory?.tax.amountCents ?? null)}<br /><small>{row.memory ? row.memory.tax.status === 'confirmed' ? 'Confirmado' : 'Estimado' : '—'}{simulated && row.memory?.tax.context.appliedRate != null ? ` · ${percent(row.memory.tax.context.appliedRate)}` : ''}</small></span> },
       { title: 'Resultado / margem', key: 'result', render: (_, row) => row.memory ? <Typography.Text type={row.memory.resultCents < 0 ? 'danger' : 'success'}>{money(row.memory.resultCents)}<br />{percent(row.memory.margin)}</Typography.Text> : '—' },
       { title: 'Piso / alvo / limite', key: 'band', render: (_, row) => row.memory ? `${percent(row.memory.band.floor)} / ${percent(row.memory.band.target)} / ${percent(row.memory.band.limit)}` : '—' },
@@ -121,7 +123,7 @@ export default function LivePricingQuote({ productId, listings, disabled }: {
       const payload = await response.json();
       if (!response.ok || !payload.success) throw new Error(payload.error || 'Consulta indisponível');
       if (!controller.signal.aborted) setPricing(payload.pricing);
-    } catch (failure) { if (!controller.signal.aborted) setError(failure instanceof Error ? failure.message : 'Consulta indisponível'); }
+    } catch (failure) { if (!controller.signal.aborted) setError(userSafeMessage(failure instanceof Error ? failure.message : '', 'Não foi possível calcular o preço. Revise os dados e tente novamente.')); }
     finally { if (pending.current === controller) { pending.current = null; setLoading(false); } }
   };
   return <>
@@ -135,8 +137,8 @@ export default function LivePricingQuote({ productId, listings, disabled }: {
             <Form.Item name="categoryId" label="Categoria ML (ID confirmado na preparação)" rules={[{ required: true, pattern: /^MLB\d+$/, message: 'Informe um ID de categoria MLB válido.' }]}><Input placeholder="MLB..." /></Form.Item>
             <Form.Item name="listingType" label="Tipo do anúncio" rules={[{ required: true }]}><Select options={[{ value: 'gold_special', label: 'Clássico' }, { value: 'gold_pro', label: 'Premium' }]} /></Form.Item>
             <Form.Item name="condition" label="Condição" rules={[{ required: true }]}><Select options={[{ value: 'new', label: 'Novo' }, { value: 'used', label: 'Usado' }, { value: 'not_specified', label: 'Não especificada' }]} /></Form.Item>
-            <Form.Item name="mode" label="Modalidade de envio" rules={[{ required: true }]}><Select onChange={() => form.setFieldValue('logisticType', undefined)} options={[{ value: 'me2', label: 'Mercado Envios 2' }, { value: 'not_specified', label: 'A combinar (not_specified)' }]} /></Form.Item>
-            <Form.Item name="logisticType" label="Logística habilitada na conta" rules={[{ required: true }]}><Select options={(mode === 'not_specified' ? ['not_specified'] : ['drop_off', 'xd_drop_off', 'cross_docking', 'fulfillment', 'self_service']).map(value => ({ value, label: value }))} /></Form.Item>
+            <Form.Item name="mode" label="Modalidade de envio" rules={[{ required: true }]}><Select onChange={() => form.setFieldValue('logisticType', undefined)} options={[{ value: 'me2', label: 'Mercado Envios' }, { value: 'not_specified', label: 'A combinar' }]} /></Form.Item>
+            <Form.Item name="logisticType" label="Forma de envio" rules={[{ required: true }]}><Select options={(mode === 'not_specified' ? [{ value: 'not_specified', label: 'A combinar' }] : [{ value: 'drop_off', label: 'Postagem em agência' }, { value: 'xd_drop_off', label: 'Ponto de despacho' }, { value: 'cross_docking', label: 'Coleta do Mercado Livre' }, { value: 'fulfillment', label: 'Estoque Full' }, { value: 'self_service', label: 'Envios Flex' }])} /></Form.Item>
             <Form.Item name="freeShipping" label="Frete grátis ao comprador" rules={[{ required: true }]}><Select options={[{ value: 'yes', label: 'Sim' }, { value: 'no', label: 'Não' }]} /></Form.Item>
           </>}
           <Form.Item name="price" label="Preço para consultar (opcional)" extra="Sem informar, consulta o preço atual do anúncio e calcula alvo, piso e equilíbrio. Em produto novo, calcula somente as referências."><InputNumber min={0.01} precision={2} prefix="R$" /></Form.Item>

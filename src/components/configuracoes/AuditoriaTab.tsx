@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useCallback, useEffect, useState } from "react";
 import { Button, Empty, Select, Space, Table, Typography } from "antd";
 import type { TableProps } from "antd";
@@ -28,7 +30,7 @@ function formatValue(snapshot: ConfigurationAuditSnapshot | null): string {
   }
   if (snapshot.value === null) return "Não informado";
   if (typeof snapshot.value === "boolean") return snapshot.value ? "Sim" : "Não";
-  if (typeof snapshot.value === "object") return JSON.stringify(snapshot.value);
+  if (typeof snapshot.value === "object") return "Configuração atualizada";
   return String(snapshot.value);
 }
 
@@ -59,13 +61,13 @@ export default function AuditoriaTab({
       const data = (await response.json().catch(() => ({}))) as
         | Partial<ConfigurationAuditResponse> & { erro?: string };
       if (!response.ok) {
-        messageApi.error(data.erro || "Falha ao carregar o histórico");
+        messageApi.error(userSafeMessage(data.erro, "Não foi possível carregar o histórico. Tente novamente."));
         return;
       }
       setItems(Array.isArray(data.items) ? data.items : []);
       setTotal(data.pagination?.total || 0);
     } catch {
-      messageApi.error("Falha ao carregar o histórico");
+      messageApi.error("Não foi possível carregar o histórico. Tente novamente.");
     } finally {
       setLoading(false);
     }

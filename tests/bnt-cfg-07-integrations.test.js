@@ -246,6 +246,7 @@ test('cards renderizam dez serviços, assets locais e ações sem editar integra
     'react/jsx-runtime': require('react/jsx-runtime'),
     'next/link': require('next/link'), 'next/image': require('next/image'),
     antd: require('antd'), '@ant-design/icons': require('@ant-design/icons'),
+    '@/lib/user-feedback': require('../src/lib/user-feedback.ts'),
     '@/lib/integration-configuration': config,
     './IntegracoesTab.module.css': { default: {}, __esModule: true },
     './ConfiguracoesTabHeading': heading,

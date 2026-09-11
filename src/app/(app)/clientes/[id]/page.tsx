@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -104,7 +106,7 @@ function deliveryReference(order: ClienteDetailOrder) {
     return (
       <div className={styles.deliveryReference}>
         <strong>Envio criado</strong>
-        <span>Shipment #{order.shipmentId}</span>
+        <span>Envio ML #{order.shipmentId}</span>
       </div>
     );
   }
@@ -190,7 +192,7 @@ export default function ClientDetailPage() {
       closeContactEditor();
       messageApi.success('Contato atualizado no Bentevi');
     } catch (saveError) {
-      messageApi.error(saveError instanceof Error ? saveError.message : 'Não foi possível atualizar o contato');
+      messageApi.error(userSafeMessage(saveError instanceof Error ? saveError.message : '', 'Não foi possível atualizar o contato. Tente novamente.'));
     } finally {
       setSaving(false);
     }
@@ -315,7 +317,7 @@ export default function ClientDetailPage() {
           type="error"
           showIcon
           message="Não foi possível atualizar o cliente"
-          description={`${error} Os dados anteriores foram preservados.`}
+          description={`${userSafeMessage(error, 'Não foi possível carregar os dados do cliente.')} Os dados anteriores foram preservados.`}
           action={<Button size="small" onClick={() => void fetchDetail()}>Tentar novamente</Button>}
         />
       )}
@@ -412,7 +414,7 @@ export default function ClientDetailPage() {
             className={styles.fixtureAlert}
             type="info"
             showIcon
-            message="Amostra protegida de homologação"
+            message="Registros de demonstração protegidos"
             description="Os detalhes podem ser consultados, mas o acompanhamento externo está desabilitado nestas vendas."
           />
         )}

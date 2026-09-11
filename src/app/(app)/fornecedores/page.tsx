@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -111,13 +113,21 @@ function isEnabled(value: string | null): boolean {
   return normalized.includes('ativo') || normalized === 'sim' || normalized === 'true';
 }
 
+function dsliteStatusLabel(status: unknown) {
+  const value = String(status || '').trim().toLowerCase();
+  if (['active', 'ativo', 'enabled', 'operational'].includes(value)) return 'Ativo';
+  if (['inactive', 'inativo', 'disabled'].includes(value)) return 'Inativo';
+  if (['pending', 'pendente'].includes(value)) return 'Pendente';
+  return 'Não informado';
+}
+
 function modalityLine(label: string, value: string | null) {
   const enabled = isEnabled(value);
   return (
     <span className={enabled ? styles.modalityEnabled : styles.modalityDisabled}>
       {enabled ? <CheckCircleOutlined /> : <StopOutlined />}
       <strong>{label}</strong>
-      <small>{value || 'Não informado'}</small>
+      <small>{value ? (enabled ? 'Ativo' : 'Inativo') : 'Não informado'}</small>
     </span>
   );
 }
@@ -293,7 +303,7 @@ export default function FornecedoresPage() {
       }
       await fetchSuppliers();
     } catch (cause) {
-      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível alterar o fornecedor');
+      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível alterar o fornecedor. Tente novamente.'));
     } finally {
       setStatusChangingId(null);
     }
@@ -347,7 +357,7 @@ export default function FornecedoresPage() {
       });
       if (confirmed) await executeStatusChange(supplier, false, reprocess);
     } catch (cause) {
-      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível calcular o impacto');
+      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível calcular o impacto. Tente novamente.'));
     } finally {
       setStatusChangingId(null);
     }
@@ -390,7 +400,7 @@ export default function FornecedoresPage() {
           <Tag color={supplier.ativo === false ? 'default' : 'green'}>
             {supplier.ativo === false ? 'Inativo' : 'Operacional'}
           </Tag>
-          <span>DSLite: {supplier.status_dslite || 'não informado'}</span>
+          <span>DSLite: {dsliteStatusLabel(supplier.status_dslite)}</span>
           {supplier.activation_blocked && <small>Histórico · reativação bloqueada</small>}
         </div>
       ),
@@ -592,7 +602,7 @@ export default function FornecedoresPage() {
           type="error"
           showIcon
           message="Não foi possível carregar os fornecedores"
-          description={error}
+          description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')}
           action={<Button size="small" onClick={() => void fetchSuppliers()}>Tentar novamente</Button>}
         />
       )}

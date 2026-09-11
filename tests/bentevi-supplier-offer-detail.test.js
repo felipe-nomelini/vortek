@@ -44,7 +44,7 @@ test('BNT-D10 abre a amostra protegida sem permitir mutação', () => {
   assert.match(route, /listBntD09VisualReview/);
   assert.match(route, /fixture: true/);
   assert.match(route, /readOnly: params\.fixture \|\| historical/);
-  assert.match(page, /Amostra real protegida para homologação/);
+  assert.match(page, /Amostra protegida, somente leitura/);
   assert.match(page, /alterações e links externos continuam bloqueados/);
   assert.match(page, /row\.permalink && !isFixture/);
 });

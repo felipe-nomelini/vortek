@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useEffect, useState } from 'react';
 import {
   Alert,
@@ -166,7 +168,7 @@ export default function OrderTrackingDetails({
         type="error"
         showIcon
         message="Falha ao carregar o acompanhamento"
-        description={error}
+        description={userSafeMessage(error, 'Não foi possível carregar o rastreamento. Tente novamente.')}
         action={<Button size="small" onClick={() => setRetry((value) => value + 1)}>Tentar novamente</Button>}
       />
     );

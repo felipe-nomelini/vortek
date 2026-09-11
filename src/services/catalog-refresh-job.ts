@@ -3,9 +3,11 @@ import { POST as refreshCatalogSnapshot } from '@/app/api/catalogo/no-catalogo/r
 import {
   CATALOG_REFRESH_BATCH_SIZE,
   CATALOG_REFRESH_MAX_FAILURES,
+  calculateCatalogRefreshOutcome,
   calculateCatalogRefreshProgress,
   getCatalogRefreshFailureStage,
   normalizeCatalogRefreshItemIds,
+  splitCatalogRefreshFailures,
 } from '@/lib/catalogo/refresh-batch';
 
 const JOB_TIPO = 'catalogo_no_catalogo_refresh';
@@ -129,17 +131,22 @@ async function finalizeRefresh(input: {
 
   if (staleError) throw new Error(`Falha ao finalizar snapshot: ${staleError.message}`);
 
-  const { count: warningCount } = await service
+  const { count: detailsUnavailableCount } = await service
     .from('catalogo_ml_refresh_items')
     .select('ml_item_id', { count: 'exact', head: true })
     .eq('job_id', input.jobId)
     .not('last_error', 'is', null);
-  const upstreamWarningCount = input.logs.reduce(
-    (sum, entry) => sum + Number(entry?.warnings_count || 0),
+  const competitionUnavailableCount = input.logs.reduce(
+    (sum, entry) => sum + Number(entry?.competition_unavailable_count || 0),
     0,
   );
-  const totalWarningCount = Number(warningCount || 0) + upstreamWarningCount;
-  const partial = totalWarningCount > 0;
+  const outcome = calculateCatalogRefreshOutcome({
+    total: input.total,
+    detailsUnavailable: Number(detailsUnavailableCount || 0),
+    competitionUnavailable: competitionUnavailableCount,
+  });
+  const allDetailsUnavailable = outcome.status === 'erro';
+  const partial = outcome.status === 'completo_parcial';
 
   input.logs.push(progressEvent({
     stage: 'fetch_related',
@@ -157,23 +164,30 @@ async function finalizeRefresh(input: {
   }));
   input.logs.push(progressEvent({
     stage: 'save_snapshot',
-    message: `Snapshot concluído: ${input.total} anúncios processados; ${Number(removed || 0)} removidos do catálogo.`,
+    message: `${outcome.updated} anúncios atualizados; ${Number(removed || 0)} anúncios que saíram do catálogo foram identificados.`,
     processed: input.total,
     total: input.total,
     progress: 99,
   }));
   input.logs.push(progressEvent({
     stage: 'completed',
-    message: partial
-      ? `Refresh concluído com ${totalWarningCount} avisos.`
-      : 'Refresh concluído com sucesso.',
+    message: allDetailsUnavailable
+      ? 'Não foi possível atualizar os anúncios. Os dados anteriores foram preservados.'
+      : partial
+        ? `${outcome.updated} anúncios atualizados; ${outcome.issues} precisam de nova consulta. Os dados anteriores foram preservados.`
+        : 'Catálogo atualizado com sucesso.',
     processed: input.total,
     total: input.total,
     progress: 100,
-    type: partial ? 'warning' : 'info',
+    type: allDetailsUnavailable ? 'error' : partial ? 'warning' : 'info',
+    extra: {
+      details_unavailable_count: outcome.detailsUnavailable,
+      competition_unavailable_count: competitionUnavailableCount,
+      updated_count: outcome.updated,
+    },
   }));
 
-  const status = partial ? 'completo_parcial' : 'completo';
+  const status = outcome.status;
   await service
     .from('jobs')
     .update({
@@ -187,7 +201,15 @@ async function finalizeRefresh(input: {
     .eq('id', input.jobId)
     .eq('tipo', JOB_TIPO);
 
-  return { success: true, status, processed: input.total, total: input.total };
+  return {
+    success: !allDetailsUnavailable,
+    status,
+    processed: input.total,
+    total: input.total,
+    updated: outcome.updated,
+    detailsUnavailable: outcome.detailsUnavailable,
+    competitionUnavailable: competitionUnavailableCount,
+  };
 }
 
 /** Processa somente um lote; cron e chamada local retomam jobs em on_hold. */
@@ -218,17 +240,28 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
       if (!incremental.ok) {
         throw new Error(incremental.body?.error || `Falha HTTP ${incremental.status} no refresh incremental`);
       }
-      const warnings = Array.isArray(incremental.body?.warnings) ? incremental.body.warnings.filter(Boolean) : [];
+      const detailsUnavailable = Number(incremental.body?.issues?.details_unavailable || 0);
+      const competitionUnavailable = Number(incremental.body?.issues?.competition_unavailable || 0);
+      const issueCount = detailsUnavailable + competitionUnavailable;
       const processed = Number(incremental.body?.processed || 0);
-      const status = warnings.length > 0 ? 'completo_parcial' : 'completo';
+      const status = processed > 0 && detailsUnavailable >= processed
+        ? 'erro'
+        : issueCount > 0 ? 'completo_parcial' : 'completo';
       logs.push(progressEvent({
         stage: 'completed',
-        message: `Refresh incremental concluído: ${processed} anúncios atualizados.`,
+        message: status === 'erro'
+          ? 'Não foi possível atualizar os anúncios. Os dados anteriores foram preservados.'
+          : status === 'completo_parcial'
+            ? `${Math.max(0, processed - detailsUnavailable)} anúncios atualizados; ${issueCount} precisam de nova consulta.`
+            : `${processed} anúncios atualizados.`,
         processed,
         total: processed,
         progress: 100,
-        type: warnings.length > 0 ? 'warning' : 'info',
-        extra: { warnings_count: warnings.length, warning_samples: warnings.slice(0, 10) },
+        type: status === 'erro' ? 'error' : status === 'completo_parcial' ? 'warning' : 'info',
+        extra: {
+          details_unavailable_count: detailsUnavailable,
+          competition_unavailable_count: competitionUnavailable,
+        },
       }));
       await service.from('jobs').update({
         status,
@@ -238,7 +271,7 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
         log: logs,
         finished_at: nowIso(),
       }).eq('id', jobId);
-      return { success: true, status, processed, total: processed };
+      return { success: status !== 'erro', status, processed, total: processed };
     }
 
     const { count: manifestCount, error: manifestCountError } = await service
@@ -329,12 +362,20 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
     }
 
     const itemIds = pendingRows.map((row) => row.ml_item_id);
-    const attempt = Math.max(...pendingRows.map((row) => Number(row.attempts || 0))) + 1;
-    await service
-      .from('catalogo_ml_refresh_items')
-      .update({ attempts: attempt, updated_at: nowIso() })
-      .eq('job_id', jobId)
-      .in('ml_item_id', itemIds);
+    const attemptedAt = nowIso();
+    const nextAttempts = new Map<number, string[]>();
+    for (const row of pendingRows) {
+      const nextAttempt = Math.max(0, Math.trunc(Number(row.attempts) || 0)) + 1;
+      nextAttempts.set(nextAttempt, [...(nextAttempts.get(nextAttempt) || []), row.ml_item_id]);
+    }
+    for (const [nextAttempt, ids] of nextAttempts) {
+      const { error } = await service
+        .from('catalogo_ml_refresh_items')
+        .update({ attempts: nextAttempt, updated_at: attemptedAt })
+        .eq('job_id', jobId)
+        .in('ml_item_id', ids);
+      if (error) throw new Error(`Falha ao registrar tentativa do lote: ${error.message}`);
+    }
 
     const batch = await invokeRefresh({
       action: 'batch',
@@ -362,30 +403,50 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
       if (error) throw new Error(`Falha ao confirmar lote: ${error.message}`);
     }
 
-    if (failedIds.size > 0) {
-      const failedList = Array.from(failedIds);
-      await service
+    const { retryable: retryableFailedIds, exhausted: exhaustedFailedIds } = splitCatalogRefreshFailures(
+      pendingRows,
+      failedIds,
+    );
+
+    if (exhaustedFailedIds.length > 0) {
+      const { error } = await service
         .from('catalogo_ml_refresh_items')
         .update({ processed_at: processedAt, last_error: 'item_fetch_failed', updated_at: processedAt })
         .eq('job_id', jobId)
-        .in('ml_item_id', failedList);
-      await service
+        .in('ml_item_id', exhaustedFailedIds);
+      if (error) throw new Error(`Falha ao encerrar tentativas do lote: ${error.message}`);
+    }
+
+    if (retryableFailedIds.length > 0) {
+      const { error } = await service
+        .from('catalogo_ml_refresh_items')
+        .update({ processed_at: null, last_error: 'item_fetch_failed', updated_at: processedAt })
+        .eq('job_id', jobId)
+        .in('ml_item_id', retryableFailedIds);
+      if (error) throw new Error(`Falha ao preparar nova tentativa do lote: ${error.message}`);
+    }
+
+    if (failedIds.size > 0) {
+      const { error } = await service
         .from('catalogo_ml_snapshot')
         .update({ refresh_job_id: jobId })
         .eq('seller_id', sellerId)
-        .in('ml_item_id', failedList);
+        .in('ml_item_id', Array.from(failedIds));
+      if (error) throw new Error(`Falha ao preservar dados anteriores do lote: ${error.message}`);
     }
 
-    const warnings = Array.isArray(batch.body?.warnings) ? batch.body.warnings.filter(Boolean) : [];
-    if (warnings.length > 0 || failedIds.size > 0) {
+    const competitionUnavailable = Number(batch.body?.issues?.competition_unavailable || 0);
+    if (competitionUnavailable > 0 || failedIds.size > 0) {
       logs.push(progressEvent({
         stage: 'fetch_price_to_win',
-        message: `Lote concluído com ${warnings.length + failedIds.size} avisos.`,
+        message: retryableFailedIds.length > 0
+          ? `${retryableFailedIds.length} anúncios serão consultados novamente; os dados anteriores foram preservados.`
+          : `${exhaustedFailedIds.length + competitionUnavailable} anúncios precisam de atenção; os dados anteriores foram preservados.`,
         type: 'warning',
         extra: {
-          warnings_count: warnings.length,
-          failed_items_count: failedIds.size,
-          warning_samples: warnings.slice(0, 10),
+          competition_unavailable_count: competitionUnavailable,
+          details_retry_count: retryableFailedIds.length,
+          details_unavailable_count: exhaustedFailedIds.length,
         },
       }));
     }

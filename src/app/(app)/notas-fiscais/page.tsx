@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
 import {
@@ -341,7 +343,7 @@ export default function NotasFiscaisPage() {
     const response = await fetch(`/api/notas-fiscais/${note.id}/pdf`, { cache: 'no-store' });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok || !payload?.url) {
-      messageApi.error(payload?.error || 'Não foi possível localizar a DANFE.');
+      messageApi.error(userSafeMessage(payload?.error, 'Não foi possível localizar a DANFE. Verifique se a nota fiscal já foi emitida.'));
       return null;
     }
     return String(payload.url);
@@ -429,7 +431,7 @@ export default function NotasFiscaisPage() {
       setEmailModalOpen(false);
       setEmailTarget(null);
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Falha ao enviar a nota fiscal por e-mail.');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível enviar a nota fiscal por e-mail. Tente novamente.'));
     } finally {
       setSendingRowId(null);
     }
@@ -462,7 +464,7 @@ export default function NotasFiscaisPage() {
       setCancelTarget(null);
       await fetchNotas({ background: true });
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Falha ao cancelar a nota fiscal.');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível cancelar a nota fiscal. Tente novamente.'));
     } finally {
       setActionRowId(null);
     }
@@ -495,7 +497,7 @@ export default function NotasFiscaisPage() {
       setCceTarget(null);
       await fetchNotas({ background: true });
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Falha ao enviar a carta de correção.');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível enviar a carta de correção. Tente novamente.'));
     } finally {
       setActionRowId(null);
     }
@@ -510,12 +512,12 @@ export default function NotasFiscaisPage() {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload?.error || 'Não foi possível iniciar a reconciliação.');
-      if (payload?.throttled) messageApi.info('A reconciliação foi executada há pouco. Aguarde a próxima janela.');
-      else if (payload?.reused) messageApi.info('Já existe uma reconciliação fiscal em andamento.');
+      if (payload?.throttled) messageApi.info('Os dados foram atualizados há pouco. Aguarde antes de tentar novamente.');
+      else if (payload?.reused) messageApi.info('A atualização das notas fiscais já está em andamento.');
       else messageApi.success('Reconciliação fiscal iniciada em segundo plano.');
       await fetchNotas({ background: true });
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Não foi possível iniciar a reconciliação.');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível atualizar a situação das notas. Tente novamente.'));
     } finally {
       setReconciling(false);
     }
@@ -713,7 +715,7 @@ export default function NotasFiscaisPage() {
       </Space>
     </header>
 
-    {activeTab === 'sales' && hasHomologationFixtures && <Alert type="info" showIcon message="Amostra real protegida para homologação" description="Os registros servem para avaliar o layout. Documentos, e-mails e eventos fiscais estão desabilitados nessa amostra." />}
+    {activeTab === 'sales' && hasHomologationFixtures && <Alert type="info" showIcon message="Registros de demonstração protegidos" description="Esses registros servem para avaliar a tela. Documentos, e-mails e ações fiscais estão desabilitados." />}
     {activeTab === 'sales' && summaryError && <Alert type="warning" showIcon message="Resumo fiscal parcialmente indisponível" description={summaryError} action={<Button size="small" onClick={() => void fetchNotas()}>Tentar novamente</Button>} />}
 
     {activeTab === 'sales' && <section className={styles.summaryBand} aria-label="Resumo fiscal">

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { presentCatalogRefresh } from '@/lib/catalogo/refresh-presentation';
 
 const JOB_TIPO = 'catalogo_no_catalogo_refresh';
 
@@ -19,7 +20,7 @@ export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+    return NextResponse.json({ error: 'Sua sessão expirou. Entre novamente para continuar.' }, { status: 401 });
   }
 
   const { searchParams } = new URL(request.url);
@@ -68,7 +69,7 @@ export async function GET(request: Request) {
   }
 
   if (error) {
-    return NextResponse.json({ error: 'Job não encontrado' }, { status: 404 });
+    return NextResponse.json({ error: 'Atualização não encontrada.' }, { status: 404 });
   }
 
   if (!job) {
@@ -83,7 +84,20 @@ export async function GET(request: Request) {
     .filter(Boolean);
 
   const lastEvent = logs.length > 0 ? logs[logs.length - 1] : null;
+  const completionEvent = [...logs].reverse().find((entry: any) => entry?.stage === 'completed') || null;
   const updatedAt = lastEvent?.timestamp || job.finished_at || job.created_at || null;
+  const summary = {
+    detailsUnavailable: Number(completionEvent?.details_unavailable_count || 0),
+    competitionUnavailable: Number(completionEvent?.competition_unavailable_count || 0),
+    updated: Number(completionEvent?.updated_count ?? job.processados ?? 0),
+  };
+  const presentation = presentCatalogRefresh({
+    status: job.status,
+    processed: job.processados,
+    total: job.total,
+    detailsUnavailable: summary.detailsUnavailable,
+    competitionUnavailable: summary.competitionUnavailable,
+  });
 
   return NextResponse.json({
     success: true,
@@ -101,6 +115,8 @@ export async function GET(request: Request) {
         timestamp: lastEvent.timestamp || null,
       } : null,
       updated_at: updatedAt,
+      presentation,
+      summary,
     },
     events: logs
       .filter((entry: any) => String(entry?.event_type || '').startsWith('catalog_refresh_'))

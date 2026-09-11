@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Alert,
@@ -139,7 +141,7 @@ function questionState(question: Pergunta) {
   if (question.status === 'pendente') {
     return { label: 'Não respondida', color: 'gold' as const, kind: 'pending' as const };
   }
-  return { label: question.status || 'Desconhecido', color: 'default' as const, kind: 'unavailable' as const };
+  return { label: 'Situação não informada', color: 'default' as const, kind: 'unavailable' as const };
 }
 
 function showsAnswerComposer(question: Pergunta) {
@@ -282,7 +284,7 @@ export default function PerguntasPage() {
       setAnswerText('');
       await loadQuestions(currentPage);
     } catch (submitError: any) {
-      messageApi.error(submitError?.message || 'Erro ao responder pergunta');
+      messageApi.error(userSafeMessage(submitError?.message, 'Não foi possível enviar a resposta. Tente novamente.'));
     } finally {
       setAnswering(false);
     }
@@ -324,7 +326,7 @@ export default function PerguntasPage() {
           showIcon
           type="error"
           message="Não foi possível atualizar as perguntas"
-          description={`${error}${questions.length ? ' A fila anterior foi preservada.' : ''}`}
+          description={`${userSafeMessage(error, 'Não foi possível atualizar as perguntas.')}${questions.length ? ' A fila anterior foi preservada.' : ' Tente novamente.'}`}
           action={<Button onClick={() => void loadQuestions(currentPage)}>Tentar novamente</Button>}
         />
       ) : null}

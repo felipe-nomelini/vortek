@@ -123,12 +123,13 @@ test('snapshots não recomendam preços e a interface não pré-seleciona a Buy 
 test('interface renderiza memórias, resultado, grupo e aviso sem inventar referências', () => {
   const ui = load('src/components/products/LivePricingQuote.tsx', {
     react: require('react'), 'react/jsx-runtime': require('react/jsx-runtime'), antd: require('antd'),
+    '@/lib/user-feedback': require('../src/lib/user-feedback.ts'),
     '@/lib/format': { formatCurrency: value => value == null ? '—' : `R$ ${Number(value).toFixed(2)}` },
   });
   const React = require('react'); const { renderToStaticMarkup } = require('react-dom/server');
   for (const [profit, label] of [[730, 'atende ao alvo'], [499, 'abaixo do piso'], [-100, 'Prejuízo projetado']]) {
     const html = renderToStaticMarkup(React.createElement(ui.CompetitivePricingSummary, { assessment: domain.assessCompetitivePricing(fixture(10000, profit)) }));
-    assert.ok(html.includes(label)); assert.ok(html.includes('Referência competitiva')); assert.ok(html.includes('G1'));
+    assert.ok(html.includes(label)); assert.ok(html.includes('Referência competitiva')); assert.ok(html.includes('Vínculo dos anúncios'));
     for (const heading of ['Tarifa ML total', 'Frete estimado', 'Tributo', 'Equilíbrio', 'Alvo', 'Piso']) assert.ok(html.includes(heading), heading);
     assert.ok(html.includes('Nenhum preço será aplicado'));
   }

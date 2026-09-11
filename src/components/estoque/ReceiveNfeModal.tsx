@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert, Button, Divider, Input, InputNumber, Modal, Select, Space, Spin,
@@ -32,6 +34,12 @@ type Receipt = {
   itens: ReceiptItem[];
 };
 type Conference = { produtoId: string | null; good: number; damaged: number };
+const receiptStatusLabels: Record<string, string> = {
+  identificada: 'Identificada',
+  aguardando_conferencia: 'Aguardando conferência',
+  parcial: 'Conferência parcial',
+  conferido: 'Conferida',
+};
 
 export default function ReceiveNfeModal(props: {
   open: boolean;
@@ -88,7 +96,7 @@ export default function ReceiveNfeModal(props: {
         if (!response.ok) throw new Error(result?.error || 'Falha ao abrir o recebimento.');
         applyReceipt(result.receipt);
       })
-      .catch((error) => messageApi.error(error.message))
+      .catch((error) => messageApi.error(userSafeMessage(error.message, 'Não foi possível carregar a nota fiscal. Tente novamente.')))
       .finally(() => setLoading(false));
   }, [applyReceipt, initialReceiptId, messageApi, open, stopCamera]);
 
@@ -118,7 +126,7 @@ export default function ReceiveNfeModal(props: {
       applyReceipt(result.receipt);
       messageApi.success(result.existing ? 'Recebimento existente reaberto.' : 'NF-e importada para conferência.');
     } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao importar a NF-e.');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível importar a NF-e. Confira o arquivo e tente novamente.'));
     } finally {
       setLoading(false);
     }
@@ -149,7 +157,7 @@ export default function ReceiveNfeModal(props: {
       );
     } catch (error: any) {
       stopCamera();
-      messageApi.error(error?.message || 'Não foi possível abrir a câmera.');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível abrir a câmera. Confira a permissão do navegador.'));
     }
   };
 
@@ -186,7 +194,7 @@ export default function ReceiveNfeModal(props: {
         return [...map.values()];
       });
     } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao buscar produtos.');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível buscar os produtos. Tente novamente.'));
     } finally {
       setSearchingProducts(false);
     }
@@ -214,10 +222,10 @@ export default function ReceiveNfeModal(props: {
       const result = await response.json();
       if (!response.ok) throw new Error(result?.error || 'Falha ao confirmar o recebimento.');
       applyReceipt(result.receipt);
-      result.mlSyncWarning ? messageApi.warning(result.mlSyncWarning) : messageApi.success('Recebimento físico confirmado.');
+      result.mlSyncWarning ? messageApi.warning(userSafeMessage(result.mlSyncWarning, 'O recebimento foi confirmado, mas a atualização no Mercado Livre ficou pendente.')) : messageApi.success('Recebimento físico confirmado.');
       onChanged();
     } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao confirmar o recebimento.');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível confirmar o recebimento. Tente novamente.'));
     } finally {
       setConfirming(false);
     }
@@ -282,7 +290,7 @@ export default function ReceiveNfeModal(props: {
             <Space wrap>
               <Typography.Text strong>{receipt.emitente_nome}</Typography.Text>
               <Tag>{receipt.itens.length} itens</Tag>
-              <Tag color={receipt.status === 'conferido' ? 'green' : receipt.status === 'parcial' ? 'blue' : 'gold'}>{receipt.status.replaceAll('_', ' ')}</Tag>
+              <Tag color={receipt.status === 'conferido' ? 'green' : receipt.status === 'parcial' ? 'blue' : 'gold'}>{receiptStatusLabels[receipt.status] || 'Situação não informada'}</Tag>
             </Space>
             <Divider style={{ margin: 0 }} />
             <Table

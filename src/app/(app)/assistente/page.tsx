@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, Button, Drawer, Input, Modal, Space, Spin, Tooltip, Typography, message } from 'antd';
 import { DeleteOutlined, EditOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PlusOutlined, SendOutlined, StopOutlined, LinkOutlined, ReloadOutlined } from '@ant-design/icons';
@@ -13,7 +15,7 @@ const suggestions=['Como foram as vendas nos últimos 7 dias?','Como funciona o 
 const date=(value:string)=>new Date(value).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'});
 async function api(path:string, init?:RequestInit){
   const response=await fetch(`/api/assistente/${path}`,{cache:'no-store',...init,headers:{'Content-Type':'application/json',...init?.headers}});
-  const data=await response.json(); if(!response.ok)throw new Error(data.error||'Não foi possível acessar o Assistente.'); return data;
+  const data=await response.json(); if(!response.ok)throw new Error(userSafeMessage(data.error,'Não foi possível acessar o Assistente. Tente novamente.')); return data;
 }
 export default function AssistantPage(){
   const [toast,context]=message.useMessage();
@@ -30,7 +32,7 @@ export default function AssistantPage(){
     setConversations(old=>offset?[...old,...data.conversations]:data.conversations);setNextOffset(data.nextOffset);
   },[search]);
   useEffect(()=>{void reload();return()=>{abort.current?.abort();};},[reload]);
-  useEffect(()=>{if(allowed)void api('conversas').then(data=>{setConversations(data.conversations);setNextOffset(data.nextOffset);}).catch(error=>toast.error(error.message));},[allowed,toast]);
+  useEffect(()=>{if(allowed)void api('conversas').then(data=>{setConversations(data.conversations);setNextOffset(data.nextOffset);}).catch(error=>toast.error(userSafeMessage(error.message,'Não foi possível carregar as conversas. Tente novamente.')));},[allowed,toast]);
   useEffect(()=>{bottom.current?.scrollIntoView({block:'nearest'});},[messages,phase]);
   const openConversation=async(conversation:ChatConversation,older=false)=>{
     if(running&&!older)return;
@@ -39,7 +41,7 @@ export default function AssistantPage(){
       const data=await api(`conversas/${conversation.id}${older&&nextBefore?`?before=${encodeURIComponent(nextBefore)}`:''}`);
       if(sequence!==requestSequence.current)return;
       setSelected(data.conversation);setMessages(old=>older?[...data.messages,...old]:data.messages);setNextBefore(data.nextBefore);
-    }catch(error){toast.error((error as Error).message);}finally{if(sequence===requestSequence.current)setLoading(false);}
+    }catch(error){toast.error(userSafeMessage((error as Error).message,'Não foi possível abrir a conversa. Tente novamente.'));}finally{if(sequence===requestSequence.current)setLoading(false);}
   };
   const fresh=()=>{if(running)return;requestSequence.current++;setSelected(null);setMessages([]);setNextBefore(null);setDraft('');};
   const upsert=(entry:ChatMessage)=>setMessages(old=>old.some(item=>item.id===entry.id)?old.map(item=>item.id===entry.id?entry:item):[...old,entry]);
@@ -71,7 +73,7 @@ export default function AssistantPage(){
           }
         }}finally{reader.releaseLock();}
       }
-    }catch(error){if(!accepted)setDraft(question);if(!controller.signal.aborted)toast.error((error as Error).message);}
+    }catch(error){if(!accepted)setDraft(question);if(!controller.signal.aborted)toast.error(userSafeMessage((error as Error).message,'Não foi possível enviar a pergunta. Tente novamente.'));}
     finally{
       abort.current=null;setRunning(null);setPhase('');
       if(conversation){try{const data=await api(`conversas/${conversation.id}`);setMessages(data.messages);setSelected(data.conversation);setNextBefore(data.nextBefore);}catch{toast.warning('Não foi possível atualizar o histórico. Use Atualizar; o envio não será repetido.');}}
@@ -83,25 +85,25 @@ export default function AssistantPage(){
     try{await api('cancelar',{method:'POST',body:JSON.stringify(request)});setPhase('Interrompendo resposta');
       if(!running&&selected)await openConversation(selected);
     }
-    catch(error){toast.error((error as Error).message);}
+    catch(error){toast.error(userSafeMessage((error as Error).message,'Não foi possível interromper a resposta. Tente novamente.'));}
   };
   const remove=(conversation:ChatConversation)=>Modal.confirm({title:'Excluir esta conversa?',content:'As mensagens serão removidas do histórico do ERP. Esta ação não apaga eventuais backups nem dados retidos pelo provedor.',okText:'Excluir',cancelText:'Voltar',okButtonProps:{danger:true},
     onOk:async()=>{await api(`conversas/${conversation.id}`,{method:'DELETE',body:'{}'});if(selected?.id===conversation.id)fresh();await loadList();}});
 
   if(allowed===null)return <Spin tip="Carregando Assistente"><div style={{height:200}}/></Spin>;
-  if(!allowed)return <Alert type="info" showIcon message="Assistente indisponível" description="O piloto é exclusivo do titular autorizado e precisa estar habilitado neste ambiente DEV." action={<Button onClick={reload}>Atualizar</Button>}/>;
+  if(!allowed)return <Alert type="info" showIcon message="Assistente ainda não liberado" description="Esta função será disponibilizada depois da validação operacional." action={<Button onClick={reload}>Atualizar</Button>}/>;
   const activeStored=messages.find(item=>item.role==='assistant'&&['running','cancel_requested'].includes(item.state));
   return <section className={styles.page}>
     {context}
     <header className={styles.header}>
       <div><Title level={2} className={styles.title}>Assistente Bentevi</Title><Text type="secondary">Entenda os resultados e consulte as operações, com fontes.</Text></div>
-      <Space><Text className={styles.mode}>DEV · Somente consulta</Text><Tooltip title="Atualizar disponibilidade e histórico"><Button icon={<ReloadOutlined/>} disabled={!!running} onClick={()=>{void reload();if(selected)void openConversation(selected);void loadList();}}/></Tooltip></Space>
+      <Space><Text className={styles.mode}>Somente consulta</Text><Tooltip title="Atualizar disponibilidade e histórico"><Button icon={<ReloadOutlined/>} disabled={!!running} onClick={()=>{void reload();if(selected)void openConversation(selected);void loadList();}}/></Tooltip></Space>
     </header>
     {runtime&&<Alert type="info" showIcon message={chatStateLabels[runtime]} description="O histórico continua acessível. Conexão e habilitação serão verificadas antes do teste operacional."/>}
     <div className={`${styles.workspace} ${collapsed?styles.collapsed:''}`}>
       {!collapsed&&<aside className={styles.history} aria-label="Histórico de conversas">
         <Button type="primary" icon={<PlusOutlined/>} block disabled={!!running} onClick={fresh}>Nova conversa</Button>
-        <Input.Search aria-label="Buscar conversas pelo título" placeholder="Buscar conversas" value={search} onChange={event=>setSearch(event.target.value)} onSearch={()=>void loadList().catch(error=>toast.error(error.message))} allowClear/>
+        <Input.Search aria-label="Buscar conversas pelo título" placeholder="Buscar conversas" value={search} onChange={event=>setSearch(event.target.value)} onSearch={()=>void loadList().catch(error=>toast.error(userSafeMessage(error.message,'Não foi possível buscar as conversas. Tente novamente.')))} allowClear/>
         <div className={styles.conversations}>
           {!conversations.length&&<Text type="secondary">Suas conversas aparecerão aqui.</Text>}
           {conversations.map(conversation=><div key={conversation.id} className={`${styles.conversation} ${selected?.id===conversation.id?styles.selected:''}`}>
@@ -127,7 +129,7 @@ export default function AssistantPage(){
               {item.content?<Paragraph className={styles.messageContent}>{item.content}</Paragraph>:<Text type="secondary">{chatStateLabels[item.state]}</Text>}
               {item.answer&&<Space wrap className={styles.answerMeta}>
                 {!!item.answer.sources.length&&<Button type="link" size="small" icon={<LinkOutlined/>} onClick={()=>setSourceMessage(item)}>Fontes e detalhes ({item.answer.sources.length})</Button>}
-                {item.answer.evidence.some(e=>e.includesFixtures)&&<Text type="warning">Contém amostras DEV</Text>}
+                {item.answer.evidence.some(e=>e.includesFixtures)&&<Text type="warning">Contém dados de exemplo</Text>}
                 {item.answer.evidence.some(e=>e.coverage!=='completa')&&<Text type="secondary">Cobertura limitada — veja as fontes</Text>}
               </Space>}
               {item.role==='assistant'&&['running','cancel_requested'].includes(item.state)&&!running&&<Button size="small" icon={<StopOutlined/>} onClick={()=>void stop({conversationId:item.conversation_id,requestId:item.request_id})}>Interromper</Button>}

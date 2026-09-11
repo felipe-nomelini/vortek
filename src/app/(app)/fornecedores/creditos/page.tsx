@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert,
@@ -215,7 +217,7 @@ export default function SupplierCreditsPage() {
       if (!response.ok) throw new Error(json.error || 'Não foi possível carregar o extrato');
       setMovements(Array.isArray(json.movements) ? json.movements : []);
     } catch (cause) {
-      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível carregar o extrato');
+      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível carregar o extrato. Tente novamente.'));
     } finally {
       setDrawerLoading(false);
     }
@@ -261,7 +263,7 @@ export default function SupplierCreditsPage() {
       messageApi.success(`${json.created || 0} nova(s) pendência(s) encontrada(s).`);
       await fetchSummary();
     } catch (cause) {
-      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível buscar os cancelamentos');
+      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível buscar os cancelamentos. Tente novamente.'));
     } finally {
       setReconciling(false);
     }
@@ -270,7 +272,7 @@ export default function SupplierCreditsPage() {
   const confirmReconciliation = () => {
     modalApi.confirm({
       title: 'Buscar créditos de cancelamentos?',
-      content: 'O Vortek revisará vendas canceladas que já tiveram PIX pago ao fornecedor e criará somente as pendências ainda inexistentes.',
+      content: 'A Bentevi revisará as vendas canceladas com PIX já pago ao fornecedor e criará somente as pendências que ainda não existem.',
       okText: 'Buscar agora',
       cancelText: 'Cancelar',
       icon: <SyncOutlined />,
@@ -302,7 +304,7 @@ export default function SupplierCreditsPage() {
       await fetchSummary();
       if (selectedSupplier) await fetchMovements(selectedSupplier);
     } catch (cause) {
-      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível registrar a decisão');
+      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível registrar a decisão. Tente novamente.'));
     } finally {
       setDecisionId(null);
     }
@@ -332,7 +334,7 @@ export default function SupplierCreditsPage() {
         await fetchMovements(selectedSupplier);
       }
     } catch (cause) {
-      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível registrar a movimentação');
+      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível registrar a movimentação. Tente novamente.'));
     } finally {
       setSavingMovement(false);
     }
@@ -458,12 +460,12 @@ export default function SupplierCreditsPage() {
 
       {visualReview && (
         <Alert showIcon type="info" icon={<SafetyCertificateOutlined />}
-          message="Amostra financeira protegida de homologação"
+          message="Dados financeiros de demonstração protegidos"
           description="Os valores reproduzem cenários reais de forma anonimizada. Formulários e decisões podem ser avaliados, mas nenhuma ação será gravada." />
       )}
 
       {error && (
-        <Alert showIcon type="error" message="Não foi possível carregar os créditos" description={error}
+        <Alert showIcon type="error" message="Não foi possível carregar os créditos" description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')}
           action={<Button size="small" onClick={() => void fetchSummary()}>Tentar novamente</Button>} />
       )}
 

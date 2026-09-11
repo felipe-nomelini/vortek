@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, Button, Empty, Input, Modal, Space, Spin, Typography } from 'antd';
 import type { PricingOverrideCommand, PricingOverrideGroup } from '@/services/pricing-overrides';
@@ -48,7 +50,7 @@ export default function PricingOverrideControl({ productId, disabled }: { produc
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || 'Não foi possível registrar a proteção');
       setSelected(null); setCommand(null); await load();
-    } catch (failure) { setSaveError(failure instanceof Error ? failure.message : 'Resultado desconhecido. Consulte o estado.'); await load(); }
+    } catch (failure) { setSaveError(userSafeMessage(failure instanceof Error ? failure.message : '', 'Não foi possível registrar a proteção. Consulte novamente antes de repetir.')); await load(); }
     finally { setSaving(false); }
   };
   const loadHistory = async (groupId: string, before?: string) => {
@@ -67,7 +69,7 @@ export default function PricingOverrideControl({ productId, disabled }: { produc
   if (disabled) return <Alert showIcon type="info" message="Proteção de preço" description="Amostra protegida ou edição em andamento: gerenciamento indisponível." />;
   return <Space direction="vertical" size="middle" style={{ width: '100%', marginTop: 24 }}>
     <Typography.Title level={5} style={{ margin: 0 }}>Proteção de preço</Typography.Title>
-    <Typography.Text type="secondary">Válida até remoção manual. Não altera o preço atual nem impede consultas. Alterações comerciais continuam aguardando homologação.</Typography.Text>
+    <Typography.Text type="secondary">Válida até a remoção manual. Não altera o preço atual nem impede consultas. Alterações comerciais continuam aguardando sua aprovação.</Typography.Text>
     {loading ? <Spin size="small" /> : error ? <Alert showIcon type="warning" message={error} action={<Button onClick={() => void load()}>Consultar novamente</Button>} /> : state?.groups.length ? state.groups.map(group => <div key={group.id} style={{ borderLeft: '3px solid var(--bentevi-primary)', paddingLeft: 12 }}>
       <Space direction="vertical" size={4} style={{ width: '100%' }}>
         <Typography.Text strong>{group.protection ? 'Protegido contra alterações automáticas' : 'Sem proteção manual'}{group.state === 'retired' ? ' · grupo arquivado' : ''}</Typography.Text>
@@ -95,7 +97,7 @@ export default function PricingOverrideControl({ productId, disabled }: { produc
     </Modal>
     <Modal title="Histórico do grupo" open={Boolean(historyGroup)} footer={null} onCancel={() => { historyGeneration.current++; setHistoryGroup(null); }} destroyOnHidden>
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-        {history.map(row => <div key={row.id}><Typography.Text strong>{eventNames[row.kind] || row.kind}</Typography.Text><br /><Typography.Text>{row.reason}</Typography.Text><br /><Typography.Text type="secondary">{new Date(row.created_at).toLocaleString('pt-BR')}</Typography.Text>{row.source_override_ids?.length ? <><br /><Typography.Text type="secondary">Proteções de origem: {row.source_override_ids.join(', ')}</Typography.Text></> : null}</div>)}
+        {history.map(row => <div key={row.id}><Typography.Text strong>{eventNames[row.kind] || 'Atualização registrada'}</Typography.Text><br /><Typography.Text>{userSafeMessage(row.reason, 'Alteração registrada pelo responsável.')}</Typography.Text><br /><Typography.Text type="secondary">{new Date(row.created_at).toLocaleString('pt-BR')}</Typography.Text></div>)}
         {historyError && <Alert type="warning" message={historyError} />}
         {!historyLoading && !history.length && !historyError && <Empty description="Nenhum evento registrado" />}
         {historyLoading && <Spin />}

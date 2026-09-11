@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useEffect, useState } from "react";
 import {
   Alert,
@@ -69,7 +71,7 @@ export default function OperacaoTab({ messageApi }: { messageApi: MessageInstanc
       setDelayMinutes(dto.orders.delayedAfterMinutes);
       setAddressId(dto.internalStock.configuredAddressId || undefined);
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : "Falha ao carregar configuração operacional");
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : "", "Não foi possível carregar as configurações da operação. Tente novamente."));
     } finally {
       setLoading(false);
     }
@@ -90,7 +92,7 @@ export default function OperacaoTab({ messageApi }: { messageApi: MessageInstanc
       setAddressId(dto.internalStock.configuredAddressId || undefined);
       messageApi.success(success);
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : "Falha ao salvar configuração operacional");
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : "", "Não foi possível salvar as configurações da operação. Tente novamente."));
       throw error;
     } finally {
       setSaving(false);
@@ -166,7 +168,7 @@ export default function OperacaoTab({ messageApi }: { messageApi: MessageInstanc
             <Card style={{ ...configuracoesCardStyle, height: "100%" }} title="Estoque interno">
               <Text type="secondary">Somente o endereço padrão de devolução da conta Mercado Livre conectada pode ser usado.</Text>
               {!data?.internalStock.lookup.available && (
-                <Alert style={{ marginTop: 12 }} type="warning" showIcon message="Endereços indisponíveis" description={data?.internalStock.lookup.error} />
+                <Alert style={{ marginTop: 12 }} type="warning" showIcon message="Endereços indisponíveis" description={userSafeMessage(data?.internalStock.lookup.error, "Não foi possível consultar os endereços de estoque. Tente novamente.")} />
               )}
               <Space.Compact style={{ width: "100%", marginTop: 16 }}>
                 <Select
@@ -192,7 +194,7 @@ export default function OperacaoTab({ messageApi }: { messageApi: MessageInstanc
             showIcon
             style={{ marginBottom: 16 }}
             message="O feed XML é auxiliar"
-            description="A API DSLite permanece como fonte principal. Salvar não baixa o arquivo nem inicia sincronização."
+            description="A DSLite permanece como fonte principal. Salvar este endereço não baixa o arquivo nem inicia uma atualização."
           />
           <Table
             rowKey="id"

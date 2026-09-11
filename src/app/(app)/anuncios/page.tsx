@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import PricingDecisionCenter, { PricingProposalButton } from '@/components/products/PricingDecisionCenter';
 
 import { CompetitivePricingSummary, PricingQuoteSummary } from '@/components/products/LivePricingQuote';
@@ -373,7 +375,7 @@ export default function AnunciosPage() {
         }));
         if (statuses.every((status) => ['done', 'failed'].includes(status.status))) void fetchListings();
       } catch (pollError: any) {
-        if (!cancelled) message.error(pollError?.message || 'Falha ao acompanhar publicação de preço');
+        if (!cancelled) message.error(userSafeMessage(pollError?.message, 'Não foi possível acompanhar a alteração de preço. Tente novamente.'));
       }
     }, 2000);
     return () => { cancelled = true; window.clearTimeout(timer); };
@@ -454,7 +456,7 @@ export default function AnunciosPage() {
       if (payload.partial) message.warning('Preço aplicado parcialmente. Confira o resultado de cada anúncio.');
       else message.success('Preço processado para os anúncios padrão e catálogo vinculados.');
     } catch (saveError: any) {
-      message.error(saveError?.message || 'Falha ao atualizar preço');
+      message.error(userSafeMessage(saveError?.message, 'Não foi possível atualizar o preço. Tente novamente.'));
     } finally {
       setSavingPrice(false);
     }
@@ -496,7 +498,7 @@ export default function AnunciosPage() {
       await fetchListings();
     } catch (batchError: any) {
       setBatchResults([{ produtoId: '', sku: '', mlItemId: null, outcome: 'failed', outboxId: null, error: batchError?.message || 'Falha no lote' }]);
-      message.error(batchError?.message || 'Falha ao alterar estado dos anúncios');
+      message.error(userSafeMessage(batchError?.message, 'Não foi possível alterar os anúncios. Tente novamente.'));
     } finally {
       setBatchTarget(null);
     }
@@ -529,7 +531,7 @@ export default function AnunciosPage() {
         }));
         if (statuses.every((status) => ['done', 'failed'].includes(status.status))) await fetchListings();
       } catch (trackingError: any) {
-        if (!cancelled) message.error(trackingError?.message || 'Falha ao acompanhar o lote de status');
+        if (!cancelled) message.error(userSafeMessage(trackingError?.message, 'Não foi possível acompanhar as alterações. Tente novamente.'));
       }
     }, 2000);
     return () => { cancelled = true; window.clearTimeout(timer); };
@@ -564,7 +566,7 @@ export default function AnunciosPage() {
         const current = await pollSyncJob(syncJob.id);
         if (!cancelled && current && TERMINAL_JOB_STATUSES.has(current.status)) await fetchListings();
       } catch (syncError: any) {
-        if (!cancelled) message.error(syncError?.message || 'Falha ao acompanhar atualização');
+        if (!cancelled) message.error(userSafeMessage(syncError?.message, 'Não foi possível acompanhar a atualização. Tente novamente.'));
       }
     }, 2000);
     return () => { cancelled = true; window.clearTimeout(timer); };
@@ -582,10 +584,10 @@ export default function AnunciosPage() {
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload?.error || 'Falha ao iniciar atualização');
       const job = await pollSyncJob(String(payload.jobId || ''));
-      if (!job) throw new Error('O job foi criado, mas não pôde ser acompanhado.');
+      if (!job) throw new Error('A atualização foi iniciada, mas não pôde ser acompanhada.');
       message.success(payload.reused ? 'Atualização existente retomada.' : 'Atualização dos anúncios iniciada.');
     } catch (syncError: any) {
-      message.error(syncError?.message || 'Falha ao iniciar atualização dos anúncios');
+      message.error(userSafeMessage(syncError?.message, 'Não foi possível iniciar a atualização dos anúncios. Tente novamente.'));
     } finally {
       setSyncStarting(false);
     }
@@ -613,7 +615,7 @@ export default function AnunciosPage() {
       anchor.click();
       URL.revokeObjectURL(url);
     } catch (exportError: any) {
-      message.error(exportError?.message || 'Falha ao exportar relatório');
+      message.error(userSafeMessage(exportError?.message, 'Não foi possível gerar o relatório. Tente novamente.'));
     } finally {
       setExporting(false);
     }
@@ -663,7 +665,7 @@ export default function AnunciosPage() {
         <div><strong>{Number(row.qualityScore).toLocaleString('pt-BR', { maximumFractionDigits: 0 })}%</strong><span>{row.qualityScore >= 80 ? 'Boa' : 'Requer atenção'}</span></div>
         <Progress percent={Math.max(0, Math.min(100, Number(row.qualityScore)))} showInfo={false} strokeColor={row.qualityScore >= 80 ? '#21d482' : '#ffbd0e'} trailColor="rgba(255,255,255,.08)" size="small" />
         <small>{row.qualityPrimaryIssue || 'Nenhuma melhoria prioritária'}</small>
-      </div> : <div className={styles.mutedCell}>Leitura não disponível<small>{row.qualityUnavailableReason || 'Sincronize para consultar o desempenho'}</small></div>,
+      </div> : <div className={styles.mutedCell}>Leitura não disponível<small>{userSafeMessage(row.qualityUnavailableReason, 'Atualize os dados para consultar o desempenho.')}</small></div>,
     },
     {
       title: 'Estado', key: 'status', width: 165, sorter: true, sortOrder: getRemoteSortOrder('status', sort),
@@ -730,8 +732,8 @@ export default function AnunciosPage() {
       </Space>
     </header>
 
-    {visualReview && <Alert className={styles.visualReviewAlert} type="warning" showIcon message="Amostra real de produção, somente leitura" description="Lista e análise usam os dados protegidos já disponíveis em homologação. Sincronização, preço, status e links externos permanecem bloqueados." />}
-    {syncJob && <Alert className={styles.syncAlert} type={syncJob.status === 'erro' || syncFailures.length > 0 ? 'error' : TERMINAL_JOB_STATUSES.has(syncJob.status) ? 'success' : 'info'} showIcon message={syncing ? 'Atualizando anúncios do Mercado Livre' : `Atualização ${syncJob.status}`} description={<div className={styles.syncDescription}><Progress percent={Number(syncJob.progresso || 0)} status={syncJob.status === 'erro' ? 'exception' : undefined} /><span>{syncJob.processados} de {syncJob.total} {syncJob.progressUnit || 'itens'} · {syncJob.last_event?.message || 'Aguardando próximo evento'}</span>{syncFailures.length > 0 && <small>{syncFailures.slice(0, 3).join(' • ')}</small>}</div>} />}
+    {visualReview && <Alert className={styles.visualReviewAlert} type="warning" showIcon message="Amostra protegida, somente leitura" description="Lista e análise usam dados protegidos. Atualização, preço, situação e links externos permanecem bloqueados." />}
+    {syncJob && <Alert className={styles.syncAlert} type={syncJob.status === 'erro' || syncFailures.length > 0 ? 'error' : TERMINAL_JOB_STATUSES.has(syncJob.status) ? 'success' : 'info'} showIcon message={syncing ? 'Atualizando anúncios do Mercado Livre' : syncJob.status === 'erro' ? 'Não foi possível atualizar os anúncios' : 'Anúncios atualizados'} description={<div className={styles.syncDescription}><Progress percent={Number(syncJob.progresso || 0)} status={syncJob.status === 'erro' ? 'exception' : undefined} /><span>{syncJob.processados} de {syncJob.total} anúncios processados · {userSafeMessage(syncJob.last_event?.message, syncing ? 'Atualização em andamento.' : 'Processamento concluído.')}</span>{syncFailures.length > 0 && <small>Alguns anúncios não foram atualizados. Os dados anteriores foram preservados.</small>}</div>} />}
 
     <section className={styles.summaryBand}>
       <div><span>Total monitorado</span><strong>{formatInteger(metrics.total)}</strong><small>anúncios vinculados</small></div>
@@ -759,7 +761,7 @@ export default function AnunciosPage() {
     {selectedRows.length > 0 && <section className={styles.bulkBar}><strong>{selectedRows.length} anúncio{selectedRows.length === 1 ? '' : 's'} operacional{selectedRows.length === 1 ? '' : 'is'}</strong><span>As ações alteram somente o anúncio operacional de cada produto.</span><Space><Button icon={<PlayCircleOutlined />} onClick={() => confirmStatus(selectedRows, 'ativo')}>Ativar</Button><Button danger icon={<PauseCircleOutlined />} onClick={() => confirmStatus(selectedRows, 'pausado')}>Pausar</Button></Space></section>}
 
     <section className={styles.tableCard}>
-      {error && <Alert type="error" showIcon message="Não foi possível carregar os anúncios" description={error} action={<Button onClick={() => void fetchListings()}>Tentar novamente</Button>} />}
+      {error && <Alert type="error" showIcon message="Não foi possível carregar os anúncios" description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')} action={<Button onClick={() => void fetchListings()}>Tentar novamente</Button>} />}
       <Spin spinning={loading} indicator={<LoadingOutlined spin className={styles.loadingIcon} />}>
         {!error && !loading && rows.length === 0 ? <Empty className={styles.emptyState} description="Nenhum anúncio encontrado com estes filtros"><Button onClick={clearFilters}>Limpar filtros</Button></Empty> : <ResizableTable<ListingRow> className={styles.desktopTable} storageKey="bnt-d11-anuncios" dataSource={rows} columns={columns} rowKey="itemId" rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys, getCheckboxProps: (row) => ({ disabled: !row.isOperational || !row.productId || Boolean(visualReview) }) }} pagination={{ current: page, pageSize: 100, total, showSizeChanger: false, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} onChange={handleTableChange} scroll={{ x: 1600 }} size="small" />}
       </Spin>
@@ -788,18 +790,18 @@ export default function AnunciosPage() {
             {details?.automaticPricing?.active && <Alert type="warning" showIcon message="Preço automático ativo no Mercado Livre" description="A edição manual está bloqueada para evitar uma rejeição do provedor. Desative a automação no Mercado Livre antes de alterar aqui." />}
             <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || details.automaticPricing?.active || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => void simulateCompetitivePrice()}>Simular referência competitiva</Button>}<PricingProposalButton productId={activeAnalysis.productId!} itemId={activeAnalysis.itemId} priceCents={newPrice == null ? undefined : Math.round(newPrice * 100)} disabled={Boolean(visualReview) || !activeAnalysis.productId || details?.automaticPricing?.active} /></div>
             <small className={styles.scopeNotice}>O mesmo preço será aplicado ao anúncio padrão e ao anúncio de catálogo ativos ou pausados vinculados a este produto. O resultado aparece separadamente por item.</small>
-            {priceResults.length > 0 && <div className={styles.resultList}>{priceResults.map((result) => <div key={result.mlItemId}><span className={styles.typeMark}>{result.type === 'catalog' ? 'CATÁLOGO' : 'PADRÃO'}</span><strong>{result.mlItemId}</strong><span>{result.trackingStatus === 'pending' || result.trackingStatus === 'processing' || result.trackingStatus === 'retry' ? 'Publicação em processamento' : result.success ? 'Preço processado' : 'Falhou'}</span>{result.trackingError && <small className={styles.negative}>{result.trackingError}</small>}{[...result.warnings, ...result.errors].map((notice, index) => <small key={`${result.mlItemId}-${index}`}>{notice}</small>)}</div>)}</div>}
+            {priceResults.length > 0 && <div className={styles.resultList}>{priceResults.map((result) => <div key={result.mlItemId}><span className={styles.typeMark}>{result.type === 'catalog' ? 'CATÁLOGO' : 'PADRÃO'}</span><strong>{result.mlItemId}</strong><span>{result.trackingStatus === 'pending' || result.trackingStatus === 'processing' || result.trackingStatus === 'retry' ? 'Publicação em processamento' : result.success ? 'Preço processado' : 'Não concluído'}</span>{result.trackingError && <small className={styles.negative}>{userSafeMessage(result.trackingError, 'Não foi possível concluir esta alteração.')}</small>}{[...result.warnings, ...result.errors].map((notice, index) => <small key={`${result.mlItemId}-${index}`}>{userSafeMessage(notice, 'Esta alteração precisa de atenção.')}</small>)}</div>)}</div>}
             {details?.quantityPricing?.length ? <div className={styles.wholesale}><span>Descontos existentes no ML — somente consulta</span>{details.quantityPricing.map((tier) => <small key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ unidades · {tier.pricing_model === 'percentage' ? `${tier.discount_percent}% de desconto` : formatCurrency(tier.amount)}</small>)}</div> : null}
           </section>
 
-          <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Qualidade e performance</span><strong>O que priorizar neste anúncio</strong></div></div>{activeAnalysis.qualityAvailable ? <><Progress percent={Number(activeAnalysis.qualityScore || 0)} strokeColor="#ffbd0e" trailColor="rgba(255,255,255,.08)" /><div className={styles.qualityItems}>{qualityItems.length > 0 ? qualityItems.map((item: any, index: number) => <div key={`${item.nome}-${index}`}><span>{item.ok ? <CheckCircleOutlined className={styles.positive} /> : <WarningOutlined className={styles.warning} />}{item.nome || 'Critério do anúncio'}</span><small>{item.pontos ?? 0}/{item.max ?? 0} pontos{Array.isArray(item.regras) && item.regras[0]?.texto?.title ? ` · ${item.regras[0].texto.title}` : ''}</small></div>) : <Text type="secondary">Nenhum detalhamento adicional sincronizado.</Text>}</div>{qualityMissingAttributes.length > 0 && <Alert type="info" showIcon message="Ficha técnica pendente" description={qualityMissingAttributes.join(', ')} />}</> : <Alert type="info" showIcon message="Nota disponível somente no painel do Mercado Livre" description={<div>{activeAnalysis.qualityUnavailableReason || 'A API pública não forneceu a nota deste anúncio.'}{qualityMissingAttributes.length > 0 && <><br />Ficha de catálogo pendente: {qualityMissingAttributes.join(', ')}.</>}</div>} />}</section>
+          <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Qualidade e performance</span><strong>O que priorizar neste anúncio</strong></div></div>{activeAnalysis.qualityAvailable ? <><Progress percent={Number(activeAnalysis.qualityScore || 0)} strokeColor="#ffbd0e" trailColor="rgba(255,255,255,.08)" /><div className={styles.qualityItems}>{qualityItems.length > 0 ? qualityItems.map((item: any, index: number) => <div key={`${item.nome}-${index}`}><span>{item.ok ? <CheckCircleOutlined className={styles.positive} /> : <WarningOutlined className={styles.warning} />}{item.nome || 'Critério do anúncio'}</span><small>{item.pontos ?? 0}/{item.max ?? 0} pontos{Array.isArray(item.regras) && item.regras[0]?.texto?.title ? ` · ${userSafeMessage(item.regras[0].texto.title, 'Confira este critério no Mercado Livre')}` : ''}</small></div>) : <Text type="secondary">Nenhum detalhamento adicional disponível.</Text>}</div>{qualityMissingAttributes.length > 0 && <Alert type="info" showIcon message="Ficha técnica pendente" description={qualityMissingAttributes.join(', ')} />}</> : <Alert type="info" showIcon message="Nota disponível somente no Mercado Livre" description={<div>{userSafeMessage(activeAnalysis.qualityUnavailableReason, 'O Mercado Livre não informou a nota deste anúncio para o sistema.')}{qualityMissingAttributes.length > 0 && <><br />Ficha de catálogo pendente: {qualityMissingAttributes.join(', ')}.</>}</div>} />}</section>
 
-          <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Publicação e vínculo</span><strong>Estado observado e operação local</strong></div></div><Descriptions column={2} size="small" items={[{ key: 'item', label: 'Item ML', children: activeAnalysis.itemId }, { key: 'type', label: 'Tipo', children: activeAnalysis.listingType === 'catalog' ? 'Catálogo' : 'Padrão' }, { key: 'operational', label: 'Operacional', children: activeAnalysis.isOperational ? 'Sim' : 'Não' }, { key: 'catalogProduct', label: 'Produto catálogo', children: activeAnalysis.catalogProductId || 'Não informado' }, { key: 'related', label: 'Anúncio relacionado', children: activeAnalysis.relatedItemId || 'Não informado' }, { key: 'sync', label: 'Última leitura', children: formatDateTime(activeAnalysis.listingSyncedAt) }]} />{(activeAnalysis.blockReason || activeAnalysis.lastError) && <Alert type="error" showIcon message="Publicação bloqueada" description={activeAnalysis.lastError || activeAnalysis.blockReason} />}</section>
+          <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Publicação e vínculo</span><strong>Estado observado e operação local</strong></div></div><Descriptions column={2} size="small" items={[{ key: 'item', label: 'Item ML', children: activeAnalysis.itemId }, { key: 'type', label: 'Tipo', children: activeAnalysis.listingType === 'catalog' ? 'Catálogo' : 'Padrão' }, { key: 'operational', label: 'Operacional', children: activeAnalysis.isOperational ? 'Sim' : 'Não' }, { key: 'catalogProduct', label: 'Produto catálogo', children: activeAnalysis.catalogProductId || 'Não informado' }, { key: 'related', label: 'Anúncio relacionado', children: activeAnalysis.relatedItemId || 'Não informado' }, { key: 'sync', label: 'Última leitura', children: formatDateTime(activeAnalysis.listingSyncedAt) }]} />{(activeAnalysis.blockReason || activeAnalysis.lastError) && <Alert type="error" showIcon message="Publicação bloqueada" description={userSafeMessage(activeAnalysis.lastError || activeAnalysis.blockReason, 'Confira o vínculo e a situação do anúncio no Mercado Livre.')} />}</section>
         </Spin>
       </div>}
     </Drawer>
 
-    <Drawer open={batchOpen} onClose={() => !batchTarget && setBatchOpen(false)} width="min(94vw, 720px)" title="Resultado da alteração de status"><div className={styles.drawerContent}>{batchTarget && <Alert type="info" showIcon message={`Enviando alteração para ${batchTarget}`} />}{!batchTarget && batchResults.length === 0 ? <Empty description="Nenhum resultado disponível" /> : <div className={styles.batchList}>{batchResults.map((result, index) => <div key={`${result.produtoId}-${index}`}><span>{result.sku || 'Produto não identificado'}</span><strong>{result.mlItemId || 'Sem item operacional'}</strong><Tag color={result.outcome === 'queued' || result.outcome === 'already_target' ? 'success' : result.outcome === 'failed' ? 'error' : 'warning'}>{batchOutcomeLabel(result.outcome)}</Tag>{result.error && <small>{result.error}</small>}</div>)}</div>}</div></Drawer>
+    <Drawer open={batchOpen} onClose={() => !batchTarget && setBatchOpen(false)} width="min(94vw, 720px)" title="Resultado da alteração dos anúncios"><div className={styles.drawerContent}>{batchTarget && <Alert type="info" showIcon message={`Enviando alteração para ${batchTarget}`} />}{!batchTarget && batchResults.length === 0 ? <Empty description="Nenhum resultado disponível" /> : <div className={styles.batchList}>{batchResults.map((result, index) => <div key={`${result.produtoId}-${index}`}><span>{result.sku || 'Produto não identificado'}</span><strong>{result.mlItemId || 'Anúncio não identificado'}</strong><Tag color={result.outcome === 'queued' || result.outcome === 'already_target' ? 'success' : result.outcome === 'failed' ? 'error' : 'warning'}>{batchOutcomeLabel(result.outcome)}</Tag>{result.error && <small>{userSafeMessage(result.error, 'Não foi possível concluir esta alteração.')}</small>}</div>)}</div>}</div></Drawer>
 
     <ProgressModal {...progressModalProps} />
   </div>;

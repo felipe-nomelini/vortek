@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useEffect, useState } from "react";
 import {
   Alert,
@@ -190,14 +192,14 @@ export default function EmpresaTab({
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        messageApi.error(data?.erro || "Falha ao salvar a empresa");
+        messageApi.error(userSafeMessage(data?.erro, "Não foi possível salvar os dados da empresa. Tente novamente."));
         return;
       }
       setCompany(data);
       companyForm.setFieldsValue(companyFormValues(data));
       messageApi.success("Cadastro da empresa salvo");
     } catch {
-      messageApi.error("Falha ao salvar a empresa");
+      messageApi.error("Não foi possível salvar os dados da empresa. Tente novamente.");
     } finally {
       setSavingCompany(false);
     }
@@ -235,7 +237,7 @@ export default function EmpresaTab({
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        messageApi.error(data?.erro || "Falha ao salvar a tributação");
+        messageApi.error(userSafeMessage(data?.erro, "Não foi possível salvar a tributação. Revise os dados e tente novamente."));
         return;
       }
       setFiscal(data);
@@ -248,7 +250,7 @@ export default function EmpresaTab({
       });
       messageApi.success("Tributação salva");
     } catch {
-      messageApi.error("Falha ao salvar a tributação");
+      messageApi.error("Não foi possível salvar a tributação. Revise os dados e tente novamente.");
     } finally {
       setSavingFiscal(false);
     }

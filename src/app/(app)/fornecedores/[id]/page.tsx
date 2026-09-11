@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -166,7 +168,7 @@ export default function SupplierDetailPage() {
       setPaymentEditorOpen(false);
       messageApi.success('Dados locais atualizados');
     } catch (saveError) {
-      messageApi.error(saveError instanceof Error ? saveError.message : 'Não foi possível atualizar os dados locais');
+      messageApi.error(userSafeMessage(saveError instanceof Error ? saveError.message : '', 'Não foi possível atualizar os dados do fornecedor. Tente novamente.'));
     } finally {
       setSaving(false);
     }
@@ -208,7 +210,7 @@ export default function SupplierDetailPage() {
       }
       await fetchDetail();
     } catch (statusError) {
-      messageApi.error(statusError instanceof Error ? statusError.message : 'Não foi possível alterar o fornecedor');
+      messageApi.error(userSafeMessage(statusError instanceof Error ? statusError.message : '', 'Não foi possível alterar o fornecedor. Tente novamente.'));
     } finally {
       setStatusChanging(false);
     }
@@ -261,7 +263,7 @@ export default function SupplierDetailPage() {
       if (confirmed) await executeStatusChange(false, reprocess);
     } catch (statusError) {
       setStatusChanging(false);
-      messageApi.error(statusError instanceof Error ? statusError.message : 'Não foi possível calcular o impacto');
+      messageApi.error(userSafeMessage(statusError instanceof Error ? statusError.message : '', 'Não foi possível calcular o impacto. Tente novamente.'));
     }
   }, [canManage, executeStatusChange, messageApi, modal, supplier]);
 

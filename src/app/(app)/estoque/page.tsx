@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert, Button, Descriptions, Drawer, Empty, Form, Input, InputNumber, Modal,
@@ -134,7 +136,7 @@ export default function EstoquePage() {
       if (!response.ok) throw new Error(result?.error || 'Falha ao buscar produtos.');
       setProductOptions(result.products || []);
     } catch (searchError: any) {
-      messageApi.error(searchError?.message || 'Falha ao buscar produtos.');
+      messageApi.error(userSafeMessage(searchError?.message, 'Não foi possível buscar os produtos. Tente novamente.'));
     } finally {
       setProductSearching(false);
     }
@@ -150,12 +152,12 @@ export default function EstoquePage() {
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result?.error || 'Falha ao salvar o ajuste.');
-      result.mlSyncWarning ? messageApi.warning(result.mlSyncWarning) : messageApi.success('Ajuste registrado no histórico.');
+      result.mlSyncWarning ? messageApi.warning(userSafeMessage(result.mlSyncWarning, 'O ajuste foi salvo, mas ainda não foi enviado ao Mercado Livre.')) : messageApi.success('Ajuste registrado no histórico.');
       setAdjustOpen(false);
       adjustForm.resetFields();
       await load(false);
     } catch (saveError: any) {
-      messageApi.error(saveError?.message || 'Falha ao salvar o ajuste.');
+      messageApi.error(userSafeMessage(saveError?.message, 'Não foi possível salvar o ajuste. Tente novamente.'));
     } finally {
       setAdjustSaving(false);
     }
@@ -177,8 +179,8 @@ export default function EstoquePage() {
         </Space>
       </header>
 
-      {error && <Alert showIcon type="error" message="Não foi possível atualizar o estoque" description={`${error} Os dados anteriores foram preservados.`} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}
-      {data.hasHomologationFixtures && <Alert showIcon type="info" message="Amostra protegida de homologação" description="Os registros marcados como amostra permitem avaliar todos os estados da tela. Eles estão estornados no ledger, não alteram o saldo operacional e não aceitam ações." />}
+      {error && <Alert showIcon type="error" message="Não foi possível atualizar o estoque" description={`${userSafeMessage(error, 'A consulta não foi concluída.')} Os dados anteriores foram preservados.`} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}
+      {data.hasHomologationFixtures && <Alert showIcon type="info" message="Registros de demonstração protegidos" description="Os registros marcados como amostra permitem avaliar a tela. Eles não alteram o saldo operacional e não aceitam ações." />}
 
       <section className={styles.summaryBand} aria-label="Resumo do estoque próprio">
         {[
@@ -222,7 +224,7 @@ export default function EstoquePage() {
               { title: 'Fornecedor', dataIndex: 'emitente_nome', width: 260, render: (value, row) => <Space direction="vertical" size={1}><strong>{value} {row.snapshot_source === 'bnt_d05_inventory_mock' && <Tag color="blue">Amostra</Tag>}</strong><Text type="secondary">CNPJ {row.emitente_cnpj}</Text></Space> },
               { title: 'Emissão', dataIndex: 'emitida_em', width: 130, render: (value) => formatDate(value, false) },
               { title: 'Conferência', width: 230, render: (_, row) => { const percent = row.itens_esperados ? Math.round((row.itens_conferidos / row.itens_esperados) * 100) : 0; return <Space direction="vertical" size={3} style={{ width: '100%' }}>{receiptStatus(row.status)}<Progress percent={percent} size="small" format={() => `${row.itens_conferidos}/${row.itens_esperados} un.`} /></Space>; } },
-              { title: 'Ação', width: 150, render: (_, row) => <Button icon={<InboxOutlined />} disabled={row.status === 'conferido' || row.status === 'identificada' || row.snapshot_source === 'bnt_d05_inventory_mock'} title={row.snapshot_source === 'bnt_d05_inventory_mock' ? 'Amostra protegida de homologação' : undefined} onClick={() => { setReceiptId(row.id); setReceiveOpen(true); }}>{row.status === 'parcial' ? 'Continuar' : row.status === 'identificada' ? 'Obter XML' : 'Conferir itens'}</Button> },
+              { title: 'Ação', width: 150, render: (_, row) => <Button icon={<InboxOutlined />} disabled={row.status === 'conferido' || row.status === 'identificada' || row.snapshot_source === 'bnt_d05_inventory_mock'} title={row.snapshot_source === 'bnt_d05_inventory_mock' ? 'Registro de demonstração protegido' : undefined} onClick={() => { setReceiptId(row.id); setReceiveOpen(true); }}>{row.status === 'parcial' ? 'Continuar' : row.status === 'identificada' ? 'Obter XML' : 'Conferir itens'}</Button> },
             ]}
           />,
         },
@@ -237,7 +239,7 @@ export default function EstoquePage() {
               { title: 'Movimento', width: 180, render: (_, row) => <Space direction="vertical" size={2}><strong className={positiveTypes.has(row.tipo) ? styles.positiveValue : styles.negativeValue}>{signedQuantity(row)}</strong><Text type="secondary">{movementLabel(row.tipo, row.estado_envio_interno)}</Text></Space> },
               { title: 'Origem', width: 220, render: (_, row) => row.estoque_recebimentos_nfe ? `NF-e ${row.estoque_recebimentos_nfe.numero || `…${row.estoque_recebimentos_nfe.chave_nfe.slice(-8)}`}` : row.pedidos ? `Venda #${row.pedidos.ml_pack_id || row.pedidos.ml_order_id || '—'}` : 'Ajuste operacional' },
               { title: 'Motivo', dataIndex: 'motivo', width: 300 },
-              { title: 'Estado', width: 120, render: (_, row) => row.snapshot_source === 'bnt_d05_inventory_mock' ? <Tag color="blue">Amostra inerte</Tag> : row.estornada_em ? <Tag>Estornado</Tag> : <Tag color="green">Ativo</Tag> },
+              { title: 'Situação', width: 120, render: (_, row) => row.snapshot_source === 'bnt_d05_inventory_mock' ? <Tag color="blue">Demonstração</Tag> : row.estornada_em ? <Tag>Estornado</Tag> : <Tag color="green">Ativo</Tag> },
             ]}
           />,
         },

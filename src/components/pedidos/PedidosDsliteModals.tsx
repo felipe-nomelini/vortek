@@ -139,7 +139,7 @@ function DsliteShippingModal({ flow }: PedidosDsliteModalsProps) {
     >
       <Space direction="vertical" size={14} style={{ width: '100%' }}>
         <Text type="secondary">
-          Venda sem Mercado Envios. O fornecedor fará o transporte pelo próprio convênio e cobrará o frete da Vortek.
+          Venda sem Mercado Envios. O fornecedor fará o transporte pelo próprio convênio e cobrará o frete da Bentevi.
         </Text>
         <Text>
           <b>Pedido DSLite:</b> #{flow.shippingPrompt?.dsid || '—'}

@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Modal } from 'antd';
 import type { MessageInstance } from 'antd/es/message/interface';
@@ -143,7 +145,7 @@ export function usePedidosLabelWhatsappFlow({
                 const updated = [...previous];
                 const firstActive = updated.findIndex((step) => step.status === 'loading' || step.status === 'pending');
                 const index = firstActive >= 0 ? firstActive : updated.length - 1;
-                updated[index] = { ...updated[index], status: 'error', error: error.message || 'Erro ao acompanhar envio por WhatsApp' };
+                updated[index] = { ...updated[index], status: 'error', error: userSafeMessage(error.message, 'Não foi possível acompanhar o envio pelo WhatsApp.') };
                 return updated;
               });
               setSendingWhatsappLabel(false);
@@ -195,14 +197,14 @@ export function usePedidosLabelWhatsappFlow({
         const updated = [...previous];
         const firstActive = updated.findIndex((step) => step.status === 'loading' || step.status === 'pending');
         const index = firstActive >= 0 ? firstActive : updated.length - 1;
-        updated[index] = { ...updated[index], status: 'error', error: error.message || 'Erro ao enviar etiqueta por WhatsApp' };
+        updated[index] = { ...updated[index], status: 'error', error: userSafeMessage(error.message, 'Não foi possível enviar a etiqueta pelo WhatsApp.') };
         return updated.map((step, stepIndex) => (
           stepIndex > index && step.status === 'pending'
             ? { ...step, status: 'warning', detail: 'Não executada por encerramento antecipado' }
             : step
         ));
       });
-      messageApi.error(error.message || 'Erro ao enviar etiqueta por WhatsApp');
+      messageApi.error(userSafeMessage(error.message, 'Não foi possível enviar a etiqueta pelo WhatsApp. Tente novamente.'));
       setSendingWhatsappLabel(false);
     }
   }, [messageApi, updateOrder, whatsappOrder, whatsappPhone, whatsappUsePlaceholderLabel]);
@@ -280,8 +282,8 @@ export function usePedidosLabelWhatsappFlow({
         const mappedSteps: ProgressStep[] = (data?.data?.steps || []).map((step: any) => ({
           label: String(step?.label || ''),
           status: step?.status === 'skipped' ? 'success' : (step?.status || 'pending'),
-          detail: step?.status === 'skipped' ? (step?.detail || 'Etapa pulada') : step?.detail,
-          error: step?.error,
+          detail: userSafeMessage(step?.detail, step?.status === 'skipped' ? 'Etapa dispensada.' : 'Etapa atualizada.'),
+          error: step?.error ? userSafeMessage(step.error, 'Não foi possível concluir esta etapa.') : undefined,
         }));
 
         if (mappedSteps.length) setLabelSteps(mappedSteps);
@@ -291,17 +293,17 @@ export function usePedidosLabelWhatsappFlow({
 
         const operationStatus = String(data?.data?.operationStatus || '');
         if (operationStatus === 'label_sent') {
-          messageApi.success(data?.data?.message || 'Etiqueta real enviada para DSLite.');
+          messageApi.success(userSafeMessage(data?.data?.message, 'Etiqueta real enviada para a DSLite.'));
         } else if (operationStatus === 'placeholder_label_sent') {
-          messageApi.warning(data?.data?.message || 'Etiqueta provisória do fornecedor enviada. Etiqueta real ainda ficará pendente.');
+          messageApi.warning(userSafeMessage(data?.data?.message, 'A etiqueta provisória foi enviada. A etiqueta real ainda está pendente.'));
         } else if (operationStatus === 'waiting_ml_label') {
-          messageApi.warning(data?.data?.message || 'Etiqueta ainda não liberada pelo Mercado Livre.');
+          messageApi.warning(userSafeMessage(data?.data?.message, 'A etiqueta ainda não foi liberada pelo Mercado Livre.'));
         } else if (operationStatus === 'order_already_fulfilled') {
-          messageApi.info(data?.data?.message || 'Venda já concluída no Mercado Livre.');
+          messageApi.info(userSafeMessage(data?.data?.message, 'A venda já foi concluída no Mercado Livre.'));
         } else if (operationStatus === 'already_done') {
           messageApi.info('Etiqueta já havia sido enviada anteriormente.');
         } else if (operationStatus === 'dslite_paid_shipping_ready') {
-          messageApi.success(data?.data?.message || 'Frete pago confirmado na DSLite.');
+          messageApi.success(userSafeMessage(data?.data?.message, 'Pagamento do frete confirmado na DSLite.'));
         }
         return;
       }
@@ -349,28 +351,19 @@ export function usePedidosLabelWhatsappFlow({
         || providerDetailRaw?.erros?.[0]?.mensagem
         || null;
       const ensureFriendly = isDbSchemaError
-        ? 'Erro de configuração do banco (migration pendente). Contate suporte técnico.'
+        ? 'O sistema precisa de uma atualização antes de concluir esta etapa. Contate o suporte.'
         : step === 'ensure_brasilnfe_invoice'
-          ? `Falha ao emitir NF na Brasil NFe: ${String(providerReason || errorMessage)}`
-          : errorMessage;
-      const attempts = Array.isArray(data?.details?.attempts) ? data.details.attempts : [];
-      const attemptsMethodChain = attempts.length
-        ? attempts.map((attempt: any) => `${attempt.method}(${String(attempt.contentType || '').toLowerCase().includes('xml') ? 'xml' : 'json'})`).join('->')
-        : '';
-      const attemptsStatusChain = attempts.length
-        ? attempts.map((attempt: any) => String(attempt.statusCode ?? 'n/a')).join(', ')
-        : '';
+          ? userSafeMessage(providerReason || errorMessage, 'Não foi possível emitir a NF-e na Brasil NFe.')
+          : userSafeMessage(errorMessage, 'Não foi possível concluir o envio da etiqueta.');
       const uploadFriendly = step === 'upload_invoice_ml'
-        ? `Falha ao subir NF no ML: ${String(data?.details?.error_message_ml || errorMessage)}`
+        ? userSafeMessage(data?.details?.error_message_ml || errorMessage, 'Não foi possível enviar a NF-e ao Mercado Livre.')
         : ensureFriendly;
-      const detailHint = data?.details?.providerError
-        ? `${uploadFriendly} (${String(data.details.providerError)})`
-        : uploadFriendly;
+      const detailHint = uploadFriendly;
       const mappedFromServer: ProgressStep[] = (data?.data?.steps || []).map((item: any) => ({
         label: String(item?.label || ''),
         status: item?.status === 'skipped' ? 'success' : (item?.status || 'pending'),
-        detail: item?.status === 'skipped' ? (item?.detail || 'Etapa pulada') : item?.detail,
-        error: item?.error,
+        detail: userSafeMessage(item?.detail, item?.status === 'skipped' ? 'Etapa dispensada.' : 'Etapa atualizada.'),
+        error: item?.error ? userSafeMessage(item.error, 'Não foi possível concluir esta etapa.') : undefined,
       }));
 
       if (mappedFromServer.length) {
@@ -388,10 +381,7 @@ export function usePedidosLabelWhatsappFlow({
           if (labelToMark) {
             const index = mappedFromServer.findIndex((item) => item.label === labelToMark);
             if (index >= 0) {
-              const attemptsSuffix = step === 'upload_invoice_ml' && attempts.length
-                ? ` [métodos: ${attemptsMethodChain}; retornos: ${attemptsStatusChain}]`
-                : '';
-              mappedFromServer[index] = { ...mappedFromServer[index], status: 'error', error: `${detailHint}${attemptsSuffix}` };
+              mappedFromServer[index] = { ...mappedFromServer[index], status: 'error', error: detailHint };
             }
           }
         }
@@ -440,7 +430,7 @@ export function usePedidosLabelWhatsappFlow({
         const updated = [...previous];
         const firstPending = updated.findIndex((step) => step.status === 'pending' || step.status === 'loading');
         const index = firstPending >= 0 ? firstPending : updated.length - 1;
-        updated[index] = { label: updated[index].label, status: 'error', error: error.message };
+        updated[index] = { label: updated[index].label, status: 'error', error: userSafeMessage(error.message, 'Não foi possível concluir esta etapa.') };
         return updated;
       });
     }
@@ -461,7 +451,7 @@ export function usePedidosLabelWhatsappFlow({
       if (!res.ok || !data?.url) throw new Error(data?.error || 'Etiqueta não disponível');
       window.open(String(data.url), '_blank', 'noopener,noreferrer');
     } catch (error: any) {
-      messageApi.error(error?.message || `Não foi possível baixar etiqueta ${format === 'zpl2' ? 'ZPL' : 'PDF'}`);
+      messageApi.error(userSafeMessage(error?.message, `Não foi possível baixar a etiqueta em ${format === 'zpl2' ? 'ZPL' : 'PDF'}. Tente novamente.`));
     }
   }, [messageApi]);
 
@@ -505,7 +495,7 @@ export function usePedidosLabelWhatsappFlow({
       setLabelSteps((previous) => {
         const next = [...previous];
         const index = next.findIndex((step) => step.status === 'loading' || step.status === 'pending');
-        if (index >= 0) next[index] = { ...next[index], status: 'error', error: error?.message || 'Falha no envio próprio' };
+        if (index >= 0) next[index] = { ...next[index], status: 'error', error: userSafeMessage(error?.message, 'Não foi possível concluir o envio.') };
         return next;
       });
     }

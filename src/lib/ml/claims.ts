@@ -149,7 +149,7 @@ export function claimTypeLabel(value: string | null | undefined): string {
     change: 'Troca',
     service: 'Serviço',
   };
-  return value ? labels[value] || value : 'Não informado';
+  return value ? labels[value] || 'Tipo não informado' : 'Não informado';
 }
 
 export function claimStageLabel(value: string | null | undefined): string {
@@ -160,13 +160,13 @@ export function claimStageLabel(value: string | null | undefined): string {
     none: 'Não se aplica',
     stale: 'Tratativa Mercado Livre',
   };
-  return value ? labels[value] || value : 'Não informado';
+  return value ? labels[value] || 'Etapa não informada' : 'Não informado';
 }
 
 export function claimStatusLabel(value: string | null | undefined): string {
   if (value === 'opened') return 'Aberta';
   if (value === 'closed') return 'Encerrada';
-  return value || 'Não informado';
+  return value ? 'Situação não informada' : 'Não informado';
 }
 
 export function claimResponsibleLabel(value: ClaimResponsible): string {
@@ -246,12 +246,12 @@ export function claimActionLabel(value: string): string {
     return_review_ok: 'Aprovar produto devolvido',
     return_review_fail: 'Contestar produto devolvido',
   };
-  return labels[value] || value.replaceAll('_', ' ');
+  return labels[value] || 'Ação informada pelo Mercado Livre';
 }
 
 export function claimRoleLabel(value: string | null | undefined): string {
   if (value === 'respondent' || value === 'seller') return 'Você';
   if (value === 'complainant' || value === 'buyer') return 'Comprador';
   if (value === 'mediator') return 'Mercado Livre';
-  return value || 'Não informado';
+  return value ? 'Participante do atendimento' : 'Não informado';
 }

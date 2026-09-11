@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
   Input, Select, InputNumber, Tag, Typography, Space, Spin, Drawer, Button, message, Dropdown, Row, Col, Radio, Alert, Tooltip, Segmented, Collapse, Image as AntImage, Steps, Modal,
@@ -275,6 +277,17 @@ function computeDerived(item: Product | ProductMasterListItem, _taxRate: number 
 
 const mlStatusColor: Record<MLStatus, string> = { ativo: 'green', pausado: 'orange', sem_anuncio: 'default' };
 const mlStatusLabel: Record<MLStatus, string> = { ativo: 'Ativo', pausado: 'Pausado', sem_anuncio: 'Sem Anúncio' };
+const listingStatusLabel: Record<string, string> = {
+  active: 'Ativo', paused: 'Pausado', closed: 'Encerrado', under_review: 'Em revisão', inactive: 'Inativo',
+};
+const shippingLogisticLabels: Record<string, string> = {
+  not_specified: 'A combinar',
+  drop_off: 'Postagem em agência',
+  xd_drop_off: 'Ponto de despacho',
+  cross_docking: 'Coleta do Mercado Livre',
+  fulfillment: 'Estoque Full',
+  self_service: 'Envios Flex',
+};
 
 function mapDBtoProduct(item: ProdutoRow, mlFeeFallbackRate: number): Product {
   return {
@@ -491,11 +504,11 @@ export default function ProductsPage() {
       if (data.categorias) {
         setMlModal(prev => ({ ...prev, categorias: data.categorias as MlCategoryOption[], loading: false }));
       } else {
-        messageApi.error(data.error || 'Erro ao buscar categorias');
+        messageApi.error(userSafeMessage(data.error, 'Não foi possível buscar as categorias. Tente novamente.'));
         setMlModal(prev => ({ ...prev, open: false }));
       }
     } catch {
-      messageApi.error('Erro ao conectar');
+      messageApi.error('Não foi possível carregar as categorias. Tente novamente.');
       setMlModal(prev => ({ ...prev, open: false }));
     }
   };
@@ -516,7 +529,7 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (!res.ok || !data?.schema) {
-        messageApi.error(data?.error || 'Falha ao carregar schema da categoria');
+        messageApi.error(userSafeMessage(data?.error, 'Não foi possível carregar os campos da categoria. Tente novamente.'));
         setMlModal(prev => ({ ...prev, loading: false }));
         return;
       }
@@ -538,7 +551,7 @@ export default function ProductsPage() {
         description: schema.prefill.description || prev.description,
       }));
     } catch {
-      messageApi.error('Erro ao carregar schema da categoria');
+      messageApi.error('Não foi possível carregar os campos da categoria. Tente novamente.');
       setMlModal(prev => ({ ...prev, loading: false }));
     }
   };
@@ -571,7 +584,7 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (!res.ok || !data?.success) {
-        messageApi.warning(data?.error || (data?.ignored ? 'Sem evidência confiável para preencher este atributo.' : 'Não foi possível sugerir valor'));
+        messageApi.warning(userSafeMessage(data?.error, data?.ignored ? 'Não há informação confiável para preencher este campo.' : 'Não foi possível sugerir um valor.'));
         return;
       }
       const suggestion = data.suggestion || {};
@@ -628,7 +641,7 @@ export default function ProductsPage() {
         messageApi.success(`Sugestão aplicada com ${suggestion.source_urls.length} fonte(s).`);
       }
     } catch {
-      messageApi.warning('Falha ao solicitar sugestão da IA');
+      messageApi.warning('Não foi possível obter uma sugestão automática. Tente novamente.');
     } finally {
       setMlModal(prev => ({ ...prev, suggestingFieldId: null }));
     }
@@ -820,7 +833,7 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (!res.ok || !data?.success) {
-        messageApi.error(data?.error || 'Falha ao preencher anúncio com IA');
+        messageApi.error(userSafeMessage(data?.error, 'Não foi possível preencher o anúncio automaticamente. Tente novamente.'));
         return;
       }
 
@@ -857,10 +870,10 @@ export default function ProductsPage() {
         `IA ${section ? 'da seção' : 'completa'}: ${summary.filled ?? 0} preenchidos, ${summary.corrected ?? 0} corrigidos, ${summary.empty ?? 0} sem evidência.`
       );
       if (warnings.length > 0) {
-        messageApi.warning(warnings.slice(0, 3).join(' | '));
+        messageApi.warning(warnings.slice(0, 3).map((warning: unknown) => userSafeMessage(warning, 'Um campo precisa ser revisado.')).join(' | '));
       }
     } catch {
-      messageApi.error('Erro ao preencher anúncio com IA');
+      messageApi.error('Não foi possível preencher o anúncio automaticamente. Tente novamente.');
     } finally {
       setMlModal(prev => ({
         ...prev,
@@ -922,17 +935,17 @@ export default function ProductsPage() {
         if (Array.isArray(data.missing_required_attributes) && data.missing_required_attributes.length > 0) {
           messageApi.error(`Atributos obrigatórios pendentes: ${data.missing_required_attributes.map((a: any) => a.name).join(', ')}`);
         } else {
-          messageApi.error(data.error || 'Erro ao criar anúncio');
+          messageApi.error(userSafeMessage(data.error, 'Não foi possível criar o anúncio. Revise os dados e tente novamente.'));
         }
       }
     } catch {
-      messageApi.error('Erro ao criar anúncio');
+      messageApi.error('Não foi possível criar o anúncio. Revise os dados e tente novamente.');
       setMlModal(prev => ({ ...prev, loading: false, result: { success: false, error: 'Erro ao criar anúncio' } }));
     }
   };
 
   const openPriceEditor = (record: ProductRow) => {
-    if (visualReview) { messageApi.warning('A amostra de homologação é somente leitura.'); return; }
+    if (visualReview) { messageApi.warning('A amostra protegida é somente leitura.'); return; }
     const listings = displayMlListings(record);
     setPriceItemId(listings.length === 1 ? listings[0].itemId : undefined);
     setPriceModal({
@@ -1021,7 +1034,7 @@ export default function ProductsPage() {
     } catch (error: any) {
       if (productsRequestRef.current !== requestId) return;
       setListError(error?.message || 'Erro ao carregar produtos');
-      messageApi.error(error?.message || 'Erro ao carregar produtos');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível carregar os produtos. Tente novamente.'));
     } finally {
       if (productsRequestRef.current !== requestId) return;
       setLoading(false);
@@ -1144,7 +1157,7 @@ export default function ProductsPage() {
       URL.revokeObjectURL(url);
       messageApi.success('PDF dos produtos exportado.');
     } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao exportar PDF dos produtos.');
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível gerar o PDF dos produtos. Tente novamente.'));
     } finally {
       setExportingPdf(false);
     }
@@ -1491,7 +1504,7 @@ export default function ProductsPage() {
           className={styles.visualReviewAlert}
           type="warning"
           showIcon
-          message="Amostra real de produção, somente leitura"
+          message="Amostra protegida, somente leitura"
           description={`Recorte protegido com ${visualReview.itemCount} produtos para validação visual. O detalhe e o relatório PDF estão disponíveis somente para leitura; ações operacionais permanecem desabilitadas.`}
         />
       )}
@@ -1703,7 +1716,7 @@ export default function ProductsPage() {
                 type={statusType}
                 showIcon
                 message={`Resultado do anúncio: ${statusText}`}
-                description={result.error || (created ? `Anúncio ${anuncio.id} ${result.linked_existing ? 'vinculado' : 'criado'} no Mercado Livre.` : 'Não foi possível criar o anúncio.')}
+                description={userSafeMessage(result.error, created ? `Anúncio ${anuncio.id} ${result.linked_existing ? 'vinculado' : 'criado'} no Mercado Livre.` : 'Não foi possível criar o anúncio. Revise os dados e tente novamente.')}
               />
 
               {created && (
@@ -1711,7 +1724,7 @@ export default function ProductsPage() {
                   <Title level={5} style={{ color: '#e0e0e0', marginTop: 0 }}>Anúncio</Title>
                   <div style={{ display: 'grid', gap: 8 }}>
                     <Text style={{ color: '#a0a0a0' }}>ID: <Text style={{ color: '#e0e0e0' }}>{anuncio.id}</Text></Text>
-                    <Text style={{ color: '#a0a0a0' }}>Status ML: <Text style={{ color: '#e0e0e0' }}>{anuncio.status || '—'}</Text></Text>
+                    <Text style={{ color: '#a0a0a0' }}>Situação no ML: <Text style={{ color: '#e0e0e0' }}>{listingStatusLabel[String(anuncio.status || '').toLowerCase()] || 'Não informada'}</Text></Text>
                     {typeof anuncio.price === 'number' && (
                       <Text style={{ color: '#a0a0a0' }}>Preço: <Text style={{ color: '#e0e0e0' }}>{formatCurrency(anuncio.price)}</Text></Text>
                     )}
@@ -1729,13 +1742,13 @@ export default function ProductsPage() {
                   type={created ? 'success' : 'error'}
                   showIcon
                   message="Anúncio"
-                  description={created ? 'Item criado/vinculado no Mercado Livre.' : (result.error || 'Falha ao criar item no ML.')}
+                  description={created ? 'Anúncio criado ou vinculado no Mercado Livre.' : userSafeMessage(result.error, 'Não foi possível criar o anúncio. Revise os dados e tente novamente.')}
                 />
                 <Alert
                   type={descriptionOk ? 'success' : 'warning'}
                   showIcon
                   message="Descrição"
-                  description={descriptionOk ? 'Descrição enviada ao Mercado Livre.' : (descriptionStep?.error || 'Descrição não confirmada no Mercado Livre.')}
+                  description={descriptionOk ? 'Descrição enviada ao Mercado Livre.' : userSafeMessage(descriptionStep?.error, 'A descrição não foi confirmada no Mercado Livre. Tente novamente.')}
                 />
                 <Alert
                   type={imagePending ? 'warning' : 'success'}
@@ -2244,15 +2257,15 @@ export default function ProductsPage() {
             <Space direction="vertical" size="small" style={{ width: '100%' }}>
               <Title level={5}>Contexto da publicação</Title>
               <Text type="secondary">Dados fiscais vêm do cadastro do produto; corrija-os no produto antes de preparar.</Text>
-              <Text type="secondary">Conta de teste. A logística escolhida será validada no ML antes de preparar.</Text>
+              <Text type="secondary">A forma de envio escolhida será conferida no Mercado Livre antes de continuar.</Text>
               <Select aria-label="Tipo de anúncio" value={publicationListingType} onChange={setPublicationListingType}
                 options={[{ value: 'gold_special', label: 'Clássico' }, { value: 'gold_pro', label: 'Premium' }]} />
               <Select aria-label="Modalidade de envio" placeholder="Modalidade de envio" value={publicationShipping.mode}
                 onChange={mode => setPublicationShipping(prev => ({ ...prev, mode, logisticType: undefined }))}
-                options={[{ value: 'me2', label: 'Mercado Envios 2' }, { value: 'not_specified', label: 'A combinar — teste' }]} />
+                options={[{ value: 'me2', label: 'Mercado Envios' }, { value: 'not_specified', label: 'A combinar' }]} />
               <Select aria-label="Logística" placeholder="Logística habilitada na conta" value={publicationShipping.logisticType}
                 onChange={logisticType => setPublicationShipping(prev => ({ ...prev, logisticType }))}
-                options={(publicationShipping.mode === 'not_specified' ? ['not_specified'] : ['drop_off', 'xd_drop_off', 'cross_docking', 'fulfillment', 'self_service']).map(value => ({ value, label: value }))} />
+                options={(publicationShipping.mode === 'not_specified' ? ['not_specified'] : ['drop_off', 'xd_drop_off', 'cross_docking', 'fulfillment', 'self_service']).map(value => ({ value, label: shippingLogisticLabels[value] || 'Forma de envio' }))} />
               <Select aria-label="Frete grátis" placeholder="Frete grátis ao comprador?" value={publicationShipping.freeShipping === undefined ? undefined : String(publicationShipping.freeShipping)}
                 onChange={value => setPublicationShipping(prev => ({ ...prev, freeShipping: value === 'true' }))}
                 options={[{ value: 'true', label: 'Sim' }, { value: 'false', label: 'Não' }]} />

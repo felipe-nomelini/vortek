@@ -56,7 +56,7 @@ test('BNT-D11 só classifica qualidade quando a fonte é o endpoint de performan
   assert.match(migration, /quality_available and quality_score < 80/);
   assert.match(fixture, /qualityInfo\?\.source === 'mercado_livre_performance'/);
   assert.match(page, /Leitura não disponível/);
-  assert.match(page, /Nota disponível somente no painel do Mercado Livre/);
+  assert.match(page, /Nota disponível somente no Mercado Livre/);
   assert.match(route, /soldOnly/);
 });
 
@@ -148,8 +148,8 @@ test('BNT-D11 reutiliza a amostra real protegida e bloqueia mutações', () => {
   assert.match(route, /loadBntD07VisualReview\(\)/);
   assert.match(route, /listBntD11VisualReview/);
   assert.match(fixture, /isHomologationFixture: true/);
-  assert.match(page, /Amostra real de produção, somente leitura/);
-  assert.match(page, /Sincronização, preço, status e links externos permanecem bloqueados/);
+  assert.match(page, /Amostra protegida, somente leitura/);
+  assert.match(page, /Atualização, preço, situação e links externos permanecem bloqueados/);
   assert.doesNotMatch(fixture, /\.insert\(|\.upsert\(|\.update\(|\.delete\(/);
 });
 

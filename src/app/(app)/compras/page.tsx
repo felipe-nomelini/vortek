@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
 import {
@@ -320,7 +322,7 @@ export default function ComprasPage() {
       URL.revokeObjectURL(url);
       messageApi.success('PDF das compras exportado.');
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Falha ao exportar PDF das compras.');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível gerar o PDF das compras. Tente novamente.'));
     } finally {
       setExportingPdf(false);
     }
@@ -369,11 +371,11 @@ export default function ComprasPage() {
       const whatsappDetail = payload.whatsapp?.sent
         ? 'WhatsApp enviado.'
         : `WhatsApp não enviado${payload.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(payload.whatsapp.reason)}` : ''}.`;
-      messageApi.success(`PIX registrado no Vortek. ${whatsappDetail}`);
+      messageApi.success(`PIX registrado na Bentevi. ${whatsappDetail}`);
       resetPaymentModal();
       await fetchFilteredPurchases();
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Erro ao confirmar pagamento do fornecedor');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível confirmar o pagamento. Tente novamente.'));
     } finally {
       setConfirmingPayment(false);
     }
@@ -408,7 +410,7 @@ export default function ComprasPage() {
     const response = await fetch(`/api/notas-fiscais/${purchase.pedido_vendas_id}/pdf`, { cache: 'no-store' });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok || !payload?.url) {
-      messageApi.error(payload?.error || 'Não foi possível localizar a DANFE.');
+      messageApi.error(userSafeMessage(payload?.error, 'Não foi possível localizar a DANFE. Verifique se a nota fiscal já foi emitida.'));
       return;
     }
     window.open(String(payload.url), '_blank', 'noopener,noreferrer');
@@ -550,7 +552,7 @@ export default function ComprasPage() {
       </Space>
     </header>
 
-    {hasHomologationFixtures && <Alert type="info" showIcon message="Amostra real protegida para homologação" description="Os dados servem para avaliar o layout. Pagamentos, documentos e ações externas estão desabilitados." />}
+    {hasHomologationFixtures && <Alert type="info" showIcon message="Registros de demonstração protegidos" description="Esses dados servem para avaliar a tela. Pagamentos, documentos e ações externas estão desabilitados." />}
     {alertCount > 0 && mlAnunciosAlertas && <Alert type="warning" showIcon message="Atenção em anúncios do Mercado Livre" description={[
       mlAnunciosAlertas.activeZeroStock.count > 0 ? `${mlAnunciosAlertas.activeZeroStock.count} anúncio(s) ativo(s) com estoque local zero.` : null,
       mlAnunciosAlertas.mlPublishAuthFailures.count > 0 ? `${mlAnunciosAlertas.mlPublishAuthFailures.count} publicação(ões) com falha de autorização.` : null,
@@ -561,7 +563,7 @@ export default function ComprasPage() {
     <section className={styles.summaryBand} aria-label="Resumo das compras">
       {[
         ['Compras', summary.total, 'Registros nos filtros atuais'],
-        ['PIX aguardando confirmação', summary.supplier_payment_pending_count, 'Pagamentos ainda não registrados no Vortek'],
+        ['PIX aguardando confirmação', summary.supplier_payment_pending_count, 'Pagamentos ainda não registrados na Bentevi'],
         ['Em revisão', summary.revisao, 'Precisam de conferência'],
         ['Faturadas', summary.faturado, 'Nota registrada pelo fornecedor'],
         [
@@ -569,7 +571,7 @@ export default function ComprasPage() {
           formatCurrency(summary.supplier_payment_pending_total),
           summary.supplier_payment_pending_missing_amount_count > 0
             ? `Soma dos PIX pendentes; ${summary.supplier_payment_pending_missing_amount_count} sem valor informado`
-            : 'Soma dos PIX pendentes no Vortek; não é saldo bancário',
+            : 'Soma dos PIX pendentes na Bentevi; não é saldo bancário',
         ],
       ].map(([label, value, hint]) => <div className={styles.summaryItem} key={String(label)} aria-busy={summaryLoading}>
         <span className={styles.summaryLabel}>{label}</span>
@@ -624,7 +626,7 @@ export default function ComprasPage() {
         <Alert
           type="warning"
           showIcon
-          message="O Vortek não realiza o pagamento"
+          message="A Bentevi não realiza o pagamento"
           description="Faça o PIX no banco e, depois, anexe o comprovante aqui para registrar a operação."
         />
         <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Compra</Text><Text strong>{selectedCompra ? `DSLite #${selectedCompra.dsid}` : '—'}</Text></div>

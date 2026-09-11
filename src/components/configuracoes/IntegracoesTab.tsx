@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -54,7 +56,7 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
   const [results, setResults] = useState<Record<string, IntegrationTestResult>>({});
   const selected = data?.resumo.find((item) => item.tipo === selectedId);
   const record = data?.integracoes.find((item) => item.tipo === selectedId);
-  const testEnvironmentLabel = selected?.testEnvironment === "production" ? "produção" : "homologação";
+  const testEnvironmentLabel = selected?.testEnvironment === "production" ? "produção" : "testes";
   const dirty = Boolean(secrets.access_token.trim() || secrets.refresh_token.trim() || url !== (record?.url || ""));
   const busy = saving || testing;
 
@@ -103,7 +105,7 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
       setSecrets({ access_token: "", refresh_token: "" });
       setResults({});
       await load();
-      messageApi.error(err instanceof Error ? err.message : "Falha ao salvar.");
+      messageApi.error(userSafeMessage(err instanceof Error ? err.message : "", "Não foi possível salvar a integração. Tente novamente."));
     } finally { setSaving(false); }
   };
   const saveDraft = () => {
@@ -142,7 +144,7 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
       <ConfiguracoesTabHeading title="Integrações" description="Gerencie os serviços conectados à Bentevi." />
       <Button icon={<ReloadOutlined />} loading={loading} disabled={busy || dirty} onClick={() => { setResults({}); void load(); }}>Atualizar estados</Button>
     </div>
-    {error && <Alert type="error" showIcon message="Estados indisponíveis" description={error} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}
+    {error && <Alert type="error" showIcon message="Integrações indisponíveis" description={userSafeMessage(error, "Não foi possível carregar as integrações. Tente novamente.")} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}
     <Spin spinning={loading}>
       {!error && !data && !loading && <Empty description="Nenhuma integração disponível" />}
       {!error && data && <>
@@ -180,7 +182,7 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
         {selected.restriction && <Alert type="info" showIcon message={selected.restriction} />}
         {record && <Descriptions size="small" column={1} items={[
           { key: "token", label: "Credencial efetiva", children: originLabels[record.effective.tokenOrigin] },
-          ...(selected.tipo === "brasilnfe" ? [{ key: "user", label: "User token efetivo", children: originLabels[record.effective.userTokenOrigin] }] : []),
+          ...(selected.tipo === "brasilnfe" ? [{ key: "user", label: "Token adicional efetivo", children: originLabels[record.effective.userTokenOrigin] }] : []),
           ...(selected.tipo !== "mercadopago" ? [{ key: "url", label: "URL efetiva", children: record.effective.url || "Não configurada ou não permitida" }, { key: "origin", label: "Origem da URL", children: originLabels[record.effective.urlOrigin] }] : []),
           { key: "updated", label: "Atualização do cadastro", children: record.updated_at ? new Date(record.updated_at).toLocaleString("pt-BR") : "Sem registro" },
           ...(record.fiscalEnvironment ? [{ key: "fiscal", label: "Ambiente de emissão", children: record.fiscalEnvironment }, { key: "return", label: "Ambiente de devolução", children: record.returnEnvironment }] : []),
@@ -194,18 +196,18 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
           <SecretCredentialField label={selected.tipo === "brasilnfe" ? "Token da empresa" : "Token de acesso"}
             value={secrets.access_token} configured={Boolean(record?.access_token_configurado)} runtimeConfigured={Boolean(record?.runtime.tokenConfigured)} disabled={busy}
             onChange={(value) => setSecrets((current) => ({ ...current, access_token: value }))} onRemove={() => remove("access_token")} />
-          {selected.tipo === "brasilnfe" && <SecretCredentialField label="User token (opcional)"
+          {selected.tipo === "brasilnfe" && <SecretCredentialField label="Token adicional (opcional)"
             value={secrets.refresh_token} configured={Boolean(record?.refresh_token_configurado)} runtimeConfigured={Boolean(record?.runtime.userTokenConfigured)} disabled={busy}
             onChange={(value) => setSecrets((current) => ({ ...current, refresh_token: value }))} onRemove={() => remove("refresh_token")} />}
         </>}
         {["dslite", "brasilnfe"].includes(selected.tipo) && <div>
           <Button loading={testing} disabled={!selected.testable || dirty || saving || Boolean(error)} onClick={testConnection}>Testar conexão em {testEnvironmentLabel}</Button>
           <p className={styles.hint}>{dirty ? "Salve as alterações antes de testar." : "O teste consulta dados; não cria pedidos, não emite notas e não importa documentos."}</p>
-          {results[selected.tipo] && <Alert showIcon type={results[selected.tipo].ok ? "success" : "error"} message={results[selected.tipo].message}
+          {results[selected.tipo] && <Alert showIcon type={results[selected.tipo].ok ? "success" : "error"} message={userSafeMessage(results[selected.tipo].message, results[selected.tipo].ok ? "Conexão confirmada." : "Não foi possível confirmar a conexão. Revise os dados e tente novamente.")}
             description={`Consulta desta sessão: ${new Date(results[selected.tipo].checkedAt).toLocaleString("pt-BR")}`} />}
         </div>}
         {selected.tipo === "dslite" && <Link href="/configuracoes?tab=operacao" onClick={() => setSelectedId(null)}>Gerenciar feeds por fornecedor em Operação →</Link>}
-        {selected.tipo === "mercadopago" && <Alert type="info" message="Esta configuração atende aos relatórios financeiros existentes. Salvar não valida o token nem ativa jobs, pagamentos ou conta-saldo." />}
+        {selected.tipo === "mercadopago" && <Alert type="info" message="Esta configuração atende aos relatórios financeiros existentes. Salvar não testa a credencial nem inicia pagamentos ou atualizações automáticas." />}
         {selected.group === "Serviços técnicos" && <Alert type="info" message="Somente estado da configuração" description="Credenciais e parâmetros continuam no servidor. A edição pelo ERP será tratada em uma etapa própria." />}
       </div>}
     </Drawer>

@@ -1,5 +1,7 @@
 "use client";
 
+import { userSafeMessage } from "@/lib/user-feedback";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Button, Card, Col, Form, InputNumber, Modal, Radio, Row, Space, Spin, Typography } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
@@ -169,7 +171,7 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
           acceptSaved(data); alreadyPersisted = true;
           messageApi.success("Parâmetros comerciais salvos");
         } catch (error) {
-          if (!alreadyPersisted) messageApi.error(error instanceof Error ? error.message : "Falha ao salvar parâmetros comerciais");
+          if (!alreadyPersisted) messageApi.error(userSafeMessage(error instanceof Error ? error.message : "", "Não foi possível salvar as regras comerciais. Revise os dados e tente novamente."));
           throw error; // Ant Design mantém a confirmação aberta quando a Promise rejeita.
         } finally { pendingSave.current = false; setSaving(false); }
       },
@@ -227,7 +229,7 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
             <Col xs={24} md={8}>
               <Form.Item name="unspecifiedShippingCost" label={fields[1].label}
                 rules={[{ required: true }, { type: "number", min: 0, max: 10_000_000 }]}
-                extra="Somente para not_specified, sem cotação válida. Não substitui frete vivo do ML.">
+                extra="Usado somente quando o envio fica a combinar e não há uma cotação válida. Não substitui o frete informado pelo Mercado Livre.">
                 <InputNumber min={0} max={10_000_000} precision={2} prefix="R$" style={inputStyle} />
               </Form.Item>
             </Col>

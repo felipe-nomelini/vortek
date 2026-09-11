@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { Modal, Steps, Typography, Button, Space, Badge } from 'antd';
 import { LoadingOutlined, CheckCircleFilled, CloseCircleFilled, ClockCircleOutlined, ExclamationCircleFilled } from '@ant-design/icons';
 
@@ -96,14 +98,14 @@ export default function ProgressModal({
               icon: config.icon,
               title: (
                 <Text style={{ color: step.status === 'error' ? '#ff4d4f' : '#e0e0e0', fontWeight: step.status === 'loading' ? 600 : 400 }}>
-                  {step.label}
+                  {userSafeMessage(step.label, 'Etapa da operação')}
                 </Text>
               ),
               description: (
                 <div>
                   {step.detail && (
                     <Text style={{ color: '#888', fontSize: 12, display: 'block', marginTop: 4 }}>
-                      {step.detail}
+                      {userSafeMessage(step.detail, 'Etapa atualizada.')}
                     </Text>
                   )}
                   {step.error && (
@@ -116,7 +118,7 @@ export default function ProgressModal({
                     }}>
                       <Text type="danger" style={{ fontSize: 12, display: 'block' }}>
                         <CloseCircleFilled style={{ marginRight: 6 }} />
-                        {step.error}
+                        {userSafeMessage(step.error, 'Não foi possível concluir esta etapa.')}
                       </Text>
                     </div>
                   )}

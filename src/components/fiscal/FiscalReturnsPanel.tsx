@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert, Button, Descriptions, Drawer, Dropdown, Empty, Input, InputNumber,
@@ -97,7 +99,7 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       if (!response.ok) throw new Error(payload.error || 'Falha ao carregar o detalhe');
       setDetail(payload.data);
     } catch (requestError) {
-      messageApi.error(requestError instanceof Error ? requestError.message : 'Falha ao carregar o detalhe');
+      messageApi.error(userSafeMessage(requestError instanceof Error ? requestError.message : '', 'Não foi possível carregar os detalhes. Tente novamente.'));
     } finally {
       setDetailLoading(false);
     }
@@ -111,7 +113,7 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       if (!response.ok || !payload.url) throw new Error(payload.error || 'DANFE não disponível');
       window.open(payload.url, '_blank', 'noopener,noreferrer');
     } catch (requestError) {
-      messageApi.error(requestError instanceof Error ? requestError.message : 'DANFE não disponível');
+      messageApi.error(userSafeMessage(requestError instanceof Error ? requestError.message : '', 'A DANFE ainda não está disponível.'));
     } finally {
       setActionLoading(null);
     }
@@ -126,7 +128,7 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       messageApi.success('Situação fiscal atualizada.');
       await fetchRows();
     } catch (requestError) {
-      messageApi.error(requestError instanceof Error ? requestError.message : 'Falha ao atualizar o status');
+      messageApi.error(userSafeMessage(requestError instanceof Error ? requestError.message : '', 'Não foi possível atualizar a situação. Tente novamente.'));
     } finally {
       setActionLoading(null);
     }
@@ -163,7 +165,7 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       setActionTarget(null);
       await fetchRows();
     } catch (requestError) {
-      messageApi.error(requestError instanceof Error ? requestError.message : 'Ação fiscal rejeitada');
+      messageApi.error(userSafeMessage(requestError instanceof Error ? requestError.message : '', 'Não foi possível concluir a ação fiscal. Revise os dados e tente novamente.'));
     } finally {
       setActionLoading(null);
     }
@@ -202,7 +204,7 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       title: 'Estado fiscal', key: 'status', width: 205,
       render: (_, row) => {
         const presentation = getFiscalStatusPresentation({ status: row.status, nfe_status: row.status_persistido } as any);
-        return <div><Tag color={presentation.color}>{presentation.label}</Tag>{row.erro && <Typography.Text type="danger" ellipsis style={{ display: 'block', maxWidth: 185 }}>{row.erro}</Typography.Text>}</div>;
+        return <div><Tag color={presentation.color}>{presentation.label}</Tag>{row.erro && <Typography.Text type="danger" ellipsis style={{ display: 'block', maxWidth: 185 }}>{userSafeMessage(row.erro, 'Esta devolução precisa de atenção.')}</Typography.Text>}</div>;
       },
     },
     {
@@ -238,7 +240,7 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       <Input.Search value={search} onChange={(event) => setSearch(event.target.value)} onSearch={() => void fetchRows()} allowClear placeholder="NF-e original, retorno ou identificador" style={{ width: 380 }} />
       <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchRows()}>Atualizar retornos</Button>
     </Space>
-    {error && <Alert type="error" showIcon message="Falha ao carregar devoluções" description={error} style={{ marginBottom: 12 }} />}
+    {error && <Alert type="error" showIcon message="Não foi possível carregar as devoluções" description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')} style={{ marginBottom: 12 }} />}
     {!loading && !error && rows.length === 0 ? <Empty description="Nenhuma devolução ou retorno fiscal emitido." /> : <ResizableTable<FiscalReturnRow>
       storageKey="notas-fiscais-retornos-bentevi-v1" rowKey="id" dataSource={rows} columns={columns} loading={loading}
       pagination={{ pageSize: 100, showSizeChanger: false, showTotal: (count) => `${count} retornos` }}

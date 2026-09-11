@@ -97,7 +97,7 @@ test('amostra visual é sintética, temporária e não contém destino externo',
   assert.match(visualReview, /user\.id\.startsWith\('bnt-d18-'\)/);
   assert.match(visualReview, /user\.permalink === null/);
   assert.match(visualReview, /user\.site_id === 'MLB'/);
-  assert.match(page, /Amostra visual protegida de homologação/);
+  assert.match(page, /Dados de demonstração protegidos/);
 });
 
 test('mantém estados de conexão, falta de histórico, proteção e erro', () => {
@@ -105,6 +105,6 @@ test('mantém estados de conexão, falta de histórico, proteção e erro', () =
   assert.match(page, /Reputação ainda não disponível/);
   assert.match(page, /Histórico insuficiente/);
   assert.match(page, /Conta em período de proteção/);
-  assert.match(page, /A atualização falhou/);
+  assert.match(page, /Não foi possível atualizar a reputação/);
   assert.match(page, /Limites não exibidos porque a conta não pertence ao site brasileiro MLB/);
 });

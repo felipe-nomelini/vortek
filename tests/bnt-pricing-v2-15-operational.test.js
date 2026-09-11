@@ -181,6 +181,7 @@ test('apresentação da simulação não se passa por ML vivo e preserva apresen
   const { renderToStaticMarkup } = require('react-dom/server');
   const ui = load('src/components/products/LivePricingQuote.tsx', {
     react: React, 'react/jsx-runtime': require('react/jsx-runtime'), antd: require('antd'),
+    '@/lib/user-feedback': require('../src/lib/user-feedback.ts'),
     '@/lib/format': { formatCurrency: value => value == null ? '—' : `R$ ${value.toFixed(2)}` },
   });
   const pricing = context.simulateProductPricing({ ...scenario, priceCents: 10000, evaluatedAt, taxContext: tax });

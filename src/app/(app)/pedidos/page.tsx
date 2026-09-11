@@ -1,5 +1,7 @@
 'use client';
 
+import { userSafeMessage } from '@/lib/user-feedback';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import dayjs, { type Dayjs } from 'dayjs';
@@ -446,7 +448,7 @@ export default function PedidosPage() {
     const response = await fetch(`/api/notas-fiscais/${order.dbId}/pdf`);
     const payload = await response.json().catch(() => ({}));
     if (!response.ok || !payload?.url) {
-      messageApi.error(payload?.error || 'Não foi possível localizar o PDF da nota fiscal.');
+      messageApi.error(userSafeMessage(payload?.error, 'Não foi possível localizar o PDF da nota fiscal. Verifique se a nota já foi emitida.'));
       return null;
     }
     return String(payload.url);
@@ -454,7 +456,7 @@ export default function PedidosPage() {
 
   const handleOpenNotaFiscalPdf = useCallback(async (order: Order) => {
     if (order.is_homologation_fixture) {
-      messageApi.warning('A DANFE está desabilitada para a amostra protegida de homologação.');
+      messageApi.warning('A DANFE está desabilitada neste registro de demonstração.');
       return;
     }
     const url = await resolveNotaFiscalPdfUrl(order);
@@ -463,7 +465,7 @@ export default function PedidosPage() {
 
   const handleDownloadNotaFiscalXml = useCallback((order: Order) => {
     if (order.is_homologation_fixture) {
-      messageApi.warning('O XML não foi copiado para a amostra de homologação.');
+      messageApi.warning('O XML não está disponível neste registro de demonstração.');
       return;
     }
     if (!order.dbId) {
@@ -542,7 +544,7 @@ export default function PedidosPage() {
   const runOrderAction = useCallback((key: OrderActionKey, order: Order) => {
     if (key === 'view') openOrderDetails(order);
     if (key !== 'view' && order.is_homologation_fixture) {
-      messageApi.warning('Ações operacionais estão desabilitadas para esta amostra de homologação.');
+      messageApi.warning('Ações operacionais estão desabilitadas neste registro de demonstração.');
       return;
     }
     if (key === 'track') openTracking(order);
@@ -577,7 +579,7 @@ export default function PedidosPage() {
       URL.revokeObjectURL(url);
       messageApi.success('PDF das vendas exportado.');
     } catch (error) {
-      messageApi.error(error instanceof Error ? error.message : 'Falha ao exportar PDF das vendas.');
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : '', 'Não foi possível gerar o PDF das vendas. Tente novamente.'));
     } finally {
       setExportingPdf(false);
     }
@@ -796,7 +798,7 @@ export default function PedidosPage() {
         <Alert
           type="info"
           showIcon
-          message="Amostra real protegida para homologação"
+          message="Registros de demonstração protegidos"
           description="Estes dados servem apenas para avaliar o layout. Rastreamento, documentos e ações externas estão desabilitados."
           style={{ marginBottom: 16 }}
         />
