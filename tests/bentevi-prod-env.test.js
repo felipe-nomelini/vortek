@@ -25,6 +25,7 @@ const valid = {
   BENTEVI_ASSISTANT_DATA_APPROVED: '0',
   ML_PRICING_EXECUTION_MODE: 'disabled',
   ML_PRICING_EXECUTION_ALLOWED_OPERATIONS: 'price_change',
+  EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE: '+55 (11) 99999-0002',
   ML_ALLOWED_USER_IDS: '7000000001',
   INTERNAL_APP_URL: 'http://bentevi-prod:80',
   NODE_ENV: 'production',
@@ -79,6 +80,32 @@ test('bloqueia variáveis ausentes e placeholders sem incluir os valores no resu
   assert.ok(!JSON.stringify(result.summary).includes(secret));
 });
 
+test('bloqueia contato adicional da Evolusom ausente ou inválido', () => {
+  for (const [phone, expected] of [
+    ['', /EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE não configurada/],
+    ['abc11999990002', /somente dígitos e separadores/],
+    ['123', /DDD \+ número/],
+  ]) {
+    const result = validateProductionEnvironment({
+      ...valid,
+      EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE: phone,
+    });
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join('\n'), expected);
+    if (phone) assert.ok(!JSON.stringify(result.summary).includes(phone));
+  }
+});
+
+test('aceita contato adicional da Evolusom em formatos normalizados pelo runtime', () => {
+  for (const phone of ['11999990002', '+55 (11) 99999-0002']) {
+    const result = validateProductionEnvironment({
+      ...valid,
+      EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE: phone,
+    });
+    assert.equal(result.ok, true, result.errors.join('\n'));
+  }
+});
+
 test('CLI não imprime secrets do arquivo privado', async (t) => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'bnt-prod-env-'));
   t.after(() => fs.rm(directory, { recursive: true, force: true }));
@@ -103,5 +130,6 @@ test('CLI não imprime secrets do arquivo privado', async (t) => {
 
   assert.equal(result.code, 0, result.output);
   assert.ok(!result.output.includes(secret));
+  assert.ok(!result.output.includes(valid.EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE));
   assert.match(result.output, /nenhum secret foi exibido/);
 });

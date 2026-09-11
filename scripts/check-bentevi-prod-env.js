@@ -19,6 +19,7 @@ const REQUIRED = [
   'BENTEVI_ASSISTANT_DATA_APPROVED',
   'ML_PRICING_EXECUTION_MODE',
   'ML_PRICING_EXECUTION_ALLOWED_OPERATIONS',
+  'EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE',
 ];
 
 const SECRET_NAMES = new Set([
@@ -26,6 +27,7 @@ const SECRET_NAMES = new Set([
   'SUPABASE_SERVICE_ROLE_KEY',
   'API_SECRET_KEY',
   'JWT_SECRET',
+  'EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE',
 ]);
 
 const PLACEHOLDER = /(?:troque|exemplo|example|placeholder|sua[-_ ]|seu[-_ ]|changeme|<.+>)/i;
@@ -42,6 +44,21 @@ function parseUrl(value, name, errors) {
   } catch {
     errors.push(`${name} deve conter uma URL válida.`);
     return null;
+  }
+}
+
+function validateWhatsappPhone(value, name, errors) {
+  const phone = String(value || '').trim();
+  if (!phone) return;
+  if (/[^\d+().\s-]/.test(phone)) {
+    errors.push(`${name} deve conter somente dígitos e separadores de telefone.`);
+    return;
+  }
+
+  const digits = phone.replace(/\D/g, '');
+  const normalized = digits.startsWith('55') ? digits : `55${digits}`;
+  if (normalized.length < 12 || normalized.length > 13) {
+    errors.push(`${name} deve usar DDD + número ou 55 + DDD + número.`);
   }
 }
 
@@ -100,6 +117,11 @@ function validateProductionEnvironment(env) {
     || String(env.BRASILNFE_RETURN_TIPO_AMBIENTE || '') !== '1') {
     errors.push('Brasil NFe deve usar ambiente 1 para emissão e devolução produtivas.');
   }
+  validateWhatsappPhone(
+    env.EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE,
+    'EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE',
+    errors,
+  );
   if (env.NODE_ENV && env.NODE_ENV !== 'production') {
     errors.push('NODE_ENV, quando informado, deve ser production.');
   }
