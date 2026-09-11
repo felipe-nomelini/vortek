@@ -25,6 +25,8 @@ function enrichPublishEligibility(row: Record<string, any>) {
   return {
     ...row,
     qualityInfo,
+    qualityScore: row.qualityAvailable ? row.qualityScore : null,
+    qualityPrimaryIssue: row.qualityAvailable ? row.qualityPrimaryIssue : null,
     qualityUnavailableReason: row.qualityAvailable
       ? null
       : String(qualityInfo?.reason || '').trim() || null,

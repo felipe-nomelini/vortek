@@ -62,6 +62,7 @@ test('BNT-D11 preserva diagnóstico de catálogo e instruções dos objetivos', 
   assert.match(syncRoute, /regras:/);
   assert.match(syncRoute, /performance_message/);
   assert.match(fixture, /qualityUnavailableReason/);
+  assert.match(route, /qualityScore: row\.qualityAvailable \? row\.qualityScore : null/);
 });
 
 test('BNT-D11 usa alíquota dinâmica e mantém cálculo de rentabilidade no backend', () => {

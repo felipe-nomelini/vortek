@@ -87,6 +87,12 @@ aceite usou o read-back HTTP 200 do item, do User Product e da performance. O
 snapshot `anuncios_ml` do item foi atualizado de 65 para 69 com a mesma leitura
 oficial e com as regras detalhadas preservadas.
 
+Os 13 snapshots reclassificados como catálogo também receberam read-back da
+API de qualidade de catálogo e passaram a registrar essa fonte explicitamente.
+O score numérico histórico continua preservado na coluna física para auditoria,
+mas a API Bentevi o normaliza para `null` quando `qualityAvailable=false`,
+impedindo que uma nota antiga seja apresentada como leitura atual.
+
 ## Mudança no Bentevi
 
 - a sincronização preserva as regras, textos e progresso devolvidos pela API de
