@@ -64,6 +64,14 @@ por `local/bentevi-prod`. O Easypanel concluiu a ação
 inicialização. `/api/ops/health` respondeu `200`, `/anuncios` redirecionou o
 visitante sem sessão e `/api/pricing/decisions` respondeu `401` sem sessão.
 
+O fechamento de tipos, escopo por operação e documentação foi versionado em
+`b017624d97ff36837616e5ff5492d65243b59d7a`, novamente promovido por
+fast-forward de `dev` para `bentevi-prod`. A ação Easypanel
+`cmtwghdyc00jb07mf3rqehvg5` terminou com estado `done`; o serviço confirmou o
+SHA exato, sem erro de inicialização. O novo processo respondeu health `200`,
+login `200`, redirecionamento autenticado de `/anuncios` e `401` nas duas APIs
+de decisões sem sessão, incluindo `/reanalyze`.
+
 ## Segurança operacional e recuperação
 
 Durante migration, deploy, smoke e reconciliação, a execução comercial
