@@ -107,7 +107,7 @@ test('snapshots não recomendam preços e a interface não pré-seleciona a Buy 
     assert.doesNotMatch(source, /Usar preço para ganhar|priceToWin \|\| activeCatalog.price_to_win|setNewPrice\(row.price_to_win/);
     assert.match(source, /PricingProposalButton/);
   }
-  assert.match(fs.readFileSync('src/components/products/PricingDecisionCenter.tsx','utf8'), /aplicação bloqueada pelo gate/);
+  assert.match(fs.readFileSync('src/components/products/PricingDecisionCenter.tsx','utf8'), /esta operação não está liberada no ambiente/);
 });
 test('interface renderiza memórias, resultado, grupo e aviso sem inventar referências', () => {
   const ui = load('src/components/products/LivePricingQuote.tsx', {

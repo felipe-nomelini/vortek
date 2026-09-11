@@ -2,13 +2,16 @@
 
 Este documento registra regras práticas validadas na criação de anúncios do Vortek.
 
-## Estado produtivo Bentevi — 10/09/2026
+## Estado produtivo Bentevi — 11/09/2026
 
 O Bentevi está em produção em `app.bentevi.shop`, com o Supabase self-hosted
-produtivo em `.162`. Criação de anúncios e alteração automática de preços
-continuam bloqueadas por `ML_PRICING_EXECUTION_MODE=disabled`. A publicação
-automática liberada neste recorte é exclusivamente de **quantidade e status** de
-anúncios existentes, por meio de `anuncios_ml_outbox` e do publicador canônico.
+produtivo em `.162`. A alteração **manual e individual** de preço está liberada
+no executor canônico por `ML_PRICING_EXECUTION_MODE=production_controlled` e
+`ML_PRICING_EXECUTION_ALLOWED_OPERATIONS=price_change`. Criação de anúncios,
+alteração automática e operações em lote continuam bloqueadas. A publicação
+automática liberada fora desse recorte continua exclusivamente de **quantidade
+e status** de anúncios existentes, por meio de `anuncios_ml_outbox` e do
+publicador canônico.
 
 - O sincronizador central é disparado no runtime produtivo a cada minuto; o
   publicador de estoque/status é consultado a cada 15 segundos e mantém lote
@@ -24,6 +27,10 @@ anúncios existentes, por meio de `anuncios_ml_outbox` e do publicador canônico
 - O scan observado deve atualizar o `scroll_id` com o valor devolvido em cada
   página. Reutilizar sempre o cursor inicial repete a segunda página e prende o
   job; o manifesto produtivo corrigido encontrou 7.052 anúncios em 72 páginas.
+- Uma alteração de preço exige produto/grupo/economia atuais, proposta,
+  aprovação humana e confirmação final da mesma pessoa autorizada. O executor
+  faz uma única tentativa, não reenvia resultado incerto e só confirma depois
+  do read-back do Mercado Livre.
 
 O feed XML Crossdocking da DSLite, quando usado, deve seguir exatamente
 `https://app.dslite.com.br/modules/admin/Empresa/getXMLCrossdocking/{fornecedor}/{token}`.
@@ -52,21 +59,30 @@ local; isso não autoriza criar vínculo de catálogo ou alterar o anúncio remo
 O recorte validado está registrado em
 [BNT-ML-QUALITY-02](reestruturacao-vortek/evidencias/BNT-ML-QUALITY-02-validacao.md).
 
-## Estado da execução Bentevi DEV — 09/09/2026
+## Histórico da preparação Bentevi DEV — 09/09/2026
 
 O PUB-GATE publicado em DEV (`9a18ff8f`) substitui a criação direta por preparação, aprovação explícita, operação/outbox, worker e conferência. O formulário de preço também encaminha proposta à central; a rota de preço bruto continua bloqueada. A capacidade nova está **desabilitada por padrão**, restrita à conta de teste/allowlist/DEV e banco `.162`. Os testes locais não substituem a prova no ML: o seller de teste está conectado/verificado, mas o aceite autenticado e a prova externa limitada ainda estão pendentes. [Contrato, evidências, rollback e pendências do marco 1](reestruturacao-vortek/evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md).
 
-**Estado atual:** o recorte técnico do marco 1 continua concluído para sequência e seu aceite autenticado/prova externa permanece transferido ao marco 6 de [Bentevi em operação](reestruturacao-vortek/VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md#bentevi-em-operacao). A capacidade produtiva controlada foi preparada e validada em `dev` por `BNT-REL-WRITER-01`, mas segue `disabled` por padrão e não foi publicada nem ativada. Conta real e escritas continuam permitidas somente na ativação autorizada pelo workspace produtivo. [Evidência técnica](reestruturacao-vortek/evidencias/BNT-REL-WRITER-01-validacao.md).
+**Estado posterior:** a preparação técnica de `BNT-REL-WRITER-01` foi publicada
+e ativada em 11/09/2026 somente para alteração manual de preço. A central,
+escopo, preflight, deploy e recuperação estão registrados em
+[BNT-PRICING-DECISION-CENTER-01](reestruturacao-vortek/evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
 
-### Modo produtivo controlado — preparado, não ativado
+### Modo produtivo controlado — preço manual ativo em 11/09/2026
 
 - `ML_PRICING_EXECUTION_MODE=production_controlled` somente produz capacidade quando o runtime é `production`, a origem é exatamente `https://app.bentevi.shop`, o Supabase resolve exclusivamente para `.162`, o seller está na allowlist e `/users/me` comprova conta `MLB` sem a tag `test_user`.
-- `test_only` preserva o contrato de homologação, incluindo conta `test_user`; `disabled` permanece o padrão.
+- `test_only` preserva o contrato de homologação, incluindo conta `test_user`; `disabled` permanece o padrão fora do serviço produtivo explicitamente configurado.
+- `ML_PRICING_EXECUTION_ALLOWED_OPERATIONS=price_change` limita a capacidade
+  produtiva atual. `listing_create` não está na allowlist e é recusado também no
+  backend, independentemente da interface.
 - Aprovação e aplicação continuam separadas e feitas pela mesma pessoa autorizada (`admin` ou `gerente`). Produção acrescenta confirmação final explícita com produto, SKU e preço antes de enfileirar.
 - O executor canônico conserva claim único, revalidação imediatamente antes do envio, auditoria, captura do ID remoto, read-back e recuperação sem reenvio após resultado incerto. Escritores legados permanecem bloqueados.
 - Em criação produtiva, o anúncio usa o nome comprovado do produto. O aviso `Item de Teste` existe somente em `test_only`.
 
-Essas condições não reclassificam a `.162`, não configuram o serviço `local/bentevi-prod` e não autorizam testes reais. A ativação continua subordinada ao corte produtivo e ao marco 6.
+Essas condições não ampliam a autorização para criação, lote ou automação. O
+primeiro preço real continua sendo um canário manual: escolher um anúncio
+elegível, registrar e aprovar a proposta, confirmar uma única vez e conferir o
+estado terminal/read-back antes de qualquer segunda operação.
 
 Não reenviar criação ou preço após resultado incerto. A central pode solicitar nova conferência da mesma operação, sem repetir a mutação. Nenhuma destas regras autoriza anúncio real, publicação em massa ou escrita em produção.
 

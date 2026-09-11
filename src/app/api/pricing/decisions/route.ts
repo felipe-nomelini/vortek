@@ -101,11 +101,12 @@ export async function GET(request: Request) {
         hasMore: history.data?.length === 30,
         canManage,
         execution,
-        executionBlocked: !execution.enabled,
+        executionBlocked: !execution.enabled
+          || execution.allowedOperations?.includes(latestDecisions[0]?.context?.operationKind || 'price_change') !== true,
       });
     }
     const term = f.search.replace(/[^\p{L}\p{N}\s_-]/gu, '').trim();
-    const index = await client.rpc('search_pricing_decision_product_ids' as any, {
+    const index = await client.rpc('search_pricing_decision_product_ids', {
       p_view: f.view, p_state: f.state, p_severity: f.severity ?? null,
       p_decision: f.decision ?? null, p_search: term, p_page: f.page, p_page_size: 30,
     });

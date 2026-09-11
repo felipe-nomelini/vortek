@@ -74,7 +74,7 @@ test('erros desconhecidos não vazam payloads de backend',async()=>{
 });
 test('interface única conserva ações explícitas, estados separados e não publica',()=>{
   const ui=fs.readFileSync('src/components/products/PricingDecisionCenter.tsx','utf8');
-  for(const label of ['Alertas e decisões','Aprovar proposta','Rejeitar','Adiar','aplicação bloqueada pelo gate','Motivo obrigatório','Histórico','Registrar proposta',
+  for(const label of ['Alertas e decisões','Aprovar proposta','Rejeitar','Adiar','esta operação não está liberada no ambiente','Motivo obrigatório','Histórico','Registrar proposta',
     'Aplicar no Mercado Livre','Confirmar criação de anúncio real','Confirmar alteração de preço real','Esta operação produz efeito comercial real'])assert.ok(ui.includes(label));
   assert.match(ui,/onClick=\{requestApprovedExecution\}/);assert.match(ui,/setExecutionConfirmationOpen\(true\)/);
   assert.doesNotMatch(ui,/setInterval|setTimeout|atualizar-preco|enqueueMlPublishOutbox/);assert.match(ui,/command\s*\?\?/);assert.match(ui,/generation\.current/);

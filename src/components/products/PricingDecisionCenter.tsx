@@ -545,7 +545,7 @@ export default function PricingDecisionCenter() {
                 )}
                 {current?.state === 'approved' && (
                   <Space direction="vertical">
-                    {detail.executionBlocked && <Alert type="info" message="Proposta aprovada; aplicação bloqueada pelo gate protegido do ambiente." />}
+                    {detail.executionBlocked && <Alert type="info" message="Proposta aprovada; esta operação não está liberada no ambiente." />}
                     {detail.canManage && !current.operation_id && <Button type="primary" loading={busy}
                       disabled={detail.executionBlocked} onClick={requestApprovedExecution}>
                       {detail.execution.target === 'production' ? 'Aplicar no Mercado Livre' : 'Aplicar na conta de teste'}

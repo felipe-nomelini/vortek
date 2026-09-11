@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (09/09/2026):** marco 2 encerrado no recorte inicial de Configurações. AI-00/01 concluídas no piloto individual; **Assistente AI-02 ativado no DEV para Felipe**, com perfil persistente exclusivo, login oficial e `gpt-6-astra/low` por assinatura. Correção `0de3b139` explica períodos de vendas sem registros e aponta datas disponíveis; publicação e smoke semântico concluídos (sete dias com datas explicadas; trinta dias com faturamento conferido no DEV). [Evidências AI-02](evidencias/BNT-AI-02-validacao.md). A capacidade produtiva canônica foi preparada e testada em `dev` por [BNT-REL-WRITER-01](evidencias/BNT-REL-WRITER-01-validacao.md), permanecendo desabilitada e sem prova real. Próxima ação: receber o teste do usuário antes de encerrar AI-GATE e seguir os gates restantes do marco 5. Controles de treinamento não verificados independentemente; liberação do sócio segue separada. PUB-GATE externo/ME2 permanece no marco 6. Nenhuma promoção ou execução comercial foi liberada.
+**Situação vigente (11/09/2026):** o Bentevi opera em `app.bentevi.shop` com o Supabase produtivo `.162`. A central de alertas foi corrigida, agrupada por produto e publicada; a alteração manual e individual de preço está configurada em `production_controlled` com allowlist exclusiva `price_change`. Criação de anúncios, lote e automação continuam bloqueados. O primeiro canário de preço exige ação autenticada e confirmação humana; até essa prova, a capacidade está disponível, mas nenhuma alteração real de preço foi executada. O Assistente continua fora deste recorte produtivo. [Evidências da central e ativação](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
 
 ---
 
@@ -79,7 +79,7 @@ Regras de uso:
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 10/09/2026:** o núcleo Bentevi já opera com dados reais em `app.bentevi.shop`, serviço `local/bentevi-prod` e Supabase produtivo `.162`. Assistente, criação de anúncios e alteração de preços no Mercado Livre permanecem bloqueados. A etapa operacional atual é acompanhar o primeiro ciclo completo das sincronizações liberadas, concluir o backlog de estoque/status e continuar as validações reais sem liberar as capacidades comerciais adiadas.
+**Prioridade vigente — atualização de 11/09/2026:** o núcleo Bentevi opera com dados reais em `app.bentevi.shop`, serviço `local/bentevi-prod` e Supabase produtivo `.162`. Assistente e criação de anúncios permanecem bloqueados. Alteração manual e individual de preço está tecnicamente liberada no executor controlado; a próxima ação operacional é executar e conferir um único canário autenticado antes de qualquer segunda alteração. Sincronizações de quantidade/status continuam independentes e acompanhadas.
 
 <a id="bentevi-em-operacao"></a>
 
@@ -95,7 +95,7 @@ Regras de uso:
 
 | Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
 |---|---|---|---|---|
-| 1 — Execução comercial | Adiada no primeiro corte | Criação de anúncio e alteração de preço permanecem bloqueadas por configuração | Manter `ML_PRICING_EXECUTION_MODE=disabled`; retomar em release posterior | Preflight produtivo confirma capacidade desativada; evidências técnicas anteriores não equivalem a liberação |
+| 1 — Execução comercial | Preço manual individual habilitado em 11/09; criação/lote/automação adiados | Primeiro canário autenticado de preço e read-back ainda pendentes | Executar uma proposta elegível, aprovar, confirmar uma vez e conferir o estado terminal antes da segunda operação | Runtime `production_controlled` com allowlist somente `price_change`; zero operações/outbox antes da ativação; [evidência](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md) |
 | 2 — Configurações iniciais | Concluído no recorte inicial; aceite D20 concedido pelo usuário em 08/09 | Nenhum neste recorte; D20/V2-15 integrais continuam abertos | Preservar controles e seguir para marco 3 | [Entrega técnica, publicação e aceite humano inicial](evidencias/BNT-PRICING-V2-15-operacional-validacao.md#aceite-inicial-do-usuario--08092026); não comprova capacidades adiadas |
 | 3 — Assistente Bentevi | Adiado no primeiro corte | Nenhum para o núcleo inicial; runtime deve permanecer bloqueado | Retomar AI-GATE depois da entrada em produção | `BENTEVI_ASSISTANT_ENABLED=0` e `BENTEVI_ASSISTANT_DATA_APPROVED=0` no preflight produtivo |
 | 4 — Operação ponta a ponta | Validação inicial transferida para depois do deploy | O smoke seguro não pode falhar; validação real continua com acompanhamento | Validar login e leituras críticas antes do tráfego; exercitar fluxos reais depois da publicação | Logs, health, autenticação e primeiros fluxos reais; erro material interrompe somente o fluxo afetado |
@@ -105,7 +105,7 @@ Regras de uso:
 
 **Preparação do DEV local — 09/09/2026:** aprovada a topologia em que o `PCBAO` receberá o DEV local privado e a `.162` será reaproveitada futuramente como Supabase Bentevi PROD. Foram adicionados `supabase/config.toml`, comandos npm, seed sintético sem produtos/credenciais externas, documentação e teste de contrato. Com Docker Desktop 4.90 integrado ao WSL, o projeto `bentevi-dev-local` aplicou as 124 migrations em banco vazio; duas incompatibilidades do seed com o schema final foram identificadas e corrigidas, e o replay seguinte concluiu migrations e seed. A opção global **Localhost by default** foi aplicada no Docker Desktop: um container descartável e os containers do Supabase comprovaram binds exclusivos em `127.0.0.1`/`::1`, nas portas 54321–54324, antes e depois de reiniciar o Docker Desktop. O wrapper confere os binds reais, desliga automaticamente uma inicialização insegura, redige valores sensíveis da inicialização e omite chaves no status. O banco ativo confirmou PostgreSQL 17.6, 124 migrations, uma empresa sintética, três integrações locais desconectadas e zero produtos. Passaram cinco testes direcionados, `bash -n`, `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`. Esta é evidência parcial do marco 5, não o fecha: autenticação e fluxos web locais ainda precisam de validação própria. A `.162` continua DEV e não foi acessada ou alterada; `.160` e produção permaneceram intocadas.
 
-**Gate da primeira operação:** ao fechar o marco 5, executar somente a ativação mínima prevista no release; o marco 6 comprova o núcleo com tráfego real. Ele não fecha `BNT-PRICING-V2-16`, `M2M-GATE` ou `BNT-AI-GATE`. Publicação de anúncios e alteração de preço permanecem tecnicamente indisponíveis; não basta remover `pricing_execution_not_ready` em produção. Jobs essenciais habilitados precisam ter um único executor e acompanhamento após o deploy.
+**Gate da primeira operação comercial:** alteração manual de preço está tecnicamente disponível somente no executor controlado. O primeiro canário deve ser individual, autenticado, aprovado e confirmado na interface; somente o read-back terminal autoriza a próxima operação. Isso não fecha `BNT-PRICING-V2-16`, `M2M-GATE` ou `BNT-AI-GATE`. Criação de anúncios, lote e automação permanecem tecnicamente indisponíveis. Jobs essenciais habilitados precisam ter um único executor e acompanhamento após o deploy.
 
 #### Adiado — não concluído; não bloqueia a primeira operação por si só
 
@@ -113,7 +113,7 @@ Regras de uso:
 |---|---|
 | BNT-AI-GATE e Assistente Bentevi | Retomar depois da entrada em produção; manter ambas as flags de runtime bloqueadas no primeiro release |
 | BNT-REL-ML-DELETE-01, CATEGORY-01, PREFLIGHT-01 e UNITS-01 | Obrigatórias antes de habilitar criação de anúncios; não bloqueiam o núcleo enquanto pricing/publicação permanecerem desativados |
-| Prova real PUB-GATE, tarifa/frete ME2 e alteração de preço | Executar somente em release posterior que habilite a capacidade comercial; não realizar no primeiro corte |
+| Prova real de criação PUB-GATE e tarifa/frete ME2 | Continuam em release posterior; o recorte atual libera somente preço manual individual e mantém o primeiro canário pendente |
 | V2-09, V2-08A, V2-10, V2-11 | Performance, diagnósticos comerciais avançados, experimentos e zero tráfego após a entrada em operação |
 | M2M-RAD-01/02/03/04; V2-12 e V2-14 equivalentes | Funil, rotina noturna nova, Dashboard avançado e reprocessamento após a entrada; preservar equivalências, sem tarefas duplicadas |
 | Parte futura V2-15; BNT-CFG-08/09 | Configurações das capacidades adiadas somente quando houver consumidor validado; controles operacionais necessários ficam no marco 2 |
@@ -125,7 +125,7 @@ Nenhuma etapa adiada recebe `[x]` ou `N/A` por causa deste recorte. Respeitar a 
 
 #### Ativação, interrupção e acompanhamento
 
-- **Capacidade produtiva canônica — recorte técnico concluído em DEV:** `BNT-REL-WRITER-01` acrescentou `production_controlled` sem retirar os guards: runtime produtivo, origem canônica, destino `.162`, allowlist, conta real `MLB`, confirmação humana, trilha, idempotência, revalidação, prevenção de duplicação e read-back permanecem cumulativos. O padrão continua `disabled`, `test_only` continua restrito a `test_user`, escritores legados seguem bloqueados e `.160` não é destino gravável. [Evidências](evidencias/BNT-REL-WRITER-01-validacao.md). Isso fecha somente a preparação técnica dessa capacidade; configuração, ativação e prova real continuam no release/workspace produtivo.
+- **Capacidade produtiva canônica — preço manual ativado em 11/09/2026:** `production_controlled` está configurado no serviço `local/bentevi-prod` com allowlist exclusiva `price_change`. Runtime produtivo, origem canônica, destino `.162`, seller/conta real `MLB`, confirmação humana, trilha, idempotência, revalidação, prevenção de duplicação e read-back permanecem cumulativos. `test_only` continua restrito a `test_user`; criação, lote, automação e escritores legados seguem bloqueados; `.160` permanece somente leitura. A prova do primeiro preço real ainda depende do canário autenticado. [Evidências](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
 - Conta real somente na ativação produtiva autorizada, nunca por cópia de tokens de produção para DEV. Preparação e ensaios neste worktree usam o Supabase DEV `.162` enquanto ele conservar essa classificação ou o DEV local restrito a loopback e dados sintéticos; banco `.160` é produção/somente leitura aqui. Mutações produtivas ficam no workspace dedicado, com autorização própria. Este documento não executa nem autoriza a virada.
 - Não copiar banco de homologação sobre produção, transportar fixtures ou retirar suas proteções. Preservar dados, filas e eventos reais. A exclusão das amostras DEV antes prevista em D24 será resolvida no marco 5, independentemente do adiamento visual de D24, com escopo e validação próprios.
 - Confirmar um único executor por fluxo: sistema antigo e novo não podem consumir/processar simultaneamente a mesma operação. Inventariar pendências, checkpoints, agendamentos e webhooks; preservar recepção/retomada de eventos durante a troca. Não ativar silenciosamente experimentos ou decisões históricas.
@@ -3976,3 +3976,19 @@ Sem push, deploy, chamada autenticada ML ou acesso à produção. Guard comercia
 - [x] Encerrar WARRANTY-01 no escopo DEV após as validações; próxima ação é planejar V2-08 / CFL-04 — Buy Box econômica, sem executar a próxima etapa nesta tarefa.
 
 O lote visual `e036397` foi publicado em DEV pela ação Easypanel `cmts65gr7000107o91ulwat0i`; serviço produtivo permaneceu inalterado. Frete ME2, reconexão autorizada da conta de teste ML (atualmente desconectada), publicação/read-back e liberação comercial seguem nos gates próprios, sem autorização ML ou produção.
+
+### BNT-PRICING-DECISION-CENTER-01 — 11/09/2026
+
+**Estado: IMPLEMENTADO E PUBLICADO; primeiro canário real de preço pendente de confirmação humana.**
+
+- [x] agrupar e paginar alertas por produto, separar Alertas de Decisões e corrigir o contador do badge;
+- [x] abrir diagnóstico mesmo sem proposta e retirar a mensagem global enganosa;
+- [x] acrescentar reanálise autenticada, unitária e idempotente, sem writer ML;
+- [x] diferenciar alterações de produto, anúncio, conta, identidade, elegibilidade, grupo e concorrência;
+- [x] aplicar e conferir a RPC backend-only no Supabase produtivo `.162`;
+- [x] publicar a central no serviço `local/bentevi-prod` pelo SHA promovido de `dev`;
+- [x] concluir scan observado de 7.052 itens sem falha e confirmar os dois grupos afetados como `verified`;
+- [x] limitar a execução produtiva a `price_change`, mantendo criação, lote e automação bloqueados;
+- [ ] executar um único canário autenticado e conferir o estado terminal/read-back antes de qualquer segunda alteração.
+
+[Evidências, testes, deploy, preflight e recuperação](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).

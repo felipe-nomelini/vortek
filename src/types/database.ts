@@ -2926,6 +2926,18 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      search_pricing_decision_product_ids: {
+        Args: {
+          p_view?: string
+          p_state?: string
+          p_severity?: string | null
+          p_decision?: string | null
+          p_search?: string
+          p_page?: number
+          p_page_size?: number
+        }
+        Returns: Json
+      }
       begin_assistant_message: {
         Args: { p_user: string; p_conversation: string; p_request: string; p_question: string }
         Returns: Json
