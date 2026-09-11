@@ -151,6 +151,8 @@ test('erro comum ou ausência do link não inicia fallback indevido nem confirma
 function setupWorker(failureStage, options = {}) {
   const stored = { id: 'job-test', status: 'pendente', log: [] };
   const sends = [];
+  const audits = [];
+  const pedidoUpdates = [];
   let claims = 0;
   let failed = false;
   let allocated = 0;
@@ -172,6 +174,7 @@ function setupWorker(failureStage, options = {}) {
         return { error: null };
       }
       if (table === 'pedidos') {
+        if (update) pedidoUpdates.push(structuredClone(update));
         if (update && failureStage === 'pedido' && !failed) {
           failed = true;
           return { error: { message: 'Falha simulada após envio' } };
@@ -206,7 +209,13 @@ function setupWorker(failureStage, options = {}) {
     '@/lib/public-shipping-label-links': { buildPublicShippingLabelUrl: () => 'https://dev.bentevi.shop/etiqueta' },
     '@/lib/short-links': { createShortLink: async ({ targetUrl }) => targetUrl },
     '@/lib/notifications/templates': { buildSupplierLabelWhatsapp: () => 'Etiqueta simulada Bentevi' },
+    '@/services/integration': {
+      consultarDisponibilidadeEtiquetaML: async () => options.availability || {
+        checked: false, workflowReady: false, printable: false, status: null, substatus: null,
+      },
+    },
     '@/services/nf-auditoria': { registrarEventoNfAuditoria: async ({ evento, respostaMl }) => {
+      audits.push({ evento, respostaMl });
       if (evento !== 'whatsapp_label_send_success') return;
       assert.ok(stored.log.some((entry) => entry.event === 'whatsapp_label_recipient_sent'), 'confirmação precede auditoria');
       assert.equal(respostaMl.recipient_results[0].wahaResponse, undefined);
@@ -214,7 +223,7 @@ function setupWorker(failureStage, options = {}) {
     } },
   }, { EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE: options.additionalPhone });
   const input = { jobId: stored.id, pedidoId: pedido.id, phoneNumber: '11999990001', appBaseUrl: 'https://dev.bentevi.shop', usePlaceholderLabel: options.placeholder };
-  return { job, stored, sends, input, get claims() { return claims; }, get labelLoads() { return labelLoads; } };
+  return { job, stored, sends, audits, pedidoUpdates, input, get claims() { return claims; }, get labelLoads() { return labelLoads; } };
 }
 
 test('worker retoma falha posterior na auditoria ou no pedido sem reenviar', async () => {
@@ -273,6 +282,29 @@ test('configuração adicional inválida impede envio e retry automático no wor
     assert.match(result.error, /EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE/);
     if (phone === 'abc11999990002') assert.ok(!JSON.stringify(harness.stored.log).includes(phone));
   }
+});
+
+test('fluxo manual reconcilia liberação observada sem produzir alerta tardio', async () => {
+  const previousReleaseAt = '2026-09-12T00:00:00.000Z';
+  const harness = setupWorker(undefined, {
+    pedido: { ml_fiscal_release_at: previousReleaseAt },
+    availability: {
+      checked: true,
+      workflowReady: true,
+      printable: false,
+      status: 'ready_to_ship',
+      substatus: 'invoice_pending',
+    },
+  });
+
+  await harness.job.runWhatsappLabelJob(harness.input);
+
+  assert.ok(harness.pedidoUpdates.some((update) => update.ml_fiscal_release_at === null));
+  const releaseAudit = harness.audits.find((entry) => entry.evento === 'ml_fiscal_release_window_cleared');
+  assert.equal(releaseAudit.respostaMl.source, 'whatsapp_label_precheck');
+  assert.equal(releaseAudit.respostaMl.alert_suppressed, true);
+  assert.equal(releaseAudit.respostaMl.previous_release_at, previousReleaseAt);
+  assert.equal(harness.audits.some((entry) => entry.evento === 'whatsapp_alert_sent'), false);
 });
 
 test('worker de Evolusom confirma os dois e não reabre job concluído', async () => {

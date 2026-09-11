@@ -782,6 +782,7 @@ export async function POST(request: Request) {
                 statusResultante: 'blocked',
               });
             } else if (releaseCheckOk && hadReleaseBefore) {
+              const releasedAt = new Date().toISOString();
               await registrarEventoNfAuditoria({
                 pedidoId: String((pedido as any).id),
                 mlOrderId: String(orderId),
@@ -791,20 +792,19 @@ export async function POST(request: Request) {
                   release_at: null,
                   reason: fiscalRelease.reason || null,
                   source_path: fiscalRelease.sourcePath,
-                  checked_at: new Date().toISOString(),
-                  now_utc: new Date().toISOString(),
+                  checked_at: releasedAt,
+                  now_utc: releasedAt,
                   blocked_now: false,
                   source: 'shipments_topic',
                 },
                 statusResultante: 'cleared',
               });
               void alertMlLabelReleased({
-                id: String((pedido as any).id),
-                numero: String(orderId),
-                ml_order_id: String(orderId),
-                ml_shipment_id: String(shipment.id),
-                ml_fiscal_release_at: (pedido as any).ml_fiscal_release_at || null,
-                situacao: (pedido as any).situacao || null,
+                pedidoId: String((pedido as any).id),
+                mlOrderId: String(orderId),
+                releasedAt,
+                source: 'shipments_topic',
+                previousReleaseAt: (pedido as any).ml_fiscal_release_at || null,
               });
             }
           }

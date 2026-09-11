@@ -2443,7 +2443,7 @@ async function runDsliteCreateJob(
     );
     if (isMlLabelReleasePending && existingShipmentId) {
       const availability = await consultarDisponibilidadeEtiquetaML(existingShipmentId);
-      if (availability.printable) {
+      if (availability.workflowReady) {
         const checkedAt = new Date().toISOString();
         await client
           .from("pedidos")
@@ -2468,7 +2468,7 @@ async function runDsliteCreateJob(
             checked_at: checkedAt,
             source: "dslite_pedido_precheck",
           },
-          statusResultante: "cleared_early",
+          statusResultante: "cleared_without_alert_manual_flow",
         });
         releaseAt = null;
         isMlLabelReleasePending = false;

@@ -10,6 +10,7 @@ import { validateMercadoLivreTokenOwner } from "@/lib/ml-account-guard";
 import {
   isMlShipmentInvoiceUploadReady,
   isMlShipmentLabelPrintable,
+  isMlShipmentOfficialLabelFlowReady,
 } from "@/lib/ml/fiscal-release";
 import { classifyMlLabelHttpFailure } from "@/lib/ml/label-http-failure";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
@@ -884,6 +885,7 @@ export async function consultarDisponibilidadeEtiquetaML(
   shipmentId: string,
 ): Promise<{
   checked: boolean;
+  workflowReady: boolean;
   printable: boolean;
   status: string | null;
   substatus: string | null;
@@ -900,6 +902,7 @@ export async function consultarDisponibilidadeEtiquetaML(
     : null;
   return {
     checked: result.ok,
+    workflowReady: result.ok && isMlShipmentOfficialLabelFlowReady(result.data),
     printable: result.ok && isMlShipmentLabelPrintable(result.data),
     status,
     substatus,

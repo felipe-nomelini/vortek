@@ -39,6 +39,30 @@ test("mensagens internas mantêm hierarquia, ação e horário sem despejar erro
   assert.doesNotMatch(message, /stack|payload|token|secret/i);
 });
 
+test("etiqueta liberada usa dados canônicos e horário real sem reaproveitar previsão", () => {
+  const message = templates.buildInternalWhatsappMessage({
+    title: "Etiqueta liberada",
+    summary: "A etiqueta da venda já pode ser enviada ao fornecedor.",
+    fields: templates.buildMlLabelReleasedFields({
+      orderNumber: "2000018377834366",
+      dsliteId: "407345",
+      shipmentId: "47976506051",
+      customerName: null,
+      billingName: "Cliente real hidratado",
+      total: 94.36,
+      releasedAt: "2026-09-11T05:11:26.000Z",
+    }),
+    action: "Envie a etiqueta correta ao fornecedor.",
+    sentAt: "2026-09-11T05:11:27.000Z",
+  });
+
+  assert.match(message, /\*Pedido DSLite:\* #407345/);
+  assert.match(message, /\*Cliente:\* Cliente real hidratado/);
+  assert.match(message, /\*Valor:\* R\$\s94,36/);
+  assert.match(message, /\*Liberada em:\* 11\/09\/2026, 02:11/);
+  assert.doesNotMatch(message, /Previsão|Não informado|R\$\s0,00/);
+});
+
 test("mensagens ao fornecedor deixam a instrução operacional inequívoca", () => {
   const payment = templates.buildSupplierPaymentWhatsapp({
     dsliteId: "918542",

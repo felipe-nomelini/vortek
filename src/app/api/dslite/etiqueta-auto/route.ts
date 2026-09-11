@@ -310,7 +310,7 @@ export async function POST(req: Request) {
       && shipmentId
     ) {
       const availability = await consultarDisponibilidadeEtiquetaML(shipmentId);
-      if (availability.printable) {
+      if (availability.workflowReady) {
         const checkedAt = new Date().toISOString();
         await client
           .from('pedidos')
@@ -332,7 +332,7 @@ export async function POST(req: Request) {
             checked_at: checkedAt,
             source: 'etiqueta_auto_precheck',
           },
-          statusResultante: 'cleared_early',
+          statusResultante: 'cleared_without_alert_manual_flow',
         });
         releaseAt = null;
       }

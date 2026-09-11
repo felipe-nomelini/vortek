@@ -12,7 +12,6 @@ import {
 import { formatCurrency } from "@/lib/format";
 import { formatSaoPauloDateTime } from "@/lib/timezone";
 import {
-  formatMlReleaseWindow,
   getMlReleaseComparableDate,
 } from "@/lib/ml/release-window-display";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
@@ -29,6 +28,7 @@ import {
 } from "@/lib/configuracoes/notifications";
 import {
   buildInternalWhatsappMessage,
+  buildMlLabelReleasedFields,
   type MessageField,
   type MessageLink,
   type NotificationSeverity,
@@ -528,17 +528,45 @@ export async function alertClaimOpened(order: {
   });
 }
 
-export async function alertMlLabelReleased(order: {
-  id?: string | null;
-  numero?: string | number | null;
-  ml_order_id?: string | null;
-  ml_shipment_id?: string | null;
-  ml_fiscal_release_at?: string | null;
-  contato_nome?: string | null;
-  total?: number | null;
-  dslite_id?: string | null;
-  situacao?: string | null;
+export async function alertMlLabelReleased(reference: {
+  pedidoId?: string | null;
+  mlOrderId?: string | null;
+  releasedAt?: string | Date | null;
+  source?: string | null;
+  previousReleaseAt?: string | null;
 }) {
+  const client = createServiceClient();
+  const pedidoId = String(reference.pedidoId || "").trim();
+  const mlOrderId = String(reference.mlOrderId || "").trim();
+  let query = client
+    .from("pedidos")
+    .select("id,numero,ml_order_id,ml_shipment_id,contato_nome,billing_nome,total,dslite_id,situacao");
+  if (pedidoId) query = query.eq("id", pedidoId);
+  else if (mlOrderId) query = query.eq("ml_order_id", mlOrderId);
+
+  const { data: order, error } = pedidoId || mlOrderId
+    ? await query.maybeSingle()
+    : { data: null, error: new Error("missing_order_reference") };
+  if (error || !order) {
+    const identifier = mlOrderId || pedidoId || "sem_numero";
+    const failedInput: AlertInput = {
+      type: "ml_label_released",
+      severity: "warning",
+      title: "Etiqueta Mercado Livre liberada",
+      dedupeKey: `ml_label_released:${identifier}`,
+      summary: "O pedido não pôde ser carregado para compor o alerta de liberação.",
+      payload: {
+        pedido_id: pedidoId || null,
+        ml_order_id: mlOrderId || null,
+        source: reference.source || null,
+      },
+    };
+    await auditAlert(failedInput, "all", "failed", {
+      reason: "order_hydration_failed",
+    }).catch(() => null);
+    return { sent: 0, skipped: true, errors: 1 };
+  }
+
   if (!isActionableLabelRelease(order)) {
     const skippedInput: AlertInput = {
       type: "ml_label_released",
@@ -563,6 +591,12 @@ export async function alertMlLabelReleased(order: {
 
   const orderNumber =
     order.ml_order_id || order.numero || order.id || "sem_numero";
+  const parsedReleasedAt = reference.releasedAt
+    ? new Date(reference.releasedAt)
+    : new Date();
+  const releasedAt = Number.isNaN(parsedReleasedAt.getTime())
+    ? nowIso()
+    : parsedReleasedAt.toISOString();
   return sendWhatsappAlert({
     type: "ml_label_released",
     severity: "warning",
@@ -570,29 +604,27 @@ export async function alertMlLabelReleased(order: {
     dedupeKey: `ml_label_released:${orderNumber}`,
     dedupeTtlHours: 24 * 30,
     summary: "A etiqueta da venda já pode ser enviada ao fornecedor.",
-    fields: [
-      { label: "Venda", value: `#${orderNumber}` },
-      { label: "Pedido DSLite", value: order.dslite_id ? `#${order.dslite_id}` : null },
-      { label: "Envio Mercado Livre", value: order.ml_shipment_id },
-      { label: "Cliente", value: order.contato_nome || "Não informado" },
-      { label: "Valor", value: formatCurrency(Number(order.total || 0)) },
-      {
-        label: "Previsão",
-        value: order.ml_fiscal_release_at
-          ? formatMlReleaseWindow(order.ml_fiscal_release_at).when
-          : null,
-      },
-    ],
+    fields: buildMlLabelReleasedFields({
+      orderNumber,
+      dsliteId: order.dslite_id,
+      shipmentId: order.ml_shipment_id,
+      customerName: order.contato_nome,
+      billingName: order.billing_nome,
+      total: order.total,
+      releasedAt,
+    }),
     action: "Envie a etiqueta correta ao fornecedor.",
     link: appLink("Abrir venda", `/pedidos?search=${encodeURIComponent(String(orderNumber))}`),
     payload: {
-      id: order.id || null,
+      id: order.id,
       numero: order.numero || null,
       ml_order_id: order.ml_order_id || null,
       ml_shipment_id: order.ml_shipment_id || null,
-      ml_fiscal_release_at: order.ml_fiscal_release_at || null,
       dslite_id: order.dslite_id || null,
       situacao: order.situacao || null,
+      released_at: releasedAt,
+      previous_release_at: reference.previousReleaseAt || null,
+      source: reference.source || null,
     },
   });
 }
@@ -620,21 +652,29 @@ export async function scanAndAlertReleasedLabels(limit = 20) {
     const availability = await consultarDisponibilidadeEtiquetaML(
       String(row.ml_shipment_id),
     );
-    if (!availability.printable) continue;
+    if (!availability.workflowReady) continue;
     const comparable = row.ml_fiscal_release_at
       ? getMlReleaseComparableDate(row.ml_fiscal_release_at)
       : null;
     if (comparable && comparable.getTime() > Date.now()) releasedEarly += 1;
-    await client
+    const releasedAt = new Date().toISOString();
+    const { error: releaseUpdateError } = await client
       .from("pedidos")
       .update({
         ml_fiscal_release_at: null,
         ml_fiscal_release_reason: null,
         ml_fiscal_release_source: "shipment.status/substatus",
-        ml_fiscal_release_checked_at: new Date().toISOString(),
+        ml_fiscal_release_checked_at: releasedAt,
       } as any)
       .eq("id", row.id);
-    const result = await alertMlLabelReleased(row as any);
+    if (releaseUpdateError) continue;
+    const result = await alertMlLabelReleased({
+      pedidoId: String(row.id),
+      mlOrderId: row.ml_order_id ? String(row.ml_order_id) : null,
+      releasedAt,
+      source: "label_release_scanner",
+      previousReleaseAt: row.ml_fiscal_release_at || null,
+    });
     alerted += result.sent > 0 ? 1 : 0;
   }
   return { checked: data?.length || 0, releasedEarly, alerted };

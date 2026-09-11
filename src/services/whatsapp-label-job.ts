@@ -1,6 +1,7 @@
 import { createServiceClient } from '@/lib/supabase';
 import {
   baixarEtiquetaML,
+  consultarDisponibilidadeEtiquetaML,
   consultarInvoiceDataPorShipmentML,
   fetchML,
   upsertInvoiceDataMLByShipment,
@@ -320,6 +321,48 @@ async function resolveShipmentId(client: ReturnType<typeof createServiceClient>,
   return shipmentId;
 }
 
+async function suppressLateReleaseAlertForManualFlow(params: {
+  client: ReturnType<typeof createServiceClient>;
+  pedido: any;
+  pedidoId: string;
+  mlOrderId: string | null;
+  shipmentId: string;
+}) {
+  const previousReleaseAt = String(params.pedido?.ml_fiscal_release_at || '').trim();
+  if (!previousReleaseAt) return false;
+
+  const availability = await consultarDisponibilidadeEtiquetaML(params.shipmentId);
+  if (!availability.checked || !availability.workflowReady) return false;
+
+  const checkedAt = new Date().toISOString();
+  const { error } = await params.client
+    .from('pedidos')
+    .update({
+      ml_fiscal_release_at: null,
+      ml_fiscal_release_reason: null,
+      ml_fiscal_release_source: 'shipment.status/substatus',
+      ml_fiscal_release_checked_at: checkedAt,
+    } as any)
+    .eq('id', params.pedidoId);
+  if (error) throw new Error('Falha ao reconciliar a liberação da etiqueta antes do envio manual.');
+
+  await registrarEventoNfAuditoria({
+    pedidoId: params.pedidoId,
+    mlOrderId: params.mlOrderId,
+    evento: 'ml_fiscal_release_window_cleared',
+    respostaMl: {
+      previous_release_at: previousReleaseAt,
+      shipment_status: availability.status,
+      shipment_substatus: availability.substatus,
+      checked_at: checkedAt,
+      source: 'whatsapp_label_precheck',
+      alert_suppressed: true,
+    },
+    statusResultante: 'cleared_without_alert_manual_flow',
+  });
+  return true;
+}
+
 async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null, shipmentId: string) {
   const startedAt = Date.now();
   let attempts = 0;
@@ -522,7 +565,7 @@ export async function runWhatsappLabelJob(input: {
 
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,situacao')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,ml_fiscal_release_at,situacao')
       .eq('id', input.pedidoId)
       .maybeSingle();
     if (pedidoError) throw new Error(pedidoError.message);
@@ -566,6 +609,15 @@ export async function runWhatsappLabelJob(input: {
     const shipmentId = await resolveShipmentId(client, pedido);
     if (!shipmentId) throw new Error('Pedido sem shipment ML para baixar etiqueta');
     await setStep('resolve_shipment', 'success', `Envio ML ${shipmentId}`);
+    if (!input.usePlaceholderLabel) {
+      await suppressLateReleaseAlertForManualFlow({
+        client,
+        pedido,
+        pedidoId,
+        mlOrderId,
+        shipmentId,
+      });
+    }
 
     const dsid = String((pedido as any).dslite_id || '').trim();
     await setStep('load_purchase', 'loading', dsid ? `Buscando compra DSLite #${dsid}` : 'Pedido sem DSLite vinculado');

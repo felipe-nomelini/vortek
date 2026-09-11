@@ -94,6 +94,31 @@ function meaningfulFields(fields: MessageField[]): MessageField[] {
   return fields.filter((field) => field.value !== null && field.value !== undefined && String(field.value).trim() !== "");
 }
 
+export function buildMlLabelReleasedFields(input: {
+  orderNumber: unknown;
+  dsliteId?: unknown;
+  shipmentId: unknown;
+  customerName?: unknown;
+  billingName?: unknown;
+  total?: unknown;
+  releasedAt: Date | string;
+}): MessageField[] {
+  const customerName = String(input.customerName ?? "").trim()
+    || String(input.billingName ?? "").trim()
+    || null;
+  const total = input.total === null || input.total === undefined || input.total === ""
+    ? null
+    : Number(input.total);
+  return [
+    { label: "Venda", value: `#${cleanSingleLine(input.orderNumber)}` },
+    { label: "Pedido DSLite", value: input.dsliteId ? `#${cleanSingleLine(input.dsliteId)}` : null },
+    { label: "Envio Mercado Livre", value: input.shipmentId },
+    { label: "Cliente", value: customerName },
+    { label: "Valor", value: total !== null && Number.isFinite(total) ? formatMoney(total) : null },
+    { label: "Liberada em", value: formatDateTime(input.releasedAt) },
+  ];
+}
+
 export function buildInternalWhatsappMessage(input: {
   title: string;
   summary: string;

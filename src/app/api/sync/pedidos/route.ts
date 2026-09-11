@@ -1808,6 +1808,7 @@ async function processOrder(params: {
         statusResultante: 'blocked',
       });
     } else if (hadReleaseBefore) {
+      const releasedAt = new Date().toISOString();
       await registrarEventoNfAuditoria({
         pedidoId: String(upsertedPedido.id),
         mlOrderId: String(o.id),
@@ -1817,8 +1818,8 @@ async function processOrder(params: {
           release_at: null,
           reason: releaseWindow.reason || null,
           source_path: releaseWindow.sourcePath,
-          checked_at: new Date().toISOString(),
-          now_utc: new Date().toISOString(),
+          checked_at: releasedAt,
+          now_utc: releasedAt,
           blocked_now: false,
           source: 'sync_pedidos',
         },
@@ -1826,14 +1827,11 @@ async function processOrder(params: {
       });
       if (params.dispatchExternalAlerts) {
         void alertMlLabelReleased({
-          id: String(upsertedPedido.id),
-          numero: sourceOrder?.id || o.id,
-          ml_order_id: String(o.id),
-          ml_shipment_id: mlShipmentId,
-          ml_fiscal_release_at: (existingPedido as any)?.ml_fiscal_release_at || null,
-          contato_nome: contatoNome,
-          total: Number(sourceOrder?.total_amount || o.total_amount || 0),
-          situacao,
+          pedidoId: String(upsertedPedido.id),
+          mlOrderId: String(o.id),
+          releasedAt,
+          source: 'sync_pedidos',
+          previousReleaseAt: (existingPedido as any)?.ml_fiscal_release_at || null,
         });
       }
     }

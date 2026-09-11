@@ -5,6 +5,7 @@ const {
   extractMlFiscalReleaseWindow,
   isMlShipmentInvoiceUploadReady,
   isMlShipmentLabelPrintable,
+  isMlShipmentOfficialLabelFlowReady,
 } = require('../src/lib/ml/fiscal-release.ts');
 
 function futureBufferingDate() {
@@ -46,7 +47,7 @@ test('printed permite reimpressão mesmo com buffering.date futuro', () => {
   assert.equal(release.releaseAt, null);
 });
 
-test('invoice_pending não é tratado como etiqueta disponível', () => {
+test('invoice_pending libera o fluxo fiscal sem declarar a etiqueta imprimível', () => {
   const release = extractMlFiscalReleaseWindow({
     shipment: { status: 'ready_to_ship', substatus: 'invoice_pending' },
     leadTime: { buffering: { date: futureBufferingDate() } },
@@ -56,8 +57,13 @@ test('invoice_pending não é tratado como etiqueta disponível', () => {
     status: 'ready_to_ship',
     substatus: 'invoice_pending',
   }), false);
-  assert.equal(release.isBlockedNow, true);
-  assert.ok(release.releaseAt);
+  assert.equal(isMlShipmentOfficialLabelFlowReady({
+    status: 'ready_to_ship',
+    substatus: 'invoice_pending',
+  }), true);
+  assert.equal(release.isBlockedNow, false);
+  assert.equal(release.releaseAt, null);
+  assert.equal(release.sourcePath, 'shipment.status/substatus');
 });
 
 test('upload fiscal permite somente ready_to_ship com invoice_pending', () => {
@@ -83,4 +89,5 @@ test('upload fiscal bloqueia outro status mesmo com invoice_pending', () => {
 
 test('upload fiscal bloqueia estado ausente', () => {
   assert.equal(isMlShipmentInvoiceUploadReady({}), false);
+  assert.equal(isMlShipmentOfficialLabelFlowReady({}), false);
 });
