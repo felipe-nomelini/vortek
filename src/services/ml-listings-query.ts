@@ -8,7 +8,7 @@ import { loadPricingRequestContext, loadProductPricing } from '@/services/pricin
 import { pricingView } from '@/lib/pricing-view';
 
 const PAGE_SIZE = 100;
-const FOCUS = new Set<MlListingsFocus>(['all', 'active', 'paused', 'quality_risk', 'price_review']);
+const FOCUS = new Set<MlListingsFocus>(['all', 'active', 'paused', 'sold', 'quality_risk', 'price_review']);
 const QUALITY = new Set(['all', 'risk', 'good', 'perfect', 'unavailable']);
 const CATALOG = new Set(['all', 'standard', 'catalog', 'winning', 'competing', 'losing']);
 const PROFITABILITY = new Set(['all', 'positive', 'negative', 'unknown']);
@@ -21,8 +21,13 @@ function finiteNumber(value: string | null) {
 }
 
 function enrichPublishEligibility(row: Record<string, any>) {
+  const qualityInfo = row.qualityInfo && typeof row.qualityInfo === 'object' ? row.qualityInfo : null;
   return {
     ...row,
+    qualityInfo,
+    qualityUnavailableReason: row.qualityAvailable
+      ? null
+      : String(qualityInfo?.reason || '').trim() || null,
     publishEligibility: classifyMlPublishEligibility({
       observedStatus: row.observedStatus,
       blockReason: row.blockReason,
@@ -53,6 +58,7 @@ export async function getMlListingResponse(request: Request, allRows = false) {
   const sortByParam = searchParams.get('sortBy') || 'product';
   const sortBy = SORT_FIELDS.has(sortByParam) ? sortByParam : 'product';
   const sortOrder = searchParams.get('sortOrder') === 'desc' ? 'desc' : 'asc';
+  const soldOnly = searchParams.get('soldOnly') === 'true' || focus === 'sold';
 
   const serviceClient = createServiceClient();
   try {
@@ -76,6 +82,7 @@ export async function getMlListingResponse(request: Request, allRows = false) {
         priceMax,
         sortBy,
         sortOrder,
+        soldOnly,
       });
       return NextResponse.json({
         ...result,
@@ -137,7 +144,7 @@ export async function getMlListingResponse(request: Request, allRows = false) {
       }
     }
     const result = selectMlListingRows(rows, { page, pageSize, search, focus, quality, catalog,
-      profitability, priceMin, priceMax, sortBy, sortOrder });
+      profitability, priceMin, priceMax, sortBy, sortOrder, soldOnly });
     return NextResponse.json({
       data: (Array.isArray(result.data) ? result.data : []).map(enrichPublishEligibility),
       total: Number(result.total || 0),

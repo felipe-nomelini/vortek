@@ -2,7 +2,7 @@ import type { BntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { pricingFor } from '@/lib/products/bnt-d07-visual-review';
 import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 
-export type MlListingsFocus = 'all' | 'active' | 'paused' | 'quality_risk' | 'price_review';
+export type MlListingsFocus = 'all' | 'active' | 'paused' | 'sold' | 'quality_risk' | 'price_review';
 export type MlCatalogStatus = 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
 
 export type MlListingDashboardRow = {
@@ -25,6 +25,7 @@ export type MlListingDashboardRow = {
   qualityAvailable: boolean;
   qualityPrimaryIssue: string | null;
   qualityInfo: Record<string, unknown> | null;
+  qualityUnavailableReason: string | null;
   observedStatus: string;
   localStatus: string;
   blockReason: string | null;
@@ -52,6 +53,7 @@ export type MlListingMetrics = {
   paused: number;
   qualityRisk: number;
   priceReview: number;
+  sold: number;
 };
 
 export type MlListingQueueCounts = MlListingMetrics;
@@ -71,6 +73,7 @@ type VisualReviewParams = {
   priceMax: number | null;
   sortBy: string;
   sortOrder: 'asc' | 'desc';
+  soldOnly: boolean;
 };
 
 function normalizeObservedStatus(value: unknown) {
@@ -89,12 +92,15 @@ function qualityDetails(listing: Record<string, any>) {
     ? qualityInfo.itens.find((item: any) => item?.ok === false)?.nome
     : null;
   return {
-    qualityInfo: qualityAvailable ? qualityInfo : null,
+    qualityInfo: qualityInfo && typeof qualityInfo === 'object' ? qualityInfo : null,
     qualityAvailable,
     qualityScore: qualityAvailable && Number.isFinite(score) ? score : null,
     qualityPrimaryIssue: qualityAvailable
       ? String(qualityInfo?.dica || issue || '').trim() || null
       : null,
+    qualityUnavailableReason: qualityAvailable
+      ? null
+      : String(qualityInfo?.reason || '').trim() || null,
   };
 }
 
@@ -178,12 +184,14 @@ function matchesCommonFilters(row: MlListingDashboardRow, params: Omit<VisualRev
   if (params.profitability === 'positive' && !(row.profit !== null && row.profit >= 0)) return false;
   if (params.profitability === 'negative' && !(row.profit !== null && row.profit < 0)) return false;
   if (params.profitability === 'unknown' && row.profit !== null) return false;
+  if (params.soldOnly && row.sold <= 0) return false;
   return true;
 }
 
 function matchesFocus(row: MlListingDashboardRow, focus: MlListingsFocus) {
   if (focus === 'active') return row.observedStatus === 'active';
   if (focus === 'paused') return row.observedStatus === 'paused';
+  if (focus === 'sold') return row.sold > 0;
   if (focus === 'quality_risk') return row.qualityAvailable && Number(row.qualityScore) < 80;
   if (focus === 'price_review') return isPriceReview(row);
   return true;
@@ -213,6 +221,7 @@ export function selectMlListingRows(rows: MlListingDashboardRow[], params: Omit<
     paused: common.filter((row) => row.observedStatus === 'paused').length,
     qualityRisk: common.filter((row) => row.qualityAvailable && Number(row.qualityScore) < 80).length,
     priceReview: common.filter(isPriceReview).length,
+    sold: common.filter((row) => row.sold > 0).length,
   };
   const focused = common.filter((row) => matchesFocus(row, params.focus));
   const direction = params.sortOrder === 'desc' ? -1 : 1;

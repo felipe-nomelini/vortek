@@ -29,7 +29,8 @@ test('BNT-D11 organiza anúncios por decisão operacional', () => {
 
 test('BNT-D11 separa as contagens dos rótulos nas filas rápidas', () => {
   assert.match(page, /styles\.quickViewLabel/);
-  assert.equal((page.match(/styles\.quickViewCount/g) || []).length, 5);
+  assert.equal((page.match(/styles\.quickViewCount/g) || []).length, 6);
+  assert.match(page, /Com vendas/);
   assert.match(styles, /\.quickViewCount[\s\S]*linear-gradient\(135deg, rgba\(255, 189, 14, 0\.14\), rgba\(255, 189, 14, 0\.02\)\)/);
   assert.match(styles, /font-variant-numeric: tabular-nums/);
 });
@@ -50,6 +51,17 @@ test('BNT-D11 só classifica qualidade quando a fonte é o endpoint de performan
   assert.match(migration, /quality_available and quality_score < 80/);
   assert.match(fixture, /qualityInfo\?\.source === 'mercado_livre_performance'/);
   assert.match(page, /Leitura não disponível/);
+  assert.match(page, /Nota disponível somente no painel do Mercado Livre/);
+  assert.match(route, /soldOnly/);
+});
+
+test('BNT-D11 preserva diagnóstico de catálogo e instruções dos objetivos', () => {
+  const syncRoute = read('src/app/api/sync/anuncios/route.ts');
+  assert.match(syncRoute, /mercado_livre_catalog_quality/);
+  assert.match(syncRoute, /catalog_quality\/status\?item_id=/);
+  assert.match(syncRoute, /regras:/);
+  assert.match(syncRoute, /performance_message/);
+  assert.match(fixture, /qualityUnavailableReason/);
 });
 
 test('BNT-D11 usa alíquota dinâmica e mantém cálculo de rentabilidade no backend', () => {
@@ -116,7 +128,7 @@ test('RPC BNT-D11 aplica privilégio mínimo e search_path seguro', () => {
 test('BNT-D11 exporta o conjunto filtrado pelo relatório redesenhado', () => {
   assert.match(page, /Exportar o conjunto filtrado em PDF/);
   assert.match(page, /\/api\/anuncios\/exportar-pdf/);
-  for (const filter of ['focus', 'quality', 'catalog', 'profitability', 'search', 'priceMin', 'priceMax']) {
+  for (const filter of ['focus', 'soldOnly', 'quality', 'catalog', 'profitability', 'search', 'priceMin', 'priceMax']) {
     assert.match(page, new RegExp(filter));
   }
   assert.match(page, /appendRemoteSortParams\(params, sort\)/);

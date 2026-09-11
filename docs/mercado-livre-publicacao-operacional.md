@@ -160,12 +160,13 @@ ML não aceitou redirecionamento e deixou itens em `picture_download_pending`, d
 1. Baixar origem direta (Evolusom usa `https://www.evolusom.com.br/...`).
 2. Validar status HTTP, Content-Type e dimensões.
 3. Salvar cópia no bucket público Supabase `product-images`.
-4. Atualizar `produtos.imagens` com URL pública Vortek.
+4. Atualizar `produtos.imagens` com URL pública canônica do Bentevi em
+   `supabase.bentevi.shop`.
 5. Atualizar ML via `PUT /items/{ITEM_ID}` com:
 
 ```json
 {
-  "pictures": [{ "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/..." }]
+  "pictures": [{ "source": "https://supabase.bentevi.shop/storage/v1/object/public/product-images/..." }]
 }
 ```
 

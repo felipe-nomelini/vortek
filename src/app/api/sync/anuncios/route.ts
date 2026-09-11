@@ -51,6 +51,16 @@ type MlPerformance = {
   buckets?: any[];
 };
 
+type MlCatalogQuality = {
+  item_id?: string;
+  domain_id?: string;
+  adoption_status?: Record<string, {
+    complete?: boolean;
+    attributes?: string[] | null;
+    missing_attributes?: string[] | null;
+  }>;
+};
+
 function normalizePerformanceScore(value: unknown): number | null {
   const score = Number(value);
   if (!Number.isFinite(score) || score < 0 || score > 100) return null;
@@ -60,7 +70,7 @@ function normalizePerformanceScore(value: unknown): number | null {
 function shouldRefreshPerformance(qualidadeInfo: unknown, now: number): boolean {
   if (!qualidadeInfo || typeof qualidadeInfo !== 'object' || Array.isArray(qualidadeInfo)) return true;
   const info = qualidadeInfo as Record<string, unknown>;
-  if (info.source !== 'mercado_livre_performance') return true;
+  if (!['mercado_livre_performance', 'mercado_livre_catalog_quality'].includes(String(info.source || ''))) return true;
   const refreshedAt = new Date(String(info.refreshed_at || '')).getTime();
   return !Number.isFinite(refreshedAt) || (now - refreshedAt) >= PERFORMANCE_REFRESH_INTERVAL_MS;
 }
@@ -70,10 +80,19 @@ function buildPerformanceInfo(performance: MlPerformance, refreshedAt: string) {
     Array.isArray(bucket?.variables) ? bucket.variables : []
   ));
   const itens = variables.map((variable: any) => ({
+    chave: String(variable?.key || '') || null,
     nome: String(variable?.title || variable?.key || 'Objetivo do Mercado Livre'),
+    status: String(variable?.status || '') || null,
     ok: String(variable?.status || '').toUpperCase() === 'COMPLETED',
     pontos: Math.round(Number(variable?.score || 0)),
     max: 100,
+    regras: (Array.isArray(variable?.rules) ? variable.rules : []).map((rule: any) => ({
+      chave: String(rule?.key || '') || null,
+      status: String(rule?.status || '') || null,
+      progresso: Number.isFinite(Number(rule?.progress)) ? Number(rule.progress) : null,
+      modo: String(rule?.mode || '') || null,
+      texto: rule?.wordings && typeof rule.wordings === 'object' ? rule.wordings : null,
+    })),
   }));
   const pending = itens.find((item: any) => !item.ok);
 
@@ -86,6 +105,33 @@ function buildPerformanceInfo(performance: MlPerformance, refreshedAt: string) {
     refreshed_at: refreshedAt,
     itens,
     dica: pending?.nome || '',
+  };
+}
+
+function buildCatalogQualityInfo(
+  itemId: string,
+  catalogQuality: MlCatalogQuality,
+  refreshedAt: string,
+  performanceStatus: number | null,
+  performanceMessage: string,
+) {
+  const adoptionStatus = catalogQuality.adoption_status || {};
+  const all = adoptionStatus.all || {};
+  const missingAttributes = Array.isArray(all.missing_attributes) ? all.missing_attributes : [];
+  return {
+    source: 'mercado_livre_catalog_quality',
+    entity_id: itemId,
+    available: false,
+    reason: 'O Mercado Livre não expõe a nota deste anúncio de catálogo pela API pública.',
+    performance_status: performanceStatus,
+    performance_message: performanceMessage || null,
+    domain_id: String(catalogQuality.domain_id || '') || null,
+    refreshed_at: refreshedAt,
+    adoption_status: adoptionStatus,
+    missing_attributes: missingAttributes,
+    dica: missingAttributes.length > 0
+      ? `Ficha de catálogo incompleta: ${missingAttributes.join(', ')}`
+      : 'Consulte os objetivos diretamente no painel do Mercado Livre.',
   };
 }
 
@@ -1099,19 +1145,56 @@ export async function POST(request: Request) {
               : null;
 
             if (score === null) {
-              performanceFailed += 1;
-              warnings.push({
-                code: 'ml_listing_performance_unavailable',
-                message: performance.error?.message || 'Qualidade real não disponível para este anúncio no ML',
-                context: {
-                  itemId,
-                  status: performance.status,
-                  category: performance.error?.category || null,
-                  code: performance.error?.code || null,
-                  retries: performanceCheck.retries,
-                  endpoint: performanceCheck.endpoint,
-                },
-              });
+              const catalogListing = snapshot.catalog_listing === true;
+              const catalogQualityCheck = catalogListing
+                ? await fetchMLResultWithRetry<MlCatalogQuality>(
+                  `/catalog_quality/status?item_id=${encodeURIComponent(itemId)}&v=3`,
+                )
+                : null;
+              const refreshedAt = new Date().toISOString();
+              const catalogQuality = catalogQualityCheck?.result;
+
+              if (catalogListing && catalogQuality?.ok && catalogQuality.data) {
+                const { error: catalogQualityUpdateError } = await serviceClient
+                  .from('anuncios_ml')
+                  .update({
+                    qualidade_info: buildCatalogQualityInfo(
+                      itemId,
+                      catalogQuality.data,
+                      refreshedAt,
+                      performance.status,
+                      performance.error?.message || '',
+                    ),
+                    updated_at: refreshedAt,
+                  } as any)
+                  .eq('ml_item_id', itemId);
+
+                if (catalogQualityUpdateError) {
+                  performanceFailed += 1;
+                  errors.push({
+                    code: 'ml_listing_catalog_quality_persist_failed',
+                    message: catalogQualityUpdateError.message,
+                    context: { itemId },
+                  });
+                } else {
+                  performanceRefreshed += 1;
+                }
+              } else {
+                performanceFailed += 1;
+                warnings.push({
+                  code: 'ml_listing_performance_unavailable',
+                  message: performance.error?.message || 'Qualidade real não disponível para este anúncio no ML',
+                  context: {
+                    itemId,
+                    status: performance.status,
+                    category: performance.error?.category || null,
+                    code: performance.error?.code || null,
+                    retries: performanceCheck.retries,
+                    endpoint: performanceCheck.endpoint,
+                    catalogQualityStatus: catalogQuality?.status || null,
+                  },
+                });
+              }
             } else {
               const refreshedAt = new Date().toISOString();
               const { error: performanceUpdateError } = await serviceClient

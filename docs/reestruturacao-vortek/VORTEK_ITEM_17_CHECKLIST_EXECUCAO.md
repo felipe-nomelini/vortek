@@ -2423,6 +2423,18 @@ O reparo de dados foi limitado às vendas `2000018384965428` e `2000018385394212
 
 **Validação do relatório:** `cb248eb` — `feat(anuncios): redesenhar relatorio Bentevi`, enviado somente para `origin/dev`. Os 18 cenários direcionados foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 123 páginas/rotas e `git diff --check` passaram. A action Easypanel `cmtk20ub3000707po80np3gja` concluiu com `Success`; a task `y0kamlgbegowby26uhpneny12` ativou `GIT_SHA=cb248eba7a603eb340716cecf0d8e4ac4fafc184` somente em `vortek-erp-dev`. Health e login responderam `200`, `/anuncios` respondeu `307` sem sessão e o exportador respondeu `401` sem sessão. Não houve migration, escrita de banco nem operação autenticada no Mercado Livre.
 
+**Qualidade dos anúncios com vendas em `2026-09-10`:** a leitura produtiva
+priorizou os 163 anúncios ativos que já venderam e distinguiu score oficial de
+ausência de score nos anúncios controlados por catálogo. A central recebeu a
+visão `Com vendas`, preservação das instruções completas de performance e
+diagnóstico específico de catálogo. Dos 24 candidatos técnicos iniciais, 13
+eram controlados pelo catálogo na releitura viva, 7 não possuíam foto adicional
+comprovada, 3 dependiam de especificações ausentes e 1 recebeu correção segura.
+O `VTK003105/MLB4857622801` passou de 2 para 5 fotos e de nota 65 para 69; preço
+de R$ 66,70, estoque 100 e status ativo foram preservados. O VTK017447 permaneceu
+inalterado porque seus quatro objetivos pendentes são vídeo, preço, Flex e
+promoção. [Evidência, matriz e recuperação](evidencias/BNT-ML-QUALITY-01-validacao.md).
+
 **Rollback:** reverter `c1d0f63` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover `search_ml_listings_paginated`. Restaurar o valor anterior da chave temporária `bnt_d07_visual_review_products` apenas se for necessário retirar o enriquecimento antes da expiração da amostra. Não há ação de rollback em produção.
 
 **Pendência:** nenhuma para `BNT-D11` ou `BNT-D11-PDF`; `BNT-D12` foi liberada e executada.
