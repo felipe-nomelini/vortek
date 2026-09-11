@@ -9,6 +9,7 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'u
 const page = read('src/app/(app)/pedidos/page.tsx');
 const orderTypes = read('src/types/order.ts');
 const pedidosRoute = read('src/app/api/pedidos/route.ts');
+const orderReadProjection = read('src/services/order-read-projection.ts');
 const dsliteFlow = read('src/components/pedidos/usePedidosDsliteFlow.ts');
 const dsliteModals = read('src/components/pedidos/PedidosDsliteModals.tsx');
 const labelWhatsappFlow = read('src/components/pedidos/usePedidosLabelWhatsappFlow.ts');
@@ -78,9 +79,23 @@ test('coluna Compra abre o único pedido DSLite e diferencia venda sem compra', 
   assert.match(page, /target="_blank"/);
   assert.match(page, /rel="noopener noreferrer"/);
   assert.match(page, /aria-label=\{`Abrir pedido DSLite \$\{dsliteId\}`\}/);
+  assert.match(page, /#\{dsliteId\}/);
+  assert.match(page, /Status: \{purchaseStatus\}/);
+  assert.match(page, /Etiqueta: \{labelPresentation\.label\}/);
+  assert.match(page, /WhatsApp: \{labelPresentation\.whatsappLabel\}/);
+  assert.match(page, /labelPresentation\.showWhatsapp/);
   assert.match(page, />Não Criado<\/Text>/);
   assert.doesNotMatch(page, /title: 'Compra'[\s\S]{0,120}sorter:/);
-  assert.match(page, /scroll=\{\{ x: 1525 \}\}/);
+  assert.match(page, /title: 'Compra', key: 'compra', width: 210/);
+  assert.match(page, /scroll=\{\{ x: 1595 \}\}/);
+});
+
+test('coluna Compra recebe o status sincronizado da compra no DTO operacional', () => {
+  assert.match(orderTypes, /compra_status_dslite\?: string \| null/);
+  assert.match(orderReadProjection, /\.select\('id,dsid,status_dslite,/);
+  assert.match(orderReadProjection, /compra_status_dslite: String\(compra\.status_dslite \|\| ''\)\.trim\(\) \|\| null/);
+  assert.match(page, /compra_status_dslite: item\.compra_status_dslite \|\| null/);
+  assert.match(page, /order\.compra_status_dslite \|\| order\.dslite_status/);
 });
 
 test('Pedidos não mantém endpoints, timers ou modais dos fluxos extraídos', () => {

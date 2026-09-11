@@ -539,7 +539,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     const chunk = dsids.slice(index, index + 500);
     const { data, error } = await serviceClient
       .from('compras')
-      .select('id,dsid,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
+      .select('id,dsid,status_dslite,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
       .in('dsid', chunk);
 
     if (error) {
@@ -588,6 +588,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
         operational_supplier_ids: operationalSupplierIds,
         operational_internal_stock: operationalInternalStock,
         compra_id: null,
+        compra_status_dslite: null,
         fornecedor_id: null,
         fornecedor_nome: 'Estoque Interno',
         fornecedor_telefone: null,
@@ -611,6 +612,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
         cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
         operational_supplier_ids: operationalSupplierIds,
         operational_internal_stock: operationalInternalStock,
+        compra_status_dslite: null,
         ...(row?.envio_interno_at
           ? { fornecedor_id: null, fornecedor_nome: 'Estoque Interno', supplier_payment_mode: null, supplier_payment_status: null, supplier_payment_amount: null }
           : (fornecedorPreviewByPedido.get(String(row?.id || '')) || {})),
@@ -668,6 +670,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
       operational_supplier_ids: operationalSupplierIds,
       operational_internal_stock: operationalInternalStock,
       compra_id: compra.id || null,
+      compra_status_dslite: String(compra.status_dslite || '').trim() || null,
       compra_produto_descricao: compra.produto_descricao || null,
       compra_produto_sku: compra.produto_sku || null,
       compra_quantidade: compra.quantidade ?? null,

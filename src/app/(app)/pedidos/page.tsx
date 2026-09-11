@@ -23,6 +23,7 @@ import PedidosLabelWhatsappModals from '@/components/pedidos/PedidosLabelWhatsap
 import { isValidDsliteId, usePedidosDsliteFlow } from '@/components/pedidos/usePedidosDsliteFlow';
 import { usePedidosLabelWhatsappFlow } from '@/components/pedidos/usePedidosLabelWhatsappFlow';
 import { formatCurrency } from '@/lib/format';
+import { resolveDsliteLabelPresentation } from '@/lib/dslite/label-state';
 import { isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 import {
@@ -131,6 +132,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
     dslite_label_source: item.dslite_label_source || null,
     compra_id: item.compra_id || null,
+    compra_status_dslite: item.compra_status_dslite || null,
     fornecedor_nome: item.fornecedor_nome || null,
     fornecedor_id: item.fornecedor_id || null,
     fornecedor_telefone: item.fornecedor_telefone || null,
@@ -732,21 +734,36 @@ export default function PedidosPage() {
       },
     },
     {
-      title: 'Compra', key: 'compra', width: 140,
+      title: 'Compra', key: 'compra', width: 210,
       render: (_: unknown, order: Order) => {
         const dsliteId = isValidDsliteId(order.dslite_id);
         if (!dsliteId) return <Text type="secondary">Não Criado</Text>;
+        const purchaseStatus = String(order.compra_status_dslite || order.dslite_status || '').trim() || 'Não informado';
+        const labelPresentation = resolveDsliteLabelPresentation({
+          labelSource: order.dslite_label_source,
+          operationalStatus: order.dslite_label_operational_status,
+          whatsappStatus: order.whatsapp_label_status,
+        });
+        const secondaryStyle = { fontSize: 11, lineHeight: 1.35 } as const;
         return (
-          <Tooltip title="Abrir pedido na DSLite">
-            <a
-              href={`https://app.dslite.com.br/modules/admin/Pedido/exibir/${encodeURIComponent(dsliteId)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Abrir pedido DSLite ${dsliteId}`}
-            >
-              {dsliteId}
-            </a>
-          </Tooltip>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Tooltip title="Abrir pedido na DSLite">
+              <a
+                href={`https://app.dslite.com.br/modules/admin/Pedido/exibir/${encodeURIComponent(dsliteId)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Abrir pedido DSLite ${dsliteId}`}
+                style={{ color: token.colorPrimary, fontSize: 13, fontWeight: 700, lineHeight: 1.35 }}
+              >
+                #{dsliteId}
+              </a>
+            </Tooltip>
+            <Text type="secondary" style={secondaryStyle}>Status: {purchaseStatus}</Text>
+            <Text type="secondary" style={secondaryStyle}>Etiqueta: {labelPresentation.label}</Text>
+            {labelPresentation.showWhatsapp && (
+              <Text type="secondary" style={secondaryStyle}>WhatsApp: {labelPresentation.whatsappLabel}</Text>
+            )}
+          </div>
         );
       },
     },
@@ -841,7 +858,7 @@ export default function PedidosPage() {
           <ResizableTable<Order>
             storageKey="pedidos-bentevi-v3" dataSource={orders} columns={columns} rowKey="id" loading={listLoading}
             pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} pedidos` }}
-            onChange={handleTableChange} scroll={{ x: 1525 }} size="small"
+            onChange={handleTableChange} scroll={{ x: 1595 }} size="small"
           />
         )}
       </Card>

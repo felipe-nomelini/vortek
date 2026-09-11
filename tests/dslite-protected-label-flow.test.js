@@ -45,6 +45,42 @@ test('classificador aceita apenas o 403 específico de pedido protegido', () => 
   assert.equal(labelState.isDslitePlaceholderLabelSource('placeholder_release_window_2026-09-07'), true);
 });
 
+test('apresentação da etiqueta diferencia origem e exibe WhatsApp somente para genérica', () => {
+  const present = labelState.resolveDsliteLabelPresentation;
+
+  assert.deepEqual(present({ labelSource: 'mercado_livre', operationalStatus: 'sent_unverified' }), {
+    label: 'real', showWhatsapp: false, whatsappLabel: null,
+  });
+  assert.deepEqual(present({ operationalStatus: 'real_sent', whatsappStatus: 'sent' }), {
+    label: 'real', showWhatsapp: false, whatsappLabel: null,
+  });
+  assert.deepEqual(present({ labelSource: 'placeholder_release_window_vanral', whatsappStatus: 'not_sent' }), {
+    label: 'genérica', showWhatsapp: true, whatsappLabel: 'Não enviado',
+  });
+  assert.deepEqual(present({ operationalStatus: 'protected_existing', whatsappStatus: 'sent' }), {
+    label: 'genérica', showWhatsapp: true, whatsappLabel: 'Enviado',
+  });
+  for (const whatsappStatus of ['test_sent', 'pending', 'on_hold', 'failed', 'unknown', 'not_sent']) {
+    assert.equal(
+      present({ operationalStatus: 'generic_sent', whatsappStatus }).whatsappLabel,
+      'Não enviado',
+    );
+  }
+  assert.deepEqual(present({ operationalStatus: 'provider_shipping' }), {
+    label: 'própria DSLite', showWhatsapp: false, whatsappLabel: null,
+  });
+});
+
+test('apresentação da etiqueta não inventa origem em estados incompletos', () => {
+  const present = labelState.resolveDsliteLabelPresentation;
+
+  assert.equal(present({ operationalStatus: 'pending' }).label, 'não enviada');
+  assert.equal(present({ operationalStatus: 'failed' }).label, 'falha');
+  assert.equal(present({ operationalStatus: 'sent_unverified' }).label, 'não identificada');
+  assert.equal(present({ operationalStatus: 'unknown' }).label, 'não identificada');
+  assert.equal(present({}).label, 'não identificada');
+});
+
 test('403 legado protegido reconcilia a ação DSLite e preserva o WhatsApp já concluído', async () => {
   const pedidoId = baseRow().id;
   const events = [
