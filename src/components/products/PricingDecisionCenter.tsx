@@ -13,6 +13,7 @@ import {
   InputNumber,
   Modal,
   Pagination,
+  Segmented,
   Select,
   Space,
   Spin,
@@ -57,8 +58,23 @@ const date = (s?: string | null) =>
   s ? new Date(s).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }) : '—';
 const money = (c?: number | null) =>
   c == null ? 'Não calculado' : (c / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const blockerLabels: Record<string, string> = {
+  GRUPO_NAO_CONFIRMADO: 'Vínculo/grupo ainda não confirmado',
+  IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA: 'Identidade ou elegibilidade do anúncio pendente',
+  ECONOMIA_INCONCLUSIVA: 'Custo, tarifa, frete ou imposto inconclusivo',
+  PRECO_JA_APLICADO: 'O preço consultado já é o preço atual',
+  PRODUTO_LOCAL_ALTERADO: 'Produto ou oferta mudou durante a consulta',
+  ANUNCIO_REMOTO_ALTERADO: 'Anúncio mudou durante a consulta',
+  CONTA_ML_DIVERGENTE: 'Conta Mercado Livre divergente',
+  IDENTIDADE_ANUNCIO_PENDENTE: 'SKU e identidade comercial pendentes',
+  ANUNCIO_INELEGIVEL: 'Anúncio não elegível para alteração',
+  GRUPO_ALTERADO: 'Composição do grupo mudou',
+  CONCORRENCIA_ALTERADA: 'Referência competitiva mudou',
+  INCONCLUSIVO_FONTE_ML_INDISPONIVEL: 'Fonte do Mercado Livre indisponível',
+};
 type Decision = {
   id: string;
+  evaluation_id: string;
   state: string;
   expires_at: string;
   deferred_until: string | null;
@@ -81,10 +97,12 @@ type Row = {
   merged_into: string | null;
   product: { nome: string; sku: string };
   decisions: Decision[];
+  issues?: Row[];
 };
 type Detail = {
   alert: Row;
-  evaluation: { result: ProductPricing };
+  alerts: Row[];
+  evaluation: { result: ProductPricing & { decisionContext?: DecisionContext } };
   history: Array<{ id: number; kind: string; actorName: string | null; reason: string; created_at: string }>;
   canManage: boolean;
   hasMore: boolean;
@@ -93,6 +111,7 @@ type Detail = {
     mode: 'disabled' | 'test_only' | 'production_controlled';
     enabled: boolean;
     target: 'test' | 'production' | null;
+    allowedOperations: string[];
   };
 };
 const api = '/api/pricing/decisions';
@@ -113,6 +132,7 @@ export default function PricingDecisionCenter() {
   const [rows, setRows] = useState<Row[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [view, setView] = useState<'alerts' | 'decisions'>('alerts');
   const [state, setState] = useState('open');
   const [severity, setSeverity] = useState<string>();
   const [decisionFilter, setDecisionFilter] = useState<string>();
@@ -138,12 +158,14 @@ export default function PricingDecisionCenter() {
   const [executionConfirmationOpen, setExecutionConfirmationOpen] = useState(false);
   const executionCommand = useRef<{ decisionId: string; operationId: string } | null>(null);
   const [operation, setOperation] = useState<{ id: string; state: string } | null>(null);
+  const [reanalyzing, setReanalyzing] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
   const list = useCallback(async () => {
     const request = ++generation.current;
     setLoading(true);
     setError('');
     try {
-      const q = new URLSearchParams({ state, search, page: String(page) });
+      const q = new URLSearchParams({ state, search, page: String(page), view });
       if (severity) q.set('severity', severity);
       if (decisionFilter) q.set('decision', decisionFilter);
       const data = await read(`${api}?${q}`);
@@ -156,7 +178,7 @@ export default function PricingDecisionCenter() {
     } finally {
       if (request === generation.current) setLoading(false);
     }
-  }, [state, search, page, severity, decisionFilter]);
+  }, [state, search, page, severity, decisionFilter, view]);
   useEffect(() => {
     let live = true;
     const refresh = () => {
@@ -176,17 +198,18 @@ export default function PricingDecisionCenter() {
   useEffect(() => {
     if (open && !detail) void list();
   }, [open, detail, list]);
-  async function show(id: string, p = 1) {
+  async function show(id: string, p = 1, key: 'productId' | 'alertId' = 'productId') {
     const request = ++generation.current;
     setLoading(true);
     setError('');
     try {
-      const d = await read(`${api}?alertId=${id}&page=${p}`);
+      const d = await read(`${api}?${key}=${id}&page=${p}`);
       if (request === generation.current) {
         setDetail(d);
         setOperation(null);
         setExecutionConfirmationOpen(false);
         setHistoryPage(p);
+        requestAnimationFrame(() => contentRef.current?.closest('.ant-drawer-body')?.scrollTo({ top: 0 }));
       }
     } catch (e) {
       if (request === generation.current) setError((e as Error).message);
@@ -202,7 +225,7 @@ export default function PricingDecisionCenter() {
       const id = (event as CustomEvent<{ alertId?: string }>).detail?.alertId;
       if (!id) return;
       setOpen(true);
-      void show(id);
+      void show(id, 1, 'alertId');
     };
     window.addEventListener('pricing-decision-open', openProposal);
     return () => window.removeEventListener('pricing-decision-open', openProposal);
@@ -210,6 +233,18 @@ export default function PricingDecisionCenter() {
   async function checkOperation(id: string) {
     try { setOperation(await read(`${api}/execute?operationId=${encodeURIComponent(id)}`)); }
     catch (e) { message.error((e as Error).message); }
+  }
+  async function reanalyzeProduct() {
+    if (!detail || reanalyzing) return;
+    setReanalyzing(true);
+    try {
+      await read(`${api}/reanalyze`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId: detail.alert.produto_id, commandId: crypto.randomUUID() }) });
+      message.success('Vínculo e fontes comerciais reanalisados. Nenhum preço foi alterado.');
+      changed();
+      await show(detail.alert.produto_id);
+    } catch (e) { message.error((e as Error).message); }
+    finally { setReanalyzing(false); }
   }
   async function applyApproved() {
     if (!current || busy || detail?.executionBlocked) return false;
@@ -220,7 +255,7 @@ export default function PricingDecisionCenter() {
       const r = await read(`${api}/execute`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(executionCommand.current) });
       message.info('Operação registrada na fila. O preço só será considerado aplicado após conferência no ML.');
-      await show(detail!.alert.id);
+      await show(detail!.alert.produto_id);
       await checkOperation(r.operationId);
       return true;
     } catch (e) { message.error((e as Error).message); return false; }
@@ -261,7 +296,7 @@ export default function PricingDecisionCenter() {
       setAction(null);
       setCommand(null);
       changed();
-      await show(detail!.alert.id);
+      await show(detail!.alert.produto_id);
     } catch (e) {
       message.error((e as Error).message);
     } finally {
@@ -299,24 +334,15 @@ export default function PricingDecisionCenter() {
           setError('');
         }}
       >
+        <div ref={contentRef}>
         <Space direction="vertical" size={20} style={{ width: '100%' }}>
-          <Alert
-            type="info"
-            showIcon
-            message="Decidir não significa aplicar"
-            description={detail?.execution.target === 'production' && detail.execution.enabled
-              ? 'A aprovação não envia nada. A operação real exige uma confirmação final e nova validação no servidor.'
-              : detail?.execution.target === 'test' && detail.execution.enabled
-                ? 'A aprovação não envia nada. A aplicação permanece limitada à conta de teste autorizada.'
-                : 'Nenhuma operação comercial será enviada enquanto o gate de execução estiver desabilitado.'}
-          />
           {error && (
             <Alert
               type="error"
               showIcon
               message={error}
               action={
-                <Button onClick={() => (detail ? void show(detail.alert.id) : void list())}>
+                <Button onClick={() => (detail ? void show(detail.alert.produto_id) : void list())}>
                   Tentar novamente
                 </Button>
               }
@@ -324,6 +350,16 @@ export default function PricingDecisionCenter() {
           )}
           {!detail ? (
             <>
+              <Segmented
+                value={view}
+                options={[{ value: 'alerts', label: 'Alertas' }, { value: 'decisions', label: 'Decisões' }]}
+                onChange={(value) => {
+                  const next = value as 'alerts' | 'decisions';
+                  setView(next);
+                  setDecisionFilter(next === 'decisions' ? 'pending' : undefined);
+                  setPage(1);
+                }}
+              />
               <Space wrap>
                 <Input.Search
                   placeholder="SKU, produto ou anúncio"
@@ -410,9 +446,11 @@ export default function PricingDecisionCenter() {
                     title: 'Problema',
                     render: (_, r) => (
                       <>
-                        <strong>{r.title}</strong>
+                        <strong>{r.issues?.length === 1 ? r.title : `${r.issues?.length || 1} pontos requerem atenção`}</strong>
                         <div>
-                          <Typography.Text type="secondary">{r.reason}</Typography.Text>
+                          <Typography.Text type="secondary">
+                            {(r.issues || [r]).map(issue => issue.title).join(' · ')}
+                          </Typography.Text>
                         </div>
                       </>
                     ),
@@ -421,7 +459,9 @@ export default function PricingDecisionCenter() {
                   {
                     title: 'Ação',
                     width: 110,
-                    render: (_, r) => <Button onClick={() => void show(r.id)}>Ver decisão</Button>,
+                    render: (_, r) => <Button onClick={() => void show(r.produto_id)}>
+                      {r.decisions?.length ? 'Ver decisão' : 'Ver diagnóstico'}
+                    </Button>,
                   },
                 ]}
               />
@@ -451,6 +491,10 @@ export default function PricingDecisionCenter() {
                 <Typography.Text>
                   {detail.alert.product?.nome} · {detail.alert.product?.sku}
                 </Typography.Text>
+                {detail.alerts.length > 1 && (
+                  <Alert type="warning" showIcon message={`${detail.alerts.length} pontos agrupados neste produto`}
+                    description={detail.alerts.map(alert => `${alert.severity}: ${alert.title}`).join(' · ')} />
+                )}
                 <Descriptions
                   column={2}
                   size="small"
@@ -478,7 +522,27 @@ export default function PricingDecisionCenter() {
                       : []),
                   ]}
                 />
-                <PricingQuoteSummary pricing={detail.evaluation.result} />
+                {detail.evaluation.result.revalidation?.status === 'queried' ? (
+                  <PricingQuoteSummary pricing={detail.evaluation.result} />
+                ) : (
+                  <Alert type="warning" showIcon message="Consulta comercial inconclusiva"
+                    description={[
+                      detail.evaluation.result.revalidation?.code,
+                      ...(detail.evaluation.result.decisionContext?.reasons || []),
+                    ].filter((code, index, values): code is string => Boolean(code) && values.indexOf(code) === index)
+                      .map(code => blockerLabels[code] || code).join(' · ')
+                      || 'Os dados não autorizam uma decisão de preço. Reanalise o produto para atualizar as fontes.'} />
+                )}
+                {current && (
+                  <Alert
+                    type="info"
+                    showIcon
+                    message="Decidir não significa aplicar"
+                    description={detail.execution.target === 'production' && detail.execution.enabled
+                      ? 'A aprovação não envia nada. A operação real exige confirmação final e nova validação no servidor.'
+                      : 'A proposta permanece sem efeito comercial enquanto a execução protegida não estiver disponível.'}
+                  />
+                )}
                 {current?.state === 'approved' && (
                   <Space direction="vertical">
                     {detail.executionBlocked && <Alert type="info" message="Proposta aprovada; aplicação bloqueada pelo gate protegido do ambiente." />}
@@ -519,14 +583,19 @@ export default function PricingDecisionCenter() {
                   />
                 )}
                 {detail.canManage && detail.alert.item_id && (
-                  <PricingProposalButton
-                    productId={detail.alert.produto_id}
-                    itemId={detail.alert.item_id}
-                    priceCents={current?.context.priceCents}
-                    clearance={current?.context.clearance}
-                    label="Reavaliar / preparar proposta"
-                    onRecorded={() => void show(detail.alert.id)}
-                  />
+                  <Space wrap>
+                    <Button icon={<ReloadOutlined />} loading={reanalyzing} onClick={() => void reanalyzeProduct()}>
+                      Corrigir vínculo e reanalisar
+                    </Button>
+                    <PricingProposalButton
+                      productId={detail.alert.produto_id}
+                      itemId={detail.alert.item_id}
+                      priceCents={current?.context.priceCents}
+                      clearance={current?.context.clearance}
+                      label="Preparar proposta de preço"
+                      onRecorded={() => void show(detail.alert.produto_id)}
+                    />
+                  </Space>
                 )}
                 {!detail.canManage && (
                   <Typography.Text type="secondary">
@@ -556,13 +625,13 @@ export default function PricingDecisionCenter() {
                 <Space>
                   <Button
                     disabled={historyPage === 1}
-                    onClick={() => void show(detail.alert.id, historyPage - 1)}
+                    onClick={() => void show(detail.alert.produto_id, historyPage - 1)}
                   >
                     Mais recentes
                   </Button>
                   <Button
                     disabled={!detail.hasMore}
-                    onClick={() => void show(detail.alert.id, historyPage + 1)}
+                    onClick={() => void show(detail.alert.produto_id, historyPage + 1)}
                   >
                     Mais antigos
                   </Button>
@@ -571,6 +640,7 @@ export default function PricingDecisionCenter() {
             </Spin>
           )}
         </Space>
+        </div>
       </Drawer>
       <Modal
         open={executionConfirmationOpen && detail?.execution.target === 'production'}

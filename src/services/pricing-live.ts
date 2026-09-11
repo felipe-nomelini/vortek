@@ -1,7 +1,7 @@
 import 'server-only';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from '@/types/database';
-import type { EconomicInput, EconomicMarketQuote, EconomicResult } from '@/types/pricing';
+import type { EconomicInput, EconomicIssue, EconomicMarketQuote, EconomicResult } from '@/types/pricing';
 import { fetchMLResult } from './integration';
 import { evaluateEconomicMemory, projectQuotedEconomicPrice } from './pricing-economy';
 import { evaluateProductPricing, loadPricingRequestContext, loadProductPricing, type ProductPricing, type PricingRequestContext } from './pricing-context';
@@ -34,7 +34,9 @@ function material(product: Product, base: Base, request: PricingRequestContext) 
 
 /** Consulta efêmera, nenhuma escrita de preço/configuração/outbox. */
 export async function loadLiveProductPricing(client: Client, product: Product, context: MarketContext,
-  priceCents: number | null, verifyMarket: () => Promise<boolean | null>,
+  priceCents: number | null, verifyMarket: () => Promise<boolean | null | {
+    valid: boolean | null; code?: EconomicIssue['code'];
+  }>,
   options: { competitivePriceCents?: number | null; actualPriceCents?: number | null; groupId?: string | null } = {}): Promise<ProductPricing> {
   const request = await loadPricingRequestContext(client);
   const initial = await sources(client, product, request, context, priceCents);
@@ -53,7 +55,7 @@ export async function loadLiveProductPricing(client: Client, product: Product, c
     }
     return pending;
   };
-  const failure = (code: 'CONTEXTO_ALTERADO' | 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL'): ProductPricing => {
+  const failure = (code: EconomicIssue['code']): ProductPricing => {
     const reasons = [{ field: 'context' as const, code }];
     return { costCents: initial.pricing.costCents, currentPriceCents: priceCents,
       current: { status: 'inconclusive', memory: null, reasons },
@@ -84,13 +86,15 @@ export async function loadLiveProductPricing(client: Client, product: Product, c
   const breakEven = await project('break_even');
   const fresh = await client.from('produtos').select('*').eq('id', product.id).maybeSingle();
   if (fresh.error) throw new Error('Falha ao revalidar o produto');
-  if (!fresh.data) return failure('CONTEXTO_ALTERADO');
+  if (!fresh.data) return failure('PRODUTO_LOCAL_ALTERADO');
   const freshRequest = await loadPricingRequestContext(client);
   const next = await sources(client, fresh.data, freshRequest, context, priceCents);
-  if (material(product, initial.base, request) !== material(fresh.data, next.base, freshRequest)) return failure('CONTEXTO_ALTERADO');
-  const marketValid = await verifyMarket();
-  if (marketValid === null) return failure('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
-  if (!marketValid) return failure('CONTEXTO_ALTERADO');
+  if (material(product, initial.base, request) !== material(fresh.data, next.base, freshRequest)) return failure('PRODUTO_LOCAL_ALTERADO');
+  const marketResult = await verifyMarket();
+  const marketValid = typeof marketResult === 'object' && marketResult !== null ? marketResult.valid : marketResult;
+  const marketCode = typeof marketResult === 'object' && marketResult !== null ? marketResult.code : undefined;
+  if (marketValid === null) return failure(marketCode || 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
+  if (!marketValid) return failure(marketCode || 'ANUNCIO_REMOTO_ALTERADO');
   if (missingLive) return failure('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
   return { costCents: initial.pricing.costCents, currentPriceCents: priceCents, current, target, floor, breakEven, comparisons,
     revalidation: { status: target.ok && floor.ok && breakEven.ok ? 'queried' : 'inconclusive',

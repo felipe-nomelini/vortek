@@ -17,6 +17,9 @@ export type MlIdentityContext = {
 };
 const PACK_FIELDS = ['SALE_FORMAT', 'UNITS_PER_PACK', 'PACKS_NUMBER', 'PACKAGES_NUMBER', 'PACKAGING_BOXES_NUMBER'];
 const IDENTITY_FIELDS = ['SELLER_SKU', 'GTIN', 'BRAND', 'MODEL', 'MPN', 'PART_NUMBER', 'COLOR', 'VOLTAGE', 'NOMINAL_VOLTAGE', 'DIAMETER', 'BLADES_DIAMETER'];
+const EXISTING_LISTING_COMMERCIAL_FIELDS = new Set([
+  'SELLER_SKU', 'GTIN', 'BRAND', 'MODEL', 'MPN', 'PART_NUMBER', ...PACK_FIELDS,
+]);
 export const isMlIdentityAttribute = (id: string) => [...IDENTITY_FIELDS, ...PACK_FIELDS].includes(id);
 const normalizeText = (value: unknown) => String(value ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ');
 
@@ -151,6 +154,30 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
 
 export function isMlIdentityComplete(assessment: MlListingIdentityAssessment): boolean {
   return [assessment.identity, assessment.packaging_quantity].every(value => value.status === 'SEM_CONFLITO' && value.coverage === 'complete');
+}
+
+/**
+ * Contrato mínimo para operar um anúncio que já pertence à conta.
+ *
+ * Atributos editoriais obrigatórios da categoria (cor, apresentação, resolução etc.)
+ * continuam sendo avaliados para qualidade/publicação, mas não impedem o vínculo de
+ * um anúncio existente quando há SKU coerente, uma âncora forte e nenhum conflito
+ * material confirmado. A criação de anúncio continua usando isMlIdentityComplete.
+ */
+export function isMlExistingListingIdentitySafe(assessment: MlListingIdentityAssessment): boolean {
+  if (hasConfirmedMlExistingListingIdentityConflict(assessment)) return false;
+  const coherent = (field: string) => assessment.comparisons.some(
+    comparison => comparison.field === field && comparison.status === 'SEM_CONFLITO',
+  );
+  const skuCoherent = coherent('SELLER_SKU');
+  const strongAnchor = coherent('GTIN')
+    || (coherent('BRAND') && ['MODEL', 'MPN', 'PART_NUMBER'].some(coherent));
+  return skuCoherent && strongAnchor;
+}
+
+export function hasConfirmedMlExistingListingIdentityConflict(assessment: MlListingIdentityAssessment): boolean {
+  return assessment.comparisons.some(comparison => EXISTING_LISTING_COMMERCIAL_FIELDS.has(comparison.field)
+    && comparison.status === 'CONFLITO_CONFIRMADO');
 }
 
 export function hasConfirmedMlIdentityConflict(assessment: MlListingIdentityAssessment): boolean {

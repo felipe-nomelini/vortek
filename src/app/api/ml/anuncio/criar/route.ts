@@ -12,7 +12,7 @@ export const maxDuration = 300;
 export async function POST(request: Request) {
   const auth = await authorizeApiRequest(request, 'pricing.decisions.manage');
   if (!auth.ok) return auth.response;
-  if (!configuredPricingExecutionCapability().enabled)
+  if (!configuredPricingExecutionCapability().allowedOperations.includes('listing_create'))
     return NextResponse.json(getPricingExecutionBlock(), { status: 409 });
   const input = publicationInputSchema.safeParse(await request.json().catch(() => null));
   if (!input.success) return NextResponse.json({ error: 'Preparação inválida. Preço, logística e evidências precisam estar explícitos.' }, { status: 422 });

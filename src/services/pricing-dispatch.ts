@@ -10,7 +10,7 @@ import { pricingReadbackMatches } from '@/lib/ml/pricing-execution';
 type Client = ReturnType<typeof createServiceClient>;
 
 async function revalidate(client: Client, decision: any, productId: string, actorId: string) {
-  await requirePricingExecutionAccount(decision.context.sellerId);
+  await requirePricingExecutionAccount(decision.context.sellerId, decision.context.operationKind || 'price_change');
   if (decision.context.operationKind === 'listing_create') {
     const { preparePublication } = await import('./publication-preparation');
     const fresh = await preparePublication(decision.context.preparation.input, actorId);
@@ -36,7 +36,7 @@ export async function enqueueApprovedPricingDecision(decisionId: string, operati
     .eq('id', decisionId).single();
   if (found.error || !found.data) throw new Error('decision_missing');
   const decision = found.data as any;
-  await requirePricingExecutionAccount(decision.context.sellerId);
+  await requirePricingExecutionAccount(decision.context.sellerId, decision.context.operationKind || 'price_change');
   const outboxId = await consumePricingDecision(client, { decisionId, operationId, actorId }, async () => {
     // Consumption is idempotent in SQL; no stale-price comparison after a completed operation.
     if (decision.operation_id) return decision.evaluation_id;
@@ -62,7 +62,7 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
   if (result.error || approval.error || !result.data || !approval.data) throw new Error('decision_operation_missing');
   let operation = result.data;
   const decision = approval.data as any;
-  const { sellerId } = await requirePricingExecutionAccount(decision.context.sellerId);
+  const { sellerId } = await requirePricingExecutionAccount(decision.context.sellerId, decision.context.operationKind || 'price_change');
   const finish = async (state: string) => {
     const terminal = state === 'confirmed' ? 'done' : 'failed';
     const saved = await client.from('anuncios_ml_outbox').update({ status: terminal,

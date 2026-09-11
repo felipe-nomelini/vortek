@@ -37,7 +37,7 @@ async function quote(options={}) {
     '@/lib/ml-critical-attributes':{loadMlIdentityKit:async()=>({}),assessMlProductIdentity:item=>({
       complete:!(options.peerConflict&&item.id==='MLB2')&&!options.originConflict,
       comparisons:[{field:'BRAND',local:'A',remote:options.brand||'A',status:'SEM_CONFLITO',reason:'same'}]})},
-    '@/lib/ml-listing-identity':{isMlIdentityComplete:a=>a.complete},
+    '@/lib/ml-listing-identity':{isMlExistingListingIdentitySafe:a=>a.complete},
     '@/lib/ml/operational-listing':require('../src/lib/ml/publish-eligibility.js'),
     '@/lib/dslite/supplier-policy':{loadOperationalDropshippingSupplierIds:async()=>new Set()},
     './mercadolibre':{getCategoryAttributes:async()=>options.categoryUnavailable?null:[]},

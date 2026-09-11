@@ -2,7 +2,7 @@ import { fetchMLResult } from '@/services/integration';
 import { getCategoryAttributes } from '@/services/mercadolibre';
 import { buildMlItemsBulkPath, getMlItemsBulkBody } from '@/lib/ml/items-bulk';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
-import { isMlIdentityComplete, hasConfirmedMlIdentityConflict } from '@/lib/ml-listing-identity';
+import { isMlExistingListingIdentitySafe, hasConfirmedMlIdentityConflict } from '@/lib/ml-listing-identity';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { classifyListingLinks, type ListingLinkCandidate, type ListingLinkResult } from '@/lib/ml/listing-link';
 import type { ConflictEvidence } from '@/types/commercial-conflicts';
@@ -102,7 +102,7 @@ export async function resolveProductMlLinks(client: Client, product: any, seller
     }
     candidates.push({ itemId: item.id, variationId, catalog: item.catalog_listing === true,
       sellerId: Number(item.seller_id), productId: ownership.get(item.id) || null, status: String(item.status || ''), relations, sync, evidence,
-      identity: !relationsKnown || (variations.length && !variationId) ? 'pending' : isMlIdentityComplete(identity) ? 'complete' : hasConfirmedMlIdentityConflict(identity) ? 'conflict' : 'pending' });
+      identity: !relationsKnown || (variations.length && !variationId) ? 'pending' : isMlExistingListingIdentitySafe(identity) ? 'complete' : hasConfirmedMlIdentityConflict(identity) ? 'conflict' : 'pending' });
   }
   return classifyListingLinks({ sellerId, productId: product.id, candidates, complete, searchEvidence: search.evidence });
 }

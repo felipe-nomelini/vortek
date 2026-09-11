@@ -33,7 +33,7 @@ export type PublicationInput = z.infer<typeof publicationInputSchema>;
 /** Preparation is repeatable and creates no listing. All commercial calculations remain in pricing-detail. */
 export async function preparePublication(raw: unknown, actorId: string) {
   const input = publicationInputSchema.parse(raw);
-  const execution = await requirePricingExecutionAccount();
+  const execution = await requirePricingExecutionAccount(undefined, 'listing_create');
   const { sellerId } = execution;
   const client = createServiceClient();
   const productResult = await client.from('produtos').select('*').eq('id', input.produtoId).single();

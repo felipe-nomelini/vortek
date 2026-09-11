@@ -16,7 +16,7 @@ import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
-import { isMlIdentityComplete, hasConfirmedMlIdentityConflict } from '@/lib/ml-listing-identity';
+import { isMlExistingListingIdentitySafe, hasConfirmedMlExistingListingIdentityConflict } from '@/lib/ml-listing-identity';
 import { getCategoryAttributes } from '@/services/mercadolibre';
 import { resolveProductMlLinks, persistProductMlGroups } from '@/services/ml-listing-links';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
@@ -740,7 +740,10 @@ export async function POST(request: Request) {
             { categoryAttributes: categoryAttributes || null, kit,
               remoteEvidence: { source: 'mercado_livre', reference: String(item.id), collectedAt: new Date().toISOString(), condition: 'valid' } },
           );
-          const identityConflicts = identityAssessment.comparisons.filter(value => value.status === 'CONFLITO_CONFIRMADO');
+          const identityConflicts = identityAssessment.comparisons.filter(value => value.status === 'CONFLITO_CONFIRMADO'
+            && ['SELLER_SKU', 'GTIN', 'BRAND', 'MODEL', 'MPN', 'PART_NUMBER', 'SALE_FORMAT', 'UNITS_PER_PACK',
+              'PACKS_NUMBER', 'PACKAGES_NUMBER', 'PACKAGING_BOXES_NUMBER'].includes(value.field));
+          const existingIdentitySafe = isMlExistingListingIdentitySafe(identityAssessment);
           let linkValidated = false;
           {
             if (!linkResolutions.has(produtoId)) {
@@ -761,13 +764,13 @@ export async function POST(request: Request) {
             } catch {
               warnings.push({ code: 'ml_listing_link_unavailable', message: 'Vínculo/grupo não revalidado; nenhuma ação derivada autorizada.', context: { mlItemId: String(item.id) } });
             }
-            if (!linkValidated && isMlIdentityComplete(identityAssessment)) {
+            if (!linkValidated && existingIdentitySafe) {
               identityDeferredIds.add(String(item.id));
               if (!byItem) { produtoId = null; skuLocal = null; }
               produto = null;
             }
           }
-          if (!isMlIdentityComplete(identityAssessment) && !hasConfirmedMlIdentityConflict(identityAssessment)) {
+          if (!existingIdentitySafe && !hasConfirmedMlExistingListingIdentityConflict(identityAssessment)) {
             warnings.push({ code: 'ml_identity_validation_pending', message: 'Identidade/apresentação sem conclusão; bloqueios existentes preservados.',
               context: { mlItemId: String(item.id), produtoId, identity: identityAssessment.identity.status, packaging: identityAssessment.packaging_quantity.status } });
             // Mantém snapshot observado sem permitir ações derivadas de vínculo não validado.
@@ -777,7 +780,7 @@ export async function POST(request: Request) {
           }
 
 
-          if (isMlIdentityComplete(identityAssessment) && linkValidated) {
+          if (existingIdentitySafe && linkValidated) {
             const unblockResult = await clearAutomaticMlIdentityBlock(
               serviceClient,
               String(item.id),
@@ -794,7 +797,7 @@ export async function POST(request: Request) {
             }
           }
 
-          if (hasConfirmedMlIdentityConflict(identityAssessment)) {
+          if (hasConfirmedMlExistingListingIdentityConflict(identityAssessment)) {
             const reason = `Divergência material de identidade ML: ${identityConflicts
               .map((conflict) => `${conflict.field} local=${conflict.local} remoto=${conflict.remote}`)
               .join('; ')}`;

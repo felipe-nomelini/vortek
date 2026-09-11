@@ -50,7 +50,9 @@ function harness(options = {}) {
       throw new Error('Unexpected endpoint');
     } },
     '@/services/pricing-live': { loadLiveProductPricing: async (_client, _product, market, price, verify, comparisonOptions) => {
-      captured.push({ market, price, valid: await verify(), comparisonOptions }); return pricing;
+      const verification = await verify();
+      captured.push({ market, price, valid: typeof verification === 'object' && verification !== null ? verification.valid : verification,
+        verification, comparisonOptions }); return pricing;
     } },
     '@/services/pricing-market-quote': quote,
     '@/lib/pricing-view': require('../src/lib/pricing-view.ts'),
@@ -61,7 +63,7 @@ function harness(options = {}) {
     '@/lib/ml-critical-attributes': { loadMlIdentityKit: async () => ({ status: 'not_kit', components: [] }),
       assessMlProductIdentity: () => ({ identity: { status: 'SEM_CONFLITO', coverage: 'complete' },
         packaging_quantity: { status: 'SEM_CONFLITO', coverage: 'complete' }, comparisons: [] }) },
-    '@/lib/ml-listing-identity': { isMlIdentityComplete: () => true },
+    '@/lib/ml-listing-identity': { isMlExistingListingIdentitySafe: () => true },
     '@/lib/ml/operational-listing': { classifyMlPublishEligibility: () => ({ eligible: true, kind: 'modifiable' }) },
     '@/lib/dslite/supplier-policy': { loadOperationalDropshippingSupplierIds: async () => new Set() },
     './mercadolibre': { getCategoryAttributes: async () => [] },
@@ -150,6 +152,7 @@ test('fonte indisponível é explícita; alteração do anúncio invalida contex
   const down = harness({ mlDown: true }); const response = await down.get('produtoId=P1');
   assert.equal(response.status, 503); assert.equal((await response.json()).code, 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
   const changed = harness({ changed: true }); await changed.get('produtoId=P1'); assert.equal(changed.captured[0].valid, false);
+  assert.equal(changed.captured[0].verification.code, 'ANUNCIO_REMOTO_ALTERADO');
 });
 
 test('proteção indisponível não vira ausência de override nem impede diagnóstico econômico', async () => {

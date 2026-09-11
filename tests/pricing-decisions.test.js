@@ -83,14 +83,14 @@ test('interface única conserva ações explícitas, estados separados e não pu
 });
 
 test('leitura deriva expiração e filtra a decisão atual, sem alterar a auditoria',async()=>{
-  const calls=[];const expired={id,state:'approved',expires_at:'2000-01-01T00:00:00Z',operation_id:null};
+  const calls=[];const expired={id,state:'approved',expires_at:'2000-01-01T00:00:00Z',operation_id:null,created_at:'2000-01-01T00:00:00Z'};
   const client={from(table){const q={
     select(value){calls.push(['select',table,value]);return q},
-    eq(...args){calls.push(['eq',...args]);return q},is(){return q},
-    or(...args){calls.push(['or',...args]);return q},order(...args){calls.push(['order',...args]);return q},
-    range(){return q},single:async()=>({data:{cargo:'admin'},error:null}),
-    then(resolve){resolve({data:[{id,decisions:expired}],count:1,error:null})},
-  };return q;}};
+    eq(...args){calls.push(['eq',...args]);return q},is(){return q},in(){return q},
+    order(...args){calls.push(['order',...args]);return q},
+    single:async()=>({data:{cargo:'admin'},error:null}),
+    then(resolve){resolve({data:table==='pricing_alerts'?[{id,produto_id:id,decisions:expired,product:{nome:'P',sku:'S'}}]:[],error:null})},
+  };return q;},rpc:async(name,args)=>{calls.push(['rpc',name,args]);return {data:{productIds:[id],total:1,affectedProductCount:1,openAlertCount:2,pendingDecisionCount:1},error:null};}};
   const routes=load('src/app/api/pricing/decisions/route.ts',{
     'next/server':{NextResponse:{json:(b,i)=>Response.json(b,i)}},zod:require('zod'),
     '@/lib/api-request-auth':{authorizeApiRequest:async()=>({ok:true,userId:id})},
@@ -102,7 +102,6 @@ test('leitura deriva expiração e filtra a decisão atual, sem alterar a audito
   const r=await routes.GET(new Request('http://local/api/pricing/decisions?decision=expired'));
   assert.equal(r.status,200);const data=await r.json();assert.equal(data.data[0].decisions[0].state,'expired');assert.equal(expired.state,'approved');
   assert.deepEqual(data.execution,{mode:'disabled',enabled:false,target:null});assert.equal(data.executionBlocked,true);
-  assert.ok(calls.some(c=>c[0]==='select'&&c[2].includes('pricing_alerts_latest_decision_id_fkey!inner')));
-  assert.ok(calls.some(c=>c[0]==='or'&&c[1].includes('operation_id.is.null')));
-  assert.deepEqual(calls.find(c=>c[0]==='order'),['order','severity_order',{ascending:true}]);
+  assert.equal(data.pendingCount,1);assert.equal(data.openAlertCount,2);
+  assert.ok(calls.some(c=>c[0]==='rpc'&&c[1]==='search_pricing_decision_product_ids'&&c[2].p_decision==='expired'));
 });

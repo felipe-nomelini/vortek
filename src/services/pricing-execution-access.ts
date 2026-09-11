@@ -1,10 +1,12 @@
 import 'server-only';
 import { lookup } from 'node:dns/promises';
-import { getPricingExecutionCapability, pricingExecutionAllowed } from '@/lib/ml/pricing-execution';
+import { getPricingExecutionCapability, pricingExecutionAllowed, pricingOperationAllowed } from '@/lib/ml/pricing-execution';
 import { fetchMLResult } from './integration';
 import { resolveSupabaseServiceUrl } from '@/lib/supabase-url';
 
 const configuredSellerIds = () => (process.env.ML_ALLOWED_USER_IDS || '')
+  .split(',').map(s => s.trim()).filter(Boolean);
+const configuredOperations = () => (process.env.ML_PRICING_EXECUTION_ALLOWED_OPERATIONS || '')
   .split(',').map(s => s.trim()).filter(Boolean);
 
 export function configuredPricingExecutionCapability() {
@@ -13,6 +15,7 @@ export function configuredPricingExecutionCapability() {
     runtimeEnvironment: process.env.VORTEK_RUNTIME_ENVIRONMENT,
     appUrl: process.env.NEXT_PUBLIC_APP_URL,
     allowedSellerIds: configuredSellerIds(),
+    allowedOperations: configuredOperations(),
   });
 }
 
@@ -29,13 +32,16 @@ export function assertPricingExecutionAccount(account: unknown, sellerId: string
     runtimeEnvironment: process.env.VORTEK_RUNTIME_ENVIRONMENT,
     appUrl: process.env.NEXT_PUBLIC_APP_URL,
     allowedSellerIds: configuredSellerIds(),
+    allowedOperations: configuredOperations(),
     account, sellerId,
   })) throw new Error('pricing_execution_account_required');
 }
 
-export async function requirePricingExecutionAccount(sellerId?: string) {
+export async function requirePricingExecutionAccount(sellerId?: string, operationKind?: 'price_change' | 'listing_create') {
   const capability = configuredPricingExecutionCapability();
   if (!capability.enabled) throw new Error('pricing_execution_not_ready');
+  if (operationKind && !pricingOperationAllowed(capability, operationKind))
+    throw new Error('pricing_execution_operation_not_allowed');
   await assertPricingExecutionDestination();
   const me = await fetchMLResult<{ id: number; site_id: string; tags: string[] }>('/users/me');
   if (!me.ok || !me.data) throw new Error('pricing_execution_account_unavailable');

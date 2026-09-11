@@ -6,8 +6,11 @@ const gate = require('../src/lib/ml/pricing-execution.js');
 
 test('test execution is explicit, bound to DEV and exact test seller; legacy writers stay closed', () => {
   const valid = { mode: 'test_only', appUrl: 'https://dev.bentevi.shop', allowedSellerIds: ['123'],
+    allowedOperations: ['price_change'],
     account: { id: 123, site_id: 'MLB', tags: ['test_user'] }, sellerId: '123' };
   assert.equal(gate.pricingExecutionAllowed(valid), true);
+  assert.equal(gate.pricingOperationAllowed(gate.getPricingExecutionCapability(valid), 'price_change'), true);
+  assert.equal(gate.pricingOperationAllowed(gate.getPricingExecutionCapability(valid), 'listing_create'), false);
   assert.equal(gate.getPricingExecutionCapability({ ...valid, allowedSellerIds: [] }).enabled, false);
   for (const patch of [{ mode: undefined }, { mode: 'production' }, { appUrl: 'https://app.bentevi.shop' },
     { appUrl: 'https://dev.bentevi.shop.evil.example' }, { allowedSellerIds: [] }, { sellerId: '124' },
@@ -19,9 +22,10 @@ test('test execution is explicit, bound to DEV and exact test seller; legacy wri
 test('production capability requires the exact runtime, origin, allowlist and a non-test MLB account', () => {
   const valid = { mode: 'production_controlled', runtimeEnvironment: 'production',
     appUrl: 'https://app.bentevi.shop', allowedSellerIds: ['7000000001'], sellerId: '7000000001',
+    allowedOperations: ['price_change'],
     account: { id: 7000000001, site_id: 'MLB', tags: ['normal'] } };
   assert.deepEqual(gate.getPricingExecutionCapability(valid), {
-    mode: 'production_controlled', enabled: true, target: 'production',
+    mode: 'production_controlled', enabled: true, target: 'production', allowedOperations: ['price_change'],
   });
   assert.equal(gate.pricingExecutionAllowed(valid), true);
   for (const patch of [{ runtimeEnvironment: 'homologation' }, { appUrl: 'http://app.bentevi.shop' },
@@ -32,16 +36,16 @@ test('production capability requires the exact runtime, origin, allowlist and a 
     { account: { id: 7000000001, site_id: 'MLB' } }])
     assert.equal(gate.pricingExecutionAllowed({ ...valid, ...patch }), false);
   assert.deepEqual(gate.getPricingExecutionCapability({ mode: 'unexpected', appUrl: valid.appUrl }), {
-    mode: 'disabled', enabled: false, target: null,
+    mode: 'disabled', enabled: false, target: null, allowedOperations: [],
   });
 });
 
 test('server guard revalidates destination and the exact production token before the claim', async t => {
-  const keys = ['ML_PRICING_EXECUTION_MODE','VORTEK_RUNTIME_ENVIRONMENT','NEXT_PUBLIC_APP_URL','ML_ALLOWED_USER_IDS'];
+  const keys = ['ML_PRICING_EXECUTION_MODE','VORTEK_RUNTIME_ENVIRONMENT','NEXT_PUBLIC_APP_URL','ML_ALLOWED_USER_IDS','ML_PRICING_EXECUTION_ALLOWED_OPERATIONS'];
   const previous = Object.fromEntries(keys.map(key => [key, process.env[key]]));
   Object.assign(process.env, { ML_PRICING_EXECUTION_MODE:'production_controlled',
     VORTEK_RUNTIME_ENVIRONMENT:'production', NEXT_PUBLIC_APP_URL:'https://app.bentevi.shop',
-    ML_ALLOWED_USER_IDS:'7000000001' });
+    ML_ALLOWED_USER_IDS:'7000000001', ML_PRICING_EXECUTION_ALLOWED_OPERATIONS:'price_change' });
   const originalFetch = globalThis.fetch;
   t.after(() => {
     for (const key of keys) previous[key] === undefined ? delete process.env[key] : process.env[key] = previous[key];
@@ -55,7 +59,7 @@ test('server guard revalidates destination and the exact production token before
     '@/lib/supabase-url':{resolveSupabaseServiceUrl:()=> 'http://supabase.internal'},
   });
   assert.deepEqual(await access.requirePricingExecutionAccount('7000000001'),{
-    sellerId:'7000000001',capability:{mode:'production_controlled',enabled:true,target:'production'},
+    sellerId:'7000000001',capability:{mode:'production_controlled',enabled:true,target:'production',allowedOperations:['price_change']},
   });
   globalThis.fetch=async()=>{calls.push('token');return Response.json(account)};
   await access.pricingExecutionTransport('7000000001',async()=>{calls.push('claim')}).validateToken('opaque');

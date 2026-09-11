@@ -39,6 +39,13 @@ export function CompetitivePricingSummary({ assessment }: { assessment?: Competi
 const explanations: Partial<Record<EconomicIssue['code'], string>> = {
   INCONCLUSIVO_FONTE_ML_INDISPONIVEL: 'O Mercado Livre não forneceu uma cotação suficiente. Nenhuma decisão comercial foi executada.',
   CONTEXTO_ALTERADO: 'Produto, oferta, configuração ou anúncio mudou durante a consulta. Consulte novamente.',
+  PRODUTO_LOCAL_ALTERADO: 'Produto, oferta ou configuração comercial mudou durante a consulta. Consulte novamente.',
+  ANUNCIO_REMOTO_ALTERADO: 'O anúncio mudou no Mercado Livre durante a consulta. Consulte novamente.',
+  CONTA_ML_DIVERGENTE: 'A conta conectada não corresponde ao anúncio consultado.',
+  IDENTIDADE_ANUNCIO_PENDENTE: 'SKU e identidade comercial do anúncio ainda não foram comprovados.',
+  ANUNCIO_INELEGIVEL: 'O estado atual do anúncio não permite alteração de preço.',
+  GRUPO_ALTERADO: 'A composição do grupo de anúncios mudou durante a consulta.',
+  CONCORRENCIA_ALTERADA: 'A referência competitiva mudou durante a consulta. Consulte novamente.',
   PRECIFICACAO_NAO_CONVERGIU: 'Preço e cotação não estabilizaram. É necessária uma análise antes de decidir.',
   COTACAO_INCOMPATIVEL: 'A cotação não comprova este cenário de preço e logística.',
   OFERTA_INELEGIVEL: 'Não há oferta elegível para calcular este preço.',

@@ -12,6 +12,8 @@ const json = (body: unknown, status = 200) =>
 const filters = z
   .object({
     alertId: z.string().uuid().optional(),
+    productId: z.string().uuid().optional(),
+    view: z.enum(['alerts', 'decisions']).default('alerts'),
     state: z.enum(['open', 'resolved', 'all']).default('open'),
     severity: z.enum(['P0', 'P1', 'P2', 'INFO']).optional(),
     decision: z.enum(['pending', 'deferred', 'approved', 'rejected', 'expired', 'invalidated']).optional(),
@@ -29,7 +31,7 @@ const prepare = z
   .strict();
 const decide = z.object({ decisionId: z.string().uuid(), command: decisionCommandSchema }).strict();
 const decisionRelation = 'decisions:pricing_decisions!pricing_alerts_latest_decision_id_fkey';
-const alertColumns = `id,produto_id,item_id,group_id,rule_id,severity,state,title,reason,evaluation_id,created_at,updated_at,merged_into,product:produtos!inner(nome,sku),${decisionRelation}(id,state,expires_at,deferred_until,created_at,context,reason,operation_id)`;
+const alertColumns = `id,produto_id,item_id,group_id,rule_id,severity,state,title,reason,evaluation_id,created_at,updated_at,merged_into,product:produtos!inner(nome,sku),${decisionRelation}(id,evaluation_id,state,expires_at,deferred_until,created_at,context,reason,operation_id)`;
 const normalize = (row: any) => {
   const d = row.decisions;
   // Expiry is derived at read time; the immutable approval remains in history.
@@ -55,25 +57,30 @@ export async function GET(request: Request) {
     const profile = await client.from('profiles').select('cargo').eq('id', auth.userId).single();
     if (profile.error) return json({ error: 'Permissões indisponíveis' }, 403);
     const canManage = hasPermission(profile.data.cargo, 'pricing.decisions.manage');
-    if (f.alertId) {
-      const found = await client
+    if (f.alertId || f.productId) {
+      let detailQuery = client
         .from('pricing_alerts' as any)
         .select(alertColumns)
-        .eq('id', f.alertId)
-        .maybeSingle();
+        .is('merged_into', null);
+      detailQuery = f.alertId ? detailQuery.eq('id', f.alertId) : detailQuery.eq('produto_id', f.productId!);
+      const found = await detailQuery.order('severity_order', { ascending: true }).order('created_at', { ascending: true });
       if (found.error) throw new Error('read_failed');
-      if (!found.data) return json({ error: 'Alerta não encontrado' }, 404);
-      const alert = normalize(found.data);
+      if (!found.data?.length) return json({ error: 'Produto sem alertas' }, 404);
+      const alerts = found.data.map(normalize);
+      const latestDecisions = alerts.flatMap((row: any) => row.decisions || [])
+        .sort((a: any, b: any) => b.created_at.localeCompare(a.created_at));
+      const alert = { ...alerts[0], decisions: latestDecisions.slice(0, 1) };
+      const alertIds = alerts.map((row: any) => row.id);
       const [evaluation, history] = await Promise.all([
         client
           .from('pricing_evaluations')
           .select('id,result,created_at')
-          .eq('id', alert.evaluation_id)
+          .eq('id', latestDecisions[0]?.evaluation_id || alert.evaluation_id)
           .single(),
         client
           .from('pricing_events')
           .select('id,created_at,kind,actor_id,reason,evidence,decision_id')
-          .eq('alert_id' as any, f.alertId)
+          .in('alert_id' as any, alertIds)
           .order('id', { ascending: false })
           .range((f.page - 1) * 30, f.page * 30 - 1),
       ]);
@@ -85,6 +92,7 @@ export async function GET(request: Request) {
       if (profiles.error) throw new Error('read_failed');
       return json({
         alert,
+        alerts,
         evaluation: evaluation.data,
         history: (history.data || []).map((e) => ({
           ...e,
@@ -96,51 +104,37 @@ export async function GET(request: Request) {
         executionBlocked: !execution.enabled,
       });
     }
-    let query = client
-      .from('pricing_alerts' as any)
-      .select(
-        f.decision
-          ? alertColumns.replace(`${decisionRelation}(`, `${decisionRelation}!inner(`)
-          : alertColumns,
-        { count: 'exact' },
-      )
-      .is('merged_into', null);
-    if (f.state !== 'all') query = query.eq('state', f.state);
-    if (f.severity) query = query.eq('severity', f.severity);
-    const now = new Date().toISOString();
-    if (f.decision === 'expired')
-      query = query.or(
-        `state.eq.expired,and(state.in.(pending,deferred,approved),expires_at.lte.${now},operation_id.is.null)`,
-        { referencedTable: 'decisions' },
-      );
-    else if (f.decision) {
-      query = query.eq('decisions.state', f.decision);
-      if (['pending', 'deferred', 'approved'].includes(f.decision))
-        query = query.or(`expires_at.gt.${now},operation_id.not.is.null`, { referencedTable: 'decisions' });
+    const term = f.search.replace(/[^\p{L}\p{N}\s_-]/gu, '').trim();
+    const index = await client.rpc('search_pricing_decision_product_ids' as any, {
+      p_view: f.view, p_state: f.state, p_severity: f.severity ?? null,
+      p_decision: f.decision ?? null, p_search: term, p_page: f.page, p_page_size: 30,
+    });
+    if (index.error) throw new Error('read_failed');
+    const summary = index.data as any;
+    const productIds = Array.isArray(summary?.productIds) ? summary.productIds : [];
+    const result = productIds.length ? await client.from('pricing_alerts' as any)
+      .select(alertColumns).in('produto_id', productIds).is('merged_into', null)
+      .order('severity_order', { ascending: true }).order('created_at', { ascending: true })
+      : { data: [], error: null };
+    if (result.error) throw new Error('read_failed');
+    const byProduct = new Map<string, any[]>();
+    for (const raw of result.data || []) {
+      const row = normalize(raw);
+      byProduct.set(row.produto_id, [...(byProduct.get(row.produto_id) || []), row]);
     }
-    if (f.search) {
-      // Escape PostgREST filter syntax; only an intentionally small search alphabet is accepted.
-      const term = f.search.replace(/[^\p{L}\p{N}\s_-]/gu, '').trim();
-      if (term)
-        query = /^MLB\d+$/i.test(term)
-          ? query.eq('item_id', term.toUpperCase())
-          : query.or(`nome.ilike.*${term}*,sku.ilike.*${term}*`, { referencedTable: 'product' });
-    }
-    const result = await query
-      .order('severity_order', { ascending: true })
-      .order('created_at', { ascending: true })
-      .order('id', { ascending: true })
-      .range((f.page - 1) * 30, f.page * 30 - 1);
-    const count = await client
-      .from('pricing_alerts' as any)
-      .select('id', { count: 'exact', head: true })
-      .eq('state', 'open')
-      .is('merged_into', null);
-    if (result.error || count.error) throw new Error('read_failed');
+    const data = productIds.flatMap((productId: string) => {
+      const issues = byProduct.get(productId) || [];
+      if (!issues.length) return [];
+      const decisions = issues.flatMap(row => row.decisions || [])
+        .sort((a, b) => b.created_at.localeCompare(a.created_at));
+      return [{ ...issues[0], issues, decisions: decisions.slice(0, 1) }];
+    });
     return json({
-      data: result.data?.map(normalize),
-      total: result.count,
-      pendingCount: count.count,
+      data,
+      total: Number(summary?.total || 0),
+      pendingCount: Number(summary?.affectedProductCount || 0),
+      openAlertCount: Number(summary?.openAlertCount || 0),
+      pendingDecisionCount: Number(summary?.pendingDecisionCount || 0),
       canManage,
       execution,
       executionBlocked: !execution.enabled,

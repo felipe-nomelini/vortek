@@ -24,6 +24,7 @@ const valid = {
   BENTEVI_ASSISTANT_ENABLED: '0',
   BENTEVI_ASSISTANT_DATA_APPROVED: '0',
   ML_PRICING_EXECUTION_MODE: 'disabled',
+  ML_PRICING_EXECUTION_ALLOWED_OPERATIONS: 'price_change',
   ML_ALLOWED_USER_IDS: '7000000001',
   INTERNAL_APP_URL: 'http://bentevi-prod:80',
   NODE_ENV: 'production',
@@ -47,6 +48,7 @@ test('bloqueia ambiente, destino, Assistente, pricing e fiscal divergentes', () 
     VORTEK_RUNTIME_ENVIRONMENT: 'local_dev',
     BENTEVI_ASSISTANT_ENABLED: '1',
     ML_PRICING_EXECUTION_MODE: 'production_controlled',
+    ML_PRICING_EXECUTION_ALLOWED_OPERATIONS: 'price_change,listing_create',
     BRASILNFE_RETURN_TIPO_AMBIENTE: '2',
     ALLOW_ML_FISCAL_LEGACY: 'true',
   });
@@ -58,7 +60,7 @@ test('bloqueia ambiente, destino, Assistente, pricing e fiscal divergentes', () 
     '192.168.1.162',
     'VORTEK_RUNTIME_ENVIRONMENT',
     'Assistente bloqueado',
-    'ML_PRICING_EXECUTION_MODE=disabled',
+    'ML_PRICING_EXECUTION_ALLOWED_OPERATIONS',
     'Brasil NFe',
     'ALLOW_ML_FISCAL_LEGACY',
   ]) assert.match(errors, new RegExp(expected));

@@ -19,7 +19,7 @@ const body = ts.transpileModule(source.slice(from, to), { compilerOptions: { tar
 const runDecision = new Function('deps', `return (async () => {
   const { item, byItem, identityOffers, operationalSupplierIds, serviceClient,
     assessMlProductIdentity, getCategoryAttributes, loadMlIdentityKit,
-    isMlIdentityComplete, hasConfirmedMlIdentityConflict, clearAutomaticMlIdentityBlock,
+    isMlExistingListingIdentitySafe, hasConfirmedMlExistingListingIdentityConflict, clearAutomaticMlIdentityBlock,
     ensureAutomaticMlIdentityBlock, resolveProductMlLinks, persistProductMlGroups } = deps;
   const me = { id: 123 };
   let produto = deps.produto, produtoId = produto.id, skuLocal = produto.sku;
@@ -39,8 +39,8 @@ function setup() {
     assessMlProductIdentity: critical.assessMlProductIdentity,
     getCategoryAttributes: async () => item.attributes.map(attr => ({ id: attr.id })),
     loadMlIdentityKit: async () => ({ status: 'not_kit', components: [] }),
-    isMlIdentityComplete: identity.isMlIdentityComplete,
-    hasConfirmedMlIdentityConflict: identity.hasConfirmedMlIdentityConflict,
+    isMlExistingListingIdentitySafe: identity.isMlExistingListingIdentitySafe,
+    hasConfirmedMlExistingListingIdentityConflict: identity.hasConfirmedMlExistingListingIdentityConflict,
     clearAutomaticMlIdentityBlock: async () => { calls.push('clear'); return { ok: true }; },
     ensureAutomaticMlIdentityBlock: async () => { calls.push('ensure'); return { ok: true }; },
     resolveProductMlLinks: async () => ({ coverage: 'complete', groups: [], candidates: [{ itemId: 'MLB1', identity: 'complete' }] }),
@@ -55,7 +55,8 @@ test('sync completo usa somente desbloqueio automático; não reconcilia marca',
 });
 
 test('sync inconclusivo não cria/remove bloqueio nem habilita escrita por produto', async () => {
-  const { calls, deps } = setup(); deps.produto.descricao = '';
+  const { calls, deps } = setup(); deps.produto.descricao = ''; deps.produto.gtin = '';
+  deps.item.attributes = deps.item.attributes.filter(attr => attr.id !== 'GTIN');
   const result = await runDecision(deps);
   assert.deepEqual(calls, []); assert.equal(result.produto, null);
   assert.equal(result.produtoId, 'P1'); // referência anterior preservada, não novo vínculo.
@@ -64,7 +65,8 @@ test('sync inconclusivo não cria/remove bloqueio nem habilita escrita por produ
 });
 
 test('candidato por SKU não é vinculado quando identidade está pendente', async () => {
-  const { calls, deps } = setup(); deps.byItem = null; deps.produto.descricao = '';
+  const { calls, deps } = setup(); deps.byItem = null; deps.produto.descricao = ''; deps.produto.gtin = '';
+  deps.item.attributes = deps.item.attributes.filter(attr => attr.id !== 'GTIN');
   const result = await runDecision(deps);
   assert.deepEqual(calls, []); assert.equal(result.produtoId, null); assert.equal(result.skuLocal, null);
 });
@@ -89,10 +91,10 @@ test('falha do resolvedor invalida prova anterior e não habilita ação derivad
   const result=await runDecision(deps);assert.deepEqual(calls,[]);assert.deepEqual(observations,['partial']);assert.equal(result.produto,null);
 });
 
-test('falha da fonte de categoria mantém observação e não libera bloqueio', async () => {
+test('falha da taxonomia editorial não bloqueia vínculo comercial comprovado por SKU e GTIN', async () => {
   const { calls, deps } = setup(); deps.getCategoryAttributes = async () => null;
   const result = await runDecision(deps);
-  assert.deepEqual(calls, []); assert.equal(result.warnings[0].code, 'ml_identity_validation_pending');
+  assert.deepEqual(calls, ['clear']); assert.equal(result.warnings.length, 0);
 });
 
 test('schema crítico não usa predição e listas respeitam valor oficial', () => {

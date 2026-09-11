@@ -49,6 +49,19 @@ test('ausência não é divergência e não permite desbloqueio', () => {
   assert.equal(identity.hasConfirmedMlIdentityConflict(result), false);
 });
 
+test('anúncio existente pode operar com SKU e GTIN coerentes sem confundir qualidade editorial com identidade', () => {
+  const input = fixture();
+  input.context.categoryAttributes.push({ id: 'PRESENTATION', tags: { required: true } });
+  const result = evaluate(input);
+  assert.equal(identity.isMlIdentityComplete(result), false);
+  assert.equal(identity.isMlExistingListingIdentitySafe(result), true);
+  input.facts.COLOR = { value: 'Azul', evidence: [proof()] };
+  setRemote(input, 'COLOR', 'Preto');
+  assert.equal(identity.isMlExistingListingIdentitySafe(evaluate(input)), true);
+  setRemote(input, 'GTIN', '7898705600000');
+  assert.equal(identity.isMlExistingListingIdentitySafe(evaluate(input)), false);
+});
+
 test('categoria ausente impede cobertura completa, mas não apaga conflito comprovado', () => {
   const input = fixture(); input.context.categoryAttributes = null;
   assert.equal(identity.isMlIdentityComplete(evaluate(input)), false);

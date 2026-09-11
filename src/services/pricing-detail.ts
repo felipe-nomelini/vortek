@@ -17,7 +17,7 @@ import { extractQuantityPricingTiers, serializeQuantityPricingTiers } from '@/li
 import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
 import { normalizeBuyBoxStatus, normalizePriceToWin, resolveCatalogCompetitionStatus } from '@/lib/catalogo/no-catalogo';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
-import { isMlIdentityComplete } from '@/lib/ml-listing-identity';
+import { isMlExistingListingIdentitySafe } from '@/lib/ml-listing-identity';
 import { classifyMlPublishEligibility } from '@/lib/ml/operational-listing';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { getCategoryAttributes } from './mercadolibre';
@@ -132,28 +132,30 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
   let listingSafety: { verified: boolean; evidence: unknown[] } = { verified: false, evidence: [] };
   const pricing = await loadLiveProductPricing(service, product, context, input.priceCents ?? currentPrice, async () => {
     const account = await fetchMLResult<any>('/users/me');
-    if (!account.ok) return null;
-    if (String(account.data?.id) !== sellerId || account.data?.site_id !== 'MLB') return false;
+    if (!account.ok) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
+    if (String(account.data?.id) !== sellerId || account.data?.site_id !== 'MLB')
+      return { valid: false, code: 'CONTA_ML_DIVERGENTE' } as const;
     if (!itemId) return preparationValid(input.context!, sellerId);
     const fresh = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId));
-    if (!fresh.ok) return null;
+    if (!fresh.ok) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
     const next = itemContext(fresh.data, sellerId);
-    if (JSON.stringify({ context: next, price: fresh.data?.price ?? null, tags: fresh.data?.tags ?? [], shipping: fresh.data?.shipping ?? null }) !== expected) return false;
+    if (JSON.stringify({ context: next, price: fresh.data?.price ?? null, tags: fresh.data?.tags ?? [], shipping: fresh.data?.shipping ?? null }) !== expected)
+      return { valid: false, code: 'ANUNCIO_REMOTO_ALTERADO' } as const;
     // A verified stored group is not proof of current identity or operational eligibility.
     const [currentProduct, offers, kit, suppliers] = await Promise.all([
       service.from('produtos').select('*').eq('id', product.id).single(),
       service.from('produto_fornecedor_ofertas').select('*').eq('produto_id', product.id),
       loadMlIdentityKit(service, product.id), loadOperationalDropshippingSupplierIds(service),
     ]);
-    if (currentProduct.error || offers.error) return null;
-    if (currentProduct.data?.ativo !== true) return false;
+    if (currentProduct.error || offers.error) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
+    if (currentProduct.data?.ativo !== true) return { valid: false, code: 'PRODUTO_LOCAL_ALTERADO' } as const;
     const evidence: unknown[] = [];
     const verifyListing = async (remote: any) => {
       const [attributes, block] = await Promise.all([
         getCategoryAttributes(remote.category_id),
         service.from('anuncios_ml').select('ml_sync_block_reason,ml_sync_blocked_until').eq('ml_item_id', remote.id).maybeSingle(),
       ]);
-      if (!attributes || block.error) return false;
+      if (!attributes || block.error) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
       const eligibility = classifyMlPublishEligibility({ observedStatus: remote.status,
         blockReason: block.data?.ml_sync_block_reason, blockedUntil: block.data?.ml_sync_blocked_until });
       const identity = assessMlProductIdentity(remote, currentProduct.data, offers.data || [], suppliers, {
@@ -162,47 +164,55 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
       });
       evidence.push({ itemId: remote.id, status: remote.status,
         comparisons: identity.comparisons.map(({ field, local, remote, status, reason }) => ({ field, local, remote, status, reason })) });
-      return eligibility.eligible && eligibility.kind === 'modifiable' && isMlIdentityComplete(identity);
+      if (!eligibility.eligible || eligibility.kind !== 'modifiable')
+        return { valid: false, code: 'ANUNCIO_INELEGIVEL' } as const;
+      if (!isMlExistingListingIdentitySafe(identity))
+        return { valid: false, code: 'IDENTIDADE_ANUNCIO_PENDENTE' } as const;
+      return { valid: true } as const;
     };
-    if (!await verifyListing(fresh.data)) return false;
+    const verifiedListing = await verifyListing(fresh.data);
+    if (!verifiedListing.valid) return verifiedListing;
     if (competitiveEvidence?.condition === 'valid' && competitionPath) {
       const refreshed = await fetchMLResult<any>(competitionPath);
       const evidence = competitionEvidence(refreshed.data, { itemId: itemId!, catalogProductId: context!.catalogProductId,
         currentPriceCents: currentPrice! }, new Date().toISOString(), refreshed.ok);
-      if (evidence.condition !== 'valid') { competitiveEvidence = evidence; return null; }
+      if (evidence.condition !== 'valid') { competitiveEvidence = evidence; return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const; }
       if (evidence.priceCents !== competitiveEvidence.priceCents || evidence.status !== competitiveEvidence.status) {
-        competitiveEvidence = { ...evidence, condition: 'inconsistent' }; return false;
+        competitiveEvidence = { ...evidence, condition: 'inconsistent' }; return { valid: false, code: 'CONCORRENCIA_ALTERADA' } as const;
       }
     }
     if (group) {
       const latest = await loadPricingOverrides(service, product.id).catch(() => null);
       const nextGroup = latest?.groups.find(g => g.id === group.id);
-      if (!nextGroup || pricingMaterialFingerprint(group) !== pricingMaterialFingerprint(nextGroup)) return false;
+      if (!nextGroup || pricingMaterialFingerprint(group) !== pricingMaterialFingerprint(nextGroup))
+        return { valid: false, code: 'GRUPO_ALTERADO' } as const;
       // A stored group is not live proof that its members still share one price.
       if (group.members.length > 1) {
         const sync = await fetchMLResult<any>('/public/buybox/sync/' + encodeURIComponent(itemId!));
-        if (!sync.ok) return null;
+        if (!sync.ok) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
         const peers = group.members.filter(m => m.itemId !== itemId);
         if (sync.data?.status !== 'SYNC' || sync.data?.item_id !== itemId || !Array.isArray(sync.data?.relations)
-          || peers.some(m => !sync.data.relations.includes(m.itemId))) return false;
+          || peers.some(m => !sync.data.relations.includes(m.itemId))) return { valid: false, code: 'GRUPO_ALTERADO' } as const;
         for (const peer of peers) {
           const result = await fetchMLResult<any>('/items/' + encodeURIComponent(peer.itemId));
-          if (!result.ok) return null;
+          if (!result.ok) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
           const peerPrice = peer.variationId ? result.data?.variations?.find((v: any) => String(v.id) === peer.variationId)?.price : result.data?.price;
           if (result.data?.id !== peer.itemId || String(result.data.seller_id) !== sellerId
             || result.data.currency_id !== 'BRL' || hasMlAutomaticPrice(result.data)
-            || quoteMoney(peerPrice) !== currentPrice) return false;
-          if (!await verifyListing(result.data)) return false;
+            || quoteMoney(peerPrice) !== currentPrice) return { valid: false, code: 'GRUPO_ALTERADO' } as const;
+          const peerVerification = await verifyListing(result.data);
+          if (!peerVerification.valid) return peerVerification;
         }
       }
     }
     if (input.clearance) {
       const latest = await loadPricingClearances(service, product);
       if (pricingMaterialFingerprint({ stock: latest.stock, rows: latest.clearances })
-        !== pricingMaterialFingerprint({ stock: clearanceSnapshot?.stock, rows: clearanceSnapshot?.clearances })) return false;
+        !== pricingMaterialFingerprint({ stock: clearanceSnapshot?.stock, rows: clearanceSnapshot?.clearances }))
+        return { valid: false, code: 'PRODUTO_LOCAL_ALTERADO' } as const;
     }
     listingSafety = { verified: true, evidence };
-    return true;
+    return { valid: true } as const;
   }, { competitivePriceCents: competitiveEvidence?.priceCents, actualPriceCents: currentPrice, groupId: group?.id });
   const view = pricingView(pricing);
   const memory = pricing.current.memory;

@@ -18,6 +18,7 @@ const REQUIRED = [
   'BENTEVI_ASSISTANT_ENABLED',
   'BENTEVI_ASSISTANT_DATA_APPROVED',
   'ML_PRICING_EXECUTION_MODE',
+  'ML_PRICING_EXECUTION_ALLOWED_OPERATIONS',
 ];
 
 const SECRET_NAMES = new Set([
@@ -87,9 +88,14 @@ function validateProductionEnvironment(env) {
   if (env.BENTEVI_ASSISTANT_ENABLED !== '0' || env.BENTEVI_ASSISTANT_DATA_APPROVED !== '0') {
     errors.push('O lançamento inicial exige o Assistente bloqueado (ambas as flags em 0).');
   }
-  if (env.ML_PRICING_EXECUTION_MODE !== 'disabled') {
-    errors.push('O lançamento inicial exige ML_PRICING_EXECUTION_MODE=disabled.');
-  }
+  const pricingOperations = String(env.ML_PRICING_EXECUTION_ALLOWED_OPERATIONS || '').split(',')
+    .map((value) => value.trim()).filter(Boolean);
+  if (!['disabled', 'production_controlled'].includes(env.ML_PRICING_EXECUTION_MODE))
+    errors.push('ML_PRICING_EXECUTION_MODE deve ser disabled ou production_controlled.');
+  if (pricingOperations.length !== 1 || pricingOperations[0] !== 'price_change')
+    errors.push('ML_PRICING_EXECUTION_ALLOWED_OPERATIONS deve conter somente price_change.');
+  if (env.ML_PRICING_EXECUTION_MODE === 'production_controlled' && !String(env.ML_ALLOWED_USER_IDS || '').trim())
+    errors.push('Execução controlada exige ML_ALLOWED_USER_IDS.');
   if (String(env.BRASILNFE_TIPO_AMBIENTE || '') !== '1'
     || String(env.BRASILNFE_RETURN_TIPO_AMBIENTE || '') !== '1') {
     errors.push('Brasil NFe deve usar ambiente 1 para emissão e devolução produtivas.');
@@ -122,6 +128,7 @@ function validateProductionEnvironment(env) {
       runtime: env.VORTEK_RUNTIME_ENVIRONMENT || null,
       assistant: env.BENTEVI_ASSISTANT_ENABLED === '0' ? 'disabled' : 'invalid',
       mlPricingAndPublication: env.ML_PRICING_EXECUTION_MODE || null,
+      mlPricingAllowedOperations: pricingOperations,
       fiscalEnvironment: env.BRASILNFE_TIPO_AMBIENTE || null,
       configuredRequiredVariables: REQUIRED.filter((name) => String(env[name] || '').trim()).length,
       requiredVariables: REQUIRED.length,

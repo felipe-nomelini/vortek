@@ -10,7 +10,7 @@ function guardedModule(path, dependencies = {}) {
   const imports = ts.preProcessFile(fs.readFileSync(path, 'utf8')).importedFiles;
   const stubs = Object.fromEntries(imports.map(i => [i.fileName, {}]));
   return load(path, { ...stubs, '@/lib/ml/pricing-execution': guard,
-    '@/services/pricing-execution-access': { configuredPricingExecutionCapability: () => ({ mode: 'disabled', enabled: false, target: null }) },
+    '@/services/pricing-execution-access': { configuredPricingExecutionCapability: () => ({ mode: 'disabled', enabled: false, target: null, allowedOperations: [] }) },
     '@/lib/api-request-auth': { authorizeApiRequest: async () => ({ ok: true, userId: 'test-user' }) },
     'next/server': { NextResponse: { json: (body, options) => Response.json(body, options) } },
     '@/lib/supabase': { createClient: async () => ({ auth: { getUser: async () => ({ data: { user: { id: 'test-user' } } }) } }),

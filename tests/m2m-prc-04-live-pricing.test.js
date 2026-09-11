@@ -182,7 +182,7 @@ for (const mutate of [r => r.produto_fornecedor_ofertas[0].custo++, r => { r.pro
   r => { r.produto_fornecedor_ofertas[0].ativo = false; }, r => { r.produtos[0].peso_bruto++; }, r => { r.produtos[0].ml_item_id = 'MLB2'; }]) {
   test(`revalidação material invalida consulta: ${mutate}`, async () => {
     const result = await liveHarness({ mutate }).run();
-    assert.equal(result.revalidation.code, 'CONTEXTO_ALTERADO'); assert.equal(result.target.ok, false); assert.equal(result.current.memory, null);
+    assert.equal(result.revalidation.code, 'PRODUTO_LOCAL_ALTERADO'); assert.equal(result.target.ok, false); assert.equal(result.current.memory, null);
   });
 }
 test('atualização não material preserva resultado e falha viva não confirma prejuízo', async () => {

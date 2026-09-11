@@ -25,7 +25,7 @@ function resolverFixture(options={}) {
   },{
     '@/services/mercadolibre':{getCategoryAttributes:async()=>[]},
     '@/lib/ml-critical-attributes':{loadMlIdentityKit:async()=>({status:'not_kit',components:[]}),assessMlProductIdentity:()=>({complete:!options.identityPending})},
-    '@/lib/ml-listing-identity':{isMlIdentityComplete:a=>a.complete,hasConfirmedMlIdentityConflict:()=>false},
+    '@/lib/ml-listing-identity':{isMlExistingListingIdentitySafe:a=>a.complete,hasConfirmedMlIdentityConflict:()=>false},
     '@/lib/dslite/supplier-policy':{loadOperationalDropshippingSupplierIds:async()=>new Set()},
   });
   return {run:()=>api.resolveProductMlLinks(client,product,1),calls};

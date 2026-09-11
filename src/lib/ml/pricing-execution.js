@@ -21,8 +21,11 @@ function executionUrl(appUrl) {
   return ['http:', 'https:'].includes(url.protocol) && !url.username && !url.password ? url : null;
 }
 
-/** Sanitized server capability. It never grants access to a seller or unlocks legacy writers. */
-export function getPricingExecutionCapability({ mode, runtimeEnvironment, appUrl, allowedSellerIds }) {
+/**
+ * Sanitized server capability. It never grants access to a seller or unlocks legacy writers.
+ * @param {{mode?: string, runtimeEnvironment?: string, appUrl?: string, allowedSellerIds?: string[], allowedOperations?: string[]}} input
+ */
+export function getPricingExecutionCapability({ mode, runtimeEnvironment, appUrl, allowedSellerIds, allowedOperations = [] }) {
   const normalizedMode = ['test_only', 'production_controlled'].includes(mode) ? mode : 'disabled';
   const target = normalizedMode === 'test_only' ? 'test'
     : normalizedMode === 'production_controlled' ? 'production' : null;
@@ -35,21 +38,28 @@ export function getPricingExecutionCapability({ mode, runtimeEnvironment, appUrl
       && url.pathname === '/'
       && !url.search
       && !url.hash;
-  const enabled = environmentAllowed && Array.isArray(allowedSellerIds) && allowedSellerIds.length > 0;
-  return { mode: normalizedMode, enabled: Boolean(enabled), target };
+  const operations = [...new Set((Array.isArray(allowedOperations) ? allowedOperations : [])
+    .filter(value => ['price_change', 'listing_create'].includes(value)))];
+  const enabled = environmentAllowed && Array.isArray(allowedSellerIds) && allowedSellerIds.length > 0
+    && operations.length > 0;
+  return { mode: normalizedMode, enabled: Boolean(enabled), target, allowedOperations: operations };
 }
 
 /** Account-bound capability for the single canonical commercial executor. */
 export function pricingExecutionAllowed({
-  mode, runtimeEnvironment, appUrl, allowedSellerIds, account, sellerId,
+  mode, runtimeEnvironment, appUrl, allowedSellerIds, allowedOperations, account, sellerId,
 }) {
-  const capability = getPricingExecutionCapability({ mode, runtimeEnvironment, appUrl, allowedSellerIds });
+  const capability = getPricingExecutionCapability({ mode, runtimeEnvironment, appUrl, allowedSellerIds, allowedOperations });
   const tags = account?.tags;
   return capability.enabled
     && Array.isArray(allowedSellerIds) && allowedSellerIds.includes(String(sellerId))
     && String(account?.id) === String(sellerId) && account?.site_id === 'MLB'
     && Array.isArray(tags)
     && (capability.target === 'test' ? tags.includes('test_user') : !tags.includes('test_user'));
+}
+
+export function pricingOperationAllowed(capability, operationKind) {
+  return capability?.enabled === true && capability.allowedOperations?.includes(operationKind) === true;
 }
 
 /** A price write is confirmed by the read-back, not by HTTP 2xx. */
