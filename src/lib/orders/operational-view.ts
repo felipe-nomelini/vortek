@@ -18,6 +18,7 @@ export type WhatsappLabelOperationalStatus =
 export type DsliteLabelOperationalStatus =
   | 'real_sent'
   | 'generic_sent'
+  | 'protected_existing'
   | 'provider_shipping'
   | 'sent_unverified'
   | 'pending'
@@ -167,6 +168,21 @@ function isMlLabelReleased(order: OperationalOrderLike, at: number): boolean {
   return !Number.isFinite(releaseAt) || releaseAt <= at;
 }
 
+export function needsRealLabelWhatsapp(
+  order: OperationalOrderLike,
+  at = Date.now(),
+): boolean {
+  const dsliteLabelStatus = String(order.dslite_label_operational_status || '');
+  const whatsappStatus = String(order.whatsapp_label_status || '');
+  const usesTemporaryDsliteLabel = dsliteLabelStatus === 'generic_sent'
+    || dsliteLabelStatus === 'protected_existing';
+  const whatsappCompleted = whatsappStatus === 'sent'
+    || whatsappStatus === 'not_applicable';
+  return usesTemporaryDsliteLabel
+    && !whatsappCompleted
+    && isMlLabelReleased(order, at);
+}
+
 export function getOperationalUrgencyReasons(
   order: OperationalOrderLike,
   delayedAfterMinutes: number,
@@ -185,6 +201,7 @@ export function getOperationalUrgencyReasons(
   const dsliteLabelConfirmed = dsliteLabelStatus
     ? dsliteLabelStatus === 'real_sent'
       || dsliteLabelStatus === 'generic_sent'
+      || dsliteLabelStatus === 'protected_existing'
       || dsliteLabelStatus === 'provider_shipping'
     : Boolean(order.dslite_etiqueta_enviada);
 
@@ -197,6 +214,10 @@ export function getOperationalUrgencyReasons(
   if (whatsappStatus === 'on_hold') reasons.push('WhatsApp aguardando nova tentativa');
   if (whatsappStatus === 'failed') reasons.push('Falha no envio por WhatsApp');
   if (dsliteLabelStatus === 'failed') reasons.push('Falha no envio da etiqueta para DSLite');
+  if (needsRealLabelWhatsapp(order, at)) {
+    if (whatsappStatus === 'pending') reasons.push('Envio da etiqueta real por WhatsApp em andamento');
+    else if (!['on_hold', 'failed'].includes(whatsappStatus)) reasons.push('Etiqueta real ainda não enviada por WhatsApp');
+  }
 
   if (isOperationDelayed(order, at, delayedAfterMinutes)) {
     if (!dsliteId) {
@@ -224,6 +245,7 @@ function isDsliteLabelConfirmed(order: OperationalOrderLike): boolean {
   if (status) {
     return status === 'real_sent'
       || status === 'generic_sent'
+      || status === 'protected_existing'
       || status === 'provider_shipping';
   }
   return Boolean(order.dslite_etiqueta_enviada);
@@ -258,7 +280,8 @@ function isFiscalComplete(order: OperationalOrderLike, status: string): boolean 
     || String(order.nfe_status || '').toLowerCase() === 'authorized';
 }
 
-function isLabelComplete(order: OperationalOrderLike, status: string): boolean {
+function isLabelComplete(order: OperationalOrderLike, status: string, at: number): boolean {
+  if (needsRealLabelWhatsapp(order, at)) return false;
   return status === 'etiqueta_impressa'
     || isDsliteLabelConfirmed(order)
     || Boolean(order.ml_label_storage_path)
@@ -280,7 +303,7 @@ function resolvePreparationNextLabel(order: OperationalOrderLike): string {
   return 'Crie o pedido DSLite';
 }
 
-function inferCompletedSalesSteps(order: OperationalOrderLike, status: string): number {
+function inferCompletedSalesSteps(order: OperationalOrderLike, status: string, at: number): number {
   if (status === 'entregue') return SALES_PROGRESS_STAGES.length;
   if (status === 'concretizada_ml') return 5;
   if (SHIPPING_ORDER_STATUSES.includes(status as any)) return 5;
@@ -291,16 +314,16 @@ function inferCompletedSalesSteps(order: OperationalOrderLike, status: string): 
   completed = 2;
   if (!isFiscalComplete(order, status)) return completed;
   completed = 3;
-  if (!isLabelComplete(order, status)) return completed;
+  if (!isLabelComplete(order, status, at)) return completed;
   return 4;
 }
 
 export function getOrderSalesProgress(
   order: OperationalOrderLike,
-  _at = Date.now(),
+  at = Date.now(),
 ): OrderSalesProgress {
   const status = normalizeOrderStatus(order);
-  const completedSteps = inferCompletedSalesSteps(order, status);
+  const completedSteps = inferCompletedSalesSteps(order, status, at);
   const currentStep = Math.min(completedSteps + 1, SALES_PROGRESS_STAGES.length);
   const rejected = String(order.dslite_status || '').toLowerCase().includes('rejeitado');
   const failed = order.dslite_label_operational_status === 'failed'
@@ -324,6 +347,10 @@ export function getOrderSalesProgress(
   else if (order.dslite_label_operational_status === 'failed') nextLabel = 'Revise o envio da etiqueta para a DSLite';
   else if (order.whatsapp_label_status === 'failed') nextLabel = 'Revise o envio da etiqueta por WhatsApp';
   else if (order.whatsapp_label_status === 'on_hold') nextLabel = 'Aguarde a nova tentativa do WhatsApp';
+  else if (needsRealLabelWhatsapp(order, at)) {
+    if (order.whatsapp_label_status === 'pending') nextLabel = 'Aguarde o envio da etiqueta real por WhatsApp';
+    else nextLabel = 'Envie a etiqueta real por WhatsApp';
+  }
   else {
     if (currentStep === 2) nextLabel = resolvePreparationNextLabel(order);
     else if (currentStep === 3) {

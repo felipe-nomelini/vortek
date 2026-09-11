@@ -72,6 +72,11 @@ import {
   loadDslitePlaceholderLabel,
 } from "@/lib/dslite/placeholder-label";
 import { isDsliteCarrierAlreadyConfigured } from "@/lib/dslite/api-contract";
+import {
+  DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
+  isDslitePlaceholderLabelSource,
+  isDsliteProtectedExistingLabelError,
+} from "@/lib/dslite/label-state";
 import { resolveSafeReactivatedDsliteOrderReuse } from "@/lib/dslite/purchase-link";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import {
@@ -4655,7 +4660,7 @@ async function runDsliteCreateJob(
       ...externalWarnings,
       ...supplierItemLinkWarnings,
     ];
-    let etiquetaStatus: "enviada" | "nao_disponivel" | "erro" =
+    let etiquetaStatus: "enviada" | "nao_disponivel" | "erro" | "mantida" =
       "nao_disponivel";
     let dsliteLabelSource: string | null = String(
       (pedidoRow as any)?.dslite_label_source || "",
@@ -4870,7 +4875,22 @@ async function runDsliteCreateJob(
     }
 
     await setStep("download_label_ml", "loading");
-    if (dsliteEtiquetaEnviada) {
+    const placeholderAlreadySent = Boolean(
+      pedidoRow?.dslite_etiqueta_enviada
+      && isDslitePlaceholderLabelSource(pedidoRow?.dslite_label_source),
+    );
+    if (placeholderAlreadySent) {
+      etiquetaStatus = "mantida";
+      pendencias.push("Etiqueta real: envie o arquivo liberado pelo Mercado Livre ao fornecedor por WhatsApp");
+      await completeAsSkipped(
+        "download_label_ml",
+        "etiqueta genérica já enviada à DSLite; a etiqueta real deve seguir por WhatsApp",
+      );
+      await completeAsSkipped(
+        "send_label_dslite",
+        "etiqueta existente preservada; substituição na DSLite não é aplicável",
+      );
+    } else if (dsliteEtiquetaEnviada) {
       etiquetaStatus = "enviada";
       await completeAsSkipped(
         "download_label_ml",
@@ -5190,6 +5210,27 @@ async function runDsliteCreateJob(
                   ? "Etiqueta térmica ZPL2 enviada com sucesso para DSLite"
                   : "Etiqueta enviada com sucesso para DSLite",
               );
+            } else if (isDsliteProtectedExistingLabelError({
+              status: envioEtiqueta?.status,
+              message: envioEtiqueta?.message,
+            })) {
+              etiquetaStatus = "mantida";
+              etiquetaError = "Pedido DSLite protegido; preserve a etiqueta existente e envie a etiqueta real por WhatsApp";
+              pendencias.push(`Etiqueta: ${etiquetaError}`);
+              await registrarEventoNfAuditoria({
+                pedidoId,
+                mlOrderId: mlOrderId ? String(mlOrderId) : null,
+                evento: DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
+                respostaMl: {
+                  ml_shipment_id: shipmentIdForLabel,
+                  dslite_http_status: envioEtiqueta?.status || null,
+                  error: envioEtiqueta?.message || etiquetaError,
+                  response_type: labelResponseType,
+                  file_name: labelFileName,
+                },
+                statusResultante: "not_applicable",
+              });
+              await setStep("send_label_dslite", "warning", etiquetaError);
             } else {
               etiquetaStatus = "erro";
               etiquetaError =
@@ -5225,6 +5266,18 @@ async function runDsliteCreateJob(
       }
     }
 
+    const labelPersistence = etiquetaStatus === "enviada"
+      ? {
+          dslite_etiqueta_enviada: true,
+          dslite_label_source: dsliteLabelSource,
+        }
+      : etiquetaStatus === "mantida"
+        ? {}
+        : {
+            dslite_etiqueta_enviada: false,
+            dslite_label_source: null,
+          };
+
     await client
       .from("pedidos")
       .update({
@@ -5247,9 +5300,7 @@ async function runDsliteCreateJob(
           undefined,
         nota_fiscal_emitida: Boolean(danfeUrlAtual),
         nfe_danfe_url: danfeUrlAtual || undefined,
-        dslite_etiqueta_enviada: etiquetaStatus === "enviada",
-        dslite_label_source:
-          etiquetaStatus === "enviada" ? dsliteLabelSource : null,
+        ...labelPersistence,
         nfe_provider: selectedProvider,
         nfe_last_sync_at: now(),
         nfe_cfop: extractCfopsFromXml(xml)[0] || null,
@@ -5269,6 +5320,9 @@ async function runDsliteCreateJob(
       etiquetaStatus,
       etiquetaError,
       pendencias,
+      ...(etiquetaStatus === "mantida"
+        ? { actionRequired: "send_whatsapp_label" }
+        : {}),
       reusedDsliteId: reusedReactivatedDsliteOrder
         ? String(dsidAtual)
         : null,

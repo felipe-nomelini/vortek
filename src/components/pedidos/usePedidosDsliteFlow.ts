@@ -313,7 +313,10 @@ export function usePedidosDsliteFlow({
       setPaymentReceiptFile(null);
       setPaymentReference('');
       setPaymentNotes('');
-      if (paymentPrompt.resumeAfterConfirm && json.jobId) {
+      if (paymentPrompt.resumeAfterConfirm && json.resume?.nextAction === 'send_whatsapp_label') {
+        messageApi.success('PIX confirmado. Envie a etiqueta real por WhatsApp.');
+        void refreshOrders();
+      } else if (paymentPrompt.resumeAfterConfirm && json.jobId) {
         setSteps(initDsliteOrderSteps());
         setProgressOpen(true);
         messageApi.success('PIX confirmado. Fluxo DSLite retomado.');

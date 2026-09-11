@@ -23,6 +23,11 @@ import {
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
 import {
+  DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
+  isDslitePlaceholderLabelSource,
+  isDsliteProtectedExistingLabelError,
+} from '@/lib/dslite/label-state';
+import {
   storeShippingLabelForPedido,
   storeThermalShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
@@ -712,7 +717,40 @@ export async function POST(req: Request) {
       });
     }
 
-    const hasPlaceholderLabel = String((pedido as any).dslite_label_source || '').startsWith('placeholder_release_window');
+    const hasPlaceholderLabel = isDslitePlaceholderLabelSource((pedido as any).dslite_label_source);
+    const { data: recentLabelEvents } = !directShipping
+      ? await client
+        .from('nf_auditoria_eventos')
+        .select('evento,resposta_ml')
+        .eq('pedido_id', String(pedidoId))
+        .in('evento', ['ml_label_send_failed', DSLITE_PROTECTED_EXISTING_LABEL_EVENT])
+        .order('created_at', { ascending: false })
+        .limit(10)
+      : { data: [] as any[] };
+    const hasProtectedExistingLabel = (recentLabelEvents || []).some((event: any) => (
+      event.evento === DSLITE_PROTECTED_EXISTING_LABEL_EVENT
+      || isDsliteProtectedExistingLabelError({ message: event.resposta_ml?.error })
+    ));
+    if (
+      !directShipping
+      && (
+        (Boolean((pedido as any).dslite_etiqueta_enviada) && hasPlaceholderLabel)
+        || hasProtectedExistingLabel
+      )
+    ) {
+      (Object.keys(STEP_LABELS) as StepKey[]).forEach((stepKey) => {
+        updateStep(steps, stepKey, {
+          status: 'skipped',
+          detail: 'Etapa pulada: preserve a etiqueta existente na DSLite e envie a etiqueta real por WhatsApp',
+        });
+      });
+      return finalizeSuccess(steps, {
+        partial: true,
+        operationStatus: 'dslite_label_already_satisfied',
+        nextAction: 'send_whatsapp_label',
+        message: 'A etiqueta existente na DSLite foi preservada. Envie a etiqueta real por WhatsApp.',
+      });
+    }
     if (!directShipping && Boolean((pedido as any).dslite_etiqueta_enviada) && !hasPlaceholderLabel) {
       (Object.keys(STEP_LABELS) as StepKey[]).forEach((stepKey) => {
         updateStep(steps, stepKey, { status: 'skipped', detail: 'Etapa pulada: etiqueta já enviada anteriormente' });
@@ -1666,6 +1704,34 @@ export async function POST(req: Request) {
     // 6) Enviar etiqueta para DSLite
     updateStep(steps, 'send_label_dslite', { status: 'loading' });
     const envioResult = await enviarEtiqueta(dsliteId, etiquetaPdf, labelFileName, labelContentType);
+    if (!envioResult?.success && isDsliteProtectedExistingLabelError({
+      status: envioResult?.status,
+      message: envioResult?.message,
+    })) {
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId,
+        evento: DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
+        respostaMl: {
+          ml_shipment_id: shipmentId,
+          dslite_http_status: envioResult?.status || null,
+          error: envioResult?.message || 'Pedido DSLite protegido',
+          response_type: labelResponseType,
+          file_name: labelFileName,
+        },
+        statusResultante: 'not_applicable',
+      });
+      updateStep(steps, 'send_label_dslite', {
+        status: 'warning',
+        detail: 'Pedido DSLite protegido; preserve a etiqueta existente e envie a etiqueta real por WhatsApp',
+      });
+      return finalizeSuccess(steps, {
+        partial: true,
+        operationStatus: 'dslite_label_already_satisfied',
+        nextAction: 'send_whatsapp_label',
+        message: 'A etiqueta existente na DSLite foi preservada. Envie a etiqueta real por WhatsApp.',
+      });
+    }
     if (!envioResult?.success) {
       await registrarEventoNfAuditoria({
         pedidoId: String(pedidoId),

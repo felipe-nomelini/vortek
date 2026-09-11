@@ -35,6 +35,7 @@ type AuditEvent =
   | 'ml_label_storage_failed'
   | 'ml_label_send_success'
   | 'ml_label_send_failed'
+  | 'ml_label_replacement_skipped_protected_order'
   | 'ml_label_download_blocked_by_invoice'
   | 'dslite_desvinculo_manual'
   | 'dslite_purchase_created_with_brasilnfe_xml'

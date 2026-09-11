@@ -103,3 +103,44 @@ test('progresso prioriza a ação executável em vez da descrição de urgência
   assert.equal(createDslite.nextLabel, 'Crie o pedido DSLite');
   assert.equal(confirmPayment.nextLabel, 'Confirme o PIX');
 });
+
+test('etiqueta genérica mantém a venda na etapa Etiqueta até o WhatsApp real ser enviado', async () => {
+  const {
+    getOperationalUrgencyReasons,
+    getOrderSalesProgress,
+    needsRealLabelWhatsapp,
+  } = await modulePromise;
+  const now = Date.parse('2026-09-11T12:00:00.000Z');
+  const waitingWhatsapp = baseOrder({
+    data: '2026-09-01T10:00:00.000Z',
+    situacao: { valor: 'etiqueta_impressa' },
+    dslite_id: '405997',
+    dslite_next_action: 'done',
+    dslite_label_operational_status: 'protected_existing',
+    notaFiscal: { emitida: true },
+    ml_fiscal_release_at: '2026-09-07T10:00:00.000Z',
+    ml_label_storage_path: 'shipping-labels/real.pdf',
+  });
+
+  assert.equal(needsRealLabelWhatsapp(waitingWhatsapp, now), true);
+  assert.deepEqual(
+    getOperationalUrgencyReasons(waitingWhatsapp, 60, now),
+    ['Etiqueta real ainda não enviada por WhatsApp'],
+  );
+  assert.deepEqual(
+    [
+      getOrderSalesProgress(waitingWhatsapp, now).completedSteps,
+      getOrderSalesProgress(waitingWhatsapp, now).currentLabel,
+      getOrderSalesProgress(waitingWhatsapp, now).nextLabel,
+    ],
+    [3, 'Etiqueta', 'Envie a etiqueta real por WhatsApp'],
+  );
+
+  const completed = { ...waitingWhatsapp, whatsapp_label_status: 'sent' };
+  assert.equal(needsRealLabelWhatsapp(completed, now), false);
+  assert.deepEqual(getOperationalUrgencyReasons(completed, 60, now), []);
+  assert.deepEqual(
+    [getOrderSalesProgress(completed, now).completedSteps, getOrderSalesProgress(completed, now).currentLabel],
+    [4, 'Envio'],
+  );
+});

@@ -34,6 +34,7 @@ import {
   SHIPPING_ORDER_STATUSES,
   getOrderSalesProgress,
   isPostDispatchOrder,
+  needsRealLabelWhatsapp,
   type OrdersOperationalView,
 } from '@/lib/orders/operational-view';
 import { hasPermission, type VortekPermission, type VortekRole } from '@/lib/permissions';
@@ -194,6 +195,9 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   const nextAction = order.dslite_next_action;
   const releaseAt = order.ml_fiscal_release_at ? getMlReleaseComparableDate(order.ml_fiscal_release_at) : null;
   const labelBlocked = Boolean(order.situacao.valor !== 'etiqueta_impressa' && releaseAt && releaseAt.getTime() > now);
+  const whatsappStatus = String(order.whatsapp_label_status || 'not_sent');
+  const obsoleteDsliteResume = nextAction === 'resume_dslite_flow'
+    && ['generic_sent', 'protected_existing'].includes(order.dslite_label_operational_status || '');
 
   if (order.ml_shipment_id) actions.push({ key: 'track', label: 'Rastrear envio', permission: 'sales.track' });
   if (!split && !internalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && order.fulfillment_source !== 'internal' && active) {
@@ -208,15 +212,23 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   if (!split && !internalShipping && !postDispatch && hasDsliteId && nextAction === 'complete_dslite_label') {
     actions.push({ key: 'complete_label', label: 'Completar etiqueta', permission: 'sales.dslite.label.complete' });
   }
-  if (!split && !internalShipping && !postDispatch && hasDsliteId && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(nextAction || '')) {
+  if (!split && !internalShipping && !postDispatch && hasDsliteId && !obsoleteDsliteResume && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(nextAction || '')) {
     actions.push({
       key: 'supplier_payment',
       label: nextAction === 'resume_dslite_flow' ? 'Retomar fluxo DSLite' : nextAction === 'send_supplier_receipt' ? 'Anexar comprovante PIX' : 'Confirmar PIX do fornecedor',
       permission: nextAction === 'resume_dslite_flow' ? 'sales.dslite.resume' : 'purchases.payment.confirm',
     });
   }
-  if (!postDispatch && !labelBlocked && (order.ml_shipment_id || order.ml_order_id || order.ml_label_storage_path)) {
-    actions.push({ key: 'send_whatsapp_label', label: 'Enviar etiqueta por WhatsApp', permission: 'sales.whatsapp_label.send' });
+  if (!postDispatch && !labelBlocked && !['pending', 'on_hold'].includes(whatsappStatus) && (order.ml_shipment_id || order.ml_order_id || order.ml_label_storage_path)) {
+    actions.push({
+      key: 'send_whatsapp_label',
+      label: whatsappStatus === 'sent'
+        ? 'Reenviar etiqueta por WhatsApp'
+        : whatsappStatus === 'failed'
+          ? 'Tentar novamente por WhatsApp'
+          : 'Enviar etiqueta por WhatsApp',
+      permission: 'sales.whatsapp_label.send',
+    });
   }
   if (hasDsliteId && isDsliteRejected(order.dslite_status)) {
     actions.push({ key: 'unlink_dslite', label: 'Desvincular compra DSLite', permission: 'sales.dslite.unlink' });
@@ -224,7 +236,7 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   return actions.filter((action) => can(action.permission));
 }
 
-function getPrimaryOrderAction(actions: OrderAction[], order: Order): OrderAction | undefined {
+function getPrimaryOrderAction(actions: OrderAction[], order: Order, now: number): OrderAction | undefined {
   const nextActionKey: Partial<Record<NonNullable<Order['dslite_next_action']>, OrderActionKey>> = {
     create_dslite_order: 'dslite',
     confirm_supplier_payment: 'supplier_payment',
@@ -233,8 +245,12 @@ function getPrimaryOrderAction(actions: OrderAction[], order: Order): OrderActio
     complete_dslite_label: 'complete_label',
     internal_shipping: 'direct_shipping',
   };
+  const whatsappRequired = needsRealLabelWhatsapp(order, now)
+    && ['not_sent', 'test_sent', 'failed'].includes(String(order.whatsapp_label_status || 'not_sent'));
   const preferredKey = isDsliteRejected(order.dslite_status)
     ? 'unlink_dslite'
+    : whatsappRequired
+      ? 'send_whatsapp_label'
     : order.dslite_next_action
       ? nextActionKey[order.dslite_next_action]
       : undefined;
@@ -588,7 +604,7 @@ export default function PedidosPage() {
 
   const renderActions = useCallback((order: Order) => {
     const actions = getOrderActions(order, role, Date.now());
-    const operational = getPrimaryOrderAction(actions, order);
+    const operational = getPrimaryOrderAction(actions, order, Date.now());
     if (!operational) return null;
     const secondary = actions.filter((action) => action.key !== operational.key);
     const icon = operational.key === 'view' ? <EyeOutlined /> : operational.key === 'track' ? <CarOutlined /> : <UploadOutlined />;

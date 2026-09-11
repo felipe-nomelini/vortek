@@ -1115,7 +1115,7 @@ export async function enviarEtiqueta(
   labelBuffer: Buffer,
   fileName: string = 'etiqueta.pdf',
   contentType: string = 'application/pdf'
-): Promise<{ success: boolean; message?: string } | null> {
+): Promise<{ success: boolean; message?: string; status?: number | null } | null> {
   const cfg = await getConfig();
   if (!cfg) return null;
 
@@ -1154,7 +1154,7 @@ export async function enviarEtiqueta(
   };
 
   const primary = await sendLabel();
-  if (primary.ok) return { success: true };
+  if (primary.ok) return { success: true, status: primary.status };
 
   const shouldRetry =
     primary.status === null ||
@@ -1162,12 +1162,13 @@ export async function enviarEtiqueta(
     String(primary.message || '').toLowerCase().includes('html');
   if (shouldRetry) {
     const retry = await sendLabel();
-    if (retry.ok) return { success: true };
+    if (retry.ok) return { success: true, status: retry.status };
     return {
       success: false,
+      status: retry.status,
       message: `Falha ao enviar etiqueta na DSLite. Tentativa inicial: ${primary.message}; nova tentativa: ${retry.message}`,
     };
   }
 
-  return { success: false, message: primary.message };
+  return { success: false, status: primary.status, message: primary.message };
 }

@@ -1,6 +1,6 @@
 # Vortek / Bentevi — Instruções do sistema em produção
 
-Última revisão: 2026-09-10.
+Última revisão: 2026-09-11.
 
 Este repositório é a fonte de desenvolvimento do Bentevi atualmente em produção. Não existe homologação remota ativa: as mudanças são preparadas e validadas na branch `dev` e, quando a implementação é solicitada, promovidas de forma controlada para o sistema produtivo Bentevi. Estas regras se aplicam a análises, planos, implementação, validação, Git, banco e infraestrutura.
 
@@ -95,6 +95,8 @@ Em jobs, webhooks e sincronizações, verifique idempotência, duplicação, con
 ## 5. Arquitetura e validação
 
 A aplicação web está na raiz: Next.js App Router, React, TypeScript, Ant Design, Supabase e Zod. `mobile/` é uma aplicação separada Expo/React Native, com dependências próprias, incluindo TanStack Query. Não transporte padrões ou dependências entre web e mobile sem verificar os manifests e o código.
+
+- O escopo padrão das tarefas é exclusivamente a aplicação web. Não altere arquivos em `mobile/` nem trate paridade mobile como parte implícita de uma tarefa web; a aplicação móvel somente pode ser modificada mediante pedido explícito do usuário. Serviços Next.js compartilhados podem ser corrigidos quando necessários ao comportamento web solicitado.
 
 - Confirme runtime e versões em `package.json`, lockfiles e configuração; o requisito atual de Node da raiz é `>=22 <23`.
 - Preserve a consistência dos manifests e lockfiles; não atualize dependências incidentalmente.

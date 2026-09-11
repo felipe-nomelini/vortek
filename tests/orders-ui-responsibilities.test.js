@@ -139,3 +139,11 @@ test('fluxo de etiqueta e WhatsApp concentra operações e modais correspondente
   assert.match(labelWhatsappModals, /Prosseguir com Nota Encontrada/);
   assert.doesNotMatch(`${dsliteFlow}\n${labelWhatsappFlow}`, /usePolling|useInterval/);
 });
+
+test('ação primária encaminha etiqueta real ao WhatsApp sem retomar DSLite', () => {
+  assert.match(page, /needsRealLabelWhatsapp\(order, now\)/);
+  assert.match(page, /whatsappRequired\s*\? 'send_whatsapp_label'/);
+  assert.match(page, /obsoleteDsliteResume/);
+  assert.match(page, /Reenviar etiqueta por WhatsApp/);
+  assert.match(dsliteFlow, /json\.resume\?\.nextAction === 'send_whatsapp_label'/);
+});

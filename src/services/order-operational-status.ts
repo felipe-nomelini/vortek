@@ -3,6 +3,11 @@ import type {
   DsliteLabelOperationalStatus,
   WhatsappLabelOperationalStatus,
 } from '@/lib/orders/operational-view';
+import {
+  DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
+  isDslitePlaceholderLabelSource,
+  isDsliteProtectedExistingLabelError,
+} from '@/lib/dslite/label-state';
 
 const WHATSAPP_AUDIT_EVENTS = [
   'whatsapp_label_send_requested',
@@ -16,6 +21,7 @@ const DSLITE_LABEL_AUDIT_EVENTS = [
   'placeholder_label_send_failed',
   'ml_label_send_success',
   'ml_label_send_failed',
+  DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
 ] as const;
 
 const OPERATIONAL_AUDIT_EVENTS = [
@@ -46,6 +52,12 @@ function mapWhatsappStatus(event: OperationalAuditRow): WhatsappLabelOperational
 function mapDsliteLabelStatus(event: OperationalAuditRow): DsliteLabelOperationalStatus {
   if (event.evento === 'ml_label_send_success') return 'real_sent';
   if (event.evento === 'placeholder_label_send_success') return 'generic_sent';
+  if (
+    event.evento === DSLITE_PROTECTED_EXISTING_LABEL_EVENT
+    || isDsliteProtectedExistingLabelError({ message: event.resposta_ml?.error })
+  ) {
+    return 'protected_existing';
+  }
   return 'failed';
 }
 
@@ -54,6 +66,8 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
   operational_pedido_ids?: string[] | null;
   dslite_etiqueta_enviada?: boolean | null;
   dslite_label_source?: string | null;
+  dslite_next_action?: string | null;
+  dslite_next_action_label?: string | null;
 }>(
   rows: T[],
   serviceClient: ServiceClient,
@@ -82,6 +96,8 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
       dslite_label_operational_status:
         row.dslite_label_source === 'dslite_paid_shipping'
           ? 'provider_shipping' as const
+          : isDslitePlaceholderLabelSource(row.dslite_label_source)
+            ? 'generic_sent' as const
           : row.dslite_etiqueta_enviada
             ? 'sent_unverified' as const
             : 'pending' as const,
@@ -151,17 +167,30 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
     const whatsappResponse = whatsappEvent?.resposta_ml || {};
     const dsliteLabelResponse = dsliteLabelEvent?.resposta_ml || {};
     const usesProviderShipping = row.dslite_label_source === 'dslite_paid_shipping';
-    return {
-      ...row,
-      dslite_label_operational_status: usesProviderShipping
-        ? 'provider_shipping'
-        : dsliteLabelEvent
-          ? mapDsliteLabelStatus(dsliteLabelEvent)
-          : auditReadFailed
-            ? 'unknown'
+    const usesPlaceholderLabel = isDslitePlaceholderLabelSource(row.dslite_label_source);
+    const dsliteLabelOperationalStatus: DsliteLabelOperationalStatus = usesProviderShipping
+      ? 'provider_shipping'
+      : dsliteLabelEvent
+        ? mapDsliteLabelStatus(dsliteLabelEvent)
+        : auditReadFailed
+          ? 'unknown'
+          : usesPlaceholderLabel
+            ? 'generic_sent'
             : row.dslite_etiqueta_enviada
               ? 'sent_unverified'
-              : 'pending',
+              : 'pending';
+    const closesObsoleteDsliteAction = (
+      dsliteLabelOperationalStatus === 'generic_sent'
+      || dsliteLabelOperationalStatus === 'protected_existing'
+    ) && ['resume_dslite_flow', 'complete_dslite_label'].includes(
+      String(row.dslite_next_action || ''),
+    );
+    return {
+      ...row,
+      ...(closesObsoleteDsliteAction
+        ? { dslite_next_action: 'done', dslite_next_action_label: 'OK' }
+        : {}),
+      dslite_label_operational_status: dsliteLabelOperationalStatus,
       dslite_label_operational_updated_at: dsliteLabelEvent?.created_at || null,
       dslite_label_operational_error: String(dsliteLabelResponse.error || '').trim() || null,
       whatsapp_label_status: whatsappEvent

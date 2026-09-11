@@ -8,6 +8,11 @@ import { buildPublicSupplierReceiptUrl } from '@/lib/public-supplier-receipt-lin
 import { createShortLink } from '@/lib/short-links';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
 import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
+import {
+  DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
+  isDslitePlaceholderLabelSource,
+  isDsliteProtectedExistingLabelError,
+} from '@/lib/dslite/label-state';
 import { requestDsliteResume } from '@/lib/dslite/resume-request';
 import {
   HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
@@ -313,6 +318,24 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     return NextResponse.json({ error: 'PIX BKR1 será confirmado somente quando a etiqueta real do Mercado Livre estiver liberada.' }, { status: 422 });
   }
 
+  let routeRealLabelToWhatsapp = isDslitePlaceholderLabelSource(pedido.dslite_label_source);
+  if (resumeDsliteFlow && !routeRealLabelToWhatsapp) {
+    const { data: recentLabelEvents, error: labelEventError } = await service
+      .from('nf_auditoria_eventos')
+      .select('evento,resposta_ml')
+      .eq('pedido_id', String(pedido.id))
+      .in('evento', ['ml_label_send_failed', DSLITE_PROTECTED_EXISTING_LABEL_EVENT])
+      .order('created_at', { ascending: false })
+      .limit(10);
+    if (labelEventError) {
+      return NextResponse.json({ error: 'Falha ao conferir o estado da etiqueta DSLite' }, { status: 500 });
+    }
+    routeRealLabelToWhatsapp = (recentLabelEvents || []).some((event: any) => (
+      event.evento === DSLITE_PROTECTED_EXISTING_LABEL_EVENT
+      || isDsliteProtectedExistingLabelError({ message: event.resposta_ml?.error })
+    ));
+  }
+
   const alreadyPaid = compra.supplier_payment_status === 'paid';
   const resumeOnly = requestedResumeOnly && resumeDsliteFlow && alreadyPaid && !parsed.receiptFile;
   if (!parsed.receiptFile && !(compra as any).supplier_payment_receipt_path && !resumeOnly) {
@@ -426,7 +449,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
 
   let resumeJson: any = null;
   let resumeError: string | null = null;
-  if (resumeDsliteFlow) {
+  if (resumeDsliteFlow && !routeRealLabelToWhatsapp) {
     const resume = await startDsliteResumeFlow({
       request,
       pedidoId: String(pedido.id),
@@ -444,6 +467,9 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
       started: Boolean(resumeJson?.jobId),
       error: resumeError,
       deduplicated: Boolean(resumeJson?.deduplicated),
+      skipped: routeRealLabelToWhatsapp,
+      reason: routeRealLabelToWhatsapp ? 'dslite_label_already_satisfied' : null,
+      nextAction: routeRealLabelToWhatsapp ? 'send_whatsapp_label' : null,
     } : null,
     compraId,
     pedidoId: pedido.id,
