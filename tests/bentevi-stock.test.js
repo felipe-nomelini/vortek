@@ -11,17 +11,49 @@ const stockRoute = read('src/app/api/estoque/route.ts');
 const importRoute = read('src/app/api/estoque/recebimentos/importar/route.ts');
 const confirmRoute = read('src/app/api/estoque/recebimentos/[id]/confirmar/route.ts');
 const manifestRoute = read('src/app/api/estoque/recebimentos/manifestar/route.ts');
+const receiveReturnRoute = read('src/app/api/estoque/devolucoes/[id]/receber/route.ts');
+const decideReturnRoute = read('src/app/api/estoque/devolucoes/[id]/decidir/route.ts');
+const syncReturnsRoute = read('src/app/api/estoque/devolucoes/sincronizar/route.ts');
 const incomingManifestation = read('src/lib/fiscal/incoming-nfe.ts');
 const migration = read('supabase/migrations/20260901190000_bnt_d05_owned_inventory.sql');
+const returnsMigration = read('supabase/migrations/20260911160000_bnt_inventory_ml_returns.sql');
 
 test('organiza estoque próprio em posição, recebimentos e movimentações', () => {
-  for (const label of ['Estoque próprio', 'Físico utilizável', 'Disponível', 'Reservado', 'Em conferência']) assert.match(page, new RegExp(label));
-  for (const tab of ["key: 'estoque'", "key: 'recebimentos'", "key: 'movimentos'"]) assert.match(page, new RegExp(tab));
+  for (const label of ['Estoque próprio', 'Físico utilizável', 'Disponível', 'Reservado', 'Aguardando inspeção']) assert.match(page, new RegExp(label));
+  for (const tab of ["key: 'estoque'", "key: 'devolucoes'", "key: 'recebimentos'", "key: 'movimentos'"]) assert.match(page, new RegExp(tab));
   assert.doesNotMatch(page, /cinco filas|Entrada manual/);
 });
 
+test('devoluções do Mercado Livre têm recebimento e decisão física separados', () => {
+  assert.match(page, /Devoluções ML/);
+  assert.match(page, /Confirmar recebimento/);
+  assert.match(page, /Apto para venda/);
+  assert.match(page, /Não apto/);
+  assert.match(stockRoute, /from\('estoque_devolucoes_ml'\)/);
+  assert.match(returnsMigration, /upsert_internal_ml_return_tracking/);
+  assert.match(receiveReturnRoute, /receive_internal_ml_return/);
+  assert.match(decideReturnRoute, /decide_internal_ml_return/);
+  assert.match(syncReturnsRoute, /sincronizarDevolucoesMercadoLivreAtivas/);
+  assert.match(returnsMigration, /create table public\.estoque_devolucoes_ml/);
+  assert.match(returnsMigration, /estado_operacional = 'aguardando_inspecao'/);
+  assert.match(returnsMigration, /p_result not in \('apto', 'nao_apto'\)/);
+  assert.doesNotMatch(decideReturnRoute, /post-purchase|return-review/);
+});
+
+test('saldo separa devolução e compra e reserva devolução primeiro', () => {
+  assert.match(page, /Devoluções do Mercado Livre/);
+  assert.match(page, /Compras por NF-e/);
+  assert.match(stockRoute, /devolucoes_disponivel,compras_disponivel,ajustes_disponivel/);
+  assert.match(returnsMigration, /origem_estoque in \('devolucao_ml', 'compra_nfe', 'ajuste'\)/);
+  assert.match(returnsMigration, /array\['devolucao_ml', 'compra_nfe', 'ajuste'\]/);
+  assert.match(returnsMigration, /estoque_interno_movimentacoes_compromisso_origem_idx/);
+  assert.match(returnsMigration, /select_order_fulfillment_by_origin/);
+  assert.match(returnsMigration, /adjust_internal_stock_by_origin/);
+  assert.match(stockRoute, /rpc\('adjust_internal_stock_by_origin'/);
+});
+
 test('expõe posição canônica por produto e histórico auditável', () => {
-  assert.match(stockRoute, /from\('estoque_interno_posicoes'\)/);
+  assert.match(stockRoute, /from\('estoque_interno_posicoes_detalhadas'\)/);
   assert.match(stockRoute, /inventory\.read/);
   assert.match(stockRoute, /inventory\.manage/);
   assert.match(page, /Último movimento/);

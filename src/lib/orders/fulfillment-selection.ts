@@ -107,7 +107,7 @@ export async function selectOrderFulfillment(
   source: OrderFulfillmentSource,
   stockItems?: OrderFulfillmentStockItem[],
 ): Promise<OrderFulfillmentSelection> {
-  const { data, error } = await client.rpc('select_order_fulfillment', {
+  const { data, error } = await client.rpc('select_order_fulfillment_by_origin', {
     p_pedido_id: pedidoId,
     p_source: source,
     p_items: source === 'internal'

@@ -3175,6 +3175,54 @@ reconcile_ml_pricing_groups: {
           selected_now: boolean
         }[]
       }
+      select_order_fulfillment_by_origin: {
+        Args: {
+          p_items: Json | null
+          p_pedido_id: string
+          p_source: string
+        }
+        Returns: {
+          fulfillment_selected_at: string | null
+          fulfillment_source: string
+          selected_now: boolean
+        }[]
+      }
+      adjust_internal_stock_by_origin: {
+        Args: {
+          p_idempotency_key: string
+          p_product_id: string
+          p_quantity: number
+          p_reason: string
+          p_user_id: string
+        }
+        Returns: string
+      }
+      upsert_internal_ml_return_tracking: {
+        Args: {
+          p_estado_operacional: string
+          p_ml_claim_id: string | null
+          p_ml_return_id: string | null
+          p_ml_return_shipment_id: string | null
+          p_motivo: string
+          p_pedido_id: string
+          p_produto_id: string
+          p_quantidade: number
+          p_status_logistico: string
+        }
+        Returns: undefined
+      }
+      receive_internal_ml_return: {
+        Args: { p_return_id: string; p_user_id: string }
+        Returns: Json
+      }
+      decide_internal_ml_return: {
+        Args: { p_result: string; p_return_id: string; p_user_id: string }
+        Returns: {
+          estado_operacional: string
+          movimento_id: string | null
+          produto_id: string
+        }[]
+      }
       dispatch_internal_stock_reservation: {
         Args: { p_pedido_id: string }
         Returns: {

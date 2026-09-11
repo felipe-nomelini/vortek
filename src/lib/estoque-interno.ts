@@ -14,6 +14,9 @@ import {
   type OrderFulfillmentStockItem,
 } from '@/lib/orders/fulfillment-selection';
 import {
+  estadoOperacionalPorStatusMl,
+} from '@/lib/estoque-devolucoes';
+import {
   loadInternalStockBalances,
   loadProductFulfillmentCapacity,
 } from '@/lib/orders/fulfillment-capacity-loader';
@@ -536,42 +539,168 @@ export async function estornarReservaEnvioInternoCancelado(
   };
 }
 
-/** Toda devolução entra bloqueada; operador libera somente após conferência física. */
+export type DetalhesDevolucaoMl = {
+  claimId?: string | null;
+  returnId?: string | null;
+  returnShipmentId?: string | null;
+};
+
+export function classificarMotivoDevolucaoMl(raw: unknown): string | null {
+  const texto = Array.isArray(raw) ? raw.join(' ') : String(raw || '');
+  const normalizado = texto.toLowerCase();
+  if (/repentant|changed_mind|return_request|not_expected|desist|arrepende/.test(normalizado)) return 'Desistência';
+  if (/damaged|defect|defective|not_working|broken|fault|defeito|avaria/.test(normalizado)) return 'Produto com problema';
+  if (/receiver_absent|destinat[aá]rio[_ ]ausente/.test(normalizado)) return 'Entrega não realizada';
+  return null;
+}
+
+/**
+ * Acompanha a logística reversa sem criar saldo. A entrada física só nasce na
+ * decisão transacional posterior ao recebimento.
+ */
 export async function registrarDevolucaoInterna(
   pedidoId: string,
   motivo: string,
   statusDevolucao: string,
   destinoEstoqueInterno: boolean,
+  detalhes: DetalhesDevolucaoMl = {},
 ) {
-  if (!destinoEstoqueInterno) return;
+  const db = createServiceClient();
+  const estadoObservado = destinoEstoqueInterno
+    ? estadoOperacionalPorStatusMl(statusDevolucao)
+    : 'encerrada_sem_recebimento';
+
+  if (!destinoEstoqueInterno) {
+    const { error } = await (db as any)
+      .from('estoque_devolucoes_ml')
+      .update({
+        status_logistico: statusDevolucao,
+        estado_operacional: 'encerrada_sem_recebimento',
+        observado_em: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq('pedido_id', pedidoId)
+      .in('estado_operacional', ['em_transito', 'entrega_informada']);
+    if (error && !['42P01', 'PGRST205'].includes(String(error.code || ''))) throw new Error(error.message);
+    return;
+  }
 
   const itens = await resolverItensEstoqueEnvioInterno(pedidoId);
-  const db = createServiceClient();
 
   for (const item of itens) {
-    const movimentos = (db as any).from('estoque_interno_movimentacoes');
-    const { data: existente, error: consultaError } = await movimentos
-      .select('id')
-      .eq('produto_id', item.produtoId)
-      .eq('pedido_id', pedidoId)
-      .eq('tipo', 'entrada_devolucao')
-      .maybeSingle();
-    if (consultaError) throw new Error(consultaError.message);
-
-    const { error } = existente
-      ? await movimentos
-        .update({ quantidade: item.quantidade, motivo, status_devolucao: statusDevolucao })
-        .eq('id', existente.id)
-      : await movimentos.insert({
-        produto_id: item.produtoId,
-        pedido_id: pedidoId,
-        tipo: 'entrada_devolucao',
-        quantidade: item.quantidade,
-        motivo,
-        status_devolucao: statusDevolucao,
-        situacao_estoque: 'revisao',
-        disponivel_venda: false,
-      });
+    const { error } = await (db as any).rpc('upsert_internal_ml_return_tracking', {
+      p_pedido_id: pedidoId,
+      p_produto_id: item.produtoId,
+      p_quantidade: item.quantidade,
+      p_motivo: motivo || 'Devolução do Mercado Livre',
+      p_ml_claim_id: detalhes.claimId || null,
+      p_ml_return_id: detalhes.returnId || null,
+      p_ml_return_shipment_id: detalhes.returnShipmentId || null,
+      p_status_logistico: statusDevolucao || 'aguardando_atualizacao',
+      p_estado_operacional: estadoObservado,
+    });
     if (error) throw new Error(error.message);
   }
+}
+
+/** Atualiza somente devoluções abertas, sem executar ações na conta do ML. */
+export async function sincronizarDevolucoesMercadoLivreAtivas() {
+  const db = createServiceClient();
+  const { data: rows, error } = await (db as any)
+    .from('estoque_devolucoes_ml')
+    .select('pedido_id,pedidos(ml_order_id,ml_shipment_id)')
+    .in('estado_operacional', ['em_transito', 'entrega_informada'])
+    .order('observado_em', { ascending: true })
+    .limit(100);
+  if (error) throw new Error(error.message);
+
+  const returnAddress = await obterEnderecoRetornoPadraoMl();
+  const pedidos = new Map<string, { orderId: string; shipmentId: string | null }>();
+  for (const row of rows || []) {
+    const orderId = String(row.pedidos?.ml_order_id || '').trim();
+    if (!orderId) continue;
+    pedidos.set(String(row.pedido_id), {
+      orderId,
+      shipmentId: String(row.pedidos?.ml_shipment_id || '').trim() || null,
+    });
+  }
+
+  let atualizadas = 0;
+  let falhas = 0;
+  for (const [pedidoId, pedido] of pedidos) {
+    try {
+      const claimsResult = await fetchMLResult<any>(
+        `/post-purchase/v1/claims/search?resource_id=${encodeURIComponent(pedido.orderId)}&resource=order`,
+      );
+      const claim = claimsResult.ok && Array.isArray(claimsResult.data?.data)
+        ? claimsResult.data.data[0]
+        : null;
+      const claimId = String(claim?.id || '').trim();
+
+      if (claimId) {
+        const [claimResult, returnResult] = await Promise.all([
+          fetchMLResult<any>(`/post-purchase/v1/claims/${encodeURIComponent(claimId)}`),
+          fetchMLResult<any>(`/post-purchase/v2/claims/${encodeURIComponent(claimId)}/returns`),
+        ]);
+        const claimDetail = claimResult.ok ? claimResult.data : claim;
+        const returnDetail = returnResult.ok ? returnResult.data : null;
+        if (returnDetail?.id) {
+          const shipments = Array.isArray(returnDetail.shipments) ? returnDetail.shipments : [];
+          const sellerShipment = shipments.find((shipment: any) => (
+            shipment?.destination?.name === 'seller_address'
+            && isEnderecoEstoqueInternoMl(shipment?.destination?.shipping_address, {
+              addressId: returnAddress?.id ? String(returnAddress.id) : null,
+              zipCode: returnAddress?.zip_code || null,
+            })
+          ));
+          const observedShipment = sellerShipment
+            || shipments.find((shipment: any) => shipment?.destination?.name === 'seller_address')
+            || shipments[0];
+          await registrarDevolucaoInterna(
+            pedidoId,
+            classificarMotivoDevolucaoMl([
+              claimDetail?.reason_id,
+              claimDetail?.reason?.name,
+              claimDetail?.reason?.detail,
+            ]) || 'Devolução do Mercado Livre',
+            String(observedShipment?.status || returnDetail.status || 'aguardando_atualizacao'),
+            Boolean(sellerShipment),
+            {
+              claimId,
+              returnId: String(returnDetail.id),
+              returnShipmentId: observedShipment?.shipment_id
+                ? String(observedShipment.shipment_id)
+                : null,
+            },
+          );
+          atualizadas += 1;
+          continue;
+        }
+      }
+
+      if (pedido.shipmentId) {
+        const shipmentResult = await fetchMLResult<any>(`/shipments/${encodeURIComponent(pedido.shipmentId)}`);
+        const shipment = shipmentResult.ok ? shipmentResult.data : null;
+        const status = String(shipment?.status || '').toLowerCase();
+        const substatus = String(shipment?.substatus || '').toLowerCase();
+        if (status === 'not_delivered' && ['returning_to_sender', 'returned'].includes(substatus)) {
+          await registrarDevolucaoInterna(
+            pedidoId,
+            'Entrega não realizada',
+            substatus,
+            Boolean(returnAddress),
+          );
+          atualizadas += 1;
+        }
+      }
+    } catch (syncError: any) {
+      falhas += 1;
+      console.error('[internal_stock_returns_refresh_failed]', {
+        pedidoId,
+        error: syncError?.message || syncError,
+      });
+    }
+  }
+
+  return { consultadas: pedidos.size, atualizadas, falhas };
 }

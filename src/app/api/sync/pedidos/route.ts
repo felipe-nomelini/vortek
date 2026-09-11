@@ -497,7 +497,9 @@ function classificarMotivoDevolucao(raw: unknown): string | null {
 type DevolucaoMl = {
   status: string;
   destinoEstoqueInterno: boolean;
-  entradaElegivelEstoque: boolean;
+  claimId: string | null;
+  returnId: string | null;
+  returnShipmentId: string | null;
 };
 
 async function buscarClaims(
@@ -557,7 +559,9 @@ async function buscarClaims(
           // e não ao estoque físico da Vortek.
           status: entregueNoCentroLogistico ? 'delivered_warehouse' : (statusEnvio || String(retorno.status)),
           destinoEstoqueInterno,
-          entradaElegivelEstoque: destinoEstoqueInterno && !['cancelled', 'failed', 'expired', 'not_delivered', 'return_to_buyer'].includes(statusEnvio),
+          claimId: claimId || null,
+          returnId: String(retorno.id),
+          returnShipmentId: envioRetorno?.shipment_id ? String(envioRetorno.shipment_id) : null,
         };
       }
 
@@ -1872,12 +1876,17 @@ async function processOrder(params: {
     if (mapped.length > 0) {
       await serviceClient.from('pedido_itens').insert(mapped as any);
     }
-    if (devolucaoMl?.entradaElegivelEstoque) {
+    if (devolucaoMl) {
       await registrarDevolucaoInterna(
         pedidoId,
         motivoDevolucao || 'Outro Motivo',
         devolucaoMl?.status || 'aguardando_confirmacao',
-        true,
+        devolucaoMl.destinoEstoqueInterno,
+        {
+          claimId: devolucaoMl.claimId,
+          returnId: devolucaoMl.returnId,
+          returnShipmentId: devolucaoMl.returnShipmentId,
+        },
       );
     } else {
       const shipmentStatus = String(shipmentDetail?.status || '').toLowerCase();

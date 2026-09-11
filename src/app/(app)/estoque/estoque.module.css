@@ -24,7 +24,7 @@
 
 .summaryBand {
   display: grid;
-  grid-template-columns: repeat(5, minmax(145px, 1fr));
+  grid-template-columns: repeat(6, minmax(135px, 1fr));
   overflow: hidden;
   border: 1px solid var(--bentevi-border, #34313a);
   border-radius: 16px;
@@ -108,6 +108,13 @@
 .toolbar {
   display: flex;
   justify-content: flex-end;
+}
+
+.returnToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .search {
@@ -258,5 +265,10 @@
 
   .summaryItem:last-child {
     border-bottom: 0;
+  }
+
+  .returnToolbar {
+    align-items: stretch;
+    flex-direction: column;
   }
 }

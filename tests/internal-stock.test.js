@@ -6,6 +6,19 @@ const {
   calcularEntradasVisiveisEstoqueInterno,
   expandirItensReservaEstoqueInterno,
 } = require('../src/lib/estoque-interno-saldo.ts');
+const {
+  estadoOperacionalPorStatusMl,
+  devolucaoPodeReceber,
+  devolucaoEstaFinalizada,
+} = require('../src/lib/estoque-devolucoes.ts');
+
+test('status do Mercado Livre separa trânsito, entrega e encerramento', () => {
+  assert.equal(estadoOperacionalPorStatusMl('shipped'), 'em_transito');
+  assert.equal(estadoOperacionalPorStatusMl('delivered'), 'entrega_informada');
+  assert.equal(estadoOperacionalPorStatusMl('expired'), 'encerrada_sem_recebimento');
+  assert.equal(devolucaoPodeReceber('entrega_informada'), true);
+  assert.equal(devolucaoEstaFinalizada('nao_apto'), true);
+});
 
 test('saída estornada não reduz o saldo interno', () => {
   assert.equal(calcularSaldoEstoqueInterno([
