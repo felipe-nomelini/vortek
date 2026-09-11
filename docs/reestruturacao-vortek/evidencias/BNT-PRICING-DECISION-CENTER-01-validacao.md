@@ -15,6 +15,8 @@ escrever no Mercado Livre.
 A reanálise é autenticada para `admin`/`gerente`, aceita apenas `productId` e
 `commandId`, registra um job idempotente e executa novamente vínculo, grupo e
 avaliação econômica. Falhas são devolvidas sem conteúdo interno ou credenciais.
+O dispatcher também recupera alertas abertos envelhecidos pela mesma fila,
+em lotes limitados, sem preparar proposta ou executar operação comercial.
 
 ## Correções de contrato
 
@@ -74,17 +76,17 @@ de decisões sem sessão, incluindo `/reanalyze`.
 
 ## Segurança operacional e recuperação
 
-Durante migration, deploy, smoke e reconciliação, a execução comercial
-permaneceu `disabled`. O preflight confirmou zero operação de pricing, zero
-outbox de pricing e nenhuma operação não terminal antes da ativação. Criação de
-anúncio e escritores automáticos não fazem parte deste recorte.
+Durante a migration e a publicação iniciais, a execução comercial permaneceu
+`disabled`. O preflight confirmou zero operação de pricing, zero outbox de
+pricing e nenhuma operação não terminal antes da ativação. Na reconciliação
+posterior, o runtime já estava em `production_controlled`, mas nenhuma rota de
+execução foi chamada e o read-back continuou em zero. Criação de anúncio e
+escritores automáticos não fazem parte deste recorte.
 
 O scan observado iniciado antes do deploy foi retomado pelo mecanismo oficial
 após a troca do processo e concluiu 7.052/7.052 itens, com zero falha terminal.
 Os dois anúncios que originaram os alertas foram relidos; os dois produtos
 ficaram com grupo `verified`, dois membros e sincronismo de catálogo confirmado.
-Os alertas econômicos históricos permanecem visíveis até que um usuário
-autorizado use a nova reanálise; a leitura não os apagou nem criou proposta.
 
 A conta Mercado Livre foi reconfirmada por leitura com a credencial mantida no
 backend: integração conectada, `/users/me` HTTP 200, site `MLB`, ausência de
@@ -105,3 +107,51 @@ Depois de uma tentativa real, não reenviar nem presumir rollback remoto: usar o
 estado da operação e o read-back do Mercado Livre. A migration é aditiva; se o
 consumidor for revertido, a função pode permanecer sem efeito ou ser removida
 explicitamente depois de confirmar que não há consumidor.
+
+## Reconciliação operacional — 11/09/2026
+
+A causa dos diagnósticos inúteis foi isolada em quatro pontos: alertas antigos
+por item não eram encerrados quando o vínculo passava a grupo confirmado; a
+reanálise gravava o estado de job não canônico `concluido`; o item de execução
+sem catálogo também era usado indevidamente como referência de Buy Box; e a
+interface expunha códigos internos concatenados no lugar de uma orientação.
+
+A correção publicada passou a:
+
+- encerrar ou consolidar o alerta histórico por item quando o grupo verificado
+  é observado, inclusive quando não existe alerta canônico ativo para o grupo;
+- usar os estados canônicos do job e uma fila idempotente para reanálise manual
+  ou automática de alertas envelhecidos;
+- preservar o anúncio de origem como alvo da avaliação e usar o par de catálogo
+  confirmado somente como referência competitiva;
+- mostrar prioridade, bloqueio principal, resultado econômico e horário da
+  atualização em linguagem operacional;
+- ignorar apenas reordenações semanticamente neutras das coleções devolvidas
+  pelo ML. Duas leituras reais do item `MLB7608277186` devolveram as mesmas tags
+  em ordens diferentes, sem mudança de preço, logística ou conteúdo.
+
+A migration `20260911130000_pricing_alert_reconciliation.sql` foi aplicada em
+transação curta no Supabase Bentevi `.162`. O read-back confirmou a versão,
+hash da função e permissão exclusiva de execução para `service_role`.
+
+O SHA `8b54bfe897443fd08ae27076da4c6546532bfeb5` foi promovido para
+`bentevi-prod` e publicado pela ação Easypanel
+`cmtwqjwjc003x07ntghp065qj`. A inconsistência de ordem das tags foi corrigida
+no SHA `49c84121d730c985aa86711852e0caae47bdfcd2`, publicado pela ação
+`cmtwqt0g7004a07nt6q88d0su`. Ambos os deploys terminaram em `done`; o segundo
+processo confirmou o SHA exato, sem erro de inicialização e com health `200`.
+
+Na conferência produtiva, os jobs dos SKUs `VTK018243` e `VTK018250`
+terminaram em `completo`, com grupos `verified`, cobertura completa e dois
+membros cada. Os alertas falsos `pricing_group`/`pricing_evidence` foram
+resolvidos ou consolidados. Cada produto ficou somente com o diagnóstico real
+`PREJUIZO_NO_PRECO_COMPETITIVO`: o preço necessário para competir não é
+economicamente permitido. Permaneceram zero decisões, zero operações de
+pricing e zero registros de outbox de pricing; nenhum preço foi alterado.
+
+Passaram 224 testes relacionados no primeiro recorte e 58 testes direcionados
+após a correção da ordenação, além de `npm run validate`, `npm run build`,
+`npm run check:build-secrets` e `git diff --check`. O smoke confirmou login
+`200`, proteção de `/anuncios` e `401` nas APIs de decisões sem sessão. O
+primeiro canário com alteração real de preço continua pendente e exige decisão
+humana autenticada.

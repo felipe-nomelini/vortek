@@ -3992,6 +3992,11 @@ O lote visual `e036397` foi publicado em DEV pela ação Easypanel `cmts65gr7000
 - [x] aplicar e conferir a RPC backend-only no Supabase produtivo `.162`;
 - [x] publicar a central no serviço `local/bentevi-prod` pelo SHA promovido de `dev`;
 - [x] concluir scan observado de 7.052 itens sem falha e confirmar os dois grupos afetados como `verified`;
+- [x] reconciliar alertas históricos por item após a confirmação do grupo, sem criar alerta resolvido vazio;
+- [x] automatizar a reanálise limitada e idempotente de alertas envelhecidos pelo dispatcher, sem writer comercial;
+- [x] separar o anúncio de execução da referência de catálogo e apresentar somente diagnóstico acionável na interface;
+- [x] corrigir falso `ANUNCIO_REMOTO_ALTERADO` causado pela ordem instável das tags do ML;
+- [x] reanalisar `VTK018243` e `VTK018250` em produção: grupos completos, alertas falsos encerrados e prejuízo competitivo real identificado, com zero decisão/operação/outbox e nenhum preço alterado;
 - [x] limitar a execução produtiva a `price_change`, mantendo criação, lote e automação bloqueados;
 - [ ] executar um único canário autenticado e conferir o estado terminal/read-back antes de qualquer segunda alteração.
 
