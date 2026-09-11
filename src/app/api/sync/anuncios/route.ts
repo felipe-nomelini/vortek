@@ -326,6 +326,15 @@ async function pauseListing(itemId: string) {
 }
 
 function parseVisitsPayload(payload: any): Map<string, number> {
+  if (payload && typeof payload === 'object' && !Array.isArray(payload)) {
+    const keyed = new Map<string, number>();
+    for (const [itemId, value] of Object.entries(payload)) {
+      if (!/^ML[A-Z]\d+$/.test(itemId)) continue;
+      const total = normalizeMetric(value);
+      if (total !== null) keyed.set(itemId, total);
+    }
+    if (keyed.size > 0) return keyed;
+  }
   const rows = Array.isArray(payload)
     ? payload
     : Array.isArray(payload?.results)
@@ -347,24 +356,15 @@ function parseVisitsPayload(payload: any): Map<string, number> {
   return byItemId;
 }
 
-function formatMlVisitsDate(value: Date): string {
-  return value.toISOString().slice(0, 10);
-}
-
 async function fetchVisitsByItemId(
-  items: Array<{ itemId: string; startTime: string | null }>,
+  items: Array<{ itemId: string }>,
   warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }>,
 ): Promise<Map<string, number>> {
   const visitsByItemId = new Map<string, number>();
-  const dateTo = formatMlVisitsDate(new Date());
 
   await runPool(items, VISITS_CONCURRENCY, async (item) => {
     if (!item.itemId) return;
-    const startMs = item.startTime && !Number.isNaN(new Date(item.startTime).getTime())
-      ? new Date(item.startTime).getTime()
-      : Date.now() - 365 * 24 * 60 * 60 * 1000;
-    const dateFrom = formatMlVisitsDate(new Date(startMs));
-    const path = `/items/${encodeURIComponent(item.itemId)}/visits?date_from=${encodeURIComponent(dateFrom)}&date_to=${encodeURIComponent(dateTo)}`;
+    const path = `/visits/items?ids=${encodeURIComponent(item.itemId)}`;
     const result = await fetchMLResult<any>(path);
     if (!result.ok || !result.data) {
       warnings.push({
@@ -619,7 +619,7 @@ export async function POST(request: Request) {
     const linkResolutions = new Map<string, ReturnType<typeof resolveProductMlLinks>>();
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
-    const listingMetricsByItemId = new Map<string, { soldQuantity: unknown; startTime: string | null }>();
+    const listingMetricsByItemId = new Map<string, { soldQuantity: unknown }>();
     const userProductIdByItemId = new Map<string, string>();
     let recordsFailed = 0;
     let pricingFieldsUpdated = 0;
@@ -911,7 +911,6 @@ export async function POST(request: Request) {
       }
       listingMetricsByItemId.set(String(item.id), {
         soldQuantity: item.sold_quantity,
-        startTime: item.start_time || null,
       });
       const userProductId = String(item.user_product_id || '').trim();
       if (userProductId) userProductIdByItemId.set(String(item.id), userProductId);
@@ -957,10 +956,7 @@ export async function POST(request: Request) {
     }
 
     const visitsByItemId = await fetchVisitsByItemId(
-      Array.from(listingMetricsByItemId.entries()).map(([itemId, metrics]) => ({
-        itemId,
-        startTime: metrics.startTime,
-      })),
+      Array.from(listingMetricsByItemId.keys()).map((itemId) => ({ itemId })),
       warnings,
     );
 

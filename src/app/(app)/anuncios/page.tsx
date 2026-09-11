@@ -109,6 +109,36 @@ type PricingDetails = {
   } | null;
 };
 
+type PerformanceWindow = {
+  days: 30 | 90 | 150;
+  status: 'DISPONIVEL' | 'SEM_AMOSTRA';
+  periodStart: string;
+  periodEnd: string;
+  timezone: 'America/Sao_Paulo';
+  visits: number | null;
+  sales: number | null;
+  units: number | null;
+  revenueCents: number | null;
+  uniqueBuyers: number | null;
+  repeatBuyers: number | null;
+  conversionRate: number | null;
+  recurrenceRate: number | null;
+  coverage: { visits: string; sales: string };
+};
+
+type PerformanceDetails = {
+  scope: 'listing' | 'verified_group';
+  group: { id: string; version: number } | null;
+  itemIds: string[];
+  selectedItemId: string;
+  asOf: string;
+  updatedAt: string | null;
+  stale: boolean;
+  visitSemantics: 'listing_visits' | 'summed_listing_visits';
+  windows: PerformanceWindow[];
+  warnings: string[];
+};
+
 type PriceResult = {
   mlItemId: string;
   type: 'standard' | 'catalog';
@@ -206,6 +236,23 @@ function formatDateTime(value: string | null) {
   }).format(date);
 }
 
+function formatPercent(value: number | null) {
+  if (value === null) return '—';
+  return `${new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 2 }).format(value * 100)}%`;
+}
+
+function formatPerformancePeriod(window: PerformanceWindow) {
+  const start = new Date(window.periodStart);
+  const end = new Date(new Date(window.periodEnd).getTime() - 1);
+  const format = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: window.timezone,
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+  return `${format.format(start)} a ${format.format(end)}`;
+}
+
 function batchOutcomeLabel(outcome: string) {
   if (outcome === 'done') return 'Concluído no ML';
   if (outcome === 'processing') return 'Processando no ML';
@@ -219,6 +266,7 @@ function batchOutcomeLabel(outcome: string) {
 
 export default function AnunciosPage() {
   const pricingRequest = useRef(0);
+  const performanceRequest = useRef(0);
   const router = useRouter();
   const { message, modal } = App.useApp();
   const [rows, setRows] = useState<ListingRow[]>([]);
@@ -244,6 +292,10 @@ export default function AnunciosPage() {
   const [details, setDetails] = useState<PricingDetails | null>(null);
   const [detailsLoading, setDetailsLoading] = useState(false);
   const [detailsError, setDetailsError] = useState<string | null>(null);
+  const [performance, setPerformance] = useState<PerformanceDetails | null>(null);
+  const [performanceLoading, setPerformanceLoading] = useState(false);
+  const [performanceError, setPerformanceError] = useState<string | null>(null);
+  const [performanceWindowDays, setPerformanceWindowDays] = useState<30 | 90 | 150>(30);
   const [newPrice, setNewPrice] = useState<number | null>(null);
   const [savingPrice, setSavingPrice] = useState(false);
   const [priceResults, setPriceResults] = useState<PriceResult[]>([]);
@@ -336,21 +388,59 @@ export default function AnunciosPage() {
     }
   }, []);
 
+  const loadPerformanceDetails = useCallback(async (row: ListingRow, forceRefresh = false) => {
+    const requestId = ++performanceRequest.current;
+    if (row.isHomologationFixture) {
+      setPerformance(null);
+      setPerformanceError(null);
+      return;
+    }
+    if (!row.productId) {
+      setPerformanceError('Este anúncio não possui vínculo com um produto Bentevi.');
+      return;
+    }
+    setPerformanceLoading(true);
+    setPerformanceError(null);
+    try {
+      const response = await fetch('/api/ml/anuncio/desempenho', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ produtoId: row.productId, mlItemId: row.itemId, forceRefresh }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível carregar o desempenho.');
+      if (requestId !== performanceRequest.current) return;
+      setPerformance(payload as PerformanceDetails);
+    } catch (loadError: any) {
+      if (requestId !== performanceRequest.current) return;
+      setPerformanceError(loadError?.message || 'Não foi possível carregar o desempenho.');
+    } finally {
+      if (requestId === performanceRequest.current) setPerformanceLoading(false);
+    }
+  }, []);
+
   const openAnalysis = useCallback((row: ListingRow) => {
     setAnalysis({ open: true, row });
     setDetails(null);
     setDetailsError(null);
+    setPerformance(null);
+    setPerformanceError(null);
+    setPerformanceWindowDays(30);
     setNewPrice(row.price);
     setPriceResults([]);
     void loadPriceDetails(row);
-  }, [loadPriceDetails]);
+    void loadPerformanceDetails(row);
+  }, [loadPerformanceDetails, loadPriceDetails]);
 
   const closeAnalysis = () => {
     if (savingPrice) return;
     pricingRequest.current++;
+    performanceRequest.current++;
     setAnalysis({ open: false, row: null });
     setDetails(null);
     setDetailsError(null);
+    setPerformance(null);
+    setPerformanceError(null);
     setPriceResults([]);
   };
 
@@ -656,7 +746,7 @@ export default function AnunciosPage() {
       render: (_value, row) => <div className={styles.valueCell}><strong>{formatCurrency(row.price)}</strong><span className={row.profit === null ? '' : row.profit >= 0 ? styles.positive : styles.negative}>{row.profit === null ? 'Lucro indisponível' : `${formatCurrency(row.profit)} · ${Number(row.marginPercent || 0).toLocaleString('pt-BR', { maximumFractionDigits: 1 })}%`}</span></div>,
     },
     {
-      title: 'Desempenho', key: 'sold', width: 135, sorter: true, sortOrder: getRemoteSortOrder('sold', sort),
+      title: 'Histórico acumulado', key: 'sold', width: 150, sorter: true, sortOrder: getRemoteSortOrder('sold', sort),
       render: (_value, row) => <div className={styles.performanceCell}><strong>{formatInteger(row.sold)} vendidos</strong><span>{formatInteger(row.visits)} visitas</span></div>,
     },
     {
@@ -711,6 +801,8 @@ export default function AnunciosPage() {
   };
 
   const activeAnalysis = analysis.row;
+  const selectedPerformance = performance?.windows.find((window) => window.days === performanceWindowDays) || null;
+  const primaryPerformance = performance?.windows.find((window) => window.days === 30) || null;
   const competitiveMemory = details?.competitiveAssessment?.competitive?.memory;
   const nextProfit = details && newPrice === details.currentPrice ? details.currentProfit
     : competitiveMemory && newPrice === competitiveMemory.revenueCents / 100 ? competitiveMemory.resultCents / 100 : null;
@@ -781,8 +873,38 @@ export default function AnunciosPage() {
           <section className={styles.analysisGrid}>
             <article><DollarOutlined /><span>Preço atual</span><strong>{formatCurrency(details?.currentPrice ?? activeAnalysis.price)}</strong><small className={(details?.currentProfit ?? activeAnalysis.profit ?? 0) >= 0 ? styles.positive : styles.negative}>Lucro {details ? formatCurrency(details.currentProfit) : activeAnalysis.profit === null ? 'indisponível' : formatCurrency(activeAnalysis.profit)}</small></article>
             <article><ShopOutlined /><span>Catálogo / Buy Box</span><strong>{catalogPresentation[activeAnalysis.catalogStatus].label}</strong><small>{(details?.catalog?.priceToWin) ? `Preço para ganhar ${formatCurrency(details?.catalog?.priceToWin ?? 0)}` : 'Sem preço-alvo disponível'}</small></article>
-            <article><BarChartOutlined /><span>Desempenho</span><strong>{formatInteger(activeAnalysis.sold)} vendidos</strong><small>{formatInteger(activeAnalysis.visits)} visitas acumuladas</small></article>
+            <article><BarChartOutlined /><span>Desempenho · 30 dias</span><strong>{primaryPerformance?.status === 'DISPONIVEL' ? `${formatInteger(primaryPerformance.sales || 0)} vendas` : performanceLoading ? 'Atualizando…' : 'Dados insuficientes'}</strong><small>{primaryPerformance?.status === 'DISPONIVEL' ? `${formatInteger(primaryPerformance.visits || 0)} visitas` : `${formatInteger(activeAnalysis.sold)} vendidos no histórico`}</small></article>
             <article><CheckCircleOutlined /><span>Qualidade</span><strong>{activeAnalysis.qualityAvailable ? `${activeAnalysis.qualityScore}%` : 'Sem leitura'}</strong><small>{activeAnalysis.qualityPrimaryIssue || activeAnalysis.qualityUnavailableReason || 'Nenhuma melhoria prioritária'}</small></article>
+          </section>
+
+          <section className={styles.drawerSection}>
+            <div className={styles.performanceWindowHeader}>
+              <div className={styles.sectionHeading}><div><span>Desempenho comercial</span><strong>Visitas e vendas por período</strong></div></div>
+              <Space wrap>
+                <Segmented<30 | 90 | 150> value={performanceWindowDays} options={[30, 90, 150].map((days) => ({ label: `${days} dias`, value: days as 30 | 90 | 150 }))} onChange={setPerformanceWindowDays} />
+                <Button icon={<ReloadOutlined />} loading={performanceLoading} disabled={Boolean(visualReview)} onClick={() => void loadPerformanceDetails(activeAnalysis, true)}>Atualizar desempenho</Button>
+              </Space>
+            </div>
+            {performanceError && <Alert type="error" showIcon message="Não foi possível carregar o desempenho" description={performanceError} action={<Button onClick={() => void loadPerformanceDetails(activeAnalysis)}>Tentar novamente</Button>} />}
+            {performance?.warnings.map((warning) => <Alert key={warning} type="warning" showIcon message={warning} />)}
+            {performance && <Text type="secondary">
+              {performance.scope === 'verified_group'
+                ? `Resultado conjunto de ${performance.itemIds.length} anúncios vinculados. As visitas são somadas por anúncio.`
+                : 'Resultado somente do anúncio selecionado.'}
+            </Text>}
+            <Spin spinning={performanceLoading}>
+              {selectedPerformance?.status === 'DISPONIVEL' ? <>
+                <Text type="secondary">Período: {formatPerformancePeriod(selectedPerformance)} · Atualizado em {formatDateTime(performance?.updatedAt || null)}</Text>
+                <div className={styles.performanceMetrics}>
+                  <article><span>Visitas</span><strong>{formatInteger(selectedPerformance.visits || 0)}</strong><small>{performance?.visitSemantics === 'summed_listing_visits' ? 'Soma das visitas dos anúncios' : 'Visitas deste anúncio'}</small></article>
+                  <article><span>Vendas</span><strong>{formatInteger(selectedPerformance.sales || 0)}</strong><small>Pedidos confirmados</small></article>
+                  <article><span>Unidades</span><strong>{formatInteger(selectedPerformance.units || 0)}</strong><small>Itens ou packs vendidos</small></article>
+                  <article><span>Faturamento</span><strong>{formatCurrency((selectedPerformance.revenueCents || 0) / 100)}</strong><small>Após descontos, sem frete</small></article>
+                  <article><span>Conversão</span><strong>{formatPercent(selectedPerformance.conversionRate)}</strong><small>Vendas por visita</small></article>
+                  <article><span>Recorrência</span><strong>{formatPercent(selectedPerformance.recurrenceRate)}</strong><small>{selectedPerformance.repeatBuyers === null ? 'Identificação de compradores incompleta' : `${formatInteger(selectedPerformance.repeatBuyers)} compradores recorrentes`}</small></article>
+                </div>
+              </> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Dados insuficientes para este período"><Text type="secondary">A análise só mostra resultados quando visitas e vendas cobrem todo o período.</Text></Empty>}
+            </Spin>
           </section>
 
           <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Preço e rentabilidade</span><strong>Um preço para os anúncios vinculados</strong></div></div>

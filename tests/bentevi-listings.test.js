@@ -23,7 +23,7 @@ test('BNT-D11 organiza anúncios por decisão operacional', () => {
   for (const label of ['Total monitorado', 'Ativos', 'Pausados', 'Qualidade em risco', 'Preço em revisão']) {
     assert.match(page, new RegExp(label));
   }
-  for (const column of ['Anúncio', 'Produto', 'Preço e resultado', 'Desempenho', 'Qualidade', 'Estado', 'Catálogo', 'Ações']) {
+  for (const column of ['Anúncio', 'Produto', 'Preço e resultado', 'Histórico acumulado', 'Qualidade', 'Estado', 'Catálogo', 'Ações']) {
     assert.match(page, new RegExp(`title: '${column}'`));
   }
   assert.match(page, /Analisar/);

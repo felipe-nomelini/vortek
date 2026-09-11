@@ -1343,6 +1343,69 @@ ml_pricing_groups: {
           },
         ]
       }
+      ml_listing_visit_days: {
+        Row: {
+          collected_at: string
+          metric_date: string
+          ml_item_id: string
+          seller_id: number
+          source: string
+          visits: number
+        }
+        Insert: {
+          collected_at: string
+          metric_date: string
+          ml_item_id: string
+          seller_id: number
+          source?: string
+          visits: number
+        }
+        Update: {
+          collected_at?: string
+          metric_date?: string
+          ml_item_id?: string
+          seller_id?: number
+          source?: string
+          visits?: number
+        }
+        Relationships: []
+      }
+      ml_listing_visit_coverage: {
+        Row: {
+          complete: boolean
+          coverage_end: string | null
+          coverage_start: string | null
+          last_attempt_at: string
+          last_error_code: string | null
+          last_success_at: string | null
+          ml_item_id: string
+          seller_id: number
+          source: string
+        }
+        Insert: {
+          complete?: boolean
+          coverage_end?: string | null
+          coverage_start?: string | null
+          last_attempt_at: string
+          last_error_code?: string | null
+          last_success_at?: string | null
+          ml_item_id: string
+          seller_id: number
+          source?: string
+        }
+        Update: {
+          complete?: boolean
+          coverage_end?: string | null
+          coverage_start?: string | null
+          last_attempt_at?: string
+          last_error_code?: string | null
+          last_success_at?: string | null
+          ml_item_id?: string
+          seller_id?: number
+          source?: string
+        }
+        Relationships: []
+      }
       clientes: {
         Row: {
           created_at: string
@@ -3086,6 +3149,19 @@ ml_pricing_groups: {
       }
       persist_ml_pricing_observations: {
         Args: { p_observed_at: string; p_rows: Json; p_table: string }
+        Returns: Json
+      }
+      persist_ml_listing_visit_window: {
+        Args: {
+          p_collected_at: string
+          p_complete: boolean
+          p_error_code: string | null
+          p_item_id: string
+          p_points: Json
+          p_range_end: string
+          p_range_start: string
+          p_seller_id: number
+        }
         Returns: Json
       }
       prepare_pricing_operation: {
