@@ -71,11 +71,43 @@ function shouldRefreshPerformance(qualidadeInfo: unknown, now: number): boolean 
   if (!qualidadeInfo || typeof qualidadeInfo !== 'object' || Array.isArray(qualidadeInfo)) return true;
   const info = qualidadeInfo as Record<string, unknown>;
   if (!['mercado_livre_performance', 'mercado_livre_catalog_quality'].includes(String(info.source || ''))) return true;
+  if (
+    info.source === 'mercado_livre_performance'
+    && hasPendingTechnicalQualityGoal(info)
+    && (!info.catalog_quality || typeof info.catalog_quality !== 'object')
+  ) return true;
   const refreshedAt = new Date(String(info.refreshed_at || '')).getTime();
   return !Number.isFinite(refreshedAt) || (now - refreshedAt) >= PERFORMANCE_REFRESH_INTERVAL_MS;
 }
 
-function buildPerformanceInfo(performance: MlPerformance, refreshedAt: string) {
+function normalizeQualityText(value: unknown): string {
+  return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function hasPendingTechnicalQualityGoal(value: unknown): boolean {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const info = value as Record<string, any>;
+  const variables = Array.isArray(info.itens)
+    ? info.itens
+    : (Array.isArray(info.buckets) ? info.buckets.flatMap((bucket: any) => bucket?.variables || []) : []);
+  return variables.some((variable: any) => {
+    if (variable?.ok === true || String(variable?.status || '').toUpperCase() === 'COMPLETED') return false;
+    const label = normalizeQualityText(`${variable?.chave || variable?.key || ''} ${variable?.nome || variable?.title || ''}`);
+    return label.includes('caracter') || label.includes('ficha tecnica') || label.includes('technical');
+  });
+}
+
+function normalizeCatalogQuality(catalogQuality: MlCatalogQuality) {
+  const adoptionStatus = catalogQuality.adoption_status || {};
+  const all = adoptionStatus.all || {};
+  return {
+    domain_id: String(catalogQuality.domain_id || '') || null,
+    adoption_status: adoptionStatus,
+    missing_attributes: Array.isArray(all.missing_attributes) ? all.missing_attributes : [],
+  };
+}
+
+function buildPerformanceInfo(performance: MlPerformance, refreshedAt: string, catalogQuality?: MlCatalogQuality | null) {
   const variables = (performance.buckets || []).flatMap((bucket: any) => (
     Array.isArray(bucket?.variables) ? bucket.variables : []
   ));
@@ -104,6 +136,7 @@ function buildPerformanceInfo(performance: MlPerformance, refreshedAt: string) {
     calculated_at: String(performance.calculated_at || '') || null,
     refreshed_at: refreshedAt,
     itens,
+    ...(catalogQuality ? { catalog_quality: normalizeCatalogQuality(catalogQuality) } : {}),
     dica: pending?.nome || '',
   };
 }
@@ -115,9 +148,8 @@ function buildCatalogQualityInfo(
   performanceStatus: number | null,
   performanceMessage: string,
 ) {
-  const adoptionStatus = catalogQuality.adoption_status || {};
-  const all = adoptionStatus.all || {};
-  const missingAttributes = Array.isArray(all.missing_attributes) ? all.missing_attributes : [];
+  const normalizedCatalogQuality = normalizeCatalogQuality(catalogQuality);
+  const missingAttributes = normalizedCatalogQuality.missing_attributes;
   return {
     source: 'mercado_livre_catalog_quality',
     entity_id: itemId,
@@ -125,9 +157,9 @@ function buildCatalogQualityInfo(
     reason: 'O Mercado Livre não expõe a nota deste anúncio de catálogo pela API pública.',
     performance_status: performanceStatus,
     performance_message: performanceMessage || null,
-    domain_id: String(catalogQuality.domain_id || '') || null,
+    domain_id: normalizedCatalogQuality.domain_id,
     refreshed_at: refreshedAt,
-    adoption_status: adoptionStatus,
+    adoption_status: normalizedCatalogQuality.adoption_status,
     missing_attributes: missingAttributes,
     dica: missingAttributes.length > 0
       ? `Ficha de catálogo incompleta: ${missingAttributes.join(', ')}`
@@ -1074,7 +1106,7 @@ export async function POST(request: Request) {
 
       const { data: existingAnuncios, error: existingAnunciosError } = await (serviceClient
         .from('anuncios_ml')
-        .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, qualidade, qualidade_info')
+        .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, catalogo, qualidade, qualidade_info')
         .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
 
       if (existingAnunciosError) {
@@ -1118,7 +1150,7 @@ export async function POST(request: Request) {
         if (missingSnapshots.length > 0) {
           const { data: refreshedAnuncios, error: refreshedAnunciosError } = await (serviceClient
             .from('anuncios_ml')
-            .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, qualidade, qualidade_info, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
+            .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, catalogo, qualidade, qualidade_info, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
             .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
           if (refreshedAnunciosError) {
             errors.push({
@@ -1197,11 +1229,22 @@ export async function POST(request: Request) {
               }
             } else {
               const refreshedAt = new Date().toISOString();
+              const performanceInfo = buildPerformanceInfo(performance.data!, refreshedAt);
+              const catalogQualityCheck = hasPendingTechnicalQualityGoal(performanceInfo)
+                ? await fetchMLResultWithRetry<MlCatalogQuality>(
+                  `/catalog_quality/status?item_id=${encodeURIComponent(itemId)}&v=3`,
+                )
+                : null;
+              const catalogQuality = catalogQualityCheck?.result;
               const { error: performanceUpdateError } = await serviceClient
                 .from('anuncios_ml')
                 .update({
                   qualidade: score,
-                  qualidade_info: buildPerformanceInfo(performance.data!, refreshedAt),
+                  qualidade_info: buildPerformanceInfo(
+                    performance.data!,
+                    refreshedAt,
+                    catalogQuality?.ok && catalogQuality.data ? catalogQuality.data : null,
+                  ),
                   updated_at: refreshedAt,
                 } as any)
                 .eq('ml_item_id', itemId);
@@ -1233,6 +1276,7 @@ export async function POST(request: Request) {
               thumbnail: snapshot.thumbnail,
               sold_quantity: listingMetricsByItemId.get(String(snapshot.ml_item_id))?.soldQuantity,
               visits: visitsByItemId.get(String(snapshot.ml_item_id)),
+              catalog_listing: snapshot.catalog_listing === true,
             },
             'observed_sync',
             existing,

@@ -2,7 +2,7 @@ import type { BntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { pricingFor } from '@/lib/products/bnt-d07-visual-review';
 import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 
-export type MlListingsFocus = 'all' | 'active' | 'paused' | 'sold' | 'quality_risk' | 'price_review';
+export type MlListingsFocus = 'all' | 'active' | 'paused' | 'sold' | 'visited_unsold' | 'quality_risk' | 'price_review';
 export type MlCatalogStatus = 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
 
 export type MlListingDashboardRow = {
@@ -54,6 +54,7 @@ export type MlListingMetrics = {
   qualityRisk: number;
   priceReview: number;
   sold: number;
+  visitedUnsold: number;
 };
 
 export type MlListingQueueCounts = MlListingMetrics;
@@ -192,6 +193,7 @@ function matchesFocus(row: MlListingDashboardRow, focus: MlListingsFocus) {
   if (focus === 'active') return row.observedStatus === 'active';
   if (focus === 'paused') return row.observedStatus === 'paused';
   if (focus === 'sold') return row.sold > 0;
+  if (focus === 'visited_unsold') return row.observedStatus === 'active' && row.visits > 0 && row.sold <= 0;
   if (focus === 'quality_risk') return row.qualityAvailable && Number(row.qualityScore) < 80;
   if (focus === 'price_review') return isPriceReview(row);
   return true;
@@ -222,6 +224,7 @@ export function selectMlListingRows(rows: MlListingDashboardRow[], params: Omit<
     qualityRisk: common.filter((row) => row.qualityAvailable && Number(row.qualityScore) < 80).length,
     priceReview: common.filter(isPriceReview).length,
     sold: common.filter((row) => row.sold > 0).length,
+    visitedUnsold: common.filter((row) => row.observedStatus === 'active' && row.visits > 0 && row.sold <= 0).length,
   };
   const focused = common.filter((row) => matchesFocus(row, params.focus));
   const direction = params.sortOrder === 'desc' ? -1 : 1;

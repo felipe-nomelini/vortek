@@ -492,7 +492,7 @@ function parseNumber(searchParams: URLSearchParams, key: string): number | null 
 
 function buildFilterDescription(sourceUrl: URL): string {
   const params = sourceUrl.searchParams;
-  const focusLabels: Record<string, string> = { active: 'ativos', paused: 'pausados', quality_risk: 'qualidade em risco', price_review: 'preço em revisão' };
+  const focusLabels: Record<string, string> = { active: 'ativos', paused: 'pausados', sold: 'com vendas', visited_unsold: 'com visitas, sem vendas', quality_risk: 'qualidade em risco', price_review: 'preço em revisão' };
   const qualityLabels: Record<string, string> = { risk: 'em risco (< 80)', good: 'boa (80–99)', perfect: 'completa (100)', unavailable: 'sem leitura' };
   const catalogLabels: Record<string, string> = { standard: 'padrão', catalog: 'catálogo', winning: 'ganhando Buy Box', competing: 'competindo', losing: 'perdendo' };
   const profitabilityLabels: Record<string, string> = { positive: 'lucro positivo', negative: 'prejuízo', unknown: 'sem cálculo' };

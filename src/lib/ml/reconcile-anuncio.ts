@@ -12,7 +12,7 @@ type ServiceClientLike = {
 
 type ExistingAnuncioRow = Pick<
   Database['public']['Tables']['anuncios_ml']['Row'],
-  'id' | 'produto_id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas'
+  'id' | 'produto_id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas' | 'catalogo'
 > & Partial<Pick<
   Database['public']['Tables']['anuncios_ml']['Row'],
   'ml_sync_block_reason' | 'ml_sync_blocked_until' | 'ml_sync_last_error'
@@ -27,6 +27,7 @@ type MlListingLike = {
   thumbnail?: string | null;
   sold_quantity?: unknown;
   visits?: unknown;
+  catalog_listing?: boolean | null;
   last_updated?: string;
 };
 
@@ -107,7 +108,7 @@ export async function reconcileAnuncioMlFromItem(
   if (!current) {
     const { data, error } = await (client
       .from('anuncios_ml')
-      .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
+      .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, catalogo, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
       .eq('ml_item_id', mlItemId)
       .maybeSingle() as any);
 
@@ -139,6 +140,7 @@ export async function reconcileAnuncioMlFromItem(
   if (isDifferentNullableString(current.thumbnail, nextThumbnail)) patch.thumbnail = nextThumbnail;
   if (nextSoldQuantity !== null && Number(current.vendidos || 0) !== nextSoldQuantity) patch.vendidos = nextSoldQuantity;
   if (nextVisits !== null && Number(current.visitas || 0) !== nextVisits) patch.visitas = nextVisits;
+  if (typeof item.catalog_listing === 'boolean' && current.catalogo !== item.catalog_listing) patch.catalogo = item.catalog_listing;
   Object.assign(patch, resolveMlPublishBlockPatch(item?.status, current));
 
   if (Object.keys(patch).length === 0) {

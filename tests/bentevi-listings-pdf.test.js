@@ -69,6 +69,7 @@ test('BNT-D11-PDF preserva todos os filtros e a ordenação da página', () => {
   assert.match(page, /params\.set\('priceMin'/);
   assert.match(page, /params\.set\('priceMax'/);
   assert.match(page, /Exportar o conjunto filtrado em PDF/);
+  assert.match(route, /visited_unsold: 'com visitas, sem vendas'/);
 });
 
 test('BNT-D11-PDF trata conteúdo longo, paginação, vazio e download', () => {

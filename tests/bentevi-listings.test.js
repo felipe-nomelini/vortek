@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const loadIntegrationModule = require('./helpers/load-integration-module');
 
 const root = process.cwd();
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
@@ -14,6 +15,9 @@ const detailRoute = read('src/app/api/ml/anuncio/preco-detalhe/route.ts') + read
 const priceRoute = read('src/app/api/ml/anuncio/atualizar-preco/route.ts');
 const fixture = read('src/lib/ml/listings-dashboard.ts');
 const migration = read('supabase/migrations/20260902170000_bnt_d11_ml_listings_search.sql');
+const { selectMlListingRows } = loadIntegrationModule('src/lib/ml/listings-dashboard.ts', {
+  '@/lib/products/bnt-d07-visual-review': { pricingFor: () => ({ profit: null, margin: null }) },
+});
 
 test('BNT-D11 organiza anúncios por decisão operacional', () => {
   for (const label of ['Total monitorado', 'Ativos', 'Pausados', 'Qualidade em risco', 'Preço em revisão']) {
@@ -29,8 +33,9 @@ test('BNT-D11 organiza anúncios por decisão operacional', () => {
 
 test('BNT-D11 separa as contagens dos rótulos nas filas rápidas', () => {
   assert.match(page, /styles\.quickViewLabel/);
-  assert.equal((page.match(/styles\.quickViewCount/g) || []).length, 6);
+  assert.equal((page.match(/styles\.quickViewCount/g) || []).length, 7);
   assert.match(page, /Com vendas/);
+  assert.match(page, /Com visitas, sem vendas/);
   assert.match(styles, /\.quickViewCount[\s\S]*linear-gradient\(135deg, rgba\(255, 189, 14, 0\.14\), rgba\(255, 189, 14, 0\.02\)\)/);
   assert.match(styles, /font-variant-numeric: tabular-nums/);
 });
@@ -61,8 +66,38 @@ test('BNT-D11 preserva diagnóstico de catálogo e instruções dos objetivos', 
   assert.match(syncRoute, /catalog_quality\/status\?item_id=/);
   assert.match(syncRoute, /regras:/);
   assert.match(syncRoute, /performance_message/);
+  assert.match(syncRoute, /catalog_quality: normalizeCatalogQuality/);
+  assert.match(page, /catalog_quality\?\.missing_attributes/);
   assert.match(fixture, /qualityUnavailableReason/);
   assert.match(route, /qualityScore: row\.qualityAvailable \? row\.qualityScore : null/);
+});
+
+test('BNT-D11 prioriza anúncios ativos com visitas e sem vendas', () => {
+  assert.match(route, /visited_unsold/);
+  assert.match(fixture, /focus === 'visited_unsold'/);
+  assert.match(fixture, /row\.observedStatus === 'active' && row\.visits > 0 && row\.sold <= 0/);
+  assert.match(route, /focus === 'visited_unsold' \? 'visits' : 'product'/);
+  assert.match(page, /sortBy: 'visits', sortOrder: 'desc'/);
+
+  const base = {
+    itemId: 'MLB1', productId: 'P1', productSku: 'SKU1', productName: 'Produto', listingTitle: 'Produto',
+    thumbnail: null, permalink: null, listingType: 'standard', catalogProductId: null, relatedItemId: null,
+    price: 10, profit: 1, marginPercent: 10, sold: 0, visits: 5, qualityScore: 70, qualityAvailable: true,
+    qualityPrimaryIssue: null, qualityInfo: null, qualityUnavailableReason: null, observedStatus: 'active',
+    localStatus: 'ativo', blockReason: null, blockedUntil: null, lastError: null, catalogStatus: 'sem_catalogo',
+    priceToWin: null, catalogSyncedAt: null, listingSyncedAt: null, isOperational: true, latestPublish: null,
+  };
+  const result = selectMlListingRows([
+    base,
+    { ...base, itemId: 'MLB2', visits: 12 },
+    { ...base, itemId: 'MLB3', sold: 1, visits: 30 },
+    { ...base, itemId: 'MLB4', observedStatus: 'paused', visits: 20 },
+  ], {
+    page: 1, pageSize: 100, search: '', focus: 'visited_unsold', quality: 'all', catalog: 'all',
+    profitability: 'all', priceMin: null, priceMax: null, sortBy: 'visits', sortOrder: 'desc', soldOnly: false,
+  });
+  assert.equal(result.metrics.visitedUnsold, 2);
+  assert.deepEqual(result.data.map((row) => row.itemId), ['MLB2', 'MLB1']);
 });
 
 test('BNT-D11 usa alíquota dinâmica e mantém cálculo de rentabilidade no backend', () => {

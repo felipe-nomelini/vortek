@@ -148,7 +148,7 @@ type VisualReviewMetadata = {
   itemCount: number;
 };
 
-const EMPTY_METRICS: MlListingMetrics = { total: 0, active: 0, paused: 0, sold: 0, qualityRisk: 0, priceReview: 0 };
+const EMPTY_METRICS: MlListingMetrics = { total: 0, active: 0, paused: 0, sold: 0, visitedUnsold: 0, qualityRisk: 0, priceReview: 0 };
 const EMPTY_QUEUES: MlListingQueueCounts = { ...EMPTY_METRICS };
 const TERMINAL_JOB_STATUSES = new Set(['completo', 'completo_parcial', 'erro', 'cancelado', 'failed_auth']);
 
@@ -629,6 +629,7 @@ export default function AnunciosPage() {
     { value: 'active', label: <span className={styles.quickViewLabel}>Ativos <strong className={styles.quickViewCount}>{queueCounts.active}</strong></span> },
     { value: 'paused', label: <span className={styles.quickViewLabel}>Pausados <strong className={styles.quickViewCount}>{queueCounts.paused}</strong></span> },
     { value: 'sold', label: <span className={styles.quickViewLabel}>Com vendas <strong className={styles.quickViewCount}>{queueCounts.sold}</strong></span> },
+    { value: 'visited_unsold', label: <span className={styles.quickViewLabel}>Com visitas, sem vendas <strong className={styles.quickViewCount}>{queueCounts.visitedUnsold}</strong></span> },
     { value: 'quality_risk', label: <span className={styles.quickViewLabel}>Qualidade em risco <strong className={styles.quickViewCount}>{queueCounts.qualityRisk}</strong></span> },
     { value: 'price_review', label: <span className={styles.quickViewLabel}>Preço em revisão <strong className={styles.quickViewCount}>{queueCounts.priceReview}</strong></span> },
   ]), [queueCounts]);
@@ -714,7 +715,9 @@ export default function AnunciosPage() {
   const qualityItems = Array.isArray((activeAnalysis?.qualityInfo as any)?.itens) ? (activeAnalysis?.qualityInfo as any).itens : [];
   const qualityMissingAttributes = Array.isArray((activeAnalysis?.qualityInfo as any)?.missing_attributes)
     ? (activeAnalysis?.qualityInfo as any).missing_attributes as string[]
-    : [];
+    : Array.isArray((activeAnalysis?.qualityInfo as any)?.catalog_quality?.missing_attributes)
+      ? (activeAnalysis?.qualityInfo as any).catalog_quality.missing_attributes as string[]
+      : [];
   const syncing = Boolean(syncJob && !TERMINAL_JOB_STATUSES.has(syncJob.status));
 
   return <div className={styles.page}>
@@ -738,7 +741,11 @@ export default function AnunciosPage() {
       <div className={metrics.priceReview > 0 ? styles.summaryHighlight : ''}><span>Preço em revisão</span><strong>{formatInteger(metrics.priceReview)}</strong><small>catálogo com preço para ganhar</small></div>
     </section>
 
-    <Segmented className={styles.quickViews} options={queueOptions} value={focus} onChange={(value) => setFocus(value as MlListingsFocus)} />
+    <Segmented className={styles.quickViews} options={queueOptions} value={focus} onChange={(value) => {
+      const nextFocus = value as MlListingsFocus;
+      setFocus(nextFocus);
+      if (nextFocus === 'visited_unsold') setSort({ sortBy: 'visits', sortOrder: 'desc' });
+    }} />
 
     <section className={styles.filterBar}>
       <Input className={styles.searchInput} prefix={<SearchOutlined />} placeholder="Buscar produto, SKU Bentevi ou ID do anúncio" value={search} onChange={(event) => setSearch(event.target.value)} allowClear />
@@ -785,7 +792,7 @@ export default function AnunciosPage() {
             {details?.quantityPricing?.length ? <div className={styles.wholesale}><span>Descontos existentes no ML — somente consulta</span>{details.quantityPricing.map((tier) => <small key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ unidades · {tier.pricing_model === 'percentage' ? `${tier.discount_percent}% de desconto` : formatCurrency(tier.amount)}</small>)}</div> : null}
           </section>
 
-          <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Qualidade e performance</span><strong>O que priorizar neste anúncio</strong></div></div>{activeAnalysis.qualityAvailable ? <><Progress percent={Number(activeAnalysis.qualityScore || 0)} strokeColor="#ffbd0e" trailColor="rgba(255,255,255,.08)" /><div className={styles.qualityItems}>{qualityItems.length > 0 ? qualityItems.map((item: any, index: number) => <div key={`${item.nome}-${index}`}><span>{item.ok ? <CheckCircleOutlined className={styles.positive} /> : <WarningOutlined className={styles.warning} />}{item.nome || 'Critério do anúncio'}</span><small>{item.pontos ?? 0}/{item.max ?? 0} pontos{Array.isArray(item.regras) && item.regras[0]?.texto?.title ? ` · ${item.regras[0].texto.title}` : ''}</small></div>) : <Text type="secondary">Nenhum detalhamento adicional sincronizado.</Text>}</div></> : <Alert type="info" showIcon message="Nota disponível somente no painel do Mercado Livre" description={<div>{activeAnalysis.qualityUnavailableReason || 'A API pública não forneceu a nota deste anúncio.'}{qualityMissingAttributes.length > 0 && <><br />Ficha de catálogo pendente: {qualityMissingAttributes.join(', ')}.</>}</div>} />}</section>
+          <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Qualidade e performance</span><strong>O que priorizar neste anúncio</strong></div></div>{activeAnalysis.qualityAvailable ? <><Progress percent={Number(activeAnalysis.qualityScore || 0)} strokeColor="#ffbd0e" trailColor="rgba(255,255,255,.08)" /><div className={styles.qualityItems}>{qualityItems.length > 0 ? qualityItems.map((item: any, index: number) => <div key={`${item.nome}-${index}`}><span>{item.ok ? <CheckCircleOutlined className={styles.positive} /> : <WarningOutlined className={styles.warning} />}{item.nome || 'Critério do anúncio'}</span><small>{item.pontos ?? 0}/{item.max ?? 0} pontos{Array.isArray(item.regras) && item.regras[0]?.texto?.title ? ` · ${item.regras[0].texto.title}` : ''}</small></div>) : <Text type="secondary">Nenhum detalhamento adicional sincronizado.</Text>}</div>{qualityMissingAttributes.length > 0 && <Alert type="info" showIcon message="Ficha técnica pendente" description={qualityMissingAttributes.join(', ')} />}</> : <Alert type="info" showIcon message="Nota disponível somente no painel do Mercado Livre" description={<div>{activeAnalysis.qualityUnavailableReason || 'A API pública não forneceu a nota deste anúncio.'}{qualityMissingAttributes.length > 0 && <><br />Ficha de catálogo pendente: {qualityMissingAttributes.join(', ')}.</>}</div>} />}</section>
 
           <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Publicação e vínculo</span><strong>Estado observado e operação local</strong></div></div><Descriptions column={2} size="small" items={[{ key: 'item', label: 'Item ML', children: activeAnalysis.itemId }, { key: 'type', label: 'Tipo', children: activeAnalysis.listingType === 'catalog' ? 'Catálogo' : 'Padrão' }, { key: 'operational', label: 'Operacional', children: activeAnalysis.isOperational ? 'Sim' : 'Não' }, { key: 'catalogProduct', label: 'Produto catálogo', children: activeAnalysis.catalogProductId || 'Não informado' }, { key: 'related', label: 'Anúncio relacionado', children: activeAnalysis.relatedItemId || 'Não informado' }, { key: 'sync', label: 'Última leitura', children: formatDateTime(activeAnalysis.listingSyncedAt) }]} />{(activeAnalysis.blockReason || activeAnalysis.lastError) && <Alert type="error" showIcon message="Publicação bloqueada" description={activeAnalysis.lastError || activeAnalysis.blockReason} />}</section>
         </Spin>

@@ -8,7 +8,7 @@ import { loadPricingRequestContext, loadProductPricing } from '@/services/pricin
 import { pricingView } from '@/lib/pricing-view';
 
 const PAGE_SIZE = 100;
-const FOCUS = new Set<MlListingsFocus>(['all', 'active', 'paused', 'sold', 'quality_risk', 'price_review']);
+const FOCUS = new Set<MlListingsFocus>(['all', 'active', 'paused', 'sold', 'visited_unsold', 'quality_risk', 'price_review']);
 const QUALITY = new Set(['all', 'risk', 'good', 'perfect', 'unavailable']);
 const CATALOG = new Set(['all', 'standard', 'catalog', 'winning', 'competing', 'losing']);
 const PROFITABILITY = new Set(['all', 'positive', 'negative', 'unknown']);
@@ -57,9 +57,11 @@ export async function getMlListingResponse(request: Request, allRows = false) {
   const profitability = PROFITABILITY.has(profitabilityParam) ? profitabilityParam : 'all';
   const priceMin = finiteNumber(searchParams.get('priceMin'));
   const priceMax = finiteNumber(searchParams.get('priceMax'));
-  const sortByParam = searchParams.get('sortBy') || 'product';
+  const sortByParam = searchParams.get('sortBy') || (focus === 'visited_unsold' ? 'visits' : 'product');
   const sortBy = SORT_FIELDS.has(sortByParam) ? sortByParam : 'product';
-  const sortOrder = searchParams.get('sortOrder') === 'desc' ? 'desc' : 'asc';
+  const sortOrder = searchParams.has('sortOrder')
+    ? (searchParams.get('sortOrder') === 'desc' ? 'desc' : 'asc')
+    : (focus === 'visited_unsold' ? 'desc' : 'asc');
   const soldOnly = searchParams.get('soldOnly') === 'true' || focus === 'sold';
 
   const serviceClient = createServiceClient();
