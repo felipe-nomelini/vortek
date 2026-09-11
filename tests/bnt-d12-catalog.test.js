@@ -59,3 +59,15 @@ test('mantém duas rotas com nomes inequívocos e acompanhamento compartilhado',
   assert.match(view, /useMlPricePublishTracking/);
   assert.doesNotMatch(view, /Reanálise de Preço/);
 });
+
+test('distingue falha de carregamento de uma lista realmente vazia', () => {
+  const view = fs.readFileSync(path.join(__dirname, '../src/components/catalogo/CatalogoView.tsx'), 'utf8');
+  const route = fs.readFileSync(path.join(__dirname, '../src/app/api/catalogo/elegiveis/route.ts'), 'utf8');
+
+  assert.match(view, /Não foi possível carregar os anúncios elegíveis/);
+  assert.match(view, /Tentar novamente/);
+  assert.match(view, /AbortController/);
+  assert.match(view, /!loading && total === 0/);
+  assert.match(route, /O Mercado Livre não devolveu a elegibilidade de todos os anúncios solicitados/);
+  assert.match(route, /status: authFatal \? 401 : 502/);
+});

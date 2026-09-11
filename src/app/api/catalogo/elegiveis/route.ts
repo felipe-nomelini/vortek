@@ -4,6 +4,7 @@ import { fetchMLResult } from '@/services/integration';
 import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
 import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
 import { classifyCatalogEligibility } from '@/lib/catalogo/dashboard';
+import { collectCatalogEligibleItemIds, type CatalogEligibleSearchPage } from '@/lib/catalogo/eligible-search';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { listBntD12EligibleVisualReview } from '@/lib/catalogo/visual-review';
 
@@ -11,6 +12,13 @@ const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
 const CATALOG_FALLBACK_CONCURRENCY = 3;
 const MIN_RELIABLE_CATALOG_MATCH_SCORE = 100;
+
+class CatalogEligibleSourceError extends Error {
+  constructor(message: string, readonly authFatal = false) {
+    super(message);
+    this.name = 'CatalogEligibleSourceError';
+  }
+}
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
@@ -69,58 +77,6 @@ function isReadyForCatalogOptIn(row: any): boolean {
 
 function getEligibilityItemId(row: any): string {
   return String(row?.body?.id || row?.id || row?.body?.item_id || '').trim();
-}
-
-async function fetchAllEligibleItemIds(params: {
-  sellerId: string | number;
-  statusMl: string;
-}): Promise<{
-  ok: boolean;
-  itemIds: string[];
-  error?: string;
-  authFatal?: boolean;
-}> {
-  let scrollId: string | null = null;
-  const seenScrollIds = new Set<string>();
-  const uniqueIds = new Set<string>();
-  const statusQuery = params.statusMl !== 'all' ? `&status=${encodeURIComponent(params.statusMl)}` : '';
-
-  while (true) {
-    const requestPath: string = scrollId
-      ? `/users/${encodeURIComponent(String(params.sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
-      : `/users/${encodeURIComponent(String(params.sellerId))}/items/search?search_type=scan&limit=100&tags=catalog_listing_eligible${statusQuery}`;
-
-    const searchResult: Awaited<ReturnType<typeof fetchMLResult<{ results?: string[]; scroll_id?: string | null }>>> = await fetchMLResult<{ results?: string[]; scroll_id?: string | null }>(requestPath);
-    if (!searchResult.ok || !searchResult.data) {
-      return {
-        ok: false,
-        itemIds: [],
-        error: searchResult.error?.message || 'Falha ao buscar elegíveis',
-        authFatal: searchResult.error?.category === 'auth_fatal',
-      };
-    }
-
-    const ids = Array.isArray(searchResult.data.results)
-      ? searchResult.data.results.map((id: string) => String(id || '').trim()).filter(Boolean)
-      : [];
-
-    for (const id of ids) uniqueIds.add(id);
-
-    const nextScrollId: string = String(searchResult.data.scroll_id || '').trim();
-    if (!nextScrollId || ids.length === 0) {
-      return { ok: true, itemIds: Array.from(uniqueIds) };
-    }
-    if (seenScrollIds.has(nextScrollId)) {
-      return {
-        ok: false,
-        itemIds: [],
-        error: 'Paginação de elegíveis do Mercado Livre retornou cursor repetido',
-      };
-    }
-
-    seenScrollIds.add(nextScrollId);
-    scrollId = nextScrollId;
-  }
 }
 
 function normalizeText(input: unknown): string {
@@ -260,7 +216,12 @@ async function fetchItemsMap(itemIds: string[]): Promise<Map<string, any>> {
     const result = await fetchMLResult<Array<MlItemsBulkRow<any>>>(
       buildMlItemsBulkPath(itemIdChunk, ['id', 'title', 'seller_custom_field', 'attributes', 'status', 'price', 'permalink', 'thumbnail', 'category_id', 'domain_id', 'catalog_product_id', 'variations', 'last_updated']),
     );
-    if (!result.ok || !Array.isArray(result.data)) return;
+    if (!result.ok || !Array.isArray(result.data)) {
+      throw new CatalogEligibleSourceError(
+        result.error?.message || 'Falha ao carregar detalhes dos anúncios elegíveis',
+        result.error?.category === 'auth_fatal',
+      );
+    }
 
     for (const row of result.data) {
       const item = getMlItemsBulkBody(row);
@@ -268,6 +229,10 @@ async function fetchItemsMap(itemIds: string[]): Promise<Map<string, any>> {
       rowsById.set(item.id, item);
     }
   });
+
+  if (rowsById.size !== uniqueIds.length) {
+    throw new CatalogEligibleSourceError('O Mercado Livre não devolveu todos os anúncios elegíveis solicitados');
+  }
 
   return rowsById;
 }
@@ -277,7 +242,12 @@ async function fetchCatalogProducts(catalogProductIds: string[]): Promise<Map<st
   const products = new Map<string, any>();
   await runPool(uniqueIds, PRODUCT_CONCURRENCY, async (catalogProductId) => {
     const productResult = await fetchMLResult<any>(`/products/${encodeURIComponent(catalogProductId)}`);
-    if (!productResult.ok || !productResult.data) return;
+    if (!productResult.ok || !productResult.data) {
+      throw new CatalogEligibleSourceError(
+        productResult.error?.message || 'Falha ao confirmar produto de catálogo',
+        productResult.error?.category === 'auth_fatal',
+      );
+    }
     products.set(catalogProductId, productResult.data);
   });
   return products;
@@ -355,124 +325,166 @@ export async function GET(request: Request) {
     }));
   }
 
-  const meResult = await fetchMLResult<{ id: number }>('/users/me');
-  if (!meResult.ok || !meResult.data?.id) {
-    return NextResponse.json({ erro: meResult.error?.message || 'Falha ao obter usuário ML', auth_fatal: meResult.error?.category === 'auth_fatal' }, { status: meResult.status || 500 });
-  }
+  const startedAt = Date.now();
+  const timings: Record<string, number> = {};
 
-  const sellerId = meResult.data.id;
-  const offset = (page - 1) * pageSize;
-  const eligibleResult = await fetchAllEligibleItemIds({ sellerId, statusMl });
+  try {
+    const meResult = await fetchMLResult<{ id: number }>('/users/me');
+    if (!meResult.ok || !meResult.data?.id) {
+      throw new CatalogEligibleSourceError(
+        meResult.error?.message || 'Falha ao obter usuário ML',
+        meResult.error?.category === 'auth_fatal',
+      );
+    }
 
-  if (!eligibleResult.ok) {
-    return NextResponse.json({ erro: eligibleResult.error || 'Falha ao buscar elegíveis', auth_fatal: eligibleResult.authFatal === true }, { status: eligibleResult.authFatal ? 401 : 500 });
-  }
+    const sellerId = meResult.data.id;
+    const offset = (page - 1) * pageSize;
+    let stepStartedAt = Date.now();
+    const eligibleResult = await collectCatalogEligibleItemIds({
+      sellerId,
+      statusMl,
+      fetchPage: async (path) => {
+        const result = await fetchMLResult<CatalogEligibleSearchPage>(path);
+        return {
+          ok: result.ok,
+          data: result.data,
+          error: result.error?.message,
+          authFatal: result.error?.category === 'auth_fatal',
+        };
+      },
+    });
+    timings.candidate_search_ms = Date.now() - stepStartedAt;
 
-  const itemIds = eligibleResult.itemIds;
-  const total = itemIds.length;
+    if (!eligibleResult.ok) {
+      throw new CatalogEligibleSourceError(
+        eligibleResult.error || 'Falha ao buscar elegíveis',
+        eligibleResult.authFatal === true,
+      );
+    }
 
-  const eligibilityMap = new Map<string, any>();
-  if (itemIds.length > 0) {
-    await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
-      const multiResult = await fetchMLResult<any>(`/multiget/catalog_listing_eligibility?ids=${itemIdChunk.join(',')}`);
-      if (multiResult.ok && Array.isArray(multiResult.data)) {
+    const itemIds = eligibleResult.itemIds;
+    const total = itemIds.length;
+
+    const eligibilityMap = new Map<string, any>();
+    stepStartedAt = Date.now();
+    if (itemIds.length > 0) {
+      await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
+        const multiResult = await fetchMLResult<any>(`/multiget/catalog_listing_eligibility?ids=${itemIdChunk.join(',')}`);
+        if (!multiResult.ok || !Array.isArray(multiResult.data)) {
+          throw new CatalogEligibleSourceError(
+            multiResult.error?.message || 'Falha ao confirmar elegibilidade dos anúncios',
+            multiResult.error?.category === 'auth_fatal',
+          );
+        }
         for (const row of multiResult.data) {
           const itemId = getEligibilityItemId(row);
           if (!itemId) continue;
           eligibilityMap.set(itemId, row?.body || row);
         }
-      }
-    });
-  }
-
-  const rowsById = await fetchItemsMap(itemIds);
-
-  const localSkuMap = new Map<string, string>();
-  const localProductsBySku = new Map<string, any>();
-  if (itemIds.length > 0) {
-    const service = createServiceClient();
-    await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
-      const { data } = await service
-        .from('anuncios_ml')
-        .select('ml_item_id,sku')
-        .in('ml_item_id', itemIdChunk);
-      for (const row of data || []) {
-        const sku = String(row?.sku || '').trim();
-        if (row?.ml_item_id && sku) localSkuMap.set(String(row.ml_item_id), sku);
-      }
-    });
-  }
-
-  if (localSkuMap.size > 0) {
-    const service = createServiceClient();
-    const { data } = await service
-      .from('produtos')
-      .select('id,sku,nome,descricao,gtin')
-      .in('sku', Array.from(new Set(localSkuMap.values())));
-    for (const product of data || []) {
-      const sku = String(product?.sku || '').trim();
-      if (sku) localProductsBySku.set(sku, product);
-    }
-  }
-
-  let rows = itemIds
-    .map((itemId) => {
-      const item = rowsById.get(itemId);
-      if (!item) return null;
-      const el = eligibilityMap.get(itemId) || {};
-      const rowStatus = String(el.status || '').toUpperCase();
-      const itemVariations = Array.isArray(item.variations) ? item.variations : [];
-      const variations = (Array.isArray(el.variations) ? el.variations : []).map((variation: any) => {
-        const itemVariation = itemVariations.find((candidate: any) => String(candidate?.id) === String(variation?.id));
-        return {
-          ...variation,
-          catalog_product_id: itemVariation?.catalog_product_id || variation?.catalog_product_id || null,
-        };
       });
-      const isVariationReady = hasReadyForOptInVariation(variations);
-      const hasCatalogLink = Boolean(item.catalog_product_id || rowStatus);
-      const sellerSku = getSellerSkuFromItem(item) || localSkuMap.get(itemId) || null;
-      const effectiveEligibilityStatus = rowStatus || (isVariationReady ? 'READY_FOR_OPTIN' : null);
+      if (eligibilityMap.size !== itemIds.length) {
+        throw new CatalogEligibleSourceError('O Mercado Livre não devolveu a elegibilidade de todos os anúncios solicitados');
+      }
+    }
+    timings.eligibility_ms = Date.now() - stepStartedAt;
 
-      return {
-        ml_item_id: String(item.id),
-        title: item.title || '',
-        seller_sku: sellerSku,
-        local_product_id: localProductsBySku.get(String(sellerSku || '').trim())?.id || null,
-        local_product_name: localProductsBySku.get(String(sellerSku || '').trim())?.nome || null,
-        status: item.status || null,
-        status_label: getStatusLabel(item.status || null, hasCatalogLink),
-        price: Number(item.price || 0),
-        permalink: item.permalink || null,
-        thumbnail: item.thumbnail || null,
-        category_id: item.category_id || null,
-        domain_id: item.domain_id || null,
-        catalog_product_id: item.catalog_product_id
-          || variations.find((variation: any) => variation.catalog_product_id)?.catalog_product_id
-          || null,
-        eligibility_status: effectiveEligibilityStatus,
-        eligibility_label: getEligibilityLabel(effectiveEligibilityStatus),
-        buy_box_eligible: Boolean(el.buy_box_eligible),
-        eligibility_reason: el.reason || null,
-        variation_eligibility: variations,
-        last_updated: item.last_updated || null,
-      };
-    })
-    .filter(Boolean) as any[];
+    stepStartedAt = Date.now();
+    const rowsById = await fetchItemsMap(itemIds);
+    timings.item_details_ms = Date.now() - stepStartedAt;
 
-  const readyForOptInBeforeFilters = rows.filter(isReadyForCatalogOptIn).length;
+    const localSkuMap = new Map<string, string>();
+    const localProductsBySku = new Map<string, any>();
+    stepStartedAt = Date.now();
+    if (itemIds.length > 0) {
+      const service = createServiceClient();
+      await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
+        const { data, error } = await service
+          .from('anuncios_ml')
+          .select('ml_item_id,sku')
+          .in('ml_item_id', itemIdChunk);
+        if (error) throw new CatalogEligibleSourceError(`Falha ao carregar vínculos locais: ${error.message}`);
+        for (const row of data || []) {
+          const sku = String(row?.sku || '').trim();
+          if (row?.ml_item_id && sku) localSkuMap.set(String(row.ml_item_id), sku);
+        }
+      });
+    }
 
-  const catalogProducts = await fetchCatalogProducts(rows.flatMap((row) => [
-    row.catalog_product_id,
-    ...(row.variation_eligibility || []).map((variation: any) => variation.catalog_product_id),
-  ]).filter(Boolean));
-  rows = rows.map((row) => ({
-    ...row,
-    catalog_product_name: catalogProducts.get(String(row.catalog_product_id || ''))?.name || null,
-    catalog_product_status: String(catalogProducts.get(String(row.catalog_product_id || ''))?.status || '').toLowerCase() || null,
-  }));
+    if (localSkuMap.size > 0) {
+      const service = createServiceClient();
+      const { data, error } = await service
+        .from('produtos')
+        .select('id,sku,nome,descricao,gtin')
+        .in('sku', Array.from(new Set(localSkuMap.values())));
+      if (error) throw new CatalogEligibleSourceError(`Falha ao carregar produtos locais: ${error.message}`);
+      for (const product of data || []) {
+        const sku = String(product?.sku || '').trim();
+        if (sku) localProductsBySku.set(sku, product);
+      }
+    }
+    timings.local_links_ms = Date.now() - stepStartedAt;
 
-  await runPool(rows, CATALOG_FALLBACK_CONCURRENCY, async (row) => {
+    let rows = itemIds
+      .map((itemId) => {
+        const item = rowsById.get(itemId);
+        if (!item) return null;
+        const el = eligibilityMap.get(itemId) || {};
+        const rowStatus = String(el.status || '').toUpperCase();
+        const itemVariations = Array.isArray(item.variations) ? item.variations : [];
+        const variations = (Array.isArray(el.variations) ? el.variations : []).map((variation: any) => {
+          const itemVariation = itemVariations.find((candidate: any) => String(candidate?.id) === String(variation?.id));
+          return {
+            ...variation,
+            catalog_product_id: itemVariation?.catalog_product_id || variation?.catalog_product_id || null,
+          };
+        });
+        const isVariationReady = hasReadyForOptInVariation(variations);
+        const hasCatalogLink = Boolean(item.catalog_product_id || rowStatus);
+        const sellerSku = getSellerSkuFromItem(item) || localSkuMap.get(itemId) || null;
+        const effectiveEligibilityStatus = rowStatus || (isVariationReady ? 'READY_FOR_OPTIN' : null);
+
+        return {
+          ml_item_id: String(item.id),
+          title: item.title || '',
+          seller_sku: sellerSku,
+          local_product_id: localProductsBySku.get(String(sellerSku || '').trim())?.id || null,
+          local_product_name: localProductsBySku.get(String(sellerSku || '').trim())?.nome || null,
+          status: item.status || null,
+          status_label: getStatusLabel(item.status || null, hasCatalogLink),
+          price: Number(item.price || 0),
+          permalink: item.permalink || null,
+          thumbnail: item.thumbnail || null,
+          category_id: item.category_id || null,
+          domain_id: item.domain_id || null,
+          catalog_product_id: item.catalog_product_id
+            || variations.find((variation: any) => variation.catalog_product_id)?.catalog_product_id
+            || null,
+          eligibility_status: effectiveEligibilityStatus,
+          eligibility_label: getEligibilityLabel(effectiveEligibilityStatus),
+          buy_box_eligible: Boolean(el.buy_box_eligible),
+          eligibility_reason: el.reason || null,
+          variation_eligibility: variations,
+          last_updated: item.last_updated || null,
+        };
+      })
+      .filter(Boolean) as any[];
+
+    const readyForOptInBeforeFilters = rows.filter(isReadyForCatalogOptIn).length;
+
+    stepStartedAt = Date.now();
+    const catalogProducts = await fetchCatalogProducts(rows.flatMap((row) => [
+      row.catalog_product_id,
+      ...(row.variation_eligibility || []).map((variation: any) => variation.catalog_product_id),
+    ]).filter(Boolean));
+    rows = rows.map((row) => ({
+      ...row,
+      catalog_product_name: catalogProducts.get(String(row.catalog_product_id || ''))?.name || null,
+      catalog_product_status: String(catalogProducts.get(String(row.catalog_product_id || ''))?.status || '').toLowerCase() || null,
+    }));
+    timings.catalog_products_ms = Date.now() - stepStartedAt;
+
+    stepStartedAt = Date.now();
+    await runPool(rows, CATALOG_FALLBACK_CONCURRENCY, async (row) => {
     const item = rowsById.get(row.ml_item_id);
     const currentProduct = catalogProducts.get(String(row.catalog_product_id || '')) || null;
     if (!item || !currentProduct) return;
@@ -490,68 +502,87 @@ export async function GET(request: Request) {
     row.catalog_product_match_source = suggestion.source;
     row.catalog_product_match_score = suggestion.score;
     row.catalog_product_warning = suggestion.warning;
-  });
-
-  const activeCatalogProductsBeforeActionableFilter = rows.filter((row) => row.catalog_product_status === 'active').length;
-  const suggestedCatalogProductsBeforeFilters = rows.filter((row) => row.catalog_product_id_sugerido).length;
-  rows = rows.map((row) => ({ ...row, ...classifyCatalogEligibility(row) }));
-
-  if (search) {
-    rows = rows.filter((row) => {
-      const fields = [
-        row.ml_item_id,
-        row.title,
-        row.seller_sku,
-        row.catalog_product_id,
-        row.catalog_product_id_sugerido,
-        row.catalog_product_name_sugerido,
-        row.catalog_product_warning,
-        row.category_id,
-        row.domain_id,
-        row.eligibility_status,
-        row.eligibility_reason,
-      ].map((v) => String(v || '').toLowerCase());
-      return fields.some((f) => f.includes(search));
     });
+    timings.compatibility_ms = Date.now() - stepStartedAt;
+
+    const activeCatalogProductsBeforeActionableFilter = rows.filter((row) => row.catalog_product_status === 'active').length;
+    const suggestedCatalogProductsBeforeFilters = rows.filter((row) => row.catalog_product_id_sugerido).length;
+    rows = rows.map((row) => ({ ...row, ...classifyCatalogEligibility(row) }));
+
+    if (search) {
+      rows = rows.filter((row) => {
+        const fields = [
+          row.ml_item_id,
+          row.title,
+          row.seller_sku,
+          row.catalog_product_id,
+          row.catalog_product_id_sugerido,
+          row.catalog_product_name_sugerido,
+          row.catalog_product_warning,
+          row.category_id,
+          row.domain_id,
+          row.eligibility_status,
+          row.eligibility_reason,
+        ].map((v) => String(v || '').toLowerCase());
+        return fields.some((f) => f.includes(search));
+      });
+    }
+
+    if (parsedMin !== null) rows = rows.filter((r) => Number(r.price || 0) >= parsedMin);
+    if (parsedMax !== null) rows = rows.filter((r) => Number(r.price || 0) <= parsedMax);
+
+    const metrics = {
+      total: rows.length,
+      ready: rows.filter((row) => row.state === 'ready').length,
+      reviewRequired: rows.filter((row) => row.state === 'review_required').length,
+      catalogProductUnavailable: rows.filter((row) => row.state === 'catalog_product_unavailable').length,
+      localProductMissing: rows.filter((row) => row.state === 'local_product_missing').length,
+    };
+    if (actionState !== 'all') rows = rows.filter((row) => row.state === actionState);
+
+    const filteredTotal = rows.length;
+    const pagedRows = rows.slice(offset, offset + pageSize);
+
+    console.log(JSON.stringify({
+      event: 'catalog_fetch_elegiveis',
+      seller_id: sellerId,
+      page,
+      page_size: pageSize,
+      total_ml: total,
+      eligibility_loaded: eligibilityMap.size,
+      ready_for_optin: readyForOptInBeforeFilters,
+      active_catalog_products: activeCatalogProductsBeforeActionableFilter,
+      actionable_catalog_products: filteredTotal,
+      suggested_catalog_products: suggestedCatalogProductsBeforeFilters,
+      returned: pagedRows.length,
+      eligibility_status: 'READY_FOR_OPTIN',
+      duration_ms: Date.now() - startedAt,
+      timings,
+      timestamp_utc: new Date().toISOString(),
+    }));
+
+    return NextResponse.json({
+      data: pagedRows,
+      total: filteredTotal,
+      page,
+      pageSize,
+      metrics,
+      visualReview: null,
+    });
+  } catch (error) {
+    const authFatal = error instanceof CatalogEligibleSourceError && error.authFatal;
+    console.error(JSON.stringify({
+      event: 'catalog_fetch_elegiveis_failed',
+      message: error instanceof Error ? error.message : String(error),
+      duration_ms: Date.now() - startedAt,
+      timings,
+      timestamp_utc: new Date().toISOString(),
+    }));
+    return NextResponse.json({
+      erro: authFatal
+        ? 'A conexão com o Mercado Livre precisa ser refeita.'
+        : 'Não foi possível carregar os anúncios elegíveis. Tente novamente.',
+      auth_fatal: authFatal,
+    }, { status: authFatal ? 401 : 502 });
   }
-
-  if (parsedMin !== null) rows = rows.filter((r) => Number(r.price || 0) >= parsedMin);
-  if (parsedMax !== null) rows = rows.filter((r) => Number(r.price || 0) <= parsedMax);
-
-  const metrics = {
-    total: rows.length,
-    ready: rows.filter((row) => row.state === 'ready').length,
-    reviewRequired: rows.filter((row) => row.state === 'review_required').length,
-    catalogProductUnavailable: rows.filter((row) => row.state === 'catalog_product_unavailable').length,
-    localProductMissing: rows.filter((row) => row.state === 'local_product_missing').length,
-  };
-  if (actionState !== 'all') rows = rows.filter((row) => row.state === actionState);
-
-  const filteredTotal = rows.length;
-  const pagedRows = rows.slice(offset, offset + pageSize);
-
-  console.log(JSON.stringify({
-    event: 'catalog_fetch_elegiveis',
-    seller_id: sellerId,
-    page,
-    page_size: pageSize,
-    total_ml: total,
-    eligibility_loaded: eligibilityMap.size,
-    ready_for_optin: readyForOptInBeforeFilters,
-    active_catalog_products: activeCatalogProductsBeforeActionableFilter,
-    actionable_catalog_products: filteredTotal,
-    suggested_catalog_products: suggestedCatalogProductsBeforeFilters,
-    returned: pagedRows.length,
-    eligibility_status: 'READY_FOR_OPTIN',
-    timestamp_utc: new Date().toISOString(),
-  }));
-
-  return NextResponse.json({
-    data: pagedRows,
-    total: filteredTotal,
-    page,
-    pageSize,
-    metrics,
-    visualReview: null,
-  });
 }

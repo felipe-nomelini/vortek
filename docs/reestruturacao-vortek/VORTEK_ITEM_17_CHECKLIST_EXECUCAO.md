@@ -4022,3 +4022,22 @@ O lote visual `e036397` foi publicado em DEV pela ação Easypanel `cmts65gr7000
   do Mercado Livre nesta ação.
 
 [Causa, contrato, validação e recuperação](evidencias/BNT-CATALOG-UX-01-validacao.md).
+
+### BNT-CATALOG-ELIGIBLE-01 — 11/09/2026
+
+**Estado: IMPLEMENTADO E VALIDADO PARA PROMOÇÃO ÚNICA.**
+
+- [x] preservar o filtro de elegibilidade e a situação em todas as páginas da
+  consulta ao Mercado Livre;
+- [x] encerrar a busca ao atingir o total informado, sem varrer anúncios que
+  não pertencem à fila;
+- [x] impedir resultado parcial em falhas de elegibilidade, detalhes, vínculos
+  locais ou produtos de catálogo;
+- [x] distinguir uma falha de carregamento de uma lista realmente vazia,
+  preservar a última resposta válida e oferecer nova tentativa;
+- [x] aprovar 15 testes direcionados, regressão completa com 1.391 cenários,
+  lint, TypeScript, build, verificação de secrets e `git diff --check`;
+- [x] confirmar em leitura real dois candidatos em uma chamada e 182 ms, sem
+  mutation no Supabase ou no Mercado Livre.
+
+[Causa, contrato, validação e recuperação](evidencias/BNT-CATALOG-ELIGIBLE-01-validacao.md).

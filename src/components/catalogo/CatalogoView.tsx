@@ -109,6 +109,8 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(null);
   const requestSequence = useRef(0);
+  const dataAbortController = useRef<AbortController | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [activeCatalog, setActiveCatalog] = useState<NoCatalogoRow | null>(null);
   const [activeEligible, setActiveEligible] = useState<ElegivelRow | null>(null);
   const [priceDetail, setPriceDetail] = useState<PriceDetail | null>(null);
@@ -143,10 +145,14 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
 
   const fetchData = useCallback(async () => {
     const sequence = ++requestSequence.current;
+    dataAbortController.current?.abort();
+    const controller = new AbortController();
+    dataAbortController.current = controller;
+    setLoadError(null);
     setLoading(true);
     try {
       const endpoint = mode === 'no_catalogo' ? '/api/catalogo/no-catalogo' : '/api/catalogo/elegiveis';
-      const response = await fetch(`${endpoint}?${queryString}`, { cache: 'no-store' });
+      const response = await fetch(`${endpoint}?${queryString}`, { cache: 'no-store', signal: controller.signal });
       const payload = await response.json().catch(() => ({}));
       if (sequence !== requestSequence.current) return;
       if (!response.ok) throw new Error(payload?.erro || 'Falha ao carregar o catálogo.');
@@ -162,10 +168,21 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         setSelectedEligibleKeys([]);
       }
     } catch (error: any) {
-      if (sequence === requestSequence.current) { setRows([]); setEligibleRows([]); setTotal(0); messageApi.error(userSafeMessage(error?.message, 'Não foi possível carregar o catálogo. Tente novamente.')); }
-    } finally { if (sequence === requestSequence.current) setLoading(false); }
-  }, [messageApi, mode, queryString]);
-  useEffect(() => { void fetchData(); }, [fetchData]);
+      if (error?.name === 'AbortError') return;
+      if (sequence === requestSequence.current) {
+        setLoadError(userSafeMessage(error?.message, 'Não foi possível carregar o catálogo. Tente novamente.'));
+      }
+    } finally {
+      if (sequence === requestSequence.current) {
+        setLoading(false);
+        if (dataAbortController.current === controller) dataAbortController.current = null;
+      }
+    }
+  }, [mode, queryString]);
+  useEffect(() => {
+    void fetchData();
+    return () => dataAbortController.current?.abort();
+  }, [fetchData]);
   useEffect(() => { setPage(1); }, [actionState, competition, mode, priceMax, priceMin, search, statusMl]);
 
   const fetchRefreshStatus = useCallback(async (jobId?: string) => {
@@ -296,7 +313,24 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     {refreshPayload?.job && mode === 'no_catalogo' && <Alert className={styles.jobAlert} type={refreshPayload.job.presentation?.tone || (refreshRunning ? 'info' : 'error')} showIcon message={refreshPayload.job.presentation?.title || 'Atualização do catálogo'} description={<div className={styles.jobDescription}><span>{refreshPayload.job.presentation?.description || 'Acompanhando a atualização.'}</span><Progress percent={Number(refreshPayload.job.progresso || 0)} status={refreshPayload.job.presentation?.tone === 'error' ? 'exception' : refreshRunning ? 'active' : refreshPayload.job.presentation?.tone === 'warning' ? 'normal' : 'success'} size="small" /></div>} />}
     <Segmented className={styles.quickViews} value={mode === 'no_catalogo' ? competition : actionState} onChange={(value) => mode === 'no_catalogo' ? setCompetition(String(value)) : setActionState(String(value))} options={queueItems.map(([value, label, count]) => ({ value, label: <span className={styles.quickViewLabel}>{label}<b>{count.toLocaleString('pt-BR')}</b></span> }))} />
     <section className={styles.filterBar}><Input className={styles.search} prefix={<SearchOutlined />} placeholder="Buscar por produto, SKU ou ID" allowClear value={search} onChange={(event) => setSearch(event.target.value)} /><Select value={statusMl} options={statusOptions} onChange={setStatusMl} /><Select value={mode === 'no_catalogo' ? competition : actionState} options={mode === 'no_catalogo' ? competitionOptions : eligibilityOptions} onChange={(value) => mode === 'no_catalogo' ? setCompetition(value) : setActionState(value)} /><Space.Compact className={styles.priceRange}><InputNumber prefix="R$" placeholder="Preço mín." value={priceMin} onChange={(value) => setPriceMin(value ?? null)} /><InputNumber prefix="R$" placeholder="Preço máx." value={priceMax} onChange={(value) => setPriceMax(value ?? null)} /></Space.Compact>{mode === 'no_catalogo' && opportunityIds && <Button onClick={() => setOpportunityIds(null)}>Exibindo {visibleCatalogRows.length} oportunidades · Limpar</Button>}</section>
-    <section className={styles.tableCard}><Spin spinning={loading} indicator={<LoadingOutlined className={styles.loadingIcon} spin />}>{!loading && total === 0 ? <Empty description="Nenhum anúncio encontrado com estes filtros" /> : mode === 'no_catalogo' ? <ResizableTable<NoCatalogoRow> className={styles.table} storageKey="bnt-d12-catalog-listings" rowKey="ml_item_id" dataSource={visibleCatalogRows} columns={catalogColumns} onChange={handleCatalogTableChange} pagination={{ current: page, pageSize: PAGE_SIZE, total: opportunityIds ? visibleCatalogRows.length : total, showSizeChanger: false, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} de catálogo` }} scroll={{ x: 1300 }} size="small" /> : <ResizableTable<ElegivelRow> className={styles.table} storageKey="bnt-d12-catalog-eligible" rowKey="ml_item_id" dataSource={eligibleRows} columns={eligibleColumns} rowSelection={{ selectedRowKeys: selectedEligibleKeys, onChange: setSelectedEligibleKeys, getCheckboxProps: (row) => ({ disabled: row.state !== 'ready' || Boolean(visualReview) }) }} pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, onChange: setPage, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} padrão` }} scroll={{ x: 1300 }} size="small" />}</Spin></section>
+    <section className={styles.tableCard}>
+      {loadError && <Alert
+        type="error"
+        showIcon
+        message={mode === 'elegiveis' ? 'Não foi possível carregar os anúncios elegíveis' : 'Não foi possível carregar o catálogo'}
+        description={loadError}
+        action={<Button loading={loading} onClick={() => void fetchData()}>Tentar novamente</Button>}
+      />}
+      <Spin spinning={loading} indicator={<LoadingOutlined className={styles.loadingIcon} spin />}>
+        {loadError && (mode === 'no_catalogo' ? visibleCatalogRows.length === 0 : eligibleRows.length === 0)
+          ? null
+          : !loading && total === 0
+            ? <Empty description="Nenhum anúncio encontrado com estes filtros" />
+            : mode === 'no_catalogo'
+              ? <ResizableTable<NoCatalogoRow> className={styles.table} storageKey="bnt-d12-catalog-listings" rowKey="ml_item_id" dataSource={visibleCatalogRows} columns={catalogColumns} onChange={handleCatalogTableChange} pagination={{ current: page, pageSize: PAGE_SIZE, total: opportunityIds ? visibleCatalogRows.length : total, showSizeChanger: false, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} de catálogo` }} scroll={{ x: 1300 }} size="small" />
+              : <ResizableTable<ElegivelRow> className={styles.table} storageKey="bnt-d12-catalog-eligible" rowKey="ml_item_id" dataSource={eligibleRows} columns={eligibleColumns} rowSelection={{ selectedRowKeys: selectedEligibleKeys, onChange: setSelectedEligibleKeys, getCheckboxProps: (row) => ({ disabled: row.state !== 'ready' || Boolean(visualReview) }) }} pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, onChange: setPage, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} padrão` }} scroll={{ x: 1300 }} size="small" />}
+      </Spin>
+    </section>
 
     <Drawer open={Boolean(activeCatalog)} onClose={() => { pricingRequest.current++; setPriceDetailLoading(false); setUpdatingPrice(false); setActiveCatalog(null); }} width="min(96vw, 900px)" title={activeCatalog ? <div className={styles.drawerTitle}><span>Análise do anúncio de catálogo</span><strong>{activeCatalog.ml_item_id}</strong></div> : undefined} extra={activeCatalog?.permalink && !visualReview ? <Button icon={<EyeOutlined />} onClick={() => window.open(activeCatalog.permalink || '', '_blank', 'noopener,noreferrer')}>Abrir no ML</Button> : null}>{activeCatalog && <Spin spinning={priceDetailLoading}><Tabs items={[
       { key: 'relation', label: 'Relação', children: <div className={styles.drawerSection}><div className={styles.relationFlow}><span><small>Anúncio padrão</small><strong>{activeCatalog.relacionado_id || 'Não localizado'}</strong></span><ArrowRightOutlined /><span><small>Produto de catálogo</small><strong>{activeCatalog.catalog_product_id || 'Não informado'}</strong></span><ArrowRightOutlined /><span><small>Anúncio de catálogo</small><strong>{activeCatalog.ml_item_id}</strong></span></div><Alert type="info" showIcon message="Três identificadores diferentes" description="O produto de catálogo identifica a página do Mercado Livre. Os outros dois IDs identificam publicações da loja." /><Descriptions column={2} size="small" items={[{ key: 'product', label: 'Produto Bentevi', children: activeCatalog.produto_nome || activeCatalog.title }, { key: 'sku', label: 'SKU Bentevi', children: activeCatalog.sku_local || 'Não informado' }, { key: 'catalogStatus', label: 'Anúncio de catálogo', children: statusPresentation(activeCatalog.status).label }, { key: 'standardStatus', label: 'Anúncio padrão', children: statusPresentation(activeCatalog.related_status).label }]} /></div> },
