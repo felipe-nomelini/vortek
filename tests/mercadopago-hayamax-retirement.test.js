@@ -25,6 +25,8 @@ test('remove webhook, consulta de pagamento Hayamax e SDK sem afetar relatório 
   assert.match(service, /getMercadoPagoPaymentForMlSale/);
   assert.match(service, /createAccountMoneyReport/);
   assert.match(service, /downloadAccountMoneyReport/);
+  assert.match(service, /getValidMLToken/);
+  assert.doesNotMatch(service, /MERCADOPAGO_ACCESS_TOKEN|eq\('tipo', 'mercadopago'\)/);
   assert.equal(packageJson.dependencies.mercadopago, undefined);
 });
 
@@ -35,6 +37,7 @@ test('remove contrato ativo Hayamax e preserva schema e histórico Mercado Pago'
   const databaseTypes = read('src/types/database.ts');
 
   assert.doesNotMatch(syncRoute, /MERCADOPAGO_HAYAMAX_MATCHERS|MERCADOPAGO_WEBHOOK_SECRET/);
+  assert.match(syncRoute, /IMPORT_BATCH_SIZE/);
   assert.doesNotMatch(parser, /isHayamaxTopupCandidate|isReviewRequiredCandidate/);
   assert.match(migration, /create table if not exists public\.mercadopago_account_movements/i);
   assert.match(migration, /matched_supplier text null/);

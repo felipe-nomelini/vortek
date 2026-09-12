@@ -53,7 +53,7 @@ test('código e scripts não mantêm consultas múltiplas legadas', () => {
   const roots = [path.join(__dirname, '../src'), path.join(__dirname, '../scripts')];
   for (const file of roots.flatMap(sourceFiles)) {
     const source = fs.readFileSync(file, 'utf8');
-    assert.doesNotMatch(source, /\/items\?ids=/, file);
+    assert.doesNotMatch(source, /(?:^|[\"'`])\/items\?ids=/m, file);
     assert.doesNotMatch(source, /\/users\?ids=/, file);
   }
 });

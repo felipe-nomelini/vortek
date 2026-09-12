@@ -3,7 +3,9 @@ const test = require('node:test');
 
 const {
   CRITICAL_JOB_TIMEOUT_GRACE_MS,
+  classifyCriticalJobIncident,
   decideCriticalJobAlert,
+  getCriticalJobScope,
   isJobTimeoutAbort,
 } = require('../src/lib/sync/critical-job-alert.ts');
 
@@ -63,4 +65,48 @@ test('mantém alertas de autenticação e falhas reais repetidas', () => {
     status: 'erro',
     occurrences: 1,
   }), 'skip_transient');
+});
+
+test('identifica incidentes pelo registro afetado e não somente pela rotina', () => {
+  const first = { tipo: 'dslite_criar_pedido', dedupe_key: 'pedido:111', log: [] };
+  const second = { tipo: 'dslite_criar_pedido', dedupe_key: 'pedido:222', log: [] };
+  assert.equal(getCriticalJobScope(first), 'pedido:111');
+  assert.notEqual(
+    classifyCriticalJobIncident(first, { message: 'Rejeição 778: NCM inválido' }).key,
+    classifyCriticalJobIncident(second, { message: 'Rejeição 778: NCM inválido' }).key,
+  );
+  const incident = classifyCriticalJobIncident(first, { message: 'Rejeição 778: NCM inválido' });
+  assert.equal(incident.errorClass, 'invalid_ncm_778');
+  assert.match(incident.title, /cadastro fiscal/);
+});
+
+test('resultado comercial inconclusivo do Pricing não vira incidente técnico', () => {
+  const review = classifyCriticalJobIncident(
+    { tipo: 'pricing_product_reanalysis', dedupe_key: 'product:P1' },
+    { error_code: 'listing_identity_pending' },
+  );
+  assert.equal(review.actionable, false);
+  const outage = classifyCriticalJobIncident(
+    { tipo: 'pricing_product_reanalysis', dedupe_key: 'product:P1' },
+    { error_code: 'listing_link_unavailable', http_status: 503 },
+  );
+  assert.equal(outage.actionable, true);
+  assert.equal(outage.errorClass, 'provider_unavailable');
+});
+
+test('resultado comercial legado também é reconhecido quando o código está na mensagem', () => {
+  const incident = classifyCriticalJobIncident(
+    { tipo: 'pricing_product_reanalysis', status: 'erro', dedupe_key: 'product:P1' },
+    { message: 'listing_identity_pending' },
+  );
+  assert.equal(incident.actionable, false);
+});
+
+test('sucesso de outro registro não representa recuperação do pedido com erro', () => {
+  const failed = { tipo: 'dslite_criar_pedido', dedupe_key: 'pedido:111' };
+  const unrelatedSuccess = { tipo: 'dslite_criar_pedido', dedupe_key: 'pedido:222' };
+  assert.notEqual(
+    `${failed.tipo}:${getCriticalJobScope(failed)}`,
+    `${unrelatedSuccess.tipo}:${getCriticalJobScope(unrelatedSuccess)}`,
+  );
 });

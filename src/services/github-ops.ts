@@ -28,7 +28,37 @@ function getGitHubConfig() {
 }
 
 function safeText(input: unknown, max = 4000) {
-  return String(input ?? '').slice(0, max);
+  return sanitizeOpsText(input, max);
+}
+
+const SENSITIVE_KEY = /(?:^|_)(?:access_?token|refresh_?token|token|secret|password|authorization|cookie|api_?key|private_?key|cpf|cnpj|documento|phone|telefone|email|chave_?acesso)(?:$|_)/i;
+const SENSITIVE_VALUE_PATTERNS = [
+  /\bBearer\s+[A-Za-z0-9._~+/=-]+/gi,
+  /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}(?:\.[A-Za-z0-9_-]{10,})?/g,
+  /\b(?:cfat_|APP_USR-|TEST-)[A-Za-z0-9_-]{12,}\b/gi,
+  /\b[A-Fa-f0-9]{40,}\b/g,
+  /\b[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}\b/g,
+  /(?<!\d)(?:\+?55\s*)?(?:\(?\d{2}\)?\s*)?9?\d{4}[-\s]?\d{4}(?!\d)/g,
+  /(?<!\d)\d{11,14}(?!\d)/g,
+];
+
+export function sanitizeOpsText(input: unknown, max = 4000) {
+  let value = String(input ?? '');
+  for (const pattern of SENSITIVE_VALUE_PATTERNS) value = value.replace(pattern, '[dado protegido]');
+  return value.slice(0, max);
+}
+
+export function sanitizeOpsPayload(value: unknown, depth = 0): unknown {
+  if (depth > 6) return '[conteúdo resumido]';
+  if (value == null || typeof value === 'boolean' || typeof value === 'number') return value;
+  if (typeof value === 'string') return sanitizeOpsText(value, 500);
+  if (Array.isArray(value)) return value.slice(0, 20).map((item) => sanitizeOpsPayload(item, depth + 1));
+  if (typeof value !== 'object') return sanitizeOpsText(value, 500);
+  const result: Record<string, unknown> = {};
+  for (const [key, nested] of Object.entries(value as Record<string, unknown>).slice(0, 40)) {
+    result[key] = SENSITIVE_KEY.test(key) ? '[dado protegido]' : sanitizeOpsPayload(nested, depth + 1);
+  }
+  return result;
 }
 
 function labelName(label: string | { name?: string }) {
@@ -112,10 +142,13 @@ export async function createOrUpdateOpsIssue(input: {
     }
   }
 
+  const safeTitle = sanitizeOpsText(input.title, 180);
+  const safeMessage = sanitizeOpsText(input.message, 3000);
+  const safePayload = input.payload ? sanitizeOpsPayload(input.payload) : null;
   const body = [
-    `## ${input.title}`,
+    `## ${safeTitle}`,
     '',
-    input.message,
+    safeMessage,
     '',
     '## Contexto',
     '',
@@ -125,17 +158,17 @@ export async function createOrUpdateOpsIssue(input: {
     `- Fingerprint: ${fingerprint}`,
     `- Criado em: ${new Date().toISOString()}`,
     '',
-    input.payload ? '## Payload sanitizado' : null,
-    input.payload ? '```json' : null,
-    input.payload ? JSON.stringify(input.payload, null, 2).slice(0, 6000) : null,
-    input.payload ? '```' : null,
+    safePayload ? '## Informações operacionais' : null,
+    safePayload ? '```json' : null,
+    safePayload ? JSON.stringify(safePayload, null, 2).slice(0, 6000) : null,
+    safePayload ? '```' : null,
   ].filter(Boolean).join('\n');
 
   if (existing) {
     const comment = [
       'Novo evento com mesmo fingerprint.',
       '',
-      input.message,
+      safeMessage,
       '',
       `Data: ${new Date().toISOString()}`,
     ].join('\n');
@@ -151,7 +184,7 @@ export async function createOrUpdateOpsIssue(input: {
   const created = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues`, {
     method: 'POST',
     body: {
-      title: `[${input.severity.toUpperCase()}] ${input.title}`,
+      title: `[${input.severity.toUpperCase()}] ${safeTitle}`,
       body,
       labels,
     },
@@ -207,8 +240,34 @@ export async function commentOpsIssue(issueNumber: number, body: string) {
   const { owner, repo } = getGitHubConfig();
   return githubRequest<{ html_url: string }>(`/repos/${owner}/${repo}/issues/${issueNumber}/comments`, {
     method: 'POST',
-    body: { body },
+    body: { body: sanitizeOpsText(body, 4000) },
   });
+}
+
+export async function resolveRecoveredCriticalJobOpsIssues(
+  fingerprints: string[],
+  message: string,
+) {
+  const requested = Array.from(new Set(fingerprints.map((value) => String(value).trim()).filter(Boolean)));
+  if (!requested.length) return { resolved: 0 };
+  const { owner, repo } = getGitHubConfig();
+  const labels = encodeURIComponent('ops:error,alert:critical_error');
+  const issues = await githubRequest<GitHubIssue[]>(
+    `/repos/${owner}/${repo}/issues?state=open&labels=${labels}&per_page=100`,
+  );
+  let resolved = 0;
+  for (const issue of issues) {
+    if (issue.pull_request) continue;
+    const fingerprint = requested.find((value) => String(issue.body || '').includes(value));
+    if (!fingerprint) continue;
+    await commentOpsIssue(issue.number, `${message}\n- Ocorrência: ${fingerprint}`);
+    await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues/${issue.number}`, {
+      method: 'PATCH',
+      body: { state: 'closed', state_reason: 'completed' },
+    });
+    resolved += 1;
+  }
+  return { resolved };
 }
 
 export async function resolveOpenIntegrationOpsIssues(message: string) {

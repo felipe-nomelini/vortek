@@ -51,12 +51,14 @@ test('teste aprovado persiste como validado e continua disponível para nova ver
   assert.equal(validated.testable, true);
 });
 
-test('precedência efetiva preserva MP runtime e Brasil NFe ERP', () => {
+test('Mercado Pago usa a conta Mercado Livre e Brasil NFe preserva a precedência do ERP', () => {
   const row = { access_token: 'erp', refresh_token: 'erp-user' };
-  assert.equal(config.resolveIntegrationConfiguration('mercadopago', row, { MERCADOPAGO_ACCESS_TOKEN: 'runtime' }).token.value, 'runtime');
   assert.equal(config.resolveIntegrationConfiguration('brasilnfe', row, { BRASILNFE_TOKEN: 'runtime' }).token.value, 'erp');
   assert.equal(config.resolveIntegrationConfiguration('brasilnfe', {}, { BRASILNFE_TOKEN: 'runtime' }).token.value, 'runtime');
-  assert.equal(config.integrationSummaries([], { MERCADOPAGO_ACCESS_TOKEN: sentinel }).find(i => i.tipo === 'mercadopago').editable, false);
+  const summary = config.integrationSummaries([{ tipo: 'mercadolivre', conectado: true, access_token: 'ml', refresh_token: 'refresh', token_expires_at: '2099-01-01T00:00:00Z' }], {}).find(i => i.tipo === 'mercadopago');
+  assert.equal(summary.editable, false);
+  assert.equal(summary.testable, true);
+  assert.match(summary.restriction, /conta Mercado Livre/);
 });
 
 test('DTO não reproduz secrets via campos, URL ou erros', () => {
@@ -178,6 +180,7 @@ function dependencies(db, admin = true) {
     '@/lib/integration-config-dto': dto,
     '@/lib/integration-configuration': config,
     '@/services/configuration-audit': { recordConfigurationAudit: async () => [] },
+    '@/services/mercadopago': { probeMercadoPagoReportAccess: async () => ({ ok: true, code: 'ok', message: 'ok', checkedAt: new Date().toISOString(), environment: 'production' }) },
   };
 }
 test('GET administrativo é sanitizado e não executa probes; falha de leitura não vira desconexão', async () => {
@@ -196,6 +199,17 @@ test('PATCH administrativo exige admin e rejeita conectado antes de acessar o ba
     const result = await route.PATCH(new Request('https://dev.bentevi.shop/api/integracoes/config', { method: 'PATCH', body: JSON.stringify({ tipo: 'dslite', values: { conectado: true } }) }));
     assert.equal(result.status, admin ? 422 : 403);
   }
+  assert.equal(db.calls.length, 0);
+});
+
+test('PATCH não aceita mais credencial separada do Mercado Pago', async () => {
+  const db = mockDb([]);
+  const route = load('src/app/api/integracoes/config/route.ts', dependencies(db));
+  const result = await route.PATCH(new Request('https://app.bentevi.shop/api/integracoes/config', {
+    method: 'PATCH',
+    body: JSON.stringify({ tipo: 'mercadopago', values: { access_token: 'legacy-token' } }),
+  }));
+  assert.equal(result.status, 410);
   assert.equal(db.calls.length, 0);
 });
 
@@ -224,7 +238,8 @@ test('interface mantém salvamento explícito e responsáveis existentes', () =>
   assert.doesNotMatch(source, /onBlur|values:.*conectado|\/api\/integracao\/ml\/connect/);
   for (const text of ['Salvar alterações', 'Cancelar', '<Drawer', 'Remover valor cadastrado', 'tab=operacao']) assert.ok(source.includes(text));
   assert.doesNotMatch(source, /Testar conexão em homologação|testes usam exclusivamente homologação/);
-  assert.match(source, /Testar conexão em \{testEnvironmentLabel\}/);
+  assert.match(source, /`Testar conexão em \$\{testEnvironmentLabel\}`/);
+  assert.match(source, /Testar conexão financeira/);
 });
 
 test('shell reserva 24px abaixo das oito abas sem borda adicional', () => {

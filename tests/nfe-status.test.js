@@ -4,6 +4,7 @@ const path = require('node:path');
 const test = require('node:test');
 
 const {
+  classifyBrasilNfeFiscalRejection,
   isBrasilNfeAutomaticReconciliationEligible,
   isNfeAuthorizedStatus,
   isNfeCancelledStatus,
@@ -15,6 +16,18 @@ const {
   normalizeNfeTechnicalStatus,
   resolveReconciledNfePersistedStatus,
 } = require('../src/lib/fiscal/nfe-status.ts');
+
+test('rejeição 778 por NCM é terminal e não recebe repetição automática', () => {
+  assert.deepEqual(classifyBrasilNfeFiscalRejection({
+    ReturnNF: { DsStatusRespostaSefaz: 'Rejeição 778: Informado NCM inexistente' },
+  }), {
+    terminal: true,
+    retryable: false,
+    code: 'invalid_ncm_778',
+    message: 'O NCM do produto precisa ser corrigido antes de emitir a nota fiscal.',
+  });
+  assert.equal(classifyBrasilNfeFiscalRejection('Serviço temporariamente indisponível'), null);
+});
 
 test('normaliza aliases antigos para o status fiscal persistido canônico', () => {
   assert.equal(normalizeNfePersistedStatus('autorizada'), 'authorized');

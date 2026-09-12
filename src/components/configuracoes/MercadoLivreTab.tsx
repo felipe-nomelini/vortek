@@ -147,7 +147,7 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
           description="Conta e aplicativo usados para conectar e atualizar os anúncios." />
 
         {data?.app.mixedMercadoPagoScopes ? (
-          <Alert type="warning" showIcon message="Aplicativo com escopos mistos" description="Este aplicativo possui permissões relacionadas a pagamentos. Mercado Livre e Mercado Pago devem usar aplicativos separados." />
+          <Alert type="info" showIcon message="Leitura financeira disponível" description="Esta conta também autoriza a consulta dos relatórios financeiros usados pela Bentevi." />
         ) : null}
         {data?.application.lastError ? <Alert type="error" showIcon message="A conexão precisa de atenção" description={userSafeMessage(data.application.lastError, "Não foi possível validar a conta. Reconecte o Mercado Livre e tente novamente.")} /> : null}
 

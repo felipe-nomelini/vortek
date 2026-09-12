@@ -1,6 +1,5 @@
-import { createServiceClient } from '@/lib/supabase';
 import { getValidMLToken } from '@/services/integration';
-import { resolveIntegrationConfiguration } from '@/lib/integration-configuration';
+import type { IntegrationTestResult } from '@/lib/integration-configuration';
 
 export {
   parseMercadoPagoAccountMoneyCsv,
@@ -23,31 +22,37 @@ export interface MercadoPagoReportTask {
   [key: string]: unknown;
 }
 
+export interface MercadoPagoReportSearchResult {
+  results?: MercadoPagoReportTask[];
+  paging?: { total?: number; offset?: number; limit?: number };
+}
+
+export class MercadoPagoRequestError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly code: 'authentication' | 'rate_limit' | 'provider_error' | 'invalid_response',
+    message: string,
+  ) {
+    super(message);
+    this.name = 'MercadoPagoRequestError';
+  }
+}
+
 export async function getMercadoPagoAccessToken() {
-  const envToken = process.env.MERCADOPAGO_ACCESS_TOKEN?.trim();
-  if (envToken) return envToken;
-
-  const service = createServiceClient();
-  const { data, error } = await service
-    .from('integracoes')
-    .select('access_token')
-    .eq('tipo', 'mercadopago')
-    .maybeSingle();
-
-  if (error) throw new Error(`Falha ao ler integração Mercado Pago: ${error.message}`);
-  return resolveIntegrationConfiguration('mercadopago', data || {}, process.env).token.value;
+  return (await getValidMLToken()) || '';
 }
 
 async function mercadoPagoRequestWithToken<T>(
   token: string,
   path: string,
   init: RequestInit = {},
+  fetcher: typeof fetch = fetch,
 ): Promise<T> {
   if (!token) {
-    throw new Error('Mercado Pago não configurado. Informe access_token em integracoes ou MERCADOPAGO_ACCESS_TOKEN.');
+    throw new MercadoPagoRequestError(401, 'authentication', 'Reconecte a conta Mercado Livre.');
   }
 
-  const res = await fetch(`${MP_BASE_URL}${path}`, {
+  const res = await fetcher(`${MP_BASE_URL}${path}`, {
     ...init,
     headers: {
       'Content-Type': 'application/json',
@@ -57,8 +62,13 @@ async function mercadoPagoRequestWithToken<T>(
   });
 
   if (!res.ok) {
-    const text = await res.text().catch(() => '');
-    throw new Error(`Mercado Pago HTTP ${res.status}: ${text.slice(0, 500)}`);
+    if ([401, 403].includes(res.status)) {
+      throw new MercadoPagoRequestError(res.status, 'authentication', 'A conta conectada não autorizou a consulta financeira.');
+    }
+    if (res.status === 429) {
+      throw new MercadoPagoRequestError(res.status, 'rate_limit', 'O Mercado Pago pediu para aguardar antes de uma nova consulta.');
+    }
+    throw new MercadoPagoRequestError(res.status, 'provider_error', 'O Mercado Pago não concluiu a consulta financeira.');
   }
 
   const contentType = res.headers.get('content-type') || '';
@@ -113,9 +123,55 @@ export async function searchAccountMoneyReports(params: { beginDate?: string; en
   if (params.endDate) query.set('end_date', params.endDate);
   if (params.fileName) query.set('file_name', params.fileName);
   if (params.id) query.set('id', String(params.id));
-  return mercadoPagoRequest<{ results?: MercadoPagoReportTask[] }>(`/v1/account/settlement_report/search?${query.toString()}`, {
+  return mercadoPagoRequest<MercadoPagoReportSearchResult>(`/v1/account/settlement_report/search?${query.toString()}`, {
     method: 'GET',
   });
+}
+
+export async function searchAccountMoneyReportsPage(params: {
+  beginDate?: string;
+  endDate?: string;
+  limit?: number;
+  offset?: number;
+}) {
+  const query = new URLSearchParams();
+  if (params.beginDate) query.set('begin_date', params.beginDate);
+  if (params.endDate) query.set('end_date', params.endDate);
+  query.set('limit', String(Math.max(1, Math.min(100, Math.trunc(params.limit || 30)))));
+  query.set('offset', String(Math.max(0, Math.trunc(params.offset || 0))));
+  return mercadoPagoRequest<MercadoPagoReportSearchResult>(
+    `/v1/account/settlement_report/search?${query.toString()}`,
+    { method: 'GET' },
+  );
+}
+
+export async function probeMercadoPagoReportAccess(
+  fetcher: typeof fetch = fetch,
+  now = new Date(),
+): Promise<IntegrationTestResult> {
+  const result = (ok: boolean, code: string, message: string): IntegrationTestResult => ({
+    ok,
+    code,
+    message,
+    checkedAt: now.toISOString(),
+    environment: 'production',
+  });
+  try {
+    const token = await getMercadoPagoAccessToken();
+    const data = await mercadoPagoRequestWithToken<MercadoPagoReportSearchResult>(
+      token,
+      '/v1/account/settlement_report/search?limit=1&offset=0',
+      { method: 'GET' },
+      fetcher,
+    );
+    if (!data || !Array.isArray(data.results)) {
+      return result(false, 'invalid_response', 'O Mercado Pago não confirmou a lista de relatórios.');
+    }
+    return result(true, 'ok', 'Conexão financeira confirmada pela conta Mercado Livre.');
+  } catch (error) {
+    if (error instanceof MercadoPagoRequestError) return result(false, error.code, error.message);
+    return result(false, 'network_error', 'Não foi possível consultar o Mercado Pago.');
+  }
 }
 
 export async function downloadAccountMoneyReport(fileName: string) {

@@ -110,16 +110,33 @@ export function integrationSummaries(rows: IntegrationRecord[], env: Integration
   ];
   const result: IntegrationSummary[] = definitions.map(([tipo, name, group, purpose, action, tab]) => {
     const row = rows.find((item) => item.tipo === tipo) || {};
+    if (tipo === "mercadopago") {
+      const mlRow = rows.find((item) => item.tipo === "mercadolivre") || {};
+      const mlState = integrationState("mercadolivre", mlRow, env);
+      const state: IntegrationState = ["missing", "reconnect", "error"].includes(mlState)
+        ? mlState
+        : row.conectado === true ? "validated" : "configured";
+      return {
+        tipo,
+        name,
+        group,
+        purpose: "Relatórios financeiros da conta Mercado Livre",
+        state,
+        action: "Ver detalhes",
+        editable: false,
+        testable: mlState !== "missing",
+        restriction: "A conexão financeira usa a conta Mercado Livre já conectada.",
+        testEnvironment: "production",
+      };
+    }
     const config = resolveIntegrationConfiguration(tipo, row, env);
     const state = integrationState(tipo, row, env);
     const testEnvironment = ["dslite", "brasilnfe"].includes(tipo) ? integrationTestEnvironment(env) : null;
     const restriction = ["dslite", "brasilnfe"].includes(tipo)
       ? integrationTestRestriction(tipo as "dslite" | "brasilnfe", config.url.value, env)
-      : tipo === "mercadopago" && config.token.origin === "runtime"
-        ? "A credencial do servidor prevalece. Sua alteração é feita no runtime; a edição pelo ERP está bloqueada."
-        : null;
+      : null;
     return { tipo, name, group, purpose, state, action, href: tab ? `/configuracoes?tab=${tab}` : undefined,
-      editable: !tab && !(tipo === "mercadopago" && config.token.origin === "runtime"),
+      editable: !tab,
       testable: ["dslite", "brasilnfe"].includes(tipo) && ["configured", "validated"].includes(state) && !restriction,
       restriction, testEnvironment };
   });

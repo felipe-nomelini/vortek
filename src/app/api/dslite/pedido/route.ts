@@ -62,7 +62,10 @@ import {
   reconcileLocalNfeSnapshotFromXml,
   validateXmlNfeProducao as validateXmlNfeProducaoShared,
 } from "@/lib/fiscal/nfe-local-reconciliation";
-import { isNfeAuthorizedStatus } from "@/lib/fiscal/nfe-status";
+import {
+  classifyBrasilNfeFiscalRejection,
+  isNfeAuthorizedStatus,
+} from "@/lib/fiscal/nfe-status";
 import { ensureDanfeStoredForPedido } from "@/lib/fiscal/danfe-storage";
 import {
   DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
@@ -3194,6 +3197,10 @@ async function runDsliteCreateJob(
         }
       }
       if (!emissao.ok) {
+        const fiscalRejection = classifyBrasilNfeFiscalRejection(
+          emissao.error,
+          emissao.errorDetails,
+        );
         await registrarEventoNfAuditoria({
           pedidoId,
           mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -3226,7 +3233,9 @@ async function runDsliteCreateJob(
         state = "error";
         result = {
           stage: "emit_nf_provider",
-          message: emissao.error || `Falha ao emitir NF em ${selectedProvider}`,
+          message: fiscalRejection?.message || emissao.error || `Falha ao emitir NF em ${selectedProvider}`,
+          error_code: fiscalRejection?.code || null,
+          retryable: fiscalRejection ? fiscalRejection.retryable : emissao.temporary ?? null,
           provider: selectedProvider,
           provider_status: emissao.status || null,
           provider_temporary: emissao.temporary ?? null,

@@ -8,6 +8,7 @@ export const PRICING_REANALYSIS_JOB_TYPE = 'pricing_product_reanalysis';
 const ACTIVE_JOB_STATES = ['pendente', 'rodando', 'on_hold'];
 const MAX_ATTEMPTS = 3;
 const RETRY_DELAY_MS = 5 * 60_000;
+export const SCHEDULED_REANALYSIS_COOLDOWN_MS = 30 * 60_000;
 const MATERIAL_RETRY_CODES = new Set([
   'CONTEXTO_ALTERADO',
   'PRODUTO_LOCAL_ALTERADO',
@@ -41,6 +42,15 @@ function retryDue(job: any): boolean {
   return !next || !Number.isFinite(Date.parse(next)) || Date.parse(next) <= Date.now();
 }
 
+export function isScheduledPricingReanalysisCoolingDown(
+  job: { created_at?: string | null; finished_at?: string | null } | null | undefined,
+  nowMs = Date.now(),
+  cooldownMs = SCHEDULED_REANALYSIS_COOLDOWN_MS,
+) {
+  const reference = Date.parse(String(job?.finished_at || job?.created_at || ''));
+  return Number.isFinite(reference) && nowMs - reference < cooldownMs;
+}
+
 async function readJob(client: Client, jobId: string) {
   return client.from('jobs').select('id,tipo,status,created_by,dedupe_key,log,created_at,finished_at')
     .eq('id', jobId).maybeSingle();
@@ -53,6 +63,15 @@ export async function enqueuePricingReanalysis(input: {
   commandId?: string;
 }, client: Client = createServiceClient()) {
   const dedupeKey = `product:${input.productId}`;
+  if (input.source === 'scheduled_refresh') {
+    const recent = await client.from('jobs').select('id,status,created_by,log,created_at,finished_at')
+      .eq('tipo', PRICING_REANALYSIS_JOB_TYPE).eq('dedupe_key', dedupeKey)
+      .order('created_at', { ascending: false }).limit(1).maybeSingle();
+    if (recent.error) throw new Error('pricing_reanalysis_cooldown_read_failed');
+    if (recent.data?.id && isScheduledPricingReanalysisCoolingDown(recent.data)) {
+      return { jobId: recent.data.id, state: recent.data.status, replayed: true, coolingDown: true };
+    }
+  }
   const log = [{ event: 'queued', at: new Date().toISOString(), productId: input.productId, source: input.source, attempt: 0 }];
   const payload = {
     ...(input.commandId ? { id: input.commandId } : {}),
@@ -106,7 +125,21 @@ async function evaluateProduct(client: Client, productId: string, actorId: strin
     return aPointer - bPointer || Number(a.catalog) - Number(b.catalog)
       || Number(b.identity === 'complete') - Number(a.identity === 'complete') || a.itemId.localeCompare(b.itemId);
   })[0];
-  if (!execution) throw new Error('listing_identity_pending');
+  if (!execution) {
+    if (links.coverage !== 'complete') {
+      const error = new Error('listing_link_unavailable') as Error & { transient?: boolean };
+      error.transient = true;
+      throw error;
+    }
+    return {
+      detail: null,
+      links,
+      executionItemId: null,
+      competitionItemId: null,
+      reviewRequired: true,
+      reviewCode: 'listing_identity_pending',
+    };
+  }
   const verifiedGroup = links.groups.find((group) => group.state === 'verified'
     && group.members.some((member) => member.itemId === execution.itemId));
   const competitionItemId = verifiedGroup?.members.find((member) => member.catalog)?.itemId
@@ -121,7 +154,14 @@ async function evaluateProduct(client: Client, productId: string, actorId: strin
     error.transient = response.status >= 500 || detail.code === 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL';
     throw error;
   }
-  return { detail, links, executionItemId: execution.itemId, competitionItemId };
+  return {
+    detail,
+    links,
+    executionItemId: execution.itemId,
+    competitionItemId,
+    reviewRequired: false,
+    reviewCode: null,
+  };
 }
 
 export async function runPricingReanalysisJob(jobId: string, options: { force?: boolean } = {}, client: Client = createServiceClient()) {
@@ -150,14 +190,20 @@ export async function runPricingReanalysisJob(jobId: string, options: { force?: 
     if (MATERIAL_RETRY_CODES.has(materialCode)) result = await evaluateProduct(client, productId, current.data.created_by || null);
     const finishedAt = new Date().toISOString();
     const completedLog = [...log, { event: 'completed', at: finishedAt, productId, attempt,
-      evaluationId: result.detail.evaluationId, executionItemId: result.executionItemId,
+      evaluationId: result.detail?.evaluationId || null, executionItemId: result.executionItemId,
       competitionItemId: result.competitionItemId, groupCoverage: result.links.coverage,
-      groups: result.links.groups.length, diagnosis: result.detail?.competitiveAssessment?.classification || 'SEM_REFERENCIA_COMPETITIVA' }];
+      groups: result.links.groups.length,
+      reviewRequired: result.reviewRequired,
+      reviewCode: result.reviewCode,
+      diagnosis: result.reviewRequired
+        ? 'REVISAO_NECESSARIA'
+        : result.detail?.competitiveAssessment?.classification || 'SEM_REFERENCIA_COMPETITIVA' }];
     const saved = await client.from('jobs').update({ status: 'completo', progresso: 100, processados: 1,
       finished_at: finishedAt, log: completedLog }).eq('id', jobId).eq('status', 'rodando');
     if (saved.error) throw new Error('reanalysis_persistence_failed');
-    return { jobId, productId, state: 'completo', evaluationId: result.detail.evaluationId,
-      itemId: result.executionItemId, competitionItemId: result.competitionItemId, replayed: false };
+    return { jobId, productId, state: 'completo', evaluationId: result.detail?.evaluationId || null,
+      itemId: result.executionItemId, competitionItemId: result.competitionItemId,
+      reviewRequired: result.reviewRequired, reviewCode: result.reviewCode, replayed: false };
   } catch (cause) {
     const error = cause as Error & { transient?: boolean };
     const transient = error.transient === true || ['ml_account_unavailable', 'pricing_reanalysis_unavailable'].includes(error.message);

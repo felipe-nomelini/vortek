@@ -19,7 +19,11 @@ function resolverFixture(options={}) {
   }};
   const api=service(async path=>{calls.push(path);
     if(path.includes('/items/search?'))return {ok:true,data:{results:['MLB1'],paging:{total:1}}};
-    if(path.startsWith('/items/bulk?'))return options.bulkFailed?{ok:false,status:503}:{ok:true,data:[{id:'MLB1',status_code:200,body:item}]};
+    if(path.startsWith('/items/bulk?')){
+      if(options.bulkFailed)return {ok:false,status:503};
+      const requested=new URL(path,'https://ml.test').searchParams.get('attributes').split(',').filter(value=>value.startsWith('body.')).map(value=>value.slice(5));
+      return {ok:true,data:[{id:'MLB1',status_code:200,body:Object.fromEntries(requested.filter(key=>Object.hasOwn(item,key)).map(key=>[key,item[key]]))}]};
+    }
     if(path.startsWith('/items/MLB1?'))return options.variationFailed?{ok:false,status:503}:{ok:true,data:item};
     return {ok:false,status:404};
   },{
@@ -32,6 +36,7 @@ function resolverFixture(options={}) {
 }
 test('resolvedor integra descoberta, ownership, identidade e grupos independentes',async()=>{
   const f=resolverFixture();const r=await f.run();assert.equal(r.classification,'JA_ANUNCIADO_ATIVO');assert.equal(r.groups.length,1);assert.equal(r.candidates.length,1);assert.equal(f.calls.filter(p=>p.startsWith('/items/bulk')).length,1);
+  const bulk=f.calls.find(p=>p.startsWith('/items/bulk'));for(const attribute of ['seller_id','status','category_id','catalog_listing','item_relations','variations','attributes','seller_custom_field'])assert.ok(bulk.includes(`body.${attribute}`));
 });
 for(const options of [{bulkFailed:true},{owner:'P2'},{identityPending:true},{item:{seller_id:2}},{item:{item_relations:null}}])test('resolvedor não valida fonte falha ou propriedade ambígua',async()=>{
   const r=await resolverFixture(options).run();assert.equal(r.classification,'VINCULO_INCONCLUSIVO');

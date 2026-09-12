@@ -15,9 +15,10 @@ export interface MercadoPagoMovementRow {
 }
 
 export interface MercadoPagoReportResumeState {
-  taskId: string;
+  taskId: string | null;
   beginDate: string | null;
   endDate: string | null;
+  targetEndDate?: string | null;
 }
 
 export function resolveMercadoPagoReportTaskId(preferred: unknown, fallback?: unknown) {
@@ -218,15 +219,59 @@ export function getMercadoPagoReportResumeState(log: unknown): MercadoPagoReport
     const lifecycle = record.lifecycle && typeof record.lifecycle === 'object' && !Array.isArray(record.lifecycle)
       ? record.lifecycle as Record<string, unknown>
       : null;
+    const lifecycleState = String(lifecycle?.state || '').trim();
+    if (lifecycleState === 'next_window') {
+      const beginDate = String(lifecycle?.beginDate || '').trim() || null;
+      const endDate = String(lifecycle?.endDate || '').trim() || null;
+      if (beginDate && endDate) return {
+        taskId: null,
+        beginDate,
+        endDate,
+        targetEndDate: String(lifecycle?.targetEndDate || '').trim() || null,
+      };
+    }
     const taskId = resolveMercadoPagoReportTaskId(lifecycle?.taskId, task?.id);
     if (!taskId) continue;
+    const targetEndDate = String(lifecycle?.targetEndDate || '').trim() || null;
     return {
       taskId,
       beginDate: String(lifecycle?.beginDate || record.beginDate || '').trim() || null,
       endDate: String(lifecycle?.endDate || record.endDate || '').trim() || null,
+      ...(targetEndDate ? { targetEndDate } : {}),
     };
   }
   return null;
+}
+
+export function getMercadoPagoCompletedWindowEnd(log: unknown): string | null {
+  const entries = parseJobLog(log);
+  for (let index = entries.length - 1; index >= 0; index -= 1) {
+    const entry = entries[index];
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) continue;
+    const lifecycle = (entry as Record<string, unknown>).lifecycle;
+    if (!lifecycle || typeof lifecycle !== 'object' || Array.isArray(lifecycle)) continue;
+    const record = lifecycle as Record<string, unknown>;
+    if (!['complete', 'window_complete'].includes(String(record.state || ''))) continue;
+    const endDate = String(record.endDate || '').trim();
+    if (Number.isFinite(Date.parse(endDate))) return new Date(endDate).toISOString();
+  }
+  return null;
+}
+
+export function getNextMercadoPagoWindow(input: {
+  currentEndDate: string;
+  targetEndDate: string;
+  windowDays?: number;
+  overlapDays?: number;
+}) {
+  const currentEnd = Date.parse(input.currentEndDate);
+  const targetEnd = Date.parse(input.targetEndDate);
+  if (!Number.isFinite(currentEnd) || !Number.isFinite(targetEnd) || currentEnd >= targetEnd) return null;
+  const dayMs = 24 * 60 * 60 * 1000;
+  const begin = currentEnd - Math.max(0, input.overlapDays ?? 1) * dayMs;
+  const end = Math.min(targetEnd, begin + Math.max(1, input.windowDays || 7) * dayMs);
+  if (end <= currentEnd) return null;
+  return { beginDate: new Date(begin).toISOString(), endDate: new Date(end).toISOString() };
 }
 
 export function isMercadoPagoReportPending(status: unknown) {

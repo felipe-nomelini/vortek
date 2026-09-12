@@ -78,3 +78,22 @@ test('cron mantém a fila atualizada sem habilitar automação de preço', () =>
   assert.match(cron, /processPricingReanalysisQueue/);
   assert.match(cron, /queue_skipped_auth_block/);
 });
+
+test('reanálise agendada respeita intervalo após qualquer tentativa terminal', () => {
+  const pricing = load('src/services/pricing-reanalysis.ts', {
+    'server-only': {},
+    '@/lib/supabase': { createServiceClient: () => ({}) },
+    '@/services/integration': {},
+    '@/services/pricing-detail': {},
+    '@/services/ml-listing-links': {},
+  });
+  const finishedAt = '2026-09-12T12:00:00.000Z';
+  assert.equal(pricing.isScheduledPricingReanalysisCoolingDown(
+    { finished_at: finishedAt },
+    Date.parse(finishedAt) + pricing.SCHEDULED_REANALYSIS_COOLDOWN_MS - 1,
+  ), true);
+  assert.equal(pricing.isScheduledPricingReanalysisCoolingDown(
+    { finished_at: finishedAt },
+    Date.parse(finishedAt) + pricing.SCHEDULED_REANALYSIS_COOLDOWN_MS,
+  ), false);
+});

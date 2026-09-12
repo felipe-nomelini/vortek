@@ -181,7 +181,9 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
         <p>{selected.purpose}</p>
         {selected.restriction && <Alert type="info" showIcon message={selected.restriction} />}
         {record && <Descriptions size="small" column={1} items={[
-          { key: "token", label: "Credencial efetiva", children: originLabels[record.effective.tokenOrigin] },
+          ...(selected.tipo === "mercadopago"
+            ? [{ key: "connection", label: "Conexão", children: "Conta Mercado Livre" }]
+            : [{ key: "token", label: "Credencial efetiva", children: originLabels[record.effective.tokenOrigin] }]),
           ...(selected.tipo === "brasilnfe" ? [{ key: "user", label: "Token adicional efetivo", children: originLabels[record.effective.userTokenOrigin] }] : []),
           ...(selected.tipo !== "mercadopago" ? [{ key: "url", label: "URL efetiva", children: record.effective.url || "Não configurada ou não permitida" }, { key: "origin", label: "Origem da URL", children: originLabels[record.effective.urlOrigin] }] : []),
           { key: "updated", label: "Atualização do cadastro", children: record.updated_at ? new Date(record.updated_at).toLocaleString("pt-BR") : "Sem registro" },
@@ -200,14 +202,14 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
             value={secrets.refresh_token} configured={Boolean(record?.refresh_token_configurado)} runtimeConfigured={Boolean(record?.runtime.userTokenConfigured)} disabled={busy}
             onChange={(value) => setSecrets((current) => ({ ...current, refresh_token: value }))} onRemove={() => remove("refresh_token")} />}
         </>}
-        {["dslite", "brasilnfe"].includes(selected.tipo) && <div>
-          <Button loading={testing} disabled={!selected.testable || dirty || saving || Boolean(error)} onClick={testConnection}>Testar conexão em {testEnvironmentLabel}</Button>
-          <p className={styles.hint}>{dirty ? "Salve as alterações antes de testar." : "O teste consulta dados; não cria pedidos, não emite notas e não importa documentos."}</p>
+        {["dslite", "brasilnfe", "mercadopago"].includes(selected.tipo) && <div>
+          <Button loading={testing} disabled={!selected.testable || dirty || saving || Boolean(error)} onClick={testConnection}>{selected.tipo === "mercadopago" ? "Testar conexão financeira" : `Testar conexão em ${testEnvironmentLabel}`}</Button>
+          <p className={styles.hint}>{dirty ? "Salve as alterações antes de testar." : selected.tipo === "mercadopago" ? "O teste apenas consulta a lista de relatórios; não cria nem importa documentos." : "O teste consulta dados; não cria pedidos, não emite notas e não importa documentos."}</p>
           {results[selected.tipo] && <Alert showIcon type={results[selected.tipo].ok ? "success" : "error"} message={userSafeMessage(results[selected.tipo].message, results[selected.tipo].ok ? "Conexão confirmada." : "Não foi possível confirmar a conexão. Revise os dados e tente novamente.")}
             description={`Consulta desta sessão: ${new Date(results[selected.tipo].checkedAt).toLocaleString("pt-BR")}`} />}
         </div>}
         {selected.tipo === "dslite" && <Link href="/configuracoes?tab=operacao" onClick={() => setSelectedId(null)}>Gerenciar feeds por fornecedor em Operação →</Link>}
-        {selected.tipo === "mercadopago" && <Alert type="info" message="Esta configuração atende aos relatórios financeiros existentes. Salvar não testa a credencial nem inicia pagamentos ou atualizações automáticas." />}
+        {selected.tipo === "mercadopago" && <Alert type="info" message="Os relatórios financeiros usam a conta Mercado Livre conectada. Não é necessário cadastrar outro token." />}
         {selected.group === "Serviços técnicos" && <Alert type="info" message="Somente estado da configuração" description="Credenciais e parâmetros continuam no servidor. A edição pelo ERP será tratada em uma etapa própria." />}
       </div>}
     </Drawer>

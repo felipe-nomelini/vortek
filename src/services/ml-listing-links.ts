@@ -7,6 +7,17 @@ import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-po
 import { classifyListingLinks, type ListingLinkCandidate, type ListingLinkResult } from '@/lib/ml/listing-link';
 import type { ConflictEvidence } from '@/types/commercial-conflicts';
 
+const ML_LISTING_LINK_BULK_ATTRIBUTES = [
+  'seller_id',
+  'status',
+  'category_id',
+  'catalog_listing',
+  'item_relations',
+  'variations',
+  'attributes',
+  'seller_custom_field',
+];
+
 /** Não confundir retorno vazio válido com consulta indisponível. Ambos os locais oficiais de SKU. */
 export async function searchListingIdsBySkus(sellerId: number, skus: string[]) {
   const ids = new Set<string>(); const evidence: ConflictEvidence[] = [];
@@ -46,7 +57,10 @@ export async function resolveProductMlLinks(client: Client, product: any, seller
   while ([...ids].some(id => !attempted.has(id))) {
     const batch = [...ids].filter(id => !attempted.has(id)).slice(0, 20);
     batch.forEach(id => attempted.add(id));
-    const response = await fetchMLResult<any[]>(buildMlItemsBulkPath(batch));
+    const response = await fetchMLResult<any[]>(buildMlItemsBulkPath(
+      batch,
+      ML_LISTING_LINK_BULK_ATTRIBUTES,
+    ));
     if (!response.ok || !Array.isArray(response.data)) { complete = false; continue; }
     for (const row of response.data) {
       let item = getMlItemsBulkBody<any>(row);

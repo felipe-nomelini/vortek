@@ -8,7 +8,7 @@ import {
 } from "@/lib/configuracoes/contracts";
 import { toIntegrationConfigDto } from "@/lib/integration-config-dto";
 import { recordConfigurationAudit } from "@/services/configuration-audit";
-import { integrationSummaries, integrationUrlAllowed, resolveIntegrationConfiguration } from "@/lib/integration-configuration";
+import { integrationSummaries, integrationUrlAllowed } from "@/lib/integration-configuration";
 
 export const dynamic = "force-dynamic";
 
@@ -65,13 +65,12 @@ export async function PATCH(request: Request) {
     );
   }
   const { tipo, values: payload } = parsed.data;
+  if (tipo === "mercadopago") {
+    return json({ erro: "O Mercado Pago usa a conta Mercado Livre conectada e não possui uma credencial separada." }, 410);
+  }
   if ("url" in payload && payload.url && !integrationUrlAllowed(tipo, payload.url)) {
     return json({ erro: "URL não permitida. Utilize o endereço oficial da integração, sem credenciais ou parâmetros." }, 422);
   }
-  if (tipo === "mercadopago" && resolveIntegrationConfiguration(tipo, {}, process.env).token.origin === "runtime") {
-    return json({ erro: "A credencial do servidor prevalece. Altere-a no runtime." }, 409);
-  }
-
   const serviceClient = createServiceClient();
   const { data: previous, error: previousError } = await serviceClient
     .from("integracoes")

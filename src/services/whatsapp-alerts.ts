@@ -18,10 +18,15 @@ import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import {
   createOrUpdateOpsIssue,
   resolveOpenIntegrationOpsIssues,
+  resolveRecoveredCriticalJobOpsIssues,
   resolveRecoveredScheduledTaskOpsIssues,
 } from "@/services/github-ops";
 import { isMlOrderPaid } from "@/lib/ml/order-sale-alert";
-import { decideCriticalJobAlert } from "@/lib/sync/critical-job-alert";
+import {
+  classifyCriticalJobIncident,
+  decideCriticalJobAlert,
+  getCriticalJobScope,
+} from "@/lib/sync/critical-job-alert";
 import {
   notificationAppLink,
   selectWhatsappRecipientsForEnvironment,
@@ -166,6 +171,11 @@ function firstDefined(...values: unknown[]) {
   return null;
 }
 
+function firstStringOrNumber(...values: unknown[]): string | number | null {
+  const value = firstDefined(...values);
+  return typeof value === "string" || typeof value === "number" ? value : null;
+}
+
 function summarizeJobLog(log: unknown, maxEntries = 8) {
   return parseJobLog(log)
     .slice(-maxEntries)
@@ -199,12 +209,17 @@ function summarizeJobLog(log: unknown, maxEntries = 8) {
         message,
         timestamp:
           entry?.timestamp || entry?.at || erroredStep?.updatedAt || null,
-        http_status: firstDefined(
+        http_status: firstStringOrNumber(
           entry?.http_status,
           result?.sync_http_status,
           result?.provider_status,
         ),
-        error_code: firstNonEmptyString(entry?.error_code, entry?.code),
+        error_code: firstNonEmptyString(
+          entry?.error_code,
+          entry?.code,
+          result?.error_code,
+          result?.code,
+        ),
         error_category: firstNonEmptyString(
           entry?.error_category,
           entry?.category,
@@ -221,57 +236,24 @@ function summarizeJobLog(log: unknown, maxEntries = 8) {
     });
 }
 
-function compactSignaturePart(value: unknown, fallback: string) {
-  const raw = String(value ?? "")
-    .trim()
-    .toLowerCase();
-  return (
-    (raw || fallback)
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9._:-]+/g, "_")
-      .replace(/^_+|_+$/g, "")
-      .slice(0, 120) || fallback
-  );
-}
-
 function findRootErrorLog(logSummary: ReturnType<typeof summarizeJobLog>) {
   for (let i = logSummary.length - 1; i >= 0; i -= 1) {
     const entry = logSummary[i];
+    const httpStatus = Number(entry?.http_status);
     if (
       entry?.error_code ||
       entry?.error_category ||
       entry?.type === "error" ||
-      entry?.http_status !== null ||
       entry?.provider_error ||
-      entry?.message
+      (Number.isFinite(httpStatus) && httpStatus >= 400)
     )
       return entry;
   }
+  for (let i = logSummary.length - 1; i >= 0; i -= 1) {
+    const entry = logSummary[i];
+    if (entry?.stage && entry?.message) return entry;
+  }
   return logSummary[logSummary.length - 1] || null;
-}
-
-function buildJobErrorSignature(
-  job: { tipo?: string | null; status?: string | null },
-  logSummary: ReturnType<typeof summarizeJobLog>,
-) {
-  const root = findRootErrorLog(logSummary);
-  const code =
-    root?.error_code ||
-    root?.error_category ||
-    root?.provider_error ||
-    root?.event_type ||
-    root?.message ||
-    "unknown_error";
-  const httpStatus =
-    root?.http_status ?? root?.provider_temporary ?? "no_http_status";
-  return [
-    compactSignaturePart(job.tipo, "unknown_job"),
-    compactSignaturePart(job.status, "unknown_status"),
-    compactSignaturePart(root?.stage, "unknown_stage"),
-    compactSignaturePart(code, "unknown_error"),
-    compactSignaturePart(httpStatus, "no_http_status"),
-  ].join(":");
 }
 
 async function wasAlertSent(
@@ -742,72 +724,89 @@ export async function alertIntegrationStatus() {
 export async function alertCriticalJobs() {
   const client = createServiceClient();
   const since = new Date(Date.now() - 30 * 60 * 1000).toISOString();
-  const { data } = await client
-    .from("jobs")
-    .select("id,tipo,status,created_at,finished_at,log")
-    .in("status", ["erro", "failed_auth"])
-    .gte("finished_at", since)
-    .order("finished_at", { ascending: false })
-    .limit(20);
+  const selectedFields = "id,tipo,status,dedupe_key,created_at,finished_at,log";
+  const [otherFailures, pricingFailures] = await Promise.all([
+    client.from("jobs").select(selectedFields)
+      .in("status", ["erro", "failed_auth"])
+      .gte("finished_at", since)
+      .neq("tipo", "pricing_product_reanalysis")
+      .order("finished_at", { ascending: false }).limit(100),
+    client.from("jobs").select(selectedFields)
+      .in("status", ["erro", "failed_auth"])
+      .gte("finished_at", since)
+      .eq("tipo", "pricing_product_reanalysis")
+      .order("finished_at", { ascending: false }).limit(100),
+  ]);
+  if (otherFailures.error || pricingFailures.error) {
+    console.error("[critical-jobs] falha ao consultar ocorrências", {
+      other: otherFailures.error?.code || null,
+      pricing: pricingFailures.error?.code || null,
+    });
+  }
+  const data = [...(otherFailures.data || []), ...(pricingFailures.data || [])]
+    .sort((a, b) => Date.parse(String(b.finished_at || 0)) - Date.parse(String(a.finished_at || 0)));
+
+  const classified = data.map((job) => {
+    const logSummary = summarizeJobLog(job.log);
+    const lastLog = logSummary[logSummary.length - 1] || null;
+    const rootLog = findRootErrorLog(logSummary);
+    return { job, logSummary, lastLog, rootLog, incident: classifyCriticalJobIncident(job, rootLog) };
+  });
+  const actionable = classified.filter((entry) => entry.incident.actionable);
 
   const failedTypes = Array.from(
     new Set(
-      (data || [])
-        .map((job) => String(job.tipo || "").trim())
+      actionable
+        .map((entry) => String(entry.job.tipo || "").trim())
         .filter(Boolean),
     ),
   );
-  const latestRecoveryByType = new Map<string, string>();
+  const latestRecoveryByScope = new Map<string, string>();
   if (failedTypes.length) {
     const { data: recoveredJobs } = await client
       .from("jobs")
-      .select("tipo,finished_at")
+      .select("tipo,dedupe_key,log,finished_at")
       .eq("status", "completo")
       .in("tipo", failedTypes)
       .gte("finished_at", since)
       .order("finished_at", { ascending: false })
-      .limit(200);
+      .limit(400);
 
     for (const recoveredJob of recoveredJobs || []) {
       const type = String(recoveredJob.tipo || "").trim();
-      if (type && recoveredJob.finished_at && !latestRecoveryByType.has(type)) {
-        latestRecoveryByType.set(type, recoveredJob.finished_at);
+      const scope = getCriticalJobScope(recoveredJob);
+      const recoveryKey = `${type}:${scope}`;
+      if (type && recoveredJob.finished_at && !latestRecoveryByScope.has(recoveryKey)) {
+        latestRecoveryByScope.set(recoveryKey, recoveredJob.finished_at);
       }
     }
   }
 
   const grouped = new Map<
     string,
-    Array<{
-      job: any;
-      logSummary: ReturnType<typeof summarizeJobLog>;
-      lastLog: any;
-    }>
+    typeof actionable
   >();
-  for (const job of data || []) {
-    if (jobLogIncludes(job, "domain_lock_conflict")) continue;
-
-    const logSummary = summarizeJobLog(job.log);
-    const lastLog = logSummary[logSummary.length - 1] || null;
-    const signature = buildJobErrorSignature(job, logSummary);
-    const current = grouped.get(signature) || [];
-    current.push({ job, logSummary, lastLog });
-    grouped.set(signature, current);
+  for (const entry of actionable) {
+    if (jobLogIncludes(entry.job, "domain_lock_conflict")) continue;
+    const current = grouped.get(entry.incident.key) || [];
+    current.push(entry);
+    grouped.set(entry.incident.key, current);
   }
 
   let alerted = 0;
   let skippedTransient = 0;
   let skippedRecovered = 0;
   let deferredTimeout = 0;
-  for (const [signature, occurrences] of grouped) {
+  const recoveredFingerprints: string[] = [];
+  for (const [incidentKey, occurrences] of grouped) {
     const latest = occurrences[0];
-    const rootLog = findRootErrorLog(latest.logSummary);
+    const recoveryKey = `${String(latest.job.tipo || "").trim()}:${latest.incident.scope}`;
     const decision = decideCriticalJobAlert({
       status: latest.job.status,
       occurrences: occurrences.length,
       finishedAt: latest.job.finished_at,
-      recoveredAt: latestRecoveryByType.get(String(latest.job.tipo || "")) || null,
-      rootLog,
+      recoveredAt: latestRecoveryByScope.get(recoveryKey) || null,
+      rootLog: latest.rootLog,
     });
     if (decision === "skip_transient") {
       skippedTransient += 1;
@@ -815,6 +814,7 @@ export async function alertCriticalJobs() {
     }
     if (decision === "skip_recovered") {
       skippedRecovered += 1;
+      recoveredFingerprints.push(`vortek-fingerprint:critical_error:job_error:${incidentKey}`);
       continue;
     }
     if (decision === "defer_timeout") {
@@ -825,12 +825,15 @@ export async function alertCriticalJobs() {
     const result = await sendWhatsappAlert({
       type: "critical_error",
       severity: "critical",
-      title: "Rotina automática com falha",
-      dedupeKey: `job_error:${signature}`,
+      title: latest.incident.title,
+      dedupeKey: `job_error:${incidentKey}`,
       dedupeTtlHours: 24 * 7,
-      summary: "Uma rotina importante não foi concluída.",
+      summary: latest.incident.summary,
       fields: [
         { label: "Rotina", value: latest.job.tipo },
+        ...(latest.incident.scope !== "global"
+          ? [{ label: "Registro", value: latest.incident.scope }]
+          : []),
         { label: "Ocorrências", value: `${occurrences.length} tentativa(s)` },
         {
           label: "Última falha",
@@ -839,42 +842,51 @@ export async function alertCriticalJobs() {
             : "Não informada",
         },
       ],
-      action: "Abra o painel e verifique a rotina.",
+      action: latest.incident.action,
       link: appLink("Abrir painel", "/dashboard"),
-      reference: rootLog?.error_code || rootLog?.error_category || null,
+      reference: latest.incident.errorClass,
       issueMessage: [
-        `Job: ${latest.job.tipo}`,
-        `Status: ${latest.job.status}`,
+        latest.incident.summary,
+        `Rotina: ${latest.job.tipo}`,
+        latest.incident.scope !== "global" ? `Registro: ${latest.incident.scope}` : null,
         `Ocorrências: ${occurrences.length}`,
-        rootLog?.event_type ? `Evento: ${rootLog.event_type}` : null,
-        rootLog?.error_code ? `Código: ${rootLog.error_code}` : null,
-        rootLog?.http_status !== null ? `HTTP/Status: ${rootLog.http_status}` : null,
-        rootLog?.provider ? `Provider: ${rootLog.provider}` : null,
-        rootLog?.message || latest.lastLog?.message || null,
+        `Problema: ${latest.incident.errorClass}`,
+        latest.incident.action,
       ].filter(Boolean).join("\n"),
       payload: {
         id: latest.job.id,
         tipo: latest.job.tipo,
         status: latest.job.status,
+        scope: latest.incident.scope,
+        error_class: latest.incident.errorClass,
         created_at: latest.job.created_at,
         finished_at: latest.job.finished_at,
         occurrences: occurrences.length,
-        signature,
-        root_log: rootLog,
+        signature: incidentKey,
+        root_log: latest.rootLog,
         last_log: latest.lastLog,
-        log_summary: latest.logSummary,
         recent_job_ids: occurrences.map((entry) => entry.job.id).slice(0, 10),
       },
     });
     alerted += result.sent > 0 ? 1 : 0;
   }
+  let githubIssuesResolved = 0;
+  if (recoveredFingerprints.length && String(process.env.GITHUB_OPS_TOKEN || process.env.GITHUB_TOKEN || "").trim()) {
+    const recovery = await resolveRecoveredCriticalJobOpsIssues(
+      recoveredFingerprints,
+      `Recuperação do mesmo registro confirmada em ${new Date().toISOString()}.`,
+    ).catch(() => ({ resolved: 0 }));
+    githubIssuesResolved = recovery.resolved;
+  }
   return {
-    checked: data?.length || 0,
+    checked: data.length,
     grouped: grouped.size,
+    non_actionable: classified.length - actionable.length,
     skipped_transient: skippedTransient,
     skipped_recovered: skippedRecovered,
     deferred_timeout: deferredTimeout,
     alerted,
+    githubIssuesResolved,
   };
 }
 

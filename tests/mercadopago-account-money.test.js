@@ -4,6 +4,8 @@ const test = require('node:test');
 const {
   getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
+  getMercadoPagoCompletedWindowEnd,
+  getNextMercadoPagoWindow,
   isMercadoPagoReportReady,
   parseMercadoPagoAccountMoneyCsv,
   resolveMercadoPagoReportTaskId,
@@ -175,5 +177,41 @@ test('retomada preserva o taskId inteiro quando o status TEST devolve UUID inter
     taskId: '102982627',
     beginDate: '2026-08-01T00:00:00.000Z',
     endDate: '2026-08-08T00:00:00.000Z',
+  });
+});
+
+test('retomada avança janelas com sobreposição sem depender da data dos movimentos', () => {
+  const next = getNextMercadoPagoWindow({
+    currentEndDate: '2026-06-08T00:00:00.000Z',
+    targetEndDate: '2026-06-30T00:00:00.000Z',
+    windowDays: 7,
+    overlapDays: 1,
+  });
+  assert.deepEqual(next, {
+    beginDate: '2026-06-07T00:00:00.000Z',
+    endDate: '2026-06-14T00:00:00.000Z',
+  });
+  assert.equal(getNextMercadoPagoWindow({ currentEndDate: '2026-06-30T00:00:00.000Z', targetEndDate: '2026-06-30T00:00:00.000Z' }), null);
+});
+
+test('checkpoint considera somente janela concluída', () => {
+  const log = [
+    { lifecycle: { state: 'processing', endDate: '2026-06-08T00:00:00.000Z' } },
+    { lifecycle: { state: 'complete', endDate: '2026-06-15T00:00:00.000Z' } },
+  ];
+  assert.equal(getMercadoPagoCompletedWindowEnd(log), '2026-06-15T00:00:00.000Z');
+});
+
+test('retomada reconhece a próxima janela sem reutilizar a tarefa processada', () => {
+  assert.deepEqual(getMercadoPagoReportResumeState([{ lifecycle: {
+    state: 'next_window',
+    beginDate: '2026-06-07T00:00:00.000Z',
+    endDate: '2026-06-14T00:00:00.000Z',
+    targetEndDate: '2026-06-30T00:00:00.000Z',
+  } }]), {
+    taskId: null,
+    beginDate: '2026-06-07T00:00:00.000Z',
+    endDate: '2026-06-14T00:00:00.000Z',
+    targetEndDate: '2026-06-30T00:00:00.000Z',
   });
 });

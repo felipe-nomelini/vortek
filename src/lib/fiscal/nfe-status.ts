@@ -22,6 +22,25 @@ export type NfePersistedStatus =
 export const BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS = 'not_found';
 export const NFE_CANCEL_REJECTED_DEADLINE_STATUS = 'cancel_rejected_deadline';
 
+export function classifyBrasilNfeFiscalRejection(...values: unknown[]) {
+  let text = '';
+  try {
+    text = JSON.stringify(values);
+  } catch {
+    text = values.map((value) => String(value || '')).join(' ');
+  }
+  const normalized = normalize(text);
+  if (/rejeicao\s*778/.test(normalized) && normalized.includes('ncm')) {
+    return {
+      terminal: true,
+      retryable: false,
+      code: 'invalid_ncm_778',
+      message: 'O NCM do produto precisa ser corrigido antes de emitir a nota fiscal.',
+    } as const;
+  }
+  return null;
+}
+
 function normalize(value: string | null | undefined): string {
   return String(value || '')
     .normalize('NFD')
