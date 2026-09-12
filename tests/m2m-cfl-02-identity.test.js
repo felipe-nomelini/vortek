@@ -195,32 +195,94 @@ test('tensão nominal não herda tensão de entrada quando categoria distingue a
 
 test('kit usa composição e unidade comercial do componente, não quantidade como unidades avulsas', () => {
   const p = product({ descricao: 'Modelo: M1', nome: 'Kit' });
-  const kit = { status: 'ready', components: [{ quantidade: 3, produto: product({ descricao: 'Com 2 unidades' }) }] };
+  const kit = { status: 'ready', components: [{ quantidade: 3, produto: product({ descricao: 'Com 2 unidades' }), nestedKit: false }] };
   assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', p, [], operational, kit), '6');
   kit.components[0].produto.descricao = '';
   assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', p, [], operational, kit), null);
 });
 
 test('kit composto permanece pendente sem prova da composição remota, mesmo com total igual', () => {
-  const kit = { status: 'ready', components: [{ quantidade: 2, produto: product() }, { quantidade: 4, produto: product({ id: 'P2' }) }] };
+  const kit = { status: 'ready', components: [{ quantidade: 2, produto: product(), nestedKit: false }, { quantidade: 4, produto: product({ id: 'P2' }), nestedKit: false }] };
   const input = fixture();
   const result = critical.assessMlProductIdentity(input.item, product({ descricao: 'Modelo: M1' }), [], operational, { ...input.context, kit });
   assert.equal(get(result, 'KIT_COMPOSITION').status, 'PENDENCIA_VALIDACAO');
   assert.equal(result.identity.coverage, 'partial');
 });
 
+test('kit homogêneo existente usa GTIN do componente somente como prova e exige apresentação idêntica', () => {
+  const parent = product({ nome: '2 Baterias Alcalinas', descricao: '', gtin: '' });
+  const component = product({ id: 'C1', marca: 'Panasonic', gtin: '7896067200551',
+    descricao: 'Marca: Panasonic Modelo: LR-V08-1B Tamanho: 12V' });
+  parent.marca = 'Panasonic';
+  const kit = { status: 'ready', components: [{ quantidade: 2, produto: component, nestedKit: false }] };
+  const attributes = [
+    { id: 'SELLER_SKU', value_name: parent.sku }, { id: 'GTIN', value_name: component.gtin },
+    { id: 'BRAND', value_name: 'Panasonic' }, { id: 'MODEL', value_name: 'LR-V08-1B' },
+    { id: 'SALE_FORMAT', value_name: 'Kit' }, { id: 'UNITS_PER_PACK', value_name: '2' },
+    { id: 'PACKS_NUMBER', value_name: '1' },
+  ];
+  const assessment = critical.assessMlProductIdentity({ id: 'MLB1', seller_custom_field: parent.sku, attributes },
+    parent, [], operational, { categoryAttributes: attributes.map(({ id }) => ({ id })), kit,
+      remoteEvidence: proof('mercado_livre', 'MLB1') });
+  assert.equal(identity.isMlExistingListingIdentitySafe(assessment), true);
+  assert.equal(assessment.existingListingValidation.anchor, 'homogeneous_kit_component');
+  assert.equal(get(assessment, 'GTIN').local, null);
+  assert.equal(assessment.existingListingValidation.comparisons.find(row => row.field === 'COMPONENT_GTIN').status, 'SEM_CONFLITO');
+
+  attributes.find(attribute => attribute.id === 'UNITS_PER_PACK').value_name = '3';
+  const divergent = critical.assessMlProductIdentity({ id: 'MLB1', seller_custom_field: parent.sku, attributes },
+    parent, [], operational, { categoryAttributes: attributes.map(({ id }) => ({ id })), kit,
+      remoteEvidence: proof('mercado_livre', 'MLB1') });
+  assert.equal(identity.isMlExistingListingIdentitySafe(divergent), false);
+  assert.ok(divergent.existingListingValidation.reasons.includes('QUANTIDADE_DO_KIT_DIVERGENTE'));
+});
+
+test('kit homogêneo pode usar modelo explicitamente rotulado e preserva apresentação explícita do pai', () => {
+  const parent = product({ nome: 'Kit', gtin: '', descricao: 'Formato de venda: Kit; Kit com 2 baterias' });
+  const component = product({ id: 'C1', gtin: '', descricao: 'Marca: Marca A Modelo: M1 Tamanho: pequeno' });
+  const kit = { status: 'ready', components: [{ quantidade: 2, produto: component, nestedKit: false }] };
+  assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', parent, [], operational, kit), '2');
+  const attributes = [
+    { id: 'SELLER_SKU', value_name: parent.sku }, { id: 'BRAND', value_name: parent.marca },
+    { id: 'MODEL', value_name: 'M1' }, { id: 'SALE_FORMAT', value_name: 'Kit' },
+    { id: 'UNITS_PER_PACK', value_name: '2' },
+  ];
+  const assessment = critical.assessMlProductIdentity({ id: 'MLB1', seller_custom_field: parent.sku, attributes },
+    parent, [], operational, { categoryAttributes: attributes.map(({ id }) => ({ id })), kit,
+      remoteEvidence: proof('mercado_livre', 'MLB1') });
+  assert.equal(identity.isMlExistingListingIdentitySafe(assessment), true);
+  assert.equal(assessment.existingListingValidation.comparisons.find(row => row.field === 'COMPONENT_MODEL').status, 'SEM_CONFLITO');
+});
+
+test('kit heterogêneo ou aninhado continua pendente mesmo com SKU e marca coerentes', () => {
+  const input = fixture();
+  for (const kit of [
+    { status: 'ready', components: [{ quantidade: 2, produto: product(), nestedKit: true }] },
+    { status: 'ready', components: [{ quantidade: 2, produto: product(), nestedKit: false },
+      { quantidade: 1, produto: product({ id: 'P2' }), nestedKit: false }] },
+  ]) {
+    const assessment = critical.assessMlProductIdentity(input.item, product(), [], operational, { ...input.context, kit });
+    assert.equal(identity.isMlExistingListingIdentitySafe(assessment), false);
+  }
+});
+
 test('loader de kits propaga ausência/falha como estado e lê componentes em lote', async () => {
   const calls = [];
   const client = { from(table) {
     calls.push(table);
-    const data = table === 'produto_kits' ? { produto_id: 'K1', ativo: true }
-      : table === 'produto_kit_componentes' ? [{ componente_produto_id: 'P1', quantidade: 2 }]
-        : [product({ ativo: true })];
-    const query = { select() { return this; }, eq() { return this; }, in() { return this; }, maybeSingle() { return this; }, then(resolve) { resolve({ data, error: null }); } };
+    let bulk = false;
+    const query = { select() { return this; }, eq() { return this; }, in() { bulk = true; return this; }, maybeSingle() { return this; }, then(resolve) {
+      const data = table === 'produto_kits' ? bulk ? [] : { produto_id: 'K1', ativo: true }
+        : table === 'produto_kit_componentes' ? [{ componente_produto_id: 'P1', quantidade: 2 }]
+          : [product({ ativo: true })];
+      resolve({ data, error: null });
+    } };
     return query;
   } };
-  assert.equal((await critical.loadMlIdentityKit(client, 'K1')).status, 'ready');
-  assert.deepEqual(calls, ['produto_kits', 'produto_kit_componentes', 'produtos']);
+  const loaded = await critical.loadMlIdentityKit(client, 'K1');
+  assert.equal(loaded.status, 'ready');
+  assert.equal(loaded.components[0].nestedKit, false);
+  assert.deepEqual(calls, ['produto_kits', 'produto_kit_componentes', 'produtos', 'produto_kits']);
   const failed = { from() { return { select() { return this; }, eq() { return this; }, maybeSingle: async () => ({ error: { message: 'unavailable' } }) }; } };
   assert.equal((await critical.loadMlIdentityKit(failed, 'K1')).status, 'inconclusive');
 });

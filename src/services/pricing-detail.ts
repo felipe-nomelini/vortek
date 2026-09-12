@@ -17,7 +17,7 @@ import { extractQuantityPricingTiers, serializeQuantityPricingTiers } from '@/li
 import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
 import { normalizeBuyBoxStatus, normalizePriceToWin, resolveCatalogCompetitionStatus } from '@/lib/catalogo/no-catalogo';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
-import { isMlExistingListingIdentitySafe } from '@/lib/ml-listing-identity';
+import { hasConfirmedMlExistingListingIdentityConflict, isMlExistingListingIdentitySafe } from '@/lib/ml-listing-identity';
 import { classifyMlPublishEligibility } from '@/lib/ml/operational-listing';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { getCategoryAttributes } from './mercadolibre';
@@ -38,7 +38,24 @@ const inputSchema = z.object({
 // Um item existente preserva o tipo observado, inclusive Gratuito; não o converte em Clássico.
 const observedContextSchema = contextSchema.extend({ listingType: z.enum(['free', 'gold_special', 'gold_pro']) });
 type Input = z.infer<typeof inputSchema>;
+export type PricingListingValidation = {
+  state: 'verified' | 'pending' | 'conflict' | 'ineligible' | 'unavailable';
+  anchor: 'product' | 'homogeneous_kit_component' | null;
+  reasons: string[];
+  items: Array<{
+    itemId: string;
+    state: 'verified' | 'pending' | 'conflict' | 'ineligible' | 'unavailable';
+    anchor: 'product' | 'homogeneous_kit_component' | null;
+    reasons: string[];
+    comparisons: Array<{ field: string; local: string | null; remote: string | null; status: string; reason: string }>;
+  }>;
+};
 const json = (body: unknown, status = 200) => NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
+
+const EXISTING_LISTING_DIAGNOSTIC_FIELDS = new Set([
+  'SELLER_SKU', 'GTIN', 'BRAND', 'MODEL', 'MPN', 'PART_NUMBER',
+  'SALE_FORMAT', 'UNITS_PER_PACK', 'PACKS_NUMBER', 'PACKAGES_NUMBER', 'PACKAGING_BOXES_NUMBER',
+]);
 
 function dimensions(product: any): string | null {
   const values = [product.altura, product.largura, product.profundidade, product.peso_bruto].map(Number);
@@ -163,6 +180,7 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     currentPriceCents: currentPrice!,
   }, new Date().toISOString(), competitionResult?.ok === true) : null;
   let listingSafety: { verified: boolean; evidence: unknown[] } = { verified: false, evidence: [] };
+  const listingValidationItems: PricingListingValidation['items'] = [];
   const pricing = await loadLiveProductPricing(service, product, context, input.priceCents ?? currentPrice, async () => {
     const account = await fetchMLResult<any>('/users/me');
     if (!account.ok) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
@@ -188,18 +206,38 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
         getCategoryAttributes(remote.category_id),
         service.from('anuncios_ml').select('ml_sync_block_reason,ml_sync_blocked_until').eq('ml_item_id', remote.id).maybeSingle(),
       ]);
-      if (!attributes || block.error) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
+      if (!attributes || block.error) {
+        listingValidationItems.push({ itemId: remote.id, state: 'unavailable', anchor: null,
+          reasons: ['FONTE_DE_IDENTIDADE_INDISPONIVEL'], comparisons: [] });
+        return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
+      }
       const eligibility = classifyMlPublishEligibility({ observedStatus: remote.status,
         blockReason: block.data?.ml_sync_block_reason, blockedUntil: block.data?.ml_sync_blocked_until });
       const identity = assessMlProductIdentity(remote, currentProduct.data, offers.data || [], suppliers, {
         categoryAttributes: attributes, kit, remoteEvidence: { source: 'mercado_livre', reference: remote.id,
           collectedAt: new Date().toISOString(), condition: 'valid' },
       });
-      evidence.push({ itemId: remote.id, status: remote.status,
-        comparisons: identity.comparisons.map(({ field, local, remote, status, reason }) => ({ field, local, remote, status, reason })) });
+      const safe = isMlExistingListingIdentitySafe(identity);
+      const validation = identity.existingListingValidation;
+      const baseComparisons = identity.comparisons
+        .filter(comparison => EXISTING_LISTING_DIAGNOSTIC_FIELDS.has(comparison.field))
+        .map(({ field, local, remote, status, reason }) => ({ field, local, remote, status, reason }));
+      const comparisons = [...baseComparisons, ...(validation?.comparisons || [])];
+      const baseReasons = baseComparisons.filter(comparison => comparison.status !== 'SEM_CONFLITO')
+        .map(comparison => `${comparison.field}:${comparison.reason}`);
+      const state = !eligibility.eligible || eligibility.kind !== 'modifiable' ? 'ineligible'
+        : safe ? 'verified'
+          : validation?.status || (hasConfirmedMlExistingListingIdentityConflict(identity) ? 'conflict' : 'pending');
+      const reasons = state === 'ineligible' ? ['ANUNCIO_INELEGIVEL']
+        : safe ? [] : [...new Set([...(validation?.reasons || []), ...baseReasons])];
+      const validationItem: PricingListingValidation['items'][number] = { itemId: remote.id, state,
+        anchor: validation?.anchor || (safe ? 'product' : null),
+        reasons, comparisons };
+      listingValidationItems.push(validationItem);
+      evidence.push({ itemId: remote.id, status: remote.status, validation: validationItem });
       if (!eligibility.eligible || eligibility.kind !== 'modifiable')
         return { valid: false, code: 'ANUNCIO_INELEGIVEL' } as const;
-      if (!isMlExistingListingIdentitySafe(identity))
+      if (!safe)
         return { valid: false, code: 'IDENTIDADE_ANUNCIO_PENDENTE' } as const;
       return { valid: true } as const;
     };
@@ -289,12 +327,23 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     priceCents: input.priceCents ?? currentPrice, group, automatic: hasMlAutomaticPrice(item), clearance: input.clearance,
     listingSafety,
     clearanceState: clearanceSnapshot ? { stock: clearanceSnapshot.stock, clearances: clearanceSnapshot.clearances } : null }) : null;
+  const listingValidation: PricingListingValidation | null = itemId ? (() => {
+    if (!listingValidationItems.length) return { state: 'unavailable', anchor: null,
+      reasons: ['VALIDACAO_DE_IDENTIDADE_NAO_EXECUTADA'], items: [] };
+    const state: PricingListingValidation['state'] = listingValidationItems.every(entry => entry.state === 'verified') ? 'verified'
+      : listingValidationItems.some(entry => entry.state === 'conflict') ? 'conflict'
+        : listingValidationItems.some(entry => entry.state === 'ineligible') ? 'ineligible'
+          : listingValidationItems.some(entry => entry.state === 'unavailable') ? 'unavailable' : 'pending';
+    const anchors = [...new Set(listingValidationItems.map(entry => entry.anchor).filter(Boolean))];
+    return { state, anchor: state === 'verified' && anchors.length === 1 ? anchors[0]! : null,
+      reasons: [...new Set(listingValidationItems.flatMap(entry => entry.reasons))], items: listingValidationItems };
+  })() : null;
   const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing, competitiveAssessment, decision);
   if (decision) await syncPricingAlerts(service, evaluationId, decision, competitiveAssessment);
   return json({ success: true, evaluationId, decisionContext: decision, protection, mlItemId: itemId,
     competitionItemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
     currentProfit: input.priceCents != null && input.priceCents !== currentPrice ? null : view.profit,
-    pricing, competitiveAssessment,
+    pricing, competitiveAssessment, listingValidation,
     commercialConflicts: competitiveAssessment ? classifyCommercialConflicts({ economy: competitiveAssessment.assessment }) : null,
     quantityPricing, quantityPricingWarning, catalog,
     calculator: { cost: view.cost, shipping: memory ? memory.shipping.amountCents! / 100 : null,

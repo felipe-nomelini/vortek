@@ -137,3 +137,32 @@ test('interface renderiza memórias, resultado, grupo e aviso sem inventar refer
   const html = renderToStaticMarkup(React.createElement(ui.CompetitivePricingSummary, { assessment: domain.assessCompetitivePricing(f) }));
   assert.ok(html.includes('Não informada')); assert.ok(html.includes('inconclusiva'));
 });
+
+test('interface preserva preço e CMV conhecidos e explica a identidade pendente', () => {
+  const ui = load('src/components/products/LivePricingQuote.tsx', {
+    react: require('react'), 'react/jsx-runtime': require('react/jsx-runtime'), antd: require('antd'),
+    '@/lib/user-feedback': require('../src/lib/user-feedback.ts'),
+    '@/lib/format': { formatCurrency: value => value == null ? '—' : `R$ ${Number(value).toFixed(2)}` },
+  });
+  const React = require('react'); const { renderToStaticMarkup } = require('react-dom/server');
+  const reasons = [{ field: 'context', code: 'IDENTIDADE_ANUNCIO_PENDENTE' }];
+  const pricing = { costCents: 4000, currentPriceCents: 10000,
+    current: { status: 'inconclusive', memory: null, reasons },
+    target: { ok: false, reasons }, floor: { ok: false, reasons }, breakEven: { ok: false, reasons },
+    revalidation: { status: 'inconclusive', evaluatedAt: now, contextKey: 'test', code: 'IDENTIDADE_ANUNCIO_PENDENTE' } };
+  const summary = renderToStaticMarkup(React.createElement(ui.CompetitivePricingSummary, {
+    assessment: domain.assessCompetitivePricing(fixture()), pricing,
+  }));
+  assert.ok(summary.includes('R$ 40.00'));
+  assert.ok(summary.includes('R$ 100.00'));
+  const notice = renderToStaticMarkup(React.createElement(ui.ListingValidationNotice, { validation: {
+    state: 'pending', anchor: null, reasons: ['QUANTIDADE_DO_KIT_DIVERGENTE'], items: [{ itemId: 'MLB1',
+      state: 'pending', anchor: null, reasons: ['QUANTIDADE_DO_KIT_DIVERGENTE'], comparisons: [
+        { field: 'UNITS_PER_PACK', local: '2', remote: '3', status: 'CONFLITO_CONFIRMADO', reason: 'QUANTIDADE_DO_KIT_DIVERGENTE' },
+      ] }],
+  } }));
+  assert.ok(notice.includes('Identidade comercial pendente'));
+  assert.ok(notice.includes('quantidade do kit diverge'));
+  assert.ok(notice.includes('Bentevi 2'));
+  assert.ok(notice.includes('Mercado Livre 3'));
+});

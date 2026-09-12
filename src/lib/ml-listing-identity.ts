@@ -8,9 +8,24 @@ export type MlIdentityComparison = {
   local: string | null; remote: string | null; status: ConflictStatus; reason: string;
   evidence: ConflictEvidence[];
 };
+export type MlExistingListingValidationComparison = {
+  field: string;
+  local: string | null;
+  remote: string | null;
+  status: ConflictStatus;
+  reason: string;
+};
+export type MlExistingListingValidation = {
+  status: 'verified' | 'pending' | 'conflict';
+  anchor: 'product' | 'homogeneous_kit_component' | null;
+  reasons: string[];
+  comparisons: MlExistingListingValidationComparison[];
+};
 export type MlListingIdentityAssessment = {
   identityState: 'IDENTIDADE_COHERENTE' | 'IDENTIDADE_DIVERGENTE' | 'IDENTIDADE_INCONCLUSIVA';
   identity: ConflictAssessment; packaging_quantity: ConflictAssessment; comparisons: MlIdentityComparison[];
+  /** Regra adicional, somente para operar um anúncio já existente. */
+  existingListingValidation?: MlExistingListingValidation;
 };
 export type MlIdentityContext = {
   categoryAttributes: MlIdentityAttribute[] | null; remoteEvidence: ConflictEvidence | null; variationId?: string | null;
@@ -166,6 +181,7 @@ export function isMlIdentityComplete(assessment: MlListingIdentityAssessment): b
  */
 export function isMlExistingListingIdentitySafe(assessment: MlListingIdentityAssessment): boolean {
   if (hasConfirmedMlExistingListingIdentityConflict(assessment)) return false;
+  if (assessment.existingListingValidation) return assessment.existingListingValidation.status === 'verified';
   const coherent = (field: string) => assessment.comparisons.some(
     comparison => comparison.field === field && comparison.status === 'SEM_CONFLITO',
   );

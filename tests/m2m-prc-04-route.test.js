@@ -65,9 +65,10 @@ function harness(options = {}) {
     '@/lib/ml/item-price-policy': require('../src/lib/ml/item-price-policy.ts'),
     '@/lib/catalogo/no-catalogo': require('../src/lib/catalogo/no-catalogo.ts'),
     '@/lib/ml-critical-attributes': { loadMlIdentityKit: async () => ({ status: 'not_kit', components: [] }),
-      assessMlProductIdentity: () => ({ identity: { status: 'SEM_CONFLITO', coverage: 'complete' },
+      assessMlProductIdentity: () => options.identityAssessment || ({ identity: { status: 'SEM_CONFLITO', coverage: 'complete' },
         packaging_quantity: { status: 'SEM_CONFLITO', coverage: 'complete' }, comparisons: [] }) },
-    '@/lib/ml-listing-identity': { isMlExistingListingIdentitySafe: () => true },
+    '@/lib/ml-listing-identity': { isMlExistingListingIdentitySafe: () => options.identitySafe !== false,
+      hasConfirmedMlExistingListingIdentityConflict: () => false },
     '@/lib/ml/operational-listing': { classifyMlPublishEligibility: () => ({ eligible: true, kind: 'modifiable' }) },
     '@/lib/dslite/supplier-policy': { loadOperationalDropshippingSupplierIds: async () => new Set() },
     './mercadolibre': { getCategoryAttributes: async () => [] },
@@ -124,7 +125,26 @@ test('GET mantém preço, descontos e automação; avaliação identificada não
   const h = harness(); const response = await h.get('produtoId=P1&mlItemId=MLB1');
   assert.equal(response.status, 200); assert.equal(response.headers.get('cache-control'), 'no-store');
   const body = await response.json(); assert.equal(body.evaluationId, 'evaluation-test'); assert.equal(body.currentPrice, 100); assert.deepEqual(body.quantityPricing, []); assert.equal(body.automaticPricing.active, true);
+  assert.equal(body.listingValidation.state, 'verified');
   assert.equal(h.captured[0].market.sellerId, '123'); assert.equal(h.captured[0].market.dimensions, null); assert.equal(h.captured[0].valid, true);
+});
+
+test('identidade pendente mantém preço e CMV observáveis, expõe diagnóstico e bloqueia a validação operacional', async () => {
+  const h = harness({ identitySafe: false, identityAssessment: {
+    identity: { status: 'PENDENCIA_VALIDACAO', coverage: 'partial' },
+    packaging_quantity: { status: 'PENDENCIA_VALIDACAO', coverage: 'partial' },
+    comparisons: [{ field: 'GTIN', local: null, remote: '7896067200551', status: 'PENDENCIA_VALIDACAO', reason: 'EVIDENCIA_AUSENTE' }],
+    existingListingValidation: { status: 'pending', anchor: null, reasons: ['IDENTIFICADOR_DO_COMPONENTE_NAO_COINCIDE'], comparisons: [] },
+  } });
+  const response = await h.get('produtoId=P1&mlItemId=MLB1');
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.equal(h.captured[0].valid, false);
+  assert.equal(h.captured[0].verification.code, 'IDENTIDADE_ANUNCIO_PENDENTE');
+  assert.equal(body.currentPrice, 100);
+  assert.equal(body.pricing.costCents, 4000);
+  assert.equal(body.listingValidation.state, 'pending');
+  assert.deepEqual(body.listingValidation.reasons, ['IDENTIFICADOR_DO_COMPONENTE_NAO_COINCIDE', 'GTIN:EVIDENCIA_AUSENTE']);
 });
 test('POST consulta preço alternativo sem atribuir seu lucro ao preço atual', async () => {
   const h = harness(); const response = await h.post({ produtoId: 'P1', priceCents: 13000 });
