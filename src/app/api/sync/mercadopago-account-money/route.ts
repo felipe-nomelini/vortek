@@ -14,6 +14,7 @@ import {
   getNextMercadoPagoWindow,
   getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
+  deduplicateMercadoPagoMovementRows,
   isMercadoPagoReportForRange,
   isMercadoPagoReportPending,
   isMercadoPagoReportReady,
@@ -117,8 +118,13 @@ async function importCsv(fileName: string) {
     rejected += 1;
     return false;
   });
-  for (let offset = 0; offset < validRows.length; offset += IMPORT_BATCH_SIZE) {
-    const batch = validRows.slice(offset, offset + IMPORT_BATCH_SIZE).map((row) => ({
+  const deduplicated = deduplicateMercadoPagoMovementRows(validRows);
+  if (deduplicated.conflictingDuplicates > 0) {
+    errors.push(`${deduplicated.conflictingDuplicates} movimento(s) com identidade financeira conflitante.`);
+  }
+  if (deduplicated.conflictingDuplicates === 0) {
+    for (let offset = 0; offset < deduplicated.rows.length; offset += IMPORT_BATCH_SIZE) {
+      const batch = deduplicated.rows.slice(offset, offset + IMPORT_BATCH_SIZE).map((row) => ({
         external_id: row.externalId,
         movement_date: row.movementDate,
         description: row.description,
@@ -129,13 +135,14 @@ async function importCsv(fileName: string) {
         raw_payload: { fileName, ...row.raw },
         updated_at: new Date().toISOString(),
       }));
-    const { error: rawError } = await service.from('mercadopago_account_movements')
-      .upsert(batch, { onConflict: 'external_id', defaultToNull: false });
-    if (rawError) {
-      errors.push(`Lote ${Math.floor(offset / IMPORT_BATCH_SIZE) + 1}: ${rawError.message}`);
-      continue;
+      const { error: rawError } = await service.from('mercadopago_account_movements')
+        .upsert(batch, { onConflict: 'external_id', defaultToNull: false });
+      if (rawError) {
+        errors.push(`Lote ${Math.floor(offset / IMPORT_BATCH_SIZE) + 1}: ${rawError.message}`);
+        continue;
+      }
+      imported += batch.length;
     }
-    imported += batch.length;
   }
 
   return {
@@ -144,6 +151,7 @@ async function importCsv(fileName: string) {
     fileName,
     imported,
     rejected,
+    ignoredExactDuplicates: deduplicated.ignoredExactDuplicates,
     errors,
   };
 }

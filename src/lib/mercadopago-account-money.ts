@@ -25,6 +25,12 @@ export interface MercadoPagoAccountMoneyParseOptions {
   defaultCurrency?: string | null;
 }
 
+export interface MercadoPagoMovementDeduplication {
+  rows: MercadoPagoMovementRow[];
+  ignoredExactDuplicates: number;
+  conflictingDuplicates: number;
+}
+
 export function resolveMercadoPagoReportTaskId(preferred: unknown, fallback?: unknown) {
   for (const value of [preferred, fallback]) {
     const taskId = String(value || '').trim();
@@ -167,7 +173,6 @@ export function parseMercadoPagoAccountMoneyCsv(
 
     if (!sourceId) validationErrors.push('missing_source_id');
     if (settlementNetAmount === null) validationErrors.push('invalid_settlement_net_amount');
-    if (!movementType) validationErrors.push('missing_transaction_type');
     if (!currency) validationErrors.push('missing_settlement_currency');
     if (transactionCurrency && currency && transactionCurrency !== currency) {
       validationErrors.push('currency_mismatch');
@@ -201,6 +206,33 @@ export function parseMercadoPagoAccountMoneyCsv(
       raw,
     };
   });
+}
+
+export function deduplicateMercadoPagoMovementRows(
+  rows: MercadoPagoMovementRow[],
+): MercadoPagoMovementDeduplication {
+  const unique = new Map<string, MercadoPagoMovementRow>();
+  let ignoredExactDuplicates = 0;
+  let conflictingDuplicates = 0;
+
+  for (const row of rows) {
+    const existing = unique.get(row.externalId);
+    if (!existing) {
+      unique.set(row.externalId, row);
+      continue;
+    }
+    if (JSON.stringify(existing.raw) === JSON.stringify(row.raw)) {
+      ignoredExactDuplicates += 1;
+    } else {
+      conflictingDuplicates += 1;
+    }
+  }
+
+  return {
+    rows: [...unique.values()],
+    ignoredExactDuplicates,
+    conflictingDuplicates,
+  };
 }
 
 function parseJobLog(log: unknown): unknown[] {

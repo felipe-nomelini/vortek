@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
+  deduplicateMercadoPagoMovementRows,
   getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
   getMercadoPagoCompletedWindowEnd,
@@ -117,8 +118,25 @@ test('linha sem campos financeiros oficiais é rejeitada para importação', () 
     'invalid_settlement_net_amount',
     'missing_settlement_currency',
     'missing_source_id',
-    'missing_transaction_type',
   ]);
+});
+
+test('movimento financeiro do provedor é preservado quando o tipo vem em branco', () => {
+  const row = parseRow([
+    'mp-source-without-type',
+    'provider-fee',
+    '',
+    '',
+    '0.00',
+    'BRL',
+    '-175.38',
+    'BRL',
+    '2026-08-13T22:44:46Z',
+  ]);
+
+  assert.equal(row.amount, -175.38);
+  assert.equal(row.movementType, null);
+  assert.deepEqual(row.validationErrors, []);
 });
 
 test('parser mantém identidade estável para reimportação idempotente', () => {
@@ -162,6 +180,52 @@ test('movimentos financeiros distintos da mesma transação não são consolidad
   ]);
 
   assert.notEqual(settlement.externalId, dispute.externalId);
+});
+
+test('duplicata literal do relatório é ignorada sem consolidar movimentos distintos', () => {
+  const settlement = parseRow([
+    'mp-source-duplicate',
+    'order-duplicate',
+    'Pagamento',
+    'SETTLEMENT',
+    '100.00',
+    'BRL',
+    '88.00',
+    'BRL',
+    '2026-08-30T12:00:00Z',
+  ]);
+  const literalDuplicate = parseRow([
+    'mp-source-duplicate',
+    'order-duplicate',
+    'Pagamento',
+    'SETTLEMENT',
+    '100.00',
+    'BRL',
+    '88.00',
+    'BRL',
+    '2026-08-30T12:00:00Z',
+  ]);
+  const distinctMovement = parseRow([
+    'mp-source-duplicate',
+    'order-duplicate',
+    'Estorno',
+    'REFUND',
+    '-100.00',
+    'BRL',
+    '-88.00',
+    'BRL',
+    '2026-08-31T12:00:00Z',
+  ]);
+
+  const result = deduplicateMercadoPagoMovementRows([
+    settlement,
+    literalDuplicate,
+    distinctMovement,
+  ]);
+
+  assert.equal(result.rows.length, 2);
+  assert.equal(result.ignoredExactDuplicates, 1);
+  assert.equal(result.conflictingDuplicates, 0);
 });
 
 test('retomada recupera a mesma task e o intervalo congelado do log', () => {
