@@ -75,6 +75,15 @@ test("runtime usa as fontes tipadas e não contém destinatários ou domínio le
   assert.doesNotMatch(whatsapp, /DEFAULT_ALERT_PHONES|WHATSAPP_ALERT_PHONES|app\.vortek\.shop/);
 });
 
+test("monitor de agendamentos usa atividade real e mensagem compreensível", () => {
+  const whatsapp = read("src/services/whatsapp-alerts.ts");
+  assert.match(whatsapp, /select\("created_at,finished_at,log"\)/);
+  assert.match(whatsapp, /getJobLastActivityMs\(last\)/);
+  assert.match(whatsapp, /title: "Atualização atrasada"/);
+  assert.match(whatsapp, /label: "Última atividade"/);
+  assert.doesNotMatch(whatsapp, /title: "Rotina sem execução"/);
+});
+
 test("migration centraliza políticas, protege tabelas e mantém escrita transacional", () => {
   const migration = read("supabase/migrations/20260905023000_bnt_cfg_06_notifications.sql");
   assert.match(migration, /create table if not exists public\.push_alert_settings/);

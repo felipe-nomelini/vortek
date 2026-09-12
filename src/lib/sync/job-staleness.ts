@@ -18,13 +18,19 @@ export function parseJobLog(log: unknown): any[] {
   return [];
 }
 
-export function getJobLastActivityMs(job: Pick<JobStalenessInput, 'created_at' | 'log'>): number {
+export function getJobLastActivityMs(
+  job: Pick<JobStalenessInput, 'created_at' | 'finished_at' | 'log'>,
+): number {
   const createdAtMs = job.created_at ? new Date(job.created_at).getTime() : 0;
+  const finishedAtMs = job.finished_at ? new Date(job.finished_at).getTime() : 0;
   return parseJobLog(job.log).reduce((latest, entry) => {
     const raw = String(entry?.at || entry?.timestamp || '').trim();
     const parsed = raw ? new Date(raw).getTime() : Number.NaN;
     return Number.isFinite(parsed) && parsed > latest ? parsed : latest;
-  }, Number.isFinite(createdAtMs) ? createdAtMs : 0);
+  }, Math.max(
+    Number.isFinite(createdAtMs) ? createdAtMs : 0,
+    Number.isFinite(finishedAtMs) ? finishedAtMs : 0,
+  ));
 }
 
 export function isJobStale(

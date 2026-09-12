@@ -7,6 +7,7 @@ const {
   evaluateScheduledTaskHealth,
   SYNC_TASKS,
 } = require('../src/lib/sync/registry.ts');
+const { getJobLastActivityMs } = require('../src/lib/sync/job-staleness.ts');
 const { resolveMlJobOutcome } = require('../src/lib/sync/job-outcome.ts');
 
 test('jobs lentos usam timeout próprio e retornam para fila após falha transitória', () => {
@@ -112,4 +113,35 @@ test('consulta válida distingue job recente, ausente e atrasado', () => {
     lastRunAt: '2026-08-16T00:59:59Z',
     nowMs,
   }).state, 'stale');
+});
+
+test('monitor de agendamento usa progresso recente de um job longo', () => {
+  const nowMs = Date.parse('2026-09-12T17:17:21.000Z');
+  const lastActivityMs = getJobLastActivityMs({
+    created_at: '2026-09-12T16:46:34.000Z',
+    finished_at: null,
+    log: [{
+      event_type: 'ml_observed_batch_completed',
+      timestamp: '2026-09-12T17:17:15.000Z',
+      processed: 2400,
+      total: 7052,
+    }],
+  });
+
+  const health = evaluateScheduledTaskHealth({
+    intervalMinutes: 5,
+    lastRunAt: new Date(lastActivityMs).toISOString(),
+    nowMs,
+  });
+
+  assert.equal(health.state, 'healthy');
+  assert.equal(health.staleThresholdMinutes, 30);
+  assert.ok(health.minutesSinceLastRun < 1);
+});
+
+test('nome da sincronização de anúncios é compreensível para o usuário', () => {
+  assert.equal(
+    getSyncTaskByKey('sync_ml_listings_observed')?.label,
+    'Atualização dos anúncios do Mercado Livre',
+  );
 });

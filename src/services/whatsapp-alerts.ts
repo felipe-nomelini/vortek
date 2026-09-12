@@ -44,6 +44,7 @@ import {
   getIntervalMinutesForTask,
   getSaoPauloHour,
 } from "@/lib/sync/registry";
+import { getJobLastActivityMs } from "@/lib/sync/job-staleness";
 
 type AlertType =
   | "new_sale"
@@ -934,15 +935,20 @@ export async function alertStaleScheduledTasks() {
 
     const { data: last, error: lookupError } = await client
       .from("jobs")
-      .select("created_at")
+      .select("created_at,finished_at,log")
       .eq("tipo", task.jobTipo)
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
 
+    const lastActivityMs = last ? getJobLastActivityMs(last) : 0;
+    const lastActivityAt = lastActivityMs > 0
+      ? new Date(lastActivityMs).toISOString()
+      : null;
+
     const health = evaluateScheduledTaskHealth({
       intervalMinutes,
-      lastRunAt: last?.created_at || null,
+      lastRunAt: lastActivityAt,
       lookupFailed: Boolean(lookupError),
     });
     if (health.state === "deferred") {
@@ -963,21 +969,21 @@ export async function alertStaleScheduledTasks() {
       const result = await sendWhatsappAlert({
         type: "critical_error",
         severity: "critical",
-        title: "Rotina sem execução",
+        title: "Atualização atrasada",
         dedupeKey: `sync_schedule_stale:${task.key}`,
         dedupeTtlHours: 6,
-        summary: "Uma rotina não executa há mais tempo que o esperado.",
+        summary: "Uma atualização automática está sem atividade há mais tempo que o esperado.",
         fields: [
-          { label: "Rotina", value: task.label },
-          { label: "Frequência", value: `A cada ${intervalMinutes} minutos` },
+          { label: "Atualização", value: task.label },
+          { label: "Frequência prevista", value: `A cada ${intervalMinutes} minutos` },
           {
-            label: "Última execução",
+            label: "Última atividade",
             value: health.minutesSinceLastRun !== null
               ? `Há ${Math.round(health.minutesSinceLastRun)} minutos`
-              : "Nenhuma execução encontrada",
+              : "Nenhuma atividade encontrada",
           },
         ],
-        action: "Abra o painel e confira o agendamento.",
+        action: "Abra o painel e verifique a atualização.",
         link: appLink("Abrir painel", "/dashboard"),
         reference: task.key,
         payload: {
@@ -985,6 +991,7 @@ export async function alertStaleScheduledTasks() {
           interval_minutes: intervalMinutes,
           stale_threshold_minutes: health.staleThresholdMinutes,
           minutes_since_last_run: health.minutesSinceLastRun,
+          last_activity_at: lastActivityAt,
         },
       });
       alerted += result.sent > 0 ? 1 : 0;

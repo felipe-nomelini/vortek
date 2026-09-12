@@ -166,7 +166,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
   {
     key: 'sync_ml_listings_observed',
     jobTipo: 'sync_ml_listings_observed',
-    label: 'ML Anúncios (Observado)',
+    label: 'Atualização dos anúncios do Mercado Livre',
     path: '/api/sync/anuncios',
     domain: 'anuncios:ml_pull',
     lockTtlSeconds: 20 * 60,

@@ -416,8 +416,8 @@ export function getNotificationTemplatePreviews(): NotificationTemplatePreview[]
       preview: { text: internal({ title: "Rotina automática com falha", summary: "A sincronização de pedidos não foi concluída.", severity: "critical", fields: [{ label: "Rotina", value: "Sincronizar pedidos" }, { label: "Ocorrências", value: "3 tentativas" }, { label: "Última falha", value: "04/09/2026 às 15:22" }], action: "Abra o painel e verifique a rotina.", link: { label: "Abrir painel", url: `${appUrl}/dashboard` }, reference: "SYNC-PEDIDOS-503" }) },
     },
     {
-      id: "whatsapp-stale-task", channel: "whatsapp", audience: "internal", label: "Rotina sem execução", trigger: "Agendamento atrasado ou ausente",
-      preview: { text: internal({ title: "Rotina sem execução", summary: "A atualização de preços e estoque não roda há mais tempo que o esperado.", severity: "critical", fields: [{ label: "Rotina", value: "Atualizar preços e estoque" }, { label: "Frequência", value: "A cada 30 minutos" }, { label: "Última execução", value: "Há 96 minutos" }], action: "Abra o painel e confira o agendamento.", link: { label: "Abrir painel", url: `${appUrl}/dashboard` } }) },
+      id: "whatsapp-stale-task", channel: "whatsapp", audience: "internal", label: "Atualização atrasada", trigger: "Atualização automática sem atividade",
+      preview: { text: internal({ title: "Atualização atrasada", summary: "Uma atualização automática está sem atividade há mais tempo que o esperado.", severity: "critical", fields: [{ label: "Atualização", value: "Atualizar preços e estoque" }, { label: "Frequência prevista", value: "A cada 30 minutos" }, { label: "Última atividade", value: "Há 96 minutos" }], action: "Abra o painel e verifique a atualização.", link: { label: "Abrir painel", url: `${appUrl}/dashboard` } }) },
     },
     {
       id: "whatsapp-weekly-report", channel: "whatsapp", audience: "internal", label: "Resumo semanal", trigger: "Fechamento dos últimos sete dias",
