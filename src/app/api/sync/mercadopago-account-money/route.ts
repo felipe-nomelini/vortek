@@ -107,7 +107,7 @@ async function searchAccountMoneyReportsForRange(beginDate: string, endDate: str
 async function importCsv(fileName: string) {
   const service = createServiceClient();
   const csv = await downloadAccountMoneyReport(fileName);
-  const rows = parseMercadoPagoAccountMoneyCsv(csv);
+  const rows = parseMercadoPagoAccountMoneyCsv(csv, { defaultCurrency: 'BRL' });
 
   let imported = 0;
   let rejected = 0;

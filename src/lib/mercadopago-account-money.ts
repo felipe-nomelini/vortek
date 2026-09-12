@@ -21,6 +21,10 @@ export interface MercadoPagoReportResumeState {
   targetEndDate?: string | null;
 }
 
+export interface MercadoPagoAccountMoneyParseOptions {
+  defaultCurrency?: string | null;
+}
+
 export function resolveMercadoPagoReportTaskId(preferred: unknown, fallback?: unknown) {
   for (const value of [preferred, fallback]) {
     const taskId = String(value || '').trim();
@@ -128,7 +132,10 @@ function splitCsvLine(line: string, delimiter: string) {
   return cells;
 }
 
-export function parseMercadoPagoAccountMoneyCsv(csv: string): MercadoPagoMovementRow[] {
+export function parseMercadoPagoAccountMoneyCsv(
+  csv: string,
+  options: MercadoPagoAccountMoneyParseOptions = {},
+): MercadoPagoMovementRow[] {
   const lines = csv
     .replace(/^\uFEFF/, '')
     .split(/\r?\n/)
@@ -149,9 +156,11 @@ export function parseMercadoPagoAccountMoneyCsv(csv: string): MercadoPagoMovemen
     const date = parseDate(firstValue(raw, ['settlement_date', 'transaction_date']));
     const description = firstValue(raw, ['description']);
     const reference = firstValue(raw, ['external_reference', 'source_id']);
-    const settlementNetAmount = parseMoney(firstValue(raw, ['settlement_net_amount']));
+    const settlementNetAmount = parseMoney(firstValue(raw, ['settlement_net_amount', 'real_amount']));
     const transactionAmount = parseMoney(firstValue(raw, ['transaction_amount']));
-    const currency = firstValue(raw, ['settlement_currency'])?.toUpperCase() || null;
+    const currency = firstValue(raw, ['settlement_currency'])?.toUpperCase()
+      || String(options.defaultCurrency || '').trim().toUpperCase()
+      || null;
     const transactionCurrency = firstValue(raw, ['transaction_currency'])?.toUpperCase() || null;
     const movementType = firstValue(raw, ['transaction_type'])?.toUpperCase() || null;
     const validationErrors: string[] = [];

@@ -66,6 +66,46 @@ test('parser usa os campos oficiais e o valor líquido em vez do bruto', () => {
   assert.deepEqual(row.validationErrors, []);
 });
 
+test('parser aceita o formato histórico configurado na conta brasileira', () => {
+  const csv = [
+    [
+      'SOURCE_ID',
+      'PAYMENT_METHOD_TYPE',
+      'TRANSACTION_TYPE',
+      'TRANSACTION_AMOUNT',
+      'TRANSACTION_DATE',
+      'FEE_AMOUNT',
+      'SETTLEMENT_DATE',
+      'REAL_AMOUNT',
+      'TAXES_AMOUNT',
+      'MONEY_RELEASE_DATE',
+      'BUSINESS_UNIT',
+      'SUB_UNIT',
+    ].join(';'),
+    [
+      'historical-source-1',
+      'account_money',
+      'SETTLEMENT',
+      '100.00',
+      '2026-06-01T12:00:00Z',
+      '-12.00',
+      '2026-06-01T12:00:00Z',
+      '88.00',
+      '0.00',
+      '2026-06-02T12:00:00Z',
+      'mercadolibre',
+      'marketplace',
+    ].join(';'),
+  ].join('\n');
+
+  const row = parseMercadoPagoAccountMoneyCsv(csv, { defaultCurrency: 'BRL' })[0];
+
+  assert.equal(row.amount, 88);
+  assert.equal(row.currency, 'BRL');
+  assert.equal(row.transactionCurrency, null);
+  assert.deepEqual(row.validationErrors, []);
+});
+
 test('linha sem campos financeiros oficiais é rejeitada para importação', () => {
   const csv = [
     'EXTERNAL_REFERENCE,DESCRIPTION,TRANSACTION_AMOUNT,TRANSACTION_CURRENCY',
