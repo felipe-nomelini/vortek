@@ -230,6 +230,8 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 180, offHoursMinutes: 360 },
     defaultBody: { windowDays: 7 },
+    requestTimeoutMs: 300_000,
+    retryOnFailure: true,
   },
   {
     key: 'sync_pack_id_backfill',

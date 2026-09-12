@@ -24,7 +24,7 @@ import {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const maxDuration = 300;
-const REPORT_PAGE_SIZE = 30;
+const REPORT_PAGE_SIZE = 100;
 const REPORT_SEARCH_MAX_PAGES = 40;
 const IMPORT_BATCH_SIZE = 500;
 const REPORT_OVERLAP_DAYS = 1;

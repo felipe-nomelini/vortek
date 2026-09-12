@@ -38,6 +38,7 @@ test('remove contrato ativo Hayamax e preserva schema e histórico Mercado Pago'
 
   assert.doesNotMatch(syncRoute, /MERCADOPAGO_HAYAMAX_MATCHERS|MERCADOPAGO_WEBHOOK_SECRET/);
   assert.match(syncRoute, /IMPORT_BATCH_SIZE/);
+  assert.match(syncRoute, /REPORT_PAGE_SIZE = 100/);
   assert.doesNotMatch(parser, /isHayamaxTopupCandidate|isReviewRequiredCandidate/);
   assert.match(migration, /create table if not exists public\.mercadopago_account_movements/i);
   assert.match(migration, /matched_supplier text null/);

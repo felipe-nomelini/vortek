@@ -13,6 +13,7 @@ test('jobs lentos usam timeout próprio e retornam para fila após falha transit
   const dslite = getSyncTaskByKey('sync_dslite_pedidos_compra');
   const mlObserved = getSyncTaskByKey('sync_ml_listings_observed');
   const mlPublish = getSyncTaskByKey('sync_ml_listings_publish');
+  const mercadoPago = getSyncTaskByKey('sync_mercadopago_account_money');
 
   assert.equal(dslite?.requestTimeoutMs, 180_000);
   assert.equal(dslite?.retryOnFailure, true);
@@ -21,6 +22,8 @@ test('jobs lentos usam timeout próprio e retornam para fila após falha transit
   assert.equal(mlObserved?.usesOffset, undefined);
   assert.equal(mlPublish?.requestTimeoutMs, 180_000);
   assert.equal(mlPublish?.retryOnFailure, true);
+  assert.equal(mercadoPago?.requestTimeoutMs, 300_000);
+  assert.equal(mercadoPago?.retryOnFailure, true);
 });
 
 test('falha do sync DSLite permanece em espera para retry seguro', () => {
