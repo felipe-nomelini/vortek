@@ -274,6 +274,23 @@ export function getNextMercadoPagoWindow(input: {
   return { beginDate: new Date(begin).toISOString(), endDate: new Date(end).toISOString() };
 }
 
+export function isMercadoPagoReportForRange(
+  report: { begin_date?: unknown; end_date?: unknown } | null | undefined,
+  beginDate: string,
+  endDate: string,
+  boundaryToleranceMs = 36 * 60 * 60 * 1000,
+) {
+  const requestedBegin = Date.parse(beginDate);
+  const requestedEnd = Date.parse(endDate);
+  const reportBegin = Date.parse(String(report?.begin_date || ''));
+  const reportEnd = Date.parse(String(report?.end_date || ''));
+  if (![requestedBegin, requestedEnd, reportBegin, reportEnd].every(Number.isFinite)) return false;
+  return reportBegin <= requestedBegin
+    && reportEnd >= requestedEnd
+    && requestedBegin - reportBegin <= boundaryToleranceMs
+    && reportEnd - requestedEnd <= boundaryToleranceMs;
+}
+
 export function isMercadoPagoReportPending(status: unknown) {
   const normalized = String(status || '').trim().toLowerCase();
   return normalized === 'pending' || normalized === 'processing';

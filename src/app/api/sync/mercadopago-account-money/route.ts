@@ -14,6 +14,7 @@ import {
   getNextMercadoPagoWindow,
   getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
+  isMercadoPagoReportForRange,
   isMercadoPagoReportPending,
   isMercadoPagoReportReady,
   parseMercadoPagoAccountMoneyCsv,
@@ -77,8 +78,8 @@ async function getInitialScheduledRange(
   return { beginDate: new Date(beginMs).toISOString(), endDate: new Date(endMs).toISOString() };
 }
 
-async function searchAllAccountMoneyReports(beginDate: string, endDate: string) {
-  const reports: MercadoPagoReportTask[] = [];
+async function searchAccountMoneyReportsForRange(beginDate: string, endDate: string) {
+  const matchingReports: MercadoPagoReportTask[] = [];
   let offset = 0;
   for (let pageNumber = 0; pageNumber < REPORT_SEARCH_MAX_PAGES; pageNumber += 1) {
     const page = await searchAccountMoneyReportsPage({
@@ -88,9 +89,16 @@ async function searchAllAccountMoneyReports(beginDate: string, endDate: string) 
       offset,
     });
     const current = Array.isArray(page.results) ? page.results : [];
-    reports.push(...current);
+    matchingReports.push(...current.filter((report) => (
+      isMercadoPagoReportForRange(report, beginDate, endDate)
+    )));
+    if (matchingReports.some((report) => (
+      isMercadoPagoReportReady(report.status) || isMercadoPagoReportPending(report.status)
+    ))) return matchingReports;
     const total = Number(page.paging?.total);
-    if (!current.length || (Number.isFinite(total) && reports.length >= total)) return reports;
+    if (!current.length || (Number.isFinite(total) && offset + current.length >= total)) {
+      return matchingReports;
+    }
     offset += current.length;
   }
   throw new MercadoPagoRequestError(502, 'invalid_response', 'O Mercado Pago retornou páginas demais para esta consulta.');
@@ -257,13 +265,7 @@ export async function POST(request: Request) {
       return responseForTask(task, beginDate, endDate, targetEndDate, windowDays, taskId);
     }
 
-    const reports = await searchAllAccountMoneyReports(beginDate, endDate);
-    const sameRange = (report: any) => {
-      const reportBegin = report?.begin_date ? new Date(report.begin_date).toISOString() : '';
-      const reportEnd = report?.end_date ? new Date(report.end_date).toISOString() : '';
-      return reportBegin === beginDate && reportEnd === endDate;
-    };
-    const matchingReports = reports.filter(sameRange);
+    const matchingReports = await searchAccountMoneyReportsForRange(beginDate, endDate);
     const ready = matchingReports.find((report) => (
       isMercadoPagoReportReady(report.status) && getMercadoPagoReportFileName(report)
     ));

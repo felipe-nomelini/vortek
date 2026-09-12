@@ -6,6 +6,7 @@ const {
   getMercadoPagoReportResumeState,
   getMercadoPagoCompletedWindowEnd,
   getNextMercadoPagoWindow,
+  isMercadoPagoReportForRange,
   isMercadoPagoReportReady,
   parseMercadoPagoAccountMoneyCsv,
   resolveMercadoPagoReportTaskId,
@@ -192,6 +193,17 @@ test('retomada avança janelas com sobreposição sem depender da data dos movim
     endDate: '2026-06-14T00:00:00.000Z',
   });
   assert.equal(getNextMercadoPagoWindow({ currentEndDate: '2026-06-30T00:00:00.000Z', targetEndDate: '2026-06-30T00:00:00.000Z' }), null);
+});
+
+test('reconhece o intervalo normalizado pelo fechamento diário do Mercado Pago', () => {
+  assert.equal(isMercadoPagoReportForRange({
+    begin_date: '2026-06-05T03:00:00Z',
+    end_date: '2026-06-13T02:59:59Z',
+  }, '2026-06-06T02:02:00.000Z', '2026-06-13T02:02:00.000Z'), true);
+  assert.equal(isMercadoPagoReportForRange({
+    begin_date: '2026-06-01T03:00:00Z',
+    end_date: '2026-06-13T02:59:59Z',
+  }, '2026-06-06T02:02:00.000Z', '2026-06-13T02:02:00.000Z'), false);
 });
 
 test('checkpoint considera somente janela concluída', () => {
