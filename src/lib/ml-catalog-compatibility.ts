@@ -22,6 +22,10 @@ function normalize(value: unknown): string {
     .replace(/\s+/g, " ");
 }
 
+function normalizeIdentifier(value: unknown): string {
+  return normalize(value).replace(/[^a-z0-9]/g, '');
+}
+
 function attributeValue(attribute: CatalogAttribute | null | undefined): string | null {
   const direct = String(attribute?.value_id || attribute?.value_name || "").trim();
   if (direct) return direct;
@@ -60,6 +64,17 @@ export function catalogAttributeMismatches(item: any, catalogProduct: any) {
   for (const [id, catalogAttribute] of attributesById(catalogProduct)) {
     if (IGNORED_ATTRIBUTE_IDS.has(id)) continue;
     const itemAttribute = itemAttributes.get(id);
+    const itemLabel = attributeLabel(itemAttribute);
+    const catalogLabel = attributeLabel(catalogAttribute);
+    if (itemLabel && catalogLabel && normalize(itemLabel) === normalize(catalogLabel)) continue;
+    const model = id === 'MODEL' ? normalizeIdentifier(itemLabel) : '';
+    const catalogTitle = id === 'MODEL'
+      ? normalizeIdentifier(catalogProduct?.name || catalogProduct?.title)
+      : '';
+    // Alguns produtos de catálogo têm o modelo correto no título, mas um valor
+    // genérico no atributo MODEL. O identificador exato no título é evidência
+    // suficiente para não fabricar uma divergência inexistente.
+    if (model.length >= 4 && catalogTitle.includes(model)) continue;
     const itemValue = attributeValue(itemAttribute);
     const catalogValue = attributeValue(catalogAttribute);
     if (!itemValue || !catalogValue || normalize(itemValue) === normalize(catalogValue)) continue;

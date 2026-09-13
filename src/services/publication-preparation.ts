@@ -12,7 +12,7 @@ import { fiscalStrictSchema } from '@/lib/fiscal-strict';
 import { factoryWarranty, warrantySaleTerms, warrantyDescription, warrantyDescriptionConflicts } from '@/lib/product-warranty';
 import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
 import { getCategoryAttributes, getCategorySaleTerms } from './mercadolibre';
-import { fetchMLResult } from './integration';
+import { fetchMLResult, type MLRequestResult } from './integration';
 import { loadPricingDetail } from './pricing-detail';
 import { pricingMaterialFingerprint } from './pricing-audit';
 import { resolveProductMlLinks } from './ml-listing-links';
@@ -36,6 +36,17 @@ export const publicationInputSchema = z.object({
     context.addIssue({ code: 'custom', path: ['sourceItemId'], message: 'Um anúncio novo não possui anúncio de origem.' });
 });
 export type PublicationInput = z.infer<typeof publicationInputSchema>;
+
+/** O validador do ML responde 400 também quando há somente avisos aplicáveis. */
+export function isMlDraftValidationAccepted(result: MLRequestResult<unknown>) {
+  if (result.ok) return true;
+  const causes = result.error?.causes;
+  return result.status === 400
+    && result.error?.code === 'validation_error'
+    && Array.isArray(causes)
+    && causes.length > 0
+    && causes.every(cause => cause.type === 'warning');
+}
 
 async function resolveExactCatalogProduct(input: {
   product: any; attributes: Array<{ id: string; value_id?: string; value_name?: string }>; categoryId: string;
@@ -177,7 +188,7 @@ export async function preparePublication(raw: unknown, actorId: string) {
   if (input.action === 'new') {
     const validation = await fetchMLResult('/items/validate', { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload) }, pricingExecutionTransport(sellerId));
-    if (!validation.ok) throw new Error('publication_ml_validation_failed');
+    if (!isMlDraftValidationAccepted(validation)) throw new Error('publication_ml_validation_failed');
   }
   const preparation = { action: input.action, sourceItemId: input.sourceItemId || null,
     input: { ...input, priceCents: memory.revenueCents }, payload, expected, description,

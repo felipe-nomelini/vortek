@@ -72,6 +72,18 @@ test('legacy modes, fabricated identity fields and actor injection are rejected 
   const h=harness();for(const extra of [{pricingMode:'profitable_shelf_2'},{targetNetProfit:20},{basePrice:110},{actorId:id},{allowOutOfStockListing:true}])
     assert.equal(h.module.publicationInputSchema.safeParse({...input(),...extra}).success,false);
 });
+test('validação oficial aceita somente avisos e continua bloqueando causas de erro',()=>{
+  const h=harness();
+  assert.equal(h.module.isMlDraftValidationAccepted({ok:true,status:204,data:null,error:null}),true);
+  assert.equal(h.module.isMlDraftValidationAccepted({ok:false,status:400,data:null,error:{
+    status:400,code:'validation_error',message:'Validation error',category:'error',traceId:null,
+    causes:[{type:'warning',code:'item.shipping.mandatory_free_shipping',message:'Mandatory free shipping added'}],
+  }}),true);
+  assert.equal(h.module.isMlDraftValidationAccepted({ok:false,status:400,data:null,error:{
+    status:400,code:'validation_error',message:'Validation error',category:'error',traceId:null,
+    causes:[{type:'error',code:'item.attribute.missing_required',message:'Required attribute missing'}],
+  }}),false);
+});
 test('missing/conflicting evidence never becomes a publishable preparation',async()=>{
   for(const option of ['noImages','noStock','linked','identityPending','invalidFiscal','inconclusive','uncertainLink','validationFailed','belowFloor','conditionalMissing','partialMemory']) {
     const h=harness({[option]:true});await assert.rejects(h.module.preparePublication(input(),id));assert.equal(h.saved.length,0,option);

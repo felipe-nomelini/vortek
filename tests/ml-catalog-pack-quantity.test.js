@@ -2,8 +2,31 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
+  catalogAttributeMismatches,
   catalogLocalCriticalMismatches,
 } = require('../src/lib/ml-catalog-compatibility.ts');
+
+test('aceita modelo exato corroborado pelo título quando o atributo do catálogo é genérico', () => {
+  const mismatches = catalogAttributeMismatches(
+    { attributes: [{ id: 'MODEL', value_name: 'TA-821BS' }] },
+    {
+      name: 'Acordeon 8 Baixos 21 Botões TA-821BS Vermelho Thommasi',
+      attributes: [{ id: 'MODEL', value_id: '49747067', value_name: '8 baixos 21 botões vermelho' }],
+    },
+  );
+  assert.equal(mismatches.some(row => row.id === 'MODEL'), false);
+});
+
+test('mantém bloqueio quando modelo não coincide com atributo nem título do catálogo', () => {
+  const mismatches = catalogAttributeMismatches(
+    { attributes: [{ id: 'MODEL', value_name: 'TB-200P' }] },
+    {
+      name: 'Trombone de Pistões NY Tenor MUSIC42361',
+      attributes: [{ id: 'MODEL', value_id: '123', value_name: 'MUSIC42361' }],
+    },
+  );
+  assert.equal(mismatches.some(row => row.id === 'MODEL'), true);
+});
 
 test('bloqueia catálogo de 20 pilhas para cartela local com 4 pilhas', () => {
   const mismatches = catalogLocalCriticalMismatches(

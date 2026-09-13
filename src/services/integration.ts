@@ -30,6 +30,11 @@ export interface MLRequestError {
   message: string;
   category: MLFailureCategory;
   traceId: string | null;
+  causes?: Array<{
+    type: string | null;
+    code: string | null;
+    message: string | null;
+  }>;
 }
 
 export interface MLRequestResult<T> {
@@ -831,6 +836,13 @@ export async function fetchMLResult<T>(
       message,
       category,
       traceId,
+      causes: Array.isArray(parsed?.cause)
+        ? parsed.cause.map((cause: any) => ({
+            type: typeof cause?.type === 'string' ? cause.type : null,
+            code: typeof cause?.code === 'string' ? cause.code : null,
+            message: typeof cause?.message === 'string' ? cause.message : null,
+          }))
+        : undefined,
     };
 
     logMLFailure(method, path, res.status, body, error);
