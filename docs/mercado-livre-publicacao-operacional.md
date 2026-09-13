@@ -2,16 +2,17 @@
 
 Este documento registra regras práticas validadas na criação de anúncios do Vortek.
 
-## Estado produtivo Bentevi — 11/09/2026
+## Estado produtivo Bentevi — 13/09/2026
 
 O Bentevi está em produção em `app.bentevi.shop`, com o Supabase self-hosted
-produtivo em `.162`. A alteração **manual e individual** de preço está liberada
-no executor canônico por `ML_PRICING_EXECUTION_MODE=production_controlled` e
-`ML_PRICING_EXECUTION_ALLOWED_OPERATIONS=price_change`. Criação de anúncios,
-alteração automática e operações em lote continuam bloqueadas. A publicação
-automática liberada fora desse recorte continua exclusivamente de **quantidade
-e status** de anúncios existentes, por meio de `anuncios_ml_outbox` e do
-publicador canônico.
+produtivo em `.162`. A alteração manual e individual de preço e a
+criação/republicação controlada de anúncios estão liberadas no executor canônico
+por `ML_PRICING_EXECUTION_MODE=production_controlled` e
+`ML_PRICING_EXECUTION_ALLOWED_OPERATIONS=price_change,listing_create`.
+Alteração automática de preço e publicação sem preparação, aprovação, operação
+auditada e leitura de confirmação continuam bloqueadas. A publicação automática
+fora desse recorte continua exclusivamente de **quantidade e status** de
+anúncios existentes, por meio de `anuncios_ml_outbox` e do publicador canônico.
 
 - O sincronizador central é disparado no runtime produtivo a cada minuto; o
   publicador de estoque/status é consultado a cada 15 segundos e mantém lote
@@ -68,23 +69,26 @@ e ativada em 11/09/2026 somente para alteração manual de preço. A central,
 escopo, preflight, deploy e recuperação estão registrados em
 [BNT-PRICING-DECISION-CENTER-01](reestruturacao-vortek/evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
 
-### Modo produtivo controlado — preço manual ativo em 11/09/2026
+### Modo produtivo controlado — preço e publicação controlada ativos em 13/09/2026
 
 - `ML_PRICING_EXECUTION_MODE=production_controlled` somente produz capacidade quando o runtime é `production`, a origem é exatamente `https://app.bentevi.shop`, o Supabase resolve exclusivamente para `.162`, o seller está na allowlist e `/users/me` comprova conta `MLB` sem a tag `test_user`.
 - `test_only` preserva o contrato de homologação, incluindo conta `test_user`; `disabled` permanece o padrão fora do serviço produtivo explicitamente configurado.
-- `ML_PRICING_EXECUTION_ALLOWED_OPERATIONS=price_change` limita a capacidade
-  produtiva atual. `listing_create` não está na allowlist e é recusado também no
-  backend, independentemente da interface.
+- `ML_PRICING_EXECUTION_ALLOWED_OPERATIONS=price_change,listing_create` limita a
+  capacidade produtiva atual a preço manual e criação/republicação controlada.
+  Qualquer outro tipo de operação continua recusado no backend,
+  independentemente da interface.
 - Aprovação e aplicação continuam separadas e feitas pela mesma pessoa autorizada (`admin` ou `gerente`). Produção acrescenta confirmação final explícita com produto, SKU e preço antes de enfileirar.
 - O executor canônico conserva claim único, revalidação imediatamente antes do envio, auditoria, captura do ID remoto, read-back e recuperação sem reenvio após resultado incerto. Escritores legados permanecem bloqueados.
 - Em criação produtiva, o anúncio usa o nome comprovado do produto. O aviso `Item de Teste` existe somente em `test_only`.
 
-Essas condições não ampliam a autorização para criação, lote ou automação. O
-primeiro preço real continua sendo um canário manual: escolher um anúncio
-elegível, registrar e aprovar a proposta, confirmar uma única vez e conferir o
-estado terminal/read-back antes de qualquer segunda operação.
+Essas condições não autorizam criação indiscriminada, lote cego ou automação. A
+execução começa por um canário individual: escolher um produto elegível,
+registrar e aprovar a proposta, confirmar uma única vez e conferir o estado
+terminal e a leitura do Mercado Livre antes da próxima operação.
 
-Não reenviar criação ou preço após resultado incerto. A central pode solicitar nova conferência da mesma operação, sem repetir a mutação. Nenhuma destas regras autoriza anúncio real, publicação em massa ou escrita em produção.
+Não reenviar criação ou preço após resultado incerto. A central pode solicitar
+nova conferência da mesma operação, sem repetir a mutação. A capacidade técnica
+não substitui um pedido explícito para publicar ou alterar anúncios reais.
 
 ## Regra central
 

@@ -110,6 +110,15 @@ test('schema crítico não usa predição e listas respeitam valor oficial', () 
   assert.match(schema, /resolveTrustedMlCriticalValue\(attrId, produto, supplierOffers \|\| \[\], operationalSupplierIds, kit, attrs\)/);
 });
 
+test('modelo rotulado termina no próximo marcador da descrição do fornecedor', () => {
+  const value = critical.resolveTrustedMlCriticalValue('MODEL', {
+    id: 'P1', sku: 'VTK1', nome: 'Produto', marca: 'Marca A', gtin: null,
+    descricao: 'Marca: Marca A - Modelo: M1 - Tipo: Analógico - Cor: Preto',
+    updated_at: '2026-09-12T00:00:00.000Z',
+  }, [], new Set(), { status: 'not_kit', components: [] }, [{ id: 'MODEL' }]);
+  assert.equal(value, 'm1');
+});
+
 test('read-back ausente não usa resposta inicial para pausar por identidade', () => {
   const create = fs.readFileSync('src/services/publication-readback.ts', 'utf8');
   assert.doesNotMatch(create, /let latestItem = \(await getListingSnapshot\(result.id\)\) \|\| result/);

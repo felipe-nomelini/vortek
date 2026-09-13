@@ -64,7 +64,10 @@ function rowFacts(row: any, source: ConflictEvidence['source']): MlIdentityFacts
   const text = clean([row?.nome, row?.descricao].filter(Boolean).join(' ; ').replace(/[\r\n]+/g, ';'));
   const labels = 'marca|modelo|part number|mpn|cor|tamanho|voltagem|tensao|formato de venda|apresentacao|conteudo(?: da embalagem)?';
   for (const [field, label] of [['MODEL', 'modelo'], ['MPN', 'part number|mpn'], ['COLOR', 'cor']] as const) {
-    const values = [...new Set(Array.from(text.matchAll(new RegExp(`\\b(?:${label})\\s*:\\s*(.+?)(?=\\s+\\b(?:${labels})\\s*:|[;|]|$)`, 'g'))).map(match => match[1].trim()))];
+    const values = [...new Set(Array.from(text.matchAll(new RegExp(
+      `\\b(?:${label})\\s*:\\s*(.+?)(?=\\s+(?:-|•)\\s+|\\s+\\b(?:${labels})\\s*:|[;|]|$)`,
+      'g',
+    ))).map(match => match[1].trim()))];
     if (values.length) set(field, values.length === 1 ? values[0] : null, values.length > 1);
   }
   const voltages = [...new Set(Array.from(text.matchAll(/\b(?:\d+(?:[.,]\d+)?)\s*v(?:dc)?\b/g)).map(match => normalizeVoltageValue(match[0])))];

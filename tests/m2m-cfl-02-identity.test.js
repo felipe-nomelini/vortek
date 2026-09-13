@@ -49,17 +49,31 @@ test('ausência não é divergência e não permite desbloqueio', () => {
   assert.equal(identity.hasConfirmedMlIdentityConflict(result), false);
 });
 
-test('anúncio existente pode operar com SKU e GTIN coerentes sem confundir qualidade editorial com identidade', () => {
+test('atributo editorial obrigatório não é confundido com identidade do produto', () => {
   const input = fixture();
   input.context.categoryAttributes.push({ id: 'PRESENTATION', tags: { required: true } });
   const result = evaluate(input);
-  assert.equal(identity.isMlIdentityComplete(result), false);
+  assert.equal(identity.isMlIdentityComplete(result), true);
   assert.equal(identity.isMlExistingListingIdentitySafe(result), true);
   input.facts.COLOR = { value: 'Azul', evidence: [proof()] };
   setRemote(input, 'COLOR', 'Preto');
   assert.equal(identity.isMlExistingListingIdentitySafe(evaluate(input)), true);
   setRemote(input, 'GTIN', '7898705600000');
   assert.equal(identity.isMlExistingListingIdentitySafe(evaluate(input)), false);
+});
+
+test('categoria sem campos de apresentação não cria impedimento artificial', () => {
+  const input = fixture();
+  delete input.facts.SALE_FORMAT;
+  delete input.facts.UNITS_PER_PACK;
+  delete input.facts.PACKAGES_NUMBER;
+  input.context.categoryAttributes = input.context.categoryAttributes.filter(attr =>
+    !['SALE_FORMAT', 'UNITS_PER_PACK', 'PACKAGES_NUMBER'].includes(attr.id));
+  input.item.attributes = input.item.attributes.filter(attr =>
+    !['SALE_FORMAT', 'UNITS_PER_PACK', 'PACKAGES_NUMBER'].includes(attr.id));
+  const result = evaluate(input);
+  assert.equal(get(result, 'PRESENTATION').reason, 'NAO_APLICAVEL_A_CATEGORIA');
+  assert.ok(identity.isMlIdentityComplete(result));
 });
 
 test('categoria ausente impede cobertura completa, mas não apaga conflito comprovado', () => {
@@ -153,6 +167,7 @@ test('variante sem atributo variável não herda cor do anúncio pai', () => {
 
 test('unidades convertíveis com mesma grandeza não criam conflito de dimensão', () => {
   const input = fixture(); input.facts.DIAMETER = { value: '30 cm', evidence: [proof()] };
+  input.context.categoryAttributes.push({ id: 'DIAMETER' });
   setRemote(input, 'DIAMETER', '300 mm');
   assert.equal(get(evaluate(input), 'DIAMETER').status, 'SEM_CONFLITO');
 });

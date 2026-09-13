@@ -32,6 +32,7 @@ export type MlIdentityContext = {
 };
 const PACK_FIELDS = ['SALE_FORMAT', 'UNITS_PER_PACK', 'PACKS_NUMBER', 'PACKAGES_NUMBER', 'PACKAGING_BOXES_NUMBER'];
 const IDENTITY_FIELDS = ['SELLER_SKU', 'GTIN', 'BRAND', 'MODEL', 'MPN', 'PART_NUMBER', 'COLOR', 'VOLTAGE', 'NOMINAL_VOLTAGE', 'DIAMETER', 'BLADES_DIAMETER'];
+const INTERNAL_IDENTITY_FIELDS = new Set(['KIT_COMPOSITION']);
 const EXISTING_LISTING_COMMERCIAL_FIELDS = new Set([
   'SELLER_SKU', 'GTIN', 'BRAND', 'MODEL', 'MPN', 'PART_NUMBER', ...PACK_FIELDS,
 ]);
@@ -131,7 +132,17 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
     }
   } else if (item?.seller_custom_field) attributes = [...attributes, { id: 'SELLER_SKU', value_name: item.seller_custom_field }];
 
-  const fields = new Set([...Object.keys(facts), ...definitions.filter(attr => isMlIdentityAttribute(attr.id) || attr.tags?.required || attr.tags?.conditional_required).map(attr => attr.id)]);
+  const definitionIds = new Set(definitions.map(attribute => attribute.id));
+  // A validação de identidade compara somente campos de identidade/apresentação
+  // aceitos pela categoria. Atributos editoriais obrigatórios continuam sendo
+  // validados pelo endpoint condicional e por /items/validate na publicação.
+  const fields = new Set(definitions.length
+    ? [
+        'SELLER_SKU',
+        ...Object.keys(facts).filter(field => field === 'SELLER_SKU' || definitionIds.has(field) || INTERNAL_IDENTITY_FIELDS.has(field)),
+        ...definitions.filter(attribute => isMlIdentityAttribute(attribute.id)).map(attribute => attribute.id),
+      ]
+    : Object.keys(facts));
   for (const field of fields) {
     const fact = facts[field];
     const rawValues = readMlIdentityAttribute(attributes, field, definitions);
@@ -154,9 +165,15 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
     comparisons.push({ field, dimension: PACK_FIELDS.includes(field) ? 'packaging_quantity' : 'identity', local: fact?.value || null, remote: rawValues.join(' | ') || null, status, reason, evidence });
   }
   for (const dimension of ['identity', 'packaging_quantity'] as const) {
-    if (!comparisons.some(row => row.dimension === dimension)) comparisons.push({
+    if (comparisons.some(row => row.dimension === dimension)) continue;
+    const presentationNotApplicable = dimension === 'packaging_quantity'
+      && definitions.length > 0
+      && !definitions.some(attribute => PACK_FIELDS.includes(attribute.id));
+    comparisons.push({
       field: dimension === 'identity' ? 'IDENTITY' : 'PRESENTATION', dimension, local: null, remote: null,
-      status: 'PENDENCIA_VALIDACAO', reason: 'EVIDENCIA_AUSENTE', evidence: [],
+      status: presentationNotApplicable ? 'SEM_CONFLITO' : 'PENDENCIA_VALIDACAO',
+      reason: presentationNotApplicable ? 'NAO_APLICAVEL_A_CATEGORIA' : 'EVIDENCIA_AUSENTE',
+      evidence: presentationNotApplicable && context.remoteEvidence ? [context.remoteEvidence] : [],
     });
   }
   if (!context.categoryAttributes?.length) for (const dimension of ['identity', 'packaging_quantity'] as const) {
