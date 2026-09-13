@@ -119,13 +119,15 @@ Performance é separada da economia. Janelas: 30/90/150 dias. Sem amostra: `SEM_
 
 ## 22. Garantia — política canônica
 
-Não existe garantia universal de 12 meses.
+A política comercial vigente é **GARANTIA DE FÁBRICA DE 12 MESES** para todos os
+produtos comercializados pela Bentevi. Todos os fornecedores operacionais
+oferecem essa garantia.
 
-A política é **GARANTIA DO FABRICANTE**, produto a produto.
-
-Precedência: fabricante oficial > documentação/oferta oficial > informação confiável da oferta > regra legal > fallback técnico permitido.
-
-Nunca afirmar "12 meses de garantia do fabricante" sem suporte. Quando o ML exigir duração, usar prazo comprovado; não inventar.
+Não exigir pesquisa, documento, link, dossiê, aprovação ou comprovação por SKU.
+Nos termos de venda e na descrição do Mercado Livre, declarar `Garantia de
+fábrica: 12 meses`. Se a categoria não aceitar tecnicamente essa representação,
+bloquear a publicação e mostrar a incompatibilidade; não trocar por garantia do
+vendedor nem por outro prazo.
 
 ## 23. Publicação
 
@@ -160,7 +162,7 @@ Dashboard deve explicar motivo, evidência, impacto, regra e ação.
 5. faixas de preço por quantidade;
 6. margem global legada;
 7. `custom_price` como prova de override;
-8. garantia universal de 12 meses.
+8. pesquisa ou comprovação individual de garantia por produto.
 
 Não reintroduzir sob outro nome sem homologação.
 
@@ -178,11 +180,11 @@ Não reintroduzir sob outro nome sem homologação.
 10. override explícito;
 11. pricing groups;
 12. Buy Box econômica;
-13. performance 30/90/150 e zero tráfego;
-14. Radar/filtro de conflitos;
-15. experimentos;
-16. níveis de autonomia;
-17. garantia real do fabricante.
+13. garantia de fábrica de 12 meses para todos os produtos Bentevi;
+14. performance 30/90/150 e zero tráfego;
+15. Radar/filtro de conflitos;
+16. experimentos;
+17. níveis de autonomia.
 
 ## 29. Regra anti-"jabuticaba"
 
@@ -238,14 +240,10 @@ Registro: conversa de aprovação do plano, 05–06/09/2026. Autoridade: Diretor
 | 15 — decisão de 07/09/2026, V2-05 | Permissão e mudança de composição sem decisão explícita | Admin e gerente gerenciam; operador/visualizador consultam. Propagar proteção automaticamente aos grupos resultantes que contenham membros anteriormente protegidos | Decisões confirmadas no planejamento pelo responsável; revogação continua manual e por grupo, sem alterar preço |
 | 16 | Teto técnico de 30 dias não homologado | Remover teto; validade expressa com término ou até revogação | Preservar liquidação autorizada sem nova cadência |
 | 16 — decisão de 07/09/2026, V2-06 | Alçada, limite e transferência sem definição operacional | Admin/gerente gerenciam; perda máxima em reais por unidade, zero por padrão e aceite explícito para prejuízo; custo da oferta ativa como referência; transferência mantém uma autorização e quantidade compartilhada | Recorte das entradas internas existentes, sem herança de reposição; diagnóstico inconclusivo não autoriza execução; nenhuma alteração de preço nesta etapa |
-| 22 | Hierarquia sem duração legal definida; revisão propunha 30 dias universais | Fabricante comprovado → fornecedor comprovado → legal: 30 dias não duráveis / 90 dias duráveis, conforme classificação documentada | Correção confirmada pelo usuário após consulta ao CDC; fornecedor não é rotulado como fabricante |
 | 19/25/26 | Cânon descreve acompanhamento comercial | Nesta entrega não criar acompanhamento, alertas ou diagnósticos periódicos; preservar existentes | Escopo restrito a políticas de criação/correção e auditoria pontual |
 | 23 | Preparação e publicação conforme autorização específica | Auditar existentes somente em leitura; filas de correção remota exigem autorização posterior | Nenhuma publicação ou alteração remota é teste desta entrega |
 
-Garantia contratual e garantia legal permanecem distintas; não somar durações por inferência. Prazo de outro SKU, primeiro valor da categoria e duração genérica de marca não são fontes. Classificação duvidosa do produto exige validação específica, sem fabricar 30 ou 90 dias.
-
-**Conciliação de 08/09/2026:** a retirada dos controles da interface não muda esta política. O fallback comercial `VORTEK-WARRANTY-2026-09-06-SELLER-30`, reconfirmado no ref main `3ed7f127`, não será incorporado à V2 por contradizer o contrato já aprovado de ausência/classificação documentada. Sem reescrever garantias existentes, sem nova regra ou escrita comercial. [Comparação e evidências](evidencias/BNT-CANON-WARRANTY-01-validacao.md#conciliação-de-política--08092026).
-
-**Aplicação WARRANTY-01 — 07/09/2026:** resolução por produto compartilhada pela preparação, sugestão e criação. Fonte oficial aprovada por marca/fornecedor permite reutilizar confiança no domínio, nunca duração por SKU. Pesquisa automática pontual na preparação; revisão explícita para evidência insuficiente, descrição de oferta ou classificação legal. Admin/gerente gerenciam e demais perfis consultam; decisões, contexto e fontes preservam trilha. “12 meses” e “1 ano” são equivalentes; dias não são aproximados em meses. Garantia global aposentada no runtime, dados históricos preservados. Implementação/SQL DEV validados; pesquisa real e aceite visual ainda pendentes, sem liberar escrita comercial. [Contrato, testes e limites](evidencias/BNT-CANON-WARRANTY-01-validacao.md).
-
-Fonte legal lida: [CDC atualizado, arts. 24, 26 e 50](https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html).
+**Revisão de 12/09/2026:** as decisões e a implementação de garantia por
+evidência registradas entre 05 e 08/09 foram superadas pela regra da Seção 22.
+Elas permanecem somente nos arquivos históricos de evidência e não podem
+orientar, bloquear ou exigir pesquisa na operação atual.

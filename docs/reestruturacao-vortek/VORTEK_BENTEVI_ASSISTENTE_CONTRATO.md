@@ -17,7 +17,7 @@ Na ação original AI-00 não foram criados página, endpoint, tabela de convers
 
 | Área | Evidência atual | Contrato da primeira entrega |
 |---|---|---|
-| Provedor | Extrator individual de garantia em `src/services/warranty-codex.ts` | Reaproveitar aprendizado de autenticação, isolamento e protocolo; não transformar o extrator de garantia em serviço genérico nesta ação |
+| Provedor | Transporte Codex compartilhado extraído durante o antigo piloto de garantia | Manter o transporte isolado do Assistente; o extrator individual de garantia foi aposentado em 12/09/2026 e não é dependência do chat |
 | Assinatura | `account/read` confirmou `chatgpt` em 08/09 e dois LIVE sintéticos passaram | Piloto individual do titular; uso pelos dois administradores exige liberação separada |
 | Modelo | `gpt-6-astra/low`, escolhido explicitamente e validado com login ChatGPT no piloto local | Manter o identificador exato no perfil, thread e turno; nenhuma substituição automática |
 | Identidade | Guard administrativo e matriz de permissões existentes | Piloto restrito a Felipe no backend; outros usuários, inclusive administradores, recusados. Não aceitar `user_id`, cargo ou dono enviados como autoridade pelo cliente |
@@ -178,7 +178,7 @@ Entrega local de 08/09/2026. `/assistente` usa o shell desktop Bentevi e Ant Des
 
 ### Runtime e disponibilidade real
 
-O transporte App Server foi extraído de `warranty-codex.ts` para `codex-json-transport.ts`; regras e validação de garantia continuam no extrator. Não foi introduzido outro provedor. O chat exige conta `chatgpt`, modelo exato e esforço `low`, verifica limites publicados e recusa ações/ferramentas. Cota ausente não é tratada como ilimitada; erro de uso continua explícito, sem compra de créditos.
+O transporte App Server foi consolidado em `codex-json-transport.ts`. O extrator individual de garantia que originou o aprendizado técnico foi aposentado em 12/09/2026 e não participa mais do runtime. Não foi introduzido outro provedor. O chat exige conta `chatgpt`, modelo exato e esforço `low`, verifica limites publicados e recusa ações/ferramentas. Cota ausente não é tratada como ilimitada; erro de uso continua explícito, sem compra de créditos.
 
 `nixpacks.toml` prepara instalação do Codex `0.153.4`. O perfil persistente do Assistente deve ser separado do perfil de engenharia e do perfil de garantia, com workspace vazio, configuração canônica e login oficial do titular. Não copiar `auth.json` de engenharia. A imagem não contém credenciais.
 

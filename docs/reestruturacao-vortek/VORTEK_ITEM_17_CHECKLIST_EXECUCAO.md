@@ -3985,6 +3985,12 @@ Sem push, deploy, chamada autenticada ML ou acesso à produção. Guard comercia
 
 ### BNT-CANON-WARRANTY-01 — 07/09/2026
 
+> **SUPERADA EM 12/09/2026:** a diretoria corrigiu a premissa desta ação. Todos
+> os fornecedores operacionais oferecem garantia de fábrica de 12 meses. A
+> política vigente não exige fonte, pesquisa, documento ou aprovação por SKU.
+> O histórico abaixo permanece somente como registro da implementação retirada
+> e não pode ser usado para bloquear anúncios.
+
 **Decisão posterior (08/09/2026):** controles visuais de garantia retirados a pedido do usuário. Detalhe do produto sem painel, configurações sem card e criação com tipo/prazo somente para leitura, preservando avisos. APIs, prazos, pesquisa de preparação, evidências, histórico e gates de publicação inalterados. [Validação da retirada](evidencias/BNT-CANON-WARRANTY-01-validacao.md#atualização--retirada-dos-controles-da-interface-08092026). Sem push/deploy desta alteração; não reintroduzir o painel nem considerar a retirada como conciliação comercial.
 
 **Estado: encerrada no escopo DEV em 08/09/2026.** Conciliação registrada, retirada dos controles aprovada/publicada e conferência autenticada concluída em `dev.bentevi.shop`, revisão `e036397`. [Evidências e rollback](evidencias/BNT-CANON-WARRANTY-01-validacao.md#fechamento-dev--08092026); [cadastro real de teste e limites históricos](evidencias/BNT-CANON-WARRANTY-01-runtime-local.md).
@@ -4064,3 +4070,27 @@ O lote visual `e036397` foi publicado em DEV pela ação Easypanel `cmts65gr7000
   mutation no Supabase ou no Mercado Livre.
 
 [Causa, contrato, validação e recuperação](evidencias/BNT-CATALOG-ELIGIBLE-01-validacao.md).
+
+### BNT-ML-COST-BAND-3000-01 — 12/09/2026
+
+**Estado: EM IMPLEMENTAÇÃO.** Ampliação controlada da elegibilidade de custo e
+publicação da coorte autorizada pelo usuário.
+
+- [x] substituir a política inventada de garantia individual pela garantia de
+  fábrica de 12 meses para todos os produtos Bentevi, sem pesquisa ou evidência
+  por SKU;
+- [x] excluir explicitamente a Hayamax (`dslite_id=2`) e exigir fornecedor e
+  dropshipping operacionais em todos os consumidores da capacidade;
+- [x] atualizar ofertas de produtos inativos durante a sincronização, sem
+  publicar ou reprecificar enquanto o cadastro mestre continuar inativo;
+- [x] preparar suporte seguro a anúncio novo, catálogo exato e republicação de
+  anúncio encerrado, com captura do novo ID antes das etapas posteriores;
+- [ ] aplicar o limite de custo inclusivo de R$ 3.000 no Bentevi produtivo;
+- [ ] sincronizar custo e estoque, revalidar os 28 produtos da coorte e ativar
+  somente os que mantiverem fornecedor operacional, estoque, identidade, ficha,
+  imagem e economia válidos;
+- [ ] manter `VTK019198` bloqueado enquanto não possuir imagem comprovada;
+- [ ] publicar/reativar em Premium, sem redução automática de preço, e conferir
+  preço, estoque, garantia, vínculo e estado de cada anúncio no Mercado Livre;
+- [ ] promover um único SHA, fazer um único deploy e registrar o read-back
+  produtivo e os impedimentos reais remanescentes.

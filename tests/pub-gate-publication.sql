@@ -10,7 +10,9 @@ begin
  memory:='{"revenueCents":11000,"margin":0.10,"band":{"floor":0.07},"resultCents":1100}';
  ctx:=jsonb_build_object('operationKind','listing_create','sellerId','9901530','itemId',null,'groupId',null,'groupVersion',null,
    'previousPriceCents',null,'priceCents',11000,'executable',true,'fingerprint','PUB_TEST','expiresAt',clock_timestamp()+interval '15 minutes',
-   'clearance',null,'preparation',jsonb_build_object('capacity',1,'payload',jsonb_build_object('price',110,'currency_id','BRL','available_quantity',1)));
+   'clearance',null,'preparation',jsonb_build_object('action','new','sourceItemId',null,'capacity',1,
+     'payload',jsonb_build_object('price',110,'currency_id','BRL','available_quantity',1),
+     'expected',jsonb_build_object('price',110,'currency_id','BRL','available_quantity',1)));
  insert into public.pricing_evaluations(produto_id,actor_id,fingerprint,result)
  values(p,actor,'PUB_TEST',jsonb_build_object('decisionContext',ctx,'current',jsonb_build_object('memory',memory),'revalidation',jsonb_build_object('status','queried'))) returning id into e;
  d:=public.prepare_pricing_decision(gen_random_uuid(),e,actor,'Criação de teste');

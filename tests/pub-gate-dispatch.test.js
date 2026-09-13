@@ -84,7 +84,9 @@ function harness(options = {}) {
   const decision = { context: { sellerId: '123', itemId: 'MLB1', priceCents: 11000 }, fingerprint: 'fp' };
   if(options.creation) {
     Object.assign(operation,{item_id:options.remoteId||null,group_id:null,group_version:null});
-    Object.assign(decision.context,{operationKind:'listing_create',itemId:null,preparation:{input:{produtoId:'p'},payload:{price:110},description:'Descrição comprovada'}});
+    Object.assign(decision.context,{operationKind:'listing_create',itemId:null,preparation:{
+      action:options.relist?'relist':'new',sourceItemId:options.relist?'MLB0':null,
+      input:{produtoId:'p'},payload:{price:110},expected:{sale_terms:[{id:'WARRANTY_TIME',value_name:'12 meses'}]},description:'Descrição comprovada'}});
   }
   const client = { from(table) {
     const q = { select(){return q}, eq(){return q}, update(body){calls.push(['outbox', body.status]);return q},
@@ -99,7 +101,7 @@ function harness(options = {}) {
   const mod = load('src/services/pricing-dispatch.ts', {
     'server-only': {}, '@/lib/supabase': {createServiceClient:()=>client},
     './integration': {fetchMLResult: async (path, init, transport) => {
-      if(init?.method==='POST' && path==='/items') {
+      if(init?.method==='POST' && (path==='/items'||path.endsWith('/relist'))) {
         await transport.validateToken('opaque');calls.push(['POST',path]);
         if(options.timeout)throw Error('network');return {ok:true,data:{id:'MLB3',seller_id:123}};
       }
@@ -113,7 +115,7 @@ function harness(options = {}) {
     './pricing-decisions': {},
     './publication-preparation': {preparePublication:async()=>({evaluationId:'e',decisionContext:{fingerprint:'fp'}})},
     './publication-readback': {verifyCreatedPublication:async()=>{calls.push(['creation-readback']);return !options.readUnavailable;}},
-    './pricing-execution-access': {requirePricingExecutionAccount:async()=>{if(options.denied)throw Error('denied');return {sellerId:'123',capability:{mode:'test_only',enabled:true,target:'test'}};},pricingExecutionTransport:(_,before)=>({validateToken:before})},
+    './pricing-execution-access': {requirePricingExecutionAccount:async()=>{if(options.denied)throw Error('denied');return {sellerId:'123',capability:{mode:'test_only',enabled:true,target:'test'}};},pricingExecutionTransport:(_,before)=>({validateToken:async()=>{if(before)await before();}})},
     '@/lib/ml/pricing-execution':gate,
   });
   return { calls, run:()=>mod.dispatchApprovedPricingOperation(client,'outbox','op') };
@@ -168,4 +170,10 @@ test('ambiguous creation is never repeated, with or without a persisted remote i
 test('creation recovery with durable remote ID is read-only',async()=>{
   const h=harness({creation:true,state:'requested',remoteId:'MLB3'});assert.equal(await h.run(),'confirmed');
   assert.ok(!h.calls.some(c=>c[0]==='POST'||c[0]==='description'||c[0]==='claim'));
+});
+test('relist uses the closed source once and reapplies the fixed sale terms after capturing the new ID',async()=>{
+  const h=harness({creation:true,relist:true});assert.equal(await h.run(),'confirmed');
+  assert.deepEqual(h.calls.filter(c=>c[0]==='POST'),[['POST','/items/MLB0/relist']]);
+  assert.ok(h.calls.findIndex(c=>c[0]==='capture')<h.calls.findIndex(c=>c[0]==='PUT'));
+  assert.ok(h.calls.some(c=>c[0]==='PUT'&&c[1]==='/items/MLB3'));
 });

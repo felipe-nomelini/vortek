@@ -10,8 +10,7 @@ import { loadProductPricing } from "@/services/pricing-context";
 import { loadPricingTaxContext, requirePricingTaxRate } from "@/services/pricing-tax-context";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
-import { warrantySaleTerms, warrantyDescription } from "@/lib/product-warranty";
-import { prepareProductWarranty } from "@/services/product-warranty";
+import { factoryWarranty, warrantySaleTerms, warrantyDescription } from "@/lib/product-warranty";
 import { authorizeApiRequest } from "@/lib/api-request-auth";
 import { loadBntD07VisualReview } from "@/lib/products/bnt-d07-visual-review";
 import {
@@ -311,7 +310,7 @@ function extractMlFee(listingPrices: any): number | null {
 }
 
 export async function POST(req: Request) {
-  const authorization = await authorizeApiRequest(req, 'products.warranty.manage');
+  const authorization = await authorizeApiRequest(req, 'pricing.decisions.manage');
   if (!authorization.ok) return authorization.response;
   try {
     const {
@@ -472,8 +471,7 @@ export async function POST(req: Request) {
 
     const review = await loadBntD07VisualReview();
     if (review?.items.some(row => String(row.product.id) === produtoId)) return NextResponse.json({ error: 'Amostra protegida de homologação' }, { status: 409 });
-    const warranty = await prepareProductWarranty(supabase, produtoId, authorization.userId);
-    const warrantyTerms = warrantySaleTerms(warranty.resolution, saleTermsRaw);
+    const warrantyTerms = warrantySaleTerms(saleTermsRaw);
     const defaultsById = new Map(warrantyTerms.terms.map(term => [term.id, term]));
     const saleTerms = saleTermsRaw.map((term: any) => {
       const values = (term.values || [])
@@ -496,7 +494,7 @@ export async function POST(req: Request) {
       pricing,
       conditionalValidation: conditionalResult ? 'validated' : 'pending_pricing',
       schema: {
-        warranty: { ...warranty.resolution, compatible: warrantyTerms.compatible, representationReason: warrantyTerms.reason },
+        warranty: { policy: factoryWarranty.revision, compatible: warrantyTerms.compatible, representationReason: warrantyTerms.reason },
         required_attributes: prefillAttributes.filter((a) => a.required),
         optional_attributes: prefillAttributes.filter((a) => !a.required),
         sale_terms: saleTerms,
@@ -509,7 +507,7 @@ export async function POST(req: Request) {
         },
         conditional_required_attributes: Array.from(conditionalRequiredIds),
         prefill: {
-          description: warrantyDescription(buildDescription(produtoForMl), warranty.resolution),
+          description: warrantyDescription(buildDescription(produtoForMl)),
           base_price: suggestedPrice,
           listing_type: listingType,
           seller_id: me?.id || null,

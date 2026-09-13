@@ -417,7 +417,7 @@ Os tratamentos abaixo descrevem portabilidade, não execução: **REAPROVEITAR**
 | `69bfdd3` | `ml/order-profit.ts`, pedidos/sync: lucro com componentes de kits e extras opcionais | ADAPTAR | PRC-03: preservar CMV/quantidades; extras foram retirados depois, não portar estado intermediário |
 | `e54f16a` | Registro de hotfix do lucro e recuperação de cinco pedidos | PENDENTE | Fixture/regressão em PRC-03; não repetir recuperação ou reescrever vendas históricas |
 | `9ddc899` | `pricing-context`, `orders`, política: CMV central e modelo ECON-2; migration canônica | ADAPTAR | PRC-02A/03/04: memória única, kits, aquisição no CMV e recuperação pelo piso; adaptar a contratos DEV |
-| `96ece95` | `product-warranty`, `ml-sale-terms`, publicação/UI e proteção comercial por grupo | ADAPTAR | WARRANTY-01 e V2-05/06: sem garantia universal; preservar UI e configurações tipadas Bentevi |
+| `96ece95` | `product-warranty`, `ml-sale-terms`, publicação/UI e proteção comercial por grupo | ADAPTAR | A pesquisa individual de WARRANTY-01 foi posteriormente aposentada pela decisão comercial de 12/09/2026; preservar apenas a representação fixa de garantia de fábrica por 12 meses |
 | `2b7ca37` | API/UI/workers e runners deixam de escrever desconto por quantidade | APOSENTAR | QTY-01: remover escritores legados, preservar estoque/status e compra normal de múltiplas unidades |
 | `0d5c5eb` | Registro do cânon e auditoria pontual de anúncios somente leitura | REAPROVEITAR | Fonte documental incorporada; auditoria operacional futura tem escopo próprio |
 | `f869cff` | Garantia: comparar todas as durações declaradas pelo fornecedor | REAPROVEITAR | WARRANTY-01: 12 meses/1 ano equivalentes; declarações contraditórias ficam pendentes |

@@ -10,6 +10,7 @@ import type { ConflictEvidence } from '@/types/commercial-conflicts';
 const ML_LISTING_LINK_BULK_ATTRIBUTES = [
   'seller_id',
   'status',
+  'parent_item_id',
   'category_id',
   'catalog_listing',
   'item_relations',
@@ -115,6 +116,7 @@ export async function resolveProductMlLinks(client: Client, product: any, seller
       }
     }
     candidates.push({ itemId: item.id, variationId, catalog: item.catalog_listing === true,
+      parentItemId: /^MLB\d+$/.test(String(item.parent_item_id || '')) ? String(item.parent_item_id) : null,
       sellerId: Number(item.seller_id), productId: ownership.get(item.id) || null, status: String(item.status || ''), relations, sync, evidence,
       identity: !relationsKnown || (variations.length && !variationId) ? 'pending' : isMlExistingListingIdentitySafe(identity) ? 'complete' : hasConfirmedMlIdentityConflict(identity) ? 'conflict' : 'pending' });
   }

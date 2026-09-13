@@ -13,6 +13,7 @@ import {
   type CostSnapshot,
 } from '@/lib/ml/automatic-pricing';
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
+import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 
 export const maxDuration = 300;
 
@@ -188,22 +189,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const commercial = await loadCommercialPricingConfiguration(client);
     const inactiveCostThreshold = commercial.inactiveCostThreshold;
-    const { data: fornecedoresAtivosLocal, error: fornecedoresAtivosError } = await client
-      .from('fornecedores')
-      .select('dslite_id')
-      .eq('ativo', true)
-      .is('dropshipping_retired_at', null)
-      .not('dslite_id', 'is', null);
-
-    if (fornecedoresAtivosError) {
-      throw new Error(`Falha ao consultar fornecedores ativos locais: ${fornecedoresAtivosError.message}`);
-    }
-
-    const fornecedoresAtivosLocalIds = new Set(
-      (fornecedoresAtivosLocal || [])
-        .map((row) => String(row.dslite_id || '').trim())
-        .filter(Boolean),
-    );
+    const fornecedoresAtivosLocalIds = await loadOperationalDropshippingSupplierIds(client);
 
     const fornecedorIds = fornecedorIdsRaw.length > 0
       ? Array.from(new Set(fornecedorIdsRaw.map((id) => String(id).trim()).filter(Boolean)))
@@ -244,7 +230,7 @@ export async function POST(req: Request) {
     let recordsUpdated = 0;
     let recordsMissing = 0;
     let recordsFailed = 0;
-    let recordsSkippedInactive = 0;
+    let recordsUpdatedInactive = 0;
     let offersInactivatedByCost = 0;
     let mlOutboxEnqueued = 0;
     let mlOutboxUpdatedExisting = 0;
@@ -406,16 +392,12 @@ export async function POST(req: Request) {
         const existingOffer = existingOffersByIdentity.get(identityKey) as any;
         const legacyProduct = existingBySku.get(String(row.sku || '').trim().toUpperCase()) as any;
         const productId = String(existingOffer?.produto_id || legacyProduct?.id || '').trim();
-        const existingProductActive = existingOffer?.product?.ativo ?? legacyProduct?.ativo;
         if (!productId) {
           recordsMissing += 1;
           continue;
         }
 
-        if (existingProductActive === false) {
-          recordsSkippedInactive += 1;
-          continue;
-        }
+        if ((existingOffer?.product?.ativo ?? legacyProduct?.ativo) === false) recordsUpdatedInactive += 1;
 
         const inactiveOfferByCost = shouldSupplierOfferBeInactiveByCost(
           row.custo,
@@ -610,9 +592,13 @@ export async function POST(req: Request) {
         });
       }
 
+      // O cadastro inativo recebe custo/estoque atuais para poder ser analisado,
+      // mas não pode gerar preço, quantidade ou status no Mercado Livre.
+      const activeChangedSnapshots = changedSnapshots.filter((snapshot) => snapshot.previous.ativo);
+
       try {
         const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, [
-          ...changedSnapshots,
+          ...activeChangedSnapshots,
           ...kitCostSnapshots,
         ], {
           forceProductIds: kitCostSnapshots.map((snapshot) => snapshot.productId),
@@ -634,7 +620,7 @@ export async function POST(req: Request) {
         });
       }
 
-      const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, changedSnapshots);
+      const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, activeChangedSnapshots);
       const existingMlItemIds = Array.from(
         new Set(
           Array.from(mlTargetsByProduct.values()).flat()
@@ -642,7 +628,7 @@ export async function POST(req: Request) {
       );
       const existingSkusUpper = Array.from(
         new Set(
-          changedSnapshots
+          activeChangedSnapshots
             .map((row) => String(row.previous.sku || '').trim().toUpperCase())
             .filter(Boolean)
         )
@@ -688,10 +674,10 @@ export async function POST(req: Request) {
       recordsUpdated += changedSnapshots.length;
       const capacitiesByProduct = await loadProductFulfillmentCapacities(
         client,
-        changedSnapshots.map((snapshot) => String(snapshot.productId)),
+        activeChangedSnapshots.map((snapshot) => String(snapshot.productId)),
       );
 
-      for (const snapshot of changedSnapshots) {
+      for (const snapshot of activeChangedSnapshots) {
         const mlItemIds = mlTargetsByProduct.get(String(snapshot.productId)) || [];
         if (mlItemIds.length === 0) {
           mlOutboxSkippedNoItem += 1;
@@ -821,7 +807,7 @@ export async function POST(req: Request) {
         kits_atualizados: kitStockUpdated,
         kits_ml_outbox_enqueued: kitMlOutboxEnqueued,
         row_failed: recordsFailed,
-        skipped_inactive: recordsSkippedInactive,
+        updated_inactive: recordsUpdatedInactive,
         offers_inactivated_by_cost: offersInactivatedByCost,
         inactivated_by_cost: offersInactivatedByCost,
       },
@@ -846,7 +832,7 @@ export async function POST(req: Request) {
       ml_price_products_updated: mlPriceProductsUpdated,
       ml_price_outbox_enqueued: mlPriceOutboxEnqueued,
       row_failed: recordsFailed,
-      skipped_inactive: recordsSkippedInactive,
+      updated_inactive: recordsUpdatedInactive,
       offers_inactivated_by_cost: offersInactivatedByCost,
       inactivated_by_cost: offersInactivatedByCost,
       next_cursor: nextCursor,

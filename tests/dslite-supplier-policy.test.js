@@ -11,10 +11,14 @@ const {
 
 const operational = new Set(['133']);
 
-test('usa estado persistido, sem regra nominal por ID', () => {
-  assert.equal(isOperationalDropshippingSupplier({ ativo: true, dropshipping_retired_at: null }), true);
-  assert.equal(isOperationalDropshippingSupplier({ ativo: false, dropshipping_retired_at: null }), false);
-  assert.equal(isOperationalDropshippingSupplier({ ativo: true, dropshipping_retired_at: '2026-09-04T00:00:00Z' }), false);
+test('exige fornecedor e dropshipping ativos e bloqueia Hayamax por identidade', () => {
+  const active = { dslite_id: '133', ativo: true, status_dslite: 'Ativo', dropshipping: 'Ativo', dropshipping_retired_at: null };
+  assert.equal(isOperationalDropshippingSupplier(active), true);
+  assert.equal(isOperationalDropshippingSupplier({ ...active, ativo: false }), false);
+  assert.equal(isOperationalDropshippingSupplier({ ...active, status_dslite: 'Inativo' }), false);
+  assert.equal(isOperationalDropshippingSupplier({ ...active, dropshipping: 'Inativo' }), false);
+  assert.equal(isOperationalDropshippingSupplier({ ...active, dropshipping_retired_at: '2026-09-04T00:00:00Z' }), false);
+  assert.equal(isOperationalDropshippingSupplier({ ...active, dslite_id: '2' }), false);
   assert.equal(isRetiredDropshippingSupplier({ dropshipping_retired_at: '2026-09-04T00:00:00Z' }), true);
   assert.deepEqual(
     filterOperationalDropshippingDsliteSupplierIds(['2', '134', 133], operational),

@@ -93,7 +93,7 @@ function harness(extraRows = {}, opts = {}) {
     configuracoes: [{ id: CONFIG, order_operational_delay_minutes: 60, internal_stock_return_address_id: null, internal_stock_return_zip_code: 'PRIVATE',
       pricing_ml_fee_fallback_rate: .14, pricing_unspecified_shipping_cost: 10, product_inactive_cost_threshold: 2000,
       simples_inicio_atividade: '2025-01-01', simples_aliquota_confirmada: null }],
-    fornecedores: [{ dslite_id: '108', ativo: true, dropshipping_retired_at: null }],
+    fornecedores: [{ dslite_id: '108', ativo: true, status_dslite: 'Ativo', dropshipping: 'Ativo', dropshipping_retired_at: null }],
     ...extraRows,
   }, opts.rpcResults, opts.beforeRead);
   const loader = modules({

@@ -94,7 +94,6 @@ export async function GET() {
     },
     seller,
     app: application,
-    warrantyPolicy: 'product_evidence',
   });
 }
 
@@ -104,7 +103,6 @@ export async function PATCH(request: Request) {
   if (!admin.ok) return admin.response;
   const parsed = mercadoLivreConfigurationPatchSchema.safeParse(await request.json().catch(() => ({})));
   if (!parsed.success) return noStoreJson({ erro: configurationValidationMessage(parsed.error, 'Configuração Mercado Livre inválida') }, { status: 422 });
-  if (parsed.data.section === 'warranty') return noStoreJson({ erro: 'Garantia global aposentada. Registre evidência no produto.', code: 'global_warranty_retired' }, { status: 410 });
   const serviceClient = createServiceClient();
 
   if (parsed.data.section === 'application') {

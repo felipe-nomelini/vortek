@@ -36,7 +36,7 @@ function resolverFixture(options={}) {
 }
 test('resolvedor integra descoberta, ownership, identidade e grupos independentes',async()=>{
   const f=resolverFixture();const r=await f.run();assert.equal(r.classification,'JA_ANUNCIADO_ATIVO');assert.equal(r.groups.length,1);assert.equal(r.candidates.length,1);assert.equal(f.calls.filter(p=>p.startsWith('/items/bulk')).length,1);
-  const bulk=f.calls.find(p=>p.startsWith('/items/bulk'));for(const attribute of ['seller_id','status','category_id','catalog_listing','item_relations','variations','attributes','seller_custom_field'])assert.ok(bulk.includes(`body.${attribute}`));
+  const bulk=f.calls.find(p=>p.startsWith('/items/bulk'));for(const attribute of ['seller_id','status','parent_item_id','category_id','catalog_listing','item_relations','variations','attributes','seller_custom_field'])assert.ok(bulk.includes(`body.${attribute}`));
 });
 for(const options of [{bulkFailed:true},{owner:'P2'},{identityPending:true},{item:{seller_id:2}},{item:{item_relations:null}}])test('resolvedor não valida fonte falha ou propriedade ambígua',async()=>{
   const r=await resolverFixture(options).run();assert.equal(r.classification,'VINCULO_INCONCLUSIVO');

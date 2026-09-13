@@ -4,6 +4,7 @@ export type ListingLinkState = 'JA_ANUNCIADO_ATIVO' | 'REATIVACAO_CANDIDATA' | '
 export type ListingMember = { itemId: string; variationId: string; catalog: boolean };
 export type ListingLinkCandidate = ListingMember & {
   sellerId: number; productId: string | null; status: string;
+  parentItemId: string | null;
   identity: 'complete' | 'conflict' | 'pending';
   relations: { itemId: string; variationId: string }[];
   sync: { status: 'SYNC' | 'UNSYNC' | 'UNKNOWN'; relations: string[]; evidence?: ConflictEvidence };
@@ -18,6 +19,7 @@ export type ListingLinkResult = {
   classification: ListingLinkState; listing_link: ConflictAssessment;
   candidates: ListingLinkCandidate[]; groups: PricingGroupObservation[];
   coverage: 'complete' | 'partial';
+  discoveryComplete: boolean;
 };
 export const listingMemberKey = (member: Pick<ListingMember, 'itemId' | 'variationId'>) => `${member.itemId}:${member.variationId}`;
 const validProof = (p: ConflictEvidence) => p?.condition === 'valid' && Boolean(p.reference) && Number.isFinite(Date.parse(p.collectedAt));
@@ -73,5 +75,6 @@ export function classifyListingLinks(input: {
   const listing_link: ConflictAssessment = uncertain
     ? { status: 'INCONCLUSIVO', coverage: 'partial', reasons: [{ code: classification, ruleId: 'M2M-CFL-03' }], evidence }
     : { status: 'SEM_CONFLITO', coverage: 'complete', reasons: [{ code: classification, ruleId: 'M2M-CFL-03' }], evidence: evidence as [ConflictEvidence, ...ConflictEvidence[]] };
-  return { classification, listing_link, candidates, groups, coverage: uncertain ? 'partial' : 'complete' };
+  return { classification, listing_link, candidates, groups,
+    coverage: uncertain ? 'partial' : 'complete', discoveryComplete: input.complete };
 }

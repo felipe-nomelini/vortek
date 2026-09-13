@@ -8,26 +8,20 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), "u
 const contracts = require("../src/lib/configuracoes/contracts.ts");
 const saleTerms = require("../src/lib/ml-sale-terms.ts");
 
-test("contrato Mercado Livre separa aplicativo e garantia", () => {
+test("contrato Mercado Livre aceita somente a configuração do aplicativo", () => {
   assert.equal(contracts.mercadoLivreConfigurationPatchSchema.safeParse({
     section: "application", clientId: "123456", clientSecret: "secret-write-only",
   }).success, true);
   assert.equal(contracts.mercadoLivreConfigurationPatchSchema.safeParse({
     section: "application", clientId: "abc",
   }).success, false);
-  assert.equal(contracts.mercadoLivreConfigurationPatchSchema.safeParse({
-    section: "warranty", warrantyTypeId: "2230279", warrantyDuration: 12, warrantyUnit: "meses",
-  }).success, true);
-  assert.equal(contracts.mercadoLivreConfigurationPatchSchema.safeParse({
-    section: "warranty", warrantyTypeId: "inventado", warrantyDuration: 0, warrantyUnit: "semanas",
-  }).success, false);
+  assert.equal(contracts.mercadoLivreConfigurationPatchSchema.safeParse({ section: "warranty" }).success, false);
 });
 
-test("WARRANTY-01 aposenta motor e editor globais, preservando contrato histórico", () => {
+test("política fixa aposenta motor, pesquisa e editor de garantia", () => {
   assert.equal(saleTerms.buildSupportedMlWarrantyTerms, undefined);
   const route = read('src/app/api/configuracoes/mercado-livre/route.ts');
-  assert.match(route, /global_warranty_retired/);
-  assert.match(route, /410/);
+  assert.doesNotMatch(route, /section\s*===\s*["']warranty["']/);
   assert.doesNotMatch(route, /ml_default_warranty_duration|loadMercadoLivreConfiguration/);
   assert.equal(contracts.CONFIGURATION_DEFINITIONS['configuracoes.ml_default_warranty'].classification, 'OBSOLETO');
 });

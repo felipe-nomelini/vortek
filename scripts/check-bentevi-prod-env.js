@@ -109,8 +109,8 @@ function validateProductionEnvironment(env) {
     .map((value) => value.trim()).filter(Boolean);
   if (!['disabled', 'production_controlled'].includes(env.ML_PRICING_EXECUTION_MODE))
     errors.push('ML_PRICING_EXECUTION_MODE deve ser disabled ou production_controlled.');
-  if (pricingOperations.length !== 1 || pricingOperations[0] !== 'price_change')
-    errors.push('ML_PRICING_EXECUTION_ALLOWED_OPERATIONS deve conter somente price_change.');
+  if (pricingOperations.length !== 2 || pricingOperations[0] !== 'price_change' || pricingOperations[1] !== 'listing_create')
+    errors.push('ML_PRICING_EXECUTION_ALLOWED_OPERATIONS deve conter price_change,listing_create nesta ordem.');
   if (env.ML_PRICING_EXECUTION_MODE === 'production_controlled' && !String(env.ML_ALLOWED_USER_IDS || '').trim())
     errors.push('Execução controlada exige ML_ALLOWED_USER_IDS.');
   if (String(env.BRASILNFE_TIPO_AMBIENTE || '') !== '1'

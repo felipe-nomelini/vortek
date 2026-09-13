@@ -71,6 +71,7 @@ export async function syncPreferredProductSnapshot(
   productId: string;
   previous: {
     id: string;
+    ativo: boolean;
     sku: string;
     ml_item_id: string | null;
     ml_status: string | null;
@@ -101,7 +102,7 @@ export async function syncPreferredProductSnapshot(
   const [{ data: products, error: productError }, { data: offers, error: offerError }, operationalSupplierIds] = await Promise.all([
     client
       .from('produtos')
-      .select('id,sku,ml_item_id,ml_status,oferta_preferencial_id,fornecedor_preferencial_manual,custo,estoque,fornecedor,dslite_fornecedor_id,dslite_produto_id,dslite_ultima_sync')
+      .select('id,ativo,sku,ml_item_id,ml_status,oferta_preferencial_id,fornecedor_preferencial_manual,custo,estoque,fornecedor,dslite_fornecedor_id,dslite_produto_id,dslite_ultima_sync')
       .in('id', ids),
     client
       .from('produto_fornecedor_ofertas')
@@ -133,6 +134,7 @@ export async function syncPreferredProductSnapshot(
     productId: string;
     previous: {
       id: string;
+      ativo: boolean;
       sku: string;
       ml_item_id: string | null;
       ml_status: string | null;
@@ -172,6 +174,7 @@ export async function syncPreferredProductSnapshot(
 
     const previous = {
       id: String((product as any).id),
+      ativo: (product as any).ativo === true,
       sku: String((product as any).sku || ''),
       ml_item_id: (product as any).ml_item_id ? String((product as any).ml_item_id) : null,
       ml_status: (product as any).ml_status ? String((product as any).ml_status) : null,

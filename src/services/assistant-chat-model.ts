@@ -6,9 +6,36 @@ import { assistantQuerySchema, type AssistantQuery } from '@/lib/assistant-contr
 import { CHAT_MODEL, safeAssistantLink, type ChatAnswer, type ChatState } from '@/lib/assistant-chat';
 import type { AssistantKnowledgeResult } from './assistant-knowledge';
 import { runCodexJson } from './codex-json-transport';
-import { warrantyCodexConfig } from './warranty-codex';
 
-export const assistantCodexConfig = warrantyCodexConfig.replaceAll('warranty-extract', 'assistant-chat');
+export const assistantCodexConfig = `model = "gpt-6-astra"
+forced_login_method = "chatgpt"
+cli_auth_credentials_store = "file"
+approval_policy = "never"
+default_permissions = "assistant-chat"
+permissions.assistant-chat.filesystem.":workspace_roots" = "read"
+permissions.assistant-chat.network.enabled = false
+web_search = "disabled"
+project_doc_max_bytes = 0
+history.persistence = "none"
+agents.enabled = false
+features.shell_tool = false
+features.unified_exec = false
+features.hooks = false
+features.code_mode.enabled = false
+features.view_image = false
+features.image_generation = false
+features.apps = false
+features.browser_use = false
+features.browser_use_external = false
+features.in_app_browser = false
+features.multi_agent = false
+features.skill_search = false
+features.skill_mcp_dependency_install = false
+features.code_mode_host.enabled = false
+features.plugins = false
+features.remote_plugin = false
+features.shell_snapshot = false
+`;
 export function assistantProfileHome(): string | null {
   const home = process.env.BENTEVI_ASSISTANT_CODEX_HOME;
   try {

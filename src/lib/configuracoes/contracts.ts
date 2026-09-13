@@ -281,22 +281,11 @@ export const operationConfigurationPatchSchema = z.discriminatedUnion("section",
 
 export type OperationConfigurationPatch = z.infer<typeof operationConfigurationPatchSchema>;
 
-export const ML_WARRANTY_TYPE_IDS = ["2230279", "2230280"] as const;
-export const ML_WARRANTY_UNITS = ["dias", "meses", "anos"] as const;
-
-export const mercadoLivreConfigurationPatchSchema = z.discriminatedUnion("section", [
-  z.object({
-    section: z.literal("application"),
-    clientId: z.string().trim().regex(/^\d+$/, "Client ID deve conter somente números").max(200),
-    clientSecret: z.string().trim().min(1).max(8192).optional(),
-  }).strict(),
-  z.object({
-    section: z.literal("warranty"),
-    warrantyTypeId: z.enum(ML_WARRANTY_TYPE_IDS),
-    warrantyDuration: z.number().int().positive().max(1200),
-    warrantyUnit: z.enum(ML_WARRANTY_UNITS),
-  }).strict(),
-]);
+export const mercadoLivreConfigurationPatchSchema = z.object({
+  section: z.literal("application"),
+  clientId: z.string().trim().regex(/^\d+$/, "Client ID deve conter somente números").max(200),
+  clientSecret: z.string().trim().min(1).max(8192).optional(),
+}).strict();
 
 export type MercadoLivreConfigurationPatch = z.infer<typeof mercadoLivreConfigurationPatchSchema>;
 

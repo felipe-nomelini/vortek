@@ -1,14 +1,33 @@
 type ServiceClientLike = { from: (table: string) => any };
 
 export type OperationalSupplierState = {
+  dslite_id?: string | number | null;
   ativo?: boolean | null;
+  status_dslite?: string | null;
+  dropshipping?: string | null;
   dropshipping_retired_at?: string | null;
 };
+
+export const RETIRED_DROPSHIPPING_SUPPLIER_IDS = new Set(['2']);
+
+function isActiveState(value: unknown): boolean {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase() === 'ativo';
+}
 
 export function isOperationalDropshippingSupplier(
   supplier: OperationalSupplierState | null | undefined,
 ): boolean {
-  return supplier?.ativo === true && !supplier.dropshipping_retired_at;
+  const dsliteId = String(supplier?.dslite_id ?? '').trim();
+  return supplier?.ativo === true
+    && Boolean(dsliteId)
+    && !RETIRED_DROPSHIPPING_SUPPLIER_IDS.has(dsliteId)
+    && !supplier.dropshipping_retired_at
+    && isActiveState(supplier.status_dslite)
+    && isActiveState(supplier.dropshipping);
 }
 
 export function isRetiredDropshippingSupplier(
@@ -22,13 +41,14 @@ export async function loadOperationalDropshippingSupplierIds(
 ): Promise<Set<string>> {
   const { data, error } = await client
     .from('fornecedores')
-    .select('dslite_id')
+    .select('dslite_id,ativo,status_dslite,dropshipping,dropshipping_retired_at')
     .eq('ativo', true)
     .is('dropshipping_retired_at', null)
     .not('dslite_id', 'is', null);
   if (error) throw new Error(error.message);
   return new Set(
     (data || [])
+      .filter((supplier: OperationalSupplierState) => isOperationalDropshippingSupplier(supplier))
       .map((supplier: any) => String(supplier.dslite_id || '').trim())
       .filter(Boolean),
   );

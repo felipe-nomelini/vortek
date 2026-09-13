@@ -155,7 +155,7 @@ interface MlSaleTermField {
 }
 
 interface CategorySchemaResponse {
-  warranty?: { status: string; reason: string; revision: string; compatible: boolean; representationReason: string };
+  warranty?: { policy: string; compatible: boolean; representationReason: string };
   required_attributes: MlRequiredAttribute[];
   optional_attributes: MlRequiredAttribute[];
   sale_terms: MlSaleTermField[];
@@ -923,7 +923,6 @@ export default function ProductsPage() {
             value_id: term.value_id,
             value_name: term.value_name,
           })),
-          warrantyRevision: mlModal.categorySchemaCache[mlModal.selectedCategory]?.warranty?.revision,
         }),
       });
       const data = await res.json();
@@ -2196,7 +2195,7 @@ export default function ProductsPage() {
               <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
                 <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Garantia e Termos</Title>
                 <Alert showIcon style={{ marginBottom: 16 }} type={mlModal.categorySchemaCache[mlModal.selectedCategory || '']?.warranty?.compatible ? 'info' : 'warning'}
-                  message={mlModal.categorySchemaCache[mlModal.selectedCategory || '']?.warranty?.representationReason || 'Garantia ainda não validada'}
+                  message={mlModal.categorySchemaCache[mlModal.selectedCategory || '']?.warranty?.representationReason || 'Garantia de fábrica de 12 meses'}
                   action={<Button size="small" disabled={!mlModal.selectedCategory} onClick={() => void loadCategorySchema(mlModal.selectedCategory || '')}>Atualizar</Button>} />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.saleTerms.map((term, idx) => (

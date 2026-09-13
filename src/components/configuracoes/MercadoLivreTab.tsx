@@ -49,7 +49,6 @@ type MlConfiguration = {
     mixedMercadoPagoScopes: boolean;
     diagnosticsError: string | null;
   };
-  warrantyPolicy: "product_evidence";
 };
 
 function errorMessage(error: unknown, fallback: string) {

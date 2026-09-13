@@ -97,7 +97,11 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
     });
     // One origin item only; a 2xx is not proof that ML accepted/propagated the price.
     const creation = decision.context.operationKind === 'listing_create';
-    const sent = await fetchMLResult<any>(creation ? '/items' : '/items/' + encodeURIComponent(operation.item_id!), {
+    const relist = creation && decision.context.preparation.action === 'relist';
+    const mutationPath = relist
+      ? '/items/' + encodeURIComponent(decision.context.preparation.sourceItemId) + '/relist'
+      : creation ? '/items' : '/items/' + encodeURIComponent(operation.item_id!);
+    const sent = await fetchMLResult<any>(mutationPath, {
       method: creation ? 'POST' : 'PUT', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(creation ? decision.context.preparation.payload : { price: operation.new_price_cents / 100 }),
     }, transport).catch(() => null);
@@ -107,6 +111,10 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
       });
       if (captured.error) throw new Error('publication_remote_capture_failed');
       // Remote identity already durable. A failure here can never cause another POST /items.
+      if (relist) await fetchMLResult('/items/' + encodeURIComponent(sent.data.id), {
+        method: 'PUT', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sale_terms: decision.context.preparation.expected.sale_terms }),
+      }, pricingExecutionTransport(sellerId)).catch(() => null);
       await fetchMLResult('/items/' + encodeURIComponent(sent.data.id) + '/description', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ plain_text: decision.context.preparation.description }),

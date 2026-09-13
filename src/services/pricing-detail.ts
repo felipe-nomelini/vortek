@@ -24,6 +24,7 @@ import { getCategoryAttributes } from './mercadolibre';
 
 const contextSchema = z.object({
   categoryId: z.string().regex(/^MLB\d+$/), listingType: z.enum(['gold_special', 'gold_pro']),
+  catalogProductId: z.string().regex(/^MLB\d+$/).nullable().optional(),
   condition: z.enum(['new', 'used', 'not_specified']), mode: z.enum(['me2', 'not_specified']),
   logisticType: z.string().trim().min(1).max(60), freeShipping: z.boolean(),
 }).strict();
@@ -88,18 +89,25 @@ function listingMaterialSnapshot(context: MarketContext | null, item: any): stri
 }
 
 async function preparationValid(context: z.infer<typeof contextSchema>, sellerId: string): Promise<boolean | null> {
-  const [category, seller, shipping] = await Promise.all([
+  const [category, seller, shipping, catalogProduct] = await Promise.all([
     fetchMLResult<any>('/categories/' + encodeURIComponent(context.categoryId)),
     fetchMLResult<any>('/users/' + encodeURIComponent(sellerId) + '/shipping_preferences'),
     fetchMLResult<any>('/categories/' + encodeURIComponent(context.categoryId) + '/shipping_preferences'),
+    context.catalogProductId
+      ? fetchMLResult<any>('/products/' + encodeURIComponent(context.catalogProductId))
+      : Promise.resolve(null),
   ]);
-  if (!category.ok || !seller.ok || !shipping.ok) return null;
+  if (!category.ok || !seller.ok || !shipping.ok || (catalogProduct && !catalogProduct.ok)) return null;
   return category.data?.id === context.categoryId && Array.isArray(category.data?.children_categories)
     && category.data.children_categories.length === 0 && category.data?.settings?.listing_allowed === true
     && Array.isArray(seller.data?.logistics) && seller.data.logistics.some((row: any) => row.mode === context.mode
       && Array.isArray(row.types) && row.types.some((type: any) => type.type === context.logisticType))
     && Array.isArray(shipping.data?.logistics) && shipping.data.logistics.some((row: any) => row.mode === context.mode
-      && Array.isArray(row.types) && row.types.includes(context.logisticType));
+      && Array.isArray(row.types) && row.types.includes(context.logisticType))
+    && (!catalogProduct || (catalogProduct.data?.id === context.catalogProductId
+      && String(catalogProduct.data?.status || '').toLowerCase() === 'active'
+      && (!catalogProduct.data?.category_id || catalogProduct.data.category_id === context.categoryId)
+      && (!Array.isArray(catalogProduct.data?.children_ids) || catalogProduct.data.children_ids.length === 0)));
 }
 
 export async function loadPricingDetail(raw: unknown, worker?: { actorId: string | null; competitionItemId?: string | null }) {
@@ -146,7 +154,8 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     if (validPreparation === null) return json({ error: 'ML indisponível para validar a preparação.', code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' }, 503);
     if (!validPreparation) return json({
         error: 'Categoria ou logística não confirmada. Revise o contexto de preparação.', code: 'COTACAO_INCOMPATIVEL' }, 422);
-    context = { ...input.context, sellerId, itemId: null, catalogProductId: null, dimensions: dimensions(product), currency: 'BRL', quantity: 1 };
+    context = { ...input.context, sellerId, itemId: null, catalogProductId: input.context.catalogProductId || null,
+      dimensions: dimensions(product), currency: 'BRL', quantity: 1 };
     if (context.mode === 'me2' && !context.dimensions) return json({ error: 'Dimensões e peso bruto comprovados são necessários.' }, 422);
   }
   const expected = listingMaterialSnapshot(context, item);

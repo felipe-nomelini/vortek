@@ -16,6 +16,8 @@ test('mantém o limite comercial configurado com comparação estrita', () => {
   assert.equal(shouldSupplierOfferBeInactiveByCost(2000.01, 2000), true);
   assert.equal(shouldSupplierOfferBeInactiveByCost('2001', 2000), true);
   assert.equal(shouldSupplierOfferBeInactiveByCost(501, 500), true);
+  assert.equal(shouldSupplierOfferBeInactiveByCost(3000, 3000), false);
+  assert.equal(shouldSupplierOfferBeInactiveByCost(3000.01, 3000), true);
 });
 
 test('não classifica custos inválidos ou não positivos como custo alto', () => {
@@ -37,6 +39,9 @@ test('sync de preço torna a oferta inelegível sem alterar a atividade do produ
 
   assert.match(source, /ativo:\s*!inactiveOfferByCost/);
   assert.match(source, /\.lte\('custo', inactiveCostThreshold\)/);
+  assert.match(source, /activeChangedSnapshots\s*=\s*changedSnapshots\.filter/);
+  assert.match(source, /snapshot\.previous\.ativo/);
+  assert.doesNotMatch(source, /existingProductActive\s*===\s*false[\s\S]{0,80}continue/);
   assert.doesNotMatch(source, /threshold:\s*2000/);
   assert.doesNotMatch(
     source,
