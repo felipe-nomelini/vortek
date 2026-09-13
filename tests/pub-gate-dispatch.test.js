@@ -86,7 +86,7 @@ function harness(options = {}) {
     Object.assign(operation,{item_id:options.remoteId||null,group_id:null,group_version:null});
     Object.assign(decision.context,{operationKind:'listing_create',itemId:null,preparation:{
       action:options.relist?'relist':'new',sourceItemId:options.relist?'MLB0':null,
-      input:{produtoId:'p'},payload:{price:110},expected:{sale_terms:[{id:'WARRANTY_TIME',value_name:'12 meses'}]},description:'Descrição comprovada'}});
+      input:{produtoId:'p'},payload:{price:110},expected:{sale_terms:[{id:'WARRANTY_TIME',value_name:'12 meses'}],catalog_listing:options.catalogListing===true},description:'Descrição comprovada'}});
   }
   const client = { from(table) {
     const q = { select(){return q}, eq(){return q}, update(body){calls.push(['outbox', body.status]);return q},
@@ -163,6 +163,11 @@ test('creation replaces a description that the catalog already supplied',async()
   assert.ok(h.calls.some(c=>c[0]==='description'&&c[1]==='POST'));
   assert.ok(h.calls.some(c=>c[0]==='PUT'&&c[1]==='/items/MLB3/description?api_version=2'
     &&c[2].plain_text==='Descrição comprovada'));
+  assert.equal(h.calls.filter(c=>c[0]==='POST').length,1);
+});
+test('creation keeps the official description of a catalog listing',async()=>{
+  const h=harness({creation:true,catalogListing:true});assert.equal(await h.run(),'confirmed');
+  assert.ok(!h.calls.some(c=>c[0]==='description'));
   assert.equal(h.calls.filter(c=>c[0]==='POST').length,1);
 });
 test('ambiguous creation is never repeated, with or without a persisted remote identity',async()=>{

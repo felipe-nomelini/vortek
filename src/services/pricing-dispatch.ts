@@ -115,21 +115,23 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
         method: 'PUT', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sale_terms: decision.context.preparation.expected.sale_terms }),
       }, pricingExecutionTransport(sellerId)).catch(() => null);
-      const descriptionPath = '/items/' + encodeURIComponent(sent.data.id) + '/description';
-      const createdDescription = await fetchMLResult(descriptionPath, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plain_text: decision.context.preparation.description }),
-      }, pricingExecutionTransport(sellerId)).catch(() => null);
-      // Catálogo e relistagem podem entregar o novo item já com uma descrição.
-      // Nesse caso, o contrato oficial exige PUT para substituí-la.
-      const replacedDescription = !createdDescription?.ok
-        ? await fetchMLResult(descriptionPath + '?api_version=2', {
-            method: 'PUT', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ plain_text: decision.context.preparation.description }),
-          }, pricingExecutionTransport(sellerId)).catch(() => null)
-        : null;
-      if (!createdDescription?.ok && !replacedDescription?.ok) {
-        throw new Error('publication_description_failed');
+      // Anúncios de catálogo recebem a descrição oficial do produto e o ML não
+      // permite substituí-la. Nos demais anúncios, cria ou substitui a descrição.
+      if (decision.context.preparation.expected.catalog_listing !== true) {
+        const descriptionPath = '/items/' + encodeURIComponent(sent.data.id) + '/description';
+        const createdDescription = await fetchMLResult(descriptionPath, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plain_text: decision.context.preparation.description }),
+        }, pricingExecutionTransport(sellerId)).catch(() => null);
+        const replacedDescription = !createdDescription?.ok
+          ? await fetchMLResult(descriptionPath + '?api_version=2', {
+              method: 'PUT', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ plain_text: decision.context.preparation.description }),
+            }, pricingExecutionTransport(sellerId)).catch(() => null)
+          : null;
+        if (!createdDescription?.ok && !replacedDescription?.ok) {
+          throw new Error('publication_description_failed');
+        }
       }
     }
     const freshOperation = await client.from('pricing_operations').select('*').eq('id', operationId).single();
