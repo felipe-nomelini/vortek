@@ -7,6 +7,7 @@ import { classifyCatalogEligibility } from '@/lib/catalogo/dashboard';
 import { collectCatalogEligibleItemIds, type CatalogEligibleSearchPage } from '@/lib/catalogo/eligible-search';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { listBntD12EligibleVisualReview } from '@/lib/catalogo/visual-review';
+import { configuredPricingExecutionCapability } from '@/services/pricing-execution-access';
 
 const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
@@ -311,9 +312,13 @@ export async function GET(request: Request) {
 
   const parsedMin = priceMin !== null && Number.isFinite(Number(priceMin)) ? Number(priceMin) : null;
   const parsedMax = priceMax !== null && Number.isFinite(Number(priceMax)) ? Number(priceMax) : null;
+  const execution = configuredPricingExecutionCapability();
+  const capabilities = {
+    createCatalogListing: execution.enabled && execution.allowedOperations.includes('listing_create'),
+  };
   const visualReview = await loadBntD07VisualReview();
   if (visualReview) {
-    return NextResponse.json(listBntD12EligibleVisualReview({
+    return NextResponse.json({ ...listBntD12EligibleVisualReview({
       review: visualReview,
       search,
       statusMl,
@@ -322,7 +327,7 @@ export async function GET(request: Request) {
       priceMax: parsedMax,
       page,
       pageSize,
-    }));
+    }), capabilities: { createCatalogListing: false } });
   }
 
   const startedAt = Date.now();
@@ -567,6 +572,7 @@ export async function GET(request: Request) {
       page,
       pageSize,
       metrics,
+      capabilities,
       visualReview: null,
     });
   } catch (error) {

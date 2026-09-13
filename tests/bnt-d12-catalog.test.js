@@ -5,7 +5,9 @@ const test = require('node:test');
 
 const {
   buildCatalogOptinTargets,
+  catalogBoostPresentation,
   catalogCompetitionPresentation,
+  catalogOperationalPresentation,
   classifyCatalogEligibility,
 } = require('../src/lib/catalogo/dashboard.ts');
 
@@ -30,6 +32,23 @@ test('classifica elegibilidade sem esconder candidatos bloqueados', () => {
   assert.equal(classifyCatalogEligibility({ ...base, local_product_id: null }).state, 'local_product_missing');
   assert.equal(classifyCatalogEligibility({ ...base, catalog_product_status: 'inactive' }).state, 'catalog_product_unavailable');
   assert.equal(classifyCatalogEligibility({ ...base, catalog_product_warning: 'Divergência' }).state, 'review_required');
+});
+
+test('prioriza pendências operacionais e reconhece somente estados saudáveis confirmados', () => {
+  const base = { status: 'active', produto_id: 'produto-1', buy_box_status: 'winning' };
+  assert.equal(catalogOperationalPresentation(base).needsAction, false);
+  assert.equal(catalogOperationalPresentation({ ...base, buy_box_status: 'competing' }).actionLabel, 'Revisar preço');
+  assert.equal(catalogOperationalPresentation({ ...base, buy_box_status: 'unexpected' }).needsAction, true);
+  assert.equal(catalogOperationalPresentation({ ...base, produto_id: null }).label, 'Sem vínculo Bentevi');
+  assert.equal(catalogOperationalPresentation({ ...base, status: 'paused' }).label, 'Anúncio pausado');
+});
+
+test('traduz os estados oficiais dos benefícios competitivos', () => {
+  assert.equal(catalogBoostPresentation('boosted').label, 'Ativo e ajuda na disputa');
+  assert.equal(catalogBoostPresentation('not_boosted').label, 'Ativo, mas sem vantagem');
+  assert.equal(catalogBoostPresentation('opportunity').actionable, true);
+  assert.equal(catalogBoostPresentation('not_apply').label, 'Não se aplica');
+  assert.equal(catalogBoostPresentation(null).label, 'Situação não informada pelo Mercado Livre');
 });
 
 test('gera uma operação de opt-in para cada variação pronta', () => {
@@ -57,7 +76,24 @@ test('mantém duas rotas com nomes inequívocos e acompanhamento compartilhado',
   assert.match(view, /Produto de catálogo/);
   assert.match(view, /Anúncio de catálogo/);
   assert.match(view, /useMlPricePublishTracking/);
+  assert.match(view, /Pendências/);
+  assert.match(view, /Preço para ganhar/);
+  assert.match(view, /Revisar alteração/);
+  assert.match(view, /Confirmar alteração/);
+  assert.match(view, /Detalhes técnicos/);
+  assert.doesNotMatch(view, /Três identificadores diferentes|Preço e sincronização|Preparar proposta|Reanalisar oportunidades/);
   assert.doesNotMatch(view, /Reanálise de Preço/);
+});
+
+test('alteração manual do catálogo usa confirmação única sem pedir motivo ao operador', () => {
+  const view = fs.readFileSync(path.join(__dirname, '../src/components/catalogo/CatalogoView.tsx'), 'utf8');
+  const route = fs.readFileSync(path.join(__dirname, '../src/app/api/catalogo/preco/confirmar/route.ts'), 'utf8');
+  assert.match(view, /api\/catalogo\/preco\/confirmar/);
+  assert.match(route, /Alteração manual confirmada no Catálogo/);
+  assert.match(route, /prepare_pricing_decision/);
+  assert.match(route, /manage_pricing_decision/);
+  assert.match(route, /enqueueApprovedPricingDecision/);
+  assert.doesNotMatch(route, /reason:\s*z\./);
 });
 
 test('distingue falha de carregamento de uma lista realmente vazia', () => {

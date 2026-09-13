@@ -1,5 +1,5 @@
 import type { BntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
-import { catalogCompetitionPresentation, classifyCatalogEligibility } from '@/lib/catalogo/dashboard';
+import { catalogCompetitionPresentation, catalogOperationalPresentation, classifyCatalogEligibility, type CatalogOperationalView } from '@/lib/catalogo/dashboard';
 
 function text(value: unknown) {
   return String(value || '').trim();
@@ -24,6 +24,7 @@ function rawCompetitionStatus(listing: Record<string, any>) {
 
 export function listBntD12CatalogVisualReview(params: {
   review: BntD07VisualReview;
+  operationalView?: CatalogOperationalView;
   search: string;
   statusMl: string;
   competition: string;
@@ -44,7 +45,7 @@ export function listBntD12CatalogVisualReview(params: {
         text(entry.itemId || entry.ml_item_id).toUpperCase() === text(listing.relatedItemId || listing.related_item_id).toUpperCase()
       )) || standardListings[0] || null;
       const buyBoxStatus = rawCompetitionStatus(listing);
-      allRows.push({
+      const row = {
         anuncio_id: mlItemId,
         ml_item_id: mlItemId,
         relacionado_id: text(listing.relatedItemId || listing.related_item_id || related?.itemId || related?.ml_item_id) || null,
@@ -68,6 +69,14 @@ export function listBntD12CatalogVisualReview(params: {
         item_relations: null,
         last_updated: text(listing.listingSyncedAt || listing.synced_at || product.updated_at) || null,
         isHomologationFixture: true,
+      };
+      allRows.push({
+        ...row,
+        operational: catalogOperationalPresentation(row),
+        economics: {
+          current: { profit: null, marginPercent: null, source: 'unavailable', calculatedAt: null },
+          competitive: { profit: null, marginPercent: null, source: 'unavailable', calculatedAt: null },
+        },
       });
     }
   }
@@ -88,14 +97,15 @@ export function listBntD12CatalogVisualReview(params: {
   });
   const metrics = {
     total: common.length,
-    winning: common.filter((row) => catalogCompetitionPresentation(row.buy_box_status).key === 'winning').length,
-    sharingFirstPlace: common.filter((row) => catalogCompetitionPresentation(row.buy_box_status).key === 'sharing_first_place').length,
-    competing: common.filter((row) => catalogCompetitionPresentation(row.buy_box_status).key === 'competing').length,
-    outside: common.filter((row) => catalogCompetitionPresentation(row.buy_box_status).key === 'outside').length,
+    needsAction: common.filter((row) => row.operational.needsAction).length,
+    healthy: common.filter((row) => !row.operational.needsAction).length,
   };
-  const filtered = params.competition === 'all'
+  const competitionFiltered = params.competition === 'all'
     ? common
     : common.filter((row) => catalogCompetitionPresentation(row.buy_box_status).key === params.competition);
+  const filtered = (params.operationalView || 'needs_action') === 'all'
+    ? competitionFiltered
+    : competitionFiltered.filter((row) => (params.operationalView === 'healthy') !== row.operational.needsAction);
   const offset = (params.page - 1) * params.pageSize;
 
   return {

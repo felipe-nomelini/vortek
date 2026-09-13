@@ -1,61 +1,85 @@
-.page { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.page { display: flex; min-width: 0; flex-direction: column; gap: 14px; }
 .header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
-.title { margin: 0 0 4px !important; }
-.lastSync { display: block; margin-top: 5px; color: rgba(255,255,255,.38); }
+.title { margin: 0 0 3px !important; }
+.lastSync { display: block; margin-top: 5px; color: rgba(255,255,255,.42); }
 .visualAlert { border-color: rgba(255,189,14,.35); background: rgba(255,189,14,.07); }
-.domainGuide { display: grid; grid-template-columns: minmax(360px, .7fr) minmax(620px, 1.3fr); align-items: center; gap: 20px; padding: 14px; border: 1px solid var(--bentevi-border,#34313a); border-radius: 16px; background: var(--bentevi-surface,#141316); }
-.relationshipGuide, .relationFlow { display: flex; align-items: center; justify-content: center; gap: 14px; color: rgba(255,255,255,.35); }
-.relationshipGuide > span, .relationFlow > span { display: flex; flex: 1; flex-direction: column; gap: 3px; min-width: 0; padding: 9px 12px; border: 1px solid rgba(255,255,255,.07); border-radius: 10px; background: rgba(255,255,255,.025); }
-.relationshipGuide b, .relationFlow strong { color: rgba(255,255,255,.9); font-size: 12px; overflow-wrap: anywhere; }
-.relationshipGuide small, .relationFlow small { color: rgba(255,255,255,.42); font-size: 10px; }
+.modeSelector { align-self: flex-start; }
 .jobAlert { border-color: rgba(91,143,249,.25); background: rgba(91,143,249,.06); }
-.jobDescription { display: flex; flex-direction: column; gap: 4px; max-width: 760px; }
-.jobDescription span, .jobDescription small { color: rgba(255,255,255,.55); }
-.quickViews { align-self: flex-start; max-width: 100%; padding: 4px; overflow-x: auto; border: 1px solid var(--bentevi-border,#34313a); border-radius: 12px; background: var(--bentevi-surface,#141316); }
-.quickViewLabel { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
-.quickViewLabel b { display: inline-flex; min-width: 24px; justify-content: center; padding: 1px 7px; border: 1px solid rgba(255,189,14,.18); border-radius: 999px; background: linear-gradient(135deg,rgba(255,189,14,.14),rgba(255,189,14,.02)); color: var(--bentevi-primary,#ffbd0e); font-size: 11px; font-weight: 600; line-height: 18px; }
-.filterBar { display: grid; grid-template-columns: minmax(280px,1.4fr) minmax(160px,.7fr) minmax(190px,.8fr) minmax(260px,1fr) auto; gap: 10px; padding: 13px; border: 1px solid var(--bentevi-border,#34313a); border-radius: 14px; background: var(--bentevi-surface,#141316); }
-.search, .priceRange, .priceRange :global(.ant-input-number) { width: 100%; }
-.tableCard { min-width: 0; padding: 8px 10px 12px; overflow: hidden; border: 1px solid var(--bentevi-border,#34313a); border-radius: 18px; background: var(--bentevi-surface,#141316); }
-.table :global(.ant-table), .table :global(.ant-table-container) { background: transparent; }
-.table :global(.ant-table-thead > tr > th) { background: rgba(255,255,255,.035); }
-.loadingIcon { color: var(--bentevi-primary,#ffbd0e); font-size: 32px; }
-.listingCell { display: flex; align-items: flex-start; gap: 11px; min-width: 0; }
-.listingCell > div, .stackCell, .valueCell { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
-.listingCell strong, .stackCell strong, .valueCell strong, .competitionCell strong { color: rgba(255,255,255,.92); line-height: 1.35; overflow-wrap: anywhere; }
-.listingCell span, .stackCell span, .valueCell span, .competitionCell span, .stackCell small { color: rgba(255,255,255,.43); font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
-.listingCell :global(.ant-tag), .stackCell :global(.ant-tag) { width: fit-content; margin: 1px 0 0; }
-.thumbnail { object-fit: contain; border: 1px solid rgba(255,255,255,.08); border-radius: 9px; background: #fff; }
-.thumbnailFallback { display: grid; flex: 0 0 46px; width: 46px; height: 46px; place-items: center; border: 1px solid rgba(255,255,255,.08); border-radius: 9px; background: rgba(255,255,255,.03); }
-.identifier { color: rgba(255,189,14,.82) !important; font-family: ui-monospace,SFMono-Regular,Menlo,monospace; font-size: 10px !important; }
-.competitionCell { display: flex; align-items: flex-start; gap: 9px; }
-.competitionCell > div { display: flex; flex-direction: column; gap: 4px; }
-.competitionDot { display: block; flex: 0 0 9px; width: 9px; height: 9px; margin-top: 5px; border-radius: 50%; background: rgba(255,255,255,.3); box-shadow: 0 0 0 4px rgba(255,255,255,.04); }
-.competitionDot.positive { background: #21d482; box-shadow: 0 0 0 4px rgba(33,212,130,.09); }
-.competitionDot.warning { background: #ffbd0e; box-shadow: 0 0 0 4px rgba(255,189,14,.09); }
-.competitionDot.negative { background: #ff5b6e; box-shadow: 0 0 0 4px rgba(255,91,110,.09); }
-.competitionDot.neutral { background: rgba(255,255,255,.35); }
-.positive { color: #21d482 !important; }
-.negative { color: #ff5b6e !important; }
-.drawerTitle { display: flex; flex-direction: column; gap: 2px; }
-.drawerTitle span { color: rgba(255,255,255,.45); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
-.drawerTitle strong { color: rgba(255,255,255,.92); }
-.drawerSection { display: flex; flex-direction: column; gap: 18px; }
-.relationFlow { justify-content: stretch; }
-.competitionHero { display: flex; align-items: flex-start; gap: 12px; padding: 18px; border: 1px solid rgba(255,189,14,.2); border-radius: 14px; background: linear-gradient(135deg,rgba(255,189,14,.08),rgba(255,189,14,.01)); }
-.competitionHero > div { display: flex; flex-direction: column; gap: 4px; }
+.refreshProgress { display: grid; max-width: 620px; gap: 5px; }
+.quickViews { align-self: flex-start; max-width: 100%; overflow-x: auto; }
+.quickViewLabel { display: inline-flex; align-items: center; gap: 8px; }
+.quickViewLabel b { min-width: 24px; padding: 1px 6px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 11px; }
+.filterBar { display: flex; flex-wrap: wrap; gap: 8px; }
+.filterBar :global(.ant-select) { min-width: 190px; }
+.search { width: min(100%, 360px); }
+.tableCard { min-width: 0; overflow: hidden; border: 1px solid var(--bentevi-border,#34313a); border-radius: 12px; background: var(--bentevi-surface,#141316); }
+.tableCard > :global(.ant-alert) { margin: 12px; }
+.table :global(.ant-table-cell) { vertical-align: middle; }
+.loadingIcon { color: var(--bentevi-primary,#f7b500); font-size: 24px; }
+.listingCell { display: flex; min-width: 0; align-items: center; gap: 11px; }
+.listingCell > div { display: flex; min-width: 0; flex-direction: column; gap: 2px; }
+.listingCell strong, .listingCell span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.listingCell span { color: rgba(255,255,255,.58); font-size: 12px; }
+.listingCell small, .stackCell small { color: rgba(255,255,255,.4); font-size: 11px; overflow-wrap: anywhere; }
+.thumbnail, .thumbnailFallback { flex: 0 0 48px; border-radius: 8px; object-fit: cover; }
+.thumbnailFallback { display: grid; width: 48px; height: 48px; place-items: center; background: rgba(255,255,255,.05); color: rgba(255,255,255,.38); }
+.situationCell { display: flex; align-items: flex-start; gap: 9px; }
+.situationCell > div { display: flex; flex-direction: column; gap: 3px; }
+.situationCell small { color: rgba(255,255,255,.48); line-height: 1.35; }
+.statusDot { width: 8px; height: 8px; flex: 0 0 8px; margin-top: 5px; border-radius: 50%; background: rgba(255,255,255,.35); }
+.positive.statusDot, .statusDot.positive { background: #52c41a; box-shadow: 0 0 0 4px rgba(82,196,26,.1); }
+.warning.statusDot, .statusDot.warning { background: #faad14; box-shadow: 0 0 0 4px rgba(250,173,20,.1); }
+.negative.statusDot, .statusDot.negative { background: #ff4d4f; box-shadow: 0 0 0 4px rgba(255,77,79,.1); }
+.neutral.statusDot, .statusDot.neutral { background: #8c8c8c; }
+.stackCell, .valueCell { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
+.stackCell strong { overflow-wrap: anywhere; }
+.valueCell strong { font-size: 14px; }
+.valueCell small { color: rgba(255,255,255,.47); }
+.positive { color: #52c41a !important; }
+.negative { color: #ff7875 !important; }
+.warning { color: #faad14; }
+.neutral { color: rgba(255,255,255,.58); }
+.drawerTitle { display: flex; min-width: 0; flex-direction: column; gap: 2px; }
+.drawerTitle span { color: rgba(255,255,255,.45); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
+.drawerTitle strong { overflow: hidden; max-width: 440px; text-overflow: ellipsis; white-space: nowrap; }
+.drawerSection { display: flex; flex-direction: column; gap: 16px; }
+.competitionHero { display: flex; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(255,255,255,.025); }
+.competitionHero > div { display: flex; flex-direction: column; gap: 2px; }
 .competitionHero small { color: rgba(255,255,255,.42); text-transform: uppercase; }
-.competitionHero strong { color: rgba(255,255,255,.94); font-size: 20px; }
-.competitionHero p { margin: 0; color: rgba(255,255,255,.54); }
-.boostList, .variationList { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
-.boostList span, .variationList span { display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; border: 1px solid rgba(255,255,255,.07); border-radius: 10px; }
-.boostList b, .variationList b { color: rgba(255,255,255,.82); font-size: 12px; }
-.boostList small, .variationList small { color: rgba(255,255,255,.42); }
-.priceEditor { display: flex; align-items: flex-end; gap: 10px; padding: 14px; border: 1px solid rgba(255,189,14,.22); border-radius: 12px; background: rgba(255,189,14,.045); }
-.priceEditor > div { display: flex; flex-direction: column; gap: 5px; }
-.priceEditor label { color: rgba(255,255,255,.44); font-size: 10px; text-transform: uppercase; }
+.competitionHero strong { font-size: 20px; color: rgba(255,255,255,.94); }
+.competitionHero p { margin: 3px 0 0; color: rgba(255,255,255,.6); }
+.priceOverview, .reviewComparison, .eligibleSummary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.summaryCard, .eligibleSummary > span { display: flex; min-height: 92px; flex-direction: column; justify-content: center; gap: 4px; padding: 14px; border: 1px solid rgba(255,255,255,.08); border-radius: 11px; background: rgba(255,255,255,.025); }
+.summaryCard > small, .eligibleSummary small { color: rgba(255,255,255,.45); }
+.summaryCard > strong { font-size: 20px; }
+.summaryCard > span { color: rgba(255,255,255,.55); font-size: 12px; }
+.actionableBoosts, .allBoosts, .variationList { display: grid; gap: 8px; }
+.actionableBoosts { padding: 14px; border: 1px solid rgba(250,173,20,.25); border-radius: 11px; background: rgba(250,173,20,.05); }
+.actionableBoosts > span, .allBoosts > span, .variationList > span { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 10px; border-radius: 8px; background: rgba(255,255,255,.035); }
+.actionableBoosts small, .allBoosts small, .variationList small { color: rgba(255,255,255,.52); text-align: right; }
+.priceAction { display: grid; gap: 12px; padding: 16px; border: 1px solid rgba(255,189,14,.2); border-radius: 12px; background: rgba(255,189,14,.04); }
+.priceAction > div:first-child { display: flex; flex-direction: column; gap: 2px; }
+.priceAction small { color: rgba(255,255,255,.48); }
+.priceEditor { display: flex; gap: 8px; }
+.priceEditor :global(.ant-input-number) { width: 180px; }
+.technicalDetails { border-top: 1px solid rgba(255,255,255,.08); padding-top: 12px; }
+.technicalDetails summary { cursor: pointer; color: rgba(255,255,255,.64); font-weight: 600; }
+.technicalDetails dl { display: grid; gap: 7px; margin: 14px 0; }
+.technicalDetails dl > div { display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 10px; }
+.technicalDetails dt { color: rgba(255,255,255,.42); }
+.technicalDetails dd { margin: 0; overflow-wrap: anywhere; }
+.priceReview { display: grid; gap: 14px; }
+.priceReview > p { margin: 0; color: rgba(255,255,255,.62); }
+.reviewComparison { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; }
+.eligibleSummary strong { overflow-wrap: anywhere; }
 
-@media (max-width: 1180px) {
-  .domainGuide { grid-template-columns: 1fr; }
-  .filterBar { grid-template-columns: repeat(2,minmax(0,1fr)); }
+@media (max-width: 760px) {
+  .header { flex-direction: column; }
+  .filterBar, .filterBar :global(.ant-select), .search { width: 100%; }
+  .priceOverview, .eligibleSummary { grid-template-columns: 1fr; }
+  .reviewComparison { grid-template-columns: 1fr; }
+  .reviewComparison > :global(.anticon) { transform: rotate(90deg); justify-self: center; }
+  .priceEditor { flex-direction: column; }
+  .priceEditor :global(.ant-input-number), .priceEditor :global(.ant-btn) { width: 100%; }
+  .technicalDetails dl > div { grid-template-columns: 1fr; gap: 1px; }
 }

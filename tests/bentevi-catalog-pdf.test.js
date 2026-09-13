@@ -45,15 +45,13 @@ test('BNT-D12-PDF reutiliza a listagem canônica e inclui a amostra protegida se
   assert.doesNotMatch(route, /api\.mercadolibre\.com/);
 });
 
-test('BNT-D12-PDF preserva filtros, ordenação e a visão temporária de oportunidades', () => {
-  for (const filter of ['search', 'statusMl', 'buyBox', 'priceMin', 'priceMax', 'sortBy', 'sortOrder', 'sellerId']) {
+test('BNT-D12-PDF preserva filtros, ordenação e a visão operacional escolhida', () => {
+  for (const filter of ['search', 'statusMl', 'buyBox', 'priceMin', 'priceMax', 'sortBy', 'sortOrder', 'sellerId', 'view']) {
     assert.match(route, new RegExp(`'${filter}'`));
   }
   assert.match(route, /export async function POST\(request: Request\)/);
-  assert.match(route, /normalizeOpportunityIds\(body\?\.opportunityIds\)/);
-  assert.match(route, /rows\.filter\(\(row\) => opportunityIds\.has\(row\.itemId\.toUpperCase\(\)\)\)/);
   assert.match(view, /method: 'POST'/);
-  assert.match(view, /opportunityIds: opportunityIds \? Array\.from\(opportunityIds\) : undefined/);
+  assert.match(view, /body: JSON\.stringify\(\{\}\)/);
   assert.match(view, /params\.delete\('page'\)/);
   assert.match(view, /params\.delete\('pageSize'\)/);
 });

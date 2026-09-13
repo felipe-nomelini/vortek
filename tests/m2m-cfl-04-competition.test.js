@@ -112,12 +112,15 @@ test('snapshots não recomendam preços e a interface não pré-seleciona a Buy 
   const route = fs.readFileSync('src/app/api/catalogo/no-catalogo/analise-preco/route.ts', 'utf8');
   assert.match(route, /assessCompetitivePricing/); assert.match(route, /preliminary: true/);
   assert.match(route, /preco_recomendado: null/);
-  for (const path of ['src/components/catalogo/CatalogoView.tsx', 'src/app/(app)/anuncios/page.tsx']) {
-    const source = fs.readFileSync(path, 'utf8');
-    assert.match(source, /CompetitivePricingSummary/); assert.match(source, /Simular referência competitiva/);
-    assert.doesNotMatch(source, /Usar preço para ganhar|priceToWin \|\| activeCatalog.price_to_win|setNewPrice\(row.price_to_win/);
-    assert.match(source, /PricingProposalButton/);
-  }
+  const catalog = fs.readFileSync('src/components/catalogo/CatalogoView.tsx', 'utf8');
+  assert.doesNotMatch(catalog, /CompetitivePricingSummary|Simular referência competitiva|PricingProposalButton/);
+  assert.match(catalog, /Revisar alteração/);
+  assert.match(catalog, /decisionContext\?\.executable/);
+  assert.doesNotMatch(catalog, /Usar preço para ganhar|setNewPrice\(row\.price_to_win/);
+  const listings = fs.readFileSync('src/app/(app)/anuncios/page.tsx', 'utf8');
+  assert.match(listings, /CompetitivePricingSummary/); assert.match(listings, /Simular referência competitiva/);
+  assert.doesNotMatch(listings, /Usar preço para ganhar/);
+  assert.match(listings, /PricingProposalButton/);
   assert.match(fs.readFileSync('src/components/products/PricingDecisionCenter.tsx','utf8'), /esta operação não está liberada no ambiente/);
 });
 test('interface renderiza memórias, resultado, grupo e aviso sem inventar referências', () => {

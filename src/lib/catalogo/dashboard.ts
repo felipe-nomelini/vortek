@@ -17,6 +17,24 @@ export type CatalogOptinTarget = {
   variationId?: number;
 };
 
+export type CatalogOperationalView = 'needs_action' | 'healthy' | 'all';
+
+export type CatalogOperationalState = {
+  key: 'paused' | 'missing_product' | 'competition_unavailable' | 'outside' | 'competing' | 'healthy';
+  needsAction: boolean;
+  label: string;
+  description: string;
+  actionLabel: string;
+  tone: 'positive' | 'warning' | 'negative' | 'neutral';
+};
+
+export type CatalogBoostState = {
+  key: 'boosted' | 'not_boosted' | 'opportunity' | 'not_apply' | 'unknown';
+  label: string;
+  actionable: boolean;
+  tone: 'positive' | 'warning' | 'neutral';
+};
+
 const RELIABLE_MATCH_SCORE = 100;
 
 export function isCatalogEligibilityReady(status: unknown) {
@@ -120,4 +138,45 @@ export function catalogCompetitionPresentation(status: unknown) {
     return { key: 'outside', label: 'Fora da competição', tone: 'negative', description: 'O anúncio permanece publicado, mas não pode vencer a disputa agora.' };
   }
   return { key: 'unavailable', label: 'Estado indisponível', tone: 'neutral', description: 'A última análise não informou o estado da competição.' };
+}
+
+export function catalogOperationalPresentation(row: Record<string, unknown>): CatalogOperationalState {
+  const status = String(row.status || '').trim().toLowerCase();
+  const competition = String(row.buy_box_status || '').trim().toLowerCase();
+  if (status !== 'active') {
+    return { key: 'paused', needsAction: true, label: status === 'paused' ? 'Anúncio pausado' : 'Anúncio indisponível',
+      description: 'O anúncio não está ativo para receber vendas.', actionLabel: 'Revisar anúncio', tone: 'negative' };
+  }
+  if (!String(row.produto_id || '').trim()) {
+    return { key: 'missing_product', needsAction: true, label: 'Sem vínculo Bentevi',
+      description: 'Não é possível calcular o resultado sem identificar o produto.', actionLabel: 'Revisar vínculo', tone: 'negative' };
+  }
+  if (!competition) {
+    return { key: 'competition_unavailable', needsAction: true, label: 'Competição não informada',
+      description: 'Atualize o catálogo para consultar a situação deste anúncio.', actionLabel: 'Ver detalhes', tone: 'neutral' };
+  }
+  if (competition === 'listed' || competition === 'not_listed') {
+    return { key: 'outside', needsAction: true, label: 'Fora da disputa',
+      description: 'O anúncio está publicado, mas não pode vencer a disputa agora.', actionLabel: 'Resolver impedimento', tone: 'negative' };
+  }
+  if (competition === 'competing') {
+    return { key: 'competing', needsAction: true, label: 'Competindo',
+      description: 'O anúncio participa da disputa, mas não está em primeiro lugar.', actionLabel: 'Revisar preço', tone: 'warning' };
+  }
+  if (competition === 'winning' || competition === 'sharing_first_place') {
+    const state = catalogCompetitionPresentation(competition);
+    return { key: 'healthy', needsAction: false, label: state.label,
+      description: state.description, actionLabel: 'Ver detalhes', tone: 'positive' };
+  }
+  return { key: 'competition_unavailable', needsAction: true, label: 'Competição não informada',
+    description: 'Atualize o catálogo para consultar a situação deste anúncio.', actionLabel: 'Ver detalhes', tone: 'neutral' };
+}
+
+export function catalogBoostPresentation(status: unknown): CatalogBoostState {
+  const normalized = String(status || '').trim().toLowerCase();
+  if (normalized === 'boosted') return { key: 'boosted', label: 'Ativo e ajuda na disputa', actionable: false, tone: 'positive' };
+  if (normalized === 'not_boosted') return { key: 'not_boosted', label: 'Ativo, mas sem vantagem', actionable: false, tone: 'neutral' };
+  if (normalized === 'opportunity') return { key: 'opportunity', label: 'Pode melhorar a disputa', actionable: true, tone: 'warning' };
+  if (normalized === 'not_apply') return { key: 'not_apply', label: 'Não se aplica', actionable: false, tone: 'neutral' };
+  return { key: 'unknown', label: 'Situação não informada pelo Mercado Livre', actionable: false, tone: 'neutral' };
 }

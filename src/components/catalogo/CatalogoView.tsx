@@ -1,20 +1,25 @@
 'use client';
 
-import PricingDecisionCenter, { PricingProposalButton } from '@/components/products/PricingDecisionCenter';
-
-import { CompetitivePricingSummary, PricingQuoteSummary } from '@/components/products/LivePricingQuote';
-import type { ProductPricing } from '@/services/pricing-context';
-
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Alert, Button, Descriptions, Drawer, Dropdown, Empty, Image, Input, InputNumber, Modal, Progress, Segmented, Select, Space, Spin, Tabs, Tag, Typography, message } from 'antd';
+import {
+  Alert, Button, Drawer, Empty, Image, Input, InputNumber, Modal, Progress,
+  Segmented, Select, Space, Spin, Tag, Typography, message,
+} from 'antd';
 import type { TableProps } from 'antd';
-import { ArrowRightOutlined, EllipsisOutlined, EyeOutlined, FilePdfOutlined, LoadingOutlined, ReloadOutlined, SearchOutlined, ShopOutlined } from '@ant-design/icons';
+import {
+  ArrowRightOutlined, EyeOutlined, FilePdfOutlined, LoadingOutlined,
+  ReloadOutlined, SearchOutlined, ShopOutlined,
+} from '@ant-design/icons';
 import ResizableTable from '@/components/ResizableTable';
 import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressModal';
 import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import { formatCurrency } from '@/lib/format';
-import { buildCatalogOptinTargets, catalogCompetitionPresentation, type CatalogEligibilityActionState, type CatalogOptinTarget, type CatalogVariationEligibility } from '@/lib/catalogo/dashboard';
+import {
+  buildCatalogOptinTargets, catalogBoostPresentation, catalogCompetitionPresentation,
+  type CatalogEligibilityActionState, type CatalogOperationalState,
+  type CatalogOperationalView, type CatalogOptinTarget, type CatalogVariationEligibility,
+} from '@/lib/catalogo/dashboard';
 import type { CatalogRefreshPresentation } from '@/lib/catalogo/refresh-presentation';
 import { userSafeMessage } from '@/lib/user-feedback';
 import styles from './CatalogoView.module.css';
@@ -24,30 +29,81 @@ const PAGE_SIZE = 100;
 const REFRESH_JOB_STORAGE_KEY = 'catalogo_no_catalogo_refresh_job_id';
 export type CatalogoMode = 'no_catalogo' | 'elegiveis';
 
-type VisualReviewMetadata = { enabled: true; source: string; capturedAt: string; expiresAt: string; itemCount: number; simulatedEligibility?: boolean };
-type NoCatalogoRow = { anuncio_id: string; ml_item_id: string; relacionado_id: string | null; related_permalink?: string | null; related_status?: string | null; title: string; seller_sku: string | null; sku_local: string | null; produto_id: string | null; produto_nome?: string | null; catalog_product_id: string | null; status: string | null; buy_box_status: string | null; price_to_win: number | null; price: number; permalink: string | null; thumbnail: string | null; last_updated: string | null; isHomologationFixture?: boolean };
-type ElegivelRow = { ml_item_id: string; title: string; seller_sku: string | null; local_product_id?: string | null; local_product_name?: string | null; status: string | null; status_label?: string | null; price: number; permalink: string | null; thumbnail: string | null; catalog_product_id: string | null; catalog_product_name?: string | null; catalog_product_id_sugerido?: string | null; catalog_product_name_sugerido?: string | null; catalog_product_warning?: string | null; catalog_product_status?: string | null; eligibility_status: string | null; eligibility_label?: string | null; buy_box_eligible: boolean; eligibility_reason: string | null; variation_eligibility: CatalogVariationEligibility[]; state: CatalogEligibilityActionState; reason: string; last_updated: string | null; isHomologationFixture?: boolean };
-type CatalogMetrics = { total: number; winning: number; sharingFirstPlace: number; competing: number; outside: number };
-type EligibleMetrics = { total: number; ready: number; reviewRequired: number; catalogProductUnavailable: number; localProductMissing: number };
-type RefreshStatusPayload = { success?: boolean; error?: string; job?: { id: string; status: string; progresso?: number; processados?: number; total?: number; presentation?: CatalogRefreshPresentation; summary?: { detailsUnavailable?: number; competitionUnavailable?: number; updated?: number } } | null; events?: Array<{ stage?: string | null; progress?: number | null }>; failures?: string[] };
-type AnalisePrecoRow = { ml_item_id: string; classe: import('@/services/pricing-competition').CompetitiveClassification };
-type PriceDetail = { competitiveAssessment?: import('@/services/pricing-competition').CompetitiveAssessment | null; pricing?: ProductPricing; currentPrice?: number; currentProfit?: number | null; automaticPricing?: { active?: boolean }; catalog?: { rawStatus?: string | null; priceToWin?: number | null; winner?: { itemId?: string | null; price?: number | null } | null; boosts?: Array<{ id: string; status: string; description: string }>; reasons?: string[]; warning?: string | null; syncedAt?: string | null } | null };
+type VisualReviewMetadata = {
+  enabled: true; source: string; capturedAt: string; expiresAt: string;
+  itemCount: number; simulatedEligibility?: boolean;
+};
+type EconomicSummary = {
+  profit: number | null; marginPercent: number | null;
+  source: 'live_saved' | 'estimated' | 'unavailable'; calculatedAt: string | null;
+};
+type NoCatalogoRow = {
+  anuncio_id: string; ml_item_id: string; relacionado_id: string | null;
+  related_permalink?: string | null; related_status?: string | null; title: string;
+  seller_sku: string | null; sku_local: string | null; produto_id: string | null;
+  produto_nome?: string | null; catalog_product_id: string | null; status: string | null;
+  buy_box_status: string | null; price_to_win: number | null; price: number;
+  permalink: string | null; thumbnail: string | null; last_updated: string | null;
+  operational: CatalogOperationalState;
+  economics: { current: EconomicSummary; competitive: EconomicSummary };
+  isHomologationFixture?: boolean;
+};
+type ElegivelRow = {
+  ml_item_id: string; title: string; seller_sku: string | null;
+  local_product_id?: string | null; local_product_name?: string | null;
+  status: string | null; price: number; permalink: string | null; thumbnail: string | null;
+  catalog_product_id: string | null; catalog_product_name?: string | null;
+  catalog_product_id_sugerido?: string | null; catalog_product_name_sugerido?: string | null;
+  catalog_product_warning?: string | null; eligibility_label?: string | null;
+  variation_eligibility: CatalogVariationEligibility[]; state: CatalogEligibilityActionState;
+  reason: string; isHomologationFixture?: boolean;
+};
+type CatalogMetrics = { total: number; needsAction: number; healthy: number };
+type EligibleMetrics = {
+  total: number; ready: number; reviewRequired: number;
+  catalogProductUnavailable: number; localProductMissing: number;
+};
+type RefreshStatusPayload = {
+  success?: boolean; error?: string;
+  job?: { id: string; status: string; progresso?: number; processados?: number; total?: number;
+    presentation?: CatalogRefreshPresentation } | null;
+};
+type PriceDetail = {
+  evaluationId?: string;
+  decisionContext?: { executable?: boolean; reasons?: string[]; priceCents?: number; groupId?: string | null } | null;
+  currentPrice?: number | null; currentProfit?: number | null;
+  pricing?: { current?: { memory?: { resultCents?: number; margin?: number } | null } };
+  competitiveAssessment?: {
+    current?: { memory?: { resultCents?: number; margin?: number } | null } | null;
+    competitive?: { memory?: { resultCents?: number; margin?: number } | null } | null;
+  } | null;
+  automaticPricing?: { active?: boolean };
+  catalog?: { rawStatus?: string | null; priceToWin?: number | null;
+    winner?: { itemId?: string | null; price?: number | null } | null;
+    boosts?: Array<{ id: string; status: string; description: string }>;
+    reasons?: string[]; warning?: string | null; syncedAt?: string | null } | null;
+};
+type PriceReview = { detail: PriceDetail; price: number; profit: number | null; margin: number | null };
 
-const statusOptions = [{ value: 'all', label: 'Todos os status' }, { value: 'active', label: 'Ativos' }, { value: 'paused', label: 'Pausados' }, { value: 'closed', label: 'Encerrados' }];
-const competitionOptions = [{ value: 'all', label: 'Toda competição' }, { value: 'winning', label: 'Ganhando' }, { value: 'sharing_first_place', label: 'Dividindo 1º lugar' }, { value: 'competing', label: 'Competindo' }, { value: 'outside', label: 'Fora da competição' }];
-const eligibilityOptions = [{ value: 'all', label: 'Todas as situações' }, { value: 'ready', label: 'Prontos para criar' }, { value: 'review_required', label: 'Revisão necessária' }, { value: 'catalog_product_unavailable', label: 'Produto indisponível' }, { value: 'local_product_missing', label: 'Sem vínculo Bentevi' }];
+const statusOptions = [
+  { value: 'all', label: 'Todos os status' }, { value: 'active', label: 'Ativos' },
+  { value: 'paused', label: 'Pausados' }, { value: 'closed', label: 'Encerrados' },
+];
+const competitionOptions = [
+  { value: 'all', label: 'Toda competição' }, { value: 'winning', label: 'Ganhando' },
+  { value: 'sharing_first_place', label: 'Dividindo 1º lugar' }, { value: 'competing', label: 'Competindo' },
+  { value: 'outside', label: 'Fora da competição' },
+];
+const eligibilityOptions = [
+  { value: 'all', label: 'Todas as situações' }, { value: 'ready', label: 'Prontos para criar' },
+  { value: 'review_required', label: 'Revisão necessária' },
+  { value: 'catalog_product_unavailable', label: 'Produto indisponível' },
+  { value: 'local_product_missing', label: 'Sem vínculo Bentevi' },
+];
 
-function statusPresentation(status: unknown) {
-  const value = String(status || '').toLowerCase();
-  if (value === 'active' || value === 'ativo') return { label: 'Ativo', color: 'green' };
-  if (value === 'paused' || value === 'pausado') return { label: 'Pausado', color: 'orange' };
-  if (value === 'closed' || value === 'encerrado') return { label: 'Encerrado', color: 'default' };
-  if (value === 'under_review') return { label: 'Em revisão', color: 'blue' };
-  return { label: String(status || 'Não informado'), color: 'default' };
-}
 function eligibilityPresentation(state: CatalogEligibilityActionState) {
   if (state === 'ready') return { label: 'Pronto para criar', color: 'green', action: 'Criar anúncio' };
-  if (state === 'review_required') return { label: 'Revisão necessária', color: 'orange', action: 'Revisar vínculo' };
+  if (state === 'review_required') return { label: 'Revisão necessária', color: 'orange', action: 'Ver o que revisar' };
   if (state === 'catalog_product_unavailable') return { label: 'Produto indisponível', color: 'red', action: 'Ver impedimento' };
   return { label: 'Sem vínculo Bentevi', color: 'default', action: 'Ver vínculo' };
 }
@@ -58,40 +114,55 @@ function variationEligibilityLabel(status: unknown) {
   if (value === 'NOT_ELIGIBLE') return 'Não elegível';
   return 'Situação não informada';
 }
-function competitionBoostStatus(status: unknown) {
-  const value = String(status || '').trim().toLowerCase();
-  if (['active', 'enabled', 'available'].includes(value)) return 'Disponível';
-  if (['inactive', 'disabled', 'unavailable'].includes(value)) return 'Indisponível';
-  if (['pending', 'under_review'].includes(value)) return 'Em análise';
-  return 'Situação não informada';
+function boostLabel(boost: { id: string; description: string }) {
+  if (boost.description?.trim()) return userSafeMessage(boost.description, 'Condição comercial');
+  const labels: Record<string, string> = {
+    fulfillment: 'Envio Full', free_shipping: 'Frete grátis',
+    free_installments: 'Pagamento sem juros', same_day_shipping: 'Envio no mesmo dia', collect: 'Envios com coleta',
+  };
+  return labels[boost.id.toLowerCase()] || 'Condição comercial';
 }
-function formatDate(value?: string | null) { return value && Number.isFinite(Date.parse(value)) ? new Date(value).toLocaleString('pt-BR') : 'Não informado'; }
-function buildRefreshSteps(payload: RefreshStatusPayload | null, calculating = false): ProgressStep[] {
-  const stages = [['scan_catalog', 'Listando anúncios de catálogo'], ['fetch_details', 'Consultando detalhes'], ['fetch_price_to_win', 'Consultando competição'], ['fetch_related', 'Relacionando anúncios padrão'], ['match_products', 'Vinculando produtos Bentevi'], ['save_snapshot', 'Salvando a análise']];
-  const events = payload?.events || [];
-  const active = events.at(-1)?.stage || null;
-  const activeIndex = active === 'completed' ? stages.length : stages.findIndex(([key]) => key === active);
-  const jobStatus = payload?.job?.status;
-  const done = jobStatus === 'completo' || jobStatus === 'completo_parcial';
-  const partial = jobStatus === 'completo_parcial';
-  const failed = ['erro', 'failed_auth', 'cancelado'].includes(String(jobStatus));
-  const steps = stages.map(([key, label], index): ProgressStep => {
-    if (failed && index === Math.max(activeIndex, 0)) return { label, status: 'error', error: payload?.job?.presentation?.description || 'Não foi possível concluir esta etapa.' };
-    if (done || index < activeIndex) return { label, status: partial && index === stages.length - 1 ? 'warning' : 'success', detail: partial && index === stages.length - 1 ? 'Concluído com pendências; os dados anteriores foram preservados.' : 'Concluído.' };
-    if (index === activeIndex || (activeIndex < 0 && index === 0)) return { label, status: 'loading', detail: 'Em andamento.' };
-    return { label, status: 'pending', detail: 'Aguardando etapa anterior.' };
-  });
-  steps.push({ label: 'Calculando oportunidades de preço', status: calculating ? 'loading' : done ? 'success' : failed ? 'warning' : 'pending', detail: calculating ? 'Comparando preço e rentabilidade.' : done ? 'Análise concluída.' : 'Aguardando atualização.' });
-  return steps;
+function formatDate(value?: string | null) {
+  return value && Number.isFinite(Date.parse(value)) ? new Date(value).toLocaleString('pt-BR') : 'Não informado';
+}
+function priceMemory(detail: PriceDetail | null | undefined) {
+  const memory = detail?.pricing?.current?.memory;
+  return {
+    profit: Number.isFinite(Number(memory?.resultCents)) ? Number(memory?.resultCents) / 100 : null,
+    margin: Number.isFinite(Number(memory?.margin)) ? Number(memory?.margin) * 100 : null,
+  };
+}
+function memoryEconomy(memory: { resultCents?: number; margin?: number } | null | undefined): EconomicSummary | null {
+  if (memory?.resultCents == null || memory.margin == null
+    || !Number.isFinite(Number(memory.resultCents)) || !Number.isFinite(Number(memory.margin))) return null;
+  return { profit: Number(memory.resultCents) / 100, marginPercent: Number(memory.margin) * 100,
+    source: 'live_saved', calculatedAt: null };
+}
+function decisionBlockMessage(reasons: string[] = []) {
+  if (reasons.includes('PRECO_AUTOMATICO_ML')) return 'O Mercado Livre controla automaticamente o preço deste anúncio.';
+  if (reasons.includes('PRECO_ABAIXO_DO_PISO')) return 'O novo preço ficaria abaixo do limite de margem permitido.';
+  if (reasons.includes('PRECO_JA_APLICADO')) return 'Este preço já está aplicado.';
+  if (reasons.includes('OPERACAO_EM_ANDAMENTO')) return 'Já existe uma alteração de preço em andamento.';
+  if (reasons.includes('GRUPO_NAO_CONFIRMADO')) return 'O vínculo dos anúncios precisa ser confirmado antes de alterar o preço.';
+  if (reasons.includes('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA')) return 'A identidade do anúncio ainda não pôde ser confirmada.';
+  return 'As informações atuais não permitem confirmar esta alteração com segurança.';
 }
 
 export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
-  const pricingRequest = useRef(0);
   const router = useRouter();
   const [messageApi, messageContext] = message.useMessage();
   const [modalApi, modalContext] = Modal.useModal();
   const { hasOpenTracking, startTracking, progressModalProps } = useMlPricePublishTracking(messageApi);
+  const requestSequence = useRef(0);
+  const pricingRequest = useRef(0);
+  const dataAbortController = useRef<AbortController | null>(null);
+  const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const priceRetry = useRef<() => void>(() => undefined);
+  const batchCancelled = useRef(false);
+  const batchAbort = useRef<AbortController | null>(null);
+
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [rows, setRows] = useState<NoCatalogoRow[]>([]);
   const [eligibleRows, setEligibleRows] = useState<ElegivelRow[]>([]);
   const [total, setTotal] = useState(0);
@@ -99,49 +170,47 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const [search, setSearch] = useState('');
   const [statusMl, setStatusMl] = useState('all');
   const [competition, setCompetition] = useState('all');
+  const [operationalView, setOperationalView] = useState<CatalogOperationalView>('needs_action');
   const [actionState, setActionState] = useState('all');
-  const [priceMin, setPriceMin] = useState<number | null>(null);
-  const [priceMax, setPriceMax] = useState<number | null>(null);
   const [sortBy, setSortBy] = useState('ml_item_id');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-  const [catalogMetrics, setCatalogMetrics] = useState<CatalogMetrics>({ total: 0, winning: 0, sharingFirstPlace: 0, competing: 0, outside: 0 });
-  const [eligibleMetrics, setEligibleMetrics] = useState<EligibleMetrics>({ total: 0, ready: 0, reviewRequired: 0, catalogProductUnavailable: 0, localProductMissing: 0 });
+  const [catalogMetrics, setCatalogMetrics] = useState<CatalogMetrics>({ total: 0, needsAction: 0, healthy: 0 });
+  const [eligibleMetrics, setEligibleMetrics] = useState<EligibleMetrics>({
+    total: 0, ready: 0, reviewRequired: 0, catalogProductUnavailable: 0, localProductMissing: 0,
+  });
+  const [createEnabled, setCreateEnabled] = useState(false);
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(null);
-  const requestSequence = useRef(0);
-  const dataAbortController = useRef<AbortController | null>(null);
-  const [loadError, setLoadError] = useState<string | null>(null);
+  const [refreshPayload, setRefreshPayload] = useState<RefreshStatusPayload | null>(null);
+  const [refreshRunning, setRefreshRunning] = useState(false);
+  const [exportingPdf, setExportingPdf] = useState(false);
+
   const [activeCatalog, setActiveCatalog] = useState<NoCatalogoRow | null>(null);
   const [activeEligible, setActiveEligible] = useState<ElegivelRow | null>(null);
   const [priceDetail, setPriceDetail] = useState<PriceDetail | null>(null);
   const [priceDetailLoading, setPriceDetailLoading] = useState(false);
   const [newPrice, setNewPrice] = useState<number | null>(null);
-  const [updatingPrice, setUpdatingPrice] = useState(false);
-  const [opportunityIds, setOpportunityIds] = useState<Set<string> | null>(null);
-  const [refreshPayload, setRefreshPayload] = useState<RefreshStatusPayload | null>(null);
-  const [refreshRunning, setRefreshRunning] = useState(false);
-  const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [analysisModalOpen, setAnalysisModalOpen] = useState(false);
-  const [analysisSteps, setAnalysisSteps] = useState<ProgressStep[]>(buildRefreshSteps(null));
-  const [analysisRunning, setAnalysisRunning] = useState(false);
+  const [priceReview, setPriceReview] = useState<PriceReview | null>(null);
+  const [reviewingPrice, setReviewingPrice] = useState(false);
+  const [confirmingPrice, setConfirmingPrice] = useState(false);
+
   const [selectedEligibleKeys, setSelectedEligibleKeys] = useState<React.Key[]>([]);
   const [batchOpen, setBatchOpen] = useState(false);
   const [batchRunning, setBatchRunning] = useState(false);
   const [batchSteps, setBatchSteps] = useState<ProgressStep[]>([]);
-  const batchCancelled = useRef(false);
-  const batchAbort = useRef<AbortController | null>(null);
-  const [exportingPdf, setExportingPdf] = useState(false);
 
   const queryString = useMemo(() => {
     const params = new URLSearchParams({ page: String(page), pageSize: String(PAGE_SIZE) });
     if (search.trim()) params.set('search', search.trim());
     if (statusMl !== 'all') params.set('statusMl', statusMl);
-    if (priceMin !== null) params.set('priceMin', String(priceMin));
-    if (priceMax !== null) params.set('priceMax', String(priceMax));
-    if (mode === 'no_catalogo') { if (competition !== 'all') params.set('buyBox', competition); params.set('sortBy', sortBy); params.set('sortOrder', sortOrder); }
-    else if (actionState !== 'all') params.set('actionState', actionState);
+    if (mode === 'no_catalogo') {
+      params.set('view', operationalView);
+      if (competition !== 'all') params.set('buyBox', competition);
+      params.set('sortBy', sortBy);
+      params.set('sortOrder', sortOrder);
+    } else if (actionState !== 'all') params.set('actionState', actionState);
     return params.toString();
-  }, [actionState, competition, mode, page, priceMax, priceMin, search, sortBy, sortOrder, statusMl]);
+  }, [actionState, competition, mode, operationalView, page, search, sortBy, sortOrder, statusMl]);
 
   const fetchData = useCallback(async () => {
     const sequence = ++requestSequence.current;
@@ -160,18 +229,22 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       setVisualReview(payload?.visualReview?.enabled === true ? payload.visualReview : null);
       if (mode === 'no_catalogo') {
         setRows(Array.isArray(payload.data) ? payload.data : []);
-        setCatalogMetrics({ total: Number(payload.metrics?.total || 0), winning: Number(payload.metrics?.winning || 0), sharingFirstPlace: Number(payload.metrics?.sharingFirstPlace || 0), competing: Number(payload.metrics?.competing || 0), outside: Number(payload.metrics?.outside || 0) });
+        setCatalogMetrics({ total: Number(payload.metrics?.total || 0),
+          needsAction: Number(payload.metrics?.needsAction || 0), healthy: Number(payload.metrics?.healthy || 0) });
         setLastSyncedAt(payload.lastSyncedAt || null);
       } else {
         setEligibleRows(Array.isArray(payload.data) ? payload.data : []);
-        setEligibleMetrics({ total: Number(payload.metrics?.total || 0), ready: Number(payload.metrics?.ready || 0), reviewRequired: Number(payload.metrics?.reviewRequired || 0), catalogProductUnavailable: Number(payload.metrics?.catalogProductUnavailable || 0), localProductMissing: Number(payload.metrics?.localProductMissing || 0) });
+        setEligibleMetrics({ total: Number(payload.metrics?.total || 0), ready: Number(payload.metrics?.ready || 0),
+          reviewRequired: Number(payload.metrics?.reviewRequired || 0),
+          catalogProductUnavailable: Number(payload.metrics?.catalogProductUnavailable || 0),
+          localProductMissing: Number(payload.metrics?.localProductMissing || 0) });
+        setCreateEnabled(payload.capabilities?.createCatalogListing === true);
         setSelectedEligibleKeys([]);
       }
-    } catch (error: any) {
-      if (error?.name === 'AbortError') return;
-      if (sequence === requestSequence.current) {
-        setLoadError(userSafeMessage(error?.message, 'Não foi possível carregar o catálogo. Tente novamente.'));
-      }
+    } catch (error: unknown) {
+      if (error instanceof Error && error.name === 'AbortError') return;
+      if (sequence === requestSequence.current) setLoadError(userSafeMessage(
+        error instanceof Error ? error.message : null, 'Não foi possível carregar o catálogo. Tente novamente.'));
     } finally {
       if (sequence === requestSequence.current) {
         setLoading(false);
@@ -179,168 +252,442 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       }
     }
   }, [mode, queryString]);
-  useEffect(() => {
-    void fetchData();
-    return () => dataAbortController.current?.abort();
-  }, [fetchData]);
-  useEffect(() => { setPage(1); }, [actionState, competition, mode, priceMax, priceMin, search, statusMl]);
+
+  useEffect(() => { void fetchData(); return () => dataAbortController.current?.abort(); }, [fetchData]);
+  useEffect(() => setPage(1), [actionState, competition, mode, operationalView, search, statusMl]);
 
   const fetchRefreshStatus = useCallback(async (jobId?: string) => {
-    const url = jobId ? `/api/catalogo/no-catalogo/refresh/status?jobId=${encodeURIComponent(jobId)}` : '/api/catalogo/no-catalogo/refresh/status';
+    const url = jobId ? `/api/catalogo/no-catalogo/refresh/status?jobId=${encodeURIComponent(jobId)}`
+      : '/api/catalogo/no-catalogo/refresh/status';
     const response = await fetch(url, { cache: 'no-store' });
     const payload = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error('Não foi possível consultar a atualização. Tente novamente.');
+    if (!response.ok) throw new Error('Não foi possível consultar a atualização.');
     return payload as RefreshStatusPayload;
   }, []);
-  const stopRefreshPolling = useCallback(() => { if (refreshTimer.current) clearTimeout(refreshTimer.current); refreshTimer.current = null; if (typeof window !== 'undefined') window.localStorage.removeItem(REFRESH_JOB_STORAGE_KEY); }, []);
+  const stopRefreshPolling = useCallback(() => {
+    if (refreshTimer.current) clearTimeout(refreshTimer.current);
+    refreshTimer.current = null;
+    if (typeof window !== 'undefined') window.localStorage.removeItem(REFRESH_JOB_STORAGE_KEY);
+  }, []);
   const pollRefresh = useCallback(async function poll(jobId: string) {
     try {
-      const payload = await fetchRefreshStatus(jobId); setRefreshPayload(payload);
-      const status = payload.job?.status;
-      if (['pendente', 'rodando', 'on_hold'].includes(String(status))) { setRefreshRunning(true); refreshTimer.current = setTimeout(() => void poll(jobId), 2500); return; }
+      const payload = await fetchRefreshStatus(jobId);
+      const status = String(payload.job?.status || '');
+      if (['pendente', 'rodando', 'on_hold'].includes(status)) {
+        setRefreshPayload(payload); setRefreshRunning(true);
+        refreshTimer.current = setTimeout(() => void poll(jobId), 2500); return;
+      }
       stopRefreshPolling(); setRefreshRunning(false);
-      if (status === 'completo' || status === 'completo_parcial') void fetchData();
-      if (['erro', 'failed_auth', 'cancelado'].includes(String(status))) messageApi.error(payload.job?.presentation?.description || 'Não foi possível atualizar o catálogo. Tente novamente.');
-    } catch { stopRefreshPolling(); setRefreshRunning(false); messageApi.error('Não foi possível acompanhar a atualização. Tente novamente.'); }
+      if (status === 'completo') {
+        setRefreshPayload(null); messageApi.success('Catálogo atualizado.'); await fetchData(); return;
+      }
+      setRefreshPayload(payload);
+      if (status === 'completo_parcial') {
+        messageApi.warning('Catálogo atualizado com algumas informações indisponíveis.'); await fetchData();
+      } else if (['erro', 'failed_auth', 'cancelado'].includes(status)) {
+        messageApi.error(payload.job?.presentation?.description || 'Não foi possível atualizar o catálogo.');
+      }
+    } catch {
+      stopRefreshPolling(); setRefreshRunning(false); messageApi.error('Não foi possível acompanhar a atualização.');
+    }
   }, [fetchData, fetchRefreshStatus, messageApi, stopRefreshPolling]);
-  const trackRefresh = useCallback((jobId: string) => { stopRefreshPolling(); setRefreshRunning(true); if (typeof window !== 'undefined') window.localStorage.setItem(REFRESH_JOB_STORAGE_KEY, jobId); void pollRefresh(jobId); }, [pollRefresh, stopRefreshPolling]);
+  const trackRefresh = useCallback((jobId: string) => {
+    stopRefreshPolling(); setRefreshRunning(true);
+    if (typeof window !== 'undefined') window.localStorage.setItem(REFRESH_JOB_STORAGE_KEY, jobId);
+    void pollRefresh(jobId);
+  }, [pollRefresh, stopRefreshPolling]);
   useEffect(() => {
     if (mode !== 'no_catalogo') return;
     const persisted = typeof window !== 'undefined' ? window.localStorage.getItem(REFRESH_JOB_STORAGE_KEY) : null;
-    void (async () => { try { const payload = await fetchRefreshStatus(persisted || undefined); if (!payload.job?.id) return; setRefreshPayload(payload); if (['pendente', 'rodando', 'on_hold'].includes(payload.job.status)) trackRefresh(payload.job.id); } catch { /* não há job anterior */ } })();
+    void (async () => {
+      try {
+        const payload = await fetchRefreshStatus(persisted || undefined);
+        const status = String(payload.job?.status || '');
+        if (!payload.job?.id) return;
+        if (['pendente', 'rodando', 'on_hold'].includes(status)) trackRefresh(payload.job.id);
+        else if (status !== 'completo') setRefreshPayload(payload);
+      } catch { /* a ausência de um job anterior não impede a consulta */ }
+    })();
     return stopRefreshPolling;
   }, [fetchRefreshStatus, mode, stopRefreshPolling, trackRefresh]);
   const startRefresh = useCallback(async () => {
     if (visualReview) return void messageApi.info('A amostra protegida não executa sincronizações externas.');
-    const response = await fetch('/api/catalogo/no-catalogo/refresh/job', { method: 'POST' }); const payload = await response.json().catch(() => ({}));
-    if (!response.ok || !payload?.jobId) return void messageApi.error('Não foi possível iniciar a atualização. Tente novamente.');
-    trackRefresh(String(payload.jobId));
+    const response = await fetch('/api/catalogo/no-catalogo/refresh/job', { method: 'POST' });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload?.jobId) return void messageApi.error('Não foi possível iniciar a atualização.');
+    setRefreshPayload(null); trackRefresh(String(payload.jobId));
   }, [messageApi, trackRefresh, visualReview]);
-  const runAnalysis = useCallback(async () => {
-    if (analysisRunning || visualReview) { if (visualReview) messageApi.info('A reanálise externa está desabilitada na amostra protegida.'); return; }
-    setAnalysisRunning(true); setAnalysisModalOpen(true); setAnalysisSteps(buildRefreshSteps(null));
-    try {
-      const startResponse = await fetch('/api/catalogo/no-catalogo/refresh/job', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'full' }) });
-      const startPayload = await startResponse.json().catch(() => ({})); if (!startResponse.ok || !startPayload?.jobId) throw new Error('Não foi possível iniciar a análise. Tente novamente.');
-      let statusPayload: RefreshStatusPayload;
-      do { statusPayload = await fetchRefreshStatus(String(startPayload.jobId)); setAnalysisSteps(buildRefreshSteps(statusPayload)); if (['erro', 'failed_auth', 'cancelado'].includes(String(statusPayload.job?.status))) throw new Error(statusPayload.job?.presentation?.description || 'Não foi possível atualizar o catálogo.'); if (!['completo', 'completo_parcial'].includes(String(statusPayload.job?.status))) await new Promise((resolve) => setTimeout(resolve, 1500)); } while (!['completo', 'completo_parcial'].includes(String(statusPayload.job?.status)));
-      setAnalysisSteps(buildRefreshSteps(statusPayload, true));
-      const response = await fetch('/api/catalogo/no-catalogo/analise-preco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ refreshMode: 'none' }) });
-      const payload = await response.json().catch(() => ({})); if (!response.ok || !payload?.success) throw new Error(payload?.erro || 'Falha ao calcular as oportunidades.');
-      const analysis = (Array.isArray(payload.data) ? payload.data : []) as AnalisePrecoRow[];
-      setOpportunityIds(null); setCompetition('all'); setPage(1); setAnalysisSteps(buildRefreshSteps(statusPayload)); await fetchData(); messageApi.info(`${analysis.length} anúncio(s) na triagem preliminar. Abra a disputa para consultar a viabilidade com fontes atuais.`);
-    } catch { setAnalysisSteps((current) => current.map((step) => step.status === 'loading' ? { ...step, status: 'error', error: 'Não foi possível concluir a análise.' } : step)); messageApi.error('Não foi possível concluir a análise. Tente novamente.'); }
-    finally { setAnalysisRunning(false); }
-  }, [analysisRunning, fetchData, fetchRefreshStatus, messageApi, visualReview]);
 
   const loadPriceDetail = useCallback(async (row: NoCatalogoRow) => {
     const requestId = ++pricingRequest.current;
-    setActiveCatalog(row); setPriceDetail(null); setNewPrice(row.price);
+    setActiveCatalog(row); setPriceDetail(null); setPriceReview(null);
+    setNewPrice(row.price);
     if (visualReview || !row.produto_id) return;
     setPriceDetailLoading(true);
-    try { const params = new URLSearchParams({ produtoId: row.produto_id, mlItemId: row.ml_item_id }); const response = await fetch(`/api/ml/anuncio/preco-detalhe?${params}`, { cache: 'no-store' }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload?.error || 'Falha ao carregar a disputa.'); if (requestId !== pricingRequest.current) return; setPriceDetail(payload); setNewPrice(payload?.currentPrice ?? null); }
-    catch (error: any) { if (requestId === pricingRequest.current) messageApi.error(userSafeMessage(error?.message, 'Não foi possível carregar a disputa. Tente novamente.')); } finally { if (requestId === pricingRequest.current) setPriceDetailLoading(false); }
-  }, [messageApi, visualReview]);
-  const simulateCompetitivePrice = async () => {
-    const requestId = ++pricingRequest.current;
-    if (!activeCatalog?.produto_id || visualReview) return;
-    setUpdatingPrice(true);
     try {
-      const params = new URLSearchParams({ produtoId: activeCatalog.produto_id, mlItemId: activeCatalog.ml_item_id });
+      const params = new URLSearchParams({ produtoId: row.produto_id, mlItemId: row.ml_item_id });
       const response = await fetch(`/api/ml/anuncio/preco-detalhe?${params}`, { cache: 'no-store' });
-      const payload = await response.json();
-      if (!response.ok) throw new Error(payload?.error || 'Consulta indisponível');
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Falha ao carregar os detalhes.');
       if (requestId !== pricingRequest.current) return;
-      setPriceDetail(payload);
-      setNewPrice(payload.competitiveAssessment?.competitive?.memory?.revenueCents != null
-        ? payload.competitiveAssessment.competitive.memory.revenueCents / 100 : null);
-    } catch { if (requestId === pricingRequest.current) { setPriceDetail(null); setNewPrice(null); messageApi.warning('Não foi possível revalidar a referência competitiva.'); } }
-    finally { if (requestId === pricingRequest.current) setUpdatingPrice(false); }
-  };
-  const savePrice = useCallback(async () => {
+      setPriceDetail(payload); setNewPrice(payload?.currentPrice || row.price);
+      const current = memoryEconomy(payload?.competitiveAssessment?.current?.memory);
+      const competitive = memoryEconomy(payload?.competitiveAssessment?.competitive?.memory);
+      if (current || competitive) setRows((existing) => existing.map((entry) => entry.ml_item_id === row.ml_item_id
+        ? { ...entry, economics: { current: current || entry.economics.current,
+          competitive: competitive || entry.economics.competitive } }
+        : entry));
+    } catch (error: unknown) {
+      if (requestId === pricingRequest.current) messageApi.error(userSafeMessage(
+        error instanceof Error ? error.message : null, 'Não foi possível carregar os detalhes.'));
+    } finally { if (requestId === pricingRequest.current) setPriceDetailLoading(false); }
+  }, [messageApi, visualReview]);
+
+  const reviewPrice = useCallback(async () => {
     if (!activeCatalog?.produto_id || !newPrice || visualReview) return;
+    if (Math.round(newPrice * 100) === Math.round((priceDetail?.currentPrice ?? activeCatalog.price) * 100)) {
+      messageApi.info('Informe um preço diferente do atual.'); return;
+    }
+    setReviewingPrice(true);
+    try {
+      const response = await fetch('/api/ml/anuncio/preco-detalhe', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ produtoId: activeCatalog.produto_id, mlItemId: activeCatalog.ml_item_id,
+          priceCents: Math.round(newPrice * 100) }),
+      });
+      const detail = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(detail?.error || 'Não foi possível revisar este preço.');
+      const memory = priceMemory(detail);
+      setPriceReview({ detail, price: newPrice, profit: memory.profit, margin: memory.margin });
+    } catch (error: unknown) {
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível revisar este preço.'));
+    } finally { setReviewingPrice(false); }
+  }, [activeCatalog, messageApi, newPrice, priceDetail?.currentPrice, visualReview]);
+
+  const confirmPrice = useCallback(async () => {
+    if (!activeCatalog?.produto_id || !priceReview?.detail.evaluationId) return;
     if (hasOpenTracking) return void messageApi.warning('Já existe uma publicação de preço em acompanhamento.');
-    setUpdatingPrice(true);
-    try { const response = await fetch('/api/ml/anuncio/atualizar-preco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ produtoId: activeCatalog.produto_id, targetPrice: newPrice, source: 'catalog_price_to_win' }) }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload?.error || 'Falha ao atualizar o preço.'); if (payload?.price_updated) { messageApi.success('Preço atualizado no Mercado Livre.'); void fetchData(); return; } const outboxId = String(payload?.outboxId || '').trim(); if (!payload?.queued_publish || !outboxId) throw new Error('A atualização não foi confirmada.'); startTracking({ outboxId, produtoId: activeCatalog.produto_id, retry: () => void savePrice() }); messageApi.success('Atualização programada para envio.'); }
-    catch (error: any) { messageApi.error(userSafeMessage(error?.message, 'Não foi possível atualizar o preço. Tente novamente.')); } finally { setUpdatingPrice(false); }
-  }, [activeCatalog, fetchData, hasOpenTracking, messageApi, newPrice, startTracking, visualReview]);
+    setConfirmingPrice(true);
+    try {
+      const response = await fetch('/api/catalogo/preco/confirmar', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ evaluationId: priceReview.detail.evaluationId,
+          prepareCommandId: crypto.randomUUID(), approveCommandId: crypto.randomUUID(), operationId: crypto.randomUUID() }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível confirmar a alteração.');
+      const outboxId = String(payload?.outboxId || '').trim();
+      if (!outboxId) throw new Error('A alteração não foi programada.');
+      setPriceReview(null);
+      startTracking({ outboxId, produtoId: activeCatalog.produto_id, retry: () => priceRetry.current(),
+        onTerminal: (status) => { if (status.status === 'done') { void fetchData(); setActiveCatalog(null); } } });
+      messageApi.success('Alteração programada para envio ao Mercado Livre.');
+    } catch (error: unknown) {
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível confirmar a alteração.'));
+    } finally { setConfirmingPrice(false); }
+  }, [activeCatalog, fetchData, hasOpenTracking, messageApi, priceReview, startTracking]);
+  priceRetry.current = () => void confirmPrice();
 
   const executeOptinTargets = useCallback(async (targets: CatalogOptinTarget[]) => {
-    if (!targets.length || visualReview) return;
-    batchCancelled.current = false; setBatchRunning(true); setBatchOpen(true); setBatchSteps(targets.map((target) => ({ label: target.variationId ? `Variação ${target.variationId}` : `Anúncio ${target.itemId}`, status: 'pending', detail: `${target.itemId} → produto ${target.catalogProductId}` })));
+    if (!targets.length || visualReview || !createEnabled) return;
+    batchCancelled.current = false; setBatchRunning(true); setBatchOpen(true);
+    setBatchSteps(targets.map((target) => ({ label: target.variationId ? `Variação ${target.variationId}` : `Anúncio ${target.itemId}`,
+      status: 'pending', detail: `Produto de catálogo ${target.catalogProductId}` })));
     let successes = 0;
     for (let index = 0; index < targets.length; index += 1) {
       if (batchCancelled.current) break;
-      const target = targets[index]; setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: 'loading' } : step)); const controller = new AbortController(); batchAbort.current = controller;
-      try { const response = await fetch('/api/catalogo/optin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(target), signal: controller.signal }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload?.erro || 'Falha ao criar o anúncio.'); successes += 1; setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: 'success', detail: `Criado: ${payload?.catalog_item_id || payload?.data?.id || 'ID não retornado'}` } : step)); }
-      catch (error: any) { const cancelled = batchCancelled.current || error?.name === 'AbortError'; setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: cancelled ? 'warning' : 'error', error: cancelled ? undefined : userSafeMessage(error?.message, 'Não foi possível criar este anúncio.'), detail: cancelled ? 'Cancelado pelo usuário.' : step.detail } : step)); if (cancelled) break; }
+      const target = targets[index];
+      setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: 'loading' } : step));
+      const controller = new AbortController(); batchAbort.current = controller;
+      try {
+        const response = await fetch('/api/catalogo/optin', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(target), signal: controller.signal });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(payload?.erro || 'Falha ao criar o anúncio.');
+        successes += 1;
+        setBatchSteps((current) => current.map((step, i) => i === index
+          ? { ...step, status: 'success', detail: `Criado: ${payload?.catalog_item_id || payload?.data?.id || 'confirmado'}` } : step));
+      } catch (error: unknown) {
+        const cancelled = batchCancelled.current || (error instanceof Error && error.name === 'AbortError');
+        setBatchSteps((current) => current.map((step, i) => i === index ? { ...step,
+          status: cancelled ? 'warning' : 'error', detail: cancelled ? 'Cancelado.' : step.detail,
+          error: cancelled ? undefined : userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível criar este anúncio.') } : step));
+        if (cancelled) break;
+      }
     }
-    setBatchRunning(false); setSelectedEligibleKeys([]); batchAbort.current = null; if (successes) { messageApi.success(`${successes} anúncio(s) de catálogo criado(s).`); void fetchData(); }
-  }, [fetchData, messageApi, visualReview]);
+    setBatchRunning(false); setSelectedEligibleKeys([]); batchAbort.current = null;
+    if (successes) { messageApi.success(`${successes} anúncio(s) de catálogo criado(s).`); void fetchData(); }
+  }, [createEnabled, fetchData, messageApi, visualReview]);
   const confirmOptin = useCallback((selected: ElegivelRow[]) => {
     const targets = selected.flatMap((row) => buildCatalogOptinTargets(row));
-    if (visualReview) return void messageApi.info('A criação está desabilitada na amostra protegida.');
-    if (!targets.length) return void messageApi.warning('Nenhum item ou variação está pronto para criação.');
-    modalApi.confirm({ title: targets.length === 1 ? 'Criar anúncio de catálogo?' : `Criar ${targets.length} anúncios de catálogo?`, content: 'Cada variação gera um anúncio separado. Em domínios obrigatórios ou exclusivos, o Mercado Livre pode moderar ou inativar o anúncio padrão.', okText: 'Confirmar criação', cancelText: 'Cancelar', onOk: () => executeOptinTargets(targets) });
-  }, [executeOptinTargets, messageApi, modalApi, visualReview]);
-  const selectedEligibleRows = useMemo(() => { const selected = new Set(selectedEligibleKeys.map(String)); return eligibleRows.filter((row) => selected.has(row.ml_item_id)); }, [eligibleRows, selectedEligibleKeys]);
-  const visibleCatalogRows = useMemo(() => opportunityIds ? rows.filter((row) => opportunityIds.has(row.ml_item_id)) : rows, [opportunityIds, rows]);
+    if (!createEnabled || !targets.length) return;
+    modalApi.confirm({ title: targets.length === 1 ? 'Criar anúncio de catálogo?' : `Criar ${targets.length} anúncios de catálogo?`,
+      content: 'O anúncio padrão será mantido. Cada variação elegível gera uma publicação de catálogo separada.',
+      okText: 'Confirmar criação', cancelText: 'Cancelar', onOk: () => executeOptinTargets(targets) });
+  }, [createEnabled, executeOptinTargets, modalApi]);
+  const selectedEligibleRows = useMemo(() => {
+    const selected = new Set(selectedEligibleKeys.map(String));
+    return eligibleRows.filter((row) => selected.has(row.ml_item_id));
+  }, [eligibleRows, selectedEligibleKeys]);
 
   const catalogColumns: TableProps<NoCatalogoRow>['columns'] = useMemo(() => [
-    { title: 'Anúncio de catálogo', key: 'listing', width: 285, sorter: true, render: (_, row) => { const status = statusPresentation(row.status); return <div className={styles.listingCell}>{row.thumbnail ? <Image src={row.thumbnail} alt="" width={46} height={46} preview={false} className={styles.thumbnail} /> : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}<div><strong>{row.title || 'Título não informado'}</strong><span className={styles.identifier}>{row.ml_item_id}</span><Tag color={status.color}>{status.label}</Tag></div></div>; } },
-    { title: 'Produto Bentevi', key: 'product', width: 220, render: (_, row) => <div className={styles.stackCell}><strong>{row.produto_nome || row.title || 'Produto não vinculado'}</strong><span>SKU {row.sku_local || 'não informado'}</span></div> },
-    { title: 'Anúncio padrão relacionado', key: 'related', width: 205, render: (_, row) => <div className={styles.stackCell}><strong className={styles.identifier}>{row.relacionado_id || 'Não localizado'}</strong><span>{row.relacionado_id ? `Publicação padrão · ${statusPresentation(row.related_status).label}` : 'Relação ainda não informada pelo ML'}</span></div> },
-    { title: 'Competição', key: 'competition', width: 230, sorter: true, render: (_, row) => { const state = catalogCompetitionPresentation(row.buy_box_status); return <div className={styles.competitionCell}><span className={`${styles.competitionDot} ${styles[state.tone]}`} /><div><strong>{state.label}</strong><span>{state.description}</span></div></div>; } },
-    { title: 'Preço e resultado', key: 'price', width: 190, sorter: true, render: (_, row) => { const target = Number(row.price_to_win); const delta = Number.isFinite(target) && target > 0 ? target - Number(row.price || 0) : null; return <div className={styles.valueCell}><strong>{formatCurrency(row.price)}</strong><span>Para ganhar: {target > 0 ? formatCurrency(target) : 'não informado'}</span>{delta !== null && <small className={delta < 0 ? styles.negative : styles.positive}>{delta === 0 ? 'Preço já alinhado' : `${delta > 0 ? '+' : ''}${formatCurrency(delta)}`}</small>}</div>; } },
-    { title: 'Ação', key: 'action', width: 165, fixed: 'right', render: (_, row) => <Space.Compact><Button icon={<EyeOutlined />} onClick={() => void loadPriceDetail(row)}>Analisar disputa</Button><Dropdown menu={{ items: [{ key: 'ml', label: 'Abrir no Mercado Livre', disabled: !row.permalink || Boolean(visualReview) }], onClick: ({ key }) => { if (key === 'ml' && row.permalink) window.open(row.permalink, '_blank', 'noopener,noreferrer'); } }}><Button icon={<EllipsisOutlined />} /></Dropdown></Space.Compact> },
-  ], [loadPriceDetail, visualReview]);
+    { title: 'Produto e anúncio', key: 'listing', width: 340, sorter: true, render: (_, row) => (
+      <div className={styles.listingCell}>
+        {row.thumbnail ? <Image src={row.thumbnail} alt="" width={48} height={48} preview={false} className={styles.thumbnail} />
+          : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}
+        <div><strong>{row.produto_nome || row.title || 'Produto não identificado'}</strong><span>{row.title}</span>
+          <small>SKU {row.sku_local || 'não informado'} · {row.ml_item_id}</small></div>
+      </div>) },
+    { title: 'Situação', key: 'situation', width: 230, render: (_, row) => (
+      <div className={styles.situationCell}><span className={`${styles.statusDot} ${styles[row.operational.tone]}`} />
+        <div><strong>{row.operational.label}</strong><small>{row.operational.description}</small></div></div>) },
+    { title: 'Preço atual', key: 'price', width: 170, sorter: true,
+      render: (_, row) => <PriceResult price={row.price} economy={row.economics.current} /> },
+    { title: 'Preço para ganhar', key: 'competition', width: 190, sorter: true,
+      render: (_, row) => row.price_to_win && row.price_to_win > 0
+        ? <PriceResult price={row.price_to_win} economy={row.economics.competitive} />
+        : <div className={styles.valueCell}><strong>Não informado</strong><small>Atualize para consultar</small></div> },
+    { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => (
+      <Button type={row.operational.needsAction ? 'primary' : 'default'} icon={<ArrowRightOutlined />}
+        onClick={() => void loadPriceDetail(row)}>{row.operational.actionLabel}</Button>) },
+  ], [loadPriceDetail]);
   const eligibleColumns: TableProps<ElegivelRow>['columns'] = useMemo(() => [
-    { title: 'Anúncio padrão', key: 'listing', width: 300, render: (_, row) => { const status = statusPresentation(row.status); return <div className={styles.listingCell}>{row.thumbnail ? <Image src={row.thumbnail} alt="" width={46} height={46} preview={false} className={styles.thumbnail} /> : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}<div><strong>{row.title || 'Título não informado'}</strong><span className={styles.identifier}>{row.ml_item_id} · Padrão</span><Tag color={status.color}>{status.label}</Tag></div></div>; } },
-    { title: 'Produto Bentevi', key: 'product', width: 220, render: (_, row) => <div className={styles.stackCell}><strong>{row.local_product_name || 'Produto não vinculado'}</strong><span>SKU {row.seller_sku || 'não informado'}</span></div> },
-    { title: 'Produto de catálogo sugerido', key: 'catalogProduct', width: 275, render: (_, row) => <div className={styles.stackCell}><strong>{row.catalog_product_name_sugerido || row.catalog_product_name || row.title || 'Produto não identificado'}</strong><span className={styles.identifier}>{row.catalog_product_id_sugerido || row.catalog_product_id || 'ID não informado'}</span><small>Página de produto do Mercado Livre</small></div> },
-    { title: 'Elegibilidade', key: 'eligibility', width: 250, render: (_, row) => { const presentation = eligibilityPresentation(row.state); const ready = (row.variation_eligibility || []).filter((variation) => String(variation.status || '').toUpperCase() === 'READY_FOR_OPTIN').length; return <div className={styles.stackCell}><Tag color={presentation.color}>{presentation.label}</Tag><span>{ready ? `${ready} variação(ões) pronta(s)` : userSafeMessage(row.eligibility_label, 'Situação não informada')}</span><small>{userSafeMessage(row.reason, 'Confira o vínculo do produto antes de continuar.')}</small></div>; } },
-    { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => { const presentation = eligibilityPresentation(row.state); return <Button type={row.state === 'ready' ? 'primary' : 'default'} icon={row.state === 'ready' ? <ArrowRightOutlined /> : <EyeOutlined />} onClick={() => setActiveEligible(row)}>{presentation.action}</Button>; } },
-  ], []);
-  const handleCatalogTableChange: TableProps<NoCatalogoRow>['onChange'] = (pagination, _filters, sorter) => { setPage(Number(pagination.current || 1)); const current = Array.isArray(sorter) ? sorter[0] : sorter; if (!current?.order) return; const mapping: Record<string, string> = { listing: 'ml_item_id', competition: 'buy_box_status', price: 'price' }; setSortBy(mapping[String(current.columnKey)] || 'ml_item_id'); setSortOrder(current.order === 'ascend' ? 'asc' : 'desc'); };
-  const exportPdf = useCallback(async () => { setExportingPdf(true); try { const params = new URLSearchParams(queryString); params.delete('page'); params.delete('pageSize'); const response = await fetch(`/api/catalogo/no-catalogo/exportar-pdf?${params}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ opportunityIds: opportunityIds ? Array.from(opportunityIds) : undefined }), cache: 'no-store' }); if (!response.ok) throw new Error(userSafeMessage((await response.json().catch(() => ({})))?.erro, 'Não foi possível gerar o PDF.')); const blob = await response.blob(); const url = URL.createObjectURL(blob); const anchor = document.createElement('a'); const disposition = response.headers.get('Content-Disposition') || ''; const filename = disposition.match(/filename="([^"]+)"/)?.[1] || 'catalogo-mercado-livre.pdf'; anchor.href = url; anchor.download = filename; anchor.click(); URL.revokeObjectURL(url); } catch (error: any) { messageApi.error(userSafeMessage(error?.message, 'Não foi possível gerar o PDF. Tente novamente.')); } finally { setExportingPdf(false); } }, [messageApi, opportunityIds, queryString]);
-  const queueItems = mode === 'no_catalogo' ? [['all', 'Todos', catalogMetrics.total], ['winning', 'Ganhando', catalogMetrics.winning], ['sharing_first_place', 'Dividindo 1º lugar', catalogMetrics.sharingFirstPlace], ['competing', 'Competindo', catalogMetrics.competing], ['outside', 'Fora da competição', catalogMetrics.outside]] as const : [['all', 'Todos', eligibleMetrics.total], ['ready', 'Prontos para criar', eligibleMetrics.ready], ['review_required', 'Revisão necessária', eligibleMetrics.reviewRequired], ['catalog_product_unavailable', 'Produto indisponível', eligibleMetrics.catalogProductUnavailable], ['local_product_missing', 'Sem vínculo Bentevi', eligibleMetrics.localProductMissing]] as const;
+    { title: 'Produto e anúncio padrão', key: 'listing', width: 390, render: (_, row) => (
+      <div className={styles.listingCell}>
+        {row.thumbnail ? <Image src={row.thumbnail} alt="" width={48} height={48} preview={false} className={styles.thumbnail} />
+          : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}
+        <div><strong>{row.local_product_name || row.title || 'Produto não identificado'}</strong><span>{row.title}</span>
+          <small>SKU {row.seller_sku || 'não informado'} · {row.ml_item_id}</small></div>
+      </div>) },
+    { title: 'Situação', key: 'eligibility', width: 280, render: (_, row) => {
+      const presentation = eligibilityPresentation(row.state);
+      return <div className={styles.stackCell}><Tag color={presentation.color}>{presentation.label}</Tag>
+        <small>{userSafeMessage(row.reason, 'Confira o vínculo antes de continuar.')}</small></div>;
+    } },
+    { title: 'Produto de catálogo', key: 'catalogProduct', width: 280, render: (_, row) => (
+      <div className={styles.stackCell}><strong>{row.catalog_product_name_sugerido || row.catalog_product_name || 'Não identificado'}</strong>
+        <small>{row.catalog_product_id_sugerido || row.catalog_product_id || 'Código não informado'}</small></div>) },
+    { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => {
+      const presentation = eligibilityPresentation(row.state);
+      return <Button type={row.state === 'ready' && createEnabled ? 'primary' : 'default'} icon={<EyeOutlined />}
+        onClick={() => setActiveEligible(row)}>{row.state === 'ready' && !createEnabled ? 'Ver detalhes' : presentation.action}</Button>;
+    } },
+  ], [createEnabled]);
+  const handleCatalogTableChange: TableProps<NoCatalogoRow>['onChange'] = (pagination, _filters, sorter) => {
+    setPage(Number(pagination.current || 1));
+    const current = Array.isArray(sorter) ? sorter[0] : sorter;
+    if (!current?.order) return;
+    const mapping: Record<string, string> = { listing: 'ml_item_id', competition: 'price_to_win', price: 'price' };
+    setSortBy(mapping[String(current.columnKey)] || 'ml_item_id');
+    setSortOrder(current.order === 'ascend' ? 'asc' : 'desc');
+  };
+  const exportPdf = useCallback(async () => {
+    setExportingPdf(true);
+    try {
+      const params = new URLSearchParams(queryString); params.delete('page'); params.delete('pageSize');
+      const response = await fetch(`/api/catalogo/no-catalogo/exportar-pdf?${params}`, { method: 'POST',
+        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}), cache: 'no-store' });
+      if (!response.ok) throw new Error(userSafeMessage((await response.json().catch(() => ({})))?.erro, 'Não foi possível gerar o PDF.'));
+      const blob = await response.blob(); const url = URL.createObjectURL(blob); const anchor = document.createElement('a');
+      const disposition = response.headers.get('Content-Disposition') || '';
+      anchor.href = url; anchor.download = disposition.match(/filename="([^"]+)"/)?.[1] || 'catalogo-mercado-livre.pdf';
+      anchor.click(); URL.revokeObjectURL(url);
+    } catch (error: unknown) {
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível gerar o PDF.'));
+    } finally { setExportingPdf(false); }
+  }, [messageApi, queryString]);
+
+  const quickViews = mode === 'no_catalogo'
+    ? [['needs_action', 'Pendências', catalogMetrics.needsAction], ['healthy', 'Tudo certo', catalogMetrics.healthy],
+      ['all', 'Todos', catalogMetrics.total]] as const
+    : [['all', 'Todos', eligibleMetrics.total], ['ready', 'Prontos', eligibleMetrics.ready],
+      ['review_required', 'Revisar', eligibleMetrics.reviewRequired],
+      ['catalog_product_unavailable', 'Indisponíveis', eligibleMetrics.catalogProductUnavailable],
+      ['local_product_missing', 'Sem vínculo', eligibleMetrics.localProductMissing]] as const;
+  const currentEconomy = memoryEconomy(priceDetail?.competitiveAssessment?.current?.memory)
+    || memoryEconomy(priceDetail?.pricing?.current?.memory) || activeCatalog?.economics.current;
+  const competitiveEconomy = memoryEconomy(priceDetail?.competitiveAssessment?.competitive?.memory)
+    || activeCatalog?.economics.competitive;
+  const detailCompetition = activeCatalog
+    ? catalogCompetitionPresentation(priceDetail?.catalog?.rawStatus || activeCatalog.buy_box_status) : null;
+  const actionableBoosts = (priceDetail?.catalog?.boosts || []).filter((boost) => catalogBoostPresentation(boost.status).actionable);
 
   return <div className={styles.page}>
     {messageContext}{modalContext}
-    <header className={styles.header}><div><Title level={2} className={styles.title}>Catálogo</Title><Text type="secondary">Entenda a origem, o vínculo e a próxima decisão de cada publicação.</Text>{mode === 'no_catalogo' && <small className={styles.lastSync}>Última análise: {formatDate(lastSyncedAt)}</small>}</div><Space wrap><PricingDecisionCenter />{mode === 'no_catalogo' && <Button icon={<FilePdfOutlined />} loading={exportingPdf} onClick={() => void exportPdf()}>Exportar PDF</Button>}{mode === 'no_catalogo' && <Button icon={<ReloadOutlined spin={refreshRunning} />} disabled={Boolean(visualReview)} loading={refreshRunning} onClick={() => void startRefresh()}>Atualizar dados</Button>}{mode === 'no_catalogo' && <Button type="primary" disabled={Boolean(visualReview)} loading={analysisRunning} onClick={() => void runAnalysis()}>Reanalisar oportunidades</Button>}{mode === 'elegiveis' && <Button type="primary" disabled={!selectedEligibleRows.length || Boolean(visualReview)} onClick={() => confirmOptin(selectedEligibleRows)}>Criar selecionados ({selectedEligibleRows.length})</Button>}</Space></header>
-    {visualReview && <Alert className={styles.visualAlert} type="warning" showIcon message="Amostra protegida, somente leitura" description={visualReview.simulatedEligibility ? 'Produtos e anúncios usam dados protegidos; as situações de elegibilidade são apenas exemplos para avaliar a tela. Nenhuma ação externa está habilitada.' : 'Os anúncios usam dados protegidos. Atualização, preço, criação e links externos permanecem desabilitados.'} />}
-    <section className={styles.domainGuide}><Segmented block value={mode} options={[{ label: 'Anúncios de catálogo', value: 'no_catalogo' }, { label: 'Elegíveis ao catálogo', value: 'elegiveis' }]} onChange={(value) => router.push(value === 'no_catalogo' ? '/catalogo/no-catalogo' : '/catalogo/elegiveis')} /><div className={styles.relationshipGuide}><span><b>Anúncio padrão</b><small>publicação original da loja</small></span><ArrowRightOutlined /><span><b>Produto de catálogo</b><small>página de produto do ML</small></span><ArrowRightOutlined /><span><b>Anúncio de catálogo</b><small>publicação que disputa vendas</small></span></div></section>
-    {refreshPayload?.job && mode === 'no_catalogo' && <Alert className={styles.jobAlert} type={refreshPayload.job.presentation?.tone || (refreshRunning ? 'info' : 'error')} showIcon message={refreshPayload.job.presentation?.title || 'Atualização do catálogo'} description={<div className={styles.jobDescription}><span>{refreshPayload.job.presentation?.description || 'Acompanhando a atualização.'}</span><Progress percent={Number(refreshPayload.job.progresso || 0)} status={refreshPayload.job.presentation?.tone === 'error' ? 'exception' : refreshRunning ? 'active' : refreshPayload.job.presentation?.tone === 'warning' ? 'normal' : 'success'} size="small" /></div>} />}
-    <Segmented className={styles.quickViews} value={mode === 'no_catalogo' ? competition : actionState} onChange={(value) => mode === 'no_catalogo' ? setCompetition(String(value)) : setActionState(String(value))} options={queueItems.map(([value, label, count]) => ({ value, label: <span className={styles.quickViewLabel}>{label}<b>{count.toLocaleString('pt-BR')}</b></span> }))} />
-    <section className={styles.filterBar}><Input className={styles.search} prefix={<SearchOutlined />} placeholder="Buscar por produto, SKU ou ID" allowClear value={search} onChange={(event) => setSearch(event.target.value)} /><Select value={statusMl} options={statusOptions} onChange={setStatusMl} /><Select value={mode === 'no_catalogo' ? competition : actionState} options={mode === 'no_catalogo' ? competitionOptions : eligibilityOptions} onChange={(value) => mode === 'no_catalogo' ? setCompetition(value) : setActionState(value)} /><Space.Compact className={styles.priceRange}><InputNumber prefix="R$" placeholder="Preço mín." value={priceMin} onChange={(value) => setPriceMin(value ?? null)} /><InputNumber prefix="R$" placeholder="Preço máx." value={priceMax} onChange={(value) => setPriceMax(value ?? null)} /></Space.Compact>{mode === 'no_catalogo' && opportunityIds && <Button onClick={() => setOpportunityIds(null)}>Exibindo {visibleCatalogRows.length} oportunidades · Limpar</Button>}</section>
+    <header className={styles.header}><div><Title level={2} className={styles.title}>Catálogo</Title>
+      <Text type="secondary">Veja primeiro o que precisa de ação e resolva sem sair da lista.</Text>
+      {mode === 'no_catalogo' && <small className={styles.lastSync}>Dados consultados em {formatDate(lastSyncedAt)}</small>}</div>
+      <Space wrap>{mode === 'no_catalogo' && <Button icon={<FilePdfOutlined />} loading={exportingPdf}
+        onClick={() => void exportPdf()}>Exportar PDF</Button>}
+      {mode === 'no_catalogo' && <Button icon={<ReloadOutlined spin={refreshRunning} />} disabled={Boolean(visualReview)}
+        loading={refreshRunning} onClick={() => void startRefresh()}>Atualizar dados</Button>}
+      {mode === 'elegiveis' && createEnabled && <Button type="primary" disabled={!selectedEligibleRows.length || Boolean(visualReview)}
+        onClick={() => confirmOptin(selectedEligibleRows)}>Criar selecionados ({selectedEligibleRows.length})</Button>}</Space></header>
+
+    {visualReview && <Alert className={styles.visualAlert} type="warning" showIcon message="Amostra protegida, somente leitura"
+      description="Os dados desta amostra servem apenas para avaliar a tela. Ações externas estão desabilitadas." />}
+
+    <Segmented className={styles.modeSelector} value={mode} options={[
+      { label: 'Anúncios de catálogo', value: 'no_catalogo' }, { label: 'Elegíveis ao catálogo', value: 'elegiveis' },
+    ]} onChange={(value) => router.push(value === 'no_catalogo' ? '/catalogo/no-catalogo' : '/catalogo/elegiveis')} />
+
+    {refreshPayload?.job && mode === 'no_catalogo' && <Alert className={styles.jobAlert}
+      type={refreshPayload.job.presentation?.tone || (refreshRunning ? 'info' : 'warning')} showIcon
+      message={refreshPayload.job.presentation?.title || 'Atualizando catálogo'} description={<div className={styles.refreshProgress}>
+        <span>{refreshPayload.job.presentation?.description || 'Consultando os anúncios.'}</span>
+        <Progress percent={Number(refreshPayload.job.progresso || 0)}
+          status={refreshPayload.job.presentation?.tone === 'error' ? 'exception' : refreshRunning ? 'active' : 'normal'} size="small" />
+      </div>} />}
+
+    <Segmented className={styles.quickViews} value={mode === 'no_catalogo' ? operationalView : actionState}
+      onChange={(value) => {
+        if (mode === 'no_catalogo') { setOperationalView(value as CatalogOperationalView); setCompetition('all'); }
+        else setActionState(String(value));
+      }}
+      options={quickViews.map(([value, label, count]) => ({ value,
+        label: <span className={styles.quickViewLabel}>{label}<b>{count.toLocaleString('pt-BR')}</b></span> }))} />
+
+    <section className={styles.filterBar}><Input className={styles.search} prefix={<SearchOutlined />}
+      placeholder="Buscar produto, SKU ou anúncio" allowClear value={search} onChange={(event) => setSearch(event.target.value)} />
+      <Select value={statusMl} options={statusOptions} onChange={setStatusMl} />
+      <Select value={mode === 'no_catalogo' ? competition : actionState}
+        options={mode === 'no_catalogo' ? competitionOptions : eligibilityOptions}
+        onChange={(value) => {
+          if (mode !== 'no_catalogo') return setActionState(value);
+          setCompetition(value);
+          if (value === 'winning' || value === 'sharing_first_place') setOperationalView('healthy');
+          else if (value === 'competing' || value === 'outside') setOperationalView('needs_action');
+        }} /></section>
+
     <section className={styles.tableCard}>
-      {loadError && <Alert
-        type="error"
-        showIcon
+      {loadError && <Alert type="error" showIcon
         message={mode === 'elegiveis' ? 'Não foi possível carregar os anúncios elegíveis' : 'Não foi possível carregar o catálogo'}
-        description={loadError}
-        action={<Button loading={loading} onClick={() => void fetchData()}>Tentar novamente</Button>}
-      />}
+        description={loadError} action={<Button loading={loading} onClick={() => void fetchData()}>Tentar novamente</Button>} />}
       <Spin spinning={loading} indicator={<LoadingOutlined className={styles.loadingIcon} spin />}>
-        {loadError && (mode === 'no_catalogo' ? visibleCatalogRows.length === 0 : eligibleRows.length === 0)
-          ? null
-          : !loading && total === 0
-            ? <Empty description="Nenhum anúncio encontrado com estes filtros" />
-            : mode === 'no_catalogo'
-              ? <ResizableTable<NoCatalogoRow> className={styles.table} storageKey="bnt-d12-catalog-listings" rowKey="ml_item_id" dataSource={visibleCatalogRows} columns={catalogColumns} onChange={handleCatalogTableChange} pagination={{ current: page, pageSize: PAGE_SIZE, total: opportunityIds ? visibleCatalogRows.length : total, showSizeChanger: false, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} de catálogo` }} scroll={{ x: 1300 }} size="small" />
-              : <ResizableTable<ElegivelRow> className={styles.table} storageKey="bnt-d12-catalog-eligible" rowKey="ml_item_id" dataSource={eligibleRows} columns={eligibleColumns} rowSelection={{ selectedRowKeys: selectedEligibleKeys, onChange: setSelectedEligibleKeys, getCheckboxProps: (row) => ({ disabled: row.state !== 'ready' || Boolean(visualReview) }) }} pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, onChange: setPage, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} padrão` }} scroll={{ x: 1300 }} size="small" />}
+        {loadError && (mode === 'no_catalogo' ? rows.length === 0 : eligibleRows.length === 0) ? null
+          : !loading && total === 0 ? <Empty description="Nenhum anúncio encontrado com estes filtros" />
+          : mode === 'no_catalogo' ? <ResizableTable<NoCatalogoRow> className={styles.table}
+            storageKey="bnt-d12-catalog-listings-simple" rowKey="ml_item_id" dataSource={rows} columns={catalogColumns}
+            onChange={handleCatalogTableChange} pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false,
+              showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} scroll={{ x: 1110 }} size="small" />
+          : <ResizableTable<ElegivelRow> className={styles.table} storageKey="bnt-d12-catalog-eligible-simple"
+            rowKey="ml_item_id" dataSource={eligibleRows} columns={eligibleColumns}
+            rowSelection={createEnabled ? { selectedRowKeys: selectedEligibleKeys, onChange: setSelectedEligibleKeys,
+              getCheckboxProps: (row) => ({ disabled: row.state !== 'ready' || Boolean(visualReview) }) } : undefined}
+            pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, onChange: setPage,
+              showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} scroll={{ x: 1130 }} size="small" />}
       </Spin>
     </section>
 
-    <Drawer open={Boolean(activeCatalog)} onClose={() => { pricingRequest.current++; setPriceDetailLoading(false); setUpdatingPrice(false); setActiveCatalog(null); }} width="min(96vw, 900px)" title={activeCatalog ? <div className={styles.drawerTitle}><span>Análise do anúncio de catálogo</span><strong>{activeCatalog.ml_item_id}</strong></div> : undefined} extra={activeCatalog?.permalink && !visualReview ? <Button icon={<EyeOutlined />} onClick={() => window.open(activeCatalog.permalink || '', '_blank', 'noopener,noreferrer')}>Abrir no ML</Button> : null}>{activeCatalog && <Spin spinning={priceDetailLoading}><Tabs items={[
-      { key: 'relation', label: 'Relação', children: <div className={styles.drawerSection}><div className={styles.relationFlow}><span><small>Anúncio padrão</small><strong>{activeCatalog.relacionado_id || 'Não localizado'}</strong></span><ArrowRightOutlined /><span><small>Produto de catálogo</small><strong>{activeCatalog.catalog_product_id || 'Não informado'}</strong></span><ArrowRightOutlined /><span><small>Anúncio de catálogo</small><strong>{activeCatalog.ml_item_id}</strong></span></div><Alert type="info" showIcon message="Três identificadores diferentes" description="O produto de catálogo identifica a página do Mercado Livre. Os outros dois IDs identificam publicações da loja." /><Descriptions column={2} size="small" items={[{ key: 'product', label: 'Produto Bentevi', children: activeCatalog.produto_nome || activeCatalog.title }, { key: 'sku', label: 'SKU Bentevi', children: activeCatalog.sku_local || 'Não informado' }, { key: 'catalogStatus', label: 'Anúncio de catálogo', children: statusPresentation(activeCatalog.status).label }, { key: 'standardStatus', label: 'Anúncio padrão', children: statusPresentation(activeCatalog.related_status).label }]} /></div> },
-      { key: 'competition', label: 'Competição', children: <div className={styles.drawerSection}><div className={styles.competitionHero}>{(() => { const state = catalogCompetitionPresentation(priceDetail?.catalog?.rawStatus || activeCatalog.buy_box_status); return <><span className={`${styles.competitionDot} ${styles[state.tone]}`} /><div><small>Estado atual</small><strong>{state.label}</strong><p>{state.description}</p></div></>; })()}</div><Descriptions column={2} size="small" items={[{ key: 'current', label: 'Preço atual', children: formatCurrency(priceDetail?.currentPrice ?? activeCatalog.price) }, { key: 'target', label: 'Preço para ganhar', children: priceDetail?.catalog?.priceToWin ? formatCurrency(Number(priceDetail?.catalog?.priceToWin)) : 'Não informado' }, { key: 'winner', label: 'Anúncio vencedor', children: priceDetail?.catalog?.winner?.itemId || 'Não informado' }, { key: 'winnerPrice', label: 'Preço vencedor', children: priceDetail?.catalog?.winner?.price ? formatCurrency(priceDetail.catalog.winner.price) : 'Não informado' }]} />{priceDetail?.catalog?.reasons?.length ? <Alert type="warning" showIcon message="Motivos que impedem vencer" description={priceDetail.catalog.reasons.map((reason) => userSafeMessage(reason, 'O Mercado Livre não informou todos os critérios da competição.')).join(' · ')} /> : null}{priceDetail?.catalog?.boosts?.length ? <div className={styles.boostList}>{priceDetail.catalog.boosts.map((boost) => <span key={boost.id}><b>{userSafeMessage(boost.description, 'Condição comercial')}</b><small>{competitionBoostStatus(boost.status)}</small></span>)}</div> : null}{priceDetail?.catalog?.warning && <Alert type="warning" showIcon message={userSafeMessage(priceDetail.catalog.warning, 'Não foi possível consultar todos os dados da competição.')} />}</div> },
-      { key: 'price', label: 'Preço e sincronização', children: <div className={styles.drawerSection}><CompetitivePricingSummary assessment={priceDetail?.competitiveAssessment} />{!priceDetail?.competitiveAssessment && <PricingQuoteSummary pricing={priceDetail?.pricing} />}<Descriptions column={2} size="small" items={[{ key: 'price', label: 'Preço atual', children: formatCurrency(priceDetail?.currentPrice ?? activeCatalog.price) }, { key: 'profit', label: 'Lucro atual', children: priceDetail?.currentProfit == null ? 'Não calculado' : formatCurrency(priceDetail.currentProfit) }, { key: 'sync', label: 'Última análise', children: formatDate(priceDetail?.catalog?.syncedAt || activeCatalog.last_updated) }, { key: 'automatic', label: 'Preço automático ML', children: priceDetail?.automaticPricing?.active ? 'Ativo — edição bloqueada' : 'Não detectado' }]} /><div className={styles.priceEditor}><div><label>Novo preço</label><InputNumber prefix="R$" min={0.01} precision={2} value={newPrice} onChange={(value) => setNewPrice(value ?? null)} disabled={Boolean(visualReview) || priceDetail?.automaticPricing?.active} /></div>{(priceDetail?.catalog?.priceToWin) && <Button onClick={() => void simulateCompetitivePrice()}>Simular referência competitiva</Button>}<PricingProposalButton productId={activeCatalog.produto_id!} itemId={activeCatalog.ml_item_id} priceCents={newPrice == null ? undefined : Math.round(newPrice * 100)} disabled={Boolean(visualReview) || !activeCatalog.produto_id || priceDetail?.automaticPricing?.active} /></div></div> },
-    ]} /></Spin>}</Drawer>
+    <Drawer open={Boolean(activeCatalog)} onClose={() => { pricingRequest.current += 1; setPriceDetailLoading(false);
+      setPriceReview(null); setActiveCatalog(null); }} width="min(96vw, 720px)"
+      title={activeCatalog ? <div className={styles.drawerTitle}><span>Resolver anúncio</span>
+        <strong>{activeCatalog.produto_nome || activeCatalog.title}</strong></div> : undefined}
+      extra={activeCatalog?.permalink && !visualReview ? <Button icon={<EyeOutlined />}
+        onClick={() => window.open(activeCatalog.permalink || '', '_blank', 'noopener,noreferrer')}>Abrir no ML</Button> : null}>
+      {activeCatalog && <Spin spinning={priceDetailLoading}><div className={styles.drawerSection}>
+        <div className={`${styles.competitionHero} ${detailCompetition ? styles[detailCompetition.tone] : ''}`}>
+          <span className={`${styles.statusDot} ${styles[activeCatalog.operational.tone]}`} />
+          <div><small>Situação atual</small><strong>{activeCatalog.operational.label}</strong>
+            <p>{activeCatalog.operational.description}</p></div></div>
+        <div className={styles.priceOverview}><SummaryCard title="Preço atual"
+          price={priceDetail?.currentPrice ?? activeCatalog.price} economy={currentEconomy} />
+          <SummaryCard title="Preço para ganhar" price={priceDetail?.catalog?.priceToWin ?? activeCatalog.price_to_win}
+            economy={competitiveEconomy} /></div>
 
-    <Drawer open={Boolean(activeEligible)} onClose={() => setActiveEligible(null)} width="min(96vw, 820px)" title={activeEligible ? <div className={styles.drawerTitle}><span>Elegibilidade ao catálogo</span><strong>{activeEligible.ml_item_id}</strong></div> : undefined}>{activeEligible && <div className={styles.drawerSection}><div className={styles.relationFlow}><span><small>Anúncio padrão</small><strong>{activeEligible.ml_item_id}</strong></span><ArrowRightOutlined /><span><small>Produto de catálogo</small><strong>{activeEligible.catalog_product_id_sugerido || activeEligible.catalog_product_id || 'Não informado'}</strong></span><ArrowRightOutlined /><span><small>Resultado</small><strong>Novo anúncio de catálogo</strong></span></div><Alert type={activeEligible.state === 'ready' ? 'success' : 'warning'} showIcon message={eligibilityPresentation(activeEligible.state).label} description={userSafeMessage(activeEligible.reason, 'Confira o vínculo do produto antes de continuar.')} /><Descriptions column={2} size="small" items={[{ key: 'product', label: 'Produto Bentevi', children: activeEligible.local_product_name || 'Não vinculado' }, { key: 'sku', label: 'SKU', children: activeEligible.seller_sku || 'Não informado' }, { key: 'catalog', label: 'Produto de catálogo', children: activeEligible.catalog_product_name_sugerido || activeEligible.catalog_product_name || 'Não informado' }, { key: 'status', label: 'Estado no ML', children: activeEligible.eligibility_label || 'Não informado' }]} />{activeEligible.variation_eligibility?.length > 0 && <div className={styles.variationList}>{activeEligible.variation_eligibility.map((variation) => <span key={String(variation.id)}><b>Variação {variation.id}</b><small>{variationEligibilityLabel(variation.status)} · produto {variation.catalog_product_id || activeEligible.catalog_product_id || 'não informado'}</small></span>)}</div>}{activeEligible.catalog_product_warning && <Alert type="warning" showIcon message="Compatibilidade precisa de atenção" description={userSafeMessage(activeEligible.catalog_product_warning, 'Confira o produto de catálogo sugerido antes de continuar.')} />}<Alert type="info" showIcon message="O anúncio padrão não será transformado" description="A criação gera uma publicação de catálogo separada. Para anúncios com variações, será criada uma publicação para cada variação elegível." /><Button type="primary" size="large" disabled={activeEligible.state !== 'ready' || Boolean(visualReview)} onClick={() => confirmOptin([activeEligible])}>Criar anúncio de catálogo</Button></div>}</Drawer>
-    <ProgressModal open={batchOpen} title="Criando anúncios de catálogo" steps={batchSteps} onClose={() => { if (!batchRunning) setBatchOpen(false); }} showCloseButton={!batchRunning} customActions={batchRunning ? [{ key: 'cancel', label: 'Cancelar', danger: true, onClick: () => { batchCancelled.current = true; batchAbort.current?.abort(); setBatchRunning(false); } }] : []} />
-    <ProgressModal open={analysisModalOpen} title="Reanalisando oportunidades de catálogo" steps={analysisSteps} onClose={() => setAnalysisModalOpen(false)} showCloseButton={!analysisRunning} />
+        {actionableBoosts.length > 0 && <div className={styles.actionableBoosts}><strong>O que pode melhorar a disputa</strong>
+          {actionableBoosts.map((boost) => <span key={boost.id}><b>{boostLabel(boost)}</b>
+            <small>{catalogBoostPresentation(boost.status).label}</small></span>)}</div>}
+        {priceDetail?.catalog?.reasons?.length ? <Alert type="warning" showIcon message="O Mercado Livre informou um impedimento"
+          description={priceDetail.catalog.reasons.map((reason) => userSafeMessage(reason, 'Critério não informado.')).join(' · ')} /> : null}
+        {priceDetail?.catalog?.warning && <Alert type="warning" showIcon
+          message={userSafeMessage(priceDetail.catalog.warning, 'A competição está indisponível.')} />}
+
+        <section className={styles.priceAction}><div><strong>Alterar preço</strong>
+          <small>Confira o impacto antes de confirmar. Nada é alterado nesta etapa.</small></div>
+          <div className={styles.priceEditor}><InputNumber prefix="R$" min={0.01} precision={2} value={newPrice}
+            onChange={(value) => setNewPrice(value ?? null)}
+            disabled={Boolean(visualReview) || !activeCatalog.produto_id || priceDetail?.automaticPricing?.active} />
+            <Button type="primary" loading={reviewingPrice}
+              disabled={Boolean(visualReview) || !activeCatalog.produto_id || !newPrice || priceDetail?.automaticPricing?.active}
+              onClick={() => void reviewPrice()}>Revisar alteração</Button></div>
+          {priceDetail?.automaticPricing?.active && <Text type="warning">O preço automático do Mercado Livre está ativo.</Text>}</section>
+
+        <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
+          <div><dt>Anúncio de catálogo</dt><dd>{activeCatalog.ml_item_id}</dd></div>
+          <div><dt>Anúncio padrão</dt><dd>{activeCatalog.relacionado_id || 'Não localizado'}</dd></div>
+          <div><dt>Produto de catálogo</dt><dd>{activeCatalog.catalog_product_id || 'Não informado'}</dd></div>
+          <div><dt>SKU Bentevi</dt><dd>{activeCatalog.sku_local || 'Não informado'}</dd></div>
+          <div><dt>Última consulta</dt><dd>{formatDate(priceDetail?.catalog?.syncedAt || activeCatalog.last_updated)}</dd></div>
+        </dl>{(priceDetail?.catalog?.boosts || []).length > 0 && <div className={styles.allBoosts}>
+          {(priceDetail?.catalog?.boosts || []).map((boost) => <span key={boost.id}><b>{boostLabel(boost)}</b>
+            <small>{catalogBoostPresentation(boost.status).label}</small></span>)}</div>}</details>
+      </div></Spin>}
+    </Drawer>
+
+    <Modal open={Boolean(priceReview)} title="Confirmar alteração de preço" okText="Confirmar alteração" cancelText="Voltar"
+      confirmLoading={confirmingPrice} okButtonProps={{ disabled: priceReview?.detail.decisionContext?.executable !== true }}
+      onCancel={() => setPriceReview(null)} onOk={() => void confirmPrice()}>
+      {priceReview && activeCatalog && <div className={styles.priceReview}>
+        <p>Revise o impacto unitário antes de enviar ao Mercado Livre.</p>
+        <div className={styles.reviewComparison}><SummaryCard title="Preço atual"
+          price={priceDetail?.currentPrice ?? activeCatalog.price} economy={currentEconomy} /><ArrowRightOutlined />
+          <SummaryCard title="Novo preço" price={priceReview.price} economy={{ profit: priceReview.profit,
+            marginPercent: priceReview.margin, source: priceReview.profit == null ? 'unavailable' : 'live_saved', calculatedAt: null }} /></div>
+        {priceReview.detail.decisionContext?.executable !== true && <Alert type="warning" showIcon
+          message="Esta alteração ainda não pode ser confirmada"
+          description={decisionBlockMessage(priceReview.detail.decisionContext?.reasons)} />}
+      </div>}
+    </Modal>
+
+    <Drawer open={Boolean(activeEligible)} onClose={() => setActiveEligible(null)} width="min(96vw, 660px)"
+      title={activeEligible ? <div className={styles.drawerTitle}><span>Elegibilidade ao catálogo</span>
+        <strong>{activeEligible.title}</strong></div> : undefined}>
+      {activeEligible && <div className={styles.drawerSection}><Alert type={activeEligible.state === 'ready' ? 'success' : 'warning'}
+        showIcon message={eligibilityPresentation(activeEligible.state).label}
+        description={userSafeMessage(activeEligible.reason, 'Confira o vínculo antes de continuar.')} />
+        <div className={styles.eligibleSummary}><span><small>Produto Bentevi</small>
+          <strong>{activeEligible.local_product_name || 'Não vinculado'}</strong></span>
+          <span><small>Produto de catálogo</small><strong>{activeEligible.catalog_product_name_sugerido
+            || activeEligible.catalog_product_name || 'Não identificado'}</strong></span></div>
+        {activeEligible.catalog_product_warning && <Alert type="warning" showIcon message="Compatibilidade precisa de atenção"
+          description={userSafeMessage(activeEligible.catalog_product_warning, 'Confira o produto sugerido.')} />}
+        {activeEligible.variation_eligibility?.length > 0 && <div className={styles.variationList}>
+          {activeEligible.variation_eligibility.map((variation) => <span key={String(variation.id)}><b>Variação {variation.id}</b>
+            <small>{variationEligibilityLabel(variation.status)}</small></span>)}</div>}
+        {activeEligible.state === 'ready' && createEnabled && <Button type="primary" size="large"
+          onClick={() => confirmOptin([activeEligible])}>Criar anúncio de catálogo</Button>}
+        <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
+          <div><dt>Anúncio padrão</dt><dd>{activeEligible.ml_item_id}</dd></div>
+          <div><dt>Produto de catálogo</dt><dd>{activeEligible.catalog_product_id_sugerido
+            || activeEligible.catalog_product_id || 'Não informado'}</dd></div>
+          <div><dt>SKU</dt><dd>{activeEligible.seller_sku || 'Não informado'}</dd></div>
+        </dl></details>
+      </div>}
+    </Drawer>
+
+    <ProgressModal open={batchOpen} title="Criando anúncios de catálogo" steps={batchSteps}
+      onClose={() => { if (!batchRunning) setBatchOpen(false); }} showCloseButton={!batchRunning}
+      customActions={batchRunning ? [{ key: 'cancel', label: 'Cancelar', danger: true, onClick: () => {
+        batchCancelled.current = true; batchAbort.current?.abort(); setBatchRunning(false);
+      } }] : []} />
     <ProgressModal {...progressModalProps} />
+  </div>;
+}
+
+function PriceResult({ price, economy }: { price: number; economy: EconomicSummary }) {
+  return <div className={styles.valueCell}><strong>{formatCurrency(price)}</strong>
+    {economy.profit == null || economy.marginPercent == null ? <small>Resultado não calculado</small>
+      : <small className={economy.profit < 0 ? styles.negative : styles.positive}>
+        {economy.profit < 0 ? 'Prejuízo' : 'Lucro'} {formatCurrency(Math.abs(economy.profit))} · {economy.marginPercent.toFixed(2)}%
+      </small>}</div>;
+}
+function SummaryCard({ title, price, economy }: { title: string; price: number | null | undefined; economy?: EconomicSummary | null }) {
+  return <div className={styles.summaryCard}><small>{title}</small>
+    <strong>{price == null || !Number.isFinite(Number(price)) ? 'Não informado' : formatCurrency(Number(price))}</strong>
+    {economy?.profit == null || economy.marginPercent == null ? <span>Resultado não calculado</span>
+      : <span className={economy.profit < 0 ? styles.negative : styles.positive}>
+        {economy.profit < 0 ? 'Prejuízo' : 'Lucro'} {formatCurrency(Math.abs(economy.profit))} · {economy.marginPercent.toFixed(2)}%
+      </span>}
   </div>;
 }

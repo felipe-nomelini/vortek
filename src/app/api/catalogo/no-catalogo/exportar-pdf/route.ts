@@ -476,11 +476,6 @@ function mapExportRow(row: CatalogListingRow): ExportRow {
   };
 }
 
-function normalizeOpportunityIds(value: unknown): Set<string> | null {
-  if (!Array.isArray(value)) return null;
-  return new Set(value.map((item) => String(item || '').trim().toUpperCase()).filter(Boolean));
-}
-
 function parseNumber(searchParams: URLSearchParams, key: string): number | null {
   const raw = searchParams.get(key);
   if (raw === null || raw.trim() === '') return null;
@@ -488,7 +483,7 @@ function parseNumber(searchParams: URLSearchParams, key: string): number | null 
   return Number.isFinite(value) ? value : null;
 }
 
-function buildFilterDescription(sourceUrl: URL, opportunities: Set<string> | null): string {
+function buildFilterDescription(sourceUrl: URL): string {
   const params = sourceUrl.searchParams;
   const statusLabels: Record<string, string> = { active: 'ativos', paused: 'pausados', closed: 'encerrados' };
   const competitionLabels: Record<string, string> = {
@@ -496,6 +491,11 @@ function buildFilterDescription(sourceUrl: URL, opportunities: Set<string> | nul
     sharing_first_place: 'dividindo 1º lugar',
     competing: 'competindo',
     outside: 'fora da competição',
+  };
+  const viewLabels: Record<string, string> = {
+    needs_action: 'pendências',
+    healthy: 'tudo certo',
+    all: 'todos os anúncios',
   };
   const sortLabels: Record<string, string> = {
     ml_item_id: 'anúncio de catálogo',
@@ -513,7 +513,7 @@ function buildFilterDescription(sourceUrl: URL, opportunities: Set<string> | nul
     params.get('buyBox') && params.get('buyBox') !== 'all' ? `Competição: ${competitionLabels[params.get('buyBox') || ''] || params.get('buyBox')}` : null,
     priceMin !== null ? `Preço mínimo: ${formatCurrency(priceMin)}` : null,
     priceMax !== null ? `Preço máximo: ${formatCurrency(priceMax)}` : null,
-    opportunities !== null ? `Visão: ${opportunities.size} oportunidade(s) da última análise` : null,
+    params.get('view') ? `Visão: ${viewLabels[params.get('view') || ''] || params.get('view')}` : null,
   ].filter(Boolean);
   const sortBy = params.get('sortBy') || 'ml_item_id';
   const sortOrder = params.get('sortOrder') === 'asc' ? 'crescente' : 'decrescente';
@@ -523,10 +523,8 @@ function buildFilterDescription(sourceUrl: URL, opportunities: Set<string> | nul
 export async function POST(request: Request) {
   try {
     const sourceUrl = new URL(request.url);
-    const body = await request.json().catch(() => ({}));
-    const opportunityIds = normalizeOpportunityIds(body?.opportunityIds);
     const listUrl = new URL('/api/catalogo/no-catalogo', request.url);
-    for (const key of ['search', 'statusMl', 'buyBox', 'priceMin', 'priceMax', 'sortBy', 'sortOrder', 'sellerId']) {
+    for (const key of ['search', 'statusMl', 'buyBox', 'priceMin', 'priceMax', 'sortBy', 'sortOrder', 'sellerId', 'view']) {
       const value = sourceUrl.searchParams.get(key);
       if (value) listUrl.searchParams.set(key, value);
     }
@@ -551,10 +549,7 @@ export async function POST(request: Request) {
       page += 1;
       if (!pageRows.length) break;
     } while (rows.length < total);
-    const exportedRows = opportunityIds === null
-      ? rows
-      : rows.filter((row) => opportunityIds.has(row.itemId.toUpperCase()));
-    const pdf = await buildPdf(exportedRows, buildFilterDescription(sourceUrl, opportunityIds), lastSyncedAt);
+    const pdf = await buildPdf(rows, buildFilterDescription(sourceUrl), lastSyncedAt);
     const date = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
     return new Response(new Uint8Array(pdf), {
       headers: {
