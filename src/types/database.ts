@@ -2954,6 +2954,607 @@ ml_pricing_groups: {
         }
         Relationships: []
       }
+      video_asset_links: {
+        Row: {
+          family_id: string | null
+          id: string
+          linked_at: string
+          linked_by: string
+          ml_item_id: string
+          produto_id: string | null
+          sku: string | null
+          unlink_reason: string | null
+          unlinked_at: string | null
+          unlinked_by: string | null
+          video_asset_id: string
+        }
+        Insert: {
+          family_id?: string | null
+          id?: string
+          linked_at?: string
+          linked_by: string
+          ml_item_id: string
+          produto_id?: string | null
+          sku?: string | null
+          unlink_reason?: string | null
+          unlinked_at?: string | null
+          unlinked_by?: string | null
+          video_asset_id: string
+        }
+        Update: {
+          family_id?: string | null
+          id?: string
+          linked_at?: string
+          linked_by?: string
+          ml_item_id?: string
+          produto_id?: string | null
+          sku?: string | null
+          unlink_reason?: string | null
+          unlinked_at?: string | null
+          unlinked_by?: string | null
+          video_asset_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_asset_links_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "video_families"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_asset_links_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_asset_links_video_asset_id_fkey"
+            columns: ["video_asset_id"]
+            isOneToOne: false
+            referencedRelation: "video_assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      video_assets: {
+        Row: {
+          asset_type: string
+          attempt_id: string | null
+          audio_codec: string | null
+          checksum_sha256: string | null
+          created_at: string
+          duration_seconds: number | null
+          fps: number | null
+          height: number | null
+          id: string
+          job_id: string
+          metadata: Json
+          mime_type: string
+          persona_id: string | null
+          produto_id: string | null
+          storage_path: string
+          video_codec: string | null
+          width: number | null
+        }
+        Insert: {
+          asset_type: string
+          attempt_id?: string | null
+          audio_codec?: string | null
+          checksum_sha256?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          fps?: number | null
+          height?: number | null
+          id?: string
+          job_id: string
+          metadata?: Json
+          mime_type: string
+          persona_id?: string | null
+          produto_id?: string | null
+          storage_path: string
+          video_codec?: string | null
+          width?: number | null
+        }
+        Update: {
+          asset_type?: string
+          attempt_id?: string | null
+          audio_codec?: string | null
+          checksum_sha256?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          fps?: number | null
+          height?: number | null
+          id?: string
+          job_id?: string
+          metadata?: Json
+          mime_type?: string
+          persona_id?: string | null
+          produto_id?: string | null
+          storage_path?: string
+          video_codec?: string | null
+          width?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_assets_attempt_fk"
+            columns: ["job_id", "attempt_id"]
+            isOneToOne: false
+            referencedRelation: "video_generation_attempts"
+            referencedColumns: ["job_id", "id"]
+          },
+          {
+            foreignKeyName: "video_assets_job_fk"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "video_jobs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_assets_persona_id_fkey"
+            columns: ["persona_id"]
+            isOneToOne: false
+            referencedRelation: "video_personas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_assets_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      video_families: {
+        Row: {
+          active: boolean
+          brand: string | null
+          category: string | null
+          created_at: string
+          default_persona_id: string | null
+          default_video_type: string | null
+          description: string | null
+          family_key: string
+          forbidden_claims: Json
+          id: string
+          name: string
+          updated_at: string
+          variation_safe: Json
+          variation_unsafe: Json
+          verified_claims: Json
+        }
+        Insert: {
+          active?: boolean
+          brand?: string | null
+          category?: string | null
+          created_at?: string
+          default_persona_id?: string | null
+          default_video_type?: string | null
+          description?: string | null
+          family_key: string
+          forbidden_claims?: Json
+          id?: string
+          name: string
+          updated_at?: string
+          variation_safe?: Json
+          variation_unsafe?: Json
+          verified_claims?: Json
+        }
+        Update: {
+          active?: boolean
+          brand?: string | null
+          category?: string | null
+          created_at?: string
+          default_persona_id?: string | null
+          default_video_type?: string | null
+          description?: string | null
+          family_key?: string
+          forbidden_claims?: Json
+          id?: string
+          name?: string
+          updated_at?: string
+          variation_safe?: Json
+          variation_unsafe?: Json
+          verified_claims?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_families_default_persona_id_fkey"
+            columns: ["default_persona_id"]
+            isOneToOne: false
+            referencedRelation: "video_personas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      video_family_products: {
+        Row: {
+          created_at: string
+          family_id: string
+          id: string
+          produto_id: string | null
+          removed_at: string | null
+          sku: string
+        }
+        Insert: {
+          created_at?: string
+          family_id: string
+          id?: string
+          produto_id?: string | null
+          removed_at?: string | null
+          sku: string
+        }
+        Update: {
+          created_at?: string
+          family_id?: string
+          id?: string
+          produto_id?: string | null
+          removed_at?: string | null
+          sku?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_family_products_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "video_families"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_family_products_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      video_generation_attempts: {
+        Row: {
+          actual_cost: number | null
+          attempt_number: number
+          cost_currency: string | null
+          created_at: string
+          duration_seconds: number | null
+          error_code: string | null
+          error_message: string | null
+          estimated_cost: number | null
+          external_operation_id: string | null
+          finished_at: string | null
+          id: string
+          job_id: string
+          model: string
+          prompt: string
+          provider: string
+          request_payload: Json
+          response_payload: Json
+          started_at: string | null
+          status: string
+        }
+        Insert: {
+          actual_cost?: number | null
+          attempt_number: number
+          cost_currency?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          error_code?: string | null
+          error_message?: string | null
+          estimated_cost?: number | null
+          external_operation_id?: string | null
+          finished_at?: string | null
+          id?: string
+          job_id: string
+          model: string
+          prompt: string
+          provider: string
+          request_payload?: Json
+          response_payload?: Json
+          started_at?: string | null
+          status: string
+        }
+        Update: {
+          actual_cost?: number | null
+          attempt_number?: number
+          cost_currency?: string | null
+          created_at?: string
+          duration_seconds?: number | null
+          error_code?: string | null
+          error_message?: string | null
+          estimated_cost?: number | null
+          external_operation_id?: string | null
+          finished_at?: string | null
+          id?: string
+          job_id?: string
+          model?: string
+          prompt?: string
+          provider?: string
+          request_payload?: Json
+          response_payload?: Json
+          started_at?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_generation_attempts_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "video_jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      video_jobs: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          content_scope: string
+          created_at: string
+          created_by: string | null
+          creative_brief: Json
+          estimated_cost: number | null
+          estimated_cost_currency: string | null
+          family_id: string | null
+          family_key: string | null
+          forbidden_claims: Json
+          generation_approved_at: string | null
+          generation_approved_by: string | null
+          generation_model: string | null
+          generation_provider: string | null
+          id: string
+          ml_item_id: string | null
+          output_asset_id: string | null
+          persona_code: string | null
+          persona_id: string | null
+          persona_version: string | null
+          physical_dimensions: Json
+          produto_id: string | null
+          product_snapshot: Json
+          prompt_final: string | null
+          prompt_template_code: string | null
+          prompt_template_version: string | null
+          rejected_at: string | null
+          rejected_by: string | null
+          rejection_code: string | null
+          rejection_reason: string | null
+          scale_anchor: string | null
+          sku: string | null
+          status: string
+          updated_at: string
+          validation_result: Json
+          variation_safe: Json
+          variation_unsafe: Json
+          verified_claims: Json
+          video_type: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          content_scope: string
+          created_at?: string
+          created_by?: string | null
+          creative_brief?: Json
+          estimated_cost?: number | null
+          estimated_cost_currency?: string | null
+          family_id?: string | null
+          family_key?: string | null
+          forbidden_claims?: Json
+          generation_approved_at?: string | null
+          generation_approved_by?: string | null
+          generation_model?: string | null
+          generation_provider?: string | null
+          id?: string
+          ml_item_id?: string | null
+          output_asset_id?: string | null
+          persona_code?: string | null
+          persona_id?: string | null
+          persona_version?: string | null
+          physical_dimensions?: Json
+          produto_id?: string | null
+          product_snapshot?: Json
+          prompt_final?: string | null
+          prompt_template_code?: string | null
+          prompt_template_version?: string | null
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_code?: string | null
+          rejection_reason?: string | null
+          scale_anchor?: string | null
+          sku?: string | null
+          status?: string
+          updated_at?: string
+          validation_result?: Json
+          variation_safe?: Json
+          variation_unsafe?: Json
+          verified_claims?: Json
+          video_type: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          content_scope?: string
+          created_at?: string
+          created_by?: string | null
+          creative_brief?: Json
+          estimated_cost?: number | null
+          estimated_cost_currency?: string | null
+          family_id?: string | null
+          family_key?: string | null
+          forbidden_claims?: Json
+          generation_approved_at?: string | null
+          generation_approved_by?: string | null
+          generation_model?: string | null
+          generation_provider?: string | null
+          id?: string
+          ml_item_id?: string | null
+          output_asset_id?: string | null
+          persona_code?: string | null
+          persona_id?: string | null
+          persona_version?: string | null
+          physical_dimensions?: Json
+          produto_id?: string | null
+          product_snapshot?: Json
+          prompt_final?: string | null
+          prompt_template_code?: string | null
+          prompt_template_version?: string | null
+          rejected_at?: string | null
+          rejected_by?: string | null
+          rejection_code?: string | null
+          rejection_reason?: string | null
+          scale_anchor?: string | null
+          sku?: string | null
+          status?: string
+          updated_at?: string
+          validation_result?: Json
+          variation_safe?: Json
+          variation_unsafe?: Json
+          verified_claims?: Json
+          video_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_jobs_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "video_families"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_jobs_output_asset_fk"
+            columns: ["id", "output_asset_id"]
+            isOneToOne: false
+            referencedRelation: "video_assets"
+            referencedColumns: ["job_id", "id"]
+          },
+          {
+            foreignKeyName: "video_jobs_persona_id_fkey"
+            columns: ["persona_id"]
+            isOneToOne: false
+            referencedRelation: "video_personas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_jobs_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_jobs_template_fk"
+            columns: ["prompt_template_code", "prompt_template_version"]
+            isOneToOne: false
+            referencedRelation: "video_prompt_templates"
+            referencedColumns: ["code", "version"]
+          },
+        ]
+      }
+      video_personas: {
+        Row: {
+          accent: string | null
+          allowed_categories: Json
+          code: string
+          created_at: string
+          dialogue_rules: Json
+          forbidden_categories: Json
+          forbidden_phrases: Json
+          humor_style: string | null
+          id: string
+          name: string
+          personality: string | null
+          prompt_identity_block: string | null
+          role: string | null
+          status: string
+          updated_at: string
+          version: string
+          visual_description: string | null
+          voice_description: string | null
+        }
+        Insert: {
+          accent?: string | null
+          allowed_categories?: Json
+          code: string
+          created_at?: string
+          dialogue_rules?: Json
+          forbidden_categories?: Json
+          forbidden_phrases?: Json
+          humor_style?: string | null
+          id?: string
+          name: string
+          personality?: string | null
+          prompt_identity_block?: string | null
+          role?: string | null
+          status?: string
+          updated_at?: string
+          version?: string
+          visual_description?: string | null
+          voice_description?: string | null
+        }
+        Update: {
+          accent?: string | null
+          allowed_categories?: Json
+          code?: string
+          created_at?: string
+          dialogue_rules?: Json
+          forbidden_categories?: Json
+          forbidden_phrases?: Json
+          humor_style?: string | null
+          id?: string
+          name?: string
+          personality?: string | null
+          prompt_identity_block?: string | null
+          role?: string | null
+          status?: string
+          updated_at?: string
+          version?: string
+          visual_description?: string | null
+          voice_description?: string | null
+        }
+        Relationships: []
+      }
+      video_prompt_templates: {
+        Row: {
+          active: boolean
+          code: string
+          created_at: string
+          id: string
+          model: string | null
+          provider: string | null
+          scope: string
+          template_text: string
+          updated_at: string
+          version: string
+          video_type: string
+        }
+        Insert: {
+          active?: boolean
+          code: string
+          created_at?: string
+          id?: string
+          model?: string | null
+          provider?: string | null
+          scope: string
+          template_text: string
+          updated_at?: string
+          version: string
+          video_type: string
+        }
+        Update: {
+          active?: boolean
+          code?: string
+          created_at?: string
+          id?: string
+          model?: string | null
+          provider?: string | null
+          scope?: string
+          template_text?: string
+          updated_at?: string
+          version?: string
+          video_type?: string
+        }
+        Relationships: []
+      }
       whatsapp_alert_settings: {
         Row: {
           created_at: string

@@ -53,8 +53,23 @@ test("visualizador permanece somente leitura", () => {
     "purchases.read",
     "inventory.read",
     "fiscal.read",
+    "video_factory.read",
     "sales.track",
   ]);
+});
+
+test("BVF permite leitura interna e restringe gestão a admin e gerente", () => {
+  for (const role of ["admin", "gerente", "operador", "visualizador"]) {
+    assert.equal(hasPermission(role, "video_factory.read"), true);
+  }
+
+  for (const role of ["admin", "gerente"]) {
+    assert.equal(hasPermission(role, "video_factory.manage"), true);
+  }
+
+  for (const role of ["operador", "visualizador"]) {
+    assert.equal(hasPermission(role, "video_factory.manage"), false);
+  }
 });
 
 test("todos os cargos internos podem consultar vendas", () => {
