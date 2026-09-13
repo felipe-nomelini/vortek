@@ -17,7 +17,8 @@ import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import { formatCurrency } from '@/lib/format';
 import {
   buildCatalogOptinTargets, catalogBoostPresentation, catalogCompetitionPresentation,
-  type CatalogEligibilityActionState, type CatalogOperationalState,
+  catalogCompetitionReasonPresentation, catalogPriceToWinPresentation,
+  type CatalogEligibilityActionState, type CatalogOperationalState, type CatalogPriceGuidance,
   type CatalogOperationalView, type CatalogOptinTarget, type CatalogVariationEligibility,
 } from '@/lib/catalogo/dashboard';
 import type { CatalogRefreshPresentation } from '@/lib/catalogo/refresh-presentation';
@@ -44,6 +45,7 @@ type NoCatalogoRow = {
   seller_sku: string | null; sku_local: string | null; produto_id: string | null;
   produto_nome?: string | null; catalog_product_id: string | null; status: string | null;
   buy_box_status: string | null; price_to_win: number | null; price: number;
+  catalog_listing: boolean;
   permalink: string | null; thumbnail: string | null; last_updated: string | null;
   operational: CatalogOperationalState;
   economics: { current: EconomicSummary; competitive: EconomicSummary };
@@ -79,6 +81,7 @@ type PriceDetail = {
     competitive?: { memory?: { resultCents?: number; margin?: number } | null } | null;
   } | null;
   automaticPricing?: { active?: boolean };
+  catalogListing?: boolean | null;
   catalog?: { rawStatus?: string | null; priceToWin?: number | null;
     winner?: { itemId?: string | null; price?: number | null } | null;
     boosts?: Array<{ id: string; status: string; description: string }>;
@@ -455,9 +458,12 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     { title: 'Preço atual', key: 'price', width: 170, sorter: true,
       render: (_, row) => <PriceResult price={row.price} economy={row.economics.current} /> },
     { title: 'Preço para ganhar', key: 'competition', width: 190, sorter: true,
-      render: (_, row) => row.price_to_win && row.price_to_win > 0
-        ? <PriceResult price={row.price_to_win} economy={row.economics.competitive} />
-        : <div className={styles.valueCell}><strong>Não informado</strong><small>Atualize para consultar</small></div> },
+      render: (_, row) => {
+        const guidance = catalogPriceToWinPresentation({ status: row.buy_box_status, priceToWin: row.price_to_win });
+        return guidance.key === 'available'
+          ? <PriceResult price={row.price_to_win!} economy={row.economics.competitive} />
+          : <PriceGuidance guidance={guidance} />;
+      } },
     { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => (
       <Button type={row.operational.needsAction ? 'primary' : 'default'} icon={<ArrowRightOutlined />}
         onClick={() => void loadPriceDetail(row)}>{row.operational.actionLabel}</Button>) },
@@ -522,8 +528,22 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     || memoryEconomy(priceDetail?.pricing?.current?.memory) || activeCatalog?.economics.current;
   const competitiveEconomy = memoryEconomy(priceDetail?.competitiveAssessment?.competitive?.memory)
     || activeCatalog?.economics.competitive;
+  const liveCatalogMismatch = priceDetail?.catalogListing === false;
   const detailCompetition = activeCatalog
-    ? catalogCompetitionPresentation(priceDetail?.catalog?.rawStatus || activeCatalog.buy_box_status) : null;
+    ? catalogCompetitionPresentation(liveCatalogMismatch
+      ? 'not_listed'
+      : (priceDetail?.catalog?.rawStatus || activeCatalog.buy_box_status))
+    : null;
+  const detailOperational = liveCatalogMismatch && activeCatalog ? {
+    ...activeCatalog.operational,
+    label: 'Não pertence ao catálogo',
+    description: 'O Mercado Livre confirmou que este é um anúncio padrão.',
+    tone: 'negative' as const,
+  } : activeCatalog?.operational;
+  const detailPriceGuidance = activeCatalog ? catalogPriceToWinPresentation({
+    status: liveCatalogMismatch ? 'not_listed' : (priceDetail?.catalog?.rawStatus || activeCatalog.buy_box_status),
+    priceToWin: liveCatalogMismatch ? null : (priceDetail?.catalog?.priceToWin ?? activeCatalog.price_to_win),
+  }) : null;
   const actionableBoosts = (priceDetail?.catalog?.boosts || []).filter((boost) => catalogBoostPresentation(boost.status).actionable);
 
   return <div className={styles.page}>
@@ -601,23 +621,26 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         onClick={() => window.open(activeCatalog.permalink || '', '_blank', 'noopener,noreferrer')}>Abrir no ML</Button> : null}>
       {activeCatalog && <Spin spinning={priceDetailLoading}><div className={styles.drawerSection}>
         <div className={`${styles.competitionHero} ${detailCompetition ? styles[detailCompetition.tone] : ''}`}>
-          <span className={`${styles.statusDot} ${styles[activeCatalog.operational.tone]}`} />
-          <div><small>Situação atual</small><strong>{activeCatalog.operational.label}</strong>
-            <p>{activeCatalog.operational.description}</p></div></div>
+          <span className={`${styles.statusDot} ${styles[detailOperational?.tone || activeCatalog.operational.tone]}`} />
+          <div><small>Situação atual</small><strong>{detailOperational?.label || activeCatalog.operational.label}</strong>
+            <p>{detailOperational?.description || activeCatalog.operational.description}</p></div></div>
+        {liveCatalogMismatch && <Alert type="warning" showIcon message="Este anúncio não participa do catálogo"
+          description="Ele não possui preço para ganhar e será removido desta lista na próxima atualização dos dados." />}
         <div className={styles.priceOverview}><SummaryCard title="Preço atual"
           price={priceDetail?.currentPrice ?? activeCatalog.price} economy={currentEconomy} />
           <SummaryCard title="Preço para ganhar" price={priceDetail?.catalog?.priceToWin ?? activeCatalog.price_to_win}
-            economy={competitiveEconomy} /></div>
+            economy={competitiveEconomy} empty={detailPriceGuidance && detailPriceGuidance.key !== 'available'
+              ? { label: detailPriceGuidance.label, description: detailPriceGuidance.description } : undefined} /></div>
 
         {actionableBoosts.length > 0 && <div className={styles.actionableBoosts}><strong>O que pode melhorar a disputa</strong>
           {actionableBoosts.map((boost) => <span key={boost.id}><b>{boostLabel(boost)}</b>
             <small>{catalogBoostPresentation(boost.status).label}</small></span>)}</div>}
         {priceDetail?.catalog?.reasons?.length ? <Alert type="warning" showIcon message="O Mercado Livre informou um impedimento"
-          description={priceDetail.catalog.reasons.map((reason) => userSafeMessage(reason, 'Critério não informado.')).join(' · ')} /> : null}
+          description={priceDetail.catalog.reasons.map(catalogCompetitionReasonPresentation).join(' · ')} /> : null}
         {priceDetail?.catalog?.warning && <Alert type="warning" showIcon
           message={userSafeMessage(priceDetail.catalog.warning, 'A competição está indisponível.')} />}
 
-        <section className={styles.priceAction}><div><strong>Alterar preço</strong>
+        {!liveCatalogMismatch && <section className={styles.priceAction}><div><strong>Alterar preço</strong>
           <small>Confira o impacto antes de confirmar. Nada é alterado nesta etapa.</small></div>
           <div className={styles.priceEditor}><InputNumber prefix="R$" min={0.01} precision={2} value={newPrice}
             onChange={(value) => setNewPrice(value ?? null)}
@@ -625,15 +648,15 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
             <Button type="primary" loading={reviewingPrice}
               disabled={Boolean(visualReview) || !activeCatalog.produto_id || !newPrice || priceDetail?.automaticPricing?.active}
               onClick={() => void reviewPrice()}>Revisar alteração</Button></div>
-          {priceDetail?.automaticPricing?.active && <Text type="warning">O preço automático do Mercado Livre está ativo.</Text>}</section>
+          {priceDetail?.automaticPricing?.active && <Text type="warning">O preço automático do Mercado Livre está ativo.</Text>}</section>}
 
         <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
-          <div><dt>Anúncio de catálogo</dt><dd><MercadoLivreCodeLink code={activeCatalog.ml_item_id}
-            href={visualReview ? null : activeCatalog.permalink} label="Anúncio de catálogo" /></dd></div>
-          <div><dt>Anúncio padrão</dt><dd>{activeCatalog.relacionado_id
+          <div><dt>{liveCatalogMismatch ? 'Anúncio padrão' : 'Anúncio de catálogo'}</dt><dd><MercadoLivreCodeLink code={activeCatalog.ml_item_id}
+            href={visualReview ? null : activeCatalog.permalink} label={liveCatalogMismatch ? 'Anúncio padrão' : 'Anúncio de catálogo'} /></dd></div>
+          {!liveCatalogMismatch && <div><dt>Anúncio padrão</dt><dd>{activeCatalog.relacionado_id
             ? <MercadoLivreCodeLink code={activeCatalog.relacionado_id}
               href={visualReview ? null : activeCatalog.related_permalink} label="Anúncio padrão" />
-            : 'Não localizado'}</dd></div>
+            : 'Sem anúncio padrão relacionado'}</dd></div>}
           <div><dt>Produto de catálogo</dt><dd><MercadoLivreCodeLink code={activeCatalog.catalog_product_id}
             href={visualReview ? null : buildMercadoLivreCatalogProductUrl(activeCatalog.catalog_product_id)}
             label="Produto de catálogo" /></dd></div>
@@ -706,10 +729,20 @@ function PriceResult({ price, economy }: { price: number; economy: EconomicSumma
         {economy.profit < 0 ? 'Prejuízo' : 'Lucro'} {formatCurrency(Math.abs(economy.profit))} · {economy.marginPercent.toFixed(2)}%
       </small>}</div>;
 }
-function SummaryCard({ title, price, economy }: { title: string; price: number | null | undefined; economy?: EconomicSummary | null }) {
+function PriceGuidance({ guidance }: { guidance: CatalogPriceGuidance }) {
+  return <div className={styles.valueCell}><strong>{guidance.label}</strong><small>{guidance.description}</small></div>;
+}
+function SummaryCard({ title, price, economy, empty }: {
+  title: string;
+  price: number | null | undefined;
+  economy?: EconomicSummary | null;
+  empty?: { label: string; description: string };
+}) {
+  const hasPrice = price != null && Number.isFinite(Number(price));
   return <div className={styles.summaryCard}><small>{title}</small>
-    <strong>{price == null || !Number.isFinite(Number(price)) ? 'Não informado' : formatCurrency(Number(price))}</strong>
-    {economy?.profit == null || economy.marginPercent == null ? <span>Resultado não calculado</span>
+    <strong>{hasPrice ? formatCurrency(Number(price)) : (empty?.label || 'Não informado')}</strong>
+    {!hasPrice && empty ? <span>{empty.description}</span>
+      : economy?.profit == null || economy.marginPercent == null ? <span>Resultado não calculado</span>
       : <span className={economy.profit < 0 ? styles.negative : styles.positive}>
         {economy.profit < 0 ? 'Prejuízo' : 'Lucro'} {formatCurrency(Math.abs(economy.profit))} · {economy.marginPercent.toFixed(2)}%
       </span>}

@@ -24,6 +24,12 @@ export interface CatalogEnrichment {
   buyBoxWinning: boolean;
 }
 
+export function catalogListingObservation(item: unknown): boolean | null {
+  if (!item || typeof item !== 'object' || !('catalog_listing' in item)) return null;
+  const value = (item as { catalog_listing?: unknown }).catalog_listing;
+  return typeof value === 'boolean' ? value : null;
+}
+
 export type CatalogLocalListingReference = {
   produto_id?: string | null;
   sku?: string | null;

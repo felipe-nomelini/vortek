@@ -241,7 +241,7 @@ function prepareRow(row: ExportRow, fonts: ReportFonts): PreparedRow {
     ] },
     relation: { lines: [
       ...makeLines('Anúncio padrão', widths.relation, fonts, { bold: true, size: 5.3, color: colors.textSecondary }),
-      ...makeLines(row.relatedItemId || 'Não localizado', widths.relation, fonts, { bold: true, size: 5.7, color: row.relatedItemId ? colors.text : colors.error }),
+      ...makeLines(row.relatedItemId || 'Sem anúncio padrão relacionado', widths.relation, fonts, { bold: true, size: 5.7, color: row.relatedItemId ? colors.text : colors.textSecondary }),
       ...makeLines(row.relatedItemId ? statusLabel(row.relatedStatus) : 'Relação não informada pelo ML', widths.relation, fonts, { size: 5.1, color: row.relatedItemId ? statusColor(row.relatedStatus) : colors.textSecondary }),
       blankLine(fonts),
       ...makeLines('Produto de catálogo', widths.relation, fonts, { bold: true, size: 5.3, color: colors.textSecondary }),

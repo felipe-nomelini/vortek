@@ -35,6 +35,12 @@ export type CatalogBoostState = {
   tone: 'positive' | 'warning' | 'neutral';
 };
 
+export type CatalogPriceGuidance = {
+  key: 'available' | 'already_winning' | 'shared_lead' | 'blocked' | 'not_participating' | 'not_suggested' | 'unavailable';
+  label: string;
+  description: string;
+};
+
 const RELIABLE_MATCH_SCORE = 100;
 
 export function isCatalogEligibilityReady(status: unknown) {
@@ -134,8 +140,11 @@ export function catalogCompetitionPresentation(status: unknown) {
   if (normalized === 'competing') {
     return { key: 'competing', label: 'Competindo', tone: 'warning', description: 'O anúncio participa da disputa, mas não está em primeiro lugar.' };
   }
-  if (normalized === 'listed' || normalized === 'not_listed') {
-    return { key: 'outside', label: 'Fora da competição', tone: 'negative', description: 'O anúncio permanece publicado, mas não pode vencer a disputa agora.' };
+  if (normalized === 'listed') {
+    return { key: 'outside', label: 'Impedido de competir', tone: 'negative', description: 'O anúncio está no catálogo, mas outro critério do Mercado Livre impede a disputa.' };
+  }
+  if (normalized === 'not_listed') {
+    return { key: 'outside', label: 'Não participa da disputa', tone: 'negative', description: 'O Mercado Livre não incluiu este anúncio na competição de catálogo.' };
   }
   return { key: 'unavailable', label: 'Estado indisponível', tone: 'neutral', description: 'A última análise não informou o estado da competição.' };
 }
@@ -156,9 +165,13 @@ export function catalogOperationalPresentation(row: Record<string, unknown>): Ca
     return { key: 'competition_unavailable', needsAction: true, label: 'Competição não informada',
       description: 'Atualize o catálogo para consultar a situação deste anúncio.', actionLabel: 'Ver detalhes', tone: 'neutral' };
   }
-  if (competition === 'listed' || competition === 'not_listed') {
-    return { key: 'outside', needsAction: true, label: 'Fora da disputa',
-      description: 'O anúncio está publicado, mas não pode vencer a disputa agora.', actionLabel: 'Resolver impedimento', tone: 'negative' };
+  if (competition === 'listed') {
+    return { key: 'outside', needsAction: true, label: 'Impedido de competir',
+      description: 'O anúncio está no catálogo, mas outro critério do Mercado Livre impede a disputa.', actionLabel: 'Ver impedimento', tone: 'negative' };
+  }
+  if (competition === 'not_listed') {
+    return { key: 'outside', needsAction: true, label: 'Não participa da disputa',
+      description: 'O Mercado Livre não incluiu este anúncio na competição de catálogo.', actionLabel: 'Ver situação', tone: 'negative' };
   }
   if (competition === 'competing') {
     return { key: 'competing', needsAction: true, label: 'Competindo',
@@ -171,6 +184,56 @@ export function catalogOperationalPresentation(row: Record<string, unknown>): Ca
   }
   return { key: 'competition_unavailable', needsAction: true, label: 'Competição não informada',
     description: 'Atualize o catálogo para consultar a situação deste anúncio.', actionLabel: 'Ver detalhes', tone: 'neutral' };
+}
+
+export function catalogPriceToWinPresentation(input: {
+  status: unknown;
+  priceToWin: unknown;
+}): CatalogPriceGuidance {
+  const price = Number(input.priceToWin);
+  if (Number.isFinite(price) && price > 0) {
+    return { key: 'available', label: 'Preço informado', description: 'Preço competitivo sugerido pelo Mercado Livre.' };
+  }
+
+  const status = String(input.status || '').trim().toLowerCase();
+  if (status === 'winning') {
+    return { key: 'already_winning', label: 'Já está ganhando', description: 'Não é necessário reduzir o preço para liderar agora.' };
+  }
+  if (status === 'sharing_first_place') {
+    return { key: 'shared_lead', label: 'Divide o 1º lugar', description: 'O anúncio já compartilha a melhor posição.' };
+  }
+  if (status === 'listed') {
+    return { key: 'blocked', label: 'Preço não resolve sozinho', description: 'Consulte o impedimento informado pelo Mercado Livre.' };
+  }
+  if (status === 'not_listed') {
+    return { key: 'not_participating', label: 'Não participa da disputa', description: 'Não há preço para ganhar fora da competição.' };
+  }
+  if (status === 'competing') {
+    return { key: 'not_suggested', label: 'Sem sugestão de preço', description: 'Confira os outros critérios da disputa.' };
+  }
+  return { key: 'unavailable', label: 'Consulta indisponível', description: 'Atualize os dados para consultar novamente.' };
+}
+
+const CATALOG_COMPETITION_REASON_LABELS: Record<string, string> = {
+  non_trusted_seller: 'A conta não está habilitada pelo Mercado Livre para competir.',
+  reputation_below_threshold: 'A reputação da conta ainda não atende ao nível exigido para competir.',
+  item_reputation_below_threshold: 'O desempenho deste anúncio ainda não atende ao nível exigido para competir.',
+  winner_has_better_reputation: 'O anúncio vencedor possui reputação melhor neste momento.',
+  manufacturing_time: 'O prazo de disponibilidade impede competir com anúncios de estoque imediato.',
+  temporarily_winning_manufacturing_time: 'O anúncio lidera temporariamente, mas possui prazo de disponibilidade.',
+  temporarily_competing_manufacturing_time: 'O anúncio compete temporariamente com prazo de disponibilidade.',
+  temporarily_winning_best_reputation_available: 'O anúncio lidera temporariamente por ter a melhor reputação disponível.',
+  temporarily_competing_best_reputation_available: 'O anúncio compete temporariamente com a melhor reputação disponível.',
+  item_paused: 'O anúncio está pausado e não pode participar da disputa.',
+  item_not_opted_in: 'O anúncio não foi incluído no catálogo e não participa da disputa.',
+  shipping_mode: 'A modalidade de envio é menos competitiva que a do anúncio vencedor.',
+  newbie_program_seller: 'A conta atingiu o limite temporário de vendas definido pelo Mercado Livre.',
+};
+
+export function catalogCompetitionReasonPresentation(reason: unknown): string {
+  const normalized = String(reason || '').trim().toLowerCase();
+  return CATALOG_COMPETITION_REASON_LABELS[normalized]
+    || 'O Mercado Livre informou outro critério que impede a competição.';
 }
 
 export function catalogBoostPresentation(status: unknown): CatalogBoostState {

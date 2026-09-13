@@ -4,9 +4,12 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
 import {
-  buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin, resolveCatalogLocalProduct,
+  buildCatalogEnrichment, catalogListingObservation, extractCatalogCandidateSku, extractCatalogGtin,
+  resolveCatalogLocalProduct,
 } from '@/lib/catalogo/no-catalogo';
-import { CATALOG_REFRESH_BATCH_SIZE, normalizeCatalogRefreshItemIds } from '@/lib/catalogo/refresh-batch';
+import {
+  buildCatalogScanPath, CATALOG_REFRESH_BATCH_SIZE, normalizeCatalogRefreshItemIds,
+} from '@/lib/catalogo/refresh-batch';
 
 const PAGE_SIZE = 100;
 const MAX_INCREMENTAL_PAGES = 10;
@@ -15,7 +18,6 @@ const MULTIGET_CHUNK_SIZE = 20;
 const MULTIGET_CONCURRENCY = 4;
 const UPSERT_CHUNK_SIZE = 200;
 const DELETE_CHUNK_SIZE = 500;
-const ML_SCAN_PAGE_SIZE = 100;
 
 async function runPool<T>(
   items: T[],
@@ -100,13 +102,20 @@ async function fetchAllCatalogListingItemIds(sellerId: string | number): Promise
 }> {
   const uniqueIds = new Set<string>();
   let scrollId: string | null = null;
+  let expectedTotal: number | null = null;
 
   while (true) {
-    const requestPath: string = scrollId
-      ? `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
-      : `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}&catalog_listing=true`;
+    const requestPath = buildCatalogScanPath(sellerId, scrollId);
 
-    const searchResult: Awaited<ReturnType<typeof fetchMLResult<{ results?: string[]; scroll_id?: string | null }>>> = await fetchMLResult<{ results?: string[]; scroll_id?: string | null }>(requestPath);
+    const searchResult: Awaited<ReturnType<typeof fetchMLResult<{
+      results?: string[];
+      scroll_id?: string | null;
+      paging?: { total?: number | null };
+    }>>> = await fetchMLResult<{
+      results?: string[];
+      scroll_id?: string | null;
+      paging?: { total?: number | null };
+    }>(requestPath);
     if (!searchResult.ok || !searchResult.data) {
       return {
         ok: false,
@@ -119,12 +128,28 @@ async function fetchAllCatalogListingItemIds(sellerId: string | number): Promise
     const ids = Array.isArray(searchResult.data.results)
       ? searchResult.data.results.map((id: string) => String(id || '').trim()).filter(Boolean)
       : [];
+    const reportedTotal = Number(searchResult.data.paging?.total);
+    if (!Number.isSafeInteger(reportedTotal) || reportedTotal < 0) {
+      return { ok: false, itemIds: [], error: 'O Mercado Livre não informou o total do catálogo.' };
+    }
+    if (expectedTotal === null) {
+      expectedTotal = reportedTotal;
+    } else if (reportedTotal !== expectedTotal) {
+      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre perdeu o filtro de catálogo.' };
+    }
 
     for (const id of ids) uniqueIds.add(id);
 
+    if (uniqueIds.size > expectedTotal) {
+      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre retornou anúncios além do catálogo.' };
+    }
+    if (uniqueIds.size === expectedTotal) {
+      return { ok: true, itemIds: Array.from(uniqueIds) };
+    }
+
     const nextScrollId: string = String(searchResult.data.scroll_id || '').trim();
     if (!nextScrollId || ids.length === 0) {
-      return { ok: true, itemIds: Array.from(uniqueIds) };
+      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre terminou antes de carregar todo o catálogo.' };
     }
 
     scrollId = nextScrollId;
@@ -207,6 +232,7 @@ export async function POST(request: Request) {
 
   const warnings: string[] = [];
   let competitionUnavailable = 0;
+  let catalogMismatchesCorrected = 0;
   const allItemIds: string[] = [];
   let totalMl = 0;
 
@@ -288,7 +314,7 @@ export async function POST(request: Request) {
   const itemIdChunks = chunk(allItemIds, MULTIGET_CHUNK_SIZE);
   await runPool(itemIdChunks, MULTIGET_CONCURRENCY, async (itemIdsChunk) => {
     const itemResult = await fetchMLResult<Array<MlItemsBulkRow<any>>>(
-      buildMlItemsBulkPath(itemIdsChunk, ['id', 'title', 'seller_custom_field', 'attributes', 'status', 'price', 'permalink', 'thumbnail', 'category_id', 'domain_id', 'catalog_product_id', 'last_updated', 'item_relations']),
+      buildMlItemsBulkPath(itemIdsChunk, ['id', 'title', 'seller_custom_field', 'attributes', 'status', 'price', 'permalink', 'thumbnail', 'category_id', 'domain_id', 'catalog_product_id', 'catalog_listing', 'last_updated', 'item_relations']),
     );
     if (!itemResult.ok || !Array.isArray(itemResult.data)) {
       for (const itemId of itemIdsChunk) {
@@ -302,6 +328,7 @@ export async function POST(request: Request) {
       const item = getMlItemsBulkBody(row);
       if (!item) continue;
       const itemId = item.id;
+      if (catalogListingObservation(item) === null) continue;
       returnedIds.add(itemId);
       detailsByItemId.set(itemId, item);
     }
@@ -321,15 +348,20 @@ export async function POST(request: Request) {
     });
   });
 
-  const itemIdsWithDetails = allItemIds.filter((itemId) => detailsByItemId.has(itemId));
+  const confirmedCatalogItemIds = allItemIds.filter((itemId) => (
+    catalogListingObservation(detailsByItemId.get(itemId)) === true
+  ));
+  catalogMismatchesCorrected = allItemIds.filter((itemId) => (
+    catalogListingObservation(detailsByItemId.get(itemId)) === false
+  )).length;
   await reportProgress({
     stage: 'fetch_price_to_win',
     message: 'Consultando preço para ganhar no Mercado Livre.',
     processed: 0,
-    total: itemIdsWithDetails.length,
+    total: confirmedCatalogItemIds.length,
     progress: 32,
   });
-  await runPool(itemIdsWithDetails, DETAIL_CONCURRENCY, async (itemId) => {
+  await runPool(confirmedCatalogItemIds, DETAIL_CONCURRENCY, async (itemId) => {
     const priceResult = await fetchMLResult<any>(`/items/${itemId}/price_to_win?version=v2`);
     if (!priceResult.ok || !priceResult.data) {
       const previous = previousCompetitionByItemId.get(itemId);
@@ -356,7 +388,7 @@ export async function POST(request: Request) {
 
   const relatedIds = new Set<string>();
   const relatedItemIdByCatalogId = new Map<string, string>();
-  for (const itemId of allItemIds) {
+  for (const itemId of confirmedCatalogItemIds) {
     const detail = detailsByItemId.get(itemId);
     if (!detail) continue;
     const relatedId = buildCatalogEnrichment({
@@ -471,10 +503,11 @@ export async function POST(request: Request) {
     const item = detailsByItemId.get(itemId);
     if (!item) continue;
 
-    const baseRelatedItemId = relatedItemIdByCatalogId.get(itemId) || null;
+    const isCatalogListing = catalogListingObservation(item) === true;
+    const baseRelatedItemId = isCatalogListing ? (relatedItemIdByCatalogId.get(itemId) || null) : null;
     const enrichment = buildCatalogEnrichment({
       item,
-      priceToWinPayload: priceToWinByItemId.get(itemId) || null,
+      priceToWinPayload: isCatalogListing ? (priceToWinByItemId.get(itemId) || null) : null,
       relatedPermalink: baseRelatedItemId ? (relatedPermalinkById.get(baseRelatedItemId) || null) : null,
     });
     const directListing = anuncioMap.get(itemId);
@@ -492,21 +525,21 @@ export async function POST(request: Request) {
     upsertRows.push({
       ml_item_id: String(item.id),
       seller_id: sellerId,
-      catalog_listing: true,
+      catalog_listing: isCatalogListing,
       title: item.title || null,
       status: item.status || null,
       price: Number(item.price || 0),
-      price_to_win: enrichment.priceToWin,
-      buy_box_status: enrichment.buyBoxStatus,
-      buy_box_winning: enrichment.buyBoxWinning,
+      price_to_win: isCatalogListing ? enrichment.priceToWin : null,
+      buy_box_status: isCatalogListing ? enrichment.buyBoxStatus : null,
+      buy_box_winning: isCatalogListing ? enrichment.buyBoxWinning : false,
       permalink: item.permalink || null,
       thumbnail: item.thumbnail || null,
       seller_sku: getSellerSkuFromItem(item),
       catalog_product_id: item.catalog_product_id || null,
       category_id: item.category_id || null,
       domain_id: item.domain_id || null,
-      related_item_id: enrichment.relatedItemId,
-      related_permalink: enrichment.relatedPermalink,
+      related_item_id: isCatalogListing ? enrichment.relatedItemId : null,
+      related_permalink: isCatalogListing ? enrichment.relatedPermalink : null,
       produto_id: localProduct.produtoId,
       sku_local: localProduct.sku,
       last_updated_ml: item.last_updated || null,
@@ -593,9 +626,11 @@ export async function POST(request: Request) {
     total_ml: totalMl,
     duration_ms: duration,
     warnings,
+    catalog_mismatches_corrected: catalogMismatchesCorrected,
     issues: {
       details_unavailable: failedItemIds.size,
       competition_unavailable: competitionUnavailable,
+      non_catalog_corrected: catalogMismatchesCorrected,
     },
     ...(internalAction === 'batch' ? { failed_item_ids: Array.from(failedItemIds) } : {}),
   };

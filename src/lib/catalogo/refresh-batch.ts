@@ -1,6 +1,18 @@
 export const CATALOG_REFRESH_BATCH_SIZE = 100;
 export const CATALOG_REFRESH_MAX_FAILURES = 3;
 export const CATALOG_REFRESH_ITEM_MAX_ATTEMPTS = 3;
+export const CATALOG_SCAN_PAGE_SIZE = 100;
+
+export function buildCatalogScanPath(sellerId: string | number, scrollId?: string | null): string {
+  const params = new URLSearchParams({
+    search_type: 'scan',
+    limit: String(CATALOG_SCAN_PAGE_SIZE),
+    catalog_listing: 'true',
+  });
+  const normalizedScrollId = String(scrollId || '').trim();
+  if (normalizedScrollId) params.set('scroll_id', normalizedScrollId);
+  return `/users/${encodeURIComponent(String(sellerId))}/items/search?${params.toString()}`;
+}
 
 export function calculateCatalogRefreshProgress(processed: number, total: number): number {
   const safeTotal = Math.max(1, Math.trunc(Number(total) || 0));

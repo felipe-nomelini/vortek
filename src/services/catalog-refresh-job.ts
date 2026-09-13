@@ -140,6 +140,11 @@ async function finalizeRefresh(input: {
     (sum, entry) => sum + Number(entry?.competition_unavailable_count || 0),
     0,
   );
+  const catalogMismatchCount = input.logs.reduce(
+    (sum, entry) => sum + Number(entry?.catalog_mismatch_count || 0),
+    0,
+  );
+  const nonCatalogCorrectedCount = catalogMismatchCount + Number(removed || 0);
   const outcome = calculateCatalogRefreshOutcome({
     total: input.total,
     detailsUnavailable: Number(detailsUnavailableCount || 0),
@@ -164,7 +169,7 @@ async function finalizeRefresh(input: {
   }));
   input.logs.push(progressEvent({
     stage: 'save_snapshot',
-    message: `${outcome.updated} anúncios atualizados; ${Number(removed || 0)} anúncios que saíram do catálogo foram identificados.`,
+    message: `${outcome.updated} anúncios atualizados; ${nonCatalogCorrectedCount} anúncios que não pertencem mais ao catálogo foram corrigidos.`,
     processed: input.total,
     total: input.total,
     progress: 99,
@@ -183,6 +188,7 @@ async function finalizeRefresh(input: {
     extra: {
       details_unavailable_count: outcome.detailsUnavailable,
       competition_unavailable_count: competitionUnavailableCount,
+      non_catalog_corrected_count: nonCatalogCorrectedCount,
       updated_count: outcome.updated,
     },
   }));
@@ -209,6 +215,7 @@ async function finalizeRefresh(input: {
     updated: outcome.updated,
     detailsUnavailable: outcome.detailsUnavailable,
     competitionUnavailable: competitionUnavailableCount,
+    nonCatalogCorrected: nonCatalogCorrectedCount,
   };
 }
 
@@ -242,6 +249,7 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
       }
       const detailsUnavailable = Number(incremental.body?.issues?.details_unavailable || 0);
       const competitionUnavailable = Number(incremental.body?.issues?.competition_unavailable || 0);
+      const nonCatalogCorrected = Number(incremental.body?.issues?.non_catalog_corrected || 0);
       const issueCount = detailsUnavailable + competitionUnavailable;
       const processed = Number(incremental.body?.processed || 0);
       const status = processed > 0 && detailsUnavailable >= processed
@@ -261,6 +269,7 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
         extra: {
           details_unavailable_count: detailsUnavailable,
           competition_unavailable_count: competitionUnavailable,
+          non_catalog_corrected_count: nonCatalogCorrected,
         },
       }));
       await service.from('jobs').update({
@@ -298,7 +307,10 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
 
       const itemIds = normalizeCatalogRefreshItemIds(manifest.body?.item_ids);
       sellerId = Number(manifest.body?.seller_id || 0);
-      if (!sellerId || itemIds.length === 0) throw new Error('Manifesto do catálogo retornou vazio ou inválido.');
+      if (!sellerId) throw new Error('Manifesto do catálogo retornou vendedor inválido.');
+      if (itemIds.length === 0) {
+        return await finalizeRefresh({ jobId, sellerId, logs, total: 0 });
+      }
 
       for (let index = 0; index < itemIds.length; index += QUEUE_INSERT_SIZE) {
         const rows = itemIds.slice(index, index + QUEUE_INSERT_SIZE).map((mlItemId: string, offset: number) => ({
@@ -436,6 +448,7 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
     }
 
     const competitionUnavailable = Number(batch.body?.issues?.competition_unavailable || 0);
+    const catalogMismatchCount = Number(batch.body?.issues?.non_catalog_corrected || 0);
     if (competitionUnavailable > 0 || failedIds.size > 0) {
       logs.push(progressEvent({
         stage: 'fetch_price_to_win',
@@ -466,7 +479,10 @@ export async function runCatalogRefreshJobBatch(jobId: string) {
       processed,
       total,
       progress,
-      extra: { event_type: 'catalog_refresh_batch_completed' },
+      extra: {
+        event_type: 'catalog_refresh_batch_completed',
+        catalog_mismatch_count: catalogMismatchCount,
+      },
     }));
 
     if (processed >= total) {

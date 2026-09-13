@@ -7,11 +7,14 @@ const {
   buildCatalogOptinTargets,
   catalogBoostPresentation,
   catalogCompetitionPresentation,
+  catalogCompetitionReasonPresentation,
   catalogOperationalPresentation,
+  catalogPriceToWinPresentation,
   classifyCatalogEligibility,
 } = require('../src/lib/catalogo/dashboard.ts');
 const {
   buildMercadoLivreCatalogProductUrl,
+  catalogListingObservation,
   resolveCatalogLocalProduct,
 } = require('../src/lib/catalogo/no-catalogo.ts');
 
@@ -19,9 +22,30 @@ test('apresenta separadamente todos os estados oficiais da competição', () => 
   assert.equal(catalogCompetitionPresentation('winning').label, 'Ganhando');
   assert.equal(catalogCompetitionPresentation('sharing_first_place').label, 'Dividindo 1º lugar');
   assert.equal(catalogCompetitionPresentation('competing').label, 'Competindo');
-  assert.equal(catalogCompetitionPresentation('listed').label, 'Fora da competição');
-  assert.equal(catalogCompetitionPresentation('not_listed').label, 'Fora da competição');
+  assert.equal(catalogCompetitionPresentation('listed').label, 'Impedido de competir');
+  assert.equal(catalogCompetitionPresentation('not_listed').label, 'Não participa da disputa');
   assert.equal(catalogCompetitionPresentation(null).label, 'Estado indisponível');
+});
+
+test('explica por que o preço para ganhar não foi informado', () => {
+  assert.equal(catalogPriceToWinPresentation({ status: 'winning', priceToWin: null }).label, 'Já está ganhando');
+  assert.equal(catalogPriceToWinPresentation({ status: 'listed', priceToWin: null }).label, 'Preço não resolve sozinho');
+  assert.equal(catalogPriceToWinPresentation({ status: 'not_listed', priceToWin: null }).label, 'Não participa da disputa');
+  assert.equal(catalogPriceToWinPresentation({ status: 'competing', priceToWin: null }).label, 'Sem sugestão de preço');
+  assert.equal(catalogPriceToWinPresentation({ status: 'competing', priceToWin: 100 }).key, 'available');
+});
+
+test('traduz motivos oficiais sem expor códigos técnicos', () => {
+  assert.match(catalogCompetitionReasonPresentation('shipping_mode'), /modalidade de envio/i);
+  assert.match(catalogCompetitionReasonPresentation('item_not_opted_in'), /não foi incluído no catálogo/i);
+  assert.doesNotMatch(catalogCompetitionReasonPresentation('unknown_reason'), /unknown_reason/);
+});
+
+test('tipo de anúncio só é confirmado por booleano explícito do detalhe', () => {
+  assert.equal(catalogListingObservation({ catalog_listing: true }), true);
+  assert.equal(catalogListingObservation({ catalog_listing: false }), false);
+  assert.equal(catalogListingObservation({ catalog_listing: 'false' }), null);
+  assert.equal(catalogListingObservation({}), null);
 });
 
 test('classifica elegibilidade sem esconder candidatos bloqueados', () => {
@@ -141,6 +165,9 @@ test('mantém duas rotas com nomes inequívocos e acompanhamento compartilhado',
   assert.match(view, /target="_blank" rel="noopener noreferrer"/);
   assert.match(view, /related_permalink/);
   assert.match(view, /buildMercadoLivreCatalogProductUrl/);
+  assert.match(view, /Sem anúncio padrão relacionado/);
+  assert.match(view, /Este anúncio não participa do catálogo/);
+  assert.doesNotMatch(view, /Atualize para consultar|Não localizado/);
   assert.doesNotMatch(view, /Três identificadores diferentes|Preço e sincronização|Preparar proposta|Reanalisar oportunidades/);
   assert.doesNotMatch(view, /Reanálise de Preço/);
 });

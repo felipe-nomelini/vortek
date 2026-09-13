@@ -13,6 +13,7 @@ type CatalogRefreshInput = {
   total?: unknown;
   detailsUnavailable?: unknown;
   competitionUnavailable?: unknown;
+  nonCatalogCorrected?: unknown;
 };
 
 function count(value: unknown): number {
@@ -25,7 +26,11 @@ export function presentCatalogRefresh(input: CatalogRefreshInput): CatalogRefres
   const total = count(input.total);
   const detailsUnavailable = count(input.detailsUnavailable);
   const competitionUnavailable = count(input.competitionUnavailable);
+  const nonCatalogCorrected = count(input.nonCatalogCorrected);
   const suffix = total > 0 ? ` ${processed.toLocaleString('pt-BR')} de ${total.toLocaleString('pt-BR')} anúncios processados.` : '';
+  const correction = nonCatalogCorrected > 0
+    ? ` ${nonCatalogCorrected.toLocaleString('pt-BR')} classificação${nonCatalogCorrected === 1 ? '' : 'ões'} incorreta${nonCatalogCorrected === 1 ? '' : 's'} foi${nonCatalogCorrected === 1 ? '' : 'ram'} corrigida${nonCatalogCorrected === 1 ? '' : 's'}.`
+    : '';
 
   if (status === 'pendente' || status === 'rodando' || status === 'on_hold') {
     return {
@@ -39,7 +44,7 @@ export function presentCatalogRefresh(input: CatalogRefreshInput): CatalogRefres
     return {
       tone: 'success',
       title: 'Catálogo atualizado',
-      description: `${suffix.trim() || 'Todos os anúncios foram processados.'} Os dados já estão disponíveis para consulta.`,
+      description: `${suffix.trim() || 'Todos os anúncios foram processados.'}${correction} Os dados já estão disponíveis para consulta.`,
     };
   }
 
@@ -51,7 +56,7 @@ export function presentCatalogRefresh(input: CatalogRefreshInput): CatalogRefres
     return {
       tone: 'warning',
       title: 'Catálogo atualizado com pendências',
-      description: `${suffix.trim()}${issues ? ` Ficaram ${issues}.` : ' Alguns anúncios não puderam ser atualizados.'} Os dados anteriores foram preservados.`,
+      description: `${suffix.trim()}${correction}${issues ? ` Ficaram ${issues}.` : ' Alguns anúncios não puderam ser atualizados.'} Os dados anteriores foram preservados.`,
       actionLabel: 'Tentar novamente',
     };
   }

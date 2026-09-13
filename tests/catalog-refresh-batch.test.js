@@ -7,6 +7,8 @@ const {
   CATALOG_REFRESH_BATCH_SIZE,
   CATALOG_REFRESH_ITEM_MAX_ATTEMPTS,
   CATALOG_REFRESH_MAX_FAILURES,
+  CATALOG_SCAN_PAGE_SIZE,
+  buildCatalogScanPath,
   calculateCatalogRefreshProgress,
   calculateCatalogRefreshOutcome,
   getCatalogRefreshFailureStage,
@@ -19,6 +21,34 @@ test('refresh completo usa lotes pequenos e retomáveis', () => {
   assert.equal(CATALOG_REFRESH_BATCH_SIZE, 100);
   assert.equal(CATALOG_REFRESH_MAX_FAILURES, 3);
   assert.equal(CATALOG_REFRESH_ITEM_MAX_ATTEMPTS, 3);
+  assert.equal(CATALOG_SCAN_PAGE_SIZE, 100);
+});
+
+test('scan preserva filtro e limite do catálogo em todas as páginas', () => {
+  const first = new URL(buildCatalogScanPath(123), 'https://api.mercadolibre.com');
+  const next = new URL(buildCatalogScanPath(123, 'cursor com espaços'), 'https://api.mercadolibre.com');
+
+  for (const url of [first, next]) {
+    assert.equal(url.pathname, '/users/123/items/search');
+    assert.equal(url.searchParams.get('search_type'), 'scan');
+    assert.equal(url.searchParams.get('catalog_listing'), 'true');
+    assert.equal(url.searchParams.get('limit'), '100');
+  }
+  assert.equal(first.searchParams.has('scroll_id'), false);
+  assert.equal(next.searchParams.get('scroll_id'), 'cursor com espaços');
+});
+
+test('refresh confirma o tipo no detalhe antes de gravar catálogo', () => {
+  const routeSource = fs.readFileSync(
+    path.join(__dirname, '../src/app/api/catalogo/no-catalogo/refresh/route.ts'),
+    'utf8',
+  );
+
+  assert.match(routeSource, /buildCatalogScanPath\(sellerId, scrollId\)/);
+  assert.match(routeSource, /'catalog_product_id', 'catalog_listing', 'last_updated'/);
+  assert.match(routeSource, /catalogListingObservation\(detailsByItemId\.get\(itemId\)\) === true/);
+  assert.match(routeSource, /catalog_listing: isCatalogListing/);
+  assert.match(routeSource, /price_to_win: isCatalogListing \? enrichment\.priceToWin : null/);
 });
 
 test('cada anúncio tem até três tentativas antes de encerrar com os dados anteriores', () => {

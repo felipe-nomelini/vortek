@@ -345,7 +345,8 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
   const evaluationId = await recordPricingEvaluation(service, product.id, user.id, pricing, competitiveAssessment, decision);
   if (decision) await syncPricingAlerts(service, evaluationId, decision, competitiveAssessment);
   return json({ success: true, evaluationId, decisionContext: decision, protection, mlItemId: itemId,
-    competitionItemId, currentPrice: currentPrice === null ? null : currentPrice / 100,
+    competitionItemId, catalogListing: item ? item.catalog_listing === true : null,
+    currentPrice: currentPrice === null ? null : currentPrice / 100,
     currentProfit: input.priceCents != null && input.priceCents !== currentPrice ? null : view.profit,
     pricing, competitiveAssessment, listingValidation,
     commercialConflicts: competitiveAssessment ? classifyCommercialConflicts({ economy: competitiveAssessment.assessment }) : null,

@@ -89,6 +89,7 @@ export async function GET(request: Request) {
   const summary = {
     detailsUnavailable: Number(completionEvent?.details_unavailable_count || 0),
     competitionUnavailable: Number(completionEvent?.competition_unavailable_count || 0),
+    nonCatalogCorrected: Number(completionEvent?.non_catalog_corrected_count || 0),
     updated: Number(completionEvent?.updated_count ?? job.processados ?? 0),
   };
   const presentation = presentCatalogRefresh({
@@ -97,6 +98,7 @@ export async function GET(request: Request) {
     total: job.total,
     detailsUnavailable: summary.detailsUnavailable,
     competitionUnavailable: summary.competitionUnavailable,
+    nonCatalogCorrected: summary.nonCatalogCorrected,
   });
 
   return NextResponse.json({
