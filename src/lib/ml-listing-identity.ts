@@ -38,6 +38,7 @@ const EXISTING_LISTING_COMMERCIAL_FIELDS = new Set([
 ]);
 export const isMlIdentityAttribute = (id: string) => [...IDENTITY_FIELDS, ...PACK_FIELDS].includes(id);
 const normalizeText = (value: unknown) => String(value ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ');
+const normalizeIdentifier = (value: unknown) => normalizeText(value).replace(/[^a-z0-9]/g, '');
 
 export function mergeMlAttributePrefill(params: {
   prediction?: Record<string, string | undefined>; initial?: Record<string, string | undefined>;
@@ -143,6 +144,14 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
         ...definitions.filter(attribute => isMlIdentityAttribute(attribute.id)).map(attribute => attribute.id),
       ]
     : Object.keys(facts));
+  const localGtin = facts.GTIN?.value ? normalizeMlIdentityValue('GTIN', facts.GTIN.value) : null;
+  const remoteGtins = readMlIdentityAttribute(attributes, 'GTIN', definitions)
+    .map(value => normalizeMlIdentityValue('GTIN', value))
+    .filter((value): value is string => Boolean(value));
+  const exactCatalogGtin = item?.catalog_listing === true
+    && Boolean(localGtin)
+    && new Set(remoteGtins).size === 1
+    && remoteGtins[0] === localGtin;
   for (const field of fields) {
     const fact = facts[field];
     const rawValues = readMlIdentityAttribute(attributes, field, definitions);
@@ -158,9 +167,17 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
     else if ((fact?.value && local === null) || (rawValues.length && remoteValues.includes(null))) { status = 'INCONCLUSIVO'; reason = 'VALOR_INVALIDO'; }
     else if (!local || !remote || !fact?.evidence.length) { status = 'PENDENCIA_VALIDACAO'; reason = 'EVIDENCIA_AUSENTE'; }
     else if (local !== remote) {
+      const modelInCatalogTitle = field === 'MODEL'
+        && exactCatalogGtin
+        && normalizeIdentifier(local).length >= 4
+        && normalizeIdentifier(item?.title).includes(normalizeIdentifier(local));
       const uncertainVoltage = ['VOLTAGE', 'NOMINAL_VOLTAGE'].includes(field) && [local, remote].every(value => ['120v', '127v'].includes(value));
-      status = uncertainVoltage || field === 'SELLER_SKU' ? 'INCONCLUSIVO' : 'CONFLITO_CONFIRMADO';
-      reason = uncertainVoltage ? 'EQUIVALENCIA_NAO_COMPROVADA' : field === 'SELLER_SKU' ? 'SKU_VINCULO_NAO_COMPROVADO' : PACK_FIELDS.includes(field) ? 'CONFLITO_EMBALAGEM_QUANTIDADE' : 'IDENTIDADE_DIVERGENTE';
+      status = modelInCatalogTitle ? 'SEM_CONFLITO'
+        : uncertainVoltage || field === 'SELLER_SKU' ? 'INCONCLUSIVO' : 'CONFLITO_CONFIRMADO';
+      reason = modelInCatalogTitle ? 'MODELO_CONFIRMADO_NO_TITULO_DO_CATALOGO'
+        : uncertainVoltage ? 'EQUIVALENCIA_NAO_COMPROVADA'
+          : field === 'SELLER_SKU' ? 'SKU_VINCULO_NAO_COMPROVADO'
+            : PACK_FIELDS.includes(field) ? 'CONFLITO_EMBALAGEM_QUANTIDADE' : 'IDENTIDADE_DIVERGENTE';
     }
     comparisons.push({ field, dimension: PACK_FIELDS.includes(field) ? 'packaging_quantity' : 'identity', local: fact?.value || null, remote: rawValues.join(' | ') || null, status, reason, evidence });
   }
