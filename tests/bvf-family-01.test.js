@@ -291,7 +291,8 @@ test("pesquisa familiar só aceita JSON com citação literal e exclui marketpla
     return new Response(
       JSON.stringify({
         data: {
-          markdown: "A potência nominal declarada é 120 W.",
+          markdown:
+            "Ventisol Ventilador Turbo. A potência nominal declarada é 120 W.",
           json: {
             facts: [
               {
@@ -337,4 +338,58 @@ test("pesquisa familiar só aceita JSON com citação literal e exclui marketpla
   assert.deepEqual(result.acceptedFacts.map((fact) => fact.key), ["power"]);
   assert.equal(calls.filter((call) => call.url.endsWith("/scrape")).length, 1);
   assert.ok(!calls.some((call) => call.body.url?.includes("mercadolivre")));
+});
+
+test("pesquisa familiar rejeita página sem identidade exata do SKU", async (t) => {
+  const originalFetch = global.fetch;
+  const originalKey = process.env.FIRECRAWL_API_KEY;
+  process.env.FIRECRAWL_API_KEY = "test-key-identity";
+  global.fetch = async (url) => {
+    if (String(url).endsWith("/search")) {
+      return new Response(
+        JSON.stringify({ data: { web: [{ url: "https://fabricante.example/ficha" }] } }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      );
+    }
+    return new Response(
+      JSON.stringify({
+        data: {
+          markdown: "Outro produto, GTIN 7890000000000, potência 120 W.",
+          json: {
+            facts: [
+              {
+                key: "power",
+                value: "120",
+                unit: "W",
+                quote: "potência 120 W",
+              },
+            ],
+          },
+        },
+      }),
+      { status: 200, headers: { "content-type": "application/json" } },
+    );
+  };
+  t.after(() => {
+    global.fetch = originalFetch;
+    if (originalKey === undefined) delete process.env.FIRECRAWL_API_KEY;
+    else process.env.FIRECRAWL_API_KEY = originalKey;
+  });
+  const { researchBvfFamilyMemberFacts } = load(
+    "src/services/video-factory/family-research.ts",
+    {
+      "server-only": {},
+      "@/lib/video-factory/contracts": contracts,
+    },
+  );
+  const result = await researchBvfFamilyMemberFacts({
+    productId: ids.second,
+    name: "Ventilador Turbo",
+    brand: "Ventisol",
+    gtin: "7899999999999",
+    supplierSkus: [],
+    missingFields: ["power"],
+  });
+  assert.equal(result.status, "no_match");
+  assert.deepEqual(result.acceptedFacts, []);
 });

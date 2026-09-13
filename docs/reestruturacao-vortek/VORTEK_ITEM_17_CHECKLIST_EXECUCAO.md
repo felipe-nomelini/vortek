@@ -4097,8 +4097,8 @@ publicação da coorte autorizada pelo usuário.
 
 ### BVF — Bentevi Video Factory — 13/09/2026
 
-**Estado: BASE TÉCNICA V1 E BRIEFING/FACTUAL ENGINE IMPLEMENTADAS E PUBLICADAS;
-as capacidades restantes devem avançar uma ação por tarefa.**
+**Estado: BASE V1, BRIEFING/FACTUAL ENGINE E FAMILY ENGINE IMPLEMENTADAS E
+PUBLICADAS; as capacidades restantes devem avançar uma ação por tarefa.**
 
 - [x] Auditar o SQL inicial contra o schema, PKs/FKs, migrations, timestamps,
   RLS, RBAC, Storage, arquitetura, jobs e padrões reais do Bentevi;
@@ -4122,7 +4122,7 @@ Fila BVF pendente, nesta ordem:
 - [x] `BVF-BRIEF-01` — implementar a Briefing/Factual Engine server-side, com
   origem por fato/claim, ausência explícita, dimensões físicas verificadas,
   `scale_anchor` e briefing versionado sujeito à aprovação humana;
-- [ ] `BVF-FAMILY-01` — implementar famílias e detecção de atributos variáveis,
+- [x] `BVF-FAMILY-01` — implementar famílias e detecção de atributos variáveis,
   produzindo `variation_safe`/`variation_unsafe` e impedindo atributos inseguros
   em fala, texto na tela, fechamento e claims;
 - [ ] `BVF-WORKFLOW-01` — implementar APIs backend e state machine autorizada,
@@ -4157,6 +4157,16 @@ domínios críticos mantiveram as contagens do preflight.
 
 [Decisões, contrato e evidências do BRIEF-01](../video-factory/BVF_BRIEF_01_IMPLEMENTACAO.md).
 
-**Próxima ação recomendada:** executar somente `BVF-FAMILY-01`. Até os gates
+**Evidência de `BVF-FAMILY-01`:** código funcional no SHA `a5ee05d3`; migration
+`20260913200000_bvf_family_01` aplicada e registrada no `.162`, com hash igual ao
+arquivo; sugestão e revisão humana, composição temporal, análise append-only e
+briefing familiar validados por teste transacional com rollback; 28 testes BVF,
+`npm run validate`, build, secrets e read-back aprovados. Nenhuma família,
+sugestão, análise, job ou briefing de fixture permaneceu, e os cinco domínios
+operacionais conferidos mantiveram as contagens do preflight.
+
+[Decisões, contrato e evidências da FAMILY-01](../video-factory/BVF_FAMILY_01_IMPLEMENTACAO.md).
+
+**Próxima ação recomendada:** executar somente `BVF-WORKFLOW-01`. Até os gates
 correspondentes, a BVF continua sem geração paga, master final ou publicação no
 Mercado Livre; essas ações exigem aprovação humana e permanecem desabilitadas.

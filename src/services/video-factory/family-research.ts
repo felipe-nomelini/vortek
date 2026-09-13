@@ -141,6 +141,44 @@ function quoteExists(markdown: string, quote: string): boolean {
   return normalizedQuote.length >= 3 && normalizedMarkdown.includes(normalizedQuote);
 }
 
+function normalizedIdentityText(value: unknown): string {
+  return clean(value, 100_000)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function exactProductIdentityPresent(
+  markdown: string,
+  input: BvfFamilyResearchInput,
+): boolean {
+  const page = normalizedIdentityText(markdown);
+  const identifiers = [input.gtin, ...input.supplierSkus]
+    .map((value) => normalizedIdentityText(value).replace(/\s+/g, ""))
+    .filter((value) => value.length >= 5);
+  if (identifiers.length) {
+    const compactPage = page.replace(/\s+/g, "");
+    return identifiers.some((identifier) => compactPage.includes(identifier));
+  }
+
+  const brandTokens = normalizedIdentityText(input.brand)
+    .split(" ")
+    .filter((token) => token.length >= 2);
+  const brandMatches = !brandTokens.length || brandTokens.every((token) => page.includes(token));
+  const nameTokens = normalizedIdentityText(input.name)
+    .split(" ")
+    .filter((token) => token.length >= 4 && !brandTokens.includes(token));
+  const requiredNameMatches = Math.min(2, nameTokens.length);
+  return (
+    brandMatches &&
+    requiredNameMatches > 0 &&
+    nameTokens.filter((token) => page.includes(token)).length >= requiredNameMatches
+  );
+}
+
 async function scrape(
   candidate: SearchCandidate,
   input: BvfFamilyResearchInput,
@@ -193,7 +231,13 @@ async function scrape(
   const payload = await response.json();
   const markdown = String(payload?.data?.markdown ?? "");
   const extracted = payload?.data?.json?.facts;
-  if (!markdown || !Array.isArray(extracted)) return null;
+  if (
+    !markdown ||
+    !Array.isArray(extracted) ||
+    !exactProductIdentityPresent(markdown, input)
+  ) {
+    return null;
+  }
 
   const accepted = new Set(input.missingFields);
   const collectedAt = new Date().toISOString();
