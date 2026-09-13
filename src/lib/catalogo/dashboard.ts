@@ -148,8 +148,9 @@ export function catalogOperationalPresentation(row: Record<string, unknown>): Ca
       description: 'O anúncio não está ativo para receber vendas.', actionLabel: 'Revisar anúncio', tone: 'negative' };
   }
   if (!String(row.produto_id || '').trim()) {
-    return { key: 'missing_product', needsAction: true, label: 'Sem vínculo Bentevi',
-      description: 'Não é possível calcular o resultado sem identificar o produto.', actionLabel: 'Revisar vínculo', tone: 'negative' };
+    return { key: 'missing_product', needsAction: true, label: 'Produto não identificado no Bentevi',
+      description: 'Não encontramos o produto local correspondente. Sem ele, não é possível calcular o resultado.',
+      actionLabel: 'Revisar produto', tone: 'negative' };
   }
   if (!competition) {
     return { key: 'competition_unavailable', needsAction: true, label: 'Competição não informada',

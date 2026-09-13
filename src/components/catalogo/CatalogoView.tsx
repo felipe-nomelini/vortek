@@ -8,7 +8,7 @@ import {
 } from 'antd';
 import type { TableProps } from 'antd';
 import {
-  ArrowRightOutlined, EyeOutlined, FilePdfOutlined, LoadingOutlined,
+  ArrowRightOutlined, ExportOutlined, EyeOutlined, FilePdfOutlined, LoadingOutlined,
   ReloadOutlined, SearchOutlined, ShopOutlined,
 } from '@ant-design/icons';
 import ResizableTable from '@/components/ResizableTable';
@@ -21,6 +21,7 @@ import {
   type CatalogOperationalView, type CatalogOptinTarget, type CatalogVariationEligibility,
 } from '@/lib/catalogo/dashboard';
 import type { CatalogRefreshPresentation } from '@/lib/catalogo/refresh-presentation';
+import { buildMercadoLivreCatalogProductUrl } from '@/lib/catalogo/no-catalogo';
 import { userSafeMessage } from '@/lib/user-feedback';
 import styles from './CatalogoView.module.css';
 
@@ -98,14 +99,14 @@ const eligibilityOptions = [
   { value: 'all', label: 'Todas as situações' }, { value: 'ready', label: 'Prontos para criar' },
   { value: 'review_required', label: 'Revisão necessária' },
   { value: 'catalog_product_unavailable', label: 'Produto indisponível' },
-  { value: 'local_product_missing', label: 'Sem vínculo Bentevi' },
+  { value: 'local_product_missing', label: 'Produto não identificado' },
 ];
 
 function eligibilityPresentation(state: CatalogEligibilityActionState) {
   if (state === 'ready') return { label: 'Pronto para criar', color: 'green', action: 'Criar anúncio' };
   if (state === 'review_required') return { label: 'Revisão necessária', color: 'orange', action: 'Ver o que revisar' };
   if (state === 'catalog_product_unavailable') return { label: 'Produto indisponível', color: 'red', action: 'Ver impedimento' };
-  return { label: 'Sem vínculo Bentevi', color: 'default', action: 'Ver vínculo' };
+  return { label: 'Produto não identificado no Bentevi', color: 'default', action: 'Revisar produto' };
 }
 function variationEligibilityLabel(status: unknown) {
   const value = String(status || '').trim().toUpperCase();
@@ -124,6 +125,15 @@ function boostLabel(boost: { id: string; description: string }) {
 }
 function formatDate(value?: string | null) {
   return value && Number.isFinite(Date.parse(value)) ? new Date(value).toLocaleString('pt-BR') : 'Não informado';
+}
+function MercadoLivreCodeLink({ code, href, label }: { code?: string | null; href?: string | null; label: string }) {
+  const normalizedCode = String(code || '').trim();
+  if (!normalizedCode) return <>Não informado</>;
+  if (!href) return <span title={`Link de ${label.toLowerCase()} indisponível`}>{normalizedCode}</span>;
+  return <a className={styles.mlCodeLink} href={href} target="_blank" rel="noopener noreferrer"
+    title={`Abrir ${label.toLowerCase()} no Mercado Livre`}>
+    {normalizedCode}<ExportOutlined aria-hidden />
+  </a>;
 }
 function priceMemory(detail: PriceDetail | null | undefined) {
   const memory = detail?.pricing?.current?.memory;
@@ -436,7 +446,8 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         {row.thumbnail ? <Image src={row.thumbnail} alt="" width={48} height={48} preview={false} className={styles.thumbnail} />
           : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}
         <div><strong>{row.produto_nome || row.title || 'Produto não identificado'}</strong><span>{row.title}</span>
-          <small>SKU {row.sku_local || 'não informado'} · {row.ml_item_id}</small></div>
+          <small>SKU {row.sku_local || 'não informado'} · <MercadoLivreCodeLink code={row.ml_item_id}
+            href={visualReview ? null : row.permalink} label="Anúncio de catálogo" /></small></div>
       </div>) },
     { title: 'Situação', key: 'situation', width: 230, render: (_, row) => (
       <div className={styles.situationCell}><span className={`${styles.statusDot} ${styles[row.operational.tone]}`} />
@@ -450,14 +461,15 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => (
       <Button type={row.operational.needsAction ? 'primary' : 'default'} icon={<ArrowRightOutlined />}
         onClick={() => void loadPriceDetail(row)}>{row.operational.actionLabel}</Button>) },
-  ], [loadPriceDetail]);
+  ], [loadPriceDetail, visualReview]);
   const eligibleColumns: TableProps<ElegivelRow>['columns'] = useMemo(() => [
     { title: 'Produto e anúncio padrão', key: 'listing', width: 390, render: (_, row) => (
       <div className={styles.listingCell}>
         {row.thumbnail ? <Image src={row.thumbnail} alt="" width={48} height={48} preview={false} className={styles.thumbnail} />
           : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}
         <div><strong>{row.local_product_name || row.title || 'Produto não identificado'}</strong><span>{row.title}</span>
-          <small>SKU {row.seller_sku || 'não informado'} · {row.ml_item_id}</small></div>
+          <small>SKU {row.seller_sku || 'não informado'} · <MercadoLivreCodeLink code={row.ml_item_id}
+            href={visualReview ? null : row.permalink} label="Anúncio padrão" /></small></div>
       </div>) },
     { title: 'Situação', key: 'eligibility', width: 280, render: (_, row) => {
       const presentation = eligibilityPresentation(row.state);
@@ -466,13 +478,15 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     } },
     { title: 'Produto de catálogo', key: 'catalogProduct', width: 280, render: (_, row) => (
       <div className={styles.stackCell}><strong>{row.catalog_product_name_sugerido || row.catalog_product_name || 'Não identificado'}</strong>
-        <small>{row.catalog_product_id_sugerido || row.catalog_product_id || 'Código não informado'}</small></div>) },
+        <small><MercadoLivreCodeLink code={row.catalog_product_id_sugerido || row.catalog_product_id}
+          href={visualReview ? null : buildMercadoLivreCatalogProductUrl(row.catalog_product_id_sugerido || row.catalog_product_id)}
+          label="Produto de catálogo" /></small></div>) },
     { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => {
       const presentation = eligibilityPresentation(row.state);
       return <Button type={row.state === 'ready' && createEnabled ? 'primary' : 'default'} icon={<EyeOutlined />}
         onClick={() => setActiveEligible(row)}>{row.state === 'ready' && !createEnabled ? 'Ver detalhes' : presentation.action}</Button>;
     } },
-  ], [createEnabled]);
+  ], [createEnabled, visualReview]);
   const handleCatalogTableChange: TableProps<NoCatalogoRow>['onChange'] = (pagination, _filters, sorter) => {
     setPage(Number(pagination.current || 1));
     const current = Array.isArray(sorter) ? sorter[0] : sorter;
@@ -614,9 +628,15 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
           {priceDetail?.automaticPricing?.active && <Text type="warning">O preço automático do Mercado Livre está ativo.</Text>}</section>
 
         <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
-          <div><dt>Anúncio de catálogo</dt><dd>{activeCatalog.ml_item_id}</dd></div>
-          <div><dt>Anúncio padrão</dt><dd>{activeCatalog.relacionado_id || 'Não localizado'}</dd></div>
-          <div><dt>Produto de catálogo</dt><dd>{activeCatalog.catalog_product_id || 'Não informado'}</dd></div>
+          <div><dt>Anúncio de catálogo</dt><dd><MercadoLivreCodeLink code={activeCatalog.ml_item_id}
+            href={visualReview ? null : activeCatalog.permalink} label="Anúncio de catálogo" /></dd></div>
+          <div><dt>Anúncio padrão</dt><dd>{activeCatalog.relacionado_id
+            ? <MercadoLivreCodeLink code={activeCatalog.relacionado_id}
+              href={visualReview ? null : activeCatalog.related_permalink} label="Anúncio padrão" />
+            : 'Não localizado'}</dd></div>
+          <div><dt>Produto de catálogo</dt><dd><MercadoLivreCodeLink code={activeCatalog.catalog_product_id}
+            href={visualReview ? null : buildMercadoLivreCatalogProductUrl(activeCatalog.catalog_product_id)}
+            label="Produto de catálogo" /></dd></div>
           <div><dt>SKU Bentevi</dt><dd>{activeCatalog.sku_local || 'Não informado'}</dd></div>
           <div><dt>Última consulta</dt><dd>{formatDate(priceDetail?.catalog?.syncedAt || activeCatalog.last_updated)}</dd></div>
         </dl>{(priceDetail?.catalog?.boosts || []).length > 0 && <div className={styles.allBoosts}>
@@ -658,9 +678,13 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         {activeEligible.state === 'ready' && createEnabled && <Button type="primary" size="large"
           onClick={() => confirmOptin([activeEligible])}>Criar anúncio de catálogo</Button>}
         <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
-          <div><dt>Anúncio padrão</dt><dd>{activeEligible.ml_item_id}</dd></div>
-          <div><dt>Produto de catálogo</dt><dd>{activeEligible.catalog_product_id_sugerido
-            || activeEligible.catalog_product_id || 'Não informado'}</dd></div>
+          <div><dt>Anúncio padrão</dt><dd><MercadoLivreCodeLink code={activeEligible.ml_item_id}
+            href={visualReview ? null : activeEligible.permalink} label="Anúncio padrão" /></dd></div>
+          <div><dt>Produto de catálogo</dt><dd><MercadoLivreCodeLink
+            code={activeEligible.catalog_product_id_sugerido || activeEligible.catalog_product_id}
+            href={visualReview ? null : buildMercadoLivreCatalogProductUrl(
+              activeEligible.catalog_product_id_sugerido || activeEligible.catalog_product_id,
+            )} label="Produto de catálogo" /></dd></div>
           <div><dt>SKU</dt><dd>{activeEligible.seller_sku || 'Não informado'}</dd></div>
         </dl></details>
       </div>}

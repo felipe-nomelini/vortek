@@ -3,7 +3,9 @@ import { persistPricingObservations } from '@/services/pricing-audit';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
-import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
+import {
+  buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin, resolveCatalogLocalProduct,
+} from '@/lib/catalogo/no-catalogo';
 import { CATALOG_REFRESH_BATCH_SIZE, normalizeCatalogRefreshItemIds } from '@/lib/catalogo/refresh-batch';
 
 const PAGE_SIZE = 100;
@@ -353,6 +355,7 @@ export async function POST(request: Request) {
   });
 
   const relatedIds = new Set<string>();
+  const relatedItemIdByCatalogId = new Map<string, string>();
   for (const itemId of allItemIds) {
     const detail = detailsByItemId.get(itemId);
     if (!detail) continue;
@@ -361,7 +364,10 @@ export async function POST(request: Request) {
       priceToWinPayload: null,
       relatedPermalink: null,
     }).relatedItemId;
-    if (relatedId) relatedIds.add(relatedId);
+    if (relatedId) {
+      relatedIds.add(relatedId);
+      relatedItemIdByCatalogId.set(itemId, relatedId);
+    }
   }
 
   const relatedPermalinkById = new Map<string, string | null>();
@@ -402,7 +408,8 @@ export async function POST(request: Request) {
   });
 
   const anuncioMap = new Map<string, { produto_id: string | null; sku: string | null }>();
-  for (const idsChunk of chunk(allItemIds, 500)) {
+  const listingIdsForLocalLink = Array.from(new Set([...allItemIds, ...relatedIdList]));
+  for (const idsChunk of chunk(listingIdsForLocalLink, 500)) {
     const { data: anunciosRows } = await service
       .from('anuncios_ml')
       .select('ml_item_id, produto_id, sku')
@@ -420,8 +427,9 @@ export async function POST(request: Request) {
   for (const itemId of allItemIds) {
     const item = detailsByItemId.get(itemId);
     if (!item) continue;
-    const local = anuncioMap.get(itemId);
-    if (String(local?.sku || '').trim()) continue;
+    const directListing = anuncioMap.get(itemId);
+    const relatedListing = anuncioMap.get(relatedItemIdByCatalogId.get(itemId) || '');
+    if (String(directListing?.produto_id || relatedListing?.produto_id || '').trim()) continue;
     const candidateSku = extractCatalogCandidateSku(getSellerSkuFromItem(item));
     if (candidateSku) fallbackSkuCandidates.add(candidateSku);
     const gtin = extractCatalogGtin(item);
@@ -463,22 +471,23 @@ export async function POST(request: Request) {
     const item = detailsByItemId.get(itemId);
     if (!item) continue;
 
-    const baseRelatedItemId = buildCatalogEnrichment({
-      item,
-      priceToWinPayload: null,
-      relatedPermalink: null,
-    }).relatedItemId;
+    const baseRelatedItemId = relatedItemIdByCatalogId.get(itemId) || null;
     const enrichment = buildCatalogEnrichment({
       item,
       priceToWinPayload: priceToWinByItemId.get(itemId) || null,
       relatedPermalink: baseRelatedItemId ? (relatedPermalinkById.get(baseRelatedItemId) || null) : null,
     });
-    const local = anuncioMap.get(itemId);
+    const directListing = anuncioMap.get(itemId);
+    const relatedListing = anuncioMap.get(baseRelatedItemId || '');
     const fallbackSku = extractCatalogCandidateSku(getSellerSkuFromItem(item));
     const gtin = extractCatalogGtin(item);
-    const fallbackProduto = fallbackSku
-      ? (produtoBySku.get(String(fallbackSku).toUpperCase()) || null)
-      : (gtin ? (produtoByGtin.get(gtin) || null) : null);
+    const localProduct = resolveCatalogLocalProduct({
+      catalogListing: directListing,
+      relatedListing,
+      skuProduct: fallbackSku ? (produtoBySku.get(String(fallbackSku).toUpperCase()) || null) : null,
+      gtinProduct: gtin ? (produtoByGtin.get(gtin) || null) : null,
+      fallbackSku,
+    });
 
     upsertRows.push({
       ml_item_id: String(item.id),
@@ -498,8 +507,8 @@ export async function POST(request: Request) {
       domain_id: item.domain_id || null,
       related_item_id: enrichment.relatedItemId,
       related_permalink: enrichment.relatedPermalink,
-      produto_id: local?.produto_id || fallbackProduto?.id || null,
-      sku_local: local?.sku || fallbackProduto?.sku || fallbackSku || null,
+      produto_id: localProduct.produtoId,
+      sku_local: localProduct.sku,
       last_updated_ml: item.last_updated || null,
       synced_at: new Date().toISOString(),
       ...(refreshJobId ? { refresh_job_id: refreshJobId } : {}),

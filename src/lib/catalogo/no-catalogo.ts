@@ -24,6 +24,22 @@ export interface CatalogEnrichment {
   buyBoxWinning: boolean;
 }
 
+export type CatalogLocalListingReference = {
+  produto_id?: string | null;
+  sku?: string | null;
+};
+
+export type CatalogLocalProductCandidate = {
+  id?: string | null;
+  sku?: string | null;
+};
+
+export type CatalogLocalProductResolution = {
+  produtoId: string | null;
+  sku: string | null;
+  source: 'catalog_listing' | 'related_listing' | 'sku' | 'gtin' | 'none';
+};
+
 const VORTEK_SKU_REGEX = /VTK\d{6}/i;
 
 function safeText(term: string): string {
@@ -45,6 +61,58 @@ export function resolveCatalogDisplaySku(input: { skuLocal?: string | null; sell
   const local = String(input?.skuLocal || '').trim().toUpperCase();
   if (local) return local;
   return extractCatalogCandidateSku(input?.sellerSku);
+}
+
+export function resolveCatalogLocalProduct(input: {
+  catalogListing?: CatalogLocalListingReference | null;
+  relatedListing?: CatalogLocalListingReference | null;
+  skuProduct?: CatalogLocalProductCandidate | null;
+  gtinProduct?: CatalogLocalProductCandidate | null;
+  fallbackSku?: string | null;
+}): CatalogLocalProductResolution {
+  const catalogProductId = String(input.catalogListing?.produto_id || '').trim();
+  const relatedProductId = String(input.relatedListing?.produto_id || '').trim();
+  const skuProductId = String(input.skuProduct?.id || '').trim();
+  const gtinProductId = String(input.gtinProduct?.id || '').trim();
+  const fallbackSku = String(input.fallbackSku || '').trim().toUpperCase() || null;
+  const listingSku = String(input.catalogListing?.sku || '').trim().toUpperCase() || null;
+  const relatedSku = String(input.relatedListing?.sku || '').trim().toUpperCase() || null;
+
+  if (catalogProductId) {
+    return {
+      produtoId: catalogProductId,
+      sku: listingSku || relatedSku || fallbackSku,
+      source: 'catalog_listing',
+    };
+  }
+  if (relatedProductId) {
+    return {
+      produtoId: relatedProductId,
+      sku: relatedSku || listingSku || fallbackSku,
+      source: 'related_listing',
+    };
+  }
+  if (skuProductId) {
+    return {
+      produtoId: skuProductId,
+      sku: String(input.skuProduct?.sku || '').trim().toUpperCase() || fallbackSku,
+      source: 'sku',
+    };
+  }
+  if (gtinProductId) {
+    return {
+      produtoId: gtinProductId,
+      sku: String(input.gtinProduct?.sku || '').trim().toUpperCase() || fallbackSku,
+      source: 'gtin',
+    };
+  }
+  return { produtoId: null, sku: listingSku || relatedSku || fallbackSku, source: 'none' };
+}
+
+export function buildMercadoLivreCatalogProductUrl(input: unknown): string | null {
+  const catalogProductId = String(input || '').trim().toUpperCase();
+  if (!/^MLB\d+$/.test(catalogProductId)) return null;
+  return `https://www.mercadolivre.com.br/p/${encodeURIComponent(catalogProductId)}`;
 }
 
 export function extractCatalogGtin(item: any): string | null {

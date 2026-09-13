@@ -21,6 +21,9 @@
 .listingCell strong, .listingCell span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .listingCell span { color: rgba(255,255,255,.58); font-size: 12px; }
 .listingCell small, .stackCell small { color: rgba(255,255,255,.4); font-size: 11px; overflow-wrap: anywhere; }
+.mlCodeLink { display: inline-flex; align-items: center; gap: 4px; color: #69b1ff; text-decoration: none; }
+.mlCodeLink:hover { color: #91caff; text-decoration: underline; }
+.mlCodeLink :global(.anticon) { font-size: .82em; }
 .thumbnail, .thumbnailFallback { flex: 0 0 48px; border-radius: 8px; object-fit: cover; }
 .thumbnailFallback { display: grid; width: 48px; height: 48px; place-items: center; background: rgba(255,255,255,.05); color: rgba(255,255,255,.38); }
 .situationCell { display: flex; align-items: flex-start; gap: 9px; }
