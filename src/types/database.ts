@@ -3113,6 +3113,7 @@ ml_pricing_groups: {
           brand: string | null
           category: string | null
           created_at: string
+          current_analysis_version_id: string | null
           default_persona_id: string | null
           default_video_type: string | null
           description: string | null
@@ -3130,6 +3131,7 @@ ml_pricing_groups: {
           brand?: string | null
           category?: string | null
           created_at?: string
+          current_analysis_version_id?: string | null
           default_persona_id?: string | null
           default_video_type?: string | null
           description?: string | null
@@ -3147,6 +3149,7 @@ ml_pricing_groups: {
           brand?: string | null
           category?: string | null
           created_at?: string
+          current_analysis_version_id?: string | null
           default_persona_id?: string | null
           default_video_type?: string | null
           description?: string | null
@@ -3161,6 +3164,13 @@ ml_pricing_groups: {
         }
         Relationships: [
           {
+            foreignKeyName: "video_families_current_analysis_version_fkey"
+            columns: ["id", "current_analysis_version_id"]
+            isOneToOne: false
+            referencedRelation: "video_family_analysis_versions"
+            referencedColumns: ["family_id", "id"]
+          },
+          {
             foreignKeyName: "video_families_default_persona_id_fkey"
             columns: ["default_persona_id"]
             isOneToOne: false
@@ -3169,32 +3179,176 @@ ml_pricing_groups: {
           },
         ]
       }
+      video_family_analysis_versions: {
+        Row: {
+          analysis_snapshot: Json
+          created_at: string
+          created_by: string
+          engine_version: string
+          family_id: string
+          id: string
+          material_fingerprint: string
+          membership_snapshot: Json
+          version: number
+        }
+        Insert: {
+          analysis_snapshot: Json
+          created_at?: string
+          created_by: string
+          engine_version: string
+          family_id: string
+          id?: string
+          material_fingerprint: string
+          membership_snapshot: Json
+          version: number
+        }
+        Update: {
+          analysis_snapshot?: Json
+          created_at?: string
+          created_by?: string
+          engine_version?: string
+          family_id?: string
+          id?: string
+          material_fingerprint?: string
+          membership_snapshot?: Json
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_family_analysis_versions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_family_analysis_versions_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "video_families"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      video_family_suggestions: {
+        Row: {
+          algorithm_version: string
+          candidate_snapshot: Json
+          confirmed_family_id: string | null
+          created_at: string
+          created_by: string
+          id: string
+          material_fingerprint: string
+          review_note: string | null
+          review_snapshot: Json | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          seed_product_id: string | null
+          seed_sku: string
+          status: string
+        }
+        Insert: {
+          algorithm_version: string
+          candidate_snapshot: Json
+          confirmed_family_id?: string | null
+          created_at?: string
+          created_by: string
+          id?: string
+          material_fingerprint: string
+          review_note?: string | null
+          review_snapshot?: Json | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          seed_product_id?: string | null
+          seed_sku: string
+          status?: string
+        }
+        Update: {
+          algorithm_version?: string
+          candidate_snapshot?: Json
+          confirmed_family_id?: string | null
+          created_at?: string
+          created_by?: string
+          id?: string
+          material_fingerprint?: string
+          review_note?: string | null
+          review_snapshot?: Json | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          seed_product_id?: string | null
+          seed_sku?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_family_suggestions_confirmed_family_id_fkey"
+            columns: ["confirmed_family_id"]
+            isOneToOne: false
+            referencedRelation: "video_families"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_family_suggestions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_family_suggestions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_family_suggestions_seed_product_id_fkey"
+            columns: ["seed_product_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       video_family_products: {
         Row: {
           created_at: string
+          created_by: string | null
           family_id: string
           id: string
           produto_id: string | null
           removed_at: string | null
+          removed_by: string | null
           sku: string
         }
         Insert: {
           created_at?: string
+          created_by?: string | null
           family_id: string
           id?: string
           produto_id?: string | null
           removed_at?: string | null
+          removed_by?: string | null
           sku: string
         }
         Update: {
           created_at?: string
+          created_by?: string | null
           family_id?: string
           id?: string
           produto_id?: string | null
           removed_at?: string | null
+          removed_by?: string | null
           sku?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "video_family_products_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "video_family_products_family_id_fkey"
             columns: ["family_id"]
@@ -3207,6 +3361,13 @@ ml_pricing_groups: {
             columns: ["produto_id"]
             isOneToOne: false
             referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_family_products_removed_by_fkey"
+            columns: ["removed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -3291,6 +3452,7 @@ ml_pricing_groups: {
           created_by: string
           creative_brief: Json
           engine_version: string
+          family_analysis_version_id: string | null
           factual_snapshot: Json
           id: string
           input_snapshot: Json
@@ -3303,6 +3465,7 @@ ml_pricing_groups: {
           created_by: string
           creative_brief: Json
           engine_version: string
+          family_analysis_version_id?: string | null
           factual_snapshot: Json
           id?: string
           input_snapshot: Json
@@ -3315,6 +3478,7 @@ ml_pricing_groups: {
           created_by?: string
           creative_brief?: Json
           engine_version?: string
+          family_analysis_version_id?: string | null
           factual_snapshot?: Json
           id?: string
           input_snapshot?: Json
@@ -3328,6 +3492,13 @@ ml_pricing_groups: {
             columns: ["created_by"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_brief_versions_family_analysis_version_id_fkey"
+            columns: ["family_analysis_version_id"]
+            isOneToOne: false
+            referencedRelation: "video_family_analysis_versions"
             referencedColumns: ["id"]
           },
           {
@@ -3654,6 +3825,63 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      bvf_persist_family_analysis: {
+        Args: {
+          p_actor_id: string
+          p_analysis_snapshot: Json
+          p_engine_version: string
+          p_family_id: string
+          p_material_fingerprint: string
+          p_membership_snapshot: Json
+        }
+        Returns: Json
+      }
+      bvf_persist_family_brief_version: {
+        Args: {
+          p_actor_id: string
+          p_creative_brief: Json
+          p_engine_version: string
+          p_factual_snapshot: Json
+          p_family_analysis_version_id: string
+          p_family_id: string
+          p_input_snapshot: Json
+          p_job_id: string
+          p_material_fingerprint: string
+          p_persona_id?: string | null
+        }
+        Returns: Json
+      }
+      bvf_record_family_suggestion: {
+        Args: {
+          p_actor_id: string
+          p_algorithm_version: string
+          p_candidate_snapshot: Json
+          p_material_fingerprint: string
+          p_seed_product_id: string
+        }
+        Returns: Json
+      }
+      bvf_review_family_suggestion: {
+        Args: {
+          p_actor_id: string
+          p_decision: string
+          p_family_description: string | null
+          p_family_key: string | null
+          p_family_name: string | null
+          p_member_product_ids: string[]
+          p_review_note: string | null
+          p_suggestion_id: string
+        }
+        Returns: Json
+      }
+      bvf_set_family_members: {
+        Args: {
+          p_actor_id: string
+          p_family_id: string
+          p_member_product_ids: string[]
+        }
+        Returns: Json
+      }
       bvf_persist_brief_version: {
         Args: {
           p_job_id: string
