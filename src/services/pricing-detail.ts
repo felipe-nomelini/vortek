@@ -10,7 +10,7 @@ import { assessCompetitivePricing, competitionEvidence } from '@/services/pricin
 import { pricingMaterialFingerprint } from '@/services/pricing-audit';
 import { loadPricingClearances } from '@/services/pricing-clearances';
 import { classifyCommercialConflicts } from '@/services/commercial-conflicts';
-import { quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
+import { mlShippingDimensions, quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
 import { pricingView } from '@/lib/pricing-view';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { extractQuantityPricingTiers, serializeQuantityPricingTiers } from '@/lib/ml/quantity-pricing';
@@ -58,11 +58,6 @@ const EXISTING_LISTING_DIAGNOSTIC_FIELDS = new Set([
   'SALE_FORMAT', 'UNITS_PER_PACK', 'PACKS_NUMBER', 'PACKAGES_NUMBER', 'PACKAGING_BOXES_NUMBER',
 ]);
 
-function dimensions(product: any): string | null {
-  const values = [product.altura, product.largura, product.profundidade, product.peso_bruto].map(Number);
-  if (!values.every(v => Number.isFinite(v) && v > 0)) return null;
-  return values.slice(0, 3).join('x') + ',' + Math.ceil(values[3] * 1000);
-}
 function itemContext(item: any, sellerId: string): MarketContext | null {
   if (!item || !item.id) return null;
   const parsed = observedContextSchema.safeParse({ categoryId: item.category_id, listingType: item.listing_type_id,
@@ -155,7 +150,7 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     if (!validPreparation) return json({
         error: 'Categoria ou logística não confirmada. Revise o contexto de preparação.', code: 'COTACAO_INCOMPATIVEL' }, 422);
     context = { ...input.context, sellerId, itemId: null, catalogProductId: input.context.catalogProductId || null,
-      dimensions: dimensions(product), currency: 'BRL', quantity: 1 };
+      dimensions: mlShippingDimensions(product), currency: 'BRL', quantity: 1 };
     if (context.mode === 'me2' && !context.dimensions) return json({ error: 'Dimensões e peso bruto comprovados são necessários.' }, 422);
   }
   const expected = listingMaterialSnapshot(context, item);

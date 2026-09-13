@@ -10,6 +10,15 @@ export type QuoteFetch = (path: string) => Promise<{ ok: boolean; data?: any }>;
 
 export function marketContextKey(context: MarketContext) { return JSON.stringify(context); }
 
+/** Formato exigido pela cotação do ML: centímetros e gramas inteiros. */
+export function mlShippingDimensions(product: {
+  altura?: unknown; largura?: unknown; profundidade?: unknown; peso_bruto?: unknown;
+}): string | null {
+  const values = [product.altura, product.largura, product.profundidade, product.peso_bruto].map(Number);
+  if (!values.every(value => Number.isFinite(value) && value > 0)) return null;
+  return values.slice(0, 3).map(value => Math.ceil(value)).join('x') + ',' + Math.ceil(values[3] * 1000);
+}
+
 /** Ausência não vira zero; só montantes explícitos são aceitos. */
 export function quoteMoney(value: unknown): number | null {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return null;

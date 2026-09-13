@@ -40,6 +40,12 @@ function mlFetch(calls, transform = x => x) {
 const read = (fetch, options = {}) => market.readMarketQuote({ fetch, context, priceCents: 10000,
   fallbackRate: .14, unspecifiedShippingCost: 10, ...options });
 
+test('dimensões de cotação usam centímetros e gramas inteiros arredondados para cima', () => {
+  assert.equal(market.mlShippingDimensions({ altura: 9.1, largura: 29.7, profundidade: 31.5, peso_bruto: 4.6 }), '10x30x32,4600');
+  assert.equal(market.mlShippingDimensions({ altura: 10, largura: 20, profundidade: 30, peso_bruto: .801 }), '10x20x30,801');
+  assert.equal(market.mlShippingDimensions({ altura: 0, largura: 20, profundidade: 30, peso_bruto: 1 }), null);
+});
+
 test('total ML inclui fixa uma única vez; contexto completo e peso faturável são enviados', async () => {
   const calls = []; const quote = await read(mlFetch(calls));
   assert.equal(quote.fee.amountCents, 2000); assert.equal(quote.fixedFeeCents, 600); assert.equal(quote.feeRate, .14);
