@@ -3285,6 +3285,60 @@ ml_pricing_groups: {
           },
         ]
       }
+      video_brief_versions: {
+        Row: {
+          created_at: string
+          created_by: string
+          creative_brief: Json
+          engine_version: string
+          factual_snapshot: Json
+          id: string
+          input_snapshot: Json
+          job_id: string
+          material_fingerprint: string
+          version: number
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          creative_brief: Json
+          engine_version: string
+          factual_snapshot: Json
+          id?: string
+          input_snapshot: Json
+          job_id: string
+          material_fingerprint: string
+          version: number
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          creative_brief?: Json
+          engine_version?: string
+          factual_snapshot?: Json
+          id?: string
+          input_snapshot?: Json
+          job_id?: string
+          material_fingerprint?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_brief_versions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_brief_versions_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "video_jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       video_jobs: {
         Row: {
           approved_at: string | null
@@ -3293,6 +3347,7 @@ ml_pricing_groups: {
           created_at: string
           created_by: string | null
           creative_brief: Json
+          current_brief_version_id: string | null
           estimated_cost: number | null
           estimated_cost_currency: string | null
           family_id: string | null
@@ -3335,6 +3390,7 @@ ml_pricing_groups: {
           created_at?: string
           created_by?: string | null
           creative_brief?: Json
+          current_brief_version_id?: string | null
           estimated_cost?: number | null
           estimated_cost_currency?: string | null
           family_id?: string | null
@@ -3377,6 +3433,7 @@ ml_pricing_groups: {
           created_at?: string
           created_by?: string | null
           creative_brief?: Json
+          current_brief_version_id?: string | null
           estimated_cost?: number | null
           estimated_cost_currency?: string | null
           family_id?: string | null
@@ -3413,6 +3470,13 @@ ml_pricing_groups: {
           video_type?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "video_jobs_current_brief_version_fkey"
+            columns: ["id", "current_brief_version_id"]
+            isOneToOne: false
+            referencedRelation: "video_brief_versions"
+            referencedColumns: ["job_id", "id"]
+          },
           {
             foreignKeyName: "video_jobs_family_id_fkey"
             columns: ["family_id"]
@@ -3590,6 +3654,20 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      bvf_persist_brief_version: {
+        Args: {
+          p_job_id: string
+          p_actor_id: string
+          p_engine_version: string
+          p_material_fingerprint: string
+          p_input_snapshot: Json
+          p_factual_snapshot: Json
+          p_creative_brief: Json
+          p_product_id: string
+          p_persona_id?: string
+        }
+        Returns: Json
+      }
       search_pricing_decision_product_ids: {
         Args: {
           p_view?: string
