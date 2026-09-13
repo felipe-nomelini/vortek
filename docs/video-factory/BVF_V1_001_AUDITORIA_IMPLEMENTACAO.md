@@ -100,8 +100,8 @@ O read-back produtivo deve comprovar, depois da aplicação:
 
 - APIs e telas de gestão/aprovação.
 - State machine/transições autorizadas no serviço da BVF.
-- Factual Engine, origem por claim e contrato estruturado das dimensões físicas.
-- Detecção de variações entre SKUs e produção do `scale_anchor`.
+- Detecção de variações entre SKUs e produção de
+  `variation_safe`/`variation_unsafe` para famílias.
 - Worker assíncrono, concorrência, retry e recuperação.
 - Implementações concretas Gemini/Veo e credenciais.
 - Upload/download assinado, validação técnica real de MP4 e thumbnails.
@@ -111,7 +111,10 @@ O read-back produtivo deve comprovar, depois da aplicação:
 
 ## G. Próximo passo recomendado
 
-Implementar a **BVF Briefing/Factual Engine** como serviço server-side: carregar snapshots somente por leitura, exigir origem para cada fato/claim, separar ausência de dado de dado verificado, calcular segurança de variação por família e produzir um briefing versionado sujeito à aprovação humana. A engine não deve gerar vídeo nem escrever em anúncios.
+Implementar **BVF-FAMILY-01**: detectar atributos variáveis entre SKUs,
+produzir `variation_safe`/`variation_unsafe` com proveniência e impedir uso de
+atributos inseguros nos vídeos coringa. O briefing por SKU foi entregue em
+[BVF-BRIEF-01](BVF_BRIEF_01_IMPLEMENTACAO.md).
 
 ## Recuperação
 

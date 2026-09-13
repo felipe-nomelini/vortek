@@ -2,8 +2,8 @@
 
 Data da ação: 13/09/2026.
 
-Estado deste registro: implementação e gates locais concluídos; aplicação e
-read-back produtivos serão registrados somente depois de executados.
+Estado deste registro: implementação, migration, deploy e read-back produtivos
+concluídos.
 
 ## A. Auditoria
 
@@ -23,8 +23,9 @@ read-back produtivos serão registrados somente depois de executados.
 - O projeto já utiliza Firecrawl server-side. Não há OpenRouter configurado nem
   necessidade de introduzi-lo neste recorte.
 - O Supabase DEV local não pôde ser usado porque o runtime Docker está
-  indisponível ao usuário atual. Isso não substitui nem antecipa o teste
-  transacional previsto no Supabase produtivo autorizado.
+  indisponível ao usuário atual. O contrato do banco foi validado após a
+  migration por teste transacional no Supabase produtivo autorizado, sempre com
+  rollback e sem fixture residual.
 
 ## B. Divergências e decisões
 
@@ -75,26 +76,41 @@ read-back produtivos serão registrados somente depois de executados.
 - RLS permanece habilitada. `anon` e `authenticated` não recebem acesso direto;
   `service_role` tem somente `SELECT` na tabela e `EXECUTE` na RPC.
 
-## E. Testes locais
+## E. Testes e evidências produtivas
 
 - 16 testes BVF direcionados aprovados, cobrindo a fundação e o BRIEF-01.
 - `npm run validate` aprovado (`eslint` e `tsc --noEmit`).
 - `npm run build` aprovado com Next.js 16.3.3.
 - `npm run check:build-secrets` aprovado.
 - `git diff --check` aprovado.
+- O código funcional foi publicado no SHA `23ce2def` e o Easypanel confirmou o
+  mesmo SHA em execução no serviço `local/bentevi-prod`.
+- A migration `20260913160000_bvf_brief_01` foi aplicada e registrada em
+  `192.168.1.162`, com SHA-256
+  `16b80097f31e55af51cffc722c989a53500f4135b1c79e24f32a39ad86208633`
+  idêntico ao arquivo versionado.
+- `tests/bvf-brief-01.sql` passou em transação com rollback. O read-back
+  confirmou 10 colunas, três FKs `RESTRICT`, cinco índices válidos, um trigger,
+  RLS ativa, zero policy aberta, RPC `SECURITY DEFINER` com `search_path` vazio,
+  ACL mínima e zero job/versão residual.
+- As contagens críticas permaneceram idênticas no preflight e no read-back:
+  `24.876 produtos`, `1.524 pedidos`, `1.422 compras`, `13 fornecedores` e
+  `7.051 anúncios ML`.
+- O runtime produtivo foi conferido como `production`, ligado ao Supabase
+  `.162`, e recebeu `FIRECRAWL_API_KEY` somente no ambiente privado, preservando
+  todas as variáveis anteriores. Nenhum valor de secret foi exibido ou
+  versionado.
+- Smoke produtivo aprovado: health e login `200`; produtos, pedidos e Pricing
+  sem autenticação `401`; ML em leitura e configuração fiscal saudáveis;
+  leitura da tabela nova liberada ao `service_role` e negada ao papel anônimo.
 
 ## F. Pendências deliberadas
 
-- Aplicar a migration e executar `tests/bvf-brief-01.sql` em transação com
-  rollback no Supabase Bentevi `.162`.
-- Fazer read-back de tabela, colunas, FKs, índices, trigger, RLS, grants, função
-  e ausência de registros de teste.
 - Consumir `prepareBvfBrief` por APIs/state machine somente em
   `BVF-WORKFLOW-01`.
 - Tratar famílias e `variation_safe`/`variation_unsafe` em `BVF-FAMILY-01`.
 
 ## G. Próximo passo recomendado
 
-Depois da publicação e do read-back desta ação, executar somente
-`BVF-FAMILY-01`, reutilizando os contratos de proveniência e versionamento sem
-ampliar o BRIEF-01 para geração ou publicação de vídeo.
+Executar somente `BVF-FAMILY-01`, reutilizando os contratos de proveniência e
+versionamento sem ampliar o BRIEF-01 para geração ou publicação de vídeo.
