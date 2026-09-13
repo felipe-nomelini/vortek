@@ -38,7 +38,6 @@ const EXISTING_LISTING_COMMERCIAL_FIELDS = new Set([
 ]);
 export const isMlIdentityAttribute = (id: string) => [...IDENTITY_FIELDS, ...PACK_FIELDS].includes(id);
 const normalizeText = (value: unknown) => String(value ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ');
-const normalizeIdentifier = (value: unknown) => normalizeText(value).replace(/[^a-z0-9]/g, '');
 
 export function mergeMlAttributePrefill(params: {
   prediction?: Record<string, string | undefined>; initial?: Record<string, string | undefined>;
@@ -134,6 +133,7 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
   } else if (item?.seller_custom_field) attributes = [...attributes, { id: 'SELLER_SKU', value_name: item.seller_custom_field }];
 
   const definitionIds = new Set(definitions.map(attribute => attribute.id));
+  const observedAttributeIds = new Set(attributes.map((attribute: any) => String(attribute?.id || '')));
   // A validação de identidade compara somente campos de identidade/apresentação
   // aceitos pela categoria. Atributos editoriais obrigatórios continuam sendo
   // validados pelo endpoint condicional e por /items/validate na publicação.
@@ -141,7 +141,8 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
     ? [
         'SELLER_SKU',
         ...Object.keys(facts).filter(field => field === 'SELLER_SKU' || definitionIds.has(field) || INTERNAL_IDENTITY_FIELDS.has(field)),
-        ...definitions.filter(attribute => isMlIdentityAttribute(attribute.id)).map(attribute => attribute.id),
+        ...definitions.filter(attribute => isMlIdentityAttribute(attribute.id) && observedAttributeIds.has(attribute.id))
+          .map(attribute => attribute.id),
       ]
     : Object.keys(facts));
   const localGtin = facts.GTIN?.value ? normalizeMlIdentityValue('GTIN', facts.GTIN.value) : null;
@@ -167,14 +168,13 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
     else if ((fact?.value && local === null) || (rawValues.length && remoteValues.includes(null))) { status = 'INCONCLUSIVO'; reason = 'VALOR_INVALIDO'; }
     else if (!local || !remote || !fact?.evidence.length) { status = 'PENDENCIA_VALIDACAO'; reason = 'EVIDENCIA_AUSENTE'; }
     else if (local !== remote) {
-      const modelInCatalogTitle = field === 'MODEL'
-        && exactCatalogGtin
-        && normalizeIdentifier(local).length >= 4
-        && normalizeIdentifier(item?.title).includes(normalizeIdentifier(local));
+      // O produto de catálogo pode substituir o modelo enviado pelo rótulo
+      // editorial da ficha oficial. O GTIN exato continua sendo a âncora forte.
+      const modelNormalizedByExactCatalog = field === 'MODEL' && exactCatalogGtin;
       const uncertainVoltage = ['VOLTAGE', 'NOMINAL_VOLTAGE'].includes(field) && [local, remote].every(value => ['120v', '127v'].includes(value));
-      status = modelInCatalogTitle ? 'SEM_CONFLITO'
+      status = modelNormalizedByExactCatalog ? 'SEM_CONFLITO'
         : uncertainVoltage || field === 'SELLER_SKU' ? 'INCONCLUSIVO' : 'CONFLITO_CONFIRMADO';
-      reason = modelInCatalogTitle ? 'MODELO_CONFIRMADO_NO_TITULO_DO_CATALOGO'
+      reason = modelNormalizedByExactCatalog ? 'MODELO_NORMALIZADO_PELO_CATALOGO_COM_GTIN_EXATO'
         : uncertainVoltage ? 'EQUIVALENCIA_NAO_COMPROVADA'
           : field === 'SELLER_SKU' ? 'SKU_VINCULO_NAO_COMPROVADO'
             : PACK_FIELDS.includes(field) ? 'CONFLITO_EMBALAGEM_QUANTIDADE' : 'IDENTIDADE_DIVERGENTE';

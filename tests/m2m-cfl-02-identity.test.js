@@ -152,18 +152,28 @@ test('atributo irrelevante ausente da categoria e das evidências não é exigid
   assert.ok(identity.isMlIdentityComplete(result));
 });
 
-test('catálogo pode normalizar modelo quando GTIN exato e título preservam o identificador', () => {
+test('catálogo pode normalizar modelo quando o GTIN exato preserva a identidade', () => {
   const input = fixture();
   input.item.catalog_listing = true;
   input.item.title = 'Produto Marca A Modelo-1 Premium';
   setRemote(input, 'MODEL', 'Descrição genérica do catálogo');
   const result = evaluate(input);
   assert.equal(get(result, 'MODEL').status, 'SEM_CONFLITO');
-  assert.equal(get(result, 'MODEL').reason, 'MODELO_CONFIRMADO_NO_TITULO_DO_CATALOGO');
+  assert.equal(get(result, 'MODEL').reason, 'MODELO_NORMALIZADO_PELO_CATALOGO_COM_GTIN_EXATO');
   assert.ok(identity.isMlIdentityComplete(result));
 
   input.item.title = 'Produto Marca A sem identificação';
+  assert.equal(get(evaluate(input), 'MODEL').status, 'SEM_CONFLITO');
+  setRemote(input, 'GTIN', '7898705600000');
   assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
+});
+
+test('atributo opcional sem valor local ou remoto não bloqueia a identidade', () => {
+  const input = fixture();
+  input.context.categoryAttributes.push({ id: 'MPN' });
+  const result = evaluate(input);
+  assert.equal(get(result, 'MPN'), undefined);
+  assert.ok(identity.isMlIdentityComplete(result));
 });
 
 test('quantidade inválida não é tratada como ausência ou comparação válida', () => {
