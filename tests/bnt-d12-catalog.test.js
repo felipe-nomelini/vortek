@@ -80,6 +80,17 @@ test('atualização do catálogo consulta e reaproveita o vínculo do anúncio p
   assert.match(refreshRoute, /resolveCatalogLocalProduct\(\{/);
 });
 
+test('sincronização geral não apaga o vínculo herdado do anúncio padrão', () => {
+  const observedSyncRoute = fs.readFileSync(
+    path.join(__dirname, '../src/app/api/sync/anuncios/route.ts'),
+    'utf8',
+  );
+  assert.match(observedSyncRoute, /relatedLocalListingByItemId/);
+  assert.match(observedSyncRoute, /\.from\('anuncios_ml'\)[\s\S]*\.select\('ml_item_id, produto_id, sku'\)/);
+  assert.match(observedSyncRoute, /relatedListing: relatedLocalListingByItemId\.get\(enriched\.related_item_id \|\| ''\)/);
+  assert.match(observedSyncRoute, /snapshot\.produto_id = localProduct\.produtoId/);
+});
+
 test('gera link público apenas para código válido de produto de catálogo', () => {
   assert.equal(
     buildMercadoLivreCatalogProductUrl('mlb21193637'),

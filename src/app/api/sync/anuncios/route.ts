@@ -3,7 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult, getMLAuthDiagnostics, type MLRequestResult } from '@/services/integration';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
-import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
+import { buildCatalogEnrichment, resolveCatalogLocalProduct } from '@/lib/catalogo/no-catalogo';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { persistPricingObservations } from '@/services/pricing-audit';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
@@ -1052,6 +1052,33 @@ export async function POST(request: Request) {
       });
     });
 
+    const relatedLocalListingByItemId = new Map<string, { produto_id: string | null; sku: string | null }>();
+    const relatedItemIds = Array.from(new Set(
+      Array.from(catalogEnrichedByItemId.values())
+        .map((enriched) => enriched.related_item_id)
+        .filter((itemId): itemId is string => Boolean(itemId)),
+    ));
+    for (let index = 0; index < relatedItemIds.length; index += 500) {
+      const slice = relatedItemIds.slice(index, index + 500);
+      const { data: relatedListings, error: relatedListingsError } = await serviceClient
+        .from('anuncios_ml')
+        .select('ml_item_id, produto_id, sku')
+        .in('ml_item_id', slice);
+      if (relatedListingsError) {
+        errors.push({
+          code: 'catalog_related_local_link_unavailable',
+          message: relatedListingsError.message,
+        });
+        break;
+      }
+      for (const relatedListing of relatedListings || []) {
+        relatedLocalListingByItemId.set(String(relatedListing.ml_item_id), {
+          produto_id: relatedListing.produto_id || null,
+          sku: relatedListing.sku || null,
+        });
+      }
+    }
+
     for (const snapshot of snapshots) {
       const itemId = String(snapshot.ml_item_id);
       if (snapshot.catalog_listing === true) {
@@ -1062,6 +1089,13 @@ export async function POST(request: Request) {
           snapshot.buy_box_status = enriched.buy_box_status;
           snapshot.buy_box_winning = enriched.buy_box_winning;
           snapshot.price_to_win = enriched.price_to_win;
+          const localProduct = resolveCatalogLocalProduct({
+            catalogListing: { produto_id: snapshot.produto_id, sku: snapshot.sku_local },
+            relatedListing: relatedLocalListingByItemId.get(enriched.related_item_id || ''),
+            fallbackSku: snapshot.seller_sku,
+          });
+          snapshot.produto_id = localProduct.produtoId;
+          snapshot.sku_local = localProduct.sku;
         } else {
           const previous = previousSnapshotByItemId.get(itemId);
           snapshot.related_item_id = previous?.related_item_id ?? null;
