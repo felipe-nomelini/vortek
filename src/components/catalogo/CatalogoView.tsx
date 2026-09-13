@@ -17,12 +17,22 @@ import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import { formatCurrency } from '@/lib/format';
 import {
   buildCatalogOptinTargets, catalogBoostPresentation, catalogCompetitionPresentation,
-  catalogCompetitionReasonPresentation, catalogPriceToWinPresentation,
+  catalogCompetitionReasonPresentation, catalogOperationalPresentation, catalogPriceToWinPresentation,
   type CatalogEligibilityActionState, type CatalogOperationalState, type CatalogPriceGuidance,
   type CatalogOperationalView, type CatalogOptinTarget, type CatalogVariationEligibility,
 } from '@/lib/catalogo/dashboard';
 import type { CatalogRefreshPresentation } from '@/lib/catalogo/refresh-presentation';
 import { buildMercadoLivreCatalogProductUrl } from '@/lib/catalogo/no-catalogo';
+import {
+  CATALOG_VISIBLE_ECONOMICS_BATCH_SIZE,
+  catalogEconomicReasonLabel,
+  catalogEconomicsCacheKey,
+  unavailableCatalogEconomy,
+  type CatalogEconomicReason,
+  type CatalogEconomicSummary,
+  type CatalogVisibleEconomicsResponse,
+  type CatalogVisibleEconomicsRow,
+} from '@/lib/catalogo/visible-economics';
 import { userSafeMessage } from '@/lib/user-feedback';
 import styles from './CatalogoView.module.css';
 
@@ -35,10 +45,7 @@ type VisualReviewMetadata = {
   enabled: true; source: string; capturedAt: string; expiresAt: string;
   itemCount: number; simulatedEligibility?: boolean;
 };
-type EconomicSummary = {
-  profit: number | null; marginPercent: number | null;
-  source: 'live_saved' | 'estimated' | 'unavailable'; calculatedAt: string | null;
-};
+type EconomicSummary = CatalogEconomicSummary;
 type NoCatalogoRow = {
   anuncio_id: string; ml_item_id: string; relacionado_id: string | null;
   related_permalink?: string | null; related_status?: string | null; title: string;
@@ -47,6 +54,8 @@ type NoCatalogoRow = {
   buy_box_status: string | null; price_to_win: number | null; price: number;
   catalog_listing: boolean;
   permalink: string | null; thumbnail: string | null; last_updated: string | null;
+  snapshot_synced_at: string | null;
+  competition_reference?: { source: 'ml_live' | 'snapshot'; observedAt: string } | null;
   operational: CatalogOperationalState;
   economics: { current: EconomicSummary; competitive: EconomicSummary };
   isHomologationFixture?: boolean;
@@ -148,8 +157,8 @@ function priceMemory(detail: PriceDetail | null | undefined) {
 function memoryEconomy(memory: { resultCents?: number; margin?: number } | null | undefined): EconomicSummary | null {
   if (memory?.resultCents == null || memory.margin == null
     || !Number.isFinite(Number(memory.resultCents)) || !Number.isFinite(Number(memory.margin))) return null;
-  return { profit: Number(memory.resultCents) / 100, marginPercent: Number(memory.margin) * 100,
-    source: 'live_saved', calculatedAt: null };
+  return { status: 'available', profit: Number(memory.resultCents) / 100,
+    marginPercent: Number(memory.margin) * 100, source: 'live_saved', calculatedAt: null, reason: null };
 }
 function decisionBlockMessage(reasons: string[] = []) {
   if (reasons.includes('PRECO_AUTOMATICO_ML')) return 'O Mercado Livre controla automaticamente o preço deste anúncio.';
@@ -173,6 +182,8 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const priceRetry = useRef<() => void>(() => undefined);
   const batchCancelled = useRef(false);
   const batchAbort = useRef<AbortController | null>(null);
+  const economicsRequest = useRef(0);
+  const economicsCache = useRef(new Map<string, { value: CatalogVisibleEconomicsRow; cachedAt: number }>());
 
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -197,6 +208,14 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const [refreshPayload, setRefreshPayload] = useState<RefreshStatusPayload | null>(null);
   const [refreshRunning, setRefreshRunning] = useState(false);
   const [exportingPdf, setExportingPdf] = useState(false);
+  const [economicsRetry, setEconomicsRetry] = useState(0);
+  const [economicsItems, setEconomicsItems] = useState<Array<{
+    mlItemId: string; snapshotSyncedAt: string; cacheKey: string;
+  }>>([]);
+  const [economicsState, setEconomicsState] = useState<{
+    running: boolean; processed: number; total: number;
+    issue: Extract<CatalogEconomicReason, 'RATE_LIMITED' | 'AUTH_REQUIRED' | 'ML_UNAVAILABLE'> | null;
+  }>({ running: false, processed: 0, total: 0, issue: null });
 
   const [activeCatalog, setActiveCatalog] = useState<NoCatalogoRow | null>(null);
   const [activeEligible, setActiveEligible] = useState<ElegivelRow | null>(null);
@@ -232,6 +251,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     dataAbortController.current = controller;
     setLoadError(null);
     setLoading(true);
+    setEconomicsItems([]);
     try {
       const endpoint = mode === 'no_catalogo' ? '/api/catalogo/no-catalogo' : '/api/catalogo/elegiveis';
       const response = await fetch(`${endpoint}?${queryString}`, { cache: 'no-store', signal: controller.signal });
@@ -241,11 +261,17 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       setTotal(Number(payload.total || 0));
       setVisualReview(payload?.visualReview?.enabled === true ? payload.visualReview : null);
       if (mode === 'no_catalogo') {
-        setRows(Array.isArray(payload.data) ? payload.data : []);
+        const nextRows = (Array.isArray(payload.data) ? payload.data : []) as NoCatalogoRow[];
+        setRows(nextRows);
+        setEconomicsItems(payload?.visualReview?.enabled === true ? [] : nextRows
+          .filter(row => row.produto_id && row.snapshot_synced_at)
+          .map(row => ({ mlItemId: row.ml_item_id, snapshotSyncedAt: row.snapshot_synced_at!,
+            cacheKey: catalogEconomicsCacheKey(row) })));
         setCatalogMetrics({ total: Number(payload.metrics?.total || 0),
           needsAction: Number(payload.metrics?.needsAction || 0), healthy: Number(payload.metrics?.healthy || 0) });
         setLastSyncedAt(payload.lastSyncedAt || null);
       } else {
+        setEconomicsItems([]);
         setEligibleRows(Array.isArray(payload.data) ? payload.data : []);
         setEligibleMetrics({ total: Number(payload.metrics?.total || 0), ready: Number(payload.metrics?.ready || 0),
           reviewRequired: Number(payload.metrics?.reviewRequired || 0),
@@ -268,6 +294,108 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
 
   useEffect(() => { void fetchData(); return () => dataAbortController.current?.abort(); }, [fetchData]);
   useEffect(() => setPage(1), [actionState, competition, mode, operationalView, search, statusMl]);
+
+  const applyVisibleEconomics = useCallback((values: CatalogVisibleEconomicsRow[]) => {
+    if (!values.length) return;
+    const byItem = new Map(values.map(value => [value.mlItemId, value]));
+    setRows(existing => existing.map(row => {
+      const value = byItem.get(row.ml_item_id);
+      if (!value || row.snapshot_synced_at !== value.snapshotSyncedAt) return row;
+      const next = {
+        ...row,
+        price: value.reference.currentSource === 'ml_live' ? value.reference.currentPrice : row.price,
+        price_to_win: value.reference.competitionSource === 'ml_live'
+          ? value.reference.priceToWin : row.price_to_win,
+        buy_box_status: value.reference.competitionSource === 'ml_live'
+          ? value.reference.competitionStatus : row.buy_box_status,
+        competition_reference: { source: value.reference.competitionSource,
+          observedAt: value.reference.competitionObservedAt },
+        economics: { current: value.current, competitive: value.competitive },
+      };
+      return { ...next, operational: catalogOperationalPresentation(next) };
+    }));
+  }, []);
+
+  const applyVisibleEconomicsFailure = useCallback((itemIds: string[], reason: CatalogEconomicReason) => {
+    const affected = new Set(itemIds);
+    setRows(existing => existing.map(row => affected.has(row.ml_item_id)
+      ? { ...row, economics: { current: unavailableCatalogEconomy(reason),
+        competitive: row.price_to_win == null ? row.economics.competitive : unavailableCatalogEconomy(reason) } }
+      : row));
+  }, []);
+
+  useEffect(() => {
+    const requestId = ++economicsRequest.current;
+    if (mode !== 'no_catalogo' || visualReview || loading || !economicsItems.length) {
+      setEconomicsState({ running: false, processed: 0, total: economicsItems.length, issue: null });
+      return;
+    }
+    const controller = new AbortController();
+    const now = Date.now();
+    const cached: CatalogVisibleEconomicsRow[] = [];
+    const pending = economicsItems.filter(item => {
+      const entry = economicsCache.current.get(item.cacheKey);
+      if (!entry || now - entry.cachedAt > 120_000) {
+        economicsCache.current.delete(item.cacheKey); return true;
+      }
+      cached.push(entry.value); return false;
+    });
+    applyVisibleEconomics(cached);
+    setEconomicsState({ running: pending.length > 0, processed: cached.length,
+      total: economicsItems.length, issue: null });
+    void (async () => {
+      let processed = cached.length;
+      let issue: Extract<CatalogEconomicReason, 'RATE_LIMITED' | 'AUTH_REQUIRED' | 'ML_UNAVAILABLE'> | null = null;
+      try {
+        for (let offset = 0; offset < pending.length; offset += CATALOG_VISIBLE_ECONOMICS_BATCH_SIZE) {
+          const batch = pending.slice(offset, offset + CATALOG_VISIBLE_ECONOMICS_BATCH_SIZE);
+          const response = await fetch('/api/catalogo/no-catalogo/economics', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, cache: 'no-store',
+            body: JSON.stringify({ items: batch.map(({ mlItemId, snapshotSyncedAt }) => ({ mlItemId, snapshotSyncedAt })) }),
+            signal: controller.signal,
+          });
+          const payload = await response.json().catch(() => ({})) as Partial<CatalogVisibleEconomicsResponse>;
+          if (!response.ok) {
+            issue = response.status === 401 ? 'AUTH_REQUIRED' : 'ML_UNAVAILABLE';
+            applyVisibleEconomicsFailure(pending.slice(offset).map(item => item.mlItemId), issue);
+            break;
+          }
+          if (requestId !== economicsRequest.current) return;
+          const values = Array.isArray(payload.data) ? payload.data : [];
+          applyVisibleEconomics(values);
+          const returned = new Set(values.map(value => value.mlItemId));
+          const missing = batch.filter(item => !returned.has(item.mlItemId)).map(item => item.mlItemId);
+          if (missing.length) applyVisibleEconomicsFailure(missing, 'ML_UNAVAILABLE');
+          for (const value of values) {
+            if (value.current.status === 'inconclusive' || value.competitive.status === 'inconclusive') continue;
+            const key = catalogEconomicsCacheKey({ ml_item_id: value.mlItemId,
+              snapshot_synced_at: value.snapshotSyncedAt });
+            economicsCache.current.set(key, { value, cachedAt: Date.now() });
+          }
+          while (economicsCache.current.size > 200) {
+            const first = economicsCache.current.keys().next().value;
+            if (typeof first !== 'string') break;
+            economicsCache.current.delete(first);
+          }
+          processed += batch.length;
+          issue = payload.haltReason || null;
+          setEconomicsState({ running: !issue && processed < economicsItems.length,
+            processed, total: economicsItems.length, issue });
+          if (issue) {
+            applyVisibleEconomicsFailure(pending.slice(offset + batch.length).map(item => item.mlItemId), issue);
+            break;
+          }
+        }
+      } catch (error: unknown) {
+        if (error instanceof Error && error.name === 'AbortError') return;
+        issue = 'ML_UNAVAILABLE';
+        applyVisibleEconomicsFailure(pending.slice(processed - cached.length).map(item => item.mlItemId), issue);
+      } finally {
+        if (requestId === economicsRequest.current) setEconomicsState(current => ({ ...current, running: false, issue }));
+      }
+    })();
+    return () => { economicsRequest.current += 1; controller.abort(); };
+  }, [applyVisibleEconomics, applyVisibleEconomicsFailure, economicsItems, economicsRetry, loading, mode, visualReview]);
 
   const fetchRefreshStatus = useCallback(async (jobId?: string) => {
     const url = jobId ? `/api/catalogo/no-catalogo/refresh/status?jobId=${encodeURIComponent(jobId)}`
@@ -461,7 +589,9 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       render: (_, row) => {
         const guidance = catalogPriceToWinPresentation({ status: row.buy_box_status, priceToWin: row.price_to_win });
         return guidance.key === 'available'
-          ? <PriceResult price={row.price_to_win!} economy={row.economics.competitive} />
+          ? <PriceResult price={row.price_to_win!} economy={row.economics.competitive}
+            referenceLabel={`${row.competition_reference?.source === 'ml_live' ? 'Referência ML' : 'Última referência ML'} · ${formatDate(
+              row.competition_reference?.observedAt || row.snapshot_synced_at)}`} />
           : <PriceGuidance guidance={guidance} />;
       } },
     { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => (
@@ -560,6 +690,15 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
 
     {visualReview && <Alert className={styles.visualAlert} type="warning" showIcon message="Amostra protegida, somente leitura"
       description="Os dados desta amostra servem apenas para avaliar a tela. Ações externas estão desabilitadas." />}
+
+    {mode === 'no_catalogo' && !visualReview && <Alert className={styles.economicsAlert} type={economicsState.issue ? 'warning' : 'info'} showIcon
+      message="Preço para ganhar é uma referência do Mercado Livre"
+      description={`Lucro e margem são estimativas para a referência consultada. Nenhum preço será alterado.${economicsState.running
+        ? ` Calculando a página: ${economicsState.processed}/${economicsState.total}.`
+        : economicsState.issue ? ` ${catalogEconomicReasonLabel(economicsState.issue)}.` : ''}`}
+      action={economicsState.issue ? <Button size="small" onClick={() => setEconomicsRetry(value => value + 1)}>
+        Tentar cálculos novamente
+      </Button> : undefined} />}
 
     <Segmented className={styles.modeSelector} value={mode} options={[
       { label: 'Anúncios de catálogo', value: 'no_catalogo' }, { label: 'Elegíveis ao catálogo', value: 'elegiveis' },
@@ -676,7 +815,9 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         <div className={styles.reviewComparison}><SummaryCard title="Preço atual"
           price={priceDetail?.currentPrice ?? activeCatalog.price} economy={currentEconomy} /><ArrowRightOutlined />
           <SummaryCard title="Novo preço" price={priceReview.price} economy={{ profit: priceReview.profit,
-            marginPercent: priceReview.margin, source: priceReview.profit == null ? 'unavailable' : 'live_saved', calculatedAt: null }} /></div>
+            marginPercent: priceReview.margin, status: priceReview.profit == null ? 'inconclusive' : 'available',
+            source: priceReview.profit == null ? 'unavailable' : 'live_saved', calculatedAt: null,
+            reason: priceReview.profit == null ? 'ML_UNAVAILABLE' : null }} /></div>
         {priceReview.detail.decisionContext?.executable !== true && <Alert type="warning" showIcon
           message="Esta alteração ainda não pode ser confirmada"
           description={decisionBlockMessage(priceReview.detail.decisionContext?.reasons)} />}
@@ -722,12 +863,15 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   </div>;
 }
 
-function PriceResult({ price, economy }: { price: number; economy: EconomicSummary }) {
+function PriceResult({ price, economy, referenceLabel }: {
+  price: number; economy: EconomicSummary; referenceLabel?: string;
+}) {
   return <div className={styles.valueCell}><strong>{formatCurrency(price)}</strong>
-    {economy.profit == null || economy.marginPercent == null ? <small>Resultado não calculado</small>
+    {economy.profit == null || economy.marginPercent == null ? <small>{catalogEconomicReasonLabel(economy.reason)}</small>
       : <small className={economy.profit < 0 ? styles.negative : styles.positive}>
         {economy.profit < 0 ? 'Prejuízo' : 'Lucro'} {formatCurrency(Math.abs(economy.profit))} · {economy.marginPercent.toFixed(2)}%
-      </small>}</div>;
+      </small>}
+    {referenceLabel && <small className={styles.referenceLabel}>{referenceLabel}</small>}</div>;
 }
 function PriceGuidance({ guidance }: { guidance: CatalogPriceGuidance }) {
   return <div className={styles.valueCell}><strong>{guidance.label}</strong><small>{guidance.description}</small></div>;
@@ -742,7 +886,8 @@ function SummaryCard({ title, price, economy, empty }: {
   return <div className={styles.summaryCard}><small>{title}</small>
     <strong>{hasPrice ? formatCurrency(Number(price)) : (empty?.label || 'Não informado')}</strong>
     {!hasPrice && empty ? <span>{empty.description}</span>
-      : economy?.profit == null || economy.marginPercent == null ? <span>Resultado não calculado</span>
+      : economy?.profit == null || economy.marginPercent == null
+        ? <span>{catalogEconomicReasonLabel(economy?.reason)}</span>
       : <span className={economy.profit < 0 ? styles.negative : styles.positive}>
         {economy.profit < 0 ? 'Prejuízo' : 'Lucro'} {formatCurrency(Math.abs(economy.profit))} · {economy.marginPercent.toFixed(2)}%
       </span>}

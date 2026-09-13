@@ -4,6 +4,7 @@ import { fetchMLResult, getMLAuthDiagnostics, type MLRequestResult } from '@/ser
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment, resolveCatalogLocalProduct } from '@/lib/catalogo/no-catalogo';
+import { validatedCatalogCompetition } from '@/lib/catalogo/competition-evidence';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { persistPricingObservations } from '@/services/pricing-audit';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
@@ -1001,11 +1002,13 @@ export async function POST(request: Request) {
       const item = entry.item;
 
       const priceResult = await fetchMLResult<any>(`/items/${itemId}/price_to_win?version=v2`);
-      const pricePayload = priceResult.ok && priceResult.data ? priceResult.data : null;
+      const competition = validatedCatalogCompetition(priceResult.data, item, new Date().toISOString(), priceResult.ok);
+      const pricePayload = competition.payload;
       if (!pricePayload) {
         errors.push({
-          code: 'catalog_enrichment_price_to_win_unavailable',
-          message: priceResult.error?.message || 'Falha transitória ao obter price_to_win',
+          code: priceResult.ok ? 'catalog_enrichment_price_to_win_inconsistent' : 'catalog_enrichment_price_to_win_unavailable',
+          message: priceResult.error?.message || (priceResult.ok
+            ? 'Resposta inconsistente ao obter price_to_win' : 'Falha transitória ao obter price_to_win'),
           context: { itemId, category: priceResult.error?.category || null, status: priceResult.status || null },
         });
       }
@@ -1044,11 +1047,11 @@ export async function POST(request: Request) {
       catalogEnrichedByItemId.set(itemId, {
         related_item_id: enrichment.relatedItemId ?? previous?.related_item_id ?? null,
         related_permalink: enrichment.relatedPermalink ?? previous?.related_permalink ?? null,
-        buy_box_status: enrichment.buyBoxStatus ?? previous?.buy_box_status ?? null,
-        buy_box_winning: enrichment.buyBoxStatus
+        buy_box_status: pricePayload ? enrichment.buyBoxStatus : previous?.buy_box_status ?? null,
+        buy_box_winning: pricePayload
           ? enrichment.buyBoxWinning
           : (typeof previous?.buy_box_winning === 'boolean' ? previous.buy_box_winning : false),
-        price_to_win: enrichment.priceToWin ?? previous?.price_to_win ?? null,
+        price_to_win: pricePayload ? enrichment.priceToWin : previous?.price_to_win ?? null,
       });
     });
 

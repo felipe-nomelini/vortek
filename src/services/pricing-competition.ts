@@ -2,12 +2,9 @@ import type { ProductPricing } from './pricing-context';
 import type { EconomicResult } from '@/types/pricing';
 import type { ConflictAssessment } from '@/types/commercial-conflicts';
 import type { PricingOverrideGroup } from './pricing-overrides';
-
-export type CompetitionEvidence = {
-  itemId: string; catalogProductId: string | null; observedAt: string;
-  condition: 'valid' | 'unavailable' | 'inconsistent' | 'stale';
-  priceCents: number | null; currentPriceCents: number | null; status: string | null;
-};
+import type { CompetitionEvidence } from '@/lib/catalogo/competition-evidence';
+export { competitionEvidence } from '@/lib/catalogo/competition-evidence';
+export type { CompetitionEvidence } from '@/lib/catalogo/competition-evidence';
 export type CompetitiveClassification = 'VIAVEL_NO_ALVO' | 'VIAVEL_ACIMA_DO_PISO'
   | 'ABAIXO_DO_PISO_MAS_POSITIVO' | 'EQUILIBRIO_SEM_MARGEM'
   | 'PREJUIZO_NO_PRECO_COMPETITIVO' | 'INCONCLUSIVO';
@@ -21,23 +18,6 @@ export type CompetitiveAssessment = {
   reasons: string[]; assessment: ConflictAssessment;
   autonomy: 'AUTO_OBSERVE'; executionBlocked: true;
 };
-
-/** Only the documented price_to_win field is a competitive reference. */
-export function competitionEvidence(payload: any, expected: {
-  itemId: string; catalogProductId: string | null; currentPriceCents: number;
-}, observedAt: string, ok = true): CompetitionEvidence {
-  const cents = (v: unknown) => typeof v === 'number' && Number.isFinite(v) && v > 0
-    && Number.isSafeInteger(Math.round(v * 100)) ? Math.round(v * 100) : null;
-  const valid = ok && payload?.item_id === expected.itemId && payload?.currency_id === 'BRL'
-    && payload?.catalog_product_id === expected.catalogProductId && payload?.consistent === true
-    && cents(payload?.current_price) === expected.currentPriceCents
-    && ['winning', 'sharing_first_place', 'competing', 'listed'].includes(payload?.status);
-  return { itemId: expected.itemId, catalogProductId: expected.catalogProductId, observedAt,
-    condition: !ok ? 'unavailable' : valid ? 'valid' : 'inconsistent',
-    priceCents: valid ? cents(payload?.price_to_win) : null,
-    currentPriceCents: valid ? cents(payload?.current_price) : null,
-    status: typeof payload?.status === 'string' ? payload.status : null };
-}
 
 /** A clearance needs an explicit internal-stock scenario, never just an active authorization. */
 export type CompetitiveClearance = {

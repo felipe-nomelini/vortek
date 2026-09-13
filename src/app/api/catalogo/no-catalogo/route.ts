@@ -4,8 +4,7 @@ import { applyNoCatalogFilters, parseNoCatalogFilters, resolveCatalogDisplaySku 
 import { catalogOperationalPresentation, type CatalogOperationalView } from '@/lib/catalogo/dashboard';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { listBntD12CatalogVisualReview } from '@/lib/catalogo/visual-review';
-import { evaluateProductPricing, loadProductPricing, loadPricingRequestContext, type ProductPricing } from '@/services/pricing-context';
-import { pricingView } from '@/lib/pricing-view';
+import { notApplicableCatalogEconomy, unavailableCatalogEconomy } from '@/lib/catalogo/visible-economics';
 import type { Database } from '@/types/database';
 
 type SnapshotRow = Database['public']['Tables']['catalogo_ml_snapshot']['Row'];
@@ -25,15 +24,17 @@ function applyOperationalView(query: any, view: CatalogOperationalView) {
   return query;
 }
 
-function economicSummary(memory: any, source: 'live_saved' | 'estimated' | 'unavailable', calculatedAt?: string | null) {
+function economicSummary(memory: any, calculatedAt?: string | null) {
   if (!memory || !Number.isFinite(Number(memory.resultCents)) || !Number.isFinite(Number(memory.margin))) {
-    return { profit: null, marginPercent: null, source: 'unavailable' as const, calculatedAt: calculatedAt || null };
+    return unavailableCatalogEconomy('CALCULATION_PENDING');
   }
   return {
+    status: 'available' as const,
     profit: Number(memory.resultCents) / 100,
     marginPercent: Number(memory.margin) * 100,
-    source,
+    source: 'live_saved' as const,
     calculatedAt: calculatedAt || memory.evaluatedAt || null,
+    reason: null,
   };
 }
 
@@ -47,8 +48,8 @@ function latestSavedEconomics(evaluations: any[], row: SnapshotRow) {
     if (Number(evidence.currentPriceCents) !== currentPriceCents) continue;
     if ((evidence.priceCents == null ? null : Number(evidence.priceCents)) !== competitivePriceCents) continue;
     return {
-      current: economicSummary(assessment.current?.memory, 'live_saved', evaluation.created_at),
-      competitive: economicSummary(assessment.competitive?.memory, 'live_saved', evaluation.created_at),
+      current: economicSummary(assessment.current?.memory, evaluation.created_at),
+      competitive: economicSummary(assessment.competitive?.memory, evaluation.created_at),
     };
   }
   return null;
@@ -143,7 +144,7 @@ export async function GET(request: Request) {
   const snapshotRows = (data || []) as SnapshotRow[];
   const productIds = Array.from(new Set(snapshotRows.map((row) => row.produto_id).filter(Boolean))) as string[];
   const relatedIds = Array.from(new Set(snapshotRows.map((row) => row.related_item_id).filter(Boolean))) as string[];
-  const [{ data: products }, { data: relatedListings }, { data: evaluations }, requestContext] = await Promise.all([
+  const [{ data: products }, { data: relatedListings }, { data: evaluations }] = await Promise.all([
     productIds.length
       ? service.from('produtos').select('id,sku,nome,ativo,oferta_preferencial_id,fornecedor_preferencial_manual,ml_item_id,custom_price').in('id', productIds)
       : Promise.resolve({ data: [] }),
@@ -154,70 +155,16 @@ export async function GET(request: Request) {
       ? service.from('pricing_evaluations').select('produto_id,result,created_at').in('produto_id', productIds)
         .order('created_at', { ascending: false }).limit(Math.min(1000, productIds.length * 10))
       : Promise.resolve({ data: [] }),
-    productIds.length ? loadPricingRequestContext(service).catch(() => null) : Promise.resolve(null),
   ]);
   const productsById = new Map((products || []).map((product: any) => [String(product.id), product]));
   const relatedById = new Map((relatedListings || []).map((listing: any) => [String(listing.ml_item_id), listing]));
 
-  const pricingByListing = new Map<string, ProductPricing>();
-  const pendingPricingRows = requestContext ? [...snapshotRows] : [];
-  while (pendingPricingRows.length) {
-    const batch: SnapshotRow[] = [];
-    const seenProducts = new Set<string>();
-    for (let index = 0; index < pendingPricingRows.length && batch.length < 100;) {
-      const row = pendingPricingRows[index];
-      if (!row.produto_id || !productsById.has(row.produto_id)) {
-        pendingPricingRows.splice(index, 1);
-        continue;
-      }
-      if (seenProducts.has(row.produto_id)) {
-        index += 1;
-        continue;
-      }
-      seenProducts.add(row.produto_id);
-      batch.push(row);
-      pendingPricingRows.splice(index, 1);
-    }
-    if (!batch.length) break;
-    const evidence = new Map(batch.map((row) => [row.produto_id!, {
-      mlItemId: row.ml_item_id,
-      currentPriceCents: Math.round(Number(row.price || 0) * 100),
-      marketContextKey: `listing:${row.ml_item_id}:catalog-list`,
-    }]));
-    const competitivePrices = new Map(batch.map((row) => [row.produto_id!, row.price_to_win == null
-      ? null : Math.round(Number(row.price_to_win) * 100)]));
-    try {
-      const pricing = await loadProductPricing(service, batch.map((row) => productsById.get(row.produto_id!)!), {
-        requestContext: requestContext!,
-        evidence,
-        evaluate: (base, currentPriceCents, feeRate, observedFee) => {
-          const current = evaluateProductPricing(base, currentPriceCents, feeRate, observedFee);
-          const competitivePriceCents = competitivePrices.get(base.context.productId || '') ?? null;
-          if (competitivePriceCents === null) return current;
-          const competitive = evaluateProductPricing(base, competitivePriceCents, feeRate).current;
-          return { ...current, comparisons: { ...(current.comparisons || {}), competitive } };
-        },
-      });
-      for (const row of batch) {
-        const economic = pricing.get(row.produto_id!);
-        if (economic) pricingByListing.set(row.ml_item_id, economic);
-      }
-    } catch {
-      // A lista continua disponível; apenas o resultado econômico fica inconclusivo.
-    }
-  }
-
   const rows = snapshotRows.map((row) => {
-    const pricing = pricingByListing.get(row.ml_item_id);
-    const currentView = pricingView(pricing);
     const saved = latestSavedEconomics((evaluations || []).filter((entry: any) => entry.produto_id === row.produto_id), row);
-    const estimated = {
-      current: currentView.profit == null || currentView.margin == null
-        ? economicSummary(null, 'unavailable')
-        : { profit: currentView.profit, marginPercent: currentView.margin, source: 'estimated' as const,
-          calculatedAt: requestContext?.evaluatedAt || null },
-      competitive: economicSummary(pricing?.comparisons?.competitive?.memory, 'estimated', requestContext?.evaluatedAt),
-    };
+    const pendingReason = row.produto_id ? 'CALCULATION_PENDING' as const : 'PRODUCT_UNLINKED' as const;
+    const pending = { current: unavailableCatalogEconomy(pendingReason),
+      competitive: row.price_to_win == null ? notApplicableCatalogEconomy('REFERENCE_NOT_AVAILABLE')
+        : unavailableCatalogEconomy(pendingReason) };
     const operational = catalogOperationalPresentation(row);
     return {
       anuncio_id: row.ml_item_id,
@@ -242,8 +189,9 @@ export async function GET(request: Request) {
     catalog_listing: row.catalog_listing,
     item_relations: null,
     last_updated: row.last_updated_ml,
+      snapshot_synced_at: row.synced_at,
       operational,
-      economics: saved || estimated,
+      economics: saved || pending,
     };
   });
 

@@ -10,6 +10,26 @@ export type QuoteFetch = (path: string) => Promise<{ ok: boolean; data?: any }>;
 
 export function marketContextKey(context: MarketContext) { return JSON.stringify(context); }
 
+/** Contexto observado de anúncio existente; não aceita seller, moeda ou logística inferidos. */
+export function observedMarketContext(item: any, sellerId: string): MarketContext | null {
+  const categoryId = String(item?.category_id || '');
+  const listingType = String(item?.listing_type_id || '');
+  const condition = String(item?.condition || '');
+  const mode = String(item?.shipping?.mode || '');
+  const logisticType = String(item?.shipping?.logistic_type || '').trim();
+  const freeShipping = item?.shipping?.free_shipping;
+  if (!/^MLB\d+$/.test(categoryId) || !['free', 'gold_special', 'gold_pro'].includes(listingType)
+    || !['new', 'used', 'not_specified'].includes(condition) || !['me2', 'not_specified'].includes(mode)
+    || !logisticType || logisticType.length > 60 || typeof freeShipping !== 'boolean'
+    || item?.site_id !== 'MLB' || item?.currency_id !== 'BRL' || String(item?.seller_id) !== sellerId
+    || !/^MLB\d+$/.test(String(item?.id || ''))) {
+    return null;
+  }
+  return { sellerId, itemId: String(item.id), categoryId, catalogProductId: /^MLB\d+$/.test(String(item.catalog_product_id || ''))
+    ? String(item.catalog_product_id) : null, listingType, condition, mode, logisticType, freeShipping,
+    dimensions: null, currency: 'BRL', quantity: 1 };
+}
+
 /** Formato exigido pela cotação do ML: centímetros e gramas inteiros. */
 export function mlShippingDimensions(product: {
   altura?: unknown; largura?: unknown; profundidade?: unknown; peso_bruto?: unknown;

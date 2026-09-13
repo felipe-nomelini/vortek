@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
+import { validatedCatalogCompetition } from '@/lib/catalogo/competition-evidence';
 import type { Database } from '@/types/database';
 
 const DEFAULT_PAGE_SIZE = 100;
@@ -126,7 +127,9 @@ export async function POST(request: Request) {
         if (hydrate && update.catalog_listing === true && update.item) {
           const item = update.item;
           const priceResult = await fetchMLResult<any>(`/items/${update.ml_item_id}/price_to_win?version=v2`);
-          const pricePayload = priceResult.ok && priceResult.data ? priceResult.data : null;
+          const competition = validatedCatalogCompetition(priceResult.data, item,
+            new Date().toISOString(), priceResult.ok);
+          const pricePayload = competition.payload;
           const relatedItemId = buildCatalogEnrichment({
             item,
             priceToWinPayload: null,
@@ -156,15 +159,18 @@ export async function POST(request: Request) {
 
           updatePayload.related_item_id = enrichment.relatedItemId;
           updatePayload.related_permalink = enrichment.relatedPermalink;
-          updatePayload.buy_box_status = enrichment.buyBoxStatus;
-          updatePayload.buy_box_winning = enrichment.buyBoxWinning;
-          updatePayload.price_to_win = enrichment.priceToWin;
+          if (pricePayload) {
+            updatePayload.buy_box_status = enrichment.buyBoxStatus;
+            updatePayload.buy_box_winning = enrichment.buyBoxWinning;
+            updatePayload.price_to_win = enrichment.priceToWin;
+          }
 
           if (!pricePayload && errorSamples.length < 30) {
             errorSamples.push({
               ml_item_id: update.ml_item_id,
-              code: 'hydrate_price_to_win_unavailable',
-              message: priceResult.error?.message || 'Falha ao obter price_to_win no hydrate',
+              code: priceResult.ok ? 'hydrate_price_to_win_inconsistent' : 'hydrate_price_to_win_unavailable',
+              message: priceResult.error?.message || (priceResult.ok
+                ? 'Resposta inconsistente ao obter price_to_win no hydrate' : 'Falha ao obter price_to_win no hydrate'),
             });
           }
         }

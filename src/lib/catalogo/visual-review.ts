@@ -68,6 +68,7 @@ export function listBntD12CatalogVisualReview(params: {
         catalog_listing: true,
         item_relations: null,
         last_updated: text(listing.listingSyncedAt || listing.synced_at || product.updated_at) || null,
+        snapshot_synced_at: text(listing.listingSyncedAt || listing.synced_at || product.updated_at) || new Date().toISOString(),
         isHomologationFixture: true,
       };
       allRows.push({

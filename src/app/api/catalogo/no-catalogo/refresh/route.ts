@@ -3,6 +3,7 @@ import { persistPricingObservations } from '@/services/pricing-audit';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
+import { validatedCatalogCompetition } from '@/lib/catalogo/competition-evidence';
 import {
   buildCatalogEnrichment, catalogListingObservation, extractCatalogCandidateSku, extractCatalogGtin,
   resolveCatalogLocalProduct,
@@ -363,17 +364,18 @@ export async function POST(request: Request) {
   });
   await runPool(confirmedCatalogItemIds, DETAIL_CONCURRENCY, async (itemId) => {
     const priceResult = await fetchMLResult<any>(`/items/${itemId}/price_to_win?version=v2`);
-    if (!priceResult.ok || !priceResult.data) {
+    const item = detailsByItemId.get(itemId);
+    const observed = validatedCatalogCompetition(priceResult.data, item, new Date().toISOString(), priceResult.ok);
+    if (!observed.payload) {
       const previous = previousCompetitionByItemId.get(itemId);
       priceToWinByItemId.set(itemId, previous
         ? { status: previous.buy_box_status, price_to_win: previous.price_to_win }
         : { buyBoxStatus: null, priceToWin: null });
-      warnings.push(`price_to_win_unavailable:${itemId}`);
+      warnings.push(`${priceResult.ok ? 'price_to_win_inconsistent' : 'price_to_win_unavailable'}:${itemId}`);
       competitionUnavailable += 1;
       return;
     }
-
-    priceToWinByItemId.set(itemId, priceResult.data);
+    priceToWinByItemId.set(itemId, observed.payload);
   }, async (processed, total) => {
     if (processed === total || processed % 50 === 0) {
       await reportProgress({

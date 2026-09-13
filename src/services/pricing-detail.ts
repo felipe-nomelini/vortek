@@ -10,7 +10,7 @@ import { assessCompetitivePricing, competitionEvidence } from '@/services/pricin
 import { pricingMaterialFingerprint } from '@/services/pricing-audit';
 import { loadPricingClearances } from '@/services/pricing-clearances';
 import { classifyCommercialConflicts } from '@/services/commercial-conflicts';
-import { mlShippingDimensions, quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
+import { mlShippingDimensions, observedMarketContext, quoteMoney, type MarketContext } from '@/services/pricing-market-quote';
 import { pricingView } from '@/lib/pricing-view';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { extractQuantityPricingTiers, serializeQuantityPricingTiers } from '@/lib/ml/quantity-pricing';
@@ -37,7 +37,6 @@ const inputSchema = z.object({
     fulfillmentSource: z.literal('internal') }).strict().optional(),
 }).strict();
 // Um item existente preserva o tipo observado, inclusive Gratuito; não o converte em Clássico.
-const observedContextSchema = contextSchema.extend({ listingType: z.enum(['free', 'gold_special', 'gold_pro']) });
 type Input = z.infer<typeof inputSchema>;
 export type PricingListingValidation = {
   state: 'verified' | 'pending' | 'conflict' | 'ineligible' | 'unavailable';
@@ -59,14 +58,7 @@ const EXISTING_LISTING_DIAGNOSTIC_FIELDS = new Set([
 ]);
 
 function itemContext(item: any, sellerId: string): MarketContext | null {
-  if (!item || !item.id) return null;
-  const parsed = observedContextSchema.safeParse({ categoryId: item.category_id, listingType: item.listing_type_id,
-    condition: item.condition, mode: item.shipping?.mode, logisticType: item.shipping?.logistic_type,
-    freeShipping: item.shipping?.free_shipping });
-  if (!parsed.success || item.currency_id !== 'BRL' || String(item.seller_id) !== sellerId) return null;
-  // No anúncio existente, o ML resolve as dimensões do próprio item, não um snapshot local.
-  return { ...parsed.data, sellerId, itemId: item.id, catalogProductId: /^MLB\d+$/.test(item.catalog_product_id) ? item.catalog_product_id : null,
-    dimensions: null, currency: 'BRL', quantity: 1 };
+  return observedMarketContext(item, sellerId);
 }
 
 /** A API do ML não garante a ordem de coleções como tags entre duas leituras. */

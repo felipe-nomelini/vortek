@@ -2,8 +2,9 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const load = require('./helpers/load-integration-module');
 const quote = load('src/services/pricing-market-quote.ts', { './pricing-economy': {} });
+const competitionEvidence = require('../src/lib/catalogo/competition-evidence.ts');
 const product = { id: 'P1', ativo: true, ml_item_id: 'MLB1', altura: 10, largura: 20, profundidade: 30, peso_bruto: .7605 };
-const item = { id: 'MLB1', seller_id: 123, currency_id: 'BRL', price: 100, listing_type_id: 'gold_special',
+const item = { id: 'MLB1', site_id: 'MLB', seller_id: 123, currency_id: 'BRL', price: 100, listing_type_id: 'gold_special',
   category_id: 'MLB10', condition: 'new', catalog_listing: false, tags: ['dynamic_standard_price'],
   shipping: { mode: 'me2', logistic_type: 'drop_off', free_shipping: true } };
 const context = { categoryId: 'MLB10', listingType: 'gold_special', condition: 'new', mode: 'me2', logisticType: 'drop_off', freeShipping: true };
@@ -19,7 +20,9 @@ function harness(options = {}) {
   const detail = load('src/services/pricing-detail.ts', {
     '@/services/pricing-decisions': { decisionContext: () => null, syncPricingAlerts: async () => {} },
     '@/services/pricing-audit': { recordPricingEvaluation: async (...args) => { evaluations.push(args); return 'evaluation-test'; }, pricingMaterialFingerprint: JSON.stringify },
-    '@/services/pricing-competition': load('src/services/pricing-competition.ts'),
+    '@/services/pricing-competition': load('src/services/pricing-competition.ts', {
+      '@/lib/catalogo/competition-evidence': competitionEvidence,
+    }),
     '@/services/commercial-conflicts': load('src/services/commercial-conflicts.ts'),
     '@/services/pricing-clearances': { loadPricingClearances: async () => { throw new Error('Unexpected clearance read'); } },
     '@/services/pricing-overrides': { loadPricingOverrides: async () => { if (options.protectionDown) throw new Error('database unavailable');

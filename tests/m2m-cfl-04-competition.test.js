@@ -2,7 +2,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const load = require('./helpers/load-integration-module');
-const domain = load('src/services/pricing-competition.ts');
+const competitionEvidence = require('../src/lib/catalogo/competition-evidence.ts');
+const domain = load('src/services/pricing-competition.ts', {
+  '@/lib/catalogo/competition-evidence': competitionEvidence,
+});
 const conflicts = load('src/services/commercial-conflicts.ts');
 const normalize = require('../src/lib/catalogo/no-catalogo.ts');
 const economy = load('src/services/pricing-economy.ts', {

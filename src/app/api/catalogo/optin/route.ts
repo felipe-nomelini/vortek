@@ -4,6 +4,7 @@ import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
+import { validatedCatalogCompetition } from '@/lib/catalogo/competition-evidence';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
@@ -147,6 +148,8 @@ async function syncCatalogOptinLocally(params: {
   }
 
   const priceToWinResult = await fetchMLResult<any>(`/items/${encodeURIComponent(catalogItemId)}/price_to_win?version=v2`);
+  const competition = validatedCatalogCompetition(priceToWinResult.data, catalogItem,
+    new Date().toISOString(), priceToWinResult.ok);
   const baseRelatedId = buildCatalogEnrichment({
     item: catalogItem,
     priceToWinPayload: null,
@@ -155,9 +158,12 @@ async function syncCatalogOptinLocally(params: {
   const relatedPermalink = await getRelatedPermalink(baseRelatedId);
   const enrichment = buildCatalogEnrichment({
     item: catalogItem,
-    priceToWinPayload: priceToWinResult.ok ? priceToWinResult.data : null,
+    priceToWinPayload: competition.payload,
     relatedPermalink,
   });
+  if (!competition.payload) warnings.push(priceToWinResult.ok
+    ? 'Resposta de competição inconsistente; preço para ganhar não foi salvo.'
+    : 'Preço para ganhar indisponível; o anúncio foi salvo sem essa referência.');
 
   const { error: snapshotError } = await persistPricingObservations(service, 'catalogo_ml_snapshot', [{
       ml_item_id: catalogItemId,
