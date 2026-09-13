@@ -105,7 +105,7 @@ function harness(options = {}) {
         await transport.validateToken('opaque');calls.push(['POST',path]);
         if(options.timeout)throw Error('network');return {ok:true,data:{id:'MLB3',seller_id:123}};
       }
-      if(init?.method==='POST' && path.endsWith('/description')) {calls.push(['description']);return {ok:true};}
+      if(init?.method==='POST' && path.endsWith('/description')) {calls.push(['description','POST']);return {ok:!options.descriptionExists};}
       if(init?.method === 'PUT') { await transport.validateToken('opaque'); calls.push(['PUT',path,JSON.parse(init.body)]);
         if(options.timeout)throw Error('network'); return {ok:true}; }
       calls.push(['GET',path]); return {ok:!options.readUnavailable,data:{id:path.split('/').pop(),seller_id:123,currency_id:'BRL',price:options.ignored?100:110}};
@@ -157,6 +157,13 @@ test('creation captures remote identity before any post-processing and confirms 
   assert.ok(h.calls.findIndex(c=>c[0]==='capture')<h.calls.findIndex(c=>c[0]==='description'));
   assert.equal(h.calls.filter(c=>c[0]==='POST').length,1);
   assert.ok(h.calls.some(c=>c[0]==='creation-readback'));
+});
+test('creation replaces a description that the catalog already supplied',async()=>{
+  const h=harness({creation:true,descriptionExists:true});assert.equal(await h.run(),'confirmed');
+  assert.ok(h.calls.some(c=>c[0]==='description'&&c[1]==='POST'));
+  assert.ok(h.calls.some(c=>c[0]==='PUT'&&c[1]==='/items/MLB3/description?api_version=2'
+    &&c[2].plain_text==='Descrição comprovada'));
+  assert.equal(h.calls.filter(c=>c[0]==='POST').length,1);
 });
 test('ambiguous creation is never repeated, with or without a persisted remote identity',async()=>{
   for(const options of [{timeout:true},{readUnavailable:true}]) {
