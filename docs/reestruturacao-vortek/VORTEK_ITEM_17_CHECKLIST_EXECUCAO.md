@@ -4094,3 +4094,61 @@ publicação da coorte autorizada pelo usuário.
   preço, estoque, garantia, vínculo e estado de cada anúncio no Mercado Livre;
 - [ ] promover um único SHA, fazer um único deploy e registrar o read-back
   produtivo e os impedimentos reais remanescentes.
+
+### BVF — Bentevi Video Factory — 13/09/2026
+
+**Estado: BASE TÉCNICA V1 IMPLEMENTADA E PUBLICADA; capacidades funcionais
+permanecem pendentes e devem avançar uma ação por tarefa.**
+
+- [x] Auditar o SQL inicial contra o schema, PKs/FKs, migrations, timestamps,
+  RLS, RBAC, Storage, arquitetura, jobs e padrões reais do Bentevi;
+- [x] aplicar e registrar no Supabase produtivo `.162` a migration
+  `20260913120000_bvf_v1_initial`, com oito tabelas BVF, 16 FKs válidas, 39
+  índices, seis triggers e nenhum `ON DELETE CASCADE`;
+- [x] manter as oito tabelas com RLS, acesso direto de `anon`/`authenticated`
+  revogado, `service_role` sem `DELETE` e bucket `video-factory` privado;
+- [x] inserir somente `RAFA/v1` e os três templates V1 homologados, sem URLs,
+  claims, categorias proibidas, provider ou modelo inventados;
+- [x] entregar contratos TypeScript, RBAC interno e a porta server-side
+  `VideoProvider`, sem provider concreto, worker, API, tela ou chamada paga;
+- [x] publicar a fundação no SHA `f07f5c6f`, com 43 testes direcionados,
+  `npm run validate`, build, verificação de secrets, smoke e read-back
+  produtivo aprovados.
+
+[Auditoria, divergências, contrato, validação e recuperação](../video-factory/BVF_V1_001_AUDITORIA_IMPLEMENTACAO.md).
+
+Fila BVF pendente, nesta ordem:
+
+- [ ] `BVF-BRIEF-01` — implementar a Briefing/Factual Engine server-side, com
+  origem por fato/claim, ausência explícita, dimensões físicas verificadas,
+  `scale_anchor` e briefing versionado sujeito à aprovação humana;
+- [ ] `BVF-FAMILY-01` — implementar famílias e detecção de atributos variáveis,
+  produzindo `variation_safe`/`variation_unsafe` e impedindo atributos inseguros
+  em fala, texto na tela, fechamento e claims;
+- [ ] `BVF-WORKFLOW-01` — implementar APIs backend e state machine autorizada,
+  usando o RBAC existente e preservando separadamente aprovação do briefing,
+  da geração paga e do master final;
+- [ ] `BVF-STORAGE-01` — implementar referências canônicas, upload e acesso
+  assinado aos prefixos privados `personas/`, `products/`, `jobs/` e
+  `approved/`, sem persistir URL pública;
+- [ ] `BVF-UI-01` — implementar telas integradas para briefing, revisão factual
+  e aprovação humana da geração paga, sem bloquear requisições normais;
+- [ ] `BVF-PROVIDER-01` — implementar adapters concretos Gemini/Veo sobre
+  `VideoProvider`, com credenciais apenas no backend, estimativa de custo e
+  geração desabilitada até aprovação humana válida;
+- [ ] `BVF-WORKER-01` — implementar worker assíncrono com tentativa append-only,
+  idempotência, concorrência, polling, falhas parciais, retry controlado e
+  recuperação, sem reutilizar o executor genérico atual;
+- [ ] `BVF-VALIDATION-01` — implementar download, validação técnica do MP4,
+  checksum, metadata, thumbnail/poster frame e fluxo de aprovação do master;
+- [ ] `BVF-COST-01` — implementar relatório de custo por tentativa/job e
+  agregação somente entre valores na mesma moeda, sem soma multimoeda;
+- [ ] `BVF-ML-LINK-01` — implementar associação e publicação manual de master
+  aprovado nos anúncios do Mercado Livre, com confirmação humana e read-back;
+- [ ] `BVF-PERF-01` — implementar métricas, experimentos e análise posterior de
+  performance, sem atribuir causalidade sem evidência.
+
+**Próxima ação recomendada:** executar somente `BVF-BRIEF-01`. Até os gates
+correspondentes, a BVF pode apenas ler produtos/anúncios e escrever em suas
+próprias tabelas; geração paga, master final e publicação no Mercado Livre
+exigem aprovação humana e permanecem desabilitados.
