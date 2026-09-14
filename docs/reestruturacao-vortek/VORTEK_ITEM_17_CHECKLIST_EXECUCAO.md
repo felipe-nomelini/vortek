@@ -4112,8 +4112,9 @@ publicação da coorte autorizada pelo usuário.
 
 ### BVF — Bentevi Video Factory — 13/09/2026
 
-**Estado: BASE V1, BRIEFING/FACTUAL ENGINE E FAMILY ENGINE IMPLEMENTADAS E
-PUBLICADAS; as capacidades restantes devem avançar uma ação por tarefa.**
+**Estado: BASE V1, BRIEFING/FACTUAL ENGINE, FAMILY ENGINE E WORKFLOW BACKEND
+IMPLEMENTADOS E PUBLICADOS; as capacidades restantes devem avançar uma ação por
+tarefa.**
 
 - [x] Auditar o SQL inicial contra o schema, PKs/FKs, migrations, timestamps,
   RLS, RBAC, Storage, arquitetura, jobs e padrões reais do Bentevi;
@@ -4140,9 +4141,9 @@ Fila BVF pendente, nesta ordem:
 - [x] `BVF-FAMILY-01` — implementar famílias e detecção de atributos variáveis,
   produzindo `variation_safe`/`variation_unsafe` e impedindo atributos inseguros
   em fala, texto na tela, fechamento e claims;
-- [ ] `BVF-WORKFLOW-01` — implementar APIs backend e state machine autorizada,
-  usando o RBAC existente e preservando separadamente aprovação do briefing,
-  da geração paga e do master final;
+- [x] `BVF-WORKFLOW-01` — implementar APIs backend e state machine autorizada,
+  usando o RBAC existente e somente dois gates humanos: briefing e custo juntos
+  na autorização da geração paga; master final após validação;
 - [ ] `BVF-STORAGE-01` — implementar referências canônicas, upload e acesso
   assinado aos prefixos privados `personas/`, `products/`, `jobs/` e
   `approved/`, sem persistir URL pública;
@@ -4182,6 +4183,16 @@ operacionais conferidos mantiveram as contagens do preflight.
 
 [Decisões, contrato e evidências da FAMILY-01](../video-factory/BVF_FAMILY_01_IMPLEMENTACAO.md).
 
-**Próxima ação recomendada:** executar somente `BVF-WORKFLOW-01`. Até os gates
-correspondentes, a BVF continua sem geração paga, master final ou publicação no
-Mercado Livre; essas ações exigem aprovação humana e permanecem desabilitadas.
+**Evidência de `BVF-WORKFLOW-01`:** 11 APIs backend publicadas, criação
+idempotente, preparação automática, família integrada, autorização exata e
+cancelamento auditável; migration `20260914090000_bvf_workflow_01` aplicada e
+registrada no `.162`; 33 testes BVF, teste SQL com rollback, `npm run validate`,
+build, secrets, smoke e read-back produtivo aprovados. O `service_role` perdeu
+escrita direta em `video_jobs`, nenhuma fixture permaneceu e os domínios
+operacionais mantiveram as contagens do preflight.
+
+[Decisões, contrato e evidências do WORKFLOW-01](../video-factory/BVF_WORKFLOW_01_IMPLEMENTACAO.md).
+
+**Próxima ação recomendada:** executar somente `BVF-STORAGE-01`. A BVF continua
+sem geração paga, master final ou publicação no Mercado Livre; essas ações
+permanecem desabilitadas até seus gates técnicos e humanos.
