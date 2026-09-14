@@ -14,6 +14,7 @@ import {
 } from '@/lib/ml/automatic-pricing';
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
+import { shouldSkipManuallyBlockedStockUpdate } from '@/lib/ml/protective-stock';
 
 export const maxDuration = 300;
 
@@ -237,6 +238,7 @@ export async function POST(req: Request) {
     let mlOutboxUnchanged = 0;
     let mlOutboxSkippedNoItem = 0;
     let mlOutboxSkippedManualBlock = 0;
+    let mlOutboxManualBlockBypassedZeroStock = 0;
     let mlOutboxSkippedNoListing = 0;
     let mlOutboxSkippedIneligible = 0;
     let mlOutboxFailed = 0;
@@ -592,9 +594,10 @@ export async function POST(req: Request) {
         });
       }
 
-      // O cadastro inativo recebe custo/estoque atuais para poder ser analisado,
-      // mas não pode gerar preço, quantidade ou status no Mercado Livre.
+      // Preco automatico permanece restrito ao cadastro ativo. Estoque zerado,
+      // entretanto, precisa pausar o anuncio mesmo quando o produto foi inativado.
       const activeChangedSnapshots = changedSnapshots.filter((snapshot) => snapshot.previous.ativo);
+      const stockChangedSnapshots = changedSnapshots;
 
       try {
         const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, [
@@ -620,7 +623,7 @@ export async function POST(req: Request) {
         });
       }
 
-      const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, activeChangedSnapshots);
+      const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, stockChangedSnapshots);
       const existingMlItemIds = Array.from(
         new Set(
           Array.from(mlTargetsByProduct.values()).flat()
@@ -628,7 +631,7 @@ export async function POST(req: Request) {
       );
       const existingSkusUpper = Array.from(
         new Set(
-          activeChangedSnapshots
+          stockChangedSnapshots
             .map((row) => String(row.previous.sku || '').trim().toUpperCase())
             .filter(Boolean)
         )
@@ -653,7 +656,8 @@ export async function POST(req: Request) {
           : Promise.resolve({ data: [], error: null } as any),
       ]);
 
-      if (manualByItemResp.error || manualBySkuResp.error) {
+      const manualBlockLookupFailed = Boolean(manualByItemResp.error || manualBySkuResp.error);
+      if (manualBlockLookupFailed) {
         const message = manualByItemResp.error?.message || manualBySkuResp.error?.message || 'Falha ao consultar bloqueio manual ML';
         errors.push({
           code: 'ml_manual_blocklist_query_failed',
@@ -674,19 +678,13 @@ export async function POST(req: Request) {
       recordsUpdated += changedSnapshots.length;
       const capacitiesByProduct = await loadProductFulfillmentCapacities(
         client,
-        activeChangedSnapshots.map((snapshot) => String(snapshot.productId)),
+        stockChangedSnapshots.map((snapshot) => String(snapshot.productId)),
       );
 
-      for (const snapshot of activeChangedSnapshots) {
+      for (const snapshot of stockChangedSnapshots) {
         const mlItemIds = mlTargetsByProduct.get(String(snapshot.productId)) || [];
         if (mlItemIds.length === 0) {
           mlOutboxSkippedNoItem += 1;
-          continue;
-        }
-
-        const skuUpper = String(snapshot.previous.sku || '').trim().toUpperCase();
-        if (String(snapshot.previous.ml_status || '').trim().toLowerCase() === 'sem_anuncio') {
-          mlOutboxSkippedNoListing += 1;
           continue;
         }
 
@@ -697,12 +695,31 @@ export async function POST(req: Request) {
         const estoqueDisponivel = capacity.safe;
         const desiredStatus = resolveDesiredMlStatusByStock(estoqueDisponivel);
         if (desiredStatus === 'pausado') mlOutboxPausedZeroStock += 1;
+        const skuUpper = String(snapshot.previous.sku || '').trim().toUpperCase();
+        if (
+          String(snapshot.previous.ml_status || '').trim().toLowerCase() === 'sem_anuncio'
+          && estoqueDisponivel > 0
+        ) {
+          mlOutboxSkippedNoListing += 1;
+          continue;
+        }
 
         for (const mlItemId of mlItemIds) {
           const isManualBlocked = manualBlockedByItemId.has(mlItemId) || (skuUpper ? manualBlockedBySku.has(skuUpper) : false);
-          if (isManualBlocked) {
+          if (manualBlockLookupFailed && estoqueDisponivel > 0) {
             mlOutboxSkippedManualBlock += 1;
             continue;
+          }
+          if (shouldSkipManuallyBlockedStockUpdate({
+            manuallyBlocked: isManualBlocked,
+            desiredStatus,
+            desiredQuantity: estoqueDisponivel,
+          })) {
+            mlOutboxSkippedManualBlock += 1;
+            continue;
+          }
+          if (isManualBlocked && estoqueDisponivel <= 0) {
+            mlOutboxManualBlockBypassedZeroStock += 1;
           }
 
           const outbox = await enqueueMlPublishOutbox(client, {
@@ -723,6 +740,7 @@ export async function POST(req: Request) {
               estoque_fornecedor: estoqueFornecedor,
               estoque_interno: estoqueInterno,
               status_desejado: desiredStatus,
+              manual_block_bypassed_for_zero_stock: isManualBlocked && estoqueDisponivel <= 0,
               fornecedor_preferencial: snapshot.next.fornecedor,
               fornecedor_dslite_id: snapshot.next.dslite_fornecedor_id,
               origin: 'api/sync/preco-estoque',
@@ -797,6 +815,7 @@ export async function POST(req: Request) {
         ml_outbox_unchanged: mlOutboxUnchanged,
         ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
         ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
+        ml_outbox_manual_block_bypassed_zero_stock: mlOutboxManualBlockBypassedZeroStock,
         ml_outbox_skipped_no_listing: mlOutboxSkippedNoListing,
         ml_outbox_skipped_ineligible: mlOutboxSkippedIneligible,
         ml_outbox_failed: mlOutboxFailed,
@@ -825,6 +844,7 @@ export async function POST(req: Request) {
       ml_outbox_unchanged: mlOutboxUnchanged,
       ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
       ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
+      ml_outbox_manual_block_bypassed_zero_stock: mlOutboxManualBlockBypassedZeroStock,
       ml_outbox_skipped_ineligible: mlOutboxSkippedIneligible,
       ml_outbox_failed: mlOutboxFailed,
       updated_seen: recordsUpdatedSeen,

@@ -34,7 +34,20 @@ const PAGE_SIZE = 50;
 const VALID_ROLES: VortekRole[] = ['admin', 'gerente', 'operador', 'visualizador'];
 
 interface MlAnunciosAlertas {
-  activeZeroStock: { count: number; items: Array<{ sku: string; nome: string; ml_item_id: string }> };
+  activeZeroStock: {
+    count: number;
+    items: Array<{
+      produto_id: string;
+      sku: string;
+      nome: string;
+      ml_item_id: string;
+      safe_stock: number;
+      internal_stock: number;
+      supplier_stock: number;
+      observed_status: 'ativo';
+      observed_at: string | null;
+    }>;
+  };
   mlPublishAuthFailures: { count: number; items: Array<{ ml_item_id: string; last_error: string | null }> };
 }
 
@@ -554,7 +567,7 @@ export default function ComprasPage() {
 
     {hasHomologationFixtures && <Alert type="info" showIcon message="Registros de demonstração protegidos" description="Esses dados servem para avaliar a tela. Pagamentos, documentos e ações externas estão desabilitados." />}
     {alertCount > 0 && mlAnunciosAlertas && <Alert type="warning" showIcon message="Atenção em anúncios do Mercado Livre" description={[
-      mlAnunciosAlertas.activeZeroStock.count > 0 ? `${mlAnunciosAlertas.activeZeroStock.count} anúncio(s) ativo(s) com estoque local zero.` : null,
+      mlAnunciosAlertas.activeZeroStock.count > 0 ? `${mlAnunciosAlertas.activeZeroStock.count} anúncio(s) ativo(s) no Mercado Livre com capacidade segura zerada.` : null,
       mlAnunciosAlertas.mlPublishAuthFailures.count > 0 ? `${mlAnunciosAlertas.mlPublishAuthFailures.count} publicação(ões) com falha de autorização.` : null,
     ].filter(Boolean).join(' ')} />}
     {independentError && <Alert type="warning" showIcon message="Indicadores independentes parcialmente indisponíveis" description={independentError} />}

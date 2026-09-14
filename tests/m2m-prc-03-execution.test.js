@@ -111,7 +111,7 @@ function worker(row, executionGuard = guard) {
     '@/lib/orders/fulfillment-capacity-loader': { loadProductFulfillmentCapacities() { throw Error('seed inesperado'); } },
     '@/lib/ml/listing-deletion': { isMlListingDeletionPayload: () => false },
     '@/lib/ml/operational-listing': { classifyMlPublishEligibility: () => ({ eligible: true }) },
-    '@/lib/supplier-deactivation': { isSafeInactiveSupplierPause: () => false },
+    '@/lib/ml/protective-stock': require('../src/lib/ml/protective-stock.ts'),
   });
   return { route, tables, stock, requests };
 }
@@ -142,6 +142,18 @@ test('fila mista executa estoque/status e registra preÃ§o bloqueado, sem divergÃ
   assert.ok(h.requests.every(r => !r.body || !('price' in JSON.parse(r.body))));
   assert.equal(body.records.retry, 0);
   assert.notEqual(row.payload.publish_progress.last_operation, 'price_reconcile_mismatch');
+});
+
+test('produto inativo ainda executa pausa protetiva com quantidade zero', async () => {
+  const h = worker({ ...priceRow, desired_price: null, desired_quantity: 0, desired_status: 'pausado',
+    payload: { apply_price: false, apply_quantity_pricing: false, apply_quantity: true, apply_status: true } });
+  h.tables.produtos[0].ativo = false;
+  const response = await h.route.POST(request());
+  assert.equal(response.status, 200);
+  assert.equal(h.tables.anuncios_ml_outbox[0].status, 'done');
+  assert.equal(h.stock.length, 1);
+  assert.equal(h.stock[0][1], 0);
+  assert.ok(h.requests.some(r => r.method === 'PUT' && JSON.parse(r.body).status === 'paused'));
 });
 
 for (const gate of [guard, { getPricingExecutionBlock: () => null }]) {

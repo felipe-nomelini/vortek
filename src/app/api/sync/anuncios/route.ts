@@ -891,7 +891,7 @@ export async function POST(request: Request) {
       }
 
       const observedStatus = String(item.status || '').trim().toLowerCase();
-      if (produtoId && produto?.ativo !== false && ['active', 'paused'].includes(observedStatus)) {
+      if (produtoId && ['active', 'paused'].includes(observedStatus)) {
         try {
           const stockSync = await enfileirarSyncMlEstoqueInterno(produtoId, {
             mlItemId: String(item.id),

@@ -1,3 +1,5 @@
+import { isProtectiveZeroStockPause } from '@/lib/ml/protective-stock';
+
 export type SupplierDeactivationProduct = {
   id: string;
   ativo?: boolean | null;
@@ -16,18 +18,8 @@ export function isSafeInactiveSupplierPause(input: {
   appliesQuantity: boolean;
   appliesStatus: boolean;
 }): boolean {
-  const hasExplicitZeroQuantity = (typeof input.desiredQuantity === 'number'
-    || typeof input.desiredQuantity === 'string')
-    && String(input.desiredQuantity).trim() !== ''
-    && Number(input.desiredQuantity) === 0;
-
   return String(input.source || '').trim().toLowerCase() === 'fornecedor_inativo_pause'
-    && String(input.desiredStatus || '').trim().toLowerCase() === 'pausado'
-    && hasExplicitZeroQuantity
-    && !input.appliesPrice
-    && !input.appliesQuantityPricing
-    && input.appliesQuantity
-    && input.appliesStatus;
+    && isProtectiveZeroStockPause(input);
 }
 
 export function classifySupplierDeactivationProducts<T extends SupplierDeactivationProduct>(

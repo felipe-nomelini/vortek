@@ -2,12 +2,15 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const load = require('./helpers/load-integration-module');
 
 const {
   classifySupplierDeactivationProducts,
   isActiveSupplierListingStatus,
   isSafeInactiveSupplierPause,
-} = require('../src/lib/supplier-deactivation.ts');
+} = load('src/lib/supplier-deactivation.ts', {
+  '@/lib/ml/protective-stock': require('../src/lib/ml/protective-stock.ts'),
+});
 
 const root = process.cwd();
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
@@ -45,7 +48,7 @@ test('considera candidato à pausa somente anúncio confirmado como ativo', () =
   }
 });
 
-test('libera produto inativo somente para a pausa segura e exata do fornecedor', () => {
+test('reconhece a pausa segura e exata do fornecedor', () => {
   const safePause = {
     source: 'fornecedor_inativo_pause',
     desiredStatus: 'pausado',
@@ -87,8 +90,8 @@ test('rota usa capacidade canônica, preserva atividade manual e sincroniza esto
   assert.doesNotMatch(statusRoute, /source: 'fornecedor_inativo_delete',[\s\S]{0,260}delete_listing: true/);
   assert.doesNotMatch(statusRoute, /productsToInactivate|productsInactivated/);
   assert.doesNotMatch(statusRoute, /\.from\('produtos'\)[\s\S]{0,120}\.update\(\{ ativo: false/);
-  assert.match(publishWorker, /isSafeInactiveSupplierPause/);
-  assert.match(publishWorker, /&& !safeInactiveSupplierPause/);
+  assert.match(publishWorker, /isProtectiveZeroStockPause/);
+  assert.match(publishWorker, /&& !protectiveZeroStockPause/);
 });
 
 test('BNT-PARITY-05 exige reprocessamento explícito e serializa a transição por fornecedor', () => {

@@ -19,7 +19,7 @@ import {
   classifyMlPublishFailure,
   mlNonModifiableBlockReason,
 } from '@/lib/ml/operational-listing';
-import { isSafeInactiveSupplierPause } from '@/lib/supplier-deactivation';
+import { isProtectiveZeroStockPause } from '@/lib/ml/protective-stock';
 import { dispatchApprovedPricingOperation } from '@/services/pricing-dispatch';
 
 export const maxDuration = 300;
@@ -264,19 +264,22 @@ export async function POST(request: Request) {
           if (!mlItemId) continue;
           const capacity = capacities.get(String(produto.id))
             || { internal: 0, supplier: 0, safe: 0 };
+          const pauseForZeroStock = capacity.safe <= 0;
           const seeded = await enqueueMlPublishOutbox(client, {
             produtoId: String(produto.id),
             mlItemId,
-            desiredStatus: produto.ml_status || null,
-            desiredPrice: typeof produto.custom_price === 'number' ? produto.custom_price : null,
+            desiredStatus: pauseForZeroStock ? 'pausado' : (produto.ml_status || null),
+            desiredPrice: !pauseForZeroStock && typeof produto.custom_price === 'number'
+              ? produto.custom_price
+              : null,
             desiredQuantity: capacity.safe,
             source: 'seed_from_products',
             dedupePending: true,
             payload: {
-              apply_price: typeof produto.custom_price === 'number',
+              apply_price: !pauseForZeroStock && typeof produto.custom_price === 'number',
               apply_quantity_pricing: false,
               apply_quantity: true,
-              apply_status: Boolean(produto.ml_status),
+              apply_status: pauseForZeroStock || Boolean(produto.ml_status),
               seeded_at: new Date().toISOString(),
               estoque_fornecedor: capacity.supplier,
               estoque_interno: capacity.internal,
@@ -380,10 +383,19 @@ export async function POST(request: Request) {
     const eligibilityForRow = (row: any) => {
       const mlItemId = String(row.ml_item_id || '').trim();
       const block = listingBlockByItemId.get(mlItemId);
+      const mode = resolveApplyMode(row);
+      const protectiveZeroStockPause = isProtectiveZeroStockPause({
+        desiredStatus: row.desired_status,
+        desiredQuantity: row.desired_quantity,
+        appliesPrice: mode.applyPrice,
+        appliesQuantityPricing: false,
+        appliesQuantity: mode.applyQuantity,
+        appliesStatus: mode.applyStatus,
+      });
       return classifyMlPublishEligibility({
         observedStatus: observedStatusByItemId.get(mlItemId),
-        blockReason: block?.reason,
-        blockedUntil: block?.until,
+        blockReason: protectiveZeroStockPause ? null : block?.reason,
+        blockedUntil: protectiveZeroStockPause ? null : block?.until,
         deleteListing: isMlListingDeletionPayload(normalizeOutboxPayload(row.payload)),
       });
     };
@@ -546,8 +558,7 @@ export async function POST(request: Request) {
       const rowProductId = String(row.produto_id || '').trim();
       const outboxSource = String((row as any).source || '').trim().toLowerCase();
       const desiredStatusRaw = String(row.desired_status || '').trim().toLowerCase();
-      const safeInactiveSupplierPause = isSafeInactiveSupplierPause({
-        source: outboxSource,
+      const protectiveZeroStockPause = isProtectiveZeroStockPause({
         desiredStatus: desiredStatusRaw,
         desiredQuantity: row.desired_quantity,
         appliesPrice: applyMode.applyPrice,
@@ -559,7 +570,7 @@ export async function POST(request: Request) {
         rowProductId
         && !activeProductIds.has(rowProductId)
         && !deleteListing
-        && !safeInactiveSupplierPause
+        && !protectiveZeroStockPause
       ) {
         await (client
           .from('anuncios_ml_outbox' as any)

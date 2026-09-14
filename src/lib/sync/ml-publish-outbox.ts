@@ -2,6 +2,7 @@ import { hasRetiredQuantityPricing, retireQuantityPricingPayload } from '../ml/q
 import type { Database } from '@/types/database';
 import { getPricingExecutionBlock } from '../ml/pricing-execution.js';
 import { classifyMlPublishEligibility } from '../ml/publish-eligibility.js';
+import { isProtectiveZeroStockPause } from '../ml/protective-stock';
 
 type ServiceClientLike = {
   from: (table: string) => any;
@@ -202,6 +203,14 @@ export async function enqueueMlPublishOutbox(
     desiredQuantity,
     desiredStatus,
   );
+  const protectiveZeroStockPause = isProtectiveZeroStockPause({
+    desiredStatus,
+    desiredQuantity,
+    appliesPrice: requestedMode.applyPrice,
+    appliesQuantityPricing: false,
+    appliesQuantity: requestedMode.applyQuantity,
+    appliesStatus: requestedMode.applyStatus,
+  });
   if (retiredQuantityPricing && !hasRequestedOperation(requestedMode, payload)) {
     return { ok: true, outboxId: null, action: 'skipped_ineligible',
       reason: 'quantity_pricing_retired', eligibility: 'terminally_blocked', retryAt: null };
@@ -242,8 +251,10 @@ export async function enqueueMlPublishOutbox(
 
     const eligibility = classifyMlPublishEligibility({
       observedStatus: observedStateResult.data?.status,
-      blockReason: listingState?.ml_sync_block_reason,
-      blockedUntil: listingState?.ml_sync_blocked_until,
+      // Uma fotografia ativa/pausada pode carregar cooldown ou bloqueio local
+      // antigo. Nenhum deles pode impedir a retirada protetiva de exposicao.
+      blockReason: protectiveZeroStockPause ? null : listingState?.ml_sync_block_reason,
+      blockedUntil: protectiveZeroStockPause ? null : listingState?.ml_sync_blocked_until,
     });
     if (!eligibility.eligible) {
       return {

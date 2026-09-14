@@ -6,6 +6,7 @@ const dependencies = {
   '../ml/pricing-execution.js': require('../src/lib/ml/pricing-execution.js'),
   '../ml/publish-eligibility.js': require('../src/lib/ml/publish-eligibility.js'),
   '../ml/quantity-pricing': require('../src/lib/ml/quantity-pricing.ts'),
+  '../ml/protective-stock': require('../src/lib/ml/protective-stock.ts'),
 };
 const { enqueueMlPublishOutbox } = load('src/lib/sync/ml-publish-outbox.ts', dependencies);
 
@@ -323,6 +324,23 @@ test('não recria outbox durante cooldown temporário', async () => {
   assert.equal(result.eligibility, 'temporarily_blocked');
   assert.equal(result.retryAt, blockedUntil);
   assert.equal(client.rows.length, 1);
+});
+
+test('pausa protetiva de estoque zero ignora cooldown local com anúncio ativo', async () => {
+  const client = createFakeClient([{
+    id: 'listing',
+    ml_item_id: 'MLB1',
+    status: 'ativo',
+    ml_sync_block_reason: 'field_not_updatable',
+    ml_sync_blocked_until: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+  }]);
+  const result = await enqueueMlPublishOutbox(client, stockInput({
+    desiredQuantity: 0,
+    desiredStatus: 'pausado',
+  }));
+  assert.equal(result.action, 'inserted');
+  assert.equal(client.rows[1].desired_quantity, 0);
+  assert.equal(client.rows[1].desired_status, 'pausado');
 });
 
 test('exclusão ignora bloqueio de publicação comum', async () => {

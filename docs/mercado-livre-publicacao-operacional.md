@@ -17,6 +17,11 @@ anúncios existentes, por meio de `anuncios_ml_outbox` e do publicador canônico
 - O sincronizador central é disparado no runtime produtivo a cada minuto; o
   publicador de estoque/status é consultado a cada 15 segundos e mantém lote
   máximo de 20 itens, lock de domínio, deduplicação, retry e read-back.
+- Capacidade segura igual a zero exige quantidade `0` e status `paused` em todo
+  anúncio vinculado observado como ativo. Essa retirada protetiva de exposição
+  ignora bloqueio manual, cooldown local, produto inativo e bloqueios comerciais;
+  eles continuam impedindo aumentos, reativação e preço. Estados remotos
+  terminais (`closed`, `under_review` e `inactive`) não são sobrescritos.
 - Os jobs `pg_cron` 2, 3 e 4 permanecem inativos. A rede interna do Supabase
   permite ao `pg_net` alcançar a própria stack, mas não o app no servidor `.160`;
   por isso os dois dispatchers liberados rodam por loopback no processo Bentevi.

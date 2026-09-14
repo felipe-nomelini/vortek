@@ -20,6 +20,7 @@ import {
   loadInternalStockBalances,
   loadProductFulfillmentCapacity,
 } from '@/lib/orders/fulfillment-capacity-loader';
+import { shouldSkipManuallyBlockedStockUpdate } from '@/lib/ml/protective-stock';
 
 export type ItemEstoquePedido = OrderFulfillmentStockItem;
 
@@ -296,9 +297,6 @@ export async function enfileirarSyncMlEstoqueInterno(
     .maybeSingle();
   if (produtoError) throw new Error(produtoError.message);
   if (!produto) return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
-  if (produto.ativo === false) {
-    return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
-  }
 
   const capacity = await loadProductFulfillmentCapacity(db, String(produto.id));
   const estoqueDisponivel = capacity.safe;
@@ -346,14 +344,18 @@ export async function enfileirarSyncMlEstoqueInterno(
   if (!mlItemIds.length) return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
 
   const sku = String(produto.sku || '').trim().toUpperCase();
-  const [manualByItem, manualBySku] = await Promise.all([
-    (db as any).from('ml_manual_blocklist').select('ml_item_id').eq('ativo', true).in('ml_item_id', mlItemIds),
-    sku ? (db as any).from('ml_manual_blocklist').select('sku').eq('ativo', true).in('sku', [sku]) : Promise.resolve({ data: [], error: null }),
-  ]);
-  if (manualByItem.error) throw new Error(manualByItem.error.message);
-  if (manualBySku.error) throw new Error(manualBySku.error.message);
-  const bloqueados = new Set((manualByItem.data || []).map((row: any) => String(row.ml_item_id || '').trim()));
-  const skuBloqueado = (manualBySku.data || []).length > 0;
+  let bloqueados = new Set<string>();
+  let skuBloqueado = false;
+  if (estoqueDisponivel > 0) {
+    const [manualByItem, manualBySku] = await Promise.all([
+      (db as any).from('ml_manual_blocklist').select('ml_item_id').eq('ativo', true).in('ml_item_id', mlItemIds),
+      sku ? (db as any).from('ml_manual_blocklist').select('sku').eq('ativo', true).in('sku', [sku]) : Promise.resolve({ data: [], error: null }),
+    ]);
+    if (manualByItem.error) throw new Error(manualByItem.error.message);
+    if (manualBySku.error) throw new Error(manualBySku.error.message);
+    bloqueados = new Set((manualByItem.data || []).map((row: any) => String(row.ml_item_id || '').trim()));
+    skuBloqueado = (manualBySku.data || []).length > 0;
+  }
 
   let enfileirados = 0;
   let bloqueadosManualmente = 0;
@@ -361,10 +363,6 @@ export async function enfileirarSyncMlEstoqueInterno(
   let emProcessamento = 0;
   const observedStatusNormalized = String(observed?.status || '').trim().toLowerCase();
   for (const mlItemId of mlItemIds) {
-    if (skuBloqueado || bloqueados.has(mlItemId)) {
-      bloqueadosManualmente += 1;
-      continue;
-    }
     const observedQuantity = Number(observed?.availableQuantity);
     const observedStatus = observed?.mlItemId === mlItemId
       ? observedStatusNormalized
@@ -374,6 +372,14 @@ export async function enfileirarSyncMlEstoqueInterno(
       : observedStatus === 'paused'
         ? 'paused'
         : 'active';
+    if (shouldSkipManuallyBlockedStockUpdate({
+      manuallyBlocked: skuBloqueado || bloqueados.has(mlItemId),
+      desiredStatus: desiredStatus === 'active' ? 'ativo' : 'pausado',
+      desiredQuantity: estoqueDisponivel,
+    })) {
+      bloqueadosManualmente += 1;
+      continue;
+    }
     if (
       observed?.mlItemId === mlItemId
       && observed.availableQuantity !== null
