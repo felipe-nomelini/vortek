@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 08/09/2026
-**Ambiente de execução:** desenvolvimento/homologação
+**Última atualização:** 13/09/2026
+**Ambiente de execução:** desenvolvimento integrado e produção Bentevi
 **Branch obrigatória:** `dev`
-**Aplicação de homologação:** `https://dev.bentevi.shop`
-**Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
-**Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Situação vigente (11/09/2026):** o Bentevi opera em `app.bentevi.shop` com o Supabase produtivo `.162`. A central de alertas foi corrigida, agrupada por produto e publicada; a alteração manual e individual de preço está configurada em `production_controlled` com allowlist exclusiva `price_change`. Criação de anúncios, lote e automação continuam bloqueados. O primeiro canário de preço exige ação autenticada e confirmação humana; até essa prova, a capacidade está disponível, mas nenhuma alteração real de preço foi executada. O Assistente continua fora deste recorte produtivo. [Evidências da central e ativação](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
+**Aplicação produtiva:** `https://app.bentevi.shop`
+**Serviço produtivo:** `local/bentevi-prod` em `192.168.1.160`
+**Banco produtivo:** `supabase.bentevi.shop` em `192.168.1.162`
+**Situação vigente (13/09/2026):** o Bentevi opera em `app.bentevi.shop` com o Supabase produtivo `.162`. A alteração manual e individual de preço continua no executor controlado e não possui bloqueios comerciais: margem, lucro, economia incompleta, identidade, grupo, variações e preço igual são avisos. Automação nativa de preço é desativada de forma durável antes do envio manual. As 15 operações históricas de preço estão confirmadas; os três casos antes inconclusivos foram conferidos no Mercado Livre com o preço solicitado. Criação em lote e precificação automática própria continuam fora deste recorte. [Evidências da liberação](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md).
 
 ---
 
@@ -40,11 +40,11 @@ Regras de uso:
 
 ### Modelo permanente de branches — decisão de 09/09/2026
 
-- `main` permanece como o sistema legado atualmente em produção; não é base de integração do Bentevi.
+- `main` preserva o sistema legado retirado do tráfego; não é base de integração do Bentevi.
 - `dev` contém a nova versão Bentevi e pode divergir integralmente de `main`; quantidade de commits e ancestralidade entre elas não são critérios de prontidão.
 - Não executar merge, rebase ou cherry-pick em massa entre `main` e `dev`. A leitura de `main` serve apenas para auditar comportamentos produtivos essenciais; quando necessários, eles são reimplementados nativamente em `dev`, com ação e testes próprios.
-- A futura produção Bentevi usará a branch canônica `bentevi-prod`, criada diretamente no SHA aprovado de `dev`, sem merge com `main`. Essa branch ainda não existe e só pode ser criada durante release especificamente autorizado.
-- `main` deve permanecer preservada após a virada inicial. Isso não basta como rollback: compatibilidade de schema, dados e efeitos externos precisa ser provada separadamente.
+- A produção Bentevi usa a branch canônica `bentevi-prod`, promovida pelo SHA exato aprovado de `dev`, sem merge com `main`.
+- `main` permanece preservada após a virada. Isso não basta como rollback: compatibilidade de schema, dados e efeitos externos precisa ser provada separadamente.
 
 ### Legenda
 
@@ -79,7 +79,7 @@ Regras de uso:
 
 ### Próxima ação
 
-**Prioridade vigente — atualização de 11/09/2026:** o núcleo Bentevi opera com dados reais em `app.bentevi.shop`, serviço `local/bentevi-prod` e Supabase produtivo `.162`. Assistente e criação de anúncios permanecem bloqueados. Alteração manual e individual de preço está tecnicamente liberada no executor controlado; a próxima ação operacional é executar e conferir um único canário autenticado antes de qualquer segunda alteração. Sincronizações de quantidade/status continuam independentes e acompanhadas.
+**Prioridade vigente — atualização de 13/09/2026:** o núcleo Bentevi opera com dados reais em `app.bentevi.shop`, serviço `local/bentevi-prod` e Supabase produtivo `.162`. O preço manual individual foi comprovado no executor controlado e agora trata condições comerciais como avisos, preservando apenas controles técnicos. Continuar o acompanhamento por read-back de cada operação e manter criação em lote, Assistente e automação própria nos gates específicos.
 
 <a id="bentevi-em-operacao"></a>
 
@@ -95,7 +95,7 @@ Regras de uso:
 
 | Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
 |---|---|---|---|---|
-| 1 — Execução comercial | Preço manual individual habilitado em 11/09; criação/lote/automação adiados | Primeiro canário autenticado de preço e read-back ainda pendentes | Executar uma proposta elegível, aprovar, confirmar uma vez e conferir o estado terminal antes da segunda operação | Runtime `production_controlled` com allowlist somente `price_change`; zero operações/outbox antes da ativação; [evidência](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md) |
+| 1 — Execução comercial | Preço manual individual habilitado e comprovado; criação em lote e automação própria adiadas | Read-back do item escolhido permanece obrigatório em cada operação | Acompanhar as próximas operações e reconciliar qualquer efeito remoto incerto somente por leitura | Runtime `production_controlled`; 15 operações confirmadas; três casos antes inconclusivos conferidos no ML; [evidência](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md) |
 | 2 — Configurações iniciais | Concluído no recorte inicial; aceite D20 concedido pelo usuário em 08/09 | Nenhum neste recorte; D20/V2-15 integrais continuam abertos | Preservar controles e seguir para marco 3 | [Entrega técnica, publicação e aceite humano inicial](evidencias/BNT-PRICING-V2-15-operacional-validacao.md#aceite-inicial-do-usuario--08092026); não comprova capacidades adiadas |
 | 3 — Assistente Bentevi | Adiado no primeiro corte | Nenhum para o núcleo inicial; runtime deve permanecer bloqueado | Retomar AI-GATE depois da entrada em produção | `BENTEVI_ASSISTANT_ENABLED=0` e `BENTEVI_ASSISTANT_DATA_APPROVED=0` no preflight produtivo |
 | 4 — Operação ponta a ponta | Validação inicial transferida para depois do deploy | O smoke seguro não pode falhar; validação real continua com acompanhamento | Validar login e leituras críticas antes do tráfego; exercitar fluxos reais depois da publicação | Logs, health, autenticação e primeiros fluxos reais; erro material interrompe somente o fluxo afetado |
@@ -105,7 +105,7 @@ Regras de uso:
 
 **Preparação do DEV local — 09/09/2026:** aprovada a topologia em que o `PCBAO` receberá o DEV local privado e a `.162` será reaproveitada futuramente como Supabase Bentevi PROD. Foram adicionados `supabase/config.toml`, comandos npm, seed sintético sem produtos/credenciais externas, documentação e teste de contrato. Com Docker Desktop 4.90 integrado ao WSL, o projeto `bentevi-dev-local` aplicou as 124 migrations em banco vazio; duas incompatibilidades do seed com o schema final foram identificadas e corrigidas, e o replay seguinte concluiu migrations e seed. A opção global **Localhost by default** foi aplicada no Docker Desktop: um container descartável e os containers do Supabase comprovaram binds exclusivos em `127.0.0.1`/`::1`, nas portas 54321–54324, antes e depois de reiniciar o Docker Desktop. O wrapper confere os binds reais, desliga automaticamente uma inicialização insegura, redige valores sensíveis da inicialização e omite chaves no status. O banco ativo confirmou PostgreSQL 17.6, 124 migrations, uma empresa sintética, três integrações locais desconectadas e zero produtos. Passaram cinco testes direcionados, `bash -n`, `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`. Esta é evidência parcial do marco 5, não o fecha: autenticação e fluxos web locais ainda precisam de validação própria. A `.162` continua DEV e não foi acessada ou alterada; `.160` e produção permaneceram intocadas.
 
-**Gate da primeira operação comercial:** alteração manual de preço está tecnicamente disponível somente no executor controlado. O primeiro canário deve ser individual, autenticado, aprovado e confirmado na interface; somente o read-back terminal autoriza a próxima operação. Isso não fecha `BNT-PRICING-V2-16`, `M2M-GATE` ou `BNT-AI-GATE`. Criação de anúncios, lote e automação permanecem tecnicamente indisponíveis. Jobs essenciais habilitados precisam ter um único executor e acompanhamento após o deploy.
+**Gate da operação comercial:** alteração manual de preço está disponível somente no executor controlado. Cada operação deve ser individual, autenticada, aprovada e confirmada por read-back do anúncio escolhido. Condições comerciais informam, mas não bloqueiam; sessão, seller/item, valor positivo, idempotência, concorrência e revalidação remota continuam obrigatórios. Isso não fecha `BNT-PRICING-V2-16`, `M2M-GATE` ou `BNT-AI-GATE`. Criação em lote e automação própria permanecem nos gates específicos.
 
 #### Adiado — não concluído; não bloqueia a primeira operação por si só
 
@@ -113,7 +113,7 @@ Regras de uso:
 |---|---|
 | BNT-AI-GATE e Assistente Bentevi | Retomar depois da entrada em produção; manter ambas as flags de runtime bloqueadas no primeiro release |
 | BNT-REL-ML-DELETE-01, CATEGORY-01, PREFLIGHT-01 e UNITS-01 | Obrigatórias antes de habilitar criação de anúncios; não bloqueiam o núcleo enquanto pricing/publicação permanecerem desativados |
-| Prova real de criação PUB-GATE e tarifa/frete ME2 | Continuam em release posterior; o recorte atual libera somente preço manual individual e mantém o primeiro canário pendente |
+| Prova real de criação PUB-GATE e tarifa/frete ME2 | Continuam em release posterior; o recorte atual comprova somente o preço manual individual |
 | V2-09, V2-08A, V2-10, V2-11 | Performance, diagnósticos comerciais avançados, experimentos e zero tráfego após a entrada em operação |
 | M2M-RAD-01/02/03/04; V2-12 e V2-14 equivalentes | Funil, rotina noturna nova, Dashboard avançado e reprocessamento após a entrada; preservar equivalências, sem tarefas duplicadas |
 | Parte futura V2-15; BNT-CFG-08/09 | Configurações das capacidades adiadas somente quando houver consumidor validado; controles operacionais necessários ficam no marco 2 |
@@ -125,7 +125,7 @@ Nenhuma etapa adiada recebe `[x]` ou `N/A` por causa deste recorte. Respeitar a 
 
 #### Ativação, interrupção e acompanhamento
 
-- **Capacidade produtiva canônica — preço manual ativado em 11/09/2026:** `production_controlled` está configurado no serviço `local/bentevi-prod` com allowlist exclusiva `price_change`. Runtime produtivo, origem canônica, destino `.162`, seller/conta real `MLB`, confirmação humana, trilha, idempotência, revalidação, prevenção de duplicação e read-back permanecem cumulativos. `test_only` continua restrito a `test_user`; criação, lote, automação e escritores legados seguem bloqueados; `.160` permanece somente leitura. A prova do primeiro preço real ainda depende do canário autenticado. [Evidências](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
+- **Capacidade produtiva canônica — preço manual comprovado e ampliado em 13/09/2026:** `production_controlled` está configurado no serviço `local/bentevi-prod`. Runtime produtivo, origem canônica, destino `.162`, seller/conta real `MLB`, confirmação humana, trilha, idempotência, prevenção de duplicação e read-back do item permanecem cumulativos. Condições comerciais deixaram de bloquear. Automação nativa ativa é removida uma única vez e confirmada antes do preço; efeito incerto é reconciliado por leitura. As 15 operações históricas estão confirmadas e os três casos antes inconclusivos têm preço remoto exato. `.160` permanece somente leitura. [Evidências](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md).
 - Conta real somente na ativação produtiva autorizada, nunca por cópia de tokens de produção para DEV. Preparação e ensaios neste worktree usam o Supabase DEV `.162` enquanto ele conservar essa classificação ou o DEV local restrito a loopback e dados sintéticos; banco `.160` é produção/somente leitura aqui. Mutações produtivas ficam no workspace dedicado, com autorização própria. Este documento não executa nem autoriza a virada.
 - Não copiar banco de homologação sobre produção, transportar fixtures ou retirar suas proteções. Preservar dados, filas e eventos reais. A exclusão das amostras DEV antes prevista em D24 será resolvida no marco 5, independentemente do adiamento visual de D24, com escopo e validação próprios.
 - Confirmar um único executor por fluxo: sistema antigo e novo não podem consumir/processar simultaneamente a mesma operação. Inventariar pendências, checkpoints, agendamentos e webhooks; preservar recepção/retomada de eventos durante a troca. Não ativar silenciosamente experimentos ou decisões históricas.
@@ -4012,7 +4012,7 @@ O lote visual `e036397` foi publicado em DEV pela ação Easypanel `cmts65gr7000
 
 ### BNT-PRICING-DECISION-CENTER-01 — 11/09/2026
 
-**Estado: IMPLEMENTADO E PUBLICADO; primeiro canário real de preço pendente de confirmação humana.**
+**Estado histórico em 11/09/2026: IMPLEMENTADO E PUBLICADO. O canário então pendente foi superado pela comprovação produtiva de 13/09/2026.**
 
 - [x] agrupar e paginar alertas por produto, separar Alertas de Decisões e corrigir o contador do badge;
 - [x] abrir diagnóstico mesmo sem proposta e retirar a mensagem global enganosa;
@@ -4027,9 +4027,24 @@ O lote visual `e036397` foi publicado em DEV pela ação Easypanel `cmts65gr7000
 - [x] corrigir falso `ANUNCIO_REMOTO_ALTERADO` causado pela ordem instável das tags do ML;
 - [x] reanalisar `VTK018243` e `VTK018250` em produção: grupos completos, alertas falsos encerrados e prejuízo competitivo real identificado, com zero decisão/operação/outbox e nenhum preço alterado;
 - [x] limitar a execução produtiva a `price_change`, mantendo criação, lote e automação bloqueados;
-- [ ] executar um único canário autenticado e conferir o estado terminal/read-back antes de qualquer segunda alteração.
+- [x] conferir operações reais e read-back terminal; as 15 operações históricas estão confirmadas e os três casos antes inconclusivos coincidem com o preço vivo no ML, conforme a evidência de 13/09/2026.
 
 [Evidências, testes, deploy, preflight e recuperação](evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
+
+### BNT-MANUAL-PRICE-WARNINGS-01 — 13/09/2026
+
+**Estado: IMPLEMENTADO, MIGRADO, PUBLICADO E COM READ-BACK PRODUTIVO.**
+
+- [x] transformar margem, lucro, economia, identidade, grupo, variações e preço igual em avisos, sem bloqueio comercial;
+- [x] aplicar o mesmo contrato aos fluxos manuais de Catálogo, Anúncios e Produtos;
+- [x] desativar automação nativa do ML antes do preço, com intenção durável, uma única mutação e reconciliação somente por leitura após efeito incerto;
+- [x] confirmar sucesso pelo anúncio escolhido e deixar pares de catálogo para a propagação assíncrona regular;
+- [x] aplicar a migration `20260913233000` no Supabase produtivo `.162`, com preflight, ensaio em transação, backup privado e read-back;
+- [x] promover o SHA de implementação `82daca5e59d63f52305c58d371210d9a8d95ff29` de `dev` para `bentevi-prod` e publicar no serviço produtivo;
+- [x] aprovar 107 testes direcionados, suíte completa, validate, build, verificação de secrets e smoke produtivo;
+- [x] confirmar no ML os três casos antes inconclusivos: `MLB7390922484` em R$ 299,00, `MLB7608349030` em R$ 497,00 e `MLB7608375398` em R$ 608,00.
+
+[Evidências, recuperação e limites](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md).
 
 ### BNT-CATALOG-UX-01 — 11/09/2026
 

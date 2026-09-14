@@ -66,5 +66,33 @@ comando; o item deve ser relido e reconciliado.
 - o ensaio local do Supabase não foi executado porque o Docker está
   indisponível para o usuário atual; o ensaio transacional no `.162` foi usado
   como validação SQL sem persistir alterações;
-- SHA promovido, migration aplicada, deploy e smoke serão registrados abaixo
-  após a publicação.
+- o SHA de implementação `82daca5e59d63f52305c58d371210d9a8d95ff29`
+  foi enviado a `origin/dev` e promovido por fast-forward, sem integração com
+  `main`, para `origin/bentevi-prod`.
+
+## Aplicação e read-back produtivos
+
+A migration `20260913233000` foi aplicada no Supabase Bentevi `.162`. O
+read-back confirmou a versão registrada, as três colunas duráveis de automação,
+RLS ativa, ACL das funções negada a `anon`/`authenticated` e concedida a
+`service_role`, índice ativo por item, 15 sellers históricos preenchidos, zero
+seller ausente, zero operação ativa e zero outbox de preço aberta.
+
+Os três casos exibidos como inconclusivos na interface foram reconciliados por
+leitura no banco e na conta produtiva real do Mercado Livre:
+
+| Anúncio | Preço solicitado | Estado da operação | Preço vivo |
+|---|---:|---|---:|
+| `MLB7390922484` | R$ 299,00 | `confirmed` | R$ 299,00 |
+| `MLB7608349030` | R$ 497,00 | `confirmed` | R$ 497,00 |
+| `MLB7608375398` | R$ 608,00 | `confirmed` | R$ 608,00 |
+
+O read-back também confirmou o seller esperado e a moeda BRL nos três itens.
+Nenhuma mutação adicional foi enviada para produzir essa conferência.
+
+O webhook produtivo respondeu HTTP 200 e o processo do serviço reiniciou. O
+smoke posterior aprovou health e login com HTTP 200, redirecionamento das páginas
+protegidas de Anúncios e Catálogo com HTTP 307 e rejeição sem sessão das APIs de
+decisão e confirmação com HTTP 401. Um chunk servido por
+`app.bentevi.shop` respondeu HTTP 200 e contém o novo texto que delimita o envio
+ao anúncio escolhido, comprovando o artefato web novo em produção.
