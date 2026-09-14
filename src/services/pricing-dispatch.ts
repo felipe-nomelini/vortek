@@ -9,6 +9,71 @@ import { pricingReadbackMatches } from '@/lib/ml/pricing-execution';
 
 type Client = ReturnType<typeof createServiceClient>;
 
+function automationMissing(result: { status: number | null; error?: { code?: string | null } | null }) {
+  return result.status === 404;
+}
+
+async function deferAutomationReadback(client: Client, outboxId: string, operationId: string, message: string) {
+  const deferred = await client.from('anuncios_ml_outbox').update({
+    status: 'retry', last_error: message,
+    available_at: new Date(Date.now() + 15_000).toISOString(), updated_at: new Date().toISOString(),
+  }).eq('id', outboxId).eq('pricing_operation_id', operationId);
+  if (deferred.error) throw new Error('pricing_automation_reconciliation_persistence_failed');
+}
+
+async function ensureAutomaticPricingDisabled(
+  client: Client, outboxId: string, operation: any, decision: any, sellerId: string,
+): Promise<'ready' | 'waiting' | 'failed'> {
+  if (decision.context.disableAutomaticPricing !== true || operation.automation_disabled_at) return 'ready';
+  const path = '/pricing-automation/items/' + encodeURIComponent(operation.item_id) + '/automation';
+  const current = await fetchMLResult<any>(path);
+  if (automationMissing(current)) {
+    const confirmedAt = new Date().toISOString();
+    const saved = await client.from('pricing_operations').update({
+      automation_disable_requested_at: operation.automation_disable_requested_at || confirmedAt,
+      automation_disabled_at: confirmedAt,
+    })
+      .eq('id', operation.id).is('automation_disabled_at', null);
+    if (saved.error) throw new Error('pricing_automation_confirmation_persistence_failed');
+    return 'ready';
+  }
+  if (!current.ok) {
+    await deferAutomationReadback(client, outboxId, operation.id, 'Automação de preço aguardando consulta no Mercado Livre.');
+    return 'waiting';
+  }
+  if (!operation.automation_disable_requested_at) {
+    const removed = await fetchMLResult<any>(path, { method: 'DELETE' }, pricingExecutionTransport(sellerId, async () => {
+      const marked = await client.from('pricing_operations').update({ automation_disable_requested_at: new Date().toISOString() })
+        .eq('id', operation.id).is('automation_disable_requested_at', null).select('id').maybeSingle();
+      if (marked.error || !marked.data) throw new Error('pricing_automation_request_persistence_failed');
+    }));
+    if (!removed.ok && !automationMissing(removed)) {
+      if (removed.status !== null && removed.status >= 400 && removed.status < 500
+        && ![408, 409, 425, 429].includes(removed.status)) {
+        await transitionPricingOperation(client, operation.id, 'failed');
+        const failed = await client.from('anuncios_ml_outbox').update({
+          status: 'failed', last_error: removed.error?.message || 'O Mercado Livre recusou a desativação da automação.',
+          updated_at: new Date().toISOString(),
+        }).eq('id', outboxId).eq('pricing_operation_id', operation.id);
+        if (failed.error) throw new Error('pricing_automation_failure_persistence_failed');
+        return 'failed';
+      }
+      await deferAutomationReadback(client, outboxId, operation.id,
+        removed.error?.message || 'Não foi possível desativar a automação de preço no Mercado Livre.');
+      return 'waiting';
+    }
+  }
+  const readback = await fetchMLResult<any>(path);
+  if (!automationMissing(readback)) {
+    await deferAutomationReadback(client, outboxId, operation.id, 'Automação enviada para remoção; aguardando confirmação do Mercado Livre.');
+    return 'waiting';
+  }
+  const saved = await client.from('pricing_operations').update({ automation_disabled_at: new Date().toISOString() })
+    .eq('id', operation.id).is('automation_disabled_at', null);
+  if (saved.error) throw new Error('pricing_automation_confirmation_persistence_failed');
+  return 'ready';
+}
+
 async function revalidate(client: Client, decision: any, productId: string, actorId: string) {
   await requirePricingExecutionAccount(decision.context.sellerId, decision.context.operationKind || 'price_change');
   if (decision.context.operationKind === 'listing_create') {
@@ -19,6 +84,7 @@ async function revalidate(client: Client, decision: any, productId: string, acto
   }
   const response = await loadPricingDetail({ produtoId: productId,
     mlItemId: decision.context.itemId, priceCents: decision.context.priceCents,
+    disableAutomaticPricing: decision.context.disableAutomaticPricing === true,
     ...(decision.context.clearance ? { clearance: decision.context.clearance } : {}),
   }, { actorId });
   if (!response.ok) throw new Error('decision_revalidation_unavailable');
@@ -78,6 +144,9 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
       await transitionPricingOperation(client, operationId, 'failed');
       return finish('failed');
     }
+    const automation = await ensureAutomaticPricingDisabled(client, outboxId, operation, decision, sellerId);
+    if (automation === 'failed') return 'failed';
+    if (automation === 'waiting') return 'reconciling';
     let evaluationId: string;
     try { evaluationId = await revalidate(client, decision, operation.produto_id, operation.actor_id!); }
     catch (error) {
@@ -153,25 +222,17 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
     if (operation.state === 'requested') await transitionPricingOperation(client, operationId, 'inconclusive');
     return finish('inconclusive');
   }
-  if (!operation.item_id || !operation.group_id || !operation.group_version) throw new Error('decision_price_target_invalid');
-  const members = await client.from('ml_pricing_group_members').select('ml_item_id,variation_id')
-    .eq('group_id', operation.group_id).eq('version', operation.group_version);
-  if (members.error || !members.data?.length) throw new Error('decision_members_unavailable');
-  const items = new Map<string, any>();
-  for (const id of new Set(members.data.map(m => m.ml_item_id))) {
-    const read = await fetchMLResult<any>('/items/' + encodeURIComponent(id));
-    if (read.ok && read.data?.id === id) items.set(id, read.data);
-  }
+  if (!operation.item_id) throw new Error('decision_price_target_invalid');
+  const readback = await fetchMLResult<any>('/items/' + encodeURIComponent(operation.item_id));
+  const selectedItem = readback.ok && readback.data?.id === operation.item_id ? readback.data : null;
   const observedAt = new Date().toISOString();
-  const evidenceMembers = members.data.map(m => ({ item: items.get(m.ml_item_id), variationId: m.variation_id }));
-  if (pricingReadbackMatches(items.get(operation.item_id), sellerId, operation.new_price_cents, evidenceMembers)) {
+  if (pricingReadbackMatches(selectedItem, sellerId, operation.new_price_cents)) {
     const proof = { reference: 'items/' + operation.item_id, outcome: 'readback_verified' as const,
-      item_id: operation.item_id, price_cents: operation.new_price_cents, observed_at: observedAt,
-      members: members.data.map(m => ({ item_id: m.ml_item_id, variation_id: m.variation_id, price_cents: operation.new_price_cents })) };
+      item_id: operation.item_id, price_cents: operation.new_price_cents, observed_at: observedAt };
     // Persist observed prices with their actual origin, never custom_price as evidence of manual action.
-    const persisted = await persistPricingObservations(client, 'anuncios_ml', members.data.map(m => ({
-      ml_item_id: m.ml_item_id, produto_id: operation.produto_id, preco_ml: operation.new_price_cents / 100,
-    })), observedAt);
+    const persisted = await persistPricingObservations(client, 'anuncios_ml', [{
+      ml_item_id: operation.item_id, produto_id: operation.produto_id, preco_ml: operation.new_price_cents / 100,
+    }], observedAt);
     if (persisted.error) throw new Error('decision_readback_persistence_failed');
     await transitionPricingOperation(client, operationId, 'confirmed', proof);
     return finish('confirmed');

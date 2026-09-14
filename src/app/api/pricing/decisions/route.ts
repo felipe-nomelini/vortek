@@ -191,6 +191,7 @@ export async function POST(request: Request) {
         produtoId: row.alert.produto_id,
         mlItemId: row.context.itemId,
         priceCents: row.context.priceCents,
+        disableAutomaticPricing: row.context.disableAutomaticPricing === true,
         ...(row.context.clearance ? { clearance: row.context.clearance } : {}),
       });
       if (!response.ok) return response;

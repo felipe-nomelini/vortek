@@ -62,10 +62,7 @@ const date = (s?: string | null) =>
 const money = (c?: number | null) =>
   c == null ? 'Não calculado' : (c / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 const blockerLabels: Record<string, string> = {
-  GRUPO_NAO_CONFIRMADO: 'Vínculo/grupo ainda não confirmado',
-  IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA: 'Identidade ou elegibilidade do anúncio pendente',
-  ECONOMIA_INCONCLUSIVA: 'Custo, tarifa, frete ou imposto inconclusivo',
-  PRECO_JA_APLICADO: 'O preço consultado já é o preço atual',
+  OPERACAO_EM_ANDAMENTO: 'Já existe uma alteração de preço em andamento para este anúncio',
   PRODUTO_LOCAL_ALTERADO: 'Produto ou oferta mudou durante a consulta',
   ANUNCIO_REMOTO_ALTERADO: 'Anúncio mudou durante a consulta',
   CONTA_ML_DIVERGENTE: 'Conta Mercado Livre divergente',
@@ -75,6 +72,16 @@ const blockerLabels: Record<string, string> = {
   CONCORRENCIA_ALTERADA: 'Referência competitiva mudou',
   INCONCLUSIVO_FONTE_ML_INDISPONIVEL: 'Fonte do Mercado Livre indisponível',
   CONTEXTO_ALTERADO: 'Os dados mudaram durante a consulta; atualize o diagnóstico novamente',
+};
+const warningLabels: Record<string, string> = {
+  GRUPO_NAO_CONFIRMADO: 'Vínculo/grupo ainda não confirmado; o item escolhido será a referência da confirmação',
+  IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA: 'Identidade comercial ou elegibilidade pendente',
+  ECONOMIA_INCONCLUSIVA: 'Custo, tarifa, frete ou imposto inconclusivo',
+  FONTES_EXPIRADAS: 'Uma ou mais fontes econômicas estão desatualizadas',
+  PRECO_ABAIXO_DO_PISO: 'Preço abaixo do piso de margem',
+  PREJUIZO_PREVISTO: 'A projeção indica prejuízo unitário',
+  PRECO_JA_APLICADO: 'O preço consultado já é o preço atual',
+  VARIACAO_REQUER_CONTRATO_DE_EXECUCAO: 'O anúncio possui variações; a alteração será enviada ao item escolhido',
 };
 const severityLabels: Record<string, string> = {
   P0: 'Crítica', P1: 'Alta', P2: 'Atenção', INFO: 'Informativa',
@@ -745,6 +752,7 @@ export function PricingProposalButton({
   priceCents,
   clearance,
   disabled = false,
+  disableAutomaticPricing: initialDisableAutomaticPricing = false,
   label = 'Preparar proposta',
   onRecorded,
 }: {
@@ -753,6 +761,7 @@ export function PricingProposalButton({
   priceCents?: number;
   clearance?: DecisionContext['clearance'];
   disabled?: boolean;
+  disableAutomaticPricing?: boolean;
   label?: string;
   onRecorded?: () => void;
 }) {
@@ -765,6 +774,7 @@ export function PricingProposalButton({
     evaluationId: string;
     pricing: ProductPricing;
     decisionContext: DecisionContext;
+    automaticPricing?: { active?: boolean };
   } | null>(null);
   const [command, setCommand] = useState<string | null>(null);
   const generation = useRef(0);
@@ -781,6 +791,7 @@ export function PricingProposalButton({
           produtoId: productId,
           mlItemId: itemId,
           priceCents: Math.round(price * 100),
+          disableAutomaticPricing: initialDisableAutomaticPricing || undefined,
           ...(clearance ? { clearance } : {}),
         }),
       });
@@ -873,6 +884,10 @@ export function PricingProposalButton({
           {quote && (
             <>
               <PricingQuoteSummary pricing={quote.pricing} />
+              {(quote.decisionContext?.warnings || []).map(code => <Alert key={code} type="warning" showIcon
+                message={warningLabels[code] || 'Há uma informação pendente nesta análise.'} />)}
+              {quote.decisionContext?.disableAutomaticPricing && <Alert type="warning" showIcon
+                message="A automação de preço será desativada no Mercado Livre antes de aplicar o valor manual." />}
               {!quote.decisionContext?.executable && (
                 <Alert
                   type="warning"

@@ -82,7 +82,8 @@ type RefreshStatusPayload = {
 };
 type PriceDetail = {
   evaluationId?: string;
-  decisionContext?: { executable?: boolean; reasons?: string[]; priceCents?: number; groupId?: string | null } | null;
+  decisionContext?: { executable?: boolean; reasons?: string[]; warnings?: string[]; priceCents?: number;
+    groupId?: string | null; disableAutomaticPricing?: boolean } | null;
   currentPrice?: number | null; currentProfit?: number | null;
   pricing?: { current?: { memory?: { resultCents?: number; margin?: number } | null } };
   competitiveAssessment?: {
@@ -161,13 +162,19 @@ function memoryEconomy(memory: { resultCents?: number; margin?: number } | null 
     marginPercent: Number(memory.margin) * 100, source: 'live_saved', calculatedAt: null, reason: null };
 }
 function decisionBlockMessage(reasons: string[] = []) {
-  if (reasons.includes('PRECO_AUTOMATICO_ML')) return 'O Mercado Livre controla automaticamente o preço deste anúncio.';
-  if (reasons.includes('PRECO_ABAIXO_DO_PISO')) return 'O novo preço ficaria abaixo do limite de margem permitido.';
-  if (reasons.includes('PRECO_JA_APLICADO')) return 'Este preço já está aplicado.';
   if (reasons.includes('OPERACAO_EM_ANDAMENTO')) return 'Já existe uma alteração de preço em andamento.';
-  if (reasons.includes('GRUPO_NAO_CONFIRMADO')) return 'O vínculo dos anúncios precisa ser confirmado antes de alterar o preço.';
-  if (reasons.includes('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA')) return 'A identidade do anúncio ainda não pôde ser confirmada.';
   return 'As informações atuais não permitem confirmar esta alteração com segurança.';
+}
+function decisionWarningMessage(reason: string) {
+  if (reason === 'PRECO_ABAIXO_DO_PISO') return 'O preço fica abaixo do piso de margem; a decisão manual será respeitada.';
+  if (reason === 'PREJUIZO_PREVISTO') return 'A projeção indica prejuízo unitário.';
+  if (reason === 'GRUPO_NAO_CONFIRMADO') return 'O vínculo dos anúncios não está confirmado; somente o item escolhido será exigido no read-back.';
+  if (reason === 'IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA') return 'A identidade comercial ainda está pendente.';
+  if (reason === 'ECONOMIA_INCONCLUSIVA') return 'Custo, tarifa, frete ou imposto não puderam ser concluídos.';
+  if (reason === 'FONTES_EXPIRADAS') return 'Uma ou mais fontes econômicas estão desatualizadas.';
+  if (reason === 'PRECO_JA_APLICADO') return 'O preço informado já aparece no anúncio.';
+  if (reason === 'VARIACAO_REQUER_CONTRATO_DE_EXECUCAO') return 'O anúncio possui variações; a alteração será enviada ao item escolhido.';
+  return 'Há uma informação pendente nesta análise.';
 }
 
 export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
@@ -179,7 +186,6 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const pricingRequest = useRef(0);
   const dataAbortController = useRef<AbortController | null>(null);
   const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const priceRetry = useRef<() => void>(() => undefined);
   const batchCancelled = useRef(false);
   const batchAbort = useRef<AbortController | null>(null);
   const economicsRequest = useRef(0);
@@ -486,15 +492,13 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
 
   const reviewPrice = useCallback(async () => {
     if (!activeCatalog?.produto_id || !newPrice || visualReview) return;
-    if (Math.round(newPrice * 100) === Math.round((priceDetail?.currentPrice ?? activeCatalog.price) * 100)) {
-      messageApi.info('Informe um preço diferente do atual.'); return;
-    }
     setReviewingPrice(true);
     try {
       const response = await fetch('/api/ml/anuncio/preco-detalhe', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ produtoId: activeCatalog.produto_id, mlItemId: activeCatalog.ml_item_id,
-          priceCents: Math.round(newPrice * 100) }),
+          priceCents: Math.round(newPrice * 100),
+          disableAutomaticPricing: priceDetail?.automaticPricing?.active === true }),
       });
       const detail = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(detail?.error || 'Não foi possível revisar este preço.');
@@ -503,7 +507,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     } catch (error: unknown) {
       messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível revisar este preço.'));
     } finally { setReviewingPrice(false); }
-  }, [activeCatalog, messageApi, newPrice, priceDetail?.currentPrice, visualReview]);
+  }, [activeCatalog, messageApi, newPrice, priceDetail?.automaticPricing?.active, visualReview]);
 
   const confirmPrice = useCallback(async () => {
     if (!activeCatalog?.produto_id || !priceReview?.detail.evaluationId) return;
@@ -520,15 +524,13 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       const outboxId = String(payload?.outboxId || '').trim();
       if (!outboxId) throw new Error('A alteração não foi programada.');
       setPriceReview(null);
-      startTracking({ outboxId, produtoId: activeCatalog.produto_id, retry: () => priceRetry.current(),
+      startTracking({ outboxId, produtoId: activeCatalog.produto_id,
         onTerminal: (status) => { if (status.status === 'done') { void fetchData(); setActiveCatalog(null); } } });
       messageApi.success('Alteração programada para envio ao Mercado Livre.');
     } catch (error: unknown) {
       messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível confirmar a alteração.'));
     } finally { setConfirmingPrice(false); }
   }, [activeCatalog, fetchData, hasOpenTracking, messageApi, priceReview, startTracking]);
-  priceRetry.current = () => void confirmPrice();
-
   const executeOptinTargets = useCallback(async (targets: CatalogOptinTarget[]) => {
     if (!targets.length || visualReview || !createEnabled) return;
     batchCancelled.current = false; setBatchRunning(true); setBatchOpen(true);
@@ -783,11 +785,11 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
           <small>Confira o impacto antes de confirmar. Nada é alterado nesta etapa.</small></div>
           <div className={styles.priceEditor}><InputNumber prefix="R$" min={0.01} precision={2} value={newPrice}
             onChange={(value) => setNewPrice(value ?? null)}
-            disabled={Boolean(visualReview) || !activeCatalog.produto_id || priceDetail?.automaticPricing?.active} />
+            disabled={Boolean(visualReview) || !activeCatalog.produto_id} />
             <Button type="primary" loading={reviewingPrice}
-              disabled={Boolean(visualReview) || !activeCatalog.produto_id || !newPrice || priceDetail?.automaticPricing?.active}
+              disabled={Boolean(visualReview) || !activeCatalog.produto_id || !newPrice}
               onClick={() => void reviewPrice()}>Revisar alteração</Button></div>
-          {priceDetail?.automaticPricing?.active && <Text type="warning">O preço automático do Mercado Livre está ativo.</Text>}</section>}
+          {priceDetail?.automaticPricing?.active && <Text type="warning">A confirmação desativará a automação de preço no Mercado Livre antes da alteração.</Text>}</section>}
 
         <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
           <div><dt>{liveCatalogMismatch ? 'Anúncio padrão' : 'Anúncio de catálogo'}</dt><dd><MercadoLivreCodeLink code={activeCatalog.ml_item_id}
@@ -807,7 +809,8 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       </div></Spin>}
     </Drawer>
 
-    <Modal open={Boolean(priceReview)} title="Confirmar alteração de preço" okText="Confirmar alteração" cancelText="Voltar"
+    <Modal open={Boolean(priceReview)} title="Confirmar alteração de preço"
+      okText={priceReview?.detail.decisionContext?.disableAutomaticPricing ? 'Desativar automação e alterar' : 'Confirmar alteração'} cancelText="Voltar"
       confirmLoading={confirmingPrice} okButtonProps={{ disabled: priceReview?.detail.decisionContext?.executable !== true }}
       onCancel={() => setPriceReview(null)} onOk={() => void confirmPrice()}>
       {priceReview && activeCatalog && <div className={styles.priceReview}>
@@ -821,6 +824,10 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         {priceReview.detail.decisionContext?.executable !== true && <Alert type="warning" showIcon
           message="Esta alteração ainda não pode ser confirmada"
           description={decisionBlockMessage(priceReview.detail.decisionContext?.reasons)} />}
+        {(priceReview.detail.decisionContext?.warnings || []).map((warning) => <Alert key={warning} type="warning" showIcon
+          message={decisionWarningMessage(warning)} />)}
+        {priceReview.detail.decisionContext?.disableAutomaticPricing && <Alert type="warning" showIcon
+          message="A automação de preço será desativada no Mercado Livre antes de aplicar este valor." />}
       </div>}
     </Modal>
 

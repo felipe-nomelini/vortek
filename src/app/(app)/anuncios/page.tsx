@@ -533,7 +533,6 @@ export default function AnunciosPage() {
         startPriceTracking({
           outboxId: queued[0].outboxId || '',
           produtoId: row.productId,
-          retry: () => { void savePrice(); },
           onTerminal: (status) => {
             setPriceResults((current) => current.map((result) => (
               result.outboxId === queued[0].outboxId
@@ -806,7 +805,6 @@ export default function AnunciosPage() {
   const selectedPerformance = performance?.windows.find((window) => window.days === performanceWindowDays) || null;
   const primaryPerformance = performance?.windows.find((window) => window.days === 30) || null;
   const competitiveMemory = details?.competitiveAssessment?.competitive?.memory;
-  const listingIdentityVerified = details?.listingValidation?.state === 'verified';
   const nextProfit = details && newPrice === details.currentPrice ? details.currentProfit
     : competitiveMemory && newPrice === competitiveMemory.revenueCents / 100 ? competitiveMemory.resultCents / 100 : null;
   const qualityItems = Array.isArray((activeAnalysis?.qualityInfo as any)?.itens) ? (activeAnalysis?.qualityInfo as any).itens : [];
@@ -913,9 +911,9 @@ export default function AnunciosPage() {
           <section className={styles.drawerSection}><div className={styles.sectionHeading}><div><span>Preço e rentabilidade</span><strong>Um preço para os anúncios vinculados</strong></div></div>
             <ListingValidationNotice validation={details?.listingValidation} />
             <CompetitivePricingSummary assessment={details?.competitiveAssessment} pricing={details?.pricing} />{!details?.competitiveAssessment && <PricingQuoteSummary pricing={details?.pricing} />}
-            {details?.automaticPricing?.active && <Alert type="warning" showIcon message="Preço automático ativo no Mercado Livre" description="A edição manual está bloqueada para evitar uma rejeição do provedor. Desative a automação no Mercado Livre antes de alterar aqui." />}
-            <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || !listingIdentityVerified || details.automaticPricing?.active || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => void simulateCompetitivePrice()}>Simular referência competitiva</Button>}<PricingProposalButton productId={activeAnalysis.productId!} itemId={activeAnalysis.itemId} priceCents={newPrice == null ? undefined : Math.round(newPrice * 100)} disabled={Boolean(visualReview) || !activeAnalysis.productId || !listingIdentityVerified || details?.automaticPricing?.active} /></div>
-            <small className={styles.scopeNotice}>O mesmo preço será aplicado ao anúncio padrão e ao anúncio de catálogo ativos ou pausados vinculados a este produto. O resultado aparece separadamente por item.</small>
+            {details?.automaticPricing?.active && <Alert type="warning" showIcon message="Preço automático ativo no Mercado Livre" description="Ao confirmar um preço manual, o Bentevi desativará essa automação antes de enviar o novo valor." />}
+            <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => void simulateCompetitivePrice()}>Simular referência competitiva</Button>}<PricingProposalButton productId={activeAnalysis.productId!} itemId={activeAnalysis.itemId} priceCents={newPrice == null ? undefined : Math.round(newPrice * 100)} disableAutomaticPricing={details?.automaticPricing?.active === true} disabled={Boolean(visualReview) || !activeAnalysis.productId} /></div>
+            <small className={styles.scopeNotice}>O preço será enviado ao anúncio escolhido. Se houver vínculo de catálogo, o Mercado Livre poderá propagá-lo aos anúncios relacionados de forma assíncrona.</small>
             {priceResults.length > 0 && <div className={styles.resultList}>{priceResults.map((result) => <div key={result.mlItemId}><span className={styles.typeMark}>{result.type === 'catalog' ? 'CATÁLOGO' : 'PADRÃO'}</span><strong>{result.mlItemId}</strong><span>{result.trackingStatus === 'pending' || result.trackingStatus === 'processing' || result.trackingStatus === 'retry' ? 'Publicação em processamento' : result.success ? 'Preço processado' : 'Não concluído'}</span>{result.trackingError && <small className={styles.negative}>{userSafeMessage(result.trackingError, 'Não foi possível concluir esta alteração.')}</small>}{[...result.warnings, ...result.errors].map((notice, index) => <small key={`${result.mlItemId}-${index}`}>{userSafeMessage(notice, 'Esta alteração precisa de atenção.')}</small>)}</div>)}</div>}
             {details?.quantityPricing?.length ? <div className={styles.wholesale}><span>Descontos existentes no ML — somente consulta</span>{details.quantityPricing.map((tier) => <small key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ unidades · {tier.pricing_model === 'percentage' ? `${tier.discount_percent}% de desconto` : formatCurrency(tier.amount)}</small>)}</div> : null}
           </section>

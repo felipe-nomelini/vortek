@@ -126,10 +126,11 @@ test('PUB-GATE prepara um preço pela origem e pelo grupo canônico, sem envio d
   assert.doesNotMatch(priceRoute, /fetchML|custom_price/);
 });
 
-test('PUB-GATE bloqueia preço automatizado na decisão e autentica contrato aposentado', () => {
+test('PUB-GATE orquestra a remoção do preço automatizado e autentica contrato aposentado', () => {
   const decision = read('src/services/pricing-decisions.ts');
   assert.match(decision, /input\.automatic/);
-  assert.match(decision, /PRECO_AUTOMATICO_ML/);
+  assert.match(decision, /disableAutomaticPricing/);
+  assert.doesNotMatch(decision, /reasons\.push\('PRECO_AUTOMATICO_ML'\)/);
   assert.match(priceRoute, /authorizeApiRequest/);
   assert.match(priceRoute, /if \(!auth.ok\) return auth.response/);
 });

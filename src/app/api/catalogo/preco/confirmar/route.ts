@@ -51,6 +51,7 @@ export async function POST(request: Request) {
       produtoId: evaluation.data.produto_id,
       mlItemId: context.itemId,
       priceCents: Number(context.priceCents),
+      disableAutomaticPricing: context.disableAutomaticPricing === true,
       ...(context.clearance ? { clearance: context.clearance } : {}),
     }, { actorId: auth.userId });
     if (!freshResponse.ok) return json({ error: 'Os dados mudaram. Atualize a análise antes de confirmar.' }, 409);

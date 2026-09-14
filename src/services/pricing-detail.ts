@@ -32,6 +32,7 @@ const inputSchema = z.object({
   produtoId: z.string().min(1).max(100),
   mlItemId: z.string().regex(/^MLB\d+$/).optional(),
   priceCents: z.number().int().positive().max(Number.MAX_SAFE_INTEGER).optional(),
+  disableAutomaticPricing: z.boolean().optional(),
   context: contextSchema.optional(),
   clearance: z.object({ id: z.string().uuid(), quantity: z.number().int().positive().max(2147483647),
     fulfillmentSource: z.literal('internal') }).strict().optional(),
@@ -321,6 +322,7 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
   }) : null;
   const decision = itemId && currentPrice ? decisionContext({ pricing, sellerId, itemId, currentPriceCents: currentPrice,
     priceCents: input.priceCents ?? currentPrice, group, automatic: hasMlAutomaticPrice(item), clearance: input.clearance,
+    disableAutomaticPricing: input.disableAutomaticPricing,
     listingSafety,
     clearanceState: clearanceSnapshot ? { stock: clearanceSnapshot.stock, clearances: clearanceSnapshot.clearances } : null }) : null;
   const listingValidation: PricingListingValidation | null = itemId ? (() => {

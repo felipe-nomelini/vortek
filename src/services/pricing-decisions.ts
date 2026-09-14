@@ -29,6 +29,8 @@ export type DecisionContext = {
   priceCents: number;
   executable: boolean;
   reasons: string[];
+  warnings: string[];
+  disableAutomaticPricing: boolean;
   fingerprint: string;
   expiresAt: string;
   clearance: { id: string; quantity: number; fulfillmentSource: 'internal' } | null;
@@ -42,18 +44,20 @@ export function decisionContext(input: {
   priceCents: number;
   group: PricingOverrideGroup | null;
   automatic: boolean;
+  disableAutomaticPricing?: boolean;
   listingSafety?: { verified: boolean; evidence: unknown[] };
   clearance?: DecisionContext['clearance'];
   clearanceState?: unknown;
 }): DecisionContext {
   const { pricing: p, group: g } = input;
+  const disableAutomaticPricing = Boolean(input.automatic || input.disableAutomaticPricing);
   const reasons: string[] = [];
+  const warnings: string[] = [];
   if (!g || g.state !== 'verified' || !g.members.some((m) => m.itemId === input.itemId))
-    reasons.push('GRUPO_NAO_CONFIRMADO');
+    warnings.push('GRUPO_NAO_CONFIRMADO');
   if (g?.inFlight) reasons.push('OPERACAO_EM_ANDAMENTO');
-  if (g?.members.some(m => m.variationId)) reasons.push('VARIACAO_REQUER_CONTRATO_DE_EXECUCAO');
-  if (input.automatic) reasons.push('PRECO_AUTOMATICO_ML');
-  if (input.listingSafety?.verified !== true) reasons.push('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA');
+  if (g?.members.some(m => m.variationId)) warnings.push('VARIACAO_REQUER_CONTRATO_DE_EXECUCAO');
+  if (input.listingSafety?.verified !== true) warnings.push('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA');
   if (
     p.revalidation?.status !== 'queried' ||
     p.current.status === 'inconclusive' ||
@@ -63,7 +67,7 @@ export function decisionContext(input: {
     !p.breakEven.ok ||
     p.current.memory.revenueCents !== input.priceCents
   )
-    reasons.push('ECONOMIA_INCONCLUSIVA');
+    warnings.push('ECONOMIA_INCONCLUSIVA');
   const m = p.current.memory;
   const expirations = [
     Date.now() + 15 * 60 * 1000,
@@ -71,32 +75,18 @@ export function decisionContext(input: {
       t ? [Date.parse(t)] : [],
     ),
   ];
-  const expiresAt = new Date(Math.min(...expirations)).toISOString();
-  if (Date.parse(expiresAt) <= Date.now()) reasons.push('FONTES_EXPIRADAS');
-  if (m && m.margin < m.band.floor && !input.clearance) reasons.push('PRECO_ABAIXO_DO_PISO');
-  if (input.priceCents === input.currentPriceCents) reasons.push('PRECO_JA_APLICADO');
+  if (Math.min(...expirations) <= Date.now()) warnings.push('FONTES_EXPIRADAS');
+  const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+  if (m && m.margin < m.band.floor) warnings.push('PRECO_ABAIXO_DO_PISO');
+  if (m && m.resultCents < 0) warnings.push('PREJUIZO_PREVISTO');
+  if (input.priceCents === input.currentPriceCents) warnings.push('PRECO_JA_APLICADO');
   const material = {
     seller: input.sellerId,
     item: input.itemId,
     previous: input.currentPriceCents,
     proposed: input.priceCents,
-    memory: m,
-    group: g
-      ? {
-          id: g.id,
-          version: g.version,
-          state: g.state,
-          members: [...g.members].sort(
-            (a, b) => a.itemId.localeCompare(b.itemId) || a.variationId.localeCompare(b.variationId),
-          ),
-          overrideId: g.protection?.id ?? null,
-          inFlight: g.inFlight,
-        }
-      : null,
-    automatic: input.automatic,
-    listingSafety: input.listingSafety ?? null,
-    clearance: input.clearance ?? null,
-    clearanceState: input.clearanceState ?? null,
+    automatic: input.automatic && !disableAutomaticPricing,
+    disableAutomaticPricing,
   };
   return {
     operationKind: 'price_change',
@@ -108,6 +98,8 @@ export function decisionContext(input: {
     priceCents: input.priceCents,
     executable: !reasons.length,
     reasons,
+    warnings,
+    disableAutomaticPricing,
     fingerprint: createHash('sha256').update(pricingMaterialFingerprint(material)).digest('hex'),
     expiresAt,
     clearance: input.clearance ?? null,
@@ -129,14 +121,14 @@ export function pricingAlertObservations(
   rows.push({
     rule: 'pricing_group',
     severity: 'P1',
-    active: context.reasons.includes('GRUPO_NAO_CONFIRMADO'),
+    active: context.warnings.includes('GRUPO_NAO_CONFIRMADO'),
     title: 'Vínculo de anúncios precisa de revisão',
     reason: 'Confira a composição e a sincronização do grupo.',
   });
   rows.push({
     rule: 'pricing_evidence',
     severity: 'P2',
-    active: context.reasons.includes('ECONOMIA_INCONCLUSIVA'),
+    active: context.warnings.includes('ECONOMIA_INCONCLUSIVA'),
     title: 'Avaliação econômica inconclusiva',
     reason: 'Reavalie as fontes antes de decidir; ausência de dados não comprova prejuízo.',
   });

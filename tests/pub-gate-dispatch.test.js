@@ -69,28 +69,32 @@ test('server guard revalidates destination and the exact production token before
   assert.equal(calls.at(-1),'destination');
 });
 
-test('readback requires BRL, actual numbers, exact seller and all peer prices', () => {
+test('readback requires BRL, actual numbers and exact seller only on the selected item', () => {
   const item = { price: 110, seller_id: 123, currency_id: 'BRL' };
   assert.equal(gate.pricingReadbackMatches(item, '123', 11000, [{ item, variationId: '' }]), true);
   for (const patch of [{ price: 100 }, { price: '110' }, { seller_id: 124 }, { currency_id: 'USD' }])
     assert.equal(gate.pricingReadbackMatches({ ...item, ...patch }, '123', 11000), false);
-  assert.equal(gate.pricingReadbackMatches(item, '123', 11000, [{ item: { ...item, price: 100 }, variationId: '' }]), false);
-  assert.equal(gate.pricingReadbackMatches(item, '123', 11000, [{ item: undefined, variationId: '' }]), false);
+  assert.equal(gate.pricingReadbackMatches(item, '123', 11000, [{ item: { ...item, price: 100 }, variationId: '' }]), true);
+  assert.equal(gate.pricingReadbackMatches(item, '123', 11000, [{ item: undefined, variationId: '' }]), true);
 });
 
 function harness(options = {}) {
   const calls = []; const operation = { id: 'op', state: options.state || 'prepared', item_id: 'MLB1',
-    group_id: 'g', group_version: 1, produto_id: 'p', actor_id: 'actor', new_price_cents: 11000 };
-  const decision = { context: { sellerId: '123', itemId: 'MLB1', priceCents: 11000 }, fingerprint: 'fp' };
+    group_id: options.noGroup ? null : 'g', group_version: options.noGroup ? null : 1, produto_id: 'p', actor_id: 'actor', new_price_cents: 11000,
+    automation_disable_requested_at:null,automation_disabled_at:null };
+  const decision = { context: { sellerId: '123', itemId: 'MLB1', priceCents: 11000,
+    disableAutomaticPricing:options.automatic===true }, fingerprint: 'fp' };
   if(options.creation) {
     Object.assign(operation,{item_id:options.remoteId||null,group_id:null,group_version:null});
     Object.assign(decision.context,{operationKind:'listing_create',itemId:null,preparation:{
       action:options.relist?'relist':'new',sourceItemId:options.relist?'MLB0':null,
       input:{produtoId:'p'},payload:{price:110},expected:{sale_terms:[{id:'WARRANTY_TIME',value_name:'12 meses'}],catalog_listing:options.catalogListing===true},description:'Descrição comprovada'}});
   }
+  let automationActive=options.automatic===true;
   const client = { from(table) {
-    const q = { select(){return q}, eq(){return q}, update(body){calls.push(['outbox', body.status]);return q},
+    const q = { select(){return q}, eq(){return q}, is(){return q}, update(body){calls.push([`${table}-update`,body]);Object.assign(operation,table==='pricing_operations'?body:{});return q},
       single: async () => ({data: table === 'pricing_operations' ? { ...operation } : decision}),
+      maybeSingle:async()=>({data:{id:operation.id},error:null}),
       then(resolve){resolve({data: table === 'ml_pricing_group_members' ? [{ml_item_id:'MLB1',variation_id:''},{ml_item_id:'MLB2',variation_id:''}] : []})} };
     return q;
   }, rpc: async (name,args) => {
@@ -101,6 +105,10 @@ function harness(options = {}) {
   const mod = load('src/services/pricing-dispatch.ts', {
     'server-only': {}, '@/lib/supabase': {createServiceClient:()=>client},
     './integration': {fetchMLResult: async (path, init, transport) => {
+      if(path.startsWith('/pricing-automation/items/')) {
+        if(init?.method==='DELETE'){await transport.validateToken('opaque');calls.push(['DELETE',path]);automationActive=false;return {ok:true,status:200,data:{}};}
+        calls.push(['GET',path]);return automationActive?{ok:true,status:200,data:{}}:{ok:false,status:404,error:{code:'automation_not_found'}};
+      }
       if(init?.method==='POST' && (path==='/items'||path.endsWith('/relist'))) {
         await transport.validateToken('opaque');calls.push(['POST',path]);
         if(options.timeout)throw Error('network');return {ok:true,data:{id:'MLB3',seller_id:123}};
@@ -110,7 +118,7 @@ function harness(options = {}) {
         if(options.timeout)throw Error('network'); return {ok:true}; }
       calls.push(['GET',path]); return {ok:!options.readUnavailable,data:{id:path.split('/').pop(),seller_id:123,currency_id:'BRL',price:options.ignored?100:110}};
     }},
-    './pricing-detail': {loadPricingDetail:async()=> { calls.push(['revalidate']);return Response.json({evaluationId:'e',decisionContext:{executable:true,fingerprint:options.changed?'changed':'fp'}});}},
+    './pricing-detail': {loadPricingDetail:async(input)=> { calls.push(['revalidate',input.disableAutomaticPricing]);return Response.json({evaluationId:'e',decisionContext:{executable:true,fingerprint:options.changed?'changed':'fp'}});}},
     './pricing-audit': {persistPricingObservations:async()=>({error:null}),transitionPricingOperation:async(_,id,state)=>{calls.push(['transition',state]);operation.state=state;}},
     './pricing-decisions': {},
     './publication-preparation': {preparePublication:async()=>({evaluationId:'e',decisionContext:{fingerprint:'fp'}})},
@@ -125,7 +133,19 @@ test('one origin write is claimed before sending and only readback confirms', as
   const h=harness();assert.equal(await h.run(),'confirmed');
   assert.deepEqual(h.calls.filter(c=>c[0]==='PUT'),[['PUT','/items/MLB1',{price:110}]]);
   assert.ok(h.calls.findIndex(c=>c[0]==='claim')<h.calls.findIndex(c=>c[0]==='PUT'));
-  assert.ok(h.calls.some(c=>c[0]==='GET'&&c[1]==='/items/MLB2'));
+  assert.ok(!h.calls.some(c=>c[0]==='GET'&&c[1]==='/items/MLB2'));
+});
+test('missing group does not block the selected item and catalog peers remain asynchronous',async()=>{
+  const h=harness({noGroup:true});assert.equal(await h.run(),'confirmed');
+  assert.deepEqual(h.calls.filter(c=>c[0]==='PUT'),[['PUT','/items/MLB1',{price:110}]]);
+  assert.ok(!h.calls.some(c=>c[0]==='GET'&&c[1]==='/items/MLB2'));
+});
+test('automatic pricing is disabled once and confirmed before the manual price is sent',async()=>{
+  const h=harness({automatic:true});assert.equal(await h.run(),'confirmed');
+  assert.equal(h.calls.filter(c=>c[0]==='DELETE').length,1);
+  assert.ok(h.calls.findIndex(c=>c[0]==='DELETE')<h.calls.findIndex(c=>c[0]==='revalidate'));
+  assert.ok(h.calls.findIndex(c=>c[0]==='DELETE')<h.calls.findIndex(c=>c[0]==='PUT'));
+  assert.ok(h.calls.some(c=>c[0]==='revalidate'&&c[1]===true));
 });
 test('2xx ignored or unavailable readback is inconclusive, never success or retry of mutation', async () => {
   for(const options of [{ignored:true},{readUnavailable:true},{timeout:true,ignored:true}]) {

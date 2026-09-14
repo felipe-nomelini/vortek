@@ -18,7 +18,6 @@ interface MessageApi {
 interface MlPublishTrackingContext {
   outboxId: string;
   produtoId: string;
-  retry: () => void;
   onTerminal?: (status: MlPublishStatusResponse) => void;
 }
 
@@ -27,7 +26,7 @@ interface ProgressModalProps {
   title: string;
   steps: ProgressStep[];
   onClose: () => void;
-  onCancel: () => void;
+  onCancel?: () => void;
   showCloseButton: boolean;
   customActions: Array<{
     key: string;
@@ -120,12 +119,6 @@ export function useMlPricePublishTracking(_messageApi: MessageApi): UseMlPricePu
     };
   }, [modalOpen, trackingContext]);
 
-  const retry = useCallback(() => {
-    const retryAction = trackingContext?.retry;
-    closeModal();
-    if (lastStatus?.status !== 'cancelled') retryAction?.();
-  }, [closeModal, trackingContext, lastStatus]);
-
   const steps = useMemo(() => buildMlPublishSteps(lastStatus), [lastStatus]);
 
   return {
@@ -136,7 +129,7 @@ export function useMlPricePublishTracking(_messageApi: MessageApi): UseMlPricePu
       title: 'Atualizando preço no Mercado Livre',
       steps,
       onClose: closeModal,
-      onCancel: retry,
+      onCancel: undefined,
       showCloseButton: lastStatus?.status === 'failed' || lastStatus?.status === 'done' || lastStatus?.status === 'cancelled',
       customActions: [],
     },

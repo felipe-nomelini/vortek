@@ -116,6 +116,7 @@ test('Produtos e Catálogo consomem um único tracking específico', () => {
   assert.doesNotMatch(hook, /api\/ml\/anuncio\/aplicar-atacado/);
   assert.match(hook, /clearTimeout\(timeout\)/);
   assert.match(hook, /if \(cancelled\) return/);
+  assert.doesNotMatch(hook, /Tentar Novamente|retryAction|retry:\s*\(\)\s*=>/);
 });
 
 test('cancelamento de intenção aposentada é terminal e não simula erro de ML', () => {

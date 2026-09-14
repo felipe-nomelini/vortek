@@ -62,14 +62,10 @@ export function pricingOperationAllowed(capability, operationKind) {
   return capability?.enabled === true && capability.allowedOperations?.includes(operationKind) === true;
 }
 
-/** A price write is confirmed by the read-back, not by HTTP 2xx. */
-export function pricingReadbackMatches(item, sellerId, priceCents, members = []) {
+/** A price write is confirmed by the selected item's read-back, not by HTTP 2xx.
+ * Catalog peers propagate asynchronously and remain owned by the regular synchronization. */
+export function pricingReadbackMatches(item, sellerId, priceCents) {
   return !!item && String(item.seller_id) === String(sellerId) && item.currency_id === 'BRL'
     && Number.isSafeInteger(priceCents) && priceCents > 0
-    && typeof item.price === 'number' && Math.round(item.price * 100) === priceCents
-    && members.every(m => {
-      const price = m.variationId ? m.item?.variations?.find(v => String(v.id) === m.variationId)?.price : m.item?.price;
-      return typeof price === 'number' && Math.round(price * 100) === priceCents
-        && String(m.item?.seller_id) === String(sellerId) && m.item?.currency_id === 'BRL';
-    });
+    && typeof item.price === 'number' && Math.round(item.price * 100) === priceCents;
 }

@@ -706,9 +706,12 @@ export type Database = {
       pricing_operations: {
         Row: {
           actor_id: string | null
+          automation_disable_requested_at: string | null
+          automation_disabled_at: string | null
           clearance_id: string | null
           clearance_quantity: number | null
           created_at: string
+          disable_automation: boolean
           evaluation_id: string
           fulfillment_source: string | null
           group_id: string | null
@@ -729,9 +732,12 @@ export type Database = {
         }
         Insert: {
           actor_id?: string | null
+          automation_disable_requested_at?: string | null
+          automation_disabled_at?: string | null
           clearance_id?: string | null
           clearance_quantity?: number | null
           created_at?: string
+          disable_automation?: boolean
           evaluation_id: string
           fulfillment_source?: string | null
           group_id?: string | null
@@ -752,9 +758,12 @@ export type Database = {
         }
         Update: {
           actor_id?: string | null
+          automation_disable_requested_at?: string | null
+          automation_disabled_at?: string | null
           clearance_id?: string | null
           clearance_quantity?: number | null
           created_at?: string
+          disable_automation?: boolean
           evaluation_id?: string
           fulfillment_source?: string | null
           group_id?: string | null
@@ -3924,6 +3933,10 @@ ml_pricing_groups: {
         Args: { p_actor_id: string; p_evaluation_id: string }
         Returns: undefined
       }
+      assert_manual_price_evaluation: {
+        Args: { p_actor_id: string; p_evaluation_id: string }
+        Returns: undefined
+      }
       capture_pricing_created_item: {
         Args: { p_item_id: string; p_operation_id: string; p_seller_id: string }
         Returns: undefined
@@ -4077,8 +4090,8 @@ ml_pricing_groups: {
           p_clearance_id?: string
           p_evaluation_id: string
           p_fulfillment_source?: string
-          p_group_id: string
-          p_group_version: number
+          p_group_id: string | null
+          p_group_version: number | null
           p_id: string
           p_item_id: string
           p_job_id?: string

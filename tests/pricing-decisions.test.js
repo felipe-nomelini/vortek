@@ -8,28 +8,39 @@ const id='00000000-0000-4000-8000-000000000001';
 function input(){return {sellerId:'123',itemId:'MLB1',currentPriceCents:10000,priceCents:11000,automatic:false,listingSafety:{verified:true,evidence:[]},
   group:{id,version:1,state:'verified',members:[{itemId:'MLB1',variationId:'',catalog:false}],protection:null,inFlight:false},
   pricing:{current:{status:'estimated',memory:{revenueCents:11000,margin:.10,band:{floor:.07},cost:{amountCents:4000,observedAt:'2026-09-08T00:00:00Z',expiresAt:null},fee:{expiresAt:null},shipping:{expiresAt:null}}},target:{ok:true},floor:{ok:true},breakEven:{ok:true},revalidation:{status:'queried'}}};}
-test('contexto canônico exige grupo, memória e revalidação; não calcula preço',()=>{
+test('contexto canônico mantém bloqueios técnicos e converte restrições comerciais em avisos',()=>{
   const i=input();assert.equal(domain.decisionContext(i).executable,true);
-  for(const change of [x=>x.group=null,x=>x.group.inFlight=true,x=>x.automatic=true,x=>x.pricing.revalidation.status='inconclusive',x=>x.pricing.current.memory.revenueCents=10999,x=>x.pricing.current.memory.margin=.06,x=>x.priceCents=10000]){
+  for(const change of [x=>x.group.inFlight=true]){
     const x=input();change(x);assert.equal(domain.decisionContext(x).executable,false);
   }
-});
-test('identidade e elegibilidade atuais são obrigatórias; evidência material invalida aprovação',()=>{
-  const i=input();delete i.listingSafety;assert.equal(domain.decisionContext(i).executable,false);
-  i.listingSafety={verified:false,evidence:[]};assert.equal(domain.decisionContext(i).executable,false);
-  const a=input(), b=input();b.listingSafety.evidence=[{field:'BRAND',local:'A',remote:'A'}];
-  assert.notEqual(domain.decisionContext(a).fingerprint,domain.decisionContext(b).fingerprint);
-});
-test('impressão material ignora coleta, mas muda com preço/custo/grupo/override',()=>{
-  const a=domain.decisionContext(input());const clock=input();clock.pricing.current.memory.cost.observedAt='2026-09-09T00:00:00Z';assert.equal(a.fingerprint,domain.decisionContext(clock).fingerprint);
-  for(const change of [x=>x.currentPriceCents=9999,x=>x.pricing.current.memory.cost.amountCents++,x=>x.group.version++,x=>x.group.protection={id:'OTHER'}]){
-    const b=input();change(b);assert.notEqual(a.fingerprint,domain.decisionContext(b).fingerprint);
+  const automatic=input();automatic.automatic=true;const automaticContext=domain.decisionContext(automatic);
+  assert.equal(automaticContext.executable,true);assert.equal(automaticContext.disableAutomaticPricing,true);
+  for(const [change,warning] of [[x=>x.group=null,'GRUPO_NAO_CONFIRMADO'],[x=>x.pricing.revalidation.status='inconclusive','ECONOMIA_INCONCLUSIVA'],
+    [x=>x.pricing.current.memory.revenueCents=10999,'ECONOMIA_INCONCLUSIVA'],[x=>x.pricing.current.memory.margin=.06,'PRECO_ABAIXO_DO_PISO'],
+    [x=>x.priceCents=10000,'PRECO_JA_APLICADO']]){
+    const x=input();change(x);const context=domain.decisionContext(x);assert.equal(context.executable,true);assert.ok(context.warnings.includes(warning));
   }
 });
-test('validade limitada à fonte; fonte vencida não autoriza',()=>{
+test('identidade/elegibilidade comercial vira aviso e não altera a chave técnica',()=>{
+  const i=input();delete i.listingSafety;assert.equal(domain.decisionContext(i).executable,true);assert.ok(domain.decisionContext(i).warnings.includes('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA'));
+  i.listingSafety={verified:false,evidence:[]};assert.equal(domain.decisionContext(i).executable,true);
+  const a=input(), b=input();b.listingSafety.evidence=[{field:'BRAND',local:'A',remote:'A'}];
+  assert.equal(domain.decisionContext(a).fingerprint,domain.decisionContext(b).fingerprint);
+});
+test('impressão técnica ignora economia e grupo, mas muda com preço observado ou proposto',()=>{
+  const a=domain.decisionContext(input());const clock=input();clock.pricing.current.memory.cost.observedAt='2026-09-09T00:00:00Z';assert.equal(a.fingerprint,domain.decisionContext(clock).fingerprint);
+  for(const change of [x=>x.currentPriceCents=9999,x=>x.priceCents=12000]){
+    const b=input();change(b);assert.notEqual(a.fingerprint,domain.decisionContext(b).fingerprint);
+  }
+  for(const change of [x=>x.pricing.current.memory.cost.amountCents++,x=>x.group.version++,x=>x.group.protection={id:'OTHER'}]){
+    const b=input();change(b);assert.equal(a.fingerprint,domain.decisionContext(b).fingerprint);
+  }
+});
+test('fonte vencida gera aviso e a autorização manual tem janela técnica própria',()=>{
   const i=input();const expires=new Date(Date.now()+10000).toISOString();i.pricing.current.memory.fee.expiresAt=expires;
-  assert.equal(domain.decisionContext(i).expiresAt,expires);
-  i.pricing.current.memory.fee.expiresAt='2000-01-01T00:00:00Z';assert.equal(domain.decisionContext(i).executable,false);
+  assert.ok(Date.parse(domain.decisionContext(i).expiresAt)>Date.now()+14*60*1000);
+  i.pricing.current.memory.fee.expiresAt='2000-01-01T00:00:00Z';const context=domain.decisionContext(i);
+  assert.equal(context.executable,true);assert.ok(context.warnings.includes('FONTES_EXPIRADAS'));
 });
 test('Buy Box inconclusiva não resolve conflito anterior nem produz prejuízo real',()=>{
   const c=domain.decisionContext(input());assert.equal(domain.pricingAlertObservations(c,{classification:'INCONCLUSIVO'}).some(r=>r.rule==='buy_box_economy'),false);

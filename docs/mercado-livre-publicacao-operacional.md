@@ -28,10 +28,17 @@ anúncios existentes, por meio de `anuncios_ml_outbox` e do publicador canônico
 - O scan observado deve atualizar o `scroll_id` com o valor devolvido em cada
   página. Reutilizar sempre o cursor inicial repete a segunda página e prende o
   job; o manifesto produtivo corrigido encontrou 7.052 anúncios em 72 páginas.
-- Uma alteração de preço exige produto/grupo/economia atuais, proposta,
-  aprovação humana e confirmação final da mesma pessoa autorizada. O executor
-  faz uma única tentativa, não reenvia resultado incerto e só confirma depois
-  do read-back do Mercado Livre.
+- Uma alteração manual de preço exige sessão e perfil autorizados, vínculo
+  local do item, conta/seller confirmados, valor positivo, proposta, aprovação
+  humana e confirmação final da mesma pessoa. Margem, lucro, evidência
+  econômica, elegibilidade comercial e grupo M2M são exibidos como avisos e
+  não impedem a decisão manual.
+- Quando a automação nativa de preço estiver ativa, a mesma operação registra
+  a intenção, envia uma única remoção da automação e confirma sua ausência
+  antes de alterar o preço. Resultado incerto nunca autoriza repetir a mutação.
+- O executor confirma a alteração pelo read-back do anúncio escolhido. A
+  propagação do catálogo para anúncios relacionados é assíncrona e permanece
+  sob observação das sincronizações regulares, sem bloquear a operação manual.
 
 O feed XML Crossdocking da DSLite, quando usado, deve seguir exatamente
 `https://app.dslite.com.br/modules/admin/Empresa/getXMLCrossdocking/{fornecedor}/{token}`.
@@ -89,6 +96,21 @@ terminal e a leitura do Mercado Livre antes da próxima operação.
 Não reenviar criação ou preço após resultado incerto. A central pode solicitar
 nova conferência da mesma operação, sem repetir a mutação. A capacidade técnica
 não substitui um pedido explícito para publicar ou alterar anúncios reais.
+
+### Alteração manual sem bloqueio comercial
+
+Nos fluxos Catálogo, Anúncios e Produtos, preço abaixo da margem, prejuízo
+estimado, custo/tarifa/frete inconclusivos ou vencidos, identidade comercial
+pendente, ausência de grupo confirmado, presença de variações e preço já
+observado aparecem como avisos. Esses diagnósticos continuam registrados, mas
+não entram na chave técnica da proposta e não desabilitam a confirmação.
+
+Permanecem impeditivos somente os invariantes necessários para executar sem
+atingir outro anúncio ou duplicar efeito: autenticação/permissão, item MLB e
+seller da conta conectada, vínculo local do item, preço positivo, operação
+concorrente, idempotência, claim único e revalidação do preço remoto observado.
+Se a remoção de automação ou a alteração de preço tiver resultado incerto, o
+worker passa apenas a consultar; a interface não oferece reenvio mutante.
 
 ## Regra central
 
