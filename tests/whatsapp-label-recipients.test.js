@@ -9,22 +9,26 @@ const compiled = ts.transpileModule(source, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText;
 
-function loadLocalModule(file) {
+function loadLocalModule(file, dependencies = {}) {
   const code = ts.transpileModule(fs.readFileSync(path.join(__dirname, file), 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
   }).outputText;
   const module = { exports: {} };
-  new Function('require', 'module', 'exports', code)(() => ({}), module, module.exports);
+  new Function('require', 'module', 'exports', code)((name) => dependencies[name] || {}, module, module.exports);
   return module.exports;
 }
 const { normalizeWhatsappChatId } = loadLocalModule('../src/services/waha.ts');
 const supplierBalance = loadLocalModule('../src/lib/supplier-balance.ts');
+const whatsappLabelFormat = loadLocalModule('../src/lib/whatsapp-label-format.ts', {
+  '@/lib/supplier-balance': supplierBalance,
+});
 
 function loadJob(dependencies = {}, env = {}) {
   const module = { exports: {} };
   const resolved = {
     ...dependencies,
     '@/lib/supplier-balance': supplierBalance,
+    '@/lib/whatsapp-label-format': whatsappLabelFormat,
     '@/services/waha': { normalizeWhatsappChatId, ...dependencies['@/services/waha'] },
   };
   // Never load private environment values or real WAHA transport in these tests.
@@ -38,6 +42,38 @@ const recipients = [
   { key: 'primary', chatId: '5511999990001@c.us' },
   { key: 'secondary_test', chatId: '5511999990002@c.us' },
 ];
+
+test('formato térmico do WhatsApp é exclusivo da etiqueta oficial BKR1', () => {
+  for (const input of [
+    { fornecedorId: '108' },
+    { fornecedorId: null, fornecedorNome: 'BKR 1 Distribuidora' },
+  ]) {
+    assert.deepEqual(whatsappLabelFormat.resolveWhatsappLabelFormat(input), {
+      responseType: 'zpl2', extension: 'zpl', mimetype: 'text/plain', thermal: true,
+    });
+  }
+  for (const input of [
+    { fornecedorId: '97', fornecedorNome: 'Vanral' },
+    { fornecedorId: '133', fornecedorNome: 'Evolusom' },
+    { fornecedorId: '108', fornecedorNome: 'BKR1', usePlaceholderLabel: true },
+  ]) {
+    assert.deepEqual(whatsappLabelFormat.resolveWhatsappLabelFormat(input), {
+      responseType: 'pdf', extension: 'pdf', mimetype: 'application/pdf', thermal: false,
+    });
+  }
+});
+
+test('emissor direto de compras usa o mesmo formato e armazenamento térmico', () => {
+  const route = fs.readFileSync(
+    path.join(__dirname, '../src/app/api/compras/[id]/enviar-etiqueta-whatsapp/route.ts'),
+    'utf8',
+  );
+  assert.match(route, /resolveWhatsappLabelFormat\(/);
+  assert.match(route, /baixarEtiquetaML\(shipmentId, \{ responseType \}\)/);
+  assert.match(route, /storeThermalShippingLabelForPedido\(/);
+  assert.match(route, /mimetype: labelFormat\.mimetype/);
+  assert.match(route, /data: label\.file/);
+});
 
 function setupSend({ sendFile, sendText } = {}) {
   const calls = [];
@@ -59,7 +95,8 @@ function setupSend({ sendFile, sendText } = {}) {
   });
   const input = {
     recipients, logEntries: [], caption: 'Etiqueta de teste', filename: 'teste.pdf',
-    pdf: Buffer.from('PDF simulado'), labelShortUrl: 'https://dev.bentevi.shop/s/teste',
+    mimetype: 'application/pdf', data: Buffer.from('PDF simulado'),
+    labelShortUrl: 'https://dev.bentevi.shop/s/teste',
     persistCheckpoint: async () => { persisted = structuredClone(input.logEntries); },
   };
   return { job, input, calls, get persisted() { return persisted; }, get allocated() { return allocated; } };
@@ -157,7 +194,18 @@ function setupWorker(failureStage, options = {}) {
   let failed = false;
   let allocated = 0;
   let labelLoads = 0;
-  const pedido = { id: 'pedido-test', numero: 123, ml_shipment_id: 'shipment-test', ml_label_storage_path: 'teste.pdf', ...options.pedido };
+  const labelLoadPaths = [];
+  const storedLabels = [];
+  const shortLinkTargets = [];
+  const mlLabelRequests = [];
+  const pedido = {
+    id: 'pedido-test',
+    numero: 123,
+    ml_shipment_id: 'shipment-test',
+    ml_label_storage_path: 'teste.pdf',
+    ml_thermal_label_storage_path: null,
+    ...options.pedido,
+  };
   const client = { from(table) {
     let update;
     let statuses;
@@ -204,12 +252,56 @@ function setupWorker(failureStage, options = {}) {
         return { id: input.messageId };
       },
     },
-    '@/lib/shipping-label-storage': { downloadShippingLabelFromStorage: async () => { labelLoads++; return Buffer.from('PDF simulado'); } },
-    '@/lib/dslite/placeholder-label': { loadDslitePlaceholderLabel: async () => { labelLoads++; return Buffer.from('PDF teste'); } },
-    '@/lib/public-shipping-label-links': { buildPublicShippingLabelUrl: () => 'https://dev.bentevi.shop/etiqueta' },
-    '@/lib/short-links': { createShortLink: async ({ targetUrl }) => targetUrl },
+    '@/lib/shipping-label-storage': {
+      downloadShippingLabelFromStorage: async (_client, storagePath) => {
+        labelLoads++;
+        labelLoadPaths.push(storagePath || null);
+        if (!storagePath) return null;
+        return String(storagePath).endsWith('.zpl')
+          ? Buffer.from('^XA^FO20,20^FDZPL simulado^FS^XZ')
+          : Buffer.from('PDF simulado');
+      },
+      storeShippingLabelForPedido: async ({ pdf }) => {
+        storedLabels.push({ format: 'pdf', data: pdf });
+        return { ok: true, storagePath: 'baixada.pdf', signedUrl: null };
+      },
+      storeThermalShippingLabelForPedido: async ({ zpl }) => {
+        storedLabels.push({ format: 'zpl2', data: zpl });
+        return { ok: true, storagePath: 'baixada.zpl', signedUrl: null };
+      },
+    },
+    '@/lib/dslite/placeholder-label': {
+      DSLITE_PLACEHOLDER_LABEL_FILE_NAME: 'etiqueta_frete_terceiros_posterior.pdf',
+      loadDslitePlaceholderLabel: async () => { labelLoads++; return Buffer.from('PDF teste'); },
+    },
+    '@/lib/public-nfe-links': { buildPublicNfeUrl: () => 'https://dev.bentevi.shop/nfe' },
+    '@/lib/public-shipping-label-links': {
+      buildPublicShippingLabelUrl: (_baseUrl, _pedidoId, format = 'pdf') => `https://dev.bentevi.shop/etiqueta?format=${format}`,
+    },
+    '@/lib/short-links': { createShortLink: async ({ targetUrl }) => {
+      shortLinkTargets.push(targetUrl || null);
+      return targetUrl;
+    } },
     '@/lib/notifications/templates': { buildSupplierLabelWhatsapp: () => 'Etiqueta simulada Bentevi' },
     '@/services/integration': {
+      baixarEtiquetaML: async (_shipmentId, input = {}) => {
+        const responseType = input.responseType === 'zpl2' ? 'zpl2' : 'pdf';
+        mlLabelRequests.push(responseType);
+        if (options.downloadLabel) return options.downloadLabel(responseType);
+        const file = responseType === 'zpl2'
+          ? Buffer.from('^XA^FO20,20^FDZPL baixado^FS^XZ')
+          : Buffer.from('PDF baixado');
+        return {
+          file,
+          pdf: responseType === 'pdf' ? file : null,
+          responseType,
+          statusCode: 200,
+        };
+      },
+      consultarInvoiceDataPorShipmentML: async () => ({
+        ok: true,
+        data: { fiscal_key: 'chave-existente', invoice_number: '123' },
+      }),
       consultarDisponibilidadeEtiquetaML: async () => options.availability || {
         checked: false, workflowReady: false, printable: false, status: null, substatus: null,
       },
@@ -223,7 +315,20 @@ function setupWorker(failureStage, options = {}) {
     } },
   }, { EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE: options.additionalPhone });
   const input = { jobId: stored.id, pedidoId: pedido.id, phoneNumber: '11999990001', appBaseUrl: 'https://dev.bentevi.shop', usePlaceholderLabel: options.placeholder };
-  return { job, stored, sends, audits, pedidoUpdates, input, get claims() { return claims; }, get labelLoads() { return labelLoads; } };
+  return {
+    job,
+    stored,
+    sends,
+    audits,
+    pedidoUpdates,
+    labelLoadPaths,
+    storedLabels,
+    shortLinkTargets,
+    mlLabelRequests,
+    input,
+    get claims() { return claims; },
+    get labelLoads() { return labelLoads; },
+  };
 }
 
 test('worker retoma falha posterior na auditoria ou no pedido sem reenviar', async () => {
@@ -239,6 +344,106 @@ test('worker retoma falha posterior na auditoria ou no pedido sem reenviar', asy
     assert.equal(snapshot.result.recipientCount, 1);
     assert.equal(snapshot.result.recipientResults[0].alreadySent, true);
   }
+});
+
+test('worker BKR1 reutiliza somente ZPL salvo e envia arquivo térmico pelo WAHA', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: {
+      dslite_id: 'purchase-test',
+      ml_label_storage_path: 'etiqueta-comum.pdf',
+      ml_thermal_label_storage_path: 'etiqueta-termica.zpl',
+    },
+    compra: { fornecedor_id: '108', fornecedor_nome: 'BKR1' },
+  });
+
+  await harness.job.runWhatsappLabelJob(harness.input);
+
+  assert.equal(harness.stored.status, 'completo');
+  assert.deepEqual(harness.labelLoadPaths, ['etiqueta-termica.zpl']);
+  assert.equal(harness.sends[0].filename, 'etiqueta_ml_123.zpl');
+  assert.equal(harness.sends[0].mimetype, 'text/plain');
+  assert.match(harness.sends[0].data.toString(), /\^XA/);
+  const audit = harness.audits.find((entry) => entry.evento === 'whatsapp_label_send_success');
+  assert.equal(audit.respostaMl.response_type, 'zpl2');
+  assert.equal(audit.respostaMl.file_name, 'etiqueta_ml_123.zpl');
+  const result = harness.stored.log.filter((row) => row.event === 'progress_snapshot').at(-1).result;
+  assert.equal(result.responseType, 'zpl2');
+  assert.equal(result.mimetype, 'text/plain');
+});
+
+test('worker BKR1 ignora PDF salvo, baixa ZPL2 e publica link térmico', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: {
+      dslite_id: 'purchase-test',
+      ml_label_storage_path: 'etiqueta-comum.pdf',
+      ml_thermal_label_storage_path: null,
+    },
+    compra: { fornecedor_id: null, fornecedor_nome: 'BKR 1' },
+  });
+
+  await harness.job.runWhatsappLabelJob(harness.input);
+
+  assert.equal(harness.stored.status, 'completo');
+  assert.deepEqual(harness.labelLoadPaths, [null]);
+  assert.deepEqual(harness.storedLabels.map((row) => row.format), ['zpl2']);
+  assert.deepEqual(harness.mlLabelRequests, ['zpl2']);
+  assert.ok(harness.shortLinkTargets.some((target) => String(target).includes('format=zpl2')));
+  assert.equal(harness.sends[0].mimetype, 'text/plain');
+  assert.match(harness.sends[0].caption, /Etiqueta simulada Bentevi/);
+  const sentAudit = harness.audits.find((entry) => entry.evento === 'whatsapp_label_send_success');
+  assert.equal(sentAudit.respostaMl.response_type, 'zpl2');
+  assert.ok(harness.pedidoUpdates.some((update) => (
+    update.ml_thermal_label_storage_path === 'baixada.zpl'
+    && update.ml_thermal_label_bytes > 0
+    && !Object.hasOwn(update, 'ml_label_storage_path')
+  )));
+});
+
+test('falha de ZPL2 da BKR1 não recorre ao PDF', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: {
+      dslite_id: 'purchase-test',
+      ml_label_storage_path: 'etiqueta-comum.pdf',
+      ml_thermal_label_storage_path: null,
+    },
+    compra: { fornecedor_id: '108', fornecedor_nome: 'BKR1' },
+    downloadLabel: (responseType) => ({
+      file: null,
+      pdf: null,
+      responseType,
+      statusCode: 422,
+      reason: 'invalid_zpl',
+      retryable: false,
+      error: 'ZPL indisponível',
+    }),
+  });
+
+  await harness.job.runWhatsappLabelJob(harness.input);
+
+  assert.equal(harness.stored.status, 'erro');
+  assert.deepEqual(harness.mlLabelRequests, ['zpl2']);
+  assert.equal(harness.sends.length, 0);
+  assert.equal(harness.storedLabels.length, 0);
+});
+
+test('worker preserva PDF para outro fornecedor e para amostra BKR1', async () => {
+  const regular = setupWorker(undefined, {
+    pedido: { dslite_id: 'purchase-test' },
+    compra: { fornecedor_id: '133', fornecedor_nome: 'Evolusom' },
+    additionalPhone: '11999990001',
+  });
+  await regular.job.runWhatsappLabelJob(regular.input);
+  assert.equal(regular.sends[0].mimetype, 'application/pdf');
+  assert.match(regular.sends[0].filename, /\.pdf$/);
+
+  const placeholder = setupWorker(undefined, {
+    pedido: { dslite_id: 'purchase-test', ml_thermal_label_storage_path: 'etiqueta-termica.zpl' },
+    compra: { fornecedor_id: '108', fornecedor_nome: 'BKR1' },
+    placeholder: true,
+  });
+  await placeholder.job.runWhatsappLabelJob(placeholder.input);
+  assert.equal(placeholder.sends[0].mimetype, 'application/pdf');
+  assert.match(placeholder.sends[0].filename, /\.pdf$/);
 });
 
 test('duas retomadas concorrentes mantêm aquisição exclusiva e um único envio', async () => {

@@ -16,6 +16,7 @@ import {
 import {
   downloadShippingLabelFromStorage,
   storeShippingLabelForPedido,
+  storeThermalShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
 import {
   DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
@@ -26,6 +27,7 @@ import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { createShortLink } from '@/lib/short-links';
 import { buildSupplierLabelWhatsapp } from '@/lib/notifications/templates';
 import { EVOLUSOM_FORNECEDOR_ID } from '@/lib/supplier-balance';
+import { resolveWhatsappLabelFormat } from '@/lib/whatsapp-label-format';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -234,7 +236,8 @@ export async function sendWhatsappLabelRecipients(input: {
   persistCheckpoint: () => Promise<void>;
   caption: string;
   filename: string;
-  pdf: Buffer;
+  mimetype: string;
+  data: Buffer;
   labelShortUrl: string | null;
 }): Promise<WhatsappLabelRecipientResult[]> {
   const results: WhatsappLabelRecipientResult[] = [];
@@ -274,7 +277,7 @@ export async function sendWhatsappLabelRecipients(input: {
       try {
         wahaResponse = await sendWahaFile({
           chatId: recipient.chatId, caption: input.caption, filename: input.filename,
-          mimetype: 'application/pdf', data: input.pdf, messageId,
+          mimetype: input.mimetype, data: input.data, messageId,
         });
       } catch (err) {
         if (!isWahaPlusOnlyError(err)) throw err;
@@ -363,7 +366,12 @@ async function suppressLateReleaseAlertForManualFlow(params: {
   return true;
 }
 
-async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null, shipmentId: string) {
+async function downloadLabelWithRetry(
+  pedidoId: string,
+  mlOrderId: string | null,
+  shipmentId: string,
+  responseType: 'pdf' | 'zpl2',
+) {
   const startedAt = Date.now();
   let attempts = 0;
   let lastError = 'Falha ao baixar etiqueta do ML';
@@ -373,8 +381,8 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
 
   while (Date.now() - startedAt <= LABEL_WAIT_TIMEOUT_MS) {
     attempts += 1;
-    const result = await baixarEtiquetaML(shipmentId);
-    if (result.pdf) {
+    const result = await baixarEtiquetaML(shipmentId, { responseType });
+    if (result.file) {
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId,
@@ -382,13 +390,14 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
         respostaMl: {
           ml_shipment_id: shipmentId,
           attempts,
-          bytes: result.pdf.length,
+          bytes: result.file.length,
           elapsed_ms: Date.now() - startedAt,
           status_http: result.statusCode || null,
+          response_type: responseType,
         },
         statusResultante: 'success',
       });
-      return { pdf: result.pdf, attempts, elapsedMs: Date.now() - startedAt };
+      return { file: result.file, attempts, elapsedMs: Date.now() - startedAt };
     }
 
     lastError = result.error || lastError;
@@ -413,6 +422,7 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
       status_http: lastStatusCode,
       reason: lastReason,
       error: lastError,
+      response_type: responseType,
     },
     statusResultante: 'failed',
   });
@@ -565,7 +575,7 @@ export async function runWhatsappLabelJob(input: {
 
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,ml_fiscal_release_at,situacao')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,ml_thermal_label_storage_path,ml_thermal_label_bytes,ml_fiscal_release_at,situacao')
       .eq('id', input.pedidoId)
       .maybeSingle();
     if (pedidoError) throw new Error(pedidoError.message);
@@ -631,35 +641,55 @@ export async function runWhatsappLabelJob(input: {
       usePlaceholderLabel: input.usePlaceholderLabel,
       additionalPhone: process.env.EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE,
     });
+    const labelFormat = resolveWhatsappLabelFormat({
+      fornecedorId: compra?.fornecedor_id,
+      fornecedorNome: compra?.fornecedor_nome,
+      usePlaceholderLabel: input.usePlaceholderLabel,
+    });
     await setStep(
       'load_purchase',
       dsid ? (compra ? 'success' : 'warning') : 'warning',
       dsid ? (compra ? `Compra #${dsid} encontrada` : `Compra #${dsid} não encontrada localmente`) : 'Sem pedido DSLite vinculado',
     );
 
-    await setStep('load_label', 'loading', input.usePlaceholderLabel ? 'Carregando etiqueta genérica de teste' : 'Procurando etiqueta já salva');
-    let labelPdf = input.usePlaceholderLabel
+    await setStep(
+      'load_label',
+      'loading',
+      input.usePlaceholderLabel
+        ? 'Carregando etiqueta genérica de teste'
+        : `Procurando etiqueta ${labelFormat.thermal ? 'térmica ZPL2' : 'PDF'} já salva`,
+    );
+    let labelFile = input.usePlaceholderLabel
       ? await loadDslitePlaceholderLabel()
-      : await downloadShippingLabelFromStorage(client, (pedido as any).ml_label_storage_path);
+      : await downloadShippingLabelFromStorage(
+          client,
+          labelFormat.thermal
+            ? (pedido as any).ml_thermal_label_storage_path
+            : (pedido as any).ml_label_storage_path,
+        );
     let labelSource: 'storage' | 'mercado_livre' | 'placeholder' = input.usePlaceholderLabel
       ? 'placeholder'
-      : labelPdf ? 'storage' : 'mercado_livre';
+      : labelFile ? 'storage' : 'mercado_livre';
     let labelAttempts = 0;
     let uploadedInvoice = false;
     let skippedInvoiceUpload = false;
     let invoiceNumber = String((pedido as any).nota_fiscal_numero || '').trim();
     const nfeKey = String((pedido as any).nfe_chave || '').trim();
     let labelDownloadUrl: string | null = null;
-    let labelStoragePath = String((pedido as any).ml_label_storage_path || '').trim();
+    let labelStoragePath = String(
+      labelFormat.thermal
+        ? (pedido as any).ml_thermal_label_storage_path || ''
+        : (pedido as any).ml_label_storage_path || '',
+    ).trim();
     await setStep(
       'load_label',
-      labelPdf ? 'success' : 'warning',
-      labelPdf
+      labelFile ? 'success' : 'warning',
+      labelFile
         ? (input.usePlaceholderLabel ? 'Etiqueta genérica carregada' : 'Etiqueta já estava salva no sistema')
         : 'Etiqueta ainda não salva; será necessário baixar no ML',
     );
 
-    if (!labelPdf && !input.usePlaceholderLabel) {
+    if (!labelFile && !input.usePlaceholderLabel) {
       await setStep('upload_invoice_ml', 'loading', 'Consultando vínculo fiscal e enviando XML se necessário');
       const invoice = await ensureInvoiceDataIfNeeded({ pedido, pedidoId, mlOrderId, shipmentId });
       uploadedInvoice = invoice.uploadedInvoice;
@@ -671,22 +701,52 @@ export async function runWhatsappLabelJob(input: {
         skippedInvoiceUpload ? 'Etapa pulada: XML/NF já vinculado no ML' : 'XML da NF vinculado no Mercado Livre',
       );
 
-      await setStep('download_label_ml', 'loading', 'Baixando PDF da etiqueta liberada no Mercado Livre');
-      const label = await downloadLabelWithRetry(pedidoId, mlOrderId, shipmentId);
-      labelPdf = label.pdf;
-      labelAttempts = label.attempts;
-      await setStep('download_label_ml', 'success', `Etiqueta baixada após ${labelAttempts} tentativa(s)`);
-
-      await setStep('store_label', 'loading', 'Salvando PDF no bucket de etiquetas');
-      const stored = await storeShippingLabelForPedido({
-        client,
+      await setStep(
+        'download_label_ml',
+        'loading',
+        `Baixando ${labelFormat.thermal ? 'etiqueta térmica ZPL2' : 'PDF da etiqueta'} liberada no Mercado Livre`,
+      );
+      const label = await downloadLabelWithRetry(
         pedidoId,
-        pedidoNumero: (pedido as any).numero,
         mlOrderId,
         shipmentId,
-        pdf: label.pdf,
-        source: 'pedidos_whatsapp',
-      });
+        labelFormat.responseType,
+      );
+      labelFile = label.file;
+      labelAttempts = label.attempts;
+      await setStep(
+        'download_label_ml',
+        'success',
+        `Etiqueta ${labelFormat.responseType} baixada após ${labelAttempts} tentativa(s)`,
+      );
+
+      await setStep(
+        'store_label',
+        'loading',
+        `Salvando etiqueta ${labelFormat.responseType} no bucket de etiquetas`,
+      );
+      const stored = labelFormat.thermal
+        ? await storeThermalShippingLabelForPedido({
+            client,
+            pedidoId,
+            pedidoNumero: (pedido as any).numero,
+            mlOrderId,
+            shipmentId,
+            zpl: label.file,
+            source: 'pedidos_whatsapp',
+          })
+        : await storeShippingLabelForPedido({
+            client,
+            pedidoId,
+            pedidoNumero: (pedido as any).numero,
+            mlOrderId,
+            shipmentId,
+            pdf: label.file,
+            source: 'pedidos_whatsapp',
+          });
+      if (!stored.ok) {
+        throw new Error(stored.error || 'Falha ao salvar etiqueta no sistema');
+      }
       labelStoragePath = stored.storagePath || labelStoragePath;
       await setStep('store_label', 'success', 'Etiqueta salva no sistema');
     } else {
@@ -695,18 +755,22 @@ export async function runWhatsappLabelJob(input: {
       await setStep('store_label', 'warning', input.usePlaceholderLabel ? 'Pulada: etiqueta genérica não é salva como etiqueta ML' : 'Pulada: arquivo já salvo');
     }
 
-    if (!labelPdf) throw new Error('Etiqueta não encontrada ou indisponível');
+    if (!labelFile) throw new Error('Etiqueta não encontrada ou indisponível');
 
     await setStep('build_links', 'loading', 'Criando links curtos públicos para WhatsApp');
     if (input.usePlaceholderLabel) {
       labelDownloadUrl = `${input.appBaseUrl}/dslite/labels/etiqueta-frete-terceiros-posterior.pdf`;
     } else if (labelStoragePath) {
-      labelDownloadUrl = buildPublicShippingLabelUrl(input.appBaseUrl, pedidoId);
+      labelDownloadUrl = buildPublicShippingLabelUrl(
+        input.appBaseUrl,
+        pedidoId,
+        labelFormat.responseType,
+      );
     }
 
     const filename = input.usePlaceholderLabel
       ? DSLITE_PLACEHOLDER_LABEL_FILE_NAME
-      : `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
+      : `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.${labelFormat.extension}`;
     const valorCompra = formatCurrencyBRL((compra as any)?.valor_total);
     const danfeUrlRaw = invoiceNumber ? buildPublicNfeUrl(input.appBaseUrl, pedidoId, 'danfe') : null;
     const xmlUrlRaw = nfeKey ? buildPublicNfeUrl(input.appBaseUrl, pedidoId, 'xml') : null;
@@ -753,10 +817,20 @@ export async function runWhatsappLabelJob(input: {
       labelSource: labelStatus,
     });
 
-    await setStep('send_whatsapp', 'loading', `Enviando PDF para ${whatsappRecipients.length} destinatário(s) pelo WAHA`);
+    await setStep(
+      'send_whatsapp',
+      'loading',
+      `Enviando ${labelFormat.thermal ? 'ZPL2' : 'PDF'} para ${whatsappRecipients.length} destinatário(s) pelo WAHA`,
+    );
     const recipientResults = await sendWhatsappLabelRecipients({
       recipients: whatsappRecipients,
-      logEntries, persistCheckpoint: syncJob, caption, filename, pdf: labelPdf, labelShortUrl,
+      logEntries,
+      persistCheckpoint: syncJob,
+      caption,
+      filename,
+      mimetype: labelFormat.mimetype,
+      data: labelFile,
+      labelShortUrl,
     });
     const primaryResult = recipientResults[0];
     const whatsappSendMode = primaryResult.sendMode;
@@ -774,11 +848,14 @@ export async function runWhatsappLabelJob(input: {
         uploaded_invoice: uploadedInvoice,
         skipped_invoice_upload: skippedInvoiceUpload,
         label_source: labelSource,
+        response_type: labelFormat.responseType,
+        file_name: filename,
+        mimetype: labelFormat.mimetype,
         test_placeholder_label: Boolean(input.usePlaceholderLabel),
         whatsapp_send_mode: whatsappSendMode,
         whatsapp_message_id: primaryResult.messageId,
         label_download_url_generated: Boolean(labelDownloadUrl),
-        label_bytes: labelPdf.length,
+        label_bytes: labelFile.length,
         label_attempts: labelAttempts,
         chat_id_suffix: chatId.slice(-8),
         recipient_results: recipientSummary,
@@ -787,15 +864,27 @@ export async function runWhatsappLabelJob(input: {
       statusResultante: 'success',
     });
 
-    await setStep('send_whatsapp', 'success', whatsappSendMode === 'file' ? 'Mensagem com PDF enviada' : 'Mensagem com link enviada');
+    await setStep(
+      'send_whatsapp',
+      'success',
+      whatsappSendMode === 'file'
+        ? `Mensagem com ${labelFormat.thermal ? 'ZPL2' : 'PDF'} enviada`
+        : 'Mensagem com link enviada',
+    );
 
     if (!input.usePlaceholderLabel) {
+      const labelFields = labelFormat.thermal
+        ? {
+            ml_thermal_label_storage_path: labelStoragePath || undefined,
+            ml_thermal_label_bytes: labelFile.length,
+          }
+        : {
+            ml_label_storage_path: labelStoragePath || undefined,
+            ml_label_bytes: labelFile.length,
+          };
       const { error: pedidoUpdateError } = await client
         .from('pedidos')
-        .update({
-          ml_label_storage_path: labelStoragePath || undefined,
-          ml_label_bytes: labelPdf.length,
-        } as any)
+        .update(labelFields as any)
         .eq('id', pedidoId);
       if (pedidoUpdateError) throw new Error(`Mensagem enviada, mas falhou ao salvar a etiqueta no pedido: ${pedidoUpdateError.message}`);
     }
@@ -806,10 +895,13 @@ export async function runWhatsappLabelJob(input: {
       uploadedInvoice,
       skippedInvoiceUpload,
       labelSource,
+      responseType: labelFormat.responseType,
+      fileName: filename,
+      mimetype: labelFormat.mimetype,
       whatsappSendMode,
       recipientCount: recipientResults.length,
       recipientResults: recipientSummary,
-      labelBytes: labelPdf.length,
+      labelBytes: labelFile.length,
       message: 'Etiqueta enviada por WhatsApp.',
     };
     state = 'success';

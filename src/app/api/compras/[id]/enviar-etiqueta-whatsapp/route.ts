@@ -7,8 +7,12 @@ import {
 } from '@/services/integration';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { normalizeWhatsappChatId, sendWahaFile } from '@/services/waha';
-import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
+import {
+  storeShippingLabelForPedido,
+  storeThermalShippingLabelForPedido,
+} from '@/lib/shipping-label-storage';
 import { buildSupplierLabelWhatsapp } from '@/lib/notifications/templates';
+import { resolveWhatsappLabelFormat } from '@/lib/whatsapp-label-format';
 import {
   HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
   isHomologationFixtureId,
@@ -63,7 +67,12 @@ async function resolveShipmentId(client: ReturnType<typeof createServiceClient>,
   return shipmentId;
 }
 
-async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null, shipmentId: string) {
+async function downloadLabelWithRetry(
+  pedidoId: string,
+  mlOrderId: string | null,
+  shipmentId: string,
+  responseType: 'pdf' | 'zpl2',
+) {
   const startedAt = Date.now();
   let attempts = 0;
   let lastError = 'Falha ao baixar etiqueta do ML';
@@ -72,8 +81,8 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
 
   while (Date.now() - startedAt <= LABEL_WAIT_TIMEOUT_MS) {
     attempts += 1;
-    const result = await baixarEtiquetaML(shipmentId);
-    if (result.pdf) {
+    const result = await baixarEtiquetaML(shipmentId, { responseType });
+    if (result.file) {
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId,
@@ -81,13 +90,14 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
         respostaMl: {
           ml_shipment_id: shipmentId,
           attempts,
-          bytes: result.pdf.length,
+          bytes: result.file.length,
           elapsed_ms: Date.now() - startedAt,
           status_http: result.statusCode || null,
+          response_type: responseType,
         },
         statusResultante: 'success',
       });
-      return { pdf: result.pdf, attempts, elapsedMs: Date.now() - startedAt };
+      return { file: result.file, attempts, elapsedMs: Date.now() - startedAt };
     }
 
     lastError = result.error || lastError;
@@ -111,6 +121,7 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
       status_http: lastStatusCode,
       reason: lastReason,
       error: lastError,
+      response_type: responseType,
     },
     statusResultante: 'failed',
   });
@@ -202,17 +213,42 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
       uploadedInvoice = true;
     }
 
-    const label = await downloadLabelWithRetry(pedidoId, mlOrderId, shipmentId);
-    await storeShippingLabelForPedido({
-      client,
+    const labelFormat = resolveWhatsappLabelFormat({
+      fornecedorId: (compra as any).fornecedor_id,
+      fornecedorNome: (compra as any).fornecedor_nome,
+    });
+    const label = await downloadLabelWithRetry(
       pedidoId,
-      pedidoNumero: (pedido as any).numero,
       mlOrderId,
       shipmentId,
-      pdf: label.pdf,
-      source: 'compras_whatsapp',
-    });
-    const filename = `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
+      labelFormat.responseType,
+    );
+    const stored = labelFormat.thermal
+      ? await storeThermalShippingLabelForPedido({
+          client,
+          pedidoId,
+          pedidoNumero: (pedido as any).numero,
+          mlOrderId,
+          shipmentId,
+          zpl: label.file,
+          source: 'compras_whatsapp',
+        })
+      : await storeShippingLabelForPedido({
+          client,
+          pedidoId,
+          pedidoNumero: (pedido as any).numero,
+          mlOrderId,
+          shipmentId,
+          pdf: label.file,
+          source: 'compras_whatsapp',
+        });
+    if (!stored.ok) {
+      return NextResponse.json(
+        { error: stored.error || 'Falha ao salvar etiqueta no sistema' },
+        { status: 500 },
+      );
+    }
+    const filename = `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.${labelFormat.extension}`;
     const pedidoDslite = String((pedido as any).dslite_id || dsid || '').trim();
     const valorCompra = formatCurrencyBRL((compra as any).valor_total);
     const caption = buildSupplierLabelWhatsapp({
@@ -232,8 +268,8 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
       chatId,
       caption,
       filename,
-      mimetype: 'application/pdf',
-      data: label.pdf,
+      mimetype: labelFormat.mimetype,
+      data: label.file,
     });
 
     await registrarEventoNfAuditoria({
@@ -244,7 +280,10 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
         dsid,
         ml_shipment_id: shipmentId,
         uploaded_invoice: uploadedInvoice,
-        label_bytes: label.pdf.length,
+        response_type: labelFormat.responseType,
+        file_name: filename,
+        mimetype: labelFormat.mimetype,
+        label_bytes: label.file.length,
         label_attempts: label.attempts,
         chat_id_suffix: chatId.slice(-8),
         waha_response: wahaResponse || null,
@@ -259,7 +298,10 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
         dsid,
         shipmentId,
         uploadedInvoice,
-        labelBytes: label.pdf.length,
+        responseType: labelFormat.responseType,
+        fileName: filename,
+        mimetype: labelFormat.mimetype,
+        labelBytes: label.file.length,
       },
     });
   } catch (err: any) {
