@@ -920,6 +920,7 @@ export async function POST(request: Request) {
         ml_item_id: String(item.id),
         seller_id: Number(me.id),
         catalog_listing: isCatalogListing,
+        listing_type_id: item.listing_type_id || null,
         title: item.title || null,
         status: item.status || null,
         price: Number(item.price || 0),
@@ -1142,7 +1143,7 @@ export async function POST(request: Request) {
 
       const { data: existingAnuncios, error: existingAnunciosError } = await (serviceClient
         .from('anuncios_ml')
-        .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, catalogo, qualidade, qualidade_info')
+        .select('id, produto_id, ml_item_id, preco_ml, status, tipo, titulo, permalink, thumbnail, vendidos, visitas, catalogo, qualidade, qualidade_info')
         .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
 
       if (existingAnunciosError) {
@@ -1169,6 +1170,7 @@ export async function POST(request: Request) {
             titulo: String(snapshot.title || snapshot.sku_local),
             preco_ml: Number(snapshot.price || 0),
             status: mapMlStatusToLocalStatus(snapshot.status),
+            tipo: String(snapshot.listing_type_id || 'gold_pro'),
             catalogo: snapshot.catalog_listing === true,
             thumbnail: snapshot.thumbnail || null,
             permalink: snapshot.permalink || null,
@@ -1186,7 +1188,7 @@ export async function POST(request: Request) {
         if (missingSnapshots.length > 0) {
           const { data: refreshedAnuncios, error: refreshedAnunciosError } = await (serviceClient
             .from('anuncios_ml')
-            .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, catalogo, qualidade, qualidade_info, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
+            .select('id, produto_id, ml_item_id, preco_ml, status, tipo, titulo, permalink, thumbnail, vendidos, visitas, catalogo, qualidade, qualidade_info, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
             .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
           if (refreshedAnunciosError) {
             errors.push({
@@ -1313,6 +1315,7 @@ export async function POST(request: Request) {
               sold_quantity: listingMetricsByItemId.get(String(snapshot.ml_item_id))?.soldQuantity,
               visits: visitsByItemId.get(String(snapshot.ml_item_id)),
               catalog_listing: snapshot.catalog_listing === true,
+              listing_type_id: snapshot.listing_type_id,
             },
             'observed_sync',
             existing,

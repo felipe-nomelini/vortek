@@ -5,7 +5,7 @@ const { reconcileAnuncioMlFromItem } = load('src/lib/ml/reconcile-anuncio.ts', {
   '@/services/pricing-audit': audit, '@/lib/ml/status': { mapMlStatusToLocalStatus: () => 'ativo' },
   '@/lib/ml/operational-listing': { resolveMlPublishBlockPatch: () => ({}) },
 });
-const existing = { id: 'A1', produto_id: 'P1', ml_item_id: 'MLB1', preco_ml: 100, status: 'ativo', titulo: 'Item', permalink: null, thumbnail: null };
+const existing = { id: 'A1', produto_id: 'P1', ml_item_id: 'MLB1', preco_ml: 100, status: 'ativo', tipo: 'gold_pro', titulo: 'Item', permalink: null, thumbnail: null };
 const item = { id: 'MLB1', price: 100, status: 'active', title: 'Item', last_updated: '2026-09-07T01:00:00Z' };
 test('leitura igual passa pela trilha, sem declarar mudança econômica', async () => {
   let request;
@@ -26,5 +26,13 @@ test('reconciliação observada corrige a classificação de catálogo sem alter
   assert.equal(result.ok, true);
   assert.equal(result.updated, true);
   assert.equal(request.p_rows[0].catalogo, true);
+  assert.equal(request.p_rows[0].preco_ml, 100);
+});
+test('reconciliação observada acompanha o tipo real do anúncio', async () => {
+  let request;
+  const result = await reconcileAnuncioMlFromItem({ rpc: async (_, args) => { request = args; return { data: args.p_rows }; } }, { ...item, listing_type_id: 'gold_special' }, 'observed_sync', existing);
+  assert.equal(result.ok, true);
+  assert.equal(result.updated, true);
+  assert.equal(request.p_rows[0].tipo, 'gold_special');
   assert.equal(request.p_rows[0].preco_ml, 100);
 });

@@ -136,6 +136,7 @@ async function syncCatalogOptinLocally(params: {
     preco_ml: Number(catalogItem.price || 0),
     vendidos: Number(catalogItem.sold_quantity || 0),
     status: statusLocal,
+    tipo: catalogItem.listing_type_id || 'gold_pro',
     thumbnail: catalogItem.thumbnail || null,
     permalink: catalogItem.permalink || null,
     catalogo: catalogItem.catalog_listing === true,

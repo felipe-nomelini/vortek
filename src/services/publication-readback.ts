@@ -52,6 +52,7 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
   const persisted = await persistSingleAnuncioBySku(client, {
     ml_item_id: item.id, produto_id: product.id, sku: product.sku, titulo: item.title,
     preco_ml: item.price, vendidos: item.sold_quantity, status: item.status === 'active' ? 'ativo' : 'pausado',
+    tipo: item.listing_type_id || 'gold_pro',
     thumbnail: item.thumbnail || null, permalink: item.permalink || null,
   }, new Date().toISOString());
   if (!persisted.ok) throw new Error('publication_projection_failed');

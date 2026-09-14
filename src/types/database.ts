@@ -1865,6 +1865,91 @@ ml_pricing_groups: {
         }
         Relationships: []
       }
+      ml_listing_terms_batch_items: {
+        Row: {
+          action: string
+          applied_at: string | null
+          attempts: number
+          before_state: Json
+          created_at: string
+          desired_state: Json
+          is_canary: boolean
+          job_id: string
+          last_error: string | null
+          ml_item_id: string
+          ordinal: number
+          produto_id: string | null
+          readback: Json | null
+          reason: string
+          sku: string | null
+          source_evidence: Json
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          action: string
+          applied_at?: string | null
+          attempts?: number
+          before_state: Json
+          created_at?: string
+          desired_state?: Json
+          is_canary?: boolean
+          job_id: string
+          last_error?: string | null
+          ml_item_id: string
+          ordinal: number
+          produto_id?: string | null
+          readback?: Json | null
+          reason: string
+          sku?: string | null
+          source_evidence?: Json
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          action?: string
+          applied_at?: string | null
+          attempts?: number
+          before_state?: Json
+          created_at?: string
+          desired_state?: Json
+          is_canary?: boolean
+          job_id?: string
+          last_error?: string | null
+          ml_item_id?: string
+          ordinal?: number
+          produto_id?: string | null
+          readback?: Json | null
+          reason?: string
+          sku?: string | null
+          source_evidence?: Json
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_listing_terms_batch_items_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_listing_terms_batch_items_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "estoque_interno_posicoes"
+            referencedColumns: ["produto_id"]
+          },
+          {
+            foreignKeyName: "ml_listing_terms_batch_items_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pedidos: {
         Row: {
           billing_documento: string | null

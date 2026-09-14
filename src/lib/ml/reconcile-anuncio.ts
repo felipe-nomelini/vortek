@@ -12,7 +12,7 @@ type ServiceClientLike = {
 
 type ExistingAnuncioRow = Pick<
   Database['public']['Tables']['anuncios_ml']['Row'],
-  'id' | 'produto_id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas' | 'catalogo'
+  'id' | 'produto_id' | 'ml_item_id' | 'preco_ml' | 'status' | 'tipo' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas' | 'catalogo'
 > & Partial<Pick<
   Database['public']['Tables']['anuncios_ml']['Row'],
   'ml_sync_block_reason' | 'ml_sync_blocked_until' | 'ml_sync_last_error'
@@ -28,6 +28,7 @@ type MlListingLike = {
   sold_quantity?: unknown;
   visits?: unknown;
   catalog_listing?: boolean | null;
+  listing_type_id?: string | null;
   last_updated?: string;
 };
 
@@ -108,7 +109,7 @@ export async function reconcileAnuncioMlFromItem(
   if (!current) {
     const { data, error } = await (client
       .from('anuncios_ml')
-      .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, catalogo, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
+      .select('id, produto_id, ml_item_id, preco_ml, status, tipo, titulo, permalink, thumbnail, vendidos, visitas, catalogo, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
       .eq('ml_item_id', mlItemId)
       .maybeSingle() as any);
 
@@ -128,6 +129,7 @@ export async function reconcileAnuncioMlFromItem(
   const nextTitle = toNullableString(item?.title);
   const nextPermalink = toNullableString(item?.permalink);
   const nextThumbnail = toNullableString(item?.thumbnail);
+  const nextListingType = toNullableString(item?.listing_type_id);
   const nextSoldQuantity = normalizeMlReferenceQuantity(item?.sold_quantity);
   const nextVisits = normalizeMlReferenceQuantity(item?.visits);
   const shouldSyncDesiredProductStatus = source === 'publish_reconcile';
@@ -135,6 +137,7 @@ export async function reconcileAnuncioMlFromItem(
   const patch: Database['public']['Tables']['anuncios_ml']['Update'] = {};
   if (typeof item.price === 'number' && Number.isFinite(item.price) && item.price > 0) patch.preco_ml = nextPrice;
   if (current.status !== nextStatus) patch.status = nextStatus;
+  if (nextListingType && current.tipo !== nextListingType) patch.tipo = nextListingType;
   if (isDifferentNullableString(current.titulo, nextTitle)) patch.titulo = nextTitle || '';
   if (isDifferentNullableString(current.permalink, nextPermalink)) patch.permalink = nextPermalink;
   if (isDifferentNullableString(current.thumbnail, nextThumbnail)) patch.thumbnail = nextThumbnail;
