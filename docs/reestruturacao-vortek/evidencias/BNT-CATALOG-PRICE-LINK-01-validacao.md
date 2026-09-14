@@ -63,10 +63,12 @@ de seller, identidade remota, concorrência, idempotência e read-back.
 
 ## Produção Bentevi
 
-O commit funcional `7228e3a21973fc3286bd6bb8c370e9214df96e72` foi enviado a
-`origin/dev`, promovido por fast-forward para `origin/bentevi-prod` e confirmado
-no serviço `local/bentevi-prod`. O processo produtivo reiniciou às
-`2026-09-14T03:41Z`; health, autenticação e leitura do Mercado Livre permaneceram
+O commit funcional inicial
+`7228e3a21973fc3286bd6bb8c370e9214df96e72` e a correção final de watermark
+`176be89d2f400018b0ff6108d4368e6afdfe6a98` foram enviados a `origin/dev`,
+promovidos por fast-forward para `origin/bentevi-prod` e confirmados no serviço
+`local/bentevi-prod`. O processo da versão final iniciou por volta de
+`2026-09-14T04:26Z`; health, autenticação e leitura do Mercado Livre permaneceram
 saudáveis. O runtime foi reconfirmado em `production`, branch `bentevi-prod` e
 Supabase `192.168.1.162:8000`, sem expor credenciais.
 
@@ -80,7 +82,7 @@ forçado para `anuncios_ml`: a sincronização preservou a pendência de valida�
 identidade, e o novo vínculo por snapshot cobre esse estado sem fabricar
 evidência.
 
-O primeiro job completo `c2d113d5-2c87-4287-b72c-2a2e1078cafd`, iniciado pela
+O job completo `c2d113d5-2c87-4287-b72c-2a2e1078cafd`, iniciado pela
 rota canônica `POST /api/sync/run`, comprovou 17 lotes e `1700/7055` itens sem
 falha individual antes de encontrar o conflito de watermark histórico descrito
 acima. O ML confirmou diretamente `R$ 3.437,78` para `MLB7111654714`, igual a
@@ -89,8 +91,21 @@ foi reconciliada pelo RPC observacional, sem escrita no ML. O job terminou em
 `erro` depois de expor outro registro com o mesmo padrão, levando à correção
 sistêmica em vez de novos reparos linha a linha.
 
-O resultado do ciclo retomado com a correção final será registrado após a
-publicação do novo SHA.
+Depois do deploy do SHA final, o mesmo manifesto foi retomado de forma
+controlada em `1700/7055`, sem criar outro ciclo. Ele terminou em
+`2026-09-14T05:43:18Z` com status `completo`, `7055/7055`, progresso `100%` e
+`failed_items_count=0`; o manifesto foi limpo pela finalização canônica. Houve
+uma repetição transitória de lote em `3900/7055`, recuperada automaticamente na
+tentativa seguinte, e nenhum item foi abandonado. Ao final não havia job
+observado ativo nem lock em `anuncios:ml_pull`.
+
+O read-back final do `VTK017371` confirmou o produto
+`8c1e94d9-b846-4d0b-9ce5-ffe3c766f700` e os snapshots `MLB7332095162` e
+`MLB7614730328` com esse mesmo `produto_id`, seller `3294514937`, SKU local e
+remoto `VTK017371`, catálogo `MLB28689689`, status ativo e preço `R$ 68,91`.
+Não havia proprietário conflitante. A leitura direta do ML confirmou os dois
+anúncios ativos, em BRL, no mesmo preço; nenhuma publicação ou alteração de
+preço foi executada durante a validação.
 
 ## Recuperação
 
