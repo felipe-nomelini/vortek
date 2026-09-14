@@ -3523,7 +3523,11 @@ ml_pricing_groups: {
         Row: {
           approved_at: string | null
           approved_by: string | null
+          cancellation_reason: string | null
+          cancelled_at: string | null
+          cancelled_by: string | null
           content_scope: string
+          creation_request_id: string | null
           created_at: string
           created_by: string | null
           creative_brief: Json
@@ -3534,6 +3538,7 @@ ml_pricing_groups: {
           family_key: string | null
           forbidden_claims: Json
           generation_approved_at: string | null
+          generation_approved_brief_version_id: string | null
           generation_approved_by: string | null
           generation_model: string | null
           generation_provider: string | null
@@ -3566,7 +3571,11 @@ ml_pricing_groups: {
         Insert: {
           approved_at?: string | null
           approved_by?: string | null
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          cancelled_by?: string | null
           content_scope: string
+          creation_request_id?: string | null
           created_at?: string
           created_by?: string | null
           creative_brief?: Json
@@ -3577,6 +3586,7 @@ ml_pricing_groups: {
           family_key?: string | null
           forbidden_claims?: Json
           generation_approved_at?: string | null
+          generation_approved_brief_version_id?: string | null
           generation_approved_by?: string | null
           generation_model?: string | null
           generation_provider?: string | null
@@ -3609,7 +3619,11 @@ ml_pricing_groups: {
         Update: {
           approved_at?: string | null
           approved_by?: string | null
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          cancelled_by?: string | null
           content_scope?: string
+          creation_request_id?: string | null
           created_at?: string
           created_by?: string | null
           creative_brief?: Json
@@ -3620,6 +3634,7 @@ ml_pricing_groups: {
           family_key?: string | null
           forbidden_claims?: Json
           generation_approved_at?: string | null
+          generation_approved_brief_version_id?: string | null
           generation_approved_by?: string | null
           generation_model?: string | null
           generation_provider?: string | null
@@ -3651,8 +3666,22 @@ ml_pricing_groups: {
         }
         Relationships: [
           {
+            foreignKeyName: "video_jobs_cancelled_by_fkey"
+            columns: ["cancelled_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "video_jobs_current_brief_version_fkey"
             columns: ["id", "current_brief_version_id"]
+            isOneToOne: false
+            referencedRelation: "video_brief_versions"
+            referencedColumns: ["job_id", "id"]
+          },
+          {
+            foreignKeyName: "video_jobs_generation_approved_brief_fkey"
+            columns: ["id", "generation_approved_brief_version_id"]
             isOneToOne: false
             referencedRelation: "video_brief_versions"
             referencedColumns: ["job_id", "id"]
@@ -3834,6 +3863,32 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      bvf_authorize_video_generation: {
+        Args: {
+          p_actor_id: string
+          p_brief_version_id: string
+          p_currency: string
+          p_estimated_cost: number
+          p_job_id: string
+          p_model: string
+          p_provider: string
+        }
+        Returns: Json
+      }
+      bvf_cancel_video_job: {
+        Args: { p_actor_id: string; p_job_id: string; p_reason?: string | null }
+        Returns: Json
+      }
+      bvf_create_video_job: {
+        Args: {
+          p_actor_id: string
+          p_family_id?: string | null
+          p_product_id?: string | null
+          p_request_id: string
+          p_video_type?: string | null
+        }
+        Returns: Json
+      }
       bvf_persist_family_analysis: {
         Args: {
           p_actor_id: string
