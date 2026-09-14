@@ -8,7 +8,9 @@ const {
   brandsEquivalent,
   buildBulkPath,
   gtinKey,
+  jobProgress,
   manifestHash,
+  materializeManifestRows,
 } = require('../scripts/ml-listing-terms-under70');
 
 test('manifesto destrutivo contém os oito pares confirmados pela inspeção', () => {
@@ -49,4 +51,20 @@ test('normaliza representações equivalentes de GTIN e marca sem ocultar diverg
   assert.equal(brandsEquivalent('Furukawa', 'Sohoplus Furukawa'), true);
   assert.equal(brandsEquivalent('Rayovac', 'Panasonic'), false);
   assert.equal(brandsEquivalent('FBG', 'Aquário'), false);
+});
+
+test('reconstrói o manifesto e o progresso pelo ledger durável de jobs', () => {
+  const row = {
+    ml_item_id: 'MLB1', ordinal: 0, action: 'normalize', reason: 'target', status: 'prepared',
+    is_canary: true, before_state: { price: 50 }, desired_state: { listing_type_id: 'gold_special' },
+  };
+  const log = [
+    { event: 'manifest_prepared', manifest_hash: manifestHash([row]), rows: [row] },
+    { event: 'manifest_results', results: [{ ml_item_id: 'MLB1', status: 'confirmed', attempts: 1 }] },
+  ];
+  const materialized = materializeManifestRows(log);
+  assert.equal(materialized[0].status, 'confirmed');
+  assert.equal(materialized[0].attempts, 1);
+  assert.deepEqual(jobProgress(materialized), { processados: 1, progresso: 99 });
+  assert.equal(manifestHash(materialized), manifestHash([row]));
 });

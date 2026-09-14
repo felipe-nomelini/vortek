@@ -17,7 +17,6 @@ const { normalizeMlListingTermsWith } = require('./lib/ml-listing-terms-operatio
 
 const OPERATION_KEY = 'ml-under70-terms-20260913-v1';
 const JOB_TYPE = 'ml_listing_terms_under70';
-const TABLE = 'ml_listing_terms_batch_items';
 const SUPABASE_PRODUCTION_IP = '192.168.1.162';
 const BULK_SIZE = 20;
 const DB_BATCH_SIZE = 180;
@@ -731,7 +730,11 @@ async function persistManifest(db, manifest) {
   if (existing.error) throw new Error(existing.error.message);
   if (existing.data) throw new Error(`Operação única já preparada no job ${existing.data.id}.`);
   const jobId = crypto.randomUUID();
-  const log = [event('manifest_prepared', { manifest_hash: manifest.hash, summary: manifest.summary })];
+  const log = [event('manifest_prepared', {
+    manifest_hash: manifest.hash,
+    summary: manifest.summary,
+    rows: manifest.rows,
+  })];
   const { error: jobError } = await db.from('jobs').insert({
     id: jobId,
     tipo: JOB_TYPE,
@@ -744,41 +747,35 @@ async function persistManifest(db, manifest) {
     dedupe_key: OPERATION_KEY,
   });
   if (jobError) throw new Error(`Falha ao criar job: ${jobError.message}`);
-  try {
-    for (const batch of chunks(manifest.rows, DB_BATCH_SIZE)) {
-      const { error } = await db.from(TABLE).insert(batch.map((row) => ({ ...row, job_id: jobId })));
-      if (error) throw new Error(error.message);
-    }
-  } catch (error) {
-    await db.from('jobs').delete().eq('id', jobId);
-    throw new Error(`Falha ao salvar manifesto: ${error.message}`);
-  }
   return { jobId, hash: manifest.hash };
 }
 
-async function loadAllManifestRows(db, jobId) {
-  const rows = [];
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from(TABLE).select('*').eq('job_id', jobId)
-      .order('ordinal', { ascending: true }).range(from, from + 999);
-    if (error) throw new Error(error.message);
-    rows.push(...(data || []));
-    if (!data || data.length < 1000) break;
-  }
-  return rows;
+function preparedManifest(log) {
+  const entries = Array.isArray(log) ? log : [];
+  return entries.find((entry) => entry?.event === 'manifest_prepared') || null;
 }
 
-function getPreparedHash(log) {
-  const entries = Array.isArray(log) ? log : [];
-  return String(entries.find((entry) => entry?.event === 'manifest_prepared')?.manifest_hash || '');
+function materializeManifestRows(log) {
+  const prepared = preparedManifest(log);
+  const rows = Array.isArray(prepared?.rows) ? structuredClone(prepared.rows) : [];
+  const rowsById = new Map(rows.map((row) => [String(row.ml_item_id), row]));
+  for (const entry of Array.isArray(log) ? log : []) {
+    if (entry?.event !== 'manifest_results' || !Array.isArray(entry.results)) continue;
+    for (const result of entry.results) {
+      const row = rowsById.get(String(result?.ml_item_id || ''));
+      if (row) Object.assign(row, result);
+    }
+  }
+  return rows.sort((left, right) => Number(left.ordinal) - Number(right.ordinal));
 }
 
 async function loadJobAndManifest(db, jobId, confirmation) {
   if (!jobId || !confirmation) throw new Error('--job-id e --confirm são obrigatórios.');
   const { data: job, error } = await db.from('jobs').select('*').eq('id', jobId).eq('tipo', JOB_TYPE).maybeSingle();
   if (error || !job) throw new Error(`Job não encontrado: ${error?.message || jobId}`);
-  const rows = await loadAllManifestRows(db, jobId);
-  const preparedHash = getPreparedHash(job.log);
+  const prepared = preparedManifest(job.log);
+  const rows = materializeManifestRows(job.log);
+  const preparedHash = String(prepared?.manifest_hash || '');
   const currentHash = manifestHash(rows);
   if (!preparedHash || preparedHash !== currentHash || confirmation !== preparedHash) {
     throw new Error('Hash de confirmação não corresponde ao manifesto persistido.');
@@ -786,23 +783,13 @@ async function loadJobAndManifest(db, jobId, confirmation) {
   return { job, rows, hash: preparedHash, log: Array.isArray(job.log) ? job.log : [] };
 }
 
-async function updateRow(db, jobId, itemId, patch) {
-  const { error } = await db.from(TABLE).update({ ...patch, updated_at: nowIso() })
-    .eq('job_id', jobId).eq('ml_item_id', itemId);
-  if (error) throw new Error(`Falha ao atualizar auditoria de ${itemId}: ${error.message}`);
-}
-
-async function updateJobProgress(db, jobId, log, total) {
-  const { count, error } = await db.from(TABLE).select('*', { count: 'exact', head: true })
-    .eq('job_id', jobId).in('status', ['confirmed', 'skipped']);
-  if (error) throw new Error(error.message);
-  const processed = Number(count || 0);
-  const { error: updateError } = await db.from('jobs').update({
+function jobProgress(rows) {
+  const total = rows.length;
+  const processed = rows.filter((row) => ['confirmed', 'skipped'].includes(row.status)).length;
+  return {
     processados: processed,
     progresso: total ? Math.min(99, Math.floor((processed / total) * 100)) : 99,
-    log,
-  }).eq('id', jobId);
-  if (updateError) throw new Error(updateError.message);
+  };
 }
 
 async function reconcileObserved(db, item) {
@@ -828,17 +815,14 @@ async function reconcileObserved(db, item) {
   if (snapshot.error) throw new Error(snapshot.error.message);
 }
 
-async function processManifestRow(db, clients, jobId, row) {
-  if (['confirmed', 'skipped'].includes(row.status)) return;
+async function processManifestRow(db, clients, row) {
+  if (['confirmed', 'skipped'].includes(row.status)) return null;
   if (row.action === 'blocked') throw new Error(`${row.ml_item_id} bloqueado: ${row.reason}`);
   if (row.action === 'noop') {
-    await updateRow(db, jobId, row.ml_item_id, { status: 'skipped', readback: row.before_state, applied_at: nowIso() });
-    return;
+    return { ml_item_id: row.ml_item_id, status: 'skipped', readback: row.before_state, applied_at: nowIso() };
   }
 
-  await updateRow(db, jobId, row.ml_item_id, {
-    status: 'applying', attempts: Number(row.attempts || 0) + 1, last_error: null,
-  });
+  const attempts = Number(row.attempts || 0) + 1;
   try {
     if (row.action === 'delete_permanent') {
       const current = await clients.ml(`/items/${encodeURIComponent(row.ml_item_id)}`);
@@ -849,23 +833,35 @@ async function processManifestRow(db, clients, jobId, row) {
       const deleted = await deleteMlListingPermanentlyWith(clients.ml.bind(clients), row.ml_item_id);
       if (!deleted.ok) throw new Error(`${deleted.code}: ${deleted.error}`);
       await detachDeletedMlListing(db, row.ml_item_id);
-      await updateRow(db, jobId, row.ml_item_id, {
-        status: 'confirmed', readback: batchManifestState(deleted.item), applied_at: nowIso(),
-      });
-      return;
+      return {
+        ml_item_id: row.ml_item_id,
+        status: 'confirmed',
+        attempts,
+        last_error: null,
+        readback: batchManifestState(deleted.item),
+        applied_at: nowIso(),
+      };
     }
 
     const result = await normalizeMlListingTermsWith(clients.ml.bind(clients), row.ml_item_id);
     if (!result.ok) throw new Error(`${result.code}: ${result.error}`);
     if (result.item) await reconcileObserved(db, result.item);
-    await updateRow(db, jobId, row.ml_item_id, {
+    return {
+      ml_item_id: row.ml_item_id,
       status: result.skipped ? 'skipped' : 'confirmed',
+      attempts,
+      last_error: null,
       readback: batchManifestState(result.item),
       applied_at: nowIso(),
-    });
+    };
   } catch (error) {
-    await updateRow(db, jobId, row.ml_item_id, { status: 'error', last_error: String(error.message || error) });
-    throw error;
+    return {
+      ml_item_id: row.ml_item_id,
+      status: 'error',
+      attempts,
+      last_error: String(error.message || error),
+      applied_at: nowIso(),
+    };
   }
 }
 
@@ -881,11 +877,18 @@ async function runCanary(db, clients, loaded) {
   if (loaded.rows.some((row) => row.action === 'blocked')) throw new Error('Manifesto possui linhas bloqueadas; nenhuma escrita foi iniciada.');
   const canary = loaded.rows.find((row) => row.is_canary);
   if (!canary) throw new Error('Canário não encontrado no manifesto.');
-  if (!['confirmed', 'skipped'].includes(canary.status)) await processManifestRow(db, clients, loaded.job.id, canary);
-  const log = await appendJobEvent(db, loaded.job.id, loaded.log, event('canary_confirmed', { ml_item_id: canary.ml_item_id }), {
-    status: 'on_hold', finished_at: null,
+  let log = loaded.log;
+  if (!['confirmed', 'skipped'].includes(canary.status)) {
+    const result = await processManifestRow(db, clients, canary);
+    Object.assign(canary, result);
+    log = await appendJobEvent(db, loaded.job.id, log, event('manifest_results', { results: [result] }), {
+      status: 'on_hold', finished_at: null, ...jobProgress(loaded.rows),
+    });
+    if (result.status === 'error') throw new Error(result.last_error);
+  }
+  await appendJobEvent(db, loaded.job.id, log, event('canary_confirmed', { ml_item_id: canary.ml_item_id }), {
+    status: 'on_hold', finished_at: null, ...jobProgress(loaded.rows),
   });
-  await updateJobProgress(db, loaded.job.id, log, loaded.rows.length);
   return { canary: canary.ml_item_id };
 }
 
@@ -928,11 +931,28 @@ async function runApply(db, clients, loaded) {
     || loaded.rows.some((row) => row.is_canary && ['confirmed', 'skipped'].includes(row.status));
   if (!canaryConfirmed) throw new Error('Execute e confirme o canário antes do lote completo.');
   let log = await appendJobEvent(db, loaded.job.id, loaded.log, event('batch_started'), { status: 'rodando', finished_at: null });
+  let pendingResults = [];
   try {
     for (const [index, row] of loaded.rows.entries()) {
-      await processManifestRow(db, clients, loaded.job.id, row);
+      const result = await processManifestRow(db, clients, row);
+      if (result) {
+        Object.assign(row, result);
+        pendingResults.push(result);
+      }
+      if (result?.status === 'error') {
+        log = await appendJobEvent(db, loaded.job.id, log, event('manifest_results', { results: pendingResults }), {
+          status: 'on_hold', finished_at: null, ...jobProgress(loaded.rows),
+        });
+        pendingResults = [];
+        throw new Error(result.last_error);
+      }
       if ((index + 1) % 25 === 0 || index + 1 === loaded.rows.length) {
-        await updateJobProgress(db, loaded.job.id, log, loaded.rows.length);
+        if (pendingResults.length) {
+          log = await appendJobEvent(db, loaded.job.id, log, event('manifest_results', { results: pendingResults }), {
+            status: 'rodando', finished_at: null, ...jobProgress(loaded.rows),
+          });
+          pendingResults = [];
+        }
         process.stdout.write(`${JSON.stringify({
           event: 'batch_progress',
           job_id: loaded.job.id,
@@ -1007,7 +1027,9 @@ module.exports = {
   brandsEquivalent,
   buildBulkPath,
   gtinKey,
+  jobProgress,
   manifestHash,
+  materializeManifestRows,
   selectedMode,
   validateAgainstSource,
 };
