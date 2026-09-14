@@ -116,9 +116,16 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
   if (!product) return json({ error: 'Produto não encontrado' }, 404);
   const itemId = input.mlItemId || product.ml_item_id || null;
   if (input.mlItemId) {
-    const binding = await service.from('anuncios_ml').select('ml_item_id').eq('ml_item_id', input.mlItemId).eq('produto_id', product.id).maybeSingle();
-    if (binding.error) return json({ error: 'Falha ao validar vínculo' }, 503);
-    if (!binding.data && input.mlItemId !== product.ml_item_id) return json({ error: 'Anúncio não pertence ao produto' }, 422);
+    const [listingBinding, snapshotBinding] = await Promise.all([
+      service.from('anuncios_ml').select('ml_item_id,produto_id').eq('ml_item_id', input.mlItemId).maybeSingle(),
+      service.from('catalogo_ml_snapshot').select('ml_item_id,produto_id').eq('ml_item_id', input.mlItemId).maybeSingle(),
+    ]);
+    if (listingBinding.error || snapshotBinding.error) return json({ error: 'Falha ao validar vínculo' }, 503);
+    const observedOwners = [listingBinding.data?.produto_id, snapshotBinding.data?.produto_id]
+      .map(value => String(value || '').trim()).filter(Boolean);
+    const belongsToProduct = input.mlItemId === product.ml_item_id || observedOwners.includes(String(product.id));
+    const hasConflictingOwner = observedOwners.some(owner => owner !== String(product.id));
+    if (!belongsToProduct || hasConflictingOwner) return json({ error: 'Anúncio não pertence ao produto' }, 422);
   }
   // Cliente único resolve a conta conectada; não aceita seller_id fornecido pelo navegador.
   const me = await fetchMLResult<any>('/users/me');

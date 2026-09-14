@@ -30,6 +30,7 @@ import {
   normalizeMlObservedItemIds,
   resolveMlObservedScrollId,
 } from '@/lib/ml/observed-scan-batch';
+import type { Database } from '@/types/database';
 
 export const maxDuration = 300;
 
@@ -61,6 +62,9 @@ type MlCatalogQuality = {
     missing_attributes?: string[] | null;
   }>;
 };
+
+type ObservedCatalogSnapshot = Database['public']['Tables']['catalogo_ml_snapshot']['Insert']
+  & Record<string, unknown>;
 
 function normalizePerformanceScore(value: unknown): number | null {
   const score = Number(value);
@@ -618,7 +622,8 @@ export async function POST(request: Request) {
     const identityKits = new Map<string, ReturnType<typeof loadMlIdentityKit>>();
     const identityDeferredIds = new Set<string>();
     const linkResolutions = new Map<string, ReturnType<typeof resolveProductMlLinks>>();
-    const snapshots: any[] = [];
+    const snapshots: ObservedCatalogSnapshot[] = [];
+    const listingTypeByItemId = new Map<string, string>();
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
     const listingMetricsByItemId = new Map<string, { soldQuantity: unknown }>();
     const userProductIdByItemId = new Map<string, string>();
@@ -916,11 +921,11 @@ export async function POST(request: Request) {
       const userProductId = String(item.user_product_id || '').trim();
       if (userProductId) userProductIdByItemId.set(String(item.id), userProductId);
 
+      listingTypeByItemId.set(String(item.id), String(item.listing_type_id || 'gold_pro'));
       snapshots.push({
         ml_item_id: String(item.id),
         seller_id: Number(me.id),
         catalog_listing: isCatalogListing,
-        listing_type_id: item.listing_type_id || null,
         title: item.title || null,
         status: item.status || null,
         price: Number(item.price || 0),
@@ -1120,13 +1125,14 @@ export async function POST(request: Request) {
     if (snapshots.length > 0) {
       const { error: upsertError } = await persistPricingObservations(serviceClient, 'catalogo_ml_snapshot', snapshots, new Date(startedAt).toISOString());
       if (upsertError) {
-        errors.push({
+        errors.unshift({
           code: 'catalog_snapshot_upsert_failed',
           message: upsertError.message,
         });
         return NextResponse.json({
           success: false,
           domain,
+          failure_reason: 'catalog_snapshot_upsert_failed',
           job: {
             key: 'sync_ml_listings_observed',
             started_at: new Date(startedAt).toISOString(),
@@ -1170,7 +1176,7 @@ export async function POST(request: Request) {
             titulo: String(snapshot.title || snapshot.sku_local),
             preco_ml: Number(snapshot.price || 0),
             status: mapMlStatusToLocalStatus(snapshot.status),
-            tipo: String(snapshot.listing_type_id || 'gold_pro'),
+            tipo: listingTypeByItemId.get(String(snapshot.ml_item_id)) || 'gold_pro',
             catalogo: snapshot.catalog_listing === true,
             thumbnail: snapshot.thumbnail || null,
             permalink: snapshot.permalink || null,
@@ -1315,7 +1321,7 @@ export async function POST(request: Request) {
               sold_quantity: listingMetricsByItemId.get(String(snapshot.ml_item_id))?.soldQuantity,
               visits: visitsByItemId.get(String(snapshot.ml_item_id)),
               catalog_listing: snapshot.catalog_listing === true,
-              listing_type_id: snapshot.listing_type_id,
+              listing_type_id: listingTypeByItemId.get(String(snapshot.ml_item_id)) || null,
             },
             'observed_sync',
             existing,

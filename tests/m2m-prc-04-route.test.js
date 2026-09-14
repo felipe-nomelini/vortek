@@ -13,7 +13,12 @@ const pricing = { currentPriceCents: 10000, costCents: 4000, current: { status: 
 function harness(options = {}) {
   const calls = []; const captured = []; const evaluations = []; const p = { ...product, ...options.product }; let itemReads = 0; let competitionReads = 0; let groupReads = 0;
   const client = { from(table) { const query = { select() { return query; }, eq() { return query; },
-    maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p : options.unlinked ? null : { ml_item_id: 'MLB1' } }),
+    maybeSingle: async () => ({ error: null, data: table === 'produtos' ? p
+      : table === 'anuncios_ml' ? (options.unlinked || options.snapshotOnly ? null
+        : { ml_item_id: 'MLB1', produto_id: options.listingProductId || 'P1' })
+        : table === 'catalogo_ml_snapshot' ? (options.unlinked || !options.snapshotProductId ? null
+          : { ml_item_id: 'MLB1', produto_id: options.snapshotProductId })
+          : null }),
     single: async () => ({ error: null, data: table === 'produtos' ? p : null }),
     then(resolve) { return Promise.resolve({ error: null, data: table === 'produto_fornecedor_ofertas' ? [] : [] }).then(resolve); } };
     return query; } };
@@ -174,6 +179,19 @@ test('logística incompatível, dimensões ausentes, vínculo divergente e selle
     [{ item: { seller_id: 999 } }, { produtoId: 'P1' }],
     [{}, { produtoId: 'P1', context }],
   ]) { const h = harness(options); assert.equal((await h.post(body)).status, 422); assert.equal(h.captured.length, 0); }
+});
+test('anúncio de catálogo vinculado somente no snapshot pertence ao produto', async () => {
+  const h = harness({ product: { ml_item_id: null }, snapshotOnly: true, snapshotProductId: 'P1' });
+  const response = await h.get('produtoId=P1&mlItemId=MLB1');
+  assert.equal(response.status, 200);
+  assert.equal(h.captured.length, 1);
+});
+test('fontes locais conflitantes continuam bloqueando o anúncio antes da consulta ML', async () => {
+  const h = harness({ snapshotProductId: 'P2' });
+  const response = await h.get('produtoId=P1&mlItemId=MLB1');
+  assert.equal(response.status, 422);
+  assert.equal(h.calls.length, 0);
+  assert.equal(h.captured.length, 0);
 });
 test('fonte indisponível é explícita; alteração do anúncio invalida contexto', async () => {
   const down = harness({ mlDown: true }); const response = await down.get('produtoId=P1');

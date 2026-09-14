@@ -115,6 +115,19 @@ test('sincronização geral não apaga o vínculo herdado do anúncio padrão', 
   assert.match(observedSyncRoute, /snapshot\.produto_id = localProduct\.produtoId/);
 });
 
+test('sincronização separa metadado transitório das colunas persistidas no snapshot', () => {
+  const observedSyncRoute = fs.readFileSync(
+    path.join(__dirname, '../src/app/api/sync/anuncios/route.ts'),
+    'utf8',
+  );
+  const snapshotPayload = observedSyncRoute.match(/snapshots\.push\(\{([\s\S]*?)\n\s*\}\);/);
+  assert.ok(snapshotPayload, 'payload do snapshot não localizado');
+  assert.doesNotMatch(snapshotPayload[1], /listing_type_id/);
+  assert.match(observedSyncRoute, /listingTypeByItemId\.set/);
+  assert.match(observedSyncRoute, /tipo: listingTypeByItemId\.get/);
+  assert.match(observedSyncRoute, /failure_reason: 'catalog_snapshot_upsert_failed'/);
+});
+
 test('gera link público apenas para código válido de produto de catálogo', () => {
   assert.equal(
     buildMercadoLivreCatalogProductUrl('mlb21193637'),
