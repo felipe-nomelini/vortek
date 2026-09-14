@@ -167,8 +167,11 @@ export async function reconcileAnuncioMlFromItem(
   const changed = Object.keys(patch).some(key => key !== 'preco_ml' || normalizePrice(current.preco_ml) !== nextPrice);
   patch.updated_at = new Date().toISOString();
 
+  const observedAt = source === 'observed_sync'
+    ? new Date().toISOString()
+    : item.last_updated || new Date().toISOString();
   const { error: updateError } = await persistPricingObservations(client, 'anuncios_ml',
-    [{ ...patch, ml_item_id: mlItemId }], item.last_updated || new Date().toISOString());
+    [{ ...patch, ml_item_id: mlItemId }], observedAt);
 
   if (updateError) {
     return { ok: false, mlItemId, error: updateError.message };

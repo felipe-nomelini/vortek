@@ -37,6 +37,20 @@ test('preço antigo rejeitado pelo banco não é reportado como aplicado', async
   const result = await audit.persistPricingObservations({ rpc: async () => ({ data: [{ ml_item_id: 'MLB1', preco_ml: 120 }] }) }, 'anuncios_ml', [{ ml_item_id: 'MLB1', preco_ml: 100 }]);
   assert.equal(result.error.message, 'pricing_observation_outdated_or_conflicting');
 });
+test('snapshot separa metadado remoto da projeção econômica observada agora', async () => {
+  const calls = [];
+  const row = { ml_item_id: 'MLB1', price: 120, last_updated_ml: '2026-09-07T00:00:00Z' };
+  const client = { rpc: async (_, args) => {
+    calls.push(args);
+    return { data: args.p_rows.map(value => ({ ...value, price: value.price ?? 120 })) };
+  } };
+  const result = await audit.persistPricingObservations(client, 'catalogo_ml_snapshot', [row], '2026-09-14T00:00:00Z');
+  assert.equal(result.error, null);
+  assert.deepEqual(calls[0].p_rows, [{ ml_item_id: 'MLB1', price: 120 }]);
+  assert.deepEqual(calls[1].p_rows, [{ ml_item_id: 'MLB1', last_updated_ml: '2026-09-07T00:00:00Z' }]);
+  assert.equal(calls[0].p_observed_at, '2026-09-14T00:00:00Z');
+  assert.equal(calls[1].p_observed_at, '2026-09-14T00:00:00Z');
+});
 test('evidência rejeita payload arbitrário e URL contendo credencial', async () => {
   const client = { rpc: async () => { throw new Error('should_not_call'); } };
   await assert.rejects(audit.transitionPricingOperation(client, id, 'confirmed', { token: 'not-a-real-secret' }), e => !e.message.includes('should_not_call'));

@@ -188,7 +188,7 @@ async function syncCatalogOptinLocally(params: {
       sku_local: sku,
       last_updated_ml: catalogItem.last_updated || null,
       synced_at: new Date().toISOString(),
-    }], catalogItem.last_updated);
+    }]);
   if (snapshotError) warnings.push(`Falha ao salvar snapshot de catálogo: ${snapshotError.message}`);
   if (produtoId && !snapshotError) {
     try {

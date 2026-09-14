@@ -10,7 +10,14 @@ const item = { id: 'MLB1', price: 100, status: 'active', title: 'Item', last_upd
 test('leitura igual passa pela trilha, sem declarar mudança econômica', async () => {
   let request;
   const result = await reconcileAnuncioMlFromItem({ rpc: async (_, args) => { request = args; return { data: args.p_rows }; } }, item, 'observed_sync', existing);
-  assert.equal(result.updated, false); assert.equal(request.p_observed_at, item.last_updated);
+  assert.equal(result.updated, false);
+  assert.notEqual(request.p_observed_at, item.last_updated);
+  assert.ok(Date.parse(request.p_observed_at) > Date.parse(item.last_updated));
+});
+test('webhook conserva a versão temporal informada pelo Mercado Livre', async () => {
+  let request;
+  await reconcileAnuncioMlFromItem({ rpc: async (_, args) => { request = args; return { data: args.p_rows }; } }, item, 'items_webhook', existing);
+  assert.equal(request.p_observed_at, item.last_updated);
 });
 test('falha de auditoria não retorna sucesso ao produtor', async () => {
   const result = await reconcileAnuncioMlFromItem({ rpc: async () => ({ error: { message: 'internal' } }) }, { ...item, price: 110 }, 'items_webhook', existing);

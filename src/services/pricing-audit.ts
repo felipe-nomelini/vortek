@@ -8,8 +8,30 @@ type Client = { rpc: (name: any, args: any) => any; from: (table: any) => any };
 
 /** Projeção observada + auditoria na mesma transação; nunca transporta comando ao ML. */
 export async function persistPricingObservations(client: Client, table: 'anuncios_ml' | 'catalogo_ml_snapshot', rows: Record<string, unknown>[], observedAt = new Date().toISOString()) {
-  const { data, error } = await client.rpc('persist_ml_pricing_observations', { p_table: table, p_rows: rows, p_observed_at: observedAt });
+  const snapshotMetadata = table === 'catalogo_ml_snapshot'
+    ? rows.filter(row => row.last_updated_ml !== undefined).map(row => ({
+        ml_item_id: row.ml_item_id,
+        last_updated_ml: row.last_updated_ml,
+      }))
+    : [];
+  const projectionRows = table === 'catalogo_ml_snapshot'
+    ? rows.map(({ last_updated_ml: _lastUpdatedMl, ...row }) => row)
+    : rows;
+  const { data, error } = await client.rpc('persist_ml_pricing_observations', {
+    p_table: table,
+    p_rows: projectionRows,
+    p_observed_at: observedAt,
+  });
   if (error || !Array.isArray(data) || data.length !== rows.length) return { data, error: { message: 'pricing_observation_persistence_failed' } };
+  if (snapshotMetadata.length > 0) {
+    const metadata = await client.rpc('persist_ml_pricing_observations', {
+      p_table: table,
+      p_rows: snapshotMetadata,
+      p_observed_at: observedAt,
+    });
+    if (metadata.error || !Array.isArray(metadata.data) || metadata.data.length !== snapshotMetadata.length)
+      return { data, error: { message: 'pricing_observation_persistence_failed' } };
+  }
   const column = table === 'anuncios_ml' ? 'preco_ml' : 'price';
   const rejected = rows.some((row, index) => row[column] !== undefined && Number(row[column]) !== Number(data[index]?.[column]));
   return { data, error: rejected ? { message: 'pricing_observation_outdated_or_conflicting' } : null };
