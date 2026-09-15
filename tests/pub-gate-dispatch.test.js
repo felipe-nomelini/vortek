@@ -121,6 +121,7 @@ function harness(options = {}) {
     './pricing-detail': {loadPricingDetail:async(input)=> { calls.push(['revalidate',input.disableAutomaticPricing]);return Response.json({evaluationId:'e',decisionContext:{executable:true,fingerprint:options.changed?'changed':'fp'}});}},
     './pricing-audit': {persistPricingObservations:async()=>({error:null}),transitionPricingOperation:async(_,id,state)=>{calls.push(['transition',state]);operation.state=state;}},
     './pricing-decisions': {},
+    './catalog-identity-guard': {assertCatalogIdentityPriceGuard:async()=>{calls.push(['identity-guard']);}},
     './publication-preparation': {preparePublication:async()=>({evaluationId:'e',decisionContext:{fingerprint:'fp'}})},
     './publication-readback': {verifyCreatedPublication:async()=>{calls.push(['creation-readback']);return !options.readUnavailable;}},
     './pricing-execution-access': {requirePricingExecutionAccount:async()=>{if(options.denied)throw Error('denied');return {sellerId:'123',capability:{mode:'test_only',enabled:true,target:'test'}};},pricingExecutionTransport:(_,before)=>({validateToken:async()=>{if(before)await before();}})},

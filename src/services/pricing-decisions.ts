@@ -31,6 +31,7 @@ export type DecisionContext = {
   reasons: string[];
   warnings: string[];
   disableAutomaticPricing: boolean;
+  targetOrigin: 'manual_input' | 'price_to_win' | 'rule' | 'existing_price';
   fingerprint: string;
   expiresAt: string;
   clearance: { id: string; quantity: number; fulfillmentSource: 'internal' } | null;
@@ -87,6 +88,7 @@ export function decisionContext(input: {
     proposed: input.priceCents,
     automatic: input.automatic && !disableAutomaticPricing,
     disableAutomaticPricing,
+    targetOrigin: 'manual_input',
   };
   return {
     operationKind: 'price_change',
@@ -100,6 +102,7 @@ export function decisionContext(input: {
     reasons,
     warnings,
     disableAutomaticPricing,
+    targetOrigin: 'manual_input',
     fingerprint: createHash('sha256').update(pricingMaterialFingerprint(material)).digest('hex'),
     expiresAt,
     clearance: input.clearance ?? null,

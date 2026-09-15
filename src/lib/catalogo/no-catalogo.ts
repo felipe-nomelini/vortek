@@ -105,13 +105,8 @@ export function resolveCatalogLocalProduct(input: {
       source: 'sku',
     };
   }
-  if (gtinProductId) {
-    return {
-      produtoId: gtinProductId,
-      sku: String(input.gtinProduct?.sku || '').trim().toUpperCase() || fallbackSku,
-      source: 'gtin',
-    };
-  }
+  // GTIN isolado é somente evidência de triagem; nunca cria proprietário local.
+  void gtinProductId;
   return { produtoId: null, sku: listingSku || relatedSku || fallbackSku, source: 'none' };
 }
 

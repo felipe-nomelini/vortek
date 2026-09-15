@@ -5,6 +5,7 @@ import { loadPricingDetail } from './pricing-detail';
 import { persistPricingObservations, transitionPricingOperation } from './pricing-audit';
 import { consumePricingDecision } from './pricing-decisions';
 import { requirePricingExecutionAccount, pricingExecutionTransport } from './pricing-execution-access';
+import { assertCatalogIdentityPriceGuard } from './catalog-identity-guard';
 import { pricingReadbackMatches } from '@/lib/ml/pricing-execution';
 
 type Client = ReturnType<typeof createServiceClient>;
@@ -129,6 +130,13 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
   let operation = result.data;
   const decision = approval.data as any;
   const { sellerId } = await requirePricingExecutionAccount(decision.context.sellerId, decision.context.operationKind || 'price_change');
+  if ((decision.context.operationKind || 'price_change') === 'price_change' && operation.item_id) {
+    await assertCatalogIdentityPriceGuard(client, {
+      sellerId,
+      itemId: operation.item_id,
+      targetOrigin: decision.context.targetOrigin || 'manual_input',
+    });
+  }
   const finish = async (state: string) => {
     const terminal = state === 'confirmed' ? 'done' : 'failed';
     const saved = await client.from('anuncios_ml_outbox').update({ status: terminal,

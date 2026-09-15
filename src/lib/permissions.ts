@@ -5,6 +5,8 @@ export const VORTEK_PERMISSIONS = [
   "pricing.decisions.manage",
   "pricing.clearance.manage",
   "pricing.override.manage",
+  "catalog.identity.read",
+  "catalog.identity.manage",
   "tv.read",
   "sales.read",
   "customers.manage",
@@ -32,6 +34,7 @@ export type VortekRole = Database["public"]["Enums"]["user_role"];
 
 const READ_ONLY_PERMISSIONS: VortekPermission[] = [
   "pricing.read",
+  "catalog.identity.read",
   "tv.read",
   "sales.read",
   "purchases.read",

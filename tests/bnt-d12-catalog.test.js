@@ -87,7 +87,7 @@ test('resolve produto local pelo vínculo mais confiável do par de anúncios', 
     produtoId: 'produto-sku', sku: 'VTK000003', source: 'sku',
   });
   assert.deepEqual(resolveCatalogLocalProduct({ gtinProduct: byGtin, fallbackSku: 'vtk000099' }), {
-    produtoId: 'produto-gtin', sku: 'VTK000004', source: 'gtin',
+    produtoId: null, sku: 'VTK000099', source: 'none',
   });
   assert.deepEqual(resolveCatalogLocalProduct({ fallbackSku: 'vtk000099' }), {
     produtoId: null, sku: 'VTK000099', source: 'none',

@@ -52,6 +52,7 @@ export async function proxy(request: NextRequest) {
   const isInternalCatalogRoute = [
     "/api/catalogo/no-catalogo/refresh",
     "/api/catalogo/no-catalogo/refresh/job/worker",
+    "/api/catalogo/identity-audit/worker",
   ].includes(pathname);
   const isMlListingFlowRoute = [
     "/api/ml/anuncio/categorias",
