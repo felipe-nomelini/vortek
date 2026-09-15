@@ -103,3 +103,15 @@ A ordem de fechamento autorizou Rodrigo (`3e56ce48-f461-4784-848b-097d1e482a43`)
 A composição canônica foi novamente conferida: 1.550 `ml_item_id`, 1.549 SKUs, 1.526 `SEM_CONFLITO`, 22 `CONFLITO_CONFIRMADO` e duas `PENDENCIA_VALIDACAO`. PostgreSQL 17.5 aceitou as migrations em transação revertida, aplicação e reaplicação idempotente. A suíte integral aprovou 1.545 testes, com três testes já marcados como ignorados, além de `npm run validate`, build Next.js 16.3.3 e verificação de secrets.
 
 O preflight produtivo confirmou `192.168.1.162`, ledger ainda vazio e ausência da RPC de lote antes da migration. Entretanto, `SUPABASE_DB_URL` não estava disponível no ambiente seguro e o SSH autenticado à `.162` foi recusado. Conforme a própria ordem, a execução produtiva foi interrompida como `BLOCKED_CREDENTIAL` antes de migration, promoção, deploy ou escrita de dados. Nenhum estado produtivo foi alterado nesta tentativa.
+
+## Execução produtiva controlada — resultado parcial de 15/09/2026
+
+O acesso SSH seguro à `.162` foi estabelecido por chave local, sem versionar ou registrar senha. A release P0 isolada `b28a96741385481cdbdac9ff202c15e3e3bea7db`, derivada da base produtiva `1a21393bad6779df3b9d20da02221943c8dd5088`, foi promovida por fast-forward e publicada no serviço `local/bentevi-prod`. O delta não acrescentou nem modificou arquivos BVF; testes `bvf-*` foram excluídos do gate final por ordem executiva.
+
+As migrations `20260915050000`, `20260915110000`, `20260915120000` e `20260915130000` foram aplicadas transacionalmente no PostgreSQL 17.6 após backup verificável. Os dois últimos deltas corrigem o schema do `pgcrypto` no snapshot de segurança e aceitam `produto_id` nulo no snapshot somente quando o anúncio local fornece o vínculo canônico; divergência não nula continua bloqueada.
+
+O run final `a193f074-b307-4902-b250-188f752c6218`, manifesto `a63764e8f156d33665c30ce120b87573129ded32073288965c96fb26fb5f685d`, processou 1.550 auditorias e 1.550 ações, todas com Rodrigo (`3e56ce48-f461-4784-848b-097d1e482a43`) como ator. Os 155 releases da auditoria executiva foram liberados, incluindo os três title drifts autorizados. Sete drifts novos na população original foram bloqueados individualmente: `VTK017395`, `VTK017306`, `VTK017415`, `VTK017455`, `VTK018822`, `VTK017315` e `VTK017997`.
+
+Resultado real: 1.519 `SEM_CONFLITO`, 22 `CONFLITO_CONFIRMADO` e 9 `PENDENCIA_VALIDACAO`, totalizando 1.550 com 31 bloqueados. O safety stop `RECONCILIATION_FAILED:1550:1519:31:7` manteve o run pausado e impediu declarar a P0 concluída. Snapshots before/after de produtos, preços, estoque, relações e outbox foram idênticos: zero repricing, relink, alteração de estoque, `custom_price` ou `produtos.ativo`.
+
+Os artefatos finais e o pacote parcial estão em `reports/catalog-identity-p0/BNT-ML-CATALOG-IDENTITY-01-2026-09-15-production-closeout-final/` e na pasta Downloads. A próxima ação deve reauditar somente os sete novos drifts; a análise econômica permanece não autorizada enquanto a reconciliação 1.526/24 não for recuperada ou formalmente substituída.
