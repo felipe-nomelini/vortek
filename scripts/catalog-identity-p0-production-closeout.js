@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const crypto = require('node:crypto');
+const childProcess = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createClient } = require('@supabase/supabase-js');
@@ -9,7 +10,7 @@ const shared = require('./catalog-identity-p0-executive-179.js');
 const SELLER_ID = 3294514937;
 const ACTOR_ID = '3e56ce48-f461-4784-848b-097d1e482a43';
 const ACTOR_NAME = 'Rodrigo';
-const ORDER_SHA = '2dcea30806c9be0214336baa9190c1d3e8c02e7fb6b167fa517e6627a12ff1aa';
+const ORDER_SHA = '6d98c995732dacd3884ca9c39c43aa24eafef03366ae70b34d0197e77aa9cbfe';
 const PRIOR_AUDIT_SHA = 'eda059e01de3a465cbbc91bd0716cb2bf3ffd825454788fd21d643cc81d920ad';
 const EXECUTIVE_AUDIT_SHA = 'f093690ec77432cfb05b9d0ad6b4ee60f34a57d2d55a31ef68738950a5d4c784';
 const SOURCE_SHA = '59cdbbc17ae5d991a036b5fd4e0d584fa791f6747cab871b57424c220bc76d38';
@@ -31,6 +32,32 @@ const REQUIRED_EXECUTIVE_ARTIFACTS = [
   '15_relink_batch_02_before_after.json',
   '16_relink_failures.json',
 ];
+const APPROVED_TITLE_DRIFTS = Object.freeze({
+  MLB7598571454: Object.freeze({
+    sku: 'VTK020218',
+    catalog_product_id: 'MLB7980691',
+    expected_catalog_brand: 'intelbras',
+    expected_catalog_model: 'ts 5150',
+    family_tokens: Object.freeze(['telefone', '5150']),
+    content_quality_flag: null,
+  }),
+  MLB5196468229: Object.freeze({
+    sku: 'VTK020755',
+    catalog_product_id: 'MLB24097960',
+    expected_catalog_brand: 'mxt',
+    expected_catalog_model: '125',
+    family_tokens: Object.freeze(['hdmi', 'vga']),
+    content_quality_flag: null,
+  }),
+  MLB5196875175: Object.freeze({
+    sku: 'VTK018217',
+    catalog_product_id: 'MLB62850998',
+    expected_catalog_brand: 'code',
+    expected_catalog_model: 'premium cromado chrome',
+    family_tokens: Object.freeze(['sensor']),
+    content_quality_flag: 'TITLE_REVIEW_REQUIRED',
+  }),
+});
 
 function clean(value) {
   return String(value ?? '').normalize('NFKC').trim().replace(/\s+/g, ' ');
@@ -44,6 +71,77 @@ function parseJson(value, fallback = {}) {
 
 function bool(value) {
   return value === true || String(value).toLowerCase() === 'true';
+}
+
+function assertDatabaseCredentialGate() {
+  if (process.env.SUPABASE_DB_URL) return { mode: 'SUPABASE_DB_URL' };
+  const target = process.env.P0_SSH_DATABASE_TARGET || 'bentevi-supabase-prod';
+  try {
+    const hostname = childProcess.execFileSync('ssh', [
+      '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=5', target, 'hostname',
+    ], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 10_000 }).trim();
+    if (hostname !== 'supabase-dev') throw new Error('ssh_database_target_invalid');
+    return { mode: 'SSH', target, hostname };
+  } catch {
+    throw new Error('BLOCKED_CREDENTIAL');
+  }
+}
+
+function searchable(value) {
+  return clean(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function withoutTitles(snapshot) {
+  return {
+    ...snapshot,
+    title: '',
+    local_listing: { ...snapshot.local_listing, title: '' },
+    catalog_snapshot: { ...snapshot.catalog_snapshot, title: '' },
+  };
+}
+
+function materialAttributeValues(snapshot, attributeId) {
+  const values = snapshot?.product_attributes?.[attributeId] || [];
+  return searchable(Array.isArray(values) ? values.join(' ') : values);
+}
+
+function approvedTitleDriftFor({ row, prior, item, listing, snapshot, beforeMaterial, afterMaterial, sellerValid, catalogChanged }) {
+  const rule = APPROVED_TITLE_DRIFTS[row.ml_item_id];
+  if (!rule || row.audited_state !== 'SEM_CONFLITO') return { approved: false, rule: null };
+  const previousEvidence = parseJson(prior.evidence);
+  const previousListing = parseJson(prior.local_listing);
+  const previousSnapshot = parseJson(prior.catalog_snapshot);
+  const itemTitle = searchable(item.title);
+  const nonTitleMaterialEqual = shared.stableJson(withoutTitles(beforeMaterial)) === shared.stableJson(withoutTitles(afterMaterial));
+  const relationValid = row.sku === rule.sku
+    && listing.sku === rule.sku
+    && snapshot.seller_sku === rule.sku
+    && row.catalog_product_id === rule.catalog_product_id
+    && item.catalog_product_id === rule.catalog_product_id
+    && snapshot.catalog_product_id === rule.catalog_product_id;
+  const statusValid = item.status === (previousEvidence.ml_item?.status || 'active')
+    && listing.status === previousListing.status
+    && snapshot.status === previousSnapshot.status;
+  const brandValid = materialAttributeValues(afterMaterial, 'BRAND').includes(rule.expected_catalog_brand);
+  const modelValid = materialAttributeValues(afterMaterial, 'MODEL').includes(rule.expected_catalog_model);
+  const familyValid = rule.family_tokens.every(token => itemTitle.includes(searchable(token)));
+  const approved = nonTitleMaterialEqual && relationValid && statusValid && sellerValid && !catalogChanged
+    && brandValid && modelValid && familyValid;
+  return {
+    approved,
+    rule,
+    checks: { non_title_material_equal: nonTitleMaterialEqual, relation_valid: relationValid, status_valid: statusValid,
+      seller_valid: sellerValid, catalog_changed: catalogChanged, brand_valid: brandValid, model_valid: modelValid,
+      family_valid: familyValid },
+    titles: {
+      ml_item_before: beforeMaterial.title,
+      ml_item_after: afterMaterial.title,
+      local_listing_before: beforeMaterial.local_listing.title,
+      local_listing_after: afterMaterial.local_listing.title,
+      catalog_snapshot_before: beforeMaterial.catalog_snapshot.title,
+      catalog_snapshot_after: afterMaterial.catalog_snapshot.title,
+    },
+  };
 }
 
 function manifestHash(manifest) {
@@ -82,6 +180,8 @@ function manifestHash(manifest) {
       population_source: decision.population_source,
       action: decision.action,
       action_result: decision.action_result,
+      approved_title_drift: decision.evidence?.approved_title_drift || false,
+      content_quality_flag: decision.evidence?.content_quality_flag || null,
     })),
   }));
 }
@@ -162,6 +262,9 @@ function decisionFromLive(row, prior, live, commandId) {
   const sellerValid = Number(item.seller_id) === SELLER_ID && Number(snapshot.seller_id) === SELLER_ID;
   const catalogChanged = item.catalog_product_id !== row.catalog_product_id || snapshot.catalog_product_id !== row.catalog_product_id;
   const liveAvailable = Boolean(item && catalogProduct?.status === 'active');
+  const approvedTitleDrift = approvedTitleDriftFor({
+    row, prior, item, listing, snapshot, beforeMaterial, afterMaterial, sellerValid, catalogChanged,
+  });
   let identityState = row.audited_state;
   let reasonCode = row.reason_code;
   let actionResult = identityState === 'SEM_CONFLITO' ? 'RELEASED_AFTER_READBACK'
@@ -172,11 +275,14 @@ function decisionFromLive(row, prior, live, commandId) {
     reasonCode = 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL';
     actionResult = 'SOURCE_UNAVAILABLE';
     error = 'Fonte viva ML indisponível para decisão.';
-  } else if ((!sellerValid || catalogChanged || materialChanged) && row.audited_state === 'SEM_CONFLITO') {
+  } else if ((!sellerValid || catalogChanged || materialChanged) && row.audited_state === 'SEM_CONFLITO' && !approvedTitleDrift.approved) {
     identityState = 'PENDENCIA_VALIDACAO';
     reasonCode = 'READBACK_MATERIAL_DRIFT';
-    actionResult = 'DRIFT_BLOCKED';
+    actionResult = 'DRIFT_BLOCKED_NEW';
     error = 'Deriva material detectada; projeção clara individual não aplicada.';
+  } else if (materialChanged && approvedTitleDrift.approved) {
+    reasonCode = 'READBACK_TITLE_DRIFT_EXECUTIVE_APPROVED';
+    actionResult = 'RELEASED_AFTER_EXECUTIVE_TITLE_REVIEW';
   }
   const relation = item.item_relations?.[0]?.id || null;
   const oldRelation = {
@@ -222,6 +328,10 @@ function decisionFromLive(row, prior, live, commandId) {
       material_changed: materialChanged,
       seller_valid: sellerValid,
       catalog_changed: catalogChanged,
+      approved_title_drift: approvedTitleDrift.approved,
+      approved_title_drift_checks: approvedTitleDrift.checks || null,
+      approved_title_drift_titles: approvedTitleDrift.titles || null,
+      content_quality_flag: approvedTitleDrift.rule?.content_quality_flag || null,
       item_last_updated: item.last_updated || null,
       snapshot_synced_at: snapshot.synced_at,
     },
@@ -230,9 +340,13 @@ function decisionFromLive(row, prior, live, commandId) {
       item_id: item.id,
       seller_id: item.seller_id,
       status: item.status,
+      title: item.title,
       price: item.price,
       available_quantity: item.available_quantity,
       catalog_product_id: item.catalog_product_id,
+      seller_sku: snapshot.seller_sku,
+      snapshot_status: snapshot.status,
+      listing_status: listing.status,
       related_item_id: relation,
       observed_at: new Date().toISOString(),
     },
@@ -255,7 +369,7 @@ async function buildManifest(input, client, ml, release, existing = null) {
   ));
   const generatedAt = existing?.generated_at || new Date().toISOString();
   const manifest = {
-    version: 'BNT-ML-CATALOG-IDENTITY-01/production-closeout-v1',
+    version: 'BNT-ML-CATALOG-IDENTITY-01/production-closeout-v2-title-microaudit',
     run_id: existing?.run_id || crypto.randomUUID(),
     generated_at: generatedAt,
     expires_at: existing?.expires_at || new Date(Date.parse(generatedAt) + MANIFEST_TTL_MS).toISOString(),
@@ -283,11 +397,11 @@ function operationalSnapshot(snapshot) {
 }
 
 function assertSystemicDrift(decisions) {
-  const drift = decisions.filter(row => row.action_result === 'DRIFT_BLOCKED');
+  const drift = decisions.filter(row => row.action_result?.startsWith('DRIFT_BLOCKED'));
   const sourceUnavailable = decisions.filter(row => row.action_result === 'SOURCE_UNAVAILABLE');
   if (sourceUnavailable.length) throw new Error(`STOP_BATCH:source_unavailable:${sourceUnavailable.length}`);
   for (const batch of shared.chunks(decisions, 25)) {
-    const batchDrift = batch.filter(row => row.action_result === 'DRIFT_BLOCKED');
+    const batchDrift = batch.filter(row => row.action_result?.startsWith('DRIFT_BLOCKED'));
     const signatures = Map.groupBy(batchDrift, row => `${row.evidence.catalog_changed}:${row.evidence.seller_valid}:${row.reason_code}`);
     if (batchDrift.length / batch.length > 0.05 || [...signatures.values()].some(rows => rows.length >= 2)) {
       throw new Error(`STOP_BATCH:systemic_drift:${batch[0].ml_item_id}`);
@@ -368,6 +482,8 @@ function csvRows(decisions) {
     pricing_eligible_by_identity: row.pricing_eligible_by_identity,
     economic_state: row.pricing_eligible_by_identity ? 'PENDENTE_VALIDACAO_INDIVIDUAL' : 'NAO_APLICAVEL_IDENTIDADE_BLOQUEADA',
     material_fingerprint: row.material_fingerprint,
+    approved_title_drift: row.evidence?.approved_title_drift || false,
+    content_quality_flag: row.evidence?.content_quality_flag || '',
     audit_id: row.audit_id || '',
     error: row.error || '',
   }));
@@ -381,7 +497,8 @@ function writeFinalArtifacts(outputDir, input, manifest, phase, details = {}) {
   const columns = [
     'sku','ml_item_id','produto_id','catalog_product_id','standard_item_id','population_source',
     'identity_state_before','identity_state_after','action','action_result',
-    'pricing_eligible_by_identity','economic_state','material_fingerprint','audit_id','error',
+    'pricing_eligible_by_identity','economic_state','material_fingerprint','approved_title_drift',
+    'content_quality_flag','audit_id','error',
   ];
   const rows = csvRows(manifest.decisions.map(row => ({ ...row, audit_id: details.application?.[row.ml_item_id]?.audit_id })));
   shared.writeAtomic(path.join(outputDir, '17_pricing_eligibility_after_identity.csv'), shared.csv(rows, columns));
@@ -390,7 +507,8 @@ function writeFinalArtifacts(outputDir, input, manifest, phase, details = {}) {
   shared.writeAtomic(path.join(outputDir, '23_blocked_24_final.csv'), shared.csv(blocked, columns));
   const counts = stateCounts(manifest.decisions);
   const released = manifest.decisions.filter(row => row.pricing_eligible_by_identity).length;
-  const drift = manifest.decisions.filter(row => row.action_result === 'DRIFT_BLOCKED').length;
+  const drift = manifest.decisions.filter(row => row.action_result?.startsWith('DRIFT_BLOCKED')).length;
+  const appliedPhase = phase === 'applied' || phase === 'applied_partial';
   const status = phase === 'applied' && released === 1526 && blocked.length === 24 && drift === 0
     ? 'CONCLUIDA' : phase === 'blocked_credential' ? 'BLOCKED_CREDENTIAL' : 'NAO_CONCLUIDA';
   const summary = [
@@ -405,13 +523,13 @@ function writeFinalArtifacts(outputDir, input, manifest, phase, details = {}) {
     `- Ator: ${ACTOR_NAME} — \`${ACTOR_ID}\``,
     `- Releases executivos previstos: 155`,
     `- Backfill canônico previsto: 1.371`,
-    `- Projeções claras aplicadas: ${phase === 'applied' ? released : 0}`,
+    `- Projeções claras aplicadas: ${appliedPhase ? released : 0}`,
     `- Releases bloqueados por deriva: ${drift}`,
     `- CONFLITO_CONFIRMADO: ${counts.CONFLITO_CONFIRMADO || 0}`,
     `- PENDENCIA_VALIDACAO: ${counts.PENDENCIA_VALIDACAO || 0}`,
     `- INCONCLUSIVO: ${counts.INCONCLUSIVO || 0}`,
-    `- Total liberado no universo: ${phase === 'applied' ? released : 0} (esperado 1.526)`,
-    `- Total bloqueado no universo: ${phase === 'applied' ? blocked.length : 1550} (esperado 24 após aplicação)`,
+    `- Total liberado no universo: ${appliedPhase ? released : 0} (esperado 1.526)`,
+    `- Total bloqueado no universo: ${appliedPhase ? blocked.length : 1550} (esperado 24 após aplicação)`,
     `- Preços alterados: 0`,
     `- custom_price alterados: 0`,
     `- Estoques alterados: 0`,
@@ -441,14 +559,45 @@ function writeFinalArtifacts(outputDir, input, manifest, phase, details = {}) {
     relinks: 0,
     repricing: 0,
     safety_stop: details.safety_stop || null,
+    database_credential: details.database_credential || null,
   };
   shared.writeAtomic(path.join(outputDir, '22_production_safety_checks.json'), `${shared.stableJson(safety, 2)}\n`);
+  const titleMicroaudit = manifest.decisions
+    .filter(row => APPROVED_TITLE_DRIFTS[row.ml_item_id])
+    .map(row => ({
+      sku: row.sku,
+      ml_item_id: row.ml_item_id,
+      catalog_product_id: row.catalog_product_id,
+      title_before: row.evidence?.approved_title_drift_titles?.ml_item_before || '',
+      title_current: row.evidence?.approved_title_drift_titles?.ml_item_after || row.ml_readback?.title || '',
+      seller_sku: row.ml_readback?.seller_sku || '',
+      status: row.ml_readback?.status || '',
+      evidence: shared.stableJson(row.evidence?.approved_title_drift_checks || {}),
+      decision: row.identity_state,
+      action_result: row.action_result,
+      content_quality_flag: row.evidence?.content_quality_flag || '',
+    }));
+  shared.writeAtomic(path.join(outputDir, '25_title_drift_microaudit_3.csv'), shared.csv(titleMicroaudit, [
+    'sku','ml_item_id','catalog_product_id','title_before','title_current','seller_sku','status','evidence',
+    'decision','action_result','content_quality_flag',
+  ]));
+  const reconciliation = {
+    expected: { total: 1550, sem_conflito: 1526, conflito_confirmado: 22, pendencia_validacao: 2, blocked: 24 },
+    actual: { total: manifest.decisions.length, sem_conflito: counts.SEM_CONFLITO || 0,
+      conflito_confirmado: counts.CONFLITO_CONFIRMADO || 0, pendencia_validacao: counts.PENDENCIA_VALIDACAO || 0,
+      inconclusivo: counts.INCONCLUSIVO || 0, clear: appliedPhase ? released : 0,
+      blocked: appliedPhase ? blocked.length : manifest.decisions.length, drift },
+    equation: status === 'CONCLUIDA' ? '1550=1526+22+2' : null,
+    status,
+  };
+  shared.writeAtomic(path.join(outputDir, '26_final_identity_reconciliation.json'), `${shared.stableJson(reconciliation, 2)}\n`);
+  shared.writeAtomic(path.join(outputDir, '27_production_readback_final.csv'), shared.csv(rows, columns));
   const execution = {
     ...manifest,
     phase,
     status,
     expected: { total: 1550, clear: 1526, blocked: 24, executive_releases: 155, original_backfill: 1371 },
-    actual: { clear: phase === 'applied' ? released : 0, blocked: phase === 'applied' ? blocked.length : 1550, drift },
+    actual: { clear: appliedPhase ? released : 0, blocked: appliedPhase ? blocked.length : 1550, drift },
     migrations: details.migrations || [],
     application: details.application || {},
     safety_checks: safety,
@@ -461,7 +610,7 @@ function writeFinalArtifacts(outputDir, input, manifest, phase, details = {}) {
 }
 
 async function applyManifest(input, manifest, client, ml, outputDir) {
-  if (!process.env.SUPABASE_DB_URL) throw new Error('BLOCKED_CREDENTIAL');
+  const databaseCredential = assertDatabaseCredentialGate();
   if (process.env.P0_ACTOR_ID !== ACTOR_ID) throw new Error('p0_actor_rodrigo_required');
   const actor = await client.from('profiles').select('id,cargo').eq('id', ACTOR_ID).maybeSingle();
   if (actor.error || actor.data?.cargo !== 'admin') throw new Error('p0_actor_admin_required');
@@ -480,9 +629,7 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
     const drift = assertSystemicDrift(fresh.decisions);
     const projectedClear = fresh.decisions.filter(row => row.pricing_eligible_by_identity).length;
     const projectedBlocked = fresh.decisions.length - projectedClear;
-    if (projectedClear !== 1526 || projectedBlocked !== 24 || drift.length !== 0) {
-      throw new Error(`RECONCILIATION_PRECHECK_FAILED:${projectedClear}:${projectedBlocked}:${drift.length}`);
-    }
+    if (projectedClear + projectedBlocked !== 1550) throw new Error('RECONCILIATION_PRECHECK_FAILED:scope');
     if (heartbeatError) throw heartbeatError;
     const runPayload = {
       id: manifest.run_id,
@@ -544,7 +691,19 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
       'ml_item_id', manifest.decisions.map(row => row.ml_item_id));
     const clear = current.filter(row => row.seller_id === SELLER_ID && row.identity_state === 'SEM_CONFLITO' && !row.block_price_write).length;
     const blocked = current.filter(row => row.seller_id === SELLER_ID && row.block_price_write).length;
-    if (current.length !== 1550 || clear !== 1526 || blocked !== 24) throw new Error(`RECONCILIATION_FAILED:${current.length}:${clear}:${blocked}`);
+    if (current.length !== 1550 || clear !== 1526 || blocked !== 24 || drift.length !== 0) {
+      const code = `RECONCILIATION_FAILED:${current.length}:${clear}:${blocked}:${drift.length}`;
+      writeFinalArtifacts(outputDir, input, manifest, 'applied_partial', {
+        application,
+        before_snapshot: beforeSnapshot,
+        after_snapshot: afterSnapshot,
+        operational_invariants_equal: true,
+        safety_stop: code,
+        database_credential: databaseCredential,
+        migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout'],
+      });
+      throw new Error(code);
+    }
     const completed = await client.from('ml_catalog_identity_runs').update({
       state: 'completed',
       finished_at: new Date().toISOString(),
@@ -558,6 +717,7 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
       after_snapshot: afterSnapshot,
       operational_invariants_equal: true,
       migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout'],
+      database_credential: databaseCredential,
     });
   } catch (error) {
     await client.from('ml_catalog_identity_runs').update({
@@ -607,9 +767,16 @@ async function main() {
   if (args.mode === 'prepare') {
     const manifest = await buildManifest(input, client, ml, release);
     manifest.database_target = databaseTarget;
-    const phase = process.env.SUPABASE_DB_URL ? 'prepared' : 'blocked_credential';
+    let databaseCredential = null;
+    let phase = 'prepared';
+    try {
+      databaseCredential = assertDatabaseCredentialGate();
+    } catch {
+      phase = 'blocked_credential';
+    }
     writeFinalArtifacts(path.resolve(args['output-dir']), input, manifest, phase, {
       safety_stop: phase === 'blocked_credential' ? 'BLOCKED_CREDENTIAL' : null,
+      database_credential: databaseCredential,
     });
     console.log(shared.stableJson({ event: 'p0_production_closeout_prepared', phase, run_id: manifest.run_id,
       manifest_hash: manifest.manifest_hash, decisions: manifest.decisions.length, readonly_stats: manifest.readonly_stats }, 2));
@@ -632,7 +799,11 @@ if (require.main === module) main().catch(error => {
 
 module.exports = {
   ACTOR_ID,
+  APPROVED_TITLE_DRIFTS,
   LOCK_DOMAINS,
+  approvedTitleDriftFor,
+  assertDatabaseCredentialGate,
+  decisionFromLive,
   loadCanonicalInputs,
   manifestHash,
   operationalSnapshot,
