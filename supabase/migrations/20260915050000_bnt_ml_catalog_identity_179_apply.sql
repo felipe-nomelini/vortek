@@ -28,9 +28,12 @@ declare
   product_id uuid := nullif(p_payload->>'produto_id', '')::uuid;
 begin
   if jsonb_typeof(p_payload) <> 'object'
+    or item_id is null
     or item_id !~ '^MLB[0-9]+$'
+    or state is null
     or state not in ('SEM_CONFLITO','CONFLITO_CONFIRMADO','PENDENCIA_VALIDACAO','INCONCLUSIVO')
     or reason is null
+    or fingerprint is null
     or fingerprint !~ '^[a-f0-9]{64}$'
     or seller is null
     or product_id is null

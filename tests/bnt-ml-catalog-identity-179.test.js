@@ -55,6 +55,7 @@ test('migration aplica projeção em transação privada e não toca tabelas ope
   assert.match(sql, /pg_advisory_xact_lock/);
   assert.match(sql, /on conflict \(seller_id, ml_item_id\) do update/);
   assert.match(sql, /profile\.cargo = 'admin'/);
+  assert.match(sql, /item_id is null[\s\S]+state is null[\s\S]+fingerprint is null/);
   assert.match(sql, /revoke all on function[\s\S]+from public, anon, authenticated/);
   assert.match(sql, /grant execute[\s\S]+to service_role/);
   assert.match(sql, /ml_catalog_identity_projection_local_readback_changed/);
