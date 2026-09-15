@@ -88,3 +88,18 @@ Validação do executor e da regra final:
 ## Recuperação
 
 O código pode ser revertido pelo commit funcional desta entrega. No banco, a recuperação preferencial é progressiva: primeiro reverter o código dependente; somente com autorização explícita remover o trigger `trg_ml_catalog_identity_outbox_guard`. As quatro tabelas e funções só podem ser removidas se continuarem vazias e nenhum consumidor estiver ativo. Enquanto a ordem executiva vigorar, retirar o guard não é uma ação de rollback autorizada.
+
+## Fechamento produtivo controlado — preparação de 15/09/2026
+
+A ordem de fechamento autorizou Rodrigo (`3e56ce48-f461-4784-848b-097d1e482a43`), confirmado por readback como administrador, e consolidou o universo em 1.526 identidades claras, 22 conflitos confirmados e duas pendências. A implementação de fechamento:
+
+- preserva `ml_item_id` como unidade de trabalho e os dois anúncios de `VTK009697`;
+- reapresenta as 1.371 projeções originalmente claras e os 155 releases executivos, mantendo os 24 bloqueios explícitos;
+- serializa os quatro domínios concorrentes, renova os locks e aplica projeções em transações de no máximo 25 itens;
+- captura hashes globais de produtos, anúncios, relações e outbox antes/depois;
+- exige Rodrigo como ator, readback vivo, manifesto imutável e reconciliação `1.550 = 1.526 + 24`;
+- não contém método mutante para o Mercado Livre nem escrita em preço, estoque, `custom_price`, `produtos.ativo`, vínculo ou status.
+
+A composição canônica foi novamente conferida: 1.550 `ml_item_id`, 1.549 SKUs, 1.526 `SEM_CONFLITO`, 22 `CONFLITO_CONFIRMADO` e duas `PENDENCIA_VALIDACAO`. PostgreSQL 17.5 aceitou as migrations em transação revertida, aplicação e reaplicação idempotente. A suíte integral aprovou 1.545 testes, com três testes já marcados como ignorados, além de `npm run validate`, build Next.js 16.3.3 e verificação de secrets.
+
+O preflight produtivo confirmou `192.168.1.162`, ledger ainda vazio e ausência da RPC de lote antes da migration. Entretanto, `SUPABASE_DB_URL` não estava disponível no ambiente seguro e o SSH autenticado à `.162` foi recusado. Conforme a própria ordem, a execução produtiva foi interrompida como `BLOCKED_CREDENTIAL` antes de migration, promoção, deploy ou escrita de dados. Nenhum estado produtivo foi alterado nesta tentativa.
