@@ -478,6 +478,11 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
     const fresh = await buildManifest(input, client, ml, manifest.release, manifest);
     if (fresh.manifest_hash !== manifest.manifest_hash) throw new Error(`prepared_manifest_changed:${fresh.manifest_hash}`);
     const drift = assertSystemicDrift(fresh.decisions);
+    const projectedClear = fresh.decisions.filter(row => row.pricing_eligible_by_identity).length;
+    const projectedBlocked = fresh.decisions.length - projectedClear;
+    if (projectedClear !== 1526 || projectedBlocked !== 24 || drift.length !== 0) {
+      throw new Error(`RECONCILIATION_PRECHECK_FAILED:${projectedClear}:${projectedBlocked}:${drift.length}`);
+    }
     if (heartbeatError) throw heartbeatError;
     const runPayload = {
       id: manifest.run_id,
