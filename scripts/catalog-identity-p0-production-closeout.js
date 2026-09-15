@@ -87,6 +87,13 @@ function assertDatabaseCredentialGate() {
   }
 }
 
+function resolveLockOwnerToken(runId) {
+  const supplied = clean(process.env.P0_LOCK_OWNER_TOKEN);
+  if (!supplied) return `bnt-ml-catalog-identity-p0:${runId}:${crypto.randomUUID()}`;
+  if (!/^[A-Za-z0-9:_-]{32,200}$/.test(supplied)) throw new Error('p0_lock_owner_token_invalid');
+  return supplied;
+}
+
 function searchable(value) {
   return clean(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
@@ -411,7 +418,7 @@ function assertSystemicDrift(decisions) {
 }
 
 async function acquireLocks(client, runId) {
-  const ownerToken = `bnt-ml-catalog-identity-p0:${runId}:${crypto.randomUUID()}`;
+  const ownerToken = resolveLockOwnerToken(runId);
   const acquired = [];
   try {
     for (const domain of LOCK_DOMAINS) {
@@ -808,5 +815,6 @@ module.exports = {
   manifestHash,
   operationalSnapshot,
   parseArgs,
+  resolveLockOwnerToken,
   stateCounts,
 };

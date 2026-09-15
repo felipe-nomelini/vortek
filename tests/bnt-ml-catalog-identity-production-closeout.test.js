@@ -36,6 +36,25 @@ test('ator e locks são os autorizados pela ordem executiva', () => {
   ]);
 });
 
+test('executor pode reutilizar uma reserva de lock P0 sem aceitar token inseguro', () => {
+  const previous = process.env.P0_LOCK_OWNER_TOKEN;
+  try {
+    process.env.P0_LOCK_OWNER_TOKEN = 'bnt-ml-catalog-identity-p0:reserved:0123456789abcdef';
+    assert.equal(
+      executor.resolveLockOwnerToken('00000000-0000-0000-0000-000000000000'),
+      process.env.P0_LOCK_OWNER_TOKEN,
+    );
+    process.env.P0_LOCK_OWNER_TOKEN = 'curto';
+    assert.throws(
+      () => executor.resolveLockOwnerToken('00000000-0000-0000-0000-000000000000'),
+      /p0_lock_owner_token_invalid/,
+    );
+  } finally {
+    if (previous === undefined) delete process.env.P0_LOCK_OWNER_TOKEN;
+    else process.env.P0_LOCK_OWNER_TOKEN = previous;
+  }
+});
+
 test('microauditoria autoriza apenas os três pares exatos de SKU, MLB e catálogo', () => {
   assert.deepEqual(Object.keys(executor.APPROVED_TITLE_DRIFTS).sort(), [
     'MLB5196468229',
