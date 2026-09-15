@@ -4114,9 +4114,9 @@ publicação da coorte autorizada pelo usuário.
 
 ### BVF — Bentevi Video Factory — 13/09/2026
 
-**Estado: BASE V1, BRIEFING/FACTUAL ENGINE, FAMILY ENGINE E WORKFLOW BACKEND
-IMPLEMENTADOS E PUBLICADOS; STORAGE-01 está implementado e validado em `dev`,
-mas não publicado por orientação do usuário.**
+**Estado: BASE V1, BRIEFING/FACTUAL ENGINE, FAMILY ENGINE, WORKFLOW BACKEND E
+STORAGE PRIVADO IMPLEMENTADOS E PUBLICADOS; as capacidades restantes devem
+avançar uma ação por tarefa.**
 
 - [x] Auditar o SQL inicial contra o schema, PKs/FKs, migrations, timestamps,
   RLS, RBAC, Storage, arquitetura, jobs e padrões reais do Bentevi;
@@ -4146,10 +4146,9 @@ Fila BVF pendente, nesta ordem:
 - [x] `BVF-WORKFLOW-01` — implementar APIs backend e state machine autorizada,
   usando o RBAC existente e somente dois gates humanos: briefing e custo juntos
   na autorização da geração paga; master final após validação;
-- [ ] `BVF-STORAGE-01` — implementar referências canônicas, upload e acesso
+- [x] `BVF-STORAGE-01` — implementar referências canônicas, upload e acesso
   assinado aos prefixos privados `personas/`, `products/`, `jobs/` e
-  `approved/`, sem persistir URL pública — código e migration validados em
-  `dev`; promoção, aplicação no `.162`, deploy e read-back pendentes;
+  `approved/`, sem persistir URL pública;
 - [ ] `BVF-UI-01` — implementar telas integradas para briefing, revisão factual
   e aprovação humana da geração paga, sem bloquear requisições normais;
 - [ ] `BVF-PROVIDER-01` — implementar adapters concretos Gemini/Veo sobre
@@ -4196,17 +4195,19 @@ operacionais mantiveram as contagens do preflight.
 
 [Decisões, contrato e evidências do WORKFLOW-01](../video-factory/BVF_WORKFLOW_01_IMPLEMENTACAO.md).
 
-**Evidência parcial de `BVF-STORAGE-01`:** referências privadas de persona em
+**Evidência de `BVF-STORAGE-01`:** referências privadas de persona em
 três posições canônicas e referências de produto por upload ou cópia do
-cadastro; migration `20260914210000_bvf_storage_01` preparada; cinco APIs backend
-com RBAC, idempotência, histórico sem DELETE e URL assinada por dez minutos; 41
-testes BVF, migration e teste SQL com rollback, upload/download assinado com
-cleanup, `npm run validate`, build e secrets aprovados. Nenhum asset canônico
-falso foi criado. A migration não foi aplicada nem registrada, e a aplicação
-não foi publicada, por orientação explícita do usuário.
+cadastro; migration `20260914210000_bvf_storage_01` aplicada e registrada no
+`.162`, com hash igual ao arquivo; cinco APIs backend com RBAC, idempotência,
+histórico sem DELETE e URL assinada por dez minutos; 41 testes BVF, teste SQL
+antes e depois da migration com rollback, upload/download assinado com cleanup,
+`npm run validate`, build, secrets, deploy e read-back produtivo aprovados. O
+SHA `1a21393b` foi promovido isoladamente, sem os commits posteriores de
+catálogo. Nenhum asset canônico falso ou fixture permaneceu, e os domínios
+operacionais mantiveram as contagens do preflight.
 
 [Decisões, contrato e evidências do STORAGE-01](../video-factory/BVF_STORAGE_01_IMPLEMENTACAO.md).
 
-**Próxima ação recomendada:** quando autorizado, concluir somente a publicação
-de `BVF-STORAGE-01` e seu read-back antes de iniciar `BVF-UI-01`. A BVF continua
-sem geração paga, master final ou publicação no Mercado Livre.
+**Próxima ação recomendada:** executar somente `BVF-UI-01`. A BVF continua sem
+geração paga, master final ou publicação no Mercado Livre; essas ações
+permanecem desabilitadas até seus gates técnicos e humanos.

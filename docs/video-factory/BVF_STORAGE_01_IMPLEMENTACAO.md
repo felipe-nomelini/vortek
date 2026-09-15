@@ -2,9 +2,8 @@
 
 Data da ação: 14/09/2026.
 
-Estado deste registro: implementação preparada e validada na branch `dev`.
-Migration produtiva, promoção, deploy e read-back não executados por orientação
-do usuário.
+Estado deste registro: implementação, migration, deploy e read-back produtivos
+concluídos após autorização posterior do usuário.
 
 ## A. Auditoria
 
@@ -71,7 +70,7 @@ vídeos maiores permanecem destinados ao upload resumível do worker.
 - Os paths persistidos são relativos ao bucket e nunca contêm nome fornecido
   pelo usuário. Não existe `public_url` persistida.
 
-## E. Validação em desenvolvimento
+## E. Validação e produção
 
 - 41 testes BVF direcionados aprovados, sendo oito cenários novos de Storage.
 - Migration e teste SQL executados juntos em transação com `ROLLBACK` antes da
@@ -79,17 +78,27 @@ vídeos maiores permanecem destinados ao upload resumível do worker.
   foram exercitados sem fixture persistida.
 - `npm run validate`, `npm run build`, verificação de secrets e
   `git diff --check` aprovados.
-- Um PNG sintético de 95 bytes foi enviado ao bucket produtivo sob path UUID,
-  baixado por URL assinada e removido exatamente; o read-back final confirmou
-  zero objetos e zero assets, pois nenhuma imagem canônica real foi fornecida.
-- O preflight produtivo foi somente leitura. A migration foi ensaiada junto do
-  teste SQL no `.162` dentro de transação com `ROLLBACK`; schema e dados
-  permaneceram inalterados.
+- Antes da publicação, um PNG sintético foi enviado ao bucket produtivo sob
+  path UUID, baixado por URL assinada e removido exatamente.
+- O SHA funcional `1a21393bad6779df3b9d20da02221943c8dd5088` foi promovido por
+  fast-forward isolado para `bentevi-prod`, sem incluir os commits posteriores
+  de catálogo existentes em `dev`.
+- A migration foi aplicada e registrada uma vez no `.162`. O SHA-256 registrado
+  e o arquivo versionado coincidem em
+  `40de5d7c33ad2ed8f01f203c527565518dae3d0bd7da5e41747cb486800e5cb6`.
+- Read-back: seis colunas, sete constraints, três índices e duas RPCs presentes;
+  `job_id` anulável; RLS sem policy aberta; `service_role` com `SELECT` e RPCs,
+  sem `INSERT`, `UPDATE` ou `DELETE` direto; bucket privado e guard restritivo.
+- O teste SQL passou novamente após a aplicação com `ROLLBACK`. Um segundo PNG
+  sintético percorreu upload, registro, download assinado e desativação; sua
+  linha e objeto foram removidos exatamente como cleanup de fixture.
 - As contagens do preflight foram `24.903 produtos`, `1.544 pedidos`, `1.441
-  compras`, `13 fornecedores` e `7.038 anúncios ML`. Não houve aplicação de
-  schema nem escrita persistente nesses domínios.
-- A migration não foi registrada, as rotas não foram publicadas e nenhum smoke
-  de aplicação foi executado, conforme a instrução de não realizar deploy.
+  compras`, `13 fornecedores` e `7.038 anúncios ML`, idênticas no read-back.
+  `video_assets` e o bucket terminaram com zero fixtures.
+- O webhook oficial foi aceito e a troca produtiva foi observada do PID 29 para
+  o PID 30, mantendo health `200`. Login respondeu `200`; as cinco APIs BVF e
+  as APIs críticas de pedidos, fiscal e pricing recusaram sessão ausente com
+  `401`, conforme o contrato.
 
 ## F. Pendências deliberadas
 
@@ -104,10 +113,8 @@ vídeos maiores permanecem destinados ao upload resumível do worker.
 
 ## G. Próximo passo recomendado
 
-Quando houver autorização específica para publicação, concluir somente o
-release de `BVF-STORAGE-01`: promover o SHA validado, aplicar a migration no
-`.162`, publicar e executar o read-back. `BVF-UI-01` permanece posterior a esse
-gate.
+Executar somente `BVF-UI-01`, consumindo as APIs agora publicadas e preservando
+os dois gates humanos definidos no WORKFLOW-01.
 
 ## Recuperação
 
