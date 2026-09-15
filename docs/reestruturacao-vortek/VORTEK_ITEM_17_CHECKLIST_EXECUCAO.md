@@ -4115,8 +4115,9 @@ publicação da coorte autorizada pelo usuário.
 ### BVF — Bentevi Video Factory — 13/09/2026
 
 **Estado: BASE V1, BRIEFING/FACTUAL ENGINE, FAMILY ENGINE, WORKFLOW BACKEND E
-STORAGE PRIVADO IMPLEMENTADOS E PUBLICADOS; as capacidades restantes devem
-avançar uma ação por tarefa.**
+STORAGE PRIVADO IMPLEMENTADOS E PUBLICADOS; BVF-UI-01 PREPARADA E VALIDADA EM
+`dev`, AINDA SEM MIGRATION, PUBLICAÇÃO OU ACEITE OPERACIONAL; as capacidades
+restantes devem avançar uma ação por tarefa.**
 
 - [x] Auditar o SQL inicial contra o schema, PKs/FKs, migrations, timestamps,
   RLS, RBAC, Storage, arquitetura, jobs e padrões reais do Bentevi;
@@ -4151,6 +4152,7 @@ Fila BVF pendente, nesta ordem:
   `approved/`, sem persistir URL pública;
 - [ ] `BVF-UI-01` — implementar telas integradas para briefing, revisão factual
   e aprovação humana da geração paga, sem bloquear requisições normais;
+  código concluído em `dev`, pendente migration, publicação e aceite;
 - [ ] `BVF-PROVIDER-01` — implementar adapters concretos Gemini/Veo sobre
   `VideoProvider`, com credenciais apenas no backend, estimativa de custo e
   geração desabilitada até aprovação humana válida;
@@ -4208,6 +4210,19 @@ operacionais mantiveram as contagens do preflight.
 
 [Decisões, contrato e evidências do STORAGE-01](../video-factory/BVF_STORAGE_01_IMPLEMENTACAO.md).
 
-**Próxima ação recomendada:** executar somente `BVF-UI-01`. A BVF continua sem
-geração paga, master final ou publicação no Mercado Livre; essas ações
-permanecem desabilitadas até seus gates técnicos e humanos.
+**Evidência parcial de `BVF-UI-01`:** rota integrada, busca por SKU, biblioteca
+RAFA, revisão factual/scale anchor/variation safety, briefing versionado,
+representação dos dois gates e histórico foram implementados no SHA funcional
+`246bc6cc`; 54 testes direcionados e a suíte completa com 1.534 aprovações
+passaram, assim como `npm run validate`, build, secrets e diff. A migration
+`20260915100000_bvf_ui_01` e o teste SQL foram preparados. Docker local estava
+indisponível; migration, publicação, smoke e aceite com `VTK000115` não foram
+executados. Por isso, o item permanece aberto.
+
+[Decisões, implementação e limites da UI-01](../video-factory/BVF_UI_01_IMPLEMENTACAO.md).
+
+**Próxima ação recomendada:** concluir a liberação controlada e o aceite de
+`BVF-UI-01`, sem promover incidentalmente os commits de catálogo presentes em
+`dev`. Depois, executar somente `BVF-PROVIDER-01`. A BVF continua sem geração
+paga, master final ou publicação no Mercado Livre; essas ações permanecem
+desabilitadas até seus gates técnicos e humanos.
