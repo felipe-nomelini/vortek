@@ -175,8 +175,6 @@ function manifestHash(manifest) {
       material_fingerprint: decision.material_fingerprint,
       ml_live_source_available: decision.ml_live_source_available,
       pricing_eligible_by_identity: decision.pricing_eligible_by_identity,
-      current_price: decision.current_price,
-      available_quantity: decision.available_quantity,
       local_listing_price: decision.local_listing_price,
       produtos_ativo: decision.produtos_ativo,
       produtos_estoque: decision.produtos_estoque,
