@@ -209,11 +209,12 @@ async function fetchByValues(client, table, select, column, values) {
 
 async function liveEvidence(input, client, ml) {
   const ids = input.audit.map(row => row.ml_item_id);
+  const expectedCount = ids.length;
   const [listings, snapshots] = await Promise.all([
     fetchByValues(client, 'anuncios_ml', 'ml_item_id,produto_id,sku,titulo,preco_ml,status,catalogo,updated_at', 'ml_item_id', ids),
     fetchByValues(client, 'catalogo_ml_snapshot', 'ml_item_id,seller_id,produto_id,sku_local,seller_sku,related_item_id,catalog_product_id,status,price,price_to_win,title,synced_at', 'ml_item_id', ids),
   ]);
-  if (listings.length !== 179 || snapshots.length !== 179) throw new Error(`database_coverage_invalid:${listings.length}:${snapshots.length}`);
+  if (listings.length !== expectedCount || snapshots.length !== expectedCount) throw new Error(`database_coverage_invalid:${listings.length}:${snapshots.length}:${expectedCount}`);
   const listingById = new Map(listings.map(row => [row.ml_item_id, row]));
   const snapshotById = new Map(snapshots.map(row => [row.ml_item_id, row]));
   const productIds = [...new Set(listings.map(row => row.produto_id).filter(Boolean))];
@@ -231,7 +232,7 @@ async function liveEvidence(input, client, ml) {
       if (item) itemById.set(item.id, item);
     }
   }
-  if (itemById.size !== 179) throw new Error(`ml_item_coverage_invalid:${itemById.size}`);
+  if (itemById.size !== expectedCount) throw new Error(`ml_item_coverage_invalid:${itemById.size}:${expectedCount}`);
   const productByCatalog = new Map();
   for (const catalogId of [...new Set(input.audit.map(row => row.catalog_product_id))]) {
     const result = await ml.get(`/products/${encodeURIComponent(catalogId)}`);
@@ -239,7 +240,7 @@ async function liveEvidence(input, client, ml) {
     productByCatalog.set(catalogId, result.data);
   }
   const eligibility = new Map();
-  for (const row of [...input.batch01, ...input.batch02]) {
+  for (const row of [...(input.batch01 || []), ...(input.batch02 || [])]) {
     const relation = itemById.get(row.ml_item_id)?.item_relations?.[0]?.id || null;
     if (!relation) continue;
     const result = await ml.get(`/items/${encodeURIComponent(relation)}/catalog_listing_eligibility`);
@@ -472,4 +473,21 @@ async function main() {
 
 if (require.main === module) main().catch(error => { console.error(String(error?.message || error)); process.exitCode = 1; });
 
-module.exports = { parseCsv, normalizeExecutiveRow, loadInputs, validateInputs, materialSnapshot, createDecision, stableJson, sha256 };
+module.exports = {
+  assertProductionTarget,
+  chunks,
+  createDecision,
+  csv,
+  fetchByValues,
+  jsonObject,
+  liveEvidence,
+  loadInputs,
+  loadToken,
+  materialSnapshot,
+  normalizeExecutiveRow,
+  parseCsv,
+  readonlyMl,
+  sha256,
+  stableJson,
+  writeAtomic,
+};
