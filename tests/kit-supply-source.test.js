@@ -68,6 +68,8 @@ test('RPC preserva contrato e inclui fornecedor e SKU de origem dos kits', () =>
 test('reparo da venda pendente é idempotente e condicionado à origem BKR1 comprovada', () => {
   const migration = fs.readFileSync('supabase/migrations/20260915114000_repair_pending_kit_order_cmv.sql', 'utf8');
   assert.match(migration, /ml_order_id = '2000018469395176'/);
+  assert.match(migration, /nullif\(trim\(coalesce\(pedido\.dslite_id, ''\)\), ''\) is not null[\s\S]*return;/);
+  assert.doesNotMatch(migration, /já possui pedido DSLite; reparo de CMV interrompido/);
   assert.match(migration, /kit\.fornecedor_dslite_id = '108'/);
   assert.match(migration, /offer\.dslite_produto_id = '2295'/);
   assert.match(migration, /item\.cmv_unitario_snapshot = 482\.88[\s\S]*return;/);

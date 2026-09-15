@@ -32,7 +32,9 @@ begin
     where pedido.id = v_order_id
       and nullif(trim(coalesce(pedido.dslite_id, '')), '') is not null
   ) then
-    raise exception 'Venda 2000018469395176 já possui pedido DSLite; reparo de CMV interrompido';
+    -- O CMV histórico deve permanecer coerente com a compra já criada. Cancelar ou
+    -- recriar um pedido DSLite existente exige uma ação operacional separada.
+    return;
   end if;
 
   select item.id, item.ml_item_id
