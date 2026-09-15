@@ -180,10 +180,61 @@ async function assertProductionTarget(serviceUrl) {
 }
 
 async function loadToken(client) {
-  const result = await client.from('integracoes').select('access_token,token_expires_at,conectado').eq('tipo', 'mercadolivre').maybeSingle();
-  if (result.error || !result.data?.conectado || !result.data.access_token) throw new Error('ml_token_unavailable');
-  if (Date.parse(result.data.token_expires_at || '') - Date.now() < 45 * 60 * 1000) throw new Error('ml_token_ttl_insufficient');
-  return result.data.access_token;
+  const select = 'access_token,refresh_token,client_id,client_secret,token_expires_at,conectado';
+  const read = async () => {
+    const result = await client.from('integracoes').select(select).eq('tipo', 'mercadolivre').maybeSingle();
+    if (result.error || !result.data?.conectado) throw new Error('ml_token_unavailable');
+    return result.data;
+  };
+  const validateOwner = async token => {
+    const response = await fetch('https://api.mercadolibre.com/users/me', {
+      headers: { Authorization: `Bearer ${token}`, Accept: 'application/json' },
+    });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || Number(payload?.id) !== SELLER_ID) throw new Error('ml_token_owner_invalid');
+  };
+  const usable = integration => integration.access_token
+    && Date.parse(integration.token_expires_at || '') - Date.now() >= 45 * 60 * 1000;
+  let integration = await read();
+  if (usable(integration)) {
+    await validateOwner(integration.access_token);
+    return integration.access_token;
+  }
+  if (!integration.refresh_token || !integration.client_id || !integration.client_secret) throw new Error('ml_refresh_credentials_unavailable');
+  const owner = `catalog-identity-p0:${crypto.randomUUID()}`;
+  const acquired = await client.rpc('acquire_integracao_refresh_lock', {
+    p_tipo: 'mercadolivre', p_owner: owner, p_ttl_seconds: 25,
+  });
+  if (acquired.error || !acquired.data) throw new Error('ml_refresh_lock_unavailable');
+  try {
+    integration = await read();
+    if (usable(integration)) {
+      await validateOwner(integration.access_token);
+      return integration.access_token;
+    }
+    const response = await fetch('https://api.mercadolibre.com/oauth/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
+      body: new URLSearchParams({ grant_type: 'refresh_token', client_id: integration.client_id,
+        client_secret: integration.client_secret, refresh_token: integration.refresh_token }),
+    });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || !payload?.access_token || !payload?.refresh_token) throw new Error(`ml_token_refresh_failed:${response.status}`);
+    await validateOwner(payload.access_token);
+    const updated = await client.from('integracoes').update({
+      access_token: payload.access_token,
+      refresh_token: payload.refresh_token,
+      token_expires_at: new Date(Date.now() + Number(payload.expires_in || 10800) * 1000).toISOString(),
+      conectado: true,
+      last_refresh_at: new Date().toISOString(),
+      last_refresh_error: null,
+      last_refresh_error_code: null,
+    }).eq('tipo', 'mercadolivre');
+    if (updated.error) throw new Error(`ml_token_persist_failed:${updated.error.code}`);
+    return payload.access_token;
+  } finally {
+    await client.rpc('release_integracao_refresh_lock', { p_tipo: 'mercadolivre', p_owner: owner });
+  }
 }
 
 function readonlyMl(token) {
