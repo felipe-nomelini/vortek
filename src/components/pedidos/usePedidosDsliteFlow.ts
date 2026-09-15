@@ -32,6 +32,7 @@ interface DslitePaymentPrompt {
   order: Order;
   compraId: string;
   dsid: string;
+  fromCreationGate?: boolean;
   resumeAfterConfirm?: boolean;
   fornecedorNome?: string | null;
   supplierPaymentAmount?: number | null;
@@ -90,11 +91,13 @@ export function usePedidosDsliteFlow({
   const pollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [paymentPrompt, setPaymentPrompt] = useState<DslitePaymentPrompt | null>(null);
+  const [paymentDecisionModalOpen, setPaymentDecisionModalOpen] = useState(false);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [paymentReference, setPaymentReference] = useState('');
   const [paymentNotes, setPaymentNotes] = useState('');
   const [paymentReceiptFile, setPaymentReceiptFile] = useState<File | null>(null);
   const [confirmingPayment, setConfirmingPayment] = useState(false);
+  const [deferringPayment, setDeferringPayment] = useState(false);
 
   const [shippingPrompt, setShippingPrompt] = useState<DsliteShippingPrompt | null>(null);
   const [shippingModalOpen, setShippingModalOpen] = useState(false);
@@ -174,6 +177,7 @@ export function usePedidosDsliteFlow({
           order,
           compraId: String(payload.compra_id),
           dsid: String(payload.dsid || order.dslite_id || ''),
+          fromCreationGate: true,
           resumeAfterConfirm: true,
           fornecedorNome: payload.fornecedor_nome || null,
           supplierPaymentAmount: Number(payload.supplier_payment_amount || 0) || null,
@@ -184,7 +188,7 @@ export function usePedidosDsliteFlow({
         setPaymentReference('');
         setPaymentNotes('');
         setPaymentReceiptFile(null);
-        setPaymentModalOpen(true);
+        setPaymentDecisionModalOpen(true);
       }
       return;
     }
@@ -206,6 +210,7 @@ export function usePedidosDsliteFlow({
   const createDsliteOrder = useCallback(async (order: Order, nfeProvider: 'brasilnfe' = 'brasilnfe') => {
     setSteps(initDsliteOrderSteps());
     setProgressOpen(true);
+    setPaymentDecisionModalOpen(false);
     setPaymentModalOpen(false);
     setPaymentPrompt(null);
     setPaymentReference('');
@@ -263,6 +268,7 @@ export function usePedidosDsliteFlow({
       order,
       compraId: order.compra_id,
       dsid: order.dslite_id,
+      fromCreationGate: false,
       resumeAfterConfirm: true,
       fornecedorNome: order.fornecedor_nome || null,
       supplierPaymentAmount: order.supplier_payment_amount ?? null,
@@ -275,6 +281,53 @@ export function usePedidosDsliteFlow({
     setPaymentReceiptFile(null);
     setPaymentModalOpen(true);
   }, [messageApi]);
+
+  const choosePayNow = useCallback(() => {
+    if (!paymentPrompt) return;
+    setPaymentDecisionModalOpen(false);
+    setPaymentModalOpen(true);
+  }, [paymentPrompt]);
+
+  const backToPaymentDecision = useCallback(() => {
+    setPaymentModalOpen(false);
+    if (paymentPrompt?.fromCreationGate) {
+      setPaymentDecisionModalOpen(true);
+    }
+  }, [paymentPrompt]);
+
+  const continueWithPaymentPending = useCallback(async () => {
+    if (!paymentPrompt) return;
+    setDeferringPayment(true);
+    try {
+      const res = await fetch('/api/dslite/pedido', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pedidoId: paymentPrompt.order.dbId,
+          mlOrderId: paymentPrompt.order.ml_order_id,
+          nfeProvider: 'brasilnfe',
+          fulfillmentMode: 'supplier',
+          continueWithSupplierPaymentPending: true,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json?.jobId) {
+        throw new Error(json?.error || 'Falha ao continuar o pedido DSLite com o PIX pendente');
+      }
+
+      const order = paymentPrompt.order;
+      setPaymentDecisionModalOpen(false);
+      setPaymentPrompt(null);
+      setSteps(initDsliteOrderSteps());
+      setProgressOpen(true);
+      messageApi.success('Pedido DSLite continuará. O PIX poderá ser confirmado depois.');
+      await pollDsliteJob(String(json.jobId), order);
+    } catch (error: any) {
+      messageApi.error(userSafeMessage(error?.message, 'Não foi possível continuar o pedido sem confirmar o PIX. Tente novamente.'));
+    } finally {
+      setDeferringPayment(false);
+    }
+  }, [messageApi, paymentPrompt, pollDsliteJob]);
 
   const confirmSupplierPayment = useCallback(async () => {
     if (!paymentPrompt) return;
@@ -418,6 +471,7 @@ export function usePedidosDsliteFlow({
   const closeProgress = useCallback(() => {
     stopPolling();
     setProgressOpen(false);
+    setPaymentDecisionModalOpen(false);
     setPaymentModalOpen(false);
     void refreshOrders();
   }, [refreshOrders, stopPolling]);
@@ -443,7 +497,12 @@ export function usePedidosDsliteFlow({
     closeProgress,
     retryProgress,
     paymentPrompt,
+    paymentDecisionModalOpen,
     paymentModalOpen,
+    backToPaymentDecision,
+    choosePayNow,
+    continueWithPaymentPending,
+    deferringPayment,
     closePaymentModal: () => setPaymentModalOpen(false),
     confirmSupplierPayment,
     confirmingPayment,

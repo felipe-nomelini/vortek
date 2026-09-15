@@ -1689,6 +1689,7 @@ async function runDsliteCreateJob(
   nfePayload?: Record<string, any> | null,
   options?: {
     resumeAfterSupplierPayment?: boolean;
+    continueWithSupplierPaymentPending?: boolean;
     idempotencyKey?: string | null;
   },
 ) {
@@ -1718,6 +1719,12 @@ async function runDsliteCreateJob(
   const externalWarnings: string[] = [];
   const resumeAfterSupplierPayment = Boolean(
     options?.resumeAfterSupplierPayment,
+  );
+  const continueWithSupplierPaymentPending = Boolean(
+    options?.continueWithSupplierPaymentPending,
+  );
+  const resumeExistingDsliteOrder = Boolean(
+    resumeAfterSupplierPayment || continueWithSupplierPaymentPending,
   );
 
   const syncJob = async () => {
@@ -1792,6 +1799,7 @@ async function runDsliteCreateJob(
         nfeProvider: selectedProvider,
         hasNfePayload: Boolean(nfePayload),
         resumeAfterSupplierPayment,
+        continueWithSupplierPaymentPending,
         idempotencyKey: options?.idempotencyKey || null,
       },
     };
@@ -3789,7 +3797,29 @@ async function runDsliteCreateJob(
       return;
     }
 
-    if (chaveAcesso && !(resumeAfterSupplierPayment && existingDsliteId)) {
+    if (
+      continueWithSupplierPaymentPending &&
+      (
+        !existingDsliteId ||
+        !existingCompra?.id ||
+        existingCompra.supplier_payment_mode !== "prepaid_pix" ||
+        existingCompra.supplier_payment_status !== "pending"
+      )
+    ) {
+      const msg =
+        "A continuação sem pagamento exige uma compra DSLite PIX pendente e vinculada a esta venda.";
+      await setStep("validate_fiscal_prechecks", "error", undefined, msg);
+      state = "error";
+      result = {
+        stage: "supplier_payment_defer_not_available",
+        message: msg,
+        dslite_id: existingDsliteId || null,
+      };
+      await syncJob();
+      return;
+    }
+
+    if (chaveAcesso && !(resumeExistingDsliteOrder && existingDsliteId)) {
       const existente = await consultarPedidoPorChaveAcesso(chaveAcesso);
       if (existente) {
         if (existente.cancelado) {
@@ -3890,9 +3920,8 @@ async function runDsliteCreateJob(
     }
 
     const reusingExistingDsliteOrder = Boolean(
-      dsidAtual &&
-        (reusedReactivatedDsliteOrder ||
-          (resumeAfterSupplierPayment && existingDsliteId)),
+      reusedReactivatedDsliteOrder ||
+        (resumeExistingDsliteOrder && existingDsliteId),
     );
 
     await setStep(
@@ -4517,19 +4546,23 @@ async function runDsliteCreateJob(
             : null;
       const resolvedDsliteStatus =
         !reusedReactivatedDsliteOrder &&
-        resumeAfterSupplierPayment &&
+        resumeExistingDsliteOrder &&
         (existingCompra as any)?.status_dslite
           ? String((existingCompra as any).status_dslite)
           : pedidoStatusFinal;
+      const resolvedSupplierPaymentStatus = supplierPaymentMode === "prepaid_pix"
+        ? resumeAfterSupplierPayment
+          ? "paid"
+          : continueWithSupplierPaymentPending
+            ? existingCompra?.supplier_payment_status || "pending"
+            : "pending"
+        : null;
       const compraPayload = {
         dsid: String(dsidAtual),
         status: resolveCompraStatus({
           baseStatus: resolvedDsliteStatus,
           supplierPaymentMode,
-          supplierPaymentStatus:
-            supplierPaymentMode === "prepaid_pix" && !resumeAfterSupplierPayment
-              ? "pending"
-              : existingCompra?.supplier_payment_status || null,
+          supplierPaymentStatus: resolvedSupplierPaymentStatus,
         }),
         status_dslite: resolvedDsliteStatus,
         nf_chave: chaveAcesso || null,
@@ -4549,12 +4582,7 @@ async function runDsliteCreateJob(
           (existingCompra as any)?.produto_fornecedor_oferta_id ||
           null,
         supplier_payment_mode: supplierPaymentMode,
-        supplier_payment_status:
-          supplierPaymentMode === "prepaid_pix"
-            ? resumeAfterSupplierPayment
-              ? "paid"
-              : "pending"
-            : null,
+        supplier_payment_status: resolvedSupplierPaymentStatus,
         supplier_payment_amount: resolvedPaymentAmount,
       };
       if (existingCompra?.id) {
@@ -4688,7 +4716,12 @@ async function runDsliteCreateJob(
       isMlLabelReleasePending &&
       isBkr1Supplier(fornecedorId, fornecedorNomeResolved),
     );
-    if (supplierPaymentMode === "prepaid_pix" && !resumeAfterSupplierPayment && !deferBkr1PaymentUntilRealLabel) {
+    if (
+      supplierPaymentMode === "prepaid_pix" &&
+      !resumeAfterSupplierPayment &&
+      !continueWithSupplierPaymentPending &&
+      !deferBkr1PaymentUntilRealLabel
+    ) {
       const { data: fornecedorCadastro } = await client
         .from("fornecedores")
         .select("telefone,supplier_pix_key")
@@ -4739,6 +4772,23 @@ async function runDsliteCreateJob(
       };
       await syncJob();
       return;
+    }
+
+    if (continueWithSupplierPaymentPending) {
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        evento: "supplier_payment_deferred_by_user",
+        respostaMl: {
+          compra_id: compraAtual?.id || existingCompra?.id || null,
+          dslite_id: String(dsidAtual),
+          fornecedor_id: fornecedorId || null,
+          fornecedor_nome: fornecedorNomeResolved,
+          supplier_payment_mode: supplierPaymentMode,
+          supplier_payment_status: "pending",
+        },
+        statusResultante: "continued_pending",
+      });
     }
 
     const pendencias: string[] = [
@@ -4831,6 +4881,9 @@ async function runDsliteCreateJob(
           actionRequired: "choose_dslite_shipping",
           message: msg,
           dsid: dsidAtual,
+          ...(continueWithSupplierPaymentPending
+            ? { supplier_payment_deferred: true, supplier_payment_status: "pending" }
+            : {}),
           shippingOptions: availableOptions,
           fornecedor_nome: fornecedorNomeResolved,
         };
@@ -4912,6 +4965,9 @@ async function runDsliteCreateJob(
       result = {
         dsid: dsidAtual,
         status: pedidoDsliteAtual?.status || pedidoStatusFinal,
+        ...(continueWithSupplierPaymentPending
+          ? { supplier_payment_deferred: true, supplier_payment_status: "pending" }
+          : {}),
         etiquetaStatus: "nao_aplicavel",
         shippingMode: "dslite_paid_shipping",
         shipping: currentOption || {
@@ -5395,6 +5451,9 @@ async function runDsliteCreateJob(
     result = {
       dsid: dsidAtual,
       status: pedidoStatusFinal,
+      ...(continueWithSupplierPaymentPending
+        ? { supplier_payment_deferred: true, supplier_payment_status: "pending" }
+        : {}),
       produto: produto
         ? {
             produtoid: produto.produtoid,
@@ -5440,9 +5499,34 @@ export async function POST(req: Request) {
       nfeProvider,
       nfePayload,
       resumeAfterSupplierPayment,
+      continueWithSupplierPaymentPending: rawContinueWithSupplierPaymentPending,
       idempotencyKey: bodyIdempotencyKey,
       fulfillmentMode: rawFulfillmentMode,
     } = await req.json();
+    if (
+      rawContinueWithSupplierPaymentPending !== undefined &&
+      typeof rawContinueWithSupplierPaymentPending !== "boolean"
+    ) {
+      return NextResponse.json(
+        {
+          error: "continueWithSupplierPaymentPending deve ser booleano",
+          code: "invalid_supplier_payment_continuation",
+        },
+        { status: 400 },
+      );
+    }
+    const continueWithSupplierPaymentPending =
+      rawContinueWithSupplierPaymentPending === true;
+    if (continueWithSupplierPaymentPending && Boolean(resumeAfterSupplierPayment)) {
+      return NextResponse.json(
+        {
+          error:
+            "Escolha apenas uma forma de continuar o pagamento ao fornecedor.",
+          code: "invalid_supplier_payment_continuation",
+        },
+        { status: 400 },
+      );
+    }
     const fulfillmentMode = rawFulfillmentMode === undefined ? "auto" : rawFulfillmentMode;
     if (!['auto', 'supplier'].includes(String(fulfillmentMode))) {
       return NextResponse.json(
@@ -5460,7 +5544,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const fulfillmentRead = await (client as any)
       .from('pedidos')
-      .select('fulfillment_source,snapshot_source,situacao')
+      .select('fulfillment_source,snapshot_source,situacao,dslite_id')
       .eq('id', String(pedidoId))
       .maybeSingle();
     if (fulfillmentRead.error) {
@@ -5489,6 +5573,47 @@ export async function POST(req: Request) {
         },
         { status: 409 },
       );
+    }
+    if (continueWithSupplierPaymentPending) {
+      const existingDsliteId = String(fulfillmentRead.data.dslite_id || "").trim();
+      if (!existingDsliteId) {
+        return NextResponse.json(
+          {
+            error:
+              "A venda ainda não possui uma compra DSLite PIX pendente para continuar.",
+            code: "supplier_payment_defer_not_available",
+          },
+          { status: 409 },
+        );
+      }
+      const existingCompraRead = await (client as any)
+        .from("compras")
+        .select("id,supplier_payment_mode,supplier_payment_status")
+        .eq("dsid", existingDsliteId)
+        .maybeSingle();
+      if (existingCompraRead.error) {
+        return NextResponse.json(
+          {
+            error: existingCompraRead.error.message,
+            code: "supplier_payment_defer_read_failed",
+          },
+          { status: 500 },
+        );
+      }
+      if (
+        !existingCompraRead.data?.id ||
+        existingCompraRead.data.supplier_payment_mode !== "prepaid_pix" ||
+        existingCompraRead.data.supplier_payment_status !== "pending"
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              "A continuação sem pagamento exige uma compra DSLite PIX pendente e vinculada a esta venda.",
+            code: "supplier_payment_defer_not_available",
+          },
+          { status: 409 },
+        );
+      }
     }
     if (nfeProvider === "mercadolivre") {
       await registrarEventoNfAuditoria({
@@ -5531,7 +5656,12 @@ export async function POST(req: Request) {
     }
 
     const currentFulfillmentSource = String(fulfillmentRead.data.fulfillment_source || '').trim();
-    if (!resumeAfterSupplierPayment && fulfillmentMode === 'auto' && !currentFulfillmentSource) {
+    if (
+      !resumeAfterSupplierPayment &&
+      !continueWithSupplierPaymentPending &&
+      fulfillmentMode === 'auto' &&
+      !currentFulfillmentSource
+    ) {
       try {
         await validarEstoqueEnvioInterno(String(pedidoId));
         return NextResponse.json(
@@ -5616,6 +5746,7 @@ export async function POST(req: Request) {
               nfeProvider: provider,
               hasNfePayload: Boolean(nfePayload),
               resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment),
+              continueWithSupplierPaymentPending,
               fulfillmentMode: String(fulfillmentMode),
               fulfillmentSource: 'supplier',
               idempotencyKey,
@@ -5658,6 +5789,7 @@ export async function POST(req: Request) {
       nfePayload || null,
       {
         resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment),
+        continueWithSupplierPaymentPending,
         idempotencyKey,
       },
     );

@@ -51,6 +51,7 @@ type AuditEvent =
   | 'dslite_item_link_success'
   | 'dslite_item_link_failed'
   | 'supplier_payment_confirmed_manual'
+  | 'supplier_payment_deferred_by_user'
   | 'supplier_payment_whatsapp_sent'
   | 'supplier_payment_whatsapp_failed'
   | 'nfe_homologacao_bloqueada'

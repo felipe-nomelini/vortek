@@ -1,0 +1,102 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const test = require('node:test');
+
+const root = path.resolve(__dirname, '..');
+const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+
+const routeSource = read('src/app/api/dslite/pedido/route.ts');
+const flowSource = read('src/components/pedidos/usePedidosDsliteFlow.ts');
+const modalsSource = read('src/components/pedidos/PedidosDsliteModals.tsx');
+const auditSource = read('src/services/nf-auditoria.ts');
+
+test('decisão de pagamento só aparece no bloqueio PIX criado pelo fluxo DSLite', () => {
+  assert.match(
+    flowSource,
+    /payload\.stage === 'await_supplier_payment'[\s\S]*?fromCreationGate: true[\s\S]*?setPaymentDecisionModalOpen\(true\)/,
+  );
+  assert.match(
+    flowSource,
+    /const openSupplierPayment[\s\S]*?fromCreationGate: false[\s\S]*?setPaymentModalOpen\(true\)/,
+  );
+});
+
+test('modal oferece somente pagar agora ou continuar com pagamento pendente', () => {
+  assert.match(modalsSource, /title="Quando deseja confirmar o PIX\?"/);
+  assert.match(modalsSource, /Pagar depois e continuar/);
+  assert.match(modalsSource, /Pagar agora/);
+  assert.match(modalsSource, /closable=\{false\}/);
+  assert.match(modalsSource, /keyboard=\{false\}/);
+  assert.match(modalsSource, /maskClosable=\{false\}/);
+  assert.match(modalsSource, /onClick=\{flow\.continueWithPaymentPending\}/);
+  assert.match(modalsSource, /onClick=\{flow\.choosePayNow\}/);
+});
+
+test('pagar agora preserva o formulário e pagar depois não envia comprovante', () => {
+  assert.match(
+    flowSource,
+    /const choosePayNow[\s\S]*?setPaymentDecisionModalOpen\(false\)[\s\S]*?setPaymentModalOpen\(true\)/,
+  );
+  assert.match(
+    flowSource,
+    /const continueWithPaymentPending[\s\S]*?fetch\('\/api\/dslite\/pedido'[\s\S]*?continueWithSupplierPaymentPending: true/,
+  );
+  const deferredBlock = flowSource.slice(
+    flowSource.indexOf('const continueWithPaymentPending'),
+    flowSource.indexOf('const confirmSupplierPayment'),
+  );
+  assert.doesNotMatch(deferredBlock, /confirmar-pagamento/);
+  assert.doesNotMatch(deferredBlock, /FormData|paymentReceiptFile|receipt/);
+  assert.match(flowSource, /fetch\(`\/api\/compras\/\$\{paymentPrompt\.compraId\}\/confirmar-pagamento`/);
+});
+
+test('API aceita a continuação somente para compra PIX pendente já vinculada', () => {
+  assert.match(routeSource, /typeof rawContinueWithSupplierPaymentPending !== "boolean"/);
+  assert.match(
+    routeSource,
+    /continueWithSupplierPaymentPending && Boolean\(resumeAfterSupplierPayment\)/,
+  );
+  assert.match(routeSource, /\.select\('fulfillment_source,snapshot_source,situacao,dslite_id'\)/);
+  assert.match(
+    routeSource,
+    /existingCompraRead\.data\.supplier_payment_mode !== "prepaid_pix"[\s\S]*?existingCompraRead\.data\.supplier_payment_status !== "pending"/,
+  );
+  assert.match(routeSource, /code: "supplier_payment_defer_not_available"/);
+});
+
+test('continuação reutiliza o mesmo DSID e mantém o pagamento pendente', () => {
+  assert.match(
+    routeSource,
+    /const resumeExistingDsliteOrder = Boolean\([\s\S]*?resumeAfterSupplierPayment \|\| continueWithSupplierPaymentPending/,
+  );
+  assert.match(
+    routeSource,
+    /const reusingExistingDsliteOrder = Boolean\([\s\S]*?resumeExistingDsliteOrder && existingDsliteId/,
+  );
+  assert.doesNotMatch(
+    routeSource,
+    /resumeExistingDsliteOrder && existingDsliteId && dsidAtual/,
+  );
+  assert.match(
+    routeSource,
+    /continueWithSupplierPaymentPending[\s\S]*?existingCompra\?\.supplier_payment_status \|\| "pending"/,
+  );
+  assert.match(routeSource, /supplier_payment_deferred: true, supplier_payment_status: "pending"/);
+});
+
+test('adiamento é auditado e não altera a exceção de etiqueta da BKR1', () => {
+  assert.match(auditSource, /'supplier_payment_deferred_by_user'/);
+  assert.match(
+    routeSource,
+    /evento: "supplier_payment_deferred_by_user"[\s\S]*?statusResultante: "continued_pending"/,
+  );
+  assert.match(
+    routeSource,
+    /const deferBkr1PaymentUntilRealLabel = Boolean\([\s\S]*?isBkr1Supplier\(fornecedorId, fornecedorNomeResolved\)/,
+  );
+  assert.match(
+    routeSource,
+    /!continueWithSupplierPaymentPending &&[\s\S]*?!deferBkr1PaymentUntilRealLabel/,
+  );
+});

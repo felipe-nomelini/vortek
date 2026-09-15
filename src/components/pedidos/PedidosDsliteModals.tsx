@@ -12,6 +12,54 @@ interface PedidosDsliteModalsProps {
   flow: PedidosDsliteFlow;
 }
 
+function SupplierPaymentDecisionModal({ flow }: PedidosDsliteModalsProps) {
+  const prompt = flow.paymentPrompt;
+
+  return (
+    <Modal
+      title="Quando deseja confirmar o PIX?"
+      open={flow.paymentDecisionModalOpen}
+      closable={false}
+      keyboard={false}
+      maskClosable={false}
+      footer={[
+        <Button
+          key="later"
+          onClick={flow.continueWithPaymentPending}
+          loading={flow.deferringPayment}
+          disabled={flow.deferringPayment}
+        >
+          Pagar depois e continuar
+        </Button>,
+        <Button
+          key="now"
+          type="primary"
+          onClick={flow.choosePayNow}
+          disabled={flow.deferringPayment}
+        >
+          Pagar agora
+        </Button>,
+      ]}
+    >
+      <Space direction="vertical" size={14} style={{ width: '100%' }}>
+        <Text style={{ color: '#a0a0a0' }}>
+          O pedido já foi criado na DSLite. Você pode confirmar o PIX agora ou continuar com transportadora e etiqueta, deixando o pagamento pendente para depois.
+        </Text>
+        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 12 }}>
+          <Space direction="vertical" size={4} style={{ width: '100%' }}>
+            <Text><b>Pedido DSLite:</b> #{prompt?.dsid || '—'}</Text>
+            <Text><b>Fornecedor:</b> {prompt?.fornecedorNome || '—'}</Text>
+            <Text><b>Valor PIX:</b> {formatCurrency(Number(prompt?.supplierPaymentAmount || 0))}</Text>
+          </Space>
+        </div>
+        <Text type="secondary">
+          Ao pagar depois, o comprovante continuará pendente e poderá ser enviado ao fornecedor por WhatsApp pela ação de confirmação do PIX.
+        </Text>
+      </Space>
+    </Modal>
+  );
+}
+
 function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
   const prompt = flow.paymentPrompt;
   const resumePaidFlow = Boolean(
@@ -27,14 +75,14 @@ function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
           ? 'Enviar comprovante PIX ao fornecedor'
           : 'Confirmar PIX do fornecedor'}
       open={flow.paymentModalOpen}
-      onCancel={flow.closePaymentModal}
+      onCancel={prompt?.fromCreationGate ? flow.backToPaymentDecision : flow.closePaymentModal}
       onOk={flow.confirmSupplierPayment}
       okText={resumePaidFlow
         ? 'Retomar fluxo'
         : prompt?.resumeAfterConfirm === false
           ? 'Enviar comprovante'
           : 'Confirmar PIX e continuar'}
-      cancelText="Depois"
+      cancelText={prompt?.fromCreationGate ? 'Voltar' : 'Cancelar'}
       confirmLoading={flow.confirmingPayment}
       maskClosable={false}
     >
@@ -170,6 +218,7 @@ function DsliteShippingModal({ flow }: PedidosDsliteModalsProps) {
 export default function PedidosDsliteModals({ flow }: PedidosDsliteModalsProps) {
   return (
     <>
+      <SupplierPaymentDecisionModal flow={flow} />
       <SupplierPaymentModal flow={flow} />
       <DsliteShippingModal flow={flow} />
       <ProgressModal
