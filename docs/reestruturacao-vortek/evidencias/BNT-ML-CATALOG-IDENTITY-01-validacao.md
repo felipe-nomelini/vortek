@@ -31,6 +31,8 @@ Readback após commit:
 - funções de assert e claim presentes;
 - zero grants diretos a `anon` ou `authenticated`;
 - chamada manual aceita e chamada `price_to_win` sem projeção `SEM_CONFLITO` recusada;
+- trigger da outbox aceitou o caminho manual comprovado e recusou o mesmo registro ao simular origem `price_to_win`, tudo em transação revertida;
+- SQL registrado e arquivo versionado com SHA-256 idêntico `261c7215abe52b35da0bd96faa08da93222dc28a528cd5d0f38e860b9f044868`;
 - 10.125 produtos ativos antes e depois;
 - uma saída de preço pendente antes e depois, comprovadamente manual, com ator e operação individual.
 
