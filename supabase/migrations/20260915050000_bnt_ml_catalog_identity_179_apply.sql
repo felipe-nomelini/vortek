@@ -108,7 +108,7 @@ begin
     or listing_row.id is null
     or snapshot_row.id is null
     or listing_row.produto_id is distinct from product_id
-    or snapshot_row.produto_id is distinct from product_id
+    or (snapshot_row.produto_id is not null and snapshot_row.produto_id is distinct from product_id)
     or listing_row.sku is distinct from nullif(p_payload->>'sku', '')
     or snapshot_row.catalog_product_id is distinct from nullif(p_payload->>'catalog_product_id', '')
     or snapshot_row.related_item_id is distinct from nullif(p_payload->>'standard_item_id', '')

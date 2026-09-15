@@ -662,7 +662,17 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
     if (!existing.data) {
       const created = await client.from('ml_catalog_identity_runs').insert(runPayload);
       if (created.error) throw new Error(`run_create_failed:${created.error.code}`);
-    } else if (existing.data.manifest_hash !== manifest.manifest_hash || !['applying','completed'].includes(existing.data.state)) {
+    } else if (existing.data.manifest_hash !== manifest.manifest_hash) {
+      throw new Error('run_replay_conflict');
+    } else if (existing.data.state === 'paused') {
+      const resumed = await client.from('ml_catalog_identity_runs').update({
+        state: 'applying',
+        finished_at: null,
+        safety_stop: null,
+      }).eq('id', manifest.run_id).eq('state', 'paused').eq('manifest_hash', manifest.manifest_hash)
+        .select('id').maybeSingle();
+      if (resumed.error || !resumed.data) throw new Error(`run_resume_failed:${resumed.error?.code || 'state_changed'}`);
+    } else if (existing.data.state !== 'applying') {
       throw new Error('run_replay_conflict');
     }
     for (const batch of shared.chunks(fresh.decisions, 100)) {
@@ -708,7 +718,8 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
         safety_stop: code,
         database_credential: databaseCredential,
         migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout',
-          '20260915120000_bnt_ml_catalog_identity_p0_safety_snapshot_digest'],
+          '20260915120000_bnt_ml_catalog_identity_p0_safety_snapshot_digest',
+          '20260915130000_bnt_ml_catalog_identity_p0_nullable_snapshot_product'],
       });
       throw new Error(code);
     }
@@ -725,7 +736,8 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
       after_snapshot: afterSnapshot,
       operational_invariants_equal: true,
       migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout',
-        '20260915120000_bnt_ml_catalog_identity_p0_safety_snapshot_digest'],
+        '20260915120000_bnt_ml_catalog_identity_p0_safety_snapshot_digest',
+        '20260915130000_bnt_ml_catalog_identity_p0_nullable_snapshot_product'],
       database_credential: databaseCredential,
     });
   } catch (error) {
