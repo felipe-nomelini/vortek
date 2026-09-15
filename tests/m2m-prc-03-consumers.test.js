@@ -15,6 +15,7 @@ const context = load('src/services/pricing-context.ts', {
   './pricing-tax-context': { loadPricingTaxContext: async () => tax },
   '@/lib/preferred-offer': require('../src/lib/preferred-offer.ts'),
   '@/lib/dslite/supplier-policy': { loadOperationalDropshippingSupplierIds: async () => new Set() },
+  '@/lib/kit-supply-source': require('./helpers/kit-supply-source-module'),
 });
 const sample = (i, complete = true) => context.simulateProductPricing({
   costCents: complete ? 3000 + i : null, shippingCents: 1000, priceCents: 10000 + i,
@@ -31,7 +32,8 @@ const rows = Array.from({ length: 1105 }, (_, i) => ({
 function queryModule(extra = {}) {
   return load('src/services/product-pricing-query.ts', {
     'server-only': {}, './pricing-context': context, '@/lib/pricing-view': view,
-    '@/lib/ml/product-listings': {}, '@/lib/orders/fulfillment-capacity-loader': {}, ...extra,
+    '@/lib/ml/product-listings': {}, '@/lib/orders/fulfillment-capacity-loader': {},
+    '@/lib/kit-supply-source': require('./helpers/kit-supply-source-module'), ...extra,
   });
 }
 

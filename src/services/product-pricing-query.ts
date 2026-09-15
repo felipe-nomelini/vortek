@@ -5,6 +5,7 @@ import { loadProductPricing, type PricingRequestContext } from './pricing-contex
 import { pricingView } from '@/lib/pricing-view';
 import { loadProductMlListings } from '@/lib/ml/product-listings';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
+import { loadKitSupplySources } from '@/lib/kit-supply-source';
 
 type Row = { product: Database['public']['Tables']['produtos']['Row'] & { pricing?: import('./pricing-context').ProductPricing };
   preferredOffer: Record<string, unknown> | null; offersCount: number;
@@ -84,11 +85,10 @@ export async function queryPricedProducts(client: SupabaseClient<Database>, quer
     if (!batch.length) break;
     if (batch.some(row => seen.has(row.product.id))) throw new Error('A lista mudou durante a consulta; atualize os filtros');
     const ids = batch.map(row => row.product.id);
-    const [listings, capacities, kits] = await Promise.all([
+    const [listings, capacities, kitSupplySources] = await Promise.all([
       loadProductMlListings(client, ids), loadProductFulfillmentCapacities(client, ids),
-      client.from('produto_kits' as any).select('produto_id').in('produto_id', ids).returns<{ produto_id: string }[]>(),
+      loadKitSupplySources(client, ids, { operationalSupplierIds: requestContext.operational }),
     ]);
-    if (kits.error) throw new Error('Falha ao carregar kits dos produtos');
     const evidence = new Map(batch.flatMap(row => {
       const listing = listings.get(row.product.id)?.[0];
       return listing ? [[row.product.id, { mlItemId: listing.itemId,
@@ -100,8 +100,27 @@ export async function queryPricedProducts(client: SupabaseClient<Database>, quer
       seen.add(row.product.id);
       const capacity = capacities.get(row.product.id);
       if (!capacity) throw new Error('Capacidade operacional ausente');
+      const kitSource = kitSupplySources.get(row.product.id);
+      const syntheticKitOffer = kitSource?.kind === 'ready' ? {
+        ...kitSource.source.offer,
+        id: `kit-fornecedor-${row.product.id}`,
+        produto_id: row.product.id,
+        dslite_fornecedor_id: kitSource.source.supplierId,
+        dslite_produto_id: null,
+        fornecedor_nome: kitSource.source.supplierName,
+        sku_oferta: kitSource.source.sourceSku,
+        sku_fornecedor: kitSource.source.sourceSku,
+        custo: kitSource.source.cost,
+        estoque: kitSource.source.stock,
+        preferred: true,
+        preferred_manual: false,
+        is_kit_supplier: true,
+        source_kind: 'kit',
+        kit_mapping_complete: true,
+      } : null;
       rows.push({ ...row, fulfillmentCapacity: capacity, mlListings: listings.get(row.product.id) || [],
-        isKit: kits.data.some(kit => kit.produto_id === row.product.id),
+        preferredOffer: syntheticKitOffer || row.preferredOffer,
+        isKit: Boolean(kitSource && kitSource.kind !== 'not_kit'),
         product: { ...row.product, estoque: capacity.safe, pricing: pricing.get(row.product.id) } });
     }
     if (batch.length < 100) break;

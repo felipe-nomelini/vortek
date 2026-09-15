@@ -6,6 +6,7 @@ import { assertVortekSku } from '@/lib/product-master-sku';
 import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
 import { loadPricingRequestContext, loadProductPricing } from '@/services/pricing-context';
 import { loadProductMlListings } from '@/lib/ml/product-listings';
+import { loadKitSupplySources } from '@/lib/kit-supply-source';
 import {
   findBntD07VisualReviewItem,
   pricingFor,
@@ -55,16 +56,12 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
       );
     }
 
-    const [capacity, listingsByProductId, kitResult] = await Promise.all([
+    const [capacity, listingsByProductId, kitSupplySources] = await Promise.all([
       loadProductFulfillmentCapacity(supabase, String(data.id)),
       loadProductMlListings(supabase, [String(data.id)]),
-      (supabase as any)
-        .from('produto_kits')
-        .select('produto_id')
-        .eq('produto_id', data.id)
-        .maybeSingle(),
+      loadKitSupplySources(supabase, [String(data.id)], { operationalSupplierIds: requestContext.operational }),
     ]);
-    if (kitResult.error) throw new Error(kitResult.error.message);
+    const kitSource = kitSupplySources.get(String(data.id));
 
     const listings = listingsByProductId.get(String(data.id)) || [];
     const operationalListing = listings[0] || null;
@@ -79,7 +76,11 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
       estoque_operacional: capacity.safe,
       estoque_fornecedor: capacity.supplier,
       estoque_interno: capacity.internal,
-      fornecedor_operacional: capacity.internal > 0 ? 'Estoque Interno' : data.fornecedor,
+      fornecedor_operacional: capacity.internal > 0
+        ? 'Estoque Interno'
+        : kitSource?.kind === 'ready'
+          ? kitSource.source.supplierName
+          : data.fornecedor,
       ml_item_id_operacional: operationalListing?.itemId || data.ml_item_id,
       ml_status_operacional: operationalListing
         ? (operationalListing.status === 'ativo' ? 'ativo' : 'pausado')
@@ -92,7 +93,7 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
       commercialPricing,
       fulfillmentCapacity: capacity,
       mlListings: listings,
-      isKit: Boolean(kitResult.data?.produto_id),
+      isKit: Boolean(kitSource && kitSource.kind !== 'not_kit'),
       visualReview: null,
     });
   } catch (err: any) {

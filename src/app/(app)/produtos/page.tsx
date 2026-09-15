@@ -23,7 +23,10 @@ import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
 import { resolveMlFee } from '@/lib/commercial-pricing';
 
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
-type ProdutoOfertaRow = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'];
+type ProdutoOfertaRow = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'] & {
+  is_kit_supplier?: boolean;
+  source_kind?: 'kit';
+};
 
 const { Title, Text } = Typography;
 
@@ -1178,7 +1181,7 @@ export default function ProductsPage() {
   );
 
   const getSupplierLabel = (record: ProductRow) => {
-    const supplierId = String(record.product.supplierId || record.preferredOffer?.dslite_fornecedor_id || '');
+    const supplierId = String(record.product.supplierId || record.preferredOffer?.dslite_fornecedor_id || '').trim();
     return supplierLabelByDsliteId.get(supplierId)
       || record.preferredOffer?.fornecedor_nome
       || record.product.fornecedor
@@ -1326,8 +1329,8 @@ export default function ProductsPage() {
       render: (_, record) => (
         <div className={styles.stackedCell}>
           <strong>{getSupplierLabel(record)}</strong>
-          <span>{record.offersCount} oferta{record.offersCount === 1 ? '' : 's'}</span>
-          <span>{record.product.preferredSupplierManual ? 'Preferência manual' : 'Melhor oferta automática'}</span>
+          <span>{record.isKit ? 'Origem do kit' : `${record.offersCount} oferta${record.offersCount === 1 ? '' : 's'}`}</span>
+          <span>{record.isKit ? 'Fornecedor configurado' : record.product.preferredSupplierManual ? 'Preferência manual' : 'Melhor oferta automática'}</span>
         </div>
       ),
     },
@@ -1598,7 +1601,7 @@ export default function ProductsPage() {
                 </div>
                 <div className={styles.cardMetrics}>
                   <div><span>Q segura</span><strong>{record.fulfillmentCapacity.safe}</strong><small>I {record.fulfillmentCapacity.internal} · F {record.fulfillmentCapacity.supplier}</small></div>
-                  <div><span>Fornecedor</span><strong>{getSupplierLabel(record)}</strong><small>{record.offersCount} oferta{record.offersCount === 1 ? '' : 's'}</small></div>
+                  <div><span>Fornecedor</span><strong>{getSupplierLabel(record)}</strong><small>{record.isKit ? 'Origem do kit' : `${record.offersCount} oferta${record.offersCount === 1 ? '' : 's'}`}</small></div>
                   <div><span>Preço</span><strong>{formatCurrency(record.displayPrice)}</strong><small>Custo {formatCurrency(record.effectiveCost)}</small></div>
                   <div><span>Lucro</span><strong className={record.profit !== null && record.profit < 0 ? styles.negativeText : styles.positiveText}>{record.profit === null ? '—' : formatCurrency(record.profit)}</strong><small>{record.margin === null ? 'Após publicação' : `${record.margin.toFixed(2).replace('.', ',')}%`}</small></div>
                 </div>

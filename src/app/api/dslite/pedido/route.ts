@@ -88,7 +88,7 @@ import {
   selectOperationalSupplierProductCandidate,
 } from "@/lib/dslite/supplier-policy";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
-import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
+import { resolveSimpleKitOrderPlan, type SimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
 import {
   filterPackOrdersBySeller,
@@ -275,8 +275,9 @@ async function resolveConfirmedSupplierOffer(params: {
   productId: string | null | undefined;
   selectedOffer: any;
   requiredQuantity: number;
+  allowFallback?: boolean;
 }): Promise<{ offer: any | null; attempts: SupplierStockAttempt[] }> {
-  const { client, productId, selectedOffer, requiredQuantity } = params;
+  const { client, productId, selectedOffer, requiredQuantity, allowFallback = true } = params;
   const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(client);
   const selectedId = String(selectedOffer?.id || "").trim();
   const candidates = filterOperationalDropshippingSupplierOffers(
@@ -284,7 +285,7 @@ async function resolveConfirmedSupplierOffer(params: {
     operationalSupplierIds,
   );
 
-  if (productId) {
+  if (productId && allowFallback) {
     const { data: offers } = await client
       .from("produto_fornecedor_ofertas")
       .select("*")
@@ -508,6 +509,37 @@ async function resolvePedidoSupplierOffer(params: {
     productId: String(productRow.id),
     offer: null,
   };
+}
+
+async function loadPinnedKitSourcesForOrder(
+  client: ReturnType<typeof createServiceClient>,
+  pedidoIds: string[],
+) {
+  const { data: items, error } = await client
+    .from('pedido_itens')
+    .select('seller_sku')
+    .in('pedido_id', pedidoIds);
+  if (error) throw new Error(`Falha ao carregar os kits do pedido: ${error.message}`);
+
+  const byDsliteProductCode = new Map<string, SimpleKitOrderPlan>();
+  let fixedSupplier: SimpleKitOrderPlan | null = null;
+  for (const sellerSku of Array.from(new Set(
+    (items || []).map((item: any) => String(item.seller_sku || '').trim()).filter(Boolean),
+  ))) {
+    const resolution = await resolveSimpleKitOrderPlan(client, sellerSku);
+    if (resolution.kind !== 'ready') continue;
+    if (fixedSupplier && fixedSupplier.supplierId !== resolution.plan.supplierId) {
+      throw new Error(`Kits do pedido exigem fornecedores diferentes (${fixedSupplier.supplierName} e ${resolution.plan.supplierName})`);
+    }
+    fixedSupplier = resolution.plan;
+    const code = resolution.plan.componentDsliteProductId;
+    const previous = byDsliteProductCode.get(code);
+    if (previous && previous.supplierId !== resolution.plan.supplierId) {
+      throw new Error(`Kits do pedido exigem fornecedores diferentes para o produto DSLite ${code}`);
+    }
+    byDsliteProductCode.set(code, resolution.plan);
+  }
+  return byDsliteProductCode;
 }
 
 type StrictIssue = {
@@ -1523,10 +1555,16 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
         reason: "kit_composto_sem_suporte_dslite",
       };
     }
-    const dsliteProductCode = await resolveDsliteProductCodeForNfe(
-      client,
-      kitPlan.kind === "ready" ? kitPlan.plan.componentSku : sellerSku,
-    );
+    if (kitPlan.kind === "incomplete") {
+      return {
+        ok: false as const,
+        error: `A origem configurada do kit ${sellerSku} está incompleta (${kitPlan.reason}).`,
+        reason: "kit_origem_fornecedor_incompleta",
+      };
+    }
+    const dsliteProductCode = kitPlan.kind === "ready"
+      ? kitPlan.plan.componentDsliteProductId
+      : await resolveDsliteProductCodeForNfe(client, sellerSku);
     if (kitPlan.kind === "ready" && !dsliteProductCode) {
       return {
         ok: false as const,
@@ -3935,10 +3973,28 @@ async function runDsliteCreateJob(
         return;
       }
 
-      let selectedOffer = await resolvePedidoSupplierOffer({
-        client,
-        sku: skuComPrefixo,
-      });
+      const pinnedKitSources = await loadPinnedKitSourcesForOrder(client, operationalPedidoIds);
+      const fixedKitSupplierPlan = pinnedKitSources.values().next().value as SimpleKitOrderPlan | undefined;
+      const pinnedKitPlan = pinnedKitSources.get(skuComPrefixo);
+      let selectedOffer: any = pinnedKitPlan
+        ? { productId: pinnedKitPlan.componentProductId, offer: pinnedKitPlan.sourceOffer, fixedKitSupplier: true }
+        : await resolvePedidoSupplierOffer({
+            client,
+            sku: skuComPrefixo,
+          });
+      if (fixedKitSupplierPlan && !pinnedKitPlan && selectedOffer?.productId) {
+        const { data: fixedSupplierOffers } = await client
+          .from("produto_fornecedor_ofertas")
+          .select("*")
+          .eq("produto_id", String(selectedOffer.productId))
+          .eq("dslite_fornecedor_id", fixedKitSupplierPlan.supplierId)
+          .eq("ativo", true);
+        selectedOffer = {
+          ...selectedOffer,
+          offer: choosePreferredOffer((fixedSupplierOffers || []) as any[]),
+          fixedKitSupplier: true,
+        };
+      }
       if ((selectedOffer as any)?.inactive) {
         await setStep(
           "find_product_dslite",
@@ -3955,7 +4011,9 @@ async function runDsliteCreateJob(
           "find_product_dslite",
           "error",
           undefined,
-          `Produto com SKU ${skuComPrefixo} sem oferta DSLite selecionável`,
+          fixedKitSupplierPlan
+            ? `Produto com SKU ${skuComPrefixo} não possui oferta do fornecedor configurado do kit (${fixedKitSupplierPlan.supplierName})`
+            : `Produto com SKU ${skuComPrefixo} sem oferta DSLite selecionável`,
         );
         state = "error";
         await syncJob();
@@ -3969,13 +4027,16 @@ async function runDsliteCreateJob(
         productId: selectedOffer.productId,
         selectedOffer: selectedOffer.offer,
         requiredQuantity: requestedQuantity,
+        allowFallback: !fixedKitSupplierPlan,
       });
       if (!confirmedSupplier.offer) {
         await setStep(
           "find_product_dslite",
           "error",
           undefined,
-          `Compra não criada: nenhum fornecedor confirmou estoque para ${skuComPrefixo} (quantidade ${requestedQuantity}). ${describeSupplierStockAttempts(confirmedSupplier.attempts)}`,
+          fixedKitSupplierPlan
+            ? `Compra não criada: o fornecedor configurado do kit (${fixedKitSupplierPlan.supplierName}) não confirmou estoque para ${skuComPrefixo} (quantidade ${requestedQuantity}). ${describeSupplierStockAttempts(confirmedSupplier.attempts)}`
+            : `Compra não criada: nenhum fornecedor confirmou estoque para ${skuComPrefixo} (quantidade ${requestedQuantity}). ${describeSupplierStockAttempts(confirmedSupplier.attempts)}`,
         );
         state = "error";
         await syncJob();
@@ -3985,7 +4046,7 @@ async function runDsliteCreateJob(
         ...selectedOffer,
         offer: confirmedSupplier.offer,
       };
-      const fallbackUsed = confirmedSupplier.attempts.length > 1;
+      const fallbackUsed = !fixedKitSupplierPlan && confirmedSupplier.attempts.length > 1;
       await setStep(
         "find_product_dslite",
         "loading",
@@ -4017,10 +4078,17 @@ async function runDsliteCreateJob(
           lineSelection = selectedOffer;
           lineOffer = selectedOffer.offer;
         } else {
-          lineSelection = await resolvePedidoSupplierOffer({
-            client,
-            sku: line.sku,
-          });
+          const pinnedLineKitPlan = pinnedKitSources.get(line.sku);
+          lineSelection = pinnedLineKitPlan
+            ? {
+                productId: pinnedLineKitPlan.componentProductId,
+                offer: pinnedLineKitPlan.sourceOffer,
+                fixedKitSupplier: true,
+              }
+            : await resolvePedidoSupplierOffer({
+                client,
+                sku: line.sku,
+              });
           if ((lineSelection as any)?.inactive) {
             productLineError = `Produto com SKU ${line.sku} está inativo no Vortek`;
             break;
@@ -4029,13 +4097,21 @@ async function runDsliteCreateJob(
             productLineError = `Produto com SKU ${line.sku} não foi localizado no Vortek`;
             break;
           }
-          const { data: sameSupplierOffers } = await client
-            .from("produto_fornecedor_ofertas")
-            .select("*")
-            .eq("produto_id", String(lineSelection.productId))
-            .eq("dslite_fornecedor_id", fornecedorId)
-            .eq("ativo", true);
-          lineOffer = choosePreferredOffer((sameSupplierOffers || []) as any[]);
+          if (pinnedLineKitPlan && pinnedLineKitPlan.supplierId !== fornecedorId) {
+            productLineError = `Kits do pedido exigem fornecedores diferentes (${fornecedorNomeResolved || fornecedorId} e ${pinnedLineKitPlan.supplierName})`;
+            break;
+          }
+          if (pinnedLineKitPlan) {
+            lineOffer = pinnedLineKitPlan.sourceOffer;
+          } else {
+            const { data: sameSupplierOffers } = await client
+              .from("produto_fornecedor_ofertas")
+              .select("*")
+              .eq("produto_id", String(lineSelection.productId))
+              .eq("dslite_fornecedor_id", fornecedorId)
+              .eq("ativo", true);
+            lineOffer = choosePreferredOffer((sameSupplierOffers || []) as any[]);
+          }
           if (!lineOffer) {
             productLineError = `Fornecedor ${fornecedorNomeResolved || fornecedorId} não possui o produto ${line.sku}`;
             break;

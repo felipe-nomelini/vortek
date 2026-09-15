@@ -287,8 +287,8 @@ function prepareRowFragments(row: ExportRow, fonts: ReportFonts): PreparedRow[] 
     ];
     const supplierLines = [
       ...makeLines(row.supplier, widths.supplier, fonts, { bold: true, size: 6 }),
-      ...makeLines(`${row.offersCount} oferta${row.offersCount === 1 ? '' : 's'}`, widths.supplier, fonts, { size: 5.3, color: colors.textSecondary }),
-      ...makeLines(row.preferredSupplierManual ? 'Preferência manual' : 'Melhor oferta automática', widths.supplier, fonts, { size: 5.2, color: colors.textSecondary }),
+      ...makeLines(row.isKit ? 'Origem do kit' : `${row.offersCount} oferta${row.offersCount === 1 ? '' : 's'}`, widths.supplier, fonts, { size: 5.3, color: colors.textSecondary }),
+      ...makeLines(row.isKit ? 'Fornecedor configurado' : row.preferredSupplierManual ? 'Preferência manual' : 'Melhor oferta automática', widths.supplier, fonts, { size: 5.2, color: colors.textSecondary }),
     ];
     const commercialLines = [
       ...makeLines(formatCurrency(row.displayPrice), widths.commercial, fonts, { bold: true, size: 6.3, color: colors.primary }),

@@ -7,12 +7,15 @@ import { loadCommercialPricingConfiguration } from './commercial-pricing-configu
 import { loadPricingTaxContext } from './pricing-tax-context';
 import { resolvePreferredOfferForProduct } from '@/lib/preferred-offer';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
+import { resolveKitSupplySourceFromRows } from '@/lib/kit-supply-source';
 
 type Client = SupabaseClient<Database>;
-type Kit = { produto_id: string; ativo: boolean };
+type Kit = { produto_id: string; ativo: boolean; fornecedor_dslite_id: string; sku_origem: string };
 type KitComponent = { kit_produto_id: string; componente_produto_id: string; quantidade: number };
 type Offer = Pick<Database['public']['Tables']['produto_fornecedor_ofertas']['Row'],
-  'id' | 'produto_id' | 'dslite_fornecedor_id' | 'ativo' | 'estoque' | 'custo' | 'prioridade' | 'updated_at'>;
+  'id' | 'produto_id' | 'dslite_fornecedor_id' | 'dslite_produto_id' | 'fornecedor_nome'
+  | 'sku_oferta' | 'sku_fornecedor' | 'payment_mode' | 'ativo' | 'estoque' | 'custo'
+  | 'prioridade' | 'updated_at' | 'last_sync_at'>;
 export type ProductPricing = {
   comparisons?: Record<string, EconomicResult>;
   costCents: number | null;
@@ -113,7 +116,7 @@ export async function loadProductPricing(client: Client, products: readonly Pric
   const ids = products.map(p => p.id);
   const [{ commercial, taxContext, operational, evaluatedAt }, kits, components] = await Promise.all([
     options.requestContext ?? loadPricingRequestContext(client),
-    client.from('produto_kits' as any).select('produto_id,ativo').in('produto_id', ids).returns<Kit[]>(),
+    client.from('produto_kits' as any).select('produto_id,ativo,fornecedor_dslite_id,sku_origem').in('produto_id', ids).returns<Kit[]>(),
     (async () => {
       const data: KitComponent[] = [];
       for (let offset = 0; ; offset += 200) {
@@ -135,31 +138,43 @@ export async function loadProductPricing(client: Client, products: readonly Pric
       const rows: Offer[] = [];
       for (let offset = 0; ; offset += 200) {
         const page = await client.from('produto_fornecedor_ofertas')
-          .select('id,produto_id,dslite_fornecedor_id,ativo,estoque,custo,prioridade,updated_at')
+          .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id,fornecedor_nome,sku_oferta,sku_fornecedor,payment_mode,ativo,estoque,custo,prioridade,updated_at,last_sync_at')
           .in('produto_id', allIds).order('id').range(offset, offset + 199);
         if (page.error) throw new Error('Falha ao carregar ofertas para a memória econômica');
         rows.push(...(page.data || []));
         if ((page.data || []).length < 200) return rows;
       }
     })(),
-    componentIds.length ? client.from('produtos').select('id,ativo,oferta_preferencial_id,fornecedor_preferencial_manual').in('id', componentIds)
+    componentIds.length ? client.from('produtos').select('id,sku,nome,ncm,gtin,ativo,oferta_preferencial_id,fornecedor_preferencial_manual').in('id', componentIds)
       : Promise.resolve({ data: [], error: null }),
     componentIds.length ? client.from('produto_kits' as any).select('produto_id').in('produto_id', componentIds).returns<Pick<Kit, 'produto_id'>[]>()
       : Promise.resolve({ data: [], error: null }),
   ]);
   if (componentProducts.error || nestedKits.error) throw new Error('Falha ao carregar as fontes econômicas dos produtos');
   const eligibleOffers = offers.filter(o => o.ativo === true && operational.has(String(o.dslite_fornecedor_id)));
+  const nestedKitProductIds = new Set((nestedKits.data || []).map((nested) => nested.produto_id));
   for (const product of products) {
     const kit = kits.data?.find(k => k.produto_id === product.id);
     const composition = components.data?.filter(c => c.kit_produto_id === product.id) || [];
-    const sourceProduct = kit ? componentProducts.data?.find(p => p.id === composition[0]?.componente_produto_id) : product;
-    const validComposition = !kit || (kit.ativo === true && composition.length === 1 && sourceProduct?.ativo === true
-      && !nestedKits.data?.some(k => k.produto_id === sourceProduct.id)
-      && Number.isSafeInteger(composition[0].quantidade) && composition[0].quantidade > 0);
-    const offer = sourceProduct && validComposition ? resolvePreferredOfferForProduct(
-      eligibleOffers.filter(o => o.produto_id === sourceProduct.id), sourceProduct.oferta_preferencial_id,
-      sourceProduct.fornecedor_preferencial_manual === true) : null;
-    const quantity = kit ? Number(composition[0]?.quantidade) : 1;
+    const kitSource = kit ? resolveKitSupplySourceFromRows({
+      kitProductId: product.id,
+      kit,
+      components: composition,
+      componentProducts: componentProducts.data || [],
+      nestedKitProductIds,
+      offers,
+      operationalSupplierIds: operational,
+    }) : null;
+    const sourceProduct = kitSource?.kind === 'ready'
+      ? componentProducts.data?.find(p => p.id === kitSource.source.componentProductId)
+      : product;
+    const offer = kit
+      ? kitSource?.kind === 'ready' ? kitSource.source.offer as Offer : null
+      : resolvePreferredOfferForProduct(
+          eligibleOffers.filter(o => o.produto_id === product.id), product.oferta_preferencial_id,
+          product.fornecedor_preferencial_manual === true,
+        );
+    const quantity = kitSource?.kind === 'ready' ? kitSource.source.componentQuantity : 1;
     const unitCostCents = money(offer?.custo);
     const costCents = unitCostCents === null ? null : unitCostCents * quantity;
     const evidence = options.evidence?.get(product.id);

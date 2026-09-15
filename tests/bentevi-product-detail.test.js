@@ -75,6 +75,9 @@ test('BNT-D08 preserva ofertas, preferência e composição de kit', () => {
   assert.match(page, /Composição do kit/);
   assert.match(page, /kitSupplierOffer\.kit_components/);
   assert.match(suppliersRoute, /syncPreferredProductSnapshot/);
+  assert.match(page, /Origem fixa do kit/);
+  assert.match(suppliersRoute, /kit_supplier_read_only/);
+  assert.match(suppliersRoute, /selection_mode: isKit \? 'kit'/);
 });
 
 test('BNT-D08 usa a amostra real sem liberar mutações ou links externos', () => {

@@ -8,6 +8,7 @@ import {
   type ProductFulfillmentCapacity,
   type SupplierCapacityOffer,
 } from '@/lib/orders/fulfillment-capacity';
+import { resolveKitSupplySourceFromRows } from '@/lib/kit-supply-source';
 
 type ServiceClientLike = { from: (table: string) => any };
 
@@ -82,7 +83,7 @@ export async function loadProductFulfillmentCapacities(
 
   const [products, kits] = await Promise.all([
     selectInChunks(client, 'produtos', 'id,ativo', 'id', uniqueProductIds),
-    selectInChunks(client, 'produto_kits', 'produto_id,ativo', 'produto_id', uniqueProductIds),
+    selectInChunks(client, 'produto_kits', 'produto_id,fornecedor_dslite_id,sku_origem,ativo', 'produto_id', uniqueProductIds),
   ]);
   const productById = new Map(products.map((product) => [String(product.id), product]));
   const kitByProductId = new Map(kits.map((kit) => [String(kit.produto_id), kit]));
@@ -99,10 +100,16 @@ export async function loadProductFulfillmentCapacities(
   const componentIds = Array.from(new Set(
     components.map((component) => String(component.componente_produto_id || '')).filter(Boolean),
   ));
-  const componentProducts = componentIds.length > 0
-    ? await selectInChunks(client, 'produtos', 'id,ativo', 'id', componentIds)
-    : [];
+  const [componentProducts, nestedKits] = componentIds.length > 0
+    ? await Promise.all([
+        selectInChunks(client, 'produtos', 'id,sku,nome,ncm,gtin,ativo', 'id', componentIds),
+        selectInChunks(client, 'produto_kits', 'produto_id', 'produto_id', componentIds),
+      ])
+    : [[], []];
   for (const product of componentProducts) productById.set(String(product.id), product);
+  const nestedKitProductIds = new Set(
+    nestedKits.map((nestedKit) => String(nestedKit.produto_id || '')).filter(Boolean),
+  );
 
   const sourceProductIds = Array.from(new Set([...uniqueProductIds, ...componentIds]));
   const [balances, offerRows, operationalSupplierIds] = await Promise.all([
@@ -141,6 +148,7 @@ export async function loadProductFulfillmentCapacities(
     const kit = kitByProductId.get(productId);
     let internalItems: FulfillmentCapacityItem[] = [{ produtoId: productId, quantidade: 1 }];
     let supplierItems: FulfillmentCapacityItem[] = internalItems;
+    let supplierOffers = offers;
     if (kit) {
       const kitComponents = componentsByKit.get(productId) || [];
       const validComponents = kit.ativo !== false
@@ -160,11 +168,23 @@ export async function loadProductFulfillmentCapacities(
         produtoId: String(component.componente_produto_id),
         quantidade: Number(component.quantidade),
       }));
-      supplierItems = internalItems.length === 1 ? internalItems : [];
+      const source = resolveKitSupplySourceFromRows({
+        kitProductId: productId,
+        kit,
+        components,
+        componentProducts,
+        nestedKitProductIds,
+        offers: offerRows,
+        operationalSupplierIds,
+      });
+      supplierItems = source.kind === 'ready' ? internalItems : [];
+      supplierOffers = source.kind === 'ready'
+        ? offers.filter((offer) => offer.id === String(source.source.offer.id))
+        : [];
     }
 
     const internal = calculateInternalFulfillmentCapacity(internalItems, balances);
-    const supplier = calculateSupplierFulfillmentCapacity(supplierItems, offers);
+    const supplier = calculateSupplierFulfillmentCapacity(supplierItems, supplierOffers);
     result.set(productId, {
       internal,
       supplier,

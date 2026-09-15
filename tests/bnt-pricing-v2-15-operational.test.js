@@ -12,7 +12,7 @@ const economy = load('src/services/pricing-economy.ts', { './pricing-policy': po
   './pricing-core.js': require('../src/services/pricing-core.js') });
 const context = load('src/services/pricing-context.ts', { 'server-only': {}, './pricing-economy': economy,
   './commercial-pricing-configuration': {}, './pricing-tax-context': {}, '@/lib/preferred-offer': {},
-  '@/lib/dslite/supplier-policy': {} });
+  '@/lib/dslite/supplier-policy': {}, '@/lib/kit-supply-source': require('./helpers/kit-supply-source-module') });
 const request = (body, method = 'PUT') => new Request('http://localhost/comercial', { method, body: JSON.stringify(body) });
 
 function adminRoute(options = {}) {

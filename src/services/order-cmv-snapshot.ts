@@ -3,6 +3,7 @@ import type { createServiceClient } from '@/lib/supabase';
 import { filterOperationalDropshippingSupplierOffers, loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { resolvePreferredOfferForProduct } from '@/lib/preferred-offer';
 import { getSkuLookupVariants } from '@/lib/sku';
+import { loadKitSupplySources } from '@/lib/kit-supply-source';
 
 type ServiceClient = ReturnType<typeof createServiceClient>;
 
@@ -15,6 +16,9 @@ export type OrderItemCmvSnapshot = {
   cmv_capturado_em: string;
   cmv_composicao: Array<{
     produto_id: string;
+    oferta_id?: string;
+    fornecedor_id?: string;
+    dslite_produto_id?: string;
     quantidade: number;
     custo_unitario: number;
     observado_em: string;
@@ -206,7 +210,6 @@ export async function loadOrderItemCmvSnapshots(params: {
     ...(skuResult.data || []),
     ...(linkedProductsResult.data || []),
   ]);
-  const productsById = new Map(products.map((product) => [String(product.id), product]));
   const catalogProductIdsByMlItem = new Map<string, string[]>();
   for (const row of catalogResult.data || []) {
     const key = String((row as any).ml_item_id || '').trim();
@@ -232,12 +235,9 @@ export async function loadOrderItemCmvSnapshots(params: {
   const productIds = Array.from(new Set(
     resolvedProducts.map((product) => String(product?.id || '')).filter(Boolean),
   ));
-  const [kitsResult, componentsResult, offersResult, operationalSupplierIds] = await Promise.all([
+  const [kitsResult, offersResult, operationalSupplierIds] = await Promise.all([
     productIds.length
       ? (client as any).from('produto_kits').select('produto_id,ativo').in('produto_id', productIds)
-      : Promise.resolve({ data: [], error: null }),
-    productIds.length
-      ? (client as any).from('produto_kit_componentes').select('kit_produto_id,componente_produto_id,quantidade').in('kit_produto_id', productIds)
       : Promise.resolve({ data: [], error: null }),
     productIds.length
       ? client.from('produto_fornecedor_ofertas')
@@ -246,32 +246,13 @@ export async function loadOrderItemCmvSnapshots(params: {
       : Promise.resolve({ data: [], error: null }),
     loadOperationalDropshippingSupplierIds(client),
   ]);
-  const contextError = kitsResult.error || componentsResult.error || offersResult.error;
+  const contextError = kitsResult.error || offersResult.error;
   if (contextError) throw new Error(`Falha ao resolver fonte de CMV: ${contextError.message}`);
-
-  const componentIds: string[] = Array.from(new Set<string>(
-    (componentsResult.data || []).map((row: any) => String(row.componente_produto_id || '')).filter(Boolean),
-  ));
-  const componentProductsResult = componentIds.length
-    ? await client.from('produtos').select('id,ativo,custo,updated_at').in('id', componentIds)
-    : { data: [], error: null };
-  if (componentProductsResult.error) {
-    throw new Error(`Falha ao resolver componentes do CMV: ${componentProductsResult.error.message}`);
-  }
-  for (const product of componentProductsResult.data || []) {
-    productsById.set(String((product as any).id), product);
-  }
+  const kitSources = await loadKitSupplySources(client as any, productIds, { operationalSupplierIds });
 
   const kitByProductId = new Map(
     (kitsResult.data || []).map((kit: any) => [String(kit.produto_id), kit]),
   );
-  const componentsByKit = new Map<string, any[]>();
-  for (const component of componentsResult.data || []) {
-    const key = String((component as any).kit_produto_id || '');
-    const current = componentsByKit.get(key) || [];
-    current.push(component);
-    componentsByKit.set(key, current);
-  }
   const offersByProductId = new Map<string, any[]>();
   for (const offer of filterOperationalDropshippingSupplierOffers(
     offersResult.data || [],
@@ -297,43 +278,28 @@ export async function loadOrderItemCmvSnapshots(params: {
     const kit = kitByProductId.get(productId);
     if (kit) {
       if ((kit as any).ativo === false) return null;
-      const composition = (componentsByKit.get(productId) || []).map((component) => {
-        const componentProduct = productsById.get(String(component.componente_produto_id || ''));
-        const componentQuantity = Number(component.quantidade || 0);
-        const componentCost = money(componentProduct?.custo);
-        const observedAt = validTimestamp(componentProduct?.updated_at);
-        if (
-          !componentProduct
-          || componentProduct.ativo === false
-          || !Number.isSafeInteger(componentQuantity)
-          || componentQuantity <= 0
-          || componentCost === null
-          || !observedAt
-        ) return null;
-        return {
-          produto_id: String(componentProduct.id),
-          quantidade: componentQuantity,
-          custo_unitario: componentCost,
-          observado_em: observedAt,
-        };
-      });
-      if (composition.length === 0 || composition.some((component) => component === null)) return null;
-      const typedComposition = composition as NonNullable<OrderItemCmvSnapshot['cmv_composicao']>;
-      const unitCost = money(typedComposition.reduce(
-        (total, component) => total + component.custo_unitario * component.quantidade,
-        0,
-      ));
+      const resolution = kitSources.get(productId);
+      if (resolution?.kind !== 'ready') return null;
+      const componentCost = money(resolution.source.offer.custo);
+      const observedAt = validTimestamp(resolution.source.observedAt);
+      if (componentCost === null || !observedAt) return null;
+      const typedComposition: NonNullable<OrderItemCmvSnapshot['cmv_composicao']> = [{
+        produto_id: resolution.source.componentProductId,
+        oferta_id: String(resolution.source.offer.id),
+        fornecedor_id: resolution.source.supplierId,
+        dslite_produto_id: String(resolution.source.offer.dslite_produto_id),
+        quantidade: resolution.source.componentQuantity,
+        custo_unitario: componentCost,
+        observado_em: observedAt,
+      }];
+      const unitCost = money(resolution.source.cost);
       if (unitCost === null) return null;
-      const observedAt = typedComposition
-        .map((component) => component.observado_em)
-        .sort()
-        .at(-1)!;
       const itemIdentity = itemMlId(item) || itemSku(item) || String(index);
       return {
         cmv_unitario_snapshot: unitCost,
         cmv_total_snapshot: Number((unitCost * quantity).toFixed(2)),
         cmv_fonte: 'kit_product',
-        cmv_evidencia_id: `${mlOrderId}:${itemIdentity}:kit:${productId}:${observedAt}`,
+        cmv_evidencia_id: `${mlOrderId}:${itemIdentity}:kit:${productId}:offer:${String(resolution.source.offer.id)}:${observedAt}`,
         cmv_fonte_observada_em: observedAt,
         cmv_capturado_em: capturedAt,
         cmv_composicao: typedComposition,

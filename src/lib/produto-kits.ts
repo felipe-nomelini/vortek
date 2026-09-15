@@ -1,14 +1,26 @@
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
+import { loadKitSupplySources, type KitSupplierOffer } from '@/lib/kit-supply-source';
 
 type ServiceClientLike = { from: (table: string) => any };
 
 export type SimpleKitOrderPlan = {
+  kitProductId: string;
+  supplierId: string;
+  supplierName: string;
+  sourceSku: string;
+  sourceOfferId: string;
+  sourceOffer: KitSupplierOffer;
   componentSku: string;
+  componentProductId: string;
+  componentDsliteProductId: string;
   componentTitle: string;
   componentQuantity: number;
   componentNcm: string | null;
   componentGtin: string | null;
+  componentCost: number;
+  componentStock: number;
+  paymentMode: string | null;
 };
 
 /**
@@ -38,6 +50,7 @@ export async function resolveSimpleKitOrderPlan(
   | { kind: 'not_kit' }
   | { kind: 'inactive' }
   | { kind: 'unsupported_composite'; componentCount: number }
+  | { kind: 'incomplete'; reason: string }
   | { kind: 'ready'; plan: SimpleKitOrderPlan }
 > {
   const normalizedSku = String(kitSku || '').trim();
@@ -50,41 +63,38 @@ export async function resolveSimpleKitOrderPlan(
   if (kitProductError) throw new Error(`Falha ao localizar kit ${normalizedSku}: ${kitProductError.message}`);
   if (!kitProduct?.id) return { kind: 'not_kit' };
 
-  const { data: kit, error: kitError } = await client
-    .from('produto_kits' as any)
-    .select('produto_id,ativo')
-    .eq('produto_id', String(kitProduct.id))
-    .maybeSingle();
-  if (kitError) throw new Error(`Falha ao carregar configuração do kit ${normalizedSku}: ${kitError.message}`);
-  if (!kit?.produto_id) return { kind: 'not_kit' };
-  if (kit.ativo === false) return { kind: 'inactive' };
-
-  const { data: components, error: componentsError } = await client
-    .from('produto_kit_componentes' as any)
-    .select('componente_produto_id,quantidade')
-    .eq('kit_produto_id', String(kit.produto_id));
-  if (componentsError) throw new Error(`Falha ao carregar componentes do kit ${normalizedSku}: ${componentsError.message}`);
-  if ((components || []).length !== 1) {
-    return { kind: 'unsupported_composite', componentCount: (components || []).length };
+  const kitProductId = String(kitProduct.id);
+  const resolution = (await loadKitSupplySources(client, [kitProductId])).get(kitProductId);
+  if (!resolution || resolution.kind === 'not_kit') return { kind: 'not_kit' };
+  if (resolution.kind === 'inactive') return { kind: 'inactive' };
+  if (resolution.kind === 'unsupported_composite') {
+    return { kind: 'unsupported_composite', componentCount: resolution.componentCount };
+  }
+  if (resolution.kind === 'incomplete') {
+    return { kind: 'incomplete', reason: resolution.reason };
   }
 
-  const component = components![0] as any;
-  const { data: source, error: sourceError } = await client
-    .from('produtos' as any)
-    .select('sku,nome,ncm,gtin,ativo')
-    .eq('id', String(component.componente_produto_id))
-    .maybeSingle();
-  if (sourceError || !source?.sku) throw new Error(`Componente base ausente no kit ${normalizedSku}`);
-  if (source.ativo === false) return { kind: 'inactive' };
+  const { source } = resolution;
 
   return {
     kind: 'ready',
     plan: {
-      componentSku: String(source.sku),
-      componentTitle: String(source.nome || source.sku),
-      componentQuantity: Math.max(1, Math.trunc(Number(component.quantidade || 0))),
-      componentNcm: source.ncm ? String(source.ncm) : null,
-      componentGtin: source.gtin ? String(source.gtin) : null,
+      kitProductId,
+      supplierId: source.supplierId,
+      supplierName: source.supplierName,
+      sourceSku: source.sourceSku,
+      sourceOfferId: String(source.offer.id),
+      sourceOffer: source.offer,
+      componentSku: source.componentSku,
+      componentProductId: source.componentProductId,
+      componentDsliteProductId: String(source.offer.dslite_produto_id),
+      componentTitle: source.componentTitle,
+      componentQuantity: source.componentQuantity,
+      componentNcm: source.componentNcm,
+      componentGtin: source.componentGtin,
+      componentCost: Number(source.offer.custo),
+      componentStock: Number(source.offer.estoque || 0),
+      paymentMode: String(source.offer.payment_mode || '').trim() || null,
     },
   };
 }
@@ -113,31 +123,18 @@ export async function recalculateProductKits(
   const { data: affectedComponents, error: affectedError } = await componentQuery;
   if (affectedError) throw new Error(`Falha ao localizar kits afetados: ${affectedError.message}`);
 
-  const kitIds = Array.from(new Set((affectedComponents || []).map((row: any) => String(row.kit_produto_id || '')).filter(Boolean)));
+  const kitIds: string[] = Array.from(new Set<string>(
+    (affectedComponents || []).map((row: any) => String(row.kit_produto_id || '')).filter(Boolean),
+  ));
   if (kitIds.length === 0) return [];
 
-  const [{ data: kitRows, error: kitsError }, { data: componentRows, error: componentsError }, { data: listings, error: listingsError }] = await Promise.all([
+  const [{ data: kitRows, error: kitsError }, { data: listings, error: listingsError }, supplySources] = await Promise.all([
     client.from('produtos' as any).select('id,sku,estoque,custo').in('id', kitIds),
-    client.from('produto_kit_componentes' as any).select('kit_produto_id,componente_produto_id,quantidade').in('kit_produto_id', kitIds),
     client.from('anuncios_ml' as any).select('produto_id,ml_item_id').in('produto_id', kitIds),
+    loadKitSupplySources(client, kitIds),
   ]);
-  if (kitsError || componentsError || listingsError) {
-    throw new Error(kitsError?.message || componentsError?.message || listingsError?.message || 'Falha ao carregar dados dos kits');
-  }
-
-  const sourceIds = Array.from(new Set((componentRows || []).map((row: any) => String(row.componente_produto_id || '')).filter(Boolean)));
-  const { data: sources, error: sourcesError } = sourceIds.length > 0
-    ? await client.from('produtos' as any).select('id,estoque,custo').in('id', sourceIds)
-    : { data: [], error: null };
-  if (sourcesError) throw new Error(`Falha ao carregar componentes dos kits: ${sourcesError.message}`);
-
-  const sourceById = new Map((sources || []).map((row: any) => [String(row.id), row]));
-  const componentsByKit = new Map<string, any[]>();
-  for (const row of componentRows || []) {
-    const key = String((row as any).kit_produto_id || '');
-    const rows = componentsByKit.get(key) || [];
-    rows.push(row);
-    componentsByKit.set(key, rows);
+  if (kitsError || listingsError) {
+    throw new Error(kitsError?.message || listingsError?.message || 'Falha ao carregar dados dos kits');
   }
   const listingsByKit = new Map<string, string[]>();
   for (const row of listings || []) {
@@ -152,22 +149,14 @@ export async function recalculateProductKits(
   const snapshots: KitStockSnapshot[] = [];
   for (const kit of kitRows || []) {
     const kitId = String((kit as any).id || '');
-    const rows = componentsByKit.get(kitId) || [];
-    if (!kitId || rows.length === 0) continue;
-
-    let available = Number.MAX_SAFE_INTEGER;
-    let cost = 0;
-    let valid = true;
-    for (const component of rows) {
-      const quantity = Math.max(1, Math.trunc(Number((component as any).quantidade || 0)));
-      const source = sourceById.get(String((component as any).componente_produto_id || ''));
-      if (!source) { valid = false; break; }
-      const sourceRow: any = source;
-      available = Math.min(available, Math.floor(Math.max(0, Number(sourceRow.estoque || 0)) / quantity));
-      cost += Math.max(0, Number(sourceRow.custo || 0)) * quantity;
+    if (!kitId) continue;
+    const resolution = supplySources.get(kitId);
+    if (!resolution || resolution.kind === 'not_kit' || resolution.kind === 'inactive' || resolution.kind === 'unsupported_composite') continue;
+    if (resolution.kind === 'incomplete') {
+      throw new Error(`Origem configurada do kit ${String((kit as any).sku || kitId)} está incompleta: ${resolution.reason}`);
     }
-    const newStock = valid && Number.isFinite(available) ? Math.max(0, available) : 0;
-    const newCost = Math.round(cost * 100) / 100;
+    const newStock = resolution.source.stock;
+    const newCost = resolution.source.cost;
     const oldStock = Math.max(0, Number((kit as any).estoque || 0));
     const oldCost = Math.max(0, Number((kit as any).custo || 0));
     if (oldStock !== newStock || oldCost !== newCost) {
@@ -188,12 +177,14 @@ export async function recalculateProductKits(
 }
 
 export async function enqueueKitStockUpdates(client: ServiceClientLike, snapshots: KitStockSnapshot[]): Promise<number> {
+  const changedSnapshots = snapshots.filter((kit) => kit.oldStock !== kit.newStock);
+  if (changedSnapshots.length === 0) return 0;
   const capacities = await loadProductFulfillmentCapacities(
     client,
-    snapshots.map((kit) => kit.produtoId),
+    changedSnapshots.map((kit) => kit.produtoId),
   );
   let queued = 0;
-  for (const kit of snapshots) {
+  for (const kit of changedSnapshots) {
     const capacity = capacities.get(kit.produtoId) || { internal: 0, supplier: 0, safe: 0 };
     for (const mlItemId of kit.mlItemIds) {
       const result = await enqueueMlPublishOutbox(client, {

@@ -32,6 +32,8 @@ test('BNT-D07-PDF espelha a hierarquia operacional aprovada de Produtos', () => 
     assert.match(route, new RegExp(field));
   }
   assert.match(route, /Q segura \$\{row\.safeQuantity\} un\./);
+  assert.match(route, /row\.isKit \? 'Origem do kit'/);
+  assert.match(route, /row\.isKit \? 'Fornecedor configurado'/);
   assert.match(route, /listing\.type === 'catalog' \? 'Catálogo' : 'Padrão'/);
   assert.match(route, /catalogStatusLabel\(listing\.catalogStatus\)/);
   assert.doesNotMatch(route, /label: 'Ações'/);

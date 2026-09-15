@@ -4,20 +4,11 @@ import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/pr
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
+import { loadKitSupplySources } from '@/lib/kit-supply-source';
 import {
   findBntD07VisualReviewItem,
   loadBntD07VisualReview,
 } from '@/lib/products/bnt-d07-visual-review';
-
-type KitComponentDetail = {
-  sku: string;
-  nome: string;
-  sku_fornecedor: string;
-  quantidade: number;
-  estoque: number;
-  custo: number;
-  oferta_encontrada: boolean;
-};
 
 export async function GET(_request: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -76,109 +67,61 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
     return NextResponse.json({ error: offersError.message }, { status: 500 });
   }
 
+  const kitResolution = (await loadKitSupplySources(service, [params.id])).get(params.id);
+  const isKit = Boolean(kitResolution && kitResolution.kind !== 'not_kit');
   let kitSupplierOffer: Record<string, unknown> | null = null;
-  if ((offers || []).length === 0) {
-    const { data: kit, error: kitError } = await (service as any)
-      .from('produto_kits')
-      .select('produto_id,fornecedor_dslite_id,sku_origem,ativo')
-      .eq('produto_id', params.id)
-      .maybeSingle();
-    if (kitError) {
-      return NextResponse.json({ error: kitError.message }, { status: 500 });
-    }
-
-    if (kit?.produto_id) {
-      const { data: componentLinks, error: componentLinksError } = await (service as any)
-        .from('produto_kit_componentes')
-        .select('componente_produto_id,quantidade')
-        .eq('kit_produto_id', params.id);
-      if (componentLinksError) {
-        return NextResponse.json({ error: componentLinksError.message }, { status: 500 });
-      }
-
-      const componentIds: string[] = Array.from(new Set<string>(
-        (componentLinks || [])
-          .map((row: any) => String(row.componente_produto_id || '').trim())
-          .filter(Boolean),
-      ));
-      const [{ data: components, error: componentsError }, { data: componentOffers, error: componentOffersError }] = componentIds.length > 0
-        ? await Promise.all([
-            service
-              .from('produtos')
-              .select('id,sku,nome,custo,estoque,ativo,dslite_fornecedor_id,dslite_produto_id')
-              .in('id', componentIds),
-            service
-              .from('produto_fornecedor_ofertas')
-              .select('*')
-              .in('produto_id', componentIds)
-              .eq('dslite_fornecedor_id', String(kit.fornecedor_dslite_id || '')),
-          ])
-        : [{ data: [], error: null }, { data: [], error: null }];
-      if (componentsError || componentOffersError) {
-        return NextResponse.json({
-          error: componentsError?.message || componentOffersError?.message,
-        }, { status: 500 });
-      }
-
-      const componentById = new Map(
-        (components || []).map((row: any) => [String(row.id), row]),
-      );
-      const offerByProductId = new Map(
-        (componentOffers || []).map((row: any) => [String(row.produto_id), row]),
-      );
-      const componentDetails: KitComponentDetail[] = (componentLinks || []).map((link: any) => {
-        const componentId = String(link.componente_produto_id || '');
-        const component = componentById.get(componentId) as any;
-        const offer = offerByProductId.get(componentId) as any;
-        const quantity = Math.max(1, Math.trunc(Number(link.quantidade || 0)));
-        return {
-          sku: String(component?.sku || ''),
-          nome: String(component?.nome || ''),
-          sku_fornecedor: String(
-            offer?.sku_oferta ||
-            offer?.sku_fornecedor ||
-            offer?.dslite_produto_id ||
-            component?.dslite_produto_id ||
-            '',
-          ),
-          quantidade: quantity,
-          estoque: Number(offer?.estoque ?? component?.estoque ?? 0),
-          custo: Number(offer?.custo ?? component?.custo ?? 0),
-          oferta_encontrada: Boolean(offer?.id),
-        };
-      });
-      const completeMapping = componentDetails.length > 0
-        && componentDetails.every((row: KitComponentDetail) => row.oferta_encontrada);
-      const derivedStock = completeMapping
-        ? Math.min(...componentDetails.map((row: KitComponentDetail) => Math.floor(Math.max(0, row.estoque) / row.quantidade)))
-        : Number(product.estoque || 0);
-      const derivedCost = completeMapping
-        ? componentDetails.reduce((sum: number, row: KitComponentDetail) => sum + Math.max(0, row.custo) * row.quantidade, 0)
-        : Number(product.custo || 0);
-      const supplierName = String(
-        (componentOffers || [])[0]?.fornecedor_nome || product.fornecedor || `Fornecedor DSLite ${kit.fornecedor_dslite_id}`,
-      );
-
-      kitSupplierOffer = {
-        id: `kit-fornecedor-${product.id}`,
-        produto_id: product.id,
-        fornecedor_nome: supplierName,
-        dslite_fornecedor_id: String(kit.fornecedor_dslite_id || ''),
-        dslite_produto_id: null,
-        sku_oferta: String(kit.sku_origem || ''),
-        sku_fornecedor: String(kit.sku_origem || ''),
-        custo: Math.round(derivedCost * 100) / 100,
-        estoque: Math.max(0, derivedStock),
-        ativo: kit.ativo !== false,
-        prioridade: 0,
-        preferred: true,
-        preferred_manual: false,
-        is_kit_supplier: true,
-        kit_sku_origem: String(kit.sku_origem || ''),
-        kit_components: componentDetails,
-        kit_mapping_complete: completeMapping,
-      };
-    }
+  if (kitResolution?.kind === 'ready') {
+    const source = kitResolution.source;
+    kitSupplierOffer = {
+      ...source.offer,
+      id: `kit-fornecedor-${product.id}`,
+      produto_id: product.id,
+      fornecedor_nome: source.supplierName,
+      dslite_fornecedor_id: source.supplierId,
+      dslite_produto_id: null,
+      sku_oferta: source.sourceSku,
+      sku_fornecedor: source.sourceSku,
+      custo: source.cost,
+      estoque: source.stock,
+      ativo: true,
+      prioridade: 0,
+      preferred: true,
+      preferred_manual: false,
+      is_kit_supplier: true,
+      source_kind: 'kit',
+      kit_sku_origem: source.sourceSku,
+      kit_components: [{
+        sku: source.componentSku,
+        nome: source.componentTitle,
+        sku_fornecedor: String(source.offer.dslite_produto_id || ''),
+        quantidade: source.componentQuantity,
+        estoque: Number(source.offer.estoque || 0),
+        custo: Number(source.offer.custo || 0),
+        oferta_encontrada: true,
+      }],
+      kit_mapping_complete: true,
+    };
+  } else if (kitResolution && kitResolution.kind !== 'not_kit') {
+    kitSupplierOffer = {
+      id: `kit-fornecedor-${product.id}`,
+      produto_id: product.id,
+      fornecedor_nome: product.fornecedor || `Fornecedor DSLite ${kitResolution.supplierId}`,
+      dslite_fornecedor_id: kitResolution.supplierId,
+      dslite_produto_id: null,
+      sku_oferta: kitResolution.sourceSku,
+      sku_fornecedor: kitResolution.sourceSku,
+      custo: Number(product.custo || 0),
+      estoque: 0,
+      ativo: false,
+      prioridade: 0,
+      preferred: false,
+      preferred_manual: false,
+      is_kit_supplier: true,
+      source_kind: 'kit',
+      kit_sku_origem: kitResolution.sourceSku,
+      kit_components: [],
+      kit_mapping_complete: false,
+    };
   }
 
   const currentPreferredOfferId = String((product as any).oferta_preferencial_id || '').trim();
@@ -220,7 +163,7 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
 
   return NextResponse.json({
     data: fornecedores,
-    selection_mode: manualSelection ? 'manual' : 'automatic',
+    selection_mode: isKit ? 'kit' : manualSelection ? 'manual' : 'automatic',
     preferred_offer_id: currentPreferredOfferId || null,
   });
 }
@@ -262,6 +205,17 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
   }
   if (!product?.id) {
     return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
+  }
+  const { data: kit } = await (service as any)
+    .from('produto_kits')
+    .select('produto_id')
+    .eq('produto_id', params.id)
+    .maybeSingle();
+  if (kit?.produto_id) {
+    return NextResponse.json({
+      error: 'O fornecedor do kit é definido pela configuração de origem do kit.',
+      code: 'kit_supplier_read_only',
+    }, { status: 409 });
   }
 
   let offer: any = null;

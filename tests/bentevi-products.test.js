@@ -30,12 +30,20 @@ test('BNT-D07 organiza produtos por decisão operacional', () => {
 test('BNT-D07 exibe a capacidade canônica sem recalculá-la no browser', () => {
   assert.match(listRoute, /loadProductFulfillmentCapacities\(client, ids\)/);
   assert.match(listRoute, /fulfillmentCapacity:/);
-  assert.match(listRoute, /isKit: kits.data.some/);
+  assert.match(listRoute, /isKit: Boolean\(kitSource && kitSource\.kind !== 'not_kit'\)/);
+  assert.match(listRoute, /source_kind: 'kit'/);
+  assert.match(page, /record\.isKit \? 'Origem do kit'/);
   assert.match(page, /record\.fulfillmentCapacity\.safe/);
   assert.match(page, /record\.fulfillmentCapacity\.internal/);
   assert.match(page, /record\.fulfillmentCapacity\.supplier/);
   assert.doesNotMatch(page, /Math\.max\(record\.fulfillmentCapacity/);
   assert.match(page, /record\.fulfillmentCapacity\.safe > 0/);
+});
+
+test('kits exibem fornecedor configurado sem colidir com estoque interno', () => {
+  assert.match(page, /record\.product\.supplierId \|\| record\.preferredOffer\?\.dslite_fornecedor_id/);
+  assert.match(page, /record\.isKit \? 'Fornecedor configurado'/);
+  assert.doesNotMatch(page, /supplierLabelByDsliteId\.get\(supplierId\)[\s\S]{0,80}INTERNAL_SUPPLIER_FILTER_OPTION/);
 });
 
 test('BNT-D07 usa o mesmo custo efetivo na leitura comercial e na rentabilidade', () => {

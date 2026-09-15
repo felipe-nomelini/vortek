@@ -143,7 +143,7 @@ export default function ProductDetailPage() {
   const [isKit, setIsKit] = useState(false);
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [supplierOffers, setSupplierOffers] = useState<ProductSupplierOffer[]>([]);
-  const [supplierSelectionMode, setSupplierSelectionMode] = useState<'automatic' | 'manual'>('automatic');
+  const [supplierSelectionMode, setSupplierSelectionMode] = useState<'automatic' | 'manual' | 'kit'>('automatic');
   const [preferredSupplierOfferId, setPreferredSupplierOfferId] = useState<string | null>(null);
   const [offersError, setOffersError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -185,7 +185,7 @@ export default function ProductDetailPage() {
         setOffersError(offersJson.error || 'Não foi possível carregar as ofertas deste produto.');
       } else {
         setSupplierOffers(Array.isArray(offersJson.data) ? offersJson.data : []);
-        setSupplierSelectionMode(offersJson.selection_mode === 'manual' ? 'manual' : 'automatic');
+        setSupplierSelectionMode(offersJson.selection_mode === 'kit' ? 'kit' : offersJson.selection_mode === 'manual' ? 'manual' : 'automatic');
         setPreferredSupplierOfferId(offersJson.preferred_offer_id ? String(offersJson.preferred_offer_id) : null);
       }
     } catch (fetchError: any) {
@@ -330,12 +330,12 @@ export default function ProductDetailPage() {
   const renderFornecimento = () => <div className={styles.tabStack}>
     <section className={styles.sectionCard}>
       <div className={styles.sectionHeader}>
-        <div><Title level={4}>Fonte preferencial</Title><Text type="secondary">Estoque interno prevalece; sem saldo interno, vale a escolha abaixo.</Text></div>
+        <div><Title level={4}>Fonte preferencial</Title><Text type="secondary">Estoque interno prevalece; sem saldo interno, kits usam o fornecedor configurado na sua origem.</Text></div>
         <div className={styles.supplierSelector}><span>Regra de escolha</span><Select
-          value={supplierSelectionMode === 'manual' && preferredSupplierOfferId ? preferredSupplierOfferId : 'automatic'}
+          value={supplierSelectionMode === 'kit' ? 'kit' : supplierSelectionMode === 'manual' && preferredSupplierOfferId ? preferredSupplierOfferId : 'automatic'}
           onChange={requestPreferredSupplier} loading={savingSupplier}
           disabled={Boolean(visualReview) || savingSupplier || Boolean(kitSupplierOffer)}
-          options={[{ value: 'automatic', label: 'Automático · menor custo' }, ...supplierOffers.filter((offer) => !offer.is_internal_stock && !offer.is_kit_supplier).map((offer) => ({ value: String(offer.id), label: `${offer.fornecedor_nome || offer.dslite_fornecedor_id} · ${formatCurrency(Number(offer.custo || 0))}`, disabled: offer.ativo === false || !(Number(offer.custo) > 0) }))]}
+          options={[...(kitSupplierOffer ? [{ value: 'kit', label: 'Origem fixa do kit' }] : [{ value: 'automatic', label: 'Automático · menor custo' }]), ...supplierOffers.filter((offer) => !offer.is_internal_stock && !offer.is_kit_supplier).map((offer) => ({ value: String(offer.id), label: `${offer.fornecedor_nome || offer.dslite_fornecedor_id} · ${formatCurrency(Number(offer.custo || 0))}`, disabled: offer.ativo === false || !(Number(offer.custo) > 0) }))]}
         /></div>
       </div>
       {offersError ? <Alert type="warning" showIcon message="Ofertas indisponíveis" description={offersError} /> : null}
@@ -352,7 +352,7 @@ export default function ProductDetailPage() {
       <div className={styles.capacityPrimary}><span>Q segura</span><strong>{capacity.safe}</strong><small>quantidade publicável</small></div>
       <div><span>Estoque interno</span><strong>{capacity.internal}</strong><small>saldo físico liberado</small></div>
       <div><span>Fornecedor</span><strong>{capacity.supplier}</strong><small>oferta operacional</small></div>
-      <div><span>Fonte atual</span><strong className={styles.textMetric}>{capacity.internal > 0 ? 'Estoque interno' : currentSupplier?.fornecedor_nome || product.fornecedor || 'Não definida'}</strong><small>{product.preferredSupplierManual ? 'preferência manual' : 'seleção automática'}</small></div>
+      <div><span>Fonte atual</span><strong className={styles.textMetric}>{capacity.internal > 0 ? 'Estoque interno' : currentSupplier?.fornecedor_nome || product.fornecedor || 'Não definida'}</strong><small>{capacity.internal > 0 ? 'prioridade interna' : isKit ? 'origem do kit' : product.preferredSupplierManual ? 'preferência manual' : 'seleção automática'}</small></div>
     </section>
     <section className={styles.sectionCard}>
       <div className={styles.sectionHeader}><div><Title level={4}>Custo e publicação</Title><Text type="secondary">Custo e estoque refletem a fonte preferencial quando houver oferta vinculada.</Text></div><LivePricingQuote key={id} productId={id} listings={effectiveListings} disabled={Boolean(visualReview) || isEditing} /></div>

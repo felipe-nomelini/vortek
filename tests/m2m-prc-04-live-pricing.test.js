@@ -139,6 +139,7 @@ function liveHarness({ mutate = () => {}, transform = x => x, verify = async () 
     './commercial-pricing-configuration': { loadCommercialPricingConfiguration: async () => commercial },
     './pricing-tax-context': { loadPricingTaxContext: async () => tax },
     '@/lib/dslite/supplier-policy': { loadOperationalDropshippingSupplierIds: async () => new Set(['S1']) },
+    '@/lib/kit-supply-source': require('./helpers/kit-supply-source-module'),
   });
   const live = load('src/services/pricing-live.ts', { 'server-only': {}, './integration': { fetchMLResult: mlFetch(calls, transform) },
     './pricing-economy': economy, './pricing-context': contextModule, './pricing-market-quote': market });

@@ -17,7 +17,8 @@ const taxRules = require('../../src/services/pricing.ts');
 const economy = load('src/services/pricing-economy.ts', { './pricing-policy': policy, './pricing': taxRules,
   './pricing-core.js': require('../../src/services/pricing-core.js') });
 const pricingContext = load('src/services/pricing-context.ts', { 'server-only': {}, './pricing-economy': economy,
-  './commercial-pricing-configuration': {}, './pricing-tax-context': {}, '@/lib/preferred-offer': {}, '@/lib/dslite/supplier-policy': {} });
+  './commercial-pricing-configuration': {}, './pricing-tax-context': {}, '@/lib/preferred-offer': {}, '@/lib/dslite/supplier-policy': {},
+  '@/lib/kit-supply-source': require('../helpers/kit-supply-source-module') });
 const tax = { appliedRate: .04, estimatedRate: .04, confirmedRate: null, rbt12: 100000,
   bracket: 1, source: 'estimated', referenceMonth: '2026-09', manualRequired: false, warning: null };
 

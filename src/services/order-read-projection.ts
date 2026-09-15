@@ -7,6 +7,7 @@ import { getSkuLookupVariants } from '@/lib/sku';
 import { calcularSaldoEstoqueInterno, expandirItensReservaEstoqueInterno, type ComposicaoKitEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import { calculateInternalFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity';
 import { filterOperationalDropshippingSupplierOffers, loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
+import { loadKitSupplySources } from '@/lib/kit-supply-source';
 
 export function logDbError(
   event: string,
@@ -230,6 +231,7 @@ async function resolveFornecedorPreviewByPedido(
   }
 
   const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(serviceClient);
+  const kitSupplySources = await loadKitSupplySources(serviceClient, productIds, { operationalSupplierIds });
   const offersByProductId = new Map<string, any[]>();
   for (const offer of filterOperationalDropshippingSupplierOffers(offers || [], operationalSupplierIds)) {
     const productId = String((offer as any).produto_id || '');
@@ -241,6 +243,9 @@ async function resolveFornecedorPreviewByPedido(
   const fornecedorIds = Array.from(new Set([
     ...(products || []).map((product: any) => String(product.dslite_fornecedor_id || '').trim()),
     ...(offers || []).map((offer: any) => String(offer.dslite_fornecedor_id || '').trim()),
+    ...Array.from(kitSupplySources.values()).map((resolution) => (
+      resolution.kind === 'ready' ? resolution.source.supplierId : ''
+    )),
   ].filter(Boolean)));
   const { data: fornecedores, error: fornecedorError } = fornecedorIds.length
     ? await serviceClient
@@ -262,11 +267,16 @@ async function resolveFornecedorPreviewByPedido(
           .map((sku) => productsBySku.get(sku))
           .find(Boolean);
       if (!product) return null;
-      const preferredOffer = resolvePreferredOfferForProduct(
-        offersByProductId.get(String(product.id)) || [],
-        product.oferta_preferencial_id,
-        product.fornecedor_preferencial_manual === true,
-      );
+      const kitSource = kitSupplySources.get(String(product.id));
+      const preferredOffer = kitSource?.kind === 'ready'
+        ? kitSource.source.offer
+        : kitSource?.kind === 'not_kit'
+          ? resolvePreferredOfferForProduct(
+              offersByProductId.get(String(product.id)) || [],
+              product.oferta_preferencial_id,
+              product.fornecedor_preferencial_manual === true,
+            )
+          : null;
       const preferredSupplierId = String(preferredOffer?.dslite_fornecedor_id || '').trim();
       const fornecedorNome = String(preferredOffer?.fornecedor_nome || '').trim();
       return {
@@ -274,7 +284,9 @@ async function resolveFornecedorPreviewByPedido(
         fornecedorId: preferredSupplierId || null,
         fornecedorNome: fornecedorNome || null,
         paymentMode: preferredOffer?.payment_mode || null,
-        custo: Number(preferredOffer?.custo || 0),
+        custo: kitSource?.kind === 'ready'
+          ? kitSource.source.cost
+          : Number(preferredOffer?.custo || 0),
         quantidade: Number(item?.quantidade || 1),
         produtoDescricao: product.nome || item?.titulo || null,
         produtoSku: product.sku || item?.seller_sku || null,

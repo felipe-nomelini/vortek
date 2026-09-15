@@ -22,3 +22,12 @@ test('rota serializa writes DSLite e não usa fallback sem fornecedor', () => {
   assert.equal(routeSource.includes('legacySupplierId'), false);
   assert.equal(ordersRouteSource.includes('legacySupplierId'), false);
 });
+
+test('kit preserva o fornecedor configurado depois da expansão fiscal', () => {
+  assert.match(routeSource, /loadPinnedKitSourcesForOrder/);
+  assert.match(routeSource, /componentDsliteProductId/);
+  assert.match(routeSource, /allowFallback: !fixedKitSupplierPlan/);
+  assert.match(routeSource, /fixedSupplierOffers[\s\S]*dslite_fornecedor_id[\s\S]*fixedKitSupplierPlan\.supplierId/);
+  assert.match(routeSource, /fornecedor configurado do kit/);
+  assert.match(routeSource, /pinnedLineKitPlan\.supplierId !== fornecedorId/);
+});

@@ -11,7 +11,7 @@ const tax = { appliedRate: .04, estimatedRate: .04, confirmedRate: null, rbt12: 
 const product = { id: 'P1', ativo: true, oferta_preferencial_id: 'O1', fornecedor_preferencial_manual: true,
   ml_item_id: 'MLB1', custom_price: 100, ml_shipping_warning: 'not_specified', custo: 99999 };
 const offer = { id: 'O1', produto_id: 'P1', ativo: true, custo: 40, estoque: 10, prioridade: 100,
-  dslite_fornecedor_id: 'S1', updated_at: now };
+  dslite_fornecedor_id: 'S1', dslite_produto_id: 'D1', fornecedor_nome: 'Fornecedor S1', updated_at: now };
 const commercial = { mlFeeFallbackRate: .14, unspecifiedShippingCost: 10 };
 
 function harness(rows = {}, overrideTax = tax) {
@@ -34,6 +34,7 @@ function harness(rows = {}, overrideTax = tax) {
     './pricing-tax-context': { loadPricingTaxContext: async () => overrideTax },
     '@/lib/preferred-offer': preferred,
     '@/lib/dslite/supplier-policy': { loadOperationalDropshippingSupplierIds: async () => new Set(['S1', 'S2']) },
+    '@/lib/kit-supply-source': require('./helpers/kit-supply-source-module'),
   });
   return { ...module, client, operations,
     loadProductPricing: (client, products, options = { shippingModes: new Map(products.filter(p => p.ml_shipping_warning === 'not_specified')
@@ -80,13 +81,13 @@ test('warning não comprova modalidade e cotação de outro anúncio não é rea
   }
 });
 
-test('kit simples registra oferta do componente × quantidade sem inventar oferta do pai', async () => {
+test('kit simples registra a oferta configurada do componente × quantidade', async () => {
   const component = { ...product, id: 'C1' };
   const h = harness({ produto_fornecedor_ofertas: [{ ...offer, produto_id: 'C1' }], produtos: [component],
-    produto_kits: [{ produto_id: 'P1', ativo: true }],
+    produto_kits: [{ produto_id: 'P1', fornecedor_dslite_id: 'S1', sku_origem: 'D1X3', ativo: true }],
     produto_kit_componentes: [{ kit_produto_id: 'P1', componente_produto_id: 'C1', quantidade: 3 }] });
   const result = (await h.loadProductPricing(h.client, [product])).get('P1');
-  assert.equal(result.current.status, 'estimated');
+  assert.equal(result.current.status, 'estimated', JSON.stringify(result.current.reasons));
   assert.equal(result.current.memory.cost.amountCents, 12000);
   assert.equal(result.current.memory.context.offerId, null);
   assert.equal(result.current.memory.context.quantity, 1);
@@ -98,7 +99,8 @@ for (const invalid of ['compound', 'nested', 'inactive', 'fractional']) {
   test(`kit ${invalid} é inconclusivo sem expandir fulfillment`, async () => {
     const h = harness({ produto_fornecedor_ofertas: [{ ...offer, produto_id: 'C1' }],
       produtos: [{ ...product, id: 'C1', ativo: invalid !== 'inactive' }],
-      produto_kits: [{ produto_id: 'P1', ativo: true }, ...(invalid === 'nested' ? [{ produto_id: 'C1', ativo: true }] : [])],
+      produto_kits: [{ produto_id: 'P1', fornecedor_dslite_id: 'S1', sku_origem: 'D1X3', ativo: true },
+        ...(invalid === 'nested' ? [{ produto_id: 'C1', fornecedor_dslite_id: 'S1', sku_origem: 'NESTED', ativo: true }] : [])],
       produto_kit_componentes: [{ kit_produto_id: 'P1', componente_produto_id: 'C1', quantidade: invalid === 'fractional' ? 1.5 : 3 },
         ...(invalid === 'compound' ? [{ kit_produto_id: 'P1', componente_produto_id: 'C2', quantidade: 1 }] : [])] });
     assert.equal((await h.loadProductPricing(h.client, [product])).get('P1').target.ok, false);
