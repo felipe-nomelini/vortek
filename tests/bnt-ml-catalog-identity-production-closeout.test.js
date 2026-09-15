@@ -149,4 +149,8 @@ test('migration de fechamento é transacional, limitada e sem escrita operaciona
   assert.match(repair, /extensions\.digest/);
   assert.doesNotMatch(repair, /public\.digest/);
   assert.doesNotMatch(repair, /update\s+public\.(?:produtos|anuncios_ml|catalogo_ml_snapshot)/i);
+  const nullableSnapshotRepair = fs.readFileSync(path.join(root, 'supabase', 'migrations', '20260915130000_bnt_ml_catalog_identity_p0_nullable_snapshot_product.sql'), 'utf8');
+  assert.match(nullableSnapshotRepair, /snapshot_row\.produto_id is not null/);
+  assert.match(nullableSnapshotRepair, /guard_not_found/);
+  assert.doesNotMatch(nullableSnapshotRepair, /update\s+public\.(?:produtos|anuncios_ml|catalogo_ml_snapshot)/i);
 });
