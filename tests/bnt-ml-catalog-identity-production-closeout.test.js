@@ -62,6 +62,7 @@ test('executor exige credencial PostgreSQL e não contém mutações Mercado Liv
   assert.doesNotMatch(source, /fetch\([^\n]+method:\s*['"](?:POST|PUT|PATCH|DELETE)/i);
   assert.match(source, /apply_ml_catalog_identity_projection_batch/);
   assert.match(source, /ml_catalog_identity_safety_snapshot/);
+  assert.match(source, /RECONCILIATION_PRECHECK_FAILED/);
   assert.match(source, /price_changes:\s*0/);
   assert.match(source, /relinks:\s*0/);
 });
