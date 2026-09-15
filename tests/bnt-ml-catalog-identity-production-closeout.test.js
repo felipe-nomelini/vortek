@@ -9,7 +9,9 @@ const priorDir = path.join(root, 'reports', 'catalog-identity-p0', 'BNT-ML-CATAL
 const executiveDir = path.join(root, 'reports', 'catalog-identity-p0', 'BNT-ML-CATALOG-IDENTITY-01-2026-09-15-executive-179');
 const orderFile = '/mnt/c/Users/Bentevi Tecnologia/Downloads/ORDEM_ORACULO_BNT_ML_CATALOG_IDENTITY_P0_FECHAMENTO_PRODUTIVO_2026-09-15.md';
 
-test('composição canônica fecha 1.550 = 1.526 + 22 + 2 sem deduplicar SKU', { skip: !fs.existsSync(orderFile) }, () => {
+const canonicalInputsAvailable = [orderFile, priorDir, executiveDir].every(candidate => fs.existsSync(candidate));
+
+test('composição canônica fecha 1.550 = 1.526 + 22 + 2 sem deduplicar SKU', { skip: !canonicalInputsAvailable }, () => {
   const input = executor.loadCanonicalInputs({ priorDir, executiveDir, orderFile });
   assert.equal(input.audit.length, 1550);
   assert.equal(new Set(input.audit.map(row => row.ml_item_id)).size, 1550);
