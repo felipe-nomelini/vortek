@@ -3951,6 +3951,18 @@ ml_pricing_groups: {
         }
         Returns: Json
       }
+      bvf_persist_reviewed_brief_version: {
+        Args: {
+          p_actor_id: string
+          p_creative_brief: Json
+          p_engine_version: string
+          p_expected_brief_version_id: string
+          p_job_id: string
+          p_material_fingerprint: string
+          p_reference_asset_ids: string[]
+        }
+        Returns: Json
+      }
       bvf_record_family_suggestion: {
         Args: {
           p_actor_id: string

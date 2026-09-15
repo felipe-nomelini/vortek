@@ -1,0 +1,44 @@
+.page { display: flex; min-width: 0; flex-direction: column; gap: 16px; }
+.fullWidth { width: 100%; }
+.searchCard { border-color: rgba(255,189,14,.28); background: linear-gradient(135deg,rgba(255,189,14,.08),rgba(255,255,255,.015)); }
+.eyebrow { color: var(--bentevi-primary,#ffbd0e); font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.title { margin: 2px 0 4px !important; }
+.skuSearch { width: min(100%,620px); }
+.skuSearch :global(.ant-input) { min-width: 0; }
+.inlineAlert { margin: 12px 0; }
+.primaryAction { margin-top: 16px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill,minmax(150px,1fr)); gap: 12px; }
+.catalogImage { display: flex; min-width: 0; flex-direction: column; gap: 8px; padding: 10px; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; background: rgba(255,255,255,.025); }
+.catalogImage :global(.ant-image), .catalogImage :global(.ant-image-img) { width: 100%; aspect-ratio: 1; object-fit: contain; border-radius: 7px; background: white; }
+.catalogImage > span { color: rgba(255,255,255,.52); font-size: 10px; font-weight: 700; letter-spacing: .05em; }
+.sectionHeading { display: flex; justify-content: space-between; margin-top: 20px; }
+.sectionHeading :global(.ant-typography) { margin: 0 !important; }
+.referenceGrid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 12px; }
+.referenceCard :global(.ant-card-body) { display: grid; gap: 10px; }
+.referenceImage, .referenceCard :global(.ant-image), .referenceCard :global(.ant-image-img), .imageFallback { width: 100%; aspect-ratio: 4/3; object-fit: contain; border-radius: 8px; background: rgba(255,255,255,.045); }
+.imageFallback { display: grid; place-items: center; color: rgba(255,255,255,.48); }
+.referenceMeta { display: flex; flex-direction: column; gap: 7px; }
+.uploadButton { width: 100%; margin-top: 10px; }
+.historyDetails { margin-top: 16px; color: rgba(255,255,255,.7); }
+.historyDetails summary { cursor: pointer; }
+.claimRow { align-items: flex-start !important; gap: 14px; }
+.claimRow > div:first-child { min-width: 0; flex: 1; }
+.unsafeList, .checkboxList, .masterChecklist { display: grid; gap: 9px; margin: 12px 0; }
+.safeList { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
+.briefGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 14px 0; }
+.briefGrid label { display: grid; gap: 5px; }
+.gateRail { position: sticky; top: 80px; display: grid; gap: 16px; }
+.clickableRow { cursor: pointer; }
+.clickableRow:hover td { background: rgba(255,189,14,.055) !important; }
+
+@media (max-width: 900px) {
+  .briefGrid { grid-template-columns: 1fr; }
+  .gateRail { position: static; }
+}
+
+@media (max-width: 600px) {
+  .page { gap: 12px; }
+  .skuSearch { display: flex; width: 100%; }
+  .gallery, .referenceGrid { grid-template-columns: 1fr; }
+  .claimRow { flex-direction: column; }
+}

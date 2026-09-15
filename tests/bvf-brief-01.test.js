@@ -164,7 +164,7 @@ test("âncora usa somente medidas físicas explícitas e peso líquido", () => {
   );
   assert.equal(
     result.factualSnapshot.scaleAnchor,
-    "Preserve a escala real de 9,8 × 5,2 × 5,9 cm e 593 g em relação às mãos e aos objetos do cenário, sem aumentar ou reduzir o produto.",
+    "Preserve a escala real: largura 9,8 cm, altura 5,2 cm e profundidade 5,9 cm, com peso de 593 g em relação às mãos e aos objetos do cenário, sem aumentar ou reduzir o produto.",
   );
 
   const packageOnly = buildBvfBriefArtifacts(
@@ -179,6 +179,28 @@ test("âncora usa somente medidas físicas explícitas e peso líquido", () => {
   assert.equal(packageOnly.factualSnapshot.scaleAnchor, null);
   assert.ok(packageOnly.factualSnapshot.missingFacts.includes("width_cm"));
   assert.ok(packageOnly.factualSnapshot.missingFacts.includes("weight_g"));
+});
+
+test("dimensões estruturadas do cadastro prevalecem sobre texto descritivo", () => {
+  const result = buildBvfBriefArtifacts(
+    engineInput({
+      product: {
+        ...engineInput().product,
+        widthCm: 5.2,
+        heightCm: 5.9,
+        depthCm: 9.8,
+      },
+    }),
+  );
+  assert.deepEqual(
+    {
+      width: result.factualSnapshot.physicalDimensions.widthCm.value,
+      height: result.factualSnapshot.physicalDimensions.heightCm.value,
+      depth: result.factualSnapshot.physicalDimensions.depthCm.value,
+    },
+    { width: 5.2, height: 5.9, depth: 9.8 },
+  );
+  assert.equal(result.factualSnapshot.physicalDimensions.widthCm.source.kind, "bentevi_product");
 });
 
 test("pesquisa preenche somente lacunas com proveniência e citação", () => {
@@ -332,7 +354,8 @@ test("orquestrador só lê fontes e persiste pelo RPC atômico", () => {
   assert.doesNotMatch(service, /\.(?:insert|upsert|delete)\(/);
   assert.equal(service.match(/\.update\(/g)?.length, 1);
   assert.match(service, /createHash\("sha256"\)[\s\S]*\.update\(/);
-  assert.doesNotMatch(service, /\b(?:altura|largura|profundidade|peso_bruto)\b/);
+  assert.match(service, /peso_liq, largura, altura, profundidade/);
+  assert.doesNotMatch(service, /\bpeso_bruto\b/);
   assert.match(
     service,
     /missingFields: initialArtifacts\.factualSnapshot\.missingFacts/,

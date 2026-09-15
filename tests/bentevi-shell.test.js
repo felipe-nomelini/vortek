@@ -26,6 +26,7 @@ test('preserva ordem, grupos e URLs da navegação desktop', async () => {
   assert.deepEqual(itemKeys(APP_NAVIGATION), [
     '/dashboard',
     '/assistente',
+    '/video-factory',
     '/tv',
     '/produtos/ofertas',
     '/produtos',
@@ -72,6 +73,7 @@ test('resolve aliases, rotas aninhadas e detalhes pelo item responsável', async
   assert.equal(resolveNavigation('/catalogo')?.key, '/catalogo/no-catalogo');
   assert.equal(resolveNavigation('/catalogo/elegiveis')?.key, '/catalogo/elegiveis');
   assert.equal(resolveNavigation('/produtos/123')?.key, '/produtos');
+  assert.equal(resolveNavigation('/video-factory/jobs/123')?.key, '/video-factory');
   assert.equal(resolveNavigation('/produtos/ofertas')?.key, '/produtos/ofertas');
   assert.equal(resolveNavigation('/produtos/ofertas/123')?.key, '/produtos/ofertas');
   assert.equal(resolveNavigation('/clientes/123')?.key, '/clientes');

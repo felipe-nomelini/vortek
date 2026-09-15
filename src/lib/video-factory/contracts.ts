@@ -390,6 +390,9 @@ export const bvfBriefInputSnapshotSchema = z
         category: nullableTrimmedText,
         description: nullableTrimmedText,
         netWeightKg: z.number().finite().positive().nullable(),
+        widthCm: z.number().finite().positive().nullable().optional(),
+        heightCm: z.number().finite().positive().nullable().optional(),
+        depthCm: z.number().finite().positive().nullable().optional(),
         updatedAt: z.string().datetime({ offset: true }).nullable(),
       })
       .strict(),

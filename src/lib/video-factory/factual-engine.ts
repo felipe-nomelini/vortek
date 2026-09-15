@@ -32,6 +32,9 @@ export type BvfBriefEngineInput = {
     category: string | null;
     description: string | null;
     netWeightKg: number | null;
+    widthCm?: number | null;
+    heightCm?: number | null;
+    depthCm?: number | null;
     updatedAt: string | null;
   };
   offer: {
@@ -216,6 +219,9 @@ export function buildBvfBriefArtifacts(
     category: text(rawInput.product.category, 20_000),
     description: text(rawInput.product.description, 20_000),
     netWeightKg: positiveNumber(rawInput.product.netWeightKg),
+    widthCm: positiveNumber(rawInput.product.widthCm),
+    heightCm: positiveNumber(rawInput.product.heightCm),
+    depthCm: positiveNumber(rawInput.product.depthCm),
     updatedAt: rawInput.product.updatedAt
       ? validIso(rawInput.product.updatedAt, builtAt)
       : null,
@@ -329,9 +335,12 @@ export function buildBvfBriefArtifacts(
   };
   const dimension = (
     key: "width_cm" | "height_cm" | "depth_cm",
+    structuredValue: number | null,
     localValue: number | undefined,
   ) =>
-    localValue && localDimensionsSource
+    structuredValue
+      ? { value: structuredValue, source: productSource }
+      : localValue && localDimensionsSource
       ? { value: localValue, source: localDimensionsSource }
       : researchDimension(key);
 
@@ -344,9 +353,9 @@ export function buildBvfBriefArtifacts(
       )
     : null;
   const physicalDimensions = {
-    widthCm: dimension("width_cm", localDimensions?.widthCm),
-    heightCm: dimension("height_cm", localDimensions?.heightCm),
-    depthCm: dimension("depth_cm", localDimensions?.depthCm),
+    widthCm: dimension("width_cm", product.widthCm, localDimensions?.widthCm),
+    heightCm: dimension("height_cm", product.heightCm, localDimensions?.heightCm),
+    depthCm: dimension("depth_cm", product.depthCm, localDimensions?.depthCm),
     weightGrams: product.netWeightKg
       ? { value: product.netWeightKg * 1_000, source: productSource }
       : researchedWeight && researchedWeightGrams
@@ -367,9 +376,9 @@ export function buildBvfBriefArtifacts(
   const depthCm = physicalDimensions.depthCm;
   const scaleAnchor =
     widthCm && heightCm && depthCm
-      ? `Preserve a escala real de ${formatPtNumber(widthCm.value)} × ${formatPtNumber(heightCm.value)} × ${formatPtNumber(depthCm.value)} cm${
+      ? `Preserve a escala real: largura ${formatPtNumber(widthCm.value)} cm, altura ${formatPtNumber(heightCm.value)} cm e profundidade ${formatPtNumber(depthCm.value)} cm${
           physicalDimensions.weightGrams
-            ? ` e ${formatPtNumber(physicalDimensions.weightGrams.value)} g`
+            ? `, com peso de ${formatPtNumber(physicalDimensions.weightGrams.value)} g`
             : ""
         } em relação às mãos e aos objetos do cenário, sem aumentar ou reduzir o produto.`
       : null;

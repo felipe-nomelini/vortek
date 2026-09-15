@@ -15,6 +15,7 @@ declare
   v_cancelled jsonb;
   v_job_id uuid;
   v_brief_id uuid := gen_random_uuid();
+  v_asset_id uuid := gen_random_uuid();
   v_authorized jsonb;
   v_reauthorized jsonb;
 begin
@@ -61,12 +62,27 @@ begin
   exception when sqlstate '23000' then null;
   end;
 
+  perform public.bvf_register_reference_asset(
+    v_asset_id, v_actor_id, 'product_reference', null, v_product_id, null,
+    format('products/%s/%s.jpg', v_product_id, v_asset_id),
+    'image/jpeg', 100, 100, repeat('7', 64),
+    '{"source_kind":"test_transaction"}'::jsonb
+  );
+
   insert into public.video_brief_versions (
     id, job_id, version, engine_version, material_fingerprint,
     input_snapshot, factual_snapshot, creative_brief, created_by
   ) values (
-    v_brief_id, v_job_id, 1, 'BVF-WORKFLOW-01-test', repeat('7', 64),
-    '{}'::jsonb, '{}'::jsonb, '{}'::jsonb, v_actor_id
+    v_brief_id, v_job_id, 1, 'BVF-UI-01-v1', repeat('7', 64),
+    '{}'::jsonb, '{}'::jsonb,
+    jsonb_build_object(
+      'schemaVersion', 'BVF-UI-CREATIVE-BRIEF-v1',
+      'references', jsonb_build_array(jsonb_build_object(
+        'assetId', v_asset_id,
+        'assetType', 'product_reference'
+      ))
+    ),
+    v_actor_id
   );
   update public.video_jobs
   set current_brief_version_id = v_brief_id,

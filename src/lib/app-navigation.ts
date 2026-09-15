@@ -3,6 +3,7 @@ import type { VortekRole } from './permissions';
 export type AppNavigationIcon =
   | 'dashboard'
   | 'assistant'
+  | 'studio'
   | 'tv'
   | 'offers'
   | 'products'
@@ -52,6 +53,7 @@ export interface ResolvedNavigation {
 export const APP_NAVIGATION: AppNavigationEntry[] = [
   { type: 'item', key: '/dashboard', href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { type: 'item', key: '/assistente', href: '/assistente', label: 'Assistente Bentevi', icon: 'assistant', adminOnly: true, assistantOnly: true },
+  { type: 'item', key: '/video-factory', href: '/video-factory', label: 'Estúdio', icon: 'studio' },
   { type: 'item', key: '/tv', href: '/tv', label: 'TV ao Vivo', icon: 'tv' },
   { type: 'item', key: '/produtos/ofertas', href: '/produtos/ofertas', label: 'Ofertas', icon: 'offers' },
   { type: 'item', key: '/produtos', href: '/produtos', label: 'Produtos', icon: 'products' },

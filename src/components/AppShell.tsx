@@ -25,6 +25,7 @@ import {
   TeamOutlined,
   TruckOutlined,
   UserOutlined,
+  VideoCameraOutlined,
   WarningOutlined,
 } from '@ant-design/icons';
 import {
@@ -67,6 +68,7 @@ const COLLAPSED_WIDTH = 80;
 const navigationIcons: Record<AppNavigationIcon, React.ReactNode> = {
   dashboard: <DashboardOutlined />,
   assistant: <MessageOutlined />,
+  studio: <VideoCameraOutlined />,
   tv: <FundProjectionScreenOutlined />,
   offers: <TagsOutlined />,
   products: <ShoppingCartOutlined />,

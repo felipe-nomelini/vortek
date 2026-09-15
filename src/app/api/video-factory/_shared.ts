@@ -39,6 +39,15 @@ export function bvfErrorResponse(error: unknown) {
   if (/QUOTE_REQUIRED/.test(text)) {
     return bvfJson({ error: "A cotação da geração ainda não está disponível", code: "BVF_GENERATION_QUOTE_REQUIRED" }, 409);
   }
+  if (/CLAIM_REVIEW_INCOMPLETE|VARIATION_REVIEW_INCOMPLETE|SCALE_REVIEW_INCOMPLETE|SCALE_NOT_DEFINED|PRODUCT_REFERENCE_REQUIRED|PERSONA_REFERENCES_REQUIRED|FAMILY_REFERENCE_REQUIRED|REVIEW_REQUIRED/.test(text)) {
+    return bvfJson({ error: "A revisão ainda possui pendências bloqueantes", code: "BVF_UI_REVIEW_INCOMPLETE" }, 409);
+  }
+  if (/VARIATION_UNSAFE_CONTENT/.test(text)) {
+    return bvfJson({ error: "O briefing usa atributo inseguro para vídeo coringa", code: "BVF_UI_VARIATION_UNSAFE_CONTENT" }, 409);
+  }
+  if (/REFERENCE_INACTIVE|REFERENCE_SET_MISMATCH|REFERENCE_TARGET_MISMATCH/.test(text)) {
+    return bvfJson({ error: "As referências mudaram ou não pertencem a este alvo", code: "BVF_UI_REFERENCE_CONFLICT" }, 409);
+  }
   if (/BRIEF_CHANGED|QUOTE_CHANGED|NOT_WAITING|NOT_EDITABLE|NOT_CANCELLABLE|REANALYSIS_REQUIRED|ANALYSIS_REQUIRED|STATE/.test(text)) {
     return bvfJson({ error: "O pedido mudou ou não permite esta ação agora", code: "BVF_STATE_CONFLICT" }, 409);
   }

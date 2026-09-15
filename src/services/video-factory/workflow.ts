@@ -16,6 +16,7 @@ import {
   analyzeBvfFamily,
   prepareBvfFamilyBrief,
 } from "@/services/video-factory/families";
+import { isBvfUiReviewedCreativeBrief } from "@/lib/video-factory/ui-contracts";
 
 const uuidSchema = z.string().uuid();
 const commandResultSchema = z
@@ -64,7 +65,7 @@ async function canManage(db: any, actorId: string) {
   return hasPermission(data.cargo as VortekRole, "video_factory.manage");
 }
 
-function availableActions(job: any, manage: boolean) {
+function availableActions(job: any, manage: boolean, reviewedBriefUsable = false) {
   if (!manage) return [];
   const actions: string[] = [];
   if (["draft", "data_loaded", "brief_ready", "waiting_brief_approval"].includes(job.status)) {
@@ -73,6 +74,7 @@ function availableActions(job: any, manage: boolean) {
   if (
     job.status === "waiting_brief_approval" &&
     job.current_brief_version_id &&
+    reviewedBriefUsable &&
     String(job.prompt_final ?? "").trim() &&
     String(job.generation_provider ?? "").trim() &&
     String(job.generation_model ?? "").trim() &&
@@ -139,11 +141,115 @@ export async function getBvfJob(jobId: string, actorId: string) {
     if (current.error) fail("BVF_WORKFLOW_BRIEF_READ_FAILED", current.error);
     currentBrief = current.data;
   }
+  const creative = currentBrief?.creative_brief as Record<string, any> | undefined;
+  const referenceIds = Array.isArray(creative?.references)
+    ? creative.references
+        .map((reference: any) => String(reference?.assetId ?? ""))
+        .filter((value: string) => uuidSchema.safeParse(value).success)
+    : [];
+  const [attempts, assets, references, familyMembers] = await Promise.all([
+    db
+      .from("video_generation_attempts")
+      .select(
+        "id,attempt_number,provider,model,status,estimated_cost,actual_cost,cost_currency,error_code,error_message,duration_seconds,started_at,finished_at,created_at",
+      )
+      .eq("job_id", id)
+      .order("attempt_number", { ascending: true }),
+    db
+      .from("video_assets")
+      .select(
+        "id,attempt_id,asset_type,active,mime_type,width,height,duration_seconds,fps,video_codec,audio_codec,checksum_sha256,created_at",
+      )
+      .eq("job_id", id)
+      .order("created_at", { ascending: true }),
+    referenceIds.length
+      ? db
+          .from("video_assets")
+          .select("id,asset_type,persona_id,produto_id,reference_slot,active")
+          .in("id", referenceIds)
+      : Promise.resolve({ data: [], error: null }),
+    job.content_scope === "FAMILY" && job.family_id
+      ? db
+          .from("video_family_products")
+          .select("produto_id")
+          .eq("family_id", job.family_id)
+          .is("removed_at", null)
+      : Promise.resolve({ data: [], error: null }),
+  ]);
+  if (attempts.error || assets.error || references.error || familyMembers.error) {
+    fail(
+      "BVF_WORKFLOW_HISTORY_READ_FAILED",
+      attempts.error ?? assets.error ?? references.error ?? familyMembers.error,
+    );
+  }
+  const selectedReferences = references.data ?? [];
+  const activeReferenceIds = new Set(
+    selectedReferences
+      .filter((reference: any) => reference.active === true)
+      .map((reference: any) => String(reference.id)),
+  );
+  const reviewReady = isBvfUiReviewedCreativeBrief(creative);
+  const referenceSetIsActive =
+    reviewReady &&
+    referenceIds.length > 0 &&
+    new Set(referenceIds).size === referenceIds.length &&
+    selectedReferences.length === referenceIds.length &&
+    referenceIds.every((referenceId: string) => activeReferenceIds.has(referenceId));
+  const productReferences = selectedReferences.filter(
+    (reference: any) => reference.asset_type === "product_reference",
+  );
+  const personaReferences = selectedReferences.filter(
+    (reference: any) => reference.asset_type === "persona_reference",
+  );
+  const referenceKindsReady =
+    selectedReferences.length === productReferences.length + personaReferences.length;
+  const personaReferencesReady = job.persona_id
+    ? personaReferences.every((reference: any) => reference.persona_id === job.persona_id) &&
+      new Set(personaReferences.map((reference: any) => reference.reference_slot)).size === 3
+    : personaReferences.length === 0;
+  const familyMemberIds = new Set(
+    (familyMembers.data ?? []).map((member: any) => String(member.produto_id)),
+  );
+  const targetReferencesReady = job.content_scope === "FAMILY"
+    ? familyMemberIds.size > 0 &&
+      productReferences.every((reference: any) => familyMemberIds.has(String(reference.produto_id))) &&
+      [...familyMemberIds].every((productId) =>
+        productReferences.some((reference: any) => reference.produto_id === productId),
+      )
+    : productReferences.length > 0 &&
+      productReferences.every((reference: any) => reference.produto_id === job.produto_id);
+  const referencesReady =
+    referenceSetIsActive &&
+    referenceKindsReady &&
+    targetReferencesReady &&
+    personaReferencesReady;
+  const quoteReady = Boolean(
+    String(job.prompt_final ?? "").trim() &&
+      String(job.generation_provider ?? "").trim() &&
+      String(job.generation_model ?? "").trim() &&
+      job.estimated_cost !== null &&
+      job.estimated_cost_currency,
+  );
+  const gateBlockers = [
+    !reviewReady ? "brief_review_required" : null,
+    reviewReady && !referencesReady ? "references_changed" : null,
+    !quoteReady ? "provider_quote_required" : null,
+    job.status !== "waiting_brief_approval" ? "job_not_waiting_authorization" : null,
+  ].filter(Boolean);
   return {
     ...job,
     currentBrief,
     briefVersions: versions ?? [],
-    availableActions: availableActions(job, manage),
+    attempts: attempts.data ?? [],
+    assets: assets.data ?? [],
+    generationGate: {
+      reviewReady,
+      referencesReady,
+      quoteReady,
+      canAuthorize: manage && gateBlockers.length === 0,
+      blockers: gateBlockers,
+    },
+    availableActions: availableActions(job, manage, reviewReady && referencesReady),
     canManage: manage,
   };
 }

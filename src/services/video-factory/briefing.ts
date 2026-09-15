@@ -90,7 +90,7 @@ export async function prepareBvfBrief(
   let productQuery = db
     .from("produtos")
     .select(
-      "id, sku, nome, marca, gtin, categoria, descricao, peso_liq, updated_at, oferta_preferencial_id, ml_item_id",
+      "id, sku, nome, marca, gtin, categoria, descricao, peso_liq, largura, altura, profundidade, updated_at, oferta_preferencial_id, ml_item_id",
     );
   productQuery = job.produto_id
     ? productQuery.eq("id", job.produto_id)
@@ -204,6 +204,9 @@ export async function prepareBvfBrief(
       category: nullableText(product.categoria),
       description: nullableText(product.descricao),
       netWeightKg: nullablePositive(product.peso_liq),
+      widthCm: nullablePositive(product.largura),
+      heightCm: nullablePositive(product.altura),
+      depthCm: nullablePositive(product.profundidade),
       updatedAt: nullableText(product.updated_at),
     },
     offer: offer
