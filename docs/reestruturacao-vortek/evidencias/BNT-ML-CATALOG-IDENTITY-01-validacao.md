@@ -1,7 +1,7 @@
 # BNT-ML-CATALOG-IDENTITY-01 — contenção e auditoria do catálogo
 
-**Data:** 14/09/2026
-**Estado:** contenção P0 aplicada no banco produtivo; aplicação pronta em `dev`, ainda não publicada; dry-run aguardando o arquivo original.
+**Data:** 14–15/09/2026
+**Estado:** contenção P0 aplicada no banco produtivo; dry-run integral somente leitura concluído; correções aguardam aprovação do manifesto.
 
 ## Resultado entregue
 
@@ -48,10 +48,42 @@ Nenhum preço, vínculo, estoque, anúncio ML ou campo `produtos.ativo` foi alte
 - `npm run check:build-secrets` e `git diff --check` aprovados;
 - `npm audit --omit=dev`: cinco classes high já existentes em `axios`, `form-data`, `nodemailer`, `sharp` e `ws`; a cadeia introduzida pelo XLSX foi fixada por overrides compatíveis.
 
+## Dry-run integral da fonte canônica reconstruída
+
+O artefato `P0_CATALOGO_ML_1550_UNIVERSO_FONTE_2026-09-14.csv`, reconstruído deterministicamente do PDF original, passou os três gates antes da leitura viva:
+
+- SHA-256 `59cdbbc17ae5d991a036b5fd4e0d584fa791f6747cab871b57424c220bc76d38`;
+- 1.550 linhas e 1.550 `ml_item_id` distintos preenchidos;
+- 1.549 SKUs distintos, preservando separadamente os dois anúncios de `VTK009697` (`MLB7210717968` e `MLB4907843137`).
+
+A execução autoritativa `BNT-ML-CATALOG-IDENTITY-01-20260915031250` terminou em 15/09/2026, após join server-side por `anuncios_ml.ml_item_id` e `produto_id`, sem fallback por SKU: 1.550 anúncios, 1.550 snapshots e 1.550 produtos foram resolvidos. A leitura atual do Mercado Livre e do Supabase produtivo utilizou exclusivamente 3.308 requisições GET e 8 HEAD; o bloqueador registrou zero tentativa de método mutante.
+
+Resultado da classificação conservadora:
+
+- 21 `CONFLITO_CONFIRMADO`;
+- 158 `PENDENCIA_VALIDACAO`;
+- 1.371 `SEM_CONFLITO` candidatos a liberação somente após aprovação;
+- zero `INCONCLUSIVO` e zero erro de execução;
+- uma anomalia ML: `VTK017201` permaneceu `listed` pelo motivo vivo `shipping_mode_not_specified_me2`;
+- os casos canônicos TP-Link, Hiksemi, Santo Angelo, Panasonic, Leson e a família Elgin A23/A27 permaneceram isolados;
+- os dois `ml_item_id` de `VTK009697` foram avaliados individualmente, sem deduplicação silenciosa.
+
+Os dez artefatos estão em `reports/catalog-identity-p0/BNT-ML-CATALOG-IDENTITY-01-2026-09-15-readonly-final/`. O manifesto lógico possui hash `321ee56989aba0814a7daf6f367829ebe0b64b97dd75e21123fb2e4f08e150ff`; o arquivo `10_rollback_manifest.json` possui SHA-256 `de0346275b6f2bc86a5efce31bf5e0e173ab531f8e572db6c8715e82ba3c8c1a`, e todos os checksums internos foram recalculados sem divergência.
+
+Readback antes/depois confirmou zero alteração em vínculo, preço observado, `produtos.ativo` e `produtos.custom_price`. As quatro tabelas do ledger permaneceram vazias antes e depois. Os arquivos 05, 06, 07 e 08 contêm somente cabeçalho: nenhuma correção, repricing, fila econômica ou erro foi persistido nesta etapa.
+
+Validação do executor e da regra final:
+
+- 41/41 cenários dirigidos aprovados, incluindo fonte canônica real, barreira GET/HEAD, invariantes, duplicidade de SKU e regressões das heurísticas materiais;
+- 76/76 cenários aprovados ao combinar a suíte dirigida com o contrato documental do Assistente;
+- `npm run validate`, ESLint dirigido, `node --check`, `npm run build` com Next.js 16.3.3 e 142 rotas/páginas e `git diff --check` aprovados.
+
 ## Gates pendentes
 
-1. O CSV/XLSX original com exatamente 1.550 anúncios não está no workspace. Sem ele, não existe baseline verificável, checksum, classificação integral, diff ou manifesto para aprovação.
-2. `dev` recebeu antes desta entrega o commit alheio `1a21393` de BVF Storage, cuja própria evidência registra publicação não autorizada. Como `bentevi-prod` ainda aponta para `92090c52`, promover o futuro SHA desta entrega publicaria também esse trabalho. O código desta missão deve permanecer somente em `dev` até o histórico produtivo convergir de modo autorizado.
+1. Revisão e aprovação explícita do diff/manifesto antes de qualquer correção de vínculo.
+2. Os 158 casos inconclusivos por evidência devem permanecer na fila manual e bloqueados para pricing.
+3. A causa operacional de `VTK017201` deve ser tratada separadamente; desconto não corrige `shipping_mode_not_specified_me2`.
+4. Filas econômicas e eventual liberação de pricing só podem ser reconstruídas depois do saneamento e do readback das correções aprovadas.
 
 ## Recuperação
 
