@@ -140,6 +140,13 @@ test('migration de fechamento é transacional, limitada e sem escrita operaciona
   assert.match(sql, /pg_advisory_xact_lock/);
   assert.match(sql, /item_count <> 1550 or distinct_count <> 1550/);
   assert.match(sql, /grant execute[\s\S]+to service_role/);
+  assert.match(sql, /extensions\.digest/);
+  assert.doesNotMatch(sql, /public\.digest/);
   assert.doesNotMatch(sql, /update\s+public\.(?:produtos|anuncios_ml|catalogo_ml_snapshot)/i);
   assert.doesNotMatch(sql, /delete\s+from\s+public\.(?:produtos|anuncios_ml|catalogo_ml_snapshot)/i);
+  const repair = fs.readFileSync(path.join(root, 'supabase', 'migrations', '20260915120000_bnt_ml_catalog_identity_p0_safety_snapshot_digest.sql'), 'utf8');
+  assert.match(repair, /create or replace function public\.ml_catalog_identity_safety_snapshot/);
+  assert.match(repair, /extensions\.digest/);
+  assert.doesNotMatch(repair, /public\.digest/);
+  assert.doesNotMatch(repair, /update\s+public\.(?:produtos|anuncios_ml|catalogo_ml_snapshot)/i);
 });

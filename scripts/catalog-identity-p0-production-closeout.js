@@ -707,7 +707,8 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
         operational_invariants_equal: true,
         safety_stop: code,
         database_credential: databaseCredential,
-        migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout'],
+        migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout',
+          '20260915120000_bnt_ml_catalog_identity_p0_safety_snapshot_digest'],
       });
       throw new Error(code);
     }
@@ -723,7 +724,8 @@ async function applyManifest(input, manifest, client, ml, outputDir) {
       before_snapshot: beforeSnapshot,
       after_snapshot: afterSnapshot,
       operational_invariants_equal: true,
-      migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout'],
+      migrations: ['20260915050000_bnt_ml_catalog_identity_179_apply', '20260915110000_bnt_ml_catalog_identity_p0_closeout',
+        '20260915120000_bnt_ml_catalog_identity_p0_safety_snapshot_digest'],
       database_credential: databaseCredential,
     });
   } catch (error) {
