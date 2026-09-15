@@ -3029,63 +3029,95 @@ ml_pricing_groups: {
       }
       video_assets: {
         Row: {
+          active: boolean
           asset_type: string
           attempt_id: string | null
           audio_codec: string | null
           checksum_sha256: string | null
           created_at: string
+          created_by: string | null
+          deactivated_at: string | null
+          deactivated_by: string | null
+          deactivation_reason: string | null
           duration_seconds: number | null
           fps: number | null
           height: number | null
           id: string
-          job_id: string
+          job_id: string | null
           metadata: Json
           mime_type: string
           persona_id: string | null
           produto_id: string | null
+          reference_slot: string | null
           storage_path: string
           video_codec: string | null
           width: number | null
         }
         Insert: {
+          active?: boolean
           asset_type: string
           attempt_id?: string | null
           audio_codec?: string | null
           checksum_sha256?: string | null
           created_at?: string
+          created_by?: string | null
+          deactivated_at?: string | null
+          deactivated_by?: string | null
+          deactivation_reason?: string | null
           duration_seconds?: number | null
           fps?: number | null
           height?: number | null
           id?: string
-          job_id: string
+          job_id?: string | null
           metadata?: Json
           mime_type: string
           persona_id?: string | null
           produto_id?: string | null
+          reference_slot?: string | null
           storage_path: string
           video_codec?: string | null
           width?: number | null
         }
         Update: {
+          active?: boolean
           asset_type?: string
           attempt_id?: string | null
           audio_codec?: string | null
           checksum_sha256?: string | null
           created_at?: string
+          created_by?: string | null
+          deactivated_at?: string | null
+          deactivated_by?: string | null
+          deactivation_reason?: string | null
           duration_seconds?: number | null
           fps?: number | null
           height?: number | null
           id?: string
-          job_id?: string
+          job_id?: string | null
           metadata?: Json
           mime_type?: string
           persona_id?: string | null
           produto_id?: string | null
+          reference_slot?: string | null
           storage_path?: string
           video_codec?: string | null
           width?: number | null
         }
         Relationships: [
+          {
+            foreignKeyName: "video_assets_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "video_assets_deactivated_by_fkey"
+            columns: ["deactivated_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "video_assets_attempt_fk"
             columns: ["job_id", "attempt_id"]
@@ -3889,6 +3921,10 @@ ml_pricing_groups: {
         }
         Returns: Json
       }
+      bvf_deactivate_reference_asset: {
+        Args: { p_actor_id: string; p_asset_id: string; p_reason: string | null }
+        Returns: Json
+      }
       bvf_persist_family_analysis: {
         Args: {
           p_actor_id: string
@@ -3922,6 +3958,23 @@ ml_pricing_groups: {
           p_candidate_snapshot: Json
           p_material_fingerprint: string
           p_seed_product_id: string
+        }
+        Returns: Json
+      }
+      bvf_register_reference_asset: {
+        Args: {
+          p_actor_id: string
+          p_asset_id: string
+          p_asset_type: string
+          p_checksum_sha256: string
+          p_height: number
+          p_metadata: Json
+          p_mime_type: string
+          p_persona_id: string | null
+          p_produto_id: string | null
+          p_reference_slot: string | null
+          p_storage_path: string
+          p_width: number
         }
         Returns: Json
       }
