@@ -109,6 +109,30 @@ test('snapshot operacional ignora apenas a projeção de identidade esperada', (
   assert.deepEqual(executor.operationalSnapshot(source), executor.operationalSnapshot(after));
 });
 
+test('hash do manifesto ignora preço e estoque remoto voláteis, mas conserva identidade material', () => {
+  const manifest = {
+    version: 'v', run_id: 'r', generated_at: '2026-09-15T00:00:00Z', expires_at: '2026-09-15T01:00:00Z',
+    order_sha256: 'o', source_sha256: 's', prior_audit_sha256: 'p', executive_audit_sha256: 'e',
+    seller_id: 3294514937, actor: { id: executor.ACTOR_ID }, release: { sha: 'a', base_sha: 'b' },
+    decisions: [{
+      ml_item_id: 'MLB1', sku: 'VTK1', produto_id: 'produto', standard_item_id: null,
+      catalog_product_id: 'MLB100', identity_state: 'SEM_CONFLITO', reason_code: 'OK',
+      material_fingerprint: 'f'.repeat(64), ml_live_source_available: true,
+      pricing_eligible_by_identity: true, current_price: 10, available_quantity: 2,
+      local_listing_price: 11, produtos_ativo: true, produtos_estoque: 3, produtos_custom_price: 11,
+      old_relation: {}, new_relation: {}, command_id: 'c', population_source: 'P0', action: 'RELEASE',
+      action_result: 'RELEASED_AFTER_READBACK', evidence: { approved_title_drift: false },
+    }],
+  };
+  const volatile = structuredClone(manifest);
+  volatile.decisions[0].current_price = 9;
+  volatile.decisions[0].available_quantity = 1;
+  assert.equal(executor.manifestHash(manifest), executor.manifestHash(volatile));
+  const material = structuredClone(manifest);
+  material.decisions[0].catalog_product_id = 'MLB200';
+  assert.notEqual(executor.manifestHash(manifest), executor.manifestHash(material));
+});
+
 test('CLI exige SHAs e composição explícita', () => {
   const sha = 'a'.repeat(40);
   assert.equal(executor.parseArgs(['prepare', '--prior-dir', 'a', '--executive-dir', 'b', '--order', 'c', '--output-dir', 'd', '--release-sha', sha, '--release-base', sha]).mode, 'prepare');
