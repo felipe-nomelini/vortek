@@ -34,6 +34,8 @@ before(async () => {
     'supabase/migrations/20260916210000_oraculo_supplier_settlement_postprocess.sql',
     'supabase/migrations/20260916230000_oraculo_supplier_settlement_receipt.sql',
     'supabase/migrations/20260916230000_oraculo_supplier_settlement_receipt.sql',
+    'supabase/migrations/20260916234500_oraculo_supplier_settlement_receipt_projection.sql',
+    'supabase/migrations/20260916234500_oraculo_supplier_settlement_receipt_projection.sql',
   ]) await admin.query(read(file));
   await admin.end();
   pool = new Pool({ connectionString, max: 4 });
@@ -63,6 +65,25 @@ async function settlement(supplier, purchase, key) {
   await query('select public.supplier_oracle_confirm($1,1,$2,null,$3)', [id, `PIX-${key}`, actor]);
   return id;
 }
+
+test('ORC-07 projeta o comprovante da liquidação na compra sem segundo writer', { skip: !enabled }, async () => {
+  await seed();
+  const prepared = (await query('select public.supplier_oracle_prepare($1,$2::uuid[],0,$3,$4,$5) as data',
+    ['108', [purchaseA], 'orc07-receipt-projection', 'c'.repeat(64), actor])).rows[0].data;
+  const receiptPath = `liquidacoes/${prepared.id}/${'a'.repeat(64)}.pdf`;
+  const attached = (await query('select public.supplier_oracle_attach_receipt($1,1,$2,$3) as data',
+    [prepared.id, receiptPath, actor])).rows[0].data;
+  assert.equal(attached.version, 2);
+  const confirmed = (await query('select public.supplier_oracle_confirm($1,2,$2,$3,$4) as data',
+    [prepared.id, 'PIX-ORC07', 'Anotação da operação', actor])).rows[0].data;
+  assert.equal(confirmed.status, 'confirmed');
+  const purchase = (await query('select supplier_payment_status,supplier_payment_receipt_path,supplier_payment_notes from public.compras where id=$1',
+    [purchaseA])).rows[0];
+  assert.equal(purchase.supplier_payment_status, 'paid');
+  assert.equal(purchase.supplier_payment_receipt_path, receiptPath);
+  assert.equal(purchase.supplier_payment_notes, 'Anotação da operação');
+  assert.equal(Number((await query("select count(*) as total from public.jobs where tipo='supplier_settlement_postprocess'")).rows[0].total), 1);
+});
 
 test('ORC-04 agrupa CNPJs por contato, aprova uma vez e toma job sem disputa', { skip: !enabled }, async () => {
   await seed();

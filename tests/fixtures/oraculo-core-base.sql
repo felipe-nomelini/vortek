@@ -30,6 +30,7 @@ create table public.compras (
   supplier_payment_confirmed_at timestamptz,
   supplier_payment_confirmed_by text,
   supplier_payment_reference text,
+  supplier_payment_receipt_path text,
   supplier_payment_notes text,
   produto_descricao text,
   quantidade integer not null default 1,

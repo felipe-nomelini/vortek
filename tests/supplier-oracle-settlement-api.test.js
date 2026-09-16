@@ -31,13 +31,18 @@ function route(file, input = {}) {
       calls.push(['permission', permission]);
       return input.auth || { ok: true, userId: '00000000-0000-4000-8000-000000000001' };
     } },
-    '@/lib/supabase': { createServiceClient: () => ({ rpc: async (name, args) => {
+    '@/lib/supabase': { createServiceClient: () => ({ from: (table) => ({ select: () => ({ eq: () => ({ maybeSingle: async () => {
+      calls.push(['read', table]);
+      return { data: { fornecedor_dslite_id: '108' }, error: null };
+    } }) }) }), rpc: async (name, args) => {
       calls.push(['rpc', name, args]);
       return { data: { id, status: 'prepared', version: 1, replayed: false }, error: null };
     } }) },
     '@/lib/supplier-oracle-settlement': {
       ...service,
       supplierOracleWritesEnabled: () => Boolean(input.enabled),
+      supplierOracleBatchAllowed: () => input.batchAllowed !== false,
+      supplierOracleBatchMode: () => input.batchAllowed === false ? 'disabled' : 'enabled',
     },
   });
   return { module, calls };
@@ -90,4 +95,41 @@ test('API rejeita compra repetida e confirma/cancela pela versão esperada', asy
   const cancel = route(cancelFile, { enabled: true });
   assert.equal((await cancel.module.POST(post({ versaoEsperada: 1 }), context)).status, 200);
   assert.equal(cancel.calls.find(([kind]) => kind === 'rpc')[1], 'supplier_oracle_cancel');
+});
+
+test('lote fica fechado mesmo com o núcleo individual ativado', async () => {
+  const prepare = route(prepareFile, { enabled: true, batchAllowed: false });
+  assert.equal((await prepare.module.POST(post(body))).status, 403);
+  assert.equal(prepare.calls.some(([kind]) => kind === 'rpc'), false);
+  const confirm = route(confirmFile, { enabled: true, batchAllowed: false });
+  assert.equal((await confirm.module.POST(post({ versaoEsperada: 1 }), context)).status, 403);
+  assert.equal(confirm.calls.some(([kind]) => kind === 'rpc'), false);
+});
+
+test('modo canário só libera o fornecedor escolhido; sem configuração o lote fica fechado', () => {
+  const prior = {
+    writes: process.env.ORACULO_SETTLEMENT_WRITES_ENABLED,
+    mode: process.env.ORACULO_SETTLEMENT_BATCH_MODE,
+    supplier: process.env.ORACULO_SETTLEMENT_CANARY_SUPPLIER_ID,
+  };
+  try {
+    process.env.ORACULO_SETTLEMENT_WRITES_ENABLED = 'true';
+    delete process.env.ORACULO_SETTLEMENT_BATCH_MODE;
+    assert.equal(service.supplierOracleBatchAllowed('108'), false);
+    process.env.ORACULO_SETTLEMENT_BATCH_MODE = 'canary';
+    process.env.ORACULO_SETTLEMENT_CANARY_SUPPLIER_ID = '108';
+    assert.equal(service.supplierOracleBatchAllowed('108'), true);
+    assert.equal(service.supplierOracleBatchAllowed('109'), false);
+    delete process.env.ORACULO_SETTLEMENT_WRITES_ENABLED;
+    assert.equal(service.supplierOracleBatchAllowed('108'), false);
+  } finally {
+    for (const [key, value] of Object.entries({
+      ORACULO_SETTLEMENT_WRITES_ENABLED: prior.writes,
+      ORACULO_SETTLEMENT_BATCH_MODE: prior.mode,
+      ORACULO_SETTLEMENT_CANARY_SUPPLIER_ID: prior.supplier,
+    })) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
 });

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { createServiceClient } from '@/lib/supabase';
-import { maskSupplierFinancialValue } from '@/lib/supplier-oracle-settlement';
+import { maskSupplierFinancialValue, supplierOracleBatchAllowed } from '@/lib/supplier-oracle-settlement';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -39,6 +39,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
     cnpjMasked: maskSupplierFinancialValue(settlement.cnpj_snapshot),
     pixKeyMasked: maskSupplierFinancialValue(settlement.supplier_pix_key_snapshot),
     status: settlement.status, version: settlement.version,
+    canConfirmBatch: supplierOracleBatchAllowed(settlement.fornecedor_dslite_id),
     grossAmount: settlement.gross_amount, creditAmount: settlement.credit_amount,
     pixAmount: settlement.pix_amount, paymentReference: settlement.payment_reference,
     hasReceipt: Boolean(settlement.receipt_path), notes: settlement.notes,

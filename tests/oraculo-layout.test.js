@@ -24,8 +24,8 @@ test('Oráculo: histórico, preparo e detalhe têm etapas próprias sem liberar 
     assert.match(panel, new RegExp(`view === '${view}'`));
   }
   assert.match(panel, /const writable = canOperate && writesEnabled/);
-  assert.match(panel, /writable && account\.valid && account\.included\.length > 0/);
-  assert.match(panel, /disabled=\{!writable \|\| !pixDone\}/);
+  assert.match(panel, /writable && account\.canPrepare && account\.valid && account\.included\.length > 0/);
+  assert.match(panel, /disabled=\{!writable \|\| !detail\.canConfirmBatch \|\| !pixDone\}/);
   assert.match(panel, /setPixDone\(false\); setReference\(''\); setNotes\(''\); setReceipt\(null\)/);
   assert.match(panel, /Fechamento consolidado em modo de leitura/);
 });

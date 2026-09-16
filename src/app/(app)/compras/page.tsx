@@ -446,10 +446,14 @@ export default function ComprasPage() {
       const response = await fetch(`/api/compras/${selectedCompra.id}/confirmar-pagamento`, { method: 'POST', body: formData });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload.error || 'Erro ao confirmar pagamento do fornecedor');
-      const whatsappDetail = payload.whatsapp?.sent
-        ? 'WhatsApp enviado.'
-        : `WhatsApp não enviado${payload.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(payload.whatsapp.reason)}` : ''}.`;
-      messageApi.success(`PIX registrado na Bentevi. ${whatsappDetail}`);
+      if (payload.supplierSettlementId) {
+        messageApi.success('PIX registrado. A retomada DSLite será acompanhada; a mensagem ao fornecedor exige revisão em Liquidação de hoje.');
+      } else {
+        const whatsappDetail = payload.whatsapp?.sent
+          ? 'WhatsApp enviado.'
+          : `WhatsApp não enviado${payload.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(payload.whatsapp.reason)}` : ''}.`;
+        messageApi.success(`PIX registrado na Bentevi. ${whatsappDetail}`);
+      }
       resetPaymentModal();
       await fetchFilteredPurchases();
     } catch (error) {

@@ -62,7 +62,7 @@ Regras permanentes:
 | 4 | ORC-04 — Pós-processamento e comunicação | Aceito | ORC-03 aceito | ORC-05 em nova tarefa |
 | 5 | ORC-05 — Interfaces operacionais | Aceito tecnicamente | ORC-04 aceito | Fluxo autenticado real e ativação seguem nos gates operacionais |
 | 6 | ORC-06 — Cancelamentos e divergências | Aceito tecnicamente | ORC-05 aceito | ORC-07 em tarefa própria; canário real permanece no gate operacional |
-| 7 | ORC-07 — Ativação controlada | Pendente | ORC-06 aceito | Primeiro fechamento real acompanhado |
+| 7 | ORC-07 — Ativação controlada | Em andamento | ORC-06 aceito | Publicação passiva; canário real exige compras `ready` e responsável presente |
 | 8 | ORC-08 — Dashboard resumido | Pendente | ORC-07 estabilizado | Aceite visual específico |
 
 ---
@@ -369,6 +369,8 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 **Aceite:** operação diária consolidada sem perda de rastreabilidade ou dupla execução.
 
+**Preparação técnica de 16/09/2026:** o adaptador individual web/API mobile foi implementado em `dev` para escolher o núcleo transacional somente quando `ORACULO_SETTLEMENT_WRITES_ENABLED=true`; com a flag desligada, o fluxo individual anterior permanece padrão. O lote ganhou controle privado independente (`ORACULO_SETTLEMENT_BATCH_MODE=disabled|canary|enabled` e, no canário, `ORACULO_SETTLEMENT_CANARY_SUPPLIER_ID`) com padrão fechado. A confirmação unitária mantém o contrato de resposta e comprovante obrigatório, mas WhatsApp passa a exigir revisão humana e DSLite passa a ser acompanhada pelo job do Oráculo. A projeção do comprovante na compra foi incluída na migration `20260916234500`, sem segundo writer financeiro. Testes direcionados passaram, incluindo oito testes de banco sintético em PostgreSQL 18.3/PGlite e sete regressões ORC-06; `npm run validate`, `npm run build`, checagem de secrets e `git diff --check` passaram. Essas evidências são de desenvolvimento, não de publicação nem de canário. O preflight somente leitura em `.162` confirmou migration anterior `20260916233000`, zero liquidações/jobs, 22 compras PIX pendentes, todas `unknown` e nenhuma `ready`. Portanto, **não há candidato elegível para o canário neste momento**; não ligar a flag nem marcar a ORC-07 como aceita sem classificação operacional comprovada e fechamento real acompanhado. O responsável informou aprovação visual da tela; a operação autenticada continua sem prova real.
+
 ### ORC-08 — Dashboard resumido
 
 - [ ] Definir resumo pequeno a partir do núcleo estabilizado.
@@ -492,4 +494,4 @@ Para cada ação técnica:
 
 ## 9. Próxima ação permitida
 
-**ORC-05 aceita tecnicamente em 16/09/2026.** A próxima ação técnica permitida é ORC-06 — Cancelamentos e divergências, em tarefa própria. Não iniciar liquidação real antes dos gates financeiros, da revisão autenticada e da classificação operacional das compras; a flag de escrita permanece desligada até a ORC-07.
+**ORC-06 aceita tecnicamente em 16/09/2026.** A ORC-07 está em andamento e é a única ação técnica desta tarefa. Não iniciar liquidação real antes dos gates financeiros e da classificação operacional das compras; a flag de escrita permanece desligada até haver candidato elegível e acompanhamento humano. ORC-08 aguarda a estabilização da ORC-07.

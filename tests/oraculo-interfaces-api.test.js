@@ -26,6 +26,7 @@ test('ORC-05 comprovante: permissão precede a flag e writer desligado não aces
   const calls = [];
   const api = load('src/app/api/compras/liquidacoes/[id]/comprovante/route.ts', {
     'node:crypto': require('node:crypto'), 'next/server': { NextResponse }, zod: require('zod'),
+    '@/lib/supplier-oracle-receipt': load('src/lib/supplier-oracle-receipt.ts', {}),
     '@/lib/api-request-auth': { authorizeApiRequest: async (_, permission) => {
       calls.push(permission); return { ok: true, userId: id };
     } },

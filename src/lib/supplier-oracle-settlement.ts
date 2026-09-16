@@ -12,6 +12,19 @@ export function supplierOracleWritesEnabled(): boolean {
   return process.env.ORACULO_SETTLEMENT_WRITES_ENABLED === 'true';
 }
 
+export function supplierOracleBatchMode(): 'disabled' | 'canary' | 'enabled' {
+  if (!supplierOracleWritesEnabled()) return 'disabled';
+  const mode = process.env.ORACULO_SETTLEMENT_BATCH_MODE;
+  return mode === 'canary' || mode === 'enabled' ? mode : 'disabled';
+}
+
+export function supplierOracleBatchAllowed(supplierId: string): boolean {
+  const mode = supplierOracleBatchMode();
+  if (mode === 'enabled') return true;
+  return mode === 'canary' && /^[0-9]{1,20}$/.test(process.env.ORACULO_SETTLEMENT_CANARY_SUPPLIER_ID || '')
+    && supplierId === process.env.ORACULO_SETTLEMENT_CANARY_SUPPLIER_ID;
+}
+
 export function supplierOracleDisabledResponse() {
   return NextResponse.json({ error: 'Liquidação consolidada ainda não ativada' },
     { status: 503, headers: { 'Cache-Control': 'no-store' } });

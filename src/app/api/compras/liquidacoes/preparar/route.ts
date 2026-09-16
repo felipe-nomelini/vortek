@@ -4,7 +4,7 @@ import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { createServiceClient } from '@/lib/supabase';
 import {
   supplierOracleDisabledResponse, supplierOracleFingerprint,
-  supplierOracleRpcError, supplierOracleWritesEnabled,
+  supplierOracleBatchAllowed, supplierOracleBatchMode, supplierOracleRpcError, supplierOracleWritesEnabled,
 } from '@/lib/supplier-oracle-settlement';
 
 export const dynamic = 'force-dynamic';
@@ -25,6 +25,8 @@ export async function POST(request: Request) {
   if (!parsed.success) return NextResponse.json({ error: 'Dados da liquidação inválidos' }, { status: 422 });
 
   const { fornecedorId, compraIds, creditoCentavos, chaveIdempotencia } = parsed.data;
+  if (!supplierOracleBatchAllowed(fornecedorId)) return NextResponse.json({ error: supplierOracleBatchMode() === 'canary'
+    ? 'Fornecedor fora do canário de liquidação' : 'Pagamento em lote ainda não ativado' }, { status: 403 });
   const { data, error } = await createServiceClient().rpc('supplier_oracle_prepare', {
     p_supplier_id: fornecedorId,
     p_compra_ids: compraIds,

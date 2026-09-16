@@ -145,9 +145,26 @@ export async function GET(
   const client = createServiceClient();
   const { data: job, error } = await client
     .from("jobs")
-    .select("id,tipo,log,dedupe_key")
+    .select("id,tipo,log,dedupe_key,status")
     .eq("id", parsedJobId.data)
     .maybeSingle();
+  if (!error && job?.tipo === 'supplier_settlement_postprocess') {
+    const settlementId = String(job.dedupe_key || '').match(/^supplier_settlement_postprocess:([0-9a-f-]{36})$/i)?.[1];
+    if (!settlementId) return mobileError(requestId, 404, 'JOB_NOT_FOUND', 'Job não encontrado para esta venda');
+    const { data: item, error: itemError } = await client.from('supplier_settlement_items')
+      .select('pedido_id').eq('settlement_id', settlementId).eq('pedido_id', String(lookup.row.id)).maybeSingle();
+    if (itemError || !item) return mobileError(requestId, 404, 'JOB_NOT_FOUND', 'Job não encontrado para esta venda');
+    const state = job.status === 'completo' ? 'success'
+      : job.status === 'on_hold' ? 'on_hold'
+        : job.status === 'erro' ? 'error' : 'running';
+    return NextResponse.json({ data: { jobId: job.id, state,
+      steps: [{ key: 'supplier_settlement_postprocess', label: 'Retomada DSLite pelo Oráculo',
+        status: state === 'success' ? 'success' : state === 'error' ? 'error'
+          : state === 'on_hold' ? 'warning' : 'loading',
+        ...(state === 'on_hold' ? { error: 'Exige conferência humana na liquidação antes de nova tentativa' } : {}) }],
+      result: null, nextRetryAt: null, retryAttempt: 0 }, error: null, meta: { requestId } },
+    { headers: responseHeaders(requestId) });
+  }
   if (
     error
     || !job

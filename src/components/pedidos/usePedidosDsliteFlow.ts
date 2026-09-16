@@ -371,11 +371,14 @@ export function usePedidosDsliteFlow({
       if (paymentPrompt.resumeAfterConfirm && json.resume?.nextAction === 'send_whatsapp_label') {
         messageApi.success('PIX confirmado. Envie a etiqueta real por WhatsApp.');
         void refreshOrders();
-      } else if (paymentPrompt.resumeAfterConfirm && json.jobId) {
+      } else if (paymentPrompt.resumeAfterConfirm && json.jobId && !json.supplierSettlementId) {
         setSteps(initDsliteOrderSteps());
         setProgressOpen(true);
         messageApi.success('PIX confirmado. Fluxo DSLite retomado.');
         await pollDsliteJob(String(json.jobId), paymentPrompt.order);
+      } else if (json.supplierSettlementId) {
+        messageApi.success('PIX registrado. A retomada DSLite está em acompanhamento; a mensagem ao fornecedor exige revisão em Liquidação de hoje.');
+        void refreshOrders();
       } else if (paymentPrompt.resumeAfterConfirm && json.resume?.error) {
         messageApi.warning(userSafeMessage(json.resume.error, 'O PIX foi confirmado, mas a criação da compra ainda precisa ser retomada.'));
         void refreshOrders();

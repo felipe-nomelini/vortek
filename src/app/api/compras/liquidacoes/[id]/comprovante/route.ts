@@ -4,18 +4,9 @@ import { z } from 'zod';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { createServiceClient } from '@/lib/supabase';
 import { supplierOracleDisabledResponse, supplierOracleRpcError, supplierOracleWritesEnabled } from '@/lib/supplier-oracle-settlement';
+import { MAX_SUPPLIER_RECEIPT_BYTES, sniffSupplierReceipt, SUPPLIER_RECEIPT_BUCKET } from '@/lib/supplier-oracle-receipt';
 
 export const dynamic = 'force-dynamic';
-const BUCKET = 'supplier-payment-receipts';
-const MAX_BYTES = 10 * 1024 * 1024;
-
-function sniffReceipt(bytes: Buffer): { mime: string; extension: string } | null {
-  if (bytes.subarray(0, 5).toString() === '%PDF-') return { mime: 'application/pdf', extension: 'pdf' };
-  if (bytes.subarray(0, 3).equals(Buffer.from([0xff, 0xd8, 0xff]))) return { mime: 'image/jpeg', extension: 'jpg' };
-  if (bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) return { mime: 'image/png', extension: 'png' };
-  if (bytes.subarray(0, 4).toString() === 'RIFF' && bytes.subarray(8, 12).toString() === 'WEBP') return { mime: 'image/webp', extension: 'webp' };
-  return null;
-}
 
 export async function POST(request: Request, context: { params: Promise<{ id: string }> }) {
   const auth = await authorizeApiRequest(request, 'purchases.payment.confirm');
@@ -26,11 +17,11 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   const form = await request.formData().catch(() => null);
   const file = form?.get('receipt');
   const version = Number(form?.get('versaoEsperada'));
-  if (!(file instanceof File) || !Number.isInteger(version) || version < 1 || file.size === 0 || file.size > MAX_BYTES) {
+  if (!(file instanceof File) || !Number.isInteger(version) || version < 1 || file.size === 0 || file.size > MAX_SUPPLIER_RECEIPT_BYTES) {
     return NextResponse.json({ error: 'Comprovante ou versão inválidos' }, { status: 422 });
   }
   const bytes = Buffer.from(await file.arrayBuffer());
-  const kind = sniffReceipt(bytes);
+  const kind = sniffSupplierReceipt(bytes);
   if (!kind) return NextResponse.json({ error: 'Use PDF, JPG, PNG ou WEBP' }, { status: 422 });
   const client = createServiceClient();
   const { data: settlement, error: readError } = await client.from('supplier_settlements')
@@ -42,11 +33,11 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   }
   const hash = createHash('sha256').update(bytes).digest('hex');
   const path = `liquidacoes/${id}/${hash}.${kind.extension}`;
-  const { error: uploadError } = await client.storage.from(BUCKET).upload(path, bytes,
+  const { error: uploadError } = await client.storage.from(SUPPLIER_RECEIPT_BUCKET).upload(path, bytes,
     { contentType: kind.mime, upsert: false });
   if (uploadError) {
     if (String(uploadError.statusCode) !== '409') return NextResponse.json({ error: 'Falha ao salvar comprovante' }, { status: 500 });
-    const { data: existing, error: downloadError } = await client.storage.from(BUCKET).download(path);
+    const { data: existing, error: downloadError } = await client.storage.from(SUPPLIER_RECEIPT_BUCKET).download(path);
     if (downloadError || !existing || createHash('sha256').update(Buffer.from(await existing.arrayBuffer())).digest('hex') !== hash) {
       return NextResponse.json({ error: 'Comprovante existente não pôde ser conferido' }, { status: 409 });
     }
@@ -67,7 +58,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   const { data, error } = await client.from('supplier_settlements').select('receipt_path').eq('id', id).maybeSingle();
   if (error) return NextResponse.json({ error: 'Falha ao consultar comprovante' }, { status: 500 });
   if (!data?.receipt_path) return NextResponse.json({ error: 'Comprovante não encontrado' }, { status: 404 });
-  const { data: signed, error: signedError } = await client.storage.from(BUCKET).createSignedUrl(data.receipt_path, 60);
+  const { data: signed, error: signedError } = await client.storage.from(SUPPLIER_RECEIPT_BUCKET).createSignedUrl(data.receipt_path, 60);
   if (signedError || !signed?.signedUrl) return NextResponse.json({ error: 'Comprovante indisponível' }, { status: 500 });
   return NextResponse.redirect(signed.signedUrl, 302);
 }

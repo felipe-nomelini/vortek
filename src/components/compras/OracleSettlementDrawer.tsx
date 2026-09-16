@@ -12,12 +12,12 @@ type PreviewItem = { compraId: string; dsid: string; pedidoNumero: number | null
   abastecimento: string; etiqueta: string | null; reasons: Array<{ code: string; label: string }> };
 type Account = { fornecedorId: string; fornecedor: string; cnpjMasked: string; pixKeyMasked: string;
   cnpj?: string; pixKey?: string;
-  valid: boolean; included: PreviewItem[]; excluded: PreviewItem[]; totalBruto: number;
+  valid: boolean; canPrepare: boolean; included: PreviewItem[]; excluded: PreviewItem[]; totalBruto: number;
   creditoDisponivel: number; creditoSugerido: number };
 type Settlement = { id: string; fornecedorId: string; fornecedor: string; cnpjMasked: string; pixKeyMasked: string;
   status: string; grossAmount: number; creditAmount: number; pixAmount: number; version: number;
   preparedAt: string; confirmedAt: string | null };
-type Detail = { id: string; status: string; version: number; fornecedor: string; cnpjMasked: string;
+type Detail = { id: string; status: string; version: number; canConfirmBatch: boolean; fornecedor: string; cnpjMasked: string;
   grossAmount: number; creditAmount: number; pixAmount: number; hasReceipt: boolean;
   communicationId: string | null;
   items: Array<{ id: string; dsid_snapshot: string; sale_number_snapshot: number; gross_amount: number;
@@ -58,6 +58,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
   const [settlementPage, setSettlementPage] = useState(1);
   const [settlementTotal, setSettlementTotal] = useState(0);
   const [writesEnabled, setWritesEnabled] = useState(false);
+  const [batchMode, setBatchMode] = useState<'disabled' | 'canary' | 'enabled'>('disabled');
   const [view, setView] = useState<View>('today');
   const [asOf, setAsOf] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -90,6 +91,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
       setAccounts(today.data || []);
       setUnassigned(today.unassigned || []);
       setWritesEnabled(Boolean(today.writesEnabled));
+      setBatchMode(today.batchMode === 'canary' || today.batchMode === 'enabled' ? today.batchMode : 'disabled');
       setAsOf(today.asOf || null);
       setSettlements(history.data || []);
       setSettlementPage(1); setSettlementTotal(history.total || 0);
@@ -146,7 +148,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
   };
 
   const prepare = async () => {
-    if (!selected || !selectedIds.length || !writable) return;
+    if (!selected || !selectedIds.length || !writable || !selected.canPrepare) return;
     const key = idempotencyKey || `oracle:${crypto.randomUUID()}`;
     setIdempotencyKey(key);
     setSaving(true);
@@ -164,7 +166,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
   };
 
   const confirm = async () => {
-    if (!detail || !pixDone || !writable) return;
+    if (!detail || !pixDone || !writable || !detail.canConfirmBatch) return;
     setSaving(true);
     try {
       let version = detail.version;
@@ -280,6 +282,10 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
         description="Ações de fechamento exigem permissão de pagamento." />}
       {writesEnabled && canOperate && <Alert type="warning" showIcon message="O PIX é feito fora da Bentevi"
         description="Prepare e confira a liquidação antes de registrar aqui a transferência feita no banco." />}
+      {writesEnabled && batchMode === 'disabled' && <Alert type="info" showIcon message="Fechamento em lote ainda não liberado"
+        description="A confirmação individual usa o novo núcleo; o lote será liberado após o canário acompanhado." />}
+      {writesEnabled && batchMode === 'canary' && <Alert type="info" showIcon message="Canário de liquidação ativo"
+        description="Somente o fornecedor selecionado para o primeiro fechamento pode preparar um lote." />}
       {error && <Alert type="error" showIcon message={error} />}
       {loading && !accounts.length && <div className={styles.loading}><Spin tip="Carregando liquidações" /></div>}
 
@@ -347,7 +353,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
                   </span></summary>
                   <ul>{item.reasons.map((reason) => <li key={reason.code}>{reason.label}</li>)}</ul>
                 </details>)}</div> }]} />}
-            {writable && account.valid && account.included.length > 0 && <div className={styles.cardAction}>
+            {writable && account.canPrepare && account.valid && account.included.length > 0 && <div className={styles.cardAction}>
               <Button type="primary" onClick={() => selectAccount(account)}>Preparar liquidação</Button>
             </div>}
           </Card>)}
@@ -425,7 +431,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
               onRemove={() => setReceipt(null)} fileList={receipt ? [{ uid: 'receipt', name: receipt.name, status: 'done' }] : []} accept="application/pdf,image/jpeg,image/png,image/webp">
               <Button>Comprovante opcional</Button></Upload>}
             <Checkbox checked={pixDone} onChange={(event) => setPixDone(event.target.checked)}>{detail.pixAmount === 0 ? 'Confirmo a compensação de crédito' : 'Confirmo que o PIX foi realizado no banco'}</Checkbox>
-            <Space wrap><Button type="primary" disabled={!writable || !pixDone} loading={saving} onClick={() => void confirm()}>Confirmar fechamento</Button>
+            <Space wrap><Button type="primary" disabled={!writable || !detail.canConfirmBatch || !pixDone} loading={saving} onClick={() => void confirm()}>Confirmar fechamento</Button>
               <Button danger disabled={!writable} loading={saving} onClick={() => Modal.confirm({ title: 'Cancelar liquidação preparada?', onOk: cancel })}>Cancelar preparo</Button></Space>
           </div>
         </Card>}

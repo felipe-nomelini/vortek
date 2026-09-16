@@ -4,7 +4,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { isValidCnpj, normalizeCnpj } from '@/lib/fiscal/cnpj.js';
 import { canUseHomologationFixtures, isHomologationFixtureId, isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import { evaluateSupplierOracleEligibility, oracleExclusionLabels } from '@/lib/supplier-oracle-eligibility';
-import { maskSupplierFinancialValue, supplierOracleWritesEnabled } from '@/lib/supplier-oracle-settlement';
+import { maskSupplierFinancialValue, supplierOracleBatchAllowed, supplierOracleBatchMode, supplierOracleWritesEnabled } from '@/lib/supplier-oracle-settlement';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -94,7 +94,7 @@ export async function GET(request: Request) {
     accounts.push({ fornecedorId: supplierId, fornecedor: supplier.apelido || supplier.nome,
       cnpjMasked: maskSupplierFinancialValue(cnpj), pixKeyMasked: maskSupplierFinancialValue(pix),
       ...(writerAllowed ? { cnpj, pixKey: pix } : {}),
-      valid: accountValid, included, excluded, totalBruto, creditoDisponivel,
+      valid: accountValid, canPrepare: writerAllowed && supplierOracleBatchAllowed(supplierId), included, excluded, totalBruto, creditoDisponivel,
       creditoSugerido: Math.min(creditoDisponivel, totalBruto) });
   }
   const knownSupplierIds = new Set((suppliers || []).map((supplier) => String(supplier.dslite_id || '')));
@@ -102,6 +102,6 @@ export async function GET(request: Request) {
     .map((row) => ({ compraId: row.id, dsid: row.dsid,
       reasons: [{ code: 'supplier_not_found', label: 'Fornecedor não encontrado ou não identificado' }] }));
   return NextResponse.json({ data: accounts, unassigned, asOf: new Date().toISOString(), pendingCount: visible.length,
-    writesEnabled: supplierOracleWritesEnabled() },
+    writesEnabled: supplierOracleWritesEnabled(), batchMode: supplierOracleBatchMode() },
     { headers: { 'Cache-Control': 'no-store' } });
 }

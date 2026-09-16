@@ -21,6 +21,8 @@ import {
 } from '@/lib/homologation-fixture';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
 import { z } from 'zod';
+import { supplierOracleWritesEnabled } from '@/lib/supplier-oracle-settlement';
+import { confirmSupplierOracleIndividual } from '@/services/supplier-oracle-individual';
 
 const RECEIPTS_BUCKET = 'supplier-payment-receipts';
 const MAX_RECEIPT_SIZE_BYTES = 10 * 1024 * 1024;
@@ -245,7 +247,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
   const service = createServiceClient();
   const { data: compra, error: compraError } = await service
     .from('compras')
-    .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,status,status_dslite,supplier_payment_amount,produto_descricao,quantidade,supplier_payment_reference,supplier_payment_receipt_url,supplier_payment_receipt_path,supplier_payment_notes,supplier_payment_confirmed_at,supplier_payment_confirmed_by')
+    .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,status,status_dslite,supplier_payment_amount,produto_descricao,quantidade,supplier_payment_reference,supplier_payment_receipt_url,supplier_payment_receipt_path,supplier_payment_notes,supplier_payment_confirmed_at,supplier_payment_confirmed_by,supplier_settlement_id')
     .eq('id', compraId)
     .maybeSingle();
 
@@ -316,6 +318,28 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
   );
   if (bkr1PixDeferred) {
     return NextResponse.json({ error: 'PIX BKR1 será confirmado somente quando a etiqueta real do Mercado Livre estiver liberada.' }, { status: 422 });
+  }
+
+  if (supplierOracleWritesEnabled()) {
+    if (requestedResumeOnly && compra.supplier_payment_status === 'paid' && !compra.supplier_settlement_id) {
+      if (!resumeDsliteFlow || !(compra as any).supplier_payment_receipt_path) {
+        return NextResponse.json({ error: 'Retomada DSLite não disponível para esta compra' }, { status: 409 });
+      }
+      const resume = await startDsliteResumeFlow({ request, pedidoId: String(pedido.id),
+        mlOrderId: String(pedido.ml_order_id), idempotencyKey: parsed.idempotencyKey });
+      if (resume.error || !resume.json?.jobId) {
+        return NextResponse.json({ error: resume.error || 'Retomada DSLite não comprovada' }, { status: 502 });
+      }
+      return NextResponse.json({ success: true, compraId, pedidoId: pedido.id,
+        mlOrderId: pedido.ml_order_id, receiptPath: (compra as any).supplier_payment_receipt_path,
+        jobId: resume.json.jobId, resume: { started: true, error: null,
+          deduplicated: Boolean(resume.json.deduplicated), skipped: false, nextAction: null },
+        whatsapp: { sent: false, skipped: true, reason: 'resume_only_receipt_already_sent' } });
+    }
+    return confirmSupplierOracleIndividual({ client: service, purchase: compra, sale: pedido,
+      actor: auth.userId, payment: { receiptFile: parsed.receiptFile,
+        reference: supplierPaymentReference, notes: supplierPaymentNotes,
+        resumeDsliteFlow, resumeOnly: requestedResumeOnly } });
   }
 
   let routeRealLabelToWhatsapp = isDslitePlaceholderLabelSource(pedido.dslite_label_source);
