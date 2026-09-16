@@ -61,7 +61,7 @@ Regras permanentes:
 | 3 | ORC-03 — Núcleo financeiro transacional | Aceito | ORC-02 aceito | ORC-04 em nova tarefa |
 | 4 | ORC-04 — Pós-processamento e comunicação | Aceito | ORC-03 aceito | ORC-05 em nova tarefa |
 | 5 | ORC-05 — Interfaces operacionais | Aceito tecnicamente | ORC-04 aceito | Fluxo autenticado real e ativação seguem nos gates operacionais |
-| 6 | ORC-06 — Cancelamentos e divergências | Validado em DEV | ORC-05 aceito | Publicação em `.162`, smoke e read-back |
+| 6 | ORC-06 — Cancelamentos e divergências | Aceito tecnicamente | ORC-05 aceito | ORC-07 em tarefa própria; canário real permanece no gate operacional |
 | 7 | ORC-07 — Ativação controlada | Pendente | ORC-06 aceito | Primeiro fechamento real acompanhado |
 | 8 | ORC-08 — Dashboard resumido | Pendente | ORC-07 estabilizado | Aceite visual específico |
 
@@ -349,7 +349,7 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 **Contrato ORC-06:** webhook e sincronização ML, sincronização DSLite e reavaliação administrativa chegam ao mesmo procedimento transacional. Histórico de shipment indisponível, incompleto ou contraditório abre revisão; só coleta/envio comprovados definem o limite de despacho. Uma compra cancelada invalida todo o lote ainda preparado. Caso aberto é visível na Conta Corrente e sua resolução exige administrador, justificativa e versão esperada. A flag `ORACULO_SETTLEMENT_WRITES_ENABLED` permanece desligada até ORC-07.
 
-**Evidência DEV:** migration `20260916233000` aplicada duas vezes em PostgreSQL 17.6 local com dados sintéticos. Passaram os três momentos financeiros, cancelamento integral de lote, idempotência sob eventos concorrentes, bloqueio de divergência no banco, resolução manual, compensação auditável, privilégios mínimos, testes de classificação de histórico ML e autorização da API. A publicação e o aceite produtivo ainda estão pendentes neste ponto; nenhum crédito histórico foi reclassificado.
+**Validação e publicação em 16/09/2026:** migration `20260916233000` aplicada duas vezes em PostgreSQL 17.6 local com dados sintéticos. Passaram os três momentos financeiros, cancelamento integral de lote, idempotência sob eventos concorrentes, bloqueio de divergência no banco, resolução manual, compensação auditável, privilégios mínimos, testes de classificação de histórico ML e autorização da API. `npm run validate`, `npm run build`, varredura de secrets e `git diff --check` passaram. O SHA funcional `1b29df036c7094ac45dd086515450364eae706c1` foi promovido por fast-forward para `bentevi-prod`; a migration foi aplicada transacionalmente no Supabase `.162`. A ação do Easypanel terminou com imagem `sha256:c20b3f47df9ef63466a73b68616f26bf9c604609a85d95527b2aad7190f5af90`, conferida no contêiner ativo. Saúde/login responderam 200, páginas privadas redirecionaram e APIs novas negaram acesso anônimo. Read-back: zero liquidações, zero casos novos, 28 créditos históricos preservados, zero créditos pendentes e zero compensações. Nenhum crédito histórico foi reclassificado, nenhum PIX ou cancelamento real foi provocado para teste. O canário autenticado e a ativação financeira seguem no gate operacional da ORC-07.
 
 **Aceite:** os três momentos do cancelamento produzem resultados distintos e auditáveis.
 
