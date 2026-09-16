@@ -81,11 +81,53 @@ do escopo. A primeira prova ponta a ponta deve ocorrer em uma venda real PIX que
 naturalmente alcance essa etapa, acompanhando o mesmo DSID e confirmando depois
 o comprovante; não foi fabricada uma operação externa apenas para o smoke.
 
+## Validação operacional MKS
+
+Em 15/09/2026, a venda Mercado Livre `2000018469395176` forneceu a primeira
+prova ponta a ponta do pagamento posterior. A compra DSLite `409605`, já criada
+para a MKS (`fornecedor_id=115`), estava presa no bloqueio PIX com pagamento
+`pending`, sem comprovante e sem confirmação. O Mercado Livre respondeu com o
+shipment `48019299014` em `ready_to_ship/invoice_pending`: a consulta foi válida,
+mas a etiqueta real ainda não era imprimível.
+
+O commit funcional `3c7b1cb230363fd09a8620cd0b91e03b18537e75` acrescentou a
+MKS somente à regra de etiqueta provisória. A origem própria
+`placeholder_release_window_mks` reutiliza os bytes do PDF aprovado para a BKR1,
+sem transformar a MKS em BKR1 para pagamento, formato térmico ou WhatsApp. Fora
+da janela fiscal, o fallback só ocorre quando a consulta ao ML conclui com
+`checked=true` e `printable=false`; erro de rede, autenticação ou leitura não é
+tratado como indisponibilidade normal.
+
+Os cinco arquivos de testes direcionados passaram, assim como `npm run
+validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`.
+O SHA foi confirmado em `origin/dev` e `origin/bentevi-prod`. A primeira ação
+Easypanel falhou antes do build por DNS ao resolver `codeload.github.com` e não
+alterou o container; o retry controlado `cmu3h2a7b000207k3513u471e` terminou em
+`done` às `2026-09-16T02:22:46Z`. O novo processo iniciou saudável, com Mercado
+Livre e configuração fiscal em estado `ok`; login, redirecionamento autenticado
+e bloqueios `401` também passaram no smoke.
+
+O job canônico `18f27413-f336-451a-9b2e-6bd5500be1e0`, iniciado com chave
+idempotente e `continueWithSupplierPaymentPending=true`, terminou `completo`,
+11/11 etapas, sem pendências. O read-back confirmou:
+
+- o mesmo pedido, a mesma compra e o mesmo DSID `409605`, sem duplicação;
+- etiqueta genérica enviada com origem `placeholder_release_window_mks` e
+  arquivo lógico `etiqueta_mks_aguardando_etiqueta_ml.pdf`;
+- DSLite em `Solicitado`, transportadora Correios `31`, serviço `Etiqueta PDF`;
+- pagamento ainda `pending` em R$ 960,00, sem comprovante e sem `confirmed_at`;
+- nenhuma mensagem de WhatsApp enviada nessa retomada.
+
+A confirmação posterior do PIX e o envio do comprovante permanecem como a
+próxima ação manual normal da compra.
+
 ## Recuperação
 
 Reverter progressivamente o commit funcional, promover o SHA da reversão para
 `bentevi-prod` e reimplantar `local/bentevi-prod`. Não há rollback de banco.
-Pedidos DSLite, pagamentos, documentos e mensagens eventualmente realizados
-após a ativação são efeitos externos e não devem ser desfeitos por restauração
-cega; precisam ser reconciliados individualmente por leitura e pelo fluxo
-operacional correspondente.
+Pedidos DSLite, etiquetas, pagamentos, documentos e mensagens eventualmente
+realizados após a ativação são efeitos externos e não devem ser desfeitos por
+restauração cega; precisam ser reconciliados individualmente por leitura e pelo
+fluxo operacional correspondente. Para a extensão MKS, reverter
+`3c7b1cb2`, promover o SHA da reversão e reimplantar desativa novos fallbacks,
+mas não remove a etiqueta já aceita no DSID `409605`.
