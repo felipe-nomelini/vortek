@@ -193,6 +193,7 @@ export async function preparePublication(raw: unknown, actorId: string) {
     if (!isMlDraftValidationAccepted(validation)) throw new Error('publication_ml_validation_failed');
   }
   const preparation = { action: input.action, sourceItemId: input.sourceItemId || null,
+    originalCustomPrice: input.action === 'relist' ? product.custom_price : null,
     input: { ...input, priceCents: memory.revenueCents }, payload, expected, description,
     warrantyRevision: factoryWarranty.revision, identity, capacity: capacity.safe, fiscal: fiscal.data };
   const fingerprint = createHash('sha256').update(pricingMaterialFingerprint({ sellerId,

@@ -74,5 +74,14 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
     ml_status: item.status === 'active' ? 'ativo' : 'pausado' }).eq('id', product.id).eq('ativo', true)
     .or(`ml_item_id.is.null,ml_item_id.eq.${item.id}${relist ? `,ml_item_id.eq.${preparation.sourceItemId}` : ''}`).select('id');
   if (linked.error || linked.data?.length !== 1) throw new Error('publication_product_link_conflict');
+  if (relist && product.custom_price === preparation.originalCustomPrice) {
+    const priceUpdate = client.from('produtos').update({ custom_price: operation.new_price_cents / 100 })
+      .eq('id', product.id);
+    const conditional = preparation.originalCustomPrice === null
+      ? priceUpdate.is('custom_price', null)
+      : priceUpdate.eq('custom_price', preparation.originalCustomPrice);
+    const result = await conditional.select('id');
+    if (result.error) throw new Error('publication_product_price_sync_failed');
+  }
   return true;
 }
