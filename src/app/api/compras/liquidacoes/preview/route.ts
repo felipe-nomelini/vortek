@@ -107,9 +107,15 @@ export async function GET(request: Request) {
   const included = rows.filter((row) => row.reasons.length === 0);
   const excluded = rows.filter((row) => row.reasons.length > 0);
   const totalBruto = Math.round(included.reduce((sum, row) => sum + Number(row.valor || 0), 0) * 100) / 100;
+  const { data: available, error: creditError } = accountValid
+    ? await client.rpc('supplier_oracle_credit_preview', { p_supplier_id: supplierDsliteId })
+    : { data: 0, error: null };
+  if (creditError) return NextResponse.json({ error: 'Falha ao consultar crédito disponível' }, { status: 500 });
+  const creditoDisponivel = Math.max(0, Math.round(Number(available || 0) * 100) / 100);
   return NextResponse.json({
     account: { fornecedorId: supplier.id, fornecedorDsliteId: supplierDsliteId,
       fornecedor: supplier.apelido || supplier.nome, cnpjMasked: mask(cnpj), pixKeyMasked: mask(pixKey), valid: accountValid },
-    included, excluded, totalBruto,
+    included, excluded, totalBruto, creditoDisponivel,
+    creditoSugerido: Math.min(creditoDisponivel, totalBruto),
   }, { headers: { 'Cache-Control': 'no-store' } });
 }

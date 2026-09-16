@@ -1,0 +1,43 @@
+import { createHash } from 'node:crypto';
+import { NextResponse } from 'next/server';
+
+export type SupplierOracleTransition = {
+  id: string;
+  status: 'prepared' | 'confirmed' | 'cancelled';
+  version: number;
+  replayed: boolean;
+};
+
+export function supplierOracleWritesEnabled(): boolean {
+  return process.env.ORACULO_SETTLEMENT_WRITES_ENABLED === 'true';
+}
+
+export function supplierOracleDisabledResponse() {
+  return NextResponse.json({ error: 'Liquidação consolidada ainda não ativada' },
+    { status: 503, headers: { 'Cache-Control': 'no-store' } });
+}
+
+export function supplierOracleFingerprint(input: {
+  supplierId: string;
+  purchaseIds: string[];
+  creditCents: number;
+}): string {
+  return createHash('sha256').update(JSON.stringify({
+    supplierId: input.supplierId,
+    purchaseIds: [...input.purchaseIds].sort(),
+    creditCents: input.creditCents,
+  })).digest('hex');
+}
+
+export function supplierOracleRpcError(error: { code?: string; message?: string }) {
+  const status = error.code === 'P0002' ? 404
+    : error.code === '22023' ? 422
+      : ['P0001', '23505', '23514'].includes(error.code || '') ? 409 : 500;
+  return NextResponse.json({ error: status === 500 ? 'Falha na operação da liquidação'
+    : error.message || 'Liquidação não pôde ser alterada' },
+  { status, headers: { 'Cache-Control': 'no-store' } });
+}
+
+export function maskSupplierFinancialValue(value: string): string {
+  return value.length <= 4 ? '••••' : `••••${value.slice(-4)}`;
+}

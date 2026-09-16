@@ -2782,6 +2782,7 @@ ml_pricing_groups: {
       supplier_balance_movements: {
         Row: {
           id: string
+          supplier_settlement_id: string | null
           fornecedor_id: string
           fornecedor_nome: string | null
           movement_type: string
@@ -2802,6 +2803,7 @@ ml_pricing_groups: {
         }
         Insert: {
           id?: string
+          supplier_settlement_id?: string | null
           fornecedor_id: string
           fornecedor_nome?: string | null
           movement_type: string
@@ -2822,6 +2824,7 @@ ml_pricing_groups: {
         }
         Update: {
           id?: string
+          supplier_settlement_id?: string | null
           fornecedor_id?: string
           fornecedor_nome?: string | null
           movement_type?: string
@@ -4088,6 +4091,39 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      supplier_oracle_credit_preview: {
+        Args: { p_supplier_id: string }
+        Returns: number
+      }
+      supplier_oracle_prepare: {
+        Args: {
+          p_supplier_id: string
+          p_compra_ids: string[]
+          p_credit_amount: number
+          p_idempotency_key: string
+          p_fingerprint: string
+          p_actor: string
+        }
+        Returns: Json
+      }
+      supplier_oracle_confirm: {
+        Args: {
+          p_settlement_id: string
+          p_expected_version: number
+          p_reference: string | null
+          p_notes: string | null
+          p_actor: string
+        }
+        Returns: Json
+      }
+      supplier_oracle_cancel: {
+        Args: {
+          p_settlement_id: string
+          p_expected_version: number
+          p_actor: string
+        }
+        Returns: Json
+      }
       bvf_authorize_video_generation: {
         Args: {
           p_actor_id: string

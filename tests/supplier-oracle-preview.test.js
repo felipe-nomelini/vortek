@@ -21,6 +21,7 @@ const eligibility = load('src/lib/supplier-oracle-eligibility.ts', {});
 
 function fakeClient(tables) {
   return {
+    rpc() { return Promise.resolve({ data: tables.availableCredit || 0, error: null }); },
     from(name) {
       let rows = tables[name] || [];
       const query = {
@@ -99,4 +100,12 @@ test('preview rejeita acesso sem autorização e identificador inválido', async
   assert.equal(denied.status, 401);
   const invalid = await previewRoute(fixtures()).GET(new Request('https://app.bentevi.shop/api/compras/liquidacoes/preview?fornecedorId=abc'));
   assert.equal(invalid.status, 422);
+});
+
+test('preview sugere somente crédito confirmado disponível até o bruto elegível', async () => {
+  const tables = fixtures();
+  tables.availableCredit = 80;
+  const response = await previewRoute(tables).GET(new Request('https://app.bentevi.shop/api/compras/liquidacoes/preview?fornecedorId=108'));
+  assert.equal(response.body.creditoDisponivel, 80);
+  assert.equal(response.body.creditoSugerido, 50);
 });

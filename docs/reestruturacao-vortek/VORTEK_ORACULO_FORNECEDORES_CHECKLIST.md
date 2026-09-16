@@ -58,7 +58,7 @@ Regras permanentes:
 | 0 | ORC-00 — Contrato e checklist permanente | Aceito | Nenhuma | ORC-01 em nova tarefa |
 | 1 | ORC-01 — Schema aditivo | Aceito | ORC-00 aceito | SHA executado, schema e smoke confirmados |
 | 2 | ORC-02 — Estados e elegibilidade | Aceito | ORC-01 aceito | ORC-03 em nova tarefa |
-| 3 | ORC-03 — Núcleo financeiro transacional | Pendente | ORC-02 aceito | Concorrência, idempotência e auditoria |
+| 3 | ORC-03 — Núcleo financeiro transacional | Validado em DEV | ORC-02 aceito | Publicação passiva, read-back e smoke |
 | 4 | ORC-04 — Pós-processamento e comunicação | Pendente | ORC-03 aceito | Jobs reprocessáveis sem duplicação |
 | 5 | ORC-05 — Interfaces operacionais | Pendente | ORC-04 aceito | Compras, Vendas e Conta Corrente |
 | 6 | ORC-06 — Cancelamentos e divergências | Pendente | ORC-05 aceito | Três cenários financeiros comprovados |
@@ -213,7 +213,7 @@ Extensões previstas:
 - `POST /api/compras/liquidacoes/[id]/comunicar`
 - endpoint de gestão do estado de abastecimento
 
-A rota individual existente se tornará um adaptador de liquidação com um item. Ela não poderá manter um segundo escritor financeiro.
+A rota individual existente se tornará um adaptador de liquidação com um item na ativação controlada da ORC-07. Até lá, o novo writer ficará desligado e o fluxo individual atual permanecerá ativo; depois da troca não poderão existir dois writers financeiros ativos.
 
 ### Concorrência e efeitos externos
 
@@ -281,16 +281,20 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-03 — Núcleo financeiro transacional
 
-- [ ] Implementar preparação, reserva de crédito, confirmação e cancelamento.
-- [ ] Sugerir crédito máximo, permitindo escolher de zero ao disponível.
-- [ ] Registrar fotografias dos dados financeiros e operacionais.
-- [ ] Aplicar locks em ordem estável e manter transações curtas.
-- [ ] Revalidar estado dentro da transação.
-- [ ] Implementar idempotência e restrições contra alocação duplicada.
-- [ ] Tornar liquidação confirmada imutável.
-- [ ] Adaptar a confirmação individual ao mesmo núcleo.
-- [ ] Preservar o contrato da API compartilhada usada pelo mobile.
-- [ ] Atualizar projeções e relatórios que leem pagamento individual.
+- [x] Implementar preparação, reserva de crédito, confirmação e cancelamento em RPCs transacionais.
+- [x] Sugerir crédito máximo, permitindo escolher de zero ao disponível; crédito pendente não entra no saldo.
+- [x] Registrar fotografias dos dados financeiros e operacionais.
+- [x] Aplicar locks por fornecedor e por compra em ordem estável, com transações curtas.
+- [x] Revalidar compra, venda, etiqueta, conta, valores e crédito dentro da transação.
+- [x] Implementar idempotência e restrições contra alocação e uso de crédito duplicados.
+- [x] Tornar liquidação confirmada imutável e registrar job pendente na confirmação atômica.
+- [x] Suportar lote unitário no núcleo; manter a rota individual atual como único writer ativo até a ORC-07.
+- [x] Preservar o contrato da API compartilhada usada pelo mobile, sem alterar `mobile/`.
+- [x] Preservar as projeções existentes de `supplier_payment_status`; a apresentação das novas liquidações em Vendas, Compras, Conta Corrente e relatórios fica na ORC-05.
+
+**Decisão de lançamento:** a flag privada `ORACULO_SETTLEMENT_WRITES_ENABLED` nasce desligada em produção. ORC-03 publica o núcleo sem preparar ou confirmar pagamentos reais; a mudança da confirmação individual para o mesmo núcleo ocorrerá na ORC-07, após ORC-04/05/06 e canário operacional. Uma liquidação inteiramente coberta por crédito tem PIX líquido zero e não recebe referência bancária fictícia.
+
+**Validação DEV:** migration aplicada duas vezes em PostgreSQL 17.6 local com dados sintéticos; oito testes de integração cobrem concorrência real, reserva, idempotência, reversão integral, crédito pendente, conta alterada, PIX zero e privilégios. Quatro testes de API cobrem flag, autenticação e contratos; regressões do fluxo individual também passaram. Publicação e aceite produtivo ainda pendentes.
 
 **Aceite:** concorrência e repetição não duplicam compra, crédito ou PIX; totais fecham no banco.
 
@@ -318,6 +322,7 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 - [ ] Exibir saldo contábil e saldo reconciliado.
 - [ ] Aplicar permissões também nas APIs.
 - [ ] Atualizar PDFs e Assistente quando consumirem os campos afetados.
+- [ ] Projetar liquidações e crédito reservado nas leituras e relatórios afetados, mantendo `supplier_payment_status` compatível.
 
 **Aceite:** uma tela responde quanto pagar por CNPJ, itens incluídos/excluídos, créditos, etiquetas e exceções.
 
@@ -334,7 +339,8 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-07 — Ativação controlada
 
-- [ ] Criar flag de ativação inicialmente desligada.
+- [ ] Confirmar que a flag privada criada na ORC-03 segue desligada e ativá-la somente após os gates.
+- [ ] Redirecionar a confirmação individual web/API mobile para o mesmo núcleo antes de ligar a flag; eliminar o writer financeiro antigo sem alterar o contrato público.
 - [ ] Publicar mantendo o fluxo atual como padrão.
 - [ ] Fazer smoke sem pagamentos fictícios.
 - [ ] Ativar para um fechamento real pequeno e acompanhado.
@@ -456,6 +462,8 @@ Para cada ação técnica:
 | 16/09/2026 | ORC-01 | SHA `6667ddf0ebf7a3e3db972d6713f34e91ab742ea9` | Easypanel `local/bentevi-prod`: fonte `bentevi-prod`, ação `cmu3sjfv8001d07k34pdn7msv` concluída; digest da imagem da ação `162d8351…` igual ao contêiner ativo, task `we4iffdb7oexb2ekijl4idi29`. Read-back HTTP em `.162`: zero liquidações, itens, compras vinculadas/classificadas e pedidos etiquetados. Health/login `200`, Compras `307`, API de Compras `401` sem sessão | **Aceito:** schema passivo em produção, sem ativação de pagamento em lote ou alteração do fluxo financeiro existente |
 | 16/09/2026 | ORC-02 | SHA funcional `66bf23a299782ed9ed6b3fbad3366cd904bcd7fa`; sem migration | 75 testes direcionados, 34 testes do Assistente, `npm run validate`, `npm run build`, varredura de secrets e `git diff --check` aprovados. Revisão somente leitura das 22 compras PIX pendentes em `.162` | Todas seguem `unknown`; nove vendas canceladas, uma sem venda e uma entregue. Nenhuma foi classificada como pronta sem evidência |
 | 16/09/2026 | ORC-02 | SHA remoto `66bf23a299782ed9ed6b3fbad3366cd904bcd7fa`; ação Easypanel `cmu3uadrl002307k39nrd0lqh` | `dev` e `bentevi-prod` remotas no mesmo SHA por fast-forward. Serviço `local/bentevi-prod` lê `bentevi-prod`; ação concluída e digest da imagem `4fe4d34fc7654e88f058398ec0617a8ead2ba1ca109131222c0747c2e17043ad` igual ao contêiner ativo. Health/login `200`, Compras `307` sem sessão, API de Compras, preview e PATCH de abastecimento `401` sem sessão | **Aceito tecnicamente:** estado e preview publicados, sem habilitar fechamento. Read-back `.162`: 22 PIX pendentes, 22 abastecimentos `unknown`, zero liquidações e zero itens. Preview autenticado com dados reais ainda não foi exercitado; primeira classificação e fechamento exigem acompanhamento operacional nas ações seguintes |
+| 16/09/2026 | ORC-03 | Migration `20260916193000_oraculo_supplier_settlement_core.sql`; SHA ainda não promovido | PostgreSQL 17.6 local sintético: migration aplicada duas vezes; oito testes transacionais e concorrentes passaram. Quatro testes de API e 35 regressões direcionadas passaram; `npm run validate`, `npm run build`, varredura de secrets, 34 testes do Assistente e `git diff --check` passaram | Núcleo validado em DEV, flag de escrita desligada por padrão. A rota individual e o mobile continuam no contrato anterior. Sem liquidação ou PIX real |
+| 16/09/2026 | ORC-03 | Preflight `.162`; sem escrita ainda | Conexão autenticada via pooler da `.162` confirmou PostgreSQL 17.6, migration mais recente `20260916180000`, RLS nas duas tabelas, trigger de saldo existente, zero liquidações/itens, 995 movimentos, 22 PIX pendentes `unknown`. Backup de metadados e DDL da função de crédito em `/tmp/oraculo-orc03-preflight-20260916.json`, SHA-256 `856b5850370b29e73ea2924e6939b8d77af2a669d79b8638f6bc4d3edc851bf1` | Backup proporcional ao delta de função/schema; não é backup integral de dados. Serviço `local/bentevi-prod` usa `bentevi-prod` e não possui a flag privada de escrita. Aplicação da migration, deploy e read-back ainda pendentes |
 
 ## 9. Próxima ação permitida
 
