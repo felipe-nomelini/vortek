@@ -98,7 +98,12 @@ async function preparationValid(context: z.infer<typeof contextSchema>, sellerId
       && (!Array.isArray(catalogProduct.data?.children_ids) || catalogProduct.data.children_ids.length === 0)));
 }
 
-export async function loadPricingDetail(raw: unknown, worker?: { actorId: string | null; competitionItemId?: string | null }) {
+export async function loadPricingDetail(raw: unknown, worker?: {
+  actorId: string | null;
+  competitionItemId?: string | null;
+  targetOrigin?: 'manual_input' | 'price_to_win' | 'rule' | 'existing_price';
+  strictEconomicGates?: boolean;
+}) {
   // Internal worker identity is never parsed from the HTTP body.
   const user = worker ? { id: worker.actorId } : (await (await createClient()).auth.getUser()).data.user;
   if (!user) return json({ error: 'Não autenticado' }, 401);
@@ -331,6 +336,13 @@ export async function loadPricingDetail(raw: unknown, worker?: { actorId: string
     priceCents: input.priceCents ?? currentPrice, group, automatic: hasMlAutomaticPrice(item), clearance: input.clearance,
     disableAutomaticPricing: input.disableAutomaticPricing,
     listingSafety,
+    targetOrigin: worker?.targetOrigin,
+    strictEconomicGates: worker?.strictEconomicGates,
+    competition: competitiveEvidence ? {
+      itemId: competitionItemId!,
+      priceCents: competitiveEvidence.priceCents,
+      status: competitiveEvidence.status,
+    } : null,
     clearanceState: clearanceSnapshot ? { stock: clearanceSnapshot.stock, clearances: clearanceSnapshot.clearances } : null }) : null;
   const listingValidation: PricingListingValidation | null = itemId ? (() => {
     if (!listingValidationItems.length) return { state: 'unavailable', anchor: null,

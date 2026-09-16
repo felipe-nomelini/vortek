@@ -32,6 +32,10 @@ export type DecisionContext = {
   warnings: string[];
   disableAutomaticPricing: boolean;
   targetOrigin: 'manual_input' | 'price_to_win' | 'rule' | 'existing_price';
+  competitionItemId?: string | null;
+  competitivePriceCents?: number | null;
+  competitionStatus?: string | null;
+  strictEconomicGates?: boolean;
   fingerprint: string;
   expiresAt: string;
   clearance: { id: string; quantity: number; fulfillmentSource: 'internal' } | null;
@@ -49,16 +53,26 @@ export function decisionContext(input: {
   listingSafety?: { verified: boolean; evidence: unknown[] };
   clearance?: DecisionContext['clearance'];
   clearanceState?: unknown;
+  targetOrigin?: DecisionContext['targetOrigin'];
+  strictEconomicGates?: boolean;
+  competition?: {
+    itemId: string;
+    priceCents: number | null;
+    status: string | null;
+  } | null;
 }): DecisionContext {
   const { pricing: p, group: g } = input;
   const disableAutomaticPricing = Boolean(input.automatic || input.disableAutomaticPricing);
   const reasons: string[] = [];
   const warnings: string[] = [];
+  const strict = input.strictEconomicGates === true;
+  const targetOrigin = input.targetOrigin ?? 'manual_input';
+  const gate = (code: string) => (strict ? reasons : warnings).push(code);
   if (!g || g.state !== 'verified' || !g.members.some((m) => m.itemId === input.itemId))
-    warnings.push('GRUPO_NAO_CONFIRMADO');
+    gate('GRUPO_NAO_CONFIRMADO');
   if (g?.inFlight) reasons.push('OPERACAO_EM_ANDAMENTO');
-  if (g?.members.some(m => m.variationId)) warnings.push('VARIACAO_REQUER_CONTRATO_DE_EXECUCAO');
-  if (input.listingSafety?.verified !== true) warnings.push('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA');
+  if (g?.members.some(m => m.variationId)) gate('VARIACAO_REQUER_CONTRATO_DE_EXECUCAO');
+  if (input.listingSafety?.verified !== true) gate('IDENTIDADE_OU_ELEGIBILIDADE_NAO_CONFIRMADA');
   if (
     p.revalidation?.status !== 'queried' ||
     p.current.status === 'inconclusive' ||
@@ -68,7 +82,7 @@ export function decisionContext(input: {
     !p.breakEven.ok ||
     p.current.memory.revenueCents !== input.priceCents
   )
-    warnings.push('ECONOMIA_INCONCLUSIVA');
+    gate('ECONOMIA_INCONCLUSIVA');
   const m = p.current.memory;
   const expirations = [
     Date.now() + 15 * 60 * 1000,
@@ -76,11 +90,15 @@ export function decisionContext(input: {
       t ? [Date.parse(t)] : [],
     ),
   ];
-  if (Math.min(...expirations) <= Date.now()) warnings.push('FONTES_EXPIRADAS');
+  if (Math.min(...expirations) <= Date.now()) gate('FONTES_EXPIRADAS');
   const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
-  if (m && m.margin < m.band.floor) warnings.push('PRECO_ABAIXO_DO_PISO');
-  if (m && m.resultCents < 0) warnings.push('PREJUIZO_PREVISTO');
-  if (input.priceCents === input.currentPriceCents) warnings.push('PRECO_JA_APLICADO');
+  if (m && m.margin < m.band.floor) gate('PRECO_ABAIXO_DO_PISO');
+  if (m && m.resultCents < 0) gate('PREJUIZO_PREVISTO');
+  if (input.priceCents === input.currentPriceCents) gate('PRECO_JA_APLICADO');
+  if (strict && targetOrigin === 'price_to_win' && (!input.competition
+    || input.competition.itemId !== input.itemId
+    || input.competition.priceCents !== input.priceCents
+    || input.competition.status !== 'competing')) reasons.push('CONCORRENCIA_NAO_CONFIRMADA');
   const material = {
     seller: input.sellerId,
     item: input.itemId,
@@ -88,7 +106,11 @@ export function decisionContext(input: {
     proposed: input.priceCents,
     automatic: input.automatic && !disableAutomaticPricing,
     disableAutomaticPricing,
-    targetOrigin: 'manual_input',
+    targetOrigin,
+    competitionItemId: input.competition?.itemId ?? null,
+    competitivePriceCents: input.competition?.priceCents ?? null,
+    competitionStatus: input.competition?.status ?? null,
+    strictEconomicGates: strict,
   };
   return {
     operationKind: 'price_change',
@@ -102,7 +124,11 @@ export function decisionContext(input: {
     reasons,
     warnings,
     disableAutomaticPricing,
-    targetOrigin: 'manual_input',
+    targetOrigin,
+    competitionItemId: input.competition?.itemId ?? null,
+    competitivePriceCents: input.competition?.priceCents ?? null,
+    competitionStatus: input.competition?.status ?? null,
+    strictEconomicGates: strict,
     fingerprint: createHash('sha256').update(pricingMaterialFingerprint(material)).digest('hex'),
     expiresAt,
     clearance: input.clearance ?? null,

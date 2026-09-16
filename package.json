@@ -37,6 +37,8 @@
     "catalog:identity:p0:dry-run": "DOTENV_CONFIG_PATH=.env.local node -r dotenv/config scripts/catalog-identity-p0-readonly.js",
     "catalog:identity:p0:reaudit-179": "DOTENV_CONFIG_PATH=.env.local node -r dotenv/config scripts/catalog-identity-p0-executive-179.js",
     "catalog:identity:p0:production-closeout": "DOTENV_CONFIG_PATH=.env.local node -r dotenv/config scripts/catalog-identity-p0-production-closeout.js",
+    "pricing:buybox:batch01:dry": "node scripts/ml-buybox-economics-batch-01.js",
+    "pricing:buybox:batch01:apply": "node scripts/ml-buybox-economics-batch-01.js --apply",
     "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js",
     "test:ml-order-status": "node --test tests/ml-order-shipping-mode.test.js",
     "test:ml-quantity-pricing": "node --test tests/ml-quantity-pricing.test.js",

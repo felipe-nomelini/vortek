@@ -35,6 +35,7 @@ import {
   processPricingReanalysisQueue,
   PRICING_REANALYSIS_JOB_TYPE,
 } from '@/services/pricing-reanalysis';
+import { processDuePricingExperimentCheckpoints } from '@/services/pricing-experiments';
 
 export const maxDuration = 300;
 
@@ -421,6 +422,19 @@ export async function POST(request: Request) {
   } else {
     const hydrationQueueResult = await processMlOrderHydrationQueue(serviceClient);
     results.push({ task: ML_ORDER_HYDRATION_JOB_TYPE, action: 'queue_processed', ...hydrationQueueResult });
+  }
+
+  if (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until)) {
+    results.push({ task: 'pricing_experiment_checkpoint', action: 'queue_skipped_auth_block',
+      auth_state: mlAuth.state, auth_blocked_until: mlAuth.blocked_until });
+  } else {
+    try {
+      results.push({ task: 'pricing_experiment_checkpoint', action: 'queue_processed',
+        ...await processDuePricingExperimentCheckpoints(5) });
+    } catch (error: any) {
+      console.error('[cron-dispatch] falha nos checkpoints de experimento', error?.message || error);
+      results.push({ task: 'pricing_experiment_checkpoint', action: 'queue_error' });
+    }
   }
 
   if (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until)) {

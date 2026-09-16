@@ -87,7 +87,12 @@ async function revalidate(client: Client, decision: any, productId: string, acto
     mlItemId: decision.context.itemId, priceCents: decision.context.priceCents,
     disableAutomaticPricing: decision.context.disableAutomaticPricing === true,
     ...(decision.context.clearance ? { clearance: decision.context.clearance } : {}),
-  }, { actorId });
+  }, {
+    actorId,
+    competitionItemId: decision.context.competitionItemId || null,
+    targetOrigin: decision.context.targetOrigin || 'manual_input',
+    strictEconomicGates: decision.context.strictEconomicGates === true,
+  });
   if (!response.ok) throw new Error('decision_revalidation_unavailable');
   const fresh = await response.json();
   if (!fresh.decisionContext?.executable || fresh.decisionContext.fingerprint !== decision.fingerprint)

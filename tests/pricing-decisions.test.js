@@ -27,6 +27,18 @@ test('identidade/elegibilidade comercial vira aviso e não altera a chave técni
   const a=input(), b=input();b.listingSafety.evidence=[{field:'BRAND',local:'A',remote:'A'}];
   assert.equal(domain.decisionContext(a).fingerprint,domain.decisionContext(b).fingerprint);
 });
+test('piloto price_to_win transforma todos os gates em bloqueios e vincula a concorrência',()=>{
+  const base=input();base.targetOrigin='price_to_win';base.strictEconomicGates=true;
+  base.competition={itemId:'MLB1',priceCents:11000,status:'competing'};
+  const approved=domain.decisionContext(base);assert.equal(approved.executable,true);
+  assert.equal(approved.targetOrigin,'price_to_win');assert.equal(approved.competitivePriceCents,11000);
+  for(const change of [x=>x.group=null,x=>x.listingSafety.verified=false,x=>x.pricing.current.memory.margin=.06,
+    x=>x.competition.status='winning',x=>x.competition.priceCents=10999]){
+    const candidate=input();candidate.targetOrigin='price_to_win';candidate.strictEconomicGates=true;
+    candidate.competition={itemId:'MLB1',priceCents:11000,status:'competing'};change(candidate);
+    assert.equal(domain.decisionContext(candidate).executable,false);
+  }
+});
 test('impressão técnica ignora economia e grupo, mas muda com preço observado ou proposto',()=>{
   const a=domain.decisionContext(input());const clock=input();clock.pricing.current.memory.cost.observedAt='2026-09-09T00:00:00Z';assert.equal(a.fingerprint,domain.decisionContext(clock).fingerprint);
   for(const change of [x=>x.currentPriceCents=9999,x=>x.priceCents=12000]){
