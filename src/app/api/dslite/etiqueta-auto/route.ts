@@ -550,7 +550,7 @@ export async function POST(req: Request) {
             reason: releaseReasonRaw || null,
             fornecedor_id: fornecedorId || null,
             fornecedor_nome: (compraVinculada as any)?.fornecedor_nome || null,
-            allowed_fornecedores: ['97', '108', '133'],
+            allowed_fornecedores: ['97', '108', '115', '133'],
             stage: 'etiqueta_auto_precheck',
             label_source: 'placeholder_release_window',
           },

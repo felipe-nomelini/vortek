@@ -3,6 +3,7 @@ import path from 'node:path';
 import {
   isBkr1Supplier,
   isEvolusomSupplier,
+  isMksSupplier,
   isVanralSupplier,
 } from '@/lib/supplier-balance';
 
@@ -10,6 +11,8 @@ export const DSLITE_PLACEHOLDER_LABEL_FILE_NAME = 'etiqueta_frete_terceiros_post
 export const DSLITE_PLACEHOLDER_LABEL_SOURCE = 'placeholder_release_window';
 export const DSLITE_BKR1_PLACEHOLDER_LABEL_FILE_NAME = 'etiqueta_bkr1_aguardando_etiqueta_ml.pdf';
 export const DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE = 'placeholder_release_window_bkr1';
+export const DSLITE_MKS_PLACEHOLDER_LABEL_FILE_NAME = 'etiqueta_mks_aguardando_etiqueta_ml.pdf';
+export const DSLITE_MKS_PLACEHOLDER_LABEL_SOURCE = 'placeholder_release_window_mks';
 export const DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_FILE_NAME = 'etiqueta_evolusom_aguardando_etiqueta_ml.pdf';
 export const DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE = 'placeholder_release_window_evolusom';
 export const DSLITE_VANRAL_PLACEHOLDER_LABEL_FILE_NAME = 'etiqueta_vanral_aguardando_etiqueta_ml.pdf';
@@ -71,6 +74,14 @@ export function getDslitePlaceholderLabelConfig(
       fileName: DSLITE_BKR1_PLACEHOLDER_LABEL_FILE_NAME,
       path: BKR1_PLACEHOLDER_LABEL_PATH,
       supplierLabel: 'BKR1',
+    };
+  }
+  if (isMksSupplier(fornecedorId, fornecedorNome)) {
+    return {
+      source: DSLITE_MKS_PLACEHOLDER_LABEL_SOURCE,
+      fileName: DSLITE_MKS_PLACEHOLDER_LABEL_FILE_NAME,
+      path: BKR1_PLACEHOLDER_LABEL_PATH,
+      supplierLabel: 'MKS',
     };
   }
   return {

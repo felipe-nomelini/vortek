@@ -100,3 +100,19 @@ test('adiamento é auditado e não altera a exceção de etiqueta da BKR1', () =
     /!continueWithSupplierPaymentPending &&[\s\S]*?!deferBkr1PaymentUntilRealLabel/,
   );
 });
+
+test('MKS usa etiqueta genérica somente após consulta válida indicar que a real não é imprimível', () => {
+  assert.match(
+    routeSource,
+    /continueWithSupplierPaymentPending &&[\s\S]*?isMksSupplier\(fornecedorId, fornecedorNomeResolved\)[\s\S]*?consultarDisponibilidadeEtiquetaML\([\s\n]*existingShipmentId,[\s\n]*\)/,
+  );
+  assert.match(
+    routeSource,
+    /useMksDeferredPaymentPlaceholder =[\s\n]*availability\.checked && !availability\.printable/,
+  );
+  assert.match(
+    routeSource,
+    /\(isMlLabelReleasePending \|\| useMksDeferredPaymentPlaceholder\)/,
+  );
+  assert.match(routeSource, /reason: placeholderReason/);
+});

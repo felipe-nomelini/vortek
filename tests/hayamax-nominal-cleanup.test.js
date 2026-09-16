@@ -29,8 +29,8 @@ test('usa evento e mensagem neutros no fluxo compartilhado de etiqueta provisór
   assert.doesNotMatch(combined, /placeholder_label_blocked_non_hayamax/);
   assert.doesNotMatch(combined, /Etiqueta genérica Hayamax|supplierLabel: 'Hayamax'/);
   assert.match(auditService, /placeholder_label_blocked_supplier_not_configured/);
-  assert.match(createRoute, /allowed_fornecedores: \['97', '108', '133'\]/);
-  assert.match(autoRoute, /allowed_fornecedores: \['97', '108', '133'\]/);
+  assert.match(createRoute, /allowed_fornecedores: \['97', '108', '115', '133'\]/);
+  assert.match(autoRoute, /allowed_fornecedores: \['97', '108', '115', '133'\]/);
 });
 
 test('remove scripts exclusivos e campanhas encerradas sem retirar regras compartilhadas', () => {

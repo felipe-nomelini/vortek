@@ -1,6 +1,7 @@
 export const HAYAMAX_FORNECEDOR_ID = '2';
 export const VANRAL_FORNECEDOR_ID = '97';
 export const BKR1_FORNECEDOR_ID = '108';
+export const MKS_FORNECEDOR_ID = '115';
 export const EVOLUSOM_FORNECEDOR_ID = '133';
 
 export function isBalanceAccountSupplier(fornecedorId: string | number | null | undefined) {
@@ -26,6 +27,16 @@ export function isBkr1Supplier(
   return normalized.includes('bkr1') || normalized.includes('bkr 1');
 }
 
+export function isMksSupplier(
+  fornecedorId: string | number | null | undefined,
+  fornecedorNome?: string | null,
+) {
+  const id = String(fornecedorId || '').trim();
+  if (id === MKS_FORNECEDOR_ID) return true;
+  const normalized = String(fornecedorNome || '').trim().toLowerCase();
+  return normalized === 'mks' || normalized.includes('mks distribuidora');
+}
+
 export function isEvolusomSupplier(
   fornecedorId: string | number | null | undefined,
   fornecedorNome?: string | null,
@@ -41,6 +52,7 @@ export function allowsDslitePlaceholderLabel(
 ) {
   return isVanralSupplier(fornecedorId, fornecedorNome)
     || isBkr1Supplier(fornecedorId, fornecedorNome)
+    || isMksSupplier(fornecedorId, fornecedorNome)
     || isEvolusomSupplier(fornecedorId, fornecedorNome);
 }
 

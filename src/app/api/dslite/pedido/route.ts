@@ -46,6 +46,7 @@ import {
 import {
   allowsDslitePlaceholderLabel,
   isBkr1Supplier,
+  isMksSupplier,
   usesThermalMlLabelSupplier,
 } from "@/lib/supplier-balance";
 import { getSkuLookupVariants } from "@/lib/sku";
@@ -2524,6 +2525,10 @@ async function runDsliteCreateJob(
       }
     }
     let usePlaceholderLabel = false;
+    let placeholderReason:
+      | "release_window"
+      | "deferred_payment_label_not_printable"
+      | null = null;
     const placeholderReleaseLabel =
       isMlLabelReleasePending && releaseAt
         ? releaseAt.toLocaleString("pt-BR", {
@@ -3956,12 +3961,53 @@ async function runDsliteCreateJob(
     if (reusingExistingDsliteOrder) {
       dsidAtual = dsidAtual || Number(existingDsliteId);
       fornecedorId = String(existingCompra?.fornecedor_id || "").trim();
-      usePlaceholderLabel =
-        isMlLabelReleasePending &&
-        allowsDslitePlaceholderLabel(fornecedorId, existingCompra?.fornecedor_nome);
       fornecedorNomeResolved = existingCompra?.fornecedor_nome
         ? String(existingCompra.fornecedor_nome)
         : null;
+      let useMksDeferredPaymentPlaceholder = false;
+      if (
+        continueWithSupplierPaymentPending &&
+        isMksSupplier(fornecedorId, fornecedorNomeResolved) &&
+        existingShipmentId
+      ) {
+        const availability = await consultarDisponibilidadeEtiquetaML(
+          existingShipmentId,
+        );
+        useMksDeferredPaymentPlaceholder =
+          availability.checked && !availability.printable;
+        await registrarEventoNfAuditoria({
+          pedidoId,
+          mlOrderId: mlOrderId ? String(mlOrderId) : null,
+          mlPackId: (pedidoRow as any)?.ml_pack_id
+            ? String((pedidoRow as any).ml_pack_id)
+            : null,
+          evento: "ml_label_availability_checked",
+          respostaMl: {
+            shipment_id: existingShipmentId,
+            checked: availability.checked,
+            printable: availability.printable,
+            workflow_ready: availability.workflowReady,
+            shipment_status: availability.status,
+            shipment_substatus: availability.substatus,
+            error: availability.error,
+            supplier: "MKS",
+            stage: "deferred_supplier_payment_continuation",
+          },
+          statusResultante: useMksDeferredPaymentPlaceholder
+            ? "placeholder_allowed"
+            : availability.printable
+              ? "real_label_available"
+              : "availability_check_failed",
+        });
+      }
+      usePlaceholderLabel =
+        allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved) &&
+        (isMlLabelReleasePending || useMksDeferredPaymentPlaceholder);
+      placeholderReason = useMksDeferredPaymentPlaceholder
+        ? "deferred_payment_label_not_printable"
+        : usePlaceholderLabel
+          ? "release_window"
+          : null;
       supplierPaymentMode = resolveSupplierPaymentMode(
         existingCompra?.supplier_payment_mode,
         fornecedorId,
@@ -4091,6 +4137,7 @@ async function runDsliteCreateJob(
       usePlaceholderLabel =
         isMlLabelReleasePending &&
         allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved);
+      placeholderReason = usePlaceholderLabel ? "release_window" : null;
       supplierPaymentMode = resolveSupplierPaymentMode(
         selectedOffer.offer.payment_mode,
         fornecedorId,
@@ -4323,7 +4370,7 @@ async function runDsliteCreateJob(
           release_at: releaseAt.toISOString(),
           fornecedor_id: fornecedorId || null,
           fornecedor_nome: fornecedorNomeResolved || null,
-          allowed_fornecedores: ['97', '108', '133'],
+          allowed_fornecedores: ['97', '108', '115', '133'],
           label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
         },
         statusResultante: "blocked",
@@ -5051,14 +5098,17 @@ async function runDsliteCreateJob(
         "warning",
         'Etapa não executada: use "Completar etiqueta DSLite" quando o ML liberar a etiqueta real',
       );
-    } else if (usePlaceholderLabel && releaseAt) {
+    } else if (usePlaceholderLabel) {
       const placeholderConfig = getDslitePlaceholderLabelConfig(fornecedorId, fornecedorNomeResolved);
+      const placeholderAvailabilityMessage = releaseAt
+        ? `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}`
+        : "Etiqueta ML consultada e ainda não está disponível";
       try {
         const etiquetaPdf = await loadDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved);
         await setStep(
           "download_label_ml",
           "warning",
-          `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; usando etiqueta padrão ${placeholderConfig.supplierLabel}`,
+          `${placeholderAvailabilityMessage}; usando etiqueta padrão ${placeholderConfig.supplierLabel}`,
         );
         await setStep("send_label_dslite", "loading");
 
@@ -5072,7 +5122,8 @@ async function runDsliteCreateJob(
             mlOrderId: mlOrderId ? String(mlOrderId) : null,
             evento: "placeholder_label_send_failed",
             respostaMl: {
-              release_at: releaseAt.toISOString(),
+              release_at: releaseAt?.toISOString() || null,
+              reason: placeholderReason,
               label_source: placeholderConfig.source,
               error: etiquetaError,
             },
@@ -5093,7 +5144,8 @@ async function runDsliteCreateJob(
               mlOrderId: mlOrderId ? String(mlOrderId) : null,
               evento: "placeholder_label_send_success",
               respostaMl: {
-                release_at: releaseAt.toISOString(),
+                release_at: releaseAt?.toISOString() || null,
+                reason: placeholderReason,
                 label_source: placeholderConfig.source,
                 file_name: placeholderConfig.fileName,
                 bytes: etiquetaPdf.length,
@@ -5116,7 +5168,8 @@ async function runDsliteCreateJob(
               mlOrderId: mlOrderId ? String(mlOrderId) : null,
               evento: "placeholder_label_send_failed",
               respostaMl: {
-                release_at: releaseAt.toISOString(),
+                release_at: releaseAt?.toISOString() || null,
+                reason: placeholderReason,
                 label_source: placeholderConfig.source,
                 error: etiquetaError,
               },
@@ -5135,7 +5188,8 @@ async function runDsliteCreateJob(
           mlOrderId: mlOrderId ? String(mlOrderId) : null,
           evento: "placeholder_label_load_failed",
           respostaMl: {
-            release_at: releaseAt.toISOString(),
+            release_at: releaseAt?.toISOString() || null,
+            reason: placeholderReason,
             label_source: placeholderConfig.source,
             error: etiquetaError,
           },
