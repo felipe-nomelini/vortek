@@ -25,6 +25,7 @@ test('classificador libera identidade coerente e mantém pricing bloqueado nesta
       attributes: [{ id: 'GTIN', values: [{ name: rule.gtin }] }, { id: 'BRAND', values: [{ name: 'Evus' }] }] },
   };
   assert.equal(audit.classifyCase(rule, context).identity_state, 'SEM_CONFLITO');
+  assert.equal(audit.classifyCase(rule, { ...context, item: { ...context.item, status: 'paused' } }).identity_state, 'SEM_CONFLITO');
   assert.equal(audit.classifyCase(rule, { ...context, item: { ...context.item, catalog_product_id: 'MLB_OUTRO' } }).identity_state, 'PENDENCIA_VALIDACAO');
 });
 

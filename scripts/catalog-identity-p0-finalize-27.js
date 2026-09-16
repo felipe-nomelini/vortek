@@ -10,15 +10,15 @@ const closeout = require('./catalog-identity-p0-production-closeout.js');
 
 const SELLER_ID = 3294514937;
 const ACTOR = Object.freeze({ name: 'Rodrigo', id: '3e56ce48-f461-4784-848b-097d1e482a43' });
-const VERSION = 'BNT-ML-CATALOG-IDENTITY-01/finalize-title-drifts-25-v1';
+const VERSION = 'BNT-ML-CATALOG-IDENTITY-01/finalize-title-drifts-27-v1';
 const TTL_MS = 30 * 60 * 1000;
-const EXPECTED_BEFORE = Object.freeze({ SEM_CONFLITO: 1501, CONFLITO_CONFIRMADO: 22, PENDENCIA_VALIDACAO: 27, INCONCLUSIVO: 0 });
+const EXPECTED_BEFORE = Object.freeze({ SEM_CONFLITO: 1499, CONFLITO_CONFIRMADO: 22, PENDENCIA_VALIDACAO: 29, INCONCLUSIVO: 0 });
 const EXPECTED_AFTER = Object.freeze({ SEM_CONFLITO: 1526, CONFLITO_CONFIRMADO: 22, PENDENCIA_VALIDACAO: 2, INCONCLUSIVO: 0 });
 const ARTIFACTS = Object.freeze([
-  '32_identity_reaudit_18.csv',
-  '33_identity_reaudit_evidence_18.json',
-  '34_identity_release_25_manifest.json',
-  '35_identity_release_25_before_after.csv',
+  '32_identity_reaudit_20.csv',
+  '33_identity_reaudit_evidence_20.json',
+  '34_identity_release_27_manifest.json',
+  '35_identity_release_27_before_after.csv',
   '36_final_identity_reconciliation.json',
   '37_p0_closeout_final.md',
 ]);
@@ -39,7 +39,9 @@ const NEW_CASES = Object.freeze([
   { sku: 'VTK018826', ml_item_id: 'MLB7599425720', catalog_product_id: 'MLB28249754', gtin: '4895228200501', brand: 'tech one', model: ['pwb2366'], family: [['inversor', 'conversor']], material: { input: ['24v', '24 v'], output: ['110v', '110 v'], power: ['800w', '800 w'] } },
   { sku: 'VTK018978', ml_item_id: 'MLB7598528112', catalog_product_id: 'MLB22381168', gtin: '7898419498456', brand: 'proeletronic', model: ['cahd200015'], family: [['cabo'], ['hdmi']], material: { length: ['15m', '15 m', '15 metros'] } },
   { sku: 'VTK019222', ml_item_id: 'MLB5196223707', catalog_product_id: 'MLB37831821', gtin: '7908639901640', brand: 'c3tech', model: ['hu230bk'], family: [['hub'], ['usb']], material: { ports: ['4 portas'] } },
+  { sku: 'VTK022543', ml_item_id: 'MLB5196321025', catalog_product_id: 'MLB41669792', gtin: '7898587424899', brand: 'roadstar', model: ['rs915br'], family: [['multimidia']], material: { size: ['9'] } },
   { sku: 'VTK022558', ml_item_id: 'MLB5196223545', catalog_product_id: 'MLB21871598', gtin: '7898555219731', brand: 'c3tech', model: ['ep07bk'], family: [['fone'], ['ouvido']] },
+  { sku: 'VTK023066', ml_item_id: 'MLB5196314385', catalog_product_id: 'MLB39588801', gtin: '7899810416742', brand: 'hikari', model: ['hk700'], family: [['alicate']], material: { size: ['6'] } },
   { sku: 'VTK023645', ml_item_id: 'MLB7598596270', catalog_product_id: 'MLB21652236', gtin: '7898555210745', brand: 'c3tech', model: ['lb110bk'], family: [['leitor'], ['codigo de barras']], material: { voltage: ['5v', '5 v'] } },
   { sku: 'VTK026053', ml_item_id: 'MLB5195693021', catalog_product_id: 'MLB51100288', gtin: '7908639900674', brand: 'c3tech', model: ['psg700b'], family: [['fonte']], material: { power: ['700w', '700 w'] } },
 ]);
@@ -116,7 +118,7 @@ async function buildManifest(client, ml, universe, existing = null) {
   const currents = await shared.fetchByValues(client, 'ml_catalog_identity_current',
     'seller_id,ml_item_id,audit_id,identity_state,reason_code,block_price_write,block_buy_box_chase,ml_live_source_available',
     'ml_item_id', scope.map(row => row.ml_item_id));
-  if (currents.length !== 25) throw new Error(`current_coverage_invalid:${currents.length}`);
+  if (currents.length !== 27) throw new Error(`current_coverage_invalid:${currents.length}`);
   const audits = await shared.fetchByValues(client, 'ml_catalog_identity_audits', 'id,ml_item_id,comparisons,input_row', 'id', currents.map(row => row.audit_id));
   const currentById = new Map(currents.map(row => [row.ml_item_id, row]));
   const auditById = new Map(audits.map(row => [row.id, row]));
@@ -210,7 +212,7 @@ async function acquireLocks(client, runId) {
     for (const domain of closeout.LOCK_DOMAINS) {
       const result = await client.rpc('acquire_sync_domain_lock', { p_domain: domain,
         p_owner_task: 'BNT-ML-CATALOG-IDENTITY-01', p_owner_token: ownerToken,
-        p_owner_job_id: null, p_ttl_seconds: 1800, p_metadata: { run_id: runId, actor_id: ACTOR.id, purpose: 'finalize_25_identity_only' } });
+        p_owner_job_id: null, p_ttl_seconds: 1800, p_metadata: { run_id: runId, actor_id: ACTOR.id, purpose: 'finalize_27_identity_only' } });
       if (result.error || !result.data) throw new Error(`lock_unavailable:${domain}`);
       domains.push(domain);
     }
@@ -236,7 +238,7 @@ async function apply(options, client, ml, universe) {
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   if (manifest.version !== VERSION || manifest.manifest_hash !== manifestHash(manifest)) throw new Error('manifest_invalid');
   if (Date.parse(manifest.expires_at) <= Date.now()) throw new Error('manifest_expired');
-  if (manifest.decisions.length !== 25 || new Set(manifest.decisions.map(row => row.ml_item_id)).size !== 25) throw new Error('manifest_scope_invalid');
+  if (manifest.decisions.length !== 27 || new Set(manifest.decisions.map(row => row.ml_item_id)).size !== 27) throw new Error('manifest_scope_invalid');
   const actor = await client.from('profiles').select('id,cargo').eq('id', ACTOR.id).maybeSingle();
   if (actor.error || actor.data?.cargo !== 'admin') throw new Error('actor_invalid');
   let lock = null;
@@ -250,12 +252,12 @@ async function apply(options, client, ml, universe) {
     const fresh = await buildManifest(client, ml, universe, manifest);
     if (fresh.manifest_hash !== manifest.manifest_hash) throw new Error(`manifest_changed:${fresh.manifest_hash}`);
     const runPayload = { id: manifest.run_id, state: 'applying', mode: 'apply', rule_version: VERSION,
-      baseline_filename: '34_identity_release_25_manifest.json', baseline_sha256: manifest.manifest_hash,
-      baseline_count: 25, delta_count: 25, total_count: 25, manifest_hash: manifest.manifest_hash,
+      baseline_filename: '34_identity_release_27_manifest.json', baseline_sha256: manifest.manifest_hash,
+      baseline_count: 27, delta_count: 27, total_count: 27, manifest_hash: manifest.manifest_hash,
       approved_manifest_hash: manifest.manifest_hash, snapshot_at: manifest.generated_at,
       started_at: new Date().toISOString(), approved_at: new Date().toISOString(),
       created_by: ACTOR.id, approved_by: ACTOR.id,
-      summary: { source: 'TITLE_DRIFT_REAUDIT_25', expected_before: EXPECTED_BEFORE, expected_after: EXPECTED_AFTER } };
+      summary: { source: 'TITLE_DRIFT_REAUDIT_27', expected_before: EXPECTED_BEFORE, expected_after: EXPECTED_AFTER } };
     const created = await client.from('ml_catalog_identity_runs').insert(runPayload);
     if (created.error) throw new Error(`run_create_failed:${created.error.code}`);
     runCreated = true;
@@ -264,11 +266,13 @@ async function apply(options, client, ml, universe) {
       processing_state: 'pending', attempts: 0, input_row: row,
     })));
     if (seeded.error) throw new Error(`audit_seed_failed:${seeded.error.code}`);
-    const applied = await client.rpc('apply_ml_catalog_identity_projection_batch', {
-      p_run_id: manifest.run_id, p_actor_id: ACTOR.id, p_manifest_hash: manifest.manifest_hash,
-      p_payloads: manifest.decisions.map(row => ({ ...row, action_reason: row.action_result })),
-    });
-    if (applied.error) throw new Error(`projection_failed:${applied.error.code || applied.error.message}`);
+    for (const batch of shared.chunks(manifest.decisions, 25)) {
+      const applied = await client.rpc('apply_ml_catalog_identity_projection_batch', {
+        p_run_id: manifest.run_id, p_actor_id: ACTOR.id, p_manifest_hash: manifest.manifest_hash,
+        p_payloads: batch.map(row => ({ ...row, action_reason: row.action_result })),
+      });
+      if (applied.error) throw new Error(`projection_failed:${applied.error.code || applied.error.message}`);
+    }
     const after = await client.rpc('ml_catalog_identity_safety_snapshot', { p_seller_id: SELLER_ID, p_item_ids: universe.ids });
     if (after.error) throw new Error(`after_snapshot_failed:${after.error.code}`);
     if (shared.stableJson(operationalSnapshot(before.data)) !== shared.stableJson(operationalSnapshot(after.data))) throw new Error('operational_invariant_changed');
@@ -277,17 +281,17 @@ async function apply(options, client, ml, universe) {
     const current = await shared.fetchByValues(client, 'ml_catalog_identity_current',
       'ml_item_id,identity_state,reason_code,block_price_write,block_buy_box_chase,ml_live_source_available,audit_id',
       'ml_item_id', manifest.decisions.map(row => row.ml_item_id));
-    if (current.length !== 25 || current.some(row => row.identity_state !== 'SEM_CONFLITO' || row.block_price_write || row.block_buy_box_chase)) throw new Error('final_readback_invalid');
+    if (current.length !== 27 || current.some(row => row.identity_state !== 'SEM_CONFLITO' || row.block_price_write || row.block_buy_box_chase)) throw new Error('final_readback_invalid');
     const completed = await client.from('ml_catalog_identity_runs').update({ state: 'completed', finished_at: new Date().toISOString(),
-      summary: { source: 'TITLE_DRIFT_REAUDIT_25', released: 25, final: EXPECTED_AFTER,
+      summary: { source: 'TITLE_DRIFT_REAUDIT_27', released: 27, final: EXPECTED_AFTER,
         price_changes: 0, stock_changes: 0, custom_price_changes: 0, produtos_ativo_changes: 0, relinks: 0 } })
       .eq('id', manifest.run_id).eq('state', 'applying').select('id').maybeSingle();
     if (completed.error || !completed.data) throw new Error('run_complete_failed');
     writeFinal(options.output, manifest, before.data, after.data, beforeCounts, afterCounts, current);
-    return { run_id: manifest.run_id, released: 25, counts: afterCounts };
+    return { run_id: manifest.run_id, released: 27, counts: afterCounts };
   } catch (error) {
     if (runCreated) await client.from('ml_catalog_identity_runs').update({ state: 'paused', finished_at: new Date().toISOString(),
-      safety_stop: { code: String(error?.message || error).slice(0, 500), source: 'TITLE_DRIFT_REAUDIT_25' } }).eq('id', manifest.run_id).eq('state', 'applying');
+      safety_stop: { code: String(error?.message || error).slice(0, 500), source: 'TITLE_DRIFT_REAUDIT_27' } }).eq('id', manifest.run_id).eq('state', 'applying');
     throw error;
   } finally {
     await releaseLocks(client, lock);
@@ -306,7 +310,7 @@ function writeFinal(output, manifest, before, after, beforeCounts, afterCounts, 
     'identity_state_before','identity_state_after','block_price_write_before','block_price_write_after',
     'action','action_result','actor_id','content_quality_flag']), { flag: 'wx' });
   const reconciliation = { total: 1550, before: beforeCounts, after: afterCounts,
-    equation: '1550=1526+22+2', released: 25, blocked: 24, applied: true,
+    equation: '1550=1526+22+2', released: 27, blocked: 24, applied: true,
     invariants: { products: before.products.sha256 === after.products.sha256,
       listings: before.listings.sha256 === after.listings.sha256,
       relations: before.target_relations.sha256 === after.target_relations.sha256,
@@ -316,7 +320,7 @@ function writeFinal(output, manifest, before, after, beforeCounts, afterCounts, 
   fs.writeFileSync(path.join(output, ARTIFACTS[5]), [
     '# BNT-ML-CATALOG-IDENTITY-01 — fechamento final', '',
     `- Estado: CONCLUÍDA`, `- Ator: ${ACTOR.name} (${ACTOR.id})`,
-    `- Run produtivo: ${manifest.run_id}`, `- Liberações executadas: 25`,
+    `- Run produtivo: ${manifest.run_id}`, `- Liberações executadas: 27`,
     `- Reconciliação: 1.550 = 1.526 SEM_CONFLITO + 22 CONFLITO_CONFIRMADO + 2 PENDENCIA_VALIDACAO`,
     `- Identidade bloqueada: 24`, `- Preços alterados: 0`, `- Estoques alterados: 0`,
     `- custom_price alterados: 0`, `- produtos.ativo alterados: 0`, `- Relinks executados: 0`,
@@ -344,16 +348,16 @@ async function main() {
     const manifest = await buildManifest(client, ml, universe);
     manifest.database_target = target;
     writePrepared(path.resolve(options.output), manifest);
-    process.stdout.write(`${shared.stableJson({ event: 'identity_finalize_25_prepared', run_id: manifest.run_id,
+    process.stdout.write(`${shared.stableJson({ event: 'identity_finalize_27_prepared', run_id: manifest.run_id,
       manifest_hash: manifest.manifest_hash, decisions: manifest.decisions.length, counts }, 2)}\n`);
     return;
   }
   const result = await apply(options, client, ml, universe);
-  process.stdout.write(`${shared.stableJson({ event: 'identity_finalize_25_applied', ...result }, 2)}\n`);
+  process.stdout.write(`${shared.stableJson({ event: 'identity_finalize_27_applied', ...result }, 2)}\n`);
 }
 
 if (require.main === module) main().catch(error => {
-  process.stderr.write(`${shared.stableJson({ event: 'identity_finalize_25_failed', error: String(error?.message || error) })}\n`);
+  process.stderr.write(`${shared.stableJson({ event: 'identity_finalize_27_failed', error: String(error?.message || error) })}\n`);
   process.exitCode = 1;
 });
 

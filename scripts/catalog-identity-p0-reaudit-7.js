@@ -84,7 +84,7 @@ function classifyCase(rule, context) {
     && item.catalog_product_id === rule.catalog_product_id
     && catalogProduct.id === rule.catalog_product_id;
   const sellerValid = Number(snapshot.seller_id) === SELLER_ID && Number(item.seller_id) === SELLER_ID;
-  const statusValid = item.status === 'active' && catalogProduct.status === 'active'
+  const statusValid = ['active', 'paused'].includes(item.status) && catalogProduct.status === 'active'
     && !['closed', 'inactive', 'under_review'].includes(searchable(listing.status));
   const gtinLocalValid = normalizeGtin(product.gtin) === normalizeGtin(rule.gtin);
   const gtinRemoteValid = remoteGtins.includes(normalizeGtin(rule.gtin));
