@@ -194,7 +194,7 @@ export async function evaluateBuyBoxPilotItem(runId: string, itemId: string) {
   };
   if (!local.product || !local.listing || !local.snapshot || !local.identity
     || local.listing.produto_id !== local.product.id || local.snapshot.produto_id !== local.product.id
-    || local.identity.produto_id !== local.product.id || local.identity.identity_state !== 'SEM_CONFLITO'
+    || local.identity.identity_state !== 'SEM_CONFLITO'
     || local.identity.block_price_write === true || local.product.ativo !== true) {
     return finish('DRIFT_BLOCKED', { reason: 'IDENTIDADE_LOCAL_DIVERGENTE' });
   }
