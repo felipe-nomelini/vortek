@@ -81,6 +81,10 @@ Regras de uso:
 
 **Prioridade vigente — atualização de 13/09/2026:** o núcleo Bentevi opera com dados reais em `app.bentevi.shop`, serviço `local/bentevi-prod` e Supabase produtivo `.162`. O preço manual individual foi comprovado no executor controlado e agora trata condições comerciais como avisos, preservando apenas controles técnicos. Continuar o acompanhamento por read-back de cada operação e manter criação em lote, Assistente e automação própria nos gates específicos.
 
+### Trilha Oráculo de Fornecedores
+
+A implementação da liquidação consolidada de fornecedores é acompanhada no checklist dedicado [VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md](VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md). A trilha foi aberta em 16/09/2026 com `ORC-00`; nenhuma migration, mudança funcional ou ativação é considerada concluída pela criação do planejamento. Executar uma ação por tarefa e manter nesse documento dedicado as evidências, SHAs, migrations, testes, publicação e aceite.
+
 <a id="bentevi-em-operacao"></a>
 
 ### Marco de lançamento — Bentevi em operação
