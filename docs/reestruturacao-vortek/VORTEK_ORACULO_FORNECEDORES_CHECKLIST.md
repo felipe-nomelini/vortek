@@ -56,7 +56,7 @@ Regras permanentes:
 | Ordem | Ação | Situação | Dependência | Próximo gate |
 |---:|---|---|---|---|
 | 0 | ORC-00 — Contrato e checklist permanente | Aceito | Nenhuma | ORC-01 em nova tarefa |
-| 1 | ORC-01 — Schema aditivo | Publicado | ORC-00 aceito | Confirmar SHA executado para aceite |
+| 1 | ORC-01 — Schema aditivo | Aceito | ORC-00 aceito | SHA executado, schema e smoke confirmados |
 | 2 | ORC-02 — Estados e elegibilidade | Pendente | ORC-01 aceito | Preview explica inclusões e exclusões |
 | 3 | ORC-03 — Núcleo financeiro transacional | Pendente | ORC-02 aceito | Concorrência, idempotência e auditoria |
 | 4 | ORC-04 — Pós-processamento e comunicação | Pendente | ORC-03 aceito | Jobs reprocessáveis sem duplicação |
@@ -260,7 +260,7 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 - [x] Documentar recuperação antes de liquidações confirmadas: manter schema aditivo e reverter somente código se necessário; nenhuma linha financeira é criada nesta etapa.
 - [x] Executar preflight, snapshot proporcional de metadados, migration em `.162` e read-back.
 - [x] Registrar migration, SHA remoto, alvo e evidências.
-- [ ] Confirmar o SHA efetivamente executado pelo serviço no Easypanel; webhook e reinício não bastam para este gate.
+- [x] Confirmar o SHA efetivamente executado pelo serviço no Easypanel; webhook e reinício não bastam para este gate.
 
 **Aceite:** schema aditivo publicado sem alterar o fluxo financeiro existente.
 
@@ -451,7 +451,8 @@ Para cada ação técnica:
 | 16/09/2026 | ORC-01 | SHA funcional `3b37eade2c1b1dd01800b6ffebfad03040741cd1` | `dev` e `bentevi-prod` remotas no mesmo SHA por fast-forward; snapshot pré-migration de metadados/contagens em `/tmp/oraculo-schema-preflight-fVQsaT/baseline.json`, hash SHA-256 `7b21ebc3dbf2fb704081954acea95c770af6baaebc964382f224e815a1f71390` | Snapshot não contém linhas de clientes nem substitui backup integral de dados; migration é apenas aditiva e não altera valores existentes |
 | 16/09/2026 | ORC-01 | Migration `20260916180000`, hash SHA-256 `dea210454308915dea79b2733371ee84c92eeb336fe930050b5de58ce4e02096` | Aplicada em transação curta diretamente em `192.168.1.162/postgres`, PostgreSQL 17.6; registry confirmou a versão. Read-back: duas tabelas vazias, RLS ativo, zero grants de cliente, zero DELETE ao `service_role`, constraints válidas, 1.452 compras `unknown`, zero compras vinculadas, zero pedidos classificados, 995 movimentos de crédito e 22 PIX pendentes | Sem backfill, PIX, crédito ou mensagem criados |
 | 16/09/2026 | ORC-01 | SHA remoto `3b37eade` | Webhook oficial HTTP `200`; processo reiniciado, health/login `200`, Compras e Vendas `307` sem sessão, APIs protegidas `401`; ML Auth e configuração fiscal `ok` | **Aceite pendente:** o endpoint de health não expõe SHA e o SHA do processo Easypanel não pôde ser comprovado por leitura |
+| 16/09/2026 | ORC-01 | SHA `6667ddf0ebf7a3e3db972d6713f34e91ab742ea9` | Easypanel `local/bentevi-prod`: fonte `bentevi-prod`, ação `cmu3sjfv8001d07k34pdn7msv` concluída; digest da imagem da ação `162d8351…` igual ao contêiner ativo, task `we4iffdb7oexb2ekijl4idi29`. Read-back HTTP em `.162`: zero liquidações, itens, compras vinculadas/classificadas e pedidos etiquetados. Health/login `200`, Compras `307`, API de Compras `401` sem sessão | **Aceito:** schema passivo em produção, sem ativação de pagamento em lote ou alteração do fluxo financeiro existente |
 
 ## 9. Próxima ação permitida
 
-**ORC-01 está publicada, mas ainda não aceita.** A próxima ação permitida é comprovar o SHA executado no serviço `local/bentevi-prod` e fechar o gate documental. Não iniciar ORC-02 enquanto isso permanecer pendente.
+**ORC-01 aceita em 16/09/2026.** A próxima ação técnica permitida é ORC-02 — Estados e elegibilidade, em tarefa própria. Não combinar essa implementação com o fechamento documental da ORC-01.
