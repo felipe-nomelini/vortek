@@ -3278,7 +3278,7 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 - [ ] `BNT-CANON-PUB-GATE` — recorte técnico concluído para sequência, com implementação/regressões e deploy DEV `9a18ff8f` registrados. Aceite autenticado e prova externa de criação/preço transferidos ao marco 6 por decisão do usuário, juntamente com ME2; não realizados e não bloqueadores de V2-15 operacional. Capacidade produtiva preparada/testada no marco 5 antes da ativação específica autorizada em vortek-prod. Execução atual desabilitada; nenhum novo produto de teste exigido para continuar. [Evidências e limites](evidencias/BNT-CANON-PUB-GATE-tecnico-validacao.md). Gate integral permanece aberto, sem massa autônoma;
 - [x] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia, validada e publicada em produção no SHA `ca1a9c27`; [evidências](evidencias/BNT-PRICING-V2-09-validacao.md). Nenhum writer comercial foi liberado;
 - [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem com evidência comercial;
-- [ ] `BNT-PRICING-V2-10` — experimentos;
+- [ ] `BNT-PRICING-V2-10` — experimentos; piloto produtivo de 15 SKUs iniciado em `BNT-ML-BUYBOX-ECONOMICS-01`, com três preços confirmados e checkpoints D+1/D+3/D+7 pendentes. O item permanece aberto até o encerramento dos checkpoints. [Evidência](evidencias/BNT-ML-BUYBOX-ECONOMICS-01-validacao.md);
 - [ ] `BNT-PRICING-V2-11` — zero tráfego;
 - [ ] `M2M-RAD-01` — funil e priorização explicável, com demanda separada de conflito;
 - [ ] `BNT-PRICING-V2-12` / `M2M-RAD-02` — rotina única noturna de pricing/Radar, idempotente e observável;
