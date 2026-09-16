@@ -1,0 +1,378 @@
+.page,
+.flow,
+.history,
+.supplierList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.page {
+  padding-bottom: 24px;
+}
+
+.viewSwitch {
+  align-self: flex-start;
+  max-width: 100%;
+}
+
+.backButton {
+  align-self: flex-start;
+  margin-left: -12px;
+}
+
+.sectionHeading,
+.cardHeader,
+.cardAction {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sectionHeading h4,
+.cardHeader h5 {
+  margin: 0 0 4px !important;
+}
+
+.updatedAt,
+.muted {
+  font-size: 12px;
+}
+
+.updatedAt {
+  text-align: right;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+.noReady {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 16px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-left: 3px solid var(--bentevi-primary, #ffbd0e);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.noReady strong {
+  font-size: 15px;
+}
+
+.noReady span {
+  flex-basis: 100%;
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 13px;
+}
+
+.summaryGrid,
+.amountGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 14px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.metric,
+.amountGrid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 16px;
+  border-right: 1px solid var(--bentevi-border, #34313a);
+}
+
+.metric:last-child,
+.amountGrid > div:last-child {
+  border-right: 0;
+}
+
+.metric span,
+.amountGrid span {
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.metric strong {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.metric small {
+  color: var(--bentevi-muted, #b3afb7);
+}
+
+.primaryMetric,
+.pixAmount {
+  background: linear-gradient(135deg, rgb(255 189 14 / 11%), rgb(255 189 14 / 2%));
+}
+
+.primaryMetric strong,
+.pixAmount strong {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
+.supplierCard,
+.warningCard,
+.historyCard,
+.flowCard {
+  border-radius: 14px !important;
+}
+
+.supplierIdentity {
+  min-width: 0;
+}
+
+.tagLine,
+.statusTags,
+.reasonTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tagLine :global(.ant-tag),
+.statusTags :global(.ant-tag),
+.reasonTags :global(.ant-tag) {
+  max-width: 100%;
+  margin: 0;
+  white-space: normal;
+}
+
+.statusTags {
+  justify-content: flex-end;
+}
+
+.amountGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.amountGrid strong {
+  font-size: 17px;
+}
+
+.listHeading {
+  margin: 20px 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.purchaseList,
+.exceptionList {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.purchaseRow,
+.exceptionRow {
+  padding: 11px 0;
+  border-top: 1px solid var(--bentevi-border, #34313a);
+}
+
+.purchaseRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.purchaseRow > div:first-child,
+.itemAmounts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.purchaseRow span,
+.muted {
+  color: var(--bentevi-muted, #b3afb7);
+}
+
+.purchaseRow span {
+  font-size: 12px;
+}
+
+.noAccountReady {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  color: var(--bentevi-muted, #b3afb7);
+  background: var(--bentevi-surface, #141316);
+}
+
+.exceptions {
+  margin-top: 12px;
+  border-top: 1px solid var(--bentevi-border, #34313a);
+}
+
+.exceptionRow summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  cursor: pointer;
+}
+
+.exceptionRow summary::marker {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
+.exceptionRow ul {
+  display: grid;
+  gap: 5px;
+  margin: 12px 0 2px 20px;
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 12px;
+}
+
+.cardAction {
+  align-items: center;
+  margin-top: 16px;
+}
+
+.historyValues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 14px;
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 13px;
+}
+
+.historyValues b {
+  margin-left: 5px;
+  color: var(--bentevi-text, #f7f7f8);
+}
+
+.historyValues span:last-child b {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
+.checkboxList,
+.stack {
+  display: flex !important;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.checkboxList :global(.ant-checkbox-wrapper) {
+  margin-inline-start: 0;
+}
+
+.fieldLabel {
+  display: block;
+  margin: 18px 0 6px;
+  font-weight: 600;
+}
+
+.pixKey {
+  display: flex;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.itemAmounts {
+  align-items: flex-end;
+}
+
+.effectRow {
+  padding-top: 12px;
+  border-top: 1px solid var(--bentevi-border, #34313a);
+}
+
+.messagePreview {
+  max-height: 300px;
+  overflow: auto;
+  padding: 14px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 720px) {
+  .viewSwitch {
+    width: 100%;
+  }
+
+  .viewSwitch :global(.ant-segmented-group) {
+    width: 100%;
+  }
+
+  .viewSwitch :global(.ant-segmented-item) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .viewSwitch :global(.ant-segmented-item-label) {
+    height: auto;
+    white-space: normal;
+  }
+
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summaryGrid .metric:nth-child(2) {
+    border-right: 0;
+  }
+
+  .summaryGrid .metric:nth-child(n + 3) {
+    border-top: 1px solid var(--bentevi-border, #34313a);
+  }
+
+  .sectionHeading,
+  .cardHeader {
+    flex-direction: column;
+  }
+
+  .statusTags {
+    justify-content: flex-start;
+  }
+
+  .updatedAt {
+    text-align: left;
+  }
+}
+
+@media (max-width: 520px) {
+  .amountGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .amountGrid > div {
+    border-right: 0;
+    border-bottom: 1px solid var(--bentevi-border, #34313a);
+  }
+
+  .amountGrid > div:last-child {
+    border-bottom: 0;
+  }
+
+  .purchaseRow,
+  .cardAction {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .itemAmounts {
+    align-items: flex-start;
+  }
+}

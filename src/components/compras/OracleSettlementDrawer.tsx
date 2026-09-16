@@ -1,9 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { Alert, Button, Checkbox, Drawer, Empty, Input, InputNumber, List, Modal, Select, Space, Spin, Tag, Typography, Upload, message } from 'antd';
+import { Alert, Button, Card, Checkbox, Collapse, Drawer, Empty, Input, InputNumber, Modal, Segmented, Select, Space, Spin, Tag, Typography, Upload, message } from 'antd';
+import { ArrowLeftOutlined, ReloadOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import { userSafeMessage } from '@/lib/user-feedback';
+import styles from './OracleSettlementDrawer.module.css';
 
 const { Text, Title } = Typography;
 type PreviewItem = { compraId: string; dsid: string; pedidoNumero: number | null; valor: number | null;
@@ -24,6 +26,20 @@ type Detail = { id: string; status: string; version: number; fornecedor: string;
   postprocess: { id: string; status: string } | null };
 type Communication = { id: string; body: string; status: string; version: number; contactMasked: string;
   settlementIds: string[]; attempts: number; errorCode: string | null };
+type View = 'today' | 'history' | 'prepare' | 'detail';
+
+function settlementStatus(status: string) {
+  if (status === 'prepared') return { label: 'Preparada', color: 'gold' };
+  if (status === 'confirmed') return { label: 'Confirmada', color: 'green' };
+  if (status === 'cancelled') return { label: 'Cancelada', color: 'default' };
+  return { label: status.replaceAll('_', ' '), color: 'default' };
+}
+
+function formatUpdatedAt(value: string | null) {
+  if (!value) return null;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date.toLocaleString('pt-BR');
+}
 
 async function jsonRequest(url: string, init?: RequestInit) {
   const response = await fetch(url, { cache: 'no-store', ...init });
@@ -42,6 +58,8 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
   const [settlementPage, setSettlementPage] = useState(1);
   const [settlementTotal, setSettlementTotal] = useState(0);
   const [writesEnabled, setWritesEnabled] = useState(false);
+  const [view, setView] = useState<View>('today');
+  const [asOf, setAsOf] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -72,6 +90,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
       setAccounts(today.data || []);
       setUnassigned(today.unassigned || []);
       setWritesEnabled(Boolean(today.writesEnabled));
+      setAsOf(today.asOf || null);
       setSettlements(history.data || []);
       setSettlementPage(1); setSettlementTotal(history.total || 0);
     } catch (cause) {
@@ -98,10 +117,12 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
     setCredit(account.creditoSugerido);
     setDetail(null); setIdempotencyKey(null); setPixDone(false); setReference('');
     setNotes(''); setReceipt(null); setCommunication(null);
+    setView('prepare');
   };
 
   const readDetail = async (id: string) => {
     const payload = await jsonRequest(`/api/compras/liquidacoes/${id}`);
+    setPixDone(false); setReference(''); setNotes(''); setReceipt(null); setDecisionNote('');
     setDetail(payload.data);
     if (payload.data.communicationId) {
       const current = await jsonRequest(`/api/compras/liquidacoes/comunicacoes/${payload.data.communicationId}`);
@@ -111,6 +132,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
     setContactCandidates(candidates.data || []);
     setContactPage(1); setContactTotal(candidates.total || 0);
     setCommunicationIds([id]);
+    setView('detail');
   };
 
   const loadMoreContacts = async () => {
@@ -234,101 +256,211 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
     finally { setSaving(false); }
   };
 
-  return <Drawer title="Liquidação de hoje" open={open} onClose={onClose} width="min(1080px, 96vw)" destroyOnHidden>
+  const readyCount = accounts.reduce((sum, account) => sum + account.included.length, 0);
+  const excludedCount = accounts.reduce((sum, account) => sum + account.excluded.length, unassigned.length);
+  const grossTotal = accounts.reduce((sum, account) => sum + account.totalBruto, 0);
+  const suggestedCredit = accounts.reduce((sum, account) => sum + account.creditoSugerido, 0);
+  const selectedGross = selected?.included.filter((item) => selectedIds.includes(item.compraId))
+    .reduce((sum, item) => sum + Number(item.valor || 0), 0) || 0;
+  const detailStatus = detail ? settlementStatus(detail.status) : null;
+
+  return <Drawer title="Liquidação de hoje" open={open} onClose={onClose} width="min(1080px, 96vw)" destroyOnHidden
+    extra={<Button icon={<ReloadOutlined />} onClick={() => void refresh()} loading={loading} aria-label="Atualizar valores e estados">Atualizar</Button>}>
     {contextHolder}
-    <Space direction="vertical" size={16} style={{ width: '100%' }}>
-      <Alert type={writesEnabled ? 'warning' : 'info'} showIcon message={writesEnabled ? 'Fechamento habilitado' : 'Fechamento consolidado ainda não ativado'}
-        description="A Bentevi registra o PIX feito no banco; não executa transferência. Até a ORC-07, esta tela é somente leitura em produção." />
-      <Button onClick={() => void refresh()} loading={loading}>Atualizar valores e estados</Button>
+    <div className={styles.page}>
+      {view === 'prepare' || view === 'detail' ? <Button type="text" icon={<ArrowLeftOutlined />}
+        className={styles.backButton} onClick={() => setView(view === 'prepare' ? 'today' : 'history')}>
+        Voltar para {view === 'prepare' ? 'hoje' : 'liquidações registradas'}
+      </Button> : <Segmented className={styles.viewSwitch} value={view} onChange={(value) => setView(value as View)}
+        options={[{ label: 'Visão de hoje', value: 'today' }, { label: `Liquidações registradas (${settlementTotal})`, value: 'history' }]} />}
+
+      {!writesEnabled && <Alert type="info" showIcon message="Fechamento consolidado em modo de leitura"
+        description="Você pode revisar compras e valores. O preparo e a confirmação serão liberados na ORC-07; a Bentevi não executa o PIX no banco." />}
+      {writesEnabled && !canOperate && <Alert type="info" showIcon message="Consulta disponível para seu perfil"
+        description="Ações de fechamento exigem permissão de pagamento." />}
+      {writesEnabled && canOperate && <Alert type="warning" showIcon message="O PIX é feito fora da Bentevi"
+        description="Prepare e confira a liquidação antes de registrar aqui a transferência feita no banco." />}
       {error && <Alert type="error" showIcon message={error} />}
-      {loading && !accounts.length && <Spin />}
-      {!loading && !accounts.length && !unassigned.length && <Empty description="Não há compras PIX pendentes neste momento." />}
-      {unassigned.length > 0 && <Alert type="warning" showIcon message={`${unassigned.length} compra(s) sem fornecedor identificável`}
-        description={unassigned.map((item) => `#${item.dsid}: ${item.reasons.map((reason) => reason.label).join(', ')}`).join(' · ')} />}
-      {accounts.map((account) => <section key={account.fornecedorId} style={{ border: '1px solid #ddd', borderRadius: 8, padding: 16 }}>
-        <Space wrap><Title level={5} style={{ margin: 0 }}>{account.fornecedor}</Title>
-          <Tag>{account.cnpjMasked}</Tag><Tag>PIX {account.pixKeyMasked}</Tag>
-          {!account.valid && <Tag color="red">Cadastro financeiro inválido</Tag>}</Space>
-        <div><Text strong>Bruto {formatCurrency(account.totalBruto)} · crédito sugerido {formatCurrency(account.creditoSugerido)} · PIX sugerido {formatCurrency(account.totalBruto - account.creditoSugerido)}</Text></div>
-        <Text type="secondary">{account.included.length} pronta(s); {account.excluded.length} excluída(s)</Text>
-        <List size="small" header="Incluídas" dataSource={account.included} locale={{ emptyText: 'Nenhuma compra pronta' }}
-          renderItem={(item) => <List.Item>Compra DSLite #{item.dsid} · venda #{item.pedidoNumero || '—'} · {formatCurrency(Number(item.valor || 0))} · etiqueta {item.etiqueta || 'não informada'}</List.Item>} />
-        <List size="small" header="Exceções" dataSource={account.excluded} locale={{ emptyText: 'Nenhuma exceção' }}
-          renderItem={(item) => <List.Item>Compra DSLite #{item.dsid} · {item.reasons.map((reason) => reason.label).join(' · ')}</List.Item>} />
-        <Button disabled={!account.valid || !account.included.length} onClick={() => selectAccount(account)}>Fechar pagamentos</Button>
-      </section>)}
-      <Title level={5}>Liquidações registradas</Title>
-      <List dataSource={settlements} locale={{ emptyText: 'Nenhuma liquidação registrada' }}
-        renderItem={(item) => <List.Item actions={[<Button key="open" onClick={() => void readDetail(item.id)}>Ver detalhes</Button>]}>
-          <Space direction="vertical" size={0}><Text strong>{item.fornecedor} · {item.cnpjMasked}</Text>
-            <Text>{formatCurrency(item.grossAmount)} bruto · {formatCurrency(item.creditAmount)} crédito · {formatCurrency(item.pixAmount)} PIX · {item.status}</Text></Space>
-        </List.Item>} />
-      {settlements.length < settlementTotal && <Button onClick={() => void loadMore()}>Carregar mais liquidações</Button>}
-      {selected && !detail && <section style={{ borderTop: '1px solid #ddd', paddingTop: 16 }}>
-        <Title level={5}>Preparar · {selected.fornecedor}</Title>
-        <Checkbox.Group value={selectedIds} onChange={(values) => {
-          const ids = values as string[];
-          setSelectedIds(ids);
-          const total = selected.included.filter((item) => ids.includes(item.compraId))
-            .reduce((sum, item) => sum + Number(item.valor || 0), 0);
-          setCredit((current) => Math.min(current, selected.creditoDisponivel, total));
-          setIdempotencyKey(null);
-        }}
-          options={selected.included.map((item) => ({ label: `Compra #${item.dsid} · ${formatCurrency(Number(item.valor || 0))}`, value: item.compraId }))} />
-        <div><Text>Crédito a utilizar (R$)</Text></div>
-        <InputNumber min={0} max={Math.min(selected.creditoDisponivel, selected.included.filter((item) => selectedIds.includes(item.compraId)).reduce((sum, item) => sum + Number(item.valor || 0), 0))}
-          precision={2} value={credit} onChange={(value) => { setCredit(Number(value || 0)); setIdempotencyKey(null); }} />
-        <div><Text strong>PIX líquido: {formatCurrency(Math.max(0, selected.included.filter((item) => selectedIds.includes(item.compraId)).reduce((sum, item) => sum + Number(item.valor || 0), 0) - credit))}</Text></div>
-        {writable && selected.pixKey && <Space.Compact style={{ width: '100%' }}>
-          <Input readOnly value={`CNPJ ${selected.cnpj || selected.cnpjMasked} · PIX ${selected.pixKey}`} />
-          <Button onClick={() => void navigator.clipboard.writeText(selected.pixKey || '')}>Copiar chave PIX</Button>
-        </Space.Compact>}
+      {loading && !accounts.length && <div className={styles.loading}><Spin tip="Carregando liquidações" /></div>}
+
+      {view === 'today' && <>
+        <div className={styles.sectionHeading}><div><Title level={4}>Visão de hoje</Title>
+          <Text type="secondary">Compras PIX pendentes agrupadas por fornecedor</Text></div>
+          {formatUpdatedAt(asOf) && <Text type="secondary" className={styles.updatedAt}>Atualizado em {formatUpdatedAt(asOf)}</Text>}
+        </div>
+        {!loading && readyCount === 0 && (accounts.length > 0 || unassigned.length > 0) &&
+          <div className={styles.noReady}><Tag color="gold">Sem compras aptas</Tag>
+            <strong>Nenhum fechamento disponível agora</strong>
+            <span>{excludedCount} compra(s) não entram em um novo fechamento. Abra os motivos por fornecedor para entender cada caso.</span></div>}
+        <div className={styles.summaryGrid} aria-label="Resumo da liquidação de hoje">
+          <div className={styles.metric}><span>Fornecedores</span><strong>{accounts.length}</strong></div>
+          <div className={styles.metric}><span>Compras prontas</span><strong>{readyCount}</strong></div>
+          <div className={styles.metric}><span>Excluídas</span><strong>{excludedCount}</strong></div>
+          <div className={`${styles.metric} ${styles.primaryMetric}`}><span>PIX sugerido</span>
+            <strong>{readyCount > 0 ? formatCurrency(Math.max(0, grossTotal - suggestedCredit)) : '—'}</strong>
+            {readyCount === 0 && <small>Sem valor fechável</small>}</div>
+        </div>
+        {!loading && !accounts.length && !unassigned.length &&
+          <Empty description="Não há compras PIX pendentes neste momento." />}
+
+        {unassigned.length > 0 && <Card className={styles.warningCard}>
+          <div className={styles.cardHeader}><div><Title level={5}>Sem fornecedor identificado</Title>
+            <Text type="secondary">Essas compras não podem ser agrupadas em uma conta financeira.</Text></div>
+            <Tag color="orange">{unassigned.length} pendente(s)</Tag></div>
+          <Collapse ghost items={[{ key: 'unassigned', label: 'Ver compras sem fornecedor', children:
+            <div className={styles.purchaseList}>{unassigned.map((item) => <div className={styles.purchaseRow} key={item.compraId}>
+              <strong>Compra DSLite #{item.dsid}</strong><Tag color="orange">Fornecedor não identificado</Tag>
+            </div>)}</div> }]} />
+        </Card>}
+
+        <section aria-label="Fornecedores da liquidação" className={styles.supplierList}>
+          {accounts.map((account) => <Card key={account.fornecedorId} className={styles.supplierCard}>
+            <div className={styles.cardHeader}><div className={styles.supplierIdentity}>
+              <Title level={5}>{account.fornecedor}</Title>
+              <div className={styles.tagLine}><Tag>CNPJ {account.cnpjMasked}</Tag><Tag>PIX {account.pixKeyMasked}</Tag></div>
+            </div><div className={styles.statusTags}>
+              {!account.valid && <Tag color="red">Cadastro financeiro inválido</Tag>}
+              <Tag color={account.included.length ? 'green' : 'gold'}>{account.included.length} pronta(s)</Tag>
+              {account.excluded.length > 0 && <Tag color="orange">{account.excluded.length} excluída(s)</Tag>}
+            </div></div>
+
+            {account.included.length > 0 ? <>
+              <div className={styles.amountGrid} aria-label={`Valores de ${account.fornecedor}`}>
+                <div><span>Bruto apto</span><strong>{formatCurrency(account.totalBruto)}</strong></div>
+                <div><span>Crédito sugerido</span><strong>{formatCurrency(account.creditoSugerido)}</strong></div>
+                <div className={styles.pixAmount}><span>PIX sugerido</span><strong>{formatCurrency(Math.max(0, account.totalBruto - account.creditoSugerido))}</strong></div>
+              </div>
+              <div className={styles.listHeading}>Prontas para o fechamento</div>
+              <div className={styles.purchaseList}>{account.included.map((item) => <div className={styles.purchaseRow} key={item.compraId}>
+                <div><strong>Compra DSLite #{item.dsid}</strong><span>Venda #{item.pedidoNumero || '—'} · etiqueta {item.etiqueta || 'não informada'}</span></div>
+                <strong>{formatCurrency(Number(item.valor || 0))}</strong>
+              </div>)}</div>
+            </> : <div className={styles.noAccountReady}>Nenhuma compra apta para fechar neste fornecedor.</div>}
+
+            {account.excluded.length > 0 && <Collapse className={styles.exceptions} items={[{ key: 'exceptions',
+              label: <span><strong>Compras fora do fechamento</strong> <Tag color="orange">{account.excluded.length}</Tag></span>,
+              children: <div className={styles.exceptionList}>{account.excluded.map((item) =>
+                <details className={styles.exceptionRow} key={item.compraId}>
+                  <summary><strong>Compra DSLite #{item.dsid}</strong><span className={styles.reasonTags}>
+                    {item.reasons.slice(0, 2).map((reason) => <Tag color="gold" key={reason.code}>{reason.label}</Tag>)}
+                    {item.reasons.length > 2 && <Tag>+{item.reasons.length - 2} motivo(s)</Tag>}
+                  </span></summary>
+                  <ul>{item.reasons.map((reason) => <li key={reason.code}>{reason.label}</li>)}</ul>
+                </details>)}</div> }]} />}
+            {writable && account.valid && account.included.length > 0 && <div className={styles.cardAction}>
+              <Button type="primary" onClick={() => selectAccount(account)}>Preparar liquidação</Button>
+            </div>}
+          </Card>)}
+        </section>
+      </>}
+
+      {view === 'history' && <section className={styles.history} aria-label="Liquidações registradas">
+        <div className={styles.sectionHeading}><div><Title level={4}>Liquidações registradas</Title>
+          <Text type="secondary">Consulte valores, comprovantes e acompanhamento de cada fechamento.</Text></div></div>
+        {!loading && settlements.length === 0 && <Empty description="Nenhuma liquidação registrada." />}
+        {settlements.map((item) => { const status = settlementStatus(item.status); return <Card key={item.id} className={styles.historyCard}>
+          <div className={styles.cardHeader}><div><strong>{item.fornecedor}</strong><div className={styles.muted}>{item.cnpjMasked}</div></div>
+            <Tag color={status.color}>{status.label}</Tag></div>
+          <div className={styles.historyValues}><span>Bruto <b>{formatCurrency(item.grossAmount)}</b></span>
+            <span>Crédito <b>{formatCurrency(item.creditAmount)}</b></span>
+            <span>PIX <b>{formatCurrency(item.pixAmount)}</b></span></div>
+          <div className={styles.cardAction}><Text type="secondary">{formatUpdatedAt(item.confirmedAt || item.preparedAt)}</Text>
+            <Button onClick={() => void readDetail(item.id).catch((cause) => messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : null, 'Falha ao carregar liquidação.')))}>Ver detalhes</Button></div>
+        </Card>; })}
+        {settlements.length < settlementTotal && <Button onClick={() => void loadMore()}>Carregar mais liquidações</Button>}
+      </section>}
+
+      {view === 'prepare' && selected && <section className={styles.flow} aria-label="Preparar liquidação">
+        <div className={styles.sectionHeading}><div><Title level={4}>Preparar · {selected.fornecedor}</Title>
+          <Text type="secondary">Selecione as compras e confira o crédito antes de criar o fechamento.</Text></div></div>
+        <Card className={styles.flowCard} title="Compras incluídas">
+          <Checkbox.Group className={styles.checkboxList} value={selectedIds} onChange={(values) => {
+            const ids = values as string[];
+            setSelectedIds(ids);
+            const total = selected.included.filter((item) => ids.includes(item.compraId))
+              .reduce((sum, item) => sum + Number(item.valor || 0), 0);
+            setCredit((current) => Math.min(current, selected.creditoDisponivel, total));
+            setIdempotencyKey(null);
+          }}>
+            {selected.included.map((item) => <Checkbox key={item.compraId} value={item.compraId}>
+              Compra #{item.dsid} · venda #{item.pedidoNumero || '—'} · {formatCurrency(Number(item.valor || 0))}
+            </Checkbox>)}
+          </Checkbox.Group>
+        </Card>
+        <Card className={styles.flowCard} title="Composição do pagamento">
+          <div className={styles.amountGrid}><div><span>Bruto selecionado</span><strong>{formatCurrency(selectedGross)}</strong></div>
+            <div><span>Crédito disponível</span><strong>{formatCurrency(selected.creditoDisponivel)}</strong></div>
+            <div className={styles.pixAmount}><span>PIX líquido</span><strong>{formatCurrency(Math.max(0, selectedGross - credit))}</strong></div></div>
+          <label className={styles.fieldLabel} htmlFor="oracle-credit">Crédito a utilizar (R$)</label>
+          <InputNumber id="oracle-credit" min={0} max={Math.min(selected.creditoDisponivel, selectedGross)}
+            precision={2} value={credit} onChange={(value) => { setCredit(Number(value || 0)); setIdempotencyKey(null); }} />
+          {writable && selected.pixKey && <Space.Compact className={styles.pixKey}>
+            <Input readOnly value={`CNPJ ${selected.cnpj || selected.cnpjMasked} · PIX ${selected.pixKey}`} />
+            <Button onClick={() => void navigator.clipboard.writeText(selected.pixKey || '')}>Copiar chave PIX</Button>
+          </Space.Compact>}
+        </Card>
         <Button type="primary" loading={saving} disabled={!writable || !selectedIds.length} onClick={() => void prepare()}>Preparar liquidação</Button>
-        {!writesEnabled && <Text type="secondary">A revisão está disponível; o preparo será liberado somente na ORC-07.</Text>}
       </section>}
-      {detail && <section style={{ borderTop: '1px solid #ddd', paddingTop: 16 }}>
-        <Title level={5}>Liquidação · {detail.fornecedor} · {detail.status}</Title>
-        <Text strong>Bruto {formatCurrency(detail.grossAmount)} · crédito {formatCurrency(detail.creditAmount)} · PIX {formatCurrency(detail.pixAmount)}</Text>
-        <List size="small" dataSource={detail.items} renderItem={(item) => <List.Item>Compra #{item.dsid_snapshot} · venda #{item.sale_number_snapshot} · bruto {formatCurrency(item.gross_amount)} · crédito {formatCurrency(item.credit_amount)} · PIX {formatCurrency(item.pix_amount)}</List.Item>} />
-        {detail.hasReceipt && <Button href={`/api/compras/liquidacoes/${detail.id}/comprovante`} target="_blank">Ver comprovante</Button>}
-        {detail.status === 'prepared' && <Space direction="vertical" style={{ width: '100%' }}>
-          <Alert type="warning" showIcon message={detail.pixAmount === 0 ? 'Compensação integral por crédito' : 'Confirme somente após fazer o PIX no banco'} />
-          {detail.pixAmount > 0 && <Input value={reference} maxLength={200} onChange={(event) => setReference(event.target.value)} placeholder="Referência PIX (opcional)" />}
-          <Input.TextArea value={notes} maxLength={1000} onChange={(event) => setNotes(event.target.value)} placeholder="Observações internas (opcional)" />
-          {!detail.hasReceipt && <Upload maxCount={1} beforeUpload={(file) => { if (file.size > 10 * 1024 * 1024) { messageApi.error('Comprovante maior que 10 MB'); return Upload.LIST_IGNORE; } setReceipt(file as File); return false; }}
-            onRemove={() => setReceipt(null)} fileList={receipt ? [{ uid: 'receipt', name: receipt.name, status: 'done' }] : []} accept="application/pdf,image/jpeg,image/png,image/webp">
-            <Button>Comprovante opcional</Button></Upload>}
-          <Checkbox checked={pixDone} onChange={(event) => setPixDone(event.target.checked)}>{detail.pixAmount === 0 ? 'Confirmo a compensação de crédito' : 'Confirmo que o PIX foi realizado no banco'}</Checkbox>
-          <Space><Button type="primary" disabled={!writable || !pixDone} loading={saving} onClick={() => void confirm()}>Confirmar fechamento</Button>
-            <Button danger disabled={!writable} loading={saving} onClick={() => Modal.confirm({ title: 'Cancelar liquidação preparada?', onOk: cancel })}>Cancelar preparo</Button></Space>
-        </Space>}
-        {detail.status === 'confirmed' && <Space direction="vertical" style={{ width: '100%' }}>
-          <Text>Pós-processamento: {detail.postprocess?.status || 'não encontrado'}</Text>
-          {detail.resumeEffects.map((effect) => <div key={effect.pedido_id}><Text>Venda {effect.pedido_id} · retomada {effect.status} · {effect.attempts} tentativa(s)</Text>
-            {['uncertain', 'failed'].includes(effect.status) && <Space direction="vertical">
-              <Select value={decision === 'done' ? 'done' : 'not_done'} onChange={setDecision} options={[{ value: 'done', label: 'Retomada comprovada' }, { value: 'not_done', label: 'Não ocorreu; liberar nova tentativa' }]} />
-              <Input.TextArea value={decisionNote} onChange={(event) => setDecisionNote(event.target.value)} placeholder="Evidência e justificativa (mín. 10 caracteres)" />
-              <Button disabled={!writable || decisionNote.trim().length < 10} onClick={() => void resolveEffect('resume', effect.pedido_id)}>Registrar decisão</Button>
-            </Space>}</div>)}
-          {!detail.communicationId && <><Text>Selecione explicitamente as liquidações do mesmo contato para a mensagem:</Text>
-            <Checkbox.Group value={communicationIds} onChange={(values) => {
-              if (values.length > 20) { messageApi.warning('Selecione no máximo 20 liquidações.'); return; }
-              setCommunicationIds(values as string[]);
-            }}
-              options={contactCandidates.map((item) => ({ label: `${item.fornecedor} · ${item.cnpjMasked} · PIX ${formatCurrency(item.pixAmount)}`, value: item.id }))} />
-            {contactCandidates.length < contactTotal && <Button onClick={() => void loadMoreContacts()}>Carregar mais deste contato</Button>}
-            <Button disabled={!writable || !communicationIds.includes(detail.id)} onClick={() => void createCommunication()}>Gerar mensagem para revisão</Button></>}
-          {communication && <section><Tag>{communication.status}</Tag><Text>Contato {communication.contactMasked}</Text>
-            <pre style={{ whiteSpace: 'pre-wrap' }}>{communication.body}</pre>
-            {communication.status === 'draft' && <Button type="primary" disabled={!writable} loading={saving}
-              onClick={() => Modal.confirm({ title: 'Aprovar e enfileirar esta mensagem?', onOk: approveCommunication })}>Aprovar mensagem</Button>}
-            {['uncertain', 'failed'].includes(communication.status) && <Space direction="vertical">
-              <Select value={decision === 'sent' ? 'sent' : 'not_sent'} onChange={setDecision} options={[{ value: 'sent', label: 'Envio comprovado' }, { value: 'not_sent', label: 'Não enviado; liberar nova tentativa' }]} />
-              <Input.TextArea value={decisionNote} onChange={(event) => setDecisionNote(event.target.value)} placeholder="Evidência e justificativa (mín. 10 caracteres)" />
-              <Button disabled={!writable || decisionNote.trim().length < 10} onClick={() => void resolveEffect('communication')}>Registrar decisão</Button>
-            </Space>}</section>}
-        </Space>}
+
+      {view === 'detail' && detail && <section className={styles.flow} aria-label="Detalhe da liquidação">
+        <div className={styles.sectionHeading}><div><Title level={4}>{detail.fornecedor}</Title>
+          <Text type="secondary">Liquidação registrada · CNPJ {detail.cnpjMasked}</Text></div>
+          {detailStatus && <Tag color={detailStatus.color}>{detailStatus.label}</Tag>}</div>
+        <div className={styles.amountGrid}><div className={styles.metric}><span>Bruto</span><strong>{formatCurrency(detail.grossAmount)}</strong></div>
+          <div className={styles.metric}><span>Crédito</span><strong>{formatCurrency(detail.creditAmount)}</strong></div>
+          <div className={`${styles.metric} ${styles.primaryMetric}`}><span>PIX</span><strong>{formatCurrency(detail.pixAmount)}</strong></div></div>
+        <Card className={styles.flowCard} title="Compras deste fechamento">
+          <div className={styles.purchaseList}>{detail.items.map((item) => <div className={styles.purchaseRow} key={item.id}>
+            <div><strong>Compra #{item.dsid_snapshot}</strong><span>Venda #{item.sale_number_snapshot}</span></div>
+            <div className={styles.itemAmounts}><span>Bruto {formatCurrency(item.gross_amount)}</span><span>Crédito {formatCurrency(item.credit_amount)}</span>
+              <strong>PIX {formatCurrency(item.pix_amount)}</strong></div>
+          </div>)}</div>
+          {detail.hasReceipt && <Button href={`/api/compras/liquidacoes/${detail.id}/comprovante`} target="_blank">Ver comprovante</Button>}
+        </Card>
+        {detail.status === 'prepared' && <Card className={styles.flowCard} title="Conferir e confirmar">
+          <div className={styles.stack}><Alert type="warning" showIcon message={detail.pixAmount === 0 ? 'Compensação integral por crédito' : 'Confirme somente após fazer o PIX no banco'} />
+            {detail.pixAmount > 0 && <Input value={reference} maxLength={200} onChange={(event) => setReference(event.target.value)} placeholder="Referência PIX (opcional)" />}
+            <Input.TextArea value={notes} maxLength={1000} onChange={(event) => setNotes(event.target.value)} placeholder="Observações internas (opcional)" />
+            {!detail.hasReceipt && <Upload maxCount={1} beforeUpload={(file) => { if (file.size > 10 * 1024 * 1024) { messageApi.error('Comprovante maior que 10 MB'); return Upload.LIST_IGNORE; } setReceipt(file as File); return false; }}
+              onRemove={() => setReceipt(null)} fileList={receipt ? [{ uid: 'receipt', name: receipt.name, status: 'done' }] : []} accept="application/pdf,image/jpeg,image/png,image/webp">
+              <Button>Comprovante opcional</Button></Upload>}
+            <Checkbox checked={pixDone} onChange={(event) => setPixDone(event.target.checked)}>{detail.pixAmount === 0 ? 'Confirmo a compensação de crédito' : 'Confirmo que o PIX foi realizado no banco'}</Checkbox>
+            <Space wrap><Button type="primary" disabled={!writable || !pixDone} loading={saving} onClick={() => void confirm()}>Confirmar fechamento</Button>
+              <Button danger disabled={!writable} loading={saving} onClick={() => Modal.confirm({ title: 'Cancelar liquidação preparada?', onOk: cancel })}>Cancelar preparo</Button></Space>
+          </div>
+        </Card>}
+        {detail.status === 'confirmed' && <>
+          <Card className={styles.flowCard} title="Acompanhamento das vendas">
+            <Text>Pós-processamento: <Tag>{detail.postprocess?.status || 'não encontrado'}</Tag></Text>
+            <div className={styles.stack}>{detail.resumeEffects.map((effect) => <div className={styles.effectRow} key={effect.pedido_id}>
+              <strong>Venda {effect.pedido_id}</strong><Tag>{effect.status}</Tag><Text type="secondary">{effect.attempts} tentativa(s)</Text>
+              {['uncertain', 'failed'].includes(effect.status) && <div className={styles.stack}>
+                <Select value={decision === 'done' ? 'done' : 'not_done'} onChange={setDecision} options={[{ value: 'done', label: 'Retomada comprovada' }, { value: 'not_done', label: 'Não ocorreu; liberar nova tentativa' }]} />
+                <Input.TextArea value={decisionNote} onChange={(event) => setDecisionNote(event.target.value)} placeholder="Evidência e justificativa (mín. 10 caracteres)" />
+                <Button disabled={!writable || decisionNote.trim().length < 10} onClick={() => void resolveEffect('resume', effect.pedido_id)}>Registrar decisão</Button>
+              </div>}</div>)}</div>
+          </Card>
+          <Card className={styles.flowCard} title="Comunicação ao fornecedor">
+            {!detail.communicationId && <div className={styles.stack}><Text>Selecione explicitamente as liquidações do mesmo contato para a mensagem:</Text>
+              <Checkbox.Group className={styles.checkboxList} value={communicationIds} onChange={(values) => {
+                if (values.length > 20) { messageApi.warning('Selecione no máximo 20 liquidações.'); return; }
+                setCommunicationIds(values as string[]);
+              }} options={contactCandidates.map((item) => ({ label: `${item.fornecedor} · ${item.cnpjMasked} · PIX ${formatCurrency(item.pixAmount)}`, value: item.id }))} />
+              {contactCandidates.length < contactTotal && <Button onClick={() => void loadMoreContacts()}>Carregar mais deste contato</Button>}
+              <Button disabled={!writable || !communicationIds.includes(detail.id)} onClick={() => void createCommunication()}>Gerar mensagem para revisão</Button>
+            </div>}
+            {communication && <div className={styles.stack}><div><Tag>{communication.status}</Tag><Text>Contato {communication.contactMasked}</Text></div>
+              <pre className={styles.messagePreview}>{communication.body}</pre>
+              {communication.status === 'draft' && <Button type="primary" disabled={!writable} loading={saving}
+                onClick={() => Modal.confirm({ title: 'Aprovar e enfileirar esta mensagem?', onOk: approveCommunication })}>Aprovar mensagem</Button>}
+              {['uncertain', 'failed'].includes(communication.status) && <div className={styles.stack}>
+                <Select value={decision === 'sent' ? 'sent' : 'not_sent'} onChange={setDecision} options={[{ value: 'sent', label: 'Envio comprovado' }, { value: 'not_sent', label: 'Não enviado; liberar nova tentativa' }]} />
+                <Input.TextArea value={decisionNote} onChange={(event) => setDecisionNote(event.target.value)} placeholder="Evidência e justificativa (mín. 10 caracteres)" />
+                <Button disabled={!writable || decisionNote.trim().length < 10} onClick={() => void resolveEffect('communication')}>Registrar decisão</Button>
+              </div>}</div>}
+          </Card>
+        </>}
       </section>}
-    </Space>
+    </div>
   </Drawer>;
 }
