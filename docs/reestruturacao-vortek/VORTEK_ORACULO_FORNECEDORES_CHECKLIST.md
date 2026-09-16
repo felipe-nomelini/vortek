@@ -59,7 +59,7 @@ Regras permanentes:
 | 1 | ORC-01 — Schema aditivo | Aceito | ORC-00 aceito | SHA executado, schema e smoke confirmados |
 | 2 | ORC-02 — Estados e elegibilidade | Aceito | ORC-01 aceito | ORC-03 em nova tarefa |
 | 3 | ORC-03 — Núcleo financeiro transacional | Aceito | ORC-02 aceito | ORC-04 em nova tarefa |
-| 4 | ORC-04 — Pós-processamento e comunicação | Pendente | ORC-03 aceito | Jobs reprocessáveis sem duplicação |
+| 4 | ORC-04 — Pós-processamento e comunicação | Validado em DEV | ORC-03 aceito | Publicação passiva, read-back e smoke |
 | 5 | ORC-05 — Interfaces operacionais | Pendente | ORC-04 aceito | Compras, Vendas e Conta Corrente |
 | 6 | ORC-06 — Cancelamentos e divergências | Pendente | ORC-05 aceito | Três cenários financeiros comprovados |
 | 7 | ORC-07 — Ativação controlada | Pendente | ORC-06 aceito | Primeiro fechamento real acompanhado |
@@ -211,6 +211,8 @@ Extensões previstas:
 - `POST /api/compras/liquidacoes/[id]/confirmar`
 - `POST /api/compras/liquidacoes/[id]/cancelar`
 - `POST /api/compras/liquidacoes/[id]/comunicar`
+- `GET /api/compras/liquidacoes/comunicacoes/[id]` e `POST /api/compras/liquidacoes/comunicacoes/[id]/aprovar`
+- `POST /api/compras/liquidacoes/comunicacoes/[id]/resolver`, `POST /api/compras/liquidacoes/[id]/retomadas/[pedidoId]/resolver` e `POST /api/compras/liquidacoes/jobs/[id]/reprocessar` para decisões humanas auditadas
 - endpoint de gestão do estado de abastecimento
 
 A rota individual existente se tornará um adaptador de liquidação com um item na ativação controlada da ORC-07. Até lá, o novo writer ficará desligado e o fluxo individual atual permanecerá ativo; depois da troca não poderão existir dois writers financeiros ativos.
@@ -300,14 +302,18 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-04 — Pós-processamento e comunicação
 
-- [ ] Criar os dois tipos de job usando a infraestrutura existente.
-- [ ] Enfileirar pós-processamento na mesma transação da confirmação.
-- [ ] Retomar DSLite de forma idempotente.
-- [ ] Gerar comunicação consolidada por contato e separada por CNPJ.
-- [ ] Exigir revisão humana antes do envio.
-- [ ] Registrar envio, falha, tentativa e reprocessamento.
-- [ ] Não desfazer o financeiro por falha externa.
-- [ ] Impedir mensagens e retomadas duplicadas.
+- [x] Completar os dois tipos de job usando a infraestrutura persistente existente.
+- [x] Preservar o enfileiramento transacional do pós-processamento criado na ORC-03.
+- [x] Retomar DSLite com chave estável por liquidação/venda e acompanhar o job filho.
+- [x] Gerar comunicação consolidada por contato com blocos separados por CNPJ.
+- [x] Exigir revisão humana por API protegida antes de enfileirar o envio; tela na ORC-05.
+- [x] Registrar envio, falha, tentativa e decisões manuais de reprocessamento.
+- [x] Manter efeitos externos fora da transação e nunca desfazer o financeiro por falha deles.
+- [x] Impedir repetição automática de mensagem ou retomada quando o resultado externo for incerto.
+
+**Decisão de lançamento:** a seleção das liquidações para uma mensagem é explícita; o destinatário é o contato fotografado na liquidação. O rascunho é somente leitura até aprovação de admin/gerente. Timeout ou resultado externo ambíguo exige conferência humana com justificativa antes de qualquer nova tentativa. `ORACULO_SETTLEMENT_WRITES_ENABLED` continua desligada em produção até a ORC-07; nenhum efeito externo real será criado na ORC-04.
+
+**Validação DEV:** migration ORC-04 aplicada duas vezes em PostgreSQL 17.6 local sintético; testes de concorrência, revisão, fila, retomada e resultado externo incerto passaram. Publicação e aceite produtivo ainda pendentes.
 
 **Aceite:** falhas de DSLite/WhatsApp ficam visíveis e reprocessáveis sem duplicar efeitos.
 
@@ -466,6 +472,7 @@ Para cada ação técnica:
 | 16/09/2026 | ORC-03 | Preflight `.162`; backup de metadados e DDL em `/tmp/oraculo-orc03-preflight-20260916.json`, SHA-256 `856b5850370b29e73ea2924e6939b8d77af2a669d79b8638f6bc4d3edc851bf1` | Conexão autenticada via pooler da `.162` confirmou PostgreSQL 17.6, migration anterior `20260916180000`, RLS nas duas tabelas, trigger de saldo existente, zero liquidações/itens, 995 movimentos, 22 PIX pendentes `unknown`. Serviço `local/bentevi-prod` usa `bentevi-prod` e não possui a flag privada de escrita | Backup proporcional ao delta de função/schema; não é backup integral de dados. Não fazer reversão cega após novas gravações |
 | 16/09/2026 | ORC-03 | SHA funcional remoto `64d576bc527d3e35dc29fd971655376e1de8a140`; migration `20260916193000`, SHA-256 `607eb7d12d31af85f3f826b3222f693a5abcb05dbc1df167e7348e679e808787` | `dev` e `bentevi-prod` no mesmo SHA por fast-forward. Migration aplicada em transação curta à `.162`; registry, quatro RPCs restritas a `service_role`, três guards, dois índices e bloqueio de INSERT direto nas liquidações conferidos. Read-back: zero liquidações, itens, usos de crédito do Oráculo, jobs e compras vinculadas; 995 movimentos, 22 PIX pendentes, 22 abastecimentos `unknown` | Nenhum pagamento, crédito ou job real criado. Flag privada de escrita ausente/desligada |
 | 16/09/2026 | ORC-03 | Easypanel ação `cmu3w060e000207ov7lb1h8df`; digest `7bfd10c5643c7cb8379574fbec11f2df92b9ab7cfc5b99438f998fd0dde79948` | Primeira tentativa `cmu3vz45i002p07k3djdc68km` falhou por DNS do GitHub antes do build; segundo deploy concluiu e digest da ação coincide com a imagem do contêiner ativo. Health/login `200`, Compras `307` sem sessão, API de Compras, preview, detalhe e preparo/confirmação `401` sem sessão | **Aceito tecnicamente:** publicação passiva. Não houve canário autenticado nem liquidação real; ORC-04 e gates posteriores seguem obrigatórios antes da ativação |
+| 16/09/2026 | ORC-04 | Migration `20260916210000_oraculo_supplier_settlement_postprocess.sql`; SHA ainda não promovido | PostgreSQL 17.6 local sintético: migration aplicada duas vezes; seis testes de integração, cinco testes do worker e três testes de API passaram. Regressões dirigidas de ORC-03, DSLite, preview e WhatsApp passaram; `npm run validate`, `npm run build` e varredura de secrets passaram | Núcleo validado em DEV. Flag de escrita desligada, sem chamada externa real. Preflight `.162` confirmou migration anterior `20260916193000`, zero liquidações, zero itens, zero jobs Oráculo, 22 PIX pendentes e quatro tabelas novas ausentes. Publicação e read-back pendentes |
 
 ## 9. Próxima ação permitida
 

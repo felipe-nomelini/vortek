@@ -2779,6 +2779,78 @@ ml_pricing_groups: {
           },
         ]
       }
+      supplier_settlement_resume_effects: {
+        Row: {
+          settlement_id: string
+          pedido_id: string
+          status: string
+          child_job_id: string | null
+          attempts: number
+          error_code: string | null
+          updated_at: string
+        }
+        Insert: {
+          settlement_id: string
+          pedido_id: string
+          status?: string
+          child_job_id?: string | null
+          attempts?: number
+          error_code?: string | null
+          updated_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['supplier_settlement_resume_effects']['Row']>
+        Relationships: []
+      }
+      supplier_settlement_communications: {
+        Row: {
+          id: string
+          selection_key: string
+          contact_phone: string
+          body: string
+          status: string
+          version: number
+          created_by: string
+          created_at: string
+          reviewed_by: string | null
+          reviewed_at: string | null
+          message_id: string | null
+          attempts: number
+          error_code: string | null
+          sent_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          selection_key: string
+          contact_phone: string
+          body: string
+          created_by: string
+          id?: string
+          status?: string
+          version?: number
+          created_at?: string
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+          message_id?: string | null
+          attempts?: number
+          error_code?: string | null
+          sent_at?: string | null
+          updated_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['supplier_settlement_communications']['Row']>
+        Relationships: []
+      }
+      supplier_settlement_communication_members: {
+        Row: { communication_id: string; settlement_id: string }
+        Insert: { communication_id: string; settlement_id: string }
+        Update: Partial<Database['public']['Tables']['supplier_settlement_communication_members']['Row']>
+        Relationships: []
+      }
+      supplier_oracle_manual_decisions: {
+        Row: { id: string; target_type: string; target_id: string; decision: string; actor: string; note: string; created_at: string }
+        Insert: { target_type: string; target_id: string; decision: string; actor: string; note: string; id?: string; created_at?: string }
+        Update: Partial<Database['public']['Tables']['supplier_oracle_manual_decisions']['Row']>
+        Relationships: []
+      }
       supplier_balance_movements: {
         Row: {
           id: string
@@ -4122,6 +4194,30 @@ ml_pricing_groups: {
           p_expected_version: number
           p_actor: string
         }
+        Returns: Json
+      }
+      supplier_oracle_communication_draft: {
+        Args: { p_ids: string[]; p_selection_key: string; p_body: string; p_actor: string }
+        Returns: Json
+      }
+      supplier_oracle_communication_approve: {
+        Args: { p_id: string; p_expected_version: number; p_actor: string }
+        Returns: Json
+      }
+      supplier_oracle_claim_job: {
+        Args: { p_type: string }
+        Returns: Json
+      }
+      supplier_oracle_resolve_resume: {
+        Args: { p_settlement_id: string; p_pedido_id: string; p_decision: string; p_note: string; p_actor: string }
+        Returns: Json
+      }
+      supplier_oracle_resolve_communication: {
+        Args: { p_id: string; p_decision: string; p_note: string; p_actor: string }
+        Returns: Json
+      }
+      supplier_oracle_requeue_job: {
+        Args: { p_job_id: string; p_note: string; p_actor: string }
         Returns: Json
       }
       bvf_authorize_video_generation: {

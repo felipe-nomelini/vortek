@@ -36,6 +36,10 @@ import {
   PRICING_REANALYSIS_JOB_TYPE,
 } from '@/services/pricing-reanalysis';
 import { processDuePricingExperimentCheckpoints } from '@/services/pricing-experiments';
+import {
+  ORACLE_COMMUNICATION_JOB, ORACLE_POSTPROCESS_JOB,
+  processSupplierOracleQueue, recoverStaleSupplierOracleJob,
+} from '@/services/supplier-oracle-jobs';
 
 export const maxDuration = 300;
 
@@ -377,6 +381,11 @@ export async function POST(request: Request) {
         continue;
       }
       if (!isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
+      if ([ORACLE_POSTPROCESS_JOB, ORACLE_COMMUNICATION_JOB].includes(job.tipo)) {
+        await recoverStaleSupplierOracleJob(serviceClient, job);
+        results.push({ task: job.tipo, action: 'external_check_required', jobId: job.id });
+        continue;
+      }
       if (job.tipo === 'whatsapp_label_send') {
         const log = parseWhatsappLabelJobLog(job.log);
         const retryAttempt = getWhatsappLabelRetry(log).attempt + 1;
@@ -411,6 +420,13 @@ export async function POST(request: Request) {
 
   const whatsappQueueResult = await processWhatsappLabelQueue(serviceClient);
   results.push({ task: 'whatsapp_label_send', action: 'queue_processed', ...whatsappQueueResult });
+  try {
+    results.push({ task: 'supplier_oracle', action: 'queue_processed',
+      ...await processSupplierOracleQueue(serviceClient) });
+  } catch (error: any) {
+    console.error('[cron-dispatch] falha na fila do Oráculo', error?.message || error);
+    results.push({ task: 'supplier_oracle', action: 'queue_error' });
+  }
 
   if (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until)) {
     results.push({
