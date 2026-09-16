@@ -42,3 +42,11 @@ test('anúncio sem grupo não recebe vínculo fabricado', async () => {
   const f = fixture(); f.rows.ml_pricing_groups = [];
   assert.equal((await loadProductMlListings(f.client, ['P1'])).get('P1')[0].pricingGroup, null);
 });
+test('snapshot encerrado prevalece sobre estado e preço locais defasados', async () => {
+  const f = fixture(); f.rows.ml_pricing_groups = [];
+  f.rows.anuncios_ml[0].status = 'paused'; f.rows.anuncios_ml[0].preco_ml = 219;
+  f.rows.catalogo_ml_snapshot = [{ produto_id: 'P1', ml_item_id: 'MLB1', status: 'closed',
+    catalog_listing: false, price: 237.71 }];
+  const dto = (await loadProductMlListings(f.client, ['P1'])).get('P1')[0];
+  assert.equal(dto.status, 'encerrado'); assert.equal(dto.price, 237.71);
+});

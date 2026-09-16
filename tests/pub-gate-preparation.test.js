@@ -20,6 +20,7 @@ function harness(options={}) {
     'node:crypto':require('node:crypto'),zod:require('zod'),'@/lib/supabase':{createServiceClient:()=>client},
     '@/lib/ml-category-guard':{assertAllowedMlCategoryForProduct:async()=>{}},
     '@/lib/ml-critical-attributes':{loadMlIdentityKit:async()=>({}),assessMlProductIdentity:()=>({comparisons:[{field:'BRAND',local:'A',remote:'A',status:'SEM_CONFLITO',reason:'same',evidence:[{collectedAt:new Date().toISOString()}]}]})},
+    '@/lib/ml/brand-equivalences':{loadMlBrandEquivalences:async()=>[]},
     '@/lib/ml-listing-identity':{isMlIdentityComplete:()=>!options.identityPending},
     '@/lib/ml-listing-description':{buildEvidenceBasedMlDescription:()=> 'Descrição comprovada'},
     '@/lib/dslite/supplier-policy':{loadOperationalDropshippingSupplierIds:async()=>new Set()},

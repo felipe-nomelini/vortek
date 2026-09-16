@@ -1205,10 +1205,43 @@ export default function ProductsPage() {
     }];
   };
 
+  const relistSource = (record: ProductRow) => {
+    const listings = displayMlListings(record);
+    if (!record.product.active || record.fulfillmentCapacity.safe < 1
+      || listings.some(listing => ['ativo', 'pausado'].includes(listing.status))) return null;
+    return listings.find(listing => listing.itemId === record.product.mlItemId
+      && listing.status === 'encerrado' && Number.isFinite(listing.price) && Number(listing.price) > 0) || null;
+  };
+
+  const prepareRelist = (record: ProductRow) => {
+    const source = relistSource(record);
+    if (!source) return;
+    Modal.confirm({
+      title: 'Preparar republicação no Mercado Livre',
+      content: `O anúncio ${source.itemId} está encerrado. Preparar uma proposta com preço de ${formatCurrency(Number(source.price))} e estoque disponível de ${record.fulfillmentCapacity.safe} unidade(s)? A publicação exige aprovação na central.`,
+      okText: 'Preparar proposta', cancelText: 'Cancelar',
+      onOk: async () => {
+        const response = await fetch('/api/ml/anuncio/criar', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'relist', produtoId: record.product.id,
+            sourceItemId: source.itemId, priceCents: Math.round(Number(source.price) * 100) }),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.alertId) {
+          messageApi.error(userSafeMessage(result.error, 'Não foi possível preparar a republicação.'));
+          throw new Error('publication_relist_preparation_failed');
+        }
+        window.dispatchEvent(new CustomEvent('pricing-decision-open', { detail: { alertId: result.alertId } }));
+        messageApi.success('Proposta preparada. Revise e confirme na central de preços.');
+      },
+    });
+  };
+
   const primaryProductAction = (record: ProductRow) => {
     const hasListing = displayMlListings(record).some(listing => ['ativo', 'pausado'].includes(listing.status))
       || record.product.mlStatus !== 'sem_anuncio';
     if (isPublishEligible(record)) return { key: 'publish', label: 'Publicar no ML', icon: <PlusOutlined /> };
+    if (relistSource(record)) return { key: 'relist', label: 'Republicar no ML', icon: <ReloadOutlined /> };
     if (hasListing) return { key: 'price', label: 'Alterar preço', icon: <EditOutlined /> };
     return { key: 'open', label: 'Ver produto', icon: <ArrowRightOutlined /> };
   };
@@ -1234,6 +1267,7 @@ export default function ProductsPage() {
       : primary.icon;
     const runAction = (key: string) => {
       if (key === 'publish') void abrirCriarAnuncioML(record.product);
+      if (key === 'relist') prepareRelist(record);
       if (key === 'price') openPriceEditor(record);
       if (key === 'open' || key === 'edit') router.push(`/produtos/${record.product.id}`);
       if (key.startsWith('listing:')) {

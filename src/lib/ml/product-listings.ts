@@ -93,10 +93,12 @@ export async function loadProductMlListings(
     const productId = String(listing.produto_id || '').trim();
     const itemId = String(listing.ml_item_id || '').trim().toUpperCase();
     const catalog = Boolean(listing.catalogo);
+    const observed = listingsByProductId.get(productId)?.get(itemId);
+    const isClosed = observed?.status === 'encerrado';
     upsert(productId, itemId, {
       type: catalog ? 'catalog' : 'standard',
-      status: normalizeListingStatus(listing.status),
-      price: Number(listing.preco_ml || 0),
+      status: isClosed ? 'encerrado' : normalizeListingStatus(listing.status),
+      price: isClosed ? Number(observed.price) : Number(listing.preco_ml || 0),
       permalink: listing.permalink || null,
       catalogStatus: catalog
         ? (listingsByProductId.get(productId)?.get(itemId)?.catalogStatus || 'perdendo')
