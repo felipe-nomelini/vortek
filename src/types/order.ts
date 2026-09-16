@@ -79,6 +79,7 @@ export type PedidoOperacionalApiDto = Omit<PedidoRow, 'fulfillment_source' | 'lu
   supplier_payment_mode?: SupplierPaymentMode | null;
   supplier_payment_status?: string | null;
   supplier_payment_amount?: number | null;
+  supplier_settlement_id?: string | null;
   supplier_payment_receipt_path?: string | null;
   supplier_payment_reference?: string | null;
   supplier_payment_notes?: string | null;
@@ -117,6 +118,10 @@ export type PedidoVendaCompraDetalheApiDto = {
   supplier_payment_mode: string | null;
   supplier_payment_status: string | null;
   supplier_payment_amount: number | null;
+  supplier_settlement_id?: string | null;
+  supplier_settlement_status?: string | null;
+  supplier_settlement_credit_amount?: number | null;
+  supplier_settlement_pix_amount?: number | null;
   supplier_payment_reference: string | null;
   supplier_payment_notes: string | null;
   nf_numero: string | null;
@@ -230,6 +235,7 @@ export interface Order {
   supplier_payment_mode?: SupplierPaymentMode | null;
   supplier_payment_status?: 'pending' | 'paid' | 'failed' | 'cancelled' | string | null;
   supplier_payment_amount?: number | null;
+  supplier_settlement_id?: string | null;
   supplier_payment_receipt_path?: string | null;
   supplier_payment_reference?: string | null;
   supplier_payment_notes?: string | null;

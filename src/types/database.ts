@@ -4188,6 +4188,10 @@ ml_pricing_groups: {
         }
         Returns: Json
       }
+      supplier_oracle_attach_receipt: {
+        Args: { p_settlement_id: string; p_expected_version: number; p_path: string; p_actor: string }
+        Returns: Json
+      }
       supplier_oracle_cancel: {
         Args: {
           p_settlement_id: string

@@ -79,7 +79,6 @@ export const APP_NAVIGATION: AppNavigationEntry[] = [
         href: '/fornecedores/creditos',
         label: 'Créditos',
         icon: 'supplierCredits',
-        adminOnly: true,
       },
     ],
   },

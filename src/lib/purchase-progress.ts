@@ -4,6 +4,7 @@ export interface PurchaseProgressInput {
   status?: string | null;
   supplier_payment_mode?: string | null;
   supplier_payment_status?: string | null;
+  supplier_settlement_id?: string | null;
   bkr1_pix_deferred?: boolean;
   nf_numero?: string | null;
   nf_chave?: string | null;
@@ -81,6 +82,8 @@ export function resolvePurchaseProgress(purchase: PurchaseProgressInput): Purcha
     nextLabel = 'Revisar o registro do PIX';
   } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'cancelled') {
     nextLabel = 'Revisar o pagamento cancelado';
+  } else if (paymentMode === 'prepaid_pix' && paymentStatus !== 'paid' && purchase.supplier_settlement_id) {
+    nextLabel = 'Revisar liquidação preparada';
   } else if (paymentMode === 'prepaid_pix' && paymentStatus !== 'paid' && purchase.bkr1_pix_deferred) {
     nextLabel = 'Aguardar a etiqueta do Mercado Livre';
   } else if (paymentMode === 'prepaid_pix' && paymentStatus !== 'paid') {

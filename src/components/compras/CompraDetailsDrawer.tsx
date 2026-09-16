@@ -68,6 +68,7 @@ export interface CompraOperacional {
   supplier_payment_mode: 'postpaid' | 'prepaid_pix' | 'balance_account' | null;
   supplier_payment_status: 'pending' | 'paid' | 'failed' | 'cancelled' | null;
   supplier_payment_amount: number | null;
+  supplier_settlement_id: string | null;
   supplier_payment_reference: string | null;
   supplier_payment_receipt_url: string | null;
   supplier_payment_receipt_path: string | null;
@@ -248,12 +249,13 @@ export default function CompraDetailsDrawer({
       <Descriptions size="small" bordered column={{ xs: 1, sm: 2 }}>
         <Descriptions.Item label="Modalidade">{paymentModeLabel(purchase.supplier_payment_mode)}</Descriptions.Item>
         <Descriptions.Item label="Situação na Bentevi">{paymentStatusTag(purchase.supplier_payment_status)}</Descriptions.Item>
+        {purchase.supplier_settlement_id && <Descriptions.Item label="Liquidação consolidada">#{purchase.supplier_settlement_id.slice(0, 8)}</Descriptions.Item>}
         <Descriptions.Item label="Valor do fornecedor">
           {purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}
         </Descriptions.Item>
         <Descriptions.Item label="Registrado em">{formatDateTime(purchase.supplier_payment_confirmed_at)}</Descriptions.Item>
         <Descriptions.Item label="Comprovante">
-          {purchase.supplier_payment_receipt_path || purchase.supplier_payment_receipt_url ? 'Anexado' : 'Não anexado'}
+          {purchase.supplier_settlement_id ? 'Consulte na liquidação' : purchase.supplier_payment_receipt_path || purchase.supplier_payment_receipt_url ? 'Anexado' : 'Não anexado'}
         </Descriptions.Item>
         <Descriptions.Item label="Referência">{purchase.supplier_payment_reference || '—'}</Descriptions.Item>
         <Descriptions.Item label="Observações" span={2}>{purchase.supplier_payment_notes || '—'}</Descriptions.Item>

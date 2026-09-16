@@ -191,6 +191,13 @@ export default function PedidoDetailsDrawer({
                   ? formatStatus(purchase?.supplier_payment_status)
                   : `${formatCurrency(purchase.supplier_payment_amount)} · ${formatStatus(purchase.supplier_payment_status)}`}
               </Descriptions.Item>
+              {purchase?.supplier_settlement_id && <Descriptions.Item label="Liquidação consolidada">
+                <Space direction="vertical" size={0}>
+                  <Text>#{purchase.supplier_settlement_id.slice(0, 8)} · {purchase.supplier_settlement_status || 'estado indisponível'}</Text>
+                  {purchase.supplier_settlement_credit_amount != null && <Text>Crédito alocado {formatCurrency(purchase.supplier_settlement_credit_amount)} · PIX alocado {formatCurrency(purchase.supplier_settlement_pix_amount || 0)}</Text>}
+                  <Link href={`/compras?fornecedorId=${encodeURIComponent(purchase.fornecedor_id || '')}`}>Ver em Compras</Link>
+                </Space>
+              </Descriptions.Item>}
             </Descriptions>
           </section>
         );

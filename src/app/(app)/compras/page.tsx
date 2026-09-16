@@ -19,6 +19,7 @@ import CompraDetailsDrawer, {
   type CompraDrawerTab,
   type CompraOperacional,
 } from '@/components/compras/CompraDetailsDrawer';
+import OracleSettlementDrawer from '@/components/compras/OracleSettlementDrawer';
 import { formatCurrency } from '@/lib/format';
 import { hasPermission, type VortekRole } from '@/lib/permissions';
 import { resolvePurchaseProgress } from '@/lib/purchase-progress';
@@ -131,6 +132,7 @@ function hasPaymentAction(purchase: CompraOperacional, canConfirmPayment: boolea
     canConfirmPayment
       && !purchase.is_homologation_fixture
       && purchase.supplier_payment_mode === 'prepaid_pix'
+      && !purchase.supplier_settlement_id
       && (purchase.supplier_payment_status === 'pending' || purchase.supplier_payment_status === 'failed')
       && !purchase.bkr1_pix_deferred,
   );
@@ -182,6 +184,7 @@ export default function ComprasPage() {
   const [supplyNote, setSupplyNote] = useState('');
   const [savingSupply, setSavingSupply] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [oracleOpen, setOracleOpen] = useState(false);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [preview, setPreview] = useState<OraclePreview | null>(null);
   const [previewError, setPreviewError] = useState<string | null>(null);
@@ -625,6 +628,7 @@ export default function ComprasPage() {
         <Text type="secondary" className={styles.updatedAt}>{lastUpdatedAt ? `Atualizado às ${lastUpdatedAt.toLocaleTimeString('pt-BR')}` : 'Aguardando primeira atualização'}</Text>
       </div>
       <Space wrap>
+        <Button onClick={() => setOracleOpen(true)}>Liquidação de hoje</Button>
         <Button icon={<FilePdfOutlined />} loading={exportingPdf} onClick={() => void handleExportPdf()}>Exportar PDF</Button>
         <Button type="primary" icon={<ReloadOutlined />} loading={listLoading || summaryLoading || independentLoading} onClick={() => void refreshAll()}>Atualizar</Button>
       </Space>
@@ -693,6 +697,7 @@ export default function ComprasPage() {
       onOpenSale={openSale}
       onOpenDanfe={(purchase) => void openDanfe(purchase)}
     />
+    <OracleSettlementDrawer open={oracleOpen} onClose={() => setOracleOpen(false)} canOperate={canConfirmPayment} />
 
     <Modal
       title={supplyPurchase ? `Abastecimento · compra #${supplyPurchase.dsid}` : 'Abastecimento'}

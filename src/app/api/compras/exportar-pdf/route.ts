@@ -12,6 +12,7 @@ import {
 import { NextResponse } from 'next/server';
 import { GET as getPurchases } from '@/app/api/compras/route';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
+import { createServiceClient } from '@/lib/supabase';
 import {
   resolvePurchaseProgress,
   type PurchaseProgress,
@@ -40,6 +41,9 @@ type ExportRow = {
   valorFrete: number;
   supplierPaymentMode: string;
   supplierPaymentStatus: string;
+  settlementId: string | null;
+  settlementCredit: number | null;
+  settlementPix: number | null;
   nfDslite: string;
   rastreio: string;
   progress: PurchaseProgress;
@@ -299,6 +303,9 @@ function prepareRow(row: ExportRow, fonts: ReportFonts): PreparedRow {
         ),
         ...makeLines(`Venda ${formatCurrency(row.valorVenda)}`, widths.values, fonts, { size: 5.6, color: colors.textSecondary }),
         ...makeLines(`Frete ${formatCurrency(row.valorFrete)}`, widths.values, fonts, { size: 5.6, color: colors.textSecondary }),
+        ...(row.settlementId ? makeLines(`Liq. #${row.settlementId.slice(0, 8)}`, widths.values, fonts, { size: 5.5, color: colors.textSecondary }) : []),
+        ...(row.settlementCredit != null ? makeLines(`Crédito ${formatCurrency(row.settlementCredit)}`, widths.values, fonts, { size: 5.5, color: colors.textSecondary }) : []),
+        ...(row.settlementPix != null ? makeLines(`PIX aloc. ${formatCurrency(row.settlementPix)}`, widths.values, fonts, { size: 5.5, color: colors.textSecondary }) : []),
       ],
     },
     fiscal: {
@@ -434,9 +441,9 @@ function buildSummaryMetrics(rows: ExportRow[]): Array<{ label: string; value: s
     { label: 'EM REVISÃO', value: String(reviewCount), detail: 'Precisam de conferência', color: colors.error },
     { label: 'FATURADAS', value: String(invoicedCount), detail: 'Com faturamento concluído', color: colors.success },
     {
-      label: 'VALOR PIX PENDENTE',
+      label: 'BRUTO PENDENTE',
       value: formatCurrency(pendingKnownTotal),
-      detail: pendingMissingAmount > 0 ? `${pendingMissingAmount} sem valor informado` : 'Somente valores conhecidos',
+      detail: pendingMissingAmount > 0 ? `${pendingMissingAmount} sem valor informado` : 'Antes de créditos; não é PIX líquido',
       color: colors.primary,
     },
   ];
@@ -710,7 +717,7 @@ async function buildPdf(rows: ExportRow[], filterDescription: string): Promise<U
   return document.save({ useObjectStreams: false });
 }
 
-function mapExportRow(row: Record<string, any>): ExportRow {
+function mapExportRow(row: Record<string, any>, allocation?: { credit_amount: number; pix_amount: number }): ExportRow {
   const dateParts = formatDateParts(row.data_criacao);
   const productDescription = String(row.produto_descricao || '').trim() || 'Produto não informado';
   const progress = resolvePurchaseProgress(row);
@@ -733,6 +740,9 @@ function mapExportRow(row: Record<string, any>): ExportRow {
     valorFrete: Number(row.valor_frete || 0),
     supplierPaymentMode: String(row.supplier_payment_mode || ''),
     supplierPaymentStatus: String(row.supplier_payment_status || ''),
+    settlementId: row.supplier_settlement_id ? String(row.supplier_settlement_id) : null,
+    settlementCredit: allocation ? Number(allocation.credit_amount) : null,
+    settlementPix: allocation ? Number(allocation.pix_amount) : null,
     nfDslite: String(row.nf_numero || '—'),
     rastreio: String(row.rastreio || '—'),
     progress,
@@ -777,7 +787,17 @@ export async function GET(request: Request) {
       );
     }
 
-    const rows = (Array.isArray(payload?.data) ? payload.data : []).map(mapExportRow);
+    const purchases: Record<string, any>[] = Array.isArray(payload?.data) ? payload.data : [];
+    const attachedIds = purchases.filter((row) => row.supplier_settlement_id).map((row) => String(row.id));
+    const allocationByPurchase = new Map<string, { credit_amount: number; pix_amount: number }>();
+    const client = createServiceClient();
+    for (let index = 0; index < attachedIds.length; index += 100) {
+      const { data, error } = await client.from('supplier_settlement_items')
+        .select('compra_id,credit_amount,pix_amount').in('compra_id', attachedIds.slice(index, index + 100)).is('released_at', null);
+      if (error) return NextResponse.json({ erro: 'Falha ao consultar alocações da liquidação' }, { status: 500 });
+      for (const item of data || []) allocationByPurchase.set(item.compra_id, item);
+    }
+    const rows = purchases.map((row) => mapExportRow(row, allocationByPurchase.get(String(row.id))));
     const pdf = await buildPdf(rows, buildFilterDescription(sourceUrl, rows));
     const date = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
 

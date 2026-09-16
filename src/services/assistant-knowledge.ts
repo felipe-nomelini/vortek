@@ -159,13 +159,14 @@ async function readFacts(db: Client, input: AssistantQuery, now: Date, meta: Met
       progress: getOrderSalesProgress(order, now.getTime()),
       blockers: getOperationalUrgencyReasons(order, configuration.delayedAfterMinutes, now.getTime()),
       dsliteId: stringOrNull(order.dslite_id),
-      paymentStatus: stringOrNull(order.supplier_payment_status), fulfillment: stringOrNull(order.fulfillment_source),
+      paymentStatus: stringOrNull(order.supplier_payment_status),
+      settlementId: stringOrNull(order.supplier_settlement_id), fulfillment: stringOrNull(order.fulfillment_source),
       items: (order.pedido_itens || []).map((item: any) => ({ title: stringOrNull(item.titulo), sku: stringOrNull(item.seller_sku), quantity: numberOrNull(item.quantidade) })),
     } as const;
   }
   if (input.kind === 'purchase') {
     const { data, error, count } = await db.from('compras')
-      .select('id,dsid,status,status_dslite,fornecedor_id,fornecedor_nome,valor_total,valor_frete,data_criacao,produto_sku,produto_descricao,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount', { count: 'exact' })
+      .select('id,dsid,status,status_dslite,fornecedor_id,fornecedor_nome,valor_total,valor_frete,data_criacao,produto_sku,produto_descricao,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_settlement_id', { count: 'exact' })
       .eq('dsid', input.dsliteId).order('id').range(0, RECORD_LIMIT - 1);
     if (error) throw new Error('assistant_purchase_read_failed');
     if (!data?.length) { noRows(meta); return null; }
@@ -174,6 +175,10 @@ async function readFacts(db: Client, input: AssistantQuery, now: Date, meta: Met
       return { kind: 'candidates', candidates: data.map(row => ({ id: row.id, dsliteId: row.dsid })) } as const;
     }
     const row = data[0];
+    const settlement = row.supplier_settlement_id
+      ? await db.from('supplier_settlements').select('id,status,gross_amount,credit_amount,pix_amount').eq('id', row.supplier_settlement_id).maybeSingle()
+      : null;
+    if (settlement?.error) throw new Error('assistant_settlement_read_failed');
     const linked = await db.from('pedidos').select('id,ml_order_id,ml_pack_id,snapshot_source').eq('dslite_id', row.dsid).order('id');
     if (linked.error) throw new Error('assistant_purchase_links_failed');
     meta.includesFixtures = fixture(row) || (linked.data || []).some(fixture);
@@ -181,7 +186,10 @@ async function readFacts(db: Client, input: AssistantQuery, now: Date, meta: Met
     return { kind: input.kind, id: row.id, dsliteId: row.dsid, status: row.status, supplierStatus: row.status_dslite,
       supplierId: row.fornecedor_id, supplierName: row.fornecedor_nome, currency: 'BRL', cost: numberOrNull(row.valor_total), freight: numberOrNull(row.valor_frete),
       date: timestamp(row.data_criacao), supplierSku: row.produto_sku, product: row.produto_descricao, quantity: numberOrNull(row.quantidade),
-      payment: { mode: row.supplier_payment_mode, status: row.supplier_payment_status, amount: numberOrNull(row.supplier_payment_amount) },
+      payment: { mode: row.supplier_payment_mode, status: row.supplier_payment_status, amount: numberOrNull(row.supplier_payment_amount),
+        settlement: settlement?.data ? { id: settlement.data.id, status: settlement.data.status,
+          gross: numberOrNull(settlement.data.gross_amount), credit: numberOrNull(settlement.data.credit_amount),
+          pix: numberOrNull(settlement.data.pix_amount) } : null },
       sales: (linked.data || []).map(sale => ({ id: sale.id, saleId: stringOrNull(sale.ml_order_id), packId: stringOrNull(sale.ml_pack_id) })),
     } as const;
   }

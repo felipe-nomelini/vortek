@@ -60,7 +60,7 @@ Regras permanentes:
 | 2 | ORC-02 — Estados e elegibilidade | Aceito | ORC-01 aceito | ORC-03 em nova tarefa |
 | 3 | ORC-03 — Núcleo financeiro transacional | Aceito | ORC-02 aceito | ORC-04 em nova tarefa |
 | 4 | ORC-04 — Pós-processamento e comunicação | Aceito | ORC-03 aceito | ORC-05 em nova tarefa |
-| 5 | ORC-05 — Interfaces operacionais | Pendente | ORC-04 aceito | Compras, Vendas e Conta Corrente |
+| 5 | ORC-05 — Interfaces operacionais | Validado em DEV | ORC-04 aceito | Migration, publicação passiva, read-back e smoke |
 | 6 | ORC-06 — Cancelamentos e divergências | Pendente | ORC-05 aceito | Três cenários financeiros comprovados |
 | 7 | ORC-07 — Ativação controlada | Pendente | ORC-06 aceito | Primeiro fechamento real acompanhado |
 | 8 | ORC-08 — Dashboard resumido | Pendente | ORC-07 estabilizado | Aceite visual específico |
@@ -319,16 +319,22 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-05 — Interfaces operacionais
 
-- [ ] Adicionar “Liquidação de hoje” e “Fechar pagamentos” em Compras.
-- [ ] Mostrar grupos, bruto, crédito sugerido/escolhido, PIX e exceções.
-- [ ] Permitir comprovante opcional no fechamento.
-- [ ] Exigir confirmação humana do PIX.
-- [ ] Mostrar liquidação e estado financeiro em Vendas, sem misturar logística.
-- [ ] Evoluir Conta Corrente com créditos, reservas, usos, liquidações e ajustes.
-- [ ] Exibir saldo contábil e saldo reconciliado.
-- [ ] Aplicar permissões também nas APIs.
-- [ ] Atualizar PDFs e Assistente quando consumirem os campos afetados.
-- [ ] Projetar liquidações e crédito reservado nas leituras e relatórios afetados, mantendo `supplier_payment_status` compatível.
+- [x] Adicionar “Liquidação de hoje” e “Fechar pagamentos” em Compras.
+- [x] Mostrar grupos, bruto, crédito sugerido/escolhido, PIX e exceções.
+- [x] Permitir comprovante opcional no fechamento.
+- [x] Exigir confirmação humana do PIX.
+- [x] Mostrar liquidação e estado financeiro em Vendas, sem misturar logística.
+- [x] Evoluir Conta Corrente com créditos, reservas, usos, liquidações e ajustes.
+- [x] Exibir saldo contábil e saldo reconciliado.
+- [x] Aplicar permissões também nas APIs.
+- [x] Atualizar PDFs e Assistente quando consumirem os campos afetados.
+- [x] Projetar liquidações e crédito reservado nas leituras e relatórios afetados, mantendo `supplier_payment_status` compatível.
+
+**Definição do saldo:** após escolha do responsável, “saldo contábil” é a soma dos movimentos confirmados; “saldo reconciliado” nesta interface é o saldo contábil menos o crédito reservado por liquidações preparadas. Não representa conciliação bancária externa.
+
+**Publicação passiva:** `ORACULO_SETTLEMENT_WRITES_ENABLED` permanece desligada até a ORC-07. A revisão de grupos e crédito está visível; preparar, anexar comprovante, confirmar, cancelar e comunicar continuam bloqueados no servidor. O fluxo individual legado permanece ativo até sua substituição controlada na ORC-07.
+
+**Validação DEV:** migration de comprovante aplicada duas vezes em PostgreSQL 17.6 local sintético; versão, idempotência, privilégio mínimo e imutabilidade após confirmação passaram. APIs de listagem, agregação por conta e flag foram testadas; regressões de créditos, Vendas, progresso de Compras, Assistente, DSLite e WhatsApp passaram. `npm run validate`, `npm run build`, varredura de secrets e `git diff --check` passaram. Publicação e aceite produtivo ainda pendentes.
 
 **Aceite:** uma tela responde quanto pagar por CNPJ, itens incluídos/excluídos, créditos, etiquetas e exceções.
 
@@ -475,6 +481,7 @@ Para cada ação técnica:
 | 16/09/2026 | ORC-04 | SHA funcional `5a115dbe9873fe76f9d0fd928524c213028a097c`; migration `20260916210000_oraculo_supplier_settlement_postprocess.sql` | PostgreSQL 17.6 local sintético: migration aplicada duas vezes; seis testes de integração, cinco testes do worker e três testes de API passaram. 57 regressões dirigidas, oito testes de banco ORC-03, 34 testes do Assistente, `npm run validate`, `npm run build`, varredura de secrets e `git diff --check` passaram. `dev` e `bentevi-prod` remotas apontaram para o mesmo SHA por fast-forward | Núcleo validado e promovido. Flag de escrita desligada, sem chamada externa real. Preflight `.162`: migration anterior `20260916193000`, zero liquidações/itens/jobs, 22 PIX pendentes e quatro tabelas novas ausentes |
 | 16/09/2026 | ORC-04 | Migration `20260916210000`, SHA-256 `a91c0d596f7278590d62edeb6e5e0eaa1a6ed39de7876827de1d0a82667374ff` | Aplicada em transação curta à `.162`; registry confirmou a versão. Read-back: quatro tabelas novas vazias com RLS ativo, seis RPCs restritas a `service_role`, zero liquidações, itens, retomadas, comunicações, decisões e jobs; 22 PIX pendentes e 22 abastecimentos `unknown` | Nenhuma linha financeira existente alterada. Sem pagamento, retomada DSLite ou WhatsApp real |
 | 16/09/2026 | ORC-04 | Easypanel ação `cmu3xbz5d000l07ovdb3mfd7z`; digest `311a11b5a3727963e2e1ab57086682eb8a134d362b15360017e0ebb18e65d755` | Ação concluída com sucesso; digest da imagem coincide com o contêiner ativo. Health/login `200`, Compras `307` sem sessão; API de Compras e novas APIs de comunicação, aprovação e reprocessamento `401` sem sessão. Read-back produtivo manteve todas as novas tabelas vazias e 22 PIX pendentes `unknown` | **Aceito tecnicamente:** publicação passiva. Sem canário autenticado nem efeito externo real; revisão visual na ORC-05 e ativação controlada na ORC-07 |
+| 16/09/2026 | ORC-05 | Migration `20260916230000_oraculo_supplier_settlement_receipt.sql`; SHA ainda não promovido | PostgreSQL 17.6 local sintético: migration aplicada duas vezes e sete testes de integração ORC-04/05 passaram; três testes de API ORC-05 e regressões dirigidas passaram. `npm run validate`, `npm run build`, varredura de secrets e `git diff --check` passaram. Preflight `.162`: PostgreSQL 17.6, migration anterior `20260916210000`, zero liquidações/itens/jobs, 22 PIX pendentes `unknown`, bucket de comprovantes privado | Código validado em DEV; flag de escrita desligada. Migration, publicação e read-back produtivos pendentes |
 
 ## 9. Próxima ação permitida
 

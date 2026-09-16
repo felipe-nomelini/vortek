@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { HAYAMAX_FORNECEDOR_ID, normalizeMoneyAmount } from '@/lib/supplier-balance';
 import {
   MANUAL_SUPPLIER_LEDGER_ACTIONS,
@@ -68,8 +69,25 @@ async function fetchAllMovements(fornecedorId?: string | null): Promise<Movement
   return rows;
 }
 
+async function fetchAllSettlements() {
+  const service = createServiceClient();
+  const rows: Array<{ id: string; fornecedor_dslite_id: string; status: string;
+    gross_amount: number; credit_amount: number; pix_amount: number;
+    prepared_at: string; confirmed_at: string | null }> = [];
+  for (let offset = 0; ; offset += 500) {
+    const { data, error } = await service.from('supplier_settlements')
+      .select('id,fornecedor_dslite_id,status,gross_amount,credit_amount,pix_amount,prepared_at,confirmed_at')
+      .order('prepared_at', { ascending: false }).order('id', { ascending: false })
+      .range(offset, offset + 499);
+    if (error) throw new Error(error.message);
+    rows.push(...(data || []));
+    if (!data || data.length < 500) break;
+  }
+  return rows;
+}
+
 export async function GET(request: Request) {
-  const auth = await requireAdmin();
+  const auth = await authorizeApiRequest(request, 'purchases.read');
   if (!auth.ok) return auth.response;
 
   try {
@@ -102,20 +120,22 @@ export async function GET(request: Request) {
     }
 
     const service = createServiceClient();
-    const [{ data: fornecedores, error: fornecedoresError }, movements] = await Promise.all([
+    const [{ data: fornecedores, error: fornecedoresError }, movements, settlements] = await Promise.all([
       service
         .from('fornecedores')
         .select('dslite_id,nome,apelido,ativo,status_dslite')
         .neq('dslite_id', HAYAMAX_FORNECEDOR_ID)
         .order('nome', { ascending: true }),
       fetchAllMovements(fornecedorId),
+      fetchAllSettlements(),
     ]);
 
     if (fornecedoresError) throw new Error(fornecedoresError.message);
 
     if (fornecedorId) {
       const fornecedor = (fornecedores || []).find((item) => String(item.dslite_id || '') === fornecedorId) || null;
-      return NextResponse.json({ fornecedor, movements });
+      return NextResponse.json({ fornecedor, movements,
+        settlements: settlements.filter((row) => row.fornecedor_dslite_id === fornecedorId) });
     }
 
     const bySupplier = new Map<string, {
@@ -129,6 +149,8 @@ export async function GET(request: Request) {
       last_movement_at: string | null;
       pending_count: number;
       movement_count: number;
+      reserved: number;
+      reconciled: number;
       read_only: boolean;
     }>();
 
@@ -146,6 +168,8 @@ export async function GET(request: Request) {
         last_movement_at: null,
         pending_count: 0,
         movement_count: 0,
+        reserved: 0,
+        reconciled: 0,
         read_only: false,
       });
     }
@@ -167,6 +191,8 @@ export async function GET(request: Request) {
         last_movement_at: null,
         pending_count: 0,
         movement_count: 0,
+        reserved: 0,
+        reconciled: 0,
         read_only: id === HAYAMAX_FORNECEDOR_ID,
       };
       row.movement_count += 1;
@@ -188,10 +214,18 @@ export async function GET(request: Request) {
       bySupplier.set(id, row);
     }
 
+    for (const settlement of settlements) {
+      if (settlement.status !== 'prepared') continue;
+      const row = bySupplier.get(settlement.fornecedor_dslite_id);
+      if (row) row.reserved += Number(settlement.credit_amount || 0);
+    }
+
     const suppliers = Array.from(bySupplier.values())
       .map((row) => ({
         ...row,
         available: normalizeMoneyAmount(row.available),
+        reserved: normalizeMoneyAmount(row.reserved),
+        reconciled: normalizeMoneyAmount(row.available - row.reserved),
         pending: normalizeMoneyAmount(row.pending),
         used_month: normalizeMoneyAmount(row.used_month),
       }))
@@ -208,6 +242,9 @@ export async function GET(request: Request) {
         available: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.available, 0)),
         pending: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.pending, 0)),
         used_month: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.used_month, 0)),
+        accounting: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.available, 0)),
+        reserved: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.reserved, 0)),
+        reconciled: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.reconciled, 0)),
         suppliers_with_pending: operationalSuppliers.filter((row) => row.pending_count > 0).length,
       },
       suppliers,

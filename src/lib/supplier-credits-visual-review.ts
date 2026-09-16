@@ -14,6 +14,9 @@ export const SUPPLIER_CREDITS_VISUAL_REVIEW_BLOCK = {
 
 export type SupplierCreditsSummary = {
   available: number;
+  accounting?: number;
+  reserved?: number;
+  reconciled?: number;
   pending: number;
   used_month: number;
   suppliers_with_pending: number;
@@ -25,6 +28,8 @@ export type SupplierCreditPosition = {
   ativo: boolean;
   status_dslite: string | null;
   available: number;
+  reserved?: number;
+  reconciled?: number;
   pending: number;
   used_month: number;
   last_movement_at: string | null;

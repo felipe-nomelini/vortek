@@ -11,6 +11,7 @@ import {
   Form,
   Input,
   InputNumber,
+  List,
   Modal,
   Segmented,
   Select,
@@ -73,6 +74,8 @@ type CreditsResponse = {
   visualReview?: VisualReviewMetadata;
   error?: string;
 };
+type SupplierSettlementRow = { id: string; status: string; gross_amount: number; credit_amount: number;
+  pix_amount: number; prepared_at: string; confirmed_at: string | null };
 
 const EMPTY_SUMMARY: SupplierCreditsSummary = {
   available: 0,
@@ -94,6 +97,7 @@ const SOURCE_LABELS: Record<string, string> = {
   ml_cancellation: 'Cancelamento de venda',
   manual: 'Lançamento manual',
   historical_reconciliation: 'Reconciliação histórica',
+  supplier_settlement: 'Liquidação consolidada',
   legacy: 'Histórico importado',
 };
 
@@ -159,12 +163,14 @@ export default function SupplierCreditsPage() {
   const [pendingCount, setPendingCount] = useState(0);
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
+  const [canManage, setCanManage] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('operational');
   const [search, setSearch] = useState('');
   const [showAllPending, setShowAllPending] = useState(false);
 
   const [selectedSupplier, setSelectedSupplier] = useState<SupplierCreditPosition | null>(null);
   const [movements, setMovements] = useState<SupplierCreditMovement[]>([]);
+  const [settlements, setSettlements] = useState<SupplierSettlementRow[]>([]);
   const [drawerLoading, setDrawerLoading] = useState(false);
   const [movementStatus, setMovementStatus] = useState<MovementStatusFilter>('all');
   const [movementType, setMovementType] = useState<SupplierLedgerMovementType | 'all'>('all');
@@ -201,6 +207,9 @@ export default function SupplierCreditsPage() {
 
   useEffect(() => {
     void fetchSummary();
+    fetch('/api/auth/me', { cache: 'no-store' }).then((response) => response.ok ? response.json() : null)
+      .then((profile) => setCanManage(profile?.cargo === 'admin'))
+      .catch(() => setCanManage(false));
   }, [fetchSummary]);
 
   const fetchMovements = useCallback(async (supplier: SupplierCreditPosition) => {
@@ -212,10 +221,12 @@ export default function SupplierCreditsPage() {
       );
       const json = await response.json().catch(() => ({})) as {
         movements?: SupplierCreditMovement[];
+        settlements?: SupplierSettlementRow[];
         error?: string;
       };
       if (!response.ok) throw new Error(json.error || 'Não foi possível carregar o extrato');
       setMovements(Array.isArray(json.movements) ? json.movements : []);
+      setSettlements(Array.isArray(json.settlements) ? json.settlements : []);
     } catch (cause) {
       messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível carregar o extrato. Tente novamente.'));
     } finally {
@@ -245,6 +256,7 @@ export default function SupplierCreditsPage() {
   const openStatement = async (supplier: SupplierCreditPosition) => {
     setSelectedSupplier(supplier);
     setMovements([]);
+    setSettlements([]);
     setMovementStatus('all');
     setMovementType('all');
     await fetchMovements(supplier);
@@ -353,7 +365,7 @@ export default function SupplierCreditsPage() {
       ),
     },
     {
-      key: 'available', title: viewMode === 'historical' ? 'Saldo contábil final' : 'Disponível',
+      key: 'available', title: viewMode === 'historical' ? 'Saldo contábil final' : 'Saldo contábil',
       dataIndex: 'available', align: 'right', width: 165,
       sorter: (left, right) => left.available - right.available,
       render: (value, record) => (
@@ -364,6 +376,14 @@ export default function SupplierCreditsPage() {
       ),
     },
     ...(viewMode === 'operational' ? [{
+      key: 'reconciled', title: 'Saldo reconciliado', dataIndex: 'reconciled' as const,
+      align: 'right' as const, width: 175,
+      sorter: (left: SupplierCreditPosition, right: SupplierCreditPosition) => (left.reconciled ?? left.available) - (right.reconciled ?? right.available),
+      render: (value: number, record: SupplierCreditPosition) => <div className={styles.availableValue}>
+        <strong>{formatCurrency(value ?? record.available)}</strong>
+        <small>{formatCurrency(record.reserved || 0)} reservado</small>
+      </div>,
+    }, {
       key: 'pending', title: 'A confirmar', dataIndex: 'pending' as const,
       align: 'right' as const, width: 165,
       sorter: (left: SupplierCreditPosition, right: SupplierCreditPosition) => left.pending - right.pending,
@@ -453,8 +473,8 @@ export default function SupplierCreditsPage() {
         </div>
         <div className={styles.headerActions}>
           <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchSummary()}>Atualizar</Button>
-          <Button icon={<SyncOutlined />} loading={reconciling} onClick={confirmReconciliation}>Buscar cancelamentos</Button>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => setMovementModalOpen(true)}>Novo movimento</Button>
+          {canManage && <Button icon={<SyncOutlined />} loading={reconciling} onClick={confirmReconciliation}>Buscar cancelamentos</Button>}
+          {canManage && <Button type="primary" icon={<PlusOutlined />} onClick={() => setMovementModalOpen(true)}>Novo movimento</Button>}
         </div>
       </header>
 
@@ -470,7 +490,7 @@ export default function SupplierCreditsPage() {
       )}
 
       <section className={styles.summary} aria-label="Resumo financeiro">
-        <div className={styles.summaryHighlight}><span>Crédito disponível</span><strong>{formatCurrency(summary.available)}</strong><small>confirmado e pronto para compensar</small></div>
+        <div className={styles.summaryHighlight}><span>Saldo reconciliado</span><strong>{formatCurrency(summary.reconciled ?? summary.available)}</strong><small>contábil {formatCurrency(summary.accounting ?? summary.available)} menos reservas {formatCurrency(summary.reserved || 0)}; não é conciliação bancária</small></div>
         <div><span>A confirmar</span><strong>{formatCurrency(summary.pending)}</strong><small>{pendingCount} pendência{pendingCount === 1 ? '' : 's'} aguardando decisão</small></div>
         <div><span>Utilizado no mês</span><strong>{formatCurrency(summary.used_month)}</strong><small>crédito já compensado</small></div>
         <div><span>Fornecedores pendentes</span><strong>{summary.suppliers_with_pending}</strong><small>exigem contato ou conferência</small></div>
@@ -488,7 +508,7 @@ export default function SupplierCreditsPage() {
                 <span className={styles.pendingAge}><ClockCircleOutlined /> há {relativeDate(movement.created_at)}</span>
                 <div className={styles.pendingIdentity}><strong>{movement.fornecedor_nome || 'Fornecedor'}</strong><span>{movement.reference || 'Cancelamento sem referência informada'}</span></div>
                 <div className={styles.pendingAmount}><small>Crédito candidato</small><strong>{formatCurrency(movement.amount)}</strong></div>
-                <Button type="primary" onClick={() => setDecisionMovement(movement)}>Analisar</Button>
+                {canManage && <Button type="primary" onClick={() => setDecisionMovement(movement)}>Analisar</Button>}
               </div>
             ))}</div>}
       </section>
@@ -504,7 +524,7 @@ export default function SupplierCreditsPage() {
         {viewMode === 'historical' && <Alert showIcon type="warning" message="Conta-saldo aposentada · Hayamax" description="Aposentado · somente leitura. Este histórico não participa dos totais operacionais e não permite novos movimentos, decisões ou reconciliações." />}
         <Table<SupplierCreditPosition> rowKey="fornecedor_id" loading={loading} columns={supplierColumns} dataSource={visibleSuppliers}
           pagination={{ pageSize: 15, hideOnSinglePage: true, showTotal: (total) => `${total} fornecedor${total === 1 ? '' : 'es'}` }}
-          scroll={{ x: viewMode === 'operational' ? 1070 : 820 }}
+          scroll={{ x: viewMode === 'operational' ? 1245 : 820 }}
           locale={{ emptyText: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhum fornecedor neste recorte" /> }} />
       </section>
 
@@ -513,11 +533,21 @@ export default function SupplierCreditsPage() {
         open={Boolean(selectedSupplier)} width="min(1040px, 96vw)" loading={drawerLoading} destroyOnHidden onClose={() => setSelectedSupplier(null)}>
         {selectedSupplier?.read_only && <Alert type="warning" showIcon message="Somente leitura" description="Movimentos da antiga conta-saldo permanecem disponíveis apenas para auditoria histórica." className={styles.drawerAlert} />}
         {selectedSupplier && <div className={styles.drawerSummary}>
-          <div><span>{selectedSupplier.read_only ? 'Saldo contábil final' : 'Disponível'}</span><strong>{formatCurrency(selectedSupplier.available)}</strong></div>
+          <div><span>Saldo contábil</span><strong>{formatCurrency(selectedSupplier.available)}</strong></div>
+          {!selectedSupplier.read_only && <div><span>Reservado em preparos</span><strong>{formatCurrency(selectedSupplier.reserved || 0)}</strong></div>}
+          {!selectedSupplier.read_only && <div><span>Saldo reconciliado</span><strong>{formatCurrency(selectedSupplier.reconciled ?? selectedSupplier.available)}</strong><small>Disponível após reservas; não é conciliação bancária.</small></div>}
           <div><span>A confirmar</span><strong>{formatCurrency(selectedSupplier.pending)}</strong></div>
           <div><span>Utilizado no mês</span><strong>{formatCurrency(selectedSupplier.used_month)}</strong></div>
           <div><span>Movimentos</span><strong>{selectedSupplier.movement_count.toLocaleString('pt-BR')}</strong></div>
         </div>}
+        {!selectedSupplier?.read_only && <section style={{ marginBottom: 16 }}>
+          <Typography.Title level={5}>Liquidações</Typography.Title>
+          <List size="small" dataSource={settlements} locale={{ emptyText: 'Nenhuma liquidação para este fornecedor' }}
+            renderItem={(item) => <List.Item>
+              <a href={`/compras?fornecedorId=${encodeURIComponent(selectedSupplier?.fornecedor_id || '')}`}>Liquidação {item.id.slice(0, 8)}</a>
+              <span>{item.status} · bruto {formatCurrency(item.gross_amount)} · crédito {formatCurrency(item.credit_amount)} · PIX {formatCurrency(item.pix_amount)}</span>
+            </List.Item>} />
+        </section>}
         <div className={styles.drawerFilters}>
           <Select<MovementStatusFilter> value={movementStatus} onChange={setMovementStatus} options={[
             { value: 'all', label: 'Todas as situações' }, { value: 'pending', label: 'A confirmar' },
@@ -539,7 +569,7 @@ export default function SupplierCreditsPage() {
           <Form.Item name="fornecedor_id" label="Fornecedor" rules={[{ required: true, message: 'Escolha um fornecedor' }]}>
             <Select showSearch optionFilterProp="label" placeholder="Selecione o fornecedor" options={operationalSuppliers.map((supplier) => ({ value: supplier.fornecedor_id, label: supplier.fornecedor_nome }))} />
           </Form.Item>
-          {selectedMovementSupplier && <div className={styles.balancePreview}><span>Crédito disponível agora</span><strong>{formatCurrency(selectedMovementSupplier.available)}</strong></div>}
+          {selectedMovementSupplier && <div className={styles.balancePreview}><span>Crédito disponível após reservas</span><strong>{formatCurrency(selectedMovementSupplier.reconciled ?? selectedMovementSupplier.available)}</strong></div>}
           <Form.Item name="movement_type" label="Efeito do movimento" rules={[{ required: true }]}>
             <Select options={[
               { value: 'manual_credit', label: 'Adicionar crédito confirmado' }, { value: 'credit_usage', label: 'Registrar utilização de crédito' },

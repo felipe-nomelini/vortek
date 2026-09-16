@@ -32,6 +32,8 @@ before(async () => {
     'supabase/migrations/20260916193000_oraculo_supplier_settlement_core.sql',
     'supabase/migrations/20260916210000_oraculo_supplier_settlement_postprocess.sql',
     'supabase/migrations/20260916210000_oraculo_supplier_settlement_postprocess.sql',
+    'supabase/migrations/20260916230000_oraculo_supplier_settlement_receipt.sql',
+    'supabase/migrations/20260916230000_oraculo_supplier_settlement_receipt.sql',
   ]) await admin.query(read(file));
   await admin.end();
   pool = new Pool({ connectionString, max: 4 });
@@ -161,4 +163,28 @@ test('ORC-04 funções novas não são executáveis pelo cliente e RLS fica ativ
     await service.query("select public.supplier_oracle_claim_job('supplier_settlement_communication')");
     await service.query('rollback');
   } finally { service.release(); }
+});
+
+test('ORC-05 anexa comprovante uma vez, versiona e preserva liquidação final', { skip: !enabled }, async () => {
+  await seed();
+  const prepared = (await query('select public.supplier_oracle_prepare($1,$2::uuid[],0,$3,$4,$5) as data',
+    ['108', [purchaseA], 'orc05-receipt-a', 'a'.repeat(64), actor])).rows[0].data;
+  const receiptPath = `liquidacoes/${prepared.id}/${'b'.repeat(64)}.pdf`;
+  await assert.rejects(query('select public.supplier_oracle_attach_receipt($1,1,$2,$3)',
+    [prepared.id, `compras/${purchaseA}/file.pdf`, actor]), /Comprovante inválido/i);
+  const attached = (await query('select public.supplier_oracle_attach_receipt($1,1,$2,$3) as data',
+    [prepared.id, receiptPath, actor])).rows[0].data;
+  assert.equal(attached.version, 2);
+  assert.equal((await query('select public.supplier_oracle_attach_receipt($1,1,$2,$3) as data',
+    [prepared.id, receiptPath, actor])).rows[0].data.replayed, true);
+  await assert.rejects(query('select public.supplier_oracle_attach_receipt($1,1,$2,$3)',
+    [prepared.id, `liquidacoes/${prepared.id}/${'c'.repeat(64)}.pdf`, actor]), /Comprovante ou versão mudou/i);
+  await assert.rejects(query("update public.supplier_settlements set gross_amount=99 where id=$1", [prepared.id]), /operação controlada/i);
+  await query('select public.supplier_oracle_confirm($1,2,$2,null,$3)', [prepared.id, 'PIX-ORC05', actor]);
+  const final = (await query('select status,receipt_path from public.supplier_settlements where id=$1', [prepared.id])).rows[0];
+  assert.deepEqual(final, { status: 'confirmed', receipt_path: receiptPath });
+  await assert.rejects(query('select public.supplier_oracle_attach_receipt($1,3,$2,$3)',
+    [prepared.id, receiptPath, actor]), /não está preparada/i);
+  const rights = (await query("select has_function_privilege('authenticated','public.supplier_oracle_attach_receipt(uuid,integer,text,text)','EXECUTE') as client, has_function_privilege('service_role','public.supplier_oracle_attach_receipt(uuid,integer,text,text)','EXECUTE') as service")).rows[0];
+  assert.deepEqual(rights, { client: false, service: true });
 });

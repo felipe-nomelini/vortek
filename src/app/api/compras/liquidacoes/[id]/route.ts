@@ -21,15 +21,17 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
     .select('id,compra_id,pedido_id,dsid_snapshot,sale_number_snapshot,product_description_snapshot,quantity_snapshot,gross_amount,credit_amount,pix_amount,released_at')
     .eq('settlement_id', id).order('created_at', { ascending: true });
   if (itemsError) return NextResponse.json({ error: 'Falha ao consultar itens' }, { status: 500 });
-  const [effects, postprocess, decisions] = await Promise.all([
+  const [effects, postprocess, decisions, communicationMember] = await Promise.all([
     client.from('supplier_settlement_resume_effects')
       .select('pedido_id,status,attempts,error_code,updated_at').eq('settlement_id', id),
     client.from('jobs').select('id,status,processados,total').eq('tipo', 'supplier_settlement_postprocess')
       .eq('dedupe_key', `supplier_settlement_postprocess:${id}`).limit(1).maybeSingle(),
     client.from('supplier_oracle_manual_decisions').select('target_id,decision,actor,note,created_at')
       .eq('target_type', 'resume').like('target_id', `${id}:%`).order('created_at', { ascending: false }),
+    client.from('supplier_settlement_communication_members').select('communication_id')
+      .eq('settlement_id', id).maybeSingle(),
   ]);
-  if (effects.error || postprocess.error || decisions.error) return NextResponse.json({ error: 'Falha ao consultar pós-processamento' }, { status: 500 });
+  if (effects.error || postprocess.error || decisions.error || communicationMember.error) return NextResponse.json({ error: 'Falha ao consultar pós-processamento' }, { status: 500 });
   return NextResponse.json({ data: {
     id: settlement.id, fornecedorId: settlement.fornecedor_id,
     fornecedorDsliteId: settlement.fornecedor_dslite_id,
@@ -43,6 +45,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
     preparedAt: settlement.prepared_at, confirmedAt: settlement.confirmed_at,
     cancelledAt: settlement.cancelled_at, items: items || [],
     postprocess: postprocess.data || null,
+    communicationId: communicationMember.data?.communication_id || null,
     resumeEffects: effects.data || [],
     manualDecisions: decisions.data || [],
   } }, { headers: { 'Cache-Control': 'no-store' } });

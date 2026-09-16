@@ -22,6 +22,11 @@ test('PIX pendente é a etapa atual e pede registro', () => {
   assert.equal(progress.nextLabel, 'Registrar o PIX do fornecedor');
 });
 
+test('liquidação preparada não sugere o pagamento individual legado', () => {
+  const progress = resolvePurchaseProgress(purchase({ supplier_settlement_id: '00000000-0000-4000-8000-000000000011' }));
+  assert.equal(progress.nextLabel, 'Revisar liquidação preparada');
+});
+
 test('PIX pago com nota avança até aguardar rastreio', () => {
   const progress = resolvePurchaseProgress(purchase({ supplier_payment_status: 'paid', nf_numero: '123' }));
   assert.deepEqual(progress.items.map((item) => item.status), ['finish', 'finish', 'finish', 'process']);

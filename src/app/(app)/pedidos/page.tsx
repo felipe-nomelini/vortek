@@ -145,6 +145,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     supplier_payment_mode: item.supplier_payment_mode || null,
     supplier_payment_status: item.supplier_payment_status || null,
     supplier_payment_amount: item.supplier_payment_amount ?? null,
+    supplier_settlement_id: item.supplier_settlement_id || null,
     supplier_payment_receipt_path: item.supplier_payment_receipt_path || null,
     supplier_payment_reference: item.supplier_payment_reference || null,
     supplier_payment_notes: item.supplier_payment_notes || null,
@@ -761,6 +762,7 @@ export default function PedidosPage() {
               </a>
             </Tooltip>
             <Text type="secondary" style={secondaryStyle}>Status: {purchaseStatus}</Text>
+            {order.supplier_settlement_id && <Text type="secondary" style={secondaryStyle}>Financeiro: liquidação #{order.supplier_settlement_id.slice(0, 8)} · {order.supplier_payment_status || 'estado pendente'}</Text>}
             <Text type="secondary" style={secondaryStyle}>Etiqueta: {labelPresentation.label}</Text>
             {labelPresentation.showWhatsapp && (
               <Text type="secondary" style={secondaryStyle}>WhatsApp: {labelPresentation.whatsappLabel}</Text>

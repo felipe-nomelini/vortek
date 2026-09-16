@@ -551,7 +551,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     const chunk = dsids.slice(index, index + 500);
     const { data, error } = await serviceClient
       .from('compras')
-      .select('id,dsid,status_dslite,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
+      .select('id,dsid,status_dslite,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_settlement_id,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
       .in('dsid', chunk);
 
     if (error) {
@@ -661,7 +661,10 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     if (paymentMode === 'prepaid_pix' && paymentStatus !== 'paid' && !deferBkr1PaymentUntilRealLabel) {
       nextAction = 'confirm_supplier_payment';
       nextActionLabel = 'Confirmar PIX';
-    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && !hasReceipt) {
+    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && compra.supplier_settlement_id && !labelSent) {
+      nextAction = 'blocked';
+      nextActionLabel = 'Acompanhando retomada da liquidação';
+    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && !compra.supplier_settlement_id && !hasReceipt) {
       nextAction = 'send_supplier_receipt';
       nextActionLabel = 'Anexar comprovante';
     } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && hasReceipt && !labelSent) {
@@ -692,6 +695,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
       supplier_payment_mode: compra.supplier_payment_mode || null,
       supplier_payment_status: compra.supplier_payment_status || null,
       supplier_payment_amount: compra.supplier_payment_amount ?? null,
+      supplier_settlement_id: compra.supplier_settlement_id || null,
       supplier_payment_receipt_path: compra.supplier_payment_receipt_path || null,
       supplier_payment_reference: compra.supplier_payment_reference || null,
       supplier_payment_notes: compra.supplier_payment_notes || null,
