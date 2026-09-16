@@ -40,7 +40,9 @@ export async function loadPricingOverrides(client: Client, productId: string): P
     return [{ id: group.id, version: group.current_version, sellerId: group.seller_id, state: group.state,
       anchorItemId: group.anchor_item_id, anchorVariationId: group.anchor_variation_id,
       members: memberResult.data.filter(row => row.group_id === group.id && row.version === group.current_version)
-        .map(row => ({ itemId: row.ml_item_id, variationId: row.variation_id, catalog: row.catalog_listing })),
+        .map(row => ({ itemId: row.ml_item_id, variationId: row.variation_id, catalog: row.catalog_listing }))
+        .sort((left, right) => left.itemId.localeCompare(right.itemId)
+          || String(left.variationId || '').localeCompare(String(right.variationId || ''))),
       protection: protection ? { id: protection.id, origin: protection.origin as 'manual' | 'propagated', createdAt: protection.created_at,
         actorId: protection.actor_id, actorName: profiles.data?.find(row => row.id === protection.actor_id)?.nome ?? null, reason: protection.reason } : null,
       inFlight: operations.data.some(row => row.group_id === group.id),

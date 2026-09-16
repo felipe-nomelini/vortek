@@ -31,9 +31,9 @@ test('erro de storage sanitizado; conflito conhecido preservado', async () => {
   await assert.rejects(domain.managePricingOverride({ rpc: async () => ({ error: { message: 'not-a-real-secret' } }) }, id, id, command), /^Error: pricing_override_write_failed$/);
   await assert.rejects(domain.managePricingOverride({ rpc: async () => ({ error: { message: 'override_group_changed' } }) }, id, id, command), /override_group_changed/);
 });
-function readerClient(failingTable) {
+function readerClient(failingTable, members) {
   const fixtures = { ml_pricing_groups: [{ id, current_version: 2, seller_id: 123, state: 'verified' }],
-    ml_pricing_group_members: [{ group_id: id, version: 2, ml_item_id: 'MLB1', variation_id: '', catalog_listing: false }],
+    ml_pricing_group_members: members || [{ group_id: id, version: 2, ml_item_id: 'MLB1', variation_id: '', catalog_listing: false }],
     manual_pricing_overrides: [{ id, group_id: id, origin: 'manual', created_at: '2026-09-07T12:00:00Z', actor_id: id, reason: 'Teste' }],
     pricing_operations: [{ group_id: id }], profiles: [{ id, nome: 'Gestor' }] };
   return { from(table) { return { select() { return this; }, eq() { return this; }, in() { return this; },
@@ -45,6 +45,14 @@ test('leitura separa proteção, membros e operação em andamento', async () =>
   assert.equal(result.groups[0].sellerId, 123);
   assert.equal(result.groups[0].members[0].itemId, 'MLB1'); assert.equal(result.groups[0].inFlight, true);
   assert.equal('price' in result.groups[0], false);
+});
+test('membros do grupo têm ordem determinística para revalidação', async () => {
+  const members = [
+    { group_id: id, version: 2, ml_item_id: 'MLB2', variation_id: '', catalog_listing: false },
+    { group_id: id, version: 2, ml_item_id: 'MLB1', variation_id: '', catalog_listing: false },
+  ];
+  const result = await domain.loadPricingOverrides(readerClient(undefined, members), id);
+  assert.deepEqual(result.groups[0].members.map(row => row.itemId), ['MLB1', 'MLB2']);
 });
 test('falha em qualquer fonte de proteção não vira desprotegido', async () => {
   for (const table of ['ml_pricing_groups', 'ml_pricing_group_members', 'manual_pricing_overrides', 'pricing_operations', 'profiles']) {
