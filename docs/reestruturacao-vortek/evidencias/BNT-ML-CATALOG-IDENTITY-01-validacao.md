@@ -115,3 +115,13 @@ O run final `a193f074-b307-4902-b250-188f752c6218`, manifesto `a63764e8f156d3366
 Resultado real: 1.519 `SEM_CONFLITO`, 22 `CONFLITO_CONFIRMADO` e 9 `PENDENCIA_VALIDACAO`, totalizando 1.550 com 31 bloqueados. O safety stop `RECONCILIATION_FAILED:1550:1519:31:7` manteve o run pausado e impediu declarar a P0 concluída. Snapshots before/after de produtos, preços, estoque, relações e outbox foram idênticos: zero repricing, relink, alteração de estoque, `custom_price` ou `produtos.ativo`.
 
 Os artefatos finais e o pacote parcial estão em `reports/catalog-identity-p0/BNT-ML-CATALOG-IDENTITY-01-2026-09-15-production-closeout-final/` e na pasta Downloads. A próxima ação deve reauditar somente os sete novos drifts; a análise econômica permanece não autorizada enquanto a reconciliação 1.526/24 não for recuperada ou formalmente substituída.
+
+## Fechamento produtivo — 16/09/2026
+
+Os sete drifts anteriores e mais vinte divergências de título observadas após a sincronização completa foram revalidados por identidade. O readback confirmou SKU, `ml_item_id`, `catalog_product_id`, GTIN, marca, modelo, família e atributos materiais. O anúncio `VTK022543` já estava pausado e permaneceu pausado; o status operacional não foi alterado.
+
+A release final `84069a6a2735e74e4316644e89765d3b5a53ae5d` foi promovida para `bentevi-prod`. O delta final não contém Video Factory e os testes BVF não foram executados. `npm run validate` e nove testes direcionados foram aprovados.
+
+O run produtivo `2be391e2-668f-468e-8efa-07fdc2be4da1`, com Rodrigo (`3e56ce48-f461-4784-848b-097d1e482a43`) como ator, liberou os 27 registros após novo readback vivo. O ledger confirmou 27 ações concluídas. A reconciliação final ficou em 1.526 `SEM_CONFLITO`, 22 `CONFLITO_CONFIRMADO`, duas `PENDENCIA_VALIDACAO` e zero `INCONCLUSIVO`: `1.550 = 1.526 + 22 + 2`.
+
+Os snapshots antes/depois do executor confirmaram zero alteração em preço, `custom_price`, estoque, `produtos.ativo`, vínculo, status de anúncio, outbox e relink. Nenhum repricing foi executado. Os 24 bloqueios continuam ativos para pricing. Os artefatos consolidados estão em `reports/catalog-identity-p0/BNT-ML-CATALOG-IDENTITY-01-2026-09-16-production-final/`.
