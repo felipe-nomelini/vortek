@@ -83,7 +83,7 @@ Regras de uso:
 
 ### Trilha Oráculo de Fornecedores
 
-A implementação da liquidação consolidada de fornecedores é acompanhada no checklist dedicado [VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md](VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md). A trilha foi aberta em 16/09/2026 com `ORC-00`; nenhuma migration, mudança funcional ou ativação é considerada concluída pela criação do planejamento. Executar uma ação por tarefa e manter nesse documento dedicado as evidências, SHAs, migrations, testes, publicação e aceite.
+A implementação da liquidação consolidada de fornecedores é acompanhada no checklist dedicado [VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md](VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md). `ORC-00` foi aceita em 16/09/2026 somente como contrato e controle documental; `ORC-01 — Schema aditivo` permanece pendente para uma nova tarefa. Nenhuma migration, mudança funcional ou ativação é considerada concluída pela criação do planejamento. Executar uma ação por tarefa e manter nesse documento dedicado as evidências, SHAs, migrations, testes, publicação e aceite.
 
 <a id="bentevi-em-operacao"></a>
 

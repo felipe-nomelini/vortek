@@ -55,7 +55,7 @@ Regras permanentes:
 
 | Ordem | Ação | Situação | Dependência | Próximo gate |
 |---:|---|---|---|---|
-| 0 | ORC-00 — Contrato e checklist permanente | Validado em DEV | Nenhuma | Publicar e registrar a evidência final |
+| 0 | ORC-00 — Contrato e checklist permanente | Aceito | Nenhuma | ORC-01 em nova tarefa |
 | 1 | ORC-01 — Schema aditivo | Pendente | ORC-00 aceito | Migration local sintética e compatibilidade |
 | 2 | ORC-02 — Estados e elegibilidade | Pendente | ORC-01 aceito | Preview explica inclusões e exclusões |
 | 3 | ORC-03 — Núcleo financeiro transacional | Pendente | ORC-02 aceito | Concorrência, idempotência e auditoria |
@@ -241,9 +241,9 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 - [x] Definir ordem, gates, testes e recuperação.
 - [x] Criar este checklist permanente.
 - [x] Validar referências e `git diff --check`.
-- [ ] Commitar e enviar a ação em `dev`.
-- [ ] Promover o mesmo SHA para `bentevi-prod`.
-- [ ] Registrar evidência final e mudar ORC-00 para `Aceito`.
+- [x] Commitar e enviar a ação em `dev`.
+- [x] Promover o mesmo SHA para `bentevi-prod`.
+- [x] Registrar evidência final e mudar ORC-00 para `Aceito`.
 
 **Não inclui:** migration, código funcional, escrita no banco ou ativação. A publicação documental segue o fluxo normal do Bentevi.
 
@@ -443,10 +443,9 @@ Para cada ação técnica:
 
 | Data | Ação | SHA/migration | Validação | Resultado e pendência |
 |---|---|---|---|---|
-| 16/09/2026 | ORC-00 | Base `53407a403a` | Referências, `git diff --check` e 34 testes de `tests/assistant-chat.test.js` | Checklist validado em DEV; commit e publicação ainda pendentes |
+| 16/09/2026 | ORC-00 | `199e02bbd67f5ff98c8b1625059c10643c8977a8` | Referências, `git diff --check` e 34 testes de `tests/assistant-chat.test.js` | Enviado a `dev`, promovido por fast-forward e aceito pelo webhook oficial |
+| 16/09/2026 | ORC-00 | Sem migration | Processo produtivo reiniciado; health e login `200`, Compras `307` sem sessão e API de Compras `401` | Publicação documental confirmada, sem escrita financeira ou alteração de banco |
 
 ## 9. Próxima ação permitida
 
-Concluir somente **ORC-00**: validar este documento, registrar o commit publicado e mudar seu estado para `Aceito`.
-
-Somente uma nova tarefa poderá iniciar **ORC-01 — Schema aditivo**.
+**ORC-00 está aceito.** Somente uma nova tarefa poderá iniciar **ORC-01 — Schema aditivo**.
