@@ -61,7 +61,7 @@ Regras permanentes:
 | 3 | ORC-03 — Núcleo financeiro transacional | Aceito | ORC-02 aceito | ORC-04 em nova tarefa |
 | 4 | ORC-04 — Pós-processamento e comunicação | Aceito | ORC-03 aceito | ORC-05 em nova tarefa |
 | 5 | ORC-05 — Interfaces operacionais | Aceito tecnicamente | ORC-04 aceito | Fluxo autenticado real e ativação seguem nos gates operacionais |
-| 6 | ORC-06 — Cancelamentos e divergências | Pendente | ORC-05 aceito | Três cenários financeiros comprovados |
+| 6 | ORC-06 — Cancelamentos e divergências | Validado em DEV | ORC-05 aceito | Publicação em `.162`, smoke e read-back |
 | 7 | ORC-07 — Ativação controlada | Pendente | ORC-06 aceito | Primeiro fechamento real acompanhado |
 | 8 | ORC-08 — Dashboard resumido | Pendente | ORC-07 estabilizado | Aceite visual específico |
 
@@ -340,12 +340,16 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-06 — Cancelamentos e divergências
 
-- [ ] Antes do pagamento: invalidar obrigação e remover elegibilidade.
-- [ ] Depois do pagamento e antes do despacho: criar crédito pendente para análise.
-- [ ] Depois do despacho: não criar crédito automaticamente.
-- [ ] Bloquear divergências até decisão explícita.
-- [ ] Usar movimento compensatório com referência à origem.
-- [ ] Não apagar ou editar liquidação confirmada.
+- [x] Antes do pagamento: invalidar obrigação, cancelar integralmente o lote preparado e liberar reservas.
+- [x] Depois do pagamento e antes do despacho físico comprovado: criar um único crédito pendente pelo valor bruto da compra, sem reduzir automaticamente o PIX.
+- [x] Depois da coleta ou envio comprovados: não criar crédito automaticamente; etiqueta emitida não prova despacho.
+- [x] Bloquear divergências no preparo, confirmação e aprovação de crédito até decisão administrativa explícita.
+- [x] Usar movimento compensatório negativo com referência ao crédito original quando evidência tardia contradiz crédito já confirmado.
+- [x] Não apagar ou editar liquidação confirmada nem corrigir registros históricos retroativamente.
+
+**Contrato ORC-06:** webhook e sincronização ML, sincronização DSLite e reavaliação administrativa chegam ao mesmo procedimento transacional. Histórico de shipment indisponível, incompleto ou contraditório abre revisão; só coleta/envio comprovados definem o limite de despacho. Uma compra cancelada invalida todo o lote ainda preparado. Caso aberto é visível na Conta Corrente e sua resolução exige administrador, justificativa e versão esperada. A flag `ORACULO_SETTLEMENT_WRITES_ENABLED` permanece desligada até ORC-07.
+
+**Evidência DEV:** migration `20260916233000` aplicada duas vezes em PostgreSQL 17.6 local com dados sintéticos. Passaram os três momentos financeiros, cancelamento integral de lote, idempotência sob eventos concorrentes, bloqueio de divergência no banco, resolução manual, compensação auditável, privilégios mínimos, testes de classificação de histórico ML e autorização da API. A publicação e o aceite produtivo ainda estão pendentes neste ponto; nenhum crédito histórico foi reclassificado.
 
 **Aceite:** os três momentos do cancelamento produzem resultados distintos e auditáveis.
 

@@ -63,17 +63,19 @@ export async function GET(request: Request) {
     label_type: string | null; label_delivery_channel: string | null; label_delivered_at: string | null;
   }>>();
   const allocated = new Set<string>();
+  const openDivergences = new Set<string>();
   for (let index = 0; index < visible.length; index += BATCH_SIZE) {
     const chunk = visible.slice(index, index + BATCH_SIZE);
     const dsids = [...new Set(chunk.map((row) => row.dsid).filter(Boolean))];
     const ids = chunk.map((row) => row.id);
-    const [salesResult, allocationsResult] = await Promise.all([
+    const [salesResult, allocationsResult, divergenceResult] = await Promise.all([
       dsids.length ? client.from('pedidos')
         .select('id,numero,dslite_id,situacao,ml_claim_id,snapshot_incompleto,snapshot_pendencias,snapshot_source,label_type,label_delivery_channel,label_delivered_at')
         .in('dslite_id', dsids).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null') : Promise.resolve({ data: [], error: null }),
       client.from('supplier_settlement_items').select('compra_id').in('compra_id', ids).is('released_at', null),
+      client.from('supplier_cancellation_cases').select('compra_id').in('compra_id', ids).eq('status', 'open'),
     ]);
-    if (salesResult.error || allocationsResult.error) {
+    if (salesResult.error || allocationsResult.error || divergenceResult.error) {
       return NextResponse.json({ error: 'Falha ao consultar vínculos da elegibilidade' }, { status: 500 });
     }
     for (const sale of salesResult.data || []) {
@@ -82,6 +84,7 @@ export async function GET(request: Request) {
       salesByDsliteId.set(key, [...(salesByDsliteId.get(key) || []), sale]);
     }
     for (const row of allocationsResult.data || []) allocated.add(row.compra_id);
+    for (const row of divergenceResult.data || []) openDivergences.add(row.compra_id);
   }
 
   const rows = visible.map((purchase) => {
@@ -92,6 +95,7 @@ export async function GET(request: Request) {
       selectedSupplierDsliteId: supplierDsliteId,
       accountValid,
       hasActiveAllocation: allocated.has(purchase.id),
+      hasOpenDivergence: openDivergences.has(purchase.id),
     });
     const labels = oracleExclusionLabels(codes);
     return {

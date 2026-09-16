@@ -2617,6 +2617,48 @@ ml_pricing_groups: {
           },
         ]
       }
+      supplier_cancellation_cases: {
+        Row: {
+          id: string
+          compra_id: string
+          pedido_id: string | null
+          fornecedor_id: string
+          supplier_settlement_id: string | null
+          movement_id: string | null
+          classification: string
+          status: string
+          source: string
+          evidence: Json
+          resolution: string | null
+          resolution_note: string | null
+          resolved_by: string | null
+          resolved_at: string | null
+          version: number
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          compra_id: string
+          pedido_id?: string | null
+          fornecedor_id: string
+          supplier_settlement_id?: string | null
+          movement_id?: string | null
+          classification: string
+          status: string
+          source: string
+          evidence?: Json
+          resolution?: string | null
+          resolution_note?: string | null
+          resolved_by?: string | null
+          resolved_at?: string | null
+          version?: number
+          created_at?: string
+          updated_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['supplier_cancellation_cases']['Row']>
+        Relationships: []
+      }
       supplier_settlements: {
         Row: {
           id: string
@@ -2855,6 +2897,7 @@ ml_pricing_groups: {
         Row: {
           id: string
           supplier_settlement_id: string | null
+          origin_movement_id: string | null
           fornecedor_id: string
           fornecedor_nome: string | null
           movement_type: string
@@ -2876,6 +2919,7 @@ ml_pricing_groups: {
         Insert: {
           id?: string
           supplier_settlement_id?: string | null
+          origin_movement_id?: string | null
           fornecedor_id: string
           fornecedor_nome?: string | null
           movement_type: string
@@ -2897,6 +2941,7 @@ ml_pricing_groups: {
         Update: {
           id?: string
           supplier_settlement_id?: string | null
+          origin_movement_id?: string | null
           fornecedor_id?: string
           fornecedor_nome?: string | null
           movement_type?: string
@@ -4163,6 +4208,31 @@ ml_pricing_groups: {
       [_ in never]: never
     }
     Functions: {
+      supplier_oracle_record_cancellation: {
+        Args: {
+          p_compra_id: string
+          p_pedido_id: string | null
+          p_source: string
+          p_dispatch: string
+          p_evidence: Json
+          p_actor: string
+        }
+        Returns: Json
+      }
+      supplier_oracle_resolve_cancellation: {
+        Args: {
+          p_case_id: string
+          p_expected_version: number
+          p_decision: string
+          p_note: string
+          p_actor: string
+        }
+        Returns: Json
+      }
+      supplier_oracle_decide_cancellation_credit: {
+        Args: { p_movement_id: string; p_status: string; p_note: string | null; p_actor: string }
+        Returns: Json
+      }
       supplier_oracle_credit_preview: {
         Args: { p_supplier_id: string }
         Returns: number

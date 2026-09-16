@@ -3,6 +3,7 @@ import { fetchDsliteResult } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, resolveCompraStatus } from '@/lib/produto-fornecedor';
 import { resolveSupplierPurchasePaymentAmount } from '@/lib/supplier-balance';
+import { recordDslitePurchaseCancellation } from '@/lib/supplier-credits';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { resolveDslitePurchasePageResult } from '@/lib/dslite/api-contract';
 import {
@@ -261,6 +262,7 @@ export async function POST(request: Request) {
               ?? null,
           };
 
+          let persistedPurchaseId: string | null = null;
           if (existente?.id) {
             const existingPaymentMode = String((existente as any)?.supplier_payment_mode || '').trim() || null;
             const existingPaymentStatus = String((existente as any)?.supplier_payment_status || '').trim() || null;
@@ -287,6 +289,7 @@ export async function POST(request: Request) {
               });
             } else {
               updated += 1;
+              persistedPurchaseId = existente.id;
             }
           } else {
             const insertPayload = {
@@ -297,9 +300,10 @@ export async function POST(request: Request) {
                 supplierPaymentStatus: supplierPaymentMode === 'prepaid_pix' ? 'pending' : null,
               }),
             };
-            const { error: insertError } = await client
+            const { data: insertedPurchase, error: insertError } = await client
               .from('compras')
-              .insert(insertPayload as any);
+              .insert(insertPayload as any)
+              .select('id').single();
             if (insertError) {
               failed += 1;
               errors.push({
@@ -309,6 +313,18 @@ export async function POST(request: Request) {
               });
             } else {
               inserted += 1;
+              persistedPurchaseId = insertedPurchase.id;
+            }
+          }
+
+          if (persistedPurchaseId && isDsliteCanceledStatus(pedido.status)) {
+            try {
+              await recordDslitePurchaseCancellation(client, persistedPurchaseId);
+            } catch (cancellationError) {
+              failed += 1;
+              errors.push({ code: 'supplier_cancellation_classification_failed',
+                message: cancellationError instanceof Error ? cancellationError.message : 'Classificação indisponível',
+                context: { dsid: pedido.dsid } });
             }
           }
 

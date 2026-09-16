@@ -56,6 +56,10 @@ type ManualMovementForm = {
 
 type ViewMode = 'operational' | 'historical';
 type MovementStatusFilter = 'all' | 'pending' | 'confirmed' | 'rejected';
+type CancellationCase = { id: string; compra_id: string; pedido_id: string | null;
+  supplier_settlement_id: string | null; movement_id: string | null;
+  classification: string; status: string; source: string; evidence: Record<string, unknown>;
+  resolution: string | null; version: number; created_at: string };
 type VisualReviewMetadata = {
   enabled: true;
   source: 'production-read-only';
@@ -171,6 +175,13 @@ export default function SupplierCreditsPage() {
   const [selectedSupplier, setSelectedSupplier] = useState<SupplierCreditPosition | null>(null);
   const [movements, setMovements] = useState<SupplierCreditMovement[]>([]);
   const [settlements, setSettlements] = useState<SupplierSettlementRow[]>([]);
+  const [cancellationCases, setCancellationCases] = useState<CancellationCase[]>([]);
+  const [caseTotal, setCaseTotal] = useState(0);
+  const [casePage, setCasePage] = useState(1);
+  const [decisionCase, setDecisionCase] = useState<CancellationCase | null>(null);
+  const [caseDecision, setCaseDecision] = useState<'no_credit' | 'pending_credit' | 'compensate'>('no_credit');
+  const [caseNote, setCaseNote] = useState('');
+  const [caseSaving, setCaseSaving] = useState(false);
   const [drawerLoading, setDrawerLoading] = useState(false);
   const [movementStatus, setMovementStatus] = useState<MovementStatusFilter>('all');
   const [movementType, setMovementType] = useState<SupplierLedgerMovementType | 'all'>('all');
@@ -215,24 +226,65 @@ export default function SupplierCreditsPage() {
   const fetchMovements = useCallback(async (supplier: SupplierCreditPosition) => {
     setDrawerLoading(true);
     try {
-      const response = await fetch(
-        `/api/fornecedores/creditos?fornecedor_id=${encodeURIComponent(supplier.fornecedor_id)}`,
-        { cache: 'no-store' },
-      );
+      const [response, caseResponse] = await Promise.all([
+        fetch(`/api/fornecedores/creditos?fornecedor_id=${encodeURIComponent(supplier.fornecedor_id)}`,
+          { cache: 'no-store' }),
+        fetch(`/api/fornecedores/creditos/divergencias?fornecedorId=${encodeURIComponent(supplier.fornecedor_id)}`,
+          { cache: 'no-store' }),
+      ]);
       const json = await response.json().catch(() => ({})) as {
         movements?: SupplierCreditMovement[];
         settlements?: SupplierSettlementRow[];
         error?: string;
       };
+      const caseJson = await caseResponse.json().catch(() => ({})) as {
+        data?: CancellationCase[]; total?: number; error?: string;
+      };
       if (!response.ok) throw new Error(json.error || 'Não foi possível carregar o extrato');
+      if (!caseResponse.ok) throw new Error(caseJson.error || 'Não foi possível carregar divergências');
       setMovements(Array.isArray(json.movements) ? json.movements : []);
       setSettlements(Array.isArray(json.settlements) ? json.settlements : []);
+      setCancellationCases(Array.isArray(caseJson.data) ? caseJson.data : []);
+      setCaseTotal(caseJson.total || 0);
+      setCasePage(1);
     } catch (cause) {
       messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível carregar o extrato. Tente novamente.'));
     } finally {
       setDrawerLoading(false);
     }
   }, [messageApi]);
+
+  const loadMoreCases = async () => {
+    if (!selectedSupplier) return;
+    try {
+      const next = casePage + 1;
+      const response = await fetch(`/api/fornecedores/creditos/divergencias?fornecedorId=${encodeURIComponent(selectedSupplier.fornecedor_id)}&page=${next}`, { cache: 'no-store' });
+      const json = await response.json().catch(() => ({})) as { data?: CancellationCase[]; total?: number; error?: string };
+      if (!response.ok) throw new Error(json.error || 'Falha ao carregar casos');
+      setCancellationCases((current) => [...current, ...(json.data || [])]);
+      setCaseTotal(json.total || 0);
+      setCasePage(next);
+    } catch (cause) { messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Falha ao carregar casos.')); }
+  };
+
+  const resolveCase = async () => {
+    if (!decisionCase || !canManage || caseNote.trim().length < 10) return;
+    setCaseSaving(true);
+    try {
+      const response = await fetch(`/api/fornecedores/creditos/divergencias/${decisionCase.id}/resolver`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ versaoEsperada: decisionCase.version,
+          decisao: caseDecision, justificativa: caseNote.trim() }),
+      });
+      const json = await response.json().catch(() => ({})) as { error?: string };
+      if (!response.ok) throw new Error(json.error || 'Falha ao registrar decisão');
+      setDecisionCase(null); setCaseNote('');
+      messageApi.success('Decisão registrada com rastreabilidade.');
+      await fetchSummary();
+      if (selectedSupplier) await fetchMovements(selectedSupplier);
+    } catch (cause) { messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Falha ao registrar decisão.')); }
+    finally { setCaseSaving(false); }
+  };
 
   const operationalSuppliers = useMemo(() => suppliers.filter((supplier) => !supplier.read_only), [suppliers]);
   const historicalSuppliers = useMemo(() => suppliers.filter((supplier) => supplier.read_only), [suppliers]);
@@ -257,6 +309,7 @@ export default function SupplierCreditsPage() {
     setSelectedSupplier(supplier);
     setMovements([]);
     setSettlements([]);
+    setCancellationCases([]);
     setMovementStatus('all');
     setMovementType('all');
     await fetchMovements(supplier);
@@ -271,11 +324,11 @@ export default function SupplierCreditsPage() {
     try {
       const response = await fetch('/api/fornecedores/creditos/reconciliar', { method: 'POST' });
       const json = await response.json().catch(() => ({})) as { created?: number; error?: string };
-      if (!response.ok) throw new Error(json.error || 'Não foi possível buscar os cancelamentos');
-      messageApi.success(`${json.created || 0} nova(s) pendência(s) encontrada(s).`);
+      if (!response.ok) throw new Error(json.error || 'Não foi possível reavaliar divergências');
+      messageApi.success(`Divergências reavaliadas; ${json.created || 0} novo(s) crédito(s) pendente(s).`);
       await fetchSummary();
     } catch (cause) {
-      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível buscar os cancelamentos. Tente novamente.'));
+      messageApi.error(userSafeMessage(cause instanceof Error ? cause.message : '', 'Não foi possível reavaliar divergências. Tente novamente.'));
     } finally {
       setReconciling(false);
     }
@@ -283,9 +336,9 @@ export default function SupplierCreditsPage() {
 
   const confirmReconciliation = () => {
     modalApi.confirm({
-      title: 'Buscar créditos de cancelamentos?',
-      content: 'A Bentevi revisará as vendas canceladas com PIX já pago ao fornecedor e criará somente as pendências que ainda não existem.',
-      okText: 'Buscar agora',
+      title: 'Reavaliar divergências abertas?',
+      content: 'A Bentevi consultará novamente a evidência dos casos já registrados. Não fará varredura ou crédito retroativo de vendas antigas.',
+      okText: 'Reavaliar agora',
       cancelText: 'Cancelar',
       icon: <SyncOutlined />,
       onOk: reconcile,
@@ -473,7 +526,7 @@ export default function SupplierCreditsPage() {
         </div>
         <div className={styles.headerActions}>
           <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchSummary()}>Atualizar</Button>
-          {canManage && <Button icon={<SyncOutlined />} loading={reconciling} onClick={confirmReconciliation}>Buscar cancelamentos</Button>}
+          {canManage && <Button icon={<SyncOutlined />} loading={reconciling} onClick={confirmReconciliation}>Reavaliar divergências</Button>}
           {canManage && <Button type="primary" icon={<PlusOutlined />} onClick={() => setMovementModalOpen(true)}>Novo movimento</Button>}
         </div>
       </header>
@@ -548,6 +601,20 @@ export default function SupplierCreditsPage() {
               <span>{item.status} · bruto {formatCurrency(item.gross_amount)} · crédito {formatCurrency(item.credit_amount)} · PIX {formatCurrency(item.pix_amount)}</span>
             </List.Item>} />
         </section>}
+        {!selectedSupplier?.read_only && <section style={{ marginBottom: 16 }}>
+          <Typography.Title level={5}>Cancelamentos e divergências</Typography.Title>
+          <List size="small" dataSource={cancellationCases} locale={{ emptyText: 'Nenhum caso registrado para este fornecedor' }}
+            renderItem={(item) => <List.Item actions={item.status === 'open' && canManage
+              ? [<Button key="decide" onClick={() => { setDecisionCase(item); setCaseDecision('no_credit'); setCaseNote(''); }}>Analisar</Button>] : []}>
+              <div><Text strong>Compra {item.compra_id.slice(0, 8)} · {item.classification}</Text>
+                <div><Tag color={item.status === 'open' ? 'orange' : 'green'}>{item.status === 'open' ? 'Análise necessária' : 'Registrado'}</Tag>
+                  <Text type="secondary">{String(item.evidence?.proof || 'sem prova de despacho')} · {formatDateTime(item.created_at)}</Text></div>
+                {item.supplier_settlement_id && <Text type="secondary">Liquidação {item.supplier_settlement_id.slice(0, 8)} · </Text>}
+                {item.movement_id && <Text type="secondary">crédito {item.movement_id.slice(0, 8)}</Text>}
+              </div>
+            </List.Item>} />
+          {cancellationCases.length < caseTotal && <Button onClick={() => void loadMoreCases()}>Carregar mais casos</Button>}
+        </section>}
         <div className={styles.drawerFilters}>
           <Select<MovementStatusFilter> value={movementStatus} onChange={setMovementStatus} options={[
             { value: 'all', label: 'Todas as situações' }, { value: 'pending', label: 'A confirmar' },
@@ -581,6 +648,22 @@ export default function SupplierCreditsPage() {
           <Form.Item name="reference" label="Referência"><Input maxLength={200} placeholder="Pedido, protocolo ou confirmação do fornecedor" /></Form.Item>
           <Form.Item name="notes" label="Motivo do movimento" rules={[{ required: true, min: 3, message: 'Explique o motivo do movimento' }]}><Input.TextArea maxLength={1000} showCount rows={3} placeholder="Registre por que este crédito está sendo lançado ou utilizado" /></Form.Item>
         </Form>
+      </Modal>
+
+      <Modal title="Decidir divergência de cancelamento" open={Boolean(decisionCase)} destroyOnHidden
+        confirmLoading={caseSaving} okText="Registrar decisão" okButtonProps={{ disabled: caseNote.trim().length < 10 }}
+        onCancel={() => setDecisionCase(null)} onOk={() => void resolveCase()}>
+        {decisionCase && <div style={{ display: 'grid', gap: 12 }}>
+          <Alert type="warning" showIcon message="A decisão não altera uma liquidação confirmada. Crédito novo fica pendente; compensação exige saldo disponível." />
+          <Text>Compra {decisionCase.compra_id.slice(0, 8)} · evidência: {String(decisionCase.evidence?.proof || 'não comprovada')}</Text>
+          <Select value={caseDecision} onChange={setCaseDecision} options={[
+            { value: 'no_credit', label: 'Não conceder crédito' },
+            { value: 'pending_credit', label: 'Criar crédito pendente' },
+            ...(decisionCase.movement_id ? [{ value: 'compensate', label: 'Compensar crédito já confirmado' }] : []),
+          ]} />
+          <Input.TextArea rows={3} maxLength={1000} value={caseNote} onChange={(event) => setCaseNote(event.target.value)}
+            placeholder="Evidência e justificativa (mínimo 10 caracteres)" />
+        </div>}
       </Modal>
 
       <Modal title="Analisar crédito candidato" open={Boolean(decisionMovement)} destroyOnHidden

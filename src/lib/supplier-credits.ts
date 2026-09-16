@@ -1,194 +1,122 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '@/types/database';
-import { HAYAMAX_FORNECEDOR_ID, normalizeMoneyAmount } from '@/lib/supplier-balance';
-import type { SupplierLedgerMovementType } from '@/lib/supplier-ledger';
+import type { Database, Json } from '@/types/database';
+import { HAYAMAX_FORNECEDOR_ID } from '@/lib/supplier-balance';
+import { fetchMLResult } from '@/services/integration';
+import { classifySupplierDispatchHistory } from '@/lib/supplier-cancellation-dispatch.js';
 
 type DbClient = SupabaseClient<Database>;
-type SupplierLedgerMovementInsert = Omit<
-  Database['public']['Tables']['supplier_balance_movements']['Insert'],
-  'movement_type'
-> & { movement_type: SupplierLedgerMovementType };
+type Source = 'ml_webhook' | 'ml_sync' | 'dslite_sync' | 'manual_reconcile';
+type Result = { created: boolean; skipped?: string; movementId?: string | null;
+  caseId?: string | null; classification?: string; status?: string };
+type HistoryEvent = { status?: string; substatus?: string | null; date?: string };
 
-type CancellationCandidateResult = {
-  created: boolean;
-  skipped?: string;
-  movementId?: string | null;
-};
-
-const RECONCILIATION_PAGE_SIZE = 500;
-const INSERT_CHUNK_SIZE = 100;
-
-function chunk<T>(items: T[], size: number): T[][] {
-  const result: T[][] = [];
-  for (let index = 0; index < items.length; index += size) {
-    result.push(items.slice(index, index + size));
-  }
-  return result;
+async function dispatchEvidence(shipmentId: string | null): Promise<{
+  dispatch: 'not_dispatched' | 'dispatched' | 'unknown'; evidence: Record<string, string>;
+}> {
+  if (!shipmentId) return { dispatch: 'unknown', evidence: { source: 'ml_history', proof: 'shipment_missing' } };
+  const result = await fetchMLResult<HistoryEvent[]>(`/shipments/${encodeURIComponent(shipmentId)}/history`,
+    { headers: { 'x-format-new': 'true' } });
+  if (!result.ok) return { dispatch: 'unknown', evidence: {
+    source: 'ml_history', shipmentId, proof: 'history_unavailable', status: String(result.status || 0),
+  } };
+  const classified = classifySupplierDispatchHistory(result.data, shipmentId);
+  return { dispatch: classified.dispatch as 'not_dispatched' | 'dispatched' | 'unknown',
+    evidence: classified.evidence };
 }
 
-function buildMovementKey(compraId: string): string {
-  return `cancellation_credit:${compraId}`;
-}
-
+/** Única entrada dos produtores ML/DSLite e da reconciliação administrativa. */
 export async function createSupplierCancellationCreditCandidate(
-  client: DbClient,
-  pedidoId: string,
-  source: 'ml_webhook' | 'ml_sync' = 'ml_sync',
-): Promise<CancellationCandidateResult> {
-  const { data: pedido, error: pedidoError } = await client
-    .from('pedidos')
-    .select('id,numero,ml_order_id,dslite_id,situacao')
-    .eq('id', pedidoId)
-    .maybeSingle();
-
-  if (pedidoError) throw new Error(pedidoError.message);
-  if (!pedido?.id || pedido.situacao !== 'cancelado') return { created: false, skipped: 'order_not_cancelled' };
-
-  const dsid = String(pedido.dslite_id || '').trim();
-  if (!dsid) return { created: false, skipped: 'purchase_not_linked' };
-
-  const { data: compra, error: compraError } = await client
-    .from('compras')
-    .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,supplier_payment_amount')
-    .eq('dsid', dsid)
-    .maybeSingle();
-
-  if (compraError) throw new Error(compraError.message);
-  if (!compra?.id) return { created: false, skipped: 'purchase_not_found' };
-  if (String(compra.fornecedor_id || '') === HAYAMAX_FORNECEDOR_ID) return { created: false, skipped: 'hayamax_excluded' };
-  if (compra.supplier_payment_mode !== 'prepaid_pix' || compra.supplier_payment_status !== 'paid') {
-    return { created: false, skipped: 'supplier_not_paid' };
+  client: DbClient, pedidoId: string, source: Source = 'ml_sync',
+): Promise<Result> {
+  const { data: sale, error: saleError } = await client.from('pedidos')
+    .select('id,dslite_id,situacao,ml_shipment_id').eq('id', pedidoId).maybeSingle();
+  if (saleError) throw new Error(saleError.message);
+  if (!sale?.id || sale.situacao !== 'cancelado') return { created: false, skipped: 'order_not_cancelled' };
+  if (!sale.dslite_id) return { created: false, skipped: 'purchase_not_linked' };
+  const { data: purchase, error: purchaseError } = await client.from('compras')
+    .select('id,fornecedor_id,supplier_payment_mode,supplier_payment_status')
+    .eq('dsid', sale.dslite_id).maybeSingle();
+  if (purchaseError) throw new Error(purchaseError.message);
+  if (!purchase?.id) return { created: false, skipped: 'purchase_not_found' };
+  if (purchase.fornecedor_id === HAYAMAX_FORNECEDOR_ID || purchase.supplier_payment_mode !== 'prepaid_pix') {
+    return { created: false, skipped: 'supplier_not_applicable' };
   }
-
-  const amount = normalizeMoneyAmount(compra.supplier_payment_amount);
-  if (amount <= 0 || !compra.fornecedor_id) return { created: false, skipped: 'payment_amount_missing' };
-
-  const movementKey = buildMovementKey(String(compra.id));
-  const { data: existing, error: existingError } = await client
-    .from('supplier_balance_movements')
-    .select('id')
-    .eq('movement_key', movementKey)
-    .maybeSingle();
-
-  if (existingError) throw new Error(existingError.message);
-  if (existing?.id) return { created: false, skipped: 'already_recorded', movementId: existing.id };
-
-  const movement = {
-    fornecedor_id: String(compra.fornecedor_id),
-    fornecedor_nome: compra.fornecedor_nome || null,
-    movement_type: 'cancellation_credit',
-    amount,
-    reference: `Venda ML #${pedido.ml_order_id || pedido.numero} · Pedido DSLite #${compra.dsid}`,
-    compra_id: String(compra.id),
-    notes: 'Detectado automaticamente: venda cancelada após pagamento ao fornecedor. Confirmar crédito com o fornecedor.',
-    created_by: source,
-    movement_key: movementKey,
-    status: 'pending',
-    source: 'ml_cancellation',
-    pedido_id: String(pedido.id),
-    ml_order_id: pedido.ml_order_id || null,
-  } satisfies SupplierLedgerMovementInsert;
-
-  const { data, error } = await client
-    .from('supplier_balance_movements')
-    .insert(movement)
-    .select('id')
-    .maybeSingle();
-
-  if (error) {
-    if (error.code === '23505') return { created: false, skipped: 'already_recorded' };
-    throw new Error(error.message);
+  const { data: historicalCredit, error: historicalError } = await client.from('supplier_balance_movements')
+    .select('id').eq('movement_key', `cancellation_credit:${purchase.id}`).maybeSingle();
+  if (historicalError) throw new Error(historicalError.message);
+  const { data: currentCase, error: caseError } = await client.from('supplier_cancellation_cases')
+    .select('id').eq('compra_id', purchase.id).maybeSingle();
+  if (caseError) throw new Error(caseError.message);
+  if (historicalCredit && !currentCase) {
+    return { created: false, skipped: 'historical_credit', movementId: historicalCredit.id };
   }
+  const dispatch = purchase.supplier_payment_status === 'paid'
+    ? await dispatchEvidence(sale.ml_shipment_id)
+    : { dispatch: 'unknown' as const, evidence: { source: 'payment_pending', proof: 'not_paid' } };
+  const { data, error } = await client.rpc('supplier_oracle_record_cancellation', {
+    p_compra_id: purchase.id, p_pedido_id: sale.id, p_source: source,
+    p_dispatch: dispatch.dispatch, p_evidence: dispatch.evidence as Json, p_actor: source,
+  });
+  if (error) throw new Error(error.message);
+  const result = data as { caseId?: string; classification?: string; status?: string;
+    movementId?: string | null; skipped?: string; replayed?: boolean };
+  return { created: Boolean(result.movementId && !result.replayed && !result.skipped),
+    skipped: result.skipped, movementId: result.movementId || null,
+    caseId: result.caseId || null, classification: result.classification, status: result.status };
+}
 
-  return { created: true, movementId: data?.id || null };
+export async function recordDslitePurchaseCancellation(client: DbClient, purchaseId: string): Promise<Result> {
+  const { data: purchase, error: purchaseError } = await client.from('compras')
+    .select('id,dsid,fornecedor_id,supplier_payment_mode,status_dslite')
+    .eq('id', purchaseId).maybeSingle();
+  if (purchaseError) throw new Error(purchaseError.message);
+  if (!purchase?.id || !String(purchase.status_dslite || '').toLowerCase().includes('cancelado')) {
+    return { created: false, skipped: 'purchase_not_cancelled' };
+  }
+  if (purchase.fornecedor_id === HAYAMAX_FORNECEDOR_ID || purchase.supplier_payment_mode !== 'prepaid_pix') {
+    return { created: false, skipped: 'supplier_not_applicable' };
+  }
+  const { data: sales, error: saleError } = await client.from('pedidos')
+    .select('id').eq('dslite_id', purchase.dsid).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null').limit(2);
+  if (saleError) throw new Error(saleError.message);
+  const { data, error } = await client.rpc('supplier_oracle_record_cancellation', {
+    p_compra_id: purchase.id, p_pedido_id: sales?.length === 1 ? sales[0].id : null,
+    p_source: 'dslite_sync', p_dispatch: 'unknown',
+    p_evidence: { source: 'dslite_purchase', proof: 'purchase_cancelled' }, p_actor: 'dslite_sync',
+  });
+  if (error) throw new Error(error.message);
+  const result = data as { caseId?: string; classification?: string; status?: string;
+    movementId?: string | null; skipped?: string };
+  return { created: false, skipped: result.skipped, caseId: result.caseId || null,
+    classification: result.classification, status: result.status, movementId: result.movementId || null };
 }
 
 export async function reconcileSupplierCancellationCredits(client: DbClient) {
-  let offset = 0;
+  const pageSize = 200;
+  let lastId = '';
   let scanned = 0;
   let created = 0;
-
+  let reviews = 0;
   while (true) {
-    const { data: pedidos, error: pedidosError } = await client
-      .from('pedidos')
-      .select('id,numero,ml_order_id,dslite_id,situacao')
-      .eq('situacao', 'cancelado')
-      .not('dslite_id', 'is', null)
-      .order('id', { ascending: true })
-      .range(offset, offset + RECONCILIATION_PAGE_SIZE - 1);
-
-    if (pedidosError) throw new Error(pedidosError.message);
-    if (!pedidos?.length) break;
-    scanned += pedidos.length;
-
-    const pedidoByDslite = new Map<string, (typeof pedidos)[number]>();
-    for (const pedido of pedidos) {
-      const dsid = String(pedido.dslite_id || '').trim();
-      if (dsid) pedidoByDslite.set(dsid, pedido);
-    }
-    const dsids = Array.from(pedidoByDslite.keys());
-    const compras: Array<Database['public']['Tables']['compras']['Row']> = [];
-
-    for (const dsidChunk of chunk(dsids, INSERT_CHUNK_SIZE)) {
-      const { data, error } = await client
-        .from('compras')
-        .select('*')
-        .in('dsid', dsidChunk)
-        .eq('supplier_payment_mode', 'prepaid_pix')
-        .eq('supplier_payment_status', 'paid')
-        .gt('supplier_payment_amount', 0);
-      if (error) throw new Error(error.message);
-      compras.push(...(data || []));
-    }
-
-    const candidates: SupplierLedgerMovementInsert[] = compras.flatMap((compra) => {
-      if (!compra.fornecedor_id || String(compra.fornecedor_id) === HAYAMAX_FORNECEDOR_ID) return [];
-      const pedido = pedidoByDslite.get(String(compra.dsid));
-      if (!pedido) return [];
-      const movement = {
-        fornecedor_id: String(compra.fornecedor_id),
-        fornecedor_nome: compra.fornecedor_nome || null,
-        movement_type: 'cancellation_credit',
-        amount: normalizeMoneyAmount(compra.supplier_payment_amount),
-        reference: `Venda ML #${pedido.ml_order_id || pedido.numero} · Pedido DSLite #${compra.dsid}`,
-        compra_id: String(compra.id),
-        notes: 'Detectado automaticamente: venda cancelada após pagamento ao fornecedor. Confirmar crédito com o fornecedor.',
-        created_by: 'historical_reconciliation',
-        movement_key: buildMovementKey(String(compra.id)),
-        status: 'pending',
-        source: 'ml_cancellation',
-        pedido_id: String(pedido.id),
-        ml_order_id: pedido.ml_order_id || null,
-      } satisfies SupplierLedgerMovementInsert;
-      return [movement];
-    });
-
-    const movementKeys = candidates.map((item) => String(item.movement_key));
-    const existingKeys = new Set<string>();
-    for (const keyChunk of chunk(movementKeys, INSERT_CHUNK_SIZE)) {
-      const { data, error } = await client
-        .from('supplier_balance_movements')
-        .select('movement_key')
-        .in('movement_key', keyChunk);
-      if (error) throw new Error(error.message);
-      for (const row of data || []) {
-        if (row.movement_key) existingKeys.add(row.movement_key);
+    let query = client.from('supplier_cancellation_cases').select('id,pedido_id,compra_id')
+      .eq('status', 'open').order('id', { ascending: true }).limit(pageSize);
+    if (lastId) query = query.gt('id', lastId);
+    const { data, error } = await query;
+    if (error) throw new Error(error.message);
+    if (!data?.length) break;
+    for (const item of data) {
+      let result = item.pedido_id
+        ? await createSupplierCancellationCreditCandidate(client, item.pedido_id, 'manual_reconcile')
+        : { created: false, skipped: 'purchase_not_linked' } as Result;
+      if (result.skipped === 'order_not_cancelled' || result.skipped === 'purchase_not_linked') {
+        result = await recordDslitePurchaseCancellation(client, item.compra_id);
       }
+      scanned += 1;
+      if (result.created) created += 1;
+      if (result.status === 'open') reviews += 1;
     }
-
-    const missing = candidates.filter((item) => !existingKeys.has(String(item.movement_key)));
-    for (const insertChunk of chunk(missing, INSERT_CHUNK_SIZE)) {
-      const { data, error } = await client
-        .from('supplier_balance_movements')
-        .insert(insertChunk)
-        .select('id');
-      if (error && error.code !== '23505') throw new Error(error.message);
-      created += data?.length || 0;
-    }
-
-    if (pedidos.length < RECONCILIATION_PAGE_SIZE) break;
-    offset += RECONCILIATION_PAGE_SIZE;
+    if (data.length < pageSize) break;
+    lastId = data[data.length - 1].id;
   }
-
-  return { scanned, created };
+  return { scanned, created, reviews };
 }

@@ -21,6 +21,7 @@ create table public.compras (
   id uuid primary key default gen_random_uuid(),
   dsid text not null unique,
   fornecedor_id text,
+  fornecedor_nome text,
   status text not null default 'Iniciado',
   status_dslite text not null default 'Confirmado',
   supplier_payment_mode text,

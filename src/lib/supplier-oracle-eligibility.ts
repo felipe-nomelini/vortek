@@ -15,6 +15,7 @@ export const ORACLE_EXCLUSION_LABELS = {
   label_not_delivered: 'Entrega da etiqueta real não comprovada',
   supply_not_ready: 'Abastecimento ainda não confirmado como pronto',
   allocated: 'Compra já alocada a uma liquidação',
+  cancellation_review: 'Cancelamento ou divergência financeira aguardando decisão',
 } as const;
 
 export type OracleExclusionCode = keyof typeof ORACLE_EXCLUSION_LABELS;
@@ -58,6 +59,7 @@ export function evaluateSupplierOracleEligibility(input: {
   selectedSupplierDsliteId: string;
   accountValid: boolean;
   hasActiveAllocation: boolean;
+  hasOpenDivergence?: boolean;
 }): OracleExclusionCode[] {
   const { purchase, sales } = input;
   const reasons: OracleExclusionCode[] = [];
@@ -78,6 +80,7 @@ export function evaluateSupplierOracleEligibility(input: {
   }
   if (purchase.supply_status !== 'ready') reasons.push('supply_not_ready');
   if (purchase.supplier_settlement_id || input.hasActiveAllocation) reasons.push('allocated');
+  if (input.hasOpenDivergence) reasons.push('cancellation_review');
   return reasons;
 }
 

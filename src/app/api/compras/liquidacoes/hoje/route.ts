@@ -41,23 +41,26 @@ export async function GET(request: Request) {
     snapshot_source: string | null; label_type: string | null; label_delivery_channel: string | null;
     label_delivered_at: string | null }>>();
   const allocated = new Set<string>();
+  const openDivergences = new Set<string>();
   for (let index = 0; index < visible.length; index += 100) {
     const chunk = visible.slice(index, index + 100);
     const chunkDsids = [...new Set(chunk.map((row) => row.dsid).filter(Boolean))];
-    const [saleResult, allocationResult] = await Promise.all([
+    const [saleResult, allocationResult, divergenceResult] = await Promise.all([
       chunkDsids.length ? client.from('pedidos')
         .select('id,numero,dslite_id,situacao,ml_claim_id,snapshot_incompleto,snapshot_pendencias,snapshot_source,label_type,label_delivery_channel,label_delivered_at')
         .in('dslite_id', chunkDsids).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
         : Promise.resolve({ data: [], error: null }),
       client.from('supplier_settlement_items').select('compra_id').in('compra_id', chunk.map((row) => row.id)).is('released_at', null),
+      client.from('supplier_cancellation_cases').select('compra_id').in('compra_id', chunk.map((row) => row.id)).eq('status', 'open'),
     ]);
-    if (saleResult.error || allocationResult.error) return NextResponse.json({ error: 'Falha ao consultar elegibilidade' }, { status: 500 });
+    if (saleResult.error || allocationResult.error || divergenceResult.error) return NextResponse.json({ error: 'Falha ao consultar elegibilidade' }, { status: 500 });
     for (const sale of saleResult.data || []) {
       if (!canUseHomologationFixtures() && isHomologationFixtureSource(sale.snapshot_source)) continue;
       const key = String(sale.dslite_id || '');
       sales.set(key, [...(sales.get(key) || []), sale]);
     }
     for (const allocation of allocationResult.data || []) allocated.add(allocation.compra_id);
+    for (const divergence of divergenceResult.data || []) openDivergences.add(divergence.compra_id);
   }
   const accounts = [];
   for (const supplier of suppliers || []) {
@@ -71,7 +74,8 @@ export async function GET(request: Request) {
     const rows = own.map((purchase) => {
       const linked = sales.get(String(purchase.dsid)) || [];
       const codes = evaluateSupplierOracleEligibility({ purchase, sales: linked,
-        selectedSupplierDsliteId: supplierId, accountValid, hasActiveAllocation: allocated.has(purchase.id) });
+        selectedSupplierDsliteId: supplierId, accountValid, hasActiveAllocation: allocated.has(purchase.id),
+        hasOpenDivergence: openDivergences.has(purchase.id) });
       const labels = oracleExclusionLabels(codes);
       return { compraId: purchase.id, dsid: purchase.dsid, dataCriacao: purchase.data_criacao,
         pedidoNumero: linked.length === 1 ? linked[0].numero : null,

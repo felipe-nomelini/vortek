@@ -41,8 +41,16 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
   if (movement.status !== 'pending') {
     return NextResponse.json({ error: 'Movimentação já foi analisada.' }, { status: 409 });
   }
-
   const actor = auth.user.email || auth.user.id;
+  if (movement.movement_type === 'cancellation_credit') {
+    const { data, error } = await service.rpc('supplier_oracle_decide_cancellation_credit', {
+      p_movement_id: movement.id, p_status: parsed.data.status,
+      p_note: parsed.data.notes || null, p_actor: actor,
+    });
+    if (error) return NextResponse.json({ error: error.message },
+      { status: ['P0001', '23514'].includes(error.code || '') ? 409 : 500 });
+    return NextResponse.json({ success: true, movement: data });
+  }
   const decisionNote = parsed.data.notes ? `\nDecisão: ${parsed.data.notes}` : '';
   const { data, error } = await service
     .from('supplier_balance_movements')

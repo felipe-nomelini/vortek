@@ -20,7 +20,8 @@ test('organiza créditos como painel Bentevi orientado à decisão', () => {
   assert.match(page, /Operação atual/);
   assert.match(page, /Histórico aposentado/);
   assert.match(page, /Novo movimento/);
-  assert.match(page, /Buscar cancelamentos/);
+  assert.match(page, /Reavaliar divergências/);
+  assert.match(page, /Cancelamentos e divergências/);
 });
 
 test('separa extrato em entradas e saídas e concentra decisão em modal', () => {
