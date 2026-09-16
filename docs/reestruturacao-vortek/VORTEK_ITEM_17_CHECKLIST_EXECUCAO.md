@@ -83,7 +83,7 @@ Regras de uso:
 
 ### Trilha Oráculo de Fornecedores
 
-A implementação da liquidação consolidada de fornecedores é acompanhada no checklist dedicado [VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md](VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md). `ORC-00` foi aceita em 16/09/2026 como contrato documental. `ORC-01 — Schema aditivo` foi aceita em 16/09/2026 após confirmar o SHA `6667ddf0ebf7a3e3db972d6713f34e91ab742ea9` no serviço `local/bentevi-prod`, vincular a imagem da ação Easypanel ao contêiner ativo e repetir read-back e smoke. `ORC-02 — Estados e elegibilidade` é a próxima ação técnica, em tarefa própria. Nenhum pagamento em lote, backfill financeiro ou ativação foi implementado. Executar uma ação por tarefa e manter no checklist dedicado as evidências, SHAs, migrations, testes, publicação e aceite.
+A implementação da liquidação consolidada de fornecedores é acompanhada no checklist dedicado [VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md](VORTEK_ORACULO_FORNECEDORES_CHECKLIST.md). `ORC-00` e `ORC-01 — Schema aditivo` foram aceitas em 16/09/2026. `ORC-02 — Estados e elegibilidade` foi aceita tecnicamente em 16/09/2026 após publicar o SHA `66bf23a299782ed9ed6b3fbad3366cd904bcd7fa`, confirmar a imagem da ação Easypanel no contêiner ativo e repetir read-back e smoke. As 22 compras PIX pendentes permanecem com abastecimento `unknown`; o preview autenticado com dados reais ainda não foi exercitado. `ORC-03 — Núcleo financeiro transacional` é a próxima ação técnica, em tarefa própria. Nenhum pagamento em lote, backfill financeiro ou ativação foi implementado. Executar uma ação por tarefa e manter no checklist dedicado as evidências, SHAs, migrations, testes, publicação e aceite.
 
 <a id="bentevi-em-operacao"></a>
 
