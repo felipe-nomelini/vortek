@@ -17,6 +17,7 @@ import { extractQuantityPricingTiers, serializeQuantityPricingTiers } from '@/li
 import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
 import { normalizeBuyBoxStatus, normalizePriceToWin, resolveCatalogCompetitionStatus } from '@/lib/catalogo/no-catalogo';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
+import { loadMlBrandEquivalences } from '@/lib/ml/brand-equivalences';
 import { hasConfirmedMlExistingListingIdentityConflict, isMlExistingListingIdentitySafe } from '@/lib/ml-listing-identity';
 import { classifyMlPublishEligibility } from '@/lib/ml/operational-listing';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
@@ -202,10 +203,11 @@ export async function loadPricingDetail(raw: unknown, worker?: {
     if (listingMaterialSnapshot(next, fresh.data) !== expected)
       return { valid: false, code: 'ANUNCIO_REMOTO_ALTERADO' } as const;
     // A verified stored group is not proof of current identity or operational eligibility.
-    const [currentProduct, offers, kit, suppliers] = await Promise.all([
+    const [currentProduct, offers, kit, suppliers, brandEquivalences] = await Promise.all([
       service.from('produtos').select('*').eq('id', product.id).single(),
       service.from('produto_fornecedor_ofertas').select('*').eq('produto_id', product.id),
       loadMlIdentityKit(service, product.id), loadOperationalDropshippingSupplierIds(service),
+      loadMlBrandEquivalences(service),
     ]);
     if (currentProduct.error || offers.error) return { valid: null, code: 'INCONCLUSIVO_FONTE_ML_INDISPONIVEL' } as const;
     if (currentProduct.data?.ativo !== true) return { valid: false, code: 'PRODUTO_LOCAL_ALTERADO' } as const;
@@ -223,7 +225,7 @@ export async function loadPricingDetail(raw: unknown, worker?: {
       const eligibility = classifyMlPublishEligibility({ observedStatus: remote.status,
         blockReason: block.data?.ml_sync_block_reason, blockedUntil: block.data?.ml_sync_blocked_until });
       const identity = assessMlProductIdentity(remote, currentProduct.data, offers.data || [], suppliers, {
-        categoryAttributes: attributes, kit, remoteEvidence: { source: 'mercado_livre', reference: remote.id,
+        categoryAttributes: attributes, kit, brandEquivalences, remoteEvidence: { source: 'mercado_livre', reference: remote.id,
           collectedAt: new Date().toISOString(), condition: 'valid' },
       });
       const safe = isMlExistingListingIdentitySafe(identity);

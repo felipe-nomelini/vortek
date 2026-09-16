@@ -7,6 +7,7 @@ const critical = load('src/lib/ml-critical-attributes.ts', {
   '@/lib/preferred-offer': require('../src/lib/preferred-offer.ts'),
   '@/lib/ml-voltage': require('../src/lib/ml-voltage.ts'),
   '@/lib/ml-listing-identity': identity,
+  '@/lib/ml/brand-equivalences': identity,
   '@/lib/dslite/supplier-policy': require('../src/lib/dslite/supplier-policy.ts'),
 });
 const timestamp = '2026-09-07T04:00:00.000Z';

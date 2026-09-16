@@ -107,6 +107,7 @@ function worker(row, executionGuard = guard) {
     '@/lib/ml/reconcile-anuncio': { reconcileAnuncioMlFromItem: async () => ({ ok: true }) },
     '@/lib/ml/status': { mapMlStatusToLocalStatus: () => 'pausado' },
     '@/lib/ml/stock-publish': { loadMlStockContext: async () => ({}), publishAndVerifyMlStock: async (...args) => { stock.push(args); return { ok: true }; } },
+    '@/lib/ml/stock-status-policy': require('../src/lib/ml/stock-status-policy.ts'),
     '@/lib/sync/ml-publish-outbox': { enqueueMlPublishOutbox() { throw Error('seed inesperado'); } },
     '@/lib/orders/fulfillment-capacity-loader': { loadProductFulfillmentCapacities() { throw Error('seed inesperado'); } },
     '@/lib/ml/listing-deletion': { isMlListingDeletionPayload: () => false },
@@ -153,7 +154,8 @@ test('produto inativo ainda executa pausa protetiva com quantidade zero', async 
   assert.equal(h.tables.anuncios_ml_outbox[0].status, 'done');
   assert.equal(h.stock.length, 1);
   assert.equal(h.stock[0][1], 0);
-  assert.ok(h.requests.some(r => r.method === 'PUT' && JSON.parse(r.body).status === 'paused'));
+  assert.ok(h.requests.some(r => r.url === '/items/MLB1' && !r.method));
+  assert.equal(h.requests.some(r => r.method === 'PUT' && JSON.parse(r.body).status === 'paused'), false);
 });
 
 for (const gate of [guard, { getPricingExecutionBlock: () => null }]) {

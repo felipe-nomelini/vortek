@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from './integration';
 import { getCategoryAttributes, getCategorySaleTerms } from './mercadolibre';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
+import { loadMlBrandEquivalences } from '@/lib/ml/brand-equivalences';
 import { isMlIdentityComplete } from '@/lib/ml-listing-identity';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { factoryWarranty, warrantySaleTerms } from '@/lib/product-warranty';
@@ -26,13 +27,14 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
     || item.shipping?.free_shipping !== preparation.input.shipping.freeShipping
     || (expected.catalog_listing === true && (item.catalog_listing !== true || item.catalog_product_id !== expected.catalog_product_id))
     || (relist && item.parent_item_id !== preparation.sourceItemId)) return false;
-  const [productResult, offers, attrs, terms, description, kit, supplierIds] = await Promise.all([
+  const [productResult, offers, attrs, terms, description, kit, supplierIds, brandEquivalences] = await Promise.all([
     client.from('produtos').select('*').eq('id', operation.produto_id).single(),
     client.from('produto_fornecedor_ofertas').select('*').eq('produto_id', operation.produto_id),
     getCategoryAttributes(item.category_id), getCategorySaleTerms(item.category_id),
     fetchMLResult<any>('/items/' + encodeURIComponent(item.id) + '/description'),
     loadMlIdentityKit(client, operation.produto_id),
     loadOperationalDropshippingSupplierIds(client),
+    loadMlBrandEquivalences(client),
   ]);
   const product = productResult.data;
   if (productResult.error || offers.error || !attrs || !terms || !product || !product.ativo
@@ -45,7 +47,7 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
   if (!expectedWarranty.compatible || expectedWarranty.terms.some(term => !item.sale_terms?.some((actual: any) =>
     actual.id === term.id && (term.value_id ? actual.value_id === term.value_id : actual.value_name === term.value_name)))) return false;
   const identity = assessMlProductIdentity(item, product, offers.data || [], supplierIds, {
-    categoryAttributes: attrs, kit, remoteEvidence: { source: 'mercado_livre', reference: item.id,
+    categoryAttributes: attrs, kit, brandEquivalences, remoteEvidence: { source: 'mercado_livre', reference: item.id,
       collectedAt: new Date().toISOString(), condition: 'valid' },
   });
   if (!isMlIdentityComplete(identity)) return false;

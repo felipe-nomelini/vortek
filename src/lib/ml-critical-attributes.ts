@@ -4,6 +4,7 @@ import { assessMlListingIdentity, extractStrictProductDiameter, hasConfirmedMlEx
 import type { MlExistingListingValidation, MlIdentityContext, MlIdentityFacts, MlIdentityAttribute, MlListingIdentityAssessment } from '@/lib/ml-listing-identity';
 import type { ConflictEvidence } from '@/types/commercial-conflicts';
 import { filterOperationalDropshippingSupplierOffers } from '@/lib/dslite/supplier-policy';
+import { equivalentBrandKey, type BrandEquivalences } from '@/lib/ml/brand-equivalences';
 
 export { extractStrictVoltage, normalizeVoltageValue } from '@/lib/ml-voltage';
 export type MlIdentityKit = {
@@ -91,7 +92,7 @@ function rowFacts(row: any, source: ConflictEvidence['source']): MlIdentityFacts
   return facts;
 }
 
-export function resolveMlCriticalFacts(produto: any, offers: any[] = [], operationalSupplierIds?: ReadonlySet<string>, kit?: MlIdentityKit) {
+export function resolveMlCriticalFacts(produto: any, offers: any[] = [], operationalSupplierIds?: ReadonlySet<string>, kit?: MlIdentityKit, brandEquivalences?: BrandEquivalences) {
   const safeOffers = operationalSupplierIds ? filterOperationalDropshippingSupplierOffers(offers, operationalSupplierIds) : [];
   const preferredOffer = resolvePreferredOfferForProduct(safeOffers, produto?.oferta_preferencial_id, produto?.fornecedor_preferencial_manual === true);
   const facts = rowFacts(produto, 'product');
@@ -101,7 +102,10 @@ export function resolveMlCriticalFacts(produto: any, offers: any[] = [], operati
     const own = facts[field];
     facts[field] = own ? {
       value: fact.value || own.value, evidence: [...own.evidence, ...fact.evidence],
-      ambiguous: own.ambiguous || fact.ambiguous || Boolean(own.value && fact.value && normalizeMlIdentityValue(field, own.value) !== normalizeMlIdentityValue(field, fact.value)),
+      ambiguous: own.ambiguous || fact.ambiguous || Boolean(own.value && fact.value && (
+        field === 'BRAND'
+          ? equivalentBrandKey(own.value, brandEquivalences) !== equivalentBrandKey(fact.value, brandEquivalences)
+          : normalizeMlIdentityValue(field, own.value) !== normalizeMlIdentityValue(field, fact.value))),
     } : fact;
   }
   if (kit?.status === 'ready') {
@@ -138,10 +142,11 @@ export function resolveTrustedMlCriticalValue(attrId: unknown, produto: any, off
   return fact?.value && fact.evidence.length && !fact.ambiguous ? normalizeCriticalAttributeValue(id, fact.value) : null;
 }
 
-function normalizedRemoteValues(assessment: MlListingIdentityAssessment, field: string): string[] {
+function normalizedRemoteValues(assessment: MlListingIdentityAssessment, field: string, brandEquivalences?: BrandEquivalences): string[] {
   const raw = assessment.comparisons.find(comparison => comparison.field === field)?.remote;
   if (!raw) return [];
-  return [...new Set(raw.split(' | ').map(value => normalizeMlIdentityValue(field, value))
+  return [...new Set(raw.split(' | ').map(value => field === 'BRAND'
+    ? equivalentBrandKey(value, brandEquivalences) : normalizeMlIdentityValue(field, value))
     .filter((value): value is string => Boolean(value)))];
 }
 
@@ -158,6 +163,7 @@ function kitExistingListingValidation(
   assessment: MlListingIdentityAssessment,
   facts: MlIdentityFacts,
   kit: MlIdentityKit,
+  brandEquivalences?: BrandEquivalences,
 ): MlExistingListingValidation {
   const comparisons: MlExistingListingValidation['comparisons'] = [];
   const reasons: string[] = [];
@@ -191,12 +197,12 @@ function kitExistingListingValidation(
   const parentBrand = validFact(facts.BRAND) ? facts.BRAND : null;
   const componentBrand = validFact(componentFacts.BRAND) ? componentFacts.BRAND : null;
   const brandsAgree = !parentBrand || !componentBrand
-    || normalizeMlIdentityValue('BRAND', parentBrand.value) === normalizeMlIdentityValue('BRAND', componentBrand.value);
+    || equivalentBrandKey(parentBrand.value, brandEquivalences) === equivalentBrandKey(componentBrand.value, brandEquivalences);
   const localBrand = brandsAgree ? (parentBrand || componentBrand) : null;
-  const remoteBrands = normalizedRemoteValues(assessment, 'BRAND');
+  const remoteBrands = normalizedRemoteValues(assessment, 'BRAND', brandEquivalences);
   compare('BRAND', localBrand?.value || null, remoteBrands,
     Boolean(localBrand && remoteBrands.length === 1
-      && normalizeMlIdentityValue('BRAND', localBrand.value) === remoteBrands[0]),
+      && equivalentBrandKey(localBrand.value, brandEquivalences) === remoteBrands[0]),
     brandsAgree ? 'MARCA_NAO_COHERENTE' : 'MARCAS_LOCAIS_CONTRADITORIAS');
 
   const saleFormats = normalizedRemoteValues(assessment, 'SALE_FORMAT');
@@ -247,13 +253,13 @@ function kitExistingListingValidation(
 }
 
 export function assessMlProductIdentity(item: any, produto: any, offers: any[] = [], operationalSupplierIds?: ReadonlySet<string>, context?: MlIdentityContext & { kit?: MlIdentityKit }) {
-  const { facts } = resolveMlCriticalFacts(produto, offers, operationalSupplierIds, context?.kit);
+  const { facts } = resolveMlCriticalFacts(produto, offers, operationalSupplierIds, context?.kit, context?.brandEquivalences);
   for (const [alias, original] of [['NOMINAL_VOLTAGE', 'VOLTAGE'], ['BLADES_DIAMETER', 'DIAMETER'], ['PACKAGING_BOXES_NUMBER', 'PACKAGES_NUMBER']]) {
     if (context?.categoryAttributes?.some(attr => attr.id === alias) && !context.categoryAttributes.some(attr => attr.id === original) && facts[original]) { facts[alias] = facts[original]; delete facts[original]; }
   }
   const assessment = assessMlListingIdentity(item, facts, context || { categoryAttributes: null, remoteEvidence: null });
   if (context?.kit && context.kit.status !== 'not_kit') {
-    assessment.existingListingValidation = kitExistingListingValidation(assessment, facts, context.kit);
+    assessment.existingListingValidation = kitExistingListingValidation(assessment, facts, context.kit, context.brandEquivalences);
   }
   return assessment;
 }

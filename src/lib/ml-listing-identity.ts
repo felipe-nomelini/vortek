@@ -29,7 +29,9 @@ export type MlListingIdentityAssessment = {
 };
 export type MlIdentityContext = {
   categoryAttributes: MlIdentityAttribute[] | null; remoteEvidence: ConflictEvidence | null; variationId?: string | null;
+  brandEquivalences?: BrandEquivalences;
 };
+export type BrandEquivalences = ReadonlyMap<string, string>;
 const PACK_FIELDS = ['SALE_FORMAT', 'UNITS_PER_PACK', 'PACKS_NUMBER', 'PACKAGES_NUMBER', 'PACKAGING_BOXES_NUMBER'];
 const IDENTITY_FIELDS = ['SELLER_SKU', 'GTIN', 'BRAND', 'MODEL', 'MPN', 'PART_NUMBER', 'COLOR', 'VOLTAGE', 'NOMINAL_VOLTAGE', 'DIAMETER', 'BLADES_DIAMETER'];
 const INTERNAL_IDENTITY_FIELDS = new Set(['KIT_COMPOSITION']);
@@ -38,6 +40,36 @@ const EXISTING_LISTING_COMMERCIAL_FIELDS = new Set([
 ]);
 export const isMlIdentityAttribute = (id: string) => [...IDENTITY_FIELDS, ...PACK_FIELDS].includes(id);
 const normalizeText = (value: unknown) => String(value ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ');
+
+export function brandKey(value: unknown): string { return normalizeText(value); }
+
+/** Pares aprovados formam grupos; sem equivalência por semelhança textual. */
+export function buildBrandEquivalences(pairs: Array<{ brand_a_key: string; brand_b_key: string }>): BrandEquivalences {
+  const parent = new Map<string, string>();
+  const root = (key: string): string => {
+    const previous = parent.get(key);
+    if (!previous || previous === key) return key;
+    const resolved = root(previous);
+    parent.set(key, resolved);
+    return resolved;
+  };
+  for (const pair of pairs) {
+    const a = brandKey(pair.brand_a_key);
+    const b = brandKey(pair.brand_b_key);
+    if (!a || !b || a === b) continue;
+    const left = root(a);
+    const right = root(b);
+    if (left !== right) parent.set(left < right ? right : left, left < right ? left : right);
+    if (!parent.has(a)) parent.set(a, a);
+    if (!parent.has(b)) parent.set(b, b);
+  }
+  return new Map([...parent.keys()].map(key => [key, root(key)]));
+}
+
+export function equivalentBrandKey(value: unknown, aliases?: BrandEquivalences): string {
+  const key = brandKey(value);
+  return aliases?.get(key) || key;
+}
 
 export function mergeMlAttributePrefill(params: {
   prediction?: Record<string, string | undefined>; initial?: Record<string, string | undefined>;
@@ -156,8 +188,11 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
   for (const field of fields) {
     const fact = facts[field];
     const rawValues = readMlIdentityAttribute(attributes, field, definitions);
-    const remoteValues = [...new Set(rawValues.map(value => normalizeMlIdentityValue(field, value)))];
-    const local = fact?.value ? normalizeMlIdentityValue(field, fact.value) : null;
+    const normalized = (value: string) => field === 'BRAND'
+      ? equivalentBrandKey(value, context.brandEquivalences)
+      : normalizeMlIdentityValue(field, value);
+    const remoteValues = [...new Set(rawValues.map(normalized))];
+    const local = fact?.value ? normalized(fact.value) : null;
     const remote = remoteValues.length === 1 ? remoteValues[0] : null;
     const evidence = [...(fact?.evidence || []), ...(context.remoteEvidence ? [context.remoteEvidence] : [])];
     let status: ConflictStatus = 'SEM_CONFLITO';

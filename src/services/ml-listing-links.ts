@@ -2,6 +2,7 @@ import { fetchMLResult } from '@/services/integration';
 import { getCategoryAttributes } from '@/services/mercadolibre';
 import { buildMlItemsBulkPath, getMlItemsBulkBody } from '@/lib/ml/items-bulk';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
+import { loadMlBrandEquivalences, type BrandEquivalences } from '@/lib/ml/brand-equivalences';
 import { isMlExistingListingIdentitySafe, hasConfirmedMlIdentityConflict } from '@/lib/ml-listing-identity';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { classifyListingLinks, type ListingLinkCandidate, type ListingLinkResult } from '@/lib/ml/listing-link';
@@ -41,12 +42,13 @@ export async function searchListingIdsBySkus(sellerId: number, skus: string[]) {
 }
 
 type Client = { from: (table: string) => any };
-export async function resolveProductMlLinks(client: Client, product: any, sellerId: number): Promise<ListingLinkResult> {
-  const [offersResult, listingsResult, snapshotsResult, kit, operationalIds] = await Promise.all([
+export async function resolveProductMlLinks(client: Client, product: any, sellerId: number, knownBrandEquivalences?: BrandEquivalences): Promise<ListingLinkResult> {
+  const [offersResult, listingsResult, snapshotsResult, kit, operationalIds, brandEquivalences] = await Promise.all([
     client.from('produto_fornecedor_ofertas').select('*').eq('produto_id', product.id),
     client.from('anuncios_ml').select('ml_item_id,produto_id').eq('produto_id', product.id),
     client.from('catalogo_ml_snapshot').select('ml_item_id,produto_id,seller_id').eq('produto_id', product.id),
     loadMlIdentityKit(client, product.id), loadOperationalDropshippingSupplierIds(client),
+    knownBrandEquivalences || loadMlBrandEquivalences(client),
   ]);
   if (offersResult.error || listingsResult.error || snapshotsResult.error) throw new Error('listing_link_local_read_failed');
   const offers = offersResult.data || [];
@@ -103,7 +105,7 @@ export async function resolveProductMlLinks(client: Client, product: any, seller
     const variations = Array.isArray(item.variations) ? item.variations : [];
     const matching = variations.filter((v: any) => productSkus.includes(String(v.seller_custom_field || v.attributes?.find((a: any) => a.id === 'SELLER_SKU')?.value_name || '').trim()));
     const variationId = matching.length === 1 ? String(matching[0].id) : '';
-    const identity = assessMlProductIdentity(item, product, offers, operationalIds, { categoryAttributes: attributes || null, kit, variationId: variationId || null, remoteEvidence: evidence });
+    const identity = assessMlProductIdentity(item, product, offers, operationalIds, { categoryAttributes: attributes || null, kit, variationId: variationId || null, remoteEvidence: evidence, brandEquivalences });
     const relationsKnown = Array.isArray(item.item_relations);
     const relations = (relationsKnown ? item.item_relations : []).map((r: any) => ({ itemId: String(r.id || ''), variationId: r.variation_id == null ? '' : String(r.variation_id) }));
     let sync: ListingLinkCandidate['sync'] = { status: 'UNKNOWN', relations: [] };

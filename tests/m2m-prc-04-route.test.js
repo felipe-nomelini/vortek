@@ -23,6 +23,7 @@ function harness(options = {}) {
     then(resolve) { return Promise.resolve({ error: null, data: table === 'produto_fornecedor_ofertas' ? [] : [] }).then(resolve); } };
     return query; } };
   const detail = load('src/services/pricing-detail.ts', {
+    '@/lib/ml/brand-equivalences': { loadMlBrandEquivalences: async () => new Map() },
     '@/services/pricing-decisions': { decisionContext: () => null, syncPricingAlerts: async () => {} },
     '@/services/pricing-audit': { recordPricingEvaluation: async (...args) => { evaluations.push(args); return 'evaluation-test'; }, pricingMaterialFingerprint: JSON.stringify },
     '@/services/pricing-competition': load('src/services/pricing-competition.ts', {

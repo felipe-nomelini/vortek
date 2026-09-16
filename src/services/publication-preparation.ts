@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { createServiceClient } from '@/lib/supabase';
 import { assertAllowedMlCategoryForProduct } from '@/lib/ml-category-guard';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
+import { loadMlBrandEquivalences } from '@/lib/ml/brand-equivalences';
 import { isMlIdentityComplete } from '@/lib/ml-listing-identity';
 import { buildEvidenceBasedMlDescription } from '@/lib/ml-listing-description';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
@@ -90,11 +91,12 @@ export async function preparePublication(raw: unknown, actorId: string) {
   const links = await resolveProductMlLinks(client, product, Number(sellerId));
   if (input.action === 'new' && (links.classification !== 'NOVO_ANUNCIO_CANDIDATO' || links.candidates.length))
     throw new Error('publication_existing_or_inconclusive_link');
-  const [capacity, attrs, terms, kit, supplierIds, offers, account, sourceResult] = await Promise.all([
+  const [capacity, attrs, terms, kit, supplierIds, offers, account, sourceResult, brandEquivalences] = await Promise.all([
     loadProductFulfillmentCapacity(client, product.id), getCategoryAttributes(input.categoriaId), getCategorySaleTerms(input.categoriaId),
     loadMlIdentityKit(client, product.id), loadOperationalDropshippingSupplierIds(client),
     client.from('produto_fornecedor_ofertas').select('*').eq('produto_id', product.id), fetchMLResult<any>('/users/me'),
     input.sourceItemId ? fetchMLResult<any>('/items/' + encodeURIComponent(input.sourceItemId) + '?include_attributes=all') : Promise.resolve(null),
+    loadMlBrandEquivalences(client),
   ]);
   if (!attrs || !terms || offers.error || !account.ok || String(account.data?.id) !== sellerId)
     throw new Error('publication_evidence_unavailable');
@@ -124,12 +126,12 @@ export async function preparePublication(raw: unknown, actorId: string) {
   if (new Set(attributes.map(a => a.id)).size !== attributes.length) throw new Error('publication_duplicate_attribute');
   attributes.push({ id: 'SELLER_SKU', value_name: product.sku });
   const identity = assessMlProductIdentity({ attributes, seller_custom_field: product.sku }, product, offers.data || [], supplierIds,
-    { categoryAttributes: attrs, kit, remoteEvidence: { source: 'manual_validation', reference: 'publication-preparation:' + product.id,
+    { categoryAttributes: attrs, kit, brandEquivalences, remoteEvidence: { source: 'manual_validation', reference: 'publication-preparation:' + product.id,
       collectedAt: new Date().toISOString(), condition: 'valid' } });
   if (!isMlIdentityComplete(identity)) throw new Error('publication_identity_requires_validation');
   if (input.action === 'relist') {
     const sourceIdentity = assessMlProductIdentity(sourceItem, product, offers.data || [], supplierIds,
-      { categoryAttributes: attrs, kit, remoteEvidence: { source: 'mercado_livre', reference: input.sourceItemId!,
+      { categoryAttributes: attrs, kit, brandEquivalences, remoteEvidence: { source: 'mercado_livre', reference: input.sourceItemId!,
         collectedAt: new Date().toISOString(), condition: 'valid' } });
     if (!isMlIdentityComplete(sourceIdentity)) throw new Error('publication_relist_identity_requires_validation');
   }

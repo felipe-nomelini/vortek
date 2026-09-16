@@ -21,6 +21,7 @@ import {
   loadProductFulfillmentCapacity,
 } from '@/lib/orders/fulfillment-capacity-loader';
 import { shouldSkipManuallyBlockedStockUpdate } from '@/lib/ml/protective-stock';
+import { mayReactivateAfterStock } from '@/lib/ml/stock-status-policy';
 
 export type ItemEstoquePedido = OrderFulfillmentStockItem;
 
@@ -363,15 +364,32 @@ export async function enfileirarSyncMlEstoqueInterno(
   let emProcessamento = 0;
   const observedStatusNormalized = String(observed?.status || '').trim().toLowerCase();
   for (const mlItemId of mlItemIds) {
-    const observedQuantity = Number(observed?.availableQuantity);
-    const observedStatus = observed?.mlItemId === mlItemId
+    let observedQuantity = Number(observed?.availableQuantity);
+    let observedStatus = observed?.mlItemId === mlItemId
       ? observedStatusNormalized
       : observedStatusById.get(mlItemId) || localStatusById.get(mlItemId) || '';
+    let mayReactivate = false;
+    if (estoqueDisponivel > 0 && observedStatus === 'paused') {
+      const [remote, ownership] = await Promise.all([
+        fetchMLResult<any>(`/items/${mlItemId}`),
+        (db as any).from('ml_stock_pause_ownership').select('active,remote_last_updated')
+          .eq('ml_item_id', mlItemId).maybeSingle(),
+      ]);
+      if (!remote.ok || !remote.data || ownership.error) throw new Error('Falha ao validar origem da pausa do anúncio.');
+      observedStatus = String(remote.data.status || '').toLowerCase();
+      observedQuantity = Number(remote.data.available_quantity);
+      mayReactivate = mayReactivateAfterStock({
+        status: remote.data.status, subStatus: remote.data.sub_status,
+        remoteLastUpdated: remote.data.last_updated,
+        ownedPauseLastUpdated: ownership.data?.active ? ownership.data.remote_last_updated : null,
+      });
+    }
     const desiredStatus = estoqueDisponivel <= 0
       ? 'paused'
-      : observedStatus === 'paused'
+      : observedStatus === 'paused' && !mayReactivate
         ? 'paused'
         : 'active';
+    const applyStatus = estoqueDisponivel <= 0 || desiredStatus === 'active';
     if (shouldSkipManuallyBlockedStockUpdate({
       manuallyBlocked: skuBloqueado || bloqueados.has(mlItemId),
       desiredStatus: desiredStatus === 'active' ? 'ativo' : 'pausado',
@@ -381,8 +399,8 @@ export async function enfileirarSyncMlEstoqueInterno(
       continue;
     }
     if (
-      observed?.mlItemId === mlItemId
-      && observed.availableQuantity !== null
+      (observed?.mlItemId === mlItemId || observedStatus === 'paused')
+      && (observed?.availableQuantity !== null || observedStatus === 'paused')
       && Number.isFinite(observedQuantity)
       && Math.max(0, Math.trunc(observedQuantity)) === estoqueDisponivel
       && observedStatus === desiredStatus
@@ -390,9 +408,9 @@ export async function enfileirarSyncMlEstoqueInterno(
       semAlteracao += 1;
       continue;
     }
-    const observedTarget = observed?.mlItemId === mlItemId;
+    const observedTarget = observed?.mlItemId === mlItemId || observedStatus === 'paused';
     const observedQuantityDiffers = observedTarget
-      && observed?.availableQuantity !== null
+      && (observed?.availableQuantity !== null || observedStatus === 'paused')
       && Number.isFinite(observedQuantity)
       && Math.max(0, Math.trunc(observedQuantity)) !== estoqueDisponivel;
     const observedStatusDiffers = observedTarget
@@ -401,17 +419,17 @@ export async function enfileirarSyncMlEstoqueInterno(
     const result = await enqueueMlPublishOutbox(db, {
       produtoId: String(produto.id),
       mlItemId,
-      desiredStatus: desiredStatus === 'active' ? 'ativo' : 'pausado',
+      desiredStatus: applyStatus ? (desiredStatus === 'active' ? 'ativo' : 'pausado') : null,
       desiredQuantity: estoqueDisponivel,
       source: 'internal_stock_automation',
       dedupePending: true,
       forceQuantityPublish: observedQuantityDiffers,
-      forceStatusPublish: observedStatusDiffers,
+      forceStatusPublish: applyStatus && observedStatusDiffers,
       payload: {
         apply_price: false,
         apply_quantity_pricing: false,
         apply_quantity: true,
-        apply_status: true,
+        apply_status: applyStatus,
         sku: produto.sku,
         estoque_fornecedor: capacity.supplier,
         estoque_interno: capacity.internal,

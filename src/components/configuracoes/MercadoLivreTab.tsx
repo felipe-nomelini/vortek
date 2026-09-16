@@ -50,6 +50,7 @@ type MlConfiguration = {
     diagnosticsError: string | null;
   };
 };
+type BrandEquivalence = { id: string; brand_a: string; brand_b: string; active: boolean };
 
 function errorMessage(error: unknown, fallback: string) {
   return userSafeMessage(error instanceof Error ? error.message : "", fallback);
@@ -61,14 +62,23 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
   const [data, setData] = useState<MlConfiguration | null>(null);
   const [clientId, setClientId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [brandA, setBrandA] = useState("");
+  const [brandB, setBrandB] = useState("");
+  const [brandEquivalences, setBrandEquivalences] = useState<BrandEquivalence[]>([]);
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/configuracoes/mercado-livre", { cache: "no-store" });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(payload?.erro || "Falha ao carregar Mercado Livre");
+      const [response, brandsResponse] = await Promise.all([
+        fetch("/api/configuracoes/mercado-livre", { cache: "no-store" }),
+        fetch("/api/configuracoes/mercado-livre/marcas", { cache: "no-store" }),
+      ]);
+      const [payload, brandsPayload] = await Promise.all([
+        response.json().catch(() => ({})), brandsResponse.json().catch(() => ({})),
+      ]);
+      if (!response.ok || !brandsResponse.ok) throw new Error(payload?.erro || brandsPayload?.erro || "Falha ao carregar Mercado Livre");
       setData(payload);
+      setBrandEquivalences(Array.isArray(brandsPayload.items) ? brandsPayload.items : []);
       setClientId(payload.application.clientId || "");
       setClientSecret("");
     } catch (error) {
@@ -137,6 +147,47 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
     });
   };
 
+  const saveBrandEquivalence = () => {
+    if (!brandA.trim() || !brandB.trim()) return messageApi.warning("Informe as duas marcas.");
+    Modal.confirm({
+      title: "Aprovar equivalência de marcas?",
+      content: `${brandA.trim()} e ${brandB.trim()} serão tratadas como a mesma marca em todo o catálogo. Os nomes originais serão preservados.`,
+      okText: "Aprovar",
+      async onOk() {
+        setSaving(true);
+        try {
+          const response = await fetch("/api/configuracoes/mercado-livre/marcas", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ brandA: brandA.trim(), brandB: brandB.trim() }),
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(payload.erro || "Falha ao aprovar equivalência");
+          setBrandA(""); setBrandB("");
+          await load();
+          messageApi.success("Equivalência aprovada");
+        } catch (error) {
+          messageApi.error(errorMessage(error, "Não foi possível aprovar a equivalência."));
+          throw error;
+        } finally { setSaving(false); }
+      },
+    });
+  };
+
+  const toggleBrandEquivalence = async (item: BrandEquivalence) => {
+    setSaving(true);
+    try {
+      const response = await fetch("/api/configuracoes/mercado-livre/marcas", {
+        method: "PATCH", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: item.id, active: !item.active }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.erro || "Falha ao alterar equivalência");
+      await load();
+      messageApi.success(item.active ? "Equivalência desativada" : "Equivalência reativada");
+    } catch (error) { messageApi.error(errorMessage(error, "Não foi possível alterar a equivalência.")); }
+    finally { setSaving(false); }
+  };
+
   const connected = Boolean(data?.application.connected);
   const credentialsReady = Boolean(clientId.trim() && data?.application.clientSecretConfigured);
   return (
@@ -193,6 +244,23 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
             </Card>
           </Col>
         </Row>
+
+        <Card title="Marcas equivalentes" style={configuracoesCardStyle}>
+          <Text type="secondary">Aprovações valem para todo o catálogo e não alteram a marca gravada no produto ou no anúncio.</Text>
+          <Space wrap style={{ display: "flex", marginTop: 12, marginBottom: 16 }}>
+            <Input aria-label="Primeira marca" placeholder="Marca cadastrada" value={brandA} onChange={event => setBrandA(event.target.value)} maxLength={80} />
+            <Input aria-label="Marca equivalente" placeholder="Variação da marca" value={brandB} onChange={event => setBrandB(event.target.value)} maxLength={80} />
+            <Button type="primary" onClick={saveBrandEquivalence}>Aprovar equivalência</Button>
+          </Space>
+          {brandEquivalences.length === 0 ? <Text type="secondary">Nenhuma equivalência cadastrada.</Text> :
+            <Space direction="vertical" style={{ width: "100%" }}>
+              {brandEquivalences.map(item => <Space key={item.id} wrap>
+                <Text>{item.brand_a} ↔ {item.brand_b}</Text>
+                <Tag color={item.active ? "green" : "default"}>{item.active ? "Aprovada" : "Desativada"}</Tag>
+                <Button size="small" onClick={() => void toggleBrandEquivalence(item)}>{item.active ? "Desativar" : "Reativar"}</Button>
+              </Space>)}
+            </Space>}
+        </Card>
 
         <Row gutter={[16, 16]}>
           <Col xs={24}>

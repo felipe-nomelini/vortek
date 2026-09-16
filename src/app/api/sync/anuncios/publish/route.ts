@@ -7,6 +7,8 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { loadMlStockContext, publishAndVerifyMlStock } from '@/lib/ml/stock-publish';
+import { isAutomatedStockSource, mayReactivateAfterStock } from '@/lib/ml/stock-status-policy';
+import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 import {
@@ -268,7 +270,7 @@ export async function POST(request: Request) {
           const seeded = await enqueueMlPublishOutbox(client, {
             produtoId: String(produto.id),
             mlItemId,
-            desiredStatus: pauseForZeroStock ? 'pausado' : (produto.ml_status || null),
+            desiredStatus: pauseForZeroStock ? 'pausado' : 'ativo',
             desiredPrice: !pauseForZeroStock && typeof produto.custom_price === 'number'
               ? produto.custom_price
               : null,
@@ -279,7 +281,7 @@ export async function POST(request: Request) {
               apply_price: !pauseForZeroStock && typeof produto.custom_price === 'number',
               apply_quantity_pricing: false,
               apply_quantity: true,
-              apply_status: pauseForZeroStock || Boolean(produto.ml_status),
+              apply_status: true,
               seeded_at: new Date().toISOString(),
               estoque_fornecedor: capacity.supplier,
               estoque_interno: capacity.internal,
@@ -436,6 +438,7 @@ export async function POST(request: Request) {
         continue;
       }
       const mlItemId = String(row.ml_item_id || '').trim();
+      const outboxSource = String((row as any).source || '').trim().toLowerCase();
       const attempts = Number(row.attempts || 0) + 1;
       const outboxPayloadBase = retireQuantityPricingPayload(normalizeOutboxPayload((row as any).payload));
       const deleteListing = isMlListingDeletionPayload(outboxPayloadBase);
@@ -539,6 +542,54 @@ export async function POST(request: Request) {
         continue;
       }
 
+      const automaticPositiveStock = (applyMode.applyQuantity || applyMode.applyStatus)
+        && Number(row.desired_quantity) > 0
+        && (isAutomatedStockSource(outboxSource) || outboxSource === 'fornecedor_inativo_alternativa');
+      let autoStatusAllowed = true;
+      let autoStockBefore: any = null;
+      if (automaticPositiveStock && mlItemId) {
+        const freshCapacity = await loadProductFulfillmentCapacity(client, String(row.produto_id));
+        if (freshCapacity.safe !== Number(row.desired_quantity)) {
+          await (client.from('anuncios_ml_outbox' as any).update({ status: 'cancelled',
+            last_error: 'Capacidade mudou após enfileiramento; aguarda nova reconciliação',
+            processed_at: new Date().toISOString(), updated_at: new Date().toISOString() } as any).eq('id', outboxId) as any);
+          warnings.push({ code: 'ml_stock_capacity_changed', message: 'Publicação positiva obsoleta', context: { outboxId, mlItemId } });
+          continue;
+        }
+        const [remote, product, manualByItem, ownership] = await Promise.all([
+          fetchMLResult<any>(`/items/${mlItemId}`),
+          client.from('produtos').select('sku').eq('id', String(row.produto_id)).maybeSingle(),
+          client.from('ml_manual_blocklist').select('id').eq('ativo', true).eq('ml_item_id', mlItemId).limit(1),
+          (client as any).from('ml_stock_pause_ownership').select('remote_last_updated,active')
+            .eq('ml_item_id', mlItemId).maybeSingle(),
+        ]);
+        const sku = String(product.data?.sku || '').trim();
+        const manualBySku = sku
+          ? await client.from('ml_manual_blocklist').select('id').eq('ativo', true).eq('sku', sku).limit(1)
+          : { data: [], error: null };
+        if (!remote.ok || !remote.data || product.error || manualByItem.error || manualBySku.error || ownership.error) {
+          const now = new Date().toISOString();
+          await (client.from('anuncios_ml_outbox' as any).update({ status: 'retry',
+            last_error: 'Preflight de estoque positivo indisponível', available_at: new Date(Date.now() + 60_000).toISOString(),
+            updated_at: now } as any).eq('id', outboxId) as any);
+          retry += 1;
+          continue;
+        }
+        if ((manualByItem.data || []).length || (manualBySku.data || []).length) {
+          await (client.from('anuncios_ml_outbox' as any).update({ status: 'cancelled',
+            last_error: 'Publicação positiva impedida por bloqueio manual ou de identidade',
+            processed_at: new Date().toISOString(), updated_at: new Date().toISOString() } as any).eq('id', outboxId) as any);
+          warnings.push({ code: 'ml_stock_positive_blocked', message: 'Estoque positivo não publicado por bloqueio ativo', context: { outboxId, mlItemId } });
+          continue;
+        }
+        autoStockBefore = remote.data;
+        autoStatusAllowed = mayReactivateAfterStock({
+          status: remote.data.status, subStatus: remote.data.sub_status,
+          remoteLastUpdated: remote.data.last_updated,
+          ownedPauseLastUpdated: ownership.data?.active ? ownership.data.remote_last_updated : null,
+        });
+      }
+
       await (client
         .from('anuncios_ml_outbox' as any)
         .update({
@@ -554,9 +605,9 @@ export async function POST(request: Request) {
         .eq('id', outboxId) as any);
 
       const operations: PublishOperation[] = [];
+      let explicitAutomaticPause = false;
 
       const rowProductId = String(row.produto_id || '').trim();
-      const outboxSource = String((row as any).source || '').trim().toLowerCase();
       const desiredStatusRaw = String(row.desired_status || '').trim().toLowerCase();
       const protectiveZeroStockPause = isProtectiveZeroStockPause({
         desiredStatus: desiredStatusRaw,
@@ -681,19 +732,50 @@ export async function POST(request: Request) {
         const statusMl = toMlStatus(row.desired_status);
         if (applyMode.applyStatus && statusMl) {
           await updateProcessingMarker('status');
-          const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: statusMl }),
-          });
-            operations.push({
-              op: 'status',
-              ok: result.ok,
-              error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar status no ML'),
-              code: result.error?.code,
-              status: result.status,
-              category: result.error?.category,
+          const automatedStatus = protectiveZeroStockPause
+            || (automaticPositiveStock && statusMl === 'active' && isAutomatedStockSource(outboxSource));
+          const quantityFailed = operations.some(operation => operation.op === 'quantity' && !operation.ok);
+          let publishStatus = true;
+          if (automatedStatus && quantityFailed) {
+            publishStatus = false;
+            operations.push({ op: 'status', ok: false, code: 'stock_quantity_failed',
+              error: 'Status não publicado porque a quantidade falhou' });
+          } else if (automatedStatus) {
+            const current = await fetchMLResult<any>(`/items/${mlItemId}`);
+            if (!current.ok || !current.data) {
+              publishStatus = false;
+              operations.push({ op: 'status', ok: false, code: 'stock_status_read_failed',
+                error: current.error?.message || 'Falha ao conferir status após estoque' });
+            } else if (protectiveZeroStockPause) {
+              if (current.data.status === 'paused') {
+                publishStatus = false;
+                operations.push({ op: 'status', ok: true, code: 'stock_pause_already_observed' });
+              } else if (current.data.status !== 'active') {
+                publishStatus = false;
+                operations.push({ op: 'status', ok: false, code: 'stock_status_unexpected', error: 'Estado remoto inesperado após zerar estoque' });
+              } else {
+                explicitAutomaticPause = true;
+              }
+            } else if (!autoStatusAllowed || autoStockBefore?.status === 'active' || current.data.status === 'active') {
+              publishStatus = false;
+              operations.push({ op: 'status', ok: true, code: autoStatusAllowed ? 'stock_active_already_observed' : 'manual_pause_preserved' });
+            } else if (current.data.status !== 'paused'
+              || (autoStockBefore?.sub_status?.includes('out_of_stock')
+                && current.data.sub_status?.includes('paused_by_seller'))) {
+              publishStatus = false;
+              operations.push({ op: 'status', ok: false, code: 'stock_status_changed', error: 'Estado do anúncio mudou durante a reposição' });
+            }
+          }
+          if (publishStatus) {
+            const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ status: statusMl }),
             });
+            operations.push({ op: 'status', ok: result.ok,
+              error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar status no ML'),
+              code: result.error?.code, status: result.status, category: result.error?.category });
+          }
         }
       }
 
@@ -791,6 +873,30 @@ export async function POST(request: Request) {
               message: anuncioReconcile.error,
               context: { outboxId, mlItemId, localStatus: resolvedLocalStatus },
             });
+          }
+
+          const finalStatus = String(itemStateResult.data.status || '').toLowerCase();
+          const finalSubStatuses = Array.isArray(itemStateResult.data.sub_status)
+            ? itemStateResult.data.sub_status.map((value: unknown) => String(value).toLowerCase()) : [];
+          if (explicitAutomaticPause && finalStatus === 'paused'
+            && finalSubStatuses.includes('paused_by_seller')
+            && Number.isFinite(Date.parse(String(itemStateResult.data.last_updated || '')))) {
+            const { error: ownershipError } = await (client as any).from('ml_stock_pause_ownership').upsert({
+              ml_item_id: mlItemId, outbox_id: outboxId,
+              remote_last_updated: itemStateResult.data.last_updated,
+              active: true, released_reason: null, updated_at: new Date().toISOString(),
+            }, { onConflict: 'ml_item_id' });
+            if (ownershipError) errors.push({ code: 'ml_stock_pause_ownership_write_failed',
+              message: ownershipError.message, context: { outboxId, mlItemId } });
+          } else if (finalStatus === 'active'
+            || (protectiveZeroStockPause && finalSubStatuses.includes('out_of_stock'))
+            || (applyMode.applyStatus && !isAutomatedStockSource(outboxSource))) {
+            const { error: ownershipError } = await (client as any).from('ml_stock_pause_ownership')
+              .update({ active: false, released_reason: finalStatus === 'active' ? 'active' : 'other_pause',
+                updated_at: new Date().toISOString() })
+              .eq('ml_item_id', mlItemId).eq('active', true);
+            if (ownershipError) errors.push({ code: 'ml_stock_pause_ownership_release_failed',
+              message: ownershipError.message, context: { outboxId, mlItemId } });
           }
 
           if (hasDesiredPriceForReconcile && Number.isFinite(desiredPrice) && Number.isFinite(reconciledMlPrice)) {

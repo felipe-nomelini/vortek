@@ -17,6 +17,7 @@ import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
+import { loadMlBrandEquivalences } from '@/lib/ml/brand-equivalences';
 import { isMlExistingListingIdentitySafe, hasConfirmedMlExistingListingIdentityConflict } from '@/lib/ml-listing-identity';
 import { getCategoryAttributes } from '@/services/mercadolibre';
 import { resolveProductMlLinks, persistProductMlGroups } from '@/services/ml-listing-links';
@@ -608,9 +609,10 @@ export async function POST(request: Request) {
     const itemIds = requestedItemIds;
 
     const serviceClient = createServiceClient();
-    const [commercial, operationalSupplierIds] = await Promise.all([
+    const [commercial, operationalSupplierIds, brandEquivalences] = await Promise.all([
       loadCommercialPricingConfiguration(serviceClient),
       loadOperationalDropshippingSupplierIds(serviceClient),
+      loadMlBrandEquivalences(serviceClient),
     ]);
     const sellerZipResult = await resolveSellerZip();
     if (sellerZipResult.warning) warnings.push({ code: 'ml_seller_zip_unavailable', message: sellerZipResult.warning });
@@ -743,7 +745,7 @@ export async function POST(request: Request) {
             produto,
             identityOffers || [],
             operationalSupplierIds,
-            { categoryAttributes: categoryAttributes || null, kit,
+            { categoryAttributes: categoryAttributes || null, kit, brandEquivalences,
               remoteEvidence: { source: 'mercado_livre', reference: String(item.id), collectedAt: new Date().toISOString(), condition: 'valid' } },
           );
           const identityConflicts = identityAssessment.comparisons.filter(value => value.status === 'CONFLITO_CONFIRMADO'
@@ -755,7 +757,7 @@ export async function POST(request: Request) {
             if (!linkResolutions.has(produtoId)) {
               const observedAt = new Date().toISOString();
               const observedProductId = produtoId;
-              linkResolutions.set(produtoId, resolveProductMlLinks(serviceClient, produto, Number(me.id)).then(async result => {
+              linkResolutions.set(produtoId, resolveProductMlLinks(serviceClient, produto, Number(me.id), brandEquivalences).then(async result => {
                 const stored = await persistProductMlGroups(serviceClient, observedProductId, Number(me.id), result, observedAt);
                 if (stored?.applied !== true) throw new Error('listing_group_observation_not_applied');
                 return result;

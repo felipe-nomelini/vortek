@@ -6,6 +6,7 @@ function service(fetchMLResult, extra={}) {return load('src/services/ml-listing-
   '@/lib/ml/items-bulk':require('../src/lib/ml/items-bulk.ts'),
   '@/lib/ml-critical-attributes':{},'@/lib/ml-listing-identity':{},'@/lib/dslite/supplier-policy':{},
   '@/lib/ml/listing-link':pure,
+  '@/lib/ml/brand-equivalences':{loadMlBrandEquivalences:async()=>new Map()},
   ...extra,
 });}
 
