@@ -80,11 +80,12 @@ Atualize o checklist somente com evidência real e quando pertinente à tarefa. 
 
 ## 4. Investigar e implementar
 
-1. Inspecione os arquivos e consumidores relacionados; confirme versões e configuração quando influírem na decisão.
+1. Antes de investigar, defina qual dúvida precisa ser respondida. Inspecione primeiro apenas a fonte de verdade e os consumidores diretamente relacionados; amplie a busca somente quando a evidência exigir.
 2. Para comportamento dependente de tecnologia externa, leia a documentação oficial atual da funcionalidade e versão pertinentes. Não basta a página inicial. Se insuficiente, consulte código/SDK, changelog ou schema oficial; só então fontes secundárias, distinguindo inferência de fato.
 3. Em bugs, identifique comportamento esperado, observado, ponto de divergência e causa com evidências. Se a causa não puder ser confirmada, explicite a limitação.
-4. Escolha a menor solução correta: corrigir, remover, reutilizar ou consolidar antes de acrescentar mecanismos.
-5. Implemente apenas o necessário e valide o comportamento afetado.
+4. Pare de investigar quando já houver evidência suficiente para uma decisão segura. Não repita consultas equivalentes nem leia arquivos ou documentos sem impacto na solução.
+5. Escolha a menor solução correta e trate a causa raiz: corrigir, remover, reutilizar ou consolidar antes de acrescentar mecanismos.
+6. Implemente apenas o necessário e valide primeiro o comportamento afetado. Amplie os testes somente quando o risco ou a matriz de validação deste arquivo exigir.
 
 Não esconda erros, duplique fontes de verdade ou introduza fallbacks, fluxos paralelos, wrappers, dependências, caches, retries ou jobs sem necessidade demonstrada. Mitigações temporárias precisam de motivo explícito quando a causa não puder ser corrigida com segurança; não as apresente como solução definitiva.
 
@@ -169,4 +170,15 @@ Preserve `main` sem alterações e mova `bentevi-prod` somente para o SHA aprova
 
 Use ferramentas disponíveis e equivalentes seguros, sem criar infraestrutura auxiliar por conveniência. Skills herdadas ou instruções históricas não substituem a autorização definida neste arquivo nem dispensam o preflight produtivo.
 
-Responda em português brasileiro, com conclusão primeiro, evidências necessárias, mudanças, validações realmente executadas e pendências relevantes. Diferencie fatos de hipóteses e não exponha raciocínio interno. Nunca afirme que testou, publicou, migrou ou verificou algo que não executou. Encerre ao cumprir o escopo solicitado.
+### Comunicação simples e execução eficiente
+
+- Responda em português brasileiro simples, com frases curtas e conclusão primeiro. Evite jargão; quando um termo técnico for indispensável, explique-o em uma frase.
+- Seja assertivo e conciso. Informe somente resultado, mudança realizada, validação e pendência real. Não narre comandos, consultas ou etapas rotineiras, salvo quando o usuário pedir detalhes.
+- Em atualizações durante o trabalho, comunique apenas avanço relevante, risco, bloqueio ou mudança de estado, em uma ou duas frases.
+- Para tarefas simples, faça plano curto após uma verificação direcionada. Pergunte somente quando faltar uma decisão relevante que não possa ser descoberta no projeto.
+- Prefira uma correção direta na fonte do problema. Não crie contornos, fluxos paralelos, abstrações ou camadas temporárias quando a causa raiz puder ser corrigida com segurança.
+- Não leia o repositório inteiro nem execute consultas amplas por padrão. Comece pela fonte principal, expanda somente com justificativa concreta e encerre a investigação assim que houver segurança para agir.
+- Execute testes direcionados primeiro. Não inclua áreas não relacionadas ou funcionalidades incompletas, como a Video Factory, salvo quando forem alteradas pela tarefa ou quando o usuário pedir expressamente.
+- Preserve as validações obrigatórias de segurança e produção. Simplicidade e rapidez não autorizam omitir gates aplicáveis.
+
+Diferencie fatos de hipóteses e não exponha raciocínio interno. Nunca afirme que testou, publicou, migrou ou verificou algo que não executou. Encerre ao cumprir o escopo solicitado.
