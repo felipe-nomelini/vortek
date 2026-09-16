@@ -88,8 +88,8 @@ function classifyCase(rule, context) {
     && !['closed', 'inactive', 'under_review'].includes(searchable(listing.status));
   const gtinLocalValid = normalizeGtin(product.gtin) === normalizeGtin(rule.gtin);
   const gtinRemoteValid = remoteGtins.includes(normalizeGtin(rule.gtin));
-  const brandValid = searchable(product.marca).includes(searchable(rule.brand))
-    && searchable(remoteIdentity).includes(searchable(rule.brand));
+  const brandValid = compact(product.marca).includes(compact(rule.brand))
+    && compact(remoteIdentity).includes(compact(rule.brand));
   const modelValid = hasAllCompact(fullIdentity, rule.model);
   const familyValid = rule.family.every(group => hasAny(fullIdentity, group));
   const materialChecks = Object.fromEntries(Object.entries(rule.material || {}).map(([key, alternatives]) => [key, hasAny(fullIdentity, alternatives)]));
