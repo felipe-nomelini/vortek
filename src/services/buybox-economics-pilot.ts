@@ -369,20 +369,28 @@ export async function executeBuyBoxPilotItem(runId: string, itemId: string) {
     p_reason: reason,
   });
   if (prepared.error || !prepared.data) throw new Error('buybox_pilot_decision_prepare_failed');
+  const preparedDecision = await client.from('pricing_decisions').select('state,actor_id,operation_id')
+    .eq('id', prepared.data).single();
+  if (preparedDecision.error || preparedDecision.data.actor_id !== BUYBOX_PILOT_ACTOR_ID
+    || preparedDecision.data.operation_id) throw new Error('buybox_pilot_decision_state_invalid');
   const fresh = await evaluateBuyBoxPilotItem(runId, itemId);
   if (fresh.state !== 'BUY_BOX_ECONOMICAMENTE_ATACAVEL' || fresh.decision.writeApproved !== true) {
     return fresh;
   }
-  const approval = await client.rpc('manage_pricing_decision' as any, {
-    p_id: prepared.data,
-    p_command_id: randomUUID(),
-    p_actor_id: BUYBOX_PILOT_ACTOR_ID,
-    p_action: 'approve',
-    p_reason: reason,
-    p_fresh_evaluation_id: fresh.evaluationId,
-    p_deferred_until: null,
-  });
-  if (approval.error || approval.data?.state !== 'approved') throw new Error('buybox_pilot_decision_approval_failed');
+  if (['pending', 'deferred'].includes(preparedDecision.data.state)) {
+    const approval = await client.rpc('manage_pricing_decision' as any, {
+      p_id: prepared.data,
+      p_command_id: randomUUID(),
+      p_actor_id: BUYBOX_PILOT_ACTOR_ID,
+      p_action: 'approve',
+      p_reason: reason,
+      p_fresh_evaluation_id: fresh.evaluationId,
+      p_deferred_until: null,
+    });
+    if (approval.error || approval.data?.state !== 'approved') throw new Error('buybox_pilot_decision_approval_failed');
+  } else if (preparedDecision.data.state !== 'approved') {
+    throw new Error('buybox_pilot_decision_state_invalid');
+  }
   const operationId = randomUUID();
   const queued = await enqueueApprovedPricingDecision(prepared.data, operationId, BUYBOX_PILOT_ACTOR_ID);
   let dispatchState: string;

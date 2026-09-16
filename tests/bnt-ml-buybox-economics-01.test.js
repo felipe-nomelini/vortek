@@ -37,6 +37,7 @@ test('executor fica preso ao ator, hashes e origem price_to_win', () => {
   assert.match(pilot, /strictEconomicGates: true/);
   assert.match(pilot, /OFERTA_ATIVA_COM_ESTOQUE_AUSENTE/);
   assert.match(pilot, /PRECO_VIVO_ABAIXO_DO_PISO/);
+  assert.match(pilot, /preparedDecision\.data\.state !== 'approved'/);
   assert.doesNotMatch(pilot, /custom_price\s*:/);
   assert.doesNotMatch(pilot, /local\.identity\.produto_id/);
 });
