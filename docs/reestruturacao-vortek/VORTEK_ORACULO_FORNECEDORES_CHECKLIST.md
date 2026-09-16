@@ -56,7 +56,7 @@ Regras permanentes:
 | Ordem | Ação | Situação | Dependência | Próximo gate |
 |---:|---|---|---|---|
 | 0 | ORC-00 — Contrato e checklist permanente | Aceito | Nenhuma | ORC-01 em nova tarefa |
-| 1 | ORC-01 — Schema aditivo | Pendente | ORC-00 aceito | Migration local sintética e compatibilidade |
+| 1 | ORC-01 — Schema aditivo | Validado em DEV | ORC-00 aceito | Publicação e read-back em `.162` |
 | 2 | ORC-02 — Estados e elegibilidade | Pendente | ORC-01 aceito | Preview explica inclusões e exclusões |
 | 3 | ORC-03 — Núcleo financeiro transacional | Pendente | ORC-02 aceito | Concorrência, idempotência e auditoria |
 | 4 | ORC-04 — Pós-processamento e comunicação | Pendente | ORC-03 aceito | Jobs reprocessáveis sem duplicação |
@@ -249,15 +249,15 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-01 — Schema aditivo
 
-- [ ] Repetir a inspeção do schema atual em `.162`, sem escrita.
-- [ ] Conferir funções, triggers, RLS, grants, índices e consumidores das tabelas afetadas.
-- [ ] Criar uma única migration idempotente e aditiva.
-- [ ] Criar tabelas, colunas, checks, FKs e índices definidos no contrato.
-- [ ] Aplicar privilégio mínimo: sem escrita direta para `anon`/`authenticated`; acesso pelo servidor autorizado.
-- [ ] Não classificar ou migrar compras existentes automaticamente.
-- [ ] Ensaiar no DEV local com dados sintéticos.
-- [ ] Provar que o código antigo funciona com as novas colunas vazias.
-- [ ] Documentar recuperação antes de liquidações confirmadas.
+- [x] Repetir a inspeção do schema atual em `.162`, sem escrita.
+- [x] Conferir funções, triggers, RLS, grants, índices e consumidores das tabelas afetadas.
+- [x] Criar uma única migration idempotente e aditiva.
+- [x] Criar tabelas, colunas, checks, FKs e índices definidos no contrato.
+- [x] Aplicar privilégio mínimo: sem escrita direta para `anon`/`authenticated`; acesso pelo servidor autorizado.
+- [x] Não classificar ou migrar compras existentes automaticamente.
+- [x] Ensaiar em PostgreSQL 17.5 local embarcado com dados sintéticos. Supabase DEV local: **N/A nesta ação**, pois Docker/WSL está indisponível; não equivale a replay integral do projeto.
+- [x] Provar compatibilidade do schema com linhas legadas sintéticas e validar lint, tipos e build do código atual.
+- [x] Documentar recuperação antes de liquidações confirmadas: manter schema aditivo e reverter somente código se necessário; nenhuma linha financeira é criada nesta etapa.
 - [ ] Executar preflight, backup proporcional, migration em `.162` e read-back.
 - [ ] Registrar migration, SHA, alvo e evidências.
 
@@ -445,6 +445,8 @@ Para cada ação técnica:
 |---|---|---|---|---|
 | 16/09/2026 | ORC-00 | `199e02bbd67f5ff98c8b1625059c10643c8977a8` | Referências, `git diff --check` e 34 testes de `tests/assistant-chat.test.js` | Enviado a `dev`, promovido por fast-forward e aceito pelo webhook oficial |
 | 16/09/2026 | ORC-00 | Sem migration | Processo produtivo reiniciado; health e login `200`, Compras `307` sem sessão e API de Compras `401` | Publicação documental confirmada, sem escrita financeira ou alteração de banco |
+| 16/09/2026 | ORC-01 | Base `63ec772c` | Preflight somente leitura: PostgreSQL 17.6 no `.162`, migration mais recente `20260916120000`, novas tabelas ausentes, 1.452 compras e 22 PIX pendentes | Migration ainda não criada; DEV Docker indisponível nesta máquina, ensaio sintético alternativo em avaliação |
+| 16/09/2026 | ORC-01 | `20260916180000_oraculo_supplier_settlements_schema.sql` | Ensaio sintético PostgreSQL 17.5: migration aplicada duas vezes; defaults legados, FKs, unicidade, totais, RLS e grants conferidos. 37 testes direcionados e 21 testes DB-03 passaram; `npm run validate`, `npm run build`, varredura de segredos e `git diff --check` passaram | Nenhuma escrita produtiva ainda; teste inicial com asserção de tipo incorreta foi corrigido e repetido com sucesso. Supabase DEV local indisponível por ausência do Docker |
 
 ## 9. Próxima ação permitida
 

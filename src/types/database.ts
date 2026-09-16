@@ -1894,6 +1894,9 @@ ml_pricing_groups: {
           dslite_status: string | null
           dslite_etiqueta_enviada: boolean
           dslite_label_source: string | null
+          label_type: string | null
+          label_delivery_channel: string | null
+          label_delivered_at: string | null
           envio_interno_at: string | null
           fulfillment_selected_at: string | null
           fulfillment_source: string | null
@@ -1965,6 +1968,9 @@ ml_pricing_groups: {
           dslite_status?: string | null
           dslite_etiqueta_enviada?: boolean
           dslite_label_source?: string | null
+          label_type?: string | null
+          label_delivery_channel?: string | null
+          label_delivered_at?: string | null
           envio_interno_at?: string | null
           fulfillment_selected_at?: string | null
           fulfillment_source?: string | null
@@ -2036,6 +2042,9 @@ ml_pricing_groups: {
           dslite_status?: string | null
           dslite_etiqueta_enviada?: boolean
           dslite_label_source?: string | null
+          label_type?: string | null
+          label_delivery_channel?: string | null
+          label_delivered_at?: string | null
           envio_interno_at?: string | null
           fulfillment_selected_at?: string | null
           fulfillment_source?: string | null
@@ -2370,6 +2379,11 @@ ml_pricing_groups: {
           supplier_payment_receipt_url: string | null
           supplier_payment_reference: string | null
           supplier_payment_status: string | null
+          supplier_settlement_id: string | null
+          supply_status: string
+          supply_status_changed_by: string | null
+          supply_status_changed_at: string | null
+          supply_status_note: string | null
           created_at: string
         }
         Insert: {
@@ -2401,6 +2415,11 @@ ml_pricing_groups: {
           supplier_payment_receipt_url?: string | null
           supplier_payment_reference?: string | null
           supplier_payment_status?: string | null
+          supplier_settlement_id?: string | null
+          supply_status?: string
+          supply_status_changed_by?: string | null
+          supply_status_changed_at?: string | null
+          supply_status_note?: string | null
           created_at?: string
         }
         Update: {
@@ -2432,6 +2451,11 @@ ml_pricing_groups: {
           supplier_payment_receipt_url?: string | null
           supplier_payment_reference?: string | null
           supplier_payment_status?: string | null
+          supplier_settlement_id?: string | null
+          supply_status?: string
+          supply_status_changed_by?: string | null
+          supply_status_changed_at?: string | null
+          supply_status_note?: string | null
           created_at?: string
         }
         Relationships: [
@@ -2440,6 +2464,13 @@ ml_pricing_groups: {
             columns: ["produto_fornecedor_oferta_id"]
             isOneToOne: false
             referencedRelation: "produto_fornecedor_ofertas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "compras_supplier_settlement_id_fkey"
+            columns: ["supplier_settlement_id"]
+            isOneToOne: false
+            referencedRelation: "supplier_settlements"
             referencedColumns: ["id"]
           },
         ]
@@ -2582,6 +2613,168 @@ ml_pricing_groups: {
             columns: ["supplier_balance_movement_id"]
             isOneToOne: false
             referencedRelation: "supplier_balance_movements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      supplier_settlements: {
+        Row: {
+          id: string
+          fornecedor_id: string
+          fornecedor_dslite_id: string
+          fornecedor_nome_snapshot: string
+          cnpj_snapshot: string
+          supplier_pix_key_snapshot: string
+          contact_phone_snapshot: string | null
+          status: string
+          gross_amount: number
+          credit_amount: number
+          pix_amount: number
+          payment_reference: string | null
+          receipt_path: string | null
+          notes: string | null
+          idempotency_key: string
+          request_fingerprint: string
+          version: number
+          prepared_by: string
+          prepared_at: string
+          confirmed_by: string | null
+          confirmed_at: string | null
+          cancelled_by: string | null
+          cancelled_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          fornecedor_id: string
+          fornecedor_dslite_id: string
+          fornecedor_nome_snapshot: string
+          cnpj_snapshot: string
+          supplier_pix_key_snapshot: string
+          contact_phone_snapshot?: string | null
+          status?: string
+          gross_amount: number
+          credit_amount?: number
+          pix_amount: number
+          payment_reference?: string | null
+          receipt_path?: string | null
+          notes?: string | null
+          idempotency_key: string
+          request_fingerprint: string
+          version?: number
+          prepared_by: string
+          prepared_at?: string
+          confirmed_by?: string | null
+          confirmed_at?: string | null
+          cancelled_by?: string | null
+          cancelled_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          fornecedor_id?: string
+          fornecedor_dslite_id?: string
+          fornecedor_nome_snapshot?: string
+          cnpj_snapshot?: string
+          supplier_pix_key_snapshot?: string
+          contact_phone_snapshot?: string | null
+          status?: string
+          gross_amount?: number
+          credit_amount?: number
+          pix_amount?: number
+          payment_reference?: string | null
+          receipt_path?: string | null
+          notes?: string | null
+          idempotency_key?: string
+          request_fingerprint?: string
+          version?: number
+          prepared_by?: string
+          prepared_at?: string
+          confirmed_by?: string | null
+          confirmed_at?: string | null
+          cancelled_by?: string | null
+          cancelled_at?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_settlements_fornecedor_id_fkey"
+            columns: ["fornecedor_id"]
+            isOneToOne: false
+            referencedRelation: "fornecedores"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      supplier_settlement_items: {
+        Row: {
+          id: string
+          settlement_id: string
+          compra_id: string
+          pedido_id: string
+          dsid_snapshot: string
+          sale_number_snapshot: number
+          ml_order_id_snapshot: string | null
+          product_description_snapshot: string | null
+          quantity_snapshot: number | null
+          gross_amount: number
+          credit_amount: number
+          pix_amount: number
+          released_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          settlement_id: string
+          compra_id: string
+          pedido_id: string
+          dsid_snapshot: string
+          sale_number_snapshot: number
+          ml_order_id_snapshot?: string | null
+          product_description_snapshot?: string | null
+          quantity_snapshot?: number | null
+          gross_amount: number
+          credit_amount?: number
+          pix_amount: number
+          released_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          settlement_id?: string
+          compra_id?: string
+          pedido_id?: string
+          dsid_snapshot?: string
+          sale_number_snapshot?: number
+          ml_order_id_snapshot?: string | null
+          product_description_snapshot?: string | null
+          quantity_snapshot?: number | null
+          gross_amount?: number
+          credit_amount?: number
+          pix_amount?: number
+          released_at?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_settlement_items_settlement_id_fkey"
+            columns: ["settlement_id"]
+            isOneToOne: false
+            referencedRelation: "supplier_settlements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "supplier_settlement_items_compra_id_fkey"
+            columns: ["compra_id"]
+            isOneToOne: false
+            referencedRelation: "compras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "supplier_settlement_items_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
             referencedColumns: ["id"]
           },
         ]
