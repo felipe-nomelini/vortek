@@ -40,6 +40,12 @@ test('executor fica preso ao ator, hashes e origem price_to_win', () => {
   assert.doesNotMatch(pilot, /custom_price\s*:/);
 });
 
+test('rota interna do piloto exige a chave do servidor no proxy', () => {
+  const proxy = fs.readFileSync('src/proxy.ts', 'utf8');
+  assert.match(proxy, /pathname === "\/api\/pricing\/buybox-pilot"/);
+  assert.match(proxy, /isInternalPricingRoute \|\|/);
+});
+
 test('monitor é somente leitura no Mercado Livre e agenda D1 D3 D7', () => {
   assert.match(pilot, /checkpoint: 'D1'/);assert.match(pilot, /checkpoint: 'D3'/);assert.match(pilot, /checkpoint: 'D7'/);
   assert.doesNotMatch(monitor, /method:\s*['"](?:PUT|POST|DELETE|PATCH)['"]/);
