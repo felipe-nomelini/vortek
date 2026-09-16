@@ -41,6 +41,9 @@ export interface CompraOperacional {
   pedido_ml_pack_id: string | null;
   pedido_nfe_status: string | null;
   pedido_nota_fiscal_emitida: boolean;
+  pedido_label_type: 'provisional' | 'real' | null;
+  pedido_label_delivery_channel: 'dslite' | 'whatsapp' | null;
+  pedido_label_delivered_at: string | null;
   status: string;
   status_dslite: string;
   nf_chave: string | null;
@@ -71,6 +74,10 @@ export interface CompraOperacional {
   supplier_payment_notes: string | null;
   supplier_payment_confirmed_at: string | null;
   supplier_pix_key: string | null;
+  supply_status: 'unknown' | 'ready' | 'blocked' | 'cancelled';
+  supply_status_note: string | null;
+  supply_status_changed_at: string | null;
+  supply_status_changed_by: string | null;
   bkr1_pix_deferred: boolean;
   is_homologation_fixture: boolean;
 }
@@ -163,6 +170,15 @@ export default function CompraDetailsDrawer({
         <Descriptions.Item label="Compra criada em">{formatDateTime(purchase.data_criacao)}</Descriptions.Item>
         <Descriptions.Item label="Destinatário">{purchase.destinatario_nome || '—'}</Descriptions.Item>
         <Descriptions.Item label="Documento">{purchase.destinatario_documento || '—'}</Descriptions.Item>
+      </Descriptions>
+
+      <Descriptions title="Elegibilidade para liquidação" size="small" bordered column={{ xs: 1, sm: 2 }}>
+        <Descriptions.Item label="Abastecimento">{{ unknown: 'Não verificado', ready: 'Pronto', blocked: 'Bloqueado', cancelled: 'Cancelado' }[purchase.supply_status] || 'Não verificado'}</Descriptions.Item>
+        <Descriptions.Item label="Última revisão">{formatDateTime(purchase.supply_status_changed_at)}</Descriptions.Item>
+        <Descriptions.Item label="Justificativa" span={2}>{purchase.supply_status_note || '—'}</Descriptions.Item>
+        <Descriptions.Item label="Etiqueta">{purchase.pedido_label_type === 'real' ? 'Real' : purchase.pedido_label_type === 'provisional' ? 'Provisória' : 'Não comprovada'}</Descriptions.Item>
+        <Descriptions.Item label="Canal">{purchase.pedido_label_delivery_channel === 'dslite' ? 'DSLite' : purchase.pedido_label_delivery_channel === 'whatsapp' ? 'WhatsApp' : '—'}</Descriptions.Item>
+        <Descriptions.Item label="Entrega da etiqueta real">{formatDateTime(purchase.pedido_label_delivered_at)}</Descriptions.Item>
       </Descriptions>
 
       <div>

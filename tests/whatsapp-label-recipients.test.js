@@ -230,6 +230,7 @@ function setupWorker(failureStage, options = {}) {
         return { data: pedido, error: null };
       }
       if (table === 'compras') return { data: options.compra || null, error: options.compraError || null };
+      if (table === 'fornecedores') return { data: { telefone: options.supplierPhone || '11999990001' }, error: null };
       throw new Error(`Tabela inesperada: ${table}`);
     };
     const query = {
@@ -244,6 +245,7 @@ function setupWorker(failureStage, options = {}) {
   } };
   const job = loadJob({
     '@/lib/supabase': { createServiceClient: () => client },
+    '@/lib/dslite/supplier-label-state': { supplierWhatsappLabelState: (date) => ({ label_type: 'real', label_delivery_channel: 'whatsapp', label_delivered_at: date }) },
     '@/services/waha': {
       getWahaNewMessageId: async () => `worker-message-${++allocated}`,
       sendWahaFile: async (input) => {
@@ -444,6 +446,18 @@ test('worker preserva PDF para outro fornecedor e para amostra BKR1', async () =
   await placeholder.job.runWhatsappLabelJob(placeholder.input);
   assert.equal(placeholder.sends[0].mimetype, 'application/pdf');
   assert.match(placeholder.sends[0].filename, /\.pdf$/);
+});
+
+test('envio para número diferente do cadastro não comprova entrega ao fornecedor', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: { dslite_id: 'purchase-test' },
+    compra: { fornecedor_id: '108', fornecedor_nome: 'BKR1' },
+    supplierPhone: '11988880000',
+  });
+  await harness.job.runWhatsappLabelJob(harness.input);
+  assert.equal(harness.stored.status, 'completo');
+  assert.equal(harness.sends.length, 1);
+  assert.equal(harness.pedidoUpdates.some((update) => update.label_type === 'real'), false);
 });
 
 test('duas retomadas concorrentes mantêm aquisição exclusiva e um único envio', async () => {

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+import { clearSupplierLabelState } from '@/lib/dslite/supplier-label-state';
 import {
   HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
   isHomologationFixtureSource,
@@ -43,6 +44,7 @@ export async function POST(req: Request) {
         dslite_status: null,
         dslite_etiqueta_enviada: false,
         dslite_label_source: null,
+        ...clearSupplierLabelState(),
       })
       .eq('id', pedido.id);
 

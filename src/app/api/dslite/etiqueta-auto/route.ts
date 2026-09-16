@@ -27,6 +27,7 @@ import {
   isDslitePlaceholderLabelSource,
   isDsliteProtectedExistingLabelError,
 } from '@/lib/dslite/label-state';
+import { clearSupplierLabelState, supplierDsliteLabelState } from '@/lib/dslite/supplier-label-state';
 import {
   storeShippingLabelForPedido,
   storeThermalShippingLabelForPedido,
@@ -482,6 +483,7 @@ export async function POST(req: Request) {
             ...(pedidoDslite?.status ? { dslite_status: pedidoDslite.status } : {}),
             dslite_etiqueta_enviada: false,
             dslite_label_source: 'dslite_paid_shipping',
+            ...clearSupplierLabelState(),
           } as any)
           .eq('id', pedidoId),
       ]);
@@ -689,6 +691,7 @@ export async function POST(req: Request) {
         .update({
           dslite_etiqueta_enviada: true,
           dslite_label_source: placeholderConfig.source,
+          ...supplierDsliteLabelState(placeholderConfig.source, new Date().toISOString()),
         } as any)
         .eq('id', pedidoId);
 
@@ -1758,6 +1761,7 @@ export async function POST(req: Request) {
       .update({
         dslite_etiqueta_enviada: true,
         dslite_label_source: DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
+        ...supplierDsliteLabelState(DSLITE_MERCADO_LIVRE_LABEL_SOURCE, new Date().toISOString()),
       } as any)
       .eq('id', pedidoId);
 

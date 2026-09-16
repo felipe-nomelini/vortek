@@ -5,7 +5,7 @@ import { userSafeMessage } from '@/lib/user-feedback';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
 import {
-  Alert, Button, Card, Col, DatePicker, Dropdown, Empty, Input, Modal,
+  Alert, Button, Card, Col, DatePicker, Dropdown, Empty, Input, List, Modal,
   Row, Select, Space, Steps, Tag, Typography, Upload, message,
 } from 'antd';
 import type { TableProps } from 'antd';
@@ -55,6 +55,14 @@ interface SupplierOption {
   value: string;
   label: string;
 }
+
+type SupplyStatus = CompraOperacional['supply_status'];
+type OraclePreview = {
+  account: { fornecedor: string; cnpjMasked: string; pixKeyMasked: string; valid: boolean };
+  included: Array<{ compraId: string; dsid: string; valor: number | null }>;
+  excluded: Array<{ compraId: string; dsid: string; reasons: Array<{ code: string; label: string }> }>;
+  totalBruto: number;
+};
 
 interface PurchaseSummary {
   total: number;
@@ -169,10 +177,64 @@ export default function ComprasPage() {
   const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
   const [paymentReceiptFile, setPaymentReceiptFile] = useState<File | null>(null);
   const [paymentNotes, setPaymentNotes] = useState('');
+  const [supplyPurchase, setSupplyPurchase] = useState<CompraOperacional | null>(null);
+  const [supplyStatus, setSupplyStatus] = useState<SupplyStatus>('unknown');
+  const [supplyNote, setSupplyNote] = useState('');
+  const [savingSupply, setSavingSupply] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewLoading, setPreviewLoading] = useState(false);
+  const [preview, setPreview] = useState<OraclePreview | null>(null);
+  const [previewError, setPreviewError] = useState<string | null>(null);
   const [messageApi, contextHolder] = message.useMessage();
   const requestSequence = useRef(0);
 
   const canConfirmPayment = Boolean(role && hasPermission(role, 'purchases.payment.confirm'));
+  const canManageSupply = Boolean(role && hasPermission(role, 'purchases.supply.manage'));
+
+  const openSupply = (purchase: CompraOperacional) => {
+    setSupplyPurchase(purchase);
+    setSupplyStatus(purchase.supply_status || 'unknown');
+    setSupplyNote(purchase.supply_status_note || '');
+  };
+
+  const saveSupply = async () => {
+    if (!supplyPurchase || savingSupply) return;
+    setSavingSupply(true);
+    try {
+      const response = await fetch(`/api/compras/${supplyPurchase.id}/abastecimento`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: supplyStatus, note: supplyNote, expectedStatus: supplyPurchase.supply_status, expectedChangedAt: supplyPurchase.supply_status_changed_at }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível atualizar o abastecimento.');
+      messageApi.success('Abastecimento atualizado.');
+      setSupplyPurchase(null);
+      await fetchFilteredPurchases();
+    } catch (error) {
+      messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível atualizar o abastecimento.'));
+    } finally {
+      setSavingSupply(false);
+    }
+  };
+
+  const openPreview = async () => {
+    if (!supplierFilter) return;
+    setPreviewOpen(true);
+    setPreview(null);
+    setPreviewError(null);
+    setPreviewLoading(true);
+    try {
+      const response = await fetch(`/api/compras/liquidacoes/preview?fornecedorId=${encodeURIComponent(supplierFilter)}`, { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível consultar o preview.');
+      setPreview(payload as OraclePreview);
+    } catch (error) {
+      setPreviewError(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível consultar o preview.'));
+    } finally {
+      setPreviewLoading(false);
+    }
+  };
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -547,9 +609,12 @@ export default function ComprasPage() {
   const datePickerValue: [Dayjs | null, Dayjs | null] = [dateRange[0] ? dayjs(dateRange[0]) : null, dateRange[1] ? dayjs(dateRange[1]) : null];
   const hasHomologationFixtures = compras.some((purchase) => purchase.is_homologation_fixture);
   const alertCount = Number(mlAnunciosAlertas?.activeZeroStock.count || 0) + Number(mlAnunciosAlertas?.mlPublishAuthFailures.count || 0);
-  const drawerActions = drawerPurchase && hasPaymentAction(drawerPurchase, canConfirmPayment)
-    ? <Button type="primary" size="small" onClick={() => openPaymentModal(drawerPurchase)}>{paymentActionLabel(drawerPurchase)}</Button>
-    : null;
+  const drawerActions = drawerPurchase ? <Space wrap>
+    {canManageSupply && drawerPurchase.supplier_payment_mode === 'prepaid_pix' && drawerPurchase.supplier_payment_status === 'pending' && !drawerPurchase.is_homologation_fixture &&
+      <Button size="small" onClick={() => openSupply(drawerPurchase)}>Classificar abastecimento</Button>}
+    {hasPaymentAction(drawerPurchase, canConfirmPayment) &&
+      <Button type="primary" size="small" onClick={() => openPaymentModal(drawerPurchase)}>{paymentActionLabel(drawerPurchase)}</Button>}
+  </Space> : null;
 
   return <div className={styles.page}>
     {contextHolder}
@@ -598,6 +663,7 @@ export default function ComprasPage() {
         <Col flex="1 1 320px"><Input aria-label="Buscar compras" placeholder="Compra DSLite, cliente, fornecedor, produto ou SKU DSLite" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => { setSearch(event.target.value); setPage(1); }} /></Col>
         <Col flex="0 1 210px"><Select placeholder="Status" value={statusFilter || undefined} options={statusOptions} allowClear style={{ width: '100%' }} onChange={(value) => { setStatusFilter(value || ''); setPage(1); }} /></Col>
         <Col flex="0 1 230px"><Select showSearch optionFilterProp="label" placeholder="Fornecedor" value={supplierFilter || undefined} options={supplierOptions} allowClear loading={independentLoading} style={{ width: '100%' }} onChange={(value) => { setSupplierFilter(value || ''); setPage(1); }} /></Col>
+        <Col flex="0 1 210px"><Button onClick={() => void openPreview()} disabled={!supplierFilter}>Prévia da liquidação</Button></Col>
         <Col flex="0 1 260px"><RangePicker value={datePickerValue} format="DD/MM/YYYY" style={{ width: '100%' }} onChange={(dates) => { setDateRange([dates?.[0]?.format('YYYY-MM-DD') || null, dates?.[1]?.format('YYYY-MM-DD') || null]); setPage(1); }} /></Col>
       </Row>
       {activeFilters.length > 0 && <Space wrap className={styles.activeFilters}>
@@ -627,6 +693,37 @@ export default function ComprasPage() {
       onOpenSale={openSale}
       onOpenDanfe={(purchase) => void openDanfe(purchase)}
     />
+
+    <Modal
+      title={supplyPurchase ? `Abastecimento · compra #${supplyPurchase.dsid}` : 'Abastecimento'}
+      open={Boolean(supplyPurchase)} confirmLoading={savingSupply} onOk={() => void saveSupply()}
+      onCancel={() => { if (!savingSupply) setSupplyPurchase(null); }}
+      okText="Salvar estado" okButtonProps={{ disabled: supplyStatus !== 'unknown' && supplyNote.trim().length < 8 }}
+    >
+      <Space direction="vertical" size={12} style={{ width: '100%' }}>
+        <Alert type="info" showIcon message="Esta classificação não registra nem executa PIX" description="Marque Pronto somente após confirmação operacional do abastecimento. Dúvidas devem continuar como Não verificado." />
+        <Select value={supplyStatus} onChange={setSupplyStatus} style={{ width: '100%' }} options={[
+          { value: 'unknown', label: 'Não verificado' }, { value: 'ready', label: 'Pronto' },
+          { value: 'blocked', label: 'Bloqueado' }, { value: 'cancelled', label: 'Abastecimento cancelado' },
+        ]} />
+        <Input.TextArea rows={3} maxLength={1000} showCount value={supplyNote} onChange={(event) => setSupplyNote(event.target.value)} placeholder="Justificativa e fonte da confirmação operacional" />
+      </Space>
+    </Modal>
+
+    <Modal title="Prévia da liquidação" open={previewOpen} footer={null} width={720} onCancel={() => setPreviewOpen(false)}>
+      {previewLoading && <Text>Consultando compras pendentes…</Text>}
+      {previewError && <Alert type="error" showIcon message={previewError} />}
+      {preview && <Space direction="vertical" size={16} style={{ width: '100%' }}>
+        <Alert type={preview.account.valid ? 'info' : 'warning'} showIcon message={preview.account.fornecedor}
+          description={`Conta ${preview.account.cnpjMasked} · PIX ${preview.account.pixKeyMasked}. Esta prévia não prepara nem confirma pagamentos.`} />
+        <Text strong>{preview.included.length} incluída(s) · total bruto {formatCurrency(preview.totalBruto)}</Text>
+        {preview.included.length > 0 && <List size="small" bordered header="Prontas" dataSource={preview.included}
+          renderItem={(item) => <List.Item>Compra #{item.dsid} · {formatCurrency(Number(item.valor || 0))}</List.Item>} />}
+        <List size="small" bordered header={`Excluídas (${preview.excluded.length})`} dataSource={preview.excluded}
+          locale={{ emptyText: 'Nenhuma exclusão' }} style={{ maxHeight: 360, overflowY: 'auto' }}
+          renderItem={(item) => <List.Item><div><Text strong>Compra #{item.dsid}</Text><Text type="secondary" style={{ display: 'block' }}>{item.reasons.map((reason) => reason.label).join(' · ')}</Text></div></List.Item>} />
+      </Space>}
+    </Modal>
 
     <Modal
       title={selectedCompra?.supplier_payment_status === 'failed' ? 'Revisar registro do PIX' : 'Registrar PIX do fornecedor'}

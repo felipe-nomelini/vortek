@@ -13,6 +13,8 @@ import {
 } from '@/lib/shipping-label-storage';
 import { buildSupplierLabelWhatsapp } from '@/lib/notifications/templates';
 import { resolveWhatsappLabelFormat } from '@/lib/whatsapp-label-format';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
+import { supplierWhatsappLabelState } from '@/lib/dslite/supplier-label-state';
 import {
   HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
   isHomologationFixtureId,
@@ -132,6 +134,8 @@ async function downloadLabelWithRetry(
 export async function POST(request: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   try {
+    const auth = await authorizeApiRequest(request, 'sales.whatsapp_label.send');
+    if (!auth.ok) return auth.response;
     const { phoneNumber } = await request.json().catch(() => ({}));
     const chatId = normalizeWhatsappChatId(String(phoneNumber || process.env.WAHA_TEST_RECIPIENT_PHONE || ''));
     const client = createServiceClient();
@@ -145,6 +149,16 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     if (!compra) return NextResponse.json({ error: 'Compra não encontrada' }, { status: 404 });
     if (isHomologationFixtureId(compra.id)) {
       return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
+    const { data: supplierContact } = compra.fornecedor_id
+      ? await client.from('fornecedores').select('telefone').eq('dslite_id', String(compra.fornecedor_id)).maybeSingle()
+      : { data: null };
+    let verifiedSupplierRecipient = false;
+    try {
+      verifiedSupplierRecipient = Boolean(supplierContact?.telefone
+        && normalizeWhatsappChatId(supplierContact.telefone) === chatId);
+    } catch {
+      verifiedSupplierRecipient = false;
     }
 
     const dsid = String((compra as any).dsid || '').trim();
@@ -271,6 +285,13 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
       mimetype: labelFormat.mimetype,
       data: label.file,
     });
+
+    if (verifiedSupplierRecipient) {
+      const { error: labelStateError } = await client.from('pedidos')
+        .update(supplierWhatsappLabelState(new Date().toISOString()))
+        .eq('id', pedidoId);
+      if (labelStateError) throw new Error(`Etiqueta enviada, mas falhou ao registrar a entrega: ${labelStateError.message}`);
+    }
 
     await registrarEventoNfAuditoria({
       pedidoId,

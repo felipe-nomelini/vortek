@@ -20,6 +20,7 @@ import {
 } from "@/services/integration";
 import { createServiceClient } from "@/lib/supabase";
 import { isValidCnpj } from "@/lib/fiscal/cnpj.js";
+import { clearSupplierLabelState, supplierDsliteLabelState } from "@/lib/dslite/supplier-label-state";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import { ensureRecipientIeFromSefaz } from "@/services/fiscal-recipient-ie";
 import {
@@ -4786,6 +4787,7 @@ async function runDsliteCreateJob(
           dslite_id: String(dsidAtual),
           dslite_status: pedidoStatusFinal,
           dslite_label_source: null,
+          ...clearSupplierLabelState(),
           nfe_chave: chaveAcesso || undefined,
           nfe_provider: selectedProvider,
           nfe_last_sync_at: now(),
@@ -4974,6 +4976,7 @@ async function runDsliteCreateJob(
               : {}),
             dslite_etiqueta_enviada: false,
             dslite_label_source: "dslite_paid_shipping",
+            ...clearSupplierLabelState(),
             nfe_chave: chaveAcesso || undefined,
             nfe_provider: selectedProvider,
             nfe_last_sync_at: now(),
@@ -5465,12 +5468,14 @@ async function runDsliteCreateJob(
       ? {
           dslite_etiqueta_enviada: true,
           dslite_label_source: dsliteLabelSource,
+          ...supplierDsliteLabelState(dsliteLabelSource, new Date().toISOString()),
         }
       : etiquetaStatus === "mantida"
         ? {}
         : {
             dslite_etiqueta_enviada: false,
             dslite_label_source: null,
+            ...clearSupplierLabelState(),
           };
 
     await client

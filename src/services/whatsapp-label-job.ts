@@ -28,6 +28,7 @@ import { createShortLink } from '@/lib/short-links';
 import { buildSupplierLabelWhatsapp } from '@/lib/notifications/templates';
 import { EVOLUSOM_FORNECEDOR_ID } from '@/lib/supplier-balance';
 import { resolveWhatsappLabelFormat } from '@/lib/whatsapp-label-format';
+import { supplierWhatsappLabelState } from '@/lib/dslite/supplier-label-state';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -635,6 +636,16 @@ export async function runWhatsappLabelJob(input: {
       ? await client.from('compras').select('*').eq('dsid', dsid).maybeSingle()
       : { data: null, error: null };
     if (compraError) throw new Error('Falha ao consultar compra DSLite para determinar os destinatários da etiqueta.');
+    const { data: supplierContact } = !input.usePlaceholderLabel && compra?.fornecedor_id
+      ? await client.from('fornecedores').select('telefone').eq('dslite_id', String(compra.fornecedor_id)).maybeSingle()
+      : { data: null };
+    let verifiedSupplierRecipient = false;
+    try {
+      verifiedSupplierRecipient = Boolean(supplierContact?.telefone
+        && normalizeWhatsappChatId(supplierContact.telefone) === chatId);
+    } catch {
+      verifiedSupplierRecipient = false;
+    }
     const whatsappRecipients = resolveWhatsappLabelRecipients({
       primaryChatId: chatId,
       fornecedorId: compra?.fornecedor_id,
@@ -833,6 +844,12 @@ export async function runWhatsappLabelJob(input: {
       labelShortUrl,
     });
     const primaryResult = recipientResults[0];
+    if (!input.usePlaceholderLabel && verifiedSupplierRecipient) {
+      const { error: labelStateError } = await client.from('pedidos')
+        .update(supplierWhatsappLabelState(now()))
+        .eq('id', pedidoId);
+      if (labelStateError) throw new Error(`Etiqueta enviada, mas falhou ao registrar a entrega: ${labelStateError.message}`);
+    }
     const whatsappSendMode = primaryResult.sendMode;
     const recipientSummary = recipientResults.map(({ recipientKey, chatIdSuffix, messageId, sendMode, alreadySent }) => ({
       recipientKey, chatIdSuffix, messageId, sendMode, alreadySent,

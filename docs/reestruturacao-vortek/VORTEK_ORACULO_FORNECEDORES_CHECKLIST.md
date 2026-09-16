@@ -57,7 +57,7 @@ Regras permanentes:
 |---:|---|---|---|---|
 | 0 | ORC-00 — Contrato e checklist permanente | Aceito | Nenhuma | ORC-01 em nova tarefa |
 | 1 | ORC-01 — Schema aditivo | Aceito | ORC-00 aceito | SHA executado, schema e smoke confirmados |
-| 2 | ORC-02 — Estados e elegibilidade | Pendente | ORC-01 aceito | Preview explica inclusões e exclusões |
+| 2 | ORC-02 — Estados e elegibilidade | Validado em DEV | ORC-01 aceito | Publicar SHA validado e conferir preview/estados em produção |
 | 3 | ORC-03 — Núcleo financeiro transacional | Pendente | ORC-02 aceito | Concorrência, idempotência e auditoria |
 | 4 | ORC-04 — Pós-processamento e comunicação | Pendente | ORC-03 aceito | Jobs reprocessáveis sem duplicação |
 | 5 | ORC-05 — Interfaces operacionais | Pendente | ORC-04 aceito | Compras, Vendas e Conta Corrente |
@@ -266,14 +266,16 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-02 — Estados e elegibilidade
 
-- [ ] Criar fonte única da elegibilidade.
-- [ ] Persistir e projetar etiqueta provisória/real, canal e entrega.
-- [ ] Implementar abastecimento `unknown`, `ready`, `blocked` e `cancelled`.
-- [ ] Restringir alteração manual a admin/gerente.
-- [ ] Implementar preview por conta financeira.
-- [ ] Exibir cada exclusão com motivo determinístico.
-- [ ] Classificar compras pendentes individualmente; manter dúvida em `unknown`.
-- [ ] Não inferir `ready` de texto livre, ausência de erro ou status DSLite ambíguo.
+- [x] Criar fonte única da elegibilidade.
+- [x] Persistir e projetar etiqueta provisória/real, canal e entrega nos fluxos DSLite e WhatsApp afetados.
+- [x] Implementar abastecimento `unknown`, `ready`, `blocked` e `cancelled` com justificativa e controle de concorrência.
+- [x] Restringir alteração manual a admin/gerente.
+- [x] Implementar preview por conta financeira, sem criar liquidação ou movimentar PIX.
+- [x] Exibir cada exclusão com motivo determinístico.
+- [x] Revisar individualmente as 22 compras PIX pendentes em produção; manter todas em `unknown` por falta de prova inequívoca de abastecimento.
+- [x] Não inferir `ready` de texto livre, ausência de erro ou status DSLite ambíguo.
+
+**Validação DEV:** testes direcionados, lint, tipos e build aprovados. Os critérios acima registram implementação e revisão técnica, não aceite produtivo. Não houve atualização de estado nas 22 compras, migration ou escrita financeira nesta ação até a publicação.
 
 **Aceite:** preview inclui somente compras comprovadamente prontas e explica todas as exclusões.
 
@@ -452,7 +454,8 @@ Para cada ação técnica:
 | 16/09/2026 | ORC-01 | Migration `20260916180000`, hash SHA-256 `dea210454308915dea79b2733371ee84c92eeb336fe930050b5de58ce4e02096` | Aplicada em transação curta diretamente em `192.168.1.162/postgres`, PostgreSQL 17.6; registry confirmou a versão. Read-back: duas tabelas vazias, RLS ativo, zero grants de cliente, zero DELETE ao `service_role`, constraints válidas, 1.452 compras `unknown`, zero compras vinculadas, zero pedidos classificados, 995 movimentos de crédito e 22 PIX pendentes | Sem backfill, PIX, crédito ou mensagem criados |
 | 16/09/2026 | ORC-01 | SHA remoto `3b37eade` | Webhook oficial HTTP `200`; processo reiniciado, health/login `200`, Compras e Vendas `307` sem sessão, APIs protegidas `401`; ML Auth e configuração fiscal `ok` | **Aceite pendente:** o endpoint de health não expõe SHA e o SHA do processo Easypanel não pôde ser comprovado por leitura |
 | 16/09/2026 | ORC-01 | SHA `6667ddf0ebf7a3e3db972d6713f34e91ab742ea9` | Easypanel `local/bentevi-prod`: fonte `bentevi-prod`, ação `cmu3sjfv8001d07k34pdn7msv` concluída; digest da imagem da ação `162d8351…` igual ao contêiner ativo, task `we4iffdb7oexb2ekijl4idi29`. Read-back HTTP em `.162`: zero liquidações, itens, compras vinculadas/classificadas e pedidos etiquetados. Health/login `200`, Compras `307`, API de Compras `401` sem sessão | **Aceito:** schema passivo em produção, sem ativação de pagamento em lote ou alteração do fluxo financeiro existente |
+| 16/09/2026 | ORC-02 | SHA ainda não promovido; sem migration | 75 testes direcionados, `npm run validate`, `npm run build` e `git diff --check` aprovados. Revisão somente leitura das 22 compras PIX pendentes em `.162` | Todas seguem `unknown`; nove vendas canceladas, uma sem venda e uma entregue. Nenhuma foi classificada como pronta sem evidência. Publicação e aceite ainda pendentes |
 
 ## 9. Próxima ação permitida
 
-**ORC-01 aceita em 16/09/2026.** A próxima ação técnica permitida é ORC-02 — Estados e elegibilidade, em tarefa própria. Não combinar essa implementação com o fechamento documental da ORC-01.
+**ORC-02 validada em DEV, ainda sem aceite produtivo.** Concluir somente a promoção, publicação e verificação desta ação. ORC-03 permanece bloqueada até o aceite de ORC-02 em tarefa própria.

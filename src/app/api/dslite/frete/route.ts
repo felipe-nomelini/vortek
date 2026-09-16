@@ -9,6 +9,7 @@ import {
 import { fetchML } from '@/services/integration';
 import { createServiceClient } from '@/lib/supabase';
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
+import { clearSupplierLabelState } from '@/lib/dslite/supplier-label-state';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { calculateOrderProfit } from '@/services/orders';
 import {
@@ -137,6 +138,7 @@ export async function POST(req: Request) {
         ...(statusDslite ? { dslite_status: statusDslite } : {}),
         dslite_etiqueta_enviada: false,
         dslite_label_source: 'dslite_paid_shipping',
+        ...clearSupplierLabelState(),
       } as any)
       .eq('id', pedidoId),
   ]);

@@ -153,8 +153,9 @@ export async function GET(request: Request) {
         const chunk = dsids.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE);
         const { data, error } = await client
           .from('pedidos')
-          .select('id,dslite_id,numero,ml_order_id,ml_pack_id,ml_fiscal_release_at,dslite_label_source,snapshot_source,nota_fiscal_emitida,nfe_status')
-          .in('dslite_id', chunk);
+          .select('id,dslite_id,numero,ml_order_id,ml_pack_id,ml_fiscal_release_at,dslite_label_source,label_type,label_delivery_channel,label_delivered_at,snapshot_source,nota_fiscal_emitida,nfe_status')
+          .in('dslite_id', chunk)
+          .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null');
 
         if (error) {
           console.error('[api/compras] Erro ao buscar pedidos vinculados:', error);
@@ -283,6 +284,9 @@ export async function GET(request: Request) {
         pedido_ml_pack_id: pedido?.ml_pack_id ?? null,
         pedido_nfe_status: pedido?.nfe_status ?? null,
         pedido_nota_fiscal_emitida: Boolean(pedido?.nota_fiscal_emitida),
+        pedido_label_type: pedido?.label_type ?? null,
+        pedido_label_delivery_channel: pedido?.label_delivery_channel ?? null,
+        pedido_label_delivered_at: pedido?.label_delivered_at ?? null,
         produto_sku_bentevi: produto?.sku ?? null,
         produto_sku_fornecedor: oferta?.sku_fornecedor || oferta?.sku_oferta || null,
         produto_dslite_id: oferta?.dslite_produto_id ?? null,
