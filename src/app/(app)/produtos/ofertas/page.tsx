@@ -14,7 +14,7 @@ import {
   StarFilled,
 } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import { formatCurrency } from '@/lib/format';
 import {
   appendRemoteSortParams,
@@ -301,7 +301,6 @@ export default function ProductOffersPage() {
       title: 'Ações',
       key: 'actions',
       width: 118,
-      fixed: 'right',
       render: (_value, row) => <Button icon={<EyeOutlined />} onClick={() => openOffer(row)}>Ver oferta</Button>,
     },
   ];
@@ -395,8 +394,7 @@ export default function ProductOffersPage() {
             </Empty>
           ) : (
             <div className={styles.desktopTable}>
-              <ResizableTable
-                storageKey="bentevi-produtos-ofertas"
+              <ResponsiveTable
                 columns={columns}
                 dataSource={rows}
                 rowKey="offerId"
@@ -408,7 +406,6 @@ export default function ProductOffersPage() {
                   showTotal: (value) => `${value.toLocaleString('pt-BR')} ofertas`,
                 }}
                 onChange={handleTableChange}
-                scroll={{ x: 1380 }}
               />
             </div>
           )}

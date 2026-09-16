@@ -47,7 +47,8 @@ test('BNT-D13 mantém as colunas densas e alinhadas', () => {
   assert.match(page, /title: 'Contato',[\s\S]*?width: 180/);
   assert.match(page, /title: 'Pedidos',[\s\S]*?width: 90,[\s\S]*?align: 'left'/);
   assert.match(page, /title: 'Ações',[\s\S]*?width: 120/);
-  assert.match(page, /storageKey="clientes-bentevi-v2"/);
+  assert.match(page, /<ResponsiveTable<ClienteListItem>/);
+  assert.doesNotMatch(page, /storageKey=/);
   assert.match(styles, /\.ordersCell\s*{[\s\S]*?align-items: flex-start/);
 });
 

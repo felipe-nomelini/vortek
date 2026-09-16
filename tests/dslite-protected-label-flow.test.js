@@ -157,5 +157,6 @@ test('rotas e UI preservam DSLite e direcionam a etiqueta real ao WhatsApp', () 
   assert.match(autoRoute, /nextAction: 'send_whatsapp_label'/);
   assert.match(paymentRoute, /resumeDsliteFlow && !routeRealLabelToWhatsapp/);
   assert.match(page, /whatsappRequired\s*\? 'send_whatsapp_label'/);
-  assert.match(page, /Reenviar etiqueta por WhatsApp/);
+  assert.match(page, /Reenviar etiqueta/);
+  assert.doesNotMatch(page, /Reenviar etiqueta por WhatsApp/);
 });

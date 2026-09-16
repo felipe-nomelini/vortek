@@ -20,7 +20,7 @@ test('Pedidos permanece como orquestradora de lista, filtros, DTO e tracking', (
   assert.match(page, /function mapDBtoOrder/);
   assert.match(page, /fetch\(`\/api\/pedidos\?\$\{listParams\.toString\(\)\}`/);
   assert.match(page, /fetch\(`\/api\/pedidos\/resumo\?\$\{filterParams\.toString\(\)\}`/);
-  assert.match(page, /<ResizableTable<Order>/);
+  assert.match(page, /<ResponsiveTable<Order>/);
   assert.match(page, /<TrackingModal/);
   assert.match(page, /usePedidosDsliteFlow\(\{/);
   assert.match(page, /usePedidosLabelWhatsappFlow\(\{/);
@@ -55,7 +55,7 @@ test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
   assert.match(page, /window\.history\.replaceState/);
   assert.match(page, /Promise\.allSettled/);
   assert.match(page, /Os dados anteriores foram preservados/);
-  assert.match(page, /storageKey="pedidos-bentevi-v3"/);
+  assert.doesNotMatch(page, /storageKey=/);
   assert.match(page, />\{operational\.label\}<\/Button>/);
   assert.doesNotMatch(page, /shortLabel/);
   assert.match(page, /Etapa \{progress\.currentStep\}\/\{SALES_PROGRESS_STAGES\.length\} - \{progress\.currentLabel\}/);
@@ -87,7 +87,7 @@ test('coluna Compra abre o único pedido DSLite e diferencia venda sem compra', 
   assert.match(page, />Não Criado<\/Text>/);
   assert.doesNotMatch(page, /title: 'Compra'[\s\S]{0,120}sorter:/);
   assert.match(page, /title: 'Compra', key: 'compra', width: 210/);
-  assert.match(page, /scroll=\{\{ x: 1595 \}\}/);
+  assert.doesNotMatch(page, /scroll=\{\{ x:/);
 });
 
 test('coluna Compra recebe o status sincronizado da compra no DTO operacional', () => {
@@ -149,7 +149,7 @@ test('fluxo de etiqueta e WhatsApp concentra operações e modais correspondente
     assert.match(labelWhatsappFlow, pattern);
   }
 
-  assert.match(labelWhatsappModals, /Enviando Etiqueta por WhatsApp/);
+  assert.match(labelWhatsappModals, /Enviando etiqueta/);
   assert.match(labelWhatsappModals, /Completando Etiqueta DSLite/);
   assert.match(labelWhatsappModals, /Prosseguir com Nota Encontrada/);
   assert.doesNotMatch(`${dsliteFlow}\n${labelWhatsappFlow}`, /usePolling|useInterval/);
@@ -159,6 +159,7 @@ test('ação primária encaminha etiqueta real ao WhatsApp sem retomar DSLite', 
   assert.match(page, /needsRealLabelWhatsapp\(order, now\)/);
   assert.match(page, /whatsappRequired\s*\? 'send_whatsapp_label'/);
   assert.match(page, /obsoleteDsliteResume/);
-  assert.match(page, /Reenviar etiqueta por WhatsApp/);
+  assert.match(page, /Reenviar etiqueta/);
+  assert.doesNotMatch(page, /Reenviar etiqueta por WhatsApp/);
   assert.match(dsliteFlow, /json\.resume\?\.nextAction === 'send_whatsapp_label'/);
 });

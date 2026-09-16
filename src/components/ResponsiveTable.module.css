@@ -1,0 +1,183 @@
+.root {
+  width: 100%;
+  min-width: 0;
+}
+
+.desktopView {
+  width: 100%;
+  min-width: 0;
+}
+
+.desktopView :global(.ant-table-wrapper),
+.desktopView :global(.ant-spin-nested-loading),
+.desktopView :global(.ant-spin-container),
+.desktopView :global(.ant-table),
+.desktopView :global(.ant-table-container),
+.desktopView :global(.ant-table-content) {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.desktopView :global(.ant-table-content) {
+  overflow-x: hidden !important;
+}
+
+.desktopView :global(.ant-table-cell) {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.desktopView :global(.ant-table-cell > *) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.desktopActionCell :global(.ant-space) {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+.desktopActionCell :global(.ant-space-item:first-child) {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.desktopActionCell :global(.ant-space-item:last-child) {
+  flex: 0 0 auto;
+}
+
+.desktopActionCell :global(.ant-btn) {
+  max-width: 100%;
+}
+
+.desktopActionCell :global(.ant-space-item:first-child .ant-btn) {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobileView {
+  display: none;
+}
+
+.mobileToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.sortControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 260px;
+}
+
+.sortSelect {
+  min-width: 0;
+  flex: 1 1 210px;
+}
+
+.cardList {
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cardSelection {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: minmax(108px, 28%) minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-width: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.field:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.fieldLabel {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.fieldValue {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.fieldValue :global(.ant-space) {
+  max-width: 100%;
+}
+
+.actionField .fieldValue,
+.actionField .fieldValue :global(.ant-space) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+  max-width: 100%;
+}
+
+.empty {
+  padding: 28px 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+@media (max-width: 1199px) {
+  .desktopView {
+    display: none;
+  }
+
+  .mobileView {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .field {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .pagination {
+    justify-content: center;
+  }
+}

@@ -70,10 +70,10 @@ function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
   return (
     <Modal
       title={resumePaidFlow
-        ? 'Retomar fluxo DSLite'
+        ? 'Retomar fluxo'
         : prompt?.resumeAfterConfirm === false
           ? 'Enviar comprovante PIX ao fornecedor'
-          : 'Confirmar PIX do fornecedor'}
+          : 'Confirmar PIX'}
       open={flow.paymentModalOpen}
       onCancel={prompt?.fromCreationGate ? flow.backToPaymentDecision : flow.closePaymentModal}
       onOk={flow.confirmSupplierPayment}

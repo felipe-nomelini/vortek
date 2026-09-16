@@ -31,7 +31,7 @@ import {
   StopOutlined,
   SyncOutlined,
 } from '@ant-design/icons';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import { hasPermission, type VortekRole } from '@/lib/permissions';
 import {
   appendRemoteSortParams,
@@ -436,7 +436,6 @@ export default function FornecedoresPage() {
       title: 'Ações',
       key: 'actions',
       width: canManage ? 180 : 145,
-      fixed: 'right',
       render: (_, supplier) => (
         <div className={styles.actionsCell}>
           <Link href={`/fornecedores/${supplier.id}`}>
@@ -609,8 +608,7 @@ export default function FornecedoresPage() {
 
       <section className={styles.tableCard}>
         <Spin spinning={loading}>
-          <ResizableTable<FornecedorListItem>
-            storageKey="fornecedores-bentevi-v1"
+          <ResponsiveTable<FornecedorListItem>
             rowKey="id"
             dataSource={suppliers}
             columns={columns}
@@ -633,7 +631,6 @@ export default function FornecedoresPage() {
               ),
             }}
             onChange={handleTableChange}
-            scroll={{ x: 1360 }}
             size="middle"
           />
         </Spin>

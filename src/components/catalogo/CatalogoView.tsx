@@ -11,7 +11,7 @@ import {
   ArrowRightOutlined, ExportOutlined, EyeOutlined, FilePdfOutlined, LoadingOutlined,
   ReloadOutlined, SearchOutlined, ShopOutlined,
 } from '@ant-design/icons';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressModal';
 import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import { formatCurrency } from '@/lib/format';
@@ -596,7 +596,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
               row.competition_reference?.observedAt || row.snapshot_synced_at)}`} />
           : <PriceGuidance guidance={guidance} />;
       } },
-    { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => (
+    { title: 'Próxima ação', key: 'action', width: 180, render: (_, row) => (
       <Button type={row.operational.needsAction ? 'primary' : 'default'} icon={<ArrowRightOutlined />}
         onClick={() => void loadPriceDetail(row)}>{row.operational.actionLabel}</Button>) },
   ], [loadPriceDetail, visualReview]);
@@ -619,7 +619,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         <small><MercadoLivreCodeLink code={row.catalog_product_id_sugerido || row.catalog_product_id}
           href={visualReview ? null : buildMercadoLivreCatalogProductUrl(row.catalog_product_id_sugerido || row.catalog_product_id)}
           label="Produto de catálogo" /></small></div>) },
-    { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => {
+    { title: 'Próxima ação', key: 'action', width: 180, render: (_, row) => {
       const presentation = eligibilityPresentation(row.state);
       return <Button type={row.state === 'ready' && createEnabled ? 'primary' : 'default'} icon={<EyeOutlined />}
         onClick={() => setActiveEligible(row)}>{row.state === 'ready' && !createEnabled ? 'Ver detalhes' : presentation.action}</Button>;
@@ -741,16 +741,16 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       <Spin spinning={loading} indicator={<LoadingOutlined className={styles.loadingIcon} spin />}>
         {loadError && (mode === 'no_catalogo' ? rows.length === 0 : eligibleRows.length === 0) ? null
           : !loading && total === 0 ? <Empty description="Nenhum anúncio encontrado com estes filtros" />
-          : mode === 'no_catalogo' ? <ResizableTable<NoCatalogoRow> className={styles.table}
-            storageKey="bnt-d12-catalog-listings-simple" rowKey="ml_item_id" dataSource={rows} columns={catalogColumns}
+          : mode === 'no_catalogo' ? <ResponsiveTable<NoCatalogoRow> className={styles.table}
+            rowKey="ml_item_id" dataSource={rows} columns={catalogColumns}
             onChange={handleCatalogTableChange} pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false,
-              showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} scroll={{ x: 1110 }} size="small" />
-          : <ResizableTable<ElegivelRow> className={styles.table} storageKey="bnt-d12-catalog-eligible-simple"
+              showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} size="small" />
+          : <ResponsiveTable<ElegivelRow> className={styles.table}
             rowKey="ml_item_id" dataSource={eligibleRows} columns={eligibleColumns}
             rowSelection={createEnabled ? { selectedRowKeys: selectedEligibleKeys, onChange: setSelectedEligibleKeys,
               getCheckboxProps: (row) => ({ disabled: row.state !== 'ready' || Boolean(visualReview) }) } : undefined}
             pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, onChange: setPage,
-              showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} scroll={{ x: 1130 }} size="small" />}
+              showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} size="small" />}
       </Spin>
     </section>
 

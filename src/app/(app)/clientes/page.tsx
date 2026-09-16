@@ -21,7 +21,7 @@ import {
   RightOutlined,
   SearchOutlined,
 } from '@ant-design/icons';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import {
   appendRemoteSortParams,
   getRemoteSortOrder,
@@ -212,7 +212,6 @@ export default function ClientesPage() {
       title: 'Ações',
       key: 'actions',
       width: 120,
-      fixed: 'right',
       render: (_, client) => (
         <Link href={`/clientes/${client.id}`}>
           <Button size="small" icon={<RightOutlined />} iconPosition="end">Ver cliente</Button>
@@ -306,8 +305,7 @@ export default function ClientesPage() {
 
       <section className={styles.tableCard}>
         <Spin spinning={loading}>
-          <ResizableTable<ClienteListItem>
-            storageKey="clientes-bentevi-v2"
+          <ResponsiveTable<ClienteListItem>
             rowKey="id"
             dataSource={clients}
             columns={columns}
@@ -329,7 +327,6 @@ export default function ClientesPage() {
               ),
             }}
             onChange={handleTableChange}
-            scroll={{ x: 1260 }}
             size="middle"
           />
         </Spin>

@@ -12,7 +12,7 @@ import {
   DownloadOutlined, EllipsisOutlined, EyeOutlined, FilePdfOutlined,
   MailOutlined, ReloadOutlined, SyncOutlined,
 } from '@ant-design/icons';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import { FISCAL_RETURN_TYPE_LABELS, type FiscalReturnType } from '@/lib/fiscal/nfe-return';
 import { formatCurrency } from '@/lib/format';
 import { getFiscalStatusPresentation } from '@/components/fiscal/NotaFiscalDetailsDrawer';
@@ -208,7 +208,7 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       },
     },
     {
-      title: 'Ações', key: 'actions', width: 170, fixed: 'right',
+      title: 'Ações', key: 'actions', width: 180,
       render: (_, row) => {
         const authorized = row.status === 'autorizada';
         const actions = [
@@ -241,10 +241,10 @@ export default function FiscalReturnsPanel({ canManage, refreshToken }: Props) {
       <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchRows()}>Atualizar retornos</Button>
     </Space>
     {error && <Alert type="error" showIcon message="Não foi possível carregar as devoluções" description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')} style={{ marginBottom: 12 }} />}
-    {!loading && !error && rows.length === 0 ? <Empty description="Nenhuma devolução ou retorno fiscal emitido." /> : <ResizableTable<FiscalReturnRow>
-      storageKey="notas-fiscais-retornos-bentevi-v1" rowKey="id" dataSource={rows} columns={columns} loading={loading}
+    {!loading && !error && rows.length === 0 ? <Empty description="Nenhuma devolução ou retorno fiscal emitido." /> : <ResponsiveTable<FiscalReturnRow>
+      rowKey="id" dataSource={rows} columns={columns} loading={loading}
       pagination={{ pageSize: 100, showSizeChanger: false, showTotal: (count) => `${count} retornos` }}
-      scroll={{ x: 1300 }} size="small"
+      size="small"
     />}
 
     <Drawer title={detail ? `Retorno fiscal ${detail.nfe_numero || detail.id.slice(0, 8)}` : 'Detalhes do retorno'} open={Boolean(detail)} width={720} onClose={() => setDetail(null)} loading={detailLoading}>

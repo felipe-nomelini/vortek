@@ -13,7 +13,7 @@ import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import PricingDecisionCenter, { PricingProposalButton } from '@/components/products/PricingDecisionCenter';
 import { PricingQuoteSummary } from '@/components/products/LivePricingQuote';
 import type { ProductPricing } from '@/services/pricing-context';
@@ -1279,7 +1279,7 @@ export default function ProductsPage() {
 
   const columns: TableProps<ProductRow>['columns'] = [
     {
-      title: 'Produto', key: 'nome', width: 350, fixed: 'left', sorter: true,
+      title: 'Produto', key: 'nome', width: 350, sorter: true,
       sortOrder: getRemoteSortOrder('nome', sort),
       render: (_, record) => (
         <div className={styles.productCell}>
@@ -1384,7 +1384,7 @@ export default function ProductsPage() {
       ),
     },
     {
-      title: 'Ações', key: 'actions', width: 205, fixed: 'right',
+      title: 'Ações', key: 'actions', width: 205,
       render: (_, record) => renderProductActions(record),
     },
   ];
@@ -1571,8 +1571,7 @@ export default function ProductsPage() {
             />
           )}
           <div className={styles.desktopTable}>
-            <ResizableTable<ProductRow>
-              storageKey="produtos-bentevi"
+            <ResponsiveTable<ProductRow>
               dataSource={rows}
               columns={columns}
               rowKey="key"
@@ -1584,7 +1583,6 @@ export default function ProductsPage() {
                 showTotal: (count) => `${count} produtos`,
               }}
               onChange={handleTableChange}
-              scroll={{ x: 1450 }}
               size="middle"
             />
           </div>

@@ -15,7 +15,7 @@ export default function PedidosLabelWhatsappModals({ flow }: PedidosLabelWhatsap
     <>
       <Modal
         title={flow.whatsappUsePlaceholderLabel
-          ? 'Enviar etiqueta genérica por WhatsApp'
+          ? 'Enviar etiqueta genérica'
           : `Enviar etiqueta real${flow.whatsappOrder?.fornecedor_nome ? ` — ${flow.whatsappOrder.fornecedor_nome}` : ''}`}
         open={flow.whatsappModalOpen}
         onCancel={flow.closeWhatsappLabelModal}
@@ -42,7 +42,7 @@ export default function PedidosLabelWhatsappModals({ flow }: PedidosLabelWhatsap
       </Modal>
       <ProgressModal
         open={flow.whatsappProgressOpen}
-        title="Enviando Etiqueta por WhatsApp"
+        title="Enviando etiqueta"
         steps={flow.whatsappSteps}
         onClose={flow.closeWhatsappProgress}
         showCloseButton={flow.whatsappSteps.some((step) => (

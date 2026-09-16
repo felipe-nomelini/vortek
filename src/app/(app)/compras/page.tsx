@@ -13,7 +13,7 @@ import {
   EllipsisOutlined, EyeOutlined, FilePdfOutlined, ReloadOutlined,
   SearchOutlined, TruckOutlined, UploadOutlined,
 } from '@ant-design/icons';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import CompraDetailsDrawer, {
   getPurchaseSaleReference,
   type CompraDrawerTab,
@@ -500,7 +500,7 @@ export default function ComprasPage() {
       },
     },
     {
-      title: 'Ação', key: 'actions', width: 155, fixed: 'right',
+      title: 'Ação', key: 'actions', width: 180,
       render: (_value, purchase) => {
         const primary = primaryAction(purchase, canConfirmPayment);
         const secondary = [
@@ -609,10 +609,10 @@ export default function ComprasPage() {
 
     {listError && <Alert type="error" showIcon message="Falha ao atualizar as compras" description={`${listError}${compras.length > 0 ? ' Os dados anteriores foram preservados.' : ''}`} action={<Button size="small" onClick={() => void fetchFilteredPurchases()}>Tentar novamente</Button>} />}
     <Card size="small" className={styles.tableCard}>
-      {!listLoading && !listError && compras.length === 0 ? <Empty description="Nenhuma compra encontrada com os filtros atuais." image={Empty.PRESENTED_IMAGE_SIMPLE} /> : <ResizableTable<CompraOperacional>
-        storageKey="compras-bentevi-v2" dataSource={compras} columns={columns} rowKey="id" loading={listLoading}
+      {!listLoading && !listError && compras.length === 0 ? <Empty description="Nenhuma compra encontrada com os filtros atuais." image={Empty.PRESENTED_IMAGE_SIMPLE} /> : <ResponsiveTable<CompraOperacional>
+        dataSource={compras} columns={columns} rowKey="id" loading={listLoading}
         pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} compras` }}
-        onChange={handleTableChange} scroll={{ x: 1455 }} size="small"
+        onChange={handleTableChange} size="small"
       />}
     </Card>
 

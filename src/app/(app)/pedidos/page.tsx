@@ -14,7 +14,7 @@ import {
   CarOutlined, EllipsisOutlined, EyeOutlined, FilePdfOutlined, ReloadOutlined,
   SearchOutlined, UploadOutlined, WarningOutlined,
 } from '@ant-design/icons';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import TrackingModal from '@/components/modals/TrackingModal';
 import PedidoDetailsDrawer, {
   getDisplayClientName,
@@ -219,7 +219,7 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   if (!split && !internalShipping && !postDispatch && hasDsliteId && !obsoleteDsliteResume && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(nextAction || '')) {
     actions.push({
       key: 'supplier_payment',
-      label: nextAction === 'resume_dslite_flow' ? 'Retomar fluxo DSLite' : nextAction === 'send_supplier_receipt' ? 'Anexar comprovante PIX' : 'Confirmar PIX do fornecedor',
+      label: nextAction === 'resume_dslite_flow' ? 'Retomar fluxo' : nextAction === 'send_supplier_receipt' ? 'Anexar comprovante PIX' : 'Confirmar PIX',
       permission: nextAction === 'resume_dslite_flow' ? 'sales.dslite.resume' : 'purchases.payment.confirm',
     });
   }
@@ -227,10 +227,10 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
     actions.push({
       key: 'send_whatsapp_label',
       label: whatsappStatus === 'sent'
-        ? 'Reenviar etiqueta por WhatsApp'
+        ? 'Reenviar etiqueta'
         : whatsappStatus === 'failed'
-          ? 'Tentar novamente por WhatsApp'
-          : 'Enviar etiqueta por WhatsApp',
+          ? 'Tentar novamente'
+          : 'Enviar etiqueta',
       permission: 'sales.whatsapp_label.send',
     });
   }
@@ -769,7 +769,7 @@ export default function PedidosPage() {
         );
       },
     },
-    { title: 'Próxima ação', key: 'next_action', width: 220, fixed: 'right', render: (_: unknown, order: Order) => renderActions(order) },
+    { title: 'Próxima ação', key: 'next_action', width: 220, render: (_: unknown, order: Order) => renderActions(order) },
   ], [openOrderDetails, openTracking, renderActions, role, sort, token]);
 
   const handleTableChange: TableProps<Order>['onChange'] = (pagination, _filters, sorter) => {
@@ -857,10 +857,10 @@ export default function PedidosPage() {
 
       <Card size="small">
         {!listLoading && !listError && orders.length === 0 ? <Empty description="Nenhum pedido encontrado nesta fila e filtros." image={Empty.PRESENTED_IMAGE_SIMPLE} /> : (
-          <ResizableTable<Order>
-            storageKey="pedidos-bentevi-v3" dataSource={orders} columns={columns} rowKey="id" loading={listLoading}
+          <ResponsiveTable<Order>
+            dataSource={orders} columns={columns} rowKey="id" loading={listLoading}
             pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} pedidos` }}
-            onChange={handleTableChange} scroll={{ x: 1595 }} size="small"
+            onChange={handleTableChange} size="small"
           />
         )}
       </Card>

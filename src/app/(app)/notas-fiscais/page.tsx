@@ -14,7 +14,7 @@ import {
   DownloadOutlined, EllipsisOutlined, EyeOutlined, FilePdfOutlined,
   MailOutlined, PlusOutlined, ReloadOutlined, SearchOutlined, SyncOutlined,
 } from '@ant-design/icons';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import NotaFiscalDetailsDrawer, {
   getFiscalStatusPresentation,
   type NotaFiscalRow,
@@ -590,7 +590,7 @@ export default function NotasFiscaisPage() {
       },
     },
     {
-      title: 'Ações', key: 'actions', width: 180, fixed: 'right',
+      title: 'Ações', key: 'actions', width: 180,
       render: (_value, note) => {
         const primary = primaryAction(note);
         const authorized = note.status === 'autorizada';
@@ -767,11 +767,11 @@ export default function NotasFiscaisPage() {
 
     {listError && <Alert type="error" showIcon message="Falha ao atualizar as notas fiscais" description={`${listError}${rows.length > 0 ? ' Os dados anteriores foram preservados.' : ''}`} action={<Button size="small" onClick={() => void fetchNotas()}>Tentar novamente</Button>} />}
     <Card size="small" className={styles.tableCard}>
-      {!listLoading && !listError && rows.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhuma nota fiscal encontrada com os filtros atuais." /> : <ResizableTable<NotaFiscalRow>
-        storageKey="notas-fiscais-bentevi-v2" dataSource={rows} columns={columns} rowKey="id" loading={listLoading}
+      {!listLoading && !listError && rows.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhuma nota fiscal encontrada com os filtros atuais." /> : <ResponsiveTable<NotaFiscalRow>
+        dataSource={rows} columns={columns} rowKey="id" loading={listLoading}
         onChange={handleTableChange}
         pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} notas fiscais` }}
-        scroll={{ x: 1365 }} size="small"
+        size="small"
       />}
     </Card>
 

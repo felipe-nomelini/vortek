@@ -47,7 +47,7 @@ import {
 } from '@ant-design/icons';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import ProgressModal from '@/components/modals/ProgressModal';
 import { formatCurrency } from '@/lib/format';
 import type {
@@ -773,7 +773,7 @@ export default function AnunciosPage() {
       },
     },
     {
-      title: 'Ações', key: 'actions', width: 158, fixed: 'right',
+      title: 'Ações', key: 'actions', width: 180,
       render: (_value, row) => {
         const canChangeStatus = row.isOperational && row.productId && row.publishEligibility?.eligible !== false && !visualReview;
         const menuItems: MenuProps['items'] = [
@@ -856,7 +856,7 @@ export default function AnunciosPage() {
     <section className={styles.tableCard}>
       {error && <Alert type="error" showIcon message="Não foi possível carregar os anúncios" description={userSafeMessage(error, 'Os dados anteriores foram preservados. Tente novamente.')} action={<Button onClick={() => void fetchListings()}>Tentar novamente</Button>} />}
       <Spin spinning={loading} indicator={<LoadingOutlined spin className={styles.loadingIcon} />}>
-        {!error && !loading && rows.length === 0 ? <Empty className={styles.emptyState} description="Nenhum anúncio encontrado com estes filtros"><Button onClick={clearFilters}>Limpar filtros</Button></Empty> : <ResizableTable<ListingRow> className={styles.desktopTable} storageKey="bnt-d11-anuncios" dataSource={rows} columns={columns} rowKey="itemId" rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys, getCheckboxProps: (row) => ({ disabled: !row.isOperational || !row.productId || Boolean(visualReview) }) }} pagination={{ current: page, pageSize: 100, total, showSizeChanger: false, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} onChange={handleTableChange} scroll={{ x: 1600 }} size="small" />}
+        {!error && !loading && rows.length === 0 ? <Empty className={styles.emptyState} description="Nenhum anúncio encontrado com estes filtros"><Button onClick={clearFilters}>Limpar filtros</Button></Empty> : <ResponsiveTable<ListingRow> className={styles.desktopTable} dataSource={rows} columns={columns} rowKey="itemId" rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys, getCheckboxProps: (row) => ({ disabled: !row.isOperational || !row.productId || Boolean(visualReview) }) }} pagination={{ current: page, pageSize: 100, total, showSizeChanger: false, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} onChange={handleTableChange} size="small" />}
       </Spin>
     </section>
 

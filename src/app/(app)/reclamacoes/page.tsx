@@ -28,7 +28,7 @@ import {
   WarningFilled,
 } from '@ant-design/icons';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import ResizableTable from '@/components/ResizableTable';
+import ResponsiveTable from '@/components/ResponsiveTable';
 import {
   claimActionLabel,
   claimRoleLabel,
@@ -222,7 +222,7 @@ export default function ReclamacoesPage() {
       render: (value) => <span>{formatDateTime(value)}</span>,
     },
     {
-      title: 'Ações', key: 'actions', width: 125, fixed: 'right',
+      title: 'Ações', key: 'actions', width: 180,
       render: (_, claim) => <Button size="small" onClick={() => void openClaim(claim)}>Ver detalhes</Button>,
     },
   ], [openClaim]);
@@ -367,8 +367,7 @@ export default function ReclamacoesPage() {
         {!loading && !error && data?.items.length === 0 ? <Empty
           image={Empty.PRESENTED_IMAGE_SIMPLE}
           description="Nenhuma reclamação encontrada com os filtros atuais."
-        ><Button onClick={clearFilters}>Limpar filtros</Button></Empty> : <ResizableTable<ClaimListItem>
-          storageKey="bnt-d19-reclamacoes"
+        ><Button onClick={clearFilters}>Limpar filtros</Button></Empty> : <ResponsiveTable<ClaimListItem>
           dataSource={data?.items || []}
           columns={columns}
           rowKey="id"
@@ -382,7 +381,6 @@ export default function ReclamacoesPage() {
             pageSizeOptions: [15, 30, 50, 100],
             showTotal: (count) => `${count} reclamaç${count === 1 ? 'ão' : 'ões'}`,
           }}
-          scroll={{ x: 1420 }}
           size="small"
         />}
       </section>
