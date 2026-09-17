@@ -32,7 +32,8 @@ export async function GET() {
     return NextResponse.json({ erro: usersError.message }, { status: 500 });
   }
 
-  const userIds = users.map((user) => user.id);
+  const visibleUsers = users.filter((user) => user.app_metadata?.bentevi_agent_scope !== 'ml_price_change');
+  const userIds = visibleUsers.map((user) => user.id);
   const { data: profiles, error: profilesError } = userIds.length
     ? await serviceClient
         .from('profiles')
@@ -46,7 +47,7 @@ export async function GET() {
 
   const profilesMap = new Map((profiles || []).map((profile) => [profile.id, profile]));
 
-  const data = users.map((user) => {
+  const data = visibleUsers.map((user) => {
     const profile = profilesMap.get(user.id);
     const email = user.email || '';
     return {

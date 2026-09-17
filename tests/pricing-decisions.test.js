@@ -54,6 +54,22 @@ test('fonte vencida gera aviso e a autorização manual tem janela técnica pró
   i.pricing.current.memory.fee.expiresAt='2000-01-01T00:00:00Z';const context=domain.decisionContext(i);
   assert.equal(context.executable,true);assert.ok(context.warnings.includes('FONTES_EXPIRADAS'));
 });
+test('agente só libera preço com lucro por venda mantido e cotações vivas',()=>{
+  const i=input();
+  const memory={resultCents:888,cost:{},fee:{source:'ml_live'},shipping:{source:'ml_live'},tax:{context:{manualRequired:false}}};
+  i.requireNonDecreasingProfit=true;
+  i.pricing.current.memory={...i.pricing.current.memory,...memory};
+  i.pricing.comparisons={actual:{memory:{...memory,resultCents:827}}};
+  assert.equal(domain.decisionContext(i).executable,true);
+  i.pricing.comparisons.actual.memory.resultCents=889;
+  assert.ok(domain.decisionContext(i).reasons.includes('LUCRO_UNITARIO_REDUZIDO'));
+  i.pricing.comparisons.actual.memory.resultCents=827;
+  i.pricing.current.memory.shipping.source='fallback';
+  assert.ok(domain.decisionContext(i).reasons.includes('LUCRO_UNITARIO_INCONCLUSIVO'));
+  i.pricing.current.memory.shipping.source='ml_live';
+  i.pricing.comparisons.actual.memory=null;
+  assert.ok(domain.decisionContext(i).reasons.includes('LUCRO_UNITARIO_INCONCLUSIVO'));
+});
 test('Buy Box inconclusiva não resolve conflito anterior nem produz prejuízo real',()=>{
   const c=domain.decisionContext(input());assert.equal(domain.pricingAlertObservations(c,{classification:'INCONCLUSIVO'}).some(r=>r.rule==='buy_box_economy'),false);
   const conflict=domain.pricingAlertObservations(c,{classification:'PREJUIZO_NO_PRECO_COMPETITIVO',buyBoxConflict:true}).find(r=>r.rule==='buy_box_economy');assert.equal(conflict.active,true);assert.equal(conflict.severity,'P1');

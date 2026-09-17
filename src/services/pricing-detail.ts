@@ -104,6 +104,7 @@ export async function loadPricingDetail(raw: unknown, worker?: {
   competitionItemId?: string | null;
   targetOrigin?: 'manual_input' | 'price_to_win' | 'rule' | 'existing_price';
   strictEconomicGates?: boolean;
+  requireNonDecreasingProfit?: boolean;
 }) {
   // Internal worker identity is never parsed from the HTTP body.
   const user = worker ? { id: worker.actorId } : (await (await createClient()).auth.getUser()).data.user;
@@ -340,6 +341,7 @@ export async function loadPricingDetail(raw: unknown, worker?: {
     listingSafety,
     targetOrigin: worker?.targetOrigin,
     strictEconomicGates: worker?.strictEconomicGates,
+    requireNonDecreasingProfit: worker?.requireNonDecreasingProfit,
     competition: competitiveEvidence ? {
       itemId: competitionItemId!,
       priceCents: competitiveEvidence.priceCents,

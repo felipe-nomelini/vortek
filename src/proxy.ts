@@ -9,7 +9,8 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (
     pathname === "/fornecedor/bkr1/kits-sem-anuncio" ||
-    pathname === "/fornecedor/evolusom/produtos-sem-gtin"
+    pathname === "/fornecedor/evolusom/produtos-sem-gtin" ||
+    pathname === "/api/ml/agente/preco"
   ) {
     return NextResponse.next();
   }

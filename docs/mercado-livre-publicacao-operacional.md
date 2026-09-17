@@ -4,6 +4,17 @@ Este documento registra regras práticas validadas na criação de anúncios do 
 
 ## Fluxo manual simplificado — 17/09/2026
 
+O canal técnico `POST /api/ml/agente/preco` recebe apenas alterações individuais
+de preço, assinadas por segredo privado. Ele usa um ator técnico bloqueado para
+login e a mesma operação/outbox do fluxo manual. `checkOnly` recalcula o lucro
+observado e proposto; `apply` só enfileira quando o lucro por venda não cai e as
+cotações do ML estão disponíveis. O executor repete a verificação antes do envio.
+Consultar `GET /api/ml/agente/preco?operationId=...` após timeout, sem repetir
+um comando incerto. O operador continua usando a confirmação simples da tela;
+nenhuma configuração do canal técnico aparece na interface. O cliente privado
+`scripts/ml-agent-price.js` assina as chamadas. O segredo e o ID do ator ficam
+apenas no ambiente privado do serviço e no arquivo local ignorado pelo Git.
+
 Criação, republicação e alteração manual de preço usam uma única confirmação na
 interface. A confirmação cria diretamente uma operação auditada na fila existente;
 o executor faz claim único, envia ao ML uma vez e confere o resultado por leitura.

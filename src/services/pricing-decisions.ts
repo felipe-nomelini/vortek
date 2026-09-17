@@ -21,6 +21,7 @@ export type DecisionContext = {
   competitivePriceCents?: number | null;
   competitionStatus?: string | null;
   strictEconomicGates?: boolean;
+  requireNonDecreasingProfit?: boolean;
   fingerprint: string;
   expiresAt: string;
   clearance: { id: string; quantity: number; fulfillmentSource: 'internal' } | null;
@@ -40,6 +41,7 @@ export function decisionContext(input: {
   clearanceState?: unknown;
   targetOrigin?: DecisionContext['targetOrigin'];
   strictEconomicGates?: boolean;
+  requireNonDecreasingProfit?: boolean;
   competition?: {
     itemId: string;
     priceCents: number | null;
@@ -80,6 +82,18 @@ export function decisionContext(input: {
   if (m && m.margin < m.band.floor) gate('PRECO_ABAIXO_DO_PISO');
   if (m && m.resultCents < 0) gate('PREJUIZO_PREVISTO');
   if (input.priceCents === input.currentPriceCents) gate('PRECO_JA_APLICADO');
+  if (input.requireNonDecreasingProfit) {
+    const proposed = p.current.memory;
+    const actual = p.comparisons?.actual?.memory;
+    if (!proposed || !actual || proposed.fee.source !== 'ml_live' || actual.fee.source !== 'ml_live'
+      || proposed.shipping.source !== 'ml_live' || actual.shipping.source !== 'ml_live'
+      || proposed.tax.context.manualRequired || actual.tax.context.manualRequired
+      || p.revalidation?.status !== 'queried')
+      reasons.push('LUCRO_UNITARIO_INCONCLUSIVO');
+    else if (proposed.resultCents < actual.resultCents)
+      reasons.push('LUCRO_UNITARIO_REDUZIDO');
+    if (input.priceCents === input.currentPriceCents) reasons.push('PRECO_JA_APLICADO');
+  }
   if (strict && targetOrigin === 'price_to_win' && (!input.competition
     || input.competition.itemId !== input.itemId
     || input.competition.priceCents !== input.priceCents
@@ -96,6 +110,7 @@ export function decisionContext(input: {
     competitivePriceCents: input.competition?.priceCents ?? null,
     competitionStatus: input.competition?.status ?? null,
     strictEconomicGates: strict,
+    requireNonDecreasingProfit: input.requireNonDecreasingProfit === true,
   };
   return {
     operationKind: 'price_change',
@@ -114,6 +129,7 @@ export function decisionContext(input: {
     competitivePriceCents: input.competition?.priceCents ?? null,
     competitionStatus: input.competition?.status ?? null,
     strictEconomicGates: strict,
+    requireNonDecreasingProfit: input.requireNonDecreasingProfit === true,
     fingerprint: createHash('sha256').update(pricingMaterialFingerprint(material)).digest('hex'),
     expiresAt,
     clearance: input.clearance ?? null,
