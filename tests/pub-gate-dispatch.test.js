@@ -81,9 +81,10 @@ test('readback requires BRL, actual numbers and exact seller only on the selecte
 function harness(options = {}) {
   const calls = []; const operation = { id: 'op', state: options.state || 'prepared', item_id: 'MLB1',
     group_id: options.noGroup ? null : 'g', group_version: options.noGroup ? null : 1, produto_id: 'p', actor_id: 'actor', new_price_cents: 11000,
+    rule_id:'MANUAL-ML',seller_id:'123',evaluation_id:'e',
     automation_disable_requested_at:null,automation_disabled_at:null };
   const decision = { context: { sellerId: '123', itemId: 'MLB1', priceCents: 11000,
-    disableAutomaticPricing:options.automatic===true }, fingerprint: 'fp' };
+    disableAutomaticPricing:options.automatic===true,fingerprint:'fp',expiresAt:new Date(Date.now()+60000).toISOString() }, fingerprint: 'fp' };
   if(options.creation) {
     Object.assign(operation,{item_id:options.remoteId||null,group_id:null,group_version:null});
     Object.assign(decision.context,{operationKind:'listing_create',itemId:null,preparation:{
@@ -93,7 +94,7 @@ function harness(options = {}) {
   let automationActive=options.automatic===true;
   const client = { from(table) {
     const q = { select(){return q}, eq(){return q}, is(){return q}, update(body){calls.push([`${table}-update`,body]);Object.assign(operation,table==='pricing_operations'?body:{});return q},
-      single: async () => ({data: table === 'pricing_operations' ? { ...operation } : decision}),
+      single: async () => ({data: table === 'pricing_operations' ? { ...operation } : table==='pricing_evaluations' ? {result:{decisionContext:decision.context}} : decision}),
       maybeSingle:async()=>({data:{id:operation.id},error:null}),
       then(resolve){resolve({data: table === 'ml_pricing_group_members' ? [{ml_item_id:'MLB1',variation_id:''},{ml_item_id:'MLB2',variation_id:''}] : []})} };
     return q;

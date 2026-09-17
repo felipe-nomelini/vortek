@@ -86,7 +86,6 @@ export type Database = {
           id: string
           item_id: string | null
           last_seen_at: string
-          latest_decision_id: string | null
           merged_into: string | null
           observed_at: string
           produto_id: string
@@ -163,13 +162,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "pricing_alerts_latest_decision_id_fkey"
-            columns: ["latest_decision_id"]
-            isOneToOne: false
-            referencedRelation: "pricing_decisions"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "pricing_alerts_merged_into_fkey"
             columns: ["merged_into"]
             isOneToOne: false
@@ -188,86 +180,6 @@ export type Database = {
             columns: ["produto_id"]
             isOneToOne: false
             referencedRelation: "produtos"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      pricing_decisions: {
-        Row: {
-          actor_id: string
-          alert_id: string
-          context: Json
-          created_at: string
-          decided_at: string | null
-          deferred_until: string | null
-          evaluation_id: string
-          expires_at: string
-          fingerprint: string
-          id: string
-          operation_id: string | null
-          reason: string
-          state: string
-          updated_at: string
-        }
-        Insert: {
-          actor_id: string
-          alert_id: string
-          context: Json
-          created_at?: string
-          decided_at?: string | null
-          deferred_until?: string | null
-          evaluation_id: string
-          expires_at: string
-          fingerprint: string
-          id?: string
-          operation_id?: string | null
-          reason: string
-          state?: string
-          updated_at?: string
-        }
-        Update: {
-          actor_id?: string
-          alert_id?: string
-          context?: Json
-          created_at?: string
-          decided_at?: string | null
-          deferred_until?: string | null
-          evaluation_id?: string
-          expires_at?: string
-          fingerprint?: string
-          id?: string
-          operation_id?: string | null
-          reason?: string
-          state?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "pricing_decisions_actor_id_fkey"
-            columns: ["actor_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "pricing_decisions_alert_id_fkey"
-            columns: ["alert_id"]
-            isOneToOne: false
-            referencedRelation: "pricing_alerts"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "pricing_decisions_evaluation_id_fkey"
-            columns: ["evaluation_id"]
-            isOneToOne: false
-            referencedRelation: "pricing_evaluations"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "pricing_decisions_operation_id_fkey"
-            columns: ["operation_id"]
-            isOneToOne: true
-            referencedRelation: "pricing_operations"
             referencedColumns: ["id"]
           },
         ]
@@ -912,13 +824,6 @@ export type Database = {
             columns: ["clearance_id"]
             isOneToOne: false
             referencedRelation: "internal_stock_clearance"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "pricing_events_decision_id_fkey"
-            columns: ["decision_id"]
-            isOneToOne: false
-            referencedRelation: "pricing_decisions"
             referencedColumns: ["id"]
           },
           {
@@ -4424,18 +4329,6 @@ ml_pricing_groups: {
         }
         Returns: Json
       }
-      search_pricing_decision_product_ids: {
-        Args: {
-          p_view?: string
-          p_state?: string
-          p_severity?: string | null
-          p_decision?: string | null
-          p_search?: string
-          p_page?: number
-          p_page_size?: number
-        }
-        Returns: Json
-      }
       begin_assistant_message: {
         Args: { p_user: string; p_conversation: string; p_request: string; p_question: string }
         Returns: Json
@@ -4460,38 +4353,12 @@ ml_pricing_groups: {
         Args: { p_item_id: string; p_operation_id: string; p_seller_id: string }
         Returns: undefined
       }
-      claim_pricing_decision_dispatch: {
+      claim_manual_ml_dispatch: {
         Args: { p_fresh_evaluation_id: string; p_operation_id: string }
         Returns: boolean
       }
-      consume_pricing_decision: {
-        Args: {
-          p_id: string
-          p_operation_id: string
-          p_actor_id: string
-          p_fresh_evaluation_id: string
-        }
-        Returns: string
-      }
-      manage_pricing_decision: {
-        Args: {
-          p_id: string
-          p_command_id: string
-          p_actor_id: string
-          p_action: string
-          p_reason: string
-          p_fresh_evaluation_id?: string
-          p_deferred_until?: string
-        }
-        Returns: Json
-      }
-      prepare_pricing_decision: {
-        Args: {
-          p_command_id: string
-          p_evaluation_id: string
-          p_actor_id: string
-          p_reason: string
-        }
+      enqueue_manual_ml_command: {
+        Args: { p_operation_id: string; p_evaluation_id: string; p_actor_id: string }
         Returns: string
       }
       sync_pricing_alerts: {

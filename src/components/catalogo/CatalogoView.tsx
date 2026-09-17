@@ -229,6 +229,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const [priceDetailLoading, setPriceDetailLoading] = useState(false);
   const [newPrice, setNewPrice] = useState<number | null>(null);
   const [priceReview, setPriceReview] = useState<PriceReview | null>(null);
+  const priceCommandRef = useRef<{ key: string; id: string } | null>(null);
   const [reviewingPrice, setReviewingPrice] = useState(false);
   const [confirmingPrice, setConfirmingPrice] = useState(false);
 
@@ -512,18 +513,23 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const confirmPrice = useCallback(async () => {
     if (!activeCatalog?.produto_id || !priceReview?.detail.evaluationId) return;
     if (hasOpenTracking) return void messageApi.warning('Já existe uma publicação de preço em acompanhamento.');
+    const key = `${activeCatalog.produto_id}:${activeCatalog.ml_item_id}:${Math.round(priceReview.price * 100)}`;
+    const operationId = priceCommandRef.current?.key === key ? priceCommandRef.current.id : crypto.randomUUID();
+    priceCommandRef.current = { key, id: operationId };
     setConfirmingPrice(true);
     try {
       const response = await fetch('/api/catalogo/preco/confirmar', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ evaluationId: priceReview.detail.evaluationId,
-          prepareCommandId: crypto.randomUUID(), approveCommandId: crypto.randomUUID(), operationId: crypto.randomUUID() }),
+        body: JSON.stringify({ operationId, produtoId: activeCatalog.produto_id,
+          mlItemId: activeCatalog.ml_item_id, priceCents: Math.round(priceReview.price * 100),
+          disableAutomaticPricing: priceReview.detail.automaticPricing?.active === true }),
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload?.error || 'Não foi possível confirmar a alteração.');
       const outboxId = String(payload?.outboxId || '').trim();
       if (!outboxId) throw new Error('A alteração não foi programada.');
       setPriceReview(null);
+      priceCommandRef.current = null;
       startTracking({ outboxId, produtoId: activeCatalog.produto_id,
         onTerminal: (status) => { if (status.status === 'done') { void fetchData(); setActiveCatalog(null); } } });
       messageApi.success('Alteração programada para envio ao Mercado Livre.');
@@ -788,7 +794,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
             disabled={Boolean(visualReview) || !activeCatalog.produto_id} />
             <Button type="primary" loading={reviewingPrice}
               disabled={Boolean(visualReview) || !activeCatalog.produto_id || !newPrice}
-              onClick={() => void reviewPrice()}>Revisar alteração</Button></div>
+              onClick={() => void reviewPrice()}>Alterar preço</Button></div>
           {priceDetail?.automaticPricing?.active && <Text type="warning">A confirmação desativará a automação de preço no Mercado Livre antes da alteração.</Text>}</section>}
 
         <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>

@@ -5,7 +5,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { assertAllowedMlCategoryForProduct } from '@/lib/ml-category-guard';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
 import { loadMlBrandEquivalences } from '@/lib/ml/brand-equivalences';
-import { isMlIdentityComplete } from '@/lib/ml-listing-identity';
+import { isMlIdentityComplete, isMlExistingListingIdentitySafe } from '@/lib/ml-listing-identity';
 import { buildEvidenceBasedMlDescription } from '@/lib/ml-listing-description';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
@@ -114,7 +114,6 @@ export async function preparePublication(raw: unknown, actorId: string) {
   }
   const fiscal = fiscalStrictSchema.safeParse({ ncm: product.ncm, origem_fiscal: product.origem_fiscal,
     csosn: product.csosn, sku: product.sku, title: product.nome });
-  if (!fiscal.success) throw new Error('publication_fiscal_incomplete');
   const warrantyTerms = warrantySaleTerms(terms);
   if (!warrantyTerms.compatible) throw new Error('warranty_category_incompatible');
   if (warrantyDescriptionConflicts(input.description || '')) throw new Error('warranty_description_conflict');
@@ -128,12 +127,13 @@ export async function preparePublication(raw: unknown, actorId: string) {
   const identity = assessMlProductIdentity({ attributes, seller_custom_field: product.sku }, product, offers.data || [], supplierIds,
     { categoryAttributes: attrs, kit, brandEquivalences, remoteEvidence: { source: 'manual_validation', reference: 'publication-preparation:' + product.id,
       collectedAt: new Date().toISOString(), condition: 'valid' } });
-  if (!isMlIdentityComplete(identity)) throw new Error('publication_identity_requires_validation');
+  if (input.action === 'new' ? !isMlIdentityComplete(identity) : !isMlExistingListingIdentitySafe(identity))
+    throw new Error('publication_identity_requires_validation');
   if (input.action === 'relist') {
     const sourceIdentity = assessMlProductIdentity(sourceItem, product, offers.data || [], supplierIds,
       { categoryAttributes: attrs, kit, brandEquivalences, remoteEvidence: { source: 'mercado_livre', reference: input.sourceItemId!,
         collectedAt: new Date().toISOString(), condition: 'valid' } });
-    if (!isMlIdentityComplete(sourceIdentity)) throw new Error('publication_relist_identity_requires_validation');
+    if (!isMlExistingListingIdentitySafe(sourceIdentity)) throw new Error('publication_relist_identity_requires_validation');
   }
   const pictures = product.imagens;
   if (!Array.isArray(pictures) || !pictures.length || pictures.length > 12 || pictures.some(p => {
@@ -144,23 +144,13 @@ export async function preparePublication(raw: unknown, actorId: string) {
     : null;
   const context = { categoryId: input.categoriaId, catalogProductId,
     listingType: input.listingType, condition: 'new' as const, ...input.shipping };
-  const quote = async (priceCents?: number) => {
-    const response = await loadPricingDetail({ produtoId: product.id, context, ...(priceCents ? { priceCents } : {}) }, { actorId });
-    if (!response.ok) throw new Error('publication_economy_unavailable');
-    return (await response.json()).pricing;
-  };
-  let pricing = await quote(input.priceCents);
-  if (!input.priceCents && pricing.target.ok) pricing = await quote(pricing.target.evaluation.memory.revenueCents);
-  const memory = pricing.current.memory;
-  if (pricing.revalidation?.status !== 'queried' || pricing.current.status === 'inconclusive'
-    || !memory || !Number.isSafeInteger(memory.revenueCents) || memory.revenueCents <= 0
-    || (input.priceCents !== undefined && memory.revenueCents !== input.priceCents)
-    || !Number.isSafeInteger(memory.resultCents) || !Number.isFinite(memory.margin) || !Number.isFinite(memory.band?.floor)
-    || !pricing.target.ok || !pricing.floor.ok || !pricing.breakEven.ok
-    || memory.margin < memory.band.floor || memory.resultCents < 0) throw new Error('publication_economy_inconclusive');
-  const expiresAt = new Date(Math.min(Date.now() + 15 * 60 * 1000,
-    ...[memory.cost.expiresAt, memory.fee.expiresAt, memory.shipping.expiresAt].filter(Boolean).map(Date.parse))).toISOString();
-  if (Date.parse(expiresAt) <= Date.now()) throw new Error('publication_evidence_expired');
+  // Economia informa a decisão do dono, mas não controla uma publicação manual.
+  const quoted = await loadPricingDetail({ produtoId: product.id, context,
+    ...(input.priceCents ? { priceCents: input.priceCents } : {}) }, { actorId }).catch(() => null);
+  const pricing = quoted?.ok ? (await quoted.json()).pricing : null;
+  const priceCents = input.priceCents ?? pricing?.target?.evaluation?.memory?.revenueCents;
+  if (!Number.isSafeInteger(priceCents) || priceCents <= 0) throw new Error('publication_price_required');
+  const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
   const description = warrantyDescription(buildEvidenceBasedMlDescription(product, input.description));
   const listingName = execution.capability.target === 'test'
     ? 'Item de Teste – Por favor, NÃO OFERTAR!'
@@ -168,7 +158,7 @@ export async function preparePublication(raw: unknown, actorId: string) {
   const expected = {
     ...(account.data.tags?.includes('user_product_seller')
       ? { family_name: listingName } : { title: listingName }),
-    category_id: input.categoriaId, price: memory.revenueCents / 100, currency_id: 'BRL',
+    category_id: input.categoriaId, price: priceCents / 100, currency_id: 'BRL',
     available_quantity: capacity.safe, buying_mode: 'buy_it_now', listing_type_id: input.listingType, condition: 'new',
     attributes, seller_custom_field: product.sku, pictures: pictures.map(source => ({ source })),
     sale_terms: [...input.sale_terms.filter(t => !t.id.startsWith('WARRANTY_')), ...warrantyTerms.terms],
@@ -176,7 +166,7 @@ export async function preparePublication(raw: unknown, actorId: string) {
     ...(catalogProductId ? { catalog_product_id: catalogProductId, catalog_listing: true } : {}),
   };
   const payload = input.action === 'relist'
-    ? { price: memory.revenueCents / 100, quantity: capacity.safe, listing_type_id: input.listingType }
+    ? { price: priceCents / 100, quantity: capacity.safe, listing_type_id: input.listingType }
     : expected;
   const conditional = await fetchMLResult<{ required_attributes: { id: string }[] }>(
     '/categories/' + encodeURIComponent(input.categoriaId) + '/attributes/conditional', {
@@ -194,16 +184,17 @@ export async function preparePublication(raw: unknown, actorId: string) {
   }
   const preparation = { action: input.action, sourceItemId: input.sourceItemId || null,
     originalCustomPrice: input.action === 'relist' ? product.custom_price : null,
-    input: { ...input, priceCents: memory.revenueCents }, payload, expected, description,
-    warrantyRevision: factoryWarranty.revision, identity, capacity: capacity.safe, fiscal: fiscal.data };
+    input: { ...input, priceCents }, payload, expected, description,
+    warrantyRevision: factoryWarranty.revision, identity, capacity: capacity.safe,
+    fiscal: fiscal.success ? fiscal.data : null };
   const fingerprint = createHash('sha256').update(pricingMaterialFingerprint({ sellerId,
     ...preparation, identity: identity.comparisons.map(({ field, local, remote, status, reason }) =>
-      ({ field, local, remote, status, reason })), memory })).digest('hex');
+      ({ field, local, remote, status, reason })) })).digest('hex');
   const decisionContext = { operationKind: 'listing_create', sellerId, itemId: null, groupId: null, groupVersion: null,
-    previousPriceCents: null, priceCents: memory.revenueCents, executable: true, reasons: [], clearance: null,
+    previousPriceCents: null, priceCents, executable: true, reasons: [], clearance: null,
     fingerprint, expiresAt, preparation };
   const saved = await client.from('pricing_evaluations').insert({ produto_id: product.id, actor_id: actorId,
-    fingerprint, result: { ...pricing, decisionContext } }).select('id').single();
+    fingerprint, result: { ...(pricing || {}), decisionContext } }).select('id').single();
   if (saved.error || !saved.data) throw new Error('publication_preparation_persistence_failed');
   return { evaluationId: saved.data.id, decisionContext, pricing, preparation };
 }

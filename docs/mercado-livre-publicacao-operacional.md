@@ -2,7 +2,22 @@
 
 Este documento registra regras práticas validadas na criação de anúncios do Vortek.
 
-## Estado produtivo Bentevi — 13/09/2026
+## Fluxo manual simplificado — 17/09/2026
+
+Criação, republicação e alteração manual de preço usam uma única confirmação na
+interface. A confirmação cria diretamente uma operação auditada na fila existente;
+o executor faz claim único, envia ao ML uma vez e confere o resultado por leitura.
+Não há proposta, central de aprovação, motivo comercial ou segunda confirmação.
+Margem, lucro e estimativas ausentes são informações de referência e não impedem
+o preço escolhido pelo operador. Permanecem obrigatórios sessão autorizada,
+seller e anúncio corretos, preço positivo, estoque para publicar, dados exigidos
+pelo ML, idempotência e conferência remota. Na republicação, o anúncio encerrado
+é a origem; o novo anúncio recebe outro ID. A pausa manual continua manual e a
+pausa causada pela automação de estoque segue a regra de reativação ao voltar o
+estoque. A automação própria de preços e a criação em lote continuam nos gates
+específicos.
+
+## Histórico produtivo Bentevi — 13/09/2026
 
 O Bentevi está em produção em `app.bentevi.shop`, com o Supabase self-hosted
 produtivo em `.162`. A alteração manual e individual de preço e a
@@ -33,7 +48,7 @@ anúncios existentes, por meio de `anuncios_ml_outbox` e do publicador canônico
 - O scan observado deve atualizar o `scroll_id` com o valor devolvido em cada
   página. Reutilizar sempre o cursor inicial repete a segunda página e prende o
   job; o manifesto produtivo corrigido encontrou 7.052 anúncios em 72 páginas.
-- Uma alteração manual de preço exige sessão e perfil autorizados, vínculo
+- Uma alteração manual de preço exigia sessão e perfil autorizados, vínculo
   local do item, conta/seller confirmados, valor positivo, proposta, aprovação
   humana e confirmação final da mesma pessoa. Margem, lucro, evidência
   econômica, elegibilidade comercial e grupo M2M são exibidos como avisos e
@@ -81,7 +96,7 @@ e ativada em 11/09/2026 somente para alteração manual de preço. A central,
 escopo, preflight, deploy e recuperação estão registrados em
 [BNT-PRICING-DECISION-CENTER-01](reestruturacao-vortek/evidencias/BNT-PRICING-DECISION-CENTER-01-validacao.md).
 
-### Modo produtivo controlado — preço e publicação controlada ativos em 13/09/2026
+### Histórico do modo produtivo controlado — 13/09/2026
 
 - `ML_PRICING_EXECUTION_MODE=production_controlled` somente produz capacidade quando o runtime é `production`, a origem é exatamente `https://app.bentevi.shop`, o Supabase resolve exclusivamente para `.162`, o seller está na allowlist e `/users/me` comprova conta `MLB` sem a tag `test_user`.
 - `test_only` preserva o contrato de homologação, incluindo conta `test_user`; `disabled` permanece o padrão fora do serviço produtivo explicitamente configurado.
@@ -102,7 +117,7 @@ Não reenviar criação ou preço após resultado incerto. A central pode solici
 nova conferência da mesma operação, sem repetir a mutação. A capacidade técnica
 não substitui um pedido explícito para publicar ou alterar anúncios reais.
 
-### Alteração manual sem bloqueio comercial
+### Histórico da alteração manual sem bloqueio comercial
 
 Nos fluxos Catálogo, Anúncios e Produtos, preço abaixo da margem, prejuízo
 estimado, custo/tarifa/frete inconclusivos ou vencidos, identidade comercial
@@ -265,9 +280,7 @@ Não tratar criação como concluída enquanto imagem e ficha não forem verific
 
 O procedimento histórico de criar primeiro e aplicar depois margem protetiva mínima de 50% foi superado pelo [Cânon Comercial 1.0](reestruturacao-vortek/VORTEK_CANON_COMERCIAL_V1.md), especialmente seções 2, 7, 20 e 23. Não é um motor alternativo nem autorização de publicação. A versão anterior permanece no histórico Git; não substituir 50% por outro percentual arbitrário.
 
-Na Bentevi V2, a preparação deve usar economia canônica, evidências compatíveis de tarifa/frete, identidade, conflitos e grupo, com confirmação autorizada e read-back. A garantia não é pesquisada por produto: a regra comercial fixa é `Garantia de fábrica: 12 meses`, representada nos termos oficiais aceitos pela categoria. Alvo é referência para preço novo; margem mínima e exceções seguem exclusivamente o cânon. Dado inconclusivo não autoriza inventar proteção ou executar ação destrutiva.
-
-Os bloqueios comerciais da PRC-03 permanecem. A [fila reconciliada](reestruturacao-vortek/VORTEK_BENTEVI_PRICING_V2_PLANO.md#14-fila-obrigatória) entrega os contratos antes do `BNT-CANON-PUB-GATE`; esta correção documental não habilita código, não altera anúncios existentes e não executa ML. Dimensões normalizadas pelo Mercado Envios não substituem silenciosamente o cadastro mestre do fornecedor.
+Na Bentevi V2, a avaliação econômica pode acompanhar a ação manual como referência. A identidade do produto e os atributos exigidos pelo ML continuam conferidos; a margem mínima e o lucro estimado não bloqueiam o preço decidido pelo operador. A garantia não é pesquisada por produto: a regra comercial fixa é `Garantia de fábrica: 12 meses`, representada nos termos oficiais aceitos pela categoria. Dimensões normalizadas pelo Mercado Envios não substituem silenciosamente o cadastro mestre do fornecedor.
 
 ## Preços por Quantidade (B2B) — aposentado na Bentevi V2
 

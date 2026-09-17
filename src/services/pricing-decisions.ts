@@ -1,23 +1,8 @@
-import { z } from 'zod';
 import { createHash } from 'node:crypto';
 import type { ProductPricing } from './pricing-context';
 import type { PricingOverrideGroup } from './pricing-overrides';
 import type { CompetitiveAssessment } from './pricing-competition';
 import { pricingMaterialFingerprint } from './pricing-audit';
-import { getPricingExecutionBlock } from '@/lib/ml/pricing-execution';
-
-export const decisionCommandSchema = z
-  .object({
-    commandId: z.string().uuid(),
-    action: z.enum(['approve', 'reject', 'defer']),
-    reason: z.string().trim().min(1).max(200),
-    deferredUntil: z.string().datetime().optional(),
-  })
-  .strict()
-  .superRefine((v, ctx) => {
-    if ((v.action === 'defer') !== Boolean(v.deferredUntil))
-      ctx.addIssue({ code: 'custom', message: 'Adiamento exige data' });
-  });
 
 export type DecisionContext = {
   operationKind?: 'price_change' | 'listing_create';
@@ -183,30 +168,4 @@ export async function syncPricingAlerts(
     p_observations: pricingAlertObservations(context, assessment),
   });
   if (error) throw new Error('pricing_alert_persistence_failed');
-}
-
-/** The only consumption entrypoint. Legacy writers retain their unconditional block. */
-export async function consumePricingDecision(
-  client: Client,
-  input: { decisionId: string; operationId: string; actorId: string },
-  revalidate: () => Promise<string>,
-) {
-  // Server-owned account/destination checks; no browser flag grants execution.
-  const { requirePricingExecutionAccount } = await import('./pricing-execution-access');
-  try {
-    await requirePricingExecutionAccount();
-  } catch (error) {
-    if (error instanceof Error && error.message === 'pricing_execution_not_ready')
-      throw new Error(getPricingExecutionBlock()!.code);
-    throw error;
-  }
-  const evaluationId = await revalidate();
-  const { data, error } = await client.rpc('consume_pricing_decision', {
-    p_id: z.string().uuid().parse(input.decisionId),
-    p_operation_id: z.string().uuid().parse(input.operationId),
-    p_actor_id: z.string().uuid().parse(input.actorId),
-    p_fresh_evaluation_id: evaluationId,
-  });
-  if (error || !data) throw new Error('decision_consumption_failed');
-  return data;
 }

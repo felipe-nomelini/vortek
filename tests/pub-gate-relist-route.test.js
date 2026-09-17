@@ -7,7 +7,6 @@ function route(source) {
   let prepared = null;
   const module = load('src/app/api/ml/anuncio/criar/route.ts', {
     'next/server': { NextResponse: { json: (body, options = {}) => Response.json(body, options) } },
-    'node:crypto': { randomUUID: () => productId },
     zod: require('zod'),
     '@/lib/api-request-auth': { authorizeApiRequest: async () => ({ ok: true, userId: productId }) },
     '@/lib/supabase': { createServiceClient: () => ({
@@ -29,6 +28,8 @@ function route(source) {
       }; },
     },
     '@/services/pricing-execution-access': { configuredPricingExecutionCapability: () => ({ allowedOperations: ['listing_create'] }) },
+    '@/services/pricing-dispatch': { findManualMlCommand: async () => null,
+      enqueueManualMlCommand: async (_,operationId) => ({ operationId,outboxId:productId,state:'queued' }) },
     '@/services/integration': { fetchMLResult: async () => ({ ok: true, data: source }) },
   });
   return { module, get prepared() { return prepared; } };
@@ -39,21 +40,23 @@ test('republicação usa categoria, logística e atributos do anúncio encerrado
     listing_type_id: 'gold_pro', shipping: { mode: 'me2', logistic_type: 'xd_drop_off', free_shipping: true },
     attributes: [{ id: 'BRAND', value_name: 'Fortrek' }], sale_terms: [] });
   const response = await h.module.POST(new Request('https://app.bentevi.shop/api/ml/anuncio/criar', {
-    method: 'POST', body: JSON.stringify({ action: 'relist', produtoId: productId,
+    method: 'POST', body: JSON.stringify({ operationId: productId, action: 'relist', produtoId: productId,
       sourceItemId: 'MLB123', priceCents: 23771 }),
   }));
-  assert.equal(response.status, 200);
+  assert.equal(response.status, 202);
   assert.equal(h.prepared.categoriaId, 'MLB1696');
   assert.deepEqual(h.prepared.shipping, { mode: 'me2', logisticType: 'xd_drop_off', freeShipping: true });
   assert.deepEqual(h.prepared.attributes, [{ id: 'BRAND', value_name: 'Fortrek' }]);
 });
 
-test('republicação bloqueia alteração do preço remoto antes de preparar a proposta', async () => {
-  const h = route({ id: 'MLB123', status: 'closed', price: 240 });
+test('republicação usa o preço confirmado pelo operador mesmo quando difere do anúncio encerrado', async () => {
+  const h = route({ id: 'MLB123', status: 'closed', price: 240,
+    category_id: 'MLB1696', listing_type_id: 'gold_pro', shipping: { mode: 'me2', logistic_type: 'xd_drop_off', free_shipping: true },
+    attributes: [{ id: 'BRAND', value_name: 'Fortrek' }], sale_terms: [] });
   const response = await h.module.POST(new Request('https://app.bentevi.shop/api/ml/anuncio/criar', {
-    method: 'POST', body: JSON.stringify({ action: 'relist', produtoId: productId,
+    method: 'POST', body: JSON.stringify({ operationId: productId, action: 'relist', produtoId: productId,
       sourceItemId: 'MLB123', priceCents: 23771 }),
   }));
-  assert.equal(response.status, 409);
-  assert.equal(h.prepared, null);
+  assert.equal(response.status, 202);
+  assert.equal(h.prepared.priceCents, 23771);
 });

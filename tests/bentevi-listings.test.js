@@ -109,10 +109,10 @@ test('BNT-D11 usa alíquota dinâmica e mantém cálculo de rentabilidade no bac
 });
 
 test('BNT-D11 envia o preço ao anúncio escolhido e deixa a propagação de catálogo assíncrona', () => {
-  assert.match(page, /PricingProposalButton/);
+  assert.match(page, /ManualMlPriceButton/);
   assert.match(page, /O preço será enviado ao anúncio escolhido/);
   assert.match(page, /Mercado Livre poderá propagá-lo/);
-  assert.match(priceRoute, /getPricingExecutionBlock/);
+  assert.match(priceRoute, /enqueueManualMlCommand/);
   assert.match(page, /useMlPricePublishTracking/);
   assert.match(page, /atualizar-preco\/status\?outboxId/);
 });
@@ -120,7 +120,7 @@ test('BNT-D11 envia o preço ao anúncio escolhido e deixa a propagação de cat
 test('BNT-D11 detecta preço automático e prepara sua remoção antes do preço manual', () => {
   assert.match(detailRoute, /automaticPricing/);
   assert.match(detailRoute, /hasMlAutomaticPrice\(item\)/);
-  assert.match(priceRoute, /getPricingExecutionBlock/);
+  assert.match(priceRoute, /enqueueManualMlCommand/);
   assert.match(page, /details\.automaticPricing\?\.active/);
   assert.match(page, /Preço automático ativo no Mercado Livre/);
   assert.match(page, /desativará essa automação antes de enviar o novo valor/);

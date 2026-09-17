@@ -4,7 +4,7 @@ import { userSafeMessage } from '@/lib/user-feedback';
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
-  Input, Select, InputNumber, Tag, Typography, Space, Spin, Drawer, Button, message, Dropdown, Row, Col, Radio, Alert, Tooltip, Segmented, Collapse, Image as AntImage, Steps, Modal,
+  Input, Select, InputNumber, Tag, Typography, Space, Spin, Drawer, Button, message, Dropdown, Row, Col, Radio, Alert, Tooltip, Segmented, Collapse, Image as AntImage, Modal,
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined, ReloadOutlined, FilterOutlined, ArrowRightOutlined } from '@ant-design/icons';
@@ -14,9 +14,7 @@ import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
 import ResponsiveTable from '@/components/ResponsiveTable';
-import PricingDecisionCenter, { PricingProposalButton } from '@/components/products/PricingDecisionCenter';
-import { PricingQuoteSummary } from '@/components/products/LivePricingQuote';
-import type { ProductPricing } from '@/services/pricing-context';
+import ManualMlOperationStatus from '@/components/products/ManualMlOperationStatus';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 import styles from './produtos.module.css';
 import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
@@ -177,7 +175,7 @@ interface CategorySchemaResponse {
 }
 
 type MlCreateListingResult = {
-  prepared?: boolean; alertId?: string; pricing?: ProductPricing; priceCents?: number; quantity?: number; expiresAt?: string;
+  operationId?: string; priceCents?: number; quantity?: number;
   success?: boolean;
   linked_existing?: boolean;
   error?: string;
@@ -357,6 +355,13 @@ export default function ProductsPage() {
   const [filtersDrawerOpen, setFiltersDrawerOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const [priceItemId, setPriceItemId] = useState<string>();
+  const [lastMlOperationId, setLastMlOperationId] = useState<string | null>(null);
+  const priceCommandRef = useRef<{ key: string; id: string } | null>(null);
+  const publicationCommandRef = useRef<{ key: string; id: string } | null>(null);
+  const relistCommandRef = useRef<{ key: string; id: string } | null>(null);
+  const [relistModal, setRelistModal] = useState<{
+    record: ProductRow; sourceItemId: string; price: number; saving: boolean;
+  } | null>(null);
   const [publicationShipping, setPublicationShipping] = useState<{ mode?: 'me2' | 'not_specified'; logisticType?: string; freeShipping?: boolean }>({});
   const [publicationListingType, setPublicationListingType] = useState<'gold_special' | 'gold_pro'>('gold_pro');
   const [priceModal, setPriceModal] = useState<{
@@ -906,10 +911,18 @@ export default function ProductsPage() {
 
     setMlModal(prev => ({ ...prev, loading: true }));
     try {
+      const commandKey = JSON.stringify({ product: mlModal.produtoId, category: mlModal.selectedCategory,
+        price: mlModal.editablePrice, listingType: publicationListingType, shipping: publicationShipping,
+        attributes: [...mlModal.editableAttributes, ...mlModal.optionalAttributes],
+        saleTerms: mlModal.saleTerms, description: mlModal.description });
+      const operationId = publicationCommandRef.current?.key === commandKey
+        ? publicationCommandRef.current.id : crypto.randomUUID();
+      publicationCommandRef.current = { key: commandKey, id: operationId };
       const res = await fetch('/api/ml/anuncio/criar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          operationId,
           produtoId: mlModal.produtoId,
           categoriaId: mlModal.selectedCategory,
           listingType: publicationListingType,
@@ -930,6 +943,7 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (data.success) {
+        if (data.operationId) setLastMlOperationId(data.operationId);
         setMlModal(prev => ({ ...prev, loading: false, result: data }));
         await Promise.all([fetchProducts(), fetchStats()]);
       } else {
@@ -949,6 +963,7 @@ export default function ProductsPage() {
   const openPriceEditor = (record: ProductRow) => {
     if (visualReview) { messageApi.warning('A amostra protegida é somente leitura.'); return; }
     const listings = displayMlListings(record);
+    priceCommandRef.current = null;
     setPriceItemId(listings.length === 1 ? listings[0].itemId : undefined);
     setPriceModal({
       open: true,
@@ -958,6 +973,29 @@ export default function ProductsPage() {
       results: [],
       error: null,
     });
+  };
+
+  const confirmPrice = async () => {
+    if (!priceModal.record || !priceItemId || !priceModal.value || priceModal.value <= 0) return;
+    const priceCents = Math.round(priceModal.value * 100);
+    const key = `${priceModal.record.product.id}:${priceItemId}:${priceCents}`;
+    const operationId = priceCommandRef.current?.key === key ? priceCommandRef.current.id : crypto.randomUUID();
+    priceCommandRef.current = { key, id: operationId };
+    setPriceModal(prev => ({ ...prev, saving: true }));
+    try {
+      const response = await fetch('/api/ml/anuncio/atualizar-preco', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ operationId, produtoId: priceModal.record.product.id,
+          mlItemId: priceItemId, priceCents }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.operationId) throw new Error(result.error || 'Não foi possível confirmar o preço.');
+      messageApi.success('Preço enviado. A operação será conferida no Mercado Livre.');
+      setLastMlOperationId(result.operationId);
+      setPriceModal(prev => ({ ...prev, open: false }));
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Não foi possível confirmar o preço.');
+    } finally { setPriceModal(prev => ({ ...prev, saving: false })); }
   };
 
 
@@ -1216,25 +1254,33 @@ export default function ProductsPage() {
   const prepareRelist = (record: ProductRow) => {
     const source = relistSource(record);
     if (!source) return;
-    Modal.confirm({
-      title: 'Preparar republicação no Mercado Livre',
-      content: `O anúncio ${source.itemId} está encerrado. Preparar uma proposta com preço de ${formatCurrency(Number(source.price))} e estoque disponível de ${record.fulfillmentCapacity.safe} unidade(s)? A publicação exige aprovação na central.`,
-      okText: 'Preparar proposta', cancelText: 'Cancelar',
-      onOk: async () => {
-        const response = await fetch('/api/ml/anuncio/criar', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'relist', produtoId: record.product.id,
-            sourceItemId: source.itemId, priceCents: Math.round(Number(source.price) * 100) }),
-        });
-        const result = await response.json();
-        if (!response.ok || !result.alertId) {
-          messageApi.error(userSafeMessage(result.error, 'Não foi possível preparar a republicação.'));
-          throw new Error('publication_relist_preparation_failed');
-        }
-        window.dispatchEvent(new CustomEvent('pricing-decision-open', { detail: { alertId: result.alertId } }));
-        messageApi.success('Proposta preparada. Revise e confirme na central de preços.');
-      },
-    });
+    relistCommandRef.current = null;
+    setRelistModal({ record, sourceItemId: source.itemId, price: Number(source.price), saving: false });
+  };
+
+  const confirmRelist = async () => {
+    if (!relistModal || relistModal.saving || relistModal.price <= 0) return;
+    const priceCents = Math.round(relistModal.price * 100);
+    const key = `${relistModal.record.product.id}:${relistModal.sourceItemId}:${priceCents}`;
+    const operationId = relistCommandRef.current?.key === key ? relistCommandRef.current.id : crypto.randomUUID();
+    relistCommandRef.current = { key, id: operationId };
+    setRelistModal(prev => prev && ({ ...prev, saving: true }));
+    try {
+      const response = await fetch('/api/ml/anuncio/criar', { method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ operationId, action: 'relist', produtoId: relistModal.record.product.id,
+          sourceItemId: relistModal.sourceItemId, priceCents }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.operationId) throw new Error(result.error || 'Não foi possível republicar.');
+      messageApi.success('Republicação enviada. O novo anúncio será conferido no Mercado Livre.');
+      setLastMlOperationId(result.operationId);
+      setRelistModal(null);
+      await Promise.all([fetchProducts(), fetchStats()]);
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Não foi possível republicar.');
+      setRelistModal(prev => prev && ({ ...prev, saving: false }));
+    }
   };
 
   const primaryProductAction = (record: ProductRow) => {
@@ -1515,13 +1561,13 @@ export default function ProductsPage() {
   return (
     <div className={styles.page}>
       {contextHolder}
+      {lastMlOperationId && <ManualMlOperationStatus operationId={lastMlOperationId} />}
       <header className={styles.header}>
         <div>
           <Title level={2} className={styles.title}>Produtos</Title>
           <Text type="secondary">Compare disponibilidade, fornecedor, preço, rentabilidade e publicação em uma única leitura.</Text>
         </div>
         <Space>
-          <PricingDecisionCenter />
           <Button icon={<ReloadOutlined />} loading={loading} onClick={() => { void fetchProducts(); void fetchStats(); }}>
             Atualizar
           </Button>
@@ -1664,19 +1710,32 @@ export default function ProductsPage() {
         {renderAdvancedFilters()}
       </Drawer>
 
-      <Modal title="Preparar alteração de preço" open={priceModal.open} footer={null}
+      <Modal title="Alterar preço no Mercado Livre" open={priceModal.open}
+        okText="Confirmar" okButtonProps={{ loading: priceModal.saving, disabled: !priceItemId || !priceModal.value }}
+        onOk={() => void confirmPrice()}
         onCancel={() => setPriceModal(prev => ({ ...prev, open: false }))} destroyOnHidden>
         {priceModal.record && <Space direction="vertical" size="middle" style={{ width: '100%' }}>
           <Text>{priceModal.record.product.name}</Text>
-          <Alert type="info" message="Escolha o anúncio de origem. O grupo sincronizado será conferido; nenhuma escrita acontece nesta consulta." />
+          <Alert type="info" message="Escolha o anúncio e confira o valor antes de confirmar." />
           <Select style={{ width: '100%' }} placeholder="Anúncio de origem" value={priceItemId} onChange={setPriceItemId}
             options={displayMlListings(priceModal.record).map(l => ({ value: l.itemId, label: (l.type === 'catalog' ? 'Catálogo' : 'Padrão') + ' · ' + l.itemId }))} />
           <Text>Novo preço de venda</Text>
           <InputNumber min={0.01} precision={2} prefix="R$" value={priceModal.value}
             onChange={value => setPriceModal(prev => ({ ...prev, value }))} />
-          {priceItemId && <PricingProposalButton productId={priceModal.record.product.id} itemId={priceItemId}
-            priceCents={priceModal.value ? Math.round(priceModal.value * 100) : undefined}
-            onRecorded={() => { setPriceModal(prev => ({ ...prev, open: false })); messageApi.info('Proposta registrada. Abra Alertas e decisões para revisar.'); }} />}
+        </Space>}
+      </Modal>
+
+      <Modal title="Republicar no Mercado Livre" open={Boolean(relistModal)} okText="Confirmar"
+        okButtonProps={{ loading: relistModal?.saving, disabled: !relistModal?.price || relistModal.price <= 0 }}
+        onOk={() => void confirmRelist()} onCancel={() => !relistModal?.saving && setRelistModal(null)}>
+        {relistModal && <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+          <Text>{relistModal.record.product.name}</Text>
+          <Text>Anúncio encerrado: {relistModal.sourceItemId}</Text>
+          <Text>Estoque disponível: {relistModal.record.fulfillmentCapacity.safe}</Text>
+          <label htmlFor="relist-price">Preço de venda</label>
+          <InputNumber id="relist-price" min={0.01} precision={2} prefix="R$" style={{ width: '100%' }}
+            value={relistModal.price} disabled={relistModal.saving}
+            onChange={value => setRelistModal(prev => prev && ({ ...prev, price: value || 0 }))} />
         </Space>}
       </Modal>
 
@@ -1688,147 +1747,11 @@ export default function ProductsPage() {
         width="min(96vw, 960px)"
         destroyOnClose={false}
       >
-        {!mlModal.result && (
-          <Steps
-            className={styles.publishSteps}
-            size="small"
-            current={!mlModal.selectedCategory ? 0 : mlModal.editableAttributes.some(attribute => !attribute.value_id && !attribute.value_name?.trim()) ? 1 : 2}
-            items={[
-              { title: 'Categoria' },
-              { title: 'Atributos' },
-              { title: 'Conteúdo e fiscal' },
-              { title: 'Revisão' },
-            ]}
-          />
-        )}
-        {mlModal.result ? (() => {
-          const result = mlModal.result;
-          if (result.prepared) return <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-            <Alert type="info" showIcon message="Anúncio preparado — ainda não publicado" description="Revise a memória econômica e aprove a proposta na central. O worker fará a execução e a conferência na conta de teste." />
-            <Text>Quantidade: {result.quantity} · Validade: {result.expiresAt ? new Date(result.expiresAt).toLocaleString('pt-BR') : '—'}</Text>
-            <PricingQuoteSummary pricing={result.pricing} />
-            <Button type="primary" onClick={() => { setMlModal(prev => ({ ...prev, open: false }));
-              window.dispatchEvent(new CustomEvent('pricing-decision-open', { detail: { alertId: result.alertId } })); }}>Revisar aprovação</Button>
-          </Space>;
-          const anuncio = result.anuncio || {};
-          const warnings = Array.isArray(result.warnings) ? result.warnings : [];
-          const fiscalDetails = Array.isArray(result.fiscal_details) ? result.fiscal_details : [];
-          const pricingCorrection = result.pricing_correction;
-          const fiscalOk = result.fiscal === 'ok';
-          const imagePending = Array.isArray(anuncio.sub_status) && anuncio.sub_status.includes('picture_download_pending');
-          const created = Boolean(result.success && anuncio.id);
-          const statusText = !result.success
-            ? 'Falhou'
-            : warnings.length > 0 || !fiscalOk || imagePending
-              ? 'Criado com pendências'
-              : 'Criado';
-          const statusType = !result.success ? 'error' : statusText === 'Criado' ? 'success' : 'warning';
-          const fiscalMessage = fiscalOk
-            ? 'Fiscal ML vinculado com sucesso.'
-            : fiscalDetails[0]?.fields?.map((field) => `${field.field}: ${field.message}`).join(' | ')
-              || (Array.isArray(result.fiscal) ? result.fiscal.join(' | ') : 'Fiscal ML pendente.');
-          const visibleWarnings = warnings.filter((warning) => !/^Atributo GEMSTONE_/i.test(warning));
-          const pricingStatus = pricingCorrection?.status;
-          const pricingCorrectionOk = !pricingStatus || pricingStatus === 'not_needed' || pricingStatus === 'corrected';
-          const descriptionStep = result.steps?.descricao;
-          const descriptionOk = Boolean(descriptionStep?.ok);
-          const pricingDescription = pricingCorrection
-            ? [
-                typeof pricingCorrection.initial_price === 'number' ? `Inicial: ${formatCurrency(pricingCorrection.initial_price)}` : null,
-                typeof pricingCorrection.ml_shipping === 'number' ? `Frete ML: ${formatCurrency(pricingCorrection.ml_shipping)}` : null,
-                typeof pricingCorrection.ml_fee === 'number' ? `Taxa ML: ${(pricingCorrection.ml_fee * 100).toFixed(2)}%` : null,
-                typeof pricingCorrection.final_price === 'number' ? `Final: ${formatCurrency(pricingCorrection.final_price)}` : null,
-                pricingCorrection.status === 'corrected' ? 'Preço corrigido automaticamente.' : null,
-                pricingCorrection.status === 'not_needed' ? 'Sem ajuste necessário.' : null,
-                pricingCorrection.status === 'pending' ? `Correção pendente${pricingCorrection.error ? `: ${pricingCorrection.error}` : '.'}` : null,
-              ].filter(Boolean).join(' | ')
-            : 'Sem ajuste de preço retornado.';
-
-          return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <Alert
-                type={statusType}
-                showIcon
-                message={`Resultado do anúncio: ${statusText}`}
-                description={userSafeMessage(result.error, created ? `Anúncio ${anuncio.id} ${result.linked_existing ? 'vinculado' : 'criado'} no Mercado Livre.` : 'Não foi possível criar o anúncio. Revise os dados e tente novamente.')}
-              />
-
-              {created && (
-                <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
-                  <Title level={5} style={{ color: '#e0e0e0', marginTop: 0 }}>Anúncio</Title>
-                  <div style={{ display: 'grid', gap: 8 }}>
-                    <Text style={{ color: '#a0a0a0' }}>ID: <Text style={{ color: '#e0e0e0' }}>{anuncio.id}</Text></Text>
-                    <Text style={{ color: '#a0a0a0' }}>Situação no ML: <Text style={{ color: '#e0e0e0' }}>{listingStatusLabel[String(anuncio.status || '').toLowerCase()] || 'Não informada'}</Text></Text>
-                    {typeof anuncio.price === 'number' && (
-                      <Text style={{ color: '#a0a0a0' }}>Preço: <Text style={{ color: '#e0e0e0' }}>{formatCurrency(anuncio.price)}</Text></Text>
-                    )}
-                    {anuncio.permalink && (
-                      <Button size="small" type="link" href={anuncio.permalink} target="_blank" style={{ padding: 0, width: 'fit-content' }}>
-                        Abrir anúncio no ML
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              <div style={{ display: 'grid', gap: 8 }}>
-                <Alert
-                  type={created ? 'success' : 'error'}
-                  showIcon
-                  message="Anúncio"
-                  description={created ? 'Anúncio criado ou vinculado no Mercado Livre.' : userSafeMessage(result.error, 'Não foi possível criar o anúncio. Revise os dados e tente novamente.')}
-                />
-                <Alert
-                  type={descriptionOk ? 'success' : 'warning'}
-                  showIcon
-                  message="Descrição"
-                  description={descriptionOk ? 'Descrição enviada ao Mercado Livre.' : userSafeMessage(descriptionStep?.error, 'A descrição não foi confirmada no Mercado Livre. Tente novamente.')}
-                />
-                <Alert
-                  type={imagePending ? 'warning' : 'success'}
-                  showIcon
-                  message="Imagens"
-                  description={imagePending ? 'ML está processando imagens; isso costuma liberar automaticamente.' : 'Sem pendência de imagem retornada pelo ML.'}
-                />
-                <Alert
-                  type={pricingCorrectionOk ? 'success' : 'warning'}
-                  showIcon
-                  message="Preço pós-frete"
-                  description={pricingDescription}
-                />
-                <Alert
-                  type={fiscalOk ? 'success' : 'warning'}
-                  showIcon
-                  message="Fiscal ML"
-                  description={fiscalMessage}
-                />
-              </div>
-
-              {visibleWarnings.length > 0 && (
-                <Alert
-                  type="warning"
-                  showIcon
-                  message="Pendências"
-                  description={visibleWarnings.join(' | ')}
-                />
-              )}
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
-                <Button onClick={() => router.push(`/produtos/${mlModal.produtoId}`)}>
-                  Ver produto
-                </Button>
-                {anuncio.permalink && (
-                  <Button onClick={() => window.open(anuncio.permalink, '_blank', 'noopener,noreferrer')}>
-                    Abrir anúncio
-                  </Button>
-                )}
-                <Button type="primary" onClick={() => setMlModal(prev => ({ ...prev, open: false }))}>
-                  Fechar
-                </Button>
-              </div>
-            </div>
-          );
-        })() : mlModal.loading && mlModal.categorias.length === 0 ? (
+        {mlModal.result ? (
+          mlModal.result.operationId
+            ? <ManualMlOperationStatus operationId={mlModal.result.operationId} />
+            : <Alert type="error" showIcon message={userSafeMessage(mlModal.result.error, 'Não foi possível publicar o anúncio. Confira os dados e tente novamente.')} />
+        ) : mlModal.loading && mlModal.categorias.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 20 }}>
             <LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />
             <p style={{ marginTop: 8, color: '#a0a0a0' }}>Buscando categorias...</p>
@@ -2315,7 +2238,7 @@ export default function ProductsPage() {
                 disabled={!mlModal.selectedCategory || mlModal.loading}
                 loading={mlModal.loading}
               >
-                Preparar anúncio
+                Confirmar publicação
               </Button>
             </div>
           </div>

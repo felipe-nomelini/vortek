@@ -8,7 +8,7 @@ import { fetchMLResult } from '@/services/integration';
 import { loadPricingDetail } from '@/services/pricing-detail';
 import { loadPricingOverrides } from '@/services/pricing-overrides';
 import { persistProductMlGroups, resolveProductMlLinks } from '@/services/ml-listing-links';
-import { enqueueApprovedPricingDecision, dispatchApprovedPricingOperation } from '@/services/pricing-dispatch';
+import { enqueueManualMlCommand, dispatchApprovedPricingOperation } from '@/services/pricing-dispatch';
 
 export const BUYBOX_PILOT_CODE = 'BNT-ML-BUYBOX-ECONOMICS-01';
 export const BUYBOX_PILOT_ACTOR_ID = '3e56ce48-f461-4784-848b-097d1e482a43';
@@ -360,45 +360,18 @@ export async function executeBuyBoxPilotItem(runId: string, itemId: string) {
   const assessed = await evaluateBuyBoxPilotItem(runId, itemId);
   const batchItem = await getBatchItem(client, runId, itemId);
   if (assessed.state !== 'BUY_BOX_ECONOMICAMENTE_ATACAVEL' || assessed.decision.writeApproved !== true) return assessed;
-  const reason = `${BUYBOX_PILOT_CODE}: piloto autorizado por Rodrigo`;
-  const commandId = randomUUID();
-  const prepared = await client.rpc('prepare_pricing_decision' as any, {
-    p_command_id: commandId,
-    p_evaluation_id: assessed.evaluationId,
-    p_actor_id: BUYBOX_PILOT_ACTOR_ID,
-    p_reason: reason,
-  });
-  if (prepared.error || !prepared.data) throw new Error('buybox_pilot_decision_prepare_failed');
-  const preparedDecision = await client.from('pricing_decisions').select('state,actor_id,operation_id')
-    .eq('id', prepared.data).single();
-  if (preparedDecision.error || preparedDecision.data.actor_id !== BUYBOX_PILOT_ACTOR_ID
-    || preparedDecision.data.operation_id) throw new Error('buybox_pilot_decision_state_invalid');
   const fresh = await evaluateBuyBoxPilotItem(runId, itemId);
   if (fresh.state !== 'BUY_BOX_ECONOMICAMENTE_ATACAVEL' || fresh.decision.writeApproved !== true) {
     return fresh;
   }
-  if (['pending', 'deferred'].includes(preparedDecision.data.state)) {
-    const approval = await client.rpc('manage_pricing_decision' as any, {
-      p_id: prepared.data,
-      p_command_id: randomUUID(),
-      p_actor_id: BUYBOX_PILOT_ACTOR_ID,
-      p_action: 'approve',
-      p_reason: reason,
-      p_fresh_evaluation_id: fresh.evaluationId,
-      p_deferred_until: null,
-    });
-    if (approval.error || approval.data?.state !== 'approved') throw new Error('buybox_pilot_decision_approval_failed');
-  } else if (preparedDecision.data.state !== 'approved') {
-    throw new Error('buybox_pilot_decision_state_invalid');
-  }
   const operationId = randomUUID();
-  const queued = await enqueueApprovedPricingDecision(prepared.data, operationId, BUYBOX_PILOT_ACTOR_ID);
+  const queued = await enqueueManualMlCommand(fresh.evaluationId!, operationId, BUYBOX_PILOT_ACTOR_ID);
   let dispatchState: string;
   try { dispatchState = await dispatchApprovedPricingOperation(client, queued.outboxId, operationId); }
   catch (error) {
-    await updateBatchItem(client, batchItem.id, { final_state: 'FAILED_WRITE', decision_id: prepared.data,
+    await updateBatchItem(client, batchItem.id, { final_state: 'FAILED_WRITE', decision_id: null,
       operation_id: operationId, error: { code: error instanceof Error ? error.message : 'buybox_pilot_dispatch_failed' }, executed_at: new Date().toISOString() });
-    return { ...fresh, state: 'FAILED_WRITE' as const, decisionId: prepared.data, operationId };
+    return { ...fresh, state: 'FAILED_WRITE' as const, operationId };
   }
   const [operation, evaluation, localAfter, remoteAfter, competitionAfter] = await Promise.all([
     client.from('pricing_operations').select('*').eq('id', operationId).single(),
@@ -425,7 +398,7 @@ export async function executeBuyBoxPilotItem(runId: string, itemId: string) {
   if (state === 'UPDATED_OK') experiment = await createExperiment(client, { ...batchItem, decision: fresh.decision }, operation.data, evaluation.data, readback);
   await updateBatchItem(client, batchItem.id, {
     final_state: state,
-    decision_id: prepared.data,
+    decision_id: null,
     operation_id: operationId,
     evaluation_id: fresh.evaluationId,
     after_snapshot: after,
@@ -433,7 +406,7 @@ export async function executeBuyBoxPilotItem(runId: string, itemId: string) {
     executed_at: new Date().toISOString(),
     error: state === 'UPDATED_OK' ? null : { code: `pricing_${operation.data.state}` },
   });
-  return { ...fresh, state, decisionId: prepared.data, operationId, after, readback, experiment };
+  return { ...fresh, state, operationId, after, readback, experiment };
 }
 
 export async function summarizeBuyBoxPilot(runId: string) {

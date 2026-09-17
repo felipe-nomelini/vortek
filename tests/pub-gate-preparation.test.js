@@ -21,7 +21,7 @@ function harness(options={}) {
     '@/lib/ml-category-guard':{assertAllowedMlCategoryForProduct:async()=>{}},
     '@/lib/ml-critical-attributes':{loadMlIdentityKit:async()=>({}),assessMlProductIdentity:()=>({comparisons:[{field:'BRAND',local:'A',remote:'A',status:'SEM_CONFLITO',reason:'same',evidence:[{collectedAt:new Date().toISOString()}]}]})},
     '@/lib/ml/brand-equivalences':{loadMlBrandEquivalences:async()=>[]},
-    '@/lib/ml-listing-identity':{isMlIdentityComplete:()=>!options.identityPending},
+    '@/lib/ml-listing-identity':{isMlIdentityComplete:()=>!options.identityPending,isMlExistingListingIdentitySafe:()=>!options.identityPending},
     '@/lib/ml-listing-description':{buildEvidenceBasedMlDescription:()=> 'Descrição comprovada'},
     '@/lib/dslite/supplier-policy':{loadOperationalDropshippingSupplierIds:async()=>new Set()},
     '@/lib/orders/fulfillment-capacity-loader':{loadProductFulfillmentCapacity:async()=>({safe:options.noStock?0:3})},
@@ -86,8 +86,15 @@ test('validação oficial aceita somente avisos e continua bloqueando causas de 
   }}),false);
 });
 test('missing/conflicting evidence never becomes a publishable preparation',async()=>{
-  for(const option of ['noImages','noStock','linked','identityPending','invalidFiscal','inconclusive','uncertainLink','validationFailed','belowFloor','conditionalMissing','partialMemory']) {
+  for(const option of ['noImages','noStock','linked','identityPending','uncertainLink','validationFailed','conditionalMissing']) {
     const h=harness({[option]:true});await assert.rejects(h.module.preparePublication(input(),id));assert.equal(h.saved.length,0,option);
     assert.ok(!h.calls.some(([path])=>path==='/items'),option);
+  }
+});
+test('margem baixa ou economia inconclusiva não bloqueia a publicação manual',async()=>{
+  for(const option of ['belowFloor','inconclusive','partialMemory','invalidFiscal']) {
+    const h=harness({[option]:true});const prepared=await h.module.preparePublication(input(),id);
+    assert.equal(prepared.decisionContext.priceCents,11000,option);
+    assert.equal(h.saved.length,1,option);
   }
 });

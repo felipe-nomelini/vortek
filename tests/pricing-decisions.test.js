@@ -59,72 +59,45 @@ test('Buy Box inconclusiva não resolve conflito anterior nem produz prejuízo r
   const conflict=domain.pricingAlertObservations(c,{classification:'PREJUIZO_NO_PRECO_COMPETITIVO',buyBoxConflict:true}).find(r=>r.rule==='buy_box_economy');assert.equal(conflict.active,true);assert.equal(conflict.severity,'P1');
   assert.equal(domain.pricingAlertObservations(c,{classification:'VIAVEL_NO_ALVO',buyBoxConflict:false}).find(r=>r.rule==='buy_box_economy').active,false);
 });
-test('contratos rejeitam autor forjado, dados extras e adiamento sem data',()=>{
-  const command={commandId:id,action:'approve',reason:'Teste'};assert.equal(domain.decisionCommandSchema.safeParse(command).success,true);
-  assert.equal(domain.decisionCommandSchema.safeParse({...command,actorId:id}).success,false);
-  assert.equal(domain.decisionCommandSchema.safeParse({...command,action:'defer'}).success,false);
-  assert.equal(domain.decisionCommandSchema.safeParse({...command,deferredUntil:'2026-09-09T12:00:00Z'}).success,false);
-});
-test('gate bloqueia antes de revalidar ou consumir e não aceita parâmetro de bypass',async()=>{
-  let calls=0;await assert.rejects(domain.consumePricingDecision({rpc:async()=>{calls++;}}, {decisionId:id,operationId:id,actorId:id},async()=>{calls++;return id;}),/pricing_execution_not_ready/);assert.equal(calls,0);
-});
-function harness(options={}){
-  const calls=[];let live=0;const decision={id,state:options.state||'pending',context:{itemId:'MLB1',priceCents:11000},alert:{produto_id:id}};
-  const client={from(table){const q={select(){return q},eq(){return q},maybeSingle:async()=>({data:table==='pricing_events'?(options.replay?{id:1}:null):decision,error:null})};return q;},rpc:async(name,args)=>{calls.push({name,args});return {data:{state:'approved',executionBlocked:true},error:options.rpcError?{message:options.rpcError}:null};}};
-  const routes=load('src/app/api/pricing/decisions/route.ts',{
-    'next/server':{NextResponse:{json:(b,i)=>Response.json(b,i)}},zod:require('zod'),
-    '@/lib/api-request-auth':{authorizeApiRequest:async()=>options.denied?{ok:false,response:Response.json({}, {status:403})}:{ok:true,userId:id}},
-    '@/lib/permissions':{hasPermission:()=>true},'@/lib/supabase':{createServiceClient:()=>client},
-    '@/services/pricing-detail':{loadPricingDetail:async()=>{live++;return Response.json(options.liveError?{error:'ML indisponível'}:{evaluationId:id},{status:options.liveError?503:200});}},
-    '@/services/pricing-decisions':domain,
-    '@/services/pricing-execution-access':{configuredPricingExecutionCapability:()=>({mode:'disabled',enabled:false,target:null})},
+test('preço manual cria operação direta com o ator da sessão', async () => {
+  const calls=[];
+  const route=load('src/app/api/ml/anuncio/atualizar-preco/route.ts', {
+    'next/server':{NextResponse:{json:(body,init)=>Response.json(body,init)}},
+    zod:require('zod'),
+    '@/lib/api-request-auth':{authorizeApiRequest:async()=>({ok:true,userId:id})},
+    '@/services/pricing-detail':{loadPricingDetail:async(value,options)=>{
+      calls.push(['detail',value,options]);
+      return Response.json({evaluationId:id,decisionContext:{executable:true,warnings:['PRECO_ABAIXO_DO_PISO']}});
+    }},
+    '@/services/pricing-dispatch':{findManualMlCommand:async()=>null,enqueueManualMlCommand:async(evaluationId,operationId,actorId)=>{
+      calls.push(['enqueue',evaluationId,operationId,actorId]);
+      return {operationId,outboxId:id,state:'queued'};
+    }},
   });
-  return {calls,live:()=>live,post:body=>routes.POST(new Request('http://local',{method:'POST',body:JSON.stringify(body)}))};
-}
-test('API checa permissão e validação antes de leitura comercial/escrita',async()=>{
-  const h=harness({denied:true});assert.equal((await h.post({})).status,403);assert.equal(h.calls.length,0);
-  const invalid=harness();assert.equal((await invalid.post({action:'prepare',actorId:id})).status,422);assert.equal(invalid.live(),0);assert.equal(invalid.calls.length,0);
-});
-test('API aprovação revalida no servidor e origem do autor nunca vem do body',async()=>{
-  const h=harness();const r=await h.post({decisionId:id,command:{commandId:id,action:'approve',reason:'Teste'}});assert.equal(r.status,200);assert.equal(h.live(),1);assert.equal(h.calls[0].args.p_actor_id,id);assert.equal(h.calls[0].args.p_fresh_evaluation_id,id);
-});
-test('falha ML conserva decisão; replay e rejeição não provocam outra consulta',async()=>{
-  const down=harness({liveError:true});assert.equal((await down.post({decisionId:id,command:{commandId:id,action:'approve',reason:'Teste'}})).status,503);assert.equal(down.calls.length,0);
-  for(const options of [{replay:true},{action:'reject'}]){const h=harness(options);await h.post({decisionId:id,command:{commandId:id,action:options.action||'approve',reason:'Teste'}});assert.equal(h.live(),0);assert.equal(h.calls.length,1);}
-});
-test('erros desconhecidos não vazam payloads de backend',async()=>{
-  const h=harness({rpcError:'private-config-value'});const r=await h.post({action:'prepare',commandId:id,evaluationId:id,reason:'Teste'});assert.equal(r.status,503);assert.equal((await r.text()).includes('private-config-value'),false);
-});
-test('interface única conserva ações explícitas, estados separados e não publica',()=>{
-  const ui=fs.readFileSync('src/components/products/PricingDecisionCenter.tsx','utf8');
-  for(const label of ['Alertas e decisões','Aprovar proposta','Rejeitar','Adiar','esta operação não está liberada no ambiente','Motivo obrigatório','Histórico','Registrar proposta',
-    'Aplicar no Mercado Livre','Confirmar criação de anúncio real','Confirmar alteração de preço real','Esta operação produz efeito comercial real'])assert.ok(ui.includes(label));
-  assert.match(ui,/onClick=\{requestApprovedExecution\}/);assert.match(ui,/setExecutionConfirmationOpen\(true\)/);
-  assert.doesNotMatch(ui,/setInterval|setTimeout|atualizar-preco|enqueueMlPublishOutbox/);assert.match(ui,/command\s*\?\?/);assert.match(ui,/generation\.current/);
-  const roles=load('src/lib/permissions.ts');for(const role of ['admin','gerente'])assert.equal(roles.hasPermission(role,'pricing.decisions.manage'),true);
-  for(const role of ['operador','visualizador']){assert.equal(roles.hasPermission(role,'pricing.decisions.manage'),false);assert.equal(roles.hasPermission(role,'pricing.read'),true);}
+  const body={operationId:id,produtoId:id,mlItemId:'MLB123',priceCents:1};
+  const response=await route.POST(new Request('http://local',{method:'POST',body:JSON.stringify(body)}));
+  assert.equal(response.status,202);
+  assert.equal(calls[1][3],id);
+  assert.equal(calls[0][1].priceCents,1);
+  assert.equal((await response.json()).state,'queued');
 });
 
-test('leitura deriva expiração e filtra a decisão atual, sem alterar a auditoria',async()=>{
-  const calls=[];const expired={id,state:'approved',expires_at:'2000-01-01T00:00:00Z',operation_id:null,created_at:'2000-01-01T00:00:00Z'};
-  const client={from(table){const q={
-    select(value){calls.push(['select',table,value]);return q},
-    eq(...args){calls.push(['eq',...args]);return q},is(){return q},in(){return q},
-    order(...args){calls.push(['order',...args]);return q},
-    single:async()=>({data:{cargo:'admin'},error:null}),
-    then(resolve){resolve({data:table==='pricing_alerts'?[{id,produto_id:id,decisions:expired,product:{nome:'P',sku:'S'}}]:[],error:null})},
-  };return q;},rpc:async(name,args)=>{calls.push(['rpc',name,args]);return {data:{productIds:[id],total:1,affectedProductCount:1,openAlertCount:2,pendingDecisionCount:1},error:null};}};
-  const routes=load('src/app/api/pricing/decisions/route.ts',{
-    'next/server':{NextResponse:{json:(b,i)=>Response.json(b,i)}},zod:require('zod'),
+test('confirmação inválida não consulta ML nem enfileira operação', async () => {
+  let calls=0;
+  const route=load('src/app/api/ml/anuncio/atualizar-preco/route.ts', {
+    'next/server':{NextResponse:{json:(body,init)=>Response.json(body,init)}},zod:require('zod'),
     '@/lib/api-request-auth':{authorizeApiRequest:async()=>({ok:true,userId:id})},
-    '@/lib/permissions':{hasPermission:()=>true},'@/lib/supabase':{createServiceClient:()=>client},
-    '@/services/pricing-detail':{loadPricingDetail:async()=>{throw Error('unexpected_live_read')}},
-    '@/services/pricing-decisions':domain,
-    '@/services/pricing-execution-access':{configuredPricingExecutionCapability:()=>({mode:'disabled',enabled:false,target:null})},
+    '@/services/pricing-detail':{loadPricingDetail:async()=>{calls++}},
+    '@/services/pricing-dispatch':{findManualMlCommand:async()=>{calls++},enqueueManualMlCommand:async()=>{calls++}},
   });
-  const r=await routes.GET(new Request('http://local/api/pricing/decisions?decision=expired'));
-  assert.equal(r.status,200);const data=await r.json();assert.equal(data.data[0].decisions[0].state,'expired');assert.equal(expired.state,'approved');
-  assert.deepEqual(data.execution,{mode:'disabled',enabled:false,target:null});assert.equal(data.executionBlocked,true);
-  assert.equal(data.pendingCount,1);assert.equal(data.openAlertCount,2);
-  assert.ok(calls.some(c=>c[0]==='rpc'&&c[1]==='search_pricing_decision_product_ids'&&c[2].p_decision==='expired'));
+  const response=await route.POST(new Request('http://local',{method:'POST',body:JSON.stringify({priceCents:-1})}));
+  assert.equal(response.status,422);assert.equal(calls,0);
+});
+
+test('a interface não oferece proposta, aprovação ou central de decisões', () => {
+  const product=fs.readFileSync('src/app/(app)/produtos/page.tsx','utf8');
+  const listing=fs.readFileSync('src/app/(app)/anuncios/page.tsx','utf8');
+  assert.doesNotMatch(product+listing,/PricingDecisionCenter|PricingProposalButton|Preparar proposta|Aprovar proposta/);
+  assert.match(product,/Republicar no Mercado Livre/);
+  assert.match(listing,/ManualMlPriceButton/);
 });

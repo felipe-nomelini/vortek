@@ -3,12 +3,49 @@ import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from './integration';
 import { loadPricingDetail } from './pricing-detail';
 import { persistPricingObservations, transitionPricingOperation } from './pricing-audit';
-import { consumePricingDecision } from './pricing-decisions';
 import { requirePricingExecutionAccount, pricingExecutionTransport } from './pricing-execution-access';
 import { assertCatalogIdentityPriceGuard } from './catalog-identity-guard';
 import { pricingReadbackMatches } from '@/lib/ml/pricing-execution';
 
 type Client = ReturnType<typeof createServiceClient>;
+
+/** Resposta segura para repetição do mesmo clique após timeout HTTP. */
+export async function findManualMlCommand(input: {
+  operationId: string; actorId: string; productId: string; kind: 'price_change' | 'listing_create';
+  itemId?: string | null; priceCents: number; action?: 'new' | 'relist'; sourceItemId?: string | null;
+}) {
+  const client = createServiceClient();
+  const found = await client.from('pricing_operations').select('id,actor_id,produto_id,operation_kind,rule_id,item_id,new_price_cents,evaluation_id,state')
+    .eq('id', input.operationId).maybeSingle();
+  if (found.error) throw new Error('manual_command_lookup_failed');
+  if (!found.data) return null;
+  const op = found.data;
+  if (op.rule_id !== 'MANUAL-ML' || op.actor_id !== input.actorId || op.produto_id !== input.productId
+    || op.operation_kind !== input.kind || op.new_price_cents !== input.priceCents
+    || (input.kind === 'price_change' && op.item_id !== input.itemId))
+    throw new Error('manual_command_idempotency_conflict');
+  if (input.kind === 'listing_create') {
+    const evaluation = await client.from('pricing_evaluations').select('result').eq('id', op.evaluation_id).single();
+    const context = (evaluation.data?.result as any)?.decisionContext;
+    if (evaluation.error || context?.preparation?.action !== (input.action || 'new')
+      || (context?.preparation?.sourceItemId || null) !== (input.sourceItemId || null))
+      throw new Error('manual_command_idempotency_conflict');
+  }
+  const outbox = await client.from('anuncios_ml_outbox').select('id').eq('pricing_operation_id', op.id).single();
+  if (outbox.error || !outbox.data) throw new Error('manual_command_lookup_failed');
+  return { operationId: op.id, outboxId: outbox.data.id, state: op.state };
+}
+
+/** Uma confirmação do usuário cria a operação e a entrega na mesma transação. */
+export async function enqueueManualMlCommand(evaluationId: string, operationId: string, actorId: string) {
+  await requirePricingExecutionAccount();
+  const client = createServiceClient();
+  const saved = await client.rpc('enqueue_manual_ml_command' as any, {
+    p_operation_id: operationId, p_evaluation_id: evaluationId, p_actor_id: actorId,
+  });
+  if (saved.error || !saved.data) throw new Error(saved.error?.message || 'manual_command_persistence_failed');
+  return { operationId, outboxId: saved.data, state: 'queued' as const };
+}
 
 function automationMissing(result: { status: number | null; error?: { code?: string | null } | null }) {
   return result.status === 404;
@@ -100,40 +137,17 @@ async function revalidate(client: Client, decision: any, productId: string, acto
   return fresh.evaluationId as string;
 }
 
-/** Authenticated command only enqueues the stored approval. It accepts no new price/payload. */
-export async function enqueueApprovedPricingDecision(decisionId: string, operationId: string, actorId: string) {
-  await requirePricingExecutionAccount();
-  const client = createServiceClient();
-  const found = await client.from('pricing_decisions').select('*,alert:pricing_alerts!pricing_decisions_alert_id_fkey(produto_id)')
-    .eq('id', decisionId).single();
-  if (found.error || !found.data) throw new Error('decision_missing');
-  const decision = found.data as any;
-  await requirePricingExecutionAccount(decision.context.sellerId, decision.context.operationKind || 'price_change');
-  const outboxId = await consumePricingDecision(client, { decisionId, operationId, actorId }, async () => {
-    // Consumption is idempotent in SQL; no stale-price comparison after a completed operation.
-    if (decision.operation_id) return decision.evaluation_id;
-    return revalidate(client, decision, decision.alert.produto_id, actorId);
-  });
-  if (decision.operation_id) {
-    const operation = await client.from('pricing_operations').select('state').eq('id', operationId).single();
-    if (operation.error) throw new Error('decision_operation_unavailable');
-    if (['requested', 'inconclusive'].includes(operation.data.state)) {
-      // An explicit request only requeues reconciliation; dispatch can never claim these states again.
-      const queued = await client.from('anuncios_ml_outbox').update({ status: 'retry', available_at: new Date().toISOString() })
-        .eq('pricing_operation_id', operationId).in('status', ['failed', 'retry']);
-      if (queued.error) throw new Error('decision_reconciliation_queue_failed');
-    }
-  }
-  return { operationId, outboxId, state: 'queued' };
-}
-
 /** Existing publish worker owns delivery. Requested/inconclusive operations are read-only on redelivery. */
 export async function dispatchApprovedPricingOperation(client: Client, outboxId: string, operationId: string) {
   const result = await client.from('pricing_operations').select('*').eq('id', operationId).single();
-  const approval = await client.from('pricing_decisions').select('*').eq('operation_id', operationId).single();
-  if (result.error || approval.error || !result.data || !approval.data) throw new Error('decision_operation_missing');
+  if (result.error || !result.data) throw new Error('decision_operation_missing');
   let operation = result.data;
-  const decision = approval.data as any;
+  if (operation.rule_id !== 'MANUAL-ML' && operation.state === 'prepared')
+    throw new Error('legacy_pricing_operation_not_executable');
+  const evaluation = await client.from('pricing_evaluations').select('result').eq('id', operation.evaluation_id).single();
+  if (evaluation.error || !evaluation.data) throw new Error('manual_command_evaluation_missing');
+  const context = (evaluation.data.result as any).decisionContext;
+  const decision = { context, fingerprint: context?.fingerprint, expires_at: context?.expiresAt };
   const { sellerId } = await requirePricingExecutionAccount(decision.context.sellerId, decision.context.operationKind || 'price_change');
   if ((decision.context.operationKind || 'price_change') === 'price_change' && operation.item_id) {
     await assertCatalogIdentityPriceGuard(client, {
@@ -153,10 +167,6 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
   };
   if (['confirmed', 'failed'].includes(operation.state)) return finish(operation.state);
   if (operation.state === 'prepared') {
-    if (Date.parse(decision.expires_at) <= Date.now()) {
-      await transitionPricingOperation(client, operationId, 'failed');
-      return finish('failed');
-    }
     const automation = await ensureAutomaticPricingDisabled(client, outboxId, operation, decision, sellerId);
     if (automation === 'failed') return 'failed';
     if (automation === 'waiting') return 'reconciling';
@@ -172,7 +182,7 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
       throw error;
     }
     const transport = pricingExecutionTransport(sellerId, async () => {
-      const claimed = await client.rpc('claim_pricing_decision_dispatch' as any, {
+      const claimed = await client.rpc('claim_manual_ml_dispatch' as any, {
         p_operation_id: operationId, p_fresh_evaluation_id: evaluationId,
       });
       if (claimed.error || claimed.data !== true) throw new Error('decision_dispatch_not_claimed');

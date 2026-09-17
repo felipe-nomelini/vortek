@@ -71,13 +71,11 @@ test('BNT-D07 oferece filas rápidas e filtros remotos avançados', () => {
 test('BNT-D07 separa publicação do Mercado Livre da tabela', () => {
   assert.match(page, /title=\{`Publicar no Mercado Livre/);
   assert.match(page, /width="min\(96vw, 960px\)"/);
-  for (const step of ['Categoria', 'Atributos', 'Conteúdo e fiscal', 'Revisão']) {
-    assert.match(page, new RegExp(`title: '${step}'`));
-  }
+  assert.match(page, /Confirmar publicação/);
   assert.match(page, /\/api\/ml\/anuncio\/categorias/);
   assert.match(page, /\/api\/ml\/anuncio\/schema/);
   assert.match(page, /\/api\/ml\/anuncio\/criar/);
-  assert.match(page, /PricingDecisionCenter/);
+  assert.match(page, /ManualMlOperationStatus/);
 });
 
 test('BNT-D07 possui lista móvel e identidade Bentevi sem comprimir a tabela', () => {
@@ -128,9 +126,9 @@ test('BNT-D07 representa anúncios padrão e catálogo sem multiplicar tags', ()
 test('PUB-GATE prepara um preço pela origem e pelo grupo canônico, sem envio direto', () => {
   assert.match(page, /Novo preço de venda/);
   assert.match(page, /Anúncio de origem/);
-  assert.match(page, /PricingProposalButton/);
-  assert.doesNotMatch(page, /scope: 'linked'|\/api\/ml\/anuncio\/atualizar-preco/);
-  assert.match(priceRoute, /getPricingExecutionBlock/);
+  assert.match(page, /\/api\/ml\/anuncio\/atualizar-preco/);
+  assert.match(page, /Confirmar/);
+  assert.match(priceRoute, /enqueueManualMlCommand/);
   assert.doesNotMatch(priceRoute, /fetchML|custom_price/);
 });
 

@@ -4,11 +4,10 @@ import { fetchMLResult } from './integration';
 import { getCategoryAttributes, getCategorySaleTerms } from './mercadolibre';
 import { assessMlProductIdentity, loadMlIdentityKit } from '@/lib/ml-critical-attributes';
 import { loadMlBrandEquivalences } from '@/lib/ml/brand-equivalences';
-import { isMlIdentityComplete } from '@/lib/ml-listing-identity';
+import { isMlIdentityComplete, isMlExistingListingIdentitySafe } from '@/lib/ml-listing-identity';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { factoryWarranty, warrantySaleTerms } from '@/lib/product-warranty';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
-import { loadPricingDetail } from './pricing-detail';
 import { resolveProductMlLinks, persistProductMlGroups } from './ml-listing-links';
 import { pricingReadbackMatches } from '@/lib/ml/pricing-execution';
 
@@ -50,7 +49,7 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
     categoryAttributes: attrs, kit, brandEquivalences, remoteEvidence: { source: 'mercado_livre', reference: item.id,
       collectedAt: new Date().toISOString(), condition: 'valid' },
   });
-  if (!isMlIdentityComplete(identity)) return false;
+  if (relist ? !isMlExistingListingIdentitySafe(identity) : !isMlIdentityComplete(identity)) return false;
   const persisted = await persistSingleAnuncioBySku(client, {
     ml_item_id: item.id, produto_id: product.id, sku: product.sku, titulo: item.title,
     preco_ml: item.price, vendidos: item.sold_quantity, status: item.status === 'active' ? 'ativo' : 'pausado',
@@ -58,14 +57,6 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
     thumbnail: item.thumbnail || null, permalink: item.permalink || null,
   }, new Date().toISOString());
   if (!persisted.ok) throw new Error('publication_projection_failed');
-  const quote = await loadPricingDetail({ produtoId: product.id, mlItemId: item.id, priceCents: operation.new_price_cents }, { actorId: operation.actor_id });
-  if (!quote.ok) return false;
-  const result = await quote.json();
-  const memory = result.pricing?.current.memory;
-  if (result.pricing?.revalidation?.status !== 'queried' || !memory || memory.revenueCents !== operation.new_price_cents
-    || result.pricing.current.status === 'inconclusive' || !Number.isSafeInteger(memory.resultCents)
-    || !Number.isFinite(memory.margin) || !Number.isFinite(memory.band?.floor)
-    || memory.margin < memory.band.floor || memory.resultCents < 0 || result.automaticPricing?.active) return false;
   const links = await resolveProductMlLinks(client, product, Number(sellerId));
   if ((!relist && links.coverage !== 'complete') || !links.groups.length
     || !links.candidates.some(c => c.itemId === item.id && c.identity === 'complete')) return false;
