@@ -72,16 +72,13 @@ function fixtures() {
   };
 }
 
-test('preview inclui apenas compra pronta e explica exclusão sem criar efeitos', async () => {
+test('preview inclui compra sem classificação e com etiqueta provisória sem criar efeitos', async () => {
   const route = previewRoute(fixtures());
   const response = await route.GET(new Request('https://app.bentevi.shop/api/compras/liquidacoes/preview?fornecedorId=108'));
   assert.equal(response.status, 200);
-  assert.equal(response.body.included.length, 1);
-  assert.equal(response.body.excluded.length, 1);
-  assert.equal(response.body.totalBruto, 50);
-  assert.deepEqual(response.body.excluded[0].reasons.map((reason) => reason.code), [
-    'label_not_real', 'label_not_delivered', 'supply_not_ready',
-  ]);
+  assert.equal(response.body.included.length, 2);
+  assert.equal(response.body.excluded.length, 0);
+  assert.equal(response.body.totalBruto, 100);
   assert.equal(response.body.account.pixKeyMasked.includes('pix@example.com'), false);
 });
 
@@ -107,5 +104,5 @@ test('preview sugere somente crédito confirmado disponível até o bruto elegí
   tables.availableCredit = 80;
   const response = await previewRoute(tables).GET(new Request('https://app.bentevi.shop/api/compras/liquidacoes/preview?fornecedorId=108'));
   assert.equal(response.body.creditoDisponivel, 80);
-  assert.equal(response.body.creditoSugerido, 50);
+  assert.equal(response.body.creditoSugerido, 80);
 });

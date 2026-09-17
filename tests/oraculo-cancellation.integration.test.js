@@ -69,11 +69,25 @@ before(async () => {
       'supabase/migrations/20260916230000_oraculo_supplier_settlement_receipt.sql',
       'supabase/migrations/20260916233000_oraculo_supplier_cancellations.sql',
       'supabase/migrations/20260916233000_oraculo_supplier_cancellations.sql',
+      'supabase/migrations/20260917130000_oraculo_simplify_purchase_eligibility.sql',
     ]) await admin.query(read(file));
   } finally { await admin.end(); }
   pool = new Pool({ connectionString, max: 5 });
 });
 after(async () => { if (pool) await pool.end(); });
+
+test('fechamento dispensa classificação, revisão e etiqueta; preserva bloqueio de cancelamento', { skip: !enabled }, async () => {
+  const sales = await seed();
+  await query("update public.compras set supply_status='unknown', status_dslite='Aguardando Informações' where id=$1", [purchaseA]);
+  await query("update public.pedidos set label_type='provisional', label_delivered_at=null, snapshot_incompleto=true, ml_claim_id='claim' where id=$1", [sales['110']]);
+  const settlement = await prepare([purchaseA]);
+  assert.equal((await confirm(settlement.id)).status, 'confirmed');
+  assert.equal((await query('select supplier_payment_status from public.compras where id=$1', [purchaseA])).rows[0].supplier_payment_status, 'paid');
+
+  await seed();
+  await query("update public.pedidos set situacao='cancelado' where dslite_id='110'");
+  await assert.rejects(prepare([purchaseA]), /Venda cancelada/i);
+});
 
 test('ORC-06: cancelamento antes do PIX invalida o lote inteiro e libera reservas', { skip: !enabled }, async () => {
   const sale = await seed();

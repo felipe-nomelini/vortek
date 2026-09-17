@@ -9,7 +9,7 @@ import styles from './OracleSettlementDrawer.module.css';
 
 const { Text, Title } = Typography;
 type PreviewItem = { compraId: string; dsid: string; pedidoNumero: number | null; valor: number | null;
-  abastecimento: string; etiqueta: string | null; reasons: Array<{ code: string; label: string }> };
+  reasons: Array<{ code: string; label: string }> };
 type Account = { fornecedorId: string; fornecedor: string; cnpjMasked: string; pixKeyMasked: string;
   cnpj?: string; pixKey?: string;
   valid: boolean; canPrepare: boolean; included: PreviewItem[]; excluded: PreviewItem[]; totalBruto: number;
@@ -338,7 +338,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
               </div>
               <div className={styles.listHeading}>Prontas para o fechamento</div>
               <div className={styles.purchaseList}>{account.included.map((item) => <div className={styles.purchaseRow} key={item.compraId}>
-                <div><strong>Compra DSLite #{item.dsid}</strong><span>Venda #{item.pedidoNumero || '—'} · etiqueta {item.etiqueta || 'não informada'}</span></div>
+                <div><strong>Compra DSLite #{item.dsid}</strong><span>Venda #{item.pedidoNumero || '—'}</span></div>
                 <strong>{formatCurrency(Number(item.valor || 0))}</strong>
               </div>)}</div>
             </> : <div className={styles.noAccountReady}>Nenhuma compra apta para fechar neste fornecedor.</div>}
@@ -346,13 +346,10 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
             {account.excluded.length > 0 && <Collapse className={styles.exceptions} items={[{ key: 'exceptions',
               label: <span><strong>Compras fora do fechamento</strong> <Tag color="orange">{account.excluded.length}</Tag></span>,
               children: <div className={styles.exceptionList}>{account.excluded.map((item) =>
-                <details className={styles.exceptionRow} key={item.compraId}>
-                  <summary><strong>Compra DSLite #{item.dsid}</strong><span className={styles.reasonTags}>
-                    {item.reasons.slice(0, 2).map((reason) => <Tag color="gold" key={reason.code}>{reason.label}</Tag>)}
-                    {item.reasons.length > 2 && <Tag>+{item.reasons.length - 2} motivo(s)</Tag>}
-                  </span></summary>
-                  <ul>{item.reasons.map((reason) => <li key={reason.code}>{reason.label}</li>)}</ul>
-                </details>)}</div> }]} />}
+                <div className={styles.exceptionRow} key={item.compraId}>
+                  <strong>Compra DSLite #{item.dsid}</strong>
+                  <span>{item.reasons[0]?.label}</span>
+                </div>)}</div> }]} />}
             {writable && account.canPrepare && account.valid && account.included.length > 0 && <div className={styles.cardAction}>
               <Button type="primary" onClick={() => selectAccount(account)}>Preparar liquidação</Button>
             </div>}

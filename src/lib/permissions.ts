@@ -27,7 +27,6 @@ export const VORTEK_PERMISSIONS = [
   "sales.internal_shipping.process",
   "sales.dslite.unlink",
   "purchases.payment.confirm",
-  "purchases.supply.manage",
 ] as const;
 
 export type VortekPermission = (typeof VORTEK_PERMISSIONS)[number];

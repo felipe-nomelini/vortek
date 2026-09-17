@@ -21,11 +21,11 @@ export async function GET(request: Request) {
   const purchases: Array<{ id: string; dsid: string; data_criacao: string; fornecedor_id: string | null;
     supplier_payment_mode: string | null; supplier_payment_status: string | null;
     supplier_payment_amount: number | null; status: string; status_dslite: string;
-    supply_status: string; supplier_settlement_id: string | null }> = [];
+    supplier_settlement_id: string | null }> = [];
   let lastId = '';
   while (true) {
     let query = client.from('compras')
-      .select('id,dsid,data_criacao,fornecedor_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,status,status_dslite,supply_status,supplier_settlement_id')
+      .select('id,dsid,data_criacao,fornecedor_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,status,status_dslite,supplier_settlement_id')
       .eq('supplier_payment_mode', 'prepaid_pix').eq('supplier_payment_status', 'pending')
       .order('id', { ascending: true }).limit(100);
     if (lastId) query = query.gt('id', lastId);
@@ -37,9 +37,7 @@ export async function GET(request: Request) {
   }
   const visible = canUseHomologationFixtures() ? purchases : purchases.filter((row) => !isHomologationFixtureId(row.id));
   const sales = new Map<string, Array<{ id: string; numero: number; dslite_id: string | null; situacao: string | null;
-    ml_claim_id: string | null; snapshot_incompleto: boolean | null; snapshot_pendencias: unknown;
-    snapshot_source: string | null; label_type: string | null; label_delivery_channel: string | null;
-    label_delivered_at: string | null }>>();
+    snapshot_source: string | null }>>();
   const allocated = new Set<string>();
   const openDivergences = new Set<string>();
   for (let index = 0; index < visible.length; index += 100) {
@@ -47,7 +45,7 @@ export async function GET(request: Request) {
     const chunkDsids = [...new Set(chunk.map((row) => row.dsid).filter(Boolean))];
     const [saleResult, allocationResult, divergenceResult] = await Promise.all([
       chunkDsids.length ? client.from('pedidos')
-        .select('id,numero,dslite_id,situacao,ml_claim_id,snapshot_incompleto,snapshot_pendencias,snapshot_source,label_type,label_delivery_channel,label_delivered_at')
+        .select('id,numero,dslite_id,situacao,snapshot_source')
         .in('dslite_id', chunkDsids).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
         : Promise.resolve({ data: [], error: null }),
       client.from('supplier_settlement_items').select('compra_id').in('compra_id', chunk.map((row) => row.id)).is('released_at', null),
@@ -79,8 +77,7 @@ export async function GET(request: Request) {
       const labels = oracleExclusionLabels(codes);
       return { compraId: purchase.id, dsid: purchase.dsid, dataCriacao: purchase.data_criacao,
         pedidoNumero: linked.length === 1 ? linked[0].numero : null,
-        valor: purchase.supplier_payment_amount, abastecimento: purchase.supply_status,
-        etiqueta: linked.length === 1 ? linked[0].label_type : null,
+        valor: purchase.supplier_payment_amount,
         reasons: codes.map((code, i) => ({ code, label: labels[i] })) };
     }).sort((a, b) => a.dataCriacao.localeCompare(b.dataCriacao) || a.compraId.localeCompare(b.compraId));
     const included = rows.filter((row) => row.reasons.length === 0);

@@ -93,13 +93,13 @@ test('ORC-05 consolida por conta, explica exclusões e não mistura créditos', 
     '@/lib/fiscal/cnpj.js': { normalizeCnpj: (value) => value, isValidCnpj: () => true },
     '@/lib/homologation-fixture': { canUseHomologationFixtures: () => false,
       isHomologationFixtureId: () => false, isHomologationFixtureSource: () => false },
-    '@/lib/supplier-oracle-eligibility': { evaluateSupplierOracleEligibility: ({ purchase }) => purchase.supply_status === 'ready' ? [] : ['supply_unknown'],
-      oracleExclusionLabels: (codes) => codes.map(() => 'Abastecimento não verificado') },
+    '@/lib/supplier-oracle-eligibility': { evaluateSupplierOracleEligibility: () => [],
+      oracleExclusionLabels: () => [] },
     '@/lib/supplier-oracle-settlement': { ...oracle, supplierOracleWritesEnabled: () => false },
   });
   const response = await api.GET(new Request('https://app.bentevi.shop/api/compras/liquidacoes/hoje'));
   assert.equal(response.status, 200);
   assert.equal(response.body.writesEnabled, false);
   assert.deepEqual(response.body.data.map((group) => [group.fornecedorId, group.totalBruto, group.creditoSugerido, group.excluded.length]),
-    [['108', 50, 30, 1], ['109', 70, 10, 0]]);
+    [['108', 70, 30, 0], ['109', 70, 10, 0]]);
 });

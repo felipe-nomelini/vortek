@@ -173,15 +173,6 @@ export default function CompraDetailsDrawer({
         <Descriptions.Item label="Documento">{purchase.destinatario_documento || '—'}</Descriptions.Item>
       </Descriptions>
 
-      <Descriptions title="Elegibilidade para liquidação" size="small" bordered column={{ xs: 1, sm: 2 }}>
-        <Descriptions.Item label="Abastecimento">{{ unknown: 'Não verificado', ready: 'Pronto', blocked: 'Bloqueado', cancelled: 'Cancelado' }[purchase.supply_status] || 'Não verificado'}</Descriptions.Item>
-        <Descriptions.Item label="Última revisão">{formatDateTime(purchase.supply_status_changed_at)}</Descriptions.Item>
-        <Descriptions.Item label="Justificativa" span={2}>{purchase.supply_status_note || '—'}</Descriptions.Item>
-        <Descriptions.Item label="Etiqueta">{purchase.pedido_label_type === 'real' ? 'Real' : purchase.pedido_label_type === 'provisional' ? 'Provisória' : 'Não comprovada'}</Descriptions.Item>
-        <Descriptions.Item label="Canal">{purchase.pedido_label_delivery_channel === 'dslite' ? 'DSLite' : purchase.pedido_label_delivery_channel === 'whatsapp' ? 'WhatsApp' : '—'}</Descriptions.Item>
-        <Descriptions.Item label="Entrega da etiqueta real">{formatDateTime(purchase.pedido_label_delivered_at)}</Descriptions.Item>
-      </Descriptions>
-
       <div>
         <Text strong style={{ display: 'block', marginBottom: 8 }}>Itens da venda</Text>
         {saleItems.length > 0 ? (

@@ -42,35 +42,34 @@ function readyInput() {
   };
 }
 
-test('somente compra comprovadamente pronta não recebe exclusões', () => {
+test('compra PIX pendente com venda vinculada não recebe exclusões', () => {
   assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(readyInput()), []);
 });
 
-test('etiqueta provisória ou entrega ausente bloqueia mesmo com abastecimento ready', () => {
-  const provisional = readyInput();
-  provisional.sales[0].label_type = 'provisional';
-  provisional.sales[0].label_delivered_at = null;
-  assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(provisional), ['label_not_real', 'label_not_delivered']);
-
-  const whatsapp = readyInput();
-  whatsapp.sales[0].label_delivery_channel = 'whatsapp';
-  assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(whatsapp), []);
+test('abastecimento, revisão, etiqueta e pendências operacionais não bloqueiam', () => {
+  const input = readyInput();
+  input.purchase.supply_status = 'unknown';
+  input.purchase.status_dslite = 'Aguardando Informações';
+  input.sales[0].situacao = 'encerrado';
+  input.sales[0].snapshot_incompleto = true;
+  input.sales[0].ml_claim_id = 'claim';
+  input.sales[0].label_type = 'provisional';
+  input.sales[0].label_delivered_at = null;
+  assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(input), []);
 });
 
 test('motivos independentes são retornados juntos e de modo determinístico', () => {
   const input = readyInput();
   input.accountValid = false;
   input.purchase.supplier_payment_amount = null;
-  input.purchase.supply_status = 'unknown';
   input.sales[0].situacao = 'cancelado';
-  input.sales[0].snapshot_incompleto = true;
   input.hasActiveAllocation = true;
   assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(input), [
-    'invalid_account', 'amount_invalid', 'sale_inactive', 'sale_divergence', 'supply_not_ready', 'allocated',
+    'invalid_account', 'amount_invalid', 'sale_cancelled', 'allocated',
   ]);
 });
 
-test('venda ausente ou múltipla, compra cancelada e revisão DSLite falham fechadas', () => {
+test('venda ausente ou múltipla e compra cancelada continuam fora', () => {
   const missing = readyInput();
   missing.sales = [];
   assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(missing), ['sale_missing']);
@@ -80,7 +79,7 @@ test('venda ausente ou múltipla, compra cancelada e revisão DSLite falham fech
   const cancelled = readyInput();
   cancelled.purchase.status = 'Cancelado';
   cancelled.purchase.status_dslite = 'Revisão';
-  assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(cancelled), ['purchase_cancelled', 'purchase_review']);
+  assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(cancelled), ['purchase_cancelled']);
 });
 
 test('pagamento não pendente, fornecedor diferente e crédito já alocado não passam', () => {
@@ -91,6 +90,12 @@ test('pagamento não pendente, fornecedor diferente e crédito já alocado não 
   assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(input), [
     'supplier_mismatch', 'payment_not_pending', 'allocated',
   ]);
+});
+
+test('valor com mais de duas casas não aparece como fechável', () => {
+  const input = readyInput();
+  input.purchase.supplier_payment_amount = 10.001;
+  assert.deepEqual(eligibility.evaluateSupplierOracleEligibility(input), ['amount_invalid']);
 });
 
 test('somente sucesso de etiqueta real define data de entrega', () => {
@@ -107,12 +112,4 @@ test('somente sucesso de etiqueta real define data de entrega', () => {
   assert.deepEqual(supplierLabelState.supplierWhatsappLabelState(date), {
     label_type: 'real', label_delivery_channel: 'whatsapp', label_delivered_at: date,
   });
-});
-
-test('permissão de abastecimento não é atribuída a operador ou visualizador', () => {
-  const permissions = fs.readFileSync(path.join(__dirname, '../src/lib/permissions.ts'), 'utf8');
-  assert.match(permissions, /"purchases\.supply\.manage"/);
-  assert.match(permissions, /admin: \[\.\.\.VORTEK_PERMISSIONS\]/);
-  assert.match(permissions, /gerente: \[\.\.\.VORTEK_PERMISSIONS\]/);
-  assert.doesNotMatch(permissions.match(/const OPERATIONAL_PERMISSIONS[\s\S]*?const ROLE_PERMISSIONS/)?.[0] || '', /purchases\.supply\.manage/);
 });

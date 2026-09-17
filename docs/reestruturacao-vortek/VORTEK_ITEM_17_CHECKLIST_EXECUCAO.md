@@ -95,6 +95,8 @@ O painel de liquidação recebeu um refinamento visual passivo em 16/09/2026 (SH
 
 **ORC-07 em andamento em 16/09/2026:** o responsável informou aprovação visual da tela. O adaptador individual e a restrição privada do lote foram publicados passivamente no SHA `6bc74b31898c61f631f044f1b6cc04f697e680ca`, com migration `20260916234500` aplicada em `.162`. O chunk de Compras em produção corresponde ao build local; o SHA da imagem ativa e a flag de runtime ainda não puderam ser lidos diretamente. A segunda leitura produtiva mostrou zero liquidações/jobs/alocações e nenhuma compra `ready` entre 23 PIX pendentes. Não houve canário, PIX de teste ou ativação; ORC-08 permanece bloqueada. Evidências e gates completos estão no checklist dedicado.
 
+**Regra do fechamento aprovada em 17/09/2026:** o responsável retirou a classificação manual de abastecimento e os bloqueios por revisão genérica, etiqueta e pendências operacionais. A compra deve manter venda vinculada e os controles financeiros de valor, fornecedor, cancelamento e pagamento duplicado. A implementação e a publicação desta alteração serão registradas no checklist dedicado; a ativação financeira de ORC-07 continua em ação própria.
+
 <a id="bentevi-em-operacao"></a>
 
 ### Marco de lançamento — Bentevi em operação

@@ -14,8 +14,8 @@ test('Oráculo: visão inicial destaca o bloqueio e recolhe pendências extensas
   assert.match(panel, /Excluídas/);
   assert.match(panel, /Compras fora do fechamento/);
   assert.match(panel, /account\.excluded\.length > 0 && <Collapse/);
-  assert.match(panel, /item\.reasons\.slice\(0, 2\)/);
-  assert.match(panel, /<details className=\{styles\.exceptionRow\}/);
+  assert.match(panel, /item\.reasons\[0\]\?\.label/);
+  assert.doesNotMatch(panel, /\+\{item\.reasons\.length - 2\} motivo/);
   assert.match(panel, /Sem fornecedor identificado/);
 });
 

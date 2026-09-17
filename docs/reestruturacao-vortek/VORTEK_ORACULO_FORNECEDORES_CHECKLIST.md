@@ -12,7 +12,7 @@
 
 **Criado em:** 16/09/2026
 
-**Última atualização:** 16/09/2026
+**Última atualização:** 17/09/2026
 **SHA-base analisado:** `53407a403a0f3f6ecc161d65632ae941585acf7d`
 
 ---
@@ -62,7 +62,7 @@ Regras permanentes:
 | 4 | ORC-04 — Pós-processamento e comunicação | Aceito | ORC-03 aceito | ORC-05 em nova tarefa |
 | 5 | ORC-05 — Interfaces operacionais | Aceito tecnicamente | ORC-04 aceito | Fluxo autenticado real e ativação seguem nos gates operacionais |
 | 6 | ORC-06 — Cancelamentos e divergências | Aceito tecnicamente | ORC-05 aceito | ORC-07 em tarefa própria; canário real permanece no gate operacional |
-| 7 | ORC-07 — Ativação controlada | Em andamento | ORC-06 aceito | Publicação passiva; canário real exige compras `ready` e responsável presente |
+| 7 | ORC-07 — Ativação controlada | Em andamento | ORC-06 aceito | Publicação passiva; canário real e habilitação do writer permanecem em gate próprio |
 | 8 | ORC-08 — Dashboard resumido | Pendente | ORC-07 estabilizado | Aceite visual específico |
 
 ---
@@ -103,15 +103,13 @@ Uma compra somente poderá ser incluída quando todas as condições abaixo fore
 
 - pagamento `prepaid_pix` pendente;
 - valor de pagamento conhecido e positivo;
-- venda vinculada e ativa;
+- uma venda vinculada à compra;
 - compra não cancelada;
-- etiqueta real disponível e entregue pelo fluxo operacional;
-- abastecimento confirmado como `ready`;
 - fornecedor com cadastro financeiro válido;
-- nenhuma divergência financeira ou operacional aberta;
+- nenhum caso de cancelamento financeiro aberto;
 - nenhuma alocação em outra liquidação preparada ou confirmada.
 
-O preview deverá apresentar separadamente as compras excluídas e o motivo objetivo de cada exclusão.
+O status de abastecimento, a revisão genérica do DSLite, a etiqueta e outras pendências operacionais não são requisitos do fechamento. O preview deverá apresentar separadamente as compras excluídas e um motivo curto e objetivo por compra. A compra e a venda canceladas permanecem fora. Esta regra substitui os critérios anteriores; os registros das ações ORC-01 a ORC-07 abaixo são evidência histórica da implementação original.
 
 ---
 
