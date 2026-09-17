@@ -2478,6 +2478,8 @@ commit funcional `a4cc282` foi promovido para `bentevi-prod`; a action Easypanel
 `cmtwccde700fu07mf94xi9vsp` terminou como `done`, com smoke e read-back
 produtivos aprovados. [Evidência, pilotos e recuperação](evidencias/BNT-ML-QUALITY-02-validacao.md).
 
+**Correção da confirmação de pausa em `2026-09-17`:** o botão do anúncio operacional `MLB7601891176` não abria a confirmação porque `App.useApp()` era usado sem o provider `App` do Ant Design. O provider raiz passou a fornecê-lo sem elemento visual adicional. O teste de renderização confirmou `modal.confirm` e mensagens disponíveis; 15 testes direcionados, `npm run validate`, build, verificação de secrets e `git diff --check` passaram. O SHA funcional `15d92d56deacaa35ab16594d1d63a5619e489d99` foi promovido para `bentevi-prod`; a ação Easypanel `cmu5y3ewv008t07ov88ms6mwm` concluiu e, na validação, o serviço ativo apontava para esse SHA. Saúde/login `200`, Anúncios `307` e APIs sem sessão `401`. O anúncio permaneceu `active` no ML, com 48 unidades, e nenhuma pausa foi enfileirada. O clique autenticado na interface produtiva ainda não foi exercitado nesta validação; nenhuma mutação real do anúncio foi feita.
+
 **Rollback:** reverter `c1d0f63` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover `search_ml_listings_paginated`. Restaurar o valor anterior da chave temporária `bnt_d07_visual_review_products` apenas se for necessário retirar o enriquecimento antes da expiração da amostra. Não há ação de rollback em produção.
 
 **Pendência:** nenhuma para `BNT-D11` ou `BNT-D11-PDF`; `BNT-D12` foi liberada e executada.
