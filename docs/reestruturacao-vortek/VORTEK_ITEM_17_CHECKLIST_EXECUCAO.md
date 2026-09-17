@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 14/09/2026
+**Última atualização:** 17/09/2026
 **Ambiente de execução:** desenvolvimento integrado e produção Bentevi
 **Branch obrigatória:** `dev`
 **Aplicação produtiva:** `https://app.bentevi.shop`
 **Serviço produtivo:** `local/bentevi-prod` em `192.168.1.160`
 **Banco produtivo:** `supabase.bentevi.shop` em `192.168.1.162`
-**Situação vigente (13/09/2026):** o Bentevi opera em `app.bentevi.shop` com o Supabase produtivo `.162`. A alteração manual e individual de preço continua no executor controlado e não possui bloqueios comerciais: margem, lucro, economia incompleta, identidade, grupo, variações e preço igual são avisos. Automação nativa de preço é desativada de forma durável antes do envio manual. As 15 operações históricas de preço estão confirmadas; os três casos antes inconclusivos foram conferidos no Mercado Livre com o preço solicitado. Criação em lote e precificação automática própria continuam fora deste recorte. [Evidências da liberação](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md).
+**Situação vigente (17/09/2026):** o Bentevi opera em `app.bentevi.shop` com o Supabase produtivo `.162`. Preço manual individual e uma republicação real foram confirmados por read-back; a [operação do gabinete](#bentevi-em-operacao) criou um único anúncio ativo. As condições comerciais são avisos no fluxo manual, enquanto identidade do seller/item, valor, estoque, atributos e idempotência permanecem controles técnicos. Criação em lote, precificação automática própria e gates integrais de Pricing/M2M continuam pendentes. [Evidências do preço manual](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md).
 
 ---
 
@@ -77,9 +77,15 @@ Regras de uso:
 | 11.3 | Assistente Bentevi — chat operacional | Implementação técnica disponível; excluída do primeiro corte produtivo por decisão do responsável em 09/09/2026 | Manter bloqueado no runtime inicial; retomar homologação e gate em ação posterior |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
+### Conferência das pendências — 17/09/2026
+
+Esta conferência revisou os campos abertos contra o código, os registros de execução e leituras atuais do Bentevi. O SHA `c99452afcd2c55628561cfa807d2d6b3a36412c9` estava em `origin/dev` e `origin/bentevi-prod`; `GET /api/ops/health` respondeu `200` no serviço da `.160` para `app.bentevi.shop`. A conexão de serviço configurada localmente aponta para `192.168.1.162`. Consulta somente leitura nesse Supabase confirmou `configuracoes.product_inactive_cost_threshold = 3000`, 106 pedidos com `data_venda` desde 09/09, zero pedidos com `snapshot_source` iniciado por `bnt_`, **nove** recebimentos `bnt_d05_inventory_mock` ainda persistidos e zero liquidações/itens do Oráculo ou jobs da Video Factory. Nenhuma escrita, chamada ML ou prova de ciclo completo de pedido foi feita nesta conferência. A resposta de health e o SHA remoto não comprovam, isoladamente, o SHA da imagem ativa no Easypanel.
+
+Foram encerrados abaixo apenas critérios já sustentados pelas etapas concluídas e pelo estado conferido, incluindo o aceite visual de `BNT-D01-PDF` já registrado nesta seção desde 01/09. As caixas genéricas da seção 3 são um modelo para **cada ação futura**, e as caixas de homologação/virada anteriores a 09/09 são registros históricos, não uma nova fila produtiva. Permanecem abertas as ações cujo aceite humano, prova externa, canário, limpeza de dados ou fechamento integral não está documentado. Em especial, o limite de R$ 3.000 já está ativo, mas os demais aceites da coorte `BNT-ML-COST-BAND-3000-01` não foram comprovados; os nove recebimentos de demonstração impedem afirmar exclusão integral das fixtures.
+
 ### Próxima ação
 
-**Prioridade vigente — atualização de 13/09/2026:** o núcleo Bentevi opera com dados reais em `app.bentevi.shop`, serviço `local/bentevi-prod` e Supabase produtivo `.162`. O preço manual individual foi comprovado no executor controlado e agora trata condições comerciais como avisos, preservando apenas controles técnicos. Continuar o acompanhamento por read-back de cada operação e manter criação em lote, Assistente e automação própria nos gates específicos.
+**Prioridade vigente — atualização de 17/09/2026:** acompanhar por read-back cada operação real, fechar o marco 7 com sete dias e um ciclo completo de pedido documentados e manter criação em lote, Assistente, Oráculo e automação própria em seus gates. O limite de custo de R$ 3.000 foi conferido no banco; a coorte associada ainda exige validação e aceite próprios.
 
 ### Trilha Oráculo de Fornecedores
 
@@ -103,7 +109,7 @@ O painel de liquidação recebeu um refinamento visual passivo em 16/09/2026 (SH
 
 | Marco | Situação atual | Bloqueador / aceite necessário | Próxima ação | Evidência de fechamento |
 |---|---|---|---|---|
-| 1 — Execução comercial | Preço manual individual habilitado e comprovado; criação em lote e automação própria adiadas | Read-back do item escolhido permanece obrigatório em cada operação | Acompanhar as próximas operações e reconciliar qualquer efeito remoto incerto somente por leitura | Runtime `production_controlled`; 15 operações confirmadas; três casos antes inconclusivos conferidos no ML; [evidência](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md) |
+| 1 — Execução comercial | Preço manual individual e uma republicação real comprovados; criação em lote e automação própria adiadas | Read-back do item escolhido permanece obrigatório em cada operação | Acompanhar as próximas operações e reconciliar qualquer efeito remoto incerto somente por leitura | Runtime `production_controlled`; 15 operações de preço confirmadas, três casos antes inconclusivos e gabinete republicado conferidos no ML; [preço](evidencias/BNT-MANUAL-PRICE-WARNINGS-01-validacao.md) e [republicação](#bentevi-em-operacao) |
 | 2 — Configurações iniciais | Concluído no recorte inicial; aceite D20 concedido pelo usuário em 08/09 | Nenhum neste recorte; D20/V2-15 integrais continuam abertos | Preservar controles e seguir para marco 3 | [Entrega técnica, publicação e aceite humano inicial](evidencias/BNT-PRICING-V2-15-operacional-validacao.md#aceite-inicial-do-usuario--08092026); não comprova capacidades adiadas |
 | 3 — Assistente Bentevi | Adiado no primeiro corte | Nenhum para o núcleo inicial; runtime deve permanecer bloqueado | Retomar AI-GATE depois da entrada em produção | `BENTEVI_ASSISTANT_ENABLED=0` e `BENTEVI_ASSISTANT_DATA_APPROVED=0` no preflight produtivo |
 | 4 — Operação ponta a ponta | Validação inicial transferida para depois do deploy | O smoke seguro não pode falhar; validação real continua com acompanhamento | Validar login e leituras críticas antes do tráfego; exercitar fluxos reais depois da publicação | Logs, health, autenticação e primeiros fluxos reais; erro material interrompe somente o fluxo afetado |
@@ -502,7 +508,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - [x] preservar outbox/worker existente;
 - [x] provar em teste que preview e payload publicado são iguais;
 - [x] validar em teste faixas, quantidades, erros e versão do contrato;
-- [ ] concluir o gate obrigatório da seção 3.
+- **N/A — requisito histórico substituído em 06/09/2026 por `BNT-CANON-QTY-01`**; a prova B2B de `ML-01` não faz parte do contrato vigente.
 
 **Estado/causa confirmados:** o backend ainda publicava faixas absolutas no endpoint legado e havia fórmulas independentes de `3%/4%/5%` no navegador. Esse estado não atendia ao contrato percentual vigente nem garantia que a prévia coincidisse com o payload.
 
@@ -2143,7 +2149,7 @@ No mesmo ajuste, monitores a partir de `1451 × 900` passaram a distribuir a alt
 
 Uma página que expõe `Exportar PDF` somente pode ser encerrada depois de o documento usar a identidade Bentevi, refletir os dados e a hierarquia aprovados e receber aprovação visual em homologação. A atualização deve ocorrer junto da própria página, sem agrupar relatórios de etapas futuras.
 
-- [ ] `BNT-D01-PDF` — Relatório de Vendas; implementado e publicado, com aprovação visual pendente;
+- [x] `BNT-D01-PDF` — Relatório de Vendas; aprovado visualmente pelo usuário em `2026-09-01`, conforme o fechamento desta seção;
 - [x] `BNT-D03-PDF` — Relatório de Compras; aprovado visualmente em homologação em `2026-09-01`;
 - [x] `BNT-D07-PDF` — Relatório de Produtos; aprovado visualmente em homologação em `2026-09-02`;
 - [x] `BNT-D11-PDF` — Relatório de Anúncios; aprovado visualmente em homologação em `2026-09-02`;
@@ -3398,10 +3404,10 @@ Não iniciar web celular antes de `BNT-D01` a `BNT-D24` e do aceite desktop do A
 
 #### Promoção Bentevi
 
-- [ ] revisar identidade visível em metadata, mensagens, e-mails e documentos ativos;
-- [ ] preparar `app.bentevi.shop` em checklist de release separado;
-- [ ] manter Supabase no domínio atual nesta iniciativa;
-- [ ] aguardar autorização explícita antes de qualquer ação em produção.
+- [x] revisar identidade visível em metadata, mensagens, e-mails e documentos ativos; `BNT-BRAND-01` e `BNT-MSG-01` registram a entrega;
+- [x] preparar `app.bentevi.shop` em checklist de release separado; o [runbook do corte](../bentevi-prod-cutover.md) registra domínio e serviço ativos;
+- **N/A — decisão histórica substituída no corte de 09/09/2026:** o Supabase Bentevi usa `supabase.bentevi.shop` na `.162`;
+- [x] obter autorização explícita antes da primeira ação produtiva; corte autorizado e executado em 09/09/2026, conforme [runbook](../bentevi-prod-cutover.md).
 
 ---
 
@@ -3546,7 +3552,7 @@ Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret n
 
 ## 18. Checklist de promoção controlada `dev → bentevi-prod`
 
-`main` é o sistema legado em produção e permanece independente. `bentevi-prod` ainda não existe; no release autorizado, ela será criada diretamente no SHA candidato aprovado de `dev`, sem merge, rebase ou cherry-pick de `main`. Esta seção apenas prepara a promoção e não autoriza criar/pushar a branch, alterar o serviço, migrar ou fazer deploy. Na primeira entrega, aplicar o [gate Bentevi em operação](#bentevi-em-operacao): marco 5 libera somente a solicitação da ativação controlada; marco 6 exige provas reais antes do uso diário no marco 7. O gate integral M2M permanece aberto, sem dispensar proteções da operação liberada. A execução produtiva pertence a tarefa e ambiente próprios, com autorização específica.
+**Registro histórico do primeiro corte:** `main` é o legado preservado; `bentevi-prod` foi criada a partir do SHA validado de `dev` e está em operação desde 09/09/2026. Os preflights abaixo descrevem aquela transição e não se repetem literalmente em cada release. Para uma nova promoção, aplicar o fluxo vigente do `AGENTS.md`, confirmar o SHA do runtime e preservar os gates das capacidades ainda não aceitas. O gate M2M integral permanece aberto.
 
 ### Preflight inicial da primeira promoção — 09/09/2026
 
@@ -3705,22 +3711,22 @@ fornecedor; a API principal DSLite já permanece automática.
 - [x] `npm run validate` aprovado;
 - [x] build aprovado;
 - [x] nenhuma migration faz parte deste lote; carga/migração continuam para ensaio produtivo próprio;
-- [ ] `dev.bentevi.shop` funcional;
+- **N/A após 09/09/2026:** `dev.bentevi.shop` foi desabilitado no corte e não é homologação ativa;
 - [x] `BNT-AI-GATE` formalmente adiado no primeiro corte; Assistente deve permanecer bloqueado nas duas flags produtivas;
 - [x] divergências de publicação classificadas e formalmente adiadas somente enquanto criação de anúncios e alteração de preço permanecerem desativadas;
 - [x] `BNT-PARITY-FINAL` executado por leitura contra `origin/main@2fc441f6`, com todo comportamento essencial classificado e destino explícito;
 - [ ] matriz `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` atualizada com o SHA legado de `main` e o SHA candidato de `dev`;
-- [ ] SHA candidato de `dev` fixado e snapshot revisado por si mesmo, sem usar o diff contra `main` como pacote de promoção;
+- [x] SHA candidato de `dev` fixado e snapshot revisado por si mesmo, sem usar o diff contra `main` como pacote de promoção; primeira promoção registrada no [runbook](../bentevi-prod-cutover.md);
 - [x] nome `bentevi-prod` confirmado livre no remoto e serviço Easypanel homônimo reservado; branch será criada exatamente no SHA candidato;
 - [ ] nenhuma secret adicionada ao Git;
 - [ ] schemas atuais `.160`/`.162`, mapeamento de dados e carga de Auth/Storage identificados e ensaiados sem replay do diretório de migrations;
 - [x] variáveis obrigatórias do runtime restrito identificadas sem expor valores; arquivo real ainda deve passar no preflight;
 - [x] recuperação e condições de interrupção documentadas no runbook;
-- [ ] gate mínimo de transição aceito: backup, migração, runtime, autenticação, smoke e executor único;
+- [x] gate mínimo de transição aceito para o núcleo restrito; corte e smoke registrados no [runbook](../bentevi-prod-cutover.md) e marco 6 abaixo;
 - [x] requisitos essenciais das capacidades adiadas permanecem protegidos por configuração, sem declarar conclusão funcional;
 - [ ] fixtures excluídas da promoção; dados e eventos reais preservados; um único executor por fluxo planejado;
 - [ ] nenhuma mudança fora do escopo;
-- [ ] autorização explícita do responsável recebida.
+- [x] autorização explícita do responsável recebida para o corte de 09/09/2026, conforme [runbook](../bentevi-prod-cutover.md).
 
 ### Durante e depois da ativação autorizada
 
@@ -3756,13 +3762,13 @@ O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tive
 - [ ] todos os P0 foram resolvidos;
 - [ ] todos os P1 foram resolvidos ou formalmente reclassificados com evidência;
 - [x] desconto por quantidade retirado conforme o cânon e `BNT-CANON-QTY-01` validada; compra normal de múltiplas unidades e histórico preservados; não reativar a prova B2B antiga;
-- [ ] estoque interno possui reserva segura;
-- [ ] quantidade segura possui uma única fonte;
-- [ ] Mercado Livre não executa scans/outboxes desnecessários comprovados;
-- [ ] fluxo fiscal não faz chamadas inválidas;
+- [x] estoque interno possui reserva segura; contrato e concorrência validados em `STO-01/STO-02` (seção 7);
+- [x] quantidade segura possui uma única fonte; cenários e integração validados em `RULE-01` (seção 8);
+- [x] Mercado Livre não executa scans/outboxes desnecessários comprovados; `ML-02/ML-03` e o ciclo produtivo observado constam das seções 8, 9 e 18;
+- [x] fluxo fiscal não faz chamadas inválidas; `FIS-01/02/03` validadas na seção 10 e fluxo real acompanhado na seção 2;
 - [x] Mercado Pago conclui todo o lifecycle;
-- [ ] jobs não escondem falhas críticas;
-- [ ] principais regras duplicadas estão consolidadas;
+- [x] jobs não escondem falhas críticas; `JOB-01/02/04` e falhas fatais do scan observado estão documentados nas seções 12, 14 e 2;
+- [x] principais regras duplicadas estão consolidadas; `RULE-02` a `RULE-07` foram encerradas na seção 14;
 - [ ] todas as regras produtivas e todos os deltas de `main` estão classificados e reconciliados pela Etapa 11.1;
 - [ ] interface foi simplificada somente onde havia mistura real;
 - [ ] clusters históricos confirmados foram removidos;
@@ -4116,7 +4122,7 @@ publicação da coorte autorizada pelo usuário.
   publicar ou reprecificar enquanto o cadastro mestre continuar inativo;
 - [x] preparar suporte seguro a anúncio novo, catálogo exato e republicação de
   anúncio encerrado, com captura do novo ID antes das etapas posteriores;
-- [ ] aplicar o limite de custo inclusivo de R$ 3.000 no Bentevi produtivo;
+- [x] aplicar o limite de custo inclusivo de R$ 3.000 no Bentevi produtivo;
 - [ ] sincronizar custo e estoque, revalidar os 28 produtos da coorte e ativar
   somente os que mantiverem fornecedor operacional, estoque, identidade, ficha,
   imagem e economia válidos;
