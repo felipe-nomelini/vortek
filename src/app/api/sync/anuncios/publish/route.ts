@@ -801,7 +801,7 @@ export async function POST(request: Request) {
         const lastSuccessfulOperation = operations.length > 0
           ? operations[operations.length - 1].op
           : (lastOperationMarker || 'done');
-        await (client
+        const finishOutbox = () => (client
           .from('anuncios_ml_outbox' as any)
           .update({
             status: 'done',
@@ -816,6 +816,8 @@ export async function POST(request: Request) {
             updated_at: new Date().toISOString(),
           } as any)
           .eq('id', outboxId) as any);
+        const waitForStatusReconcile = applyMode.applyStatus && !deleteListing;
+        if (!waitForStatusReconcile) await finishOutbox();
 
         if (deleteListing) {
           try {
@@ -846,6 +848,7 @@ export async function POST(request: Request) {
             message: itemStateResult.error?.message || 'Falha ao consultar estado final do anúncio no ML',
             context: { outboxId, mlItemId, operation: 'status_reconcile' },
           });
+          if (waitForStatusReconcile) await finishOutbox();
         } else {
           const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
           const reconciledMlPrice = Number(itemStateResult.data?.price);
@@ -884,6 +887,20 @@ export async function POST(request: Request) {
           }
 
           const finalStatus = String(itemStateResult.data.status || '').toLowerCase();
+          if (applyMode.applyStatus && finalStatus) {
+            const { error: snapshotError } = await client
+              .from('catalogo_ml_snapshot')
+              .update({ status: finalStatus } as any)
+              .eq('ml_item_id', mlItemId);
+            if (snapshotError) {
+              errors.push({
+                code: 'ml_publish_reconcile_snapshot_update_failed',
+                message: snapshotError.message,
+                context: { outboxId, mlItemId, status: finalStatus },
+              });
+            }
+          }
+          if (waitForStatusReconcile) await finishOutbox();
           const finalSubStatuses = Array.isArray(itemStateResult.data.sub_status)
             ? itemStateResult.data.sub_status.map((value: unknown) => String(value).toLowerCase()) : [];
           if (explicitAutomaticPause && finalStatus === 'paused'

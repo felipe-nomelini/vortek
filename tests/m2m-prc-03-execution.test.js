@@ -77,7 +77,7 @@ test('mudança de custo e kit não gravam preço nem enfileiram automação', as
 function worker(row, executionGuard = guard) {
   const tables = { anuncios_ml_outbox: [structuredClone(row)], produtos: [{ id: 'P1', ativo: true }],
     anuncios_ml: [{ ml_item_id: 'MLB1' }], catalogo_ml_snapshot: [{ ml_item_id: 'MLB1', status: 'active' }] };
-  const requests = []; const stock = [];
+  const requests = []; const stock = []; const writes = [];
   const client = { from(table) {
     const filters = []; let patch = null;
     const query = {
@@ -88,7 +88,10 @@ function worker(row, executionGuard = guard) {
       update(v) { patch = v; return this; },
       then(resolve) {
         const rows = (tables[table] || []).filter(r => filters.every(f => f(r)));
-        if (patch) rows.forEach(r => Object.assign(r, structuredClone(patch)));
+        if (patch) {
+          rows.forEach(r => Object.assign(r, structuredClone(patch)));
+          writes.push({ table, patch: structuredClone(patch) });
+        }
         return Promise.resolve({ data: structuredClone(rows), error: null }).then(resolve);
       },
     }; return query;
@@ -114,7 +117,7 @@ function worker(row, executionGuard = guard) {
     '@/lib/ml/operational-listing': { classifyMlPublishEligibility: () => ({ eligible: true }) },
     '@/lib/ml/protective-stock': require('../src/lib/ml/protective-stock.ts'),
   });
-  return { route, tables, stock, requests };
+  return { route, tables, stock, requests, writes };
 }
 
 const priceRow = { id: 'Q1', produto_id: 'P1', ml_item_id: 'MLB1', desired_price: 100, status: 'pending',
@@ -143,6 +146,19 @@ test('fila mista executa estoque/status e registra preço bloqueado, sem diverg�
   assert.ok(h.requests.every(r => !r.body || !('price' in JSON.parse(r.body))));
   assert.equal(body.records.retry, 0);
   assert.notEqual(row.payload.publish_progress.last_operation, 'price_reconcile_mismatch');
+});
+
+test('pausa confirmada atualiza o estado usado pela lista de anúncios', async () => {
+  const h = worker({ ...priceRow, desired_price: null, desired_quantity: null, desired_status: 'pausado',
+    payload: { apply_price: false, apply_quantity: false, apply_status: true } });
+  const response = await h.route.POST(request()); const body = await response.json();
+  assert.equal(body.success, true, JSON.stringify(body.errors));
+  assert.equal(h.tables.anuncios_ml_outbox[0].status, 'done');
+  assert.equal(h.tables.catalogo_ml_snapshot[0].status, 'paused');
+  const snapshotWrite = h.writes.findIndex(write => write.table === 'catalogo_ml_snapshot' && write.patch.status === 'paused');
+  const doneWrite = h.writes.findIndex(write => write.table === 'anuncios_ml_outbox' && write.patch.status === 'done');
+  assert.ok(snapshotWrite >= 0 && doneWrite > snapshotWrite, 'a fila só conclui após atualizar o estado da lista');
+  assert.equal(h.requests.some(r => r.method === 'PUT' && JSON.parse(r.body).price !== undefined), false);
 });
 
 test('produto inativo ainda executa pausa protetiva com quantidade zero', async () => {
