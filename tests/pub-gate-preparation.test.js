@@ -30,7 +30,8 @@ function harness(options={}) {
     '@/lib/ml-catalog-compatibility':{catalogCompatibilityMismatches:()=>[]},
     './mercadolibre':{getCategoryAttributes:async()=>[],getCategorySaleTerms:async()=>[]},
     './integration':{fetchMLResult:async(path,init)=>{calls.push([path,init]);return path==='/users/me'?{ok:true,data:{id:123,tags:[options.production?'normal':'test_user']}}:
-      path.startsWith('/items/MLB2')?{ok:true,data:{id:'MLB2',seller_id:123,status:'closed',category_id:'MLB1',currency_id:'BRL',attributes:[],variations:[]}}:
+      path.startsWith('/items/MLB2')?{ok:true,data:{id:'MLB2',seller_id:123,status:'closed',category_id:'MLB1',currency_id:'BRL',attributes:[],variations:[],
+        catalog_listing:options.relistCatalog===true,catalog_product_id:options.relistCatalog?'MLB99':null}}:
       path.startsWith('/products/search')?{ok:true,data:{results:options.catalog?[{id:'MLB99'}]:[]}}:
       path==='/products/MLB99'?{ok:true,data:{id:'MLB99',status:'active',children_ids:[]}}:
       path.endsWith('/conditional')?{ok:true,data:{required_attributes:options.conditionalMissing?[{id:'GTIN'}]:[]}}:{ok:!options.validationFailed};}},
@@ -68,6 +69,12 @@ test('relist keeps the closed item as immutable source and skips a second new-it
   assert.equal(prepared.preparation.action,'relist');assert.equal(prepared.preparation.sourceItemId,'MLB2');
   assert.deepEqual(prepared.preparation.payload,{price:110,quantity:3,listing_type_id:'gold_pro'});
   assert.ok(!h.calls.some(([path])=>path==='/items/validate'));
+});
+test('relist preserves the catalog identity of its closed source',async()=>{
+  const h=harness({production:true,relist:true,relistCatalog:true});
+  const prepared=await h.module.preparePublication({...input(),action:'relist',sourceItemId:'MLB2'},id);
+  assert.equal(prepared.preparation.expected.catalog_listing,true);
+  assert.equal(prepared.preparation.expected.catalog_product_id,'MLB99');
 });
 test('legacy modes, fabricated identity fields and actor injection are rejected by the contract',()=>{
   const h=harness();for(const extra of [{pricingMode:'profitable_shelf_2'},{targetNetProfit:20},{basePrice:110},{actorId:id},{allowOutOfStockListing:true}])

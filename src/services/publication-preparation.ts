@@ -141,7 +141,7 @@ export async function preparePublication(raw: unknown, actorId: string) {
   })) throw new Error('publication_images_required');
   const catalogProductId = input.action === 'new'
     ? await resolveExactCatalogProduct({ product, attributes, categoryId: input.categoriaId })
-    : null;
+    : sourceItem?.catalog_listing === true ? sourceItem.catalog_product_id || null : null;
   const context = { categoryId: input.categoriaId, catalogProductId,
     listingType: input.listingType, condition: 'new' as const, ...input.shipping };
   // Economia informa a decisão do dono, mas não controla uma publicação manual.

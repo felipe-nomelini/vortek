@@ -213,7 +213,7 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
       }, pricingExecutionTransport(sellerId)).catch(() => null);
       // Anúncios de catálogo recebem a descrição oficial do produto e o ML não
       // permite substituí-la. Nos demais anúncios, cria ou substitui a descrição.
-      if (decision.context.preparation.expected.catalog_listing !== true) {
+      if (decision.context.preparation.expected.catalog_listing !== true && sent.data.catalog_listing !== true) {
         const descriptionPath = '/items/' + encodeURIComponent(sent.data.id) + '/description';
         const createdDescription = await fetchMLResult(descriptionPath, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },

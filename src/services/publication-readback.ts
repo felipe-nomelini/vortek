@@ -39,7 +39,7 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
   if (productResult.error || offers.error || !attrs || !terms || !product || !product.ativo
     || (product.ml_item_id && product.ml_item_id !== item.id
       && (!relist || product.ml_item_id !== preparation.sourceItemId))
-    || !description.ok || (expected.catalog_listing !== true
+    || !description.ok || (item.catalog_listing !== true
       && description.data?.plain_text?.replace(/\r\n/g, '\n') !== preparation.description.replace(/\r\n/g, '\n'))
     || preparation.warrantyRevision !== factoryWarranty.revision) return false;
   const expectedWarranty = warrantySaleTerms(terms);

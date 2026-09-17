@@ -113,7 +113,7 @@ function harness(options = {}) {
       }
       if(init?.method==='POST' && (path==='/items'||path.endsWith('/relist'))) {
         await transport.validateToken('opaque');calls.push(['POST',path]);
-        if(options.timeout)throw Error('network');return {ok:true,data:{id:'MLB3',seller_id:123}};
+        if(options.timeout)throw Error('network');return {ok:true,data:{id:'MLB3',seller_id:123,catalog_listing:options.remoteCatalogListing===true}};
       }
       if(init?.method==='POST' && path.endsWith('/description')) {calls.push(['description','POST']);return {ok:!options.descriptionExists};}
       if(init?.method === 'PUT') { await transport.validateToken('opaque'); calls.push(['PUT',path,JSON.parse(init.body)]);
@@ -195,6 +195,12 @@ test('creation replaces a description that the catalog already supplied',async()
 });
 test('creation keeps the official description of a catalog listing',async()=>{
   const h=harness({creation:true,catalogListing:true});assert.equal(await h.run(),'confirmed');
+  assert.ok(!h.calls.some(c=>c[0]==='description'));
+  assert.equal(h.calls.filter(c=>c[0]==='POST').length,1);
+});
+test('relist respects the catalog status returned by ML even for an older preparation',async()=>{
+  const h=harness({creation:true,relist:true,remoteCatalogListing:true});
+  assert.equal(await h.run(),'confirmed');
   assert.ok(!h.calls.some(c=>c[0]==='description'));
   assert.equal(h.calls.filter(c=>c[0]==='POST').length,1);
 });
