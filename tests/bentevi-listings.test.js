@@ -131,7 +131,7 @@ test('BNT-D11 altera status somente pelo anúncio operacional e relata cada item
   assert.match(page, /row\.isOperational && row\.productId/);
   assert.match(page, /Anúncios irmãos de catálogo não serão alterados diretamente/);
   assert.match(page, /\/api\/anuncios\/status-lote/);
-  assert.match(statusRoute, /select\('id, sku, ml_item_id, custom_price, estoque, ml_status'\)/);
+  assert.match(statusRoute, /select\('id, sku, ml_item_id, ml_status'\)/);
   assert.match(statusRoute, /items,/);
   for (const outcome of ['queued', 'already_target', 'unchanged', 'skipped_no_item', 'skipped_ineligible', 'failed']) {
     assert.match(statusRoute, new RegExp(outcome));
@@ -142,6 +142,8 @@ test('BNT-D11 mostra o resultado da alteração em uma notificação, sem abrir 
   assert.match(page, /const \{ message, modal, notification \} = App\.useApp\(\)/);
   assert.match(page, /notification\[feedback\.tone\]\(\{ key: STATUS_NOTIFICATION_KEY/);
   assert.match(page, /Sua sessão expirou\. Entre novamente\./);
+  assert.match(page, /Nenhum pedido foi enviado\./);
+  assert.doesNotMatch(page, /Tente novamente\. Se persistir, avise o suporte\./);
   assert.doesNotMatch(page, /Resultado da alteração dos anúncios/);
   assert.doesNotMatch(page, /setBatchOpen\(/);
 });

@@ -45,7 +45,7 @@ export async function POST(request: Request) {
   for (const idsChunk of chunk(produtoIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
     const { data, error } = await serviceClient
       .from('produtos')
-      .select('id, sku, ml_item_id, custom_price, estoque, ml_status')
+      .select('id, sku, ml_item_id, ml_status')
       .in('id', idsChunk);
 
     if (error) {
@@ -101,8 +101,6 @@ export async function POST(request: Request) {
       produtoId,
       mlItemId,
       desiredStatus: targetStatus,
-      desiredPrice: typeof product.custom_price === 'number' ? product.custom_price : null,
-      desiredQuantity: typeof product.estoque === 'number' ? product.estoque : null,
       source: 'anuncios_batch_status',
       dedupePending: true,
       payload: {

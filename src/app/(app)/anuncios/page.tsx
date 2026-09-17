@@ -274,7 +274,13 @@ function statusResultFeedback(results: BatchResult[], targetStatus: 'ativo' | 'p
   }
   if (failed.length > 0) {
     const reason = results.length === 1
-      ? userSafeMessage(failed[0].error, 'Tente novamente. Se persistir, avise o suporte.')
+      ? failed[0].outcome === 'skipped_no_item'
+        ? 'Produto sem anúncio operacional vinculado.'
+        : failed[0].outcome === 'skipped_ineligible'
+          ? 'O anúncio não aceita esta alteração no estado atual.'
+          : failed[0].outboxId
+            ? userSafeMessage(failed[0].error, 'O Mercado Livre não confirmou a alteração. Confira o anúncio antes de tentar novamente.')
+            : userSafeMessage(failed[0].error, 'Não foi possível registrar a alteração. Nenhum pedido foi enviado.')
       : `${failed.length} de ${results.length} anúncios não foram alterados.`;
     return {
       tone: 'error' as const,
@@ -608,7 +614,7 @@ export default function AnunciosPage() {
       const payload = await response.json().catch(() => ({}));
       if (!response.ok && response.status !== 207) {
         if (response.status === 401) throw new Error('Sua sessão expirou. Entre novamente.');
-        throw new Error(userSafeMessage(payload?.error, 'Não foi possível enviar a alteração. Tente novamente.'));
+        throw new Error(userSafeMessage(payload?.error, 'Não foi possível registrar a alteração. Confira o anúncio antes de tentar novamente.'));
       }
       const results: BatchResult[] = (Array.isArray(payload.items) ? payload.items : []).map((item: BatchResult) => ({
         ...item,
@@ -625,7 +631,7 @@ export default function AnunciosPage() {
       notification.error({
         key: STATUS_NOTIFICATION_KEY,
         message: `Não foi possível ${targetStatus === 'pausado' ? 'pausar' : 'ativar'} ${records.length === 1 ? records[0].itemId : 'os anúncios'}`,
-        description: userSafeMessage(batchError?.message, 'Não foi possível enviar a alteração. Tente novamente.'),
+        description: userSafeMessage(batchError?.message, 'Não foi possível confirmar o registro. Confira o anúncio antes de tentar novamente.'),
         duration: 8,
       });
     }
