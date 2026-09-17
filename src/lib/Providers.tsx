@@ -6,7 +6,7 @@
 'use client';
 
 import '@ant-design/v5-patch-for-react-19';
-import { ConfigProvider, theme } from 'antd';
+import { App, ConfigProvider, theme } from 'antd';
 import { StyleProvider } from '@ant-design/cssinjs';
 import { benteviColors } from '@/theme/bentevi';
 
@@ -51,7 +51,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           },
         }}
       >
-        {children}
+        <App component={false}>{children}</App>
       </ConfigProvider>
     </StyleProvider>
   );
