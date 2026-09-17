@@ -35,6 +35,9 @@ test('provider raiz entrega confirmação e mensagens às páginas sem alterar o
   assert.equal(typeof context.modal?.confirm, 'function');
   assert.equal(typeof context.message?.success, 'function');
   assert.equal(typeof context.message?.error, 'function');
+  assert.equal(typeof context.notification?.info, 'function');
+  assert.equal(typeof context.notification?.success, 'function');
+  assert.equal(typeof context.notification?.error, 'function');
   assert.match(html, /conteúdo/);
   assert.doesNotMatch(html, /class="ant-app/);
 });

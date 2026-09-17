@@ -255,22 +255,51 @@ function formatPerformancePeriod(window: PerformanceWindow) {
   return `${format.format(start)} a ${format.format(end)}`;
 }
 
-function batchOutcomeLabel(outcome: string) {
-  if (outcome === 'done') return 'Concluído no ML';
-  if (outcome === 'processing') return 'Processando no ML';
-  if (outcome === 'queued') return 'Enfileirado';
-  if (outcome === 'already_target') return 'Já estava no estado';
-  if (outcome === 'unchanged') return 'Fila já existente';
-  if (outcome === 'skipped_no_item') return 'Sem anúncio operacional';
-  if (outcome === 'skipped_ineligible') return 'Estado não modificável';
-  return 'Falhou';
+const STATUS_NOTIFICATION_KEY = 'anuncios-status';
+
+function statusResultFeedback(results: BatchResult[], targetStatus: 'ativo' | 'pausado') {
+  const action = targetStatus === 'pausado' ? 'pausar' : 'ativar';
+  const completed = results.filter((result) => result.outcome === 'done' || result.outcome === 'already_target');
+  const pending = results.filter((result) => result.outboxId && !['done', 'failed'].includes(String(result.trackingStatus || '')));
+  const failed = results.filter((result) => result.outcome === 'failed' || result.outcome === 'skipped_no_item' || result.outcome === 'skipped_ineligible');
+  const item = results.length === 1 ? results[0].mlItemId || results[0].sku : null;
+
+  if (pending.length > 0) {
+    return {
+      tone: 'info' as const,
+      title: `${pending.length} anúncio${pending.length === 1 ? '' : 's'} aguardando confirmação`,
+      description: `Solicitação para ${action} registrada. Aguardando o Mercado Livre.`,
+      duration: 0,
+    };
+  }
+  if (failed.length > 0) {
+    const reason = results.length === 1
+      ? userSafeMessage(failed[0].error, 'Tente novamente. Se persistir, avise o suporte.')
+      : `${failed.length} de ${results.length} anúncios não foram alterados.`;
+    return {
+      tone: 'error' as const,
+      title: `Não foi possível ${action} ${item || (results.length === 1 ? 'o anúncio' : 'todos os anúncios')}`,
+      description: reason,
+      duration: 8,
+    };
+  }
+  return {
+    tone: 'success' as const,
+    title: results.every((result) => result.outcome === 'already_target')
+      ? `${results.length === 1 ? 'Anúncio já estava' : `${results.length} anúncios já estavam`} ${targetStatus === 'pausado' ? 'pausado' : 'ativo'}${results.length === 1 ? '' : 's'}`
+      : results.length === 1
+        ? `Anúncio ${targetStatus === 'pausado' ? 'pausado' : 'ativado'}`
+        : `${completed.length} anúncios ${targetStatus === 'pausado' ? 'pausados' : 'ativados'}`,
+    description: item || 'Alteração concluída.',
+    duration: 5,
+  };
 }
 
 export default function AnunciosPage() {
   const pricingRequest = useRef(0);
   const performanceRequest = useRef(0);
   const router = useRouter();
-  const { message, modal } = App.useApp();
+  const { message, modal, notification } = App.useApp();
   const [rows, setRows] = useState<ListingRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -301,7 +330,6 @@ export default function AnunciosPage() {
   const [newPrice, setNewPrice] = useState<number | null>(null);
   const [savingPrice, setSavingPrice] = useState(false);
   const [priceResults, setPriceResults] = useState<PriceResult[]>([]);
-  const [batchOpen, setBatchOpen] = useState(false);
   const [batchTarget, setBatchTarget] = useState<'ativo' | 'pausado' | null>(null);
   const [batchResults, setBatchResults] = useState<BatchResult[]>([]);
   const [syncJob, setSyncJob] = useState<SyncJob | null>(null);
@@ -568,9 +596,9 @@ export default function AnunciosPage() {
       message.warning('Selecione anúncios operacionais com produto vinculado.');
       return;
     }
-    setBatchOpen(true);
     setBatchTarget(targetStatus);
     setBatchResults([]);
+    notification.info({ key: STATUS_NOTIFICATION_KEY, message: 'Enviando alteração', description: 'Aguarde um momento.', duration: 0 });
     try {
       const response = await fetch('/api/anuncios/status-lote', {
         method: 'POST',
@@ -578,22 +606,30 @@ export default function AnunciosPage() {
         body: JSON.stringify({ produtoIds: productIds, targetStatus }),
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok && response.status !== 207) throw new Error(payload?.error || 'Falha ao alterar estado dos anúncios');
-      setBatchResults((Array.isArray(payload.items) ? payload.items : []).map((item: BatchResult) => ({
+      if (!response.ok && response.status !== 207) {
+        if (response.status === 401) throw new Error('Sua sessão expirou. Entre novamente.');
+        throw new Error(userSafeMessage(payload?.error, 'Não foi possível enviar a alteração. Tente novamente.'));
+      }
+      const results: BatchResult[] = (Array.isArray(payload.items) ? payload.items : []).map((item: BatchResult) => ({
         ...item,
-        trackingStatus: item.outboxId && item.outcome === 'queued' ? 'pending' : undefined,
-      })));
+        trackingStatus: item.outboxId && ['queued', 'unchanged'].includes(item.outcome) ? 'pending' : undefined,
+      }));
+      if (results.length === 0) throw new Error('Nenhum resultado recebido. Confira o anúncio antes de tentar novamente.');
+      setBatchResults(results);
       setSelectedRowKeys([]);
-      if (payload?.records?.failed > 0) message.warning('Parte do lote falhou. Confira os resultados.');
-      else message.success('Alteração enviada para os anúncios operacionais.');
+      const feedback = statusResultFeedback(results, targetStatus);
+      notification[feedback.tone]({ key: STATUS_NOTIFICATION_KEY, message: feedback.title, description: feedback.description, duration: feedback.duration });
       await fetchListings();
     } catch (batchError: any) {
-      setBatchResults([{ produtoId: '', sku: '', mlItemId: null, outcome: 'failed', outboxId: null, error: batchError?.message || 'Falha no lote' }]);
-      message.error(userSafeMessage(batchError?.message, 'Não foi possível alterar os anúncios. Tente novamente.'));
-    } finally {
-      setBatchTarget(null);
+      setBatchResults([]);
+      notification.error({
+        key: STATUS_NOTIFICATION_KEY,
+        message: `Não foi possível ${targetStatus === 'pausado' ? 'pausar' : 'ativar'} ${records.length === 1 ? records[0].itemId : 'os anúncios'}`,
+        description: userSafeMessage(batchError?.message, 'Não foi possível enviar a alteração. Tente novamente.'),
+        duration: 8,
+      });
     }
-  }, [fetchListings, message, visualReview]);
+  }, [fetchListings, message, notification, visualReview]);
 
   useEffect(() => {
     const pending = batchResults.filter((result) => (
@@ -610,7 +646,7 @@ export default function AnunciosPage() {
           return { outboxId: result.outboxId, status: String(payload.status || 'pending'), error: payload.last_error || null };
         }));
         if (cancelled) return;
-        setBatchResults((current) => current.map((result) => {
+        const updated = batchResults.map((result) => {
           const status = statuses.find((item) => item.outboxId === result.outboxId);
           if (!status) return result;
           return {
@@ -619,14 +655,21 @@ export default function AnunciosPage() {
             outcome: status.status === 'done' ? 'done' : status.status === 'failed' ? 'failed' : 'processing',
             error: status.error,
           };
-        }));
-        if (statuses.every((status) => ['done', 'failed'].includes(status.status))) await fetchListings();
+        });
+        setBatchResults(updated);
+        if (statuses.every((status) => ['done', 'failed'].includes(status.status))) {
+          if (batchTarget) {
+            const feedback = statusResultFeedback(updated, batchTarget);
+            notification[feedback.tone]({ key: STATUS_NOTIFICATION_KEY, message: feedback.title, description: feedback.description, duration: feedback.duration });
+          }
+          await fetchListings();
+        }
       } catch (trackingError: any) {
-        if (!cancelled) message.error(userSafeMessage(trackingError?.message, 'Não foi possível acompanhar as alterações. Tente novamente.'));
+        if (!cancelled) notification.warning({ key: STATUS_NOTIFICATION_KEY, message: 'Não foi possível confirmar a alteração', description: 'Confira o estado do anúncio antes de tentar novamente.', duration: 8 });
       }
     }, 2000);
     return () => { cancelled = true; window.clearTimeout(timer); };
-  }, [batchResults, fetchListings, message]);
+  }, [batchResults, batchTarget, fetchListings, notification]);
 
   const confirmStatus = useCallback((records: ListingRow[], targetStatus: 'ativo' | 'pausado') => {
     const operational = records.filter((row) => row.isOperational && row.productId);
@@ -923,8 +966,6 @@ export default function AnunciosPage() {
         </Spin>
       </div>}
     </Drawer>
-
-    <Drawer open={batchOpen} onClose={() => !batchTarget && setBatchOpen(false)} width="min(94vw, 720px)" title="Resultado da alteração dos anúncios"><div className={styles.drawerContent}>{batchTarget && <Alert type="info" showIcon message={`Enviando alteração para ${batchTarget}`} />}{!batchTarget && batchResults.length === 0 ? <Empty description="Nenhum resultado disponível" /> : <div className={styles.batchList}>{batchResults.map((result, index) => <div key={`${result.produtoId}-${index}`}><span>{result.sku || 'Produto não identificado'}</span><strong>{result.mlItemId || 'Anúncio não identificado'}</strong><Tag color={result.outcome === 'queued' || result.outcome === 'already_target' ? 'success' : result.outcome === 'failed' ? 'error' : 'warning'}>{batchOutcomeLabel(result.outcome)}</Tag>{result.error && <small>{userSafeMessage(result.error, 'Não foi possível concluir esta alteração.')}</small>}</div>)}</div>}</div></Drawer>
 
     <ProgressModal {...progressModalProps} />
   </div>;

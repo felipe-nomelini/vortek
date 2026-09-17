@@ -138,6 +138,14 @@ test('BNT-D11 altera status somente pelo anúncio operacional e relata cada item
   }
 });
 
+test('BNT-D11 mostra o resultado da alteração em uma notificação, sem abrir painel', () => {
+  assert.match(page, /const \{ message, modal, notification \} = App\.useApp\(\)/);
+  assert.match(page, /notification\[feedback\.tone\]\(\{ key: STATUS_NOTIFICATION_KEY/);
+  assert.match(page, /Sua sessão expirou\. Entre novamente\./);
+  assert.doesNotMatch(page, /Resultado da alteração dos anúncios/);
+  assert.doesNotMatch(page, /setBatchOpen\(/);
+});
+
 test('BNT-D11 acompanha atualização observada sem polling silencioso', () => {
   assert.match(page, /\/api\/sync\/anuncios\/job/);
   assert.match(page, /\/api\/sync\/anuncios\/status\?jobId/);
