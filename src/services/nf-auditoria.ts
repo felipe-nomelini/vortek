@@ -44,6 +44,7 @@ type AuditEvent =
   | 'dslite_reactivated_order_reused'
   | 'dslite_product_lookup_result'
   | 'dslite_create_order_failed'
+  | 'dslite_order_link_failed'
   | 'dslite_create_with_supplier_success'
   | 'dslite_create_with_supplier_failed'
   | 'dslite_create_without_supplier_fallback_success'

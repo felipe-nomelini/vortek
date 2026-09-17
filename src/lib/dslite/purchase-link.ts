@@ -6,6 +6,23 @@ export type DslitePedidoLinkCandidate = {
   ml_bundle_parent_item_id?: string | null;
 };
 
+/** Confirma que a gravação do vínculo alcançou todos os pedidos esperados. */
+export function hasPersistedDslitePedidoLinks(
+  rows: Array<{ id?: string | null; dslite_id?: string | null }> | null,
+  expectedPedidoIds: string[],
+  expectedDsliteId: string,
+): boolean {
+  const expectedIds = new Set(expectedPedidoIds.map(normalized).filter(Boolean));
+  if (!expectedIds.size || !normalized(expectedDsliteId) || !rows) return false;
+  const persistedIds = new Set(
+    rows
+      .filter((row) => normalized(row.dslite_id) === normalized(expectedDsliteId))
+      .map((row) => normalized(row.id)),
+  );
+  return persistedIds.size === expectedIds.size
+    && [...expectedIds].every((id) => persistedIds.has(id));
+}
+
 export type DslitePedidoLinkResolution = {
   safe: boolean;
   ids: string[];

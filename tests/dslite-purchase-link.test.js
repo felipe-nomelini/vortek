@@ -2,11 +2,20 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
+  hasPersistedDslitePedidoLinks,
   isDsliteRelinkBlockedByManualUnlink,
   resolveSafeReactivatedDsliteOrderReuse,
   resolveSafeDslitePedidoLinks,
   resolveSafeDslitePedidoMutation,
 } = require('../src/lib/dslite/purchase-link.ts');
+
+test('confirma somente o vínculo gravado em todos os pedidos esperados', () => {
+  assert.equal(hasPersistedDslitePedidoLinks([{ id: 'p1', dslite_id: '391293' }], ['p1'], '391293'), true);
+  assert.equal(hasPersistedDslitePedidoLinks([], ['p1'], '391293'), false);
+  assert.equal(hasPersistedDslitePedidoLinks([{ id: 'p1', dslite_id: null }], ['p1'], '391293'), false);
+  assert.equal(hasPersistedDslitePedidoLinks([{ id: 'p1', dslite_id: '391293' }], ['p1', 'p2'], '391293'), false);
+  assert.equal(hasPersistedDslitePedidoLinks([{ id: 'p1', dslite_id: '999999' }], ['p1'], '391293'), false);
+});
 
 test('bloqueia restauração do mesmo DSLite removido manualmente', () => {
   assert.equal(isDsliteRelinkBlockedByManualUnlink([

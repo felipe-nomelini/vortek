@@ -82,7 +82,7 @@ import {
   isDslitePlaceholderLabelSource,
   isDsliteProtectedExistingLabelError,
 } from "@/lib/dslite/label-state";
-import { resolveSafeReactivatedDsliteOrderReuse } from "@/lib/dslite/purchase-link";
+import { hasPersistedDslitePedidoLinks, resolveSafeReactivatedDsliteOrderReuse } from "@/lib/dslite/purchase-link";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import {
   filterOperationalDropshippingSupplierOffers,
@@ -4764,6 +4764,38 @@ async function runDsliteCreateJob(
       isMlLabelReleasePending &&
       isBkr1Supplier(fornecedorId, fornecedorNomeResolved),
     );
+    const persistDslitePedidoLink = async (values: Record<string, unknown>) => {
+      const { data: updatedPedidos, error: linkError } = await client
+        .from("pedidos")
+        .update(values as any)
+        .in("id", operationalPedidoIds)
+        .select("id,dslite_id");
+      if (!linkError && hasPersistedDslitePedidoLinks(
+        updatedPedidos,
+        operationalPedidoIds,
+        String(dsidAtual),
+      )) return true;
+
+      const message = `A compra #${dsidAtual} foi criada, mas não apareceu na venda. Confira o vínculo antes de continuar.`;
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        evento: "dslite_order_link_failed",
+        respostaMl: {
+          dsid: dsidAtual,
+          pedido_ids: operationalPedidoIds,
+          updated_pedido_ids: (updatedPedidos || []).map((row) => row.id),
+          error: linkError?.message || "Vínculo não confirmado em todos os pedidos",
+        },
+        statusResultante: "failed",
+      });
+      await setStep("set_supplier_dslite", "error", undefined, message);
+      state = "error";
+      result = { stage: "link_dslite_purchase", message, dsid: dsidAtual,
+        compra_id: compraAtual?.id || existingCompra?.id || null };
+      await syncJob();
+      return false;
+    };
     if (
       supplierPaymentMode === "prepaid_pix" &&
       !resumeAfterSupplierPayment &&
@@ -4781,9 +4813,7 @@ async function runDsliteCreateJob(
       const supplierPhoneDigits = String(
         (fornecedorCadastro as any)?.telefone || "",
       ).replace(/\D/g, "");
-      await client
-        .from("pedidos")
-        .update({
+      if (!await persistDslitePedidoLink({
           dslite_id: String(dsidAtual),
           dslite_status: pedidoStatusFinal,
           dslite_label_source: null,
@@ -4792,8 +4822,7 @@ async function runDsliteCreateJob(
           nfe_provider: selectedProvider,
           nfe_last_sync_at: now(),
           nfe_cfop: extractCfopsFromXml(xml)[0] || null,
-        })
-        .in("id", operationalPedidoIds);
+        })) return;
       await setStep(
         "set_supplier_dslite",
         "warning",
@@ -5478,9 +5507,7 @@ async function runDsliteCreateJob(
             ...clearSupplierLabelState(),
           };
 
-    await client
-      .from("pedidos")
-      .update({
+    if (!await persistDslitePedidoLink({
         dslite_id: String(dsidAtual),
         dslite_status: pedidoStatusFinal,
         nfe_chave: chaveAcesso || undefined,
@@ -5504,8 +5531,7 @@ async function runDsliteCreateJob(
         nfe_provider: selectedProvider,
         nfe_last_sync_at: now(),
         nfe_cfop: extractCfopsFromXml(xml)[0] || null,
-      })
-      .in("id", operationalPedidoIds);
+      })) return;
 
     result = {
       dsid: dsidAtual,
