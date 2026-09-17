@@ -17,6 +17,12 @@ pausa causada pela automação de estoque segue a regra de reativação ao volta
 estoque. A automação própria de preços e a criação em lote continuam nos gates
 específicos.
 
+Na republicação de um anúncio de catálogo, preserve o `catalog_product_id` da
+origem e confira o novo item e a descrição oficial por leitura. A descrição do
+catálogo é controlada pelo Mercado Livre; não tente substituí-la como se fosse
+um anúncio comum. Se o novo ID já foi capturado e a finalização falhar, retome
+somente a conferência: jamais envie outro POST de republicação.
+
 ## Histórico produtivo Bentevi — 13/09/2026
 
 O Bentevi está em produção em `app.bentevi.shop`, com o Supabase self-hosted
