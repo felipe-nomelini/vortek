@@ -101,7 +101,8 @@ function harness(options = {}) {
   }, rpc: async (name,args) => {
     if(name==='capture_pricing_created_item'){calls.push(['capture',args.p_item_id]);if(options.captureFailed)return {error:{message:'down'}};operation.item_id=args.p_item_id;return {data:null};}
     if(name==='transition_pricing_operation'){calls.push(['transition',args.p_state]);operation.state=args.p_state;return {data:{applied:true}};}
-    calls.push(['claim']); if(options.claimDenied)return {data:false}; operation.state='requested';return {data:true};
+    calls.push(['claim']); if(options.claimError)return {error:{code:'42702'}};
+    if(options.claimDenied)return {data:false}; operation.state='requested';return {data:true};
   } };
   const mod = load('src/services/pricing-dispatch.ts', {
     'server-only': {}, '@/lib/supabase': {createServiceClient:()=>client},
@@ -165,6 +166,11 @@ test('wrong account, changed evidence or lost claim cannot send', async () => {
     const h=harness(options);await assert.rejects(h.run());assert.ok(!h.calls.some(c=>c[0]==='PUT'));
   }
   const changed=harness({changed:true});assert.equal(await changed.run(),'failed');assert.ok(!changed.calls.some(c=>c[0]==='PUT'));
+});
+test('database claim failure keeps the remote relist unsent and exposes a safe error code', async () => {
+  const h=harness({creation:true,relist:true,claimError:true});
+  await assert.rejects(h.run(),/decision_dispatch_not_claimed:42702/);
+  assert.ok(!h.calls.some(c=>c[0]==='POST'));
 });
 test('worker separates approved operations before the unconditional legacy price block', () => {
   const source=fs.readFileSync('src/app/api/sync/anuncios/publish/route.ts','utf8');

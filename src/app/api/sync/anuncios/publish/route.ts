@@ -428,11 +428,19 @@ export async function POST(request: Request) {
         try {
           const state = await dispatchApprovedPricingOperation(client, outboxId, String(row.pricing_operation_id));
           if (state === 'confirmed') done++; else failed++;
-        } catch {
-          // Preserve the intent. Never downgrade an approved operation to the legacy writer.
-          warnings.push({ code: 'pricing_approved_dispatch_unavailable',
-            message: 'Operação aprovada aguarda conferência de acesso/evidências. Nenhum reenvio automático de preço.',
-            context: { outboxId } });
+        } catch (error) {
+          // O claim é único. Após um efeito incerto, o dispatcher só faz leitura; nunca reenvia.
+          const rawCode = error instanceof Error ? error.message : '';
+          const errorCode = /^[a-z][a-z0-9_]{2,80}(?::[A-Z0-9]{5})?$/.test(rawCode)
+            ? rawCode : 'pricing_dispatch_unavailable';
+          const deferred = await (client.from('anuncios_ml_outbox' as any).update({
+            status: 'retry', last_error: errorCode, attempts: Number(row.attempts || 0) + 1,
+            available_at: new Date(Date.now() + 60_000).toISOString(), updated_at: new Date().toISOString(),
+          } as any).eq('id', outboxId).eq('pricing_operation_id', String(row.pricing_operation_id)) as any);
+          if (deferred.error) throw new Error('manual_ml_dispatch_error_persistence_failed');
+          errors.push({ code: 'pricing_manual_dispatch_unavailable',
+            message: 'Operação manual não concluída; nenhuma nova publicação será enviada sem claim.',
+            context: { outboxId, errorCode } });
           retry++;
         }
         continue;

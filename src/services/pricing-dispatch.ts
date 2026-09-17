@@ -185,7 +185,10 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
       const claimed = await client.rpc('claim_manual_ml_dispatch' as any, {
         p_operation_id: operationId, p_fresh_evaluation_id: evaluationId,
       });
-      if (claimed.error || claimed.data !== true) throw new Error('decision_dispatch_not_claimed');
+      if (claimed.error || claimed.data !== true) {
+        const code = claimed.error?.code;
+        throw new Error(`decision_dispatch_not_claimed${typeof code === 'string' && /^[A-Z0-9]{5}$/.test(code) ? `:${code}` : ''}`);
+      }
     });
     // One origin item only; a 2xx is not proof that ML accepted/propagated the price.
     const creation = decision.context.operationKind === 'listing_create';
@@ -193,10 +196,11 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
     const mutationPath = relist
       ? '/items/' + encodeURIComponent(decision.context.preparation.sourceItemId) + '/relist'
       : creation ? '/items' : '/items/' + encodeURIComponent(operation.item_id!);
+    let sendFailure: unknown = null;
     const sent = await fetchMLResult<any>(mutationPath, {
       method: creation ? 'POST' : 'PUT', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(creation ? decision.context.preparation.payload : { price: operation.new_price_cents / 100 }),
-    }, transport).catch(() => null);
+    }, transport).catch(error => { sendFailure = error; return null; });
     if (creation && sent?.data?.id && /^MLB\d+$/.test(sent.data.id) && String(sent.data.seller_id) === sellerId) {
       const captured = await client.rpc('capture_pricing_created_item' as any, {
         p_operation_id: operationId, p_item_id: sent.data.id, p_seller_id: sellerId,
@@ -229,7 +233,7 @@ export async function dispatchApprovedPricingOperation(client: Client, outboxId:
     const freshOperation = await client.from('pricing_operations').select('*').eq('id', operationId).single();
     if (freshOperation.error || !freshOperation.data) throw new Error('decision_operation_unavailable');
     operation = freshOperation.data;
-    if (operation.state === 'prepared') throw new Error('decision_dispatch_not_claimed');
+    if (operation.state === 'prepared') throw sendFailure || new Error('decision_dispatch_not_claimed');
     if (['confirmed', 'failed'].includes(operation.state)) return finish(operation.state);
   }
   if (decision.context.operationKind === 'listing_create') {

@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { Alert } from 'antd';
 
 export default function ManualMlOperationStatus({ operationId }: { operationId: string }) {
-  const [operation, setOperation] = useState<{ state: string; item_id: string | null } | null>(null);
+  const [operation, setOperation] = useState<{ state: string; item_id: string | null;
+    delivery_status?: string | null } | null>(null);
   useEffect(() => {
     let active = true;
     let timer: number | undefined;
@@ -26,9 +27,13 @@ export default function ManualMlOperationStatus({ operationId }: { operationId: 
     return () => { active = false; if (timer) window.clearTimeout(timer); };
   }, [operationId]);
   const state = operation?.state;
-  return <Alert showIcon type={state === 'confirmed' ? 'success' : state === 'failed' || state === 'inconclusive' ? 'warning' : 'info'}
+  return <Alert showIcon type={state === 'confirmed' ? 'success' : state === 'failed' || state === 'inconclusive'
+    || operation?.delivery_status === 'retry' ? 'warning' : 'info'}
     message={state === 'confirmed' ? `Confirmado no Mercado Livre${operation?.item_id ? `: ${operation.item_id}` : ''}`
       : state === 'failed' ? 'Operação não concluída. Confira os dados do anúncio.'
         : state === 'inconclusive' ? 'Resultado incerto. Confira o anúncio no ML; o sistema não reenviará a ação.'
-          : 'Enviado. Aguardando conferência no Mercado Livre.'} />;
+          : state === 'prepared' && operation?.delivery_status === 'retry'
+            ? 'Ainda não enviado ao Mercado Livre. Houve uma falha no processamento; o sistema tentará novamente.'
+            : state === 'prepared' ? 'Confirmação recebida. Aguardando envio ao Mercado Livre.'
+              : 'Envio solicitado. Aguardando conferência no Mercado Livre.'} />;
 }
