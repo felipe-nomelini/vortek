@@ -35,4 +35,8 @@ A API de leitura do Easypanel confirmou `local/bentevi-prod` habilitado, fonte `
 
 Consulta SQL em transação somente leitura no PostgreSQL produtivo da `.162` confirmou os três agendadores `pg_cron` existentes inativos: dispatch central (job 2), publicação ML (job 3) e atualização de preço (job 4). Junto com a única réplica ativa e os serviços web antigos desabilitados, isso comprova um executor atual para os fluxos do núcleo Bentevi. A release documental acima fica registrada; nenhum banco ou serviço foi alterado nesta conferência.
 
-Para fechar o marco 7, ainda é necessário localizar evidência verificável do acompanhamento operacional diário dos primeiros sete dias, inclusive 12/09, com ocorrências e revalidações. Não tratar a reconstrução retrospectiva como monitoramento executado em cada dia. Até lá, manter aberta somente a caixa desse acompanhamento no recorte do marco 7.
+### Aceite do acompanhamento — 17/09/2026, aproximadamente 15h20 BRT
+
+O responsável respondeu **“Sim”** à pergunta explícita sobre ter acompanhado diariamente a operação Bentevi de 09 a 16/09, inclusive 12/09, e pediu o fechamento das tarefas para avançar no checklist. Esta é a fonte do aceite operacional do acompanhamento. Ele não indicou onde estão os registros de saúde, ocorrências e revalidações de cada dia. A tabela retrospectiva acima continua sendo apenas prova de atividade preservada; não foi convertida em supostos registros contemporâneos. A ausência desses registros segue como limitação de rastreabilidade, sem apagar ocorrências e correções já documentadas nas ações específicas.
+
+Com a confirmação expressa do responsável, o ciclo real comprovado e as validações técnicas de versão, release e executor, o marco 7 do **núcleo operacional** fica concluído em 17/09/2026. Este aceite não declara concluídas as capacidades adiadas nem os demais gates do Item 17.
