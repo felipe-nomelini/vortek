@@ -153,7 +153,7 @@ export async function GET(request: Request) {
         const chunk = dsids.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE);
         const { data, error } = await client
           .from('pedidos')
-          .select('id,dslite_id,numero,ml_order_id,ml_pack_id,ml_fiscal_release_at,dslite_label_source,label_type,label_delivery_channel,label_delivered_at,snapshot_source,nota_fiscal_emitida,nfe_status')
+          .select('id,dslite_id,numero,ml_order_id,ml_pack_id,buyer_ml_id,ml_fiscal_release_at,dslite_label_source,label_type,label_delivery_channel,label_delivered_at,snapshot_source,nota_fiscal_emitida,nfe_status')
           .in('dslite_id', chunk)
           .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null');
 
@@ -235,6 +235,26 @@ export async function GET(request: Request) {
     }
     const produtoPorId = new Map(produtos.map((produto: any) => [String(produto.id), produto]));
 
+    const buyerMlIds = Array.from(new Set(
+      Array.from(pedidoPorDsliteId.values())
+        .map((pedido: any) => String(pedido.buyer_ml_id || '').trim())
+        .filter(Boolean),
+    ));
+    const clientes: Array<{ id: string; nome: string | null; ml_id: string | null }> = [];
+    for (let index = 0; index < buyerMlIds.length; index += SUPABASE_IN_FILTER_CHUNK_SIZE) {
+      const { data, error } = await client
+        .from('clientes')
+        .select('id,nome,ml_id')
+        .in('ml_id', buyerMlIds.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE));
+
+      if (error) {
+        console.error('[api/compras] Erro ao buscar clientes vinculados:', error);
+        return NextResponse.json({ error: 'Falha ao consultar clientes vinculados' }, { status: 500 });
+      }
+      clientes.push(...(data || []));
+    }
+    const clientePorMlId = new Map(clientes.map((cliente) => [String(cliente.ml_id), cliente]));
+
     const pedidoIds = Array.from(new Set(
       Array.from(pedidoPorDsliteId.values())
         .map((pedido: any) => String(pedido.id || '').trim())
@@ -266,6 +286,7 @@ export async function GET(request: Request) {
       const pedido = pedidoPorDsliteId.get(String(item.dsid));
       const oferta = ofertaPorId.get(String(item.produto_fornecedor_oferta_id || ''));
       const produto = oferta ? produtoPorId.get(String(oferta.produto_id || '')) : null;
+      const cliente = clientePorMlId.get(String(pedido?.buyer_ml_id || ''));
       const releaseAt = pedido?.ml_fiscal_release_at ? new Date(pedido.ml_fiscal_release_at) : null;
       const bkr1PixDeferred = Boolean(
         isBkr1Supplier(item.fornecedor_id, item.fornecedor_nome)
@@ -287,6 +308,9 @@ export async function GET(request: Request) {
         pedido_label_type: pedido?.label_type ?? null,
         pedido_label_delivery_channel: pedido?.label_delivery_channel ?? null,
         pedido_label_delivered_at: pedido?.label_delivered_at ?? null,
+        cliente_id: cliente?.id || null,
+        cliente_nome: cliente?.nome || null,
+        produto_bentevi_id: produto?.id ?? null,
         produto_sku_bentevi: produto?.sku ?? null,
         produto_sku_fornecedor: oferta?.sku_fornecedor || oferta?.sku_oferta || null,
         produto_dslite_id: oferta?.dslite_produto_id ?? null,

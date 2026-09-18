@@ -84,6 +84,15 @@
   line-height: 1.45;
 }
 
+.productName a {
+  color: inherit;
+}
+
+.productName a:hover,
+.productName a:focus-visible {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
 .metadataGrid,
 .referenceGrid {
   display: grid;
@@ -101,6 +110,123 @@
 .referenceGrid strong :global(.ant-typography) {
   color: inherit;
   font-weight: inherit;
+}
+
+.linkWithCopy {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.paymentSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 18px 24px;
+  padding: 20px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.paymentSummary > div,
+.paymentState {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 0;
+}
+
+.eyebrow,
+.paymentMeta,
+.detailGrid span {
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 12px;
+}
+
+.paymentAmount {
+  color: var(--bentevi-primary, #ffbd0e);
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.paymentState :global(.ant-tag) {
+  margin: 0;
+}
+
+.guidance :global(.ant-alert-message) {
+  font-size: 13px;
+}
+
+.guidance :global(.ant-alert-description) {
+  font-size: 12px;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+  min-width: 0;
+}
+
+.detailGrid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.detailGrid strong {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.fiscalSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.fiscalSection h3 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.fiscalSection .detailGrid {
+  width: 100%;
+}
+
+.detailGrid .fiscalState {
+  font-size: 15px;
+}
+
+.longValue :global(.ant-typography) {
+  color: inherit;
+  font-weight: inherit;
+  overflow-wrap: anywhere;
 }
 
 .itemList {
@@ -140,11 +266,17 @@
 @media (max-width: 440px) {
   .amounts,
   .metadataGrid,
-  .referenceGrid {
+  .referenceGrid,
+  .detailGrid {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .amounts {
     gap: 14px;
+  }
+
+  .paymentSummary,
+  .fiscalSection {
+    padding: 16px;
   }
 }

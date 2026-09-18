@@ -1,10 +1,10 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import {
   Alert,
   Button,
-  Descriptions,
   Drawer,
   List,
   Space,
@@ -57,9 +57,12 @@ export interface CompraOperacional {
   fornecedor_id: string | null;
   destinatario_nome: string | null;
   destinatario_documento: string | null;
+  cliente_id: string | null;
+  cliente_nome: string | null;
   produto_descricao: string | null;
   produto_fornecedor_oferta_id: string | null;
   produto_sku: string | null;
+  produto_bentevi_id: string | null;
   produto_sku_bentevi: string | null;
   produto_sku_fornecedor: string | null;
   produto_dslite_id: string | null;
@@ -126,6 +129,13 @@ export function getPurchaseSaleReference(purchase: CompraOperacional): string | 
   return String(purchase.pedido_ml_pack_id || purchase.pedido_ml_order_id || '').trim() || null;
 }
 
+export function getPurchaseDsliteProductUrl(purchase: CompraOperacional): string | null {
+  const supplierId = String(purchase.fornecedor_id || '').trim();
+  const productId = String(purchase.produto_dslite_id || '').trim();
+  if (!/^\d+$/.test(supplierId) || !/^\d+$/.test(productId)) return null;
+  return `https://app.dslite.com.br/modules/admin/Produto/visualizar/${supplierId}/7945/${productId}`;
+}
+
 export default function CompraDetailsDrawer({
   purchase,
   open,
@@ -138,6 +148,18 @@ export default function CompraDetailsDrawer({
   onOpenDanfe,
 }: CompraDetailsDrawerProps) {
   const saleReference = purchase ? getPurchaseSaleReference(purchase) : null;
+  const mlSaleUrl = purchase && saleReference && !purchase.is_homologation_fixture
+    ? `https://www.mercadolivre.com.br/vendas/${encodeURIComponent(saleReference)}/detalhe`
+    : null;
+  const dsliteProductUrl = purchase && !purchase.is_homologation_fixture
+    ? getPurchaseDsliteProductUrl(purchase)
+    : null;
+  const benteviProductUrl = purchase?.produto_bentevi_id && !purchase.is_homologation_fixture
+    ? `/produtos/${encodeURIComponent(purchase.produto_bentevi_id)}`
+    : null;
+  const customerUrl = purchase?.cliente_id && !purchase.is_homologation_fixture
+    ? `/clientes/${encodeURIComponent(purchase.cliente_id)}`
+    : null;
   const saleItems = purchase?.itens_venda || [];
 
   const overview = purchase ? (
@@ -162,21 +184,38 @@ export default function CompraDetailsDrawer({
           <h3 id="purchase-product-title">Produto vinculado à compra</h3>
           <span className={styles.quantity}>Quantidade comprada: {purchase.quantidade || 1}</span>
         </div>
-        <p className={styles.productName}>{purchase.produto_descricao || 'Produto não informado'}</p>
+        <p className={styles.productName}>{benteviProductUrl
+          ? <Link href={benteviProductUrl}>{purchase.produto_descricao || 'Produto não informado'}</Link>
+          : purchase.produto_descricao || 'Produto não informado'}</p>
         <div className={styles.metadataGrid}>
-          <div><span>SKU Bentevi</span><strong>{purchase.produto_sku_bentevi || 'Não vinculado'}</strong></div>
-          <div><span>SKU do fornecedor</span><strong>{purchase.produto_sku_fornecedor || 'Não vinculado'}</strong></div>
-          <div><span>ID do produto DSLite</span><strong>{purchase.produto_dslite_id || purchase.produto_sku || '—'}</strong></div>
+          <div><span>SKU Bentevi</span><strong>{benteviProductUrl && purchase.produto_sku_bentevi
+            ? <Link href={benteviProductUrl}>{purchase.produto_sku_bentevi}</Link>
+            : purchase.produto_sku_bentevi || 'Não vinculado'}</strong></div>
+          <div><span>SKU do fornecedor</span><strong>{dsliteProductUrl && purchase.produto_sku_fornecedor
+            ? <a href={dsliteProductUrl} target="_blank" rel="noopener noreferrer">{purchase.produto_sku_fornecedor}</a>
+            : purchase.produto_sku_fornecedor || 'Não vinculado'}</strong></div>
+          <div><span>ID do produto DSLite</span><strong>{dsliteProductUrl
+            ? <a href={dsliteProductUrl} target="_blank" rel="noopener noreferrer">{purchase.produto_dslite_id}</a>
+            : purchase.produto_dslite_id || purchase.produto_sku || '—'}</strong></div>
         </div>
       </section>
 
       <section className={styles.section} aria-labelledby="purchase-sale-title">
         <h3 id="purchase-sale-title">Relação com a venda</h3>
         <div className={styles.referenceGrid}>
-          <div><span>Pack ML</span><strong>{purchase.pedido_ml_pack_id ? <Text copyable={{ text: purchase.pedido_ml_pack_id }}>#{purchase.pedido_ml_pack_id}</Text> : '—'}</strong></div>
-          <div><span>Venda no Mercado Livre</span><strong>{purchase.pedido_ml_order_id ? <Text copyable={{ text: purchase.pedido_ml_order_id }}>#{purchase.pedido_ml_order_id}</Text> : '—'}</strong></div>
+          <div><span>Pack ML</span><strong>{purchase.pedido_ml_pack_id ? <span className={styles.linkWithCopy}>{mlSaleUrl
+            ? <a href={mlSaleUrl} target="_blank" rel="noopener noreferrer">#{purchase.pedido_ml_pack_id}</a>
+            : `#${purchase.pedido_ml_pack_id}`}<Text copyable={{ text: purchase.pedido_ml_pack_id }} /></span> : '—'}</strong></div>
+          <div><span>Venda no Mercado Livre</span><strong>{purchase.pedido_ml_order_id ? <span className={styles.linkWithCopy}>{mlSaleUrl
+            ? <a href={mlSaleUrl} target="_blank" rel="noopener noreferrer">#{purchase.pedido_ml_order_id}</a>
+            : `#${purchase.pedido_ml_order_id}`}<Text copyable={{ text: purchase.pedido_ml_order_id }} /></span> : '—'}</strong></div>
           <div><span>Número interno Bentevi</span><strong>{purchase.pedido_vendas_numero ? <Text copyable={{ text: String(purchase.pedido_vendas_numero) }}>#{purchase.pedido_vendas_numero}</Text> : '—'}</strong></div>
-          <div><span>Destinatário</span><strong>{purchase.destinatario_nome || '—'}</strong></div>
+          {purchase.cliente_nome && <div><span>Cliente</span><strong>{customerUrl
+            ? <Link href={customerUrl}>{purchase.cliente_nome}</Link>
+            : purchase.cliente_nome}</strong></div>}
+          {(!purchase.cliente_nome || purchase.cliente_nome.trim().toLocaleLowerCase('pt-BR') !== String(purchase.destinatario_nome || '').trim().toLocaleLowerCase('pt-BR')) && (
+            <div><span>Destinatário</span><strong>{purchase.destinatario_nome || '—'}</strong></div>
+          )}
           <div><span>Documento</span><strong>{purchase.destinatario_documento || '—'}</strong></div>
         </div>
       </section>
@@ -205,9 +244,25 @@ export default function CompraDetailsDrawer({
   ) : null;
 
   const payment = purchase ? (
-    <Space direction="vertical" size={16} style={{ width: '100%' }}>
+    <div className={styles.tabContent}>
+      <section className={styles.paymentSummary} aria-label="Pagamento ao fornecedor">
+        <div>
+          <span className={styles.eyebrow}>Pagamento ao fornecedor</span>
+          <strong className={styles.paymentAmount}>
+            {purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}
+          </strong>
+          <span className={styles.paymentMeta}>
+            {paymentModeLabel(purchase.supplier_payment_mode)} · Registrado em {formatDateTime(purchase.supplier_payment_confirmed_at)}
+          </span>
+        </div>
+        <div className={styles.paymentState}>
+          <span className={styles.eyebrow}>Situação na Bentevi</span>
+          {paymentStatusTag(purchase.supplier_payment_status)}
+        </div>
+      </section>
       {purchase.supplier_payment_mode === 'prepaid_pix' && (
         <Alert
+          className={styles.guidance}
           type="info"
           showIcon
           message="A Bentevi não realiza a transferência"
@@ -216,6 +271,7 @@ export default function CompraDetailsDrawer({
       )}
       {purchase.supplier_payment_mode === 'balance_account' && (
         <Alert
+          className={styles.guidance}
           type="info"
           showIcon
           message="Conta-saldo aposentada"
@@ -229,61 +285,54 @@ export default function CompraDetailsDrawer({
           message="O registro do PIX aguarda a etiqueta real do Mercado Livre"
         />
       )}
-      <Descriptions size="small" bordered column={{ xs: 1, sm: 2 }}>
-        <Descriptions.Item label="Modalidade">{paymentModeLabel(purchase.supplier_payment_mode)}</Descriptions.Item>
-        <Descriptions.Item label="Situação na Bentevi">{paymentStatusTag(purchase.supplier_payment_status)}</Descriptions.Item>
-        {purchase.supplier_settlement_id && <Descriptions.Item label="Liquidação consolidada">#{purchase.supplier_settlement_id.slice(0, 8)}</Descriptions.Item>}
-        <Descriptions.Item label="Valor do fornecedor">
-          {purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}
-        </Descriptions.Item>
-        <Descriptions.Item label="Registrado em">{formatDateTime(purchase.supplier_payment_confirmed_at)}</Descriptions.Item>
-        <Descriptions.Item label="Comprovante">
-          {purchase.supplier_settlement_id ? 'Consulte na liquidação' : purchase.supplier_payment_receipt_path || purchase.supplier_payment_receipt_url ? 'Anexado' : 'Não anexado'}
-        </Descriptions.Item>
-        <Descriptions.Item label="Referência">{purchase.supplier_payment_reference || '—'}</Descriptions.Item>
-        <Descriptions.Item label="Observações" span={2}>{purchase.supplier_payment_notes || '—'}</Descriptions.Item>
-      </Descriptions>
-    </Space>
+      <section className={styles.section} aria-labelledby="purchase-payment-detail-title">
+        <h3 id="purchase-payment-detail-title">Registro do pagamento</h3>
+        <div className={styles.detailGrid}>
+          <div><span>Comprovante</span><strong>{purchase.supplier_settlement_id
+            ? 'Consulte na liquidação'
+            : purchase.supplier_payment_receipt_path || purchase.supplier_payment_receipt_url ? 'Anexado' : 'Não anexado'}</strong></div>
+          <div><span>Referência</span><strong>{purchase.supplier_payment_reference || '—'}</strong></div>
+          {purchase.supplier_settlement_id && <div><span>Liquidação consolidada</span><strong>#{purchase.supplier_settlement_id.slice(0, 8)}</strong></div>}
+          <div className={styles.fullWidth}><span>Observações</span><strong>{purchase.supplier_payment_notes || '—'}</strong></div>
+        </div>
+      </section>
+    </div>
   ) : null;
 
   const fiscalAndShipping = purchase ? (
-    <Space direction="vertical" size={20} style={{ width: '100%' }}>
-      <Descriptions title="Fornecedor / DSLite" size="small" bordered column={{ xs: 1, sm: 2 }}>
-        <Descriptions.Item label="Nota do fornecedor">{purchase.nf_numero || 'Não informada'}</Descriptions.Item>
-        <Descriptions.Item label="Status da compra DSLite">{formatStatus(purchase.status_dslite)}</Descriptions.Item>
-        <Descriptions.Item label="Chave da nota" span={2}>{purchase.nf_chave || '—'}</Descriptions.Item>
-        <Descriptions.Item label="Código de rastreio" span={2}>{purchase.rastreio || '—'}</Descriptions.Item>
-      </Descriptions>
+    <div className={styles.tabContent}>
+      <section className={styles.fiscalSection} aria-labelledby="purchase-supplier-fiscal-title">
+        <h3 id="purchase-supplier-fiscal-title">Fornecedor / DSLite</h3>
+        <div className={styles.detailGrid}>
+          <div><span>Status da compra DSLite</span><strong className={styles.fiscalState}>{formatStatus(purchase.status_dslite)}</strong></div>
+          <div><span>Nota do fornecedor</span><strong>{purchase.nf_numero || 'Não informada'}</strong></div>
+          <div className={styles.fullWidth}><span>Chave da nota</span><strong className={styles.longValue}>{purchase.nf_chave
+            ? <Text copyable={{ text: purchase.nf_chave }}>{purchase.nf_chave}</Text> : '—'}</strong></div>
+          <div className={styles.fullWidth}><span>Código de rastreio</span><strong>{purchase.rastreio || '—'}</strong></div>
+        </div>
+        {purchase.rastreio && <Button icon={<TruckOutlined />} onClick={() => onTrack(purchase)}>Rastrear compra</Button>}
+      </section>
 
-      <Descriptions title="Venda / Bentevi-Brasil NFe" size="small" bordered column={{ xs: 1, sm: 2 }}>
-        <Descriptions.Item label="Estado fiscal">{formatStatus(purchase.pedido_nfe_status)}</Descriptions.Item>
-        <Descriptions.Item label="DANFE">{purchase.pedido_nota_fiscal_emitida ? 'Disponível' : 'Não disponível'}</Descriptions.Item>
-      </Descriptions>
-
-      <Space wrap>
-        {purchase.pedido_nota_fiscal_emitida && purchase.pedido_vendas_id && (
-          <Button
-            icon={<FilePdfOutlined />}
-            disabled={purchase.is_homologation_fixture}
-            onClick={() => onOpenDanfe(purchase)}
-          >
-            Abrir DANFE da venda
-          </Button>
-        )}
-        {purchase.rastreio && (
-          <Button icon={<TruckOutlined />} onClick={() => onTrack(purchase)}>Rastrear compra</Button>
-        )}
-        {saleReference && (
-          <Button
-            icon={<LinkOutlined />}
-            disabled={purchase.is_homologation_fixture}
-            onClick={() => onOpenSale(purchase)}
-          >
-            Abrir venda no ML
-          </Button>
-        )}
-      </Space>
-    </Space>
+      <section className={styles.fiscalSection} aria-labelledby="purchase-sale-fiscal-title">
+        <h3 id="purchase-sale-fiscal-title">Venda / Bentevi-Brasil NFe</h3>
+        <div className={styles.detailGrid}>
+          <div><span>Estado fiscal</span><strong className={styles.fiscalState}>{formatStatus(purchase.pedido_nfe_status)}</strong></div>
+          <div><span>DANFE</span><strong>{purchase.pedido_nota_fiscal_emitida ? 'Disponível' : 'Não disponível'}</strong></div>
+        </div>
+        <Space wrap>
+          {purchase.pedido_nota_fiscal_emitida && purchase.pedido_vendas_id && (
+            <Button icon={<FilePdfOutlined />} disabled={purchase.is_homologation_fixture} onClick={() => onOpenDanfe(purchase)}>
+              Abrir DANFE da venda
+            </Button>
+          )}
+          {saleReference && (
+            <Button icon={<LinkOutlined />} disabled={purchase.is_homologation_fixture} onClick={() => onOpenSale(purchase)}>
+              Abrir venda no ML
+            </Button>
+          )}
+        </Space>
+      </section>
+    </div>
   ) : null;
 
   return (
