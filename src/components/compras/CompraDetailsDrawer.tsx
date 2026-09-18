@@ -252,7 +252,8 @@ export default function CompraDetailsDrawer({
             {purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}
           </strong>
           <span className={styles.paymentMeta}>
-            {paymentModeLabel(purchase.supplier_payment_mode)} · Registrado em {formatDateTime(purchase.supplier_payment_confirmed_at)}
+            {paymentModeLabel(purchase.supplier_payment_mode)}
+            {purchase.supplier_payment_confirmed_at && ` · Registrado em ${formatDateTime(purchase.supplier_payment_confirmed_at)}`}
           </span>
         </div>
         <div className={styles.paymentState}>

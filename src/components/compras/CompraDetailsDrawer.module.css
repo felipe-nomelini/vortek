@@ -86,6 +86,9 @@
 
 .productName a {
   color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--bentevi-primary, #ffbd0e);
+  text-underline-offset: 3px;
 }
 
 .productName a:hover,
