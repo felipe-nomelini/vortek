@@ -19,6 +19,7 @@ import {
   upsertInvoiceDataMLByShipment,
 } from "@/services/integration";
 import { createServiceClient } from "@/lib/supabase";
+import { createEvolusomPurchase } from "@/services/evolusom-purchase";
 import { isValidCnpj } from "@/lib/fiscal/cnpj.js";
 import { clearSupplierLabelState, supplierDsliteLabelState } from "@/lib/dslite/supplier-label-state";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
@@ -169,6 +170,16 @@ async function confirmSupplierStockWithDslite(params: {
       stock: null,
       lastSyncAt: null,
       reason: "missing_identity",
+    };
+  }
+
+  if (fornecedorId === '133' && process.env.EVOLUSOM_DIRECT_ENABLED === 'true') {
+    const stock = Math.max(0, Math.trunc(Number(offer?.estoque || 0)));
+    return {
+      ok: stock >= requiredQuantity && stock > 0,
+      stock,
+      lastSyncAt: String(offer?.last_sync_at || ''),
+      reason: stock <= 0 ? 'zero_stock' : stock < requiredQuantity ? 'insufficient_stock' : 'confirmed',
     };
   }
 
@@ -3825,7 +3836,14 @@ async function runDsliteCreateJob(
       return;
     }
 
-    if (chaveAcesso && !(resumeExistingDsliteOrder && existingDsliteId)) {
+    const preliminarySupplier = process.env.EVOLUSOM_DIRECT_ENABLED === 'true'
+      ? await resolvePedidoSupplierOffer({ client, sku: extrairSkuDoXml(xml) || '' })
+      : null;
+    const preliminaryQuantity = extractNfeProductLines(xml || '')
+      .find((line) => line.sku === extrairSkuDoXml(xml || ''))?.quantity || extractFirstItemQuantityFromXml(xml);
+    const evolusomDirectCandidate = String(preliminarySupplier?.offer?.dslite_fornecedor_id || '') === '133'
+      && Number(preliminarySupplier?.offer?.estoque || 0) >= preliminaryQuantity;
+    if (chaveAcesso && !(resumeExistingDsliteOrder && existingDsliteId) && !evolusomDirectCandidate) {
       const existente = await consultarPedidoPorChaveAcesso(chaveAcesso);
       if (existente) {
         if (existente.cancelado) {
@@ -4204,6 +4222,21 @@ async function runDsliteCreateJob(
           }
         }
 
+        if (fornecedorId === '133' && process.env.EVOLUSOM_DIRECT_ENABLED === 'true') {
+          const supplierSku = String(lineOffer?.dslite_produto_id || '').trim();
+          if (!supplierSku || supplierSku !== removerPrefixoSku(line.sku)) {
+            productLineError = `SKU Evolusom divergente para ${line.sku}`;
+            break;
+          }
+          resolvedDsliteProducts.push({
+            sku: line.sku,
+            quantity: line.quantity,
+            offer: lineOffer,
+            product: { produtoid: supplierSku, produtoid_empresa: supplierSku, titulo: lineOffer?.produto_nome || line.sku },
+            lookupMethod: 'evolusom_direct',
+          });
+          continue;
+        }
         const lineLookup = await resolverProdutoMapeadoDslite({
           fornecedorId,
           dsliteProdutoId:
@@ -4382,6 +4415,62 @@ async function runDsliteCreateJob(
         "warning",
         "Etapa não executada: aguardando etiqueta real do Mercado Livre",
       );
+    }
+
+    if (fornecedorId === '133' && process.env.EVOLUSOM_DIRECT_ENABLED === 'true') {
+      for (const step of steps) {
+        if (step.key === 'find_product_dslite') step.label = 'Confirmando produto da Evolusom';
+        if (step.key === 'create_order_dslite') step.label = 'Criando pedido na Evolusom';
+        if (step.key === 'set_supplier_dslite') step.label = 'Vinculando compra à venda';
+        if (step.key === 'set_carrier_dslite') step.label = 'Configurando transporte Evolusom';
+        if (step.key === 'send_label_dslite') step.label = 'Etiqueta real por WhatsApp';
+      }
+      await setStep('create_order_dslite', 'loading', 'Criando pedido direto na Evolusom');
+      const directResult = await createEvolusomPurchase({
+        pedidoId,
+        orderIds: operationalPedidoIds,
+        xml,
+        placeholder: usePlaceholderLabel,
+        supplierPaymentMode,
+        products: resolvedDsliteProducts.map((line) => ({
+          sku: String(line.product?.produtoid || ''),
+          quantity: line.quantity,
+          cost: Number(line.offer?.custo || 0),
+          offerId: String(line.offer?.id || '') || null,
+        })),
+      });
+      const message = directResult.state === 'created'
+        ? `Pedido #${directResult.orderId} criado diretamente na Evolusom`
+        : directResult.reason;
+      const directPaymentPending = directResult.state === 'created' && supplierPaymentMode === 'prepaid_pix';
+      const { data: supplierPaymentContact } = directPaymentPending
+        ? await client.from('fornecedores').select('telefone,supplier_pix_key').eq('dslite_id', '133').maybeSingle()
+        : { data: null };
+      await setStep('create_order_dslite', directResult.state === 'created' ? 'success' : 'warning', message);
+      if (directResult.state === 'created') {
+        await completeAsSkipped('set_supplier_dslite', 'compra vinculada diretamente à venda');
+        await completeAsSkipped('set_carrier_dslite', 'transporte informado no pedido triangular');
+        if (!usePlaceholderLabel) await completeAsSkipped('download_label_ml', 'etiqueta real já disponível');
+        await setStep('send_label_dslite', usePlaceholderLabel ? 'warning' : 'success',
+          usePlaceholderLabel ? 'Enviar etiqueta real pelo WhatsApp após liberação do ML' : 'Etiqueta real informada à Evolusom');
+      }
+      state = directPaymentPending || directResult.state !== 'created' ? 'warning' : 'success';
+      result = {
+        stage: directPaymentPending ? 'await_supplier_payment' : directResult.state === 'created' ? 'evolusom_order_created' : 'evolusom_order_pending',
+        message,
+        evolusom_order_id: directResult.state === 'created' ? directResult.orderId : null,
+        compra_id: directResult.state === 'created' ? directResult.purchaseId : null,
+        supplier_payment_mode: supplierPaymentMode,
+        supplier_payment_status: directPaymentPending ? 'pending' : null,
+        supplier_payment_amount: supplierPaymentAmount,
+        fornecedor_nome: fornecedorNomeResolved || 'Evolusom',
+        supplier_pix_key: supplierPaymentContact?.supplier_pix_key || null,
+        supplier_pix_key_missing: directPaymentPending && !supplierPaymentContact?.supplier_pix_key,
+        supplier_phone_missing: directPaymentPending && !supplierPaymentContact?.telefone,
+        placeholder_label: usePlaceholderLabel,
+      };
+      await syncJob();
+      return;
     }
 
     let pedidoStatusFinal = reactivatedDsliteStatus || "criado";

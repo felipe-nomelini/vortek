@@ -154,6 +154,7 @@ export function buildInternalWhatsappMessage(input: {
 
 export function buildSupplierPaymentWhatsapp(input: {
   dsliteId: unknown;
+  providerLabel?: string;
   mlOrderId?: unknown;
   saleId?: unknown;
   product?: unknown;
@@ -171,7 +172,7 @@ export function buildSupplierPaymentWhatsapp(input: {
     `Olá! O pagamento do pedido *#${cleanSingleLine(input.dsliteId)}* foi confirmado.`,
     "",
     "*Pedido*",
-    `*DSLite:* #${cleanSingleLine(input.dsliteId)}`,
+    `*${cleanSingleLine(input.providerLabel || 'DSLite')}:* #${cleanSingleLine(input.dsliteId)}`,
     input.mlOrderId ? `*Venda Mercado Livre:* #${cleanSingleLine(input.mlOrderId)}` : null,
     input.saleId ? `*Venda Bentevi:* #${cleanSingleLine(input.saleId)}` : null,
     input.product ? `*Produto:* ${cleanSingleLine(input.product)}` : null,
@@ -192,6 +193,7 @@ export function buildSupplierPaymentWhatsapp(input: {
 
 export function buildSupplierLabelWhatsapp(input: {
   dsliteId: unknown;
+  providerLabel?: string;
   labelUrl: unknown;
   invoiceNumber?: unknown;
   nfeKey?: unknown;
@@ -219,7 +221,7 @@ export function buildSupplierLabelWhatsapp(input: {
     labelUrl,
     "",
     "*Pedido*",
-    `*DSLite:* #${cleanSingleLine(input.dsliteId)}`,
+    `*${cleanSingleLine(input.providerLabel || 'DSLite')}:* #${cleanSingleLine(input.dsliteId)}`,
     input.mlOrderId ? `*Venda Mercado Livre:* #${cleanSingleLine(input.mlOrderId)}` : null,
     input.shipmentId ? `*Envio Mercado Livre:* ${cleanSingleLine(input.shipmentId)}` : null,
     input.product ? `*Produto:* ${cleanSingleLine(input.product)}` : null,

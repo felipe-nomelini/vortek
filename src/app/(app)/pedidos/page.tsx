@@ -130,6 +130,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     lucro: item.lucro ?? null,
     profit_pending: Boolean(item.operational_profit_pending) || (Array.isArray(item.snapshot_pendencias) && item.snapshot_pendencias.some((value) => ['lucro_pendente_frete', 'lucro_pendente_produto'].includes(String(value)))),
     dslite_id: isValidDsliteId(item.dslite_id),
+    evolusom_order_id: item.evolusom_order_id || null,
     dslite_status: item.dslite_status,
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
     dslite_label_source: item.dslite_label_source || null,
@@ -193,6 +194,7 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   const can = (permission?: VortekPermission) => !permission || (role ? hasPermission(role, permission) : false);
   const actions: OrderAction[] = [{ key: 'view', label: 'Ver detalhes' }];
   const hasDsliteId = Boolean(isValidDsliteId(order.dslite_id));
+  const hasSupplierOrder = hasDsliteId || Boolean(order.evolusom_order_id || order.compra_id);
   const internalShipping = Boolean(order.envio_interno_at);
   const postDispatch = isPostDispatchOrder(order);
   const split = Boolean(order.has_split_fulfillment);
@@ -205,8 +207,8 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
     && ['generic_sent', 'protected_existing'].includes(order.dslite_label_operational_status || '');
 
   if (order.ml_shipment_id) actions.push({ key: 'track', label: 'Rastrear envio', permission: 'sales.track' });
-  if (!split && !internalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && order.fulfillment_source !== 'internal' && active) {
-    actions.push({ key: 'dslite', label: 'Criar pedido DSLite', permission: 'sales.dslite.create' });
+  if (!split && !internalShipping && !postDispatch && !hasSupplierOrder && order.fulfillment_source !== 'internal' && active) {
+    actions.push({ key: 'dslite', label: 'Criar pedido com fornecedor', permission: 'sales.dslite.create' });
   }
   if (!split && !internalShipping && !postDispatch && !hasDsliteId && order.fulfillment_source !== 'supplier' && order.internal_stock_available && order.ml_shipment_id && active) {
     actions.push({ key: 'direct_shipping', label: 'Processar envio interno', permission: 'sales.internal_shipping.process' });
@@ -217,7 +219,7 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   if (!split && !internalShipping && !postDispatch && hasDsliteId && nextAction === 'complete_dslite_label') {
     actions.push({ key: 'complete_label', label: 'Completar etiqueta', permission: 'sales.dslite.label.complete' });
   }
-  if (!split && !internalShipping && !postDispatch && hasDsliteId && !obsoleteDsliteResume && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(nextAction || '')) {
+  if (!split && !internalShipping && !postDispatch && (hasDsliteId || order.evolusom_order_id) && !obsoleteDsliteResume && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(nextAction || '')) {
     actions.push({
       key: 'supplier_payment',
       label: nextAction === 'resume_dslite_flow' ? 'Retomar fluxo' : nextAction === 'send_supplier_receipt' ? 'Anexar comprovante PIX' : 'Confirmar PIX',

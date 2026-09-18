@@ -576,7 +576,7 @@ export async function runWhatsappLabelJob(input: {
 
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,ml_thermal_label_storage_path,ml_thermal_label_bytes,ml_fiscal_release_at,situacao')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,evolusom_order_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,ml_thermal_label_storage_path,ml_thermal_label_bytes,ml_fiscal_release_at,situacao')
       .eq('id', input.pedidoId)
       .maybeSingle();
     if (pedidoError) throw new Error(pedidoError.message);
@@ -632,9 +632,12 @@ export async function runWhatsappLabelJob(input: {
 
     const dsid = String((pedido as any).dslite_id || '').trim();
     await setStep('load_purchase', 'loading', dsid ? `Buscando compra DSLite #${dsid}` : 'Pedido sem DSLite vinculado');
+    const evolusomOrderId = Number((pedido as any).evolusom_order_id || 0);
     const { data: compra, error: compraError } = dsid
       ? await client.from('compras').select('*').eq('dsid', dsid).maybeSingle()
-      : { data: null, error: null };
+      : evolusomOrderId > 0
+        ? await client.from('compras').select('*').eq('evolusom_order_id', evolusomOrderId).maybeSingle()
+        : { data: null, error: null };
     if (compraError) throw new Error('Falha ao consultar compra DSLite para determinar os destinatários da etiqueta.');
     const { data: supplierContact } = !input.usePlaceholderLabel && compra?.fornecedor_id
       ? await client.from('fornecedores').select('telefone').eq('dslite_id', String(compra.fornecedor_id)).maybeSingle()
@@ -659,8 +662,8 @@ export async function runWhatsappLabelJob(input: {
     });
     await setStep(
       'load_purchase',
-      dsid ? (compra ? 'success' : 'warning') : 'warning',
-      dsid ? (compra ? `Compra #${dsid} encontrada` : `Compra #${dsid} não encontrada localmente`) : 'Sem pedido DSLite vinculado',
+      dsid || evolusomOrderId ? (compra ? 'success' : 'warning') : 'warning',
+      compra ? `Compra #${dsid || evolusomOrderId} encontrada` : 'Compra do fornecedor não encontrada localmente',
     );
 
     await setStep(
@@ -814,7 +817,8 @@ export async function runWhatsappLabelJob(input: {
         ? 'Amostra de homologação'
         : 'Mercado Livre';
     const caption = buildSupplierLabelWhatsapp({
-      dsliteId: dsid,
+      dsliteId: dsid || evolusomOrderId,
+      providerLabel: evolusomOrderId ? 'Evolusom' : 'DSLite',
       labelUrl: labelShortUrl,
       invoiceNumber,
       nfeKey,

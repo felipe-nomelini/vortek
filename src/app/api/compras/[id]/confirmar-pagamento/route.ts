@@ -155,7 +155,8 @@ async function sendSupplierPaymentWhatsapp(input: {
     },
   });
   const caption = buildSupplierPaymentWhatsapp({
-    dsliteId: input.compra.dsid,
+    dsliteId: input.compra.evolusom_order_id || input.compra.dsid,
+    providerLabel: input.compra.evolusom_order_id ? 'Evolusom' : 'DSLite',
     mlOrderId: input.pedido?.ml_order_id,
     saleId: input.pedido?.numero,
     product: input.compra.produto_descricao,
@@ -247,7 +248,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
   const service = createServiceClient();
   const { data: compra, error: compraError } = await service
     .from('compras')
-    .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,status,status_dslite,supplier_payment_amount,produto_descricao,quantidade,supplier_payment_reference,supplier_payment_receipt_url,supplier_payment_receipt_path,supplier_payment_notes,supplier_payment_confirmed_at,supplier_payment_confirmed_by,supplier_settlement_id')
+    .select('id,dsid,pedido_id,evolusom_order_id,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,status,status_dslite,supplier_payment_amount,produto_descricao,quantidade,supplier_payment_reference,supplier_payment_receipt_url,supplier_payment_receipt_path,supplier_payment_notes,supplier_payment_confirmed_at,supplier_payment_confirmed_by,supplier_settlement_id')
     .eq('id', compraId)
     .maybeSingle();
 
@@ -264,7 +265,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     return NextResponse.json({ error: 'Esta compra não exige confirmação manual de pagamento' }, { status: 422 });
   }
 
-  const pedidoSelect = 'id,ml_order_id,numero,dslite_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary,snapshot_source,situacao';
+  const pedidoSelect = 'id,ml_order_id,numero,dslite_id,evolusom_order_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary,snapshot_source,situacao';
   let pedidoQuery = service.from('pedidos').select(pedidoSelect);
   const pedidoId = parsed.pedidoId && PEDIDO_ID_SCHEMA.safeParse(parsed.pedidoId).success
     ? parsed.pedidoId
@@ -275,6 +276,8 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     pedidoQuery = pedidoQuery.eq('ml_order_id', parsed.mlOrderId);
   } else if (parsed.pedidoId) {
     return NextResponse.json({ error: 'ID interno da venda inválido' }, { status: 422 });
+  } else if (compra.evolusom_order_id && compra.pedido_id) {
+    pedidoQuery = pedidoQuery.eq('id', compra.pedido_id);
   } else {
     pedidoQuery = pedidoQuery
       .eq('dslite_id', String(compra.dsid))
@@ -303,7 +306,9 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
       code: 'order_concretized_by_ml',
     }, { status: 409 });
   }
-  if (String(pedido.dslite_id || '').trim() !== String(compra.dsid || '').trim()) {
+  if (compra.evolusom_order_id
+    ? String(pedido.id) !== String(compra.pedido_id)
+    : String(pedido.dslite_id || '').trim() !== String(compra.dsid || '').trim()) {
     return NextResponse.json({
       error: 'A venda selecionada não pertence a este pedido DSLite. Atualize a página antes de tentar novamente.',
     }, { status: 409 });
@@ -320,7 +325,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     return NextResponse.json({ error: 'PIX BKR1 será confirmado somente quando a etiqueta real do Mercado Livre estiver liberada.' }, { status: 422 });
   }
 
-  if (supplierOracleWritesEnabled()) {
+  if (supplierOracleWritesEnabled() && !compra.evolusom_order_id) {
     if (requestedResumeOnly && compra.supplier_payment_status === 'paid' && !compra.supplier_settlement_id) {
       if (!resumeDsliteFlow || !(compra as any).supplier_payment_receipt_path) {
         return NextResponse.json({ error: 'Retomada DSLite não disponível para esta compra' }, { status: 409 });
@@ -343,7 +348,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
   }
 
   let routeRealLabelToWhatsapp = isDslitePlaceholderLabelSource(pedido.dslite_label_source);
-  if (resumeDsliteFlow && !routeRealLabelToWhatsapp) {
+  if (resumeDsliteFlow && !routeRealLabelToWhatsapp && !compra.evolusom_order_id) {
     const { data: recentLabelEvents, error: labelEventError } = await service
       .from('nf_auditoria_eventos')
       .select('evento,resposta_ml')

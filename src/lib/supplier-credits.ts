@@ -70,7 +70,7 @@ export async function recordDslitePurchaseCancellation(client: DbClient, purchas
     .select('id,dsid,fornecedor_id,supplier_payment_mode,status_dslite')
     .eq('id', purchaseId).maybeSingle();
   if (purchaseError) throw new Error(purchaseError.message);
-  if (!purchase?.id || !String(purchase.status_dslite || '').toLowerCase().includes('cancelado')) {
+  if (!purchase?.id || !purchase.dsid || !String(purchase.status_dslite || '').toLowerCase().includes('cancelado')) {
     return { created: false, skipped: 'purchase_not_cancelled' };
   }
   if (purchase.fornecedor_id === HAYAMAX_FORNECEDOR_ID || purchase.supplier_payment_mode !== 'prepaid_pix') {

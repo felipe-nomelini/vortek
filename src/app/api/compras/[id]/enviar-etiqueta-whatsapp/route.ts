@@ -162,12 +162,12 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     }
 
     const dsid = String((compra as any).dsid || '').trim();
-    const { data: pedido, error: pedidoError } = await client
+    const pedidoLookup = client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,ml_bundle_primary,snapshot_source,situacao')
-      .eq('dslite_id', dsid)
-      .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
-      .maybeSingle();
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,evolusom_order_id,ml_bundle_primary,snapshot_source,situacao');
+    const { data: pedido, error: pedidoError } = compra.evolusom_order_id && compra.pedido_id
+      ? await pedidoLookup.eq('id', compra.pedido_id).maybeSingle()
+      : await pedidoLookup.eq('dslite_id', dsid).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null').maybeSingle();
     if (pedidoError) return NextResponse.json({ error: pedidoError.message }, { status: 500 });
     if (!pedido) return NextResponse.json({ error: 'Pedido de venda vinculado à compra não encontrado' }, { status: 404 });
     if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
@@ -263,10 +263,11 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
       );
     }
     const filename = `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.${labelFormat.extension}`;
-    const pedidoDslite = String((pedido as any).dslite_id || dsid || '').trim();
+    const pedidoDslite = String((pedido as any).dslite_id || dsid || compra.evolusom_order_id || '').trim();
     const valorCompra = formatCurrencyBRL((compra as any).valor_total);
     const caption = buildSupplierLabelWhatsapp({
       dsliteId: pedidoDslite,
+      providerLabel: compra.evolusom_order_id ? 'Evolusom' : 'DSLite',
       labelUrl: null,
       invoiceNumber,
       nfeKey: fiscalKey,

@@ -157,6 +157,14 @@ export function usePedidosDsliteFlow({
           dslite_etiqueta_enviada: payload.etiquetaStatus === 'enviada',
         });
       }
+      if (payload.evolusom_order_id) {
+        updateOrder(order, {
+          evolusom_order_id: Number(payload.evolusom_order_id),
+          compra_id: payload.compra_id || null,
+          supplier_payment_mode: payload.supplier_payment_mode || null,
+          supplier_payment_status: payload.supplier_payment_status || null,
+        });
+      }
       if (
         payload.stage === 'choose_dslite_shipping'
         && payload.actionRequired === 'choose_dslite_shipping'
@@ -176,7 +184,7 @@ export function usePedidosDsliteFlow({
         setPaymentPrompt({
           order,
           compraId: String(payload.compra_id),
-          dsid: String(payload.dsid || order.dslite_id || ''),
+          dsid: String(payload.dsid || payload.evolusom_order_id || order.dslite_id || ''),
           fromCreationGate: true,
           resumeAfterConfirm: true,
           fornecedorNome: payload.fornecedor_nome || null,
@@ -260,14 +268,14 @@ export function usePedidosDsliteFlow({
   }, [createDsliteOrder]);
 
   const openSupplierPayment = useCallback((order: Order) => {
-    if (!order.compra_id || !order.dslite_id) {
+    if (!order.compra_id || (!order.dslite_id && !order.evolusom_order_id)) {
       messageApi.error('Compra DSLite vinculada não encontrada para confirmar PIX.');
       return;
     }
     setPaymentPrompt({
       order,
       compraId: order.compra_id,
-      dsid: order.dslite_id,
+      dsid: order.dslite_id || String(order.evolusom_order_id),
       fromCreationGate: false,
       resumeAfterConfirm: true,
       fornecedorNome: order.fornecedor_nome || null,

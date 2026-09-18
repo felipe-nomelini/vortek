@@ -172,9 +172,10 @@ async function readFacts(db: Client, input: AssistantQuery, now: Date, meta: Met
     if (!data?.length) { noRows(meta); return null; }
     if (data.length > 1 || (count !== null && count > 1)) {
       ambiguity(meta, count, data.length);
-      return { kind: 'candidates', candidates: data.map(row => ({ id: row.id, dsliteId: row.dsid })) } as const;
+      return { kind: 'candidates', candidates: data.filter(row => Boolean(row.dsid)).map(row => ({ id: row.id, dsliteId: String(row.dsid) })) } as const;
     }
     const row = data[0];
+    if (!row.dsid) throw new Error('assistant_purchase_dslite_id_missing');
     const settlement = row.supplier_settlement_id
       ? await db.from('supplier_settlements').select('id,status,gross_amount,credit_amount,pix_amount').eq('id', row.supplier_settlement_id).maybeSingle()
       : null;

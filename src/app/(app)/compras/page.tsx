@@ -485,10 +485,10 @@ export default function ComprasPage() {
       },
     },
     {
-      title: 'Compra DSLite', dataIndex: 'dsid', key: 'dsid', width: 135,
+      title: 'Compra fornecedor', dataIndex: 'dsid', key: 'dsid', width: 135,
       sorter: true, sortOrder: getRemoteSortOrder('dsid', sort),
       render: (_value, purchase) => (
-        <button type="button" className={styles.purchaseLink} onClick={() => openDrawer(purchase)}>#{purchase.dsid}</button>
+        <button type="button" className={styles.purchaseLink} onClick={() => openDrawer(purchase)}>#{purchase.evolusom_order_id || purchase.evolusom_request_code || purchase.dsid || 'pendente'}</button>
       ),
     },
     {
@@ -558,7 +558,7 @@ export default function ComprasPage() {
           {secondary.length > 0 && <Dropdown
             trigger={['click']}
             menu={{ items: secondary, onClick: ({ key }) => runAction(key as PurchaseActionKey, purchase) }}
-          ><Button size="small" aria-label={`Mais ações da compra ${purchase.dsid}`} icon={<EllipsisOutlined />} /></Dropdown>}
+          ><Button size="small" aria-label={`Mais ações da compra ${purchase.evolusom_order_id || purchase.dsid || purchase.evolusom_request_code}`} icon={<EllipsisOutlined />} /></Dropdown>}
         </Space.Compact>;
       },
     },
@@ -592,7 +592,7 @@ export default function ComprasPage() {
     <header className={styles.header}>
       <div>
         <Title level={2} className={styles.title}>Compras</Title>
-        <Text type="secondary">Acompanhe a compra DSLite, o fornecedor, o pagamento e a nota fiscal ligados a cada venda.</Text>
+        <Text type="secondary">Acompanhe as compras dos fornecedores, os pagamentos e as notas fiscais ligados a cada venda.</Text>
         <Text type="secondary" className={styles.updatedAt}>{lastUpdatedAt ? `Atualizado às ${lastUpdatedAt.toLocaleTimeString('pt-BR')}` : 'Aguardando primeira atualização'}</Text>
       </div>
       <Space wrap>
@@ -632,7 +632,7 @@ export default function ComprasPage() {
 
     <Card size="small" className={styles.filterCard}>
       <Row gutter={[8, 8]} align="middle" className={styles.filterRow}>
-        <Col flex="1 1 320px"><Input aria-label="Buscar compras" placeholder="Compra DSLite, cliente, fornecedor, produto ou SKU DSLite" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => { setSearch(event.target.value); setPage(1); }} /></Col>
+        <Col flex="1 1 320px"><Input aria-label="Buscar compras" placeholder="Compra, cliente, fornecedor, produto ou SKU" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => { setSearch(event.target.value); setPage(1); }} /></Col>
         <Col flex="0 1 210px"><Select placeholder="Status" value={statusFilter || undefined} options={statusOptions} allowClear style={{ width: '100%' }} onChange={(value) => { setStatusFilter(value || ''); setPage(1); }} /></Col>
         <Col flex="0 1 230px"><Select showSearch optionFilterProp="label" placeholder="Fornecedor" value={supplierFilter || undefined} options={supplierOptions} allowClear loading={independentLoading} style={{ width: '100%' }} onChange={(value) => { setSupplierFilter(value || ''); setPage(1); }} /></Col>
         <Col flex="0 1 210px"><Button onClick={() => void openPreview()} disabled={!supplierFilter}>Prévia da liquidação</Button></Col>
@@ -696,7 +696,7 @@ export default function ComprasPage() {
           message="A Bentevi não realiza o pagamento"
           description="Faça o PIX no banco e, depois, anexe o comprovante aqui para registrar a operação."
         />
-        <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Compra</Text><Text strong>{selectedCompra ? `DSLite #${selectedCompra.dsid}` : '—'}</Text></div>
+        <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Compra</Text><Text strong>{selectedCompra ? selectedCompra.evolusom_order_id ? `Evolusom #${selectedCompra.evolusom_order_id}` : `DSLite #${selectedCompra.dsid}` : '—'}</Text></div>
         <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Fornecedor</Text><Text>{selectedCompra?.fornecedor_apelido || selectedCompra?.fornecedor_nome || '—'}</Text></div>
         <div>
           <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Valor informado pelo fornecedor</Text>

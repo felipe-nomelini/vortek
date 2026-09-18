@@ -1796,6 +1796,7 @@ ml_pricing_groups: {
           data_prevista: string | null
           data_saida: string | null
           dslite_id: string | null
+          evolusom_order_id: number | null
           dslite_status: string | null
           dslite_etiqueta_enviada: boolean
           dslite_label_source: string | null
@@ -1870,6 +1871,7 @@ ml_pricing_groups: {
           data_prevista?: string | null
           data_saida?: string | null
           dslite_id?: string | null
+          evolusom_order_id?: number | null
           dslite_status?: string | null
           dslite_etiqueta_enviada?: boolean
           dslite_label_source?: string | null
@@ -1944,6 +1946,7 @@ ml_pricing_groups: {
           data_prevista?: string | null
           data_saida?: string | null
           dslite_id?: string | null
+          evolusom_order_id?: number | null
           dslite_status?: string | null
           dslite_etiqueta_enviada?: boolean
           dslite_label_source?: string | null
@@ -2257,7 +2260,11 @@ ml_pricing_groups: {
       compras: {
         Row: {
           id: string
-          dsid: string
+          dsid: string | null
+          evolusom_order_id: number | null
+          evolusom_request_code: string | null
+          evolusom_request_state: string | null
+          pedido_id: string | null
           status: string
           status_dslite: string
           nf_chave: string | null
@@ -2293,7 +2300,11 @@ ml_pricing_groups: {
         }
         Insert: {
           id?: string
-          dsid: string
+          dsid?: string | null
+          evolusom_order_id?: number | null
+          evolusom_request_code?: string | null
+          evolusom_request_state?: string | null
+          pedido_id?: string | null
           status?: string
           status_dslite?: string
           nf_chave?: string | null
@@ -2329,7 +2340,11 @@ ml_pricing_groups: {
         }
         Update: {
           id?: string
-          dsid?: string
+          dsid?: string | null
+          evolusom_order_id?: number | null
+          evolusom_request_code?: string | null
+          evolusom_request_state?: string | null
+          pedido_id?: string | null
           status?: string
           status_dslite?: string
           nf_chave?: string | null

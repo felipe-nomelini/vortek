@@ -34,7 +34,9 @@ export interface CompraVendaItem {
 
 export interface CompraOperacional {
   id: string;
-  dsid: string;
+  dsid: string | null;
+  evolusom_order_id?: number | null;
+  evolusom_request_code?: string | null;
   pedido_vendas_id: string | null;
   pedido_vendas_numero: number | null;
   pedido_ml_order_id: string | null;
@@ -342,7 +344,11 @@ export default function CompraDetailsDrawer({
       title={purchase ? (
         <div className={styles.drawerTitle}>
           <Space size={8} wrap>
-            <Text strong>Compra DSLite #{purchase.dsid}</Text>
+            <Text strong>{purchase.evolusom_order_id
+              ? `Compra Evolusom #${purchase.evolusom_order_id}`
+              : purchase.evolusom_request_code
+                ? `Compra Evolusom ${purchase.evolusom_request_code}`
+                : `Compra DSLite #${purchase.dsid}`}</Text>
             <Tag color="gold">{formatStatus(purchase.status)}</Tag>
           </Space>
           <Text type="secondary" style={{ display: 'block', marginTop: 3, fontSize: 12 }}>

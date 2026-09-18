@@ -61,8 +61,11 @@ export function buildSaleDetailGroups({
     itemsByOrderId.set(orderId, current);
   }
   const purchasesByDsliteId = new Map<string, PedidoVendaCompraDetalheApiDto[]>();
+  const purchasesByPedidoId = new Map<string, PedidoVendaCompraDetalheApiDto>();
   for (const purchase of purchases) {
+    if (purchase.pedido_id) purchasesByPedidoId.set(normalized(purchase.pedido_id), purchase);
     const dsliteId = normalized(purchase.dslite_id);
+    if (!dsliteId) continue;
     const current = purchasesByDsliteId.get(dsliteId) || [];
     current.push(purchase);
     purchasesByDsliteId.set(dsliteId, current);
@@ -73,7 +76,8 @@ export function buildSaleDetailGroups({
     const order = ordersById.get(normalized(pedidoId));
     const dsliteId = normalized(order?.dslite_id);
     const purchaseCandidates = dsliteId ? purchasesByDsliteId.get(dsliteId) || [] : [];
-    const purchase = purchaseCandidates.length === 1 ? purchaseCandidates[0] : null;
+    const purchase = purchasesByPedidoId.get(normalized(pedidoId))
+      || (purchaseCandidates.length === 1 ? purchaseCandidates[0] : null);
     if (purchase) matchedPurchaseIds.add(purchase.id);
     const fulfillmentSource = order?.fulfillment_source === 'internal'
       || order?.fulfillment_source === 'supplier'
@@ -94,7 +98,7 @@ export function buildSaleDetailGroups({
 
   const operationalDsliteIdSet = new Set(operationalDsliteIds.map(normalized).filter(Boolean));
   const unmatchedPurchases = purchases.filter((purchase) => (
-    operationalDsliteIdSet.has(normalized(purchase.dslite_id))
+    (operationalDsliteIdSet.has(normalized(purchase.dslite_id)) || Boolean(purchase.pedido_id && operationalPedidoIds.includes(purchase.pedido_id)))
     && !matchedPurchaseIds.has(purchase.id)
   ));
 

@@ -20,7 +20,9 @@ const orderIdSchema = z.string().uuid();
 function mapPurchase(row: any): PedidoVendaCompraDetalheApiDto {
   return {
     id: String(row.id),
-    dslite_id: String(row.dsid),
+    dslite_id: String(row.dsid || ''),
+    pedido_id: row.pedido_id || null,
+    evolusom_order_id: row.evolusom_order_id || null,
     status: row.status || null,
     status_dslite: row.status_dslite || null,
     fornecedor_id: row.fornecedor_id || null,
@@ -80,7 +82,7 @@ export async function GET(
     .filter(Boolean);
   const client = createServiceClient();
 
-  const [ordersResult, itemsResult, purchasesResult, historyResult] = await Promise.all([
+  const [ordersResult, itemsResult, purchasesResult, directPurchasesResult, historyResult] = await Promise.all([
     operationalPedidoIds.length
       ? client
           .from('pedidos')
@@ -100,6 +102,10 @@ export async function GET(
           .in('dsid', operationalDsliteIds)
       : Promise.resolve({ data: [], error: null }),
     operationalPedidoIds.length
+      ? client.from('compras').select('id,dsid,pedido_id,evolusom_order_id,status,status_dslite,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,valor_total,valor_frete,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_settlement_id,supplier_payment_reference,supplier_payment_notes,nf_numero,nf_chave,rastreio')
+          .in('pedido_id', operationalPedidoIds)
+      : Promise.resolve({ data: [], error: null }),
+    operationalPedidoIds.length
       ? client
           .from('nf_auditoria_eventos')
           .select('id,evento,status_resultante,created_at')
@@ -109,7 +115,7 @@ export async function GET(
       : Promise.resolve({ data: [], error: null }),
   ]);
 
-  const failed = [ordersResult, itemsResult, purchasesResult, historyResult].find((result) => result.error);
+  const failed = [ordersResult, itemsResult, purchasesResult, directPurchasesResult, historyResult].find((result) => result.error);
   if (failed?.error) {
     console.error('[sale-detail] Falha ao carregar detalhe da venda', {
       requestId,
@@ -122,7 +128,7 @@ export async function GET(
     );
   }
 
-  const purchases = (purchasesResult.data || []).map(mapPurchase);
+  const purchases = [...(purchasesResult.data || []), ...(directPurchasesResult.data || [])].map(mapPurchase);
   const settlementIds = [...new Set(purchases.map((purchase) => purchase.supplier_settlement_id).filter((id): id is string => Boolean(id)))];
   if (settlementIds.length) {
     const [headers, items] = await Promise.all([

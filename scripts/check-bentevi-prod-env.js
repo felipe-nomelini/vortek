@@ -122,6 +122,14 @@ function validateProductionEnvironment(env) {
     'EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE',
     errors,
   );
+  const evolusomDirect = String(env.EVOLUSOM_DIRECT_ENABLED || 'false').trim().toLowerCase();
+  if (!['true', 'false'].includes(evolusomDirect)) {
+    errors.push('EVOLUSOM_DIRECT_ENABLED deve ser true ou false.');
+  }
+  if (evolusomDirect === 'true') {
+    const token = String(env.EVOLUSOM_API_TOKEN || '').trim();
+    if (!token || PLACEHOLDER.test(token)) errors.push('EVOLUSOM_API_TOKEN deve estar configurado no runtime privado.');
+  }
   if (env.NODE_ENV && env.NODE_ENV !== 'production') {
     errors.push('NODE_ENV, quando informado, deve ser production.');
   }

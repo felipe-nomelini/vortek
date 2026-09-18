@@ -106,6 +106,8 @@ export type PedidosOperacionaisApiResponse = {
 export type PedidoVendaCompraDetalheApiDto = {
   id: string;
   dslite_id: string;
+  pedido_id?: string | null;
+  evolusom_order_id?: number | null;
   status: string | null;
   status_dslite: string | null;
   fornecedor_id: string | null;
@@ -227,6 +229,7 @@ export interface Order {
   lucro: number | null;
   profit_pending?: boolean;
   dslite_id: string | null;
+  evolusom_order_id?: number | null;
   dslite_status?: string | null;
   dslite_etiqueta_enviada?: boolean;
   dslite_label_source?: string | null;

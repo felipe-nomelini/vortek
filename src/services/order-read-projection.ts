@@ -522,6 +522,13 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     }
   }
 
+  const { data: directCompras, error: directComprasError } = pedidoIds.length
+    ? await serviceClient.from('compras')
+      .select('id,dsid,pedido_id,evolusom_order_id,evolusom_request_state,status,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount')
+      .in('pedido_id', pedidoIds)
+    : { data: [], error: null };
+  if (directComprasError) throw new Error(`Falha ao consultar compras Evolusom: ${directComprasError.message}`);
+  const directComprasByPedidoId = new Map((directCompras || []).map((compra) => [String(compra.pedido_id), compra]));
   const dsids = Array.from(new Set(
     rows
       .flatMap((row) => (
@@ -532,7 +539,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
       .map((dsliteId) => String(dsliteId || '').trim())
       .filter(Boolean),
   ));
-  if (!dsids.length) {
+  if (!dsids.length && !directComprasByPedidoId.size) {
     return rows.map((row) => ({
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
@@ -567,7 +574,8 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     compras.push(...(data || []));
   }
 
-  const comprasByDsid = new Map(compras.map((compra) => [String(compra.dsid), compra]));
+  compras.push(...(directCompras || []));
+  const comprasByDsid = new Map(compras.filter((compra) => compra.dsid).map((compra) => [String(compra.dsid), compra]));
   const fornecedorIds = Array.from(new Set(
     compras
       .map((compra) => String(compra?.fornecedor_id || '').trim())
@@ -588,6 +596,8 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     const operationalCompras = (Array.isArray(row?.operational_dslite_ids) ? row.operational_dslite_ids : [row?.dslite_id])
       .map((dsliteId: unknown) => comprasByDsid.get(String(dsliteId || '')))
       .filter(Boolean);
+    const directCompra = directComprasByPedidoId.get(String(row?.id || ''));
+    if (directCompra) operationalCompras.push(directCompra);
     const operationalSupplierIds = Array.from(new Set(
       operationalCompras.map((compra: any) => String(compra?.fornecedor_id || '').trim()).filter(Boolean),
     ));
@@ -616,7 +626,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
       };
     }
 
-    const compra = comprasByDsid.get(String(row?.dslite_id || ''));
+    const compra = directCompra || comprasByDsid.get(String(row?.dslite_id || ''));
     if (!compra) {
       return {
         ...row,
@@ -630,6 +640,35 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
           : (fornecedorPreviewByPedido.get(String(row?.id || '')) || {})),
         dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
         dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
+      };
+    }
+    if (directCompra) {
+      const fornecedor = fornecedorByDsliteId.get(String(compra.fornecedor_id || ''));
+      return {
+        ...row,
+        pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+        cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+        operational_supplier_ids: operationalSupplierIds,
+        operational_internal_stock: operationalInternalStock,
+        compra_id: compra.id,
+        evolusom_order_id: compra.evolusom_order_id,
+        compra_status_dslite: null,
+        fornecedor_id: compra.fornecedor_id,
+        fornecedor_nome: compra.fornecedor_nome,
+        fornecedor_telefone: fornecedor?.telefone || null,
+        supplier_payment_mode: compra.supplier_payment_mode,
+        supplier_payment_status: compra.supplier_payment_status,
+        supplier_payment_amount: compra.supplier_payment_amount,
+        dslite_next_action: !compra.evolusom_order_id
+          ? 'blocked'
+          : compra.supplier_payment_mode === 'prepaid_pix' && compra.supplier_payment_status !== 'paid'
+            ? 'confirm_supplier_payment'
+            : 'wait_ml_label',
+        dslite_next_action_label: !compra.evolusom_order_id
+          ? 'Conferir pedido Evolusom'
+          : compra.supplier_payment_mode === 'prepaid_pix' && compra.supplier_payment_status !== 'paid'
+            ? 'Confirmar PIX'
+            : 'Aguardar etiqueta real do ML',
       };
     }
     const releaseAt = row?.ml_fiscal_release_at ? new Date(row.ml_fiscal_release_at) : null;

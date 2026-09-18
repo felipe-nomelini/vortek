@@ -120,7 +120,7 @@ export async function GET(request: Request) {
     function applyFilters(query: any) {
       if (status) query = query.eq('status', status);
       if (fornecedorId) query = query.eq('fornecedor_id', fornecedorId);
-      if (search) query = query.or(`destinatario_nome.ilike.%${search}%,fornecedor_nome.ilike.%${search}%,produto_descricao.ilike.%${search}%,produto_sku.ilike.%${search}%,dsid.ilike.%${search}%`);
+      if (search) query = query.or(`destinatario_nome.ilike.%${search}%,fornecedor_nome.ilike.%${search}%,produto_descricao.ilike.%${search}%,produto_sku.ilike.%${search}%,dsid.ilike.%${search}%,evolusom_request_code.ilike.%${search}%`);
       if (startDateIso) query = query.gte('data_criacao', startDateIso);
       if (endDateIso) query = query.lte('data_criacao', endDateIso);
       return query;
@@ -145,7 +145,7 @@ export async function GET(request: Request) {
     }
 
     let pedidoPorDsliteId = new Map<string, any>();
-    const dsids = Array.from(new Set(allCompras.map((item: any) => String(item.dsid)).filter(Boolean)));
+    const dsids = Array.from(new Set(allCompras.map((item: any) => String(item.dsid || '')).filter(Boolean)));
 
     if (dsids.length > 0) {
       const pedidosVinculados: any[] = [];
@@ -170,6 +170,16 @@ export async function GET(request: Request) {
           .filter((item: any) => item?.dslite_id)
           .map((item: any) => [String(item.dslite_id), item]),
       );
+    }
+
+    const directPedidoIds = Array.from(new Set(allCompras.map((item: any) => String(item.pedido_id || '')).filter(Boolean)));
+    const pedidoPorId = new Map<string, any>();
+    for (let index = 0; index < directPedidoIds.length; index += SUPABASE_IN_FILTER_CHUNK_SIZE) {
+      const { data, error } = await client.from('pedidos')
+        .select('id,numero,ml_order_id,ml_pack_id,buyer_ml_id,ml_fiscal_release_at,dslite_label_source,label_type,label_delivery_channel,label_delivered_at,snapshot_source,nota_fiscal_emitida,nfe_status')
+        .in('id', directPedidoIds.slice(index, index + SUPABASE_IN_FILTER_CHUNK_SIZE));
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+      for (const pedido of data || []) pedidoPorId.set(String(pedido.id), pedido);
     }
 
     const fornecedorIds = Array.from(new Set(
@@ -283,7 +293,9 @@ export async function GET(request: Request) {
     }
 
     const comprasEnriquecidas = allCompras.map((item: any) => {
-      const pedido = pedidoPorDsliteId.get(String(item.dsid));
+      const pedido = item.pedido_id
+        ? pedidoPorId.get(String(item.pedido_id))
+        : pedidoPorDsliteId.get(String(item.dsid));
       const oferta = ofertaPorId.get(String(item.produto_fornecedor_oferta_id || ''));
       const produto = oferta ? produtoPorId.get(String(oferta.produto_id || '')) : null;
       const cliente = clientePorMlId.get(String(pedido?.buyer_ml_id || ''));

@@ -190,7 +190,8 @@ export async function POST(request: Request) {
           ativo: true,
         };
       })
-      .filter((item): item is NonNullable<typeof item> => Boolean(item));
+      .filter((item): item is NonNullable<typeof item> => Boolean(item))
+      .filter((item) => !(process.env.EVOLUSOM_DIRECT_ENABLED === 'true' && item.dslite_id === '133'));
 
     if (baseMapped.length === 0) {
       return NextResponse.json(
@@ -372,7 +373,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const idsAtuais = new Set(dsliteIds);
+    const idsAtuais = new Set(process.env.EVOLUSOM_DIRECT_ENABLED === 'true' ? [...dsliteIds, '133'] : dsliteIds);
     const idsParaInativar = (ativosNoBanco || [])
       .filter((row) => row.dslite_id && !idsAtuais.has(row.dslite_id))
       .map((row) => row.id);

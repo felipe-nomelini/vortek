@@ -4,6 +4,7 @@
  * Autenticação via token fixo no header `Token:`.
  */
 import { createServiceClient } from '@/lib/supabase';
+import { loadEvolusomCatalogPage, mapEvolusomProduct } from '@/services/evolusom';
 import { DSLITE_LABEL_FORM_FIELD } from '@/lib/dslite/api-contract';
 import {
   classifyDsliteCreatePayload,
@@ -521,6 +522,22 @@ export async function sincronizarCatalogo(
   page: number = 1,
   limit: number = 1000
 ): Promise<DsliteCatalogoResponse | null> {
+  if (String(fornecedorId) === '133' && process.env.EVOLUSOM_DIRECT_ENABLED === 'true') {
+    const result = await loadEvolusomCatalogPage(page, limit);
+    return {
+      fornecedorid: 133,
+      nome: 'Evolusom',
+      cnpj: '',
+      apelido: 'Evolusom',
+      detalhesConsulta: {
+        offset: (result.page - 1) * result.pageSize,
+        limit: result.pageSize,
+        registrosRetornados: result.products.length,
+        totalRegistros: result.total,
+      },
+      produtos: result.products.map(mapEvolusomProduct),
+    };
+  }
   return fetchDslite<DsliteCatalogoResponse>(
     `/v1/CrossDocking/Catalogo/${fornecedorId}?page=${page}&limit=${limit}`
   );
@@ -543,6 +560,22 @@ export async function sincronizarPrecoEstoque(
   page: number = 1,
   limit: number = 1000
 ): Promise<DslitePrecoEstoqueResponse | null> {
+  if (String(fornecedorId) === '133' && process.env.EVOLUSOM_DIRECT_ENABLED === 'true') {
+    const result = await loadEvolusomCatalogPage(page, limit);
+    return {
+      fornecedorid: 133,
+      nome: 'Evolusom',
+      cnpj: '',
+      apelido: 'Evolusom',
+      detalhesConsulta: {
+        offset: (result.page - 1) * result.pageSize,
+        limit: result.pageSize,
+        registrosRetornados: result.products.length,
+        totalRegistros: result.total,
+      },
+      produtos: result.products.map(mapEvolusomProduct),
+    };
+  }
   return fetchDslite<DslitePrecoEstoqueResponse>(
     `/v1/CrossDocking/PrecoEstoque/${fornecedorId}?page=${page}&limit=${limit}`
   );

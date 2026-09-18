@@ -28,7 +28,7 @@ export default function PedidosLabelWhatsappModals({ flow }: PedidosLabelWhatsap
         <Space direction="vertical" style={{ width: '100%' }} size={12}>
           <Text style={{ color: '#a0a0a0' }}>
             Pedido venda #{flow.whatsappOrder?.numero || '—'}.
-            {flow.whatsappOrder?.dslite_id ? ` Pedido DSLite #${flow.whatsappOrder.dslite_id}.` : ' Sem pedido DSLite vinculado.'}
+            {flow.whatsappOrder?.evolusom_order_id ? ` Pedido Evolusom #${flow.whatsappOrder.evolusom_order_id}.` : flow.whatsappOrder?.dslite_id ? ` Pedido DSLite #${flow.whatsappOrder.dslite_id}.` : ' Sem pedido de fornecedor vinculado.'}
             {flow.whatsappUsePlaceholderLabel ? ' Será enviada a etiqueta genérica de teste.' : ''}
             {' '}Confirme o WhatsApp do fornecedor para envio da etiqueta real.
           </Text>

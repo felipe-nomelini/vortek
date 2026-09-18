@@ -50,7 +50,7 @@ export async function GET(request: Request) {
     if (lastId) query = query.gt('id', lastId);
     const { data, error } = await query;
     if (error) return NextResponse.json({ error: 'Falha ao consultar compras pendentes' }, { status: 500 });
-    purchases.push(...(data || []));
+    purchases.push(...(data || []).filter((row): row is typeof row & { dsid: string } => Boolean(row.dsid)));
     if (!data?.length || data.length < BATCH_SIZE) break;
     lastId = data[data.length - 1].id;
   }
