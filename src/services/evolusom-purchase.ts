@@ -6,7 +6,6 @@ import { evolusomRequest, EvolusomApiError } from '@/services/evolusom';
 import { DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
 
 const EVOLUSOM_SUPPLIER_ID = '133';
-const PLACEHOLDER_LABEL_PATH = '/dslite/labels/etiqueta_evolusom_aguardando_etiqueta_ml.pdf';
 
 type ProductLine = { sku: string; quantity: number; cost: number; offerId: string | null };
 type CreateResult =
@@ -186,7 +185,7 @@ export async function createEvolusomPurchase(input: {
 
   const baseUrl = appOrigin();
   const labelUrl = input.placeholder
-    ? `${baseUrl}${PLACEHOLDER_LABEL_PATH}`
+    ? buildPublicShippingLabelUrl(baseUrl, input.pedidoId, 'placeholder_evolusom')
     : buildPublicShippingLabelUrl(baseUrl, input.pedidoId);
   if (!input.placeholder && !order.ml_label_storage_path) {
     return { state: 'pending', reason: 'Etiqueta real ainda não disponível no Bentevi' };

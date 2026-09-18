@@ -6,6 +6,7 @@ import {
 } from '@/lib/shipping-label-storage';
 import { verifyPublicShippingLabelToken } from '@/lib/public-shipping-label-links';
 import { normalizeMlShippingLabelPdfForThermalPrint } from '@/lib/shipping-label-pdf';
+import { loadDslitePlaceholderLabel } from '@/lib/dslite/placeholder-label';
 
 export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   const id = (await context?.params)?.id;
@@ -27,6 +28,23 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
 
   if (error) {
     return NextResponse.json({ error: 'Erro ao buscar etiqueta' }, { status: 500 });
+  }
+  if (!pedido) {
+    return NextResponse.json({ error: 'Pedido não encontrado' }, { status: 404 });
+  }
+  if (format === 'placeholder_evolusom') {
+    try {
+      const pdf = await loadDslitePlaceholderLabel('133');
+      return new Response(new Uint8Array(pdf), {
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': 'inline; filename="etiqueta_evolusom_aguardando_ml.pdf"',
+          'Cache-Control': 'private, no-store',
+        },
+      });
+    } catch {
+      return NextResponse.json({ error: 'Etiqueta padrão Evolusom indisponível' }, { status: 500 });
+    }
   }
   const storagePath = thermal
     ? pedido?.ml_thermal_label_storage_path

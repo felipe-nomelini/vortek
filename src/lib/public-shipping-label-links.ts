@@ -35,7 +35,7 @@ export function verifyPublicShippingLabelToken(
 export function buildPublicShippingLabelUrl(
   baseUrl: string,
   pedidoId: string,
-  format: 'pdf' | 'zpl2' | 'thermal_pdf' = 'pdf',
+  format: 'pdf' | 'zpl2' | 'thermal_pdf' | 'placeholder_evolusom' = 'pdf',
 ): string {
   const token = createPublicShippingLabelToken(pedidoId);
   const formatParam = format === 'pdf' ? '' : `&format=${format}`;

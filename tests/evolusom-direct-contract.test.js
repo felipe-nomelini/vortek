@@ -68,7 +68,7 @@ test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU
   const payload = module.exports.buildEvolusomTriangularPayload({
     orderCode: 'BNT-123', companyCnpj: '33.482.950/0002-30', xml,
     email: 'comprador@example.com', phone: '(41) 99999-9999',
-    trackingNumber: 'AB123BR', labelUrl: 'https://app.bentevi.shop/dslite/labels/etiqueta_evolusom_aguardando_etiqueta_ml.pdf',
+    trackingNumber: 'AB123BR', labelUrl: 'https://app.bentevi.shop/api/public/etiquetas/pedido?token=synthetic&format=placeholder_evolusom',
     danfeUrl: 'https://app.bentevi.shop/api/public/notas-fiscais/pedido/danfe?token=synthetic',
     products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: 'synthetic' }],
   });
@@ -85,4 +85,29 @@ test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU
     labelUrl: payload.transporte.urletiqueta, danfeUrl: payload.nfe.url,
     products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: null }],
   }), /rastreio/);
+});
+
+test('etiqueta genérica é servida em link público assinado sem login', async () => {
+  const source = fs.readFileSync(require.resolve('../src/app/api/public/etiquetas/[id]/route.ts'), 'utf8');
+  const compiled = ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  }).outputText;
+  const module = { exports: {} };
+  const db = { from: () => ({ select: () => ({ eq: () => ({ maybeSingle: async () => ({ data: { id: 'synthetic', numero: 1 }, error: null }) }) }) }) };
+  const mocks = {
+    'next/server': { NextResponse: { json: (body, init) => new Response(JSON.stringify(body), init) } },
+    '@/lib/supabase': { createServiceClient: () => db },
+    '@/lib/shipping-label-storage': {},
+    '@/lib/public-shipping-label-links': { verifyPublicShippingLabelToken: () => true },
+    '@/lib/shipping-label-pdf': {},
+    '@/lib/dslite/placeholder-label': { loadDslitePlaceholderLabel: async () => Buffer.from('%PDF-synthetic') },
+  };
+  new Function('require', 'module', 'exports', compiled)((id) => mocks[id], module, module.exports);
+  const response = await module.exports.GET(
+    new Request('https://app.bentevi.shop/api/public/etiquetas/synthetic?token=synthetic&format=placeholder_evolusom'),
+    { params: Promise.resolve({ id: 'synthetic' }) },
+  );
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get('Content-Type'), 'application/pdf');
+  assert.match(await response.text(), /^%PDF/);
 });
