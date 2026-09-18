@@ -504,9 +504,17 @@ function buildReconciledCreateResult(params: {
 
 // ── Services ─────────────────────────────────────────────────
 
+function withDirectEvolusomSupplier(suppliers: DsliteFornecedorStatus[] | null): DsliteFornecedorStatus[] | null {
+  if (process.env.EVOLUSOM_DIRECT_ENABLED !== 'true') return suppliers;
+  return [
+    ...(suppliers || []).filter((supplier) => String(supplier.id) !== '133'),
+    { id: 133, apelido: 'Evolusom', nome: 'Evolusom', status: 'Ativo', crossdocking: 'Ativo', dropshipping: 'Ativo' },
+  ];
+}
+
 export async function listarFornecedores(): Promise<DsliteFornecedorStatus[] | null> {
   const data = await fetchDslite<any>('/v1/Empresa/fornecedor/status');
-  return data?.fornecedores ?? null;
+  return withDirectEvolusomSupplier(data?.fornecedores ?? null);
 }
 
 export async function listarFornecedoresComDiagnostico(): Promise<{
@@ -514,7 +522,7 @@ export async function listarFornecedoresComDiagnostico(): Promise<{
   failure: DsliteFetchFailure | null;
 }> {
   const result = await fetchDsliteResult<{ fornecedores?: DsliteFornecedorStatus[] }>('/v1/Empresa/fornecedor/status');
-  return { fornecedores: result.data?.fornecedores ?? null, failure: result.failure };
+  return { fornecedores: withDirectEvolusomSupplier(result.data?.fornecedores ?? null), failure: result.failure };
 }
 
 export async function sincronizarCatalogo(

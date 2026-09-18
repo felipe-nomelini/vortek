@@ -20,3 +20,10 @@ O cliente HTTP limita as requisições a um intervalo mínimo de um segundo no p
 - Compras PIX continuam com confirmação manual e comprovante. O envio do comprovante usa o fluxo individual existente; a liquidação consolidada do Oráculo não inclui compras diretas da Evolusom nesta primeira etapa.
 
 Fonte do contrato: [Swagger triangular da Evolusom](https://api2.evolusom.com.br/v1/triangular/docs#/).
+
+## Registro da preparação de 18/09/2026
+
+- O banco `192.168.1.162` recebeu somente a migration `20260918170000`; read-back confirmou quatro colunas novas em `compras`, uma em `pedidos`, `dsid` anulável e zero compras diretas criadas.
+- Antes da migration, foram copiados e conferidos os registros e metadados das tabelas afetadas em backup privado fora do repositório.
+- O código foi validado com teste sintético do contrato, lint, TypeScript, build e checagem de secrets. O aplicativo respondeu ao health e ao login após deploy; nenhum endpoint autenticado da Evolusom foi chamado.
+- A integração permanece desligada até a configuração privada do token e a decisão de processar a primeira venda real acompanhada.
