@@ -1,0 +1,142 @@
+.saleSummary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.summaryAmounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 36px;
+}
+
+.summaryAmounts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.summaryAmounts span,
+.detailField > span {
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 12px;
+}
+
+.summaryAmounts strong {
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+
+.summaryProgress {
+  min-width: 0;
+}
+
+.summaryProgress > :last-child {
+  font-size: 12px;
+}
+
+.clientLayout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.9fr) minmax(0, 1.4fr);
+  gap: 20px;
+  min-width: 0;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.detailSection h3 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.clientName {
+  overflow-wrap: anywhere;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.detailField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.detailField strong,
+.address {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  font-weight: 550;
+  line-height: 1.5;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.invoiceKey {
+  font-variant-numeric: tabular-nums;
+}
+
+.invoiceKey :global(.ant-typography) {
+  color: inherit;
+  font-weight: inherit;
+}
+
+.externalLink {
+  font-size: 13px;
+}
+
+.documentActions {
+  margin-top: 2px;
+}
+
+@media (max-width: 760px) {
+  .saleSummary,
+  .clientLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .fieldGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .saleSummary,
+  .detailSection {
+    padding: 16px;
+  }
+}

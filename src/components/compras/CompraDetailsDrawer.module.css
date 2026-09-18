@@ -1,0 +1,150 @@
+.drawerTitle {
+  min-width: 0;
+}
+
+.drawer :global(.ant-drawer-header-title) {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+.amounts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.amounts > div,
+.metadataGrid > div,
+.referenceGrid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.amounts span,
+.metadataGrid span,
+.referenceGrid span {
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 12px;
+}
+
+.amounts strong {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mainAmount strong {
+  color: var(--bentevi-primary, #ffbd0e);
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+.section {
+  min-width: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--bentevi-border, #34313a);
+}
+
+.section h3 {
+  margin: 0 0 13px;
+  color: var(--bentevi-text, #f7f7f8);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quantity {
+  color: var(--bentevi-muted, #b3afb7);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.productName {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.metadataGrid,
+.referenceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 24px;
+}
+
+.metadataGrid strong,
+.referenceGrid strong {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.referenceGrid strong :global(.ant-typography) {
+  color: inherit;
+  font-weight: inherit;
+}
+
+.itemList {
+  border-top: 1px solid var(--bentevi-border, #34313a);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.item > strong {
+  font-size: 13px;
+}
+
+.item > span {
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .amounts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mainAmount {
+    grid-column: 1 / -1;
+  }
+
+  .sectionHeader {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 440px) {
+  .amounts,
+  .metadataGrid,
+  .referenceGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .amounts {
+    gap: 14px;
+  }
+}

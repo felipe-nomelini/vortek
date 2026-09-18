@@ -11,7 +11,6 @@ import {
   Tabs,
   Tag,
   Typography,
-  theme,
 } from 'antd';
 import {
   FilePdfOutlined,
@@ -19,6 +18,7 @@ import {
   TruckOutlined,
 } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
+import styles from './CompraDetailsDrawer.module.css';
 
 const { Text } = Typography;
 
@@ -137,54 +137,62 @@ export default function CompraDetailsDrawer({
   onOpenSale,
   onOpenDanfe,
 }: CompraDetailsDrawerProps) {
-  const { token } = theme.useToken();
   const saleReference = purchase ? getPurchaseSaleReference(purchase) : null;
   const saleItems = purchase?.itens_venda || [];
 
   const overview = purchase ? (
-    <Space direction="vertical" size={20} style={{ width: '100%' }}>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-        gap: 1,
-        overflow: 'hidden',
-        border: `1px solid ${token.colorBorderSecondary}`,
-        borderRadius: token.borderRadiusLG,
-        background: token.colorBorderSecondary,
-      }}>
-        {[
-          ['Compra DSLite', `#${purchase.dsid}`],
-          ['Fornecedor', purchase.fornecedor_apelido || purchase.fornecedor_nome || 'Não informado'],
-          ['Situação', purchase.status || 'Sem status'],
-        ].map(([label, value]) => (
-          <div key={label} style={{ minWidth: 0, padding: 16, background: token.colorBgContainer }}>
-            <Text type="secondary" style={{ display: 'block', fontSize: 11 }}>{label}</Text>
-            <Text strong ellipsis style={{ display: 'block', marginTop: 4 }}>{value}</Text>
-          </div>
-        ))}
-      </div>
+    <div className={styles.overview}>
+      <section className={styles.amounts} aria-label="Valores da compra">
+        <div className={styles.mainAmount}>
+          <span>Custo do fornecedor</span>
+          <strong>{purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}</strong>
+        </div>
+        <div className={styles.otherAmount}>
+          <span>Venda (Bentevi)</span>
+          <strong>{formatCurrency(purchase.valor_total || 0)}</strong>
+        </div>
+        <div className={styles.otherAmount}>
+          <span>Frete da compra</span>
+          <strong>{formatCurrency(purchase.valor_frete || 0)}</strong>
+        </div>
+      </section>
 
-      <Descriptions title="Relação com a venda" size="small" bordered column={{ xs: 1, sm: 2 }}>
-        <Descriptions.Item label="Pack ML">{purchase.pedido_ml_pack_id ? `#${purchase.pedido_ml_pack_id}` : '—'}</Descriptions.Item>
-        <Descriptions.Item label="Venda no Mercado Livre">{purchase.pedido_ml_order_id ? `#${purchase.pedido_ml_order_id}` : '—'}</Descriptions.Item>
-        <Descriptions.Item label="Número interno Bentevi">{purchase.pedido_vendas_numero ? `#${purchase.pedido_vendas_numero}` : '—'}</Descriptions.Item>
-        <Descriptions.Item label="Compra criada em">{formatDateTime(purchase.data_criacao)}</Descriptions.Item>
-        <Descriptions.Item label="Destinatário">{purchase.destinatario_nome || '—'}</Descriptions.Item>
-        <Descriptions.Item label="Documento">{purchase.destinatario_documento || '—'}</Descriptions.Item>
-      </Descriptions>
+      <section className={styles.section} aria-labelledby="purchase-product-title">
+        <div className={styles.sectionHeader}>
+          <h3 id="purchase-product-title">Produto vinculado à compra</h3>
+          <span className={styles.quantity}>Quantidade comprada: {purchase.quantidade || 1}</span>
+        </div>
+        <p className={styles.productName}>{purchase.produto_descricao || 'Produto não informado'}</p>
+        <div className={styles.metadataGrid}>
+          <div><span>SKU Bentevi</span><strong>{purchase.produto_sku_bentevi || 'Não vinculado'}</strong></div>
+          <div><span>SKU do fornecedor</span><strong>{purchase.produto_sku_fornecedor || 'Não vinculado'}</strong></div>
+          <div><span>ID do produto DSLite</span><strong>{purchase.produto_dslite_id || purchase.produto_sku || '—'}</strong></div>
+        </div>
+      </section>
 
-      <div>
-        <Text strong style={{ display: 'block', marginBottom: 8 }}>Itens da venda</Text>
+      <section className={styles.section} aria-labelledby="purchase-sale-title">
+        <h3 id="purchase-sale-title">Relação com a venda</h3>
+        <div className={styles.referenceGrid}>
+          <div><span>Pack ML</span><strong>{purchase.pedido_ml_pack_id ? <Text copyable={{ text: purchase.pedido_ml_pack_id }}>#{purchase.pedido_ml_pack_id}</Text> : '—'}</strong></div>
+          <div><span>Venda no Mercado Livre</span><strong>{purchase.pedido_ml_order_id ? <Text copyable={{ text: purchase.pedido_ml_order_id }}>#{purchase.pedido_ml_order_id}</Text> : '—'}</strong></div>
+          <div><span>Número interno Bentevi</span><strong>{purchase.pedido_vendas_numero ? <Text copyable={{ text: String(purchase.pedido_vendas_numero) }}>#{purchase.pedido_vendas_numero}</Text> : '—'}</strong></div>
+          <div><span>Destinatário</span><strong>{purchase.destinatario_nome || '—'}</strong></div>
+          <div><span>Documento</span><strong>{purchase.destinatario_documento || '—'}</strong></div>
+        </div>
+      </section>
+
+      <section className={styles.section} aria-labelledby="purchase-items-title">
+        <h3 id="purchase-items-title">Itens da venda</h3>
         {saleItems.length > 0 ? (
           <List
             size="small"
-            bordered
             dataSource={saleItems}
+            className={styles.itemList}
             renderItem={(item) => (
               <List.Item>
-                <div style={{ minWidth: 0 }}>
-                  <Text strong>{item.titulo || 'Produto sem descrição'}</Text>
-                  <Text type="secondary" style={{ display: 'block', marginTop: 3, fontSize: 12 }}>
+                <div className={styles.item}>
+                  <strong>{item.titulo || 'Produto sem descrição'}</strong>
+                  <Text type="secondary">
                     Qtd. {Number(item.quantidade || 1)} · SKU da venda {item.seller_sku || '—'} · Item ML {item.ml_item_id || '—'}
                   </Text>
                 </div>
@@ -192,24 +200,8 @@ export default function CompraDetailsDrawer({
             )}
           />
         ) : <Text type="secondary">Itens da venda não disponíveis.</Text>}
-      </div>
-
-      <Descriptions title="Produto vinculado à compra" size="small" bordered column={{ xs: 1, sm: 2 }}>
-        <Descriptions.Item label="Descrição" span={2}>{purchase.produto_descricao || '—'}</Descriptions.Item>
-        <Descriptions.Item label="Quantidade comprada">{purchase.quantidade || 1}</Descriptions.Item>
-        <Descriptions.Item label="SKU Bentevi">{purchase.produto_sku_bentevi || 'Não vinculado'}</Descriptions.Item>
-        <Descriptions.Item label="SKU do fornecedor">{purchase.produto_sku_fornecedor || 'Não vinculado'}</Descriptions.Item>
-        <Descriptions.Item label="ID do produto DSLite">{purchase.produto_dslite_id || purchase.produto_sku || '—'}</Descriptions.Item>
-      </Descriptions>
-
-      <Descriptions title="Valores" size="small" bordered column={{ xs: 1, sm: 3 }}>
-        <Descriptions.Item label="Fornecedor">
-          {purchase.supplier_payment_amount == null ? 'A definir' : formatCurrency(purchase.supplier_payment_amount)}
-        </Descriptions.Item>
-        <Descriptions.Item label="Venda (Bentevi)">{formatCurrency(purchase.valor_total || 0)}</Descriptions.Item>
-        <Descriptions.Item label="Frete da compra">{formatCurrency(purchase.valor_frete || 0)}</Descriptions.Item>
-      </Descriptions>
-    </Space>
+      </section>
+    </div>
   ) : null;
 
   const payment = purchase ? (
@@ -296,20 +288,21 @@ export default function CompraDetailsDrawer({
 
   return (
     <Drawer
+      className={styles.drawer}
       title={purchase ? (
-        <div>
+        <div className={styles.drawerTitle}>
           <Space size={8} wrap>
             <Text strong>Compra DSLite #{purchase.dsid}</Text>
             <Tag color="gold">{formatStatus(purchase.status)}</Tag>
           </Space>
           <Text type="secondary" style={{ display: 'block', marginTop: 3, fontSize: 12 }}>
-            {formatDateTime(purchase.data_criacao)}
+            {purchase.fornecedor_apelido || purchase.fornecedor_nome || 'Fornecedor não informado'} · Compra criada em {formatDateTime(purchase.data_criacao)}
           </Text>
         </div>
       ) : 'Detalhes da compra'}
       extra={actions}
       open={open}
-      size="large"
+      width="min(736px, 100vw)"
       destroyOnHidden
       onClose={onClose}
     >

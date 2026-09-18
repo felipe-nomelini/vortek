@@ -21,6 +21,7 @@ import type {
   Order, PedidoOperacionalItemApiDto, PedidoVendaDetalheApiResponse,
   PedidoVendaGrupoDetalheApiDto,
 } from '@/types/order';
+import styles from './PedidoDetailsDrawer.module.css';
 
 const { Text, Title } = Typography;
 
@@ -220,49 +221,64 @@ export default function PedidoDetailsDrawer({
   ) : null;
 
   const clientContent = order ? (
-    <Space direction="vertical" size={20} style={{ width: '100%' }}>
-      <section>
-        <Title level={5}>Cliente</Title>
-        <Descriptions size="small" column={{ xs: 1, sm: 2 }} bordered>
-          <Descriptions.Item label="Nome">
-            {order.cliente_id
-              ? <Link href={`/clientes/${order.cliente_id}`}>{getDisplayFiscalClientName(order) || getDisplayClientName(order)}</Link>
-              : getDisplayFiscalClientName(order) || getDisplayClientName(order)}
-          </Descriptions.Item>
-          <Descriptions.Item label="Documento">{order.contato.numeroDocumento || '—'}</Descriptions.Item>
-          <Descriptions.Item label="Endereço" span={2}>
+    <div className={styles.clientLayout}>
+      <section className={styles.detailSection} aria-labelledby="sale-client-title">
+        <h3 id="sale-client-title">Cliente</h3>
+        <div className={styles.clientName}>
+          {order.cliente_id
+            ? <Link href={`/clientes/${order.cliente_id}`}>{getDisplayFiscalClientName(order) || getDisplayClientName(order)}</Link>
+            : getDisplayFiscalClientName(order) || getDisplayClientName(order)}
+        </div>
+        <div className={styles.detailField}>
+          <span>Documento</span>
+          <strong>{order.contato.numeroDocumento || '—'}</strong>
+        </div>
+        <div className={styles.detailField}>
+          <span>Endereço</span>
+          <div className={styles.address}>
             {addressLines.length > 0
-              ? addressLines.map((line) => <Text key={line} style={{ display: 'block' }}>{line}</Text>)
+              ? addressLines.map((line) => <span key={line}>{line}</span>)
               : 'Endereço ainda não sincronizado'}
-          </Descriptions.Item>
-        </Descriptions>
+          </div>
+        </div>
       </section>
-      <section>
-        <Title level={5}>Fiscal e entrega</Title>
-        <Descriptions size="small" column={{ xs: 1, sm: 2 }} bordered>
-          <Descriptions.Item label="Nota fiscal">
-            {(order.operational_invoice_numbers || []).length > 0
-              ? (order.operational_invoice_numbers || []).join(', ')
-              : order.notaFiscal?.numero || 'Não emitida'}
-          </Descriptions.Item>
-          <Descriptions.Item label="Situação da NF-e">{formatStatus(order.nfe_status)}</Descriptions.Item>
-          <Descriptions.Item label="Chave da NF-e" span={2}>{order.nfe_chave || '—'}</Descriptions.Item>
-          <Descriptions.Item label="Código do envio ML">{order.ml_shipment_id || '—'}</Descriptions.Item>
-          <Descriptions.Item label="Código de rastreio">{order.rastreio || '—'}</Descriptions.Item>
-          <Descriptions.Item label="Mercado Livre" span={2}>
+      <div className={styles.rightColumn}>
+        <section className={styles.detailSection} aria-labelledby="sale-delivery-title">
+          <h3 id="sale-delivery-title">Entrega</h3>
+          <div className={styles.fieldGrid}>
+            <div className={styles.detailField}><span>Código do envio ML</span><strong>{order.ml_shipment_id || '—'}</strong></div>
+            <div className={styles.detailField}><span>Código de rastreio</span><strong>{order.rastreio || '—'}</strong></div>
+          </div>
+          <div className={styles.externalLink}>
             {order.is_homologation_fixture
-              ? 'Indisponível na amostra protegida'
-              : <a href={`https://www.mercadolivre.com.br/vendas/${mlDetailReference}/detalhe`} target="_blank" rel="noopener noreferrer">Abrir venda{mlPackId ? ` / pack ${mlPackId}` : ''}</a>}
-          </Descriptions.Item>
-        </Descriptions>
-        {order.notaFiscal?.emitida && (
-          <Space style={{ marginTop: 12 }}>
-            <Button size="small" icon={<FilePdfOutlined />} disabled={order.is_homologation_fixture} onClick={() => onOpenDanfe(order)}>Abrir DANFE</Button>
-            <Button size="small" disabled={order.is_homologation_fixture} onClick={() => onDownloadXml(order)}>Baixar XML</Button>
-          </Space>
-        )}
-      </section>
-    </Space>
+              ? 'Mercado Livre indisponível na amostra protegida'
+              : <a href={`https://www.mercadolivre.com.br/vendas/${mlDetailReference}/detalhe`} target="_blank" rel="noopener noreferrer">Abrir venda{mlPackId ? ` / pack ${mlPackId}` : ''} no Mercado Livre</a>}
+          </div>
+        </section>
+        <section className={styles.detailSection} aria-labelledby="sale-fiscal-title">
+          <h3 id="sale-fiscal-title">Fiscal e entrega</h3>
+          <div className={styles.fieldGrid}>
+            <div className={styles.detailField}>
+              <span>Nota fiscal</span>
+              <strong>{(order.operational_invoice_numbers || []).length > 0
+                ? (order.operational_invoice_numbers || []).join(', ')
+                : order.notaFiscal?.numero || 'Não emitida'}</strong>
+            </div>
+            <div className={styles.detailField}><span>Situação da NF-e</span><strong>{formatStatus(order.nfe_status)}</strong></div>
+          </div>
+          <div className={styles.detailField}>
+            <span>Chave da NF-e</span>
+            <strong className={styles.invoiceKey}>{order.nfe_chave ? <Text copyable={{ text: order.nfe_chave }}>{order.nfe_chave}</Text> : '—'}</strong>
+          </div>
+          {order.notaFiscal?.emitida && (
+            <Space wrap className={styles.documentActions}>
+              <Button size="small" icon={<FilePdfOutlined />} disabled={order.is_homologation_fixture} onClick={() => onOpenDanfe(order)}>Abrir DANFE</Button>
+              <Button size="small" disabled={order.is_homologation_fixture} onClick={() => onDownloadXml(order)}>Baixar XML</Button>
+            </Space>
+          )}
+        </section>
+      </div>
+    </div>
   ) : null;
 
   const historyContent = detail ? (
@@ -295,12 +311,9 @@ export default function PedidoDetailsDrawer({
       width="min(960px, 100vw)"
       destroyOnHidden
       extra={order ? (
-        <Space>
-          <Tag color={order.situacao.valor === 'entregue' ? 'green' : order.situacao.valor === 'cancelado' ? 'default' : 'gold'}>
-            {formatStatus(order.situacao.valor)}
-          </Tag>
-          <Text strong>{formatCurrency(order.total)}</Text>
-        </Space>
+        <Tag color={order.situacao.valor === 'entregue' ? 'green' : order.situacao.valor === 'cancelado' ? 'default' : 'gold'}>
+          {formatStatus(order.situacao.valor)}
+        </Tag>
       ) : null}
       footer={order && actions ? <Space wrap>{actions}</Space> : null}
       styles={{ footer: { background: token.colorBgElevated } }}
@@ -318,14 +331,13 @@ export default function PedidoDetailsDrawer({
         {loading && !detail ? <Skeleton active paragraph={{ rows: 10 }} /> : null}
         {order && detail ? (
           <>
-            <section>
-              <Descriptions size="small" column={{ xs: 1, sm: 2, md: 4 }}>
-                <Descriptions.Item label="Cliente" span={2}>{getDisplayClientName(order)}</Descriptions.Item>
-                <Descriptions.Item label="Total">{formatCurrency(order.total)}</Descriptions.Item>
-                <Descriptions.Item label="Lucro"><Text style={{ color: profitColor }}>{profitDisplay}</Text></Descriptions.Item>
-              </Descriptions>
+            <section className={styles.saleSummary}>
+              <div className={styles.summaryAmounts}>
+                <div><span>Total</span><strong>{formatCurrency(order.total)}</strong></div>
+                <div><span>Lucro</span><strong style={{ color: profitColor }}>{profitDisplay}</strong></div>
+              </div>
               {progress && (
-                <div style={{ marginTop: 8 }}>
+                <div className={styles.summaryProgress}>
                   <Text strong>Etapa {progress.currentStep}/{SALES_PROGRESS_STAGES.length} — {progress.currentLabel}</Text>
                   <Progress
                     aria-label={`Progresso da venda: ${progress.completedSteps} de ${SALES_PROGRESS_STAGES.length} etapas concluídas`}
@@ -333,7 +345,7 @@ export default function PedidoDetailsDrawer({
                     steps={SALES_PROGRESS_STAGES.length}
                     showInfo={false}
                     strokeColor={progressColor}
-                    style={{ display: 'block', maxWidth: 520, margin: '8px 0 2px' }}
+                    style={{ display: 'block', margin: '8px 0 2px' }}
                   />
                   <Text type="secondary">Próxima: {progress.nextLabel}</Text>
                 </div>
