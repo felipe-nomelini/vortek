@@ -40,6 +40,7 @@ import {
 } from "@/lib/notifications/templates";
 import {
   SYNC_TASKS,
+  isSyncTaskEnabled,
   evaluateScheduledTaskHealth,
   getIntervalMinutesForTask,
   getSaoPauloHour,
@@ -902,7 +903,9 @@ export async function alertCriticalJobs() {
 export async function alertStaleScheduledTasks() {
   const client = createServiceClient();
   const hour = getSaoPauloHour();
-  const scheduledTasks = SYNC_TASKS.filter((task) => task.dispatchMode === "scheduled");
+  const scheduledTasks = SYNC_TASKS.filter(
+    (task) => task.dispatchMode === "scheduled" && isSyncTaskEnabled(task),
+  );
 
   let checked = 0;
   let alerted = 0;

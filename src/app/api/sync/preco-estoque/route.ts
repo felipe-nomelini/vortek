@@ -15,6 +15,7 @@ import {
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { shouldSkipManuallyBlockedStockUpdate } from '@/lib/ml/protective-stock';
+import { shouldFinalizeEvolusomCycle } from '@/lib/sync/evolusom-cycle';
 
 export const maxDuration = 300;
 
@@ -112,14 +113,38 @@ export async function POST(req: Request) {
   const pageSize = parsePositiveInt(body?.pageSize, 50);
   const maxPagesPerRun = parsePositiveInt(body?.maxPagesPerRun, 1);
   const withMlSync = Boolean(body?.withMlSync);
+  const directEvolusomRequested = String(body?.source || '') === 'evolusom_direct';
+  const directEvolusomEnabled = process.env.EVOLUSOM_DIRECT_ENABLED === 'true';
+  const directEvolusomSync = directEvolusomRequested && directEvolusomEnabled;
+  const requestedCycleStartedAt = String(body?.cycleStartedAt || '').trim();
+  const validRequestedCycleStartedAt = Number.isFinite(new Date(requestedCycleStartedAt).getTime())
+    ? requestedCycleStartedAt
+    : '';
+  const cycleStartedAt = directEvolusomSync
+    ? validRequestedCycleStartedAt || new Date(startedAt).toISOString()
+    : '';
+  const cycleStartedFromPageOne = directEvolusomSync
+    && (body?.cycleStartedFromPageOne === true || (!validRequestedCycleStartedAt && startPage === 1));
+  let cycleExpectedTotal = directEvolusomSync && Number(body?.cycleExpectedTotal) > 0
+    ? Math.trunc(Number(body.cycleExpectedTotal))
+    : 0;
+  let cycleTotalStable = body?.cycleTotalStable !== false;
 
   const jobContext = {
-    key: 'sync_dslite_preco_estoque',
+    key: directEvolusomRequested ? 'sync_evolusom_preco_estoque' : 'sync_dslite_preco_estoque',
     domain: 'produtos:dslite_preco',
     started_at: new Date(startedAt).toISOString(),
   };
 
   try {
+    if (directEvolusomRequested && !directEvolusomEnabled) {
+      return NextResponse.json({
+        success: false,
+        code: 'evolusom_direct_disabled',
+        errors: [{ code: 'evolusom_direct_disabled', message: 'Integração direta Evolusom desabilitada' }],
+      }, { status: 503 });
+    }
+
     const lock = await acquireDomainLock({
       domain: jobContext.domain,
       ownerTask: jobContext.key,
@@ -149,7 +174,12 @@ export async function POST(req: Request) {
       }, { status: 409 });
     }
 
-    const fornecedoresResult = await listarFornecedoresComDiagnostico();
+    const fornecedoresResult = directEvolusomSync
+      ? {
+          fornecedores: [{ id: 133, apelido: 'Evolusom', nome: 'Evolusom', status: 'Ativo', crossdocking: 'Ativo', dropshipping: 'Ativo' }],
+          failure: null,
+        }
+      : await listarFornecedoresComDiagnostico();
     const fornecedores = fornecedoresResult.fornecedores;
     if (!fornecedores) {
       errors.push({
@@ -192,11 +222,14 @@ export async function POST(req: Request) {
     const inactiveCostThreshold = commercial.inactiveCostThreshold;
     const fornecedoresAtivosLocalIds = await loadOperationalDropshippingSupplierIds(client);
 
-    const fornecedorIds = fornecedorIdsRaw.length > 0
+    const fornecedorIds = (directEvolusomSync
+      ? ['133']
+      : fornecedorIdsRaw.length > 0
       ? Array.from(new Set(fornecedorIdsRaw.map((id) => String(id).trim()).filter(Boolean)))
       : fornecedores
           .filter((f) => String(f.crossdocking || '').toLowerCase() === 'ativo')
-          .map((f) => String(f.id));
+          .map((f) => String(f.id)))
+      .filter((id) => directEvolusomSync || !(directEvolusomEnabled && id === '133'));
     const fornecedorIdsAtivos = fornecedorIds.filter((id) =>
       fornecedoresAtivosLocalIds.has(String(id)),
     );
@@ -233,6 +266,7 @@ export async function POST(req: Request) {
     let recordsFailed = 0;
     let recordsUpdatedInactive = 0;
     let offersInactivatedByCost = 0;
+    let offersInactivatedMissing = 0;
     let mlOutboxEnqueued = 0;
     let mlOutboxUpdatedExisting = 0;
     let mlOutboxUnchanged = 0;
@@ -249,7 +283,25 @@ export async function POST(req: Request) {
     let kitStockUpdated = 0;
     let kitMlOutboxEnqueued = 0;
     let remainingPagesBudget = maxPagesPerRun;
-    let nextCursor: { fornecedorId: string; page: number } | null = null;
+    type PriceSyncCursor = {
+      fornecedorId: string;
+      page: number;
+      cycleStartedAt?: string;
+      cycleExpectedTotal?: number;
+      cycleStartedFromPageOne?: boolean;
+      cycleTotalStable?: boolean;
+    };
+    const buildNextCursor = (fornecedorId: string, page: number): PriceSyncCursor => ({
+      fornecedorId,
+      page,
+      ...(directEvolusomSync ? {
+        cycleStartedAt,
+        cycleExpectedTotal,
+        cycleStartedFromPageOne,
+        cycleTotalStable,
+      } : {}),
+    });
+    let nextCursor: PriceSyncCursor | null = null;
     let stopByBudget = false;
 
     while (supplierIndex < fornecedorIdsAtivos.length) {
@@ -258,12 +310,20 @@ export async function POST(req: Request) {
       const response = await sincronizarPrecoEstoque(targetFornecedor, currentPage, pageSize);
       if (!response?.produtos?.length) {
         const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
-        nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
+        nextCursor = nextFornecedor ? buildNextCursor(String(nextFornecedor), 1) : null;
         stopByBudget = true;
         break;
       }
 
       const produtos = response.produtos;
+      const totalRegistros = Number(response?.detalhesConsulta?.totalRegistros || 0);
+      const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
+      const totalPaginas = perPage > 0 ? Math.ceil(totalRegistros / perPage) : currentPage;
+      const hasMore = currentPage < totalPaginas;
+      if (directEvolusomSync) {
+        if (cycleExpectedTotal === 0) cycleExpectedTotal = totalRegistros;
+        if (cycleExpectedTotal !== totalRegistros) cycleTotalStable = false;
+      }
       pagesProcessed += 1;
       remainingPagesBudget -= 1;
       recordsSeen += produtos.length;
@@ -323,17 +383,12 @@ export async function POST(req: Request) {
       }
 
       if (batch.length === 0) {
-        const totalRegistros = Number(response?.detalhesConsulta?.totalRegistros || 0);
-        const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
-        const totalPaginas = perPage > 0 ? Math.ceil(totalRegistros / perPage) : currentPage;
-        const hasMore = currentPage < totalPaginas;
-
         if (remainingPagesBudget <= 0) {
           if (hasMore) {
-            nextCursor = { fornecedorId: targetFornecedor, page: currentPage + 1 };
+            nextCursor = buildNextCursor(targetFornecedor, currentPage + 1);
           } else {
             const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
-            nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
+            nextCursor = nextFornecedor ? buildNextCursor(String(nextFornecedor), 1) : null;
           }
           stopByBudget = true;
           break;
@@ -345,7 +400,7 @@ export async function POST(req: Request) {
         }
 
         const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
-        nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
+        nextCursor = nextFornecedor ? buildNextCursor(String(nextFornecedor), 1) : null;
         stopByBudget = true;
         break;
       }
@@ -386,6 +441,7 @@ export async function POST(req: Request) {
       const offerUpserts: Array<Record<string, unknown>> = [];
       const touchedProductIds = new Set<string>();
       const productsWithHighCostOffer = new Set<string>();
+      const missingEvolusomProductIds = new Set<string>();
 
       for (let index = 0; index < batch.length; index += 1) {
         const row = batch[index];
@@ -429,6 +485,73 @@ export async function POST(req: Request) {
           last_sync_at: row.dslite_ultima_sync,
           updated_at: new Date().toISOString(),
         });
+      }
+
+      const completesStableEvolusomCycle = shouldFinalizeEvolusomCycle({
+        directSync: directEvolusomSync,
+        supplierId: targetFornecedor,
+        hasMore,
+        isLastSupplier: supplierIndex === fornecedorIdsAtivos.length - 1,
+        startedFromPageOne: cycleStartedFromPageOne,
+        totalStable: cycleTotalStable,
+        expectedTotal: cycleExpectedTotal,
+        observedTotal: totalRegistros,
+        errorCount: errors.length,
+      });
+
+      if (completesStableEvolusomCycle) {
+        const currentPageProductIds = new Set(dsliteProdutoIds);
+        const staleOffers: any[] = [];
+        for (let from = 0; ; from += 1000) {
+          const { data: stalePage, error: staleError } = await client
+            .from('produto_fornecedor_ofertas')
+            .select('produto_id,dslite_fornecedor_id,dslite_produto_id,fornecedor_nome,nome,sku_oferta,sku_fornecedor,custo,prioridade,payment_mode,last_sync_at')
+            .eq('dslite_fornecedor_id', '133')
+            .or(`last_sync_at.is.null,last_sync_at.lt.${cycleStartedAt}`)
+            .range(from, from + 999);
+          if (staleError) {
+            fatalSyncError = true;
+            errors.push({
+              code: 'evolusom_missing_offer_select_failed',
+              message: staleError.message,
+              context: { fornecedorId: targetFornecedor, cycleStartedAt },
+            });
+            break;
+          }
+          const rows = (stalePage || []) as any[];
+          staleOffers.push(...rows);
+          if (rows.length < 1000) break;
+        }
+
+        if (fatalSyncError) {
+          stopByBudget = true;
+          break;
+        }
+
+        for (const staleOffer of staleOffers) {
+          const dsliteProdutoId = String(staleOffer.dslite_produto_id || '').trim();
+          if (!dsliteProdutoId || currentPageProductIds.has(dsliteProdutoId)) continue;
+          const productId = String(staleOffer.produto_id || '').trim();
+          if (!productId) continue;
+          touchedProductIds.add(productId);
+          missingEvolusomProductIds.add(productId);
+          offerUpserts.push({
+            produto_id: productId,
+            dslite_fornecedor_id: '133',
+            fornecedor_nome: String(staleOffer.fornecedor_nome || 'Evolusom'),
+            nome: fallbackNome(staleOffer.nome, dsliteProdutoId),
+            dslite_produto_id: dsliteProdutoId,
+            sku_oferta: String(staleOffer.sku_oferta || dsliteProdutoId),
+            sku_fornecedor: String(staleOffer.sku_fornecedor || dsliteProdutoId),
+            custo: normalizeCost(staleOffer.custo),
+            estoque: 0,
+            ativo: false,
+            prioridade: normalizeStock(staleOffer.prioridade || 100),
+            payment_mode: staleOffer.payment_mode || inferSupplierPaymentMode('133'),
+            updated_at: new Date().toISOString(),
+          });
+          offersInactivatedMissing += 1;
+        }
       }
 
       const successfullyUpsertedProductIds = new Set<string>();
@@ -506,6 +629,82 @@ export async function POST(req: Request) {
           recordsFailed += snapshotProductIds.length;
           stopByBudget = true;
           break;
+      }
+
+      if (missingEvolusomProductIds.size > 0) {
+        const snapshotIds = new Set(changedSnapshots.map((snapshot) => String(snapshot.productId)));
+        const withoutPreferredOffer = Array.from(missingEvolusomProductIds)
+          .filter((productId) => !snapshotIds.has(productId));
+        if (withoutPreferredOffer.length > 0) {
+          const { data: unavailableProducts, error: unavailableProductsError } = await client
+            .from('produtos')
+            .select('id,ativo,sku,ml_item_id,ml_status,oferta_preferencial_id,fornecedor_preferencial_manual,custo,estoque,fornecedor,dslite_fornecedor_id,dslite_produto_id,dslite_ultima_sync')
+            .in('id', withoutPreferredOffer);
+          if (unavailableProductsError) {
+            fatalSyncError = true;
+            errors.push({
+              code: 'evolusom_missing_product_select_failed',
+              message: unavailableProductsError.message,
+              context: { fornecedorId: targetFornecedor },
+            });
+            stopByBudget = true;
+            break;
+          }
+
+          const { error: zeroUnavailableError } = await client
+            .from('produtos')
+            .update({
+              estoque: 0,
+              oferta_preferencial_id: null,
+              fornecedor_preferencial_manual: false,
+            } as any)
+            .in('id', withoutPreferredOffer);
+          if (zeroUnavailableError) {
+            fatalSyncError = true;
+            errors.push({
+              code: 'evolusom_missing_product_zero_stock_failed',
+              message: zeroUnavailableError.message,
+              context: { fornecedorId: targetFornecedor },
+            });
+            stopByBudget = true;
+            break;
+          }
+
+          for (const product of unavailableProducts || []) {
+            const previous = {
+              id: String((product as any).id),
+              ativo: (product as any).ativo === true,
+              sku: String((product as any).sku || ''),
+              ml_item_id: (product as any).ml_item_id ? String((product as any).ml_item_id) : null,
+              ml_status: (product as any).ml_status ? String((product as any).ml_status) : null,
+              oferta_preferencial_id: (product as any).oferta_preferencial_id ? String((product as any).oferta_preferencial_id) : null,
+              fornecedor_preferencial_manual: (product as any).fornecedor_preferencial_manual === true,
+              custo: Number((product as any).custo || 0),
+              estoque: Number((product as any).estoque || 0),
+              fornecedor: (product as any).fornecedor ? String((product as any).fornecedor) : null,
+              dslite_fornecedor_id: (product as any).dslite_fornecedor_id ? String((product as any).dslite_fornecedor_id) : null,
+              dslite_produto_id: (product as any).dslite_produto_id ? String((product as any).dslite_produto_id) : null,
+              dslite_ultima_sync: (product as any).dslite_ultima_sync ? String((product as any).dslite_ultima_sync) : null,
+            };
+            changedSnapshots.push({
+              productId: previous.id,
+              previous,
+              next: {
+                oferta_preferencial_id: null,
+                fornecedor_preferencial_manual: false,
+                custo: previous.custo,
+                estoque: 0,
+                fornecedor: previous.fornecedor,
+                dslite_fornecedor_id: previous.dslite_fornecedor_id,
+                dslite_produto_id: previous.dslite_produto_id,
+                dslite_ultima_sync: previous.dslite_ultima_sync,
+              },
+              changed: previous.estoque !== 0
+                || previous.oferta_preferencial_id !== null
+                || previous.fornecedor_preferencial_manual,
+            });
+          }
+        }
       }
 
       const highCostProductIds = Array.from(productsWithHighCostOffer)
@@ -728,7 +927,7 @@ export async function POST(req: Request) {
             desiredStatus,
             desiredQuantity: estoqueDisponivel,
             desiredPrice: null,
-            source: 'dslite_stock_automation',
+            source: directEvolusomSync ? 'evolusom_stock_automation' : 'dslite_stock_automation',
             dedupePending: true,
             payload: {
               apply_price: false,
@@ -743,7 +942,7 @@ export async function POST(req: Request) {
               manual_block_bypassed_for_zero_stock: isManualBlocked && estoqueDisponivel <= 0,
               fornecedor_preferencial: snapshot.next.fornecedor,
               fornecedor_dslite_id: snapshot.next.dslite_fornecedor_id,
-              origin: 'api/sync/preco-estoque',
+              origin: directEvolusomSync ? 'api/sync/preco-estoque:evolusom' : 'api/sync/preco-estoque',
               synced_at: snapshot.next.dslite_ultima_sync,
             },
           });
@@ -767,17 +966,12 @@ export async function POST(req: Request) {
         }
       }
 
-      const totalRegistros = Number(response?.detalhesConsulta?.totalRegistros || 0);
-      const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
-      const totalPaginas = perPage > 0 ? Math.ceil(totalRegistros / perPage) : currentPage;
-      const hasMore = currentPage < totalPaginas;
-
       if (remainingPagesBudget <= 0) {
         if (hasMore) {
-          nextCursor = { fornecedorId: targetFornecedor, page: currentPage + 1 };
+          nextCursor = buildNextCursor(targetFornecedor, currentPage + 1);
         } else {
           const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
-          nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
+          nextCursor = nextFornecedor ? buildNextCursor(String(nextFornecedor), 1) : null;
         }
         stopByBudget = true;
         break;
@@ -789,7 +983,7 @@ export async function POST(req: Request) {
       }
 
       const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
-      nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
+      nextCursor = nextFornecedor ? buildNextCursor(String(nextFornecedor), 1) : null;
       stopByBudget = true;
       break;
     }
@@ -828,6 +1022,7 @@ export async function POST(req: Request) {
         row_failed: recordsFailed,
         updated_inactive: recordsUpdatedInactive,
         offers_inactivated_by_cost: offersInactivatedByCost,
+        offers_inactivated_missing: offersInactivatedMissing,
         inactivated_by_cost: offersInactivatedByCost,
       },
       errors,
@@ -854,9 +1049,12 @@ export async function POST(req: Request) {
       row_failed: recordsFailed,
       updated_inactive: recordsUpdatedInactive,
       offers_inactivated_by_cost: offersInactivatedByCost,
+      offers_inactivated_missing: offersInactivatedMissing,
       inactivated_by_cost: offersInactivatedByCost,
       next_cursor: nextCursor,
-      message: 'Sync DSLite de preço/estoque concluído com enfileiramento ML por outbox',
+      message: directEvolusomSync
+        ? 'Sync direto Evolusom de preço/estoque concluído com enfileiramento ML por outbox'
+        : 'Sync DSLite de preço/estoque concluído com enfileiramento ML por outbox',
     });
   } catch (err: any) {
     errors.push({

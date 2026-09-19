@@ -172,6 +172,7 @@ export async function POST(request: Request) {
     const activeSupplierIdSet = new Set(activeSupplierIds);
     const supplierIds = activeSupplierIds
       .filter((supplierId) => Boolean(supplierId && configuredFeeds.get(supplierId)))
+      .filter((supplierId) => !(process.env.EVOLUSOM_DIRECT_ENABLED === 'true' && supplierId === '133'))
       .filter((supplierId) => !selectedSupplierIds || selectedSupplierIds.has(supplierId));
 
     let feedsDownloaded = 0;

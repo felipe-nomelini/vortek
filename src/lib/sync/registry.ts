@@ -6,6 +6,8 @@ export type SyncTaskKey =
   | 'sync_dslite_preco_estoque'
   | 'sync_dslite_xml_preco_estoque'
   | 'sync_dslite_pedidos_compra'
+  | 'sync_evolusom_catalogo'
+  | 'sync_evolusom_preco_estoque'
   | 'sync_ml_orders_ingest'
   | 'sync_ml_cancelamentos_pos_nfe'
   | 'sync_ml_listings_observed'
@@ -16,7 +18,7 @@ export type SyncTaskKey =
   | 'sync_pack_id_backfill'
   | 'sync_municipios_seed';
 
-export type SyncTaskKind = 'dslite' | 'ml' | 'fiscal' | 'finance' | 'infra';
+export type SyncTaskKind = 'dslite' | 'evolusom' | 'ml' | 'fiscal' | 'finance' | 'infra';
 
 /**
  * Declara como a task chega a ser executada, para que a ausência de `schedule`
@@ -52,6 +54,7 @@ export interface SyncTaskDefinition {
   runMode?: 'background' | 'inline';
   requestTimeoutMs?: number;
   retryOnFailure?: boolean;
+  activationEnv?: string;
 }
 
 export const SYNC_TASKS: SyncTaskDefinition[] = [
@@ -118,6 +121,53 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 10, offHoursMinutes: 10 },
     runMode: 'inline',
+  },
+  {
+    key: 'sync_evolusom_catalogo',
+    jobTipo: 'sync_evolusom_catalogo',
+    label: 'Evolusom Catálogo — direto',
+    path: '/api/sync/catalogo',
+    domain: 'produtos:dslite_catalogo',
+    lockTtlSeconds: 45 * 60,
+    kind: 'evolusom',
+    progressUnit: 'execucao',
+    dispatchMode: 'scheduled',
+    schedule: { businessMinutes: 2, offHoursMinutes: 2 },
+    usesCursor: true,
+    defaultBody: {
+      source: 'evolusom_direct',
+      fornecedorIds: ['133'],
+      pageSize: 100,
+      maxPagesPerRun: 5,
+    },
+    runMode: 'inline',
+    requestTimeoutMs: 240_000,
+    retryOnFailure: true,
+    activationEnv: 'EVOLUSOM_DIRECT_ENABLED',
+  },
+  {
+    key: 'sync_evolusom_preco_estoque',
+    jobTipo: 'sync_evolusom_preco_estoque',
+    label: 'Evolusom Preço/Estoque — direto',
+    path: '/api/sync/preco-estoque',
+    domain: 'produtos:dslite_preco',
+    lockTtlSeconds: 15 * 60,
+    kind: 'evolusom',
+    progressUnit: 'execucao',
+    dispatchMode: 'scheduled',
+    schedule: { businessMinutes: 2, offHoursMinutes: 2 },
+    usesCursor: true,
+    defaultBody: {
+      source: 'evolusom_direct',
+      fornecedorIds: ['133'],
+      pageSize: 100,
+      maxPagesPerRun: 5,
+      withMlSync: false,
+    },
+    runMode: 'inline',
+    requestTimeoutMs: 240_000,
+    retryOnFailure: true,
+    activationEnv: 'EVOLUSOM_DIRECT_ENABLED',
   },
   {
     key: 'sync_dslite_pedidos_compra',
@@ -275,6 +325,13 @@ export function getSyncTaskByJobTipo(jobTipo: string): SyncTaskDefinition | null
  */
 export function getScheduledTasksMissingSchedule(): SyncTaskDefinition[] {
   return SYNC_TASKS.filter((task) => task.dispatchMode === 'scheduled' && !task.schedule);
+}
+
+export function isSyncTaskEnabled(
+  task: SyncTaskDefinition,
+  env: Record<string, string | undefined> = process.env,
+): boolean {
+  return !task.activationEnv || env[task.activationEnv] === 'true';
 }
 
 export type ScheduledTaskHealth = {

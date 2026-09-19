@@ -49,7 +49,7 @@ test('cliente usa token privado, paginação suportada e nunca chama o domínio 
     if (originalToken === undefined) delete process.env.EVOLUSOM_API_TOKEN;
     else process.env.EVOLUSOM_API_TOKEN = originalToken;
   });
-  const result = await loadEvolusomCatalogPage(2, 200);
+  const result = await loadEvolusomCatalogPage(2, 1);
   assert.equal(result.pageSize, 100);
   assert.equal(calls[0].url, 'https://api2.evolusom.com.br/v1/produtos/cliente?page=2&per_page=100');
   assert.equal(calls[0].options.headers.Authorization, 'Bearer synthetic-test-token');

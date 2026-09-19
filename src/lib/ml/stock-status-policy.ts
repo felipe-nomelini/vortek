@@ -1,5 +1,5 @@
 export const AUTOMATED_STOCK_SOURCES = new Set([
-  'internal_stock_automation', 'dslite_stock_automation', 'dslite_stock_backfill',
+  'internal_stock_automation', 'dslite_stock_automation', 'evolusom_stock_automation', 'dslite_stock_backfill',
   'kit_stock_automation', 'seed_from_products',
 ]);
 

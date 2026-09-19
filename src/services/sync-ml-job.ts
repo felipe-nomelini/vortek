@@ -49,13 +49,40 @@ function eventLog(
   };
 }
 
-function isValidFornecedorCursor(value: unknown): value is { fornecedorId: string; page: number } {
+interface FornecedorCursor {
+  fornecedorId: string;
+  page: number;
+  cycleStartedAt?: string;
+  cycleExpectedTotal?: number;
+  cycleStartedFromPageOne?: boolean;
+  cycleTotalStable?: boolean;
+}
+
+function isValidFornecedorCursor(value: unknown): value is FornecedorCursor {
   return Boolean(value)
     && typeof value === 'object'
     && !Array.isArray(value)
     && String((value as any).fornecedorId || '').trim().length > 0
     && Number.isFinite(Number((value as any).page))
     && Number((value as any).page) > 0;
+}
+
+function normalizeFornecedorCursor(value: FornecedorCursor): FornecedorCursor {
+  const normalized: FornecedorCursor = {
+    fornecedorId: String(value.fornecedorId),
+    page: Number(value.page),
+  };
+  const cycleStartedAt = String(value.cycleStartedAt || '').trim();
+  if (cycleStartedAt && Number.isFinite(new Date(cycleStartedAt).getTime())) {
+    normalized.cycleStartedAt = cycleStartedAt;
+  }
+  const cycleExpectedTotal = Number(value.cycleExpectedTotal);
+  if (Number.isFinite(cycleExpectedTotal) && cycleExpectedTotal > 0) {
+    normalized.cycleExpectedTotal = Math.trunc(cycleExpectedTotal);
+  }
+  if (value.cycleStartedFromPageOne === true) normalized.cycleStartedFromPageOne = true;
+  if (value.cycleTotalStable === false) normalized.cycleTotalStable = false;
+  return normalized;
 }
 
 async function updateJob(jobId: string, data: JobsUpdate) {
@@ -231,21 +258,12 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     const errorCategory = raw?.category || primaryError?.category || null;
     const upstreamStatus = raw?.upstream_status ?? primaryError?.upstream_status ?? null;
     const previousCursor = isValidFornecedorCursor(body)
-      ? {
-          fornecedorId: String(body.fornecedorId),
-          page: Number(body.page),
-        }
+      ? normalizeFornecedorCursor(body)
       : null;
     const effectiveNextCursor = isValidFornecedorCursor(raw?.cursor)
-      ? {
-          fornecedorId: String(raw.cursor.fornecedorId),
-          page: Number(raw.cursor.page),
-        }
+      ? normalizeFornecedorCursor(raw.cursor)
       : isValidFornecedorCursor(raw?.next_cursor)
-        ? {
-            fornecedorId: String(raw.next_cursor.fornecedorId),
-            page: Number(raw.next_cursor.page),
-          }
+        ? normalizeFornecedorCursor(raw.next_cursor)
         : null;
     const cursorExhausted = raw?.cursor_exhausted === true || (!effectiveNextCursor && (Object.prototype.hasOwnProperty.call(raw, 'cursor') || Object.prototype.hasOwnProperty.call(raw, 'next_cursor')));
     const cursorSource = effectiveNextCursor

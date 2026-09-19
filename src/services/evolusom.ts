@@ -85,7 +85,11 @@ export async function loadEvolusomCatalogPage(page: number, requestedSize: numbe
   pageSize: number;
   total: number;
 }> {
-  const pageSize = Math.min(EVOLUSOM_PAGE_SIZE, Math.max(1, Math.trunc(requestedSize)));
+  // A API documenta paginação, mas em produção aceita somente lotes de 100.
+  // Manter o argumento preserva o contrato do adaptador DSLite; a Evolusom
+  // sempre recebe o tamanho suportado pelo endpoint.
+  void requestedSize;
+  const pageSize = EVOLUSOM_PAGE_SIZE;
   const currentPage = Math.max(1, Math.trunc(page));
   const result = await evolusomRequest<EvolusomCatalogPage>(
     `/v1/produtos/cliente?page=${currentPage}&per_page=${pageSize}`,

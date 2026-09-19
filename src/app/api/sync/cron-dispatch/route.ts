@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { getMLAuthDiagnostics } from '@/services/integration';
-import { SYNC_TASKS, getIntervalMsForTask, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
+import { SYNC_TASKS, getIntervalMsForTask, getIntervalMinutesForTask, getSaoPauloHour, isSyncTaskEnabled } from '@/lib/sync/registry';
 import {
   DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
   isJobStale,
@@ -203,12 +203,21 @@ function extractOffsetFromJobLog(log: any): number {
 }
 
 interface CursorExtractionResult {
-  cursor: { fornecedorId: string; page: number } | null;
+  cursor: FornecedorCursor | null;
   exhausted: boolean;
   source: 'cursor' | 'next_cursor' | 'reset' | 'legacy' | 'none';
 }
 
-function isValidFornecedorCursor(value: unknown): value is { fornecedorId: string; page: number } {
+interface FornecedorCursor {
+  fornecedorId: string;
+  page: number;
+  cycleStartedAt?: string;
+  cycleExpectedTotal?: number;
+  cycleStartedFromPageOne?: boolean;
+  cycleTotalStable?: boolean;
+}
+
+function isValidFornecedorCursor(value: unknown): value is FornecedorCursor {
   return Boolean(value)
     && typeof value === 'object'
     && !Array.isArray(value)
@@ -217,18 +226,33 @@ function isValidFornecedorCursor(value: unknown): value is { fornecedorId: strin
     && Number((value as any).page) > 0;
 }
 
+function normalizeFornecedorCursor(value: FornecedorCursor): FornecedorCursor {
+  const normalized: FornecedorCursor = {
+    fornecedorId: String(value.fornecedorId),
+    page: Number(value.page),
+  };
+  const cycleStartedAt = String(value.cycleStartedAt || '').trim();
+  if (cycleStartedAt && Number.isFinite(new Date(cycleStartedAt).getTime())) {
+    normalized.cycleStartedAt = cycleStartedAt;
+  }
+  const cycleExpectedTotal = Number(value.cycleExpectedTotal);
+  if (Number.isFinite(cycleExpectedTotal) && cycleExpectedTotal > 0) {
+    normalized.cycleExpectedTotal = Math.trunc(cycleExpectedTotal);
+  }
+  if (value.cycleStartedFromPageOne === true) normalized.cycleStartedFromPageOne = true;
+  if (value.cycleTotalStable === false) normalized.cycleTotalStable = false;
+  return normalized;
+}
+
 function extractCursorFromJobLog(log: any): CursorExtractionResult {
   const logs = parseLog(log);
-  let legacyCursor: { fornecedorId: string; page: number } | null = null;
+  let legacyCursor: FornecedorCursor | null = null;
 
   for (let i = logs.length - 1; i >= 0; i -= 1) {
     const entry = logs[i] || {};
 
     if (!legacyCursor && isValidFornecedorCursor(entry?.cursor)) {
-      legacyCursor = {
-        fornecedorId: String(entry.cursor.fornecedorId),
-        page: Number(entry.cursor.page),
-      };
+      legacyCursor = normalizeFornecedorCursor(entry.cursor);
     }
 
     if (entry?.event_type !== 'job_stage_done') continue;
@@ -239,10 +263,7 @@ function extractCursorFromJobLog(log: any): CursorExtractionResult {
 
     if (isValidFornecedorCursor(entry?.cursor)) {
       return {
-        cursor: {
-          fornecedorId: String(entry.cursor.fornecedorId),
-          page: Number(entry.cursor.page),
-        },
+        cursor: normalizeFornecedorCursor(entry.cursor),
         exhausted: false,
         source: 'cursor',
       };
@@ -250,10 +271,7 @@ function extractCursorFromJobLog(log: any): CursorExtractionResult {
 
     if (isValidFornecedorCursor(entry?.next_cursor)) {
       return {
-        cursor: {
-          fornecedorId: String(entry.next_cursor.fornecedorId),
-          page: Number(entry.next_cursor.page),
-        },
+        cursor: normalizeFornecedorCursor(entry.next_cursor),
         exhausted: false,
         source: 'next_cursor',
       };
@@ -483,7 +501,7 @@ export async function POST(request: Request) {
     await sendSalesReport('monthly').then((result) => alertResults.push({ alert: 'monthly_sales_report', ...result })).catch(() => null);
   }
 
-  const tasksToRun = SYNC_TASKS.filter((task) => task.schedule);
+  const tasksToRun = SYNC_TASKS.filter((task) => task.schedule && isSyncTaskEnabled(task));
 
   for (const task of tasksToRun) {
     const intervalMinutes = getIntervalMinutesForTask(task, hour);
@@ -548,7 +566,7 @@ export async function POST(request: Request) {
     const recent = recentJobs || [];
     const statuses = recent.map((j: any) => String(j.status || ''));
     const failureStreak = consecutiveFailures(statuses);
-    const backoffMinutes = task.key === 'sync_dslite_preco_estoque'
+    const backoffMinutes = task.key === 'sync_dslite_preco_estoque' || task.key === 'sync_evolusom_preco_estoque'
       ? 0
       : shouldApplyBackoff(statuses) && failureStreak > 0
         ? 10
@@ -597,7 +615,7 @@ export async function POST(request: Request) {
         backoff_minutes: backoffMinutes,
         consecutive_failures: failureStreak,
         offset,
-        cursor: cursorInfo.cursor,
+        cursor: cursorInfo.cursor ? { ...cursorInfo.cursor } : null,
         cursor_exhausted: cursorInfo.exhausted,
         cursor_source: cursorInfo.source,
       },
@@ -635,7 +653,7 @@ export async function POST(request: Request) {
     const body = {
       ...(task.defaultBody || {}),
       ...(task.usesCursor && cursorInfo.cursor
-        ? { fornecedorId: cursorInfo.cursor.fornecedorId, page: cursorInfo.cursor.page }
+        ? { ...cursorInfo.cursor }
         : {}),
     };
     const query = task.usesOffset ? { offset } : undefined;

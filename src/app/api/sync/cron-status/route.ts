@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { getMLAuthDiagnostics } from '@/services/integration';
-import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
+import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour, isSyncTaskEnabled } from '@/lib/sync/registry';
 import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale } from '@/lib/sync/stale-jobs';
 import { BUSINESS_TIME_ZONE, formatSaoPauloDateTime } from '@/lib/timezone';
 
@@ -54,7 +54,8 @@ export async function GET() {
   const tasks = SYNC_TASKS;
 
   const rows = await Promise.all(tasks.map(async (task) => {
-    const interval = getIntervalMinutesForTask(task, hour);
+    const enabled = isSyncTaskEnabled(task);
+    const interval = enabled ? getIntervalMinutesForTask(task, hour) : null;
     const { data: running } = await serviceClient
       .from('jobs')
       .select('id, status, created_at')
@@ -76,7 +77,7 @@ export async function GET() {
       ? new Date(new Date(last.finished_at).getTime() + interval * 60 * 1000).toISOString()
       : null;
 
-    const misconfigured = task.dispatchMode === 'scheduled' && !task.schedule;
+    const misconfigured = enabled && task.dispatchMode === 'scheduled' && !task.schedule;
 
     return {
       task: task.key,
@@ -87,6 +88,7 @@ export async function GET() {
       progress_unit: task.progressUnit,
       dispatch_mode: task.dispatchMode,
       scheduled: Boolean(task.schedule),
+      enabled,
       misconfigured,
       interval_minutes: interval,
       running: running || null,

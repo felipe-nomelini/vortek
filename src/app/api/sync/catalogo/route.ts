@@ -237,14 +237,25 @@ export async function POST(req: Request) {
   const cursorFornecedorId = String(body?.fornecedorId || "").trim();
   const cursorPage = parsePositiveInt(body?.page, 1);
   const withMlSync = Boolean(body?.withMlSync);
+  const directEvolusomRequested = String(body?.source || "") === "evolusom_direct";
+  const directEvolusomEnabled = process.env.EVOLUSOM_DIRECT_ENABLED === "true";
+  const directEvolusomSync = directEvolusomRequested && directEvolusomEnabled;
 
   const jobContext = {
-    key: "sync_dslite_catalogo",
+    key: directEvolusomRequested ? "sync_evolusom_catalogo" : "sync_dslite_catalogo",
     domain: "produtos:dslite_catalogo",
     started_at: new Date(startedAt).toISOString(),
   };
 
   try {
+    if (directEvolusomRequested && !directEvolusomEnabled) {
+      return NextResponse.json({
+        success: false,
+        code: "evolusom_direct_disabled",
+        errors: [{ code: "evolusom_direct_disabled", message: "Integração direta Evolusom desabilitada" }],
+      }, { status: 503 });
+    }
+
     const lock = await acquireDomainLock({
       domain: jobContext.domain,
       ownerTask: jobContext.key,
@@ -279,7 +290,9 @@ export async function POST(req: Request) {
 
     const client = createServiceClient();
     const commercial = await loadCommercialPricingConfiguration(client);
-    const fornecedores = await listarFornecedores();
+    const fornecedores = directEvolusomSync
+      ? [{ id: 133, apelido: "Evolusom", nome: "Evolusom", status: "Ativo", crossdocking: "Ativo", dropshipping: "Ativo" }]
+      : await listarFornecedores();
     if (!fornecedores || fornecedores.length === 0) {
       errors.push({
         code: "dslite_fornecedores_empty",
@@ -336,8 +349,9 @@ export async function POST(req: Request) {
       );
     }
 
-    const fornecedorIds =
-      fornecedorIdsRaw.length > 0
+    const fornecedorIds = (directEvolusomSync
+      ? ["133"]
+      : fornecedorIdsRaw.length > 0
         ? Array.from(
             new Set(
               fornecedorIdsRaw.map((v) => String(v).trim()).filter(Boolean),
@@ -347,7 +361,8 @@ export async function POST(req: Request) {
             .filter(
               (f) => String(f.crossdocking || "").toLowerCase() === "ativo",
             )
-            .map((f) => String(f.id));
+            .map((f) => String(f.id)))
+      .filter((id) => directEvolusomSync || !(directEvolusomEnabled && id === "133"));
     const fornecedorIdsAtivos = fornecedorIds.filter((id) =>
       fornecedoresAtivosLocalIds.has(String(id)),
     );
