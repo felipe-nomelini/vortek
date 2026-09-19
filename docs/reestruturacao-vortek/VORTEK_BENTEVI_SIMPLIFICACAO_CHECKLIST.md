@@ -33,7 +33,7 @@ Todo bloqueio encontrado recebe uma classificação:
 
 ## Áreas e ordem
 
-1. **Acesso, navegação e padrões globais** — em andamento; primeira ação `BNT-SIMP-01`.
+1. **Acesso, navegação e padrões globais** — em andamento; `BNT-SIMP-01` concluída, demais padrões ainda pendentes.
 2. **Dashboard, TV e prioridades diárias** — pendente.
 3. **Vendas, pedidos, fulfillment e expedição** — pendente.
 4. **Compras, fornecedores, pagamentos e créditos** — pendente.
@@ -66,7 +66,7 @@ Dependências de outra área são registradas, mas não ampliam a ação atual.
 - [x] preservar autenticação, autorização server-side, auditoria e proteção contra auto-desativação;
 - [x] exibir o perfil `admin` como Proprietário no shell;
 - [x] concluir testes direcionados, validação, build e verificação de secrets;
-- [ ] promover o SHA validado e concluir o smoke produtivo.
+- [x] promover o SHA validado e concluir o smoke produtivo.
 
 ### Aceite
 
@@ -82,6 +82,16 @@ Dependências de outra área são registradas, mas não ampliam a ação atual.
 - 91/91 testes da suíte de Configurações e integrações aprovados;
 - `npm run validate`, `npm run build` com 146 páginas estáticas/dinâmicas, `npm run check:build-secrets` e `git diff --check` aprovados;
 - leitura produtiva confirmou dois usuários interativos e ambos com perfil técnico `admin`; nenhum dado foi alterado.
+
+### Publicação produtiva
+
+- SHA funcional `a9e0b53cf12889919dff32c8fc454e89a6626114` enviado a `origin/dev` e promovido por fast-forward a `origin/bentevi-prod`;
+- webhook oficial do serviço `local/bentevi-prod` aceito e novo processo observado após reinício;
+- health e login responderam `200`; Configurações respondeu `307` sem sessão; GET e POST da API de proprietários responderam `401` sem sessão;
+- chunk produtivo contém “Novo proprietário” e possui o mesmo SHA-256 do build local: `d38116fdf4edc746f7cacebb3a213d201850814095a5231f822833fcc39f8ee4`;
+- nenhuma migration, alteração de perfil, criação de conta ou outra escrita foi executada.
+
+**Situação:** concluída. A Área 1 continua em tarefa posterior para revisar navegação e padrões globais; nenhuma outra área foi iniciada nesta ação.
 
 ## Entrega obrigatória por área
 
