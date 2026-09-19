@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import type { Database } from '@/types/database';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
 import {
@@ -7,8 +6,6 @@ import {
   createUserConfigurationSchema,
 } from '@/lib/configuracoes/contracts';
 import { recordConfigurationAudit } from '@/services/configuration-audit';
-
-type UserRole = Database['public']['Enums']['user_role'];
 
 function isActiveFromBannedUntil(value: string | undefined): boolean {
   if (!value) return true;
@@ -37,7 +34,7 @@ export async function GET() {
   const { data: profiles, error: profilesError } = userIds.length
     ? await serviceClient
         .from('profiles')
-        .select('id, nome, cargo, avatar_url')
+        .select('id, nome, avatar_url')
         .in('id', userIds)
     : { data: [], error: null };
 
@@ -54,7 +51,6 @@ export async function GET() {
       id: user.id,
       email,
       nome: profile?.nome || user.user_metadata?.nome || email.split('@')[0] || 'Usuário',
-      cargo: (profile?.cargo || 'operador') as UserRole,
       avatar_url: profile?.avatar_url || null,
       ativo: isActiveFromBannedUntil(user.banned_until),
       banned_until: user.banned_until || null,
@@ -79,7 +75,8 @@ export async function POST(request: Request) {
       { status: 422 },
     );
   }
-  const { nome, email, senha, cargo } = parsed.data;
+  const { nome, email, senha } = parsed.data;
+  const cargo = 'admin' as const;
   const avatarUrl = parsed.data.avatar_url || null;
 
   const serviceClient = createServiceClient();
@@ -134,7 +131,6 @@ export async function POST(request: Request) {
       id: created.user.id,
       nome,
       email,
-      cargo,
       avatar_url: avatarUrl,
       ativo: true,
       banned_until: null,

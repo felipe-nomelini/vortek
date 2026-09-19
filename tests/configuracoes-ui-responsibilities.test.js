@@ -93,6 +93,8 @@ test("cada tab concentra somente seu fluxo operacional", () => {
 
   assert.match(usuarios, /fetch\("\/api\/configuracoes\/usuarios"/);
   assert.match(usuarios, /<Table<Usuario>/);
+  assert.match(usuarios, /title="Proprietários"/);
+  assert.doesNotMatch(usuarios, /roleOptions|placeholder="Cargo"|dataIndex: "cargo"/);
   assert.doesNotMatch(usuarios, /\/api\/integracoes|\/api\/push/);
 
   assert.match(notificacoes, /fetch\("\/api\/configuracoes\/notificacoes"/);

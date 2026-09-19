@@ -91,7 +91,7 @@ export const CONFIGURATION_DEFINITIONS = {
   "integracoes.mercadolivre.conectado": { domain: "mercado_livre_anuncios", label: "Estado da conexão Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
   "usuarios.nome": { domain: "usuarios_permissoes", label: "Nome do usuário", classification: "EDITAVEL_CONTROLADO" },
   "usuarios.email": { domain: "usuarios_permissoes", label: "E-mail do usuário", classification: "EDITAVEL_CONTROLADO" },
-  "usuarios.cargo": { domain: "usuarios_permissoes", label: "Cargo do usuário", classification: "EDITAVEL_CONTROLADO" },
+  "usuarios.cargo": { domain: "usuarios_permissoes", label: "Perfil proprietário", classification: "INVARIANTE" },
   "usuarios.avatar_url": { domain: "usuarios_permissoes", label: "Avatar do usuário", classification: "EDITAVEL_CONTROLADO" },
   "usuarios.senha": { domain: "usuarios_permissoes", label: "Senha do usuário", classification: "SECRET_WRITE_ONLY" },
   "usuarios.ativo": { domain: "usuarios_permissoes", label: "Estado do usuário", classification: "EDITAVEL_CONTROLADO" },
@@ -349,13 +349,10 @@ export const integrationConfigurationSchema = z.discriminatedUnion("tipo", [
   }).strict(),
 ]);
 
-export const USER_ROLES = ["admin", "gerente", "operador", "visualizador"] as const;
-
 export const createUserConfigurationSchema = z.object({
   nome: z.string().trim().min(1).max(200),
   email: z.string().trim().toLowerCase().email("E-mail inválido").max(320),
   senha: z.string().min(6).max(256),
-  cargo: z.enum(USER_ROLES),
   avatar_url: z.union([z.literal(""), z.string().trim().url("URL do avatar inválida").max(2048)]).optional(),
 }).strict();
 
@@ -363,7 +360,6 @@ const updateUserProfileSchema = z.object({
   nome: z.string().trim().min(1).max(200),
   email: z.string().trim().toLowerCase().email("E-mail inválido").max(320),
   senha: z.union([z.literal(""), z.string().min(6).max(256)]).optional(),
-  cargo: z.enum(USER_ROLES),
   avatar_url: z.union([z.literal(""), z.string().trim().url("URL do avatar inválida").max(2048)]).optional(),
 }).strict();
 

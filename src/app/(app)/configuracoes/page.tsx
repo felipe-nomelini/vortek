@@ -87,7 +87,7 @@ function ConfiguracoesPageContent() {
             },
             {
               key: "usuarios",
-              label: "👥 Usuários",
+              label: "👥 Proprietários",
               forceRender: true,
               children: <UsuariosTab messageApi={messageApi} />,
             },

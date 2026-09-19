@@ -88,7 +88,7 @@ const navigationIcons: Record<AppNavigationIcon, React.ReactNode> = {
 };
 
 const roleLabels: Record<VortekRole, string> = {
-  admin: 'Administrador',
+  admin: 'Proprietário',
   gerente: 'Gerente',
   operador: 'Operador',
   visualizador: 'Visualizador',

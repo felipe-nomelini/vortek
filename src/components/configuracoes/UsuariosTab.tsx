@@ -3,7 +3,7 @@
 import { userSafeMessage } from "@/lib/user-feedback";
 
 import { useCallback, useEffect, useState } from "react";
-import { Avatar, Button, Input, Modal, Select, Space, Table, Tag, Typography } from "antd";
+import { Avatar, Button, Input, Modal, Space, Table, Tag, Typography } from "antd";
 import type { TableProps } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
 import { PlusOutlined, UserOutlined } from "@ant-design/icons";
@@ -11,33 +11,16 @@ import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 
 const { Text } = Typography;
 
-type UserRole = "admin" | "gerente" | "operador" | "visualizador";
-
 interface Usuario {
   id: string;
   nome: string;
   email: string;
-  cargo: UserRole;
   ativo: boolean;
   avatar_url?: string | null;
   banned_until?: string | null;
   created_at?: string;
   last_sign_in_at?: string | null;
 }
-
-const roleOptions = [
-  { value: "admin", label: "Admin" },
-  { value: "gerente", label: "Gerente" },
-  { value: "operador", label: "Operador" },
-  { value: "visualizador", label: "Visualizador" },
-];
-
-const roleColor: Record<UserRole, string> = {
-  admin: "red",
-  gerente: "blue",
-  operador: "green",
-  visualizador: "default",
-};
 
 export default function UsuariosTab({
   messageApi,
@@ -57,7 +40,6 @@ export default function UsuariosTab({
     nome: "",
     email: "",
     senha: "",
-    cargo: "operador" as UserRole,
     avatar_url: "",
   });
 
@@ -106,7 +88,6 @@ export default function UsuariosTab({
         nome: "",
         email: "",
         senha: "",
-        cargo: "operador",
         avatar_url: "",
       });
       setModalOpen(false);
@@ -158,7 +139,6 @@ export default function UsuariosTab({
           body: JSON.stringify({
             nome: editUser.nome,
             email: editUser.email,
-            cargo: editUser.cargo,
             avatar_url: editUser.avatar_url || "",
             senha: editUser.senha || "",
           }),
@@ -197,16 +177,6 @@ export default function UsuariosTab({
     },
     { title: "Nome", dataIndex: "nome", key: "nome" },
     { title: "E-mail", dataIndex: "email", key: "email" },
-    {
-      title: "Cargo",
-      dataIndex: "cargo",
-      key: "cargo",
-      render: (cargo: UserRole) => (
-        <Tag color={roleColor[cargo]}>
-          {cargo.charAt(0).toUpperCase() + cargo.slice(1)}
-        </Tag>
-      ),
-    },
     {
       title: "Status",
       dataIndex: "ativo",
@@ -249,14 +219,14 @@ export default function UsuariosTab({
           marginBottom: 16,
         }}
       >
-        <ConfiguracoesTabHeading title="Usuários" description={`${usuarios.length} usuário(s) cadastrado(s)`} />
+        <ConfiguracoesTabHeading title="Proprietários" description={`${usuarios.length} conta(s) proprietária(s)`} />
         <Button
           type="primary"
           size="small"
           icon={<PlusOutlined />}
           onClick={() => setModalOpen(true)}
         >
-          Novo Usuário
+          Novo proprietário
         </Button>
       </div>
       <Table<Usuario>
@@ -270,7 +240,7 @@ export default function UsuariosTab({
       />
 
       <Modal
-        title="Novo Usuário"
+        title="Novo proprietário"
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
         onOk={criarUsuario}
@@ -308,15 +278,6 @@ export default function UsuariosTab({
               }))
             }
           />
-          <Select
-            placeholder="Cargo"
-            value={novoUsuario.cargo}
-            onChange={(cargo) =>
-              setNovoUsuario((current) => ({ ...current, cargo }))
-            }
-            options={roleOptions}
-            style={{ width: "100%" }}
-          />
           <Input
             placeholder="URL do avatar (opcional)"
             value={novoUsuario.avatar_url}
@@ -331,7 +292,7 @@ export default function UsuariosTab({
       </Modal>
 
       <Modal
-        title="Editar Usuário"
+        title="Editar proprietário"
         open={editModalOpen}
         onCancel={() => setEditModalOpen(false)}
         onOk={saveEdit}
@@ -364,17 +325,6 @@ export default function UsuariosTab({
                   current ? { ...current, email: event.target.value } : current,
                 )
               }
-            />
-            <Select
-              placeholder="Cargo"
-              value={editUser.cargo}
-              onChange={(cargo) =>
-                setEditUser((current) =>
-                  current ? { ...current, cargo } : current,
-                )
-              }
-              options={roleOptions}
-              style={{ width: "100%" }}
             />
             <Input
               placeholder="URL do avatar (opcional)"

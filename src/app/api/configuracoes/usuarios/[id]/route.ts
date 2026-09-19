@@ -97,12 +97,12 @@ export async function PATCH(
     });
   }
 
-  const { nome, email, cargo } = parsed.data;
+  const { nome, email } = parsed.data;
   const senha = parsed.data.senha || '';
   const avatarUrl = parsed.data.avatar_url || null;
   const { data: previousProfile, error: previousProfileError } = await serviceClient
     .from('profiles')
-    .select('nome,cargo,avatar_url')
+    .select('nome,avatar_url')
     .eq('id', userId)
     .maybeSingle();
   if (previousProfileError) {
@@ -131,7 +131,6 @@ export async function PATCH(
     .from('profiles')
     .update({
       nome,
-      cargo,
       avatar_url: avatarUrl,
       updated_at: new Date().toISOString(),
     })
@@ -148,7 +147,6 @@ export async function PATCH(
       [
         { key: 'usuarios.nome', targetId: userId, before: previousProfile?.nome || previousAuth.user.user_metadata?.nome, after: nome },
         { key: 'usuarios.email', targetId: userId, before: previousAuth.user.email, after: email },
-        { key: 'usuarios.cargo', targetId: userId, before: previousProfile?.cargo, after: cargo },
         { key: 'usuarios.avatar_url', targetId: userId, before: previousProfile?.avatar_url, after: avatarUrl },
         ...(senha
           ? [{ key: 'usuarios.senha' as const, targetId: userId, before: true, after: senha, action: 'secret_set' as const, force: true }]
@@ -167,7 +165,6 @@ export async function PATCH(
       id: authData.user.id,
       nome,
       email,
-      cargo,
       avatar_url: avatarUrl,
       ativo: isActiveFromBannedUntil(authData.user.banned_until),
       banned_until: authData.user.banned_until || null,

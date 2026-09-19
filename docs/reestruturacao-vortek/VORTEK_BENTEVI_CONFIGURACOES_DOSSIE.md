@@ -4,7 +4,7 @@
 **Data da fotografia:** 04/09/2026  
 **Ambiente:** desenvolvimento/homologação  
 **Rota final:** `/configuracoes`  
-**Acesso:** somente `admin`
+**Acesso atual:** os dois proprietários usam o perfil técnico `admin`
 
 ---
 
@@ -34,7 +34,7 @@ A página já foi separada por `UI-03` em quatro componentes independentes:
 |---|---|---|
 | Empresa | `empresa` | nome, nickname ML, CNPJ, contato, endereço livre, UF e município fiscal |
 | Integrações | `integracoes` | Mercado Livre, DSLite e Brasil NFe; credenciais write-only, status e teste |
-| Usuários | Auth + `profiles` | criar, editar, atribuir cargo e redefinir senha |
+| Proprietários | Auth + `profiles` | criar, editar, ativar e redefinir senha; cargo não é configurável no web |
 | Preferências | `configuracoes` | margem padrão, push, início de atividade, alíquota PGDAS e provedor fiscal fixo |
 
 `Mercado Pago` existe no enum, no banco e no backend, mas não aparece na interface atual. WAHA, SMTP, Push/VAPID, GitHub operacional, OpenRouter e Firecrawl são integrações de runtime sem painel próprio.
@@ -93,7 +93,7 @@ Cada item deve receber uma destas classes antes da implementação:
 | Dashboard, TV e metas | metas globais e parâmetros de exibição operacional |
 | Notificações | canais, eventos, destinatários e testes |
 | Integrações | credenciais write-only, endpoints permitidos, conexão, callback/webhook e diagnóstico |
-| Usuários e permissões | contas e atribuição aos cargos canônicos |
+| Proprietários | contas internas com acesso integral; perfil técnico fixo e não editável no web |
 | Sistema e jobs | agenda, ativação, limites operacionais, timeouts, retries e saúde, em área avançada |
 | Ambiente e segurança | identidade do ambiente, URLs, build e estado dos secrets, somente leitura |
 
@@ -234,9 +234,9 @@ Valores `NEXT_PUBLIC_*` são incorporados ao bundle pelo Next.js durante o build
 | Parâmetro | Estado atual | Classe e destino |
 |---|---|---|
 | Nome, e-mail, avatar e senha | Auth/perfil | manter ações administrativas existentes |
-| Cargo | `admin`, `gerente`, `operador`, `visualizador` | atribuição `EDITAVEL_CONTROLADO` |
-| Matriz de permissões por cargo | `permissions.ts` | `INVARIANTE` de segurança nesta reestruturação |
-| Acesso a Configurações | somente `admin` | `INVARIANTE` |
+| Perfil interno | `admin` nas duas contas proprietárias | `INVARIANTE`; contas novas recebem esse perfil no servidor e o web não aceita alteração |
+| Enum e matriz históricos | preservados por compatibilidade | não aparecem na gestão web; revisão do aplicativo móvel permanece fora deste escopo |
+| Acesso a Configurações | duas contas proprietárias | preservado pelo guard server-side do perfil técnico `admin` |
 | Preferências visuais por usuário | inexistentes/globalmente fora do escopo escolhido | manter locais até existir requisito explícito |
 
 ### 5.11 Sistema e jobs — área avançada
