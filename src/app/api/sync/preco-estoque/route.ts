@@ -16,6 +16,7 @@ import { loadCommercialPricingConfiguration } from '@/services/commercial-pricin
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { shouldSkipManuallyBlockedStockUpdate } from '@/lib/ml/protective-stock';
 import { shouldFinalizeEvolusomCycle } from '@/lib/sync/evolusom-cycle';
+import { isEvolusomAccessError } from '@/services/evolusom';
 
 export const maxDuration = 300;
 
@@ -1057,12 +1058,25 @@ export async function POST(req: Request) {
         : 'Sync DSLite de preço/estoque concluído com enfileiramento ML por outbox',
     });
   } catch (err: any) {
+    const evolusomAccessFailure = directEvolusomSync && isEvolusomAccessError(err);
     errors.push({
-      code: 'price_sync_unexpected_error',
+      code: evolusomAccessFailure
+        ? 'evolusom_access_denied'
+        : 'price_sync_unexpected_error',
       message: err?.message || 'Erro inesperado no sync de preço/estoque',
+      ...(evolusomAccessFailure
+        ? { category: 'auth', upstream_status: err.status }
+        : {}),
     });
     return NextResponse.json({
       success: false,
+      ...(evolusomAccessFailure
+        ? {
+            failure_reason: 'auth_fatal',
+            auth_state: 'reauth_required',
+            upstream_status: err.status,
+          }
+        : {}),
       domain: jobContext.domain,
       job: {
         ...jobContext,
@@ -1074,7 +1088,7 @@ export async function POST(req: Request) {
       records: { seen: 0, updated: 0, missing: 0, failed: 0 },
       errors,
       duration: { ms: Date.now() - startedAt },
-    }, { status: 500 });
+    }, { status: evolusomAccessFailure ? 401 : 500 });
   } finally {
     if (lockOwnerToken) {
       await releaseDomainLock({

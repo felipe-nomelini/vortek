@@ -38,9 +38,14 @@ export class EvolusomApiError extends Error {
   }
 }
 
+export function isEvolusomAccessError(error: unknown): error is EvolusomApiError {
+  return error instanceof EvolusomApiError
+    && (error.status === 401 || error.status === 403);
+}
+
 function getToken(): string {
   const token = String(process.env.EVOLUSOM_API_TOKEN || '').trim().replace(/^Bearer\s+/i, '');
-  if (!token) throw new EvolusomApiError('Token da Evolusom não configurado');
+  if (!token) throw new EvolusomApiError('Token da Evolusom não configurado', 401);
   return token;
 }
 

@@ -5,6 +5,7 @@ const test = require('node:test');
 
 const { getSyncTaskByKey, isSyncTaskEnabled } = require('../src/lib/sync/registry.ts');
 const { shouldFinalizeEvolusomCycle } = require('../src/lib/sync/evolusom-cycle.ts');
+const { EvolusomApiError, isEvolusomAccessError } = require('../src/services/evolusom.ts');
 
 const root = path.join(__dirname, '..');
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
@@ -76,5 +77,22 @@ test('limpeza de ausentes exige ciclo completo, estável e sem erros', () => {
     { errorCount: 1 },
   ]) {
     assert.equal(shouldFinalizeEvolusomCycle({ ...complete, ...unsafe }), false);
+  }
+});
+
+test('negação de acesso da Evolusom encerra o job sem retry contínuo', () => {
+  assert.equal(isEvolusomAccessError(new EvolusomApiError('negado', 401)), true);
+  assert.equal(isEvolusomAccessError(new EvolusomApiError('negado', 403)), true);
+  assert.equal(isEvolusomAccessError(new EvolusomApiError('limite', 429)), false);
+
+  for (const routePath of [
+    'src/app/api/sync/catalogo/route.ts',
+    'src/app/api/sync/preco-estoque/route.ts',
+  ]) {
+    const route = read(routePath);
+    assert.match(route, /isEvolusomAccessError/);
+    assert.match(route, /failure_reason:\s*["']auth_fatal["']/);
+    assert.match(route, /auth_state:\s*["']reauth_required["']/);
+    assert.match(route, /status:\s*evolusomAccessFailure \? 401 : 500/);
   }
 });

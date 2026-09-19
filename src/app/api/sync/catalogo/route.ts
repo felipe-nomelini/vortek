@@ -11,6 +11,7 @@ import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { shouldSupplierOfferBeInactiveByCost } from "@/lib/product-activity";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
+import { isEvolusomAccessError } from "@/services/evolusom";
 
 export const maxDuration = 300;
 
@@ -773,13 +774,26 @@ export async function POST(req: Request) {
       message: "Sync DSLite de catálogo concluído sem acoplamento com ML",
     });
   } catch (err: any) {
+    const evolusomAccessFailure = directEvolusomSync && isEvolusomAccessError(err);
     errors.push({
-      code: "catalog_sync_unexpected_error",
+      code: evolusomAccessFailure
+        ? "evolusom_access_denied"
+        : "catalog_sync_unexpected_error",
       message: err?.message || "Erro inesperado no sync de catálogo",
+      ...(evolusomAccessFailure
+        ? { category: "auth", upstream_status: err.status }
+        : {}),
     });
     return NextResponse.json(
       {
         success: false,
+        ...(evolusomAccessFailure
+          ? {
+              failure_reason: "auth_fatal",
+              auth_state: "reauth_required",
+              upstream_status: err.status,
+            }
+          : {}),
         domain: jobContext.domain,
         job: {
           ...jobContext,
@@ -792,7 +806,7 @@ export async function POST(req: Request) {
         errors,
         duration: { ms: Date.now() - startedAt },
       },
-      { status: 500 },
+      { status: evolusomAccessFailure ? 401 : 500 },
     );
   } finally {
     if (lockOwnerToken) {
