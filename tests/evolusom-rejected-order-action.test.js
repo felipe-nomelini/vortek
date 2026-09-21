@@ -8,7 +8,10 @@ const compiled = ts.transpileModule(source, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText;
 const projection = { exports: {} };
-new Function('require', 'module', 'exports', compiled)(() => ({}), projection, projection.exports);
+new Function('require', 'module', 'exports', compiled)(
+  (name) => name === '@/lib/supplier-balance' ? { isBkr1Supplier: () => false } : {},
+  projection, projection.exports,
+);
 
 async function projectPurchase(requestState, orderId = null) {
   const client = {
@@ -20,6 +23,7 @@ async function projectPurchase(requestState, orderId = null) {
           if (table === 'compras') return Promise.resolve({ data: [{
             id: 'purchase-1', pedido_id: 'sale-1', fornecedor_id: '133',
             evolusom_order_id: orderId, evolusom_request_state: requestState,
+            evolusom_request_code: '80000123', status: 'Bloqueado',
             supplier_payment_mode: 'prepaid_pix', supplier_payment_status: 'pending',
           }], error: null });
           return Promise.resolve({ data: [], error: null });
@@ -49,5 +53,34 @@ test('reserva incerta permanece bloqueada e compra criada segue para pagamento',
   const created = await projectPurchase('created', 456);
   assert.equal(created.compra_id, 'purchase-1');
   assert.equal(created.evolusom_order_id, 456);
+  assert.equal(created.evolusom_request_code, '80000123');
+  assert.equal(created.compra_status, 'Bloqueado');
   assert.equal(created.dslite_next_action, 'confirm_supplier_payment');
+});
+
+test('compra DSLite com pedido_id permanece no fluxo DSLite', async () => {
+  const historical = {
+    id: 'purchase-old', pedido_id: 'sale-old', dsid: '411652',
+    fornecedor_id: '133', status_dslite: 'Em processamento', status: 'Em processamento',
+    evolusom_order_id: null, evolusom_request_state: null,
+  };
+  const client = {
+    from(table) {
+      return {
+        select() { return this; },
+        in(field) {
+          if (table === 'compras' && field === 'pedido_id') return Promise.resolve({ data: [historical], error: null });
+          if (table === 'compras' && field === 'dsid') return Promise.resolve({ data: [historical], error: null });
+          return Promise.resolve({ data: [], error: null });
+        },
+      };
+    },
+  };
+  const [row] = await projection.exports.enrichPedidosWithCompras([{
+    id: 'sale-old', numero: 123, situacao: 'pendente', dslite_id: '411652', envio_interno_at: null,
+  }], client);
+  assert.equal(row.compra_id, 'purchase-old');
+  assert.equal(row.compra_status_dslite, 'Em processamento');
+  assert.equal(row.evolusom_order_id, undefined);
+  assert.equal(row.dslite_next_action, 'complete_dslite_label');
 });

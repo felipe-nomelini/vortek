@@ -68,7 +68,9 @@ export type PedidoOperacionalApiDto = Omit<PedidoRow, 'fulfillment_source' | 'lu
   pedido_itens: PedidoOperacionalItemApiDto[];
   cliente_id: string | null;
   compra_id?: string | null;
+  compra_status?: string | null;
   compra_status_dslite?: string | null;
+  evolusom_request_code?: string | null;
   compra_produto_descricao?: string | null;
   compra_produto_sku?: string | null;
   compra_quantidade?: number | null;
@@ -235,7 +237,9 @@ export interface Order {
   dslite_etiqueta_enviada?: boolean;
   dslite_label_source?: string | null;
   compra_id?: string | null;
+  compra_status?: string | null;
   compra_status_dslite?: string | null;
+  evolusom_request_code?: string | null;
   supplier_payment_mode?: SupplierPaymentMode | null;
   supplier_payment_status?: 'pending' | 'paid' | 'failed' | 'cancelled' | string | null;
   supplier_payment_deferred?: boolean;

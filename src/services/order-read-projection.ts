@@ -524,11 +524,12 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
 
   const { data: directCompras, error: directComprasError } = pedidoIds.length
     ? await serviceClient.from('compras')
-      .select('id,dsid,pedido_id,evolusom_order_id,evolusom_request_state,status,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount')
+      .select('id,dsid,pedido_id,evolusom_order_id,evolusom_request_code,evolusom_request_state,status,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount')
       .in('pedido_id', pedidoIds)
     : { data: [], error: null };
   if (directComprasError) throw new Error(`Falha ao consultar compras Evolusom: ${directComprasError.message}`);
-  const directComprasByPedidoId = new Map((directCompras || []).map((compra) => [String(compra.pedido_id), compra]));
+  const evolusomCompras = (directCompras || []).filter((compra) => compra.evolusom_request_state || compra.evolusom_order_id);
+  const directComprasByPedidoId = new Map(evolusomCompras.map((compra) => [String(compra.pedido_id), compra]));
   const dsids = Array.from(new Set(
     rows
       .flatMap((row) => (
@@ -574,7 +575,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     compras.push(...(data || []));
   }
 
-  compras.push(...(directCompras || []));
+  compras.push(...evolusomCompras);
   const comprasByDsid = new Map(compras.filter((compra) => compra.dsid).map((compra) => [String(compra.dsid), compra]));
   const fornecedorIds = Array.from(new Set(
     compras
@@ -656,6 +657,8 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
         operational_internal_stock: operationalInternalStock,
         compra_id: compra.id,
         evolusom_order_id: compra.evolusom_order_id,
+        evolusom_request_code: compra.evolusom_request_code,
+        compra_status: String(compra.status || '').trim() || null,
         compra_status_dslite: null,
         fornecedor_id: compra.fornecedor_id,
         fornecedor_nome: compra.fornecedor_nome,

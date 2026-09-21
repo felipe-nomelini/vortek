@@ -74,13 +74,13 @@ test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
 });
 
 test('coluna Compra abre o único pedido DSLite e diferencia venda sem compra', () => {
-  assert.match(page, /const dsliteId = isValidDsliteId\(order\.dslite_id\)/);
+  assert.match(page, /function getOrderPurchaseDisplay\(order: Order\)/);
   assert.match(page, /https:\/\/app\.dslite\.com\.br\/modules\/admin\/Pedido\/exibir\/\$\{encodeURIComponent\(dsliteId\)\}/);
-  assert.match(page, /target="_blank"/);
-  assert.match(page, /rel="noopener noreferrer"/);
-  assert.match(page, /aria-label=\{`Abrir pedido DSLite \$\{dsliteId\}`\}/);
-  assert.match(page, /#\{dsliteId\}/);
-  assert.match(page, /Status: \{purchaseStatus\}/);
+  assert.match(page, /target=\{purchase\.kind === 'dslite' \? '_blank' : undefined\}/);
+  assert.match(page, /rel=\{purchase\.kind === 'dslite' \? 'noopener noreferrer' : undefined\}/);
+  assert.match(page, /Abrir pedido DSLite \$\{purchase\.number\}/);
+  assert.match(page, /#\{purchase\.number\}/);
+  assert.match(page, /Status: \{purchase\.status\}/);
   assert.match(page, /Etiqueta: \{labelPresentation\.label\}/);
   assert.match(page, /WhatsApp: \{labelPresentation\.whatsappLabel\}/);
   assert.match(page, /labelPresentation\.showWhatsapp/);

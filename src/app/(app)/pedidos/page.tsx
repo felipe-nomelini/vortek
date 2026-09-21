@@ -135,7 +135,9 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
     dslite_label_source: item.dslite_label_source || null,
     compra_id: item.compra_id || null,
+    compra_status: item.compra_status || null,
     compra_status_dslite: item.compra_status_dslite || null,
+    evolusom_request_code: item.evolusom_request_code || null,
     fornecedor_nome: item.fornecedor_nome || null,
     fornecedor_id: item.fornecedor_id || null,
     fornecedor_telefone: item.fornecedor_telefone || null,
@@ -189,6 +191,23 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     supplier_payment_deferred: Boolean(item.supplier_payment_deferred),
     is_homologation_fixture: isHomologationFixtureSource(item.snapshot_source),
   };
+}
+
+function getOrderPurchaseDisplay(order: Order) {
+  const dsliteId = isValidDsliteId(order.dslite_id);
+  if (dsliteId) return {
+    kind: 'dslite' as const,
+    number: dsliteId,
+    status: String(order.compra_status_dslite || order.dslite_status || '').trim() || 'Não informado',
+    href: `https://app.dslite.com.br/modules/admin/Pedido/exibir/${encodeURIComponent(dsliteId)}`,
+  };
+  if (order.evolusom_order_id) return {
+    kind: 'evolusom' as const,
+    number: String(order.evolusom_order_id),
+    status: String(order.compra_status || '').trim() || 'Não informado',
+    href: `/compras?search=${encodeURIComponent(order.evolusom_request_code || String(order.evolusom_order_id))}`,
+  };
+  return { kind: order.compra_id && String(order.fornecedor_id) === '133' ? 'pending' as const : 'not_created' as const };
 }
 
 function getOrderActions(order: Order, role: VortekRole | null, now: number): OrderAction[] {
@@ -755,13 +774,9 @@ export default function PedidosPage() {
     {
       title: 'Compra', key: 'compra', width: 210,
       render: (_: unknown, order: Order) => {
-        const dsliteId = isValidDsliteId(order.dslite_id);
-        if (order.evolusom_order_id) return <Text>Evolusom #{order.evolusom_order_id}</Text>;
-        if (order.compra_id && String(order.fornecedor_id) === '133') {
-          return <Text type="secondary">Aguardando confirmação da Evolusom</Text>;
-        }
-        if (!dsliteId) return <Text type="secondary">Não Criado</Text>;
-        const purchaseStatus = String(order.compra_status_dslite || order.dslite_status || '').trim() || 'Não informado';
+        const purchase = getOrderPurchaseDisplay(order);
+        if (purchase.kind === 'pending') return <Text type="secondary">Aguardando confirmação da Evolusom</Text>;
+        if (purchase.kind === 'not_created') return <Text type="secondary">Não Criado</Text>;
         const labelPresentation = resolveDsliteLabelPresentation({
           labelSource: order.dslite_label_source,
           operationalStatus: order.dslite_label_operational_status,
@@ -770,18 +785,18 @@ export default function PedidosPage() {
         const secondaryStyle = { fontSize: 11, lineHeight: 1.35 } as const;
         return (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Tooltip title="Abrir pedido na DSLite">
+            <Tooltip title={purchase.kind === 'dslite' ? 'Abrir pedido na DSLite' : 'Abrir compra Evolusom no Bentevi'}>
               <a
-                href={`https://app.dslite.com.br/modules/admin/Pedido/exibir/${encodeURIComponent(dsliteId)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Abrir pedido DSLite ${dsliteId}`}
+                href={purchase.href}
+                target={purchase.kind === 'dslite' ? '_blank' : undefined}
+                rel={purchase.kind === 'dslite' ? 'noopener noreferrer' : undefined}
+                aria-label={purchase.kind === 'dslite' ? `Abrir pedido DSLite ${purchase.number}` : `Abrir compra Evolusom ${purchase.number}`}
                 style={{ color: token.colorPrimary, fontSize: 13, fontWeight: 700, lineHeight: 1.35 }}
               >
-                #{dsliteId}
+                #{purchase.number}
               </a>
             </Tooltip>
-            <Text type="secondary" style={secondaryStyle}>Status: {purchaseStatus}</Text>
+            <Text type="secondary" style={secondaryStyle}>Status: {purchase.status}</Text>
             {order.supplier_settlement_id && <Text type="secondary" style={secondaryStyle}>Financeiro: liquidação #{order.supplier_settlement_id.slice(0, 8)} · {order.supplier_payment_status || 'estado pendente'}</Text>}
             <Text type="secondary" style={secondaryStyle}>Etiqueta: {labelPresentation.label}</Text>
             {labelPresentation.showWhatsapp && (
