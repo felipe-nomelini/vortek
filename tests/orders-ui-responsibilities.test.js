@@ -132,7 +132,7 @@ test('fluxo DSLite concentra job, pagamento, frete e desvinculação', () => {
 
   assert.match(dsliteModals, /function SupplierPaymentModal/);
   assert.match(dsliteModals, /function DsliteShippingModal/);
-  assert.match(dsliteModals, /title="Criando Pedido DSLite"/);
+  assert.match(dsliteModals, /title="Criando pedido com fornecedor"/);
   assert.match(dsliteModals, /<Upload/);
 });
 

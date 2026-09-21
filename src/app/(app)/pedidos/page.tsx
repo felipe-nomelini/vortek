@@ -260,8 +260,13 @@ function getPrimaryOrderAction(actions: OrderAction[], order: Order, now: number
   };
   const whatsappRequired = needsRealLabelWhatsapp(order, now)
     && ['not_sent', 'test_sent', 'failed'].includes(String(order.whatsapp_label_status || 'not_sent'));
+  const evolusomPixPending = Boolean(order.evolusom_order_id
+    && order.supplier_payment_mode === 'prepaid_pix'
+    && order.supplier_payment_status === 'pending');
   const preferredKey = isDsliteRejected(order.dslite_status)
     ? 'unlink_dslite'
+    : evolusomPixPending
+      ? 'supplier_payment'
     : order.supplier_payment_deferred && order.supplier_payment_status === 'pending'
       && order.dslite_label_operational_status === 'failed'
       ? 'complete_label'
