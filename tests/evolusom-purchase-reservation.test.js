@@ -197,6 +197,24 @@ test('resposta com número dentro de data vincula a compra sem repetir o POST', 
   assert.equal(harness.sent.length, 1);
 });
 
+test('HTTP 200 com erro interno no corpo não confirma pedido nem descarta a resposta', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const apiResponse = { status: 500, data: [], message: 'ORA-01438: valor acima da precisão permitida' };
+  const harness = purchaseHarness({ response: apiResponse });
+  const result = await harness.create();
+  assert.equal(result.state, 'uncertain');
+  assert.match(result.reason, /erro 500 \(ORA-01438\)/);
+  assert.deepEqual(result.apiResponse, apiResponse);
+  assert.equal(harness.getPurchase().evolusom_order_id, undefined);
+  assert.equal(harness.getPurchase().evolusom_request_state, 'uncertain');
+  assert.equal(harness.sent.length, 1);
+});
+
 test('resultado incerto continua sem repetir o POST', async (t) => {
   const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
   process.env.EVOLUSOM_DIRECT_ENABLED = 'true';

@@ -276,6 +276,7 @@ export async function createEvolusomPurchase(input: {
   let response: {
     codigo?: number;
     status?: string | number;
+    message?: unknown;
     data?: { codigo?: number; numero?: number; status?: string; pedido_lojista?: { numero?: number; status?: string } };
   };
   try {
@@ -293,6 +294,22 @@ export async function createEvolusomPurchase(input: {
       state: rejected ? 'pending' : 'uncertain',
       reason: error instanceof Error ? error.message : 'Falha ao criar pedido Evolusom',
       apiResponse: error instanceof EvolusomApiError ? error.responseBody : null,
+    };
+  }
+  const embeddedStatus = Number(response.status);
+  if (Number.isInteger(embeddedStatus) && embeddedStatus >= 400) {
+    const rejected = [400, 422].includes(embeddedStatus);
+    await client.from('compras').update({
+      evolusom_request_state: rejected ? 'rejected' : 'uncertain',
+      status: rejected ? 'erro_criacao' : 'criacao_incerta',
+    }).eq('id', purchase.id);
+    const oracleCode = typeof response.message === 'string'
+      ? response.message.match(/ORA-\d{5}/)?.[0]
+      : null;
+    return {
+      state: rejected ? 'pending' : 'uncertain',
+      reason: `Evolusom retornou erro ${embeddedStatus}${oracleCode ? ` (${oracleCode})` : ''}`,
+      apiResponse: response,
     };
   }
   const orderId = Number(response.codigo ?? response.data?.codigo ?? response.data?.numero ?? response.data?.pedido_lojista?.numero);
