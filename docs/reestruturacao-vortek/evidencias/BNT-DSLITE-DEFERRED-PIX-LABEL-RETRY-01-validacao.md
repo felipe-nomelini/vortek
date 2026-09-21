@@ -42,14 +42,18 @@ quando o adiamento já havia sido registrado.
   sessão e a rota de repetição respondeu 401 sem autenticação. A API de leitura
   do Easypanel não estava disponível neste ambiente; o SHA do contêiner ativo
   não foi verificado diretamente no painel.
-- Leitura da produção `192.168.1.162` após o deploy: compra `410989` ainda
+- Leitura da produção `192.168.1.162` após o deploy, antes da repetição: compra `410989` ainda
   vinculada, PIX `pending`, etiqueta DSLite não enviada e registro de adiamento
   correspondente. Nenhuma migration ou escrita no banco foi necessária para
   publicar a correção.
 
 ## Aceite operacional
 
-A repetição da etiqueta na venda real depende de uma ação autenticada em
-Pedidos > Vendas. Até que a DSLite confirme o recebimento e o estado local seja
-conferido, a ocorrência da venda continua aberta; a publicação do código por
-si só não equivale a entrega da etiqueta.
+O operador acionou uma vez `Tentar envio à DSLite` na venda real após o deploy.
+A auditoria registrou `ml_label_send_success` em `2026-09-21T11:41:02Z`.
+Read-back em `.162` confirmou `dslite_etiqueta_enviada=true`, origem
+`mercado_livre` e a mesma compra `410989`. O PIX continua `pending`, sem
+comprovante e sem liquidação. O GET oficial da DSLite respondeu 200 para esse
+DSID e apresentou status `Revisão` depois do envio. A falha de entrega da
+etiqueta desta venda está resolvida; o processamento do pedido pela DSLite e a
+confirmação futura do PIX continuam etapas operacionais distintas.
