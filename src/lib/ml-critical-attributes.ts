@@ -71,10 +71,17 @@ function rowFacts(row: any, source: ConflictEvidence['source']): MlIdentityFacts
     ))).map(match => match[1].trim()))];
     if (values.length) set(field, values.length === 1 ? values[0] : null, values.length > 1);
   }
-  const voltages = [...new Set(Array.from(text.matchAll(/\b(?:\d+(?:[.,]\d+)?)\s*v(?:dc)?\b/g)).map(match => normalizeVoltageValue(match[0])))];
+  const voltageMatches = Array.from(text.matchAll(/\b(\d+(?:[.,]\d+)?)\s*v(?:dc)?\b/g));
+  const voltages = [...new Set(voltageMatches.map(match => normalizeVoltageValue(match[0])))];
   if (voltages.length) {
-    const voltage = voltages.length === 1 ? extractStrictVoltage(text) : null;
-    set('VOLTAGE', voltage, voltages.length > 1);
+    const switchMatch = text.match(/\bchave seletora de tensao\s*:?[\s-]*(\d{2,3})\s*v\s*\/\s*(\d{2,3})\s*v\b/);
+    const switchValues = switchMatch ? [Number(switchMatch[1]), Number(switchMatch[2])] : [];
+    const observedValues = [...new Set(voltageMatches.map(match => Number(match[1])))];
+    const selectable = switchValues.length === 2 && switchValues[0] !== switchValues[1]
+      && observedValues.length === 2 && switchValues.every(value => observedValues.includes(value));
+    const voltage = selectable ? `${switchValues[0]}/${switchValues[1]}V`
+      : voltages.length === 1 ? extractStrictVoltage(text) : null;
+    set('VOLTAGE', voltage, !selectable && voltages.length > 1);
   }
   const diameters = [...new Set(Array.from(text.matchAll(/diametro\s*:\s*(\d+(?:[.,]\d+)?\s*(?:mm|cm|m))\b/g)).map(match => normalizeMlIdentityValue('DIAMETER', match[1])))];
   set('DIAMETER', diameters.length === 1 ? diameters[0] : diameters.length > 1 ? null : (/\bventilador\b/.test(clean(row?.nome)) ? extractStrictProductDiameter(row.nome) : null), diameters.length > 1);

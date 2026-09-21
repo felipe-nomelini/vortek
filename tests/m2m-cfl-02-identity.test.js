@@ -233,6 +233,16 @@ test('tensão nominal não herda tensão de entrada quando categoria distingue a
   assert.equal(critical.resolveTrustedMlCriticalValue('NOMINAL_VOLTAGE', p, [], operational, noKit, [{ id: 'VOLTAGE' }, { id: 'NOMINAL_VOLTAGE' }]), null);
 });
 
+test('chave seletora de tensão preserva os dois valores sem escolher uma variante', () => {
+  const p = product({ descricao: 'Chave seletora de tensão 115 V / 230 V; Modelo: M1' });
+  const facts = critical.resolveMlCriticalFacts(p, [], operational, noKit).facts;
+  assert.equal(facts.VOLTAGE.value, '115/230V');
+  assert.equal(facts.VOLTAGE.ambiguous, false);
+  assert.equal(critical.resolveTrustedMlCriticalValue('VOLTAGE', p, [], operational, noKit, [{ id: 'VOLTAGE' }]), '115/230v');
+  const uncertain = product({ descricao: 'Alimentação 115 V ou 230 V; Modelo: M1' });
+  assert.equal(critical.resolveMlCriticalFacts(uncertain, [], operational, noKit).facts.VOLTAGE.ambiguous, true);
+});
+
 test('kit usa composição e unidade comercial do componente, não quantidade como unidades avulsas', () => {
   const p = product({ descricao: 'Modelo: M1', nome: 'Kit' });
   const kit = { status: 'ready', components: [{ quantidade: 3, produto: product({ descricao: 'Com 2 unidades' }), nestedKit: false }] };
