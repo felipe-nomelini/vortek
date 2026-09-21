@@ -66,13 +66,15 @@ test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU
   new Function('require', 'module', 'exports', compiled)(() => ({}), module, module.exports);
   const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-09-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Teste</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260912345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
   const payload = module.exports.buildEvolusomTriangularPayload({
-    orderCode: 'BNT-123', companyCnpj: '33.482.950/0002-30', xml,
+    orderCode: 'BNT-123', orderedAt: '2026-09-21T14:55:41.000Z', companyCnpj: '33.482.950/0002-30', xml,
     email: 'comprador@example.com', phone: '(41) 99999-9999',
     trackingNumber: 'AB123BR', labelUrl: 'https://app.bentevi.shop/api/public/etiquetas/pedido?token=synthetic&format=placeholder_evolusom',
     danfeUrl: 'https://app.bentevi.shop/api/public/notas-fiscais/pedido/danfe?token=synthetic',
     products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: 'synthetic' }],
   });
   assert.equal(payload.codigo_pedido, 'BNT-123');
+  assert.equal(payload.data_pedido, '2026-09-21 11:55:41');
+  assert.equal(payload.nfe.data_emissao, '2026-09-18 10:30:00');
   assert.equal(payload.transporte.tipo, 0);
   assert.equal(payload.transporte.codrastreio, 'AB123BR');
   assert.equal(payload.itens[0].cod_produto, '141111');
@@ -80,11 +82,26 @@ test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU
   assert.equal(payload.itens[0].preco_cliente_final, 679.9);
   assert.equal(payload.nfe.valor, 679.9);
   assert.throws(() => module.exports.buildEvolusomTriangularPayload({
-    orderCode: 'BNT-123', companyCnpj: '33.482.950/0002-30', xml,
+    orderCode: 'BNT-123', orderedAt: '2026-09-21T14:55:41.000Z', companyCnpj: '33.482.950/0002-30', xml,
     email: 'comprador@example.com', phone: '(41) 99999-9999', trackingNumber: '',
     labelUrl: payload.transporte.urletiqueta, danfeUrl: payload.nfe.url,
     products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: null }],
   }), /rastreio/);
+  const withoutContact = module.exports.buildEvolusomTriangularPayload({
+    orderCode: 'BNT-124', orderedAt: '2026-09-21T14:55:41.000Z', companyCnpj: '33.482.950/0002-30', xml,
+    email: null, phone: null, trackingNumber: 'AB123BR',
+    labelUrl: payload.transporte.urletiqueta, danfeUrl: payload.nfe.url,
+    products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: null }],
+  });
+  assert.equal(withoutContact.cliente.email, null);
+  assert.equal(withoutContact.cliente.telefone, null);
+  assert.equal(withoutContact.cliente.celular, null);
+  assert.throws(() => module.exports.buildEvolusomTriangularPayload({
+    orderCode: 'BNT-125', orderedAt: '', companyCnpj: '33.482.950/0002-30', xml,
+    email: null, phone: null, trackingNumber: 'AB123BR',
+    labelUrl: payload.transporte.urletiqueta, danfeUrl: payload.nfe.url,
+    products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: null }],
+  }), /Data de criação/);
 });
 
 test('etiqueta genérica é servida em link público assinado sem login', async () => {

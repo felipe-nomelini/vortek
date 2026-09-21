@@ -32,12 +32,29 @@ function formatCnpj(value: string): string {
   return digits.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
 }
 
-function formatPhone(value: string): string {
-  let digits = value.replace(/\D/g, '');
+function formatPhone(value: unknown): string | null {
+  let digits = String(value || '').replace(/\D/g, '');
   if (digits.startsWith('55') && digits.length > 11) digits = digits.slice(2);
   if (digits.length === 11) return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
   if (digits.length === 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
-  throw new Error('Telefone do comprador inválido para Evolusom');
+  return null;
+}
+
+function formatEmail(value: unknown): string | null {
+  const email = String(value || '').trim();
+  return /^\S+@\S+\.\S+$/.test(email) ? email : null;
+}
+
+function formatOrderDate(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) throw new Error('Data de criação da compra Evolusom inválida');
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Sao_Paulo',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23',
+  }).formatToParts(date);
+  const part = (name: Intl.DateTimeFormatPartTypes) => parts.find((item) => item.type === name)?.value || '';
+  return `${part('year')}-${part('month')}-${part('day')} ${part('hour')}:${part('minute')}:${part('second')}`;
 }
 
 function appOrigin(): string {
@@ -51,10 +68,11 @@ function appOrigin(): string {
 
 export function buildEvolusomTriangularPayload(input: {
   orderCode: string;
+  orderedAt: string;
   companyCnpj: string;
   xml: string;
-  email: string;
-  phone: string;
+  email: string | null;
+  phone: string | null;
   trackingNumber: string;
   labelUrl: string;
   danfeUrl: string;
@@ -80,7 +98,6 @@ export function buildEvolusomTriangularPayload(input: {
     ['CNPJ', input.companyCnpj], ['chave NF-e', key], ['número NF-e', tag(ide, 'nNF')],
     ['série NF-e', tag(ide, 'serie')], ['nome comprador', tag(dest, 'xNome')],
     ['documento comprador', tag(dest, 'CPF') || tag(dest, 'CNPJ')],
-    ['email comprador', input.email], ['telefone comprador', input.phone],
     ['rastreio', input.trackingNumber], ['etiqueta', input.labelUrl],
     ['valor NF-e', invoiceValue > 0 ? invoiceValue : ''],
     ['emissão NF-e', issuedAt],
@@ -90,7 +107,7 @@ export function buildEvolusomTriangularPayload(input: {
   ].filter(([, value]) => !String(value || '').trim()).map(([name]) => name);
   if (missing.length) throw new Error(`Pedido Evolusom pendente: ${missing.join(', ')}`);
   if (addressDto.cep.length !== 8 || !/^\d{11}(?:\d{3})?$/.test(tag(dest, 'CPF') || tag(dest, 'CNPJ'))
-    || input.trackingNumber.length > 100 || !/^\S+@\S+\.\S+$/.test(input.email)) {
+    || input.trackingNumber.length > 100 || (input.email !== null && !/^\S+@\S+\.\S+$/.test(input.email))) {
     throw new Error('Pedido Evolusom com CEP, documento, email ou rastreio inválido');
   }
 
@@ -124,7 +141,7 @@ export function buildEvolusomTriangularPayload(input: {
   return {
     codigo_pedido: input.orderCode,
     cnpj: input.companyCnpj,
-    data_pedido: dateTime(issuedAt || new Date().toISOString()),
+    data_pedido: formatOrderDate(input.orderedAt),
     nfe: {
       url: input.danfeUrl,
       serie: tag(ide, 'serie'),
@@ -175,14 +192,12 @@ export async function createEvolusomPurchase(input: {
       : { data: null, error: null };
   if (buyerError) throw new Error('Falha ao consultar contato do comprador');
   const dest = block(input.xml, 'dest');
-  const email = String(buyer?.email || tag(dest, 'email') || '').trim();
-  const phone = String(buyer?.telefone || tag(block(dest, 'enderDest'), 'fone') || '').trim();
+  const email = formatEmail(buyer?.email) || formatEmail(tag(dest, 'email'));
+  const phone = formatPhone(buyer?.telefone) || formatPhone(tag(block(dest, 'enderDest'), 'fone'));
   const shipmentId = String(order.ml_shipment_id || '').trim();
   const shipment = shipmentId ? await fetchML<{ tracking_number?: string | null }>(`/shipments/${encodeURIComponent(shipmentId)}`) : null;
   const trackingNumber = String(order.rastreio || shipment?.tracking_number || '').trim();
   if (!trackingNumber) return { state: 'pending', reason: 'Aguardando código de rastreio do ML' };
-  if (!email || !phone) return { state: 'pending', reason: 'Complete email e telefone do comprador em Clientes' };
-
   const baseUrl = appOrigin();
   const labelUrl = input.placeholder
     ? buildPublicShippingLabelUrl(baseUrl, input.pedidoId, 'placeholder_evolusom')
@@ -191,19 +206,8 @@ export async function createEvolusomPurchase(input: {
     return { state: 'pending', reason: 'Etiqueta real ainda não disponível no Bentevi' };
   }
   const orderCode = `BNT-${order.numero}`;
-  const payload = buildEvolusomTriangularPayload({
-    orderCode,
-    companyCnpj: formatCnpj(String(company.cnpj)),
-    xml: input.xml,
-    email,
-    phone: formatPhone(phone),
-    trackingNumber,
-    labelUrl,
-    danfeUrl: buildPublicNfeUrl(baseUrl, input.pedidoId, 'danfe'),
-    products: input.products,
-  });
   const { data: existing, error: existingError } = await client.from('compras')
-    .select('id,evolusom_order_id,evolusom_request_state')
+    .select('id,evolusom_order_id,evolusom_request_state,data_criacao')
     .eq('evolusom_request_code', orderCode).maybeSingle();
   if (existingError) throw new Error('Falha ao verificar pedido Evolusom existente');
   if (existing?.evolusom_order_id) {
@@ -212,6 +216,19 @@ export async function createEvolusomPurchase(input: {
   if (existing && existing.evolusom_request_state !== 'prepared') {
     return { state: 'uncertain', reason: 'Criação anterior precisa de conferência na Evolusom antes de repetir' };
   }
+  const orderedAt = existing ? String(existing.data_criacao || '') : new Date().toISOString();
+  const payload = buildEvolusomTriangularPayload({
+    orderCode,
+    orderedAt,
+    companyCnpj: formatCnpj(String(company.cnpj)),
+    xml: input.xml,
+    email,
+    phone,
+    trackingNumber,
+    labelUrl,
+    danfeUrl: buildPublicNfeUrl(baseUrl, input.pedidoId, 'danfe'),
+    products: input.products,
+  });
   const purchaseValues = {
     pedido_id: input.pedidoId,
     evolusom_request_code: orderCode,
@@ -233,7 +250,7 @@ export async function createEvolusomPurchase(input: {
     supplier_payment_amount: money(input.products.reduce((sum, item) => sum + item.quantity * item.cost, 0)),
     status: 'criacao_pendente',
     status_dslite: '',
-    data_criacao: new Date().toISOString(),
+    ...(!existing ? { data_criacao: orderedAt } : {}),
   };
   const { data: purchase, error: purchaseError } = existing
     ? await client.from('compras').update(purchaseValues).eq('id', existing.id).select('id').single()

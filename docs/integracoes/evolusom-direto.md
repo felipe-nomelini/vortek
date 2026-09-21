@@ -21,8 +21,8 @@ O cliente HTTP limita as requisições a um intervalo mínimo de um segundo no p
 ## Fluxo da venda
 
 - O Bentevi emite a NF-e e verifica produto, quantidade e custo da oferta antes do pedido triangular.
-- Se a etiqueta do ML ainda não estiver liberada, o pedido triangular recebe um link público assinado da etiqueta genérica da Evolusom. O código de rastreio real do ML continua obrigatório. Sem rastreio, email ou telefone, a compra permanece pendente e nenhuma chamada de criação é enviada.
-- O identificador local `BNT-<número da venda>` é reservado antes do POST. Falha de rede após o envio marca a compra como incerta; o operador deve conferir o pedido na Evolusom antes de tentar novamente.
+- Se a etiqueta do ML ainda não estiver liberada, o pedido triangular recebe um link público assinado da etiqueta genérica da Evolusom. O código de rastreio real do ML continua obrigatório; sem ele, a compra permanece pendente e nenhuma chamada de criação é enviada. Email e telefone conhecidos são enviados; campos ausentes ou inválidos seguem como `null`, conforme o exemplo de pedido fornecido pela Evolusom. A aceitação desses nulos pelo POST direto ainda depende da primeira venda real.
+- O identificador local `BNT-<número da venda>` é reservado antes do POST. `data_pedido` representa essa reserva da compra, gravada em `compras.data_criacao` e preservada em uma retomada; não é a data da venda no ML nem a emissão da NF-e. Falha de rede após o envio marca a compra como incerta; o operador deve conferir o pedido na Evolusom antes de tentar novamente.
 - Após a liberação da etiqueta real, a ação de WhatsApp da venda envia a etiqueta ao contato do fornecedor e ao segundo destinatário já configurado para a Evolusom.
 - Compras PIX continuam com confirmação manual e comprovante. O envio do comprovante usa o fluxo individual existente; a liquidação consolidada do Oráculo não inclui compras diretas da Evolusom nesta primeira etapa.
 
