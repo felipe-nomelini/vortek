@@ -143,6 +143,15 @@ test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU
     products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: null }],
   });
   assert.equal(withoutContact.cliente.email, null);
+  const localSkuXml = xml.replace('<cProd>141111</cProd>', '<cProd>VTK021855</cProd>');
+  const withLocalSku = module.exports.buildEvolusomTriangularPayload({
+    orderCode: 125, orderedAt: '2026-09-21T14:55:41.000Z', companyCnpj: '33.482.950/0002-30',
+    xml: localSkuXml, email: null, phone: null, trackingNumber: 'AB123BR',
+    labelUrl: payload.transporte.urletiqueta, danfeUrl: payload.nfe.url,
+    products: [{ sku: '380381', invoiceSku: 'VTK021855', quantity: 1, cost: 579.9, offerId: 'synthetic' }],
+  });
+  assert.equal(withLocalSku.itens[0].cod_produto, '380381');
+  assert.equal(withLocalSku.itens[0].preco_cliente_final, 679.9);
   assert.equal(withoutContact.cliente.telefone, null);
   assert.equal(withoutContact.cliente.celular, null);
   assert.throws(() => module.exports.buildEvolusomTriangularPayload({

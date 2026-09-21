@@ -893,68 +893,6 @@ function parseInvoiceAmountFromXml(
   return num;
 }
 
-async function resolveDsliteProductCodeForNfe(
-  client: ReturnType<typeof createServiceClient>,
-  sellerSku: string | null | undefined,
-): Promise<string | null> {
-  const sku = String(sellerSku || "").trim();
-  if (!sku) return null;
-  const skuVariants = getSkuLookupVariants(sku);
-  const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(client);
-  const lookupSkus = skuVariants.length > 0 ? skuVariants : [sku];
-
-  let { data: productRow } = await client
-    .from("produtos")
-    .select("id,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id")
-    .in("sku", lookupSkus)
-    .limit(1)
-    .maybeSingle();
-
-  if (!productRow?.id) {
-    const [{ data: byOfferSku }, { data: bySupplierSku }] = await Promise.all([
-      client
-        .from("produto_fornecedor_ofertas")
-        .select("produto_id")
-        .in("sku_oferta", lookupSkus)
-        .limit(1)
-        .maybeSingle(),
-      client
-        .from("produto_fornecedor_ofertas")
-        .select("produto_id")
-        .in("sku_fornecedor", lookupSkus)
-        .limit(1)
-        .maybeSingle(),
-    ]);
-    const productId = String(
-      (byOfferSku as any)?.produto_id ||
-        (bySupplierSku as any)?.produto_id ||
-        "",
-    ).trim();
-    if (productId) {
-      const { data } = await client
-        .from("produtos")
-        .select("id,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id")
-        .eq("id", productId)
-        .maybeSingle();
-      productRow = data as any;
-    }
-  }
-
-  if (!productRow?.id) return null;
-
-  const { data: offers } = await client
-    .from("produto_fornecedor_ofertas")
-    .select("*")
-    .eq("produto_id", String(productRow.id));
-  const preferred = resolvePreferredOfferForProduct(
-    filterOperationalDropshippingSupplierOffers((offers || []) as any[], operationalSupplierIds),
-    (productRow as any)?.oferta_preferencial_id,
-    (productRow as any)?.fornecedor_preferencial_manual === true,
-  );
-  const code = String(preferred?.dslite_produto_id || "").trim();
-  return code || null;
-}
-
 async function waitForDsliteItems(
   dsid: number | string,
   attempts = 6,
@@ -1548,7 +1486,6 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
     };
   }
 
-  const dsliteProductCodes = new Map<string, string>();
   const kitPlans = new Map<string, Awaited<ReturnType<typeof resolveSimpleKitOrderPlan>>>();
   for (const it of itens || []) {
     const sellerSku = String((it as any)?.seller_sku || "").trim();
@@ -1575,18 +1512,13 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
         reason: "kit_origem_fornecedor_incompleta",
       };
     }
-    const dsliteProductCode = kitPlan.kind === "ready"
-      ? kitPlan.plan.componentDsliteProductId
-      : await resolveDsliteProductCodeForNfe(client, sellerSku);
-    if (kitPlan.kind === "ready" && !dsliteProductCode) {
+    if (kitPlan.kind === "ready" && !kitPlan.plan.componentDsliteProductId) {
       return {
         ok: false as const,
         error: `Produto-base do kit ${sellerSku} não possui oferta DSLite selecionável.`,
         reason: "kit_componente_sem_oferta_dslite",
       };
     }
-    if (sellerSku && dsliteProductCode)
-      dsliteProductCodes.set(sellerSku, dsliteProductCode);
   }
 
   const produtos = (itens || []).map((it: any) => {
@@ -1595,10 +1527,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
     const componentQuantity = kitPlan?.kind === "ready" ? kitPlan.plan.componentQuantity : 1;
     const quantidade = Number(it.quantidade || 0) * componentQuantity;
     const valorTotal = resolveProdutoValorTotalBruto(it);
-    const productCode =
-      dsliteProductCodes.get(sellerSku) ||
-      sellerSku ||
-      String(it.titulo || "ITEM");
+    const productCode = sellerSku || String(it.titulo || "ITEM");
     return {
       CodProdutoServico: productCode,
       NmProduto: normalizeBrasilNfeProductName(
@@ -4230,7 +4159,8 @@ async function runDsliteCreateJob(
 
         if (fornecedorId === '133' && process.env.EVOLUSOM_DIRECT_ENABLED === 'true') {
           const supplierSku = String(lineOffer?.dslite_produto_id || '').trim();
-          if (!supplierSku || supplierSku !== removerPrefixoSku(line.sku)) {
+          if (!supplierSku || String(lineOffer?.produto_id || '') !== String(lineSelection?.productId || '')
+            || String(lineOffer?.dslite_fornecedor_id || '') !== fornecedorId) {
             productLineError = `SKU Evolusom divergente para ${line.sku}`;
             break;
           }
@@ -4439,6 +4369,7 @@ async function runDsliteCreateJob(
         supplierPaymentMode,
         products: resolvedDsliteProducts.map((line) => ({
           sku: String(line.product?.produtoid || ''),
+          invoiceSku: line.sku,
           quantity: line.quantity,
           cost: Number(line.offer?.custo || 0),
           offerId: String(line.offer?.id || '') || null,

@@ -11,7 +11,7 @@ import { DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placehold
 const EVOLUSOM_SUPPLIER_ID = '133';
 const EVOLUSOM_PLACEHOLDER_TRACKING_NUMBER = '99999999999';
 
-type ProductLine = { sku: string; quantity: number; cost: number; offerId: string | null };
+type ProductLine = { sku: string; invoiceSku?: string; quantity: number; cost: number; offerId: string | null };
 type CreateResult =
   | { state: 'created'; orderId: number; purchaseId: string; status: string; placeholder: boolean; apiResponse?: unknown }
   | { state: 'pending'; reason: string; apiResponse?: unknown }
@@ -126,7 +126,7 @@ export function buildEvolusomTriangularPayload(input: {
     };
   });
   const items = input.products.map((product) => {
-    const invoice = invoiceItems.find((item) => item.sku === product.sku);
+    const invoice = invoiceItems.find((item) => item.sku === (product.invoiceSku || product.sku));
     if (!invoice || !Number.isFinite(invoice.saleUnitPrice) || invoice.saleUnitPrice <= 0 || product.cost <= 0) {
       throw new Error(`Item Evolusom sem valor fiscal/custo válido: ${product.sku}`);
     }
