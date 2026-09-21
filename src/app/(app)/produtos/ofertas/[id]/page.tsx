@@ -239,12 +239,7 @@ export default function ProductOfferDetailPage() {
       });
       const json = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(json.error || 'Não foi possível atualizar a oferta');
-      const pricingErrors = Array.isArray(json?.automatic_pricing?.errors) ? json.automatic_pricing.errors.length : 0;
-      if (response.status === 207 || pricingErrors > 0) {
-        message.warning(`Oferta atualizada, mas ${pricingErrors || 1} atualização automática de preço ficou pendente.`);
-      } else {
-        message.success('Oferta atualizada com sucesso.');
-      }
+      message.success('Oferta atualizada com sucesso.');
       await fetchDetail();
     } catch (saveError: any) {
       message.error(userSafeMessage(saveError?.message, 'Não foi possível atualizar a oferta. Tente novamente.'));

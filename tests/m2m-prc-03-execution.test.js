@@ -2,7 +2,6 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const load = require('./helpers/load-integration-module');
 const guard = require('../src/lib/ml/pricing-execution.js');
-const selection = require('../src/lib/ml/automatic-pricing-selection.ts');
 const fs = require('node:fs');
 const ts = require('typescript');
 
@@ -17,7 +16,7 @@ function guardedModule(path, dependencies = {}) {
       createServiceClient: () => ({ from() { throw Error('consulta/escrita inesperada'); } }) }, ...dependencies });
 }
 
-for (const path of ['src/app/api/ml/anuncio/criar/route.ts', 'src/app/api/ml/anuncio/atualizar-preco/route.ts', 'src/app/api/catalogo/optin/route.ts']) {
+for (const path of ['src/app/api/catalogo/optin/route.ts']) {
   test(`${path}: bloqueio explícito antes do payload e de efeitos`, async () => {
     const route = guardedModule(path);
     const response = await route.POST({ json() { throw Error('payload não deve ser processado'); } });
@@ -63,15 +62,16 @@ test('sync de anúncios não possui mais recálculo/gravação de preço por fre
   assert.match(source, /productPatch\.ml_shipping/);
 });
 
-test('mudança de custo e kit não gravam preço nem enfileiram automação', async () => {
-  const { enqueueAutomaticPricesForCostChanges } = load('src/lib/ml/automatic-pricing.ts', {
-    '@/lib/ml/automatic-pricing-selection': selection, './pricing-execution.js': guard,
-  });
-  const result = await enqueueAutomaticPricesForCostChanges({ from() { throw Error('escrita proibida'); } },
-    [{ productId: 'P1', previous: { custo: 10 }, next: { custo: 20 } }], { forceProductIds: ['KIT'] });
-  assert.equal(result.productsUpdated, 0); assert.equal(result.outboxEnqueued, 0);
-  assert.equal(result.skipped, 2); assert.deepEqual(result.errors, []);
-  assert.equal(result.blockedReason, 'pricing_execution_not_ready');
+test('sync de custos, kits e fornecedores não chamam reprecificação', () => {
+  assert.equal(fs.existsSync('src/lib/ml/automatic-pricing.ts'), false);
+  for (const path of [
+    'src/app/api/sync/preco-estoque/route.ts',
+    'src/app/api/sync/preco-estoque-xml/route.ts',
+    'src/app/api/fornecedores/[id]/status/route.ts',
+    'src/app/api/produtos/[id]/fornecedores/route.ts',
+  ]) {
+    assert.doesNotMatch(fs.readFileSync(path, 'utf8'), /enqueueAutomaticPricesForCostChanges|automatic-pricing/);
+  }
 });
 
 function worker(row, executionGuard = guard) {

@@ -43,7 +43,6 @@ test('preserva ordem, grupos e URLs da navegação desktop', async () => {
     'catalogo-group',
     '/catalogo/no-catalogo',
     '/catalogo/elegiveis',
-    '/catalogo/identidade',
     '/perguntas',
     '/reputacao',
     '/reclamacoes',

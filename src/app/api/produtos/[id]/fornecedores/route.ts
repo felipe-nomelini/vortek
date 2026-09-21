@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
-import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { loadKitSupplySources } from '@/lib/kit-supply-source';
 import {
@@ -302,8 +301,7 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
     }
   }
 
-  const snapshots = await syncPreferredProductSnapshot(service, [params.id]);
-  const automaticPricing = await enqueueAutomaticPricesForCostChanges(service, snapshots);
+  await syncPreferredProductSnapshot(service, [params.id]);
 
   const refreshed = await service
     .from('produto_fornecedor_ofertas')
@@ -340,6 +338,5 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
     })),
     selection_mode: manualSelection ? 'manual' : 'automatic',
     preferred_offer_id: currentPreferredOfferId || null,
-    automatic_pricing: automaticPricing,
-  }, { status: automaticPricing.errors.length > 0 ? 207 : 200 });
+  });
 }

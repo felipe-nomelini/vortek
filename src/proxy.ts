@@ -9,8 +9,7 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (
     pathname === "/fornecedor/bkr1/kits-sem-anuncio" ||
-    pathname === "/fornecedor/evolusom/produtos-sem-gtin" ||
-    pathname === "/api/ml/agente/preco"
+    pathname === "/fornecedor/evolusom/produtos-sem-gtin"
   ) {
     return NextResponse.next();
   }
@@ -50,7 +49,6 @@ export async function proxy(request: NextRequest) {
   const isInternalJobRoute = pathname === "/api/dslite/pedido";
   const isInternalProductMaintenanceRoute =
     pathname === "/api/produtos/inativar-custo-alto";
-  const isInternalPricingRoute = pathname === "/api/pricing/buybox-pilot";
   const isInternalCatalogRoute = [
     "/api/catalogo/no-catalogo/refresh",
     "/api/catalogo/no-catalogo/refresh/job/worker",
@@ -83,7 +81,6 @@ export async function proxy(request: NextRequest) {
     ((isSyncRoute ||
       isInternalJobRoute ||
       isInternalProductMaintenanceRoute ||
-      isInternalPricingRoute ||
       isInternalCatalogRoute ||
       isMlListingFlowRoute) &&
       apiKey === process.env.API_SECRET_KEY) ||

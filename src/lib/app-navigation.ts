@@ -115,13 +115,6 @@ export const APP_NAVIGATION: AppNavigationEntry[] = [
         label: 'Elegíveis ao catálogo',
         icon: 'catalog',
       },
-      {
-        type: 'item',
-        key: '/catalogo/identidade',
-        href: '/catalogo/identidade',
-        label: 'Saneamento de identidade',
-        icon: 'catalog',
-      },
     ],
   },
   { type: 'item', key: '/perguntas', href: '/perguntas', label: 'Perguntas', icon: 'questions' },

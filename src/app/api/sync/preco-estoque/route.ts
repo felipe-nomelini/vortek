@@ -8,10 +8,6 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { shouldSupplierOfferBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
-import {
-  enqueueAutomaticPricesForCostChanges,
-  type CostSnapshot,
-} from '@/lib/ml/automatic-pricing';
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { shouldSkipManuallyBlockedStockUpdate } from '@/lib/ml/protective-stock';
@@ -279,8 +275,8 @@ export async function POST(req: Request) {
     let mlOutboxFailed = 0;
     let recordsUpdatedSeen = 0;
     let mlOutboxPausedZeroStock = 0;
-    let mlPriceProductsUpdated = 0;
-    let mlPriceOutboxEnqueued = 0;
+    const mlPriceProductsUpdated = 0;
+    const mlPriceOutboxEnqueued = 0;
     let kitStockUpdated = 0;
     let kitMlOutboxEnqueued = 0;
     let remainingPagesBudget = maxPagesPerRun;
@@ -776,16 +772,10 @@ export async function POST(req: Request) {
         }
       }
 
-      let kitCostSnapshots: CostSnapshot[] = [];
       try {
         const kitSnapshots = await recalculateProductKits(client, snapshotProductIds);
         kitStockUpdated += kitSnapshots.filter((kit) => kit.oldStock !== kit.newStock || kit.oldCost !== kit.newCost).length;
         kitMlOutboxEnqueued += await enqueueKitStockUpdates(client, kitSnapshots);
-        kitCostSnapshots = kitSnapshots.map((kit) => ({
-          productId: kit.produtoId,
-          previous: { custo: kit.oldCost },
-          next: { custo: kit.newCost },
-        }));
       } catch (err: any) {
         errors.push({
           code: 'kit_stock_recalculation_failed',
@@ -794,34 +784,8 @@ export async function POST(req: Request) {
         });
       }
 
-      // Preco automatico permanece restrito ao cadastro ativo. Estoque zerado,
-      // entretanto, precisa pausar o anuncio mesmo quando o produto foi inativado.
-      const activeChangedSnapshots = changedSnapshots.filter((snapshot) => snapshot.previous.ativo);
+      // Estoque zerado precisa pausar o anúncio mesmo quando o produto foi inativado.
       const stockChangedSnapshots = changedSnapshots;
-
-      try {
-        const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, [
-          ...activeChangedSnapshots,
-          ...kitCostSnapshots,
-        ], {
-          forceProductIds: kitCostSnapshots.map((snapshot) => snapshot.productId),
-        });
-        mlPriceProductsUpdated += automaticPricing.productsUpdated;
-        mlPriceOutboxEnqueued += automaticPricing.outboxEnqueued;
-        for (const priceError of automaticPricing.errors) {
-          errors.push({
-            code: 'ml_automatic_price_enqueue_failed',
-            message: priceError.message,
-            context: { fornecedorId: targetFornecedor, page: currentPage, productId: priceError.productId },
-          });
-        }
-      } catch (err: any) {
-        errors.push({
-          code: 'ml_automatic_price_failed',
-          message: err?.message || 'Falha ao recalcular preços automáticos',
-          context: { fornecedorId: targetFornecedor, page: currentPage },
-        });
-      }
 
       const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, stockChangedSnapshots);
       const existingMlItemIds = Array.from(

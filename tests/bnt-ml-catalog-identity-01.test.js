@@ -271,12 +271,11 @@ test('migration contém ledger, RLS, invalidação e guard final da outbox', () 
   assert.doesNotMatch(sql, /grant all on table/i);
 });
 
-test('interface e APIs deixam correção separada do dry-run', () => {
-  const ui = fs.readFileSync('src/components/catalogo/CatalogIdentityAuditView.tsx', 'utf8');
-  assert.match(ui, /Saneamento de identidade do catálogo/);
-  assert.match(ui, /Aprovar manifesto/);
-  assert.match(ui, /Nenhuma correção foi executada automaticamente/);
-  assert.doesNotMatch(ui, /Aplicar correções/);
+test('página foi retirada sem descartar os registros e APIs de auditoria', () => {
+  assert.equal(fs.existsSync('src/app/(app)/catalogo/identidade/page.tsx'), false);
+  assert.equal(fs.existsSync('src/components/catalogo/CatalogIdentityAuditView.tsx'), false);
+  assert.doesNotMatch(fs.readFileSync('src/lib/app-navigation.ts', 'utf8'), /\/catalogo\/identidade/);
+  assert.equal(fs.existsSync('src/app/api/catalogo/identity-audit/route.ts'), true);
   const exports = fs.readFileSync('src/lib/catalog-identity-exports.ts', 'utf8');
   for (let index = 1; index <= 10; index += 1) assert.match(exports, new RegExp(`'${String(index).padStart(2, '0')}_`));
 });

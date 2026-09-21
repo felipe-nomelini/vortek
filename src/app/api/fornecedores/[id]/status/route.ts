@@ -3,7 +3,6 @@ import { createServiceClient } from '@/lib/supabase';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { fetchAllRowsPaginated } from '@/lib/produto-filtering';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
-import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
@@ -498,9 +497,9 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
     let mlStockSkippedIneligible = 0;
     let mlStockBlockedManually = 0;
     let mlStockFailed = 0;
-    let mlPriceProductsUpdated = 0;
-    let mlPriceOutboxEnqueued = 0;
-    let mlPriceFailed = 0;
+    const mlPriceProductsUpdated = 0;
+    const mlPriceOutboxEnqueued = 0;
+    const mlPriceFailed = 0;
     const errors: Array<{ product_id: string; sku: string; ml_item_id: string; error: string }> = [];
 
     for (const idsChunk of chunk(
@@ -523,30 +522,6 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
       staleDeleteOutboxCancelled += cancelled?.length || 0;
-    }
-
-    try {
-      const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, preferredSnapshots);
-      mlPriceProductsUpdated = automaticPricing.productsUpdated;
-      mlPriceOutboxEnqueued = automaticPricing.outboxEnqueued;
-      mlPriceFailed = automaticPricing.errors.length;
-      for (const priceError of automaticPricing.errors) {
-        const snapshot = preferredSnapshots.find((item) => item.productId === priceError.productId);
-        errors.push({
-          product_id: priceError.productId,
-          sku: snapshot?.previous.sku || '',
-          ml_item_id: snapshot?.previous.ml_item_id || '',
-          error: `Preço automático: ${priceError.message}`,
-        });
-      }
-    } catch (error) {
-      mlPriceFailed = 1;
-      errors.push({
-        product_id: '',
-        sku: '',
-        ml_item_id: '',
-        error: `Preço automático: ${toPublicError(error, 'falha ao recalcular preços')}`,
-      });
     }
 
     for (const product of productsWithoutAvailableSource) {
