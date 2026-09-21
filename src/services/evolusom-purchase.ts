@@ -1,5 +1,4 @@
 import { createServiceClient } from '@/lib/supabase';
-import { randomInt } from 'crypto';
 import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { fetchML } from '@/services/integration';
@@ -221,10 +220,14 @@ export async function createEvolusomPurchase(input: {
   if (existing && !['prepared', 'rejected'].includes(existingRequestState)) {
     return { state: 'uncertain', reason: 'Criação anterior precisa de conferência na Evolusom antes de repetir' };
   }
+  const saleNumber = Number(order.numero);
+  if (!Number.isSafeInteger(saleNumber) || saleNumber <= 0) {
+    throw new Error('Número da venda inválido para reservar código Evolusom');
+  }
   const existingCode = String(existing?.evolusom_request_code || '');
   const supplierOrderCode = /^\d{8}$/.test(existingCode)
     ? Number(existingCode)
-    : randomInt(80_000_000, 90_000_000);
+    : 80_000_000 + (saleNumber % 10_000_000);
   const orderCode = String(supplierOrderCode);
   const orderedAt = existing ? String(existing.data_criacao || '') : new Date().toISOString();
   const payload = buildEvolusomTriangularPayload({
