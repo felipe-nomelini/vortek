@@ -5,7 +5,7 @@ const ts = require('typescript');
 
 const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-06-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Sintético</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260612345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
 
-function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false } = {}) {
+function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, response = { codigo: 456, status: 'Pendente' } } = {}) {
   let purchase = initialPurchase;
   const sent = [];
   const order = {
@@ -68,7 +68,7 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
       evolusomRequest: async (path, init) => {
         assert.equal(path, '/v1/pedidos/triangular');
         sent.push(JSON.parse(init.body));
-        return { codigo: 456, status: 'Pendente' };
+        return response;
       },
     },
     '@/lib/dslite/placeholder-label': { DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE: 'placeholder_evolusom' },
@@ -175,9 +175,25 @@ test('rejeição HTTP 400 permite nova tentativa manual com o mesmo código e da
   });
   assert.equal((await harness.create()).state, 'created');
   assert.equal(harness.sent.length, 1);
-  assert.equal(harness.sent[0].codigo_pedido, 'BNT-123');
+  assert.equal(harness.sent[0].codigo_pedido, 123);
   assert.equal(harness.sent[0].data_pedido, '2026-09-21 11:18:16');
   assert.equal(harness.getPurchase().data_criacao, orderedAt);
+});
+
+test('resposta com número dentro de data vincula a compra sem repetir o POST', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({ response: { status: 200, data: { codigo: 789, status: 'Pendente' }, message: 'Pedido criado' } });
+  const result = await harness.create();
+  assert.deepEqual({ state: result.state, orderId: result.orderId, status: result.status },
+    { state: 'created', orderId: 789, status: 'Pendente' });
+  assert.equal(harness.sent[0].codigo_pedido, 123);
+  assert.equal(harness.getPurchase().evolusom_order_id, 789);
+  assert.equal(harness.sent.length, 1);
 });
 
 test('resultado incerto continua sem repetir o POST', async (t) => {

@@ -68,7 +68,7 @@ function appOrigin(): string {
 }
 
 export function buildEvolusomTriangularPayload(input: {
-  orderCode: string;
+  orderCode: number;
   orderedAt: string;
   companyCnpj: string;
   xml: string;
@@ -208,6 +208,10 @@ export async function createEvolusomPurchase(input: {
     return { state: 'pending', reason: 'Etiqueta real ainda não disponível no Bentevi' };
   }
   const orderCode = `BNT-${order.numero}`;
+  const supplierOrderCode = Number(order.numero);
+  if (!Number.isSafeInteger(supplierOrderCode) || supplierOrderCode <= 0) {
+    throw new Error('Número da venda inválido para o código numérico exigido pela Evolusom');
+  }
   const { data: existing, error: existingError } = await client.from('compras')
     .select('id,evolusom_order_id,evolusom_request_state,data_criacao')
     .eq('evolusom_request_code', orderCode).maybeSingle();
@@ -221,7 +225,7 @@ export async function createEvolusomPurchase(input: {
   }
   const orderedAt = existing ? String(existing.data_criacao || '') : new Date().toISOString();
   const payload = buildEvolusomTriangularPayload({
-    orderCode,
+    orderCode: supplierOrderCode,
     orderedAt,
     companyCnpj: formatCnpj(String(company.cnpj)),
     xml: input.xml,
@@ -269,9 +273,13 @@ export async function createEvolusomPurchase(input: {
     .maybeSingle();
   if (sentError || !reserved) throw new Error('Pedido Evolusom já está em criação; confira antes de repetir');
 
-  let response: { codigo?: number; status?: string };
+  let response: {
+    codigo?: number;
+    status?: string | number;
+    data?: { codigo?: number; numero?: number; status?: string; pedido_lojista?: { numero?: number; status?: string } };
+  };
   try {
-    response = await evolusomRequest<{ codigo?: number; status?: string }>('/v1/pedidos/triangular', {
+    response = await evolusomRequest<typeof response>('/v1/pedidos/triangular', {
       method: 'POST',
       body: JSON.stringify(payload),
     });
@@ -283,15 +291,17 @@ export async function createEvolusomPurchase(input: {
     }).eq('id', purchase.id);
     return { state: rejected ? 'pending' : 'uncertain', reason: error instanceof Error ? error.message : 'Falha ao criar pedido Evolusom' };
   }
-  const orderId = Number(response.codigo);
+  const orderId = Number(response.codigo ?? response.data?.codigo ?? response.data?.numero ?? response.data?.pedido_lojista?.numero);
   if (!Number.isSafeInteger(orderId) || orderId <= 0) {
     await client.from('compras').update({ evolusom_request_state: 'uncertain', status: 'criacao_incerta' }).eq('id', purchase.id);
     return { state: 'uncertain', reason: 'Evolusom não retornou número de pedido válido' };
   }
+  const status = response.data?.pedido_lojista?.status || response.data?.status
+    || (typeof response.status === 'string' ? response.status : 'Pendente');
   const { error: saveError } = await client.from('compras').update({
     evolusom_order_id: orderId,
     evolusom_request_state: 'created',
-    status: String(response.status || 'Pendente'),
+    status,
   }).eq('id', purchase.id);
   if (saveError) return { state: 'uncertain', reason: 'Pedido criado, mas vínculo local não foi salvo' };
   const { error: linkError } = await client.from('pedidos').update({
@@ -304,7 +314,7 @@ export async function createEvolusomPurchase(input: {
     label_delivered_at: input.placeholder ? null : new Date().toISOString(),
   }).in('id', input.orderIds);
   if (linkError) return { state: 'uncertain', reason: 'Pedido criado, mas vendas locais não foram vinculadas' };
-  return { state: 'created', orderId, purchaseId: purchase.id, status: String(response.status || 'Pendente'), placeholder: input.placeholder };
+  return { state: 'created', orderId, purchaseId: purchase.id, status, placeholder: input.placeholder };
 }
 
 export async function getEvolusomOrderStatus(orderId: number) {

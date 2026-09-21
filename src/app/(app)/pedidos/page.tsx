@@ -751,6 +751,10 @@ export default function PedidosPage() {
       title: 'Compra', key: 'compra', width: 210,
       render: (_: unknown, order: Order) => {
         const dsliteId = isValidDsliteId(order.dslite_id);
+        if (order.evolusom_order_id) return <Text>Evolusom #{order.evolusom_order_id}</Text>;
+        if (order.compra_id && String(order.fornecedor_id) === '133') {
+          return <Text type="secondary">Aguardando confirmação da Evolusom</Text>;
+        }
         if (!dsliteId) return <Text type="secondary">Não Criado</Text>;
         const purchaseStatus = String(order.compra_status_dslite || order.dslite_status || '').trim() || 'Não informado';
         const labelPresentation = resolveDsliteLabelPresentation({

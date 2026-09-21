@@ -51,7 +51,9 @@ function getToken(): string {
 
 function describeValidationErrors(body: unknown): string | null {
   if (!body || typeof body !== 'object') return null;
-  const errors = (body as { errors?: unknown }).errors;
+  const response = body as { errors?: unknown; message?: unknown };
+  const errors = response.errors && typeof response.errors === 'object'
+    ? response.errors : response.message;
   if (!errors || typeof errors !== 'object' || Array.isArray(errors)) return null;
   const fields = Object.keys(errors)
     .filter((field) => /^(?:codigo_pedido|cnpj|data_pedido|nfe|transporte|cliente|itens)(?:\.(?:[a-zA-Z_][a-zA-Z_0-9]*|\d+)|\[\d+\])*$/.test(field))
