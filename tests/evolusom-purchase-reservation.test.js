@@ -5,12 +5,12 @@ const ts = require('typescript');
 
 const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-06-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Sintético</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260612345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
 
-function purchaseHarness({ initialPurchase = null, buyer = null } = {}) {
+function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false } = {}) {
   let purchase = initialPurchase;
   const sent = [];
   const order = {
     id: 'order-1', numero: 123, ml_order_id: 'ml-123', ml_shipment_id: null,
-    rastreio: 'AB123BR', ml_label_storage_path: 'label.pdf',
+    rastreio: trackingNumber, ml_label_storage_path: placeholder ? null : 'label.pdf',
     billing_documento: '07778845938', buyer_ml_id: null,
   };
   const client = {
@@ -79,7 +79,7 @@ function purchaseHarness({ initialPurchase = null, buyer = null } = {}) {
     create: () => module.exports.createEvolusomPurchase({
       pedidoId: order.id, orderIds: [order.id], xml,
       products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: 'offer-1' }],
-      placeholder: false, supplierPaymentMode: 'postpaid',
+      placeholder, supplierPaymentMode: 'postpaid',
     }),
     getPurchase: () => purchase,
     sent,
@@ -107,6 +107,33 @@ test('reserva usa a data da compra, aceita contatos ausentes e evita segundo POS
   assert.equal(harness.sent[0].cliente.celular, null);
   assert.equal((await harness.create()).state, 'created');
   assert.equal(harness.sent.length, 1);
+});
+
+test('etiqueta provisória usa o código do exemplo sem registrar rastreio fictício', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({ trackingNumber: null, placeholder: true });
+  assert.equal((await harness.create()).state, 'created');
+  assert.equal(harness.sent.length, 1);
+  assert.equal(harness.sent[0].transporte.codrastreio, '99999999999');
+  assert.equal(harness.getPurchase().rastreio, null);
+});
+
+test('sem etiqueta provisória, ausência de rastreio mantém a compra pendente', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({ trackingNumber: null });
+  assert.equal((await harness.create()).state, 'pending');
+  assert.equal(harness.sent.length, 0);
+  assert.equal(harness.getPurchase(), null);
 });
 
 test('retomada de reserva preparada preserva a data e envia contatos conhecidos', async (t) => {

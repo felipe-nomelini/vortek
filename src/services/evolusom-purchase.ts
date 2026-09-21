@@ -6,6 +6,7 @@ import { evolusomRequest, EvolusomApiError } from '@/services/evolusom';
 import { DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
 
 const EVOLUSOM_SUPPLIER_ID = '133';
+const EVOLUSOM_PLACEHOLDER_TRACKING_NUMBER = '99999999999';
 
 type ProductLine = { sku: string; quantity: number; cost: number; offerId: string | null };
 type CreateResult =
@@ -196,7 +197,8 @@ export async function createEvolusomPurchase(input: {
   const phone = formatPhone(buyer?.telefone) || formatPhone(tag(block(dest, 'enderDest'), 'fone'));
   const shipmentId = String(order.ml_shipment_id || '').trim();
   const shipment = shipmentId ? await fetchML<{ tracking_number?: string | null }>(`/shipments/${encodeURIComponent(shipmentId)}`) : null;
-  const trackingNumber = String(order.rastreio || shipment?.tracking_number || '').trim();
+  const realTrackingNumber = String(order.rastreio || shipment?.tracking_number || '').trim();
+  const trackingNumber = realTrackingNumber || (input.placeholder ? EVOLUSOM_PLACEHOLDER_TRACKING_NUMBER : '');
   if (!trackingNumber) return { state: 'pending', reason: 'Aguardando código de rastreio do ML' };
   const baseUrl = appOrigin();
   const labelUrl = input.placeholder
@@ -242,7 +244,7 @@ export async function createEvolusomPurchase(input: {
     destinatario_documento: payload.cliente.documento,
     produto_sku: input.products[0]?.sku || null,
     produto_fornecedor_oferta_id: input.products[0]?.offerId || null,
-    rastreio: trackingNumber,
+    rastreio: realTrackingNumber || null,
     quantidade: input.products.reduce((sum, item) => sum + item.quantity, 0),
     valor_total: money(input.products.reduce((sum, item) => sum + item.quantity * item.cost, 0)),
     supplier_payment_mode: input.supplierPaymentMode,
