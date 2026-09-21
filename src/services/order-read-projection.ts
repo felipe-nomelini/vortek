@@ -626,7 +626,10 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
       };
     }
 
-    const compra = directCompra || comprasByDsid.get(String(row?.dslite_id || ''));
+    const retryableDirectCompra = directCompra
+      && !directCompra.evolusom_order_id
+      && ['prepared', 'rejected'].includes(String(directCompra.evolusom_request_state || ''));
+    const compra = retryableDirectCompra ? null : directCompra || comprasByDsid.get(String(row?.dslite_id || ''));
     if (!compra) {
       return {
         ...row,
@@ -634,6 +637,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
         cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
         operational_supplier_ids: operationalSupplierIds,
         operational_internal_stock: operationalInternalStock,
+        ...(retryableDirectCompra ? { compra_id: null, evolusom_order_id: null } : {}),
         compra_status_dslite: null,
         ...(row?.envio_interno_at
           ? { fornecedor_id: null, fornecedor_nome: 'Estoque Interno', supplier_payment_mode: null, supplier_payment_status: null, supplier_payment_amount: null }
