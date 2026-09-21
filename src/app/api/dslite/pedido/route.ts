@@ -19,7 +19,7 @@ import {
   upsertInvoiceDataMLByShipment,
 } from "@/services/integration";
 import { createServiceClient } from "@/lib/supabase";
-import { createEvolusomPurchase } from "@/services/evolusom-purchase";
+import { createEvolusomPurchase, shouldUseEvolusomPlaceholderLabel } from "@/services/evolusom-purchase";
 import { isValidCnpj } from "@/lib/fiscal/cnpj.js";
 import { clearSupplierLabelState, supplierDsliteLabelState } from "@/lib/dslite/supplier-label-state";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
@@ -2320,7 +2320,7 @@ async function runDsliteCreateJob(
     const { data: pedidoRow, error: pedidoRowError } = await client
       .from("pedidos")
       .select(
-        "numero,total,frete,lucro,billing_nome,billing_documento,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,dslite_label_source,ml_shipment_id,ml_pack_id,nfe_danfe_url",
+        "numero,total,frete,lucro,billing_nome,billing_documento,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,dslite_label_source,ml_shipment_id,ml_pack_id,ml_label_storage_path,rastreio,nfe_danfe_url",
       )
       .eq("id", pedidoId)
       .maybeSingle();
@@ -2544,6 +2544,7 @@ async function runDsliteCreateJob(
     let placeholderReason:
       | "release_window"
       | "deferred_payment_label_not_printable"
+      | "ml_label_unavailable"
       | null = null;
     const placeholderReleaseLabel =
       isMlLabelReleasePending && releaseAt
@@ -4158,9 +4159,16 @@ async function runDsliteCreateJob(
         ? String(selectedOffer.offer.fornecedor_nome)
         : null;
       usePlaceholderLabel =
-        isMlLabelReleasePending &&
-        allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved);
-      placeholderReason = usePlaceholderLabel ? "release_window" : null;
+        (isMlLabelReleasePending && allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved))
+        || shouldUseEvolusomPlaceholderLabel({
+          supplierId: fornecedorId,
+          directEnabled: process.env.EVOLUSOM_DIRECT_ENABLED === 'true',
+          realLabelAvailable: Boolean(pedidoRow?.ml_label_storage_path),
+          realTrackingAvailable: Boolean(pedidoRow?.rastreio),
+        });
+      placeholderReason = usePlaceholderLabel
+        ? isMlLabelReleasePending ? "release_window" : "ml_label_unavailable"
+        : null;
       supplierPaymentMode = resolveSupplierPaymentMode(
         selectedOffer.offer.payment_mode,
         fornecedorId,

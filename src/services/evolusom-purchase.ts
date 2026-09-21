@@ -8,6 +8,16 @@ import { DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placehold
 const EVOLUSOM_SUPPLIER_ID = '133';
 const EVOLUSOM_PLACEHOLDER_TRACKING_NUMBER = '99999999999';
 
+export function shouldUseEvolusomPlaceholderLabel(input: {
+  supplierId: string;
+  directEnabled: boolean;
+  realLabelAvailable: boolean;
+  realTrackingAvailable: boolean;
+}): boolean {
+  return input.directEnabled && input.supplierId === EVOLUSOM_SUPPLIER_ID
+    && (!input.realLabelAvailable || !input.realTrackingAvailable);
+}
+
 type ProductLine = { sku: string; quantity: number; cost: number; offerId: string | null };
 type CreateResult =
   | { state: 'created'; orderId: number; purchaseId: string; status: string; placeholder: boolean; apiResponse?: unknown }

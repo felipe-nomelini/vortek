@@ -76,6 +76,7 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
   const module = { exports: {} };
   new Function('require', 'module', 'exports', compiled)((id) => mocks[id], module, module.exports);
   return {
+    shouldUsePlaceholder: module.exports.shouldUseEvolusomPlaceholderLabel,
     create: () => module.exports.createEvolusomPurchase({
       pedidoId: order.id, orderIds: [order.id], xml,
       products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: 'offer-1' }],
@@ -85,6 +86,15 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
     sent,
   };
 }
+
+test('Evolusom usa etiqueta provisória quando a real ou o rastreio ainda faltam', () => {
+  const policy = purchaseHarness().shouldUsePlaceholder;
+  assert.equal(policy({ supplierId: '133', directEnabled: true, realLabelAvailable: false, realTrackingAvailable: false }), true);
+  assert.equal(policy({ supplierId: '133', directEnabled: true, realLabelAvailable: true, realTrackingAvailable: false }), true);
+  assert.equal(policy({ supplierId: '133', directEnabled: true, realLabelAvailable: true, realTrackingAvailable: true }), false);
+  assert.equal(policy({ supplierId: '97', directEnabled: true, realLabelAvailable: false, realTrackingAvailable: false }), false);
+  assert.equal(policy({ supplierId: '133', directEnabled: false, realLabelAvailable: false, realTrackingAvailable: false }), false);
+});
 
 test('reserva usa a data da compra, aceita contatos ausentes e evita segundo POST', async (t) => {
   const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
