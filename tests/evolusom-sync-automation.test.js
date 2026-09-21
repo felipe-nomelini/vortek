@@ -6,6 +6,7 @@ const test = require('node:test');
 const { getSyncTaskByKey, isSyncTaskEnabled } = require('../src/lib/sync/registry.ts');
 const { shouldFinalizeEvolusomCycle } = require('../src/lib/sync/evolusom-cycle.ts');
 const { EvolusomApiError, isEvolusomAccessError } = require('../src/services/evolusom.ts');
+const { readEvolusomMerchantOrderStatus } = require('../src/lib/evolusom/order-status.ts');
 
 const root = path.join(__dirname, '..');
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
@@ -26,6 +27,38 @@ test('Evolusom possui ciclos exclusivos de catálogo e preço/estoque', () => {
     assert.equal(task.defaultBody.maxPagesPerRun, 5);
     assert.equal(isSyncTaskEnabled(task, { EVOLUSOM_DIRECT_ENABLED: 'false' }), false);
     assert.equal(isSyncTaskEnabled(task, { EVOLUSOM_DIRECT_ENABLED: 'true' }), true);
+  }
+});
+
+test('consulta de pedidos Evolusom usa o agendador existente e cobre todos os horários', () => {
+  const task = getSyncTaskByKey('sync_evolusom_pedidos_compra');
+  assert.ok(task);
+  assert.equal(task.path, '/api/sync/evolusom-pedidos');
+  assert.equal(task.domain, 'compras:evolusom');
+  assert.equal(task.kind, 'evolusom');
+  assert.equal(task.dispatchMode, 'scheduled');
+  assert.deepEqual(task.schedule, { businessMinutes: 2, offHoursMinutes: 2 });
+  assert.equal(task.defaultBody.limit, 20);
+  assert.equal(isSyncTaskEnabled(task, { EVOLUSOM_DIRECT_ENABLED: 'false' }), false);
+  assert.equal(isSyncTaskEnabled(task, { EVOLUSOM_DIRECT_ENABLED: 'true' }), true);
+});
+
+test('status do pedido do lojista só é aceito com resposta e número correspondentes', () => {
+  const response = {
+    status: 200,
+    data: {
+      pedido_lojista: { numero: 63012091, status: 'Processando' },
+      pedido_cliente: { numero: 63012092, status: 'Bloqueado' },
+    },
+  };
+  assert.equal(readEvolusomMerchantOrderStatus(response, 63012091), 'Processando');
+  for (const invalid of [
+    { ...response, status: 500 },
+    { ...response, data: { pedido_lojista: { numero: 63012093, status: 'Processando' } } },
+    { ...response, data: { pedido_lojista: { numero: 63012091, status: 'Desconhecido' } } },
+    { ...response, data: { pedido_lojista: null } },
+  ]) {
+    assert.throws(() => readEvolusomMerchantOrderStatus(invalid, 63012091));
   }
 });
 

@@ -16,6 +16,7 @@ O cliente HTTP limita as requisições a um intervalo mínimo de um segundo no p
 - Com a integração direta ativa, o fornecedor `133` é retirado das rotinas de catálogo e preço/estoque da DSLite e da reconciliação pelo XML da DSLite.
 - Dois jobs próprios consultam somente a Evolusom: `sync_evolusom_catalogo` e `sync_evolusom_preco_estoque`. Cada execução processa até cinco páginas de 100 itens e conserva o cursor para a execução seguinte.
 - O catálogo inclui produtos novos. O job de preço/estoque atualiza custo e estoque PR, recalcula a oferta preferencial e usa a fila existente para publicar mudanças de estoque no Mercado Livre.
+- O job `sync_evolusom_pedidos_compra` consulta a cada ciclo de dois minutos até 20 compras diretas, começando pelas menos recentemente atualizadas. Cada consulta avança `compras.updated_at` para distribuir as próximas rodadas. Usa o GET de status do pedido triangular, confere o número retornado e mantém `compras.status` igual ao estado do `pedido_lojista`. A leitura não envia outro POST e não altera o status de pagamento ou da etiqueta. Falhas ficam registradas no job; uma falha de acesso 401/403 encerra o ciclo. O intervalo é de agendamento, não uma garantia de atualização em tempo real.
 - Uma oferta que deixou de existir na Evolusom só é inativada e zerada depois de uma varredura iniciada na primeira página, concluída com o mesmo total de produtos e sem erro de leitura. Se o total mudar durante o ciclo, a limpeza é adiada para a próxima varredura completa.
 
 ## Fluxo da venda

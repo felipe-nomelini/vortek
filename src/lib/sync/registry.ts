@@ -8,6 +8,7 @@ export type SyncTaskKey =
   | 'sync_dslite_pedidos_compra'
   | 'sync_evolusom_catalogo'
   | 'sync_evolusom_preco_estoque'
+  | 'sync_evolusom_pedidos_compra'
   | 'sync_ml_orders_ingest'
   | 'sync_ml_cancelamentos_pos_nfe'
   | 'sync_ml_listings_observed'
@@ -58,6 +59,22 @@ export interface SyncTaskDefinition {
 }
 
 export const SYNC_TASKS: SyncTaskDefinition[] = [
+  {
+    key: 'sync_evolusom_pedidos_compra',
+    jobTipo: 'sync_evolusom_pedidos_compra',
+    label: 'Evolusom Pedidos de Compra — direto',
+    path: '/api/sync/evolusom-pedidos',
+    domain: 'compras:evolusom',
+    lockTtlSeconds: 5 * 60,
+    kind: 'evolusom',
+    progressUnit: 'itens',
+    dispatchMode: 'scheduled',
+    schedule: { businessMinutes: 2, offHoursMinutes: 2 },
+    defaultBody: { limit: 20 },
+    runMode: 'inline',
+    requestTimeoutMs: 120_000,
+    activationEnv: 'EVOLUSOM_DIRECT_ENABLED',
+  },
   {
     key: 'sync_dslite_fornecedores',
     jobTipo: 'sync_dslite_fornecedores',
