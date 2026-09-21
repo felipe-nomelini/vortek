@@ -158,3 +158,42 @@ test('retomada de reserva preparada preserva a data e envia contatos conhecidos'
   assert.equal(harness.sent[0].cliente.email, 'buyer@example.com');
   assert.equal(harness.sent[0].cliente.telefone, '(41) 99999-9999');
 });
+
+test('rejeição HTTP 400 permite nova tentativa manual com o mesmo código e data', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const orderedAt = '2026-09-21T14:18:16.235Z';
+  const harness = purchaseHarness({
+    initialPurchase: {
+      id: 'purchase-1', evolusom_request_code: 'BNT-123',
+      evolusom_request_state: 'rejected', evolusom_order_id: null, data_criacao: orderedAt,
+    },
+  });
+  assert.equal((await harness.create()).state, 'created');
+  assert.equal(harness.sent.length, 1);
+  assert.equal(harness.sent[0].codigo_pedido, 'BNT-123');
+  assert.equal(harness.sent[0].data_pedido, '2026-09-21 11:18:16');
+  assert.equal(harness.getPurchase().data_criacao, orderedAt);
+});
+
+test('resultado incerto continua sem repetir o POST', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({
+    initialPurchase: {
+      id: 'purchase-1', evolusom_request_code: 'BNT-123',
+      evolusom_request_state: 'uncertain', evolusom_order_id: null,
+      data_criacao: '2026-09-21T14:18:16.235Z',
+    },
+  });
+  assert.equal((await harness.create()).state, 'uncertain');
+  assert.equal(harness.sent.length, 0);
+});

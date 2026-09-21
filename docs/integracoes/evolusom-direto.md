@@ -23,6 +23,7 @@ O cliente HTTP limita as requisições a um intervalo mínimo de um segundo no p
 - O Bentevi emite a NF-e e verifica produto, quantidade e custo da oferta antes do pedido triangular.
 - Se a etiqueta do ML ainda não estiver liberada, o pedido triangular recebe um link público assinado da etiqueta genérica da Evolusom. Nessa condição, se o ML ainda não informar rastreio, `transporte.codrastreio` usa `99999999999`, conforme o exemplo de pedido fornecido. Esse código provisório não é gravado como rastreio real no Bentevi. Sem etiqueta provisória, a ausência de rastreio mantém a compra pendente. Email e telefone conhecidos são enviados; campos ausentes ou inválidos seguem como `null`. A aceitação desses valores pelo POST direto ainda depende da primeira venda real.
 - O identificador local `BNT-<número da venda>` é reservado antes do POST. `data_pedido` representa essa reserva da compra, gravada em `compras.data_criacao` e preservada em uma retomada; não é a data da venda no ML nem a emissão da NF-e. Falha de rede após o envio marca a compra como incerta; o operador deve conferir o pedido na Evolusom antes de tentar novamente.
+- Uma rejeição HTTP 400 documentada pela Evolusom como erro de validação permite nova tentativa manual com a mesma reserva. O Bentevi mostra os campos rejeitados sem gravar os valores retornados na mensagem. Resultado incerto continua sem reenvio até conferência do fornecedor.
 - Após a liberação da etiqueta real, a ação de WhatsApp da venda envia a etiqueta ao contato do fornecedor e ao segundo destinatário já configurado para a Evolusom.
 - Compras PIX continuam com confirmação manual e comprovante. O envio do comprovante usa o fluxo individual existente; a liquidação consolidada do Oráculo não inclui compras diretas da Evolusom nesta primeira etapa.
 
@@ -40,3 +41,9 @@ Fonte do contrato: [Swagger triangular da Evolusom](https://api2.evolusom.com.br
 - O GET autenticado percorreu 75 páginas e retornou 7.416 SKUs únicos, todos com preço e estoque PR válidos; 3.391 possuíam estoque positivo.
 - A comparação somente leitura encontrou 7.351 SKUs em comum com a base existente, 65 presentes apenas na Evolusom e 111 presentes apenas na base antiga. Havia 912 diferenças de custo e 1.726 diferenças de estoque.
 - Essa auditoria não alterou o banco e não chamou o endpoint de criação de pedido.
+
+## Primeira venda real em 21/09/2026
+
+- Na venda `2000018567229898`, o primeiro job autorizou a NF-e e parou pela ausência de rastreio real. A correção publicada no SHA `5925c40b` passou a usar `99999999999` apenas com etiqueta provisória.
+- A tentativa seguinte reservou `BNT-2000018567229898` às 11h18 (Brasília), enviou um POST triangular e recebeu HTTP 400. A compra ficou em `rejected`, sem número de pedido retornado; nenhum POST adicional foi feito nesta ação.
+- O cliente anterior descartava o corpo do HTTP 400, então o motivo exato dessa primeira rejeição não ficou disponível no Bentevi. A consulta autenticada de cadastro confirmou o CNPJ habilitado para dropshipping; DANFE e etiqueta provisória responderam pelos links públicos assinados.

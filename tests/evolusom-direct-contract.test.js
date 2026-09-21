@@ -57,6 +57,31 @@ test('cliente usa token privado, paginação suportada e nunca chama o domínio 
   await assert.rejects(evolusomRequest('/other/path'), /Caminho Evolusom inválido/);
 });
 
+test('erro HTTP 400 informa os campos rejeitados sem expor os valores do fornecedor', async (t) => {
+  const originalToken = process.env.EVOLUSOM_API_TOKEN;
+  const originalFetch = global.fetch;
+  process.env.EVOLUSOM_API_TOKEN = 'synthetic-test-token';
+  global.fetch = async () => new Response(JSON.stringify({
+    message: 'Documento 12345678901 inválido para pessoa de teste',
+    errors: {
+      'cliente.documento': ['Documento 12345678901 inválido'],
+      'cliente.email': ['Email pessoa@example.com obrigatório'],
+      'itens.0.cod_produto': ['SKU 141111 indisponível'],
+    },
+  }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+  t.after(() => {
+    global.fetch = originalFetch;
+    if (originalToken === undefined) delete process.env.EVOLUSOM_API_TOKEN;
+    else process.env.EVOLUSOM_API_TOKEN = originalToken;
+  });
+  await assert.rejects(evolusomRequest('/v1/pedidos/triangular', { method: 'POST', body: '{}' }), (error) => {
+    assert.equal(error.status, 400);
+    assert.match(error.message, /cliente\.documento, cliente\.email, itens\.0\.cod_produto/);
+    assert.doesNotMatch(error.message, /12345678901|pessoa@example\.com|141111/);
+    return true;
+  });
+});
+
 test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU contratado', () => {
   const source = fs.readFileSync(require.resolve('../src/services/evolusom-purchase.ts'), 'utf8');
   const compiled = ts.transpileModule(source, {

@@ -215,7 +215,8 @@ export async function createEvolusomPurchase(input: {
   if (existing?.evolusom_order_id) {
     return { state: 'created', orderId: existing.evolusom_order_id, purchaseId: existing.id, status: 'Criado', placeholder: input.placeholder };
   }
-  if (existing && existing.evolusom_request_state !== 'prepared') {
+  const existingRequestState = String(existing?.evolusom_request_state || '');
+  if (existing && !['prepared', 'rejected'].includes(existingRequestState)) {
     return { state: 'uncertain', reason: 'Criação anterior precisa de conferência na Evolusom antes de repetir' };
   }
   const orderedAt = existing ? String(existing.data_criacao || '') : new Date().toISOString();
@@ -255,9 +256,11 @@ export async function createEvolusomPurchase(input: {
     ...(!existing ? { data_criacao: orderedAt } : {}),
   };
   const { data: purchase, error: purchaseError } = existing
-    ? await client.from('compras').update(purchaseValues).eq('id', existing.id).select('id').single()
+    ? await client.from('compras').update(purchaseValues).eq('id', existing.id)
+      .eq('evolusom_request_state', existingRequestState).select('id').maybeSingle()
     : await client.from('compras').insert(purchaseValues).select('id').single();
-  if (purchaseError || !purchase) throw new Error('Falha ao reservar código do pedido Evolusom');
+  if (purchaseError) throw new Error('Falha ao reservar código do pedido Evolusom');
+  if (!purchase) return { state: 'pending', reason: 'Pedido Evolusom já está sendo processado' };
   const { data: reserved, error: sentError } = await client.from('compras')
     .update({ evolusom_request_state: 'sent' })
     .eq('id', purchase.id)

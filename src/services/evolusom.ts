@@ -49,6 +49,16 @@ function getToken(): string {
   return token;
 }
 
+function describeValidationErrors(body: unknown): string | null {
+  if (!body || typeof body !== 'object') return null;
+  const errors = (body as { errors?: unknown }).errors;
+  if (!errors || typeof errors !== 'object' || Array.isArray(errors)) return null;
+  const fields = Object.keys(errors)
+    .filter((field) => /^(?:codigo_pedido|cnpj|data_pedido|nfe|transporte|cliente|itens)(?:\.(?:[a-zA-Z_][a-zA-Z_0-9]*|\d+)|\[\d+\])*$/.test(field))
+    .slice(0, 8);
+  return fields.length ? `Campos rejeitados: ${fields.join(', ')}` : null;
+}
+
 async function throttle(): Promise<void> {
   const now = Date.now();
   const slot = Math.max(now, nextRequestAt);
@@ -75,7 +85,11 @@ export async function evolusomRequest<T>(path: string, init: RequestInit = {}): 
     const reason = response.status === 429 && retryAfter
       ? `Limite de requisições Evolusom; tente novamente após ${retryAfter}s`
       : `Evolusom respondeu HTTP ${response.status}`;
-    throw new EvolusomApiError(reason, response.status);
+    const body = response.status === 400
+      ? await response.json().catch(() => null)
+      : null;
+    const validationErrors = describeValidationErrors(body);
+    throw new EvolusomApiError(validationErrors ? `${reason}. ${validationErrors}` : reason, response.status);
   }
   try {
     return await response.json() as T;
