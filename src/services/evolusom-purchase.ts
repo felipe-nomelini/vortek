@@ -1,22 +1,14 @@
 import { createServiceClient } from '@/lib/supabase';
 import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
-import { fetchML } from '@/services/integration';
+import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
+import { isMlShipmentLabelPrintable } from '@/lib/ml/fiscal-release';
+import { baixarEtiquetaML, fetchML } from '@/services/integration';
 import { evolusomRequest, EvolusomApiError } from '@/services/evolusom';
 import { DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
 
 const EVOLUSOM_SUPPLIER_ID = '133';
 const EVOLUSOM_PLACEHOLDER_TRACKING_NUMBER = '99999999999';
-
-export function shouldUseEvolusomPlaceholderLabel(input: {
-  supplierId: string;
-  directEnabled: boolean;
-  realLabelAvailable: boolean;
-  realTrackingAvailable: boolean;
-}): boolean {
-  return input.directEnabled && input.supplierId === EVOLUSOM_SUPPLIER_ID
-    && (!input.realLabelAvailable || !input.realTrackingAvailable);
-}
 
 type ProductLine = { sku: string; quantity: number; cost: number; offerId: string | null };
 type CreateResult =
@@ -182,7 +174,6 @@ export async function createEvolusomPurchase(input: {
   orderIds: string[];
   xml: string;
   products: ProductLine[];
-  placeholder: boolean;
   supplierPaymentMode: string;
 }): Promise<CreateResult> {
   if (process.env.EVOLUSOM_DIRECT_ENABLED !== 'true') {
@@ -190,7 +181,7 @@ export async function createEvolusomPurchase(input: {
   }
   const client = createServiceClient();
   const [{ data: order, error: orderError }, { data: company, error: companyError }] = await Promise.all([
-    client.from('pedidos').select('id,numero,ml_order_id,ml_shipment_id,rastreio,ml_label_storage_path,billing_documento,buyer_ml_id').eq('id', input.pedidoId).maybeSingle(),
+    client.from('pedidos').select('id,numero,ml_order_id,ml_shipment_id,rastreio,ml_label_storage_path,dslite_label_source,billing_documento,buyer_ml_id').eq('id', input.pedidoId).maybeSingle(),
     client.from('empresa').select('cnpj').limit(1).maybeSingle(),
   ]);
   if (orderError || companyError || !order || !company?.cnpj) throw new Error('Dados do pedido ou CNPJ não disponíveis para Evolusom');
@@ -205,18 +196,6 @@ export async function createEvolusomPurchase(input: {
   const dest = block(input.xml, 'dest');
   const email = formatEmail(buyer?.email) || formatEmail(tag(dest, 'email'));
   const phone = formatPhone(buyer?.telefone) || formatPhone(tag(block(dest, 'enderDest'), 'fone'));
-  const shipmentId = String(order.ml_shipment_id || '').trim();
-  const shipment = shipmentId ? await fetchML<{ tracking_number?: string | null }>(`/shipments/${encodeURIComponent(shipmentId)}`) : null;
-  const realTrackingNumber = String(order.rastreio || shipment?.tracking_number || '').trim();
-  const trackingNumber = realTrackingNumber || (input.placeholder ? EVOLUSOM_PLACEHOLDER_TRACKING_NUMBER : '');
-  if (!trackingNumber) return { state: 'pending', reason: 'Aguardando código de rastreio do ML' };
-  const baseUrl = appOrigin();
-  const labelUrl = input.placeholder
-    ? buildPublicShippingLabelUrl(baseUrl, input.pedidoId, 'placeholder_evolusom')
-    : buildPublicShippingLabelUrl(baseUrl, input.pedidoId);
-  if (!input.placeholder && !order.ml_label_storage_path) {
-    return { state: 'pending', reason: 'Etiqueta real ainda não disponível no Bentevi' };
-  }
   const { data: existing, error: existingError } = await client.from('compras')
     .select('id,evolusom_order_id,evolusom_request_code,evolusom_request_state,data_criacao')
     .eq('pedido_id', input.pedidoId)
@@ -224,12 +203,49 @@ export async function createEvolusomPurchase(input: {
     .maybeSingle();
   if (existingError) throw new Error('Falha ao verificar pedido Evolusom existente');
   if (existing?.evolusom_order_id) {
-    return { state: 'created', orderId: existing.evolusom_order_id, purchaseId: existing.id, status: 'Criado', placeholder: input.placeholder };
+    return {
+      state: 'created', orderId: existing.evolusom_order_id, purchaseId: existing.id,
+      status: 'Criado', placeholder: String(order.dslite_label_source || '').startsWith('placeholder_release_window'),
+    };
   }
   const existingRequestState = String(existing?.evolusom_request_state || '');
   if (existing && !['prepared', 'rejected'].includes(existingRequestState)) {
     return { state: 'uncertain', reason: 'Criação anterior precisa de conferência na Evolusom antes de repetir' };
   }
+  const shipmentId = String(order.ml_shipment_id || '').trim();
+  const shipment = shipmentId
+    ? await fetchML<{ status?: string; substatus?: string; tracking_number?: string | null }>(`/shipments/${encodeURIComponent(shipmentId)}`)
+    : null;
+  if (shipmentId && !shipment && !order.ml_label_storage_path) {
+    return { state: 'pending', reason: 'Não foi possível conferir a etiqueta do Mercado Livre' };
+  }
+  const realTrackingNumber = String(order.rastreio || shipment?.tracking_number || '').trim();
+  let realLabelAvailable = Boolean(order.ml_label_storage_path);
+  if (!realLabelAvailable && shipmentId && isMlShipmentLabelPrintable(shipment)) {
+    const label = await baixarEtiquetaML(shipmentId, { responseType: 'pdf' });
+    if (!label.pdf) return { state: 'pending', reason: 'Etiqueta real liberada, mas não foi possível baixá-la do Mercado Livre' };
+    const stored = await storeShippingLabelForPedido({
+      client, pedidoId: input.pedidoId, pedidoNumero: order.numero,
+      mlOrderId: String(order.ml_order_id || '') || null,
+      shipmentId, pdf: label.pdf, source: 'evolusom_purchase',
+    });
+    if (!stored.ok || !stored.storagePath) {
+      return { state: 'pending', reason: 'Etiqueta real liberada, mas não foi possível salvá-la no Bentevi' };
+    }
+    const { data: storedOrder, error: storedOrderError } = await client.from('pedidos')
+      .select('ml_label_storage_path').eq('id', input.pedidoId).maybeSingle();
+    if (storedOrderError || storedOrder?.ml_label_storage_path !== stored.storagePath) {
+      return { state: 'pending', reason: 'Etiqueta real salva sem vínculo confirmado com a venda' };
+    }
+    realLabelAvailable = true;
+  }
+  if (realLabelAvailable && !realTrackingNumber) {
+    return { state: 'pending', reason: 'Etiqueta real liberada, aguardando código de rastreio do ML' };
+  }
+  const placeholder = !realLabelAvailable;
+  const trackingNumber = realTrackingNumber || EVOLUSOM_PLACEHOLDER_TRACKING_NUMBER;
+  const baseUrl = appOrigin();
+  const labelUrl = buildPublicShippingLabelUrl(baseUrl, input.pedidoId, placeholder ? 'placeholder_evolusom' : 'pdf');
   const saleNumber = Number(order.numero);
   if (!Number.isSafeInteger(saleNumber) || saleNumber <= 0) {
     throw new Error('Número da venda inválido para reservar código Evolusom');
@@ -353,14 +369,14 @@ export async function createEvolusomPurchase(input: {
   const { error: linkError } = await client.from('pedidos').update({
     evolusom_order_id: orderId,
     fulfillment_source: 'supplier',
-    dslite_label_source: input.placeholder ? DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE : 'evolusom_direct',
+    dslite_label_source: placeholder ? DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE : 'mercado_livre',
     dslite_etiqueta_enviada: true,
-    label_type: input.placeholder ? 'provisional' : 'real',
+    label_type: placeholder ? 'provisional' : 'real',
     label_delivery_channel: 'dslite',
-    label_delivered_at: input.placeholder ? null : new Date().toISOString(),
+    label_delivered_at: placeholder ? null : new Date().toISOString(),
   }).in('id', input.orderIds);
   if (linkError) return { state: 'uncertain', reason: 'Pedido criado, mas vendas locais não foram vinculadas', apiResponse: response };
-  return { state: 'created', orderId, purchaseId: purchase.id, status, placeholder: input.placeholder, apiResponse: response };
+  return { state: 'created', orderId, purchaseId: purchase.id, status, placeholder, apiResponse: response };
 }
 
 export async function getEvolusomOrderStatus(orderId: number) {

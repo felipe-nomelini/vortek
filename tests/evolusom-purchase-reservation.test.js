@@ -5,11 +5,13 @@ const ts = require('typescript');
 
 const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-06-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Sintético</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><xProd>Produto da nota fiscal</xProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260612345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
 
-function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, productName = 'Produto Evolusom de teste', response = { codigo: 456, status: 'Pendente' } } = {}) {
+function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, shipment = null, labelDownloadOk = true, storageOk = true, productName = 'Produto Evolusom de teste', response = { codigo: 456, status: 'Pendente' } } = {}) {
   let purchase = initialPurchase;
   const sent = [];
+  let labelDownloads = 0;
+  let labelStores = 0;
   const order = {
-    id: 'order-1', numero: 123, ml_order_id: 'ml-123', ml_shipment_id: null,
+    id: 'order-1', numero: 123, ml_order_id: 'ml-123', ml_shipment_id: shipment ? 'shipment-1' : null,
     rastreio: trackingNumber, ml_label_storage_path: placeholder ? null : 'label.pdf',
     billing_documento: '07778845938', buyer_ml_id: null,
   };
@@ -50,7 +52,10 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
           purchase = { ...purchase, ...values };
           return { data: { id: purchase.id }, error: null };
         }
-        if (table === 'pedidos' && action === 'update') return { data: null, error: null };
+        if (table === 'pedidos' && action === 'update') {
+          Object.assign(order, values);
+          return { data: null, error: null };
+        }
         throw new Error(`Unexpected ${action} on ${table}`);
       }
       return query;
@@ -63,8 +68,18 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
   const mocks = {
     '@/lib/supabase': { createServiceClient: () => client },
     '@/lib/public-nfe-links': { buildPublicNfeUrl: () => 'https://app.bentevi.shop/nfe-synthetic' },
-    '@/lib/public-shipping-label-links': { buildPublicShippingLabelUrl: () => 'https://app.bentevi.shop/label-synthetic' },
-    '@/services/integration': { fetchML: () => { throw new Error('Unexpected ML lookup'); } },
+    '@/lib/public-shipping-label-links': { buildPublicShippingLabelUrl: (_base, _id, format) => `https://app.bentevi.shop/label-synthetic/${format}` },
+    '@/lib/ml/fiscal-release': { isMlShipmentLabelPrintable: (value) => value?.status === 'ready_to_ship' && ['ready_to_print', 'printed'].includes(value?.substatus) },
+    '@/lib/shipping-label-storage': { storeShippingLabelForPedido: async () => {
+      labelStores += 1;
+      if (!storageOk) return { ok: false, storagePath: null };
+      order.ml_label_storage_path = 'label.pdf';
+      return { ok: true, storagePath: 'label.pdf' };
+    } },
+    '@/services/integration': {
+      fetchML: async () => shipment,
+      baixarEtiquetaML: async () => { labelDownloads += 1; return { pdf: labelDownloadOk ? Buffer.from('%PDF-test') : null }; },
+    },
     '@/services/evolusom': {
       EvolusomApiError: class EvolusomApiError extends Error {},
       evolusomRequest: async (path, init) => {
@@ -78,25 +93,18 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
   const module = { exports: {} };
   new Function('require', 'module', 'exports', compiled)((id) => mocks[id], module, module.exports);
   return {
-    shouldUsePlaceholder: module.exports.shouldUseEvolusomPlaceholderLabel,
     create: () => module.exports.createEvolusomPurchase({
       pedidoId: order.id, orderIds: [order.id], xml,
       products: [{ sku: '141111', quantity: 1, cost: 579.9, offerId: 'offer-1' }],
-      placeholder, supplierPaymentMode: 'postpaid',
+      supplierPaymentMode: 'postpaid',
     }),
     getPurchase: () => purchase,
+    getOrder: () => order,
+    getLabelDownloads: () => labelDownloads,
+    getLabelStores: () => labelStores,
     sent,
   };
 }
-
-test('Evolusom usa etiqueta provisória quando a real ou o rastreio ainda faltam', () => {
-  const policy = purchaseHarness().shouldUsePlaceholder;
-  assert.equal(policy({ supplierId: '133', directEnabled: true, realLabelAvailable: false, realTrackingAvailable: false }), true);
-  assert.equal(policy({ supplierId: '133', directEnabled: true, realLabelAvailable: true, realTrackingAvailable: false }), true);
-  assert.equal(policy({ supplierId: '133', directEnabled: true, realLabelAvailable: true, realTrackingAvailable: true }), false);
-  assert.equal(policy({ supplierId: '97', directEnabled: true, realLabelAvailable: false, realTrackingAvailable: false }), false);
-  assert.equal(policy({ supplierId: '133', directEnabled: false, realLabelAvailable: false, realTrackingAvailable: false }), false);
-});
 
 test('reserva usa a data da compra, aceita contatos ausentes e evita segundo POST', async (t) => {
   const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
@@ -133,7 +141,64 @@ test('etiqueta provisória usa o código do exemplo sem registrar rastreio fict�
   assert.equal((await harness.create()).state, 'created');
   assert.equal(harness.sent.length, 1);
   assert.equal(harness.sent[0].transporte.codrastreio, '99999999999');
+  assert.match(harness.sent[0].transporte.urletiqueta, /placeholder_evolusom/);
   assert.equal(harness.getPurchase().rastreio, null);
+});
+
+test('etiqueta real já liberada no ML é baixada e enviada na criação Evolusom', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({
+    placeholder: true, trackingNumber: null,
+    shipment: { status: 'ready_to_ship', substatus: 'ready_to_print', tracking_number: 'REAL123' },
+  });
+  const result = await harness.create();
+  assert.equal(result.state, 'created');
+  assert.equal(result.placeholder, false);
+  assert.equal(harness.getLabelDownloads(), 1);
+  assert.equal(harness.getLabelStores(), 1);
+  assert.equal(harness.sent[0].transporte.urletiqueta, 'https://app.bentevi.shop/label-synthetic/pdf');
+  assert.equal(harness.sent[0].transporte.codrastreio, 'REAL123');
+  assert.equal(harness.getOrder().dslite_label_source, 'mercado_livre');
+  assert.equal((await harness.create()).placeholder, false);
+  assert.equal(harness.getLabelDownloads(), 1);
+});
+
+test('etiqueta ainda não imprimível mantém o pedido com etiqueta genérica', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({
+    placeholder: true, trackingNumber: null,
+    shipment: { status: 'pending', substatus: 'buffered', tracking_number: null },
+  });
+  assert.equal((await harness.create()).placeholder, true);
+  assert.equal(harness.getLabelDownloads(), 0);
+  assert.match(harness.sent[0].transporte.urletiqueta, /placeholder_evolusom/);
+});
+
+test('falha ao baixar etiqueta liberada impede envio da genérica à Evolusom', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({
+    placeholder: true, labelDownloadOk: false,
+    shipment: { status: 'ready_to_ship', substatus: 'ready_to_print', tracking_number: 'REAL123' },
+  });
+  assert.equal((await harness.create()).state, 'pending');
+  assert.equal(harness.getLabelDownloads(), 1);
+  assert.equal(harness.sent.length, 0);
+  assert.equal(harness.getPurchase(), null);
 });
 
 test('nome fiscal identifica a compra quando o cadastro do produto não tem nome', async (t) => {

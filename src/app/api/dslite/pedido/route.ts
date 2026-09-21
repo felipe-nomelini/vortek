@@ -19,7 +19,7 @@ import {
   upsertInvoiceDataMLByShipment,
 } from "@/services/integration";
 import { createServiceClient } from "@/lib/supabase";
-import { createEvolusomPurchase, shouldUseEvolusomPlaceholderLabel } from "@/services/evolusom-purchase";
+import { createEvolusomPurchase } from "@/services/evolusom-purchase";
 import { isValidCnpj } from "@/lib/fiscal/cnpj.js";
 import { clearSupplierLabelState, supplierDsliteLabelState } from "@/lib/dslite/supplier-label-state";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
@@ -4158,14 +4158,8 @@ async function runDsliteCreateJob(
       fornecedorNomeResolved = selectedOffer.offer.fornecedor_nome
         ? String(selectedOffer.offer.fornecedor_nome)
         : null;
-      usePlaceholderLabel =
-        (isMlLabelReleasePending && allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved))
-        || shouldUseEvolusomPlaceholderLabel({
-          supplierId: fornecedorId,
-          directEnabled: process.env.EVOLUSOM_DIRECT_ENABLED === 'true',
-          realLabelAvailable: Boolean(pedidoRow?.ml_label_storage_path),
-          realTrackingAvailable: Boolean(pedidoRow?.rastreio),
-        });
+      usePlaceholderLabel = isMlLabelReleasePending
+        && allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved);
       placeholderReason = usePlaceholderLabel
         ? isMlLabelReleasePending ? "release_window" : "ml_label_unavailable"
         : null;
@@ -4442,7 +4436,6 @@ async function runDsliteCreateJob(
         pedidoId,
         orderIds: operationalPedidoIds,
         xml,
-        placeholder: usePlaceholderLabel,
         supplierPaymentMode,
         products: resolvedDsliteProducts.map((line) => ({
           sku: String(line.product?.produtoid || ''),
@@ -4451,6 +4444,7 @@ async function runDsliteCreateJob(
           offerId: String(line.offer?.id || '') || null,
         })),
       });
+      if (directResult.state === 'created') usePlaceholderLabel = directResult.placeholder;
       privateEvolusomResponse = directResult.apiResponse ?? null;
       const message = directResult.state === 'created'
         ? `Pedido #${directResult.orderId} criado diretamente na Evolusom`
