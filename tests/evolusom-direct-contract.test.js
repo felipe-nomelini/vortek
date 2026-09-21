@@ -96,7 +96,14 @@ test('erro HTTP 400 com validação dentro de message identifica o campo rejeita
     else process.env.EVOLUSOM_API_TOKEN = originalToken;
   });
   await assert.rejects(evolusomRequest('/v1/pedidos/triangular', { method: 'POST', body: '{}' }),
-    /Campos rejeitados: codigo_pedido/);
+    (error) => {
+      assert.match(error.message, /Campos rejeitados: codigo_pedido/);
+      assert.deepEqual(error.responseBody, {
+        status: 400,
+        message: { codigo_pedido: ['O campo codigo pedido deve ser um número.'] },
+      });
+      return true;
+    });
 });
 
 test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU contratado', () => {
@@ -169,4 +176,32 @@ test('etiqueta genérica é servida em link público assinado sem login', async 
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('Content-Type'), 'application/pdf');
   assert.match(await response.text(), /^%PDF/);
+});
+
+test('consulta do job não expõe a resposta integral da Evolusom', async () => {
+  const source = fs.readFileSync(require.resolve('../src/app/api/dslite/pedido/status/route.ts'), 'utf8');
+  const compiled = ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  }).outputText;
+  const module = { exports: {} };
+  const mocks = {
+    'next/server': { NextResponse: { json: (body, init) => new Response(JSON.stringify(body), init) } },
+    '@/services/dslite': { consultarPedido: async () => null },
+    '@/lib/supabase': { createServiceClient: () => ({
+      from: () => ({ select: () => ({ eq: () => ({ maybeSingle: async () => ({
+        data: {
+          id: 'job-synthetic', status: 'completo', progresso: 100, total: 1, processados: 1,
+          unidade_progresso: null, finished_at: '2026-09-21T15:00:00Z',
+          log: [{ event: 'progress_snapshot', state: 'success', steps: [],
+            result: { evolusom_order_id: 789 },
+            private_evolusom_response: { data: { codigo: 789, private_value: 'secret-synthetic' } } }],
+        }, error: null,
+      }) }) }) }),
+    }) },
+  };
+  new Function('require', 'module', 'exports', compiled)((id) => mocks[id], module, module.exports);
+  const response = await module.exports.GET(new Request('https://app.bentevi.shop/api/dslite/pedido/status?jobId=job-synthetic'));
+  const body = await response.json();
+  assert.equal(body.data.evolusom_order_id, 789);
+  assert.doesNotMatch(JSON.stringify(body), /secret-synthetic|private_evolusom_response/);
 });

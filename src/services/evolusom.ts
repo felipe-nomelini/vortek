@@ -30,11 +30,13 @@ interface EvolusomCatalogPage {
 
 export class EvolusomApiError extends Error {
   readonly status: number | null;
+  readonly responseBody: unknown;
 
-  constructor(message: string, status: number | null = null) {
+  constructor(message: string, status: number | null = null, responseBody: unknown = null) {
     super(message);
     this.name = 'EvolusomApiError';
     this.status = status;
+    this.responseBody = responseBody;
   }
 }
 
@@ -87,11 +89,9 @@ export async function evolusomRequest<T>(path: string, init: RequestInit = {}): 
     const reason = response.status === 429 && retryAfter
       ? `Limite de requisições Evolusom; tente novamente após ${retryAfter}s`
       : `Evolusom respondeu HTTP ${response.status}`;
-    const body = response.status === 400
-      ? await response.json().catch(() => null)
-      : null;
+    const body = await response.json().catch(() => null);
     const validationErrors = describeValidationErrors(body);
-    throw new EvolusomApiError(validationErrors ? `${reason}. ${validationErrors}` : reason, response.status);
+    throw new EvolusomApiError(validationErrors ? `${reason}. ${validationErrors}` : reason, response.status, body);
   }
   try {
     return await response.json() as T;

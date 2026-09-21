@@ -191,6 +191,7 @@ test('resposta com número dentro de data vincula a compra sem repetir o POST', 
   const result = await harness.create();
   assert.deepEqual({ state: result.state, orderId: result.orderId, status: result.status },
     { state: 'created', orderId: 789, status: 'Pendente' });
+  assert.deepEqual(result.apiResponse, { status: 200, data: { codigo: 789, status: 'Pendente' }, message: 'Pedido criado' });
   assert.equal(harness.sent[0].codigo_pedido, 123);
   assert.equal(harness.getPurchase().evolusom_order_id, 789);
   assert.equal(harness.sent.length, 1);

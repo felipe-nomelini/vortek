@@ -1722,6 +1722,7 @@ async function runDsliteCreateJob(
   const logEntries: any[] = [];
   let state: JobState = "running";
   let result: any = null;
+  let privateEvolusomResponse: unknown = null;
   let xml: string | null = null;
   let invoiceId: string | number | null = null;
   let danfeUrlAtual: string | null = null;
@@ -1806,6 +1807,9 @@ async function runDsliteCreateJob(
       state,
       steps,
       result,
+      ...(state !== 'running' && privateEvolusomResponse !== null
+        ? { private_evolusom_response: privateEvolusomResponse }
+        : {}),
       payload: {
         pedidoId,
         mlOrderId,
@@ -4439,6 +4443,7 @@ async function runDsliteCreateJob(
           offerId: String(line.offer?.id || '') || null,
         })),
       });
+      privateEvolusomResponse = directResult.apiResponse ?? null;
       const message = directResult.state === 'created'
         ? `Pedido #${directResult.orderId} criado diretamente na Evolusom`
         : directResult.reason;
