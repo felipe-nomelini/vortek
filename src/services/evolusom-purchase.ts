@@ -1,5 +1,6 @@
 import { createServiceClient } from '@/lib/supabase';
 import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
+import { createShortLink } from '@/lib/short-links';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
 import { isMlShipmentLabelPrintable } from '@/lib/ml/fiscal-release';
@@ -256,6 +257,25 @@ export async function createEvolusomPurchase(input: {
     : 80_000_000 + (saleNumber % 10_000_000);
   const orderCode = String(supplierOrderCode);
   const orderedAt = existing ? String(existing.data_criacao || '') : new Date().toISOString();
+  const danfeTargetUrl = buildPublicNfeUrl(baseUrl, input.pedidoId, 'danfe');
+  const danfeShortUrl = await createShortLink({
+    client,
+    baseUrl,
+    targetUrl: danfeTargetUrl,
+    purpose: 'danfe',
+    metadata: { pedidoId: input.pedidoId, mlOrderId: order.ml_order_id || null },
+  });
+  const shortCode = danfeShortUrl?.startsWith(`${baseUrl}/s/`)
+    ? danfeShortUrl.slice(`${baseUrl}/s/`.length)
+    : '';
+  if (!danfeShortUrl || !/^[a-zA-Z0-9]{8}$/.test(shortCode)) {
+    return { state: 'pending', reason: 'Não foi possível criar o link curto da DANFE; pedido não enviado à Evolusom' };
+  }
+  const { data: shortLink, error: shortLinkError } = await (client as any).from('short_links')
+    .select('target_url').eq('code', shortCode).maybeSingle();
+  if (shortLinkError || shortLink?.target_url !== danfeTargetUrl) {
+    return { state: 'pending', reason: 'Não foi possível confirmar o link curto da DANFE; pedido não enviado à Evolusom' };
+  }
   const payload = buildEvolusomTriangularPayload({
     orderCode: supplierOrderCode,
     orderedAt,
@@ -265,7 +285,7 @@ export async function createEvolusomPurchase(input: {
     phone,
     trackingNumber,
     labelUrl,
-    danfeUrl: buildPublicNfeUrl(baseUrl, input.pedidoId, 'danfe'),
+    danfeUrl: danfeShortUrl,
     products: input.products,
   });
   const firstOfferId = input.products[0]?.offerId;

@@ -5,8 +5,9 @@ const ts = require('typescript');
 
 const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-06-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Sintético</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><xProd>Produto da nota fiscal</xProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260612345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
 
-function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, shipment = null, labelDownloadOk = true, storageOk = true, productName = 'Produto Evolusom de teste', response = { codigo: 456, status: 'Pendente' } } = {}) {
+function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, shipment = null, labelDownloadOk = true, storageOk = true, productName = 'Produto Evolusom de teste', response = { codigo: 456, status: 'Pendente' }, shortLinkFailure = null } = {}) {
   let purchase = initialPurchase;
+  let shortTargetUrl = null;
   const sent = [];
   let labelDownloads = 0;
   let labelStores = 0;
@@ -39,6 +40,9 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
           if (table === 'compras') return { data: purchase, error: null };
           if (table === 'produto_fornecedor_ofertas') return { data: { produto_id: 'product-1' }, error: null };
           if (table === 'produtos') return { data: productName ? { nome: productName } : null, error: null };
+          if (table === 'short_links') return shortLinkFailure === 'read'
+            ? { data: null, error: new Error('Falha de leitura') }
+            : { data: { target_url: shortLinkFailure === 'mismatch' ? 'https://app.bentevi.shop/outro-pdf' : shortTargetUrl }, error: null };
         }
         if (table === 'compras' && action === 'insert') {
           purchase = { id: 'purchase-1', ...values };
@@ -68,6 +72,10 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
   const mocks = {
     '@/lib/supabase': { createServiceClient: () => client },
     '@/lib/public-nfe-links': { buildPublicNfeUrl: () => 'https://app.bentevi.shop/nfe-synthetic' },
+    '@/lib/short-links': { createShortLink: async ({ targetUrl }) => {
+      shortTargetUrl = targetUrl;
+      return shortLinkFailure === 'write' ? targetUrl : 'https://app.bentevi.shop/s/Ab12Cd34';
+    } },
     '@/lib/public-shipping-label-links': { buildPublicShippingLabelUrl: (_base, _id, format) => `https://app.bentevi.shop/label-synthetic/${format}` },
     '@/lib/ml/fiscal-release': { isMlShipmentLabelPrintable: (value) => value?.status === 'ready_to_ship' && ['ready_to_print', 'printed'].includes(value?.substatus) },
     '@/lib/shipping-label-storage': { storeShippingLabelForPedido: async () => {
@@ -102,6 +110,7 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
     getOrder: () => order,
     getLabelDownloads: () => labelDownloads,
     getLabelStores: () => labelStores,
+    getShortTargetUrl: () => shortTargetUrl,
     sent,
   };
 }
@@ -126,8 +135,48 @@ test('reserva usa a data da compra, aceita contatos ausentes e evita segundo POS
   assert.equal(harness.sent[0].cliente.telefone, null);
   assert.equal(harness.sent[0].cliente.celular, null);
   assert.equal(harness.getPurchase().produto_descricao, 'Produto Evolusom de teste');
+  assert.equal(harness.sent[0].nfe.url, 'https://app.bentevi.shop/s/Ab12Cd34');
+  assert.equal(harness.getShortTargetUrl(), 'https://app.bentevi.shop/nfe-synthetic');
   assert.equal((await harness.create()).state, 'created');
   assert.equal(harness.sent.length, 1);
+});
+
+for (const shortLinkFailure of ['write', 'read', 'mismatch']) {
+  test(`falha ${shortLinkFailure} do link curto impede o POST e mantém a compra sem reserva`, async (t) => {
+    const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+    process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+    t.after(() => {
+      if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+      else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+    });
+    const harness = purchaseHarness({ shortLinkFailure });
+    const result = await harness.create();
+    assert.equal(result.state, 'pending');
+    assert.match(result.reason, /link curto da DANFE/);
+    assert.equal(harness.sent.length, 0);
+    assert.equal(harness.getPurchase(), null);
+  });
+}
+
+test('compra Evolusom já criada não gera link novo nem reenvia POST', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({
+    shortLinkFailure: 'write',
+    initialPurchase: {
+      id: 'purchase-1', evolusom_request_code: '80000123',
+      evolusom_request_state: 'created', evolusom_order_id: 456,
+    },
+  });
+  const result = await harness.create();
+  assert.equal(result.state, 'created');
+  assert.equal(result.orderId, 456);
+  assert.equal(harness.getShortTargetUrl(), null);
+  assert.equal(harness.sent.length, 0);
 });
 
 test('etiqueta provisória usa o código do exemplo sem registrar rastreio fictício', async (t) => {

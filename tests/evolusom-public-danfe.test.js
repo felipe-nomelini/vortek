@@ -70,3 +70,47 @@ test('link inválido não baixa o PDF e falha no storage não expõe URL interna
   assert.equal(unavailable.status, 404);
   assert.equal(unavailable.headers.get('location'), null);
 });
+
+test('link curto da DANFE leva ao PDF público no domínio Bentevi', async () => {
+  const shortSource = fs.readFileSync(require.resolve('../src/app/s/[code]/route.ts'), 'utf8');
+  const shortCompiled = ts.transpileModule(shortSource, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  }).outputText;
+  const targetUrl = 'https://app.bentevi.shop/api/public/notas-fiscais/sale-id/danfe?token=valid';
+  const shortClient = {
+    from(table) {
+      assert.equal(table, 'short_links');
+      return {
+        select() { return this; },
+        eq(column, value) {
+          assert.equal(column, 'code');
+          assert.equal(value, 'Ab12Cd34');
+          return this;
+        },
+        maybeSingle: async () => ({
+          data: { code: 'Ab12Cd34', target_url: targetUrl, expires_at: null, hit_count: 0 },
+          error: null,
+        }),
+        update() { return this; },
+      };
+    },
+  };
+  const mocks = {
+    'next/server': { NextResponse: {
+      json: (body, init = {}) => Response.json(body, init),
+      redirect: (url, status) => Response.redirect(url, status),
+    } },
+    '@/lib/supabase': { createServiceClient: () => shortClient },
+  };
+  const module = { exports: {} };
+  new Function('require', 'module', 'exports', shortCompiled)((name) => mocks[name], module, module.exports);
+  const redirect = await module.exports.GET(
+    new Request('https://app.bentevi.shop/s/Ab12Cd34'),
+    { params: Promise.resolve({ code: 'Ab12Cd34' }) },
+  );
+  assert.equal(redirect.status, 302);
+  assert.equal(redirect.headers.get('location'), targetUrl);
+  const pdf = await harness().get(new URL(targetUrl).searchParams.get('token'));
+  assert.equal(pdf.status, 200);
+  assert.equal(pdf.headers.get('content-type'), 'application/pdf');
+});
