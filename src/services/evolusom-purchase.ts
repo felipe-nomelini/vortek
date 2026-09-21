@@ -252,6 +252,14 @@ export async function createEvolusomPurchase(input: {
     danfeUrl: buildPublicNfeUrl(baseUrl, input.pedidoId, 'danfe'),
     products: input.products,
   });
+  const firstOfferId = input.products[0]?.offerId;
+  const { data: offer } = firstOfferId
+    ? await client.from('produto_fornecedor_ofertas').select('produto_id').eq('id', firstOfferId).maybeSingle()
+    : { data: null };
+  const { data: product } = offer?.produto_id
+    ? await client.from('produtos').select('nome').eq('id', offer.produto_id).maybeSingle()
+    : { data: null };
+  const productDescription = String(product?.nome || tag(block(input.xml, 'prod'), 'xProd') || input.products[0]?.sku || '').trim();
   const purchaseValues = {
     pedido_id: input.pedidoId,
     evolusom_request_code: orderCode,
@@ -263,6 +271,7 @@ export async function createEvolusomPurchase(input: {
     nf_serie: payload.nfe.serie,
     destinatario_nome: payload.cliente.nome,
     destinatario_documento: payload.cliente.documento,
+    produto_descricao: productDescription,
     produto_sku: input.products[0]?.sku || null,
     produto_fornecedor_oferta_id: input.products[0]?.offerId || null,
     rastreio: realTrackingNumber || null,

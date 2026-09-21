@@ -3,9 +3,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const ts = require('typescript');
 
-const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-06-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Sintético</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260612345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
+const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-06-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Sintético</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><xProd>Produto da nota fiscal</xProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260612345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
 
-function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, response = { codigo: 456, status: 'Pendente' } } = {}) {
+function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, productName = 'Produto Evolusom de teste', response = { codigo: 456, status: 'Pendente' } } = {}) {
   let purchase = initialPurchase;
   const sent = [];
   const order = {
@@ -35,6 +35,8 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
           if (table === 'empresa') return { data: { cnpj: '33482950000230' }, error: null };
           if (table === 'clientes') return { data: buyer, error: null };
           if (table === 'compras') return { data: purchase, error: null };
+          if (table === 'produto_fornecedor_ofertas') return { data: { produto_id: 'product-1' }, error: null };
+          if (table === 'produtos') return { data: productName ? { nome: productName } : null, error: null };
         }
         if (table === 'compras' && action === 'insert') {
           purchase = { id: 'purchase-1', ...values };
@@ -115,6 +117,7 @@ test('reserva usa a data da compra, aceita contatos ausentes e evita segundo POS
   assert.equal(harness.sent[0].cliente.email, null);
   assert.equal(harness.sent[0].cliente.telefone, null);
   assert.equal(harness.sent[0].cliente.celular, null);
+  assert.equal(harness.getPurchase().produto_descricao, 'Produto Evolusom de teste');
   assert.equal((await harness.create()).state, 'created');
   assert.equal(harness.sent.length, 1);
 });
@@ -131,6 +134,18 @@ test('etiqueta provisória usa o código do exemplo sem registrar rastreio fict�
   assert.equal(harness.sent.length, 1);
   assert.equal(harness.sent[0].transporte.codrastreio, '99999999999');
   assert.equal(harness.getPurchase().rastreio, null);
+});
+
+test('nome fiscal identifica a compra quando o cadastro do produto não tem nome', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({ productName: null });
+  assert.equal((await harness.create()).state, 'created');
+  assert.equal(harness.getPurchase().produto_descricao, 'Produto da nota fiscal');
 });
 
 test('sem etiqueta provisória, ausência de rastreio mantém a compra pendente', async (t) => {
