@@ -71,6 +71,7 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
   dslite_next_action?: string | null;
   dslite_next_action_label?: string | null;
   dslite_id?: string | null;
+  evolusom_order_id?: number | null;
   compra_id?: string | null;
 }>(
   rows: T[],
@@ -208,7 +209,7 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
       dslite_label_operational_error: String(dsliteLabelResponse.error || '').trim() || null,
       supplier_payment_deferred: operationalPedidoIds.some((id) =>
         (deferredPaymentByPedido.get(id) || []).some((event) =>
-          matchesDeferredSupplierPayment(event, row.compra_id, row.dslite_id))),
+          matchesDeferredSupplierPayment(event, row.compra_id, row.dslite_id || row.evolusom_order_id))),
       whatsapp_label_status: whatsappEvent
         ? mapWhatsappStatus(whatsappEvent)
         : auditReadFailed

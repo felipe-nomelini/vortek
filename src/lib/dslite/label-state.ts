@@ -19,7 +19,7 @@ export function matchesDeferredSupplierPayment(
     && Boolean(String(compraId || '').trim())
     && Boolean(String(dsliteId || '').trim())
     && String(response?.compra_id || '').trim() === String(compraId).trim()
-    && String(response?.dslite_id || '').trim() === String(dsliteId).trim();
+    && String(response?.dslite_id || response?.evolusom_order_id || '').trim() === String(dsliteId).trim();
 }
 
 export function isDslitePlaceholderLabelSource(value: unknown): boolean {

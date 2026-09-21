@@ -5723,7 +5723,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const fulfillmentRead = await (client as any)
       .from('pedidos')
-      .select('fulfillment_source,snapshot_source,situacao,dslite_id')
+      .select('fulfillment_source,snapshot_source,situacao,dslite_id,evolusom_order_id')
       .eq('id', String(pedidoId))
       .maybeSingle();
     if (fulfillmentRead.error) {
@@ -5755,6 +5755,57 @@ export async function POST(req: Request) {
     }
     if (continueWithSupplierPaymentPending) {
       const existingDsliteId = String(fulfillmentRead.data.dslite_id || "").trim();
+      const existingEvolusomId = Number(fulfillmentRead.data.evolusom_order_id || 0);
+      if (!existingDsliteId && Number.isSafeInteger(existingEvolusomId) && existingEvolusomId > 0) {
+        const { data: directCompra, error: directCompraError } = await client.from('compras')
+          .select('id,supplier_payment_mode,supplier_payment_status,evolusom_request_state')
+          .eq('pedido_id', String(pedidoId))
+          .eq('evolusom_order_id', existingEvolusomId)
+          .eq('fornecedor_id', '133')
+          .maybeSingle();
+        if (directCompraError) {
+          return NextResponse.json({ error: 'Falha ao consultar compra Evolusom', code: 'supplier_payment_defer_read_failed' }, { status: 500 });
+        }
+        if (!directCompra?.id || directCompra.evolusom_request_state !== 'created'
+          || directCompra.supplier_payment_mode !== 'prepaid_pix'
+          || directCompra.supplier_payment_status !== 'pending') {
+          return NextResponse.json({ error: 'A compra Evolusom PIX pendente não foi encontrada para esta venda.', code: 'supplier_payment_defer_not_available' }, { status: 409 });
+        }
+        const { data: priorEvents, error: priorEventsError } = await client.from('nf_auditoria_eventos')
+          .select('resposta_ml')
+          .eq('pedido_id', String(pedidoId))
+          .eq('evento', 'supplier_payment_deferred_by_user')
+          .eq('status_resultante', 'continued_pending');
+        if (priorEventsError) {
+          return NextResponse.json({ error: 'Falha ao conferir adiamento do PIX', code: 'supplier_payment_defer_read_failed' }, { status: 500 });
+        }
+        const alreadyDeferred = (priorEvents || []).some((event) => {
+          const response = event.resposta_ml && typeof event.resposta_ml === 'object'
+            && !Array.isArray(event.resposta_ml)
+            ? event.resposta_ml as Record<string, unknown> : null;
+          return String(response?.compra_id || '') === String(directCompra.id)
+            && Number(response?.evolusom_order_id) === existingEvolusomId;
+        });
+        if (!alreadyDeferred) {
+          const { error: deferError } = await client.from('nf_auditoria_eventos').insert({
+            pedido_id: String(pedidoId),
+            ml_order_id: mlOrderId ? String(mlOrderId) : null,
+            evento: 'supplier_payment_deferred_by_user',
+            resposta_ml: {
+              compra_id: directCompra.id,
+              evolusom_order_id: existingEvolusomId,
+              fornecedor_id: '133',
+              supplier_payment_mode: 'prepaid_pix',
+              supplier_payment_status: 'pending',
+            },
+            status_resultante: 'continued_pending',
+          });
+          if (deferError) {
+            return NextResponse.json({ error: 'Falha ao registrar adiamento do PIX', code: 'supplier_payment_defer_write_failed' }, { status: 500 });
+          }
+        }
+        return NextResponse.json({ success: true, deferred: true, evolusom_order_id: existingEvolusomId });
+      }
       if (!existingDsliteId) {
         return NextResponse.json(
           {

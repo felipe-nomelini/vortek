@@ -59,12 +59,40 @@ test('API aceita a continuação somente para compra PIX pendente já vinculada'
     routeSource,
     /continueWithSupplierPaymentPending && Boolean\(resumeAfterSupplierPayment\)/,
   );
-  assert.match(routeSource, /\.select\('fulfillment_source,snapshot_source,situacao,dslite_id'\)/);
+  assert.match(routeSource, /\.select\('fulfillment_source,snapshot_source,situacao,dslite_id,evolusom_order_id'\)/);
   assert.match(
     routeSource,
     /existingCompraRead\.data\.supplier_payment_mode !== "prepaid_pix"[\s\S]*?existingCompraRead\.data\.supplier_payment_status !== "pending"/,
   );
   assert.match(routeSource, /code: "supplier_payment_defer_not_available"/);
+});
+
+test('compra direta da Evolusom adia PIX sem reenviar o pedido', () => {
+  const directBranch = routeSource.slice(
+    routeSource.indexOf('const existingEvolusomId = Number(fulfillmentRead.data.evolusom_order_id'),
+    routeSource.indexOf('if (!existingDsliteId) {', routeSource.indexOf('const existingEvolusomId = Number(fulfillmentRead.data.evolusom_order_id')),
+  );
+  assert.match(directBranch, /\.eq\('pedido_id', String\(pedidoId\)\)/);
+  assert.match(directBranch, /\.eq\('evolusom_order_id', existingEvolusomId\)/);
+  assert.match(directBranch, /supplier_payment_status !== 'pending'/);
+  assert.match(directBranch, /evento: 'supplier_payment_deferred_by_user'/);
+  assert.match(directBranch, /return NextResponse\.json\(\{ success: true, deferred: true/);
+  assert.doesNotMatch(directBranch, /createEvolusomPurchase|runDsliteCreateJob/);
+  assert.match(flowSource, /if \(json\.deferred\) \{[\s\S]*?setProgressOpen\(false\)/);
+});
+
+test('leitura operacional reconhece o adiamento pelo número da Evolusom', () => {
+  const ts = require('typescript');
+  const source = read('src/lib/dslite/label-state.ts');
+  const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
+  const module = { exports: {} };
+  new Function('module', 'exports', compiled)(module, module.exports);
+  const { matchesDeferredSupplierPayment } = module.exports;
+  const event = { evento: 'supplier_payment_deferred_by_user', status_resultante: 'continued_pending', resposta_ml: { compra_id: 'compra-1', evolusom_order_id: 63012091 } };
+  assert.equal(matchesDeferredSupplierPayment(event, 'compra-1', 63012091), true);
+  assert.equal(matchesDeferredSupplierPayment(event, 'compra-1', 63012092), false);
+  assert.equal(matchesDeferredSupplierPayment(event, 'compra-2', 63012091), false);
+  assert.equal(matchesDeferredSupplierPayment({ ...event, resposta_ml: { compra_id: 'compra-1', dslite_id: 123 } }, 'compra-1', 123), true);
 });
 
 test('continuação reutiliza o mesmo DSID e mantém o pagamento pendente', () => {

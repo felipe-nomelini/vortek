@@ -54,12 +54,12 @@ function initDsliteOrderSteps(): ProgressStep[] {
     { label: 'Aguardando autorização da NF', status: 'pending' },
     { label: 'Baixando XML da NF na Brasil NFe', status: 'pending' },
     { label: 'Validando vínculo fiscal e pré-checagens', status: 'pending' },
-    { label: 'Buscando produto no catálogo DSLite', status: 'pending' },
-    { label: 'Criando pedido na DSLite', status: 'pending' },
+    { label: 'Confirmando produto do fornecedor', status: 'pending' },
+    { label: 'Criando pedido com fornecedor', status: 'pending' },
     { label: 'Informando fornecedor', status: 'pending' },
-    { label: 'Definindo transporte na DSLite', status: 'pending' },
+    { label: 'Configurando transporte do fornecedor', status: 'pending' },
     { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
-    { label: 'Enviando etiqueta para DSLite', status: 'pending' },
+    { label: 'Informando etiqueta ao fornecedor', status: 'pending' },
   ];
 }
 
@@ -319,13 +319,20 @@ export function usePedidosDsliteFlow({
         }),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.jobId) {
+      if (!res.ok || (!json?.jobId && !json?.deferred)) {
         throw new Error(json?.error || 'Falha ao continuar o pedido DSLite com o PIX pendente');
       }
 
       const order = paymentPrompt.order;
       setPaymentDecisionModalOpen(false);
       setPaymentPrompt(null);
+      if (json.deferred) {
+        setProgressOpen(false);
+        updateOrder(order, { supplier_payment_deferred: true, supplier_payment_status: 'pending' });
+        messageApi.success('Pagamento da Evolusom adiado. Envie a etiqueta real quando o Mercado Livre liberar.');
+        void refreshOrders();
+        return;
+      }
       setSteps(initDsliteOrderSteps());
       setProgressOpen(true);
       messageApi.success('Pedido DSLite continuará. O PIX poderá ser confirmado depois.');
@@ -335,7 +342,7 @@ export function usePedidosDsliteFlow({
     } finally {
       setDeferringPayment(false);
     }
-  }, [messageApi, paymentPrompt, pollDsliteJob]);
+  }, [messageApi, paymentPrompt, pollDsliteJob, refreshOrders, updateOrder]);
 
   const confirmSupplierPayment = useCallback(async () => {
     if (!paymentPrompt) return;

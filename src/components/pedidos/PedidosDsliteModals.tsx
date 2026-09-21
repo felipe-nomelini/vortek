@@ -43,11 +43,11 @@ function SupplierPaymentDecisionModal({ flow }: PedidosDsliteModalsProps) {
     >
       <Space direction="vertical" size={14} style={{ width: '100%' }}>
         <Text style={{ color: '#a0a0a0' }}>
-          O pedido já foi criado na DSLite. Você pode confirmar o PIX agora ou continuar com transportadora e etiqueta, deixando o pagamento pendente para depois.
+          O pedido já foi criado com o fornecedor. Você pode confirmar o PIX agora ou deixar o pagamento pendente e seguir com as etapas disponíveis.
         </Text>
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 12 }}>
           <Space direction="vertical" size={4} style={{ width: '100%' }}>
-            <Text><b>Pedido DSLite:</b> #{prompt?.dsid || '—'}</Text>
+            <Text><b>Pedido com fornecedor:</b> #{prompt?.dsid || '—'}</Text>
             <Text><b>Fornecedor:</b> {prompt?.fornecedorNome || '—'}</Text>
             <Text><b>Valor PIX:</b> {formatCurrency(Number(prompt?.supplierPaymentAmount || 0))}</Text>
           </Space>
@@ -92,7 +92,7 @@ function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
             ? 'O comprovante já foi enviado ao fornecedor. Esta ação apenas retoma etiqueta/transportadora.'
             : prompt?.resumeAfterConfirm === false
               ? 'Envie ou reenvie o comprovante PIX ao fornecedor sem retomar etapas de etiqueta.'
-              : 'O pedido DSLite foi criado e precisa da confirmação do PIX para continuar etiqueta/transportadora.'}
+              : 'O pedido foi criado com o fornecedor e precisa da confirmação do PIX para concluir as etapas pendentes.'}
         </Text>
         {(prompt?.supplierPixKeyMissing || prompt?.supplierPhoneMissing) && (
           <div style={{ background: '#2a1f00', border: '1px solid #faad1444', borderRadius: 8, padding: 12 }}>
@@ -110,7 +110,7 @@ function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
         )}
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 12 }}>
           <Space direction="vertical" size={4} style={{ width: '100%' }}>
-            <Text><b>Pedido DSLite:</b> #{prompt?.dsid || '—'}</Text>
+            <Text><b>Pedido com fornecedor:</b> #{prompt?.dsid || '—'}</Text>
             <Text><b>Fornecedor:</b> {prompt?.fornecedorNome || '—'}</Text>
             <Text><b>Valor PIX:</b> {formatCurrency(Number(prompt?.supplierPaymentAmount || 0))}</Text>
             <Space>
@@ -223,7 +223,7 @@ export default function PedidosDsliteModals({ flow }: PedidosDsliteModalsProps) 
       <DsliteShippingModal flow={flow} />
       <ProgressModal
         open={flow.progressOpen}
-        title="Criando Pedido DSLite"
+        title="Criando pedido com fornecedor"
         steps={flow.steps}
         onClose={flow.closeProgress}
         onCancel={flow.retryProgress}
