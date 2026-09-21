@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import {
-  createDanfeSignedUrl,
+  DANFE_BUCKET,
   ensureDanfeStoredForPedido,
   resolveDanfeStoragePath,
-  DANFE_SIGNED_URL_TTL_SECONDS,
 } from '@/lib/fiscal/danfe-storage';
 import { verifyPublicNfeToken } from '@/lib/public-nfe-links';
 import { getFiscalProvider } from '@/services/fiscal-provider';
@@ -34,11 +33,9 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   }
 
   const resolved = await resolveDanfeStoragePath(serviceClient, pedido);
-  let signedUrl = resolved.path
-    ? await createDanfeSignedUrl(serviceClient, resolved.path, DANFE_SIGNED_URL_TTL_SECONDS)
-    : null;
+  let storagePath = resolved.path;
 
-  if (!signedUrl && pedido.nfe_external_id) {
+  if (!storagePath && pedido.nfe_external_id) {
     const provider = getFiscalProvider('brasilnfe');
     const backfill = await ensureDanfeStoredForPedido({
       client: serviceClient,
@@ -48,12 +45,25 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
       mlOrderId: String((pedido as any).ml_order_id || '').trim() || null,
       source: 'public_danfe_route_on_read_recovery',
     });
-    signedUrl = backfill.signedUrl;
+    storagePath = backfill.ok ? backfill.canonicalPath : null;
   }
 
-  if (!signedUrl) {
+  if (!storagePath) {
     return NextResponse.json({ error: 'PDF da DANFE não encontrado' }, { status: 404 });
   }
 
-  return NextResponse.redirect(signedUrl, 302);
+  const { data: pdf, error: downloadError } = await serviceClient.storage
+    .from(DANFE_BUCKET)
+    .download(storagePath);
+  if (downloadError || !pdf) {
+    return NextResponse.json({ error: 'Falha ao carregar PDF da DANFE' }, { status: 404 });
+  }
+
+  return new Response(pdf.stream(), {
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `inline; filename="danfe_${pedido.nota_fiscal_numero}.pdf"`,
+      'Cache-Control': 'private, no-store',
+    },
+  });
 }
