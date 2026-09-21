@@ -3,10 +3,12 @@
 .title { margin: 0 0 3px !important; }
 .lastSync { display: block; margin-top: 5px; color: rgba(255,255,255,.42); }
 .visualAlert { border-color: rgba(255,189,14,.35); background: rgba(255,189,14,.07); }
-.economicsAlert { border-color: rgba(91,143,249,.25); background: rgba(91,143,249,.06); }
+.compactStatus { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin-top: 5px; color: rgba(255,255,255,.62); }
 .modeSelector { align-self: flex-start; }
-.jobAlert { border-color: rgba(91,143,249,.25); background: rgba(91,143,249,.06); }
-.refreshProgress { display: grid; max-width: 620px; gap: 5px; }
+.compactRefresh { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 22px; color: rgba(255,255,255,.62); font-size: 12px; }
+.compactRefresh strong { color: rgba(255,255,255,.88); }
+.compactRefresh span + span { padding-left: 8px; border-left: 1px solid rgba(255,255,255,.18); }
+.compactProgress { width: 110px; margin: 0 !important; }
 .quickViews { align-self: flex-start; max-width: 100%; overflow-x: auto; }
 .quickViewLabel { display: inline-flex; align-items: center; gap: 8px; }
 .quickViewLabel b { min-width: 24px; padding: 1px 6px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: 11px; }
@@ -77,6 +79,10 @@
 .priceReview > p { margin: 0; color: rgba(255,255,255,.62); }
 .reviewComparison { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; }
 .eligibleSummary strong { overflow-wrap: anywhere; }
+.eligibilityDecision { display: grid; gap: 10px; }
+.eligibilityDecision > div { display: flex; flex-direction: column; gap: 3px; }
+.eligibilityDecision small { color: rgba(255,255,255,.45); }
+.eligibilityDecision span { color: rgba(255,255,255,.65); }
 
 @media (max-width: 760px) {
   .header { flex-direction: column; }

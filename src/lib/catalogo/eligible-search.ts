@@ -73,8 +73,13 @@ export async function collectCatalogEligibleItemIds(input: {
 
     const total = reportedTotal(result.data);
     const nextScrollId = String(result.data.scroll_id || '').trim();
-    if ((total !== null && uniqueIds.size >= total) || !nextScrollId || ids.length === 0) {
+    if (total !== null && uniqueIds.size >= total) {
       return { ok: true, itemIds: Array.from(uniqueIds) };
+    }
+    if (!nextScrollId || ids.length === 0) {
+      return total === null || uniqueIds.size < total
+        ? { ok: false, itemIds: [], error: 'A paginação de elegíveis terminou antes de carregar todos os anúncios' }
+        : { ok: true, itemIds: Array.from(uniqueIds) };
     }
     if (seenScrollIds.has(nextScrollId)) {
       return {

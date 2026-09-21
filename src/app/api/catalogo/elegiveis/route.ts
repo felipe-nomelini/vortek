@@ -7,7 +7,6 @@ import { classifyCatalogEligibility } from '@/lib/catalogo/dashboard';
 import { collectCatalogEligibleItemIds, type CatalogEligibleSearchPage } from '@/lib/catalogo/eligible-search';
 import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 import { listBntD12EligibleVisualReview } from '@/lib/catalogo/visual-review';
-import { configuredPricingExecutionCapability } from '@/services/pricing-execution-access';
 
 const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
@@ -49,11 +48,12 @@ function getEligibilityLabel(status: string | null): string {
   const normalized = String(status || '').toUpperCase();
   if (normalized === 'READY_FOR_OPTIN') return 'Pronto para catálogo';
   if (normalized === 'ALREADY_OPTED_IN') return 'Já no catálogo';
+  if (normalized === 'CATALOG_PRODUCT_ID_NULL') return 'Sem produto de catálogo associado';
   if (normalized === 'NOT_ELIGIBLE') return 'Não elegível';
   if (normalized === 'PRODUCT_INACTIVE') return 'Produto inativo';
   if (normalized === 'CLOSED') return 'Encerrado';
   if (normalized === 'COMPETING') return 'Competindo';
-  return status || '—';
+  return 'Situação não informada pelo Mercado Livre';
 }
 
 function getStatusLabel(status: string | null, hasCatalogLink: boolean): string {
@@ -244,6 +244,10 @@ async function fetchCatalogProducts(catalogProductIds: string[]): Promise<Map<st
   await runPool(uniqueIds, PRODUCT_CONCURRENCY, async (catalogProductId) => {
     const productResult = await fetchMLResult<any>(`/products/${encodeURIComponent(catalogProductId)}`);
     if (!productResult.ok || !productResult.data) {
+      if (productResult.status === 404 || productResult.status === 410) {
+        products.set(catalogProductId, { id: catalogProductId, status: 'unavailable' });
+        return;
+      }
       throw new CatalogEligibleSourceError(
         productResult.error?.message || 'Falha ao confirmar produto de catálogo',
         productResult.error?.category === 'auth_fatal',
@@ -312,10 +316,6 @@ export async function GET(request: Request) {
 
   const parsedMin = priceMin !== null && Number.isFinite(Number(priceMin)) ? Number(priceMin) : null;
   const parsedMax = priceMax !== null && Number.isFinite(Number(priceMax)) ? Number(priceMax) : null;
-  const execution = configuredPricingExecutionCapability();
-  const capabilities = {
-    createCatalogListing: execution.enabled && execution.allowedOperations.includes('listing_create'),
-  };
   const visualReview = await loadBntD07VisualReview();
   if (visualReview) {
     return NextResponse.json({ ...listBntD12EligibleVisualReview({
@@ -327,7 +327,7 @@ export async function GET(request: Request) {
       priceMax: parsedMax,
       page,
       pageSize,
-    }), capabilities: { createCatalogListing: false } });
+    }), checkedAt: new Date().toISOString() });
   }
 
   const startedAt = Date.now();
@@ -485,6 +485,10 @@ export async function GET(request: Request) {
       ...row,
       catalog_product_name: catalogProducts.get(String(row.catalog_product_id || ''))?.name || null,
       catalog_product_status: String(catalogProducts.get(String(row.catalog_product_id || ''))?.status || '').toLowerCase() || null,
+      variation_eligibility: (row.variation_eligibility || []).map((variation: any) => ({
+        ...variation,
+        catalog_product_status: String(catalogProducts.get(String(variation.catalog_product_id || ''))?.status || '').toLowerCase() || null,
+      })),
     }));
     timings.catalog_products_ms = Date.now() - stepStartedAt;
 
@@ -539,8 +543,11 @@ export async function GET(request: Request) {
     const metrics = {
       total: rows.length,
       ready: rows.filter((row) => row.state === 'ready').length,
+      alreadyOptedIn: rows.filter((row) => row.state === 'already_opted_in').length,
       reviewRequired: rows.filter((row) => row.state === 'review_required').length,
+      catalogProductMissing: rows.filter((row) => row.state === 'catalog_product_missing').length,
       catalogProductUnavailable: rows.filter((row) => row.state === 'catalog_product_unavailable').length,
+      identityMismatch: rows.filter((row) => row.state === 'identity_mismatch').length,
       localProductMissing: rows.filter((row) => row.state === 'local_product_missing').length,
     };
     if (actionState !== 'all') rows = rows.filter((row) => row.state === actionState);
@@ -572,7 +579,7 @@ export async function GET(request: Request) {
       page,
       pageSize,
       metrics,
-      capabilities,
+      checkedAt: new Date().toISOString(),
       visualReview: null,
     });
   } catch (error) {

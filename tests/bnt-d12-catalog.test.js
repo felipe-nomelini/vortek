@@ -59,7 +59,15 @@ test('classifica elegibilidade sem esconder candidatos bloqueados', () => {
   assert.equal(classifyCatalogEligibility(base).state, 'ready');
   assert.equal(classifyCatalogEligibility({ ...base, local_product_id: null }).state, 'local_product_missing');
   assert.equal(classifyCatalogEligibility({ ...base, catalog_product_status: 'inactive' }).state, 'catalog_product_unavailable');
-  assert.equal(classifyCatalogEligibility({ ...base, catalog_product_warning: 'Divergência' }).state, 'review_required');
+  assert.equal(classifyCatalogEligibility({ ...base, catalog_product_warning: 'Divergência' }).state, 'identity_mismatch');
+  assert.equal(classifyCatalogEligibility({ ...base, eligibility_status: 'ALREADY_OPTED_IN' }).state, 'already_opted_in');
+  assert.equal(classifyCatalogEligibility({ ...base, eligibility_status: 'CATALOG_PRODUCT_ID_NULL' }).state, 'catalog_product_missing');
+  assert.equal(classifyCatalogEligibility({ ...base, eligibility_status: 'PRODUCT_INACTIVE' }).state, 'catalog_product_unavailable');
+  assert.equal(classifyCatalogEligibility({ ...base, catalog_product_id: null,
+    catalog_product_id_sugerido: 'MLB-SUGESTAO' }).state, 'catalog_product_missing');
+  assert.equal(classifyCatalogEligibility({ ...base, variation_eligibility: [
+    { id: 1, status: 'READY_FOR_OPTIN', catalog_product_id: 'MLB-V1', catalog_product_status: 'inactive' },
+  ] }).state, 'catalog_product_unavailable');
 });
 
 test('prioriza pendências operacionais e reconhece somente estados saudáveis confirmados', () => {
@@ -171,7 +179,7 @@ test('mantém duas rotas com nomes inequívocos e acompanhamento compartilhado',
   assert.match(view, /useMlPricePublishTracking/);
   assert.match(view, /Pendências/);
   assert.match(view, /Preço para ganhar/);
-  assert.match(view, /Revisar alteração/);
+  assert.match(view, /Alterar preço/);
   assert.match(view, /Confirmar alteração/);
   assert.match(view, /Detalhes técnicos/);
   assert.match(view, /className=\{styles\.mlCodeLink\}/);
@@ -189,11 +197,19 @@ test('alteração manual do catálogo usa confirmação única sem pedir motivo 
   const view = fs.readFileSync(path.join(__dirname, '../src/components/catalogo/CatalogoView.tsx'), 'utf8');
   const route = fs.readFileSync(path.join(__dirname, '../src/app/api/catalogo/preco/confirmar/route.ts'), 'utf8');
   assert.match(view, /api\/catalogo\/preco\/confirmar/);
-  assert.match(route, /Alteração manual confirmada no Catálogo/);
-  assert.match(route, /prepare_pricing_decision/);
-  assert.match(route, /manage_pricing_decision/);
-  assert.match(route, /enqueueApprovedPricingDecision/);
+  assert.match(route, /authorizeApiRequest\(request, 'pricing\.decisions\.manage'\)/);
+  assert.match(route, /enqueueManualMlCommand/);
+  assert.match(route, /findManualMlCommand/);
   assert.doesNotMatch(route, /reason:\s*z\./);
+});
+
+test('catálogo completo e elegíveis não expõem criação direta bloqueada', () => {
+  const view = fs.readFileSync(path.join(__dirname, '../src/components/catalogo/CatalogoView.tsx'), 'utf8');
+  const oldOptin = fs.readFileSync(path.join(__dirname, '../src/app/api/catalogo/optin/route.ts'), 'utf8');
+  assert.match(view, /JSON\.stringify\(\{ mode: 'full' \}\)/);
+  assert.doesNotMatch(view, /api\/catalogo\/optin|Criar selecionados|styles\.economicsAlert|styles\.jobAlert/);
+  assert.match(view, /Abrir produto no Bentevi/);
+  assert.match(oldOptin, /getPricingExecutionBlock\(\)/);
 });
 
 test('distingue falha de carregamento de uma lista realmente vazia', () => {

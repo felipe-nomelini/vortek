@@ -19,15 +19,17 @@ export async function POST(request: Request) {
 
   const { data: runningJob } = await serviceClient
     .from('jobs')
-    .select('id, status')
+    .select('id, status, dedupe_key')
     .eq('tipo', JOB_TIPO)
-    .eq('dedupe_key', mode)
     .in('status', ['pendente', 'rodando', 'on_hold'])
     .order('created_at', { ascending: false })
     .limit(1)
     .maybeSingle();
 
   if (runningJob?.id) {
+    if (runningJob.dedupe_key !== mode) {
+      return NextResponse.json({ error: 'Já existe uma atualização do catálogo em andamento. Aguarde a conclusão e tente novamente.' }, { status: 409 });
+    }
     return NextResponse.json({
       success: true,
       reused: true,

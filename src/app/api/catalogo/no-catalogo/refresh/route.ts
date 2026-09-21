@@ -9,7 +9,8 @@ import {
   resolveCatalogLocalProduct,
 } from '@/lib/catalogo/no-catalogo';
 import {
-  buildCatalogScanPath, CATALOG_REFRESH_BATCH_SIZE, normalizeCatalogRefreshItemIds,
+  collectCatalogScanItemIds, CATALOG_REFRESH_BATCH_SIZE, normalizeCatalogRefreshItemIds,
+  type CatalogScanPage,
 } from '@/lib/catalogo/refresh-batch';
 
 const PAGE_SIZE = 100;
@@ -101,60 +102,11 @@ async function fetchAllCatalogListingItemIds(sellerId: string | number): Promise
   error?: string;
   authFatal?: boolean;
 }> {
-  const uniqueIds = new Set<string>();
-  let scrollId: string | null = null;
-  let expectedTotal: number | null = null;
-
-  while (true) {
-    const requestPath = buildCatalogScanPath(sellerId, scrollId);
-
-    const searchResult: Awaited<ReturnType<typeof fetchMLResult<{
-      results?: string[];
-      scroll_id?: string | null;
-      paging?: { total?: number | null };
-    }>>> = await fetchMLResult<{
-      results?: string[];
-      scroll_id?: string | null;
-      paging?: { total?: number | null };
-    }>(requestPath);
-    if (!searchResult.ok || !searchResult.data) {
-      return {
-        ok: false,
-        itemIds: [],
-        error: searchResult.error?.message || 'Falha ao buscar itens de catálogo',
-        authFatal: searchResult.error?.category === 'auth_fatal',
-      };
-    }
-
-    const ids = Array.isArray(searchResult.data.results)
-      ? searchResult.data.results.map((id: string) => String(id || '').trim()).filter(Boolean)
-      : [];
-    const reportedTotal = Number(searchResult.data.paging?.total);
-    if (!Number.isSafeInteger(reportedTotal) || reportedTotal < 0) {
-      return { ok: false, itemIds: [], error: 'O Mercado Livre não informou o total do catálogo.' };
-    }
-    if (expectedTotal === null) {
-      expectedTotal = reportedTotal;
-    } else if (reportedTotal !== expectedTotal) {
-      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre perdeu o filtro de catálogo.' };
-    }
-
-    for (const id of ids) uniqueIds.add(id);
-
-    if (uniqueIds.size > expectedTotal) {
-      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre retornou anúncios além do catálogo.' };
-    }
-    if (uniqueIds.size === expectedTotal) {
-      return { ok: true, itemIds: Array.from(uniqueIds) };
-    }
-
-    const nextScrollId: string = String(searchResult.data.scroll_id || '').trim();
-    if (!nextScrollId || ids.length === 0) {
-      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre terminou antes de carregar todo o catálogo.' };
-    }
-
-    scrollId = nextScrollId;
-  }
+  return collectCatalogScanItemIds({ sellerId, fetchPage: async (path) => {
+    const result = await fetchMLResult<CatalogScanPage>(path);
+    return { ok: result.ok, data: result.data, error: result.error?.message,
+      authFatal: result.error?.category === 'auth_fatal' };
+  } });
 }
 
 export async function POST(request: Request) {

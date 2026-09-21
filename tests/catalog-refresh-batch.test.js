@@ -9,6 +9,7 @@ const {
   CATALOG_REFRESH_MAX_FAILURES,
   CATALOG_SCAN_PAGE_SIZE,
   buildCatalogScanPath,
+  collectCatalogScanItemIds,
   calculateCatalogRefreshProgress,
   calculateCatalogRefreshOutcome,
   getCatalogRefreshFailureStage,
@@ -38,13 +39,43 @@ test('scan preserva filtro e limite do catálogo em todas as páginas', () => {
   assert.equal(next.searchParams.get('scroll_id'), 'cursor com espaços');
 });
 
+test('scan percorre mais de mil anúncios e atualiza o cursor a cada página', async () => {
+  const seenPaths = [];
+  const result = await collectCatalogScanItemIds({ sellerId: 123, fetchPage: async (path) => {
+    const url = new URL(path, 'https://api.mercadolibre.com');
+    seenPaths.push(url);
+    const page = Number(url.searchParams.get('scroll_id') || 0);
+    const ids = Array.from({ length: page === 10 ? 5 : 100 }, (_, index) => `MLB${page * 100 + index}`);
+    return { ok: true, data: { results: ids, scroll_id: String(page + 1), paging: { total: 1005 } } };
+  } });
+  assert.equal(result.ok, true);
+  assert.equal(result.itemIds.length, 1005);
+  assert.equal(seenPaths.length, 11);
+  assert.deepEqual(seenPaths.slice(1).map(url => url.searchParams.get('scroll_id')),
+    Array.from({ length: 10 }, (_, index) => String(index + 1)));
+});
+
+test('scan recusa cursor repetido ou fim antes do total', async () => {
+  const repeated = await collectCatalogScanItemIds({ sellerId: 123, fetchPage: async () => ({
+    ok: true, data: { results: ['MLB1'], scroll_id: 'cursor-1', paging: { total: 3 } },
+  }) });
+  assert.equal(repeated.ok, false);
+  assert.match(repeated.error, /repetiu o cursor/);
+
+  const incomplete = await collectCatalogScanItemIds({ sellerId: 123, fetchPage: async () => ({
+    ok: true, data: { results: ['MLB1'], scroll_id: null, paging: { total: 3 } },
+  }) });
+  assert.equal(incomplete.ok, false);
+  assert.deepEqual(incomplete.itemIds, []);
+});
+
 test('refresh confirma o tipo no detalhe antes de gravar catálogo', () => {
   const routeSource = fs.readFileSync(
     path.join(__dirname, '../src/app/api/catalogo/no-catalogo/refresh/route.ts'),
     'utf8',
   );
 
-  assert.match(routeSource, /buildCatalogScanPath\(sellerId, scrollId\)/);
+  assert.match(routeSource, /collectCatalogScanItemIds\(\{ sellerId/);
   assert.match(routeSource, /'catalog_product_id', 'catalog_listing', 'last_updated'/);
   assert.match(routeSource, /catalogListingObservation\(detailsByItemId\.get\(itemId\)\) === true/);
   assert.match(routeSource, /catalog_listing: isCatalogListing/);

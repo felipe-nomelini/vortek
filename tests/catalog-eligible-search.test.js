@@ -107,3 +107,11 @@ test('propaga falha de autenticação sem resultados parciais', async () => {
     authFatal: true,
   });
 });
+
+test('não anuncia lista completa quando o cursor termina antes do total', async () => {
+  const result = await collectCatalogEligibleItemIds({ sellerId: 123, statusMl: 'all',
+    fetchPage: async () => ({ ok: true, data: { results: ['MLB1'], scroll_id: null, paging: { total: 2 } } }),
+  });
+  assert.equal(result.ok, false);
+  assert.deepEqual(result.itemIds, []);
+});

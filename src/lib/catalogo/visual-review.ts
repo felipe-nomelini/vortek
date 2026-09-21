@@ -184,8 +184,11 @@ export function listBntD12EligibleVisualReview(params: {
   const metrics = {
     total: common.length,
     ready: common.filter((row) => row.state === 'ready').length,
+    alreadyOptedIn: common.filter((row) => row.state === 'already_opted_in').length,
     reviewRequired: common.filter((row) => row.state === 'review_required').length,
+    catalogProductMissing: common.filter((row) => row.state === 'catalog_product_missing').length,
     catalogProductUnavailable: common.filter((row) => row.state === 'catalog_product_unavailable').length,
+    identityMismatch: common.filter((row) => row.state === 'identity_mismatch').length,
     localProductMissing: common.filter((row) => row.state === 'local_product_missing').length,
   };
   const filtered = params.actionState === 'all'

@@ -12,14 +12,14 @@ import {
   ReloadOutlined, SearchOutlined, ShopOutlined,
 } from '@ant-design/icons';
 import ResponsiveTable from '@/components/ResponsiveTable';
-import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressModal';
+import ProgressModal from '@/components/modals/ProgressModal';
 import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import { formatCurrency } from '@/lib/format';
 import {
-  buildCatalogOptinTargets, catalogBoostPresentation, catalogCompetitionPresentation,
+  catalogBoostPresentation, catalogCompetitionPresentation,
   catalogCompetitionReasonPresentation, catalogOperationalPresentation, catalogPriceToWinPresentation,
   type CatalogEligibilityActionState, type CatalogOperationalState, type CatalogPriceGuidance,
-  type CatalogOperationalView, type CatalogOptinTarget, type CatalogVariationEligibility,
+  type CatalogOperationalView, type CatalogVariationEligibility,
 } from '@/lib/catalogo/dashboard';
 import type { CatalogRefreshPresentation } from '@/lib/catalogo/refresh-presentation';
 import { buildMercadoLivreCatalogProductUrl } from '@/lib/catalogo/no-catalogo';
@@ -67,18 +67,21 @@ type ElegivelRow = {
   catalog_product_id: string | null; catalog_product_name?: string | null;
   catalog_product_id_sugerido?: string | null; catalog_product_name_sugerido?: string | null;
   catalog_product_warning?: string | null; eligibility_label?: string | null;
+  eligibility_status?: string | null;
   variation_eligibility: CatalogVariationEligibility[]; state: CatalogEligibilityActionState;
   reason: string; isHomologationFixture?: boolean;
 };
 type CatalogMetrics = { total: number; needsAction: number; healthy: number };
 type EligibleMetrics = {
-  total: number; ready: number; reviewRequired: number;
-  catalogProductUnavailable: number; localProductMissing: number;
+  total: number; ready: number; alreadyOptedIn: number; reviewRequired: number;
+  catalogProductMissing: number; catalogProductUnavailable: number;
+  identityMismatch: number; localProductMissing: number;
 };
 type RefreshStatusPayload = {
   success?: boolean; error?: string;
   job?: { id: string; status: string; progresso?: number; processados?: number; total?: number;
-    presentation?: CatalogRefreshPresentation } | null;
+    presentation?: CatalogRefreshPresentation;
+    summary?: { detailsUnavailable: number; competitionUnavailable: number; updated: number } } | null;
 };
 type PriceDetail = {
   evaluationId?: string;
@@ -109,22 +112,31 @@ const competitionOptions = [
   { value: 'outside', label: 'Fora da competição' },
 ];
 const eligibilityOptions = [
-  { value: 'all', label: 'Todas as situações' }, { value: 'ready', label: 'Prontos para criar' },
+  { value: 'all', label: 'Todas as situações' }, { value: 'ready', label: 'Elegíveis no ML' },
+  { value: 'already_opted_in', label: 'Já no catálogo' },
   { value: 'review_required', label: 'Revisão necessária' },
+  { value: 'catalog_product_missing', label: 'Sem produto de catálogo' },
   { value: 'catalog_product_unavailable', label: 'Produto indisponível' },
+  { value: 'identity_mismatch', label: 'Dados divergentes' },
   { value: 'local_product_missing', label: 'Produto não identificado' },
 ];
 
 function eligibilityPresentation(state: CatalogEligibilityActionState) {
-  if (state === 'ready') return { label: 'Pronto para criar', color: 'green', action: 'Criar anúncio' };
-  if (state === 'review_required') return { label: 'Revisão necessária', color: 'orange', action: 'Ver o que revisar' };
-  if (state === 'catalog_product_unavailable') return { label: 'Produto indisponível', color: 'red', action: 'Ver impedimento' };
-  return { label: 'Produto não identificado no Bentevi', color: 'default', action: 'Revisar produto' };
+  if (state === 'ready') return { label: 'Elegível no ML', color: 'green', action: 'Conferir inclusão no ML' };
+  if (state === 'already_opted_in') return { label: 'Já no catálogo', color: 'blue', action: 'Conferir no ML' };
+  if (state === 'catalog_product_missing') return { label: 'Sem produto de catálogo', color: 'orange', action: 'Conferir associação no ML' };
+  if (state === 'catalog_product_unavailable') return { label: 'Produto de catálogo inativo', color: 'red', action: 'Conferir produto no ML' };
+  if (state === 'identity_mismatch') return { label: 'Dados divergentes', color: 'orange', action: 'Conferir identidade do produto' };
+  if (state === 'review_required') return { label: 'Elegibilidade não confirmada', color: 'orange', action: 'Conferir no ML' };
+  return { label: 'Sem vínculo no Bentevi', color: 'default', action: 'Conferir vínculo e SKU' };
 }
 function variationEligibilityLabel(status: unknown) {
   const value = String(status || '').trim().toUpperCase();
-  if (value === 'READY_FOR_OPTIN') return 'Pronta para criar';
+  if (value === 'READY_FOR_OPTIN') return 'Elegível no Mercado Livre';
+  if (value === 'ALREADY_OPTED_IN') return 'Já participa do catálogo';
   if (value === 'ALREADY_IN_CATALOG') return 'Já possui anúncio de catálogo';
+  if (value === 'CATALOG_PRODUCT_ID_NULL') return 'Sem produto de catálogo associado';
+  if (value === 'PRODUCT_INACTIVE') return 'Produto de catálogo inativo';
   if (value === 'NOT_ELIGIBLE') return 'Não elegível';
   return 'Situação não informada';
 }
@@ -180,14 +192,11 @@ function decisionWarningMessage(reason: string) {
 export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const router = useRouter();
   const [messageApi, messageContext] = message.useMessage();
-  const [modalApi, modalContext] = Modal.useModal();
   const { hasOpenTracking, startTracking, progressModalProps } = useMlPricePublishTracking(messageApi);
   const requestSequence = useRef(0);
   const pricingRequest = useRef(0);
   const dataAbortController = useRef<AbortController | null>(null);
   const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const batchCancelled = useRef(false);
-  const batchAbort = useRef<AbortController | null>(null);
   const economicsRequest = useRef(0);
   const economicsCache = useRef(new Map<string, { value: CatalogVisibleEconomicsRow; cachedAt: number }>());
 
@@ -206,9 +215,10 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [catalogMetrics, setCatalogMetrics] = useState<CatalogMetrics>({ total: 0, needsAction: 0, healthy: 0 });
   const [eligibleMetrics, setEligibleMetrics] = useState<EligibleMetrics>({
-    total: 0, ready: 0, reviewRequired: 0, catalogProductUnavailable: 0, localProductMissing: 0,
+    total: 0, ready: 0, alreadyOptedIn: 0, reviewRequired: 0, catalogProductMissing: 0,
+    catalogProductUnavailable: 0, identityMismatch: 0, localProductMissing: 0,
   });
-  const [createEnabled, setCreateEnabled] = useState(false);
+  const [eligibleCheckedAt, setEligibleCheckedAt] = useState<string | null>(null);
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(null);
   const [refreshPayload, setRefreshPayload] = useState<RefreshStatusPayload | null>(null);
@@ -233,10 +243,6 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const [reviewingPrice, setReviewingPrice] = useState(false);
   const [confirmingPrice, setConfirmingPrice] = useState(false);
 
-  const [selectedEligibleKeys, setSelectedEligibleKeys] = useState<React.Key[]>([]);
-  const [batchOpen, setBatchOpen] = useState(false);
-  const [batchRunning, setBatchRunning] = useState(false);
-  const [batchSteps, setBatchSteps] = useState<ProgressStep[]>([]);
 
   const queryString = useMemo(() => {
     const params = new URLSearchParams({ page: String(page), pageSize: String(PAGE_SIZE) });
@@ -281,11 +287,13 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         setEconomicsItems([]);
         setEligibleRows(Array.isArray(payload.data) ? payload.data : []);
         setEligibleMetrics({ total: Number(payload.metrics?.total || 0), ready: Number(payload.metrics?.ready || 0),
+          alreadyOptedIn: Number(payload.metrics?.alreadyOptedIn || 0),
           reviewRequired: Number(payload.metrics?.reviewRequired || 0),
+          catalogProductMissing: Number(payload.metrics?.catalogProductMissing || 0),
           catalogProductUnavailable: Number(payload.metrics?.catalogProductUnavailable || 0),
+          identityMismatch: Number(payload.metrics?.identityMismatch || 0),
           localProductMissing: Number(payload.metrics?.localProductMissing || 0) });
-        setCreateEnabled(payload.capabilities?.createCatalogListing === true);
-        setSelectedEligibleKeys([]);
+        setEligibleCheckedAt(payload.checkedAt || null);
       }
     } catch (error: unknown) {
       if (error instanceof Error && error.name === 'AbortError') return;
@@ -427,7 +435,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       }
       stopRefreshPolling(); setRefreshRunning(false);
       if (status === 'completo') {
-        setRefreshPayload(null); messageApi.success('Catálogo atualizado.'); await fetchData(); return;
+        setRefreshPayload(payload); messageApi.success('Catálogo atualizado.'); await fetchData(); return;
       }
       setRefreshPayload(payload);
       if (status === 'completo_parcial') {
@@ -453,16 +461,18 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         const status = String(payload.job?.status || '');
         if (!payload.job?.id) return;
         if (['pendente', 'rodando', 'on_hold'].includes(status)) trackRefresh(payload.job.id);
-        else if (status !== 'completo') setRefreshPayload(payload);
+        else setRefreshPayload(payload);
       } catch { /* a ausência de um job anterior não impede a consulta */ }
     })();
     return stopRefreshPolling;
   }, [fetchRefreshStatus, mode, stopRefreshPolling, trackRefresh]);
   const startRefresh = useCallback(async () => {
     if (visualReview) return void messageApi.info('A amostra protegida não executa sincronizações externas.');
-    const response = await fetch('/api/catalogo/no-catalogo/refresh/job', { method: 'POST' });
+    const response = await fetch('/api/catalogo/no-catalogo/refresh/job', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'full' }),
+    });
     const payload = await response.json().catch(() => ({}));
-    if (!response.ok || !payload?.jobId) return void messageApi.error('Não foi possível iniciar a atualização.');
+    if (!response.ok || !payload?.jobId) return void messageApi.error(userSafeMessage(payload?.error, 'Não foi possível iniciar a atualização.'));
     setRefreshPayload(null); trackRefresh(String(payload.jobId));
   }, [messageApi, trackRefresh, visualReview]);
 
@@ -537,47 +547,6 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível confirmar a alteração.'));
     } finally { setConfirmingPrice(false); }
   }, [activeCatalog, fetchData, hasOpenTracking, messageApi, priceReview, startTracking]);
-  const executeOptinTargets = useCallback(async (targets: CatalogOptinTarget[]) => {
-    if (!targets.length || visualReview || !createEnabled) return;
-    batchCancelled.current = false; setBatchRunning(true); setBatchOpen(true);
-    setBatchSteps(targets.map((target) => ({ label: target.variationId ? `Variação ${target.variationId}` : `Anúncio ${target.itemId}`,
-      status: 'pending', detail: `Produto de catálogo ${target.catalogProductId}` })));
-    let successes = 0;
-    for (let index = 0; index < targets.length; index += 1) {
-      if (batchCancelled.current) break;
-      const target = targets[index];
-      setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: 'loading' } : step));
-      const controller = new AbortController(); batchAbort.current = controller;
-      try {
-        const response = await fetch('/api/catalogo/optin', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(target), signal: controller.signal });
-        const payload = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(payload?.erro || 'Falha ao criar o anúncio.');
-        successes += 1;
-        setBatchSteps((current) => current.map((step, i) => i === index
-          ? { ...step, status: 'success', detail: `Criado: ${payload?.catalog_item_id || payload?.data?.id || 'confirmado'}` } : step));
-      } catch (error: unknown) {
-        const cancelled = batchCancelled.current || (error instanceof Error && error.name === 'AbortError');
-        setBatchSteps((current) => current.map((step, i) => i === index ? { ...step,
-          status: cancelled ? 'warning' : 'error', detail: cancelled ? 'Cancelado.' : step.detail,
-          error: cancelled ? undefined : userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível criar este anúncio.') } : step));
-        if (cancelled) break;
-      }
-    }
-    setBatchRunning(false); setSelectedEligibleKeys([]); batchAbort.current = null;
-    if (successes) { messageApi.success(`${successes} anúncio(s) de catálogo criado(s).`); void fetchData(); }
-  }, [createEnabled, fetchData, messageApi, visualReview]);
-  const confirmOptin = useCallback((selected: ElegivelRow[]) => {
-    const targets = selected.flatMap((row) => buildCatalogOptinTargets(row));
-    if (!createEnabled || !targets.length) return;
-    modalApi.confirm({ title: targets.length === 1 ? 'Criar anúncio de catálogo?' : `Criar ${targets.length} anúncios de catálogo?`,
-      content: 'O anúncio padrão será mantido. Cada variação elegível gera uma publicação de catálogo separada.',
-      okText: 'Confirmar criação', cancelText: 'Cancelar', onOk: () => executeOptinTargets(targets) });
-  }, [createEnabled, executeOptinTargets, modalApi]);
-  const selectedEligibleRows = useMemo(() => {
-    const selected = new Set(selectedEligibleKeys.map(String));
-    return eligibleRows.filter((row) => selected.has(row.ml_item_id));
-  }, [eligibleRows, selectedEligibleKeys]);
 
   const catalogColumns: TableProps<NoCatalogoRow>['columns'] = useMemo(() => [
     { title: 'Produto e anúncio', key: 'listing', width: 340, sorter: true, render: (_, row) => (
@@ -593,7 +562,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         <div><strong>{row.operational.label}</strong><small>{row.operational.description}</small></div></div>) },
     { title: 'Preço atual', key: 'price', width: 170, sorter: true,
       render: (_, row) => <PriceResult price={row.price} economy={row.economics.current} /> },
-    { title: 'Preço para ganhar', key: 'competition', width: 190, sorter: true,
+    { title: <span title="Referência consultada no Mercado Livre. Nenhum preço é alterado automaticamente.">Preço para ganhar · referência ML</span>, key: 'competition', width: 190, sorter: true,
       render: (_, row) => {
         const guidance = catalogPriceToWinPresentation({ status: row.buy_box_status, priceToWin: row.price_to_win });
         return guidance.key === 'available'
@@ -621,16 +590,16 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         <small>{userSafeMessage(row.reason, 'Confira o vínculo antes de continuar.')}</small></div>;
     } },
     { title: 'Produto de catálogo', key: 'catalogProduct', width: 280, render: (_, row) => (
-      <div className={styles.stackCell}><strong>{row.catalog_product_name_sugerido || row.catalog_product_name || 'Não identificado'}</strong>
-        <small><MercadoLivreCodeLink code={row.catalog_product_id_sugerido || row.catalog_product_id}
-          href={visualReview ? null : buildMercadoLivreCatalogProductUrl(row.catalog_product_id_sugerido || row.catalog_product_id)}
-          label="Produto de catálogo" /></small></div>) },
+      <div className={styles.stackCell}><strong>{row.catalog_product_name || 'Não identificado pelo Mercado Livre'}</strong>
+        <small><MercadoLivreCodeLink code={row.catalog_product_id}
+          href={visualReview ? null : buildMercadoLivreCatalogProductUrl(row.catalog_product_id)}
+          label="Produto de catálogo" /></small>
+        {row.catalog_product_id_sugerido && <small>Sugestão para revisão: {row.catalog_product_name_sugerido || row.catalog_product_id_sugerido}</small>}</div>) },
     { title: 'Próxima ação', key: 'action', width: 180, render: (_, row) => {
-      const presentation = eligibilityPresentation(row.state);
-      return <Button type={row.state === 'ready' && createEnabled ? 'primary' : 'default'} icon={<EyeOutlined />}
-        onClick={() => setActiveEligible(row)}>{row.state === 'ready' && !createEnabled ? 'Ver detalhes' : presentation.action}</Button>;
+      return <Button icon={<EyeOutlined />}
+        onClick={() => setActiveEligible(row)}>Ver próxima ação</Button>;
     } },
-  ], [createEnabled, visualReview]);
+  ], [visualReview]);
   const handleCatalogTableChange: TableProps<NoCatalogoRow>['onChange'] = (pagination, _filters, sorter) => {
     setPage(Number(pagination.current || 1));
     const current = Array.isArray(sorter) ? sorter[0] : sorter;
@@ -659,9 +628,12 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     ? [['needs_action', 'Pendências', catalogMetrics.needsAction], ['healthy', 'Tudo certo', catalogMetrics.healthy],
       ['all', 'Todos', catalogMetrics.total]] as const
     : [['all', 'Todos', eligibleMetrics.total], ['ready', 'Prontos', eligibleMetrics.ready],
-      ['review_required', 'Revisar', eligibleMetrics.reviewRequired],
+      ['already_opted_in', 'Já no catálogo', eligibleMetrics.alreadyOptedIn],
+      ['identity_mismatch', 'Divergências', eligibleMetrics.identityMismatch],
+      ['catalog_product_missing', 'Sem catálogo', eligibleMetrics.catalogProductMissing],
       ['catalog_product_unavailable', 'Indisponíveis', eligibleMetrics.catalogProductUnavailable],
-      ['local_product_missing', 'Sem vínculo', eligibleMetrics.localProductMissing]] as const;
+      ['local_product_missing', 'Sem vínculo', eligibleMetrics.localProductMissing],
+      ['review_required', 'Revisar', eligibleMetrics.reviewRequired]] as const;
   const currentEconomy = memoryEconomy(priceDetail?.competitiveAssessment?.current?.memory)
     || memoryEconomy(priceDetail?.pricing?.current?.memory) || activeCatalog?.economics.current;
   const competitiveEconomy = memoryEconomy(priceDetail?.competitiveAssessment?.competitive?.memory)
@@ -685,40 +657,42 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const actionableBoosts = (priceDetail?.catalog?.boosts || []).filter((boost) => catalogBoostPresentation(boost.status).actionable);
 
   return <div className={styles.page}>
-    {messageContext}{modalContext}
+    {messageContext}
     <header className={styles.header}><div><Title level={2} className={styles.title}>Catálogo</Title>
       <Text type="secondary">Veja primeiro o que precisa de ação e resolva sem sair da lista.</Text>
-      {mode === 'no_catalogo' && <small className={styles.lastSync}>Dados consultados em {formatDate(lastSyncedAt)}</small>}</div>
+      {mode === 'no_catalogo' && <small className={styles.lastSync}>Dados consultados em {formatDate(lastSyncedAt)}</small>}
+      {mode === 'elegiveis' && <small className={styles.lastSync}>Elegibilidade consultada em {formatDate(eligibleCheckedAt)}</small>}
+      {mode === 'no_catalogo' && !visualReview && (economicsState.running || economicsState.issue) &&
+        <small className={styles.compactStatus}>{economicsState.running
+          ? `Calculando lucro e margem nesta página: ${economicsState.processed}/${economicsState.total}.`
+          : catalogEconomicReasonLabel(economicsState.issue!)}
+          {economicsState.issue && <Button type="link" size="small" onClick={() => setEconomicsRetry(value => value + 1)}>
+            Tentar cálculos novamente</Button>}</small>}</div>
       <Space wrap>{mode === 'no_catalogo' && <Button icon={<FilePdfOutlined />} loading={exportingPdf}
         onClick={() => void exportPdf()}>Exportar PDF</Button>}
       {mode === 'no_catalogo' && <Button icon={<ReloadOutlined spin={refreshRunning} />} disabled={Boolean(visualReview)}
         loading={refreshRunning} onClick={() => void startRefresh()}>Atualizar dados</Button>}
-      {mode === 'elegiveis' && createEnabled && <Button type="primary" disabled={!selectedEligibleRows.length || Boolean(visualReview)}
-        onClick={() => confirmOptin(selectedEligibleRows)}>Criar selecionados ({selectedEligibleRows.length})</Button>}</Space></header>
+      </Space></header>
 
     {visualReview && <Alert className={styles.visualAlert} type="warning" showIcon message="Amostra protegida, somente leitura"
       description="Os dados desta amostra servem apenas para avaliar a tela. Ações externas estão desabilitadas." />}
-
-    {mode === 'no_catalogo' && !visualReview && <Alert className={styles.economicsAlert} type={economicsState.issue ? 'warning' : 'info'} showIcon
-      message="Preço para ganhar é uma referência do Mercado Livre"
-      description={`Lucro e margem são estimativas para a referência consultada. Nenhum preço será alterado.${economicsState.running
-        ? ` Calculando a página: ${economicsState.processed}/${economicsState.total}.`
-        : economicsState.issue ? ` ${catalogEconomicReasonLabel(economicsState.issue)}.` : ''}`}
-      action={economicsState.issue ? <Button size="small" onClick={() => setEconomicsRetry(value => value + 1)}>
-        Tentar cálculos novamente
-      </Button> : undefined} />}
 
     <Segmented className={styles.modeSelector} value={mode} options={[
       { label: 'Anúncios de catálogo', value: 'no_catalogo' }, { label: 'Elegíveis ao catálogo', value: 'elegiveis' },
     ]} onChange={(value) => router.push(value === 'no_catalogo' ? '/catalogo/no-catalogo' : '/catalogo/elegiveis')} />
 
-    {refreshPayload?.job && mode === 'no_catalogo' && <Alert className={styles.jobAlert}
-      type={refreshPayload.job.presentation?.tone || (refreshRunning ? 'info' : 'warning')} showIcon
-      message={refreshPayload.job.presentation?.title || 'Atualizando catálogo'} description={<div className={styles.refreshProgress}>
-        <span>{refreshPayload.job.presentation?.description || 'Consultando os anúncios.'}</span>
-        <Progress percent={Number(refreshPayload.job.progresso || 0)}
-          status={refreshPayload.job.presentation?.tone === 'error' ? 'exception' : refreshRunning ? 'active' : 'normal'} size="small" />
-      </div>} />}
+    {refreshPayload?.job && mode === 'no_catalogo' && <div className={styles.compactRefresh} role="status">
+      <strong>{refreshPayload.job.presentation?.title || 'Atualizando catálogo'}</strong>
+      <span>{refreshRunning && Number(refreshPayload.job.total || 0) <= 1
+        ? 'Listando anúncios no Mercado Livre…'
+        : `${Number(refreshPayload.job.processados || 0).toLocaleString('pt-BR')} de ${Number(refreshPayload.job.total || 0).toLocaleString('pt-BR')} processados`}</span>
+      {Number(refreshPayload.job.summary?.competitionUnavailable || 0) > 0 && <span>
+        {Number(refreshPayload.job.summary?.competitionUnavailable).toLocaleString('pt-BR')} sem informação de competição</span>}
+      {Number(refreshPayload.job.summary?.detailsUnavailable || 0) > 0 && <span>
+        {Number(refreshPayload.job.summary?.detailsUnavailable).toLocaleString('pt-BR')} sem detalhes atualizados</span>}
+      {refreshRunning && <Progress percent={Number(refreshPayload.job.progresso || 0)} size="small" showInfo={false} className={styles.compactProgress} />}
+      {!refreshRunning && refreshPayload.job.status !== 'completo' && <Button type="link" size="small" onClick={() => void startRefresh()}>Tentar novamente</Button>}
+    </div>}
 
     <Segmented className={styles.quickViews} value={mode === 'no_catalogo' ? operationalView : actionState}
       onChange={(value) => {
@@ -753,8 +727,6 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
               showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} size="small" />
           : <ResponsiveTable<ElegivelRow> className={styles.table}
             rowKey="ml_item_id" dataSource={eligibleRows} columns={eligibleColumns}
-            rowSelection={createEnabled ? { selectedRowKeys: selectedEligibleKeys, onChange: setSelectedEligibleKeys,
-              getCheckboxProps: (row) => ({ disabled: row.state !== 'ready' || Boolean(visualReview) }) } : undefined}
             pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, onChange: setPage,
               showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'}` }} size="small" />}
       </Spin>
@@ -840,38 +812,45 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     <Drawer open={Boolean(activeEligible)} onClose={() => setActiveEligible(null)} width="min(96vw, 660px)"
       title={activeEligible ? <div className={styles.drawerTitle}><span>Elegibilidade ao catálogo</span>
         <strong>{activeEligible.title}</strong></div> : undefined}>
-      {activeEligible && <div className={styles.drawerSection}><Alert type={activeEligible.state === 'ready' ? 'success' : 'warning'}
-        showIcon message={eligibilityPresentation(activeEligible.state).label}
-        description={userSafeMessage(activeEligible.reason, 'Confira o vínculo antes de continuar.')} />
+      {activeEligible && <div className={styles.drawerSection}>
+        <div className={styles.eligibilityDecision}>
+          <div><small>O Mercado Livre informou</small><strong>{activeEligible.eligibility_label || variationEligibilityLabel(activeEligible.eligibility_status)}</strong>
+            <span>Consulta em {formatDate(eligibleCheckedAt)}</span></div>
+          <div><small>Verificação no Bentevi</small><strong>{eligibilityPresentation(activeEligible.state).label}</strong>
+            <span>{userSafeMessage(activeEligible.reason, 'Confira o vínculo antes de continuar.')}</span></div>
+          <div><small>Próxima ação</small><strong>{eligibilityPresentation(activeEligible.state).action}</strong>
+            <span>{activeEligible.state === 'ready'
+              ? 'Confira o produto no Bentevi e a opção de inclusão no catálogo na conta do Mercado Livre. A criação a partir deste anúncio padrão ainda não está disponível no Bentevi.'
+              : activeEligible.state === 'already_opted_in'
+                ? 'Confira o anúncio no Mercado Livre. Não é necessário criar outro por esta tela.'
+                : 'Corrija ou confirme a informação indicada e consulte a elegibilidade novamente.'}</span></div>
+        </div>
         <div className={styles.eligibleSummary}><span><small>Produto Bentevi</small>
           <strong>{activeEligible.local_product_name || 'Não vinculado'}</strong></span>
-          <span><small>Produto de catálogo</small><strong>{activeEligible.catalog_product_name_sugerido
-            || activeEligible.catalog_product_name || 'Não identificado'}</strong></span></div>
+        <span><small>Produto de catálogo confirmado</small><strong>{activeEligible.catalog_product_name || 'Não identificado'}</strong></span></div>
+        {activeEligible.catalog_product_id_sugerido && <Text type="secondary">Sugestão para revisão, ainda não confirmada: {activeEligible.catalog_product_name_sugerido || activeEligible.catalog_product_id_sugerido}.</Text>}
         {activeEligible.catalog_product_warning && <Alert type="warning" showIcon message="Compatibilidade precisa de atenção"
           description={userSafeMessage(activeEligible.catalog_product_warning, 'Confira o produto sugerido.')} />}
         {activeEligible.variation_eligibility?.length > 0 && <div className={styles.variationList}>
           {activeEligible.variation_eligibility.map((variation) => <span key={String(variation.id)}><b>Variação {variation.id}</b>
-            <small>{variationEligibilityLabel(variation.status)}</small></span>)}</div>}
-        {activeEligible.state === 'ready' && createEnabled && <Button type="primary" size="large"
-          onClick={() => confirmOptin([activeEligible])}>Criar anúncio de catálogo</Button>}
+            <small>{variationEligibilityLabel(variation.status)} · Produto {variation.catalog_product_id || 'não associado'}
+              {variation.catalog_product_status && ` · ${variation.catalog_product_status === 'active' ? 'ativo' : 'inativo'}`}</small></span>)}</div>}
+        {activeEligible.state !== 'already_opted_in' && activeEligible.local_product_id && <Button type={activeEligible.state === 'ready' ? 'primary' : 'default'}
+          onClick={() => router.push(`/produtos/${activeEligible.local_product_id}`)}>Abrir produto no Bentevi</Button>}
+        {activeEligible.permalink && !visualReview && <Button href={activeEligible.permalink} target="_blank" rel="noopener noreferrer">
+          Abrir anúncio no Mercado Livre</Button>}
         <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
           <div><dt>Anúncio padrão</dt><dd><MercadoLivreCodeLink code={activeEligible.ml_item_id}
             href={visualReview ? null : activeEligible.permalink} label="Anúncio padrão" /></dd></div>
           <div><dt>Produto de catálogo</dt><dd><MercadoLivreCodeLink
-            code={activeEligible.catalog_product_id_sugerido || activeEligible.catalog_product_id}
-            href={visualReview ? null : buildMercadoLivreCatalogProductUrl(
-              activeEligible.catalog_product_id_sugerido || activeEligible.catalog_product_id,
-            )} label="Produto de catálogo" /></dd></div>
+            code={activeEligible.catalog_product_id}
+            href={visualReview ? null : buildMercadoLivreCatalogProductUrl(activeEligible.catalog_product_id)}
+            label="Produto de catálogo" /></dd></div>
           <div><dt>SKU</dt><dd>{activeEligible.seller_sku || 'Não informado'}</dd></div>
         </dl></details>
       </div>}
     </Drawer>
 
-    <ProgressModal open={batchOpen} title="Criando anúncios de catálogo" steps={batchSteps}
-      onClose={() => { if (!batchRunning) setBatchOpen(false); }} showCloseButton={!batchRunning}
-      customActions={batchRunning ? [{ key: 'cancel', label: 'Cancelar', danger: true, onClick: () => {
-        batchCancelled.current = true; batchAbort.current?.abort(); setBatchRunning(false);
-      } }] : []} />
     <ProgressModal {...progressModalProps} />
   </div>;
 }

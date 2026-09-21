@@ -1,7 +1,10 @@
 export type CatalogEligibilityActionState =
   | 'ready'
+  | 'already_opted_in'
   | 'review_required'
+  | 'catalog_product_missing'
   | 'catalog_product_unavailable'
+  | 'identity_mismatch'
   | 'local_product_missing';
 
 export type CatalogVariationEligibility = {
@@ -9,6 +12,7 @@ export type CatalogVariationEligibility = {
   status?: string | null;
   buy_box_eligible?: boolean | null;
   catalog_product_id?: string | null;
+  catalog_product_status?: string | null;
 };
 
 export type CatalogOptinTarget = {
@@ -41,8 +45,6 @@ export type CatalogPriceGuidance = {
   description: string;
 };
 
-const RELIABLE_MATCH_SCORE = 100;
-
 export function isCatalogEligibilityReady(status: unknown) {
   return String(status || '').trim().toUpperCase() === 'READY_FOR_OPTIN';
 }
@@ -58,43 +60,53 @@ export function classifyCatalogEligibility(row: Record<string, any>): {
   state: CatalogEligibilityActionState;
   reason: string;
 } {
+  const mlStatus = String(row.eligibility_status || '').trim().toUpperCase();
+  const variations = readyCatalogVariations(row.variation_eligibility || []);
+  if (mlStatus === 'ALREADY_OPTED_IN' && variations.length === 0) {
+    return { state: 'already_opted_in', reason: 'O Mercado Livre informou que este anúncio já participa do catálogo. Confira o anúncio no Mercado Livre.' };
+  }
+
   const localProductId = String(row.local_product_id || row.produto_id || '').trim();
   if (!localProductId) {
     return {
       state: 'local_product_missing',
-      reason: 'Vincule o anúncio padrão a um produto Bentevi antes de criar o anúncio de catálogo.',
+      reason: 'O anúncio padrão não está vinculado a um produto Bentevi. Confira o SKU e o vínculo do produto.',
     };
   }
 
-  const variations = readyCatalogVariations(row.variation_eligibility || []);
   const ready = isCatalogEligibilityReady(row.eligibility_status) || variations.length > 0;
+  if (mlStatus === 'CATALOG_PRODUCT_ID_NULL') {
+    return { state: 'catalog_product_missing', reason: 'O Mercado Livre não associou um produto de catálogo a este anúncio. Confira o produto correspondente antes de publicar.' };
+  }
+  if (mlStatus === 'PRODUCT_INACTIVE') {
+    return { state: 'catalog_product_unavailable', reason: 'O Mercado Livre informou que o produto de catálogo está inativo. Confira sua disponibilidade antes de publicar.' };
+  }
   if (!ready) {
     return {
       state: 'review_required',
-      reason: row.eligibility_reason || 'O Mercado Livre não liberou este anúncio para opt-in.',
+      reason: 'O Mercado Livre não confirmou que este anúncio está pronto para o catálogo. Confira o anúncio e a elegibilidade no Mercado Livre.',
     };
   }
 
-  const suggestedProductId = String(row.catalog_product_id_sugerido || '').trim();
   const currentProductId = String(row.catalog_product_id || '').trim();
   const variationHasProduct = variations.some((variation) => Boolean(String(variation.catalog_product_id || '').trim()));
-  const hasCatalogProduct = Boolean(suggestedProductId || currentProductId || variationHasProduct);
-  const activeProduct = String(row.catalog_product_status || '').trim().toLowerCase() === 'active';
-  if (!hasCatalogProduct || !activeProduct) {
+  const hasCatalogProduct = Boolean(currentProductId || variationHasProduct);
+  if (!hasCatalogProduct) {
+    return { state: 'catalog_product_missing', reason: 'O Mercado Livre não informou um produto de catálogo confirmado para esta publicação.' };
+  }
+  const activeProduct = variations.length > 0
+    ? variations.every((variation) => String(variation.catalog_product_status || '').toLowerCase() === 'active')
+    : String(row.catalog_product_status || '').trim().toLowerCase() === 'active';
+  if (!activeProduct) {
     return {
       state: 'catalog_product_unavailable',
-      reason: hasCatalogProduct
-        ? 'O produto de catálogo relacionado não está ativo no Mercado Livre.'
-        : 'O Mercado Livre não informou um produto de catálogo para esta publicação.',
+      reason: 'O produto de catálogo relacionado não está ativo no Mercado Livre. Confira sua disponibilidade antes de publicar.',
     };
   }
 
-  const reliableSuggestion = suggestedProductId
-    && row.catalog_product_match_source === 'attributes_search'
-    && Number(row.catalog_product_match_score || 0) >= RELIABLE_MATCH_SCORE;
-  if (row.catalog_product_warning && !reliableSuggestion) {
+  if (row.catalog_product_warning) {
     return {
-      state: 'review_required',
+      state: 'identity_mismatch',
       reason: String(row.catalog_product_warning),
     };
   }
@@ -102,8 +114,8 @@ export function classifyCatalogEligibility(row: Record<string, any>): {
   return {
     state: 'ready',
     reason: variations.length > 0
-      ? `${variations.length} variação(ões) pronta(s); será criado um anúncio de catálogo para cada variação.`
-      : 'Identidade e produto de catálogo confirmados para criação.',
+      ? `${variations.length} variação(ões) elegível(is) no Mercado Livre. Confira a inclusão no catálogo na conta do Mercado Livre.`
+      : 'Elegibilidade e produto de catálogo confirmados pelo Mercado Livre. Confira a inclusão no catálogo na conta do Mercado Livre.',
   };
 }
 

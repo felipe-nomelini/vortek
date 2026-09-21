@@ -14,6 +14,52 @@ export function buildCatalogScanPath(sellerId: string | number, scrollId?: strin
   return `/users/${encodeURIComponent(String(sellerId))}/items/search?${params.toString()}`;
 }
 
+export type CatalogScanPage = {
+  results?: unknown;
+  scroll_id?: unknown;
+  paging?: { total?: unknown } | null;
+};
+
+export async function collectCatalogScanItemIds(input: {
+  sellerId: string | number;
+  fetchPage: (path: string) => Promise<{ ok: boolean; data?: CatalogScanPage | null; error?: string; authFatal?: boolean }>;
+}): Promise<{ ok: boolean; itemIds: string[]; error?: string; authFatal?: boolean }> {
+  const uniqueIds = new Set<string>();
+  const seenScrollIds = new Set<string>();
+  let scrollId: string | null = null;
+  let expectedTotal: number | null = null;
+
+  while (true) {
+    const result = await input.fetchPage(buildCatalogScanPath(input.sellerId, scrollId));
+    if (!result.ok || !result.data) {
+      return { ok: false, itemIds: [], error: result.error || 'Falha ao buscar anúncios de catálogo', authFatal: result.authFatal };
+    }
+    const total = Number(result.data.paging?.total);
+    if (!Number.isSafeInteger(total) || total < 0 || (expectedTotal !== null && total !== expectedTotal)) {
+      return { ok: false, itemIds: [], error: 'O Mercado Livre não informou um total estável para o catálogo.' };
+    }
+    expectedTotal = total;
+    if (!Array.isArray(result.data.results)) {
+      return { ok: false, itemIds: [], error: 'O Mercado Livre não devolveu a lista de anúncios do catálogo.' };
+    }
+    const ids = result.data.results.map((id) => String(id || '').trim()).filter(Boolean);
+    for (const id of ids) uniqueIds.add(id);
+    if (uniqueIds.size > total) {
+      return { ok: false, itemIds: [], error: 'O Mercado Livre retornou anúncios além do total do catálogo.' };
+    }
+    if (uniqueIds.size === total) return { ok: true, itemIds: Array.from(uniqueIds) };
+    const nextScrollId = String(result.data.scroll_id || '').trim();
+    if (!nextScrollId || ids.length === 0) {
+      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre terminou antes de carregar todo o catálogo.' };
+    }
+    if (seenScrollIds.has(nextScrollId)) {
+      return { ok: false, itemIds: [], error: 'A paginação do Mercado Livre repetiu o cursor antes de carregar todo o catálogo.' };
+    }
+    seenScrollIds.add(nextScrollId);
+    scrollId = nextScrollId;
+  }
+}
+
 export function calculateCatalogRefreshProgress(processed: number, total: number): number {
   const safeTotal = Math.max(1, Math.trunc(Number(total) || 0));
   const safeProcessed = Math.min(safeTotal, Math.max(0, Math.trunc(Number(processed) || 0)));
