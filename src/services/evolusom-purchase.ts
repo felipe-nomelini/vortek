@@ -1,4 +1,5 @@
 import { createServiceClient } from '@/lib/supabase';
+import { randomInt } from 'crypto';
 import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { fetchML } from '@/services/integration';
@@ -207,14 +208,11 @@ export async function createEvolusomPurchase(input: {
   if (!input.placeholder && !order.ml_label_storage_path) {
     return { state: 'pending', reason: 'Etiqueta real ainda não disponível no Bentevi' };
   }
-  const orderCode = `BNT-${order.numero}`;
-  const supplierOrderCode = Number(order.numero);
-  if (!Number.isSafeInteger(supplierOrderCode) || supplierOrderCode <= 0) {
-    throw new Error('Número da venda inválido para o código numérico exigido pela Evolusom');
-  }
   const { data: existing, error: existingError } = await client.from('compras')
-    .select('id,evolusom_order_id,evolusom_request_state,data_criacao')
-    .eq('evolusom_request_code', orderCode).maybeSingle();
+    .select('id,evolusom_order_id,evolusom_request_code,evolusom_request_state,data_criacao')
+    .eq('pedido_id', input.pedidoId)
+    .eq('fornecedor_id', EVOLUSOM_SUPPLIER_ID)
+    .maybeSingle();
   if (existingError) throw new Error('Falha ao verificar pedido Evolusom existente');
   if (existing?.evolusom_order_id) {
     return { state: 'created', orderId: existing.evolusom_order_id, purchaseId: existing.id, status: 'Criado', placeholder: input.placeholder };
@@ -223,6 +221,11 @@ export async function createEvolusomPurchase(input: {
   if (existing && !['prepared', 'rejected'].includes(existingRequestState)) {
     return { state: 'uncertain', reason: 'Criação anterior precisa de conferência na Evolusom antes de repetir' };
   }
+  const existingCode = String(existing?.evolusom_request_code || '');
+  const supplierOrderCode = /^\d{8}$/.test(existingCode)
+    ? Number(existingCode)
+    : randomInt(80_000_000, 90_000_000);
+  const orderCode = String(supplierOrderCode);
   const orderedAt = existing ? String(existing.data_criacao || '') : new Date().toISOString();
   const payload = buildEvolusomTriangularPayload({
     orderCode: supplierOrderCode,

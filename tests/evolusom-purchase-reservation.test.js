@@ -59,6 +59,7 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
   }).outputText;
   const mocks = {
+    crypto: require('node:crypto'),
     '@/lib/supabase': { createServiceClient: () => client },
     '@/lib/public-nfe-links': { buildPublicNfeUrl: () => 'https://app.bentevi.shop/nfe-synthetic' },
     '@/lib/public-shipping-label-links': { buildPublicShippingLabelUrl: () => 'https://app.bentevi.shop/label-synthetic' },
@@ -146,13 +147,14 @@ test('retomada de reserva preparada preserva a data e envia contatos conhecidos'
   const orderedAt = '2026-06-25T11:55:41.000Z';
   const harness = purchaseHarness({
     initialPurchase: {
-      id: 'purchase-1', evolusom_request_code: 'BNT-123',
+      id: 'purchase-1', evolusom_request_code: '80000123',
       evolusom_request_state: 'prepared', evolusom_order_id: null, data_criacao: orderedAt,
     },
     buyer: { email: 'buyer@example.com', telefone: '41999999999' },
   });
   assert.equal((await harness.create()).state, 'created');
   assert.equal(harness.getPurchase().data_criacao, orderedAt);
+  assert.equal(harness.sent[0].codigo_pedido, 80000123);
   assert.equal(harness.sent[0].data_pedido, '2026-06-25 08:55:41');
   assert.equal(harness.sent[0].nfe.data_emissao, '2026-06-18 10:30:00');
   assert.equal(harness.sent[0].cliente.email, 'buyer@example.com');
@@ -175,7 +177,9 @@ test('rejeição HTTP 400 permite nova tentativa manual com o mesmo código e da
   });
   assert.equal((await harness.create()).state, 'created');
   assert.equal(harness.sent.length, 1);
-  assert.equal(harness.sent[0].codigo_pedido, 123);
+  assert.ok(Number.isInteger(harness.sent[0].codigo_pedido));
+  assert.ok(harness.sent[0].codigo_pedido >= 80_000_000 && harness.sent[0].codigo_pedido < 90_000_000);
+  assert.equal(harness.getPurchase().evolusom_request_code, String(harness.sent[0].codigo_pedido));
   assert.equal(harness.sent[0].data_pedido, '2026-09-21 11:18:16');
   assert.equal(harness.getPurchase().data_criacao, orderedAt);
 });
@@ -192,7 +196,7 @@ test('resposta com número dentro de data vincula a compra sem repetir o POST', 
   assert.deepEqual({ state: result.state, orderId: result.orderId, status: result.status },
     { state: 'created', orderId: 789, status: 'Pendente' });
   assert.deepEqual(result.apiResponse, { status: 200, data: { codigo: 789, status: 'Pendente' }, message: 'Pedido criado' });
-  assert.equal(harness.sent[0].codigo_pedido, 123);
+  assert.ok(harness.sent[0].codigo_pedido >= 80_000_000 && harness.sent[0].codigo_pedido < 90_000_000);
   assert.equal(harness.getPurchase().evolusom_order_id, 789);
   assert.equal(harness.sent.length, 1);
 });
