@@ -186,6 +186,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     dslite_label_operational_status: item.dslite_label_operational_status || 'pending',
     dslite_label_operational_updated_at: item.dslite_label_operational_updated_at || null,
     dslite_label_operational_error: item.dslite_label_operational_error || null,
+    supplier_payment_deferred: Boolean(item.supplier_payment_deferred),
     is_homologation_fixture: isHomologationFixtureSource(item.snapshot_source),
   };
 }
@@ -205,6 +206,11 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   const whatsappStatus = String(order.whatsapp_label_status || 'not_sent');
   const obsoleteDsliteResume = nextAction === 'resume_dslite_flow'
     && ['generic_sent', 'protected_existing'].includes(order.dslite_label_operational_status || '');
+  const deferredLabelRetry = hasDsliteId
+    && order.supplier_payment_deferred
+    && order.supplier_payment_status === 'pending'
+    && !order.dslite_etiqueta_enviada
+    && order.dslite_label_operational_status === 'failed';
 
   if (order.ml_shipment_id) actions.push({ key: 'track', label: 'Rastrear envio', permission: 'sales.track' });
   if (!split && !internalShipping && !postDispatch && !hasSupplierOrder && order.fulfillment_source !== 'internal' && active) {
@@ -216,8 +222,8 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   if (order.ml_label_storage_path && nextAction === 'internal_shipping') actions.push({ key: 'download_thermal_pdf', label: 'Baixar térmica PDF' });
   else if (order.ml_label_storage_path) actions.push({ key: 'download_label', label: 'Baixar etiqueta PDF' });
   if (order.ml_thermal_label_storage_path) actions.push({ key: 'download_thermal_label', label: 'Baixar etiqueta ZPL' });
-  if (!split && !internalShipping && !postDispatch && hasDsliteId && nextAction === 'complete_dslite_label') {
-    actions.push({ key: 'complete_label', label: 'Completar etiqueta', permission: 'sales.dslite.label.complete' });
+  if (!split && !internalShipping && !postDispatch && hasDsliteId && (nextAction === 'complete_dslite_label' || deferredLabelRetry)) {
+    actions.push({ key: 'complete_label', label: deferredLabelRetry ? 'Tentar envio à DSLite' : 'Completar etiqueta', permission: 'sales.dslite.label.complete' });
   }
   if (!split && !internalShipping && !postDispatch && (hasDsliteId || order.evolusom_order_id) && !obsoleteDsliteResume && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(nextAction || '')) {
     actions.push({
@@ -256,6 +262,9 @@ function getPrimaryOrderAction(actions: OrderAction[], order: Order, now: number
     && ['not_sent', 'test_sent', 'failed'].includes(String(order.whatsapp_label_status || 'not_sent'));
   const preferredKey = isDsliteRejected(order.dslite_status)
     ? 'unlink_dslite'
+    : order.supplier_payment_deferred && order.supplier_payment_status === 'pending'
+      && order.dslite_label_operational_status === 'failed'
+      ? 'complete_label'
     : whatsappRequired
       ? 'send_whatsapp_label'
     : order.dslite_next_action

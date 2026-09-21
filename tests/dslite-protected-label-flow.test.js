@@ -81,6 +81,48 @@ test('apresentação da etiqueta não inventa origem em estados incompletos', ()
   assert.equal(present({}).label, 'não identificada');
 });
 
+test('adiamento do PIX só autoriza a compra e o DSID registrados', () => {
+  const event = {
+    evento: 'supplier_payment_deferred_by_user',
+    status_resultante: 'continued_pending',
+    resposta_ml: { compra_id: 'compra-1', dslite_id: '410989' },
+  };
+  assert.equal(labelState.matchesDeferredSupplierPayment(event, 'compra-1', '410989'), true);
+  assert.equal(labelState.matchesDeferredSupplierPayment(event, 'compra-2', '410989'), false);
+  assert.equal(labelState.matchesDeferredSupplierPayment(event, 'compra-1', '410990'), false);
+  assert.equal(labelState.matchesDeferredSupplierPayment({ ...event, status_resultante: 'failed' }, 'compra-1', '410989'), false);
+});
+
+test('falha de etiqueta com PIX adiado identifica a repetição sem alterar o pagamento', async () => {
+  const pedidoId = baseRow().id;
+  const [result] = await operationalStatus.enrichOrdersWithWhatsappStatus(
+    [baseRow({
+      dslite_id: '410989',
+      compra_id: 'compra-1',
+      dslite_next_action: 'confirm_supplier_payment',
+    })],
+    clientWithEvents([
+      {
+        pedido_id: pedidoId,
+        evento: 'ml_label_send_failed',
+        status_resultante: 'failed',
+        resposta_ml: { error: 'HTTP 404' },
+        created_at: '2026-09-18T21:40:34.549Z',
+      },
+      {
+        pedido_id: pedidoId,
+        evento: 'supplier_payment_deferred_by_user',
+        status_resultante: 'continued_pending',
+        resposta_ml: { compra_id: 'compra-1', dslite_id: '410989' },
+        created_at: '2026-09-18T21:40:32.719Z',
+      },
+    ]),
+  );
+  assert.equal(result.dslite_label_operational_status, 'failed');
+  assert.equal(result.supplier_payment_deferred, true);
+  assert.equal(result.dslite_next_action, 'confirm_supplier_payment');
+});
+
 test('403 legado protegido reconcilia a ação DSLite e preserva o WhatsApp já concluído', async () => {
   const pedidoId = baseRow().id;
   const events = [

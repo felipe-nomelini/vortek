@@ -10,6 +10,8 @@ const routeSource = read('src/app/api/dslite/pedido/route.ts');
 const flowSource = read('src/components/pedidos/usePedidosDsliteFlow.ts');
 const modalsSource = read('src/components/pedidos/PedidosDsliteModals.tsx');
 const auditSource = read('src/services/nf-auditoria.ts');
+const labelRouteSource = read('src/app/api/dslite/etiqueta-auto/route.ts');
+const ordersPageSource = read('src/app/(app)/pedidos/page.tsx');
 
 test('decisão de pagamento só aparece no bloqueio PIX criado pelo fluxo DSLite', () => {
   assert.match(
@@ -99,6 +101,14 @@ test('adiamento é auditado e não altera a exceção de etiqueta da BKR1', () =
     routeSource,
     /!continueWithSupplierPaymentPending &&[\s\S]*?!deferBkr1PaymentUntilRealLabel/,
   );
+});
+
+test('repetição da etiqueta exige o mesmo pedido, compra e DSID e mantém a ação PIX', () => {
+  assert.match(labelRouteSource, /String\(\(pedido as any\)\.dslite_id \|\| ''\)\.trim\(\) !== dsliteId/);
+  assert.match(labelRouteSource, /bkr1PaymentPending[\s\S]*?supplier_payment_deferred_by_user[\s\S]*?matchesDeferredSupplierPayment\(/);
+  assert.match(ordersPageSource, /const deferredLabelRetry = hasDsliteId[\s\S]*?order\.supplier_payment_deferred[\s\S]*?order\.dslite_label_operational_status === 'failed'/);
+  assert.match(ordersPageSource, /nextAction === 'complete_dslite_label' \|\| deferredLabelRetry/);
+  assert.match(ordersPageSource, /\['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'\]\.includes\(nextAction/);
 });
 
 test('MKS usa etiqueta genérica somente após consulta válida indicar que a real não é imprimível', () => {

@@ -26,6 +26,7 @@ import {
   DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
   isDslitePlaceholderLabelSource,
   isDsliteProtectedExistingLabelError,
+  matchesDeferredSupplierPayment,
 } from '@/lib/dslite/label-state';
 import { clearSupplierLabelState, supplierDsliteLabelState } from '@/lib/dslite/supplier-label-state';
 import {
@@ -183,7 +184,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id,snapshot_source,situacao')
+      .select('id,numero,dslite_id,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id,snapshot_source,situacao')
       .eq('id', pedidoId)
       .maybeSingle();
 
@@ -239,6 +240,9 @@ export async function POST(req: Request) {
 
     if (!pedido) {
       return stepError(steps, 'check_ml_invoice_xml', 'Pedido não encontrado', undefined, 404, 'not_found');
+    }
+    if (!directShipping && String((pedido as any).dslite_id || '').trim() !== dsliteId) {
+      return stepError(steps, 'check_ml_invoice_xml', 'Compra DSLite não vinculada a esta venda.', undefined, 409, 'business');
     }
     if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
       return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
@@ -769,24 +773,46 @@ export async function POST(req: Request) {
     const { data: paymentCompra } = dsliteId
       ? await client
         .from('compras')
-        .select('fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status')
+        .select('id,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status')
         .eq('dsid', dsliteId)
         .maybeSingle()
       : { data: null as any };
-    if (
+    const bkr1PaymentPending = Boolean(
       !directShipping &&
       isBkr1Supplier((paymentCompra as any)?.fornecedor_id, (paymentCompra as any)?.fornecedor_nome) &&
       String((paymentCompra as any)?.supplier_payment_mode || '') === 'prepaid_pix' &&
       String((paymentCompra as any)?.supplier_payment_status || '') !== 'paid'
-    ) {
-      return stepError(
-        steps,
-        'download_label_ml',
-        'Confirme o PIX da BKR1 e anexe o comprovante antes de enviar a etiqueta real.',
-        { actionRequired: 'confirm_supplier_payment', dsid: dsliteId },
-        422,
-        'business',
-      );
+    );
+    if (bkr1PaymentPending) {
+      const { data: deferralEvents, error: deferralError } = await client
+        .from('nf_auditoria_eventos')
+        .select('evento,status_resultante,resposta_ml')
+        .eq('pedido_id', String(pedidoId))
+        .eq('evento', 'supplier_payment_deferred_by_user');
+      if (deferralError) {
+        return stepError(
+          steps,
+          'download_label_ml',
+          'Não foi possível validar o adiamento do PIX. Tente novamente.',
+          undefined,
+          503,
+          'technical',
+        );
+      }
+      if (!(deferralEvents || []).some((event) => matchesDeferredSupplierPayment(
+        event,
+        (paymentCompra as any)?.id,
+        dsliteId,
+      ))) {
+        return stepError(
+          steps,
+          'download_label_ml',
+          'Confirme o PIX da BKR1 e anexe o comprovante antes de enviar a etiqueta real.',
+          { actionRequired: 'confirm_supplier_payment', dsid: dsliteId },
+          422,
+          'business',
+        );
+      }
     }
 
     // 1) Verificar vínculo fiscal no ML (shipment invoice_data)

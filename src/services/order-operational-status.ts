@@ -7,6 +7,7 @@ import {
   DSLITE_PROTECTED_EXISTING_LABEL_EVENT,
   isDslitePlaceholderLabelSource,
   isDsliteProtectedExistingLabelError,
+  matchesDeferredSupplierPayment,
 } from '@/lib/dslite/label-state';
 
 const WHATSAPP_AUDIT_EVENTS = [
@@ -27,6 +28,7 @@ const DSLITE_LABEL_AUDIT_EVENTS = [
 const OPERATIONAL_AUDIT_EVENTS = [
   ...WHATSAPP_AUDIT_EVENTS,
   ...DSLITE_LABEL_AUDIT_EVENTS,
+  'supplier_payment_deferred_by_user',
 ] as const;
 
 type ServiceClient = ReturnType<typeof createServiceClient>;
@@ -68,6 +70,8 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
   dslite_label_source?: string | null;
   dslite_next_action?: string | null;
   dslite_next_action_label?: string | null;
+  dslite_id?: string | null;
+  compra_id?: string | null;
 }>(
   rows: T[],
   serviceClient: ServiceClient,
@@ -75,6 +79,7 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
   dslite_label_operational_status: DsliteLabelOperationalStatus;
   dslite_label_operational_updated_at: string | null;
   dslite_label_operational_error: string | null;
+  supplier_payment_deferred: boolean;
   whatsapp_label_status: WhatsappLabelOperationalStatus;
   whatsapp_label_updated_at: string | null;
   whatsapp_label_error: string | null;
@@ -103,6 +108,7 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
             : 'pending' as const,
       dslite_label_operational_updated_at: null,
       dslite_label_operational_error: null,
+      supplier_payment_deferred: false,
       whatsapp_label_status: 'not_sent' as const,
       whatsapp_label_updated_at: null,
       whatsapp_label_error: null,
@@ -112,6 +118,7 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
 
   const latestWhatsappByPedido = new Map<string, OperationalAuditRow>();
   const latestDsliteLabelByPedido = new Map<string, OperationalAuditRow>();
+  const deferredPaymentByPedido = new Map<string, OperationalAuditRow[]>();
   let auditReadFailed = false;
 
   for (let index = 0; index < pedidoIds.length; index += 100) {
@@ -144,6 +151,12 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
         && !latestDsliteLabelByPedido.has(pedidoId)
       ) {
         latestDsliteLabelByPedido.set(pedidoId, event);
+      }
+      if (event.evento === 'supplier_payment_deferred_by_user') {
+        deferredPaymentByPedido.set(pedidoId, [
+          ...(deferredPaymentByPedido.get(pedidoId) || []),
+          event,
+        ]);
       }
     }
   }
@@ -193,6 +206,9 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
       dslite_label_operational_status: dsliteLabelOperationalStatus,
       dslite_label_operational_updated_at: dsliteLabelEvent?.created_at || null,
       dslite_label_operational_error: String(dsliteLabelResponse.error || '').trim() || null,
+      supplier_payment_deferred: operationalPedidoIds.some((id) =>
+        (deferredPaymentByPedido.get(id) || []).some((event) =>
+          matchesDeferredSupplierPayment(event, row.compra_id, row.dslite_id))),
       whatsapp_label_status: whatsappEvent
         ? mapWhatsappStatus(whatsappEvent)
         : auditReadFailed

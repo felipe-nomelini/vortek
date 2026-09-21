@@ -1,6 +1,27 @@
 export const DSLITE_PROTECTED_EXISTING_LABEL_EVENT =
   'ml_label_replacement_skipped_protected_order' as const;
 
+export function matchesDeferredSupplierPayment(
+  event: {
+    evento?: unknown;
+    status_resultante?: unknown;
+    resposta_ml?: unknown;
+  },
+  compraId: unknown,
+  dsliteId: unknown,
+): boolean {
+  const response = event.resposta_ml && typeof event.resposta_ml === 'object'
+    && !Array.isArray(event.resposta_ml)
+    ? event.resposta_ml as Record<string, unknown>
+    : null;
+  return event.evento === 'supplier_payment_deferred_by_user'
+    && event.status_resultante === 'continued_pending'
+    && Boolean(String(compraId || '').trim())
+    && Boolean(String(dsliteId || '').trim())
+    && String(response?.compra_id || '').trim() === String(compraId).trim()
+    && String(response?.dslite_id || '').trim() === String(dsliteId).trim();
+}
+
 export function isDslitePlaceholderLabelSource(value: unknown): boolean {
   return String(value || '').trim().startsWith('placeholder_release_window');
 }
