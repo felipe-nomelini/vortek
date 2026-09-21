@@ -62,7 +62,7 @@ test('BNT-D07 oferece filas rápidas e filtros remotos avançados', () => {
   }
   assert.match(page, /setPriceField\(view === 'margem_risco' \? 'profit' : 'cost'\)/);
   assert.match(page, /setPriceMax\(view === 'margem_risco' \? 0 : null\)/);
-  assert.match(page, /Buscar por produto, SKU, GTIN ou fornecedor/);
+  assert.match(page, /Buscar por produto, SKU, anúncio ML, GTIN ou fornecedor/);
   assert.match(page, /Mais filtros/);
   assert.match(page, /params\.set\('fornecedores'/);
   assert.match(page, /params\.set\('ml_status'/);

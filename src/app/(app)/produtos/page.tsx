@@ -1618,7 +1618,7 @@ export default function ProductsPage() {
       <section className={styles.filterBar}>
         <Input
           className={styles.searchInput}
-          placeholder="Buscar por produto, SKU, GTIN ou fornecedor"
+          placeholder="Buscar por produto, SKU, anúncio ML, GTIN ou fornecedor"
           prefix={<SearchOutlined />}
           value={search}
           onChange={event => setSearch(event.target.value)}

@@ -19,6 +19,31 @@ export type ProductPricingQuery = {
   page: number; pageSize: number;
 };
 
+/** Resolve an exact Mercado Livre item ID to its locally linked product. */
+export async function resolveListingProductSearch(client: SupabaseClient<Database>, search: string) {
+  const itemId = search.trim().toUpperCase();
+  if (!/^MLB\d+$/.test(itemId)) return null;
+  const [listings, snapshots, pointers] = await Promise.all([
+    client.from('anuncios_ml').select('produto_id').eq('ml_item_id', itemId),
+    client.from('catalogo_ml_snapshot').select('produto_id').eq('ml_item_id', itemId),
+    client.from('produtos').select('id').eq('ml_item_id', itemId),
+  ]);
+  if (listings.error || snapshots.error || pointers.error) throw new Error('Falha ao localizar o anúncio');
+  const productIds = new Set([
+    ...(listings.data || []).map(row => row.produto_id),
+    ...(snapshots.data || []).map(row => row.produto_id),
+    ...(pointers.data || []).map(row => row.id),
+  ].filter((id): id is string => Boolean(id)));
+  if (productIds.size > 1) throw new Error('Anúncio vinculado a produtos divergentes');
+  const productId = [...productIds][0];
+  if (!productId) return { kind: 'missing' as const };
+  const product = await client.from('produtos').select('id,sku').eq('id', productId).maybeSingle();
+  if (product.error) throw new Error('Falha ao localizar o produto do anúncio');
+  return product.data?.sku
+    ? { kind: 'linked' as const, productId, sku: product.data.sku }
+    : { kind: 'missing' as const };
+}
+
 /** Filtros e totais econômicos pertencem ao conjunto inteiro, nunca à página visível. */
 export function selectPricedProducts(rows: Row[], query: ProductPricingQuery) {
   const view = (row: Row) => pricingView(row.product.pricing);
@@ -70,11 +95,13 @@ export function selectPricedProducts(rows: Row[], query: ProductPricingQuery) {
 
 export async function queryPricedProducts(client: SupabaseClient<Database>, query: ProductPricingQuery,
   requestContext: PricingRequestContext) {
+  const listingSearch = await resolveListingProductSearch(client, query.search);
+  if (listingSearch?.kind === 'missing') return selectPricedProducts([], query);
   const rows: Row[] = [];
   const seen = new Set<string>();
   for (let page = 1; ; page++) {
     const result = await client.rpc('search_produtos_paginated', {
-      p_search: query.search || null, p_supplier_dslite_ids: query.supplierIds,
+      p_search: listingSearch?.sku || query.search || null, p_supplier_dslite_ids: query.supplierIds,
       p_include_internal: query.includeInternal, p_product_active_status: query.active,
       p_ml_status: query.mlStatus || null, p_estoque: null,
       p_page: page, p_page_size: 100, p_sort_by: 'sku', p_sort_order: 'asc',
@@ -84,7 +111,15 @@ export async function queryPricedProducts(client: SupabaseClient<Database>, quer
     const batch = payload?.data || [];
     if (!batch.length) break;
     if (batch.some(row => seen.has(row.product.id))) throw new Error('A lista mudou durante a consulta; atualize os filtros');
-    const ids = batch.map(row => row.product.id);
+    batch.forEach(row => seen.add(row.product.id));
+    const matchingBatch = listingSearch?.kind === 'linked'
+      ? batch.filter(row => row.product.id === listingSearch.productId)
+      : batch;
+    if (!matchingBatch.length) {
+      if (batch.length < 100) break;
+      continue;
+    }
+    const ids = matchingBatch.map(row => row.product.id);
     const [listings, capacities, kitSupplySources] = await Promise.all([
       loadProductMlListings(client, ids), loadProductFulfillmentCapacities(client, ids),
       loadKitSupplySources(client, ids, { operationalSupplierIds: requestContext.operational }),
@@ -95,9 +130,8 @@ export async function queryPricedProducts(client: SupabaseClient<Database>, quer
         currentPriceCents: listing.price == null ? null : Math.round(listing.price * 100),
         marketContextKey: `listing:${listing.itemId}:unquoted` }] as const] : [];
     }));
-    const pricing = await loadProductPricing(client, batch.map(row => row.product), { requestContext, evidence });
-    for (const row of batch) {
-      seen.add(row.product.id);
+    const pricing = await loadProductPricing(client, matchingBatch.map(row => row.product), { requestContext, evidence });
+    for (const row of matchingBatch) {
       const capacity = capacities.get(row.product.id);
       if (!capacity) throw new Error('Capacidade operacional ausente');
       const kitSource = kitSupplySources.get(row.product.id);
