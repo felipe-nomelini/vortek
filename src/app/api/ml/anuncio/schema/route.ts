@@ -23,7 +23,7 @@ import {
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
 import { loadOperationalDropshippingSupplierIds } from "@/lib/dslite/supplier-policy";
-import { resolveGtinForMlListing } from "@/lib/produto-kits";
+import { kitGtinAbsenceReason } from "@/lib/ml-kit-gtin-reason";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 import { mergeMlAttributePrefill, normalizeMlIdentityValue } from "@/lib/ml-listing-identity";
 
@@ -345,13 +345,6 @@ export async function POST(req: Request) {
       );
     }
 
-    const gtinForMl = await resolveGtinForMlListing(
-      supabase,
-      String(produto.sku || ""),
-      produto.gtin,
-    );
-    const produtoForMl = gtinForMl ? { ...produto, gtin: gtinForMl } : produto;
-
     const { data: supplierOffers, error: supplierOffersError } = await supabase
       .from("produto_fornecedor_ofertas")
       .select(
@@ -362,6 +355,7 @@ export async function POST(req: Request) {
     if (supplierOffersError) return NextResponse.json({ error: 'Não foi possível consultar evidências do fornecedor.' }, { status: 502 });
     const kit = await loadMlIdentityKit(supabase, produtoId);
     const attrs = (await getCategoryAttributes(categoriaId)) || [];
+    const kitWithoutGtin = kit.status === 'ready' && !normalizeStr(produto.gtin);
     const requiredAttributes = attrs.filter(
       (a: any) =>
         (a.tags?.required || a.tags?.catalog_required) && !a.tags?.fixed,
@@ -382,11 +376,11 @@ export async function POST(req: Request) {
     })).get(produto.id)!;
     const suggestedPrice = pricing.target.ok ? pricing.target.priceCents / 100 : null;
 
-    const predictionByAttr = await predictionAttributes(categoriaId, produtoForMl);
+    const predictionByAttr = await predictionAttributes(categoriaId, produto);
 
     const prefillAttributes = attrs.map((attr: any) => {
       const attrId = String(attr.id || "").toUpperCase();
-      const ruleBasedValue = applyRuleBasedAttributeValue(attr, produtoForMl);
+      const ruleBasedValue = applyRuleBasedAttributeValue(attr, produto);
       const mustKeepLocalPackValue = [
         "SALE_FORMAT",
         "UNITS_PER_PACK",
@@ -395,21 +389,29 @@ export async function POST(req: Request) {
       const trustedCriticalValue = isMlCriticalAttributeId(attrId)
         ? resolveTrustedMlCriticalValue(attrId, produto, supplierOffers || [], operationalSupplierIds, kit, attrs)
         : null;
-      const pre = isMlCriticalAttributeId(attrId)
-        ? trustedCriticalValue
-          ? pickAllowedValue(attr, trustedCriticalValue)
-          : {}
-        : mergeMlAttributePrefill({
+      const kitGtinReason = kitGtinAbsenceReason({
+        kitStatus: kit.status, productGtin: produto.gtin, attribute: attr,
+      });
+      let pre: { value_id?: string; value_name?: string };
+      if (attrId === 'GTIN' && kitWithoutGtin) {
+        pre = {};
+      } else if (kitGtinReason) {
+        pre = kitGtinReason;
+      } else if (isMlCriticalAttributeId(attrId)) {
+        pre = trustedCriticalValue ? pickAllowedValue(attr, trustedCriticalValue) : {};
+      } else {
+        pre = mergeMlAttributePrefill({
             // Predição ML é apenas preenchimento auxiliar. Evidência local e
             // regra derivada do produto sempre têm precedência.
             prediction: predictionByAttr.get(attrId),
-            initial: initialAttributeValue(attr, produtoForMl),
+            initial: initialAttributeValue(attr, produto),
             ruleBased: ruleBasedValue,
             strictEvidence,
             // ML prediction often defaults pack attributes to one unit. For a
             // kit, the quantity parsed from the local product is authoritative.
             keepRuleBased: mustKeepLocalPackValue,
-          });
+        });
+      }
       if (isInvalidLiteralValue(pre.value_name) && !pre.value_id) {
         delete pre.value_name;
       }
@@ -417,7 +419,7 @@ export async function POST(req: Request) {
         id: attr.id,
         name: attr.name,
         value_type: attr.value_type,
-        required: Boolean(attr.tags?.required || attr.tags?.catalog_required),
+        required: Boolean(attr.tags?.required || attr.tags?.catalog_required || kitGtinReason),
         values: (attr.values || [])
           .slice(0, 100)
           .map((v: any) => ({ id: v.id, name: v.name })),
@@ -431,7 +433,7 @@ export async function POST(req: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title: produtoForMl.nome,
+        title: produto.nome,
         category_id: categoriaId,
         price: suggestedPrice,
         currency_id: "BRL",
@@ -439,7 +441,7 @@ export async function POST(req: Request) {
         buying_mode: "buy_it_now",
         condition: "new",
         listing_type_id: listingType,
-        description: { plain_text: buildDescription(produtoForMl) },
+        description: { plain_text: buildDescription(produto) },
         attributes: prefillAttributes
           .filter((attr) => attr.value_id || attr.value_name)
           .map((attr) => ({
@@ -501,13 +503,13 @@ export async function POST(req: Request) {
         fiscal_fields: {
           ncm: produto.ncm || "",
           cest: produto.cest || "",
-          gtin: produtoForMl.gtin || "",
+          gtin: produto.gtin || "",
           origem_fiscal: produto.origem_fiscal || "0",
           csosn: produto.csosn || "",
         },
         conditional_required_attributes: Array.from(conditionalRequiredIds),
         prefill: {
-          description: warrantyDescription(buildDescription(produtoForMl)),
+          description: warrantyDescription(buildDescription(produto)),
           base_price: suggestedPrice,
           listing_type: listingType,
           seller_id: me?.id || null,
