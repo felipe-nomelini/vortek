@@ -33,6 +33,12 @@ O cliente HTTP limita as requisições a um intervalo mínimo de um segundo no p
 
 Fonte do contrato: [Swagger triangular da Evolusom](https://api2.evolusom.com.br/v1/triangular/docs#/).
 
+## Liberação pontual da venda 2000018567229898 em 22/09/2026
+
+A compra `f004acd7-cad6-4e34-b963-aafd9f28dd5e` permanecia em `evolusom_request_state=uncertain`, `status=criacao_incerta`, com código antigo `BNT-2000018567229898` e sem número remoto. A primeira tentativa registrada foi rejeitada com HTTP 400; a tentativa posterior com código numérico de 16 dígitos não preservou o corpo da resposta. A consulta de status da Evolusom por esse código de 16 dígitos falhou por valor fora do intervalo de `integer`; a consulta pelo próximo código de oito dígitos, `87229898`, retornou ausência de pedido. A inferência operacional foi que não havia pedido remoto criado por essas tentativas. A API não ofereceu uma listagem completa para comprovar ausência por outros identificadores.
+
+Após confirmar o alvo produtivo `.162`, ausência de job de criação em andamento, ausência de colisão local do código novo e preservar uma cópia privada verificável do estado anterior, somente essa linha de `compras` mudou de `uncertain`/`criacao_incerta` para `rejected`/`erro_criacao`. O código histórico, a NF-e, a etiqueta, o rastreio, o pedido de venda e os jobs permaneceram intactos. Read-back confirmou a compra apta à tentativa manual existente, sem número remoto. A nova tentativa calculará `87229898` e usará a etiqueta real já armazenada. Nenhum POST ou mensagem foi disparado durante a liberação. Passaram 20 testes direcionados de reserva, retomada e projeção da ação de criação.
+
 ## Registro da preparação de 18/09/2026
 
 - O banco `192.168.1.162` recebeu somente a migration `20260918170000`; read-back confirmou quatro colunas novas em `compras`, uma em `pedidos`, `dsid` anulável e zero compras diretas criadas.
