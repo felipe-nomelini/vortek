@@ -12,6 +12,7 @@ import { shouldSupplierOfferBeInactiveByCost } from "@/lib/product-activity";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
 import { isEvolusomAccessError } from "@/services/evolusom";
+import { resolveEvolusomOfferProduct } from "@/lib/sync/evolusom-offer-link";
 
 export const maxDuration = 300;
 
@@ -544,22 +545,35 @@ export async function POST(req: Request) {
           const gtinMatches = String(row.gtin || "").trim()
             ? productsByGtin.get(String(row.gtin || "").trim()) || []
             : [];
-          const matchedByGtin = gtinMatches[0] || null;
-          const resolvedProductId = String(
-            existingOffer?.produto_id ||
-              matchedByGtin?.id ||
-              legacyProduct?.id ||
-              "",
-          ).trim();
-
-          let productId = resolvedProductId;
-          const resolvedProductActive =
-            existingOffer?.product?.ativo ??
-            matchedByGtin?.ativo ??
-            legacyProduct?.ativo;
-          if (productId && resolvedProductActive === false) {
+          const directLink = directEvolusomSync
+            ? resolveEvolusomOfferProduct({
+                existingOffer,
+                supplierProduct: legacyProduct,
+                gtinProducts: gtinMatches,
+              })
+            : null;
+          if (directLink?.gtinConflict) {
+            errors.push({
+              code: "catalog_gtin_ambiguous",
+              message: "GTIN corresponde a mais de um produto; oferta não vinculada",
+              context: {
+                fornecedorId,
+                page,
+                dslite_produto_id: row.dslite_produto_id,
+                gtin: row.gtin,
+                productIds: gtinMatches.map((product) => String(product.id)),
+              },
+            });
             continue;
           }
+          const matchedByGtin = gtinMatches[0] || null;
+          let productId = directLink
+            ? String(directLink.productId || "").trim()
+            : String(existingOffer?.produto_id || matchedByGtin?.id || legacyProduct?.id || "").trim();
+          const resolvedProductActive = directLink
+            ? directLink.productActive
+            : (existingOffer?.product?.ativo ?? matchedByGtin?.ativo ?? legacyProduct?.ativo) !== false;
+          if (productId && !resolvedProductActive && !directEvolusomSync) continue;
 
           if (!productId) {
             const productKey = String(row.gtin || "").trim()
@@ -595,7 +609,7 @@ export async function POST(req: Request) {
               productKeysToCreate.add(productKey);
               productRowsToCreate.push(insertPayload);
             }
-          } else {
+          } else if (resolvedProductActive) {
             touchedProductIds.add(productId);
           }
 
@@ -618,7 +632,7 @@ export async function POST(req: Request) {
               : `dslite:${identityKey}`,
             custo: Number(row.custo || 0),
             estoque: Number(row.estoque || 0),
-            ativo: !shouldSupplierOfferBeInactiveByCost(
+            ativo: resolvedProductActive && !shouldSupplierOfferBeInactiveByCost(
               row.custo,
               commercial.inactiveCostThreshold,
             ),

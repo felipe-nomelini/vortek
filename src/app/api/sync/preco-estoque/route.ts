@@ -452,18 +452,19 @@ export async function POST(req: Request) {
           continue;
         }
 
-        if ((existingOffer?.product?.ativo ?? legacyProduct?.ativo) === false) recordsUpdatedInactive += 1;
+        const productActive = (existingOffer?.product?.ativo ?? legacyProduct?.ativo) !== false;
+        if (!productActive) recordsUpdatedInactive += 1;
 
         const inactiveOfferByCost = shouldSupplierOfferBeInactiveByCost(
           row.custo,
           inactiveCostThreshold,
         );
         if (inactiveOfferByCost) {
-          productsWithHighCostOffer.add(productId);
+          if (productActive || !directEvolusomSync) productsWithHighCostOffer.add(productId);
           offersInactivatedByCost += 1;
         }
 
-        touchedProductIds.add(productId);
+        if (productActive || !directEvolusomSync) touchedProductIds.add(productId);
         offerUpserts.push({
           produto_id: productId,
           dslite_fornecedor_id: targetFornecedor,
@@ -474,7 +475,7 @@ export async function POST(req: Request) {
           sku_fornecedor: String(row.sku || '').trim(),
           custo: normalizeCost(row.custo),
           estoque: normalizeStock(row.estoque),
-          ativo: !inactiveOfferByCost,
+          ativo: !inactiveOfferByCost && (productActive || !directEvolusomSync),
           prioridade: 100,
           payment_mode:
             existingOffer?.payment_mode ||
@@ -502,7 +503,7 @@ export async function POST(req: Request) {
         for (let from = 0; ; from += 1000) {
           const { data: stalePage, error: staleError } = await client
             .from('produto_fornecedor_ofertas')
-            .select('produto_id,dslite_fornecedor_id,dslite_produto_id,fornecedor_nome,nome,sku_oferta,sku_fornecedor,custo,prioridade,payment_mode,last_sync_at')
+            .select('produto_id,dslite_fornecedor_id,dslite_produto_id,fornecedor_nome,nome,sku_oferta,sku_fornecedor,custo,prioridade,payment_mode,last_sync_at,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
             .eq('dslite_fornecedor_id', '133')
             .or(`last_sync_at.is.null,last_sync_at.lt.${cycleStartedAt}`)
             .range(from, from + 999);
@@ -530,8 +531,10 @@ export async function POST(req: Request) {
           if (!dsliteProdutoId || currentPageProductIds.has(dsliteProdutoId)) continue;
           const productId = String(staleOffer.produto_id || '').trim();
           if (!productId) continue;
-          touchedProductIds.add(productId);
-          missingEvolusomProductIds.add(productId);
+          if (staleOffer.product?.ativo !== false) {
+            touchedProductIds.add(productId);
+            missingEvolusomProductIds.add(productId);
+          }
           offerUpserts.push({
             produto_id: productId,
             dslite_fornecedor_id: '133',
@@ -552,6 +555,7 @@ export async function POST(req: Request) {
       }
 
       const successfullyUpsertedProductIds = new Set<string>();
+      let successfullyUpsertedOfferRows = 0;
 
       if (offerUpserts.length > 0) {
         const { error: offerUpsertError } = await client
@@ -581,13 +585,14 @@ export async function POST(req: Request) {
             }
 
             const productId = String(offerUpsert.produto_id || '').trim();
-            if (productId) {
+            if (productId && touchedProductIds.has(productId)) {
               successfullyUpsertedProductIds.add(productId);
-              recordsUpdatedSeen += 1;
             }
+            successfullyUpsertedOfferRows += 1;
+            recordsUpdatedSeen += 1;
           }
 
-          if (successfullyUpsertedProductIds.size === 0) {
+          if (successfullyUpsertedOfferRows === 0) {
             fatalSyncError = true;
             errors.push({
               code: 'price_offer_upsert_failed',

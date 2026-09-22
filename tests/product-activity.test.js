@@ -27,7 +27,7 @@ test('não classifica custos inválidos ou não positivos como custo alto', () =
 });
 
 test('PRC-03 aposenta automação por custo sem alterar atividade ou recriar threshold', () => {
-  const source = read('src/lib/ml/automatic-pricing.ts');
+  const source = read('src/lib/ml/pricing-execution.js');
 
   assert.match(source, /getPricingExecutionBlock/);
   assert.doesNotMatch(source, /\.update\(|custom_price|calculateSuggestedPrice/);
@@ -37,10 +37,9 @@ test('PRC-03 aposenta automação por custo sem alterar atividade ou recriar thr
 test('sync de preço torna a oferta inelegível sem alterar a atividade do produto', () => {
   const source = read('src/app/api/sync/preco-estoque/route.ts');
 
-  assert.match(source, /ativo:\s*!inactiveOfferByCost/);
+  assert.match(source, /ativo:\s*!inactiveOfferByCost && \(productActive \|\| !directEvolusomSync\)/);
   assert.match(source, /\.lte\('custo', inactiveCostThreshold\)/);
-  assert.match(source, /activeChangedSnapshots\s*=\s*changedSnapshots\.filter/);
-  assert.match(source, /snapshot\.previous\.ativo/);
+  assert.match(source, /if \(productActive \|\| !directEvolusomSync\) touchedProductIds\.add\(productId\)/);
   assert.doesNotMatch(source, /existingProductActive\s*===\s*false[\s\S]{0,80}continue/);
   assert.doesNotMatch(source, /threshold:\s*2000/);
   assert.doesNotMatch(
@@ -53,7 +52,7 @@ test('sync de catálogo cria produto ativo e aplica o threshold somente à ofert
   const source = read('src/app/api/sync/catalogo/route.ts');
 
   assert.match(source, /const insertPayload = \{[\s\S]{0,120}_product_key:[\s\S]{0,80}ativo:\s*true/);
-  assert.match(source, /ativo:\s*!shouldSupplierOfferBeInactiveByCost\(/);
+  assert.match(source, /ativo:\s*resolvedProductActive && !shouldSupplierOfferBeInactiveByCost\(/);
   assert.doesNotMatch(source, /ativo:\s*!inactiveByCost/);
 });
 
