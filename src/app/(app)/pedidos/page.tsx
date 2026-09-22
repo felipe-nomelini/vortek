@@ -134,6 +134,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     dslite_status: item.dslite_status,
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
     dslite_label_source: item.dslite_label_source || null,
+    supplier_label_delivered: item.supplier_label_delivered ?? null,
     compra_id: item.compra_id || null,
     compra_status: item.compra_status || null,
     compra_status_dslite: item.compra_status_dslite || null,
@@ -278,7 +279,7 @@ function getPrimaryOrderAction(actions: OrderAction[], order: Order, now: number
     internal_shipping: 'direct_shipping',
   };
   const whatsappRequired = needsRealLabelWhatsapp(order, now)
-    && ['not_sent', 'test_sent', 'failed'].includes(String(order.whatsapp_label_status || 'not_sent'));
+    && ['not_sent', 'test_sent', 'sent_unverified', 'failed'].includes(String(order.whatsapp_label_status || 'not_sent'));
   const evolusomPixPending = Boolean(order.evolusom_order_id
     && order.supplier_payment_mode === 'prepaid_pix'
     && order.supplier_payment_status === 'pending');

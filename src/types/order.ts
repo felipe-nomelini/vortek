@@ -81,6 +81,7 @@ export type PedidoOperacionalApiDto = Omit<PedidoRow, 'fulfillment_source' | 'lu
   supplier_payment_mode?: SupplierPaymentMode | null;
   supplier_payment_status?: string | null;
   supplier_payment_deferred: boolean;
+  supplier_label_delivered?: boolean | null;
   supplier_payment_amount?: number | null;
   supplier_settlement_id?: string | null;
   supplier_payment_receipt_path?: string | null;
@@ -236,6 +237,7 @@ export interface Order {
   dslite_status?: string | null;
   dslite_etiqueta_enviada?: boolean;
   dslite_label_source?: string | null;
+  supplier_label_delivered?: boolean | null;
   compra_id?: string | null;
   compra_status?: string | null;
   compra_status_dslite?: string | null;

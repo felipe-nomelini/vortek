@@ -9,16 +9,16 @@ const operationalStatus = load('src/services/order-operational-status.ts', {
   '@/lib/supabase': {},
 });
 
-function clientWithEvents(events) {
+function clientWithEvents(events, labels = []) {
   return {
     from(table) {
-      assert.equal(table, 'nf_auditoria_eventos');
+      assert.ok(['nf_auditoria_eventos', 'pedidos'].includes(table));
       const query = {
         select() { return this; },
         in() { return this; },
         order() { return this; },
         then(resolve) {
-          return Promise.resolve({ data: events, error: null }).then(resolve);
+          return Promise.resolve({ data: table === 'pedidos' ? labels : events, error: null }).then(resolve);
         },
       };
       return query;
@@ -169,7 +169,7 @@ test('fonte genérica persistida satisfaz DSLite sem depender de auditoria', asy
   assert.equal(result.whatsapp_label_status, 'not_sent');
 });
 
-test('etiqueta real enviada da Evolusom encerra a espera pela etiqueta do ML', async () => {
+test('entrega real confirmada encerra a espera da Evolusom, independentemente da auditoria', async () => {
   const row = baseRow({
     evolusom_order_id: 63012097,
     dslite_etiqueta_enviada: true,
@@ -184,10 +184,16 @@ test('etiqueta real enviada da Evolusom encerra a espera pela etiqueta do ML', a
     resposta_ml: { test_placeholder_label: false },
     created_at: '2026-09-22T04:30:52.426Z',
   };
+  const deliveredLabel = [{ id: row.id, label_type: 'real', label_delivery_channel: 'whatsapp', label_delivered_at: event.created_at }];
   const [pending] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([]));
-  const [sent] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([event]));
+  const [unverified] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([event]));
+  const [sent] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([], deliveredLabel));
   assert.equal(pending.dslite_next_action, 'wait_ml_label');
+  assert.equal(unverified.dslite_next_action, 'wait_ml_label');
+  assert.equal(unverified.whatsapp_label_status, 'sent_unverified');
+  assert.equal(unverified.supplier_label_delivered, false);
   assert.equal(sent.whatsapp_label_status, 'sent');
+  assert.equal(sent.supplier_label_delivered, true);
   assert.equal(sent.dslite_next_action, 'done');
   assert.equal(sent.dslite_next_action_label, 'OK');
 });

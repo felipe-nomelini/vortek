@@ -154,6 +154,7 @@ test('compra Evolusom e etiqueta real enviada avançam ao envio sem ID DSLite', 
     dslite_next_action: 'done',
     dslite_label_operational_status: 'generic_sent',
     whatsapp_label_status: 'sent',
+    supplier_label_delivered: true,
     notaFiscal: { emitida: true },
     ml_label_storage_path: '2000018568398610/48066688456.pdf',
   });
@@ -162,4 +163,8 @@ test('compra Evolusom e etiqueta real enviada avançam ao envio sem ID DSLite', 
   assert.deepEqual([progress.completedSteps, progress.currentLabel, progress.nextLabel],
     [4, 'Envio', 'Despache o pedido']);
   assert.deepEqual(getOperationalUrgencyReasons(order, 60, at), []);
+  const unverified = { ...order, supplier_label_delivered: false, whatsapp_label_status: 'sent_unverified' };
+  assert.deepEqual([getOrderSalesProgress(unverified, at).completedSteps, getOrderSalesProgress(unverified, at).currentLabel],
+    [3, 'Etiqueta']);
+  assert.equal(getOperationalUrgencyReasons(unverified, 60, at).includes('Etiqueta real ainda não enviada por WhatsApp'), true);
 });

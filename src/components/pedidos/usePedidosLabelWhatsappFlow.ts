@@ -156,12 +156,7 @@ export function usePedidosLabelWhatsappFlow({
 
         setSendingWhatsappLabel(false);
         if (state === 'success' || state === 'warning') {
-          updateOrder(whatsappOrder, {
-            whatsapp_label_status: whatsappUsePlaceholderLabel ? 'test_sent' : 'sent',
-            whatsapp_label_updated_at: new Date().toISOString(),
-            whatsapp_label_error: null,
-            whatsapp_label_next_retry_at: null,
-          });
+          void refreshOrders();
           messageApi.success(statusData.data?.message || 'Etiqueta enviada por WhatsApp.');
           setWhatsappOrder(null);
           setWhatsappUsePlaceholderLabel(false);
@@ -207,7 +202,7 @@ export function usePedidosLabelWhatsappFlow({
       messageApi.error(userSafeMessage(error.message, 'Não foi possível enviar a etiqueta pelo WhatsApp. Tente novamente.'));
       setSendingWhatsappLabel(false);
     }
-  }, [messageApi, updateOrder, whatsappOrder, whatsappPhone, whatsappUsePlaceholderLabel]);
+  }, [messageApi, refreshOrders, updateOrder, whatsappOrder, whatsappPhone, whatsappUsePlaceholderLabel]);
 
   const closeWhatsappProgress = useCallback(() => {
     stopWhatsappPolling();

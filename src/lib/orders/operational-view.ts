@@ -7,6 +7,7 @@ export type OrdersOperationalView =
 
 export type WhatsappLabelOperationalStatus =
   | 'sent'
+  | 'sent_unverified'
   | 'test_sent'
   | 'pending'
   | 'on_hold'
@@ -130,6 +131,7 @@ export interface OperationalOrderLike {
   dslite_next_action_label?: string | null;
   dslite_label_operational_status?: DsliteLabelOperationalStatus | null;
   whatsapp_label_status?: WhatsappLabelOperationalStatus | null;
+  supplier_label_delivered?: boolean | null;
   fulfillment_source?: 'internal' | 'supplier' | null;
   has_split_fulfillment?: boolean | null;
   notaFiscal?: { emitida?: boolean | null } | null;
@@ -177,8 +179,10 @@ export function needsRealLabelWhatsapp(
   const whatsappStatus = String(order.whatsapp_label_status || '');
   const usesTemporaryDsliteLabel = dsliteLabelStatus === 'generic_sent'
     || dsliteLabelStatus === 'protected_existing';
-  const whatsappCompleted = whatsappStatus === 'sent'
-    || whatsappStatus === 'not_applicable';
+  const whatsappCompleted = order.supplier_label_delivered === null
+    || order.supplier_label_delivered === undefined
+    ? whatsappStatus === 'sent' || whatsappStatus === 'not_applicable'
+    : order.supplier_label_delivered;
   return usesTemporaryDsliteLabel
     && !whatsappCompleted
     && isMlLabelReleased(order, at);

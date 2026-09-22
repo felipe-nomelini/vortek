@@ -81,6 +81,7 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
   dslite_label_operational_updated_at: string | null;
   dslite_label_operational_error: string | null;
   supplier_payment_deferred: boolean;
+  supplier_label_delivered: boolean | null;
   whatsapp_label_status: WhatsappLabelOperationalStatus;
   whatsapp_label_updated_at: string | null;
   whatsapp_label_error: string | null;
@@ -110,6 +111,7 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
       dslite_label_operational_updated_at: null,
       dslite_label_operational_error: null,
       supplier_payment_deferred: false,
+      supplier_label_delivered: null,
       whatsapp_label_status: 'not_sent' as const,
       whatsapp_label_updated_at: null,
       whatsapp_label_error: null,
@@ -162,6 +164,27 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
     }
   }
 
+  const labelPedidoIds = Array.from(new Set(rows
+    .filter((row) => isDslitePlaceholderLabelSource(row.dslite_label_source) || row.evolusom_order_id)
+    .flatMap((row) => Array.isArray(row.operational_pedido_ids) && row.operational_pedido_ids.length > 0
+      ? row.operational_pedido_ids
+      : [row.id])
+    .map((id) => String(id || '').trim())
+    .filter(Boolean)));
+  const deliveredLabelByPedido = new Map<string, boolean>();
+  for (let index = 0; index < labelPedidoIds.length; index += 100) {
+    const { data, error } = await serviceClient.from('pedidos')
+      .select('id,label_type,label_delivery_channel,label_delivered_at')
+      .in('id', labelPedidoIds.slice(index, index + 100));
+    if (error) throw new Error(`Falha ao consultar entrega da etiqueta ao fornecedor: ${error.message}`);
+    for (const pedido of data || []) {
+      deliveredLabelByPedido.set(String(pedido.id),
+        pedido.label_type === 'real'
+        && pedido.label_delivery_channel === 'whatsapp'
+        && Boolean(pedido.label_delivered_at));
+    }
+  }
+
   return rows.map((row) => {
     const pedidoId = String(row.id || '');
     const operationalPedidoIds = Array.isArray(row.operational_pedido_ids) && row.operational_pedido_ids.length > 0
@@ -182,6 +205,9 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
     const dsliteLabelResponse = dsliteLabelEvent?.resposta_ml || {};
     const usesProviderShipping = row.dslite_label_source === 'dslite_paid_shipping';
     const usesPlaceholderLabel = isDslitePlaceholderLabelSource(row.dslite_label_source);
+    const supplierLabelDelivered = usesPlaceholderLabel || row.evolusom_order_id
+      ? operationalPedidoIds.every((id) => deliveredLabelByPedido.get(id) === true)
+      : null;
     const dsliteLabelOperationalStatus: DsliteLabelOperationalStatus = usesProviderShipping
       ? 'provider_shipping'
       : dsliteLabelEvent
@@ -199,27 +225,27 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
     ) && ['resume_dslite_flow', 'complete_dslite_label'].includes(
       String(row.dslite_next_action || ''),
     );
-    const closesEvolusomLabelAction = Boolean(row.evolusom_order_id)
-      && usesPlaceholderLabel
-      && whatsappEvent?.evento === 'whatsapp_label_send_success'
-      && whatsappResponse.test_placeholder_label !== true
+    const resolvesEvolusomLabelAction = Boolean(row.evolusom_order_id)
       && row.dslite_next_action === 'wait_ml_label';
+    const whatsappStatus = whatsappEvent ? mapWhatsappStatus(whatsappEvent)
+      : auditReadFailed ? 'unknown' : 'not_sent';
     return {
       ...row,
-      ...(closesObsoleteDsliteAction || closesEvolusomLabelAction
+      ...(closesObsoleteDsliteAction || (resolvesEvolusomLabelAction && supplierLabelDelivered)
         ? { dslite_next_action: 'done', dslite_next_action_label: 'OK' }
         : {}),
+      supplier_label_delivered: supplierLabelDelivered,
       dslite_label_operational_status: dsliteLabelOperationalStatus,
       dslite_label_operational_updated_at: dsliteLabelEvent?.created_at || null,
       dslite_label_operational_error: String(dsliteLabelResponse.error || '').trim() || null,
       supplier_payment_deferred: operationalPedidoIds.some((id) =>
         (deferredPaymentByPedido.get(id) || []).some((event) =>
           matchesDeferredSupplierPayment(event, row.compra_id, row.dslite_id || row.evolusom_order_id))),
-      whatsapp_label_status: whatsappEvent
-        ? mapWhatsappStatus(whatsappEvent)
-        : auditReadFailed
-          ? 'unknown'
-          : 'not_sent',
+      whatsapp_label_status: usesPlaceholderLabel && supplierLabelDelivered
+        ? 'sent'
+        : usesPlaceholderLabel && whatsappStatus === 'sent' && supplierLabelDelivered === false
+          ? 'sent_unverified'
+          : whatsappStatus,
       whatsapp_label_updated_at: whatsappEvent?.created_at || null,
       whatsapp_label_error: String(whatsappResponse.error || '').trim() || null,
       whatsapp_label_next_retry_at: String(whatsappResponse.next_retry_at || '').trim() || null,
