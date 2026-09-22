@@ -109,17 +109,19 @@ export default function SupplierDetailPage() {
   const summary = detail?.data.summary || null;
   const canManage = Boolean(role && hasPermission(role, 'suppliers.manage'));
 
-  const fetchDetail = useCallback(async () => {
+  const fetchDetail = useCallback(async (silent = false) => {
     if (!id) return;
-    setLoading(true);
-    setError(null);
+    if (!silent) {
+      setLoading(true);
+      setError(null);
+    }
     try {
       const response = await fetch(`/api/fornecedores/${encodeURIComponent(id)}`, { cache: 'no-store' });
       const payload = await response.json().catch(() => ({})) as Partial<FornecedorDetailResponse> & { error?: string };
       if (!response.ok || !payload.data) throw new Error(payload.error || 'Não foi possível carregar o fornecedor');
       setDetail(payload as FornecedorDetailResponse);
     } catch (requestError) {
-      setError(requestError instanceof Error ? requestError.message : 'Não foi possível carregar o fornecedor');
+      if (!silent) setError(requestError instanceof Error ? requestError.message : 'Não foi possível carregar o fornecedor');
     } finally {
       setLoading(false);
     }
@@ -127,6 +129,15 @@ export default function SupplierDetailPage() {
 
   useEffect(() => {
     void fetchDetail();
+    const refresh = () => {
+      if (document.visibilityState === 'visible') void fetchDetail(true);
+    };
+    const timer = window.setInterval(refresh, 60_000);
+    window.addEventListener('focus', refresh);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener('focus', refresh);
+    };
   }, [fetchDetail]);
 
   useEffect(() => {
@@ -276,7 +287,7 @@ export default function SupplierDetailPage() {
       values.push({ key: 'inactive', type: 'warning', title: 'Fornecedor inativo no Bentevi', description: 'O cadastro permanece disponível para consulta, mas não participa da operação atual.' });
     }
     if (supplier.syncHealth !== 'healthy') {
-      values.push({ key: 'sync', type: 'warning', title: 'Sincronização DSLite requer atenção', description: `Último registro: ${formatDateTime(supplier.lastSyncAt)}. Atualize o diretório de fornecedores para reconciliar os dados externos.` });
+      values.push({ key: 'sync', type: 'warning', title: `Sincronização ${supplier.syncSource === 'evolusom' ? 'Evolusom' : 'DSLite'} requer atenção`, description: `Último registro: ${formatDateTime(supplier.lastSyncAt)}. Confira a integração do fornecedor.` });
     }
     if (supplier.active && !supplier.phone.trim()) {
       values.push({ key: 'phone', type: 'warning', title: 'WhatsApp operacional não cadastrado', description: 'O envio automático de comprovante ao fornecedor depende de um telefone válido.' });
@@ -342,7 +353,7 @@ export default function SupplierDetailPage() {
 
       <section className={styles.hero}>
         <div className={styles.heroIdentity}>
-          <span className={styles.sourceLabel}>Cadastro sincronizado · DSLite</span>
+          <span className={styles.sourceLabel}>{supplier.syncSource === 'evolusom' ? 'Catálogo e preço/estoque · Evolusom' : 'Cadastro sincronizado · DSLite'}</span>
           <Title level={2}>{supplierName(supplier)}</Title>
           <p>{readValue(supplier.legalName)}</p>
           <div className={styles.heroMeta}><span>{formatDocument(supplier.document)}</span><span>Atualizado em {formatDateTime(supplier.lastSyncAt)}</span></div>
@@ -401,7 +412,7 @@ export default function SupplierDetailPage() {
           <dl className={styles.auditList}>
             <div><dt>Criado no Bentevi</dt><dd>{formatDateTime(supplier.createdAt)}</dd></div>
             <div><dt>Última alteração local</dt><dd>{formatDateTime(supplier.updatedAt)}</dd></div>
-            <div><dt>Última sincronização DSLite</dt><dd>{formatDateTime(supplier.lastSyncAt)}</dd></div>
+            <div><dt>Última sincronização {supplier.syncSource === 'evolusom' ? 'Evolusom' : 'DSLite'}</dt><dd>{formatDateTime(supplier.lastSyncAt)}</dd></div>
             <div><dt>Saúde da sincronização</dt><dd>{supplier.syncHealth === 'healthy' ? 'Dentro da frequência prevista' : 'Requer atenção'}</dd></div>
           </dl>
         </article>

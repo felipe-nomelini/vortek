@@ -55,7 +55,7 @@ test('BNT-D15 mantém sincronização e mudança de estado observáveis e contex
 test('API BNT-D15 exige leitura, usa DTO explícito e resumo global', () => {
   assert.match(route, /authorizeApiRequest\(request, 'purchases\.read'\)/);
   assert.match(route, /LIST_FIELDS = 'id,dslite_id,apelido,nome,cnpj,email,telefone,status_dslite,crossdocking,dropshipping,ativo,dropshipping_retired_at,dslite_ultima_sync'/);
-  assert.match(route, /SUMMARY_FIELDS = 'ativo,dslite_ultima_sync,status_dslite,crossdocking,dropshipping'/);
+  assert.match(route, /SUMMARY_FIELDS = 'dslite_id,ativo,dslite_ultima_sync,status_dslite,crossdocking,dropshipping'/);
   assert.doesNotMatch(route, /\.select\(['"]\*['"]\)/);
   assert.doesNotMatch(route, /payload_dslite|supplier_pix_key|endereco/);
   assert.match(route, /summary:/);

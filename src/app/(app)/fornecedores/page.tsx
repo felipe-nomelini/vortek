@@ -90,11 +90,11 @@ function formatExactDate(value: string | null): string {
   return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
 }
 
-function relativeDate(value: string | null): string {
+function relativeDate(value: string | null, nowMs: number): string {
   if (!value) return 'Nunca sincronizado';
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return 'Data desconhecida';
-  const minutes = Math.max(0, Math.floor((Date.now() - date.getTime()) / 60_000));
+  const minutes = Math.max(0, Math.floor((nowMs - date.getTime()) / 60_000));
   if (minutes < 1) return 'Agora';
   if (minutes < 60) return `Há ${minutes} min`;
   const hours = Math.floor(minutes / 60);
@@ -151,6 +151,7 @@ export default function FornecedoresPage() {
   const [dropshipping, setDropshipping] = useState('');
   const [freshness, setFreshness] = useState<FreshnessFilter>('');
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+  const [nowMs, setNowMs] = useState(() => Date.now());
   const [role, setRole] = useState<VortekRole | null>(null);
   const [syncing, setSyncing] = useState(false);
   const [syncFeedback, setSyncFeedback] = useState<SyncFeedback>(null);
@@ -168,10 +169,12 @@ export default function FornecedoresPage() {
       .catch(() => setRole(null));
   }, []);
 
-  const fetchSuppliers = useCallback(async () => {
+  const fetchSuppliers = useCallback(async (silent = false) => {
     const requestId = ++requestSequence.current;
-    setLoading(true);
-    setError(null);
+    if (!silent) {
+      setLoading(true);
+      setError(null);
+    }
 
     try {
       const params = new URLSearchParams({
@@ -200,7 +203,7 @@ export default function FornecedoresPage() {
       setUpdatedAt(new Date());
     } catch (cause) {
       if (requestId !== requestSequence.current) return;
-      setError(cause instanceof Error ? cause.message : 'Não foi possível carregar os fornecedores');
+      if (!silent) setError(cause instanceof Error ? cause.message : 'Não foi possível carregar os fornecedores');
     } finally {
       if (requestId === requestSequence.current) setLoading(false);
     }
@@ -218,6 +221,16 @@ export default function FornecedoresPage() {
 
   useEffect(() => {
     void fetchSuppliers();
+    const refresh = () => {
+      setNowMs(Date.now());
+      if (document.visibilityState === 'visible') void fetchSuppliers(true);
+    };
+    const timer = window.setInterval(refresh, 60_000);
+    window.addEventListener('focus', refresh);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener('focus', refresh);
+    };
   }, [fetchSuppliers]);
 
   const clearFilters = () => {
@@ -423,11 +436,11 @@ export default function FornecedoresPage() {
       sorter: true,
       sortOrder: getRemoteSortOrder('dslite_ultima_sync', sort),
       render: (_, supplier) => (
-        <Tooltip title={formatExactDate(supplier.dslite_ultima_sync)}>
+        <Tooltip title={formatExactDate(supplier.sync_last_at)}>
           <div className={styles.syncCell}>
             <Badge status={supplier.sync_health === 'healthy' ? 'success' : supplier.sync_health === 'attention' ? 'warning' : 'default'} />
-            <span>{relativeDate(supplier.dslite_ultima_sync)}</span>
-            <small>{supplier.sync_health === 'healthy' ? 'Dentro da frequência' : 'Sincronização requer atenção'}</small>
+            <span>{relativeDate(supplier.sync_last_at, nowMs)}</span>
+            <small>{supplier.sync_source === 'evolusom' ? 'Evolusom' : 'DSLite'} · {supplier.sync_health === 'healthy' ? 'Dentro da frequência' : 'Sincronização requer atenção'}</small>
           </div>
         </Tooltip>
       ),
@@ -499,8 +512,8 @@ export default function FornecedoresPage() {
       <header className={styles.header}>
         <div>
           <Title level={2}>Fornecedores</Title>
-          <Text>Capacidades, disponibilidade operacional e saúde da integração DSLite.</Text>
-          <small>{updatedAtLabel(updatedAt)} · Última sincronização: {relativeDate(summary.last_sync_at)}</small>
+          <Text>Capacidades, disponibilidade operacional e saúde das integrações de fornecedores.</Text>
+          <small>{updatedAtLabel(updatedAt)} · Última sincronização: {relativeDate(summary.last_sync_at, nowMs)}</small>
         </div>
         <div className={styles.headerActions}>
           <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchSuppliers()}>

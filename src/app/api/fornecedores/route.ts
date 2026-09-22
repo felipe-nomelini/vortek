@@ -7,11 +7,11 @@ import {
   getSaoPauloHour,
   getSyncTaskByKey,
 } from '@/lib/sync/registry';
+import { applySupplierSyncView, loadEvolusomSyncTimes, resolveSupplierSync } from '@/lib/sync/supplier-freshness';
 import type {
   FornecedorListItem,
   FornecedorSortKey,
   FornecedoresListResponse,
-  SupplierSyncHealth,
 } from '@/types/fornecedores';
 
 export const dynamic = 'force-dynamic';
@@ -20,7 +20,7 @@ export const revalidate = 0;
 const PAGE_SIZE_DEFAULT = 20;
 const PAGE_SIZE_MAX = 100;
 const LIST_FIELDS = 'id,dslite_id,apelido,nome,cnpj,email,telefone,status_dslite,crossdocking,dropshipping,ativo,dropshipping_retired_at,dslite_ultima_sync';
-const SUMMARY_FIELDS = 'ativo,dslite_ultima_sync,status_dslite,crossdocking,dropshipping';
+const SUMMARY_FIELDS = 'dslite_id,ativo,dslite_ultima_sync,status_dslite,crossdocking,dropshipping';
 
 const allowedSortColumns = new Set<FornecedorSortKey>([
   'dslite_id',
@@ -37,10 +37,10 @@ const allowedSortColumns = new Set<FornecedorSortKey>([
   'ativo',
 ]);
 
-type SupplierListRow = Omit<FornecedorListItem, 'activation_blocked' | 'sync_health'>;
+type SupplierListRow = Omit<FornecedorListItem, 'activation_blocked' | 'sync_health' | 'sync_last_at' | 'sync_source'>;
 type SupplierSummaryRow = Pick<
   SupplierListRow,
-  'ativo' | 'dslite_ultima_sync' | 'status_dslite' | 'crossdocking' | 'dropshipping'
+  'dslite_id' | 'ativo' | 'dslite_ultima_sync' | 'status_dslite' | 'crossdocking' | 'dropshipping'
 >;
 
 function positiveInteger(value: string | null, fallback: number): number {
@@ -56,13 +56,6 @@ function uniqueValues(rows: SupplierSummaryRow[], key: 'status_dslite' | 'crossd
   return Array.from(new Set(
     rows.map((row) => String(row[key] || '').trim()).filter(Boolean),
   )).sort((left, right) => left.localeCompare(right, 'pt-BR'));
-}
-
-function syncHealth(value: string | null, intervalMinutes: number): SupplierSyncHealth {
-  const health = evaluateScheduledTaskHealth({ intervalMinutes, lastRunAt: value });
-  if (health.state === 'healthy') return 'healthy';
-  if (health.state === 'stale') return 'attention';
-  return 'unknown';
 }
 
 export async function GET(request: Request) {
@@ -88,62 +81,51 @@ export async function GET(request: Request) {
     const task = getSyncTaskByKey('sync_dslite_fornecedores');
     const intervalMinutes = task ? getIntervalMinutesForTask(task, getSaoPauloHour()) : null;
     const effectiveIntervalMinutes = intervalMinutes || 120;
+    const evolusomTask = getSyncTaskByKey('sync_evolusom_preco_estoque');
+    const evolusomIntervalMinutes = evolusomTask
+      ? getIntervalMinutesForTask(evolusomTask, getSaoPauloHour()) || 2
+      : 2;
     const staleThresholdMinutes = evaluateScheduledTaskHealth({
       intervalMinutes: effectiveIntervalMinutes,
       lastRunAt: null,
     }).staleThresholdMinutes;
-    const staleCutoff = new Date(Date.now() - staleThresholdMinutes * 60_000).toISOString();
     const supabase = createServiceClient();
 
-    let countQuery = supabase.from('fornecedores').select('id', { count: 'exact', head: true });
     let dataQuery = supabase
       .from('fornecedores')
       .select(LIST_FIELDS)
       .order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false })
-      .range(start, end);
+      .range(0, 999);
 
     if (search) {
       const searchFilter = `dslite_id.ilike.%${search}%,apelido.ilike.%${search}%,nome.ilike.%${search}%,cnpj.ilike.%${search}%,email.ilike.%${search}%,telefone.ilike.%${search}%`;
-      countQuery = countQuery.or(searchFilter);
       dataQuery = dataQuery.or(searchFilter);
     }
     if (statusDslite) {
-      countQuery = countQuery.eq('status_dslite', statusDslite);
       dataQuery = dataQuery.eq('status_dslite', statusDslite);
     }
     if (crossdocking) {
-      countQuery = countQuery.eq('crossdocking', crossdocking);
       dataQuery = dataQuery.eq('crossdocking', crossdocking);
     }
     if (dropshipping) {
-      countQuery = countQuery.eq('dropshipping', dropshipping);
       dataQuery = dataQuery.eq('dropshipping', dropshipping);
     }
     if (operationalStatus === 'active') {
-      countQuery = countQuery.eq('ativo', true);
       dataQuery = dataQuery.eq('ativo', true);
     }
     if (operationalStatus === 'inactive') {
-      countQuery = countQuery.eq('ativo', false);
       dataQuery = dataQuery.eq('ativo', false);
     }
-    if (freshness === 'healthy') {
-      countQuery = countQuery.gte('dslite_ultima_sync', staleCutoff);
-      dataQuery = dataQuery.gte('dslite_ultima_sync', staleCutoff);
-    }
-    if (freshness === 'attention') {
-      const freshnessFilter = `dslite_ultima_sync.is.null,dslite_ultima_sync.lt.${staleCutoff}`;
-      countQuery = countQuery.or(freshnessFilter);
-      dataQuery = dataQuery.or(freshnessFilter);
-    }
 
-    const [countResult, dataResult, summaryResult] = await Promise.all([
-      countQuery,
+    const [dataResult, summaryResult, evolusomTimes] = await Promise.all([
       dataQuery,
       supabase.from('fornecedores').select(SUMMARY_FIELDS),
+      process.env.EVOLUSOM_DIRECT_ENABLED === 'true'
+        ? loadEvolusomSyncTimes(supabase)
+        : Promise.resolve(null),
     ]);
 
-    if (countResult.error || dataResult.error || summaryResult.error) {
+    if (dataResult.error || summaryResult.error) {
       return NextResponse.json(
         { error: 'Não foi possível carregar os fornecedores' },
         { status: 500, headers: { 'Cache-Control': 'no-store' } },
@@ -151,22 +133,37 @@ export async function GET(request: Request) {
     }
 
     const allRows = (summaryResult.data || []) as SupplierSummaryRow[];
-    const response: FornecedoresListResponse = {
-      data: ((dataResult.data || []) as SupplierListRow[]).map((supplier) => ({
+    const syncFor = (supplier: SupplierSummaryRow) => resolveSupplierSync({
+      supplierId: supplier.dslite_id || null,
+      dsliteLastSyncAt: supplier.dslite_ultima_sync,
+      evolusomTimes,
+      dsliteIntervalMinutes: effectiveIntervalMinutes,
+      evolusomIntervalMinutes,
+    });
+    const projectedRows = ((dataResult.data || []) as SupplierListRow[]).map((supplier) => {
+      const sync = syncFor(supplier);
+      return {
         ...supplier,
         activation_blocked: Boolean(supplier.dropshipping_retired_at),
-        sync_health: syncHealth(supplier.dslite_ultima_sync, effectiveIntervalMinutes),
-      })),
-      total: countResult.count || 0,
+        sync_last_at: sync.lastSyncAt,
+        sync_source: sync.source,
+        sync_health: sync.health,
+      } satisfies FornecedorListItem;
+    });
+    const filteredRows = applySupplierSyncView(projectedRows, freshness, sortBy, sortOrder);
+    const summarySync = allRows.map(syncFor);
+    const response: FornecedoresListResponse = {
+      data: filteredRows.slice(start, end + 1),
+      total: filteredRows.length,
       page,
       limit,
       summary: {
         total: allRows.length,
         active: allRows.filter((supplier) => supplier.ativo !== false).length,
         inactive: allRows.filter((supplier) => supplier.ativo === false).length,
-        sync_attention: allRows.filter((supplier) => syncHealth(supplier.dslite_ultima_sync, effectiveIntervalMinutes) !== 'healthy').length,
-        last_sync_at: allRows
-          .map((supplier) => supplier.dslite_ultima_sync)
+        sync_attention: summarySync.filter((sync) => sync.health !== 'healthy').length,
+        last_sync_at: summarySync
+          .map((sync) => sync.lastSyncAt)
           .filter((value): value is string => Boolean(value))
           .sort((left, right) => right.localeCompare(left))[0] || null,
       },

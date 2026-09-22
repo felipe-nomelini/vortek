@@ -28,6 +28,8 @@ export interface FornecedorListItem {
   ativo: boolean | null;
   dropshipping_retired_at: string | null;
   dslite_ultima_sync: string | null;
+  sync_last_at: string | null;
+  sync_source: 'dslite' | 'evolusom';
   activation_blocked: boolean;
   sync_health: SupplierSyncHealth;
 }
@@ -76,6 +78,7 @@ export interface FornecedorDetailItem {
   activationBlocked: boolean;
   syncHealth: SupplierSyncHealth;
   lastSyncAt: string | null;
+  syncSource: 'dslite' | 'evolusom';
   createdAt: string;
   updatedAt: string;
 }

@@ -55,7 +55,7 @@ test('API BNT-D16 retorna DTO explícito, resumo e saúde canônica', () => {
   assert.match(route, /authorizeApiRequest\(request, 'purchases\.read'\)/);
   assert.match(route, /supplierIdSchema = z\.string\(\)\.uuid\(\)/);
   assert.match(route, /supplierFields = 'id,dslite_id,apelido,nome,cnpj,email,telefone,endereco,supplier_pix_key,status_dslite,crossdocking,dropshipping,ativo,dropshipping_retired_at,dslite_ultima_sync,created_at,updated_at'/);
-  assert.match(route, /getSyncTaskByKey\('sync_dslite_fornecedores'\)/);
+  assert.match(route, /syncPolicy\('sync_dslite_fornecedores'\)/);
   assert.match(route, /evaluateScheduledTaskHealth/);
   assert.match(route, /count: 'exact', head: true/);
   assert.match(route, /purchaseCount, offerCount, activeOfferCount/);

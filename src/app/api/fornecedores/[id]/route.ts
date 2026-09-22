@@ -8,12 +8,12 @@ import {
   getSaoPauloHour,
   getSyncTaskByKey,
 } from '@/lib/sync/registry';
+import { loadEvolusomSyncTimes, resolveSupplierSync } from '@/lib/sync/supplier-freshness';
 import type { Database } from '@/types/database';
 import type {
   FornecedorDetailItem,
   FornecedorDetailResponse,
   FornecedorLocalUpdateResponse,
-  SupplierSyncHealth,
 } from '@/types/fornecedores';
 
 export const dynamic = 'force-dynamic';
@@ -35,14 +35,7 @@ const supplierFields = 'id,dslite_id,apelido,nome,cnpj,email,telefone,endereco,s
 
 type SupplierRow = Database['public']['Tables']['fornecedores']['Row'];
 
-function syncHealth(lastSyncAt: string | null, intervalMinutes: number): SupplierSyncHealth {
-  const health = evaluateScheduledTaskHealth({ intervalMinutes, lastRunAt: lastSyncAt });
-  if (health.state === 'healthy') return 'healthy';
-  if (health.state === 'stale') return 'attention';
-  return 'unknown';
-}
-
-function mapSupplier(row: SupplierRow, intervalMinutes: number): FornecedorDetailItem {
+function mapSupplier(row: SupplierRow, sync: ReturnType<typeof resolveSupplierSync>): FornecedorDetailItem {
   return {
     id: row.id,
     dsliteId: row.dslite_id,
@@ -58,8 +51,9 @@ function mapSupplier(row: SupplierRow, intervalMinutes: number): FornecedorDetai
     dropshipping: row.dropshipping,
     active: row.ativo !== false,
     activationBlocked: Boolean(row.dropshipping_retired_at),
-    syncHealth: syncHealth(row.dslite_ultima_sync, intervalMinutes),
-    lastSyncAt: row.dslite_ultima_sync,
+    syncHealth: sync.health,
+    lastSyncAt: sync.lastSyncAt,
+    syncSource: sync.source,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -69,10 +63,10 @@ function noStoreJson(body: unknown, status = 200) {
   return NextResponse.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
-function syncPolicy() {
-  const task = getSyncTaskByKey('sync_dslite_fornecedores');
+function syncPolicy(taskKey: 'sync_dslite_fornecedores' | 'sync_evolusom_preco_estoque') {
+  const task = getSyncTaskByKey(taskKey);
   const intervalMinutes = task ? getIntervalMinutesForTask(task, getSaoPauloHour()) : null;
-  const effectiveIntervalMinutes = intervalMinutes || 120;
+  const effectiveIntervalMinutes = intervalMinutes || (taskKey === 'sync_evolusom_preco_estoque' ? 2 : 120);
   const staleThresholdMinutes = evaluateScheduledTaskHealth({
     intervalMinutes: effectiveIntervalMinutes,
     lastRunAt: null,
@@ -101,8 +95,26 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   }
   if (!row) return noStoreJson({ error: 'Fornecedor não encontrado' }, 404);
 
-  const policy = syncPolicy();
-  const supplier = mapSupplier(row as SupplierRow, policy.intervalMinutes);
+  const directEvolusom = row.dslite_id === '133' && process.env.EVOLUSOM_DIRECT_ENABLED === 'true';
+  const dslitePolicy = syncPolicy('sync_dslite_fornecedores');
+  const evolusomPolicy = syncPolicy('sync_evolusom_preco_estoque');
+  const policy = directEvolusom ? evolusomPolicy : dslitePolicy;
+  let evolusomTimes = null;
+  if (directEvolusom) {
+    try {
+      evolusomTimes = await loadEvolusomSyncTimes(client);
+    } catch {
+      return noStoreJson({ error: 'Não foi possível consultar a sincronização da Evolusom' }, 500);
+    }
+  }
+  const sync = resolveSupplierSync({
+    supplierId: row.dslite_id,
+    dsliteLastSyncAt: row.dslite_ultima_sync,
+    evolusomTimes,
+    dsliteIntervalMinutes: dslitePolicy.intervalMinutes,
+    evolusomIntervalMinutes: evolusomPolicy.intervalMinutes,
+  });
+  const supplier = mapSupplier(row as SupplierRow, sync);
   let purchaseCount = 0;
   let offerCount = 0;
   let activeOfferCount = 0;
