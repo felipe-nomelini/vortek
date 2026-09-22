@@ -49,7 +49,11 @@ export async function verifyCreatedPublication(client: ReturnType<typeof createS
     categoryAttributes: attrs, kit, brandEquivalences, remoteEvidence: { source: 'mercado_livre', reference: item.id,
       collectedAt: new Date().toISOString(), condition: 'valid' },
   });
-  if (relist ? !isMlExistingListingIdentitySafe(identity) : !isMlIdentityComplete(identity)) return false;
+  // O catálogo pode acrescentar atributos editoriais ao item após a criação.
+  // A preparação já exigiu identidade completa; no read-back, confira as âncoras
+  // do item criado sem exigir que o cadastro local conheça os campos adicionados pelo ML.
+  if (relist || expected.catalog_listing === true
+    ? !isMlExistingListingIdentitySafe(identity) : !isMlIdentityComplete(identity)) return false;
   const persisted = await persistSingleAnuncioBySku(client, {
     ml_item_id: item.id, produto_id: product.id, sku: product.sku, titulo: item.title,
     preco_ml: item.price, vendidos: item.sold_quantity, status: item.status === 'active' ? 'ativo' : 'pausado',

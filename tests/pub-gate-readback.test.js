@@ -2,12 +2,14 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const load = require('./helpers/load-integration-module');
 
-function harness(catalogListing) {
+function harness(catalogListing, options = {}) {
   let persisted = 0;
-  const product = { id: 'p', ativo: true, sku: 'SKU', ml_item_id: 'MLB0', custom_price: 10 };
+  const action = options.action || 'relist';
+  const product = { id: 'p', ativo: true, sku: 'SKU', ml_item_id: action === 'new' ? null : 'MLB0', custom_price: 10 };
   const item = { id: 'MLB3', seller_id: 123, price: 110, currency_id: 'BRL', status: 'active',
     sub_status: [], pictures: [{}], category_id: 'MLB1', listing_type_id: 'gold_pro',
     condition: 'new', available_quantity: 1, parent_item_id: 'MLB0', catalog_listing: catalogListing,
+    catalog_product_id: catalogListing ? 'MLB2' : null,
     shipping: { mode: 'me2', logistic_type: 'xd_drop_off', free_shipping: true }, sale_terms: [] };
   const client = { from(table) {
     const q = { select() { return q; }, eq() { return q; }, or() { return q; },
@@ -25,7 +27,8 @@ function harness(catalogListing) {
     './mercadolibre': { getCategoryAttributes: async () => [], getCategorySaleTerms: async () => [] },
     '@/lib/ml-critical-attributes': { assessMlProductIdentity: () => ({}), loadMlIdentityKit: async () => ({}) },
     '@/lib/ml/brand-equivalences': { loadMlBrandEquivalences: async () => [] },
-    '@/lib/ml-listing-identity': { isMlIdentityComplete: () => true, isMlExistingListingIdentitySafe: () => true },
+    '@/lib/ml-listing-identity': { isMlIdentityComplete: () => options.completeIdentity !== false,
+      isMlExistingListingIdentitySafe: () => options.safeExisting !== false },
     '@/lib/dslite/supplier-policy': { loadOperationalDropshippingSupplierIds: async () => new Set() },
     '@/lib/product-warranty': { factoryWarranty: { revision: 'v1' },
       warrantySaleTerms: () => ({ compatible: true, terms: [] }) },
@@ -35,10 +38,11 @@ function harness(catalogListing) {
     '@/lib/ml/pricing-execution': { pricingReadbackMatches: () => true },
   });
   const operation = { item_id: 'MLB3', produto_id: 'p', new_price_cents: 11000 };
-  const preparation = { action: 'relist', sourceItemId: 'MLB0', capacity: 1,
+  const preparation = { action, sourceItemId: action === 'new' ? null : 'MLB0', capacity: 1,
     originalCustomPrice: 20, warrantyRevision: 'v1', description: 'Descrição gerada pela loja',
     input: { shipping: { mode: 'me2', logisticType: 'xd_drop_off', freeShipping: true } },
-    expected: { category_id: 'MLB1', listing_type_id: 'gold_pro', condition: 'new' } };
+    expected: { category_id: 'MLB1', listing_type_id: 'gold_pro', condition: 'new',
+      ...(catalogListing ? { catalog_listing: true, catalog_product_id: 'MLB2' } : {}) } };
   return { run: () => mod.verifyCreatedPublication(client, operation, preparation, '123'),
     get persisted() { return persisted; } };
 }
@@ -51,4 +55,14 @@ test('readback aceita a descrição oficial de republicação em catálogo sem a
   const standard = harness(false);
   assert.equal(await standard.run(), false);
   assert.equal(standard.persisted, 0);
+});
+
+test('readback de criação em catálogo aceita atributos editoriais acrescentados pelo ML com identidade segura', async () => {
+  const safe = harness(true, { action: 'new', completeIdentity: false, safeExisting: true });
+  assert.equal(await safe.run(), true);
+  assert.equal(safe.persisted, 1);
+
+  const unsafe = harness(true, { action: 'new', completeIdentity: false, safeExisting: false });
+  assert.equal(await unsafe.run(), false);
+  assert.equal(unsafe.persisted, 0);
 });
