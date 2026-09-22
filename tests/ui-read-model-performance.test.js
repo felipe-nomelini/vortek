@@ -9,6 +9,7 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'u
 const migration = read('supabase/migrations/20260922160000_ui_catalog_read_models.sql');
 const triggerDedupMigration = read('supabase/migrations/20260922183000_ui_read_model_trigger_dedup.sql');
 const generationContextMigration = read('supabase/migrations/20260922190000_ui_read_model_generation_context.sql');
+const globalTriggerScopeMigration = read('supabase/migrations/20260922193000_ui_read_model_global_trigger_scope.sql');
 const worker = read('src/services/ui-read-model.ts');
 const query = read('src/services/ui-read-model-query.ts');
 const refreshRoute = read('src/app/api/ops/read-model/refresh/route.ts');
@@ -54,6 +55,9 @@ test('triggers apenas invalidam e o worker reutiliza os cálculos canônicos for
   ]) assert.match(worker, new RegExp(loader));
   assert.match(worker, /currentPriceCents: listing\.price/);
   assert.match(triggerDedupMigration, /to_jsonb\(new\) - array\['updated_at','last_sync_at','synced_at','observed_at'\]/);
+  assert.match(globalTriggerScopeMigration, /new\.ativo is not distinct from old\.ativo/);
+  assert.match(globalTriggerScopeMigration, /new\.status_dslite is not distinct from old\.status_dslite/);
+  assert.match(globalTriggerScopeMigration, /new\.pricing_ml_fee_fallback_rate is not distinct from old\.pricing_ml_fee_fallback_rate/);
 });
 
 test('consultas normais fazem uma RPC paginada e PDFs percorrem somente a projeção', () => {
