@@ -11,6 +11,7 @@ const worker = read('src/services/ui-read-model.ts');
 const query = read('src/services/ui-read-model-query.ts');
 const refreshRoute = read('src/app/api/ops/read-model/refresh/route.ts');
 const cronRoute = read('src/app/api/sync/cron-dispatch/route.ts');
+const proxy = read('src/proxy.ts');
 const productsPage = read('src/app/(app)/produtos/page.tsx');
 const listingsPage = read('src/app/(app)/anuncios/page.tsx');
 
@@ -58,6 +59,8 @@ test('processamento fica no agendador e a drenagem operacional exige segredo', (
   assert.match(refreshRoute, /process\.env\.API_SECRET_KEY/);
   assert.match(refreshRoute, /request\.headers\.get\('x-api-key'\)/);
   assert.match(refreshRoute, /maxDurationMs: 240_000/);
+  assert.match(proxy, /pathname === "\/api\/ops\/read-model\/refresh"/);
+  assert.match(proxy, /isInternalReadModelRoute/);
 });
 
 test('telas conservam a última página completa e sinalizam atraso sem dados parciais', () => {

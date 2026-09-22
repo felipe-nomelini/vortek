@@ -54,6 +54,7 @@ export async function proxy(request: NextRequest) {
     "/api/catalogo/no-catalogo/refresh/job/worker",
     "/api/catalogo/identity-audit/worker",
   ].includes(pathname);
+  const isInternalReadModelRoute = pathname === "/api/ops/read-model/refresh";
   const isMlListingFlowRoute = [
     "/api/ml/anuncio/categorias",
     "/api/ml/anuncio/schema",
@@ -82,6 +83,7 @@ export async function proxy(request: NextRequest) {
       isInternalJobRoute ||
       isInternalProductMaintenanceRoute ||
       isInternalCatalogRoute ||
+      isInternalReadModelRoute ||
       isMlListingFlowRoute) &&
       apiKey === process.env.API_SECRET_KEY) ||
     isLocalDevMlBatch
