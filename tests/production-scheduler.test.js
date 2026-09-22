@@ -24,7 +24,7 @@ test('agendador inicia somente no servidor produtivo e nunca durante o build', (
 test('runtime mantém filas internas atualizadas sem liberar preço automático', () => {
   assert.equal(PRODUCTION_SCHEDULER_CENTRAL_INTERVAL_MS, 60_000);
   assert.equal(PRODUCTION_SCHEDULER_PUBLISH_INTERVAL_MS, 15_000);
-  assert.equal(PRODUCTION_SCHEDULER_READ_MODEL_INTERVAL_MS, 60_000);
+  assert.equal(PRODUCTION_SCHEDULER_READ_MODEL_INTERVAL_MS, 30_000);
 
   const source = fs.readFileSync(
     path.join(process.cwd(), 'src/services/production-scheduler.ts'),
@@ -33,7 +33,7 @@ test('runtime mantém filas internas atualizadas sem liberar preço automático'
   assert.match(source, /\/api\/sync\/cron-dispatch/);
   assert.match(source, /taskKey: 'sync_ml_listings_publish'/);
   assert.match(source, /\/api\/ops\/read-model\/refresh/);
-  assert.match(source, /maxDurationMs: 45_000/);
+  assert.match(source, /maxDurationMs: 20_000/);
   assert.doesNotMatch(source, /catalog-price-refresh|pricing_decision|desired_price/);
   assert.match(source, /127\.0\.0\.1/);
 });

@@ -1,6 +1,6 @@
 export const PRODUCTION_SCHEDULER_CENTRAL_INTERVAL_MS = 60_000;
 export const PRODUCTION_SCHEDULER_PUBLISH_INTERVAL_MS = 15_000;
-export const PRODUCTION_SCHEDULER_READ_MODEL_INTERVAL_MS = 60_000;
+export const PRODUCTION_SCHEDULER_READ_MODEL_INTERVAL_MS = 30_000;
 
 type SchedulerEnvironment = Record<string, string | undefined>;
 
@@ -88,10 +88,10 @@ export function startProductionScheduler(environment: SchedulerEnvironment = pro
   installTimer({
     name: 'ui-read-model-refresh',
     path: '/api/ops/read-model/refresh',
-    body: { batchSize: 250, drain: true, maxDurationMs: 45_000 },
+    body: { batchSize: 250, drain: true, maxDurationMs: 20_000 },
     initialDelayMs: 10_000,
     intervalMs: PRODUCTION_SCHEDULER_READ_MODEL_INTERVAL_MS,
-    timeoutMs: 55_000,
+    timeoutMs: 25_000,
     origin,
     apiKey,
   });
