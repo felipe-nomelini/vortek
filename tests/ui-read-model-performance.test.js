@@ -10,6 +10,7 @@ const migration = read('supabase/migrations/20260922160000_ui_catalog_read_model
 const triggerDedupMigration = read('supabase/migrations/20260922183000_ui_read_model_trigger_dedup.sql');
 const generationContextMigration = read('supabase/migrations/20260922190000_ui_read_model_generation_context.sql');
 const globalTriggerScopeMigration = read('supabase/migrations/20260922193000_ui_read_model_global_trigger_scope.sql');
+const pricingWatermarkDedupMigration = read('supabase/migrations/20260922194500_ui_read_model_pricing_watermark_dedup.sql');
 const worker = read('src/services/ui-read-model.ts');
 const query = read('src/services/ui-read-model-query.ts');
 const refreshRoute = read('src/app/api/ops/read-model/refresh/route.ts');
@@ -58,6 +59,7 @@ test('triggers apenas invalidam e o worker reutiliza os cálculos canônicos for
   assert.match(globalTriggerScopeMigration, /new\.ativo is not distinct from old\.ativo/);
   assert.match(globalTriggerScopeMigration, /new\.status_dslite is not distinct from old\.status_dslite/);
   assert.match(globalTriggerScopeMigration, /new\.pricing_ml_fee_fallback_rate is not distinct from old\.pricing_ml_fee_fallback_rate/);
+  assert.equal((pricingWatermarkDedupMigration.match(/'pricing_observed_at'/g) || []).length, 4);
 });
 
 test('consultas normais fazem uma RPC paginada e PDFs percorrem somente a projeção', () => {
