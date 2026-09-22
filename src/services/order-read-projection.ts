@@ -8,6 +8,7 @@ import { calcularSaldoEstoqueInterno, expandirItensReservaEstoqueInterno, type C
 import { calculateInternalFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity';
 import { filterOperationalDropshippingSupplierOffers, loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { loadKitSupplySources } from '@/lib/kit-supply-source';
+import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
 
 export function logDbError(
   event: string,
@@ -756,4 +757,9 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
       dslite_next_action_label: nextActionLabel,
     };
   });
+}
+
+export async function enrichOperationalOrders(rows: any[], serviceClient: ReturnType<typeof createServiceClient>) {
+  const withPurchases = await enrichPedidosWithCompras(rows, serviceClient);
+  return enrichOrdersWithWhatsappStatus(withPurchases, serviceClient);
 }

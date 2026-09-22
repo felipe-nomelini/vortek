@@ -5,7 +5,7 @@ import {
   PREPARATION_ORDER_STATUSES,
   matchesOrdersOperationalView,
 } from "@/lib/orders/operational-view";
-import { enrichOrdersWithWhatsappStatus } from "@/services/order-operational-status";
+import { enrichOperationalOrders } from "@/services/order-read-projection";
 import { authorizeApiRequest } from "@/lib/api-request-auth";
 import { GET as getOrders } from "@/app/api/pedidos/route";
 import { loadOperationRuntimeConfiguration } from "@/services/operation-configuration";
@@ -70,7 +70,7 @@ async function countUrgentOrders(
   const activeRows = (rows || []).filter((row) => (
     PREPARATION_ORDER_STATUSES.includes(normalizeStatus(row?.situacao) as any)
   ));
-  const enrichedRows = await enrichOrdersWithWhatsappStatus(activeRows, serviceClient);
+  const enrichedRows = await enrichOperationalOrders(activeRows, serviceClient);
   return enrichedRows.filter((row) => matchesOrdersOperationalView(row, "urgent", delayedAfterMinutes)).length;
 }
 
@@ -311,14 +311,11 @@ export async function GET(request: Request) {
   async function loadAllActiveOperationalRows(useSaleDate: boolean) {
     const pageSize = 500;
     const rows: any[] = [];
-    const columns = useSaleDate
-      ? "id,data,data_venda,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id,operational_pedido_ids"
-      : "id,data,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id,operational_pedido_ids";
 
     for (let offset = 0; ; offset += pageSize) {
       let query = (serviceClient as any)
         .from("pedidos_operacionais")
-        .select(columns)
+        .select("*")
         .in("situacao", [...PREPARATION_ORDER_STATUSES])
         .order("id", { ascending: true })
         .range(offset, offset + pageSize - 1);
@@ -330,57 +327,59 @@ export async function GET(request: Request) {
     }
   }
 
-  // Count total
+  // Count all filtered rows and load every page for status and financial totals.
   async function runSummaryQueries(useSaleDate: boolean) {
     let countQuery = (serviceClient as any)
       .from("pedidos_operacionais")
-      .select("*", { count: "exact", head: false })
-      .range(0, 0);
+      .select("id", { count: "exact", head: true });
     countQuery = applyFilters(countQuery, useSaleDate);
     const countResult = await countQuery;
 
+    if (countResult.error) {
+      return { countResult, sumResult: { data: [], error: null } };
+    }
+
     const sumColumns = useSaleDate
-      ? "id,data,data_venda,total,lucro,operational_total,operational_lucro,operational_pedido_ids,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id"
-      : "id,data,total,lucro,operational_total,operational_lucro,operational_pedido_ids,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id";
-    let sumQuery = (serviceClient as any)
-      .from("pedidos_operacionais")
-      .select(sumColumns);
-    sumQuery = applyFilters(sumQuery, useSaleDate);
-    const sumResult = await sumQuery;
+      ? "id,data_venda,total,lucro,operational_total,operational_lucro,pagamento_resumo,situacao"
+      : "id,total,lucro,operational_total,operational_lucro,pagamento_resumo,situacao";
+    const rows: any[] = [];
+    const pageSize = 500;
+    for (let offset = 0; ; offset += pageSize) {
+      let query = (serviceClient as any)
+        .from("pedidos_operacionais")
+        .select(sumColumns);
+      query = applyFilters(query, useSaleDate)
+        .order("id", { ascending: true })
+        .range(offset, offset + pageSize - 1);
+      const { data, error } = await query;
+      if (error) return { countResult, sumResult: { data: [], error } };
+      rows.push(...(data || []));
+      if ((data || []).length < pageSize) break;
+    }
 
-    let statusQuery = (serviceClient as any)
-      .from("pedidos_operacionais")
-      .select("situacao")
-      .not("situacao", "is", null);
-    statusQuery = applyFilters(statusQuery, useSaleDate);
-    const statusResult = await statusQuery;
-
-    return { countResult, sumResult, statusResult };
+    return { countResult, sumResult: { data: rows, error: null } };
   }
 
   let {
     countResult: { count, error: countError },
     sumResult: { data: sumData, error: sumError },
-    statusResult: { data: statusData, error: statusError },
   } = await runSummaryQueries(true);
   let summaryUsesSaleDate = true;
 
   const missingSaleDateColumn =
     isMissingSaleDateColumnError(countError) ||
-    isMissingSaleDateColumnError(sumError) ||
-    isMissingSaleDateColumnError(statusError);
+    isMissingSaleDateColumnError(sumError);
   if (missingSaleDateColumn) {
     summaryUsesSaleDate = false;
     logDbError(
       "pedidos_resumo_schema_drift_fallback_data",
       "/api/pedidos/resumo",
       normalizedSearch,
-      countError || sumError || statusError,
+      countError || sumError,
     );
     ({
       countResult: { count, error: countError },
       sumResult: { data: sumData, error: sumError },
-      statusResult: { data: statusData, error: statusError },
     } = await runSummaryQueries(false));
   }
 
@@ -415,22 +414,9 @@ export async function GET(request: Request) {
     lucro: row.operational_lucro ?? row.lucro,
   })));
 
-  // Status counts via RPC ou group by
-  if (statusError) {
-    logDbError(
-      "pedidos_resumo_status_query_failed",
-      "/api/pedidos/resumo",
-      normalizedSearch,
-      statusError,
-    );
-    return NextResponse.json(
-      { erro: "Falha ao calcular status do resumo." },
-      { status: 500 },
-    );
-  }
-
   const statusCounts: Record<string, number> = {};
-  for (const row of statusData || []) {
+  for (const row of sumData || []) {
+    if (row.situacao == null) continue;
     const s = normalizeStatus(row.situacao);
     statusCounts[s] = (statusCounts[s] || 0) + 1;
   }

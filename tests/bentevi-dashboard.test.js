@@ -59,7 +59,7 @@ test('resumo usa a venda operacional, períodos equivalentes e exclui cancelamen
 test('resumo reutiliza filas operacionais e agrega produtos vendidos no período', () => {
   const route = source(dashboardRoutePath);
 
-  assert.match(route, /enrichOrdersWithWhatsappStatus/);
+  assert.match(route, /enrichOperationalOrders/);
   assert.match(route, /matchesOrdersOperationalView\(row, "urgent", operationConfiguration\.delayedAfterMinutes\)/);
   assert.match(route, /matchesOrdersOperationalView\(row, "preparation", operationConfiguration\.delayedAfterMinutes\)/);
   assert.match(route, /matchesOrdersOperationalView\(row, "shipping", operationConfiguration\.delayedAfterMinutes\)/);

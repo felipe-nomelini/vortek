@@ -6,7 +6,7 @@ import {
   SHIPPING_ORDER_STATUSES,
   matchesOrdersOperationalView,
 } from "@/lib/orders/operational-view";
-import { enrichOrdersWithWhatsappStatus } from "@/services/order-operational-status";
+import { enrichOperationalOrders } from "@/services/order-read-projection";
 import {
   saoPauloDayLabel,
   saoPauloHour,
@@ -114,29 +114,10 @@ async function loadOperationalRows(
 ): Promise<{ data: OrderRow[]; error: { message?: string } | null }> {
   const rows: OrderRow[] = [];
   const pageSize = 500;
-  const columns = [
-    "id",
-    "data",
-    "data_venda",
-    "situacao",
-    "operational_pedido_ids",
-    "dslite_id",
-    "dslite_status",
-    "dslite_etiqueta_enviada",
-    "dslite_label_source",
-    "envio_interno_at",
-    "ml_fiscal_release_at",
-    "ml_claim_id",
-    "nota_fiscal_emitida",
-    "nfe_status",
-    "ml_label_storage_path",
-    "ml_thermal_label_storage_path",
-  ].join(",");
-
   for (let offset = 0; ; offset += pageSize) {
     const { data, error } = await (serviceClient as any)
       .from("pedidos_operacionais")
-      .select(columns)
+      .select("*")
       .in("situacao", [...OPERATIONAL_STATUSES])
       .order("data", { ascending: false })
       .range(offset, offset + pageSize - 1);
@@ -236,7 +217,7 @@ export async function GET(request: Request) {
 
   const current = summarize(currentResult.data);
   const previous = summarize(previousResult.data);
-  const enrichedOperational = await enrichOrdersWithWhatsappStatus(
+  const enrichedOperational = await enrichOperationalOrders(
     operationalResult.data,
     serviceClient,
   );

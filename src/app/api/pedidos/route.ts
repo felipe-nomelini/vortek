@@ -1,4 +1,4 @@
-import { enrichPedidosWithCompras, reconcileNotaFiscalEmitidaRow, logDbError } from '@/services/order-read-projection';
+import { enrichOperationalOrders, reconcileNotaFiscalEmitidaRow, logDbError } from '@/services/order-read-projection';
 import { NextResponse } from 'next/server';
 import { unstable_noStore as noStore } from 'next/cache';
 import { createClient, createServiceClient } from '@/lib/supabase';
@@ -10,7 +10,6 @@ import {
   parseOrdersOperationalView,
   type OrdersOperationalView,
 } from '@/lib/orders/operational-view';
-import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import {
@@ -71,8 +70,7 @@ async function enrichPedidosForOperationalView(
   const reconciledRows = persistReconciliation
     ? await persistReconciledPedidos(rows)
     : rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
-  const withPurchases = await enrichPedidosWithCompras(reconciledRows, serviceClient);
-  return enrichOrdersWithWhatsappStatus(withPurchases, serviceClient);
+  return enrichOperationalOrders(reconciledRows, serviceClient);
 }
 
 function applyPedidoFilters(query: any, filters: {
