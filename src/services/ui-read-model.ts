@@ -27,6 +27,9 @@ type ProjectionState = {
   target_generation: number;
   status: 'requested' | 'building' | 'ready';
   context_fingerprint: string | null;
+  context: Record<string, any> | null;
+  build_context_fingerprint: string | null;
+  build_context: Record<string, any> | null;
 };
 
 function normalizeListingStatus(status: unknown) {
@@ -47,15 +50,40 @@ function maximumTimestamp(values: unknown[]) {
 function contextFingerprint(context: PricingRequestContext) {
   const payload = JSON.stringify({
     commercial: context.commercial,
-    taxContext: context.taxContext,
+    taxContext: {
+      referenceMonth: context.taxContext.referenceMonth,
+      confirmedRate: context.taxContext.confirmedRate,
+      source: context.taxContext.source,
+      manualRequired: context.taxContext.manualRequired,
+      bracket: context.taxContext.bracket,
+    },
     operational: [...context.operational].sort(),
   });
   return createHash('sha256').update(payload).digest('hex');
 }
 
+function contextSnapshot(context: PricingRequestContext) {
+  return {
+    commercial: context.commercial,
+    taxContext: context.taxContext,
+    operationalSupplierIds: [...context.operational].sort(),
+    evaluatedAt: context.evaluatedAt,
+  };
+}
+
+function contextFromSnapshot(snapshot: Record<string, any> | null, fallback: PricingRequestContext) {
+  if (!snapshot?.commercial || !snapshot?.taxContext || !Array.isArray(snapshot.operationalSupplierIds)) return fallback;
+  return {
+    commercial: snapshot.commercial,
+    taxContext: snapshot.taxContext,
+    operational: new Set<string>(snapshot.operationalSupplierIds.map(String)),
+    evaluatedAt: String(snapshot.evaluatedAt || fallback.evaluatedAt),
+  } as PricingRequestContext;
+}
+
 async function readState(client: Client): Promise<ProjectionState> {
   const result = await (client as any).from('ui_read_model_state')
-    .select('active_generation,target_generation,status,context_fingerprint')
+    .select('active_generation,target_generation,status,context_fingerprint,context,build_context_fingerprint,build_context')
     .eq('scope', 'catalog_ui').single();
   if (result.error || !result.data) throw new Error('ui_read_model_state_unavailable');
   return result.data as ProjectionState;
@@ -391,19 +419,27 @@ export async function processUiReadModelBatch(
   client: Client = createServiceClient(),
   limit = 100,
 ) {
-  const requestContext = await loadPricingRequestContext(client);
-  const fingerprint = contextFingerprint(requestContext);
+  const liveContext = await loadPricingRequestContext(client);
+  const fingerprint = contextFingerprint(liveContext);
   let state = await readState(client);
-  if (state.status === 'ready' && state.context_fingerprint !== fingerprint) {
+  if ((state.status === 'ready' && state.context_fingerprint !== fingerprint)
+      || (state.status === 'building' && state.build_context_fingerprint !== fingerprint)) {
     const rebuild = await (client as any).rpc('request_ui_read_model_rebuild', { p_reason: 'pricing_context_changed' });
     if (rebuild.error) throw new Error('ui_read_model_rebuild_request_failed');
     state = await readState(client);
   }
   if (state.status === 'requested') {
-    const seeded = await (client as any).rpc('seed_ui_read_model_rebuild');
+    const seeded = await (client as any).rpc('seed_ui_read_model_rebuild', {
+      p_context_fingerprint: fingerprint,
+      p_context: contextSnapshot(liveContext),
+    });
     if (seeded.error) throw new Error('ui_read_model_rebuild_seed_failed');
     state = await readState(client);
   }
+  const requestContext = contextFromSnapshot(
+    state.status === 'building' ? state.build_context : state.context,
+    liveContext,
+  );
 
   const claimed = await (client as any).rpc('claim_ui_read_model_batch', { p_limit: limit });
   if (claimed.error) throw new Error('ui_read_model_claim_failed');
@@ -412,13 +448,8 @@ export async function processUiReadModelBatch(
     if (state.status === 'building') {
       const activation = await (client as any).rpc('activate_ui_read_model_generation', {
         p_generation: state.target_generation,
-        p_context_fingerprint: fingerprint,
-        p_context: {
-          commercial: requestContext.commercial,
-          taxContext: requestContext.taxContext,
-          operationalSupplierIds: [...requestContext.operational].sort(),
-          evaluatedAt: requestContext.evaluatedAt,
-        },
+        p_context_fingerprint: state.build_context_fingerprint || fingerprint,
+        p_context: state.build_context || contextSnapshot(requestContext),
       });
       if (activation.error) throw new Error(activation.error.message || 'ui_read_model_activation_failed');
       return { processed: 0, pending: 0, activated: true, generation: state.target_generation };

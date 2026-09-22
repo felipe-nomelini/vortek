@@ -8,6 +8,7 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'u
 
 const migration = read('supabase/migrations/20260922160000_ui_catalog_read_models.sql');
 const triggerDedupMigration = read('supabase/migrations/20260922183000_ui_read_model_trigger_dedup.sql');
+const generationContextMigration = read('supabase/migrations/20260922190000_ui_read_model_generation_context.sql');
 const worker = read('src/services/ui-read-model.ts');
 const query = read('src/services/ui-read-model-query.ts');
 const refreshRoute = read('src/app/api/ops/read-model/refresh/route.ts');
@@ -23,6 +24,13 @@ test('projeções usam geração atômica e nunca ativam uma reconstrução inco
   assert.match(migration, /projected_products <> source_products/);
   assert.match(migration, /projected_listings <> source_listings/);
   assert.match(migration, /where projection\.generation = v_generation/);
+  assert.match(generationContextMigration, /build_context_fingerprint text/);
+  assert.match(generationContextMigration, /build_context jsonb/);
+  assert.match(generationContextMigration, /delete from public\.ui_read_model_queue where scope='catalog_ui'/);
+  assert.match(generationContextMigration, /queue\.generation=case when state\.status='building' then state\.target_generation else state\.active_generation end/);
+  assert.match(generationContextMigration, /context=p_context,build_context_fingerprint=null,build_context=null/);
+  assert.match(worker, /state\.status === 'building' \? state\.build_context : state\.context/);
+  assert.match(worker, /p_context_fingerprint: fingerprint/);
 });
 
 test('fila persistente deduplica, versiona, recupera claims e preserva a última projeção', () => {
