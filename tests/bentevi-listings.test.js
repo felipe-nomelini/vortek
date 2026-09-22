@@ -15,6 +15,9 @@ const detailRoute = read('src/app/api/ml/anuncio/preco-detalhe/route.ts') + read
 const priceRoute = read('src/app/api/ml/anuncio/atualizar-preco/route.ts');
 const fixture = read('src/lib/ml/listings-dashboard.ts');
 const migration = read('supabase/migrations/20260902170000_bnt_d11_ml_listings_search.sql');
+const projectionMigration = read('supabase/migrations/20260922160000_ui_catalog_read_models.sql');
+const projectionQuery = read('src/services/ui-read-model-query.ts');
+const projectionWorker = read('src/services/ui-read-model.ts');
 const { selectMlListingRows } = loadIntegrationModule('src/lib/ml/listings-dashboard.ts', {
   '@/lib/products/bnt-d07-visual-review': { pricingFor: () => ({ profit: null, margin: null }) },
 });
@@ -41,13 +44,14 @@ test('BNT-D11 separa as contagens dos rótulos nas filas rápidas', () => {
 });
 
 test('BNT-D11 pagina, filtra, resume e ordena em uma única RPC', () => {
-  assert.match(route, /rpc\('search_ml_listings_paginated'/);
+  assert.match(route, /queryListingReadModel/);
+  assert.match(projectionQuery, /rpc\('search_ui_listing_projection'/);
   assert.doesNotMatch(route, /\.from\('anuncios_ml'\)/);
-  assert.match(migration, /row_number\(\) over/);
-  assert.match(migration, /'metrics', jsonb_build_object/);
-  assert.match(migration, /'queueCounts', jsonb_build_object/);
-  assert.match(migration, /listing\.item_id asc/);
-  assert.doesNotMatch(migration, /create index/i);
+  assert.match(projectionMigration, /row_number\(\) over/);
+  assert.match(projectionMigration, /'metrics',jsonb_build_object/);
+  assert.match(projectionMigration, /'queueCounts',jsonb_build_object/);
+  assert.match(projectionMigration, /item_id asc/);
+  assert.match(projectionMigration, /ui_listing_projection_visits_idx/);
   assert.equal(fs.existsSync(path.join(root, 'src/app/api/anuncios/resumo/route.ts')), false);
 });
 
@@ -101,8 +105,8 @@ test('BNT-D11 prioriza anúncios ativos com visitas e sem vendas', () => {
 });
 
 test('BNT-D11 usa alíquota dinâmica e mantém cálculo de rentabilidade no backend', () => {
-  assert.match(route, /loadPricingRequestContext/);
-  assert.match(route, /loadProductPricing/);
+  assert.match(projectionWorker, /loadPricingRequestContext/);
+  assert.match(projectionWorker, /loadProductPricing/);
   assert.match(migration, /base\.price \* p_tax_rate/);
   assert.doesNotMatch(migration, /base\.price \* 0\.0[45]/);
   assert.match(migration, /raise exception 'p_tax_rate inválida/);
@@ -166,11 +170,11 @@ test('BNT-D11 reutiliza a amostra real protegida e bloqueia mutações', () => {
 });
 
 test('RPC BNT-D11 aplica privilégio mínimo e search_path seguro', () => {
-  assert.match(migration, /stable/);
-  assert.match(migration, /security invoker/);
-  assert.match(migration, /set search_path = ''/);
-  assert.match(migration, /revoke execute[\s\S]*from public, anon, authenticated/);
-  assert.match(migration, /grant execute[\s\S]*to service_role/);
+  assert.match(projectionMigration, /stable/);
+  assert.match(projectionMigration, /security definer/);
+  assert.match(projectionMigration, /set search_path = ''/);
+  assert.match(projectionMigration, /revoke all on function public\.search_ui_product_projection[\s\S]*from public, anon, authenticated/);
+  assert.match(projectionMigration, /grant execute on function public\.search_ui_product_projection[\s\S]*to service_role/);
 });
 
 test('BNT-D11 exporta o conjunto filtrado pelo relatório redesenhado', () => {

@@ -373,7 +373,7 @@ export default function ProductsPage() {
     error: string | null;
   }>({ open: false, record: null, value: null, saving: false, results: [], error: null });
   const productsRequestRef = useRef(0);
-  const statsRequestRef = useRef(0);
+  const [freshness, setFreshness] = useState<{ computedAt: string | null; lagSeconds: number; state: 'fresh' | 'refreshing' | 'delayed' } | null>(null);
   const [mlModalPriceText, setMlModalPriceText] = useState('');
   const [mlModal, setMlModal] = useState<{
     open: boolean;
@@ -945,7 +945,7 @@ export default function ProductsPage() {
       if (data.success) {
         if (data.operationId) setLastMlOperationId(data.operationId);
         setMlModal(prev => ({ ...prev, loading: false, result: data }));
-        await Promise.all([fetchProducts(), fetchStats()]);
+        await fetchProducts();
       } else {
         setMlModal(prev => ({ ...prev, loading: false, result: data }));
         if (Array.isArray(data.missing_required_attributes) && data.missing_required_attributes.length > 0) {
@@ -1061,6 +1061,15 @@ export default function ProductsPage() {
           : null,
       );
       setCommercialPricing(json?.commercialPricing || null);
+      const summary = json?.summary || {};
+      setStats({
+        total: Number(summary.total || 0),
+        comEstoque: Number(summary.comEstoque || 0),
+        semAnuncio: Number(summary.semAnuncio || 0),
+        lucroMedio: summary.lucroMedio ?? null,
+        receitaPotencial: summary.receitaPotencial ?? null,
+      });
+      setFreshness(json?.freshness || null);
       setFornecedorOptions(
         Array.isArray(json.fornecedores)
           ? json.fornecedores.map((item: any) => ({
@@ -1095,42 +1104,9 @@ export default function ProductsPage() {
     setPage(1);
   }, [filterMLStatus, filterEstoque, filterFornecedores, filterProductActive, priceField, priceMin, priceMax]);
 
-  const fetchStats = useCallback(async () => {
-    const requestId = statsRequestRef.current + 1;
-    statsRequestRef.current = requestId;
-    try {
-      const params = new URLSearchParams();
-      if (lastSearch) params.set('search', lastSearch);
-      if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
-      params.set('ativo', filterProductActive || 'ativo');
-      if (filterMLStatus) params.set('ml_status', filterMLStatus);
-      if (filterEstoque) params.set('estoque', filterEstoque);
-      if (priceMin !== null) params.set('priceMin', String(priceMin));
-      if (priceMax !== null) params.set('priceMax', String(priceMax));
-      params.set('priceField', priceField);
-      const res = await fetch(`/api/produtos/resumo?${params}`);
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(json?.erro || json?.error || 'Erro ao carregar resumo de produtos');
-      }
-      if (statsRequestRef.current !== requestId) return;
-      setStats({
-        total: json.total || 0,
-        comEstoque: json.comEstoque || 0,
-        semAnuncio: json.semAnuncio || 0,
-        lucroMedio: json.lucroMedio ?? null,
-        receitaPotencial: json.receitaPotencial ?? null,
-      });
-    } catch (error: any) {
-      if (statsRequestRef.current !== requestId) return;
-      console.error('[produtos/page] Falha ao carregar resumo:', error?.message || error);
-    }
-  }, [lastSearch, filterFornecedores, filterProductActive, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
-
   useEffect(() => {
     fetchProducts();
-    fetchStats();
-  }, [fetchProducts, fetchStats]);
+  }, [fetchProducts]);
 
   const rows: ProductRow[] = useMemo(() => {
     return products.map(item => {
@@ -1276,7 +1252,7 @@ export default function ProductsPage() {
       messageApi.success('Republicação enviada. O novo anúncio será conferido no Mercado Livre.');
       setLastMlOperationId(result.operationId);
       setRelistModal(null);
-      await Promise.all([fetchProducts(), fetchStats()]);
+      await fetchProducts();
     } catch (error) {
       messageApi.error(error instanceof Error ? error.message : 'Não foi possível republicar.');
       setRelistModal(prev => prev && ({ ...prev, saving: false }));
@@ -1566,9 +1542,10 @@ export default function ProductsPage() {
         <div>
           <Title level={2} className={styles.title}>Produtos</Title>
           <Text type="secondary">Compare disponibilidade, fornecedor, preço, rentabilidade e publicação em uma única leitura.</Text>
+          {freshness?.computedAt && <small>Atualizado em {new Date(freshness.computedAt).toLocaleString('pt-BR')}</small>}
         </div>
         <Space>
-          <Button icon={<ReloadOutlined />} loading={loading} onClick={() => { void fetchProducts(); void fetchStats(); }}>
+          <Button icon={<ReloadOutlined />} loading={loading} onClick={() => { void fetchProducts(); }}>
             Atualizar
           </Button>
           <Button
@@ -1589,6 +1566,10 @@ export default function ProductsPage() {
           message="Amostra protegida, somente leitura"
           description={`Recorte protegido com ${visualReview.itemCount} produtos para validação visual. O detalhe e o relatório PDF estão disponíveis somente para leitura; ações operacionais permanecem desabilitadas.`}
         />
+      )}
+      {!visualReview && freshness?.state === 'delayed' && (
+        <Alert type="warning" showIcon message="Atualização das listas atrasada"
+          description={`Os últimos dados completos continuam visíveis. A fila de atualização está com ${freshness.lagSeconds} segundos de atraso.`} />
       )}
 
       <Segmented<ProductQuickView | 'personalizado'>

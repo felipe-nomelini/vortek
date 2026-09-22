@@ -40,6 +40,7 @@ import {
   ORACLE_COMMUNICATION_JOB, ORACLE_POSTPROCESS_JOB,
   processSupplierOracleQueue, recoverStaleSupplierOracleJob,
 } from '@/services/supplier-oracle-jobs';
+import { processUiReadModelBatch } from '@/services/ui-read-model';
 
 export const maxDuration = 300;
 
@@ -438,6 +439,13 @@ export async function POST(request: Request) {
 
   const whatsappQueueResult = await processWhatsappLabelQueue(serviceClient);
   results.push({ task: 'whatsapp_label_send', action: 'queue_processed', ...whatsappQueueResult });
+  try {
+    results.push({ task: 'ui_read_model', action: 'queue_processed',
+      ...await processUiReadModelBatch(serviceClient, 100) });
+  } catch (error: any) {
+    console.error('[cron-dispatch] falha na fila das projeções de interface', error?.message || error);
+    results.push({ task: 'ui_read_model', action: 'queue_error' });
+  }
   try {
     results.push({ task: 'supplier_oracle', action: 'queue_processed',
       ...await processSupplierOracleQueue(serviceClient) });

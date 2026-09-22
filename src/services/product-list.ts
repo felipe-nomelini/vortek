@@ -6,7 +6,7 @@ import {
   mapSupplierFilterIdsToDsliteIds, type SupplierFilterOption,
 } from '@/lib/produto-filtering';
 import { loadPricingRequestContext } from '@/services/pricing-context';
-import { queryPricedProducts } from '@/services/product-pricing-query';
+import { queryProductReadModel } from '@/services/ui-read-model-query';
 import { listBntD07VisualReview, loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
 
 export async function getProductListResponse(request: Request, allRows = false) {
@@ -14,9 +14,6 @@ export async function getProductListResponse(request: Request, allRows = false) 
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   const serviceClient = createServiceClient();
-  const requestContext = await loadPricingRequestContext(serviceClient);
-  const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
-  const taxRate = pricingTaxContext.appliedRate;
 
   const { searchParams } = new URL(request.url);
   const parsedPage = Number(searchParams.get('page') || 1);
@@ -73,6 +70,9 @@ export async function getProductListResponse(request: Request, allRows = false) 
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
   if (visualReview) {
+    const requestContext = await loadPricingRequestContext(serviceClient);
+    const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
+    const taxRate = pricingTaxContext.appliedRate;
     const fixtureResult = listBntD07VisualReview({
       review: visualReview,
       filters: {
@@ -103,20 +103,28 @@ export async function getProductListResponse(request: Request, allRows = false) 
     });
   }
 
-  let priced;
+  let projected;
   try {
-    priced = await queryPricedProducts(serviceClient, {
-      search, supplierIds: supplierFilterDsliteIds, includeInternal: includesInternalSupplierFilter(fornecedorFilterIds),
-      active: productActiveStatus, mlStatus, stock: estoque, priceField, priceMin, priceMax,
-      sortBy: sortBy, sortOrder: sortOrder, page: page, pageSize: pageSize,
-    }, requestContext);
+    projected = await queryProductReadModel(serviceClient as any, {
+      p_search: search || null,
+      p_supplier_dslite_ids: supplierFilterDsliteIds,
+      p_include_internal: includesInternalSupplierFilter(fornecedorFilterIds),
+      p_product_active_status: productActiveStatus,
+      p_ml_status: mlStatus || null,
+      p_estoque: estoque || null,
+      p_price_field: priceField,
+      p_price_min: priceMin,
+      p_price_max: priceMax,
+      p_page: page,
+      p_page_size: allRows ? 500 : pageSize,
+      p_sort_by: sortBy,
+      p_sort_order: sortOrder,
+    }, allRows);
   } catch {
     return NextResponse.json({ erro: 'Falha ao carregar a memória econômica dos produtos' }, { status: 500 });
   }
   return NextResponse.json({
-    ...priced,
+    ...projected,
     fornecedores: supplierOptions,
-    pricingTaxContext,
-    commercialPricing,
   });
 }

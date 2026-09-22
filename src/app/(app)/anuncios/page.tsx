@@ -314,6 +314,7 @@ export default function AnunciosPage() {
   const [metrics, setMetrics] = useState<MlListingMetrics>(EMPTY_METRICS);
   const [queueCounts, setQueueCounts] = useState<MlListingQueueCounts>(EMPTY_QUEUES);
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(null);
+  const [freshness, setFreshness] = useState<{ computedAt: string | null; lagSeconds: number; state: 'fresh' | 'refreshing' | 'delayed' } | null>(null);
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'product', sortOrder: 'asc' });
   const [search, setSearch] = useState('');
@@ -369,6 +370,7 @@ export default function AnunciosPage() {
       setMetrics({ ...EMPTY_METRICS, ...(payload.metrics || {}) });
       setQueueCounts({ ...EMPTY_QUEUES, ...(payload.queueCounts || {}) });
       setLastSyncedAt(payload.lastSyncedAt || null);
+      setFreshness(payload.freshness || null);
       setVisualReview(payload?.visualReview?.enabled === true ? payload.visualReview : null);
       setSelectedRowKeys([]);
     } catch (fetchError: any) {
@@ -866,7 +868,7 @@ export default function AnunciosPage() {
 
   return <div className={styles.page}>
     <header className={styles.header}>
-      <div><Title level={2} className={styles.title}>Anúncios</Title><Text type="secondary">Preço, qualidade, estado e competição no Mercado Livre em uma leitura operacional.</Text><small className={styles.lastSync}>Última leitura: {formatDateTime(lastSyncedAt)}</small></div>
+      <div><Title level={2} className={styles.title}>Anúncios</Title><Text type="secondary">Preço, qualidade, estado e competição no Mercado Livre em uma leitura operacional.</Text><small className={styles.lastSync}>Última leitura ML: {formatDateTime(lastSyncedAt)}{freshness?.computedAt ? ` · Tela atualizada: ${formatDateTime(freshness.computedAt)}` : ''}</small></div>
       <Space wrap>
         <Button icon={<FilePdfOutlined />} loading={exporting} onClick={() => void exportPdf()} title="Exportar o conjunto filtrado em PDF">Exportar PDF</Button>
         <Button type="primary" icon={<ReloadOutlined />} loading={syncStarting || syncing} disabled={Boolean(visualReview)} onClick={() => void startSync()}>Atualizar dados</Button>
@@ -874,6 +876,7 @@ export default function AnunciosPage() {
     </header>
 
     {visualReview && <Alert className={styles.visualReviewAlert} type="warning" showIcon message="Amostra protegida, somente leitura" description="Lista e análise usam dados protegidos. Atualização, preço, situação e links externos permanecem bloqueados." />}
+    {!visualReview && freshness?.state === 'delayed' && <Alert type="warning" showIcon message="Atualização das listas atrasada" description={`Os últimos dados completos continuam visíveis. A fila de atualização está com ${freshness.lagSeconds} segundos de atraso.`} />}
     {syncJob && <Alert className={styles.syncAlert} type={syncJob.status === 'erro' || syncFailures.length > 0 ? 'error' : TERMINAL_JOB_STATUSES.has(syncJob.status) ? 'success' : 'info'} showIcon message={syncing ? 'Atualizando anúncios do Mercado Livre' : syncJob.status === 'erro' ? 'Não foi possível atualizar os anúncios' : 'Anúncios atualizados'} description={<div className={styles.syncDescription}><Progress percent={Number(syncJob.progresso || 0)} status={syncJob.status === 'erro' ? 'exception' : undefined} /><span>{syncJob.processados} de {syncJob.total} anúncios processados · {userSafeMessage(syncJob.last_event?.message, syncing ? 'Atualização em andamento.' : 'Processamento concluído.')}</span>{syncFailures.length > 0 && <small>Alguns anúncios não foram atualizados. Os dados anteriores foram preservados.</small>}</div>} />}
 
     <section className={styles.summaryBand}>

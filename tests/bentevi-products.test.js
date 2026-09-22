@@ -8,7 +8,11 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'u
 
 const page = read('src/app/(app)/produtos/page.tsx');
 const styles = read('src/app/(app)/produtos/produtos.module.css');
-const listRoute = read('src/services/product-list.ts') + read('src/services/product-pricing-query.ts');
+const productRoute = read('src/services/product-list.ts');
+const projectionQuery = read('src/services/ui-read-model-query.ts');
+const projectionWorker = read('src/services/ui-read-model.ts');
+const projectionMigration = read('supabase/migrations/20260922160000_ui_catalog_read_models.sql');
+const listRoute = productRoute + projectionQuery + projectionWorker;
 const summaryRoute = read('src/app/api/produtos/resumo/route.ts');
 const visualReview = read('src/lib/products/bnt-d07-visual-review.ts');
 const priceRoute = read('src/app/api/ml/anuncio/atualizar-preco/route.ts');
@@ -28,9 +32,9 @@ test('BNT-D07 organiza produtos por decisão operacional', () => {
 });
 
 test('BNT-D07 exibe a capacidade canônica sem recalculá-la no browser', () => {
-  assert.match(listRoute, /loadProductFulfillmentCapacities\(client, ids\)/);
+  assert.match(projectionWorker, /loadProductFulfillmentCapacities\(client as any, ids\)/);
   assert.match(listRoute, /fulfillmentCapacity:/);
-  assert.match(listRoute, /isKit: Boolean\(kitSource && kitSource\.kind !== 'not_kit'\)/);
+  assert.match(listRoute, /const isKit = Boolean\(kitSource && kitSource\.kind !== 'not_kit'\)/);
   assert.match(listRoute, /source_kind: 'kit'/);
   assert.match(page, /record\.isKit \? 'Origem do kit'/);
   assert.match(page, /record\.fulfillmentCapacity\.safe/);
@@ -113,14 +117,30 @@ test('BNT-D07 permite somente detalhe e PDF durante a revisão protegida', () =>
 });
 
 test('BNT-D07 representa anúncios padrão e catálogo sem multiplicar tags', () => {
-  assert.match(listRoute, /loadProductMlListings/);
+  assert.match(projectionWorker, /loadProductMlListings/);
   assert.match(listingLoader, /from\('anuncios_ml'\)/);
   assert.match(listingLoader, /from\('catalogo_ml_snapshot'\)/);
-  assert.match(listRoute, /mlListings: listings.get\(row.product.id\) \|\| \[\]/);
+  assert.match(projectionWorker, /mlListings: linkedListings/);
   assert.match(page, /listing\.type === 'catalog' \? 'Catálogo' : 'Padrão'/);
   assert.match(page, /listing\.catalogStatus === 'ganhando'/);
   assert.match(styles, /\.mlOverallStatus[\s\S]*?width: fit-content/);
   assert.match(styles, /\.mlListingLine/);
+});
+
+test('Produtos lê página, indicadores e atualização da mesma projeção', () => {
+  assert.match(productRoute, /queryProductReadModel/);
+  assert.match(projectionQuery, /rpc\('search_ui_product_projection'/);
+  assert.match(projectionMigration, /'summary', jsonb_build_object/);
+  assert.match(projectionMigration, /'freshness',/);
+  assert.doesNotMatch(page, /\/api\/produtos\/resumo/);
+  assert.doesNotMatch(productRoute, /queryPricedProducts/);
+});
+
+test('Produtos preserva a precificação canônica na atualização assíncrona', () => {
+  assert.match(projectionWorker, /loadProductPricing/);
+  assert.match(projectionWorker, /currentPriceCents: listing\.price/);
+  assert.match(projectionWorker, /loadKitSupplySources/);
+  assert.match(projectionMigration, /for update skip locked/);
 });
 
 test('PUB-GATE prepara um preço pela origem e pelo grupo canônico, sem envio direto', () => {

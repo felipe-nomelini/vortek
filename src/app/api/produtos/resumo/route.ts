@@ -8,7 +8,7 @@ import {
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
 import { loadPricingRequestContext } from '@/services/pricing-context';
-import { queryPricedProducts } from '@/services/product-pricing-query';
+import { queryProductReadModel } from '@/services/ui-read-model-query';
 import {
   loadBntD07VisualReview,
   summarizeBntD07VisualReview,
@@ -19,9 +19,6 @@ export async function GET(request: Request) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   const serviceClient = createServiceClient();
-  const requestContext = await loadPricingRequestContext(serviceClient);
-  const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
-  const taxRate = pricingTaxContext.appliedRate;
 
   const { searchParams } = new URL(request.url);
   const search = searchParams.get('search') || '';
@@ -57,6 +54,9 @@ export async function GET(request: Request) {
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
   if (visualReview) {
+    const requestContext = await loadPricingRequestContext(serviceClient);
+    const { taxContext: pricingTaxContext, commercial: commercialPricing } = requestContext;
+    const taxRate = pricingTaxContext.appliedRate;
     return NextResponse.json({
       ...summarizeBntD07VisualReview(visualReview, {
         search,
@@ -77,17 +77,27 @@ export async function GET(request: Request) {
     });
   }
 
-  let priced;
+  let projected;
   try {
-    priced = await queryPricedProducts(serviceClient, {
-      search, supplierIds: supplierFilterDsliteIds, includeInternal: includesInternalSupplierFilter(fornecedorFilterIds),
-      active: productActiveStatus, mlStatus, stock: estoque, priceField, priceMin, priceMax,
-      sortBy: 'sku', sortOrder: 'asc', page: 1, pageSize: 100,
-    }, requestContext);
+    projected = await queryProductReadModel(serviceClient as any, {
+      p_search: search || null,
+      p_supplier_dslite_ids: supplierFilterDsliteIds,
+      p_include_internal: includesInternalSupplierFilter(fornecedorFilterIds),
+      p_product_active_status: productActiveStatus,
+      p_ml_status: mlStatus || null,
+      p_estoque: estoque || null,
+      p_price_field: priceField,
+      p_price_min: priceMin,
+      p_price_max: priceMax,
+      p_page: 1,
+      p_page_size: 1,
+      p_sort_by: 'sku',
+      p_sort_order: 'asc',
+    });
   } catch {
     return NextResponse.json({ erro: 'Falha ao carregar a memória econômica dos produtos' }, { status: 500 });
   }
-  const result = priced.summary;
+  const result = projected.summary || {};
 
   return NextResponse.json({
     total: Number(result.total || 0),
@@ -96,7 +106,8 @@ export async function GET(request: Request) {
     receitaPotencial: result.receitaPotencial,
     lucroMedio: result.lucroMedio,
     pricingInconclusive: result.pricingInconclusive,
-    pricingTaxContext,
-    commercialPricing,
+    pricingTaxContext: projected.pricingTaxContext || null,
+    commercialPricing: projected.commercialPricing || null,
+    freshness: projected.freshness || null,
   });
 }

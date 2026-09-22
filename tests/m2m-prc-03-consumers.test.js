@@ -21,84 +21,38 @@ const sample = (i, complete = true) => context.simulateProductPricing({
   costCents: complete ? 3000 + i : null, shippingCents: 1000, priceCents: 10000 + i,
   feeRate: .14, taxContext: tax, evaluatedAt,
 });
-const query = { search: '', supplierIds: [], includeInternal: false, active: 'todos',
-  mlStatus: '', stock: '', priceField: 'cost', priceMin: null, priceMax: null,
-  sortBy: 'profit', sortOrder: 'desc', page: 1, pageSize: 100 };
 const rows = Array.from({ length: 1105 }, (_, i) => ({
   product: { id: String(i), sku: String(i).padStart(5, '0'), estoque: 2, ml_status: 'sem_anuncio', pricing: sample(i, i !== 1104) },
   preferredOffer: null, offersCount: 0,
 }));
 
-function queryModule(extra = {}) {
-  return load('src/services/product-pricing-query.ts', {
-    'server-only': {}, './pricing-context': context, '@/lib/pricing-view': view,
-    '@/lib/ml/product-listings': {}, '@/lib/orders/fulfillment-capacity-loader': {},
-    '@/lib/kit-supply-source': require('./helpers/kit-supply-source-module'), ...extra,
-  });
-}
+const projectionMigration = require('node:fs').readFileSync(
+  require('node:path').join(process.cwd(), 'supabase/migrations/20260922160000_ui_catalog_read_models.sql'), 'utf8',
+);
+const projectionWorker = require('node:fs').readFileSync(
+  require('node:path').join(process.cwd(), 'src/services/ui-read-model.ts'), 'utf8',
+);
 
-test('filtro, ordenação e resumo abrangem mais de 1000 produtos antes da paginação', () => {
-  const { selectPricedProducts } = queryModule();
-  const result = selectPricedProducts(rows, { ...query, priceMin: 40, sortBy: 'custo', sortOrder: 'desc' });
-  assert.equal(result.total, 104);
-  assert.equal(result.data.length, 100);
-  assert.equal(result.data[0].product.id, '1103');
-  assert.equal(result.summary.total, 104);
-  const all = selectPricedProducts(rows, { ...query, priceMin: 40, pageSize: 2000 });
-  const second = selectPricedProducts(rows, { ...query, priceMin: 40, page: 2 });
-  assert.equal(second.data.length, 4);
-  assert.deepEqual(result.summary, all.summary);
-  assert.equal(result.summary.receitaPotencial, all.data.reduce((sum, r) => sum + r.product.pricing.target.priceCents * 2, 0) / 100);
+test('filtro, ordenação e resumo são calculados antes da paginação no banco', () => {
+  assert.match(projectionMigration, /with filtered as \(/);
+  assert.match(projectionMigration, /ordered as \(/);
+  assert.match(projectionMigration, /position > v_offset and position <= v_offset \+ v_page_size/);
+  assert.match(projectionMigration, /'summary', jsonb_build_object/);
+  assert.match(projectionMigration, /'total', \(select count\(\*\) from filtered\)/);
 });
 
 test('inconclusivo permanece null e não contamina média nem vira receita zero', () => {
-  const { selectPricedProducts } = queryModule();
-  const all = selectPricedProducts(rows, query);
-  assert.equal(all.summary.receitaPotencial, null);
-  assert.equal(all.summary.pricingInconclusive, 1);
-  assert.equal(all.summary.profitSampleCount, 1104);
-  const missing = selectPricedProducts([rows.at(-1)], query);
-  assert.equal(missing.summary.lucroMedio, null);
+  assert.match(projectionMigration, /exists\(select 1 from filtered where pricing_inconclusive\) then null/);
+  assert.match(projectionMigration, /round\(avg\(profit\),2\)/);
+  assert.match(projectionMigration, /count\(profit\)/);
   assert.equal(view.pricingView(rows.at(-1).product.pricing).cost, null);
   assert.equal(view.pricingView(undefined).profit, null);
 });
 
-test('carregamento em lotes não trunca 1105 registros e compartilha contexto por requisição', async () => {
-  const calls = []; const supplied = { evaluatedAt, taxContext: tax };
-  const q = queryModule({
-    './pricing-context': { loadProductPricing: async (_, batch, options) => {
-      assert.equal(options.requestContext, supplied);
-      assert.ok(batch.length <= 100);
-      calls.push(batch.length);
-      return new Map(batch.map(p => [p.id, p.pricing]));
-    } },
-    '@/lib/ml/product-listings': { loadProductMlListings: async () => new Map() },
-    '@/lib/orders/fulfillment-capacity-loader': { loadProductFulfillmentCapacities: async (_, ids) => new Map(ids.map(id => [id, { safe: 2, internal: 2, supplier: 0 }])) },
-  });
-  const client = {
-    rpc: async (_, args) => {
-      assert.equal(args.p_tax_rate, undefined);
-      assert.equal(args.p_price_min, undefined);
-      return { data: { data: rows.slice((args.p_page - 1) * 100, args.p_page * 100), total: rows.length }, error: null };
-    },
-    from: () => ({ select() { return this; }, in() { return this; }, returns: async () => ({ data: [], error: null }) }),
-  };
-  const result = await q.queryPricedProducts(client, { ...query, page: 12 }, supplied);
-  assert.equal(result.total, 1105); assert.equal(result.data.length, 5);
-  assert.equal(calls.length, 12); assert.equal(calls.at(-1), 5);
-});
-
-test('paginação detecta lote repetido sem laço infinito ou resumo parcial', async () => {
-  const q = queryModule({
-    './pricing-context': { loadProductPricing: async (_, batch) => new Map(batch.map(p => [p.id, p.pricing])) },
-    '@/lib/ml/product-listings': { loadProductMlListings: async () => new Map() },
-    '@/lib/orders/fulfillment-capacity-loader': { loadProductFulfillmentCapacities: async (_, ids) => new Map(ids.map(id => [id, { safe: 2, internal: 2, supplier: 0 }])) },
-  });
-  const client = {
-    rpc: async () => ({ data: { data: rows.slice(0, 100) }, error: null }),
-    from: () => ({ select() { return this; }, in() { return this; }, returns: async () => ({ data: [], error: null }) }),
-  };
-  await assert.rejects(q.queryPricedProducts(client, query, {}), /lista mudou/);
+test('worker processa a fonte econômica em lotes canônicos de até 100 produtos', () => {
+  assert.match(projectionWorker, /for \(let offset = 0; offset < productRows\.length; offset \+= 100\)/);
+  assert.match(projectionWorker, /productRows\.slice\(offset, offset \+ 100\)/);
+  assert.match(projectionWorker, /loadProductPricing\(client, batch, \{ requestContext, evidence \}\)/);
 });
 
 test('simulador autentica antes do contexto e rejeita campos legados sem efeitos', async () => {
