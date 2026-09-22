@@ -7,6 +7,7 @@ const root = process.cwd();
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
 const migration = read('supabase/migrations/20260922160000_ui_catalog_read_models.sql');
+const triggerDedupMigration = read('supabase/migrations/20260922183000_ui_read_model_trigger_dedup.sql');
 const worker = read('src/services/ui-read-model.ts');
 const query = read('src/services/ui-read-model-query.ts');
 const refreshRoute = read('src/app/api/ops/read-model/refresh/route.ts');
@@ -44,6 +45,7 @@ test('triggers apenas invalidam e o worker reutiliza os cálculos canônicos for
     'loadProductMlListings',
   ]) assert.match(worker, new RegExp(loader));
   assert.match(worker, /currentPriceCents: listing\.price/);
+  assert.match(triggerDedupMigration, /to_jsonb\(new\) - array\['updated_at','last_sync_at','synced_at','observed_at'\]/);
 });
 
 test('consultas normais fazem uma RPC paginada e PDFs percorrem somente a projeção', () => {
@@ -58,7 +60,8 @@ test('processamento fica no agendador e a drenagem operacional exige segredo', (
   assert.match(cronRoute, /processUiReadModelBatch\(serviceClient, 100\)/);
   assert.match(refreshRoute, /process\.env\.API_SECRET_KEY/);
   assert.match(refreshRoute, /request\.headers\.get\('x-api-key'\)/);
-  assert.match(refreshRoute, /maxDurationMs: 240_000/);
+  assert.match(refreshRoute, /maxDurationMs = Math\.min/);
+  assert.match(refreshRoute, /maxDurationMs \}\)/);
   assert.match(proxy, /pathname === "\/api\/ops\/read-model\/refresh"/);
   assert.match(proxy, /isInternalReadModelRoute/);
 });

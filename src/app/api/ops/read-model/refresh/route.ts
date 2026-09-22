@@ -12,8 +12,9 @@ export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => ({}));
     const batchSize = Math.min(Math.max(Number(body?.batchSize || 100), 1), 250);
+    const maxDurationMs = Math.min(Math.max(Number(body?.maxDurationMs || 240_000), 5_000), 240_000);
     const result = body?.drain === true
-      ? await drainUiReadModel({ batchSize, maxDurationMs: 240_000 })
+      ? await drainUiReadModel({ batchSize, maxDurationMs })
       : await processUiReadModelBatch(undefined, batchSize);
     return NextResponse.json(result);
   } catch (error) {
