@@ -4359,7 +4359,7 @@ async function runDsliteCreateJob(
         if (step.key === 'create_order_dslite') step.label = 'Criando pedido na Evolusom';
         if (step.key === 'set_supplier_dslite') step.label = 'Vinculando compra à venda';
         if (step.key === 'set_carrier_dslite') step.label = 'Configurando transporte Evolusom';
-        if (step.key === 'send_label_dslite') step.label = 'Etiqueta real por WhatsApp';
+        if (step.key === 'send_label_dslite') step.label = 'Etiqueta do pedido Evolusom';
       }
       await setStep('create_order_dslite', 'loading', 'Criando pedido direto na Evolusom');
       const directResult = await createEvolusomPurchase({
@@ -4386,6 +4386,10 @@ async function runDsliteCreateJob(
         : { data: null };
       await setStep('create_order_dslite', directResult.state === 'created' ? 'success' : 'warning', message);
       if (directResult.state === 'created') {
+        const labelStep = steps.find((step) => step.key === 'send_label_dslite');
+        if (labelStep) labelStep.label = usePlaceholderLabel
+          ? 'Enviar etiqueta real por WhatsApp'
+          : 'Etiqueta real no pedido Evolusom';
         await completeAsSkipped('set_supplier_dslite', 'compra vinculada diretamente à venda');
         await completeAsSkipped('set_carrier_dslite', 'transporte informado no pedido triangular');
         if (!usePlaceholderLabel) await completeAsSkipped('download_label_ml', 'etiqueta real já disponível');
@@ -5656,7 +5660,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const fulfillmentRead = await (client as any)
       .from('pedidos')
-      .select('fulfillment_source,snapshot_source,situacao,dslite_id,evolusom_order_id')
+      .select('fulfillment_source,snapshot_source,situacao,dslite_id,evolusom_order_id,dslite_label_source,label_type,label_delivery_channel,label_delivered_at')
       .eq('id', String(pedidoId))
       .maybeSingle();
     if (fulfillmentRead.error) {
@@ -5737,7 +5741,16 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Falha ao registrar adiamento do PIX', code: 'supplier_payment_defer_write_failed' }, { status: 500 });
           }
         }
-        return NextResponse.json({ success: true, deferred: true, evolusom_order_id: existingEvolusomId });
+        const realLabelDeliveryChannel = fulfillmentRead.data.label_type === 'real'
+          && fulfillmentRead.data.label_delivered_at
+          ? fulfillmentRead.data.label_delivery_channel : null;
+        return NextResponse.json({
+          success: true,
+          deferred: true,
+          evolusom_order_id: existingEvolusomId,
+          realLabelDeliveryChannel,
+          placeholderLabel: isDslitePlaceholderLabelSource(fulfillmentRead.data.dslite_label_source),
+        });
       }
       if (!existingDsliteId) {
         return NextResponse.json(

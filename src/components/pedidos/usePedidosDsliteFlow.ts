@@ -329,7 +329,13 @@ export function usePedidosDsliteFlow({
       if (json.deferred) {
         setProgressOpen(false);
         updateOrder(order, { supplier_payment_deferred: true, supplier_payment_status: 'pending' });
-        messageApi.success('Pagamento da Evolusom adiado. Envie a etiqueta real quando o Mercado Livre liberar.');
+        messageApi.success(json.realLabelDeliveryChannel === 'dslite'
+          ? 'Pagamento da Evolusom adiado. A etiqueta real já foi informada no pedido.'
+          : json.realLabelDeliveryChannel === 'whatsapp'
+            ? 'Pagamento da Evolusom adiado. A etiqueta real já foi enviada por WhatsApp.'
+            : json.placeholderLabel
+              ? 'Pagamento da Evolusom adiado. Envie a etiqueta real por WhatsApp quando estiver disponível.'
+              : 'Pagamento da Evolusom adiado. Confira a situação da etiqueta na venda.');
         void refreshOrders();
         return;
       }

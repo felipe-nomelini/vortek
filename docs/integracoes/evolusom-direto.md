@@ -72,3 +72,9 @@ Após confirmar o alvo produtivo `.162`, ausência de job de criação em andame
 
 - A venda `2000018570255102` usa a oferta ativa `380381` da Evolusom (`133`), quantidade 1. A primeira execução emitiu a NF-e e encerrou antes de criar compra ou enviar POST triangular: o ML ainda não informou rastreio nem disponibilizou etiqueta, e `ml_fiscal_release_at` estava vazio.
 - A escolha da etiqueta provisória dependia indevidamente da presença de uma janela de liberação do ML. Para pedidos diretos da Evolusom, a etiqueta genérica e o rastreio provisório do exemplo passam a ser usados quando a etiqueta real ou o rastreio ainda faltam, mesmo sem `ml_fiscal_release_at`. O rastreio provisório continua fora do campo de rastreio real do Bentevi; a etiqueta real será enviada após liberação.
+
+### Adiamento do PIX com etiqueta real já informada
+
+Na venda `2000018567229898`, o pedido direto Evolusom `63012179` foi criado com a etiqueta real armazenada no ML. O Bentevi registrou `label_type=real`, `label_delivery_channel=dslite` e `label_delivered_at`; o job concluiu a etapa como “Etiqueta real informada à Evolusom”. Ao adiar o PIX, a interface exibia sempre a instrução de enviar a etiqueta por WhatsApp porque ignorava esses campos. A própria etapa do job tinha o título fixo “Etiqueta real por WhatsApp”, e a leitura operacional só reconhecia entregas pelo WhatsApp.
+
+A confirmação do adiamento passa a usar a entrega persistida na venda: informa que a etiqueta real já consta no pedido da Evolusom quando o canal é `dslite`, que já foi enviada quando o canal é `whatsapp`, e instrui o envio posterior apenas quando a compra recebeu etiqueta provisória. O título da etapa do job acompanha a modalidade efetiva. A leitura operacional considera a entrega real incluída no pedido Evolusom como concluída e preserva a exigência de WhatsApp para pedidos que receberam etiqueta provisória. Nenhuma nova criação de pedido ou envio de WhatsApp faz parte desta correção.

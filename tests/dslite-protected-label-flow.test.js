@@ -198,6 +198,51 @@ test('entrega real confirmada encerra a espera da Evolusom, independentemente da
   assert.equal(sent.dslite_next_action_label, 'OK');
 });
 
+test('etiqueta real incluída no pedido Evolusom encerra a espera sem exigir WhatsApp', async () => {
+  const row = baseRow({
+    evolusom_order_id: 63012179,
+    dslite_etiqueta_enviada: true,
+    dslite_label_source: 'mercado_livre',
+    dslite_next_action: 'wait_ml_label',
+    dslite_next_action_label: 'Aguardar etiqueta real do ML',
+  });
+  const label = [{
+    id: row.id,
+    label_type: 'real',
+    label_delivery_channel: 'dslite',
+    label_delivered_at: '2026-09-22T15:04:14.000Z',
+  }];
+  const [pending] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([]));
+  const [delivered] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([{
+    pedido_id: row.id,
+    evento: 'ml_label_send_failed',
+    status_resultante: 'failed',
+    resposta_ml: { error: 'Falha anterior' },
+    created_at: '2026-09-22T14:00:00.000Z',
+  }], label));
+  assert.equal(pending.dslite_next_action, 'wait_ml_label');
+  assert.equal(delivered.supplier_label_delivered, true);
+  assert.equal(delivered.dslite_label_operational_status, 'real_sent');
+  assert.equal(delivered.dslite_next_action, 'done');
+  assert.equal(delivered.whatsapp_label_status, 'not_sent');
+});
+
+test('etiqueta provisória ainda exige entrega real por WhatsApp', async () => {
+  const row = baseRow({
+    evolusom_order_id: 63012097,
+    dslite_label_source: 'placeholder_release_window_evolusom',
+    dslite_next_action: 'wait_ml_label',
+  });
+  const [status] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([], [{
+    id: row.id,
+    label_type: 'real',
+    label_delivery_channel: 'dslite',
+    label_delivered_at: '2026-09-22T15:04:14.000Z',
+  }]));
+  assert.equal(status.supplier_label_delivered, false);
+  assert.equal(status.dslite_next_action, 'wait_ml_label');
+});
+
 test('outros erros 403 continuam falha operacional e não encerram a ação DSLite', async () => {
   const pedidoId = baseRow().id;
   const [result] = await operationalStatus.enrichOrdersWithWhatsappStatus(

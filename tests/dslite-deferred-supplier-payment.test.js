@@ -59,7 +59,7 @@ test('API aceita a continuação somente para compra PIX pendente já vinculada'
     routeSource,
     /continueWithSupplierPaymentPending && Boolean\(resumeAfterSupplierPayment\)/,
   );
-  assert.match(routeSource, /\.select\('fulfillment_source,snapshot_source,situacao,dslite_id,evolusom_order_id'\)/);
+  assert.match(routeSource, /\.select\('fulfillment_source,snapshot_source,situacao,dslite_id,evolusom_order_id,dslite_label_source,label_type,label_delivery_channel,label_delivered_at'\)/);
   assert.match(
     routeSource,
     /existingCompraRead\.data\.supplier_payment_mode !== "prepaid_pix"[\s\S]*?existingCompraRead\.data\.supplier_payment_status !== "pending"/,
@@ -76,9 +76,12 @@ test('compra direta da Evolusom adia PIX sem reenviar o pedido', () => {
   assert.match(directBranch, /\.eq\('evolusom_order_id', existingEvolusomId\)/);
   assert.match(directBranch, /supplier_payment_status !== 'pending'/);
   assert.match(directBranch, /evento: 'supplier_payment_deferred_by_user'/);
-  assert.match(directBranch, /return NextResponse\.json\(\{ success: true, deferred: true/);
+  assert.match(directBranch, /realLabelDeliveryChannel[\s\S]*?return NextResponse\.json\(\{[\s\S]*?deferred: true/);
+  assert.match(directBranch, /placeholderLabel: isDslitePlaceholderLabelSource\(fulfillmentRead\.data\.dslite_label_source\)/);
   assert.doesNotMatch(directBranch, /createEvolusomPurchase|runDsliteCreateJob/);
   assert.match(flowSource, /if \(json\.deferred\) \{[\s\S]*?setProgressOpen\(false\)/);
+  assert.match(flowSource, /json\.realLabelDeliveryChannel === 'dslite'[\s\S]*?etiqueta real já foi informada no pedido/);
+  assert.match(flowSource, /json\.placeholderLabel[\s\S]*?Envie a etiqueta real por WhatsApp quando estiver disponível/);
 });
 
 test('leitura operacional reconhece o adiamento pelo número da Evolusom', () => {

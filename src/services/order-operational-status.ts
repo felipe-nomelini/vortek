@@ -171,17 +171,16 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
       : [row.id])
     .map((id) => String(id || '').trim())
     .filter(Boolean)));
-  const deliveredLabelByPedido = new Map<string, boolean>();
+  const deliveredLabelByPedido = new Map<string, string>();
   for (let index = 0; index < labelPedidoIds.length; index += 100) {
     const { data, error } = await serviceClient.from('pedidos')
       .select('id,label_type,label_delivery_channel,label_delivered_at')
       .in('id', labelPedidoIds.slice(index, index + 100));
     if (error) throw new Error(`Falha ao consultar entrega da etiqueta ao fornecedor: ${error.message}`);
     for (const pedido of data || []) {
-      deliveredLabelByPedido.set(String(pedido.id),
-        pedido.label_type === 'real'
-        && pedido.label_delivery_channel === 'whatsapp'
-        && Boolean(pedido.label_delivered_at));
+      if (pedido.label_type === 'real' && pedido.label_delivered_at) {
+        deliveredLabelByPedido.set(String(pedido.id), String(pedido.label_delivery_channel || ''));
+      }
     }
   }
 
@@ -206,10 +205,15 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
     const usesProviderShipping = row.dslite_label_source === 'dslite_paid_shipping';
     const usesPlaceholderLabel = isDslitePlaceholderLabelSource(row.dslite_label_source);
     const supplierLabelDelivered = usesPlaceholderLabel || row.evolusom_order_id
-      ? operationalPedidoIds.every((id) => deliveredLabelByPedido.get(id) === true)
+      ? operationalPedidoIds.every((id) => {
+        const channel = deliveredLabelByPedido.get(id);
+        return channel === 'whatsapp' || (!usesPlaceholderLabel && channel === 'dslite');
+      })
       : null;
     const dsliteLabelOperationalStatus: DsliteLabelOperationalStatus = usesProviderShipping
       ? 'provider_shipping'
+      : row.evolusom_order_id && supplierLabelDelivered && !usesPlaceholderLabel
+        ? 'real_sent'
       : dsliteLabelEvent
         ? mapDsliteLabelStatus(dsliteLabelEvent)
         : auditReadFailed
