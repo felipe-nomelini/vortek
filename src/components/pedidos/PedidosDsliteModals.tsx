@@ -53,7 +53,7 @@ function SupplierPaymentDecisionModal({ flow }: PedidosDsliteModalsProps) {
           </Space>
         </div>
         <Text type="secondary">
-          Ao pagar depois, o comprovante continuará pendente e poderá ser enviado ao fornecedor por WhatsApp pela ação de confirmação do PIX.
+          Ao pagar depois, o PIX continuará pendente. Na confirmação, você poderá anexar um comprovante, se tiver um.
         </Text>
       </Space>
     </Modal>
@@ -89,9 +89,9 @@ function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
       <Space direction="vertical" size={14} style={{ width: '100%' }}>
         <Text style={{ color: '#a0a0a0' }}>
           {resumePaidFlow
-            ? 'O comprovante já foi enviado ao fornecedor. Esta ação apenas retoma etiqueta/transportadora.'
+            ? 'O PIX já foi registrado. Esta ação apenas retoma etiqueta/transportadora.'
             : prompt?.resumeAfterConfirm === false
-              ? 'Envie ou reenvie o comprovante PIX ao fornecedor sem retomar etapas de etiqueta.'
+              ? 'Registre o PIX sem retomar etapas de etiqueta. O comprovante é opcional e só será enviado por WhatsApp se estiver anexado.'
               : 'O pedido foi criado com o fornecedor e precisa da confirmação do PIX para concluir as etapas pendentes.'}
         </Text>
         {(prompt?.supplierPixKeyMissing || prompt?.supplierPhoneMissing) && (
@@ -103,7 +103,7 @@ function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
             )}
             {prompt?.supplierPhoneMissing && (
               <Text style={{ color: '#faad14', display: 'block' }}>
-                WhatsApp do fornecedor não cadastrado. O comprovante será salvo, mas não será enviado automaticamente.
+                WhatsApp do fornecedor não cadastrado. Se você anexar um comprovante, ele será salvo sem envio automático.
               </Text>
             )}
           </div>
@@ -156,7 +156,7 @@ function SupplierPaymentModal({ flow }: PedidosDsliteModalsProps) {
               disabled={flow.confirmingPayment}
             >
               <Button icon={<UploadOutlined />} disabled={flow.confirmingPayment}>
-                {prompt?.order.supplier_payment_receipt_path ? 'Substituir comprovante' : 'Anexar comprovante'}
+                {prompt?.order.supplier_payment_receipt_path ? 'Substituir comprovante' : 'Anexar comprovante (opcional)'}
               </Button>
             </Upload>
             {prompt?.order.supplier_payment_receipt_path && !flow.paymentReceiptFile && (

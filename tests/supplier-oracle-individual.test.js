@@ -76,6 +76,20 @@ test('confirmação individual usa um único núcleo e não despacha efeitos ext
   assert.equal(calls[3][1].p_expected_version, 2);
 });
 
+test('PIX individual sem comprovante confirma sem upload nem envio automático', async () => {
+  const { db, calls } = client();
+  const response = await individual.confirmSupplierOracleIndividual({ client: db,
+    purchase: basePurchase, sale, actor: '00000000-0000-4000-8000-000000000001',
+    payment: { receiptFile: null, reference: 'PIX-SEM-ARQUIVO', notes: null,
+      resumeDsliteFlow: true, resumeOnly: false },
+  });
+  assert.equal(response.status, 200);
+  assert.equal(response.body.receiptPath, null);
+  assert.equal(response.body.whatsapp.sent, false);
+  assert.deepEqual(calls.map(([name]) => name), ['supplier_oracle_prepare', 'supplier_oracle_confirm']);
+  assert.equal(calls[1][1].p_expected_version, 1);
+});
+
 test('repetição retoma preparo unitário já vinculado sem nova preparação', async () => {
   const { db, calls } = client({ prior: { id: settlementId, status: 'prepared', version: 1,
     fornecedor_dslite_id: '108', idempotency_key: 'single:unit-test', credit_amount: 0,

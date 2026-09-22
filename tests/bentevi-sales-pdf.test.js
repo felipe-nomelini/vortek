@@ -34,6 +34,7 @@ test('BNT-D01-PDF organiza o relatório pelos dados aprovados da venda', () => {
   assert.match(route, /Qtd\. \$\{product\.quantity\} · SKU \$\{product\.sku\}/);
   assert.match(route, /Item ML \$\{product\.mlItemId\}/);
   assert.doesNotMatch(route, /label: 'Próxima ação'/);
+  assert.match(route, /Evolusom #\$\{row\.evolusomOrderId\}/);
 });
 
 test('BNT-D01-PDF reutiliza andamento e urgência canônicos', () => {

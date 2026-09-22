@@ -350,13 +350,8 @@ export function usePedidosDsliteFlow({
     const resumeOnly = Boolean(
       paymentPrompt.resumeAfterConfirm
       && paymentPrompt.order.supplier_payment_status === 'paid'
-      && hasSavedReceipt
       && !paymentReceiptFile,
     );
-    if (!paymentReceiptFile && !hasSavedReceipt && !resumeOnly) {
-      messageApi.warning('Anexe o comprovante do PIX para continuar o fluxo.');
-      return;
-    }
 
     setConfirmingPayment(true);
     try {
@@ -401,7 +396,7 @@ export function usePedidosDsliteFlow({
         const whatsappDetail = json.whatsapp?.sent
           ? 'WhatsApp enviado.'
           : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(json.whatsapp.reason)}` : ''}.`;
-        messageApi.success(`Comprovante processado. ${whatsappDetail}`);
+        messageApi.success(`PIX registrado. ${hasSavedReceipt || paymentReceiptFile ? whatsappDetail : 'Sem comprovante para enviar por WhatsApp.'}`);
         void refreshOrders();
       }
     } catch (error: any) {

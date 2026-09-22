@@ -119,6 +119,7 @@ export interface OperationalOrderLike {
   data_venda?: string | null;
   situacao?: string | { valor?: string | null } | null;
   dslite_id?: string | null;
+  evolusom_order_id?: number | null;
   dslite_status?: string | null;
   dslite_etiqueta_enviada?: boolean | null;
   ml_fiscal_release_at?: string | null;
@@ -195,7 +196,7 @@ export function getOperationalUrgencyReasons(
   const isInternalShipping = Boolean(
     order.envio_interno_at || order.dslite_next_action === 'internal_shipping',
   );
-  const dsliteId = String(order.dslite_id || '').trim();
+  const dsliteId = String(order.dslite_id || order.evolusom_order_id || '').trim();
   const whatsappStatus = String(order.whatsapp_label_status || '');
   const dsliteLabelStatus = String(order.dslite_label_operational_status || '');
   const dsliteLabelConfirmed = dsliteLabelStatus
@@ -258,7 +259,7 @@ function isPreparationComplete(order: OperationalOrderLike): boolean {
 
   if (internal) return Boolean(order.envio_interno_at);
 
-  const dsliteId = String(order.dslite_id || '').trim();
+  const dsliteId = String(order.dslite_id || order.evolusom_order_id || '').trim();
   const nextAction = String(order.dslite_next_action || '');
   const blockedActions = [
     'create_dslite_order',

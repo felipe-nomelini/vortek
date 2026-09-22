@@ -524,7 +524,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
 
   const { data: directCompras, error: directComprasError } = pedidoIds.length
     ? await serviceClient.from('compras')
-      .select('id,dsid,pedido_id,evolusom_order_id,evolusom_request_code,evolusom_request_state,status,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount')
+      .select('id,dsid,pedido_id,evolusom_order_id,evolusom_request_code,evolusom_request_state,status,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_settlement_id,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
       .in('pedido_id', pedidoIds)
     : { data: [], error: null };
   if (directComprasError) throw new Error(`Falha ao consultar compras Evolusom: ${directComprasError.message}`);
@@ -663,9 +663,14 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
         fornecedor_id: compra.fornecedor_id,
         fornecedor_nome: compra.fornecedor_nome,
         fornecedor_telefone: fornecedor?.telefone || null,
+        supplier_pix_key: fornecedor?.supplier_pix_key || null,
         supplier_payment_mode: compra.supplier_payment_mode,
         supplier_payment_status: compra.supplier_payment_status,
         supplier_payment_amount: compra.supplier_payment_amount,
+        supplier_settlement_id: compra.supplier_settlement_id || null,
+        supplier_payment_receipt_path: compra.supplier_payment_receipt_path || null,
+        supplier_payment_reference: compra.supplier_payment_reference || null,
+        supplier_payment_notes: compra.supplier_payment_notes || null,
         dslite_next_action: !compra.evolusom_order_id
           ? 'blocked'
           : compra.supplier_payment_mode === 'prepaid_pix' && compra.supplier_payment_status !== 'paid'
@@ -688,7 +693,6 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     );
     const paymentMode = String(compra.supplier_payment_mode || '');
     const paymentStatus = String(compra.supplier_payment_status || '');
-    const hasReceipt = Boolean(compra.supplier_payment_receipt_path);
     const labelSent = Boolean(
       row?.dslite_etiqueta_enviada
       || String(row?.dslite_label_source || '') === 'dslite_paid_shipping',
@@ -710,10 +714,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
     } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && compra.supplier_settlement_id && !labelSent) {
       nextAction = 'blocked';
       nextActionLabel = 'Acompanhando retomada da liquidação';
-    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && !compra.supplier_settlement_id && !hasReceipt) {
-      nextAction = 'send_supplier_receipt';
-      nextActionLabel = 'Anexar comprovante';
-    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && hasReceipt && !labelSent) {
+    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && !labelSent) {
       nextAction = 'resume_dslite_flow';
       nextActionLabel = 'Retomar fluxo';
     } else if (!labelSent && labelPendingByMl) {

@@ -13,7 +13,7 @@ new Function('require', 'module', 'exports', compiled)(
   projection, projection.exports,
 );
 
-async function projectPurchase(requestState, orderId = null) {
+async function projectPurchase(requestState, orderId = null, purchasePatch = {}, orderPatch = {}) {
   const client = {
     from(table) {
       return {
@@ -25,6 +25,10 @@ async function projectPurchase(requestState, orderId = null) {
             evolusom_order_id: orderId, evolusom_request_state: requestState,
             evolusom_request_code: '80000123', status: 'Bloqueado',
             supplier_payment_mode: 'prepaid_pix', supplier_payment_status: 'pending',
+            ...purchasePatch,
+          }], error: null });
+          if (table === 'fornecedores') return Promise.resolve({ data: [{
+            dslite_id: '133', supplier_pix_key: 'pix@example.test', telefone: '11999999999',
           }], error: null });
           return Promise.resolve({ data: [], error: null });
         },
@@ -34,6 +38,7 @@ async function projectPurchase(requestState, orderId = null) {
   const rows = await projection.exports.enrichPedidosWithCompras([{
     id: 'sale-1', numero: 123, situacao: 'pendente', dslite_id: null,
     envio_interno_at: null, evolusom_order_id: null,
+    ...orderPatch,
   }], client);
   return rows[0];
 }
@@ -43,6 +48,19 @@ test('compra Evolusom rejeitada volta a oferecer criação no pedido de venda', 
   assert.equal(row.compra_id, null);
   assert.equal(row.evolusom_order_id, null);
   assert.equal(row.dslite_next_action, 'create_dslite_order');
+});
+
+test('compra Evolusom projeta chave PIX e pagamento sem perder a compra direta', async () => {
+  const row = await projectPurchase('created', 63012097, {
+    supplier_payment_status: 'paid',
+    supplier_payment_receipt_path: 'compras/comprovante.jpg',
+    supplier_payment_reference: 'PIX-REAL',
+  }, { situacao: 'etiqueta_impressa', dslite_label_source: 'placeholder_release_window_evolusom' });
+  assert.equal(row.evolusom_order_id, 63012097);
+  assert.equal(row.supplier_pix_key, 'pix@example.test');
+  assert.equal(row.supplier_payment_receipt_path, 'compras/comprovante.jpg');
+  assert.equal(row.supplier_payment_reference, 'PIX-REAL');
+  assert.equal(row.dslite_next_action, 'wait_ml_label');
 });
 
 test('reserva incerta permanece bloqueada e compra criada segue para pagamento', async () => {

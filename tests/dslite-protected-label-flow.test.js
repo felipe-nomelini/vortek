@@ -169,6 +169,29 @@ test('fonte genérica persistida satisfaz DSLite sem depender de auditoria', asy
   assert.equal(result.whatsapp_label_status, 'not_sent');
 });
 
+test('etiqueta real enviada da Evolusom encerra a espera pela etiqueta do ML', async () => {
+  const row = baseRow({
+    evolusom_order_id: 63012097,
+    dslite_etiqueta_enviada: true,
+    dslite_label_source: 'placeholder_release_window_evolusom',
+    dslite_next_action: 'wait_ml_label',
+    dslite_next_action_label: 'Aguardar etiqueta real do ML',
+  });
+  const event = {
+    pedido_id: row.id,
+    evento: 'whatsapp_label_send_success',
+    status_resultante: 'success',
+    resposta_ml: { test_placeholder_label: false },
+    created_at: '2026-09-22T04:30:52.426Z',
+  };
+  const [pending] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([]));
+  const [sent] = await operationalStatus.enrichOrdersWithWhatsappStatus([row], clientWithEvents([event]));
+  assert.equal(pending.dslite_next_action, 'wait_ml_label');
+  assert.equal(sent.whatsapp_label_status, 'sent');
+  assert.equal(sent.dslite_next_action, 'done');
+  assert.equal(sent.dslite_next_action_label, 'OK');
+});
+
 test('outros erros 403 continuam falha operacional e não encerram a ação DSLite', async () => {
   const pedidoId = baseRow().id;
   const [result] = await operationalStatus.enrichOrdersWithWhatsappStatus(

@@ -398,10 +398,6 @@ export default function ComprasPage() {
 
   const handleConfirmSupplierPayment = useCallback(async () => {
     if (!selectedCompra) return;
-    if (!paymentReceiptFile && !selectedCompra.supplier_payment_receipt_path) {
-      messageApi.warning('Anexe o comprovante do PIX antes de registrar o pagamento.');
-      return;
-    }
     setConfirmingPayment(true);
     try {
       const formData = new FormData();
@@ -417,7 +413,9 @@ export default function ComprasPage() {
       } else {
         const whatsappDetail = payload.whatsapp?.sent
           ? 'WhatsApp enviado.'
-          : `WhatsApp não enviado${payload.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(payload.whatsapp.reason)}` : ''}.`;
+          : payload.whatsapp?.reason === 'receipt_missing'
+            ? 'Sem comprovante para enviar por WhatsApp.'
+            : `WhatsApp não enviado${payload.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(payload.whatsapp.reason)}` : ''}.`;
         messageApi.success(`PIX registrado na Bentevi. ${whatsappDetail}`);
       }
       resetPaymentModal();
@@ -694,7 +692,7 @@ export default function ComprasPage() {
           type="warning"
           showIcon
           message="A Bentevi não realiza o pagamento"
-          description="Faça o PIX no banco e, depois, anexe o comprovante aqui para registrar a operação."
+          description="Faça o PIX no banco e registre a operação aqui. O comprovante é opcional e só será enviado por WhatsApp se for anexado."
         />
         <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Compra</Text><Text strong>{selectedCompra ? selectedCompra.evolusom_order_id ? `Evolusom #${selectedCompra.evolusom_order_id}` : `DSLite #${selectedCompra.dsid}` : '—'}</Text></div>
         <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Fornecedor</Text><Text>{selectedCompra?.fornecedor_apelido || selectedCompra?.fornecedor_nome || '—'}</Text></div>
@@ -714,7 +712,7 @@ export default function ComprasPage() {
         </div>
         <div><Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Referência do pagamento</Text><Input value={paymentReference} onChange={(event) => setPaymentReference(event.target.value)} placeholder="Ex.: PIX 123456 / ID da transação" /></div>
         <div>
-          <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Comprovante do PIX</Text>
+          <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Comprovante do PIX (opcional)</Text>
           <Upload
             maxCount={1} fileList={paymentReceiptFile ? [{ uid: 'supplier-payment-receipt', name: paymentReceiptFile.name, status: 'done' }] as any : []}
             accept="application/pdf,image/jpeg,image/png,image/webp"

@@ -199,9 +199,14 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
     ) && ['resume_dslite_flow', 'complete_dslite_label'].includes(
       String(row.dslite_next_action || ''),
     );
+    const closesEvolusomLabelAction = Boolean(row.evolusom_order_id)
+      && usesPlaceholderLabel
+      && whatsappEvent?.evento === 'whatsapp_label_send_success'
+      && whatsappResponse.test_placeholder_label !== true
+      && row.dslite_next_action === 'wait_ml_label';
     return {
       ...row,
-      ...(closesObsoleteDsliteAction
+      ...(closesObsoleteDsliteAction || closesEvolusomLabelAction
         ? { dslite_next_action: 'done', dslite_next_action_label: 'OK' }
         : {}),
       dslite_label_operational_status: dsliteLabelOperationalStatus,

@@ -807,7 +807,7 @@ export async function POST(req: Request) {
         return stepError(
           steps,
           'download_label_ml',
-          'Confirme o PIX da BKR1 e anexe o comprovante antes de enviar a etiqueta real.',
+          'Confirme o PIX da BKR1 antes de enviar a etiqueta real. O comprovante é opcional.',
           { actionRequired: 'confirm_supplier_payment', dsid: dsliteId },
           422,
           'business',

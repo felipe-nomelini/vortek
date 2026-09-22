@@ -144,3 +144,22 @@ test('etiqueta genérica mantém a venda na etapa Etiqueta até o WhatsApp real 
     [4, 'Envio'],
   );
 });
+
+test('compra Evolusom e etiqueta real enviada avançam ao envio sem ID DSLite', async () => {
+  const { getOrderSalesProgress, getOperationalUrgencyReasons } = await modulePromise;
+  const order = baseOrder({
+    data: '2026-09-21T12:48:00.000Z',
+    situacao: { valor: 'etiqueta_impressa' },
+    evolusom_order_id: 63012097,
+    dslite_next_action: 'done',
+    dslite_label_operational_status: 'generic_sent',
+    whatsapp_label_status: 'sent',
+    notaFiscal: { emitida: true },
+    ml_label_storage_path: '2000018568398610/48066688456.pdf',
+  });
+  const at = Date.parse('2026-09-22T12:00:00.000Z');
+  const progress = getOrderSalesProgress(order, at);
+  assert.deepEqual([progress.completedSteps, progress.currentLabel, progress.nextLabel],
+    [4, 'Envio', 'Despache o pedido']);
+  assert.deepEqual(getOperationalUrgencyReasons(order, 60, at), []);
+});

@@ -133,9 +133,9 @@ async function sendSupplierPaymentWhatsapp(input: {
   reference: string | null;
   notes: string | null;
 }) {
+  if (!input.receipt) return { sent: false, skipped: true, reason: 'receipt_missing' };
   const phone = String(input.fornecedorTelefone || '').replace(/\D/g, '');
   if (!phone) return { sent: false, skipped: true, reason: 'supplier_phone_missing' };
-  if (!input.receipt) return { sent: false, skipped: true, reason: 'receipt_missing' };
 
   const releaseAt = String(input.pedido?.ml_fiscal_release_at || '').trim();
   const release = releaseAt ? formatMlReleaseWindow(releaseAt) : null;
@@ -327,7 +327,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
 
   if (supplierOracleWritesEnabled() && !compra.evolusom_order_id) {
     if (requestedResumeOnly && compra.supplier_payment_status === 'paid' && !compra.supplier_settlement_id) {
-      if (!resumeDsliteFlow || !(compra as any).supplier_payment_receipt_path) {
+      if (!resumeDsliteFlow) {
         return NextResponse.json({ error: 'Retomada DSLite não disponível para esta compra' }, { status: 409 });
       }
       const resume = await startDsliteResumeFlow({ request, pedidoId: String(pedido.id),
@@ -367,10 +367,6 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
 
   const alreadyPaid = compra.supplier_payment_status === 'paid';
   const resumeOnly = requestedResumeOnly && resumeDsliteFlow && alreadyPaid && !parsed.receiptFile;
-  if (!parsed.receiptFile && !(compra as any).supplier_payment_receipt_path && !resumeOnly) {
-    return NextResponse.json({ error: 'Anexe o comprovante para enviar ao fornecedor' }, { status: 422 });
-  }
-
   const confirmedAt = (compra as any).supplier_payment_confirmed_at || new Date().toISOString();
   const confirmedBy = (compra as any).supplier_payment_confirmed_by || auth.userId;
   const nextStatus = String(compra.status_dslite || compra.status || 'Iniciado');

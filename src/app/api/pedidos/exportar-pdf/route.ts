@@ -39,6 +39,7 @@ type ExportRow = {
   products: ExportProduct[];
   source: string;
   dsliteIds: string[];
+  evolusomOrderId: string;
   splitFulfillment: boolean;
   progress: OrderSalesProgress;
   invoiceNumbers: string[];
@@ -259,6 +260,7 @@ function prepareRowFragments(row: ExportRow, fonts: ReportFonts): PreparedRow[] 
     const originLines = [
       ...makeLines(row.source, widths.origin, fonts, { bold: true, size: 5.9 }),
       ...(row.dsliteIds.length ? makeLines(`DSLite ${row.dsliteIds.map((id) => `#${id}`).join(', ')}`, widths.origin, fonts, { size: 5.2, color: colors.textSecondary }) : []),
+      ...(row.evolusomOrderId ? makeLines(`Evolusom #${row.evolusomOrderId}`, widths.origin, fonts, { size: 5.2, color: colors.textSecondary }) : []),
       ...(row.splitFulfillment ? makeLines('Fluxo dividido', widths.origin, fonts, { size: 5.3, color: colors.error }) : []),
     ];
     const fiscalLines: PreparedLine[] = [];
@@ -479,6 +481,7 @@ function mapExportRow(row: Record<string, any>, delayedAfterMinutes: number): Ex
   const statusRaw = String(row.situacao || 'aberto');
   const rawProfit = row.lucro === null || row.lucro === undefined ? null : Number(row.lucro);
   const dsliteIds = Array.isArray(row.operational_dslite_ids) ? row.operational_dslite_ids.map(String).filter(Boolean) : String(row.dslite_id || '').trim() ? [String(row.dslite_id)] : [];
+  const evolusomOrderId = String(row.evolusom_order_id || '').trim();
   const invoiceNumbers = Array.isArray(row.operational_invoice_numbers) ? row.operational_invoice_numbers.map(String).filter(Boolean) : String(row.nota_fiscal_numero || '').trim() ? [String(row.nota_fiscal_numero)] : [];
   const internal = row.fulfillment_source === 'internal' || Boolean(row.envio_interno_at);
   return {
@@ -490,7 +493,7 @@ function mapExportRow(row: Record<string, any>, delayedAfterMinutes: number): Ex
     total: Number(row.total || 0), profit: rawProfit !== null && Number.isFinite(rawProfit) ? rawProfit : null,
     profitPending: Boolean(row.operational_profit_pending), products: mapProducts(row),
     source: internal ? 'Estoque interno' : String(row.fornecedor_nome || 'Fornecedor a definir'),
-    dsliteIds, splitFulfillment: Boolean(row.has_split_fulfillment), progress: getOrderSalesProgress(row),
+    dsliteIds, evolusomOrderId, splitFulfillment: Boolean(row.has_split_fulfillment), progress: getOrderSalesProgress(row),
     invoiceNumbers, shipmentId: String(row.ml_shipment_id || '').trim() || '—',
     tracking: String(row.rastreio || '').trim() || '—', labelRelease: formatLabelRelease(row),
     claimId: String(row.ml_claim_id || '').trim() || '—', urgencyReasons: getOperationalUrgencyReasons(row, delayedAfterMinutes),

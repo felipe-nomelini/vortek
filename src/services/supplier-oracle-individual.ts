@@ -71,8 +71,9 @@ export async function confirmSupplierOracleIndividual(input: { client: Client; p
   }
   if (payment.resumeOnly) return error('Compra ainda não paga; a retomada isolada não é permitida', 409);
   if (!purchase.fornecedor_id) return error('Fornecedor da compra não identificado', 409);
-  const receipt = await receiptBytes(client, payment, purchase);
-  if (!receipt) return error('Anexe um comprovante válido em PDF, JPG, PNG ou WEBP (até 10 MB)', 422);
+  const hasReceipt = Boolean(payment.receiptFile || purchase.supplier_payment_receipt_path);
+  const receipt = hasReceipt ? await receiptBytes(client, payment, purchase) : null;
+  if (hasReceipt && !receipt) return error('Comprovante inválido. Use PDF, JPG, PNG ou WEBP (até 10 MB)', 422);
 
   let transition: SupplierOracleTransition;
   if (purchase.supplier_settlement_id) {
@@ -104,7 +105,7 @@ export async function confirmSupplierOracleIndividual(input: { client: Client; p
   const { data: settlement, error: readError } = await client.from('supplier_settlements')
     .select('status,version,receipt_path').eq('id', transition.id).maybeSingle();
   if (readError || !settlement) return error('Preparo criado, mas não foi possível conferir a liquidação', 500);
-  const path = `liquidacoes/${transition.id}/${receipt.hash}.${receipt.extension}`;
+  const path = receipt ? `liquidacoes/${transition.id}/${receipt.hash}.${receipt.extension}` : null;
   if (settlement.status === 'confirmed') {
     if (settlement.receipt_path !== path) return error('Liquidação já confirmada com outro comprovante', 409);
     return success({ purchase, sale, settlementId: transition.id, receiptPath: path,
@@ -116,7 +117,7 @@ export async function confirmSupplierOracleIndividual(input: { client: Client; p
   if (settlement.receipt_path && settlement.receipt_path !== path) {
     return error('Liquidação já possui outro comprovante; confira antes de confirmar', 409);
   }
-  if (!settlement.receipt_path) {
+  if (receipt && path && !settlement.receipt_path) {
     const { error: uploadError } = await client.storage.from(SUPPLIER_RECEIPT_BUCKET)
       .upload(path, receipt.bytes, { contentType: receipt.mime, upsert: false });
     if (uploadError && String(uploadError.statusCode) !== '409') return error('Preparo salvo, mas o comprovante não foi anexado', 500);
