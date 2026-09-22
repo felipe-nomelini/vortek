@@ -50,3 +50,13 @@ test('snapshot encerrado prevalece sobre estado e preço locais defasados', asyn
   const dto = (await loadProductMlListings(f.client, ['P1'])).get('P1')[0];
   assert.equal(dto.status, 'encerrado'); assert.equal(dto.price, 237.71);
 });
+test('grupos são consultados em lotes seguros para o limite de URL do PostgREST', async () => {
+  const f = fixture();
+  f.rows.ml_pricing_groups = Array.from({ length: 81 }, (_, index) => ({
+    id: `G${index + 1}`, produto_id: 'P1', current_version: 2,
+    state: 'verified', observed_at: '2026-09-07T00:00:00Z',
+  }));
+  await loadProductMlListings(f.client, ['P1']);
+  assert.equal(f.calls.length, 3);
+  assert.ok(f.calls.every((filter) => (filter.match(/group_id\.eq\./g) || []).length <= 40));
+});

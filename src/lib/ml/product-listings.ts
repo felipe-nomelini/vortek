@@ -109,14 +109,25 @@ export async function loadProductMlListings(
   const { data: groups, error: groupError } = await serviceClient.from('ml_pricing_groups')
     .select('id,produto_id,current_version,state,observed_at').in('produto_id', productIds).neq('state', 'retired');
   if (groupError) throw new Error('listing_groups_read_failed');
-  const groupIds = (groups || []).map(group => group.id);
-  if (groupIds.length) {
-    const [{ data: members, error: membersError }, { data: revisions, error: revisionsError }] = await Promise.all([
-      serviceClient.from('ml_pricing_group_members').select('group_id,version,ml_item_id,variation_id,catalog_listing').in('group_id', groupIds).eq('is_current', true),
-      serviceClient.from('ml_pricing_group_revisions').select('group_id,version,catalog_synchronized_pair')
-        .or((groups || []).map(group => `and(group_id.eq.${group.id},version.eq.${group.current_version})`).join(',')),
-    ]);
-    if (membersError || revisionsError) throw new Error('listing_group_members_read_failed');
+  const currentGroups = groups || [];
+  if (currentGroups.length) {
+    const members: any[] = [];
+    const revisions: any[] = [];
+    // Os filtros são enviados pela URL do PostgREST. Dividir os grupos evita
+    // exceder o limite do proxy quando a projeção processa centenas de produtos.
+    for (let offset = 0; offset < currentGroups.length; offset += 40) {
+      const groupBatch = currentGroups.slice(offset, offset + 40);
+      const groupIds = groupBatch.map(group => group.id);
+      const [membersResult, revisionsResult] = await Promise.all([
+        serviceClient.from('ml_pricing_group_members').select('group_id,version,ml_item_id,variation_id,catalog_listing')
+          .in('group_id', groupIds).eq('is_current', true),
+        serviceClient.from('ml_pricing_group_revisions').select('group_id,version,catalog_synchronized_pair')
+          .or(groupBatch.map(group => `and(group_id.eq.${group.id},version.eq.${group.current_version})`).join(',')),
+      ]);
+      if (membersResult.error || revisionsResult.error) throw new Error('listing_group_members_read_failed');
+      members.push(...(membersResult.data || []));
+      revisions.push(...(revisionsResult.data || []));
+    }
     for (const group of groups || []) {
       const currentMembers = (members || []).filter(member => member.group_id === group.id && member.version === group.current_version);
       const revision = (revisions || []).find(row => row.group_id === group.id && row.version === group.current_version);
