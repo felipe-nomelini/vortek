@@ -629,7 +629,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
 
     const retryableDirectCompra = directCompra
       && !directCompra.evolusom_order_id
-      && ['prepared', 'rejected'].includes(String(directCompra.evolusom_request_state || ''));
+      && ['prepared', 'rejected', 'uncertain'].includes(String(directCompra.evolusom_request_state || ''));
     const compra = retryableDirectCompra ? null : directCompra || comprasByDsid.get(String(row?.dslite_id || ''));
     if (!compra) {
       return {
@@ -644,7 +644,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
           ? { fornecedor_id: null, fornecedor_nome: 'Estoque Interno', supplier_payment_mode: null, supplier_payment_status: null, supplier_payment_amount: null }
           : (fornecedorPreviewByPedido.get(String(row?.id || '')) || {})),
         dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
-        dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
+        dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : retryableDirectCompra ? 'Criar pedido' : 'Criar pedido DSLite',
       };
     }
     if (directCompra) {
@@ -658,6 +658,7 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
         compra_id: compra.id,
         evolusom_order_id: compra.evolusom_order_id,
         evolusom_request_code: compra.evolusom_request_code,
+        evolusom_request_state: compra.evolusom_request_state,
         compra_status: String(compra.status || '').trim() || null,
         compra_status_dslite: null,
         fornecedor_id: compra.fornecedor_id,
@@ -672,12 +673,16 @@ export async function enrichPedidosWithCompras(rows: any[], serviceClient: Retur
         supplier_payment_reference: compra.supplier_payment_reference || null,
         supplier_payment_notes: compra.supplier_payment_notes || null,
         dslite_next_action: !compra.evolusom_order_id
-          ? 'blocked'
+          ? ['uncertain', 'rejected', 'prepared'].includes(String(compra.evolusom_request_state || ''))
+            ? 'create_dslite_order'
+            : 'blocked'
           : compra.supplier_payment_mode === 'prepaid_pix' && compra.supplier_payment_status !== 'paid'
             ? 'confirm_supplier_payment'
             : 'wait_ml_label',
         dslite_next_action_label: !compra.evolusom_order_id
-          ? 'Conferir pedido Evolusom'
+          ? ['uncertain', 'rejected', 'prepared'].includes(String(compra.evolusom_request_state || ''))
+            ? 'Criar pedido'
+            : 'Conferir pedido Evolusom'
           : compra.supplier_payment_mode === 'prepaid_pix' && compra.supplier_payment_status !== 'paid'
             ? 'Confirmar PIX'
             : 'Aguardar etiqueta real do ML',

@@ -5,7 +5,7 @@ const ts = require('typescript');
 
 const xml = `<nfeProc><NFe><infNFe><ide><serie>1</serie><nNF>2439</nNF><dhEmi>2026-06-18T10:30:00-03:00</dhEmi></ide><dest><xNome>Comprador Sintético</xNome><CPF>07778845938</CPF><enderDest><xLgr>Rua Um</xLgr><nro>9</nro><xBairro>Centro</xBairro><xMun>Curitiba</xMun><UF>PR</UF><CEP>80000000</CEP></enderDest></dest><det nItem="1"><prod><cProd>141111</cProd><xProd>Produto da nota fiscal</xProd><vUnCom>679.90</vUnCom></prod><imposto><vST>0</vST><vIPI>0</vIPI></imposto></det><total><ICMSTot><vNF>679.90</vNF></ICMSTot></total></infNFe></NFe><protNFe><infProt><chNFe>41260612345678000190550010000024391000024395</chNFe></infProt></protNFe></nfeProc>`;
 
-function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, shipment = null, labelDownloadOk = true, storageOk = true, productName = 'Produto Evolusom de teste', response = { codigo: 456, status: 'Pendente' }, shortLinkFailure = null } = {}) {
+function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber = 'AB123BR', placeholder = false, shipment = null, labelDownloadOk = true, storageOk = true, productName = 'Produto Evolusom de teste', response = { codigo: 456, status: 'Pendente' }, responseSequence = null, shortLinkFailure = null } = {}) {
   let purchase = initialPurchase;
   let shortTargetUrl = null;
   const sent = [];
@@ -50,7 +50,8 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
         }
         if (table === 'compras' && action === 'update') {
           if (!purchase || filters.id !== purchase.id ||
-              (filters.evolusom_request_state && filters.evolusom_request_state !== purchase.evolusom_request_state)) {
+              (filters.evolusom_request_state && filters.evolusom_request_state !== purchase.evolusom_request_state) ||
+              (filters.evolusom_attempt_count !== undefined && filters.evolusom_attempt_count !== purchase.evolusom_attempt_count)) {
             return { data: null, error: null };
           }
           purchase = { ...purchase, ...values };
@@ -89,11 +90,19 @@ function purchaseHarness({ initialPurchase = null, buyer = null, trackingNumber 
       baixarEtiquetaML: async () => { labelDownloads += 1; return { pdf: labelDownloadOk ? Buffer.from('%PDF-test') : null }; },
     },
     '@/services/evolusom': {
-      EvolusomApiError: class EvolusomApiError extends Error {},
+      EvolusomApiError: class EvolusomApiError extends Error {
+        constructor(message, status = null, responseBody = null) {
+          super(message);
+          this.status = status;
+          this.responseBody = responseBody;
+        }
+      },
       evolusomRequest: async (path, init) => {
         assert.equal(path, '/v1/pedidos/triangular');
         sent.push(JSON.parse(init.body));
-        return response;
+        const next = responseSequence?.[sent.length - 1] ?? response;
+        if (next instanceof Error) throw next;
+        return next;
       },
     },
     '@/lib/dslite/placeholder-label': { DSLITE_EVOLUSOM_PLACEHOLDER_LABEL_SOURCE: 'placeholder_evolusom' },
@@ -286,7 +295,7 @@ test('retomada de reserva preparada preserva a data e envia contatos conhecidos'
   const harness = purchaseHarness({
     initialPurchase: {
       id: 'purchase-1', evolusom_request_code: '80000123',
-      evolusom_request_state: 'prepared', evolusom_order_id: null, data_criacao: orderedAt,
+      evolusom_request_state: 'prepared', evolusom_attempt_count: 0, evolusom_order_id: null, data_criacao: orderedAt,
     },
     buyer: { email: 'buyer@example.com', telefone: '41999999999' },
   });
@@ -310,7 +319,7 @@ test('rejeição HTTP 400 permite nova tentativa manual com o mesmo código e da
   const harness = purchaseHarness({
     initialPurchase: {
       id: 'purchase-1', evolusom_request_code: 'BNT-123',
-      evolusom_request_state: 'rejected', evolusom_order_id: null, data_criacao: orderedAt,
+      evolusom_request_state: 'rejected', evolusom_attempt_count: 0, evolusom_order_id: null, data_criacao: orderedAt,
     },
   });
   assert.equal((await harness.create()).state, 'created');
@@ -338,7 +347,7 @@ test('resposta com número dentro de data vincula a compra sem repetir o POST', 
   assert.equal(harness.sent.length, 1);
 });
 
-test('HTTP 200 com erro interno no corpo não confirma pedido nem descarta a resposta', async (t) => {
+test('duas falhas HTTP 500 não confirmam pedido e permitem nova tentativa manual', async (t) => {
   const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
   process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
   t.after(() => {
@@ -346,17 +355,44 @@ test('HTTP 200 com erro interno no corpo não confirma pedido nem descarta a res
     else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
   });
   const apiResponse = { status: 500, data: [], message: 'ORA-01438: valor acima da precisão permitida' };
-  const harness = purchaseHarness({ response: apiResponse });
+  const success = { codigo: 456, status: 'Pendente' };
+  const harness = purchaseHarness({ responseSequence: [apiResponse, apiResponse, success] });
   const result = await harness.create();
   assert.equal(result.state, 'uncertain');
   assert.match(result.reason, /erro 500 \(ORA-01438\)/);
-  assert.deepEqual(result.apiResponse, apiResponse);
+  assert.deepEqual(result.apiResponse.attempts.map(({ attempt }) => attempt), [1, 2]);
   assert.equal(harness.getPurchase().evolusom_order_id, undefined);
   assert.equal(harness.getPurchase().evolusom_request_state, 'uncertain');
-  assert.equal(harness.sent.length, 1);
+  assert.equal(harness.getPurchase().evolusom_attempt_count, 2);
+  assert.equal(harness.sent.length, 2);
+  assert.deepEqual(harness.sent[0], harness.sent[1]);
+  assert.equal((await harness.create()).state, 'created');
+  assert.equal(harness.sent.length, 3);
+  assert.equal(harness.getPurchase().evolusom_attempt_count, 3);
+  assert.deepEqual(harness.sent[1], harness.sent[2]);
 });
 
-test('resultado incerto continua sem repetir o POST', async (t) => {
+test('falha na primeira chamada é repetida automaticamente e sucesso confirma o mesmo código', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({
+    responseSequence: [
+      { status: 500, data: [], message: 'erro temporário' },
+      { codigo: 987, status: 'Pendente' },
+    ],
+  });
+  assert.equal((await harness.create()).state, 'created');
+  assert.equal(harness.sent.length, 2);
+  assert.deepEqual(harness.sent[0], harness.sent[1]);
+  assert.equal(harness.getPurchase().evolusom_attempt_count, 2);
+  assert.equal(harness.getPurchase().evolusom_order_id, 987);
+});
+
+test('retentativa manual após falha continua usando o mesmo código e só faz uma chamada', async (t) => {
   const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
   process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
   t.after(() => {
@@ -365,11 +401,34 @@ test('resultado incerto continua sem repetir o POST', async (t) => {
   });
   const harness = purchaseHarness({
     initialPurchase: {
-      id: 'purchase-1', evolusom_request_code: 'BNT-123',
+      id: 'purchase-1', evolusom_request_code: '82746694', evolusom_attempt_count: 2,
       evolusom_request_state: 'uncertain', evolusom_order_id: null,
       data_criacao: '2026-09-21T14:18:16.235Z',
     },
   });
-  assert.equal((await harness.create()).state, 'uncertain');
-  assert.equal(harness.sent.length, 0);
+  assert.equal((await harness.create()).state, 'created');
+  assert.equal(harness.sent.length, 1);
+  assert.equal(harness.sent[0].codigo_pedido, 82746694);
+  assert.equal(harness.getPurchase().evolusom_attempt_count, 3);
+});
+
+test('cliques simultâneos reservam uma única chamada automática', async (t) => {
+  const previous = process.env.EVOLUSOM_DIRECT_ENABLED;
+  process.env.EVOLUSOM_DIRECT_ENABLED = 'true';
+  t.after(() => {
+    if (previous === undefined) delete process.env.EVOLUSOM_DIRECT_ENABLED;
+    else process.env.EVOLUSOM_DIRECT_ENABLED = previous;
+  });
+  const harness = purchaseHarness({
+    initialPurchase: {
+      id: 'purchase-1', evolusom_request_code: '80000123',
+      evolusom_request_state: 'prepared', evolusom_attempt_count: 0, evolusom_order_id: null,
+      data_criacao: '2026-06-25T11:55:41.000Z',
+    },
+  });
+  const results = await Promise.allSettled([harness.create(), harness.create()]);
+  assert.equal(harness.sent.length, 1);
+  assert.equal(harness.getPurchase().evolusom_attempt_count, 1);
+  assert.ok(results.some((result) => result.status === 'fulfilled' && result.value.state === 'created'));
+  assert.ok(results.some((result) => result.status === 'rejected'));
 });

@@ -43,3 +43,20 @@ test('após confirmar PIX, etiqueta real volta a ser ação principal', () => {
 test('prioridade anterior da etiqueta permanece para outros fornecedores', () => {
   assert.equal(choosePrimary(actions, { ...order, evolusom_order_id: null }, Date.now())?.key, 'send_whatsapp_label');
 });
+
+test('pedido Evolusom sem número remoto prioriza Criar pedido em vez de Rastrear envio', () => {
+  const retryActions = [
+    { key: 'view', label: 'Ver detalhes' },
+    { key: 'dslite', label: 'Criar pedido' },
+    { key: 'track', label: 'Rastrear envio' },
+  ];
+  assert.equal(choosePrimary(retryActions, {
+    evolusom_order_id: null,
+    supplier_payment_mode: null,
+    supplier_payment_status: null,
+    supplier_payment_deferred: false,
+    dslite_next_action: 'create_dslite_order',
+    whatsapp_label_status: 'not_sent',
+    dslite_label_operational_status: 'generic_sent',
+  }, Date.now())?.key, 'dslite');
+});

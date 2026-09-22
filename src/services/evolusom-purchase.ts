@@ -61,6 +61,26 @@ function formatOrderDate(value: string): string {
   return `${part('year')}-${part('month')}-${part('day')} ${part('hour')}:${part('minute')}:${part('second')}`;
 }
 
+function readEvolusomOrderId(response: {
+  codigo?: number;
+  data?: { codigo?: number; numero?: number; pedido_lojista?: { numero?: number } };
+}): number {
+  return Number(response.codigo ?? response.data?.codigo ?? response.data?.numero ?? response.data?.pedido_lojista?.numero);
+}
+
+function readEmbeddedErrorStatus(response: { status?: string | number }): number | null {
+  const status = Number(response.status);
+  return Number.isInteger(status) && status >= 400 ? status : null;
+}
+
+function isRetryableEvolusomErrorStatus(status: number | null): boolean {
+  return status === null || status === 429 || status >= 500;
+}
+
+function isDefinitiveEvolusomRejection(status: number | null): boolean {
+  return status !== null && status >= 400 && status < 500 && status !== 429;
+}
+
 function appOrigin(): string {
   const configured = String(process.env.NEXT_PUBLIC_APP_URL || process.env.INTERNAL_APP_URL || '').trim();
   const url = new URL(configured || 'https://app.bentevi.shop');
@@ -198,7 +218,7 @@ export async function createEvolusomPurchase(input: {
   const email = formatEmail(buyer?.email) || formatEmail(tag(dest, 'email'));
   const phone = formatPhone(buyer?.telefone) || formatPhone(tag(block(dest, 'enderDest'), 'fone'));
   const { data: existing, error: existingError } = await client.from('compras')
-    .select('id,evolusom_order_id,evolusom_request_code,evolusom_request_state,data_criacao')
+    .select('id,evolusom_order_id,evolusom_request_code,evolusom_request_state,evolusom_attempt_count,data_criacao')
     .eq('pedido_id', input.pedidoId)
     .eq('fornecedor_id', EVOLUSOM_SUPPLIER_ID)
     .maybeSingle();
@@ -210,9 +230,13 @@ export async function createEvolusomPurchase(input: {
     };
   }
   const existingRequestState = String(existing?.evolusom_request_state || '');
-  if (existing && !['prepared', 'rejected'].includes(existingRequestState)) {
-    return { state: 'uncertain', reason: 'Criação anterior precisa de conferência na Evolusom antes de repetir' };
+  if (existing && !['prepared', 'rejected', 'uncertain'].includes(existingRequestState)) {
+    return { state: 'uncertain', reason: 'Criação anterior está em andamento ou precisa de conferência na Evolusom' };
   }
+  const previousAttemptCount = Number(existing?.evolusom_attempt_count || 0);
+  const initialAmbiguousResult = existingRequestState === 'uncertain';
+  const allowAutomaticRetry = previousAttemptCount === 0
+    && (!existing || existingRequestState === 'prepared');
   const shipmentId = String(order.ml_shipment_id || '').trim();
   const shipment = shipmentId
     ? await fetchML<{ status?: string; substatus?: string; tracking_number?: string | null }>(`/shipments/${encodeURIComponent(shipmentId)}`)
@@ -300,6 +324,7 @@ export async function createEvolusomPurchase(input: {
     pedido_id: input.pedidoId,
     evolusom_request_code: orderCode,
     evolusom_request_state: 'prepared',
+    evolusom_attempt_count: previousAttemptCount,
     fornecedor_id: EVOLUSOM_SUPPLIER_ID,
     fornecedor_nome: 'Evolusom',
     nf_chave: payload.nfe.chave,
@@ -322,69 +347,131 @@ export async function createEvolusomPurchase(input: {
   };
   const { data: purchase, error: purchaseError } = existing
     ? await client.from('compras').update(purchaseValues).eq('id', existing.id)
-      .eq('evolusom_request_state', existingRequestState).select('id').maybeSingle()
+      .eq('evolusom_request_state', existingRequestState)
+      .eq('evolusom_attempt_count', previousAttemptCount).select('id').maybeSingle()
     : await client.from('compras').insert(purchaseValues).select('id').single();
   if (purchaseError) throw new Error('Falha ao reservar código do pedido Evolusom');
   if (!purchase) return { state: 'pending', reason: 'Pedido Evolusom já está sendo processado' };
   const { data: reserved, error: sentError } = await client.from('compras')
-    .update({ evolusom_request_state: 'sent' })
+    .update({ evolusom_request_state: 'sent', evolusom_attempt_count: previousAttemptCount + 1 })
     .eq('id', purchase.id)
     .eq('evolusom_request_state', 'prepared')
+    .eq('evolusom_attempt_count', previousAttemptCount)
     .select('id')
     .maybeSingle();
   if (sentError || !reserved) throw new Error('Pedido Evolusom já está em criação; confira antes de repetir');
 
-  let response: {
+  type EvolusomCreateResponse = {
     codigo?: number;
     status?: string | number;
     message?: unknown;
     data?: { codigo?: number; numero?: number; status?: string; pedido_lojista?: { numero?: number; status?: string } };
   };
-  try {
-    response = await evolusomRequest<typeof response>('/v1/pedidos/triangular', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-    });
-  } catch (error) {
-    const rejected = error instanceof EvolusomApiError && [400, 422].includes(error.status || 0);
-    await client.from('compras').update({
-      evolusom_request_state: rejected ? 'rejected' : 'uncertain',
-      status: rejected ? 'erro_criacao' : 'criacao_incerta',
-    }).eq('id', purchase.id);
+  const requestAttempts: Array<{ attempt: number; result: unknown }> = [];
+  let previousFailureWasAmbiguous = initialAmbiguousResult;
+  let lastError: string | null = null;
+  let lastResponse: EvolusomCreateResponse | null = null;
+  let orderId: number | null = null;
+  let currentAttemptCount = previousAttemptCount + 1;
+
+  for (let attempt = 1; attempt <= (allowAutomaticRetry ? 2 : 1); attempt += 1) {
+    if (attempt > 1) {
+      const { data: retryReserved, error: retryReservationError } = await client.from('compras')
+        .update({ evolusom_request_state: 'sent', evolusom_attempt_count: currentAttemptCount + 1 })
+        .eq('id', purchase.id)
+        .eq('evolusom_request_state', 'sent')
+        .eq('evolusom_attempt_count', currentAttemptCount)
+        .select('id')
+        .maybeSingle();
+      if (retryReservationError || !retryReserved) {
+        return {
+          state: 'uncertain',
+          reason: 'Não foi possível reservar a retentativa automática; confira antes de repetir',
+          apiResponse: requestAttempts.length ? { attempts: requestAttempts } : null,
+        };
+      }
+      currentAttemptCount += 1;
+    }
+
+    try {
+      const response = await evolusomRequest<EvolusomCreateResponse>('/v1/pedidos/triangular', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+      lastResponse = response;
+      requestAttempts.push({ attempt: currentAttemptCount, result: response });
+      const embeddedErrorStatus = readEmbeddedErrorStatus(response);
+      if (embeddedErrorStatus !== null) {
+        const retryable = isRetryableEvolusomErrorStatus(embeddedErrorStatus);
+        const rejected = isDefinitiveEvolusomRejection(embeddedErrorStatus) && !previousFailureWasAmbiguous;
+        previousFailureWasAmbiguous ||= retryable;
+        const oracleCode = typeof response.message === 'string'
+          ? response.message.match(/ORA-\d{5}/)?.[0]
+          : null;
+        lastError = `Evolusom retornou erro ${embeddedErrorStatus}${oracleCode ? ` (${oracleCode})` : ''}`;
+        if (retryable && allowAutomaticRetry && attempt === 1) continue;
+        const { error: stateError } = await client.from('compras').update({
+          evolusom_request_state: rejected ? 'rejected' : 'uncertain',
+          status: rejected ? 'erro_criacao' : 'criacao_incerta',
+        }).eq('id', purchase.id).eq('evolusom_request_state', 'sent').eq('evolusom_attempt_count', currentAttemptCount);
+        return {
+          state: rejected && !stateError ? 'pending' : 'uncertain',
+          reason: stateError ? 'Falha ao registrar o resultado da Evolusom; confira antes de repetir' : lastError,
+          apiResponse: requestAttempts.length === 1 ? response : { attempts: requestAttempts },
+        };
+      }
+
+      const responseOrderId = readEvolusomOrderId(response);
+      if (Number.isSafeInteger(responseOrderId) && responseOrderId > 0) {
+        orderId = responseOrderId;
+        break;
+      }
+      previousFailureWasAmbiguous = true;
+      lastError = 'Evolusom não retornou número de pedido válido';
+      if (allowAutomaticRetry && attempt === 1) continue;
+    } catch (error) {
+      const status = error instanceof EvolusomApiError ? error.status : null;
+      const retryable = isRetryableEvolusomErrorStatus(status);
+      const rejected = isDefinitiveEvolusomRejection(status) && !previousFailureWasAmbiguous;
+      previousFailureWasAmbiguous ||= retryable;
+      lastError = error instanceof Error ? error.message : 'Falha ao criar pedido Evolusom';
+      requestAttempts.push({
+        attempt: currentAttemptCount,
+        result: error instanceof EvolusomApiError ? error.responseBody : { status, message: lastError },
+      });
+      if (retryable && allowAutomaticRetry && attempt === 1) continue;
+      const { error: stateError } = await client.from('compras').update({
+        evolusom_request_state: rejected ? 'rejected' : 'uncertain',
+        status: rejected ? 'erro_criacao' : 'criacao_incerta',
+      }).eq('id', purchase.id).eq('evolusom_request_state', 'sent').eq('evolusom_attempt_count', currentAttemptCount);
+      return {
+        state: rejected && !stateError ? 'pending' : 'uncertain',
+        reason: stateError ? 'Falha ao registrar o resultado da Evolusom; confira antes de repetir' : lastError,
+        apiResponse: requestAttempts.length === 1 ? requestAttempts[0].result : { attempts: requestAttempts },
+      };
+    }
+  }
+
+  if (orderId === null) {
+    const { error: stateError } = await client.from('compras').update({
+      evolusom_request_state: 'uncertain',
+      status: 'criacao_incerta',
+    }).eq('id', purchase.id).eq('evolusom_request_state', 'sent').eq('evolusom_attempt_count', currentAttemptCount);
     return {
-      state: rejected ? 'pending' : 'uncertain',
-      reason: error instanceof Error ? error.message : 'Falha ao criar pedido Evolusom',
-      apiResponse: error instanceof EvolusomApiError ? error.responseBody : null,
+      state: 'uncertain',
+      reason: stateError ? 'Falha ao registrar o resultado da Evolusom; confira antes de repetir' : lastError || 'Falha ao criar pedido Evolusom',
+      apiResponse: requestAttempts.length === 1 ? lastResponse : { attempts: requestAttempts },
     };
   }
-  const embeddedStatus = Number(response.status);
-  if (Number.isInteger(embeddedStatus) && embeddedStatus >= 400) {
-    const rejected = [400, 422].includes(embeddedStatus);
-    await client.from('compras').update({
-      evolusom_request_state: rejected ? 'rejected' : 'uncertain',
-      status: rejected ? 'erro_criacao' : 'criacao_incerta',
-    }).eq('id', purchase.id);
-    const oracleCode = typeof response.message === 'string'
-      ? response.message.match(/ORA-\d{5}/)?.[0]
-      : null;
-    return {
-      state: rejected ? 'pending' : 'uncertain',
-      reason: `Evolusom retornou erro ${embeddedStatus}${oracleCode ? ` (${oracleCode})` : ''}`,
-      apiResponse: response,
-    };
-  }
-  const orderId = Number(response.codigo ?? response.data?.codigo ?? response.data?.numero ?? response.data?.pedido_lojista?.numero);
-  if (!Number.isSafeInteger(orderId) || orderId <= 0) {
-    await client.from('compras').update({ evolusom_request_state: 'uncertain', status: 'criacao_incerta' }).eq('id', purchase.id);
-    return { state: 'uncertain', reason: 'Evolusom não retornou número de pedido válido', apiResponse: response };
-  }
+
+  const response = lastResponse!;
   const status = response.data?.pedido_lojista?.status || response.data?.status
     || (typeof response.status === 'string' ? response.status : 'Pendente');
   const { error: saveError } = await client.from('compras').update({
     evolusom_order_id: orderId,
     evolusom_request_state: 'created',
     status,
-  }).eq('id', purchase.id);
+  }).eq('id', purchase.id).eq('evolusom_request_state', 'sent').eq('evolusom_attempt_count', currentAttemptCount);
   if (saveError) return { state: 'uncertain', reason: 'Pedido criado, mas vínculo local não foi salvo', apiResponse: response };
   const { error: linkError } = await client.from('pedidos').update({
     evolusom_order_id: orderId,

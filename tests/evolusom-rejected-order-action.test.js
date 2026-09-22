@@ -63,10 +63,11 @@ test('compra Evolusom projeta chave PIX e pagamento sem perder a compra direta',
   assert.equal(row.dslite_next_action, 'wait_ml_label');
 });
 
-test('reserva incerta permanece bloqueada e compra criada segue para pagamento', async () => {
+test('reserva incerta volta a oferecer tentativa manual e compra criada segue para pagamento', async () => {
   const uncertain = await projectPurchase('uncertain');
-  assert.equal(uncertain.compra_id, 'purchase-1');
-  assert.equal(uncertain.dslite_next_action, 'blocked');
+  assert.equal(uncertain.compra_id, null);
+  assert.equal(uncertain.dslite_next_action, 'create_dslite_order');
+  assert.equal(uncertain.dslite_next_action_label, 'Criar pedido');
 
   const created = await projectPurchase('created', 456);
   assert.equal(created.compra_id, 'purchase-1');

@@ -71,6 +71,7 @@ export type PedidoOperacionalApiDto = Omit<PedidoRow, 'fulfillment_source' | 'lu
   compra_status?: string | null;
   compra_status_dslite?: string | null;
   evolusom_request_code?: string | null;
+  evolusom_request_state?: string | null;
   compra_produto_descricao?: string | null;
   compra_produto_sku?: string | null;
   compra_quantidade?: number | null;
@@ -242,6 +243,7 @@ export interface Order {
   compra_status?: string | null;
   compra_status_dslite?: string | null;
   evolusom_request_code?: string | null;
+  evolusom_request_state?: string | null;
   supplier_payment_mode?: SupplierPaymentMode | null;
   supplier_payment_status?: 'pending' | 'paid' | 'failed' | 'cancelled' | string | null;
   supplier_payment_deferred?: boolean;

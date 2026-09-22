@@ -72,7 +72,7 @@ test('BNT-D01 exibe venda e pack separadamente e reduz ruído visual da tabela',
   assert.doesNotMatch(page, /<Tag color="purple">KIT<\/Tag>/);
   assert.doesNotMatch(page, /<Tag color="blue">CARRINHO<\/Tag>/);
   assert.doesNotMatch(page, /title: 'Idade'/);
-  assert.match(page, /label: 'Criar pedido com fornecedor'/);
+  assert.match(page, /label: 'Criar pedido'/);
   assert.match(page, /label: 'Processar envio interno'/);
 });
 

@@ -2264,6 +2264,7 @@ ml_pricing_groups: {
           evolusom_order_id: number | null
           evolusom_request_code: string | null
           evolusom_request_state: string | null
+          evolusom_attempt_count: number
           pedido_id: string | null
           status: string
           status_dslite: string
@@ -2304,6 +2305,7 @@ ml_pricing_groups: {
           evolusom_order_id?: number | null
           evolusom_request_code?: string | null
           evolusom_request_state?: string | null
+          evolusom_attempt_count?: number
           pedido_id?: string | null
           status?: string
           status_dslite?: string
@@ -2344,6 +2346,7 @@ ml_pricing_groups: {
           evolusom_order_id?: number | null
           evolusom_request_code?: string | null
           evolusom_request_state?: string | null
+          evolusom_attempt_count?: number
           pedido_id?: string | null
           status?: string
           status_dslite?: string

@@ -139,6 +139,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     compra_status: item.compra_status || null,
     compra_status_dslite: item.compra_status_dslite || null,
     evolusom_request_code: item.evolusom_request_code || null,
+    evolusom_request_state: item.evolusom_request_state || null,
     fornecedor_nome: item.fornecedor_nome || null,
     fornecedor_id: item.fornecedor_id || null,
     fornecedor_telefone: item.fornecedor_telefone || null,
@@ -215,7 +216,11 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   const can = (permission?: VortekPermission) => !permission || (role ? hasPermission(role, permission) : false);
   const actions: OrderAction[] = [{ key: 'view', label: 'Ver detalhes' }];
   const hasDsliteId = Boolean(isValidDsliteId(order.dslite_id));
-  const hasSupplierOrder = hasDsliteId || Boolean(order.evolusom_order_id || order.compra_id);
+  const evolusomManualRetry = String(order.fornecedor_id || '') === '133'
+    && !order.evolusom_order_id
+    && ['uncertain', 'rejected', 'prepared'].includes(String(order.evolusom_request_state || ''));
+  const hasSupplierOrder = hasDsliteId || Boolean(order.evolusom_order_id)
+    || (Boolean(order.compra_id) && !evolusomManualRetry);
   const internalShipping = Boolean(order.envio_interno_at);
   const postDispatch = isPostDispatchOrder(order);
   const split = Boolean(order.has_split_fulfillment);
@@ -234,7 +239,7 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
 
   if (order.ml_shipment_id) actions.push({ key: 'track', label: 'Rastrear envio', permission: 'sales.track' });
   if (!split && !internalShipping && !postDispatch && !hasSupplierOrder && order.fulfillment_source !== 'internal' && active) {
-    actions.push({ key: 'dslite', label: 'Criar pedido com fornecedor', permission: 'sales.dslite.create' });
+    actions.push({ key: 'dslite', label: 'Criar pedido', permission: 'sales.dslite.create' });
   }
   if (!split && !internalShipping && !postDispatch && !hasDsliteId && order.fulfillment_source !== 'supplier' && order.internal_stock_available && order.ml_shipment_id && active) {
     actions.push({ key: 'direct_shipping', label: 'Processar envio interno', permission: 'sales.internal_shipping.process' });
