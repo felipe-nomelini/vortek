@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import {
-  createShippingLabelSignedUrl,
-  downloadShippingLabelFromStorage,
-} from '@/lib/shipping-label-storage';
+import { downloadShippingLabelFromStorage } from '@/lib/shipping-label-storage';
 import { verifyPublicShippingLabelToken } from '@/lib/public-shipping-label-links';
 import { normalizeMlShippingLabelPdfForThermalPrint } from '@/lib/shipping-label-pdf';
 import { loadDslitePlaceholderLabel } from '@/lib/dslite/placeholder-label';
@@ -75,15 +72,18 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
     }
   }
 
-  const signedUrl = await createShippingLabelSignedUrl(
-    client,
-    String(storagePath),
-    undefined,
-    thermal ? `etiqueta_ml_${pedido?.numero}.zpl` : undefined,
-  );
-  if (!signedUrl) {
-    return NextResponse.json({ error: 'Falha ao gerar link da etiqueta' }, { status: 404 });
+  const label = await downloadShippingLabelFromStorage(client, String(storagePath));
+  if (!label) {
+    return NextResponse.json({ error: 'Falha ao baixar etiqueta' }, { status: 404 });
   }
 
-  return NextResponse.redirect(signedUrl, 302);
+  const extension = thermal ? 'zpl' : 'pdf';
+  return new Response(new Uint8Array(label), {
+    headers: {
+      'Content-Type': thermal ? 'text/plain' : 'application/pdf',
+      'Content-Disposition': `${thermal ? 'attachment' : 'inline'}; filename="etiqueta_ml_${pedido.numero}.${extension}"`,
+      'Cache-Control': 'private, no-store',
+      'X-Content-Type-Options': 'nosniff',
+    },
+  });
 }
