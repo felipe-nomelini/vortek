@@ -99,18 +99,16 @@ test('expõe a falha do outbox sem marcar preço ou atacado como concluídos', (
   assert.equal(steps[1].error, 'Falha controlada');
 });
 
-test('Produtos e Catálogo consomem um único tracking específico', () => {
+test('Produtos mantém tracking em modal; Catálogo acompanha cada anúncio na lista', () => {
   const root = path.resolve(__dirname, '..');
   const products = fs.readFileSync(path.join(root, 'src/app/(app)/produtos/page.tsx'), 'utf8');
   const catalog = fs.readFileSync(path.join(root, 'src/components/catalogo/CatalogoView.tsx'), 'utf8');
   const hook = fs.readFileSync(path.join(root, 'src/hooks/useMlPricePublishTracking.ts'), 'utf8');
 
-  for (const consumer of [products, catalog]) {
-    assert.match(consumer, /useMlPricePublishTracking|PricingDecisionCenter/);
-    assert.doesNotMatch(consumer, /function buildMlPublishSteps/);
-    assert.doesNotMatch(consumer, /atualizar-preco\/status\?outboxId/);
-    assert.doesNotMatch(consumer, /api\/ml\/anuncio\/aplicar-atacado/);
-  }
+  assert.match(products, /Alterar preço no Mercado Livre/);
+  assert.match(catalog, /atualizar-preco\/status\?outboxId/);
+  assert.doesNotMatch(catalog, /useMlPricePublishTracking|<ProgressModal|function buildMlPublishSteps/);
+  assert.doesNotMatch(catalog, /api\/ml\/anuncio\/aplicar-atacado/);
 
   assert.match(hook, /atualizar-preco\/status\?outboxId/);
   assert.doesNotMatch(hook, /api\/ml\/anuncio\/aplicar-atacado/);

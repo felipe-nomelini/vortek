@@ -105,6 +105,7 @@ export async function loadPricingDetail(raw: unknown, worker?: {
   targetOrigin?: 'manual_input' | 'price_to_win' | 'rule' | 'existing_price';
   strictEconomicGates?: boolean;
   requireNonDecreasingProfit?: boolean;
+  manualPriceOnly?: boolean;
 }) {
   // Internal worker identity is never parsed from the HTTP body.
   const user = worker ? { id: worker.actorId } : (await (await createClient()).auth.getUser()).data.user;
@@ -164,7 +165,7 @@ export async function loadPricingDetail(raw: unknown, worker?: {
   const protection: PricingProtection = await loadPricingOverrides(service, product.id).catch(() => ({ status: 'unavailable', groups: [] }));
   const groups = protection.groups.filter(g => g.state !== 'retired' && g.members.some(m => m.itemId === itemId));
   const group = groups.length === 1 ? groups[0] : null;
-  const competitionItemId = worker?.competitionItemId || (item?.catalog_listing ? itemId : null);
+  const competitionItemId = worker?.manualPriceOnly ? null : worker?.competitionItemId || (item?.catalog_listing ? itemId : null);
   if (competitionItemId && competitionItemId !== itemId
     && (!group || !group.members.some(member => member.itemId === competitionItemId && member.catalog))) {
     return json({ error: 'Referência competitiva não pertence ao grupo confirmado.' }, 422);
@@ -297,13 +298,15 @@ export async function loadPricingDetail(raw: unknown, worker?: {
     }
     listingSafety = { verified: true, evidence };
     return { valid: true } as const;
-  }, { competitivePriceCents: competitiveEvidence?.priceCents, actualPriceCents: currentPrice, groupId: group?.id });
+  }, { competitivePriceCents: competitiveEvidence?.priceCents,
+    actualPriceCents: worker?.manualPriceOnly ? null : currentPrice,
+    groupId: group?.id, manualPriceOnly: worker?.manualPriceOnly });
   const view = pricingView(pricing);
   const memory = pricing.current.memory;
   let quantityPricing: ReturnType<typeof serializeQuantityPricingTiers> = [];
   let quantityPricingWarning: string | null = null;
   let catalog: any = null;
-  if (itemId) {
+  if (itemId && !worker?.manualPriceOnly) {
     const prices = await fetchMLResult<any>('/items/' + encodeURIComponent(itemId) + '/prices', { headers: { 'show-all-prices': 'TRUE' } });
     if (prices.ok) quantityPricing = serializeQuantityPricingTiers(extractQuantityPricingTiers(prices.data, (currentPrice ?? 0) / 100));
     else quantityPricingWarning = 'Descontos existentes indisponíveis para consulta.';
@@ -342,6 +345,7 @@ export async function loadPricingDetail(raw: unknown, worker?: {
     targetOrigin: worker?.targetOrigin,
     strictEconomicGates: worker?.strictEconomicGates,
     requireNonDecreasingProfit: worker?.requireNonDecreasingProfit,
+    manualPriceOnly: worker?.manualPriceOnly,
     competition: competitiveEvidence ? {
       itemId: competitionItemId!,
       priceCents: competitiveEvidence.priceCents,

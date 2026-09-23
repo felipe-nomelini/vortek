@@ -130,6 +130,7 @@ async function revalidate(client: Client, decision: any, productId: string, acto
     targetOrigin: decision.context.targetOrigin || 'manual_input',
     strictEconomicGates: decision.context.strictEconomicGates === true,
     requireNonDecreasingProfit: decision.context.requireNonDecreasingProfit === true,
+    manualPriceOnly: decision.context.manualPriceOnly === true,
   });
   if (!response.ok) throw new Error('decision_revalidation_unavailable');
   const fresh = await response.json();

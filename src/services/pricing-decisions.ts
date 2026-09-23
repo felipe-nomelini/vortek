@@ -22,6 +22,7 @@ export type DecisionContext = {
   competitionStatus?: string | null;
   strictEconomicGates?: boolean;
   requireNonDecreasingProfit?: boolean;
+  manualPriceOnly?: boolean;
   fingerprint: string;
   expiresAt: string;
   clearance: { id: string; quantity: number; fulfillmentSource: 'internal' } | null;
@@ -42,6 +43,7 @@ export function decisionContext(input: {
   targetOrigin?: DecisionContext['targetOrigin'];
   strictEconomicGates?: boolean;
   requireNonDecreasingProfit?: boolean;
+  manualPriceOnly?: boolean;
   competition?: {
     itemId: string;
     priceCents: number | null;
@@ -64,9 +66,7 @@ export function decisionContext(input: {
     p.revalidation?.status !== 'queried' ||
     p.current.status === 'inconclusive' ||
     !p.current.memory ||
-    !p.target.ok ||
-    !p.floor.ok ||
-    !p.breakEven.ok ||
+    (!input.manualPriceOnly && (!p.target.ok || !p.floor.ok || !p.breakEven.ok)) ||
     p.current.memory.revenueCents !== input.priceCents
   )
     gate('ECONOMIA_INCONCLUSIVA');
@@ -111,6 +111,7 @@ export function decisionContext(input: {
     competitionStatus: input.competition?.status ?? null,
     strictEconomicGates: strict,
     requireNonDecreasingProfit: input.requireNonDecreasingProfit === true,
+    ...(input.manualPriceOnly ? { manualPriceOnly: true } : {}),
   };
   return {
     operationKind: 'price_change',
@@ -130,6 +131,7 @@ export function decisionContext(input: {
     competitionStatus: input.competition?.status ?? null,
     strictEconomicGates: strict,
     requireNonDecreasingProfit: input.requireNonDecreasingProfit === true,
+    ...(input.manualPriceOnly ? { manualPriceOnly: true } : {}),
     fingerprint: createHash('sha256').update(pricingMaterialFingerprint(material)).digest('hex'),
     expiresAt,
     clearance: input.clearance ?? null,

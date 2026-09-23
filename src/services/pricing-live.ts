@@ -37,7 +37,8 @@ export async function loadLiveProductPricing(client: Client, product: Product, c
   priceCents: number | null, verifyMarket: () => Promise<boolean | null | {
     valid: boolean | null; code?: EconomicIssue['code'];
   }>,
-  options: { competitivePriceCents?: number | null; actualPriceCents?: number | null; groupId?: string | null } = {}): Promise<ProductPricing> {
+  options: { competitivePriceCents?: number | null; actualPriceCents?: number | null;
+    groupId?: string | null; manualPriceOnly?: boolean } = {}): Promise<ProductPricing> {
   const request = await loadPricingRequestContext(client);
   const initial = await sources(client, product, request, context, priceCents);
   // Group is resolved by the authenticated caller; never inferred from custom_price.
@@ -81,9 +82,9 @@ export async function loadLiveProductPricing(client: Client, product: Product, c
   const project = (objective: 'target' | 'floor' | 'break_even') => projectQuotedEconomicPrice({
     base, seedCents: priceCents ?? initial.pricing.costCents!, objective, quote });
   // Sequencial por objetivo: compartilha cotações e limita pressão no ML.
-  const target = await project('target');
-  const floor = await project('floor');
-  const breakEven = await project('break_even');
+  const target = options.manualPriceOnly ? initial.pricing.target : await project('target');
+  const floor = options.manualPriceOnly ? initial.pricing.floor : await project('floor');
+  const breakEven = options.manualPriceOnly ? initial.pricing.breakEven : await project('break_even');
   const fresh = await client.from('produtos').select('*').eq('id', product.id).maybeSingle();
   if (fresh.error) throw new Error('Falha ao revalidar o produto');
   if (!fresh.data) return failure('PRODUTO_LOCAL_ALTERADO');
@@ -97,6 +98,6 @@ export async function loadLiveProductPricing(client: Client, product: Product, c
   if (!marketValid) return failure(marketCode || 'ANUNCIO_REMOTO_ALTERADO');
   if (missingLive) return failure('INCONCLUSIVO_FONTE_ML_INDISPONIVEL');
   return { costCents: initial.pricing.costCents, currentPriceCents: priceCents, current, target, floor, breakEven, comparisons,
-    revalidation: { status: target.ok && floor.ok && breakEven.ok ? 'queried' : 'inconclusive',
+    revalidation: { status: options.manualPriceOnly || (target.ok && floor.ok && breakEven.ok) ? 'queried' : 'inconclusive',
       evaluatedAt: new Date().toISOString(), contextKey: key } };
 }

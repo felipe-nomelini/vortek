@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  Alert, Button, Drawer, Empty, Image, Input, InputNumber, Modal, Progress,
+  Alert, Button, Drawer, Empty, Image, Input, InputNumber, Progress,
   Segmented, Select, Space, Spin, Tag, Typography, message,
 } from 'antd';
 import type { TableProps } from 'antd';
@@ -12,8 +12,6 @@ import {
   ReloadOutlined, SearchOutlined, ShopOutlined,
 } from '@ant-design/icons';
 import ResponsiveTable from '@/components/ResponsiveTable';
-import ProgressModal from '@/components/modals/ProgressModal';
-import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import { formatCurrency } from '@/lib/format';
 import {
   catalogBoostPresentation, catalogCompetitionPresentation,
@@ -100,7 +98,11 @@ type PriceDetail = {
     boosts?: Array<{ id: string; status: string; description: string }>;
     reasons?: string[]; warning?: string | null; syncedAt?: string | null } | null;
 };
-type PriceReview = { detail: PriceDetail; price: number; profit: number | null; margin: number | null };
+type PricePreview = { currentPriceCents: number; priceCents: number;
+  status: 'available' | 'estimated' | 'inconclusive'; resultCents: number | null;
+  marginPercent: number | null; warnings: string[]; automaticPricingActive: boolean };
+type PriceOperation = { outboxId: string; status: 'pending' | 'processing' | 'retry' | 'done' | 'failed' | 'cancelled';
+  error?: string };
 
 const statusOptions = [
   { value: 'all', label: 'Todos os status' }, { value: 'active', label: 'Ativos' },
@@ -160,22 +162,11 @@ function MercadoLivreCodeLink({ code, href, label }: { code?: string | null; hre
     {normalizedCode}<ExportOutlined aria-hidden />
   </a>;
 }
-function priceMemory(detail: PriceDetail | null | undefined) {
-  const memory = detail?.pricing?.current?.memory;
-  return {
-    profit: Number.isFinite(Number(memory?.resultCents)) ? Number(memory?.resultCents) / 100 : null,
-    margin: Number.isFinite(Number(memory?.margin)) ? Number(memory?.margin) * 100 : null,
-  };
-}
 function memoryEconomy(memory: { resultCents?: number; margin?: number } | null | undefined): EconomicSummary | null {
   if (memory?.resultCents == null || memory.margin == null
     || !Number.isFinite(Number(memory.resultCents)) || !Number.isFinite(Number(memory.margin))) return null;
   return { status: 'available', profit: Number(memory.resultCents) / 100,
     marginPercent: Number(memory.margin) * 100, source: 'live_saved', calculatedAt: null, reason: null };
-}
-function decisionBlockMessage(reasons: string[] = []) {
-  if (reasons.includes('OPERACAO_EM_ANDAMENTO')) return 'Já existe uma alteração de preço em andamento.';
-  return 'As informações atuais não permitem confirmar esta alteração com segurança.';
 }
 function decisionWarningMessage(reason: string) {
   if (reason === 'PRECO_ABAIXO_DO_PISO') return 'O preço fica abaixo do piso de margem; a decisão manual será respeitada.';
@@ -192,9 +183,10 @@ function decisionWarningMessage(reason: string) {
 export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const router = useRouter();
   const [messageApi, messageContext] = message.useMessage();
-  const { hasOpenTracking, startTracking, progressModalProps } = useMlPricePublishTracking(messageApi);
   const requestSequence = useRef(0);
   const pricingRequest = useRef(0);
+  const previewRequest = useRef(0);
+  const statusCursor = useRef(0);
   const dataAbortController = useRef<AbortController | null>(null);
   const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const economicsRequest = useRef(0);
@@ -238,10 +230,14 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
   const [priceDetail, setPriceDetail] = useState<PriceDetail | null>(null);
   const [priceDetailLoading, setPriceDetailLoading] = useState(false);
   const [newPrice, setNewPrice] = useState<number | null>(null);
-  const [priceReview, setPriceReview] = useState<PriceReview | null>(null);
+  const [pricePreview, setPricePreview] = useState<PricePreview | null>(null);
+  const [previewLoading, setPreviewLoading] = useState(false);
+  const [previewError, setPreviewError] = useState<string | null>(null);
+  const [previewBlocked, setPreviewBlocked] = useState(false);
+  const [operations, setOperations] = useState<Record<string, PriceOperation>>({});
   const priceCommandRef = useRef<{ key: string; id: string } | null>(null);
-  const [reviewingPrice, setReviewingPrice] = useState(false);
   const [confirmingPrice, setConfirmingPrice] = useState(false);
+  const confirmingPriceRef = useRef(false);
 
 
   const queryString = useMemo(() => {
@@ -341,7 +337,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
 
   useEffect(() => {
     const requestId = ++economicsRequest.current;
-    if (mode !== 'no_catalogo' || visualReview || loading || !economicsItems.length) {
+    if (mode !== 'no_catalogo' || visualReview || loading || activeCatalog || !economicsItems.length) {
       setEconomicsState({ running: false, processed: 0, total: economicsItems.length, issue: null });
       return;
     }
@@ -410,7 +406,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       }
     })();
     return () => { economicsRequest.current += 1; controller.abort(); };
-  }, [applyVisibleEconomics, applyVisibleEconomicsFailure, economicsItems, economicsRetry, loading, mode, visualReview]);
+  }, [activeCatalog, applyVisibleEconomics, applyVisibleEconomicsFailure, economicsItems, economicsRetry, loading, mode, visualReview]);
 
   const fetchRefreshStatus = useCallback(async (jobId?: string) => {
     const url = jobId ? `/api/catalogo/no-catalogo/refresh/status?jobId=${encodeURIComponent(jobId)}`
@@ -476,11 +472,15 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
     setRefreshPayload(null); trackRefresh(String(payload.jobId));
   }, [messageApi, trackRefresh, visualReview]);
 
-  const loadPriceDetail = useCallback(async (row: NoCatalogoRow) => {
-    const requestId = ++pricingRequest.current;
-    setActiveCatalog(row); setPriceDetail(null); setPriceReview(null);
+  const openPriceEditor = useCallback((row: NoCatalogoRow) => {
+    pricingRequest.current += 1;
+    setActiveCatalog(row); setPriceDetail(null); setPricePreview(null); setPreviewError(null);
     setNewPrice(row.price);
-    if (visualReview || !row.produto_id) return;
+  }, []);
+
+  const loadTechnicalDetail = useCallback(async (row: NoCatalogoRow) => {
+    const requestId = ++pricingRequest.current;
+    if (visualReview || !row.produto_id || priceDetail) return;
     setPriceDetailLoading(true);
     try {
       const params = new URLSearchParams({ produtoId: row.produto_id, mlItemId: row.ml_item_id });
@@ -488,7 +488,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload?.error || 'Falha ao carregar os detalhes.');
       if (requestId !== pricingRequest.current) return;
-      setPriceDetail(payload); setNewPrice(payload?.currentPrice || row.price);
+      setPriceDetail(payload);
       const current = memoryEconomy(payload?.competitiveAssessment?.current?.memory);
       const competitive = memoryEconomy(payload?.competitiveAssessment?.competitive?.memory);
       if (current || competitive) setRows((existing) => existing.map((entry) => entry.ml_item_id === row.ml_item_id
@@ -499,54 +499,107 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       if (requestId === pricingRequest.current) messageApi.error(userSafeMessage(
         error instanceof Error ? error.message : null, 'Não foi possível carregar os detalhes.'));
     } finally { if (requestId === pricingRequest.current) setPriceDetailLoading(false); }
-  }, [messageApi, visualReview]);
+  }, [messageApi, priceDetail, visualReview]);
 
-  const reviewPrice = useCallback(async () => {
-    if (!activeCatalog?.produto_id || !newPrice || visualReview) return;
-    setReviewingPrice(true);
-    try {
-      const response = await fetch('/api/ml/anuncio/preco-detalhe', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ produtoId: activeCatalog.produto_id, mlItemId: activeCatalog.ml_item_id,
-          priceCents: Math.round(newPrice * 100),
-          disableAutomaticPricing: priceDetail?.automaticPricing?.active === true }),
-      });
-      const detail = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(detail?.error || 'Não foi possível revisar este preço.');
-      const memory = priceMemory(detail);
-      setPriceReview({ detail, price: newPrice, profit: memory.profit, margin: memory.margin });
-    } catch (error: unknown) {
-      messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível revisar este preço.'));
-    } finally { setReviewingPrice(false); }
-  }, [activeCatalog, messageApi, newPrice, priceDetail?.automaticPricing?.active, visualReview]);
+  useEffect(() => {
+    const requestId = ++previewRequest.current;
+    setPricePreview(null); setPreviewError(null); setPreviewBlocked(false);
+    if (!activeCatalog?.produto_id || visualReview || newPrice === null || !Number.isFinite(newPrice)
+      || newPrice <= 0 || !Number.isSafeInteger(Math.round(newPrice * 100))) {
+      setPreviewLoading(false); return;
+    }
+    const controller = new AbortController();
+    setPreviewLoading(true);
+    const timer = setTimeout(() => void (async () => {
+      try {
+        const response = await fetch('/api/catalogo/preco/preview', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, cache: 'no-store',
+          body: JSON.stringify({ produtoId: activeCatalog.produto_id, mlItemId: activeCatalog.ml_item_id,
+            priceCents: Math.round(newPrice * 100) }), signal: controller.signal,
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (requestId !== previewRequest.current) return;
+        if (!response.ok) {
+          setPreviewBlocked(response.status === 409 || response.status === 422);
+          setPreviewError(userSafeMessage(payload?.error, 'Não foi possível calcular o impacto agora.'));
+          return;
+        }
+        setPricePreview(payload as PricePreview);
+      } catch (error: unknown) {
+        if (requestId === previewRequest.current && !(error instanceof Error && error.name === 'AbortError'))
+          setPreviewError('Não foi possível calcular o impacto agora.');
+      } finally { if (requestId === previewRequest.current) setPreviewLoading(false); }
+    })(), 300);
+    return () => { previewRequest.current += 1; controller.abort(); clearTimeout(timer); };
+  }, [activeCatalog, newPrice, visualReview]);
 
   const confirmPrice = useCallback(async () => {
-    if (!activeCatalog?.produto_id || !priceReview?.detail.evaluationId) return;
-    if (hasOpenTracking) return void messageApi.warning('Já existe uma publicação de preço em acompanhamento.');
-    const key = `${activeCatalog.produto_id}:${activeCatalog.ml_item_id}:${Math.round(priceReview.price * 100)}`;
+    if (!activeCatalog?.produto_id || !newPrice || previewLoading || previewBlocked || confirmingPriceRef.current) return;
+    const priceCents = Math.round(newPrice * 100);
+    if (!Number.isSafeInteger(priceCents) || priceCents <= 0) return;
+    const key = `${activeCatalog.produto_id}:${activeCatalog.ml_item_id}:${priceCents}`;
     const operationId = priceCommandRef.current?.key === key ? priceCommandRef.current.id : crypto.randomUUID();
     priceCommandRef.current = { key, id: operationId };
+    confirmingPriceRef.current = true;
     setConfirmingPrice(true);
     try {
       const response = await fetch('/api/catalogo/preco/confirmar', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ operationId, produtoId: activeCatalog.produto_id,
-          mlItemId: activeCatalog.ml_item_id, priceCents: Math.round(priceReview.price * 100),
-          disableAutomaticPricing: priceReview.detail.automaticPricing?.active === true }),
+          mlItemId: activeCatalog.ml_item_id, priceCents,
+          disableAutomaticPricing: pricePreview?.automaticPricingActive === true }),
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload?.error || 'Não foi possível confirmar a alteração.');
       const outboxId = String(payload?.outboxId || '').trim();
       if (!outboxId) throw new Error('A alteração não foi programada.');
-      setPriceReview(null);
+      setOperations(current => ({ ...current, [activeCatalog.ml_item_id]: { outboxId, status: 'pending' } }));
       priceCommandRef.current = null;
-      startTracking({ outboxId, produtoId: activeCatalog.produto_id,
-        onTerminal: (status) => { if (status.status === 'done') { void fetchData(); setActiveCatalog(null); } } });
-      messageApi.success('Alteração programada para envio ao Mercado Livre.');
+      setActiveCatalog(null);
+      messageApi.info('Envio iniciado. Acompanhe o resultado na lista.');
     } catch (error: unknown) {
       messageApi.error(userSafeMessage(error instanceof Error ? error.message : null, 'Não foi possível confirmar a alteração.'));
-    } finally { setConfirmingPrice(false); }
-  }, [activeCatalog, fetchData, hasOpenTracking, messageApi, priceReview, startTracking]);
+    } finally { confirmingPriceRef.current = false; setConfirmingPrice(false); }
+  }, [activeCatalog, messageApi, newPrice, previewBlocked, previewLoading, pricePreview]);
+
+  useEffect(() => {
+    const pending = Object.entries(operations).filter(([, operation]) =>
+      !['done', 'failed', 'cancelled'].includes(operation.status));
+    if (!pending.length) return;
+    const batch = pending.slice(statusCursor.current, statusCursor.current + 8);
+    statusCursor.current = (statusCursor.current + batch.length) % pending.length;
+    let cancelled = false;
+    const timer = setTimeout(() => void (async () => {
+      const updates = await Promise.all(batch.map(async ([itemId, operation]) => {
+        try {
+          const response = await fetch(`/api/ml/anuncio/atualizar-preco/status?outboxId=${encodeURIComponent(operation.outboxId)}`,
+            { cache: 'no-store' });
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok || !['pending', 'processing', 'retry', 'done', 'failed', 'cancelled'].includes(payload.status))
+            return null;
+          return { itemId, outboxId: operation.outboxId, status: payload.status as PriceOperation['status'],
+            error: typeof payload.last_error === 'string'
+              ? userSafeMessage(payload.last_error, 'Falha na publicação do preço.') : undefined };
+        } catch { return null; }
+      }));
+      if (cancelled) return;
+      const valid = updates.filter((value): value is NonNullable<typeof value> => value !== null);
+      if (!valid.length) { setOperations(current => ({ ...current })); return; }
+      setOperations(current => {
+        const next = { ...current };
+        for (const update of valid) if (next[update.itemId]?.outboxId === update.outboxId)
+          next[update.itemId] = { outboxId: update.outboxId, status: update.status, error: update.error };
+        return next;
+      });
+      if (valid.some(value => value.status === 'done')) void fetchData();
+      for (const value of valid) {
+        if (value.status === 'done') messageApi.success(`Preço confirmado no anúncio ${value.itemId}.`);
+        if (value.status === 'failed' || value.status === 'cancelled')
+          messageApi.error(`Não foi possível concluir o preço do anúncio ${value.itemId}. Confira o estado antes de tentar novamente.`);
+      }
+    })(), 2000);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [fetchData, messageApi, operations]);
 
   const catalogColumns: TableProps<NoCatalogoRow>['columns'] = useMemo(() => [
     { title: 'Produto e anúncio', key: 'listing', width: 340, sorter: true, render: (_, row) => (
@@ -571,10 +624,19 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
               row.competition_reference?.observedAt || row.snapshot_synced_at)}`} />
           : <PriceGuidance guidance={guidance} />;
       } },
-    { title: 'Próxima ação', key: 'action', width: 180, render: (_, row) => (
-      <Button type={row.operational.needsAction ? 'primary' : 'default'} icon={<ArrowRightOutlined />}
-        onClick={() => void loadPriceDetail(row)}>{row.operational.actionLabel}</Button>) },
-  ], [loadPriceDetail, visualReview]);
+    { title: 'Próxima ação', key: 'action', width: 180, render: (_, row) => {
+      const operation = operations[row.ml_item_id];
+      return <div className={styles.actionCell}><Button type={row.operational.needsAction ? 'primary' : 'default'}
+        icon={<ArrowRightOutlined />} disabled={operation && !['done', 'failed', 'cancelled'].includes(operation.status)}
+        onClick={() => openPriceEditor(row)}>{row.operational.actionLabel}</Button>
+        {operation && <small role="status" title={operation.error}
+          className={operation.status === 'failed' ? styles.negative : undefined}>
+          {operation.status === 'done' ? 'Preço confirmado no ML'
+            : operation.status === 'failed' || operation.status === 'cancelled'
+              ? 'Falha no envio; confira o anúncio'
+              : 'Enviando preço ao ML…'}</small>}</div>;
+    } },
+  ], [openPriceEditor, operations, visualReview]);
   const eligibleColumns: TableProps<ElegivelRow>['columns'] = useMemo(() => [
     { title: 'Produto e anúncio padrão', key: 'listing', width: 390, render: (_, row) => (
       <div className={styles.listingCell}>
@@ -732,13 +794,14 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       </Spin>
     </section>
 
-    <Drawer open={Boolean(activeCatalog)} onClose={() => { pricingRequest.current += 1; setPriceDetailLoading(false);
-      setPriceReview(null); setActiveCatalog(null); }} width="min(96vw, 720px)"
+    <Drawer open={Boolean(activeCatalog)} onClose={() => { if (confirmingPriceRef.current) return;
+      pricingRequest.current += 1; previewRequest.current += 1;
+      setPriceDetailLoading(false); setActiveCatalog(null); }} width="min(96vw, 720px)"
       title={activeCatalog ? <div className={styles.drawerTitle}><span>Resolver anúncio</span>
         <strong>{activeCatalog.produto_nome || activeCatalog.title}</strong></div> : undefined}
       extra={activeCatalog?.permalink && !visualReview ? <Button icon={<EyeOutlined />}
         onClick={() => window.open(activeCatalog.permalink || '', '_blank', 'noopener,noreferrer')}>Abrir no ML</Button> : null}>
-      {activeCatalog && <Spin spinning={priceDetailLoading}><div className={styles.drawerSection}>
+      {activeCatalog && <div className={styles.drawerSection}>
         <div className={`${styles.competitionHero} ${detailCompetition ? styles[detailCompetition.tone] : ''}`}>
           <span className={`${styles.statusDot} ${styles[detailOperational?.tone || activeCatalog.operational.tone]}`} />
           <div><small>Situação atual</small><strong>{detailOperational?.label || activeCatalog.operational.label}</strong>
@@ -746,7 +809,9 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         {liveCatalogMismatch && <Alert type="warning" showIcon message="Este anúncio não participa do catálogo"
           description="Ele não possui preço para ganhar e será removido desta lista na próxima atualização dos dados." />}
         <div className={styles.priceOverview}><SummaryCard title="Preço atual"
-          price={priceDetail?.currentPrice ?? activeCatalog.price} economy={currentEconomy} />
+          price={pricePreview ? pricePreview.currentPriceCents / 100 : priceDetail?.currentPrice ?? activeCatalog.price}
+          economy={pricePreview && pricePreview.currentPriceCents !== Math.round(activeCatalog.price * 100)
+            ? unavailableCatalogEconomy('SNAPSHOT_CHANGED') : currentEconomy} />
           <SummaryCard title="Preço para ganhar" price={priceDetail?.catalog?.priceToWin ?? activeCatalog.price_to_win}
             economy={competitiveEconomy} empty={detailPriceGuidance && detailPriceGuidance.key !== 'available'
               ? { label: detailPriceGuidance.label, description: detailPriceGuidance.description } : undefined} /></div>
@@ -759,17 +824,34 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         {priceDetail?.catalog?.warning && <Alert type="warning" showIcon
           message={userSafeMessage(priceDetail.catalog.warning, 'A competição está indisponível.')} />}
 
-        {!liveCatalogMismatch && <section className={styles.priceAction}><div><strong>Alterar preço</strong>
-          <small>Confira o impacto antes de confirmar. Nada é alterado nesta etapa.</small></div>
+        {!liveCatalogMismatch && <section className={styles.priceAction}><div><strong>Novo preço</strong>
+          <small>Nenhum preço será alterado enquanto você edita o valor. Lucro e margem atualizam automaticamente.</small></div>
           <div className={styles.priceEditor}><InputNumber prefix="R$" min={0.01} precision={2} value={newPrice}
             onChange={(value) => setNewPrice(value ?? null)}
-            disabled={Boolean(visualReview) || !activeCatalog.produto_id} />
-            <Button type="primary" loading={reviewingPrice}
-              disabled={Boolean(visualReview) || !activeCatalog.produto_id || !newPrice}
-              onClick={() => void reviewPrice()}>Alterar preço</Button></div>
-          {priceDetail?.automaticPricing?.active && <Text type="warning">A confirmação desativará a automação de preço no Mercado Livre antes da alteração.</Text>}</section>}
+            disabled={Boolean(visualReview) || !activeCatalog.produto_id || confirmingPrice} /></div>
+          {newPrice !== null && newPrice > 0 && (previewLoading
+            ? <div className={styles.summaryCard} role="status"><small>Resultado no novo preço</small>
+              <strong>{formatCurrency(newPrice)}</strong><span>Calculando tarifa, frete, lucro e margem…</span></div>
+            : <SummaryCard title="Resultado no novo preço" price={newPrice}
+              economy={pricePreview?.priceCents === Math.round(newPrice * 100) ? {
+                status: pricePreview.status === 'estimated' ? 'available' : pricePreview.status,
+                profit: pricePreview.resultCents === null ? null : pricePreview.resultCents / 100,
+                marginPercent: pricePreview.marginPercent, source: 'live_saved', calculatedAt: null,
+                reason: pricePreview.resultCents === null ? 'ML_UNAVAILABLE' : null,
+              } : unavailableCatalogEconomy('ML_UNAVAILABLE')} />)}
+          {pricePreview?.status === 'estimated' && <Text type="warning">Resultado estimado: confira as fontes antes de decidir.</Text>}
+          {previewError && <Alert type={previewBlocked ? 'error' : 'warning'} showIcon message={previewError} />}
+          {pricePreview?.warnings.map(warning => <Alert key={warning} type="warning" showIcon
+            message={decisionWarningMessage(warning)} />)}
+          {pricePreview?.automaticPricingActive && <Alert type="warning" showIcon
+            message="A automação de preço será desativada no Mercado Livre antes de aplicar este valor." />}
+          <Button type="primary" loading={confirmingPrice} disabled={Boolean(visualReview) || !activeCatalog.produto_id
+            || !newPrice || previewLoading || previewBlocked || (!pricePreview && !previewError)}
+            onClick={() => void confirmPrice()}>Confirmar alteração</Button></section>}
 
-        <details className={styles.technicalDetails}><summary>Detalhes técnicos</summary><dl>
+        <details className={styles.technicalDetails} onToggle={(event) => {
+          if (event.currentTarget.open) void loadTechnicalDetail(activeCatalog);
+        }}><summary>Detalhes técnicos</summary>{priceDetailLoading && <Spin size="small" />}<dl>
           <div><dt>{liveCatalogMismatch ? 'Anúncio padrão' : 'Anúncio de catálogo'}</dt><dd><MercadoLivreCodeLink code={activeCatalog.ml_item_id}
             href={visualReview ? null : activeCatalog.permalink} label={liveCatalogMismatch ? 'Anúncio padrão' : 'Anúncio de catálogo'} /></dd></div>
           {!liveCatalogMismatch && <div><dt>Anúncio padrão</dt><dd>{activeCatalog.relacionado_id
@@ -784,30 +866,8 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
         </dl>{(priceDetail?.catalog?.boosts || []).length > 0 && <div className={styles.allBoosts}>
           {(priceDetail?.catalog?.boosts || []).map((boost) => <span key={boost.id}><b>{boostLabel(boost)}</b>
             <small>{catalogBoostPresentation(boost.status).label}</small></span>)}</div>}</details>
-      </div></Spin>}
-    </Drawer>
-
-    <Modal open={Boolean(priceReview)} title="Confirmar alteração de preço"
-      okText={priceReview?.detail.decisionContext?.disableAutomaticPricing ? 'Desativar automação e alterar' : 'Confirmar alteração'} cancelText="Voltar"
-      confirmLoading={confirmingPrice} okButtonProps={{ disabled: priceReview?.detail.decisionContext?.executable !== true }}
-      onCancel={() => setPriceReview(null)} onOk={() => void confirmPrice()}>
-      {priceReview && activeCatalog && <div className={styles.priceReview}>
-        <p>Revise o impacto unitário antes de enviar ao Mercado Livre.</p>
-        <div className={styles.reviewComparison}><SummaryCard title="Preço atual"
-          price={priceDetail?.currentPrice ?? activeCatalog.price} economy={currentEconomy} /><ArrowRightOutlined />
-          <SummaryCard title="Novo preço" price={priceReview.price} economy={{ profit: priceReview.profit,
-            marginPercent: priceReview.margin, status: priceReview.profit == null ? 'inconclusive' : 'available',
-            source: priceReview.profit == null ? 'unavailable' : 'live_saved', calculatedAt: null,
-            reason: priceReview.profit == null ? 'ML_UNAVAILABLE' : null }} /></div>
-        {priceReview.detail.decisionContext?.executable !== true && <Alert type="warning" showIcon
-          message="Esta alteração ainda não pode ser confirmada"
-          description={decisionBlockMessage(priceReview.detail.decisionContext?.reasons)} />}
-        {(priceReview.detail.decisionContext?.warnings || []).map((warning) => <Alert key={warning} type="warning" showIcon
-          message={decisionWarningMessage(warning)} />)}
-        {priceReview.detail.decisionContext?.disableAutomaticPricing && <Alert type="warning" showIcon
-          message="A automação de preço será desativada no Mercado Livre antes de aplicar este valor." />}
       </div>}
-    </Modal>
+    </Drawer>
 
     <Drawer open={Boolean(activeEligible)} onClose={() => setActiveEligible(null)} width="min(96vw, 660px)"
       title={activeEligible ? <div className={styles.drawerTitle}><span>Elegibilidade ao catálogo</span>
@@ -851,7 +911,6 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
       </div>}
     </Drawer>
 
-    <ProgressModal {...progressModalProps} />
   </div>;
 }
 

@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       productId: detailInput.produtoId, kind: 'price_change', itemId: detailInput.mlItemId,
       priceCents: detailInput.priceCents });
     if (previous) return json(previous, 202);
-    const response = await loadPricingDetail(detailInput, { actorId: auth.userId });
+    const response = await loadPricingDetail(detailInput, { actorId: auth.userId, manualPriceOnly: true });
     if (!response.ok) return json({ error: 'Os dados mudaram. Confira o anúncio novamente.' }, 409);
     const detail = await response.json();
     if (!detail.evaluationId || detail.decisionContext?.executable !== true)

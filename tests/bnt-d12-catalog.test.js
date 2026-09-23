@@ -176,10 +176,12 @@ test('mantém duas rotas com nomes inequívocos e acompanhamento compartilhado',
   assert.match(view, /Anúncio padrão/);
   assert.match(view, /Produto de catálogo/);
   assert.match(view, /Anúncio de catálogo/);
-  assert.match(view, /useMlPricePublishTracking/);
+  assert.match(view, /api\/catalogo\/preco\/preview/);
+  assert.match(view, /atualizar-preco\/status\?outboxId/);
+  assert.doesNotMatch(view, /<ProgressModal|<Modal open=\{Boolean\(priceReview\)\}/);
   assert.match(view, /Pendências/);
   assert.match(view, /Preço para ganhar/);
-  assert.match(view, /Alterar preço/);
+  assert.match(view, /Novo preço/);
   assert.match(view, /Confirmar alteração/);
   assert.match(view, /Detalhes técnicos/);
   assert.match(view, /className=\{styles\.mlCodeLink\}/);

@@ -165,6 +165,14 @@ test('integração usa oferta real e serviço canônico, deduplica por preço so
   assert.equal(new Set(h.calls).size, h.calls.length);
   const length = h.calls.length; await h.run(); assert.equal(h.calls.length, length * 2);
 });
+test('preço manual consulta apenas tarifa e frete do valor escolhido', async () => {
+  const h = liveHarness();
+  const result = await h.run({ manualPriceOnly: true });
+  assert.equal(result.revalidation.status, 'queried');
+  assert.equal(result.current.memory.revenueCents, 10000);
+  assert.equal(h.calls.length, 2);
+  assert.deepEqual(result.comparisons, {});
+});
 for (const timestamp of [now.replace('Z', '+00:00'), now.replace('Z', '456+00:00'), '2026-09-02T01:19:34.638-03:00']) {
   test(`timestamp timestamptz da oferta é normalizado na entrada: ${timestamp}`, async () => {
     const result = await liveHarness({ rows: { produto_fornecedor_ofertas: [{ ...offer, updated_at: timestamp }] } }).run();

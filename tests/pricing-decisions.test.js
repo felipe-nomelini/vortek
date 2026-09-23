@@ -54,6 +54,16 @@ test('fonte vencida gera aviso e a autorização manual tem janela técnica pró
   i.pricing.current.memory.fee.expiresAt='2000-01-01T00:00:00Z';const context=domain.decisionContext(i);
   assert.equal(context.executable,true);assert.ok(context.warnings.includes('FONTES_EXPIRADAS'));
 });
+test('decisão manual de um preço não exige projeções de alvo, piso e equilíbrio',()=>{
+  const manual=input();manual.manualPriceOnly=true;
+  manual.pricing.target={ok:false};manual.pricing.floor={ok:false};manual.pricing.breakEven={ok:false};
+  const result=domain.decisionContext(manual);
+  assert.equal(result.manualPriceOnly,true);
+  assert.equal(result.executable,true);
+  assert.equal(result.warnings.includes('ECONOMIA_INCONCLUSIVA'),false);
+  const legacy=input();
+  assert.equal('manualPriceOnly' in domain.decisionContext(legacy),false);
+});
 test('agente só libera preço com lucro por venda mantido e cotações vivas',()=>{
   const i=input();
   const memory={resultCents:888,cost:{},fee:{source:'ml_live'},shipping:{source:'ml_live'},tax:{context:{manualRequired:false}}};
