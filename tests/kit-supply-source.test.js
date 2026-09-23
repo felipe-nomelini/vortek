@@ -37,6 +37,24 @@ test('kit usa exclusivamente a oferta do fornecedor configurado', () => {
   assert.equal(result.source.cost, 482.88);
 });
 
+test('kit de oito pilhas usa quatro cartelas e acompanha mudança de custo da oferta', () => {
+  const input = {
+    ...base,
+    components: [{ kit_produto_id: 'kit', componente_produto_id: 'component', quantidade: 4 }],
+    offers: base.offers.map(offer => ({ ...offer, custo: offer.dslite_fornecedor_id === '108' ? 7.19 : 7 })),
+  };
+  const first = subject.resolveKitSupplySourceFromRows(input);
+  assert.equal(first.kind, 'ready');
+  assert.equal(first.source.cost, 28.76);
+  assert.equal(first.source.componentQuantity, 4);
+  const changed = subject.resolveKitSupplySourceFromRows({
+    ...input, offers: input.offers.map(offer => ({ ...offer,
+      custo: offer.dslite_fornecedor_id === '108' ? 8 : 7 })),
+  });
+  assert.equal(changed.kind, 'ready');
+  assert.equal(changed.source.cost, 32);
+});
+
 test('kit não faz fallback quando falta oferta do fornecedor configurado', () => {
   const result = subject.resolveKitSupplySourceFromRows({
     ...base,

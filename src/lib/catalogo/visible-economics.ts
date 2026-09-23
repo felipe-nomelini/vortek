@@ -13,6 +13,8 @@ export type CatalogEconomicReason =
   | 'REFERENCE_NOT_AVAILABLE'
   | 'REFERENCE_INCONSISTENT'
   | 'LISTING_INCOMPATIBLE'
+  | 'CATALOG_IDENTITY_UNVERIFIED'
+  | 'PRICE_MISMATCH'
   | 'SNAPSHOT_CHANGED'
   | 'RATE_LIMITED'
   | 'AUTH_REQUIRED'
@@ -22,6 +24,7 @@ export type CatalogEconomicSummary = {
   status: 'available' | 'inconclusive' | 'not_applicable';
   profit: number | null;
   marginPercent: number | null;
+  evaluatedPriceCents: number | null;
   source: 'live_saved' | 'ml_live' | 'unavailable';
   calculatedAt: string | null;
   reason: CatalogEconomicReason | null;
@@ -53,11 +56,13 @@ export type CatalogVisibleEconomicsResponse = {
 
 export function unavailableCatalogEconomy(reason: CatalogEconomicReason): CatalogEconomicSummary {
   return { status: 'inconclusive', profit: null, marginPercent: null,
+    evaluatedPriceCents: null,
     source: 'unavailable', calculatedAt: null, reason };
 }
 
 export function notApplicableCatalogEconomy(reason: 'REFERENCE_NOT_AVAILABLE'): CatalogEconomicSummary {
   return { status: 'not_applicable', profit: null, marginPercent: null,
+    evaluatedPriceCents: null,
     source: 'unavailable', calculatedAt: null, reason };
 }
 
@@ -75,11 +80,26 @@ export function presentCatalogEconomicResult(result: EconomicResult | null | und
     return unavailableCatalogEconomy(catalogEconomicReason(result?.reasons || []));
   }
   return { status: 'available', profit: result.memory.resultCents / 100,
-    marginPercent: result.memory.margin * 100, source: 'ml_live', calculatedAt, reason: null };
+    marginPercent: result.memory.margin * 100, evaluatedPriceCents: result.memory.revenueCents,
+    source: 'ml_live', calculatedAt, reason: null };
 }
 
-export function catalogEconomicsCacheKey(input: { ml_item_id: string; snapshot_synced_at: string | null }) {
-  return `${input.ml_item_id}:${input.snapshot_synced_at || ''}`;
+export function catalogEconomyAtPrice(economy: CatalogEconomicSummary | null | undefined,
+  price: number | null | undefined): CatalogEconomicSummary {
+  if (!economy) return unavailableCatalogEconomy('CALCULATION_PENDING');
+  if (economy.status !== 'available') return economy;
+  const cents = price == null || !Number.isFinite(price) ? null : Math.round(price * 100);
+  return cents !== null && economy.evaluatedPriceCents === cents
+    ? economy : unavailableCatalogEconomy('PRICE_MISMATCH');
+}
+
+export function catalogEconomicsResponseIsCurrent(row: {
+  snapshot_synced_at: string | null;
+  competition_reference?: { source: 'ml_live' | 'snapshot'; observedAt: string } | null;
+}, incoming: CatalogVisibleEconomicsRow): boolean {
+  return row.snapshot_synced_at === incoming.snapshotSyncedAt
+    && !(row.competition_reference?.source === 'ml_live'
+      && Date.parse(row.competition_reference.observedAt) > Date.parse(incoming.reference.competitionObservedAt));
 }
 
 export function catalogEconomicReasonLabel(reason: CatalogEconomicReason | null | undefined): string {
@@ -93,6 +113,8 @@ export function catalogEconomicReasonLabel(reason: CatalogEconomicReason | null 
     REFERENCE_NOT_AVAILABLE: 'Sem preço para ganhar',
     REFERENCE_INCONSISTENT: 'Referência do Mercado Livre inconsistente',
     LISTING_INCOMPATIBLE: 'Anúncio incompatível para cotação',
+    CATALOG_IDENTITY_UNVERIFIED: 'Vínculo de catálogo não confirmado',
+    PRICE_MISMATCH: 'Cálculo indisponível para este preço',
     SNAPSHOT_CHANGED: 'Os dados mudaram; atualize a lista',
     RATE_LIMITED: 'Mercado Livre limitou as consultas',
     AUTH_REQUIRED: 'Reconecte a conta do Mercado Livre',

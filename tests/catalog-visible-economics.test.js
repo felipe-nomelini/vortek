@@ -39,21 +39,22 @@ test('contexto de cotação não infere conta, moeda, site ou logística', () =>
   }
 });
 
-function fakeEconomic(priceCents, fee, shipping, evaluatedAt) {
+function fakeEconomic(priceCents, fee, shipping, evaluatedAt, costCents = 4000) {
   if (!priceCents || fee?.amountCents == null || shipping?.amountCents == null) {
     return { status: 'inconclusive', memory: null, reasons: [{ field: 'shipping', code: 'DADO_AUSENTE' }] };
   }
-  const resultCents = priceCents - 4000 - fee.amountCents - shipping.amountCents;
-  return { status: 'available', reasons: [], memory: { resultCents, margin: resultCents / priceCents, evaluatedAt } };
+  const resultCents = priceCents - costCents - fee.amountCents - shipping.amountCents;
+  return { status: 'available', reasons: [], memory: { resultCents, margin: resultCents / priceCents,
+    revenueCents: priceCents, evaluatedAt } };
 }
 
-function harness({ competitivePrice = 90 } = {}) {
+function harness({ currentPrice = 100, competitivePrice = 90, costCents = 4000 } = {}) {
   const calls = [];
   const snapshot = { ml_item_id: 'MLB1', produto_id: 'P1', seller_id: 123, catalog_listing: true,
-    catalog_product_id: 'MLB10', buy_box_status: 'competing', price: 100, price_to_win: 95,
+    catalog_product_id: 'MLB10', buy_box_status: 'competing', price: currentPrice, price_to_win: 95,
     synced_at: '2026-09-13T11:59:00.000Z' };
   const product = { id: 'P1', ativo: true, oferta_preferencial_id: 'O1',
-    fornecedor_preferencial_manual: true, ml_item_id: 'MLB1', custom_price: 100 };
+    fornecedor_preferencial_manual: true, ml_item_id: 'MLB1', custom_price: currentPrice };
   const client = { from(table) {
     const query = { select() { return query; }, in() { return query; }, then(resolve) {
       return Promise.resolve({ data: table === 'catalogo_ml_snapshot' ? [snapshot] : [product], error: null }).then(resolve);
@@ -64,9 +65,9 @@ function harness({ competitivePrice = 90 } = {}) {
     calls.push(path);
     if (path === '/users/me') return { ok: true, status: 200, data: { id: 123, site_id: 'MLB' }, error: null };
     if (path.startsWith('/items/bulk?')) return { ok: true, status: 200,
-      data: [{ id: 'MLB1', status_code: 200, body: item }], error: null };
+      data: [{ id: 'MLB1', status_code: 200, body: { ...item, price: currentPrice } }], error: null };
     if (path.includes('/price_to_win?')) return { ok: true, status: 200,
-      data: { ...priceToWin, price_to_win: competitivePrice }, error: null };
+      data: { ...priceToWin, current_price: currentPrice, price_to_win: competitivePrice }, error: null };
     if (path.includes('/shipping_options/free?')) return { ok: true, status: 200,
       data: { coverage: { all_country: { currency_id: 'BRL', list_cost: 10, billable_weight: 500 } } }, error: null };
     if (path.includes('/listing_prices?')) {
@@ -80,8 +81,8 @@ function harness({ competitivePrice = 90 } = {}) {
     loadPricingRequestContext: async () => ({ evaluatedAt: observedAt, commercial: {
       mlFeeFallbackRate: .14, unspecifiedShippingCost: 0,
     } }),
-    evaluateProductPricing: (base, price, _rate, fee) => ({ currentPriceCents: price, costCents: 4000,
-      current: fakeEconomic(price, fee, base.shipping, base.evaluatedAt),
+    evaluateProductPricing: (base, price, _rate, fee) => ({ currentPriceCents: price, costCents,
+      current: fakeEconomic(price, fee, base.shipping, base.evaluatedAt, costCents),
       target: { ok: false, reasons: [] }, floor: { ok: false, reasons: [] }, breakEven: { ok: false, reasons: [] } }),
     loadProductPricing: async (_client, products, options) => {
       const result = new Map();
@@ -127,8 +128,38 @@ test('mesmo preço reutiliza a cotação dentro da linha', async () => {
   assert.equal(h.calls.filter(path => path.includes('/listing_prices?')).length, 1);
 });
 
+test('kit de quatro cartelas não reaproveita lucro de R$ 61,48 na referência de R$ 8,00', async () => {
+  const h = harness({ currentPrice: 61.48, competitivePrice: 8, costCents: 2876 });
+  const response = await h.run();
+  const row = response.data[0];
+  assert.equal(row.current.evaluatedPriceCents, 6148);
+  assert.equal(row.competitive.evaluatedPriceCents, 800);
+  assert.ok(row.current.profit > 0);
+  assert.ok(row.competitive.profit <= -20.76);
+  assert.notEqual(row.current.marginPercent, row.competitive.marginPercent);
+  assert.equal(presentation.catalogEconomyAtPrice(row.current, 8).status, 'inconclusive');
+  assert.equal(presentation.catalogEconomyAtPrice(row.competitive, 8).status, 'available');
+});
+
+test('mudança de preço, custo inconclusivo e resposta antiga não mostram lucro reaproveitado', () => {
+  const available = { status: 'available', profit: 12.61, marginPercent: 20.51,
+    evaluatedPriceCents: 6148, source: 'ml_live', calculatedAt: observedAt, reason: null };
+  assert.equal(presentation.catalogEconomyAtPrice(available, 8).reason, 'PRICE_MISMATCH');
+  assert.equal(presentation.catalogEconomyAtPrice(available, 61.48).profit, 12.61);
+  assert.equal(presentation.catalogEconomyAtPrice(presentation.unavailableCatalogEconomy('COST_UNAVAILABLE'), 8).profit, null);
+  const newer = { snapshot_synced_at: observedAt,
+    competition_reference: { source: 'ml_live', observedAt: '2026-09-13T12:01:00.000Z' } };
+  const incoming = { snapshotSyncedAt: observedAt,
+    reference: { competitionObservedAt: '2026-09-13T12:00:00.000Z' } };
+  assert.equal(presentation.catalogEconomicsResponseIsCurrent(newer, incoming), false);
+  assert.equal(presentation.catalogEconomicsResponseIsCurrent(newer, {
+    ...incoming, reference: { competitionObservedAt: '2026-09-13T12:02:00.000Z' },
+  }), true);
+});
+
 test('rota é autenticada, limitada e o cálculo não possui writers', () => {
   const route = fs.readFileSync('src/app/api/catalogo/no-catalogo/economics/route.ts', 'utf8');
+  const list = fs.readFileSync('src/app/api/catalogo/no-catalogo/route.ts', 'utf8');
   const service = fs.readFileSync('src/services/catalog-visible-economics.ts', 'utf8');
   const view = fs.readFileSync('src/components/catalogo/CatalogoView.tsx', 'utf8');
   assert.match(route, /auth\.getUser\(\)/);
@@ -137,6 +168,9 @@ test('rota é autenticada, limitada e o cálculo não possui writers', () => {
   assert.doesNotMatch(service, /\.(?:insert|update|upsert|delete)\(/);
   assert.match(view, /CATALOG_VISIBLE_ECONOMICS_BATCH_SIZE/);
   assert.match(view, /controller\.abort\(\)/);
+  assert.match(view, /catalogEconomyAtPrice/);
+  assert.doesNotMatch(view, /economicsCache/);
+  assert.doesNotMatch(list, /pricing_evaluations/);
   assert.match(view, /Nenhum preço será alterado/);
   assert.doesNotMatch(view, /setNewPrice\(row\.price_to_win/);
 });
