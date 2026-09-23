@@ -534,25 +534,36 @@ async function loadPinnedKitSourcesForOrder(
     .in('pedido_id', pedidoIds);
   if (error) throw new Error(`Falha ao carregar os kits do pedido: ${error.message}`);
 
-  const byDsliteProductCode = new Map<string, SimpleKitOrderPlan>();
+  const byFiscalProductCode = new Map<string, SimpleKitOrderPlan>();
   let fixedSupplier: SimpleKitOrderPlan | null = null;
-  for (const sellerSku of Array.from(new Set(
+  const sellerSkus = Array.from(new Set(
     (items || []).map((item: any) => String(item.seller_sku || '').trim()).filter(Boolean),
-  ))) {
+  ));
+  const ordinarySellerSkus = new Set<string>();
+  for (const sellerSku of sellerSkus) {
     const resolution = await resolveSimpleKitOrderPlan(client, sellerSku);
-    if (resolution.kind !== 'ready') continue;
+    if (resolution.kind !== 'ready') {
+      ordinarySellerSkus.add(sellerSku);
+      continue;
+    }
     if (fixedSupplier && fixedSupplier.supplierId !== resolution.plan.supplierId) {
       throw new Error(`Kits do pedido exigem fornecedores diferentes (${fixedSupplier.supplierName} e ${resolution.plan.supplierName})`);
     }
     fixedSupplier = resolution.plan;
-    const code = resolution.plan.componentDsliteProductId;
-    const previous = byDsliteProductCode.get(code);
-    if (previous && previous.supplierId !== resolution.plan.supplierId) {
-      throw new Error(`Kits do pedido exigem fornecedores diferentes para o produto DSLite ${code}`);
+    for (const code of new Set([sellerSku, resolution.plan.componentDsliteProductId])) {
+      const previous = byFiscalProductCode.get(code);
+      if (previous && previous.sourceOfferId !== resolution.plan.sourceOfferId) {
+        throw new Error(`Código fiscal ${code} identifica ofertas incompatíveis de kits do pedido`);
+      }
+      byFiscalProductCode.set(code, resolution.plan);
     }
-    byDsliteProductCode.set(code, resolution.plan);
   }
-  return byDsliteProductCode;
+  for (const sellerSku of ordinarySellerSkus) {
+    if (byFiscalProductCode.has(sellerSku)) {
+      throw new Error(`Código fiscal ${sellerSku} é ambíguo entre kit e item comum do pedido`);
+    }
+  }
+  return byFiscalProductCode;
 }
 
 type StrictIssue = {
