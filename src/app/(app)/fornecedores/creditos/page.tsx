@@ -22,6 +22,7 @@ import {
   message,
 } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { currencyInputProps } from '@/lib/format';
 import {
   ArrowDownOutlined,
   ArrowUpOutlined,
@@ -644,7 +645,7 @@ export default function SupplierCreditsPage() {
             ]} />
           </Form.Item>
           <Alert showIcon type="info" message={actionDescription(movementAction)} className={styles.formAlert} />
-          <Form.Item name="amount" label="Valor" rules={[{ required: true, message: 'Informe o valor' }]}><InputNumber<number> min={0.01} precision={2} style={{ width: '100%' }} prefix="R$" /></Form.Item>
+          <Form.Item name="amount" label="Valor" rules={[{ required: true, message: 'Informe o valor' }]}><InputNumber<number> {...currencyInputProps} min={0.01} precision={2} style={{ width: '100%' }} prefix="R$" /></Form.Item>
           <Form.Item name="reference" label="Referência"><Input maxLength={200} placeholder="Pedido, protocolo ou confirmação do fornecedor" /></Form.Item>
           <Form.Item name="notes" label="Motivo do movimento" rules={[{ required: true, min: 3, message: 'Explique o motivo do movimento' }]}><Input.TextArea maxLength={1000} showCount rows={3} placeholder="Registre por que este crédito está sendo lançado ou utilizado" /></Form.Item>
         </Form>

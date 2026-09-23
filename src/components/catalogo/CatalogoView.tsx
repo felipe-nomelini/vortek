@@ -12,7 +12,7 @@ import {
   ReloadOutlined, SearchOutlined, ShopOutlined,
 } from '@ant-design/icons';
 import ResponsiveTable from '@/components/ResponsiveTable';
-import { formatCurrency } from '@/lib/format';
+import { currencyInputProps, formatCurrency } from '@/lib/format';
 import {
   catalogBoostPresentation, catalogCompetitionPresentation,
   catalogCompetitionReasonPresentation, catalogOperationalPresentation, catalogPriceToWinPresentation,
@@ -860,7 +860,7 @@ export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
 
         {!liveCatalogMismatch && <section className={styles.priceAction}><div><strong>Novo preço</strong>
           <small>Nenhum preço será alterado enquanto você edita o valor. Lucro e margem atualizam automaticamente.</small></div>
-          <div className={styles.priceEditor}><InputNumber prefix="R$" min={0.01} precision={2} value={newPrice}
+          <div className={styles.priceEditor}><InputNumber {...currencyInputProps} prefix="R$" min={0.01} precision={2} value={newPrice}
             onChange={(value) => setNewPrice(value ?? null)}
             disabled={Boolean(visualReview) || !activeCatalog.produto_id || confirmingPrice} /></div>
           {newPrice !== null && newPrice > 0 && (previewLoading

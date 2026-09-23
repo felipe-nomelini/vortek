@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Alert, App, Button, InputNumber, Modal, Space, Typography } from 'antd';
+import { currencyInputProps } from '@/lib/format';
 
 export default function ManualMlPriceButton({ productId, itemId, priceCents, disabled = false,
   disableAutomaticPricing = false, onConfirmed }: {
@@ -62,7 +63,7 @@ export default function ManualMlPriceButton({ productId, itemId, priceCents, dis
         : <Button type="primary" loading={busy} disabled={!price || price <= 0} onClick={() => void confirm()}>Confirmar</Button>}>
       <Space direction="vertical" style={{ width: '100%' }}>
         <Typography.Text>Anúncio {itemId}</Typography.Text>
-        <InputNumber aria-label="Novo preço" prefix="R$" min={0.01} precision={2} value={price}
+        <InputNumber {...currencyInputProps} aria-label="Novo preço" prefix="R$" min={0.01} precision={2} value={price}
           disabled={busy || Boolean(state)} onChange={setPrice} style={{ width: '100%' }} />
         {disableAutomaticPricing && <Alert type="info" message="A automação de preço do ML será desligada antes de aplicar este valor." />}
         {state && <Alert type={state === 'confirmed' ? 'success' : state === 'failed' || state === 'inconclusive' ? 'warning' : 'info'}

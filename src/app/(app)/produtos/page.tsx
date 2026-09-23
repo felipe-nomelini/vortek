@@ -9,7 +9,7 @@ import {
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined, ReloadOutlined, FilterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { pricingView } from '@/lib/pricing-view';
-import { formatCurrency, formatPercent } from '@/lib/format';
+import { currencyFormatter, currencyInputProps, formatCurrency, formatPercent, parseBrazilianCurrency } from '@/lib/format';
 import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
@@ -249,25 +249,12 @@ function formatWeightFromKg(weightKg: number) {
 
 function priceToEditableText(value: number | null | undefined) {
   if (value === null || value === undefined || !Number.isFinite(Number(value))) return '';
-  return String(Math.round(Number(value) * 100) / 100).replace('.', ',');
+  return currencyFormatter(Math.round(Number(value) * 100) / 100);
 }
 
 function parseEditablePriceText(input: string): number | null {
-  const raw = String(input || '').trim();
-  if (!raw) return null;
-  const cleaned = raw.replace(/[^\d,.-]/g, '');
-  if (!cleaned) return null;
-
-  const lastComma = cleaned.lastIndexOf(',');
-  const lastDot = cleaned.lastIndexOf('.');
-  const decimalSeparator = lastComma > lastDot ? ',' : lastDot >= 0 ? '.' : '';
-  const normalized = decimalSeparator
-    ? cleaned
-      .replace(new RegExp(`\\${decimalSeparator === ',' ? '.' : ','}`, 'g'), '')
-      .replace(decimalSeparator, '.')
-    : cleaned;
-  const parsed = Number(normalized);
-  return Number.isFinite(parsed) ? Math.round(parsed * 100) / 100 : null;
+  const parsed = parseBrazilianCurrency(input);
+  return parsed === null ? null : Math.round(parsed * 100) / 100;
 }
 
 function computeDerived(item: Product | ProductMasterListItem, _taxRate: number | null,
@@ -1526,8 +1513,8 @@ export default function ProductsPage() {
         <span>Faixa de valor</span>
         <Space.Compact block>
           <Select value={priceField} onChange={setPriceField} options={priceFieldOptions} />
-          <InputNumber placeholder="Mínimo" value={priceMin} onChange={value => setPriceMin(value ?? null)} />
-          <InputNumber placeholder="Máximo" value={priceMax} onChange={value => setPriceMax(value ?? null)} />
+          <InputNumber {...currencyInputProps} placeholder="Mínimo" value={priceMin} onChange={value => setPriceMin(value ?? null)} />
+          <InputNumber {...currencyInputProps} placeholder="Máximo" value={priceMax} onChange={value => setPriceMax(value ?? null)} />
         </Space.Compact>
       </label>
       <Button onClick={clearAdvancedFilters}>Limpar filtros</Button>
@@ -1701,7 +1688,7 @@ export default function ProductsPage() {
           <Select style={{ width: '100%' }} placeholder="Anúncio de origem" value={priceItemId} onChange={setPriceItemId}
             options={displayMlListings(priceModal.record).map(l => ({ value: l.itemId, label: (l.type === 'catalog' ? 'Catálogo' : 'Padrão') + ' · ' + l.itemId }))} />
           <Text>Novo preço de venda</Text>
-          <InputNumber min={0.01} precision={2} prefix="R$" value={priceModal.value}
+          <InputNumber {...currencyInputProps} min={0.01} precision={2} prefix="R$" value={priceModal.value}
             onChange={value => setPriceModal(prev => ({ ...prev, value }))} />
         </Space>}
       </Modal>
@@ -1714,7 +1701,7 @@ export default function ProductsPage() {
           <Text>Anúncio encerrado: {relistModal.sourceItemId}</Text>
           <Text>Estoque disponível: {relistModal.record.fulfillmentCapacity.safe}</Text>
           <label htmlFor="relist-price">Preço de venda</label>
-          <InputNumber id="relist-price" min={0.01} precision={2} prefix="R$" style={{ width: '100%' }}
+          <InputNumber {...currencyInputProps} id="relist-price" min={0.01} precision={2} prefix="R$" style={{ width: '100%' }}
             value={relistModal.price} disabled={relistModal.saving}
             onChange={value => setRelistModal(prev => prev && ({ ...prev, price: value || 0 }))} />
         </Space>}

@@ -440,7 +440,7 @@ export default function DashboardPage() {
                     </defs>
                     <CartesianGrid stroke={token.colorBorderSecondary} strokeDasharray="3 6" vertical={false} />
                     <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fill: token.colorTextSecondary, fontSize: 11 }} interval={preset === '30d' ? 3 : 0} />
-                    <YAxis axisLine={false} tickLine={false} width={70} tick={{ fill: token.colorTextSecondary, fontSize: 11 }} tickFormatter={(value) => chartMetric === 'orders' ? String(value) : value >= 1000 ? `R$${Math.round(value / 1000)}k` : `R$${value}`} />
+                    <YAxis axisLine={false} tickLine={false} width={chartMetric === 'orders' ? 70 : 110} tick={{ fill: token.colorTextSecondary, fontSize: 11 }} tickFormatter={(value) => chartMetric === 'orders' ? String(value) : formatCurrency(Number(value))} />
                     <ChartTooltip
                       cursor={{ stroke: token.colorBorder, strokeDasharray: '3 3' }}
                       contentStyle={{ background: token.colorBgElevated, border: `1px solid ${token.colorBorder}`, borderRadius: token.borderRadiusLG }}

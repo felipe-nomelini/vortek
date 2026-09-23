@@ -24,7 +24,7 @@ import PedidosDsliteModals from '@/components/pedidos/PedidosDsliteModals';
 import PedidosLabelWhatsappModals from '@/components/pedidos/PedidosLabelWhatsappModals';
 import { isValidDsliteId, usePedidosDsliteFlow } from '@/components/pedidos/usePedidosDsliteFlow';
 import { usePedidosLabelWhatsappFlow } from '@/components/pedidos/usePedidosLabelWhatsappFlow';
-import { formatCurrency } from '@/lib/format';
+import { currencyInputProps, formatCurrency } from '@/lib/format';
 import { resolveDsliteLabelPresentation } from '@/lib/dslite/label-state';
 import { isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
@@ -891,7 +891,7 @@ export default function PedidosPage() {
           <Col flex="0 1 180px"><Select placeholder="Status" value={statusFilter || undefined} options={[...statusOptions]} allowClear style={{ width: '100%' }} onChange={(value) => { setStatusFilter(value || ''); setPage(1); }} /></Col>
           <Col flex="1 1 240px"><Select mode="multiple" placeholder="Origem / fornecedor" value={supplierFilterIds} options={supplierOptions.map((option) => ({ value: option.id, label: option.label }))} optionFilterProp="label" maxTagCount="responsive" allowClear style={{ width: '100%' }} onChange={(value) => { setSupplierFilterIds(value); setPage(1); }} /></Col>
           <Col flex="0 1 250px"><RangePicker value={datePickerValue} format="DD/MM/YYYY" style={{ width: '100%' }} onChange={(dates) => { setDateRange([dates?.[0]?.format('YYYY-MM-DD') || null, dates?.[1]?.format('YYYY-MM-DD') || null]); setPage(1); }} /></Col>
-          <Col><Space.Compact><InputNumber aria-label="Valor mínimo" placeholder="Mínimo" value={priceMin} onChange={(value) => { setPriceMin(value ?? null); setPage(1); }} style={{ width: 105 }} /><InputNumber aria-label="Valor máximo" placeholder="Máximo" value={priceMax} onChange={(value) => { setPriceMax(value ?? null); setPage(1); }} style={{ width: 105 }} /></Space.Compact></Col>
+          <Col><Space.Compact><InputNumber {...currencyInputProps} aria-label="Valor mínimo" placeholder="Mínimo" value={priceMin} onChange={(value) => { setPriceMin(value ?? null); setPage(1); }} style={{ width: 105 }} /><InputNumber {...currencyInputProps} aria-label="Valor máximo" placeholder="Máximo" value={priceMax} onChange={(value) => { setPriceMax(value ?? null); setPage(1); }} style={{ width: 105 }} /></Space.Compact></Col>
         </Row>
         {activeFilters.length > 0 && <Space wrap style={{ marginTop: 12 }}><Text type="secondary">Filtros ativos:</Text>{activeFilters.map((filter) => <Tag key={filter.key} closable onClose={filter.clear}>{filter.label}</Tag>)}<Button type="link" size="small" onClick={clearRefinements}>Limpar filtros</Button></Space>}
       </Card>

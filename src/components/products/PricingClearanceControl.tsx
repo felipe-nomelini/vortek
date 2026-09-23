@@ -4,6 +4,7 @@ import { userSafeMessage } from '@/lib/user-feedback';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, Button, Checkbox, Empty, Input, InputNumber, Modal, Select, Space, Spin, Typography } from 'antd';
+import { currencyInputProps } from '@/lib/format';
 import type { PricingClearanceCommand, PricingClearance, loadPricingClearances } from '@/services/pricing-clearances';
 
 type State = Awaited<ReturnType<typeof loadPricingClearances>> & { canManage: boolean };
@@ -125,7 +126,7 @@ export default function PricingClearanceControl({ productId, disabled }: { produ
         <label htmlFor="clearance-reason">Motivo obrigatório</label><Input.TextArea id="clearance-reason" value={reason} maxLength={200} showCount disabled={saving || Boolean(command)} onChange={e => setReason(e.target.value)} />
         {choice?.action === 'activate' && <>
           <label htmlFor="clearance-quantity">Quantidade interna autorizada</label><InputNumber id="clearance-quantity" min={1} max={state?.stock.capacity} precision={0} value={quantity} disabled={saving || Boolean(command)} onChange={v => setQuantity(v ?? 0)} />
-          <label htmlFor="clearance-loss">Perda máxima por unidade (R$)</label><InputNumber id="clearance-loss" min={0} precision={2} value={loss} disabled={saving || Boolean(command)} onChange={v => setLoss(v ?? 0)} />
+          <label htmlFor="clearance-loss">Perda máxima por unidade (R$)</label><InputNumber {...currencyInputProps} id="clearance-loss" min={0} precision={2} value={loss} disabled={saving || Boolean(command)} onChange={v => setLoss(v ?? 0)} />
           <Typography.Text>Exposição máxima: {money(quantity * Math.round(loss * 100))}. Zero permite equilíbrio, sem prejuízo.</Typography.Text>
           {loss > 0 && <Checkbox checked={acceptLoss} disabled={saving || Boolean(command)} onChange={e => setAcceptLoss(e.target.checked)}>Autorizo explicitamente o prejuízo dentro destes limites.</Checkbox>}
           <Select aria-label="Vigência da liquidação" placeholder="Escolha a vigência" value={validity} style={{ width: '100%' }} disabled={saving || Boolean(command)} onChange={setValidity}

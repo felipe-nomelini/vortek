@@ -49,7 +49,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import ResponsiveTable from '@/components/ResponsiveTable';
 import ProgressModal from '@/components/modals/ProgressModal';
-import { formatCurrency } from '@/lib/format';
+import { currencyInputProps, formatCurrency } from '@/lib/format';
 import type {
   MlCatalogStatus,
   MlListingDashboardRow,
@@ -898,7 +898,7 @@ export default function AnunciosPage() {
       <Select value={quality} options={qualityOptions} onChange={setQuality} />
       <Select value={catalog} options={catalogOptions} onChange={setCatalog} />
       <Select value={profitability} options={profitabilityOptions} onChange={setProfitability} />
-      <Space.Compact className={styles.priceFilter}><InputNumber value={priceMin} onChange={(value) => setPriceMin(value ?? null)} min={0} prefix="R$" placeholder="Preço mín." /><InputNumber value={priceMax} onChange={(value) => setPriceMax(value ?? null)} min={0} prefix="R$" placeholder="Preço máx." /></Space.Compact>
+      <Space.Compact className={styles.priceFilter}><InputNumber {...currencyInputProps} value={priceMin} onChange={(value) => setPriceMin(value ?? null)} min={0} prefix="R$" placeholder="Preço mín." /><InputNumber {...currencyInputProps} value={priceMax} onChange={(value) => setPriceMax(value ?? null)} min={0} prefix="R$" placeholder="Preço máx." /></Space.Compact>
       <Button onClick={clearFilters}>Limpar</Button>
     </section>
 
@@ -963,7 +963,7 @@ export default function AnunciosPage() {
             <ListingValidationNotice validation={details?.listingValidation} />
             <CompetitivePricingSummary assessment={details?.competitiveAssessment} pricing={details?.pricing} />{!details?.competitiveAssessment && <PricingQuoteSummary pricing={details?.pricing} />}
             {details?.automaticPricing?.active && <Alert type="warning" showIcon message="Preço automático ativo no Mercado Livre" description="Ao confirmar um preço manual, o Bentevi desativará essa automação antes de enviar o novo valor." />}
-            <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => void simulateCompetitivePrice()}>Simular referência competitiva</Button>}<ManualMlPriceButton productId={activeAnalysis.productId!} itemId={activeAnalysis.itemId} priceCents={newPrice == null ? undefined : Math.round(newPrice * 100)} disableAutomaticPricing={details?.automaticPricing?.active === true} disabled={Boolean(visualReview) || !activeAnalysis.productId} /></div>
+            <div className={styles.priceEditor}><div><label>Novo preço de venda</label><InputNumber {...currencyInputProps} value={newPrice} onChange={(value) => setNewPrice(value ?? null)} min={0.01} precision={2} prefix="R$" disabled={!details || Boolean(visualReview)} /></div><div><label>Novo lucro unitário</label><strong className={(nextProfit || 0) >= 0 ? styles.positive : styles.negative}>{nextProfit === null ? '—' : formatCurrency(nextProfit)}</strong></div>{details?.catalog?.priceToWin && <Button onClick={() => void simulateCompetitivePrice()}>Simular referência competitiva</Button>}<ManualMlPriceButton productId={activeAnalysis.productId!} itemId={activeAnalysis.itemId} priceCents={newPrice == null ? undefined : Math.round(newPrice * 100)} disableAutomaticPricing={details?.automaticPricing?.active === true} disabled={Boolean(visualReview) || !activeAnalysis.productId} /></div>
             <small className={styles.scopeNotice}>O preço será enviado ao anúncio escolhido. Se houver vínculo de catálogo, o Mercado Livre poderá propagá-lo aos anúncios relacionados de forma assíncrona.</small>
             {priceResults.length > 0 && <div className={styles.resultList}>{priceResults.map((result) => <div key={result.mlItemId}><span className={styles.typeMark}>{result.type === 'catalog' ? 'CATÁLOGO' : 'PADRÃO'}</span><strong>{result.mlItemId}</strong><span>{result.trackingStatus === 'pending' || result.trackingStatus === 'processing' || result.trackingStatus === 'retry' ? 'Publicação em processamento' : result.success ? 'Preço processado' : 'Não concluído'}</span>{result.trackingError && <small className={styles.negative}>{userSafeMessage(result.trackingError, 'Não foi possível concluir esta alteração.')}</small>}{[...result.warnings, ...result.errors].map((notice, index) => <small key={`${result.mlItemId}-${index}`}>{userSafeMessage(notice, 'Esta alteração precisa de atenção.')}</small>)}</div>)}</div>}
             {details?.quantityPricing?.length ? <div className={styles.wholesale}><span>Descontos existentes no ML — somente consulta</span>{details.quantityPricing.map((tier) => <small key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ unidades · {tier.pricing_model === 'percentage' ? `${tier.discount_percent}% de desconto` : formatCurrency(tier.amount)}</small>)}</div> : null}

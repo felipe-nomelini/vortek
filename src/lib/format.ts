@@ -14,14 +14,29 @@ export function formatPercent(value: number): string {
   return `${(value * 100).toFixed(0)}%`;
 }
 
-export function currencyFormatter(v: number | string | undefined | null): string {
-  if (v === undefined || v === null) return '';
-  const num = typeof v === 'string' ? parseFloat(v) : v;
-  if (isNaN(num)) return '';
-  return currency.format(num);
+export function parseBrazilianCurrency(value: string | undefined): number | null {
+  const input = (value || '').trim().replace(/^R\$\s*/, '');
+  if (!input) return null;
+  if (!/^-?(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d{0,2})?$/.test(input)) return null;
+  const parsed = Number(input.replace(/\./g, '').replace(',', '.'));
+  return Number.isFinite(parsed) ? parsed : null;
 }
 
-export function currencyParser(v: string | undefined): number {
-  if (!v) return 0;
-  return parseFloat(v.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
+export function currencyFormatter(value: number | string | undefined | null,
+  info?: { userTyping: boolean; input: string }): string {
+  if (info?.userTyping) return info.input;
+  if (value === undefined || value === null || value === '') return '';
+  const [integer, fraction] = String(value).split('.');
+  return `${integer.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}${fraction === undefined ? '' : `,${fraction}`}`;
 }
+
+export function currencyParser(value: string | undefined): number {
+  if (!value?.trim()) return '' as unknown as number; // InputNumber expects a number type, but clears on an empty parser result.
+  return parseBrazilianCurrency(value) ?? Number.NaN;
+}
+
+export const currencyInputProps = {
+  decimalSeparator: ',',
+  formatter: currencyFormatter,
+  parser: currencyParser,
+};

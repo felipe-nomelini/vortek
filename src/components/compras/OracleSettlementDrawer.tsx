@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Alert, Button, Card, Checkbox, Collapse, Drawer, Empty, Input, InputNumber, Modal, Segmented, Select, Space, Spin, Tag, Typography, Upload, message } from 'antd';
 import { ArrowLeftOutlined, ReloadOutlined } from '@ant-design/icons';
-import { formatCurrency } from '@/lib/format';
+import { currencyInputProps, formatCurrency } from '@/lib/format';
 import { userSafeMessage } from '@/lib/user-feedback';
 import styles from './OracleSettlementDrawer.module.css';
 
@@ -395,7 +395,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
             <div><span>Crédito disponível</span><strong>{formatCurrency(selected.creditoDisponivel)}</strong></div>
             <div className={styles.pixAmount}><span>PIX líquido</span><strong>{formatCurrency(Math.max(0, selectedGross - credit))}</strong></div></div>
           <label className={styles.fieldLabel} htmlFor="oracle-credit">Crédito a utilizar (R$)</label>
-          <InputNumber id="oracle-credit" min={0} max={Math.min(selected.creditoDisponivel, selectedGross)}
+          <InputNumber {...currencyInputProps} id="oracle-credit" min={0} max={Math.min(selected.creditoDisponivel, selectedGross)}
             precision={2} value={credit} onChange={(value) => { setCredit(Number(value || 0)); setIdempotencyKey(null); }} />
           {writable && selected.pixKey && <Space.Compact className={styles.pixKey}>
             <Input readOnly value={`CNPJ ${selected.cnpj || selected.cnpjMasked} · PIX ${selected.pixKey}`} />

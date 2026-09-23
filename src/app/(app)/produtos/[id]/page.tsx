@@ -17,7 +17,7 @@ import {
   ArrowLeftOutlined, EditOutlined, LinkOutlined, LoadingOutlined,
   ReloadOutlined, SaveOutlined, StopOutlined,
 } from '@ant-design/icons';
-import { formatCurrency, currencyFormatter, currencyParser } from '@/lib/format';
+import { formatCurrency, currencyInputProps } from '@/lib/format';
 import { pricingView } from '@/lib/pricing-view';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
@@ -357,9 +357,9 @@ export default function ProductDetailPage() {
     <section className={styles.sectionCard}>
       <div className={styles.sectionHeader}><div><Title level={4}>Custo e publicação</Title><Text type="secondary">Custo e estoque refletem a fonte preferencial quando houver oferta vinculada.</Text></div><LivePricingQuote key={id} productId={id} listings={effectiveListings} disabled={Boolean(visualReview) || isEditing} /></div>
       {isEditing ? <div className={styles.formGrid}>
-        <label><span>Custo atual</span><InputNumber value={product.cost} onChange={(value) => patch({ cost: value ?? 0 })} formatter={currencyFormatter} parser={currencyParser} step={0.5} /></label>
+        <label><span>Custo atual</span><InputNumber {...currencyInputProps} prefix="R$" value={product.cost} onChange={(value) => patch({ cost: value ?? 0 })} step={0.5} /></label>
         <label><span>Estoque do fornecedor</span><InputNumber value={product.supplierStock} onChange={(value) => patch({ supplierStock: value ?? 0 })} min={0} disabled={capacity.internal > 0} /></label>
-        <label><span>Frete Mercado Livre</span><InputNumber value={product.mlShipping} onChange={(value) => patch({ mlShipping: value ?? 0 })} formatter={currencyFormatter} parser={currencyParser} step={0.5} /></label>
+        <label><span>Frete Mercado Livre</span><InputNumber {...currencyInputProps} prefix="R$" value={product.mlShipping} onChange={(value) => patch({ mlShipping: value ?? 0 })} step={0.5} /></label>
         <label><span>Taxa Mercado Livre</span><InputNumber suffix="%" value={product.mlFee * 100} onChange={(value) => patch({ mlFee: (value ?? 0) / 100 })} min={0} max={100} /></label>
       </div> : <Descriptions className={styles.descriptions} column={{ xs: 1, sm: 2, lg: 4 }} items={[
         { key: 'cost', label: 'Custo atual', children: readValue(formatCurrency(product.cost)) },

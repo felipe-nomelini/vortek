@@ -5,6 +5,7 @@ import { userSafeMessage } from "@/lib/user-feedback";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Button, Card, Col, Form, InputNumber, Modal, Radio, Row, Space, Spin, Typography } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
+import { currencyInputProps } from "@/lib/format";
 import {
   commercialConfigurationSchema, commercialSimulationSchema,
   type CommercialConfigurationDto, type CommercialConfigurationInput,
@@ -230,14 +231,14 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
               <Form.Item name="unspecifiedShippingCost" label={fields[1].label}
                 rules={[{ required: true }, { type: "number", min: 0, max: 10_000_000 }]}
                 extra="Usado somente quando o envio fica a combinar e não há uma cotação válida. Não substitui o frete informado pelo Mercado Livre.">
-                <InputNumber min={0} max={10_000_000} precision={2} prefix="R$" style={inputStyle} />
+                <InputNumber {...currencyInputProps} min={0} max={10_000_000} precision={2} prefix="R$" style={inputStyle} />
               </Form.Item>
             </Col>
             <Col xs={24} md={8}>
               <Form.Item name="inactiveCostThreshold" label={fields[2].label}
                 rules={[{ required: true }, { type: "number", min: 0.01, max: 10_000_000 }]}
                 extra="Controla elegibilidade da oferta. Não inativa o produto e não participa da fórmula de margem.">
-                <InputNumber min={0.01} max={10_000_000} precision={2} prefix="R$" style={inputStyle} />
+                <InputNumber {...currencyInputProps} min={0.01} max={10_000_000} precision={2} prefix="R$" style={inputStyle} />
               </Form.Item>
             </Col>
           </Row>
@@ -258,11 +259,11 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
           <Text type="secondary">Taxa simulada: {simulationValues?.mlFeeFallbackPercent == null ? "—" : percent(simulationValues.mlFeeFallbackPercent)} · Frete simulado: {simulationValues?.unspecifiedShippingCost == null ? "—" : money(simulationValues.unspecifiedShippingCost)}. Entradas hipotéticas, não cotações vivas do ML.</Text>
           <Row gutter={[20, 12]}>
             <Col xs={24} md={8}><label htmlFor="commercial-simulation-cost">Custo (CMV)</label>
-              <InputNumber id="commercial-simulation-cost" value={simulatorCost} disabled={disabled}
+              <InputNumber {...currencyInputProps} id="commercial-simulation-cost" value={simulatorCost} disabled={disabled}
                 onChange={value => { setSimulatorCost(value); invalidateSimulation(); }} min={0} precision={2} prefix="R$" placeholder="Informe o custo" style={inputStyle} />
             </Col>
             <Col xs={24} md={8}><label htmlFor="commercial-simulation-price">Preço de venda para avaliar (opcional)</label>
-              <InputNumber id="commercial-simulation-price" value={simulatorPrice} disabled={disabled}
+              <InputNumber {...currencyInputProps} id="commercial-simulation-price" value={simulatorPrice} disabled={disabled}
                 onChange={value => { setSimulatorPrice(value); invalidateSimulation(); }} min={0.01} precision={2} prefix="R$" placeholder="Sem preço: calcular referências" style={inputStyle} />
             </Col>
           </Row>

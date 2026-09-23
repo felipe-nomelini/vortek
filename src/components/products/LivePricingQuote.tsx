@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Alert, Button, Form, Input, InputNumber, Modal, Select, Space, Table, Typography, theme } from 'antd';
 import type { ProductPricing } from '@/services/pricing-context';
 import type { EconomicIssue, EconomicMemory } from '@/types/pricing';
-import { formatCurrency } from '@/lib/format';
+import { currencyInputProps, formatCurrency } from '@/lib/format';
 import type { CompetitiveAssessment } from '@/services/pricing-competition';
 import type { PricingListingValidation } from '@/services/pricing-detail';
 
@@ -191,7 +191,7 @@ export default function LivePricingQuote({ productId, listings, disabled }: {
             <Form.Item name="logisticType" label="Forma de envio" rules={[{ required: true }]}><Select options={(mode === 'not_specified' ? [{ value: 'not_specified', label: 'A combinar' }] : [{ value: 'drop_off', label: 'Postagem em agência' }, { value: 'xd_drop_off', label: 'Ponto de despacho' }, { value: 'cross_docking', label: 'Coleta do Mercado Livre' }, { value: 'fulfillment', label: 'Estoque Full' }, { value: 'self_service', label: 'Envios Flex' }])} /></Form.Item>
             <Form.Item name="freeShipping" label="Frete grátis ao comprador" rules={[{ required: true }]}><Select options={[{ value: 'yes', label: 'Sim' }, { value: 'no', label: 'Não' }]} /></Form.Item>
           </>}
-          <Form.Item name="price" label="Preço para consultar (opcional)" extra="Sem informar, consulta o preço atual do anúncio e calcula alvo, piso e equilíbrio. Em produto novo, calcula somente as referências."><InputNumber min={0.01} precision={2} prefix="R$" /></Form.Item>
+          <Form.Item name="price" label="Preço para consultar (opcional)" extra="Sem informar, consulta o preço atual do anúncio e calcula alvo, piso e equilíbrio. Em produto novo, calcula somente as referências."><InputNumber {...currencyInputProps} min={0.01} precision={2} prefix="R$" /></Form.Item>
           <Button type="primary" htmlType="submit" loading={loading}>Consultar fontes e calcular</Button>
         </Form>
         {error && <Alert type="warning" showIcon message={error} />}

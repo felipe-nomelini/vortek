@@ -19,7 +19,7 @@ import NotaFiscalDetailsDrawer, {
   getFiscalStatusPresentation,
   type NotaFiscalRow,
 } from '@/components/fiscal/NotaFiscalDetailsDrawer';
-import { formatCurrency } from '@/lib/format';
+import { currencyInputProps, formatCurrency } from '@/lib/format';
 import {
   BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS,
   isNfeCancelRejectedDeadlineStatus,
@@ -754,8 +754,8 @@ export default function NotasFiscaisPage() {
         <Col flex="0 1 210px"><Select aria-label="Filtrar status fiscal" placeholder="Status fiscal" value={statusFilter || undefined} options={statusOptions} allowClear style={{ width: '100%' }} onChange={(value) => { setStatusFilter(value || ''); setPage(1); }} /></Col>
         <Col flex="0 1 260px"><RangePicker aria-label="Filtrar período da venda" value={datePickerValue} format="DD/MM/YYYY" style={{ width: '100%' }} onChange={(dates) => { setDateRange([dates?.[0]?.format('YYYY-MM-DD') || null, dates?.[1]?.format('YYYY-MM-DD') || null]); setPage(1); }} /></Col>
         <Col flex="0 1 230px"><Space.Compact block>
-          <InputNumber aria-label="Valor mínimo" placeholder="Valor mín." min={0} value={valorMin} style={{ width: '50%' }} onChange={(value) => { setValorMin(value ?? null); setPage(1); }} />
-          <InputNumber aria-label="Valor máximo" placeholder="Valor máx." min={0} value={valorMax} style={{ width: '50%' }} onChange={(value) => { setValorMax(value ?? null); setPage(1); }} />
+          <InputNumber {...currencyInputProps} aria-label="Valor mínimo" placeholder="Valor mín." min={0} value={valorMin} style={{ width: '50%' }} onChange={(value) => { setValorMin(value ?? null); setPage(1); }} />
+          <InputNumber {...currencyInputProps} aria-label="Valor máximo" placeholder="Valor máx." min={0} value={valorMax} style={{ width: '50%' }} onChange={(value) => { setValorMax(value ?? null); setPage(1); }} />
         </Space.Compact></Col>
       </Row>
       {activeFilters.length > 0 && <Space wrap className={styles.activeFilters}>
