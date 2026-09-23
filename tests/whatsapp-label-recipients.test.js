@@ -43,10 +43,12 @@ const recipients = [
   { key: 'secondary_test', chatId: '5511999990002@c.us' },
 ];
 
-test('formato térmico do WhatsApp é exclusivo da etiqueta oficial BKR1', () => {
+test('WhatsApp usa ZPL para etiquetas reais BKR1 e MKS', () => {
   for (const input of [
     { fornecedorId: '108' },
     { fornecedorId: null, fornecedorNome: 'BKR 1 Distribuidora' },
+    { fornecedorId: '115', fornecedorNome: 'MKS Distribuidora Ltda' },
+    { fornecedorId: null, fornecedorNome: 'MKS Distribuidora' },
   ]) {
     assert.deepEqual(whatsappLabelFormat.resolveWhatsappLabelFormat(input), {
       responseType: 'zpl2', extension: 'zpl', mimetype: 'text/plain', thermal: true,
@@ -56,6 +58,7 @@ test('formato térmico do WhatsApp é exclusivo da etiqueta oficial BKR1', () =>
     { fornecedorId: '97', fornecedorNome: 'Vanral' },
     { fornecedorId: '133', fornecedorNome: 'Evolusom' },
     { fornecedorId: '108', fornecedorNome: 'BKR1', usePlaceholderLabel: true },
+    { fornecedorId: '115', fornecedorNome: 'MKS', usePlaceholderLabel: true },
   ]) {
     assert.deepEqual(whatsappLabelFormat.resolveWhatsappLabelFormat(input), {
       responseType: 'pdf', extension: 'pdf', mimetype: 'application/pdf', thermal: false,
@@ -373,6 +376,27 @@ test('worker BKR1 reutiliza somente ZPL salvo e envia arquivo térmico pelo WAHA
   assert.equal(result.mimetype, 'text/plain');
 });
 
+test('worker MKS reutiliza ZPL salvo mesmo com PDF no pedido', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: {
+      dslite_id: 'purchase-test',
+      ml_label_storage_path: 'etiqueta-comum.pdf',
+      ml_thermal_label_storage_path: 'etiqueta-termica.zpl',
+    },
+    compra: { fornecedor_id: '115', fornecedor_nome: 'MKS Distribuidora Ltda' },
+  });
+
+  await harness.job.runWhatsappLabelJob(harness.input);
+
+  assert.equal(harness.stored.status, 'completo');
+  assert.deepEqual(harness.labelLoadPaths, ['etiqueta-termica.zpl']);
+  assert.deepEqual(harness.mlLabelRequests, []);
+  assert.equal(harness.sends[0].filename, 'etiqueta_ml_123.zpl');
+  assert.equal(harness.sends[0].mimetype, 'text/plain');
+  assert.match(harness.sends[0].data.toString(), /\^XA/);
+  assert.ok(harness.shortLinkTargets.some((target) => String(target).includes('format=zpl2')));
+});
+
 test('worker BKR1 ignora PDF salvo, baixa ZPL2 e publica link térmico', async () => {
   const harness = setupWorker(undefined, {
     pedido: {
@@ -401,6 +425,32 @@ test('worker BKR1 ignora PDF salvo, baixa ZPL2 e publica link térmico', async (
   )));
 });
 
+test('worker MKS ignora PDF salvo, baixa ZPL2 e publica link térmico', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: {
+      dslite_id: 'purchase-test',
+      ml_label_storage_path: 'etiqueta-comum.pdf',
+      ml_thermal_label_storage_path: null,
+    },
+    compra: { fornecedor_id: '115', fornecedor_nome: 'MKS Distribuidora Ltda' },
+  });
+
+  await harness.job.runWhatsappLabelJob(harness.input);
+
+  assert.equal(harness.stored.status, 'completo');
+  assert.deepEqual(harness.labelLoadPaths, [null]);
+  assert.deepEqual(harness.mlLabelRequests, ['zpl2']);
+  assert.deepEqual(harness.storedLabels.map((row) => row.format), ['zpl2']);
+  assert.ok(harness.shortLinkTargets.some((target) => String(target).includes('format=zpl2')));
+  assert.equal(harness.sends[0].filename, 'etiqueta_ml_123.zpl');
+  assert.equal(harness.sends[0].mimetype, 'text/plain');
+  assert.match(harness.sends[0].data.toString(), /\^XA/);
+  assert.ok(harness.pedidoUpdates.some((update) => (
+    update.ml_thermal_label_storage_path === 'baixada.zpl'
+    && !Object.hasOwn(update, 'ml_label_storage_path')
+  )));
+});
+
 test('falha de ZPL2 da BKR1 não recorre ao PDF', async () => {
   const harness = setupWorker(undefined, {
     pedido: {
@@ -409,6 +459,29 @@ test('falha de ZPL2 da BKR1 não recorre ao PDF', async () => {
       ml_thermal_label_storage_path: null,
     },
     compra: { fornecedor_id: '108', fornecedor_nome: 'BKR1' },
+    downloadLabel: (responseType) => ({
+      file: null,
+      pdf: null,
+      responseType,
+      statusCode: 422,
+      reason: 'invalid_zpl',
+      retryable: false,
+      error: 'ZPL indisponível',
+    }),
+  });
+
+  await harness.job.runWhatsappLabelJob(harness.input);
+
+  assert.equal(harness.stored.status, 'erro');
+  assert.deepEqual(harness.mlLabelRequests, ['zpl2']);
+  assert.equal(harness.sends.length, 0);
+  assert.equal(harness.storedLabels.length, 0);
+});
+
+test('falha de ZPL2 da MKS não recorre ao PDF', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: { dslite_id: 'purchase-test', ml_label_storage_path: 'etiqueta-comum.pdf' },
+    compra: { fornecedor_id: '115', fornecedor_nome: 'MKS' },
     downloadLabel: (responseType) => ({
       file: null,
       pdf: null,

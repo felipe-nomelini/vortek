@@ -19,12 +19,30 @@ test('fornecedor aposentado não aceita etiqueta provisória DSLite', () => {
   assert.equal(allowsDslitePlaceholderLabel(2, 'HAYAMAX-PR'), false);
 });
 
-test('MKS aceita a etiqueta provisória sem herdar as demais regras da BKR1', () => {
+test('MKS mantém PDF provisório e usa ZPL para a etiqueta real na DSLite', () => {
   assert.equal(isMksSupplier(115, 'MKS Distribuidora Ltda'), true);
   assert.equal(isMksSupplier(null, 'MKS Distribuidora'), true);
   assert.equal(allowsDslitePlaceholderLabel(115, 'MKS'), true);
   assert.equal(isBkr1Supplier(115, 'MKS'), false);
-  assert.equal(usesThermalMlLabelSupplier(115, 'MKS'), false);
+  assert.equal(usesThermalMlLabelSupplier(115, 'MKS'), true);
+  assert.equal(usesThermalMlLabelSupplier(null, 'MKS Distribuidora'), true);
+  assert.equal(usesThermalMlLabelSupplier(97, 'Vanral'), true);
+  assert.equal(usesThermalMlLabelSupplier(108, 'BKR1'), true);
+  assert.equal(usesThermalMlLabelSupplier(133, 'Evolusom'), false);
+});
+
+test('ambas as rotas DSLite aplicam formato térmico somente à etiqueta real', () => {
+  for (const route of ['pedido', 'etiqueta-auto']) {
+    const source = fs.readFileSync(
+      path.join(process.cwd(), 'src', 'app', 'api', 'dslite', route, 'route.ts'),
+      'utf8',
+    );
+    assert.match(source, /usesThermalMlLabelSupplier\(/);
+    assert.match(source, /usarEtiquetaTermica \? ["']zpl2["'] : ["']pdf["']/);
+    assert.match(source, /usarEtiquetaTermica\s*\? ["']etiqueta_ml\.zpl["']\s*: ["']etiqueta_ml\.pdf["']/);
+    assert.match(source, /usarEtiquetaTermica\s*\? ["']text\/plain["']\s*: ["']application\/pdf["']/);
+    assert.match(source, /enviarEtiqueta\(/);
+  }
 });
 
 test('MKS reutiliza o PDF da BKR1 com origem e nome próprios', () => {

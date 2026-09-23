@@ -1,4 +1,4 @@
-import { isBkr1Supplier } from '@/lib/supplier-balance';
+import { isBkr1Supplier, isMksSupplier } from '@/lib/supplier-balance';
 
 export type WhatsappLabelFormat = {
   responseType: 'pdf' | 'zpl2';
@@ -13,7 +13,8 @@ export function resolveWhatsappLabelFormat(input: {
   usePlaceholderLabel?: boolean;
 }): WhatsappLabelFormat {
   const thermal = !input.usePlaceholderLabel
-    && isBkr1Supplier(input.fornecedorId, input.fornecedorNome);
+    && (isBkr1Supplier(input.fornecedorId, input.fornecedorNome)
+      || isMksSupplier(input.fornecedorId, input.fornecedorNome));
 
   return thermal
     ? {

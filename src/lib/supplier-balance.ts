@@ -60,7 +60,9 @@ export function usesThermalMlLabelSupplier(
   fornecedorId: string | number | null | undefined,
   fornecedorNome?: string | null,
 ) {
-  return isVanralSupplier(fornecedorId, fornecedorNome) || isBkr1Supplier(fornecedorId, fornecedorNome);
+  return isVanralSupplier(fornecedorId, fornecedorNome)
+    || isBkr1Supplier(fornecedorId, fornecedorNome)
+    || isMksSupplier(fornecedorId, fornecedorNome);
 }
 
 export function normalizeMoneyAmount(value: unknown): number {
