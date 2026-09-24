@@ -82,6 +82,20 @@ test('refresh confirma o tipo no detalhe antes de gravar catálogo', () => {
   assert.match(routeSource, /price_to_win: isCatalogListing \? enrichment\.priceToWin : null/);
 });
 
+test('refresh não recria snapshot de anúncio excluído durante outro job', () => {
+  const routeSource = fs.readFileSync(
+    path.join(__dirname, '../src/app/api/catalogo/no-catalogo/refresh/route.ts'),
+    'utf8',
+  );
+
+  assert.match(routeSource, /'seller_id', 'sub_status'/);
+  assert.match(routeSource, /if \(isMlListingDeleted\(item\)\)/);
+  assert.match(routeSource, /await detachDeletedMlListing\(service, itemId\)/);
+  assert.match(routeSource, /\.contains\('payload', \{ delete_listing: true \}\)/);
+  assert.match(routeSource, /const safeRows = rowsChunk\.filter\(\(row\) => !deletingIds\.has/);
+  assert.match(routeSource, /persistPricingObservations\(service, 'catalogo_ml_snapshot', safeRows\)/);
+});
+
 test('cada anúncio tem até três tentativas antes de encerrar com os dados anteriores', () => {
   assert.deepEqual(
     splitCatalogRefreshFailures([

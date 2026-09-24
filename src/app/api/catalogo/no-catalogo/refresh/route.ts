@@ -3,6 +3,7 @@ import { persistPricingObservations } from '@/services/pricing-audit';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildMlItemsBulkPath, getMlItemsBulkBody, type MlItemsBulkRow } from '@/lib/ml/items-bulk';
+import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { validatedCatalogCompetition } from '@/lib/catalogo/competition-evidence';
 import {
   buildCatalogEnrichment, catalogListingObservation, extractCatalogCandidateSku, extractCatalogGtin,
@@ -267,7 +268,7 @@ export async function POST(request: Request) {
   const itemIdChunks = chunk(allItemIds, MULTIGET_CHUNK_SIZE);
   await runPool(itemIdChunks, MULTIGET_CONCURRENCY, async (itemIdsChunk) => {
     const itemResult = await fetchMLResult<Array<MlItemsBulkRow<any>>>(
-      buildMlItemsBulkPath(itemIdsChunk, ['id', 'title', 'seller_custom_field', 'attributes', 'status', 'price', 'permalink', 'thumbnail', 'category_id', 'domain_id', 'catalog_product_id', 'catalog_listing', 'last_updated', 'item_relations']),
+      buildMlItemsBulkPath(itemIdsChunk, ['id', 'seller_id', 'sub_status', 'title', 'seller_custom_field', 'attributes', 'status', 'price', 'permalink', 'thumbnail', 'category_id', 'domain_id', 'catalog_product_id', 'catalog_listing', 'last_updated', 'item_relations']),
     );
     if (!itemResult.ok || !Array.isArray(itemResult.data)) {
       for (const itemId of itemIdsChunk) {
@@ -281,6 +282,22 @@ export async function POST(request: Request) {
       const item = getMlItemsBulkBody(row);
       if (!item) continue;
       const itemId = item.id;
+      if (!itemIdsChunk.includes(itemId)) continue;
+      if (isMlListingDeleted(item)) {
+        returnedIds.add(itemId);
+        if (Number(item.seller_id) !== Number(sellerId)) {
+          failedItemIds.add(itemId);
+          warnings.push(`deleted_item_seller_mismatch:${itemId}`);
+          continue;
+        }
+        try {
+          await detachDeletedMlListing(service, itemId);
+        } catch (error: any) {
+          failedItemIds.add(itemId);
+          warnings.push(`deleted_item_detach_failed:${itemId}:${error?.message || 'unknown'}`);
+        }
+        continue;
+      }
       if (catalogListingObservation(item) === null) continue;
       returnedIds.add(itemId);
       detailsByItemId.set(itemId, item);
@@ -505,14 +522,26 @@ export async function POST(request: Request) {
   let updated = 0;
   await reportProgress({ stage: 'save_snapshot', message: 'Salvando snapshot atualizado.', processed: 0, total: upsertRows.length, progress: 90 });
   for (const rowsChunk of chunk(upsertRows, UPSERT_CHUNK_SIZE)) {
-    const { error } = await persistPricingObservations(service, 'catalogo_ml_snapshot', rowsChunk);
+    const { data: deletionIntents, error: deletionReadError } = await service
+      .from('anuncios_ml_outbox')
+      .select('ml_item_id')
+      .in('ml_item_id', rowsChunk.map((row) => String(row.ml_item_id)))
+      .contains('payload', { delete_listing: true })
+      .in('status', ['pending', 'retry', 'processing', 'done']);
+    if (deletionReadError) {
+      return NextResponse.json({ success: false, error: `Falha ao conferir exclusões antes do snapshot: ${deletionReadError.message}` }, { status: 500 });
+    }
+    const deletingIds = new Set((deletionIntents || []).map((row) => String(row.ml_item_id)));
+    const safeRows = rowsChunk.filter((row) => !deletingIds.has(String(row.ml_item_id)));
+    if (!safeRows.length) continue;
+    const { error } = await persistPricingObservations(service, 'catalogo_ml_snapshot', safeRows);
     if (error) {
       return NextResponse.json({
         success: false,
         error: `Falha no upsert do snapshot: ${error.message}`,
       }, { status: 500 });
     }
-    updated += rowsChunk.length;
+    updated += safeRows.length;
     await reportProgress({
       stage: 'save_snapshot',
       message: `Salvando snapshot atualizado: ${updated}/${upsertRows.length}.`,
