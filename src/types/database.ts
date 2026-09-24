@@ -2257,6 +2257,57 @@ ml_pricing_groups: {
           },
         ]
       }
+      supplier_cancellation_notices: {
+        Row: {
+          pedido_id: string
+          compra_id: string | null
+          status: string
+          recipients: Json
+          last_error: string | null
+          next_attempt_at: string
+          created_at: string
+          updated_at: string
+          completed_at: string | null
+        }
+        Insert: {
+          pedido_id: string
+          compra_id?: string | null
+          status?: string
+          recipients?: Json
+          last_error?: string | null
+          next_attempt_at?: string
+          created_at?: string
+          updated_at?: string
+          completed_at?: string | null
+        }
+        Update: {
+          pedido_id?: string
+          compra_id?: string | null
+          status?: string
+          recipients?: Json
+          last_error?: string | null
+          next_attempt_at?: string
+          created_at?: string
+          updated_at?: string
+          completed_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_cancellation_notices_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: true
+            referencedRelation: "pedidos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "supplier_cancellation_notices_compra_id_fkey"
+            columns: ["compra_id"]
+            isOneToOne: false
+            referencedRelation: "compras"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       compras: {
         Row: {
           id: string

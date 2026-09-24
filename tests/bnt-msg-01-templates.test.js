@@ -81,14 +81,14 @@ test("mensagens ao fornecedor deixam a instrução operacional inequívoca", () 
   const cancellation = templates.buildSupplierCancellationWhatsapp({
     dsliteId: "918542",
     mlOrderId: "2000018210665568",
-    invoiceNumber: "1256",
   });
 
   assert.match(payment, /Aguarde a etiqueta correta antes de despachar/);
   assert.match(payment, /Valor pago:\* R\$\s1\.940,00/);
   assert.match(label, /Use somente esta etiqueta para despachar/);
   assert.match(label, /\*Documentos fiscais\*/);
-  assert.match(cancellation, /\*Não despache este pedido\.\*/);
+  assert.match(cancellation, /\*Não despache este pedido se ele ainda não foi enviado\.\*/);
+  assert.doesNotMatch(cancellation, /NF-e cancelada|situação fiscal já foi atualizada/);
   assert.doesNotMatch(`${payment}\n${label}\n${cancellation}`, /Vortek|VORTEK/);
 });
 
@@ -135,7 +135,7 @@ test("todos os emissores ativos usam a fonte central sem mudar o transporte", ()
     ["src/services/whatsapp-label-job.ts", "buildSupplierLabelWhatsapp"],
     ["src/app/api/compras/[id]/confirmar-pagamento/route.ts", "buildSupplierPaymentWhatsapp"],
     ["src/app/api/compras/[id]/enviar-etiqueta-whatsapp/route.ts", "buildSupplierLabelWhatsapp"],
-    ["src/app/api/sync/pedidos/cancelamentos-pos-nfe/route.ts", "buildSupplierCancellationWhatsapp"],
+    ["src/services/supplier-cancellation-notices.ts", "buildSupplierCancellationWhatsapp"],
     ["src/app/api/notas-fiscais/[id]/enviar-email/route.ts", "buildFiscalEmailTemplate"],
     ["src/app/api/notas-fiscais/retornos/[id]/enviar-email/route.ts", "buildFiscalEmailTemplate"],
   ]);

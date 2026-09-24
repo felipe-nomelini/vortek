@@ -5,8 +5,7 @@ import { resolveSafeDslitePedidoMutation } from "@/lib/dslite/purchase-link";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { cancelarNotaBrasilNfePorChave } from "@/services/fiscal-provider";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
-import { normalizeWhatsappChatId, sendWahaText } from "@/services/waha";
-import { buildSupplierCancellationWhatsapp } from "@/lib/notifications/templates";
+import { runSupplierCancellationNotices } from "@/services/supplier-cancellation-notices";
 import {
   isNfeCancelledStatus,
   isNfeCancelRejectedDeadlineStatus,
@@ -23,7 +22,6 @@ const NFE_CANCEL_JUSTIFICATIVA =
   "Cancelamento automático: pedido Mercado Livre cancelado pelo cliente.";
 
 const NFE_CANCEL_SUCCESS_EVENT = "ml_cancel_auto_nfe_cancel_success";
-const WHATSAPP_SENT_EVENT = "ml_cancel_auto_supplier_whatsapp_sent";
 
 function isDeadlineCancelRejection(result: {
   error?: string;
@@ -37,11 +35,6 @@ function isDeadlineCancelRejection(result: {
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
   return code === 501 || text.includes("prazo de cancelamento superior");
-}
-
-function maskPhoneSuffix(value: unknown): string | null {
-  const digits = String(value || "").replace(/\D/g, "");
-  return digits ? digits.slice(-4) : null;
 }
 
 async function hasAuditSuccess(input: {
@@ -81,7 +74,6 @@ async function processPedido(input: {
   const [
     { data: compra, error: compraError },
     cancelAlreadyDone,
-    whatsappAlreadySent,
   ] = await Promise.all([
     client
       .from("compras")
@@ -91,7 +83,6 @@ async function processPedido(input: {
       .eq("dsid", dsid)
       .maybeSingle(),
     hasAuditSuccess({ client, pedidoId, evento: NFE_CANCEL_SUCCESS_EVENT }),
-    hasAuditSuccess({ client, pedidoId, evento: WHATSAPP_SENT_EVENT }),
   ]);
 
   if (compraError) throw compraError;
@@ -189,7 +180,7 @@ async function processPedido(input: {
     if (dryRun) {
       return {
         status: "dry_run",
-        reason: "would_cancel_nfe_and_notify_supplier",
+        reason: "would_cancel_nfe",
         dsid,
       };
     }
@@ -312,105 +303,11 @@ async function processPedido(input: {
     cancelledNow = true;
   }
 
-  if (whatsappAlreadySent) {
-    return {
-      status: "processed",
-      reason: "whatsapp_already_sent",
-      nfe_cancelled_now: cancelledNow,
-    };
-  }
-
-  if (dryRun) {
-    return {
-      status: "dry_run",
-      reason: "would_notify_supplier",
-      nfe_already_cancelled: nfeAlreadyCancelled,
-      nfe_cancelled_now: cancelledNow,
-    };
-  }
-
-  const fornecedorId = String((compra as any).fornecedor_id || "").trim();
-  const { data: fornecedor, error: fornecedorError } = fornecedorId
-    ? await client
-        .from("fornecedores")
-        .select("telefone,nome,apelido")
-        .eq("dslite_id", fornecedorId)
-        .maybeSingle()
-    : ({ data: null, error: null } as any);
-
-  if (fornecedorError) throw fornecedorError;
-
-  const telefone = String((fornecedor as any)?.telefone || "").replace(
-    /\D/g,
-    "",
-  );
-  if (!telefone) {
-    await registrarEventoNfAuditoria({
-      pedidoId,
-      mlOrderId,
-      evento: "ml_cancel_auto_supplier_whatsapp_skipped",
-      respostaMl: {
-        dsid,
-        fornecedor_id: fornecedorId || null,
-        reason: "supplier_phone_missing",
-      },
-      statusResultante: "skipped",
-    });
-    return {
-      status: "processed",
-      reason: "supplier_phone_missing",
-      nfe_cancelled_now: cancelledNow,
-    };
-  }
-
-  const text = buildSupplierCancellationWhatsapp({
-    dsliteId: dsid,
-    mlOrderId,
-    saleId: Number.isFinite(Number(pedido.numero)) ? Number(pedido.numero) : null,
-    invoiceNumber: pedido.nota_fiscal_numero || (compra as any).nf_numero || null,
-    nfeKey: nfeChave,
-  });
-
-  try {
-    const chatId = normalizeWhatsappChatId(telefone);
-    if (!dryRun) await sendWahaText({ chatId, text });
-    await registrarEventoNfAuditoria({
-      pedidoId,
-      mlOrderId,
-      evento: "ml_cancel_auto_supplier_whatsapp_sent",
-      payloadEnviado: { chat_id_suffix: chatId.slice(-9), text },
-      respostaMl: {
-        dsid,
-        fornecedor_id: fornecedorId || null,
-        fornecedor_phone_suffix: maskPhoneSuffix(telefone),
-        dry_run: dryRun,
-      },
-      statusResultante: "success",
-    });
-    return {
-      status: "processed",
-      reason: dryRun ? "dry_run_whatsapp" : "ok",
-      nfe_cancelled_now: cancelledNow,
-    };
-  } catch (err: any) {
-    await registrarEventoNfAuditoria({
-      pedidoId,
-      mlOrderId,
-      evento: "ml_cancel_auto_supplier_whatsapp_failed",
-      respostaMl: {
-        dsid,
-        fornecedor_id: fornecedorId || null,
-        fornecedor_phone_suffix: maskPhoneSuffix(telefone),
-        error: err?.message || "Erro ao enviar WhatsApp ao fornecedor",
-      },
-      statusResultante: "failed",
-    });
-    return {
-      status: "failed",
-      reason: "whatsapp_failed",
-      error: err?.message || "Erro ao enviar WhatsApp ao fornecedor",
-    };
-  }
+  return {
+    status: dryRun ? "dry_run" : nfeAlreadyCancelled ? "skipped" : "processed",
+    reason: nfeAlreadyCancelled ? "nfe_already_cancelled" : "nfe_cancelled",
+    nfe_cancelled_now: cancelledNow,
+  };
 }
 
 export async function POST(request: Request) {
@@ -471,6 +368,9 @@ export async function POST(request: Request) {
     }
 
     const client = createServiceClient();
+    const notices = dryRun
+      ? { seen: 0, sent: 0, skipped: 0, blocked: 0, failed: 0 }
+      : await runSupplierCancellationNotices(client, Math.min(limit, 3));
     const { data: pedidos, error: pedidosError } = await client
       .from("pedidos")
       .select(
@@ -500,8 +400,7 @@ export async function POST(request: Request) {
         if (result.status === "failed") failed += 1;
         else if (result.status === "skipped" || result.status === "dry_run")
           skipped += 1;
-        else if (result.reason !== "whatsapp_already_sent") processed += 1;
-        else skipped += 1;
+        else processed += 1;
       } catch (err: any) {
         failed += 1;
         errors.push({
@@ -513,7 +412,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      success: errors.length === 0 && failed === 0,
+      success: errors.length === 0 && failed === 0 && notices.failed === 0 && notices.blocked === 0,
       domain: DOMAIN,
       job: {
         key: TASK_KEY,
@@ -529,6 +428,7 @@ export async function POST(request: Request) {
         skipped,
         failed,
       },
+      supplier_notices: notices,
       results,
       errors,
       duration: { ms: Date.now() - startedAt },

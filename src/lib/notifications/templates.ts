@@ -240,26 +240,27 @@ export function buildSupplierLabelWhatsapp(input: {
 
 export function buildSupplierCancellationWhatsapp(input: {
   dsliteId: unknown;
+  providerLabel?: 'DSLite' | 'Evolusom';
+  partialPurchase?: boolean;
   mlOrderId?: unknown;
   saleId?: unknown;
-  invoiceNumber?: unknown;
-  nfeKey?: unknown;
 }): string {
+  const provider = input.providerLabel || 'DSLite';
   return [
-    "*Bentevi | Pedido cancelado*",
+    "*Bentevi | Venda cancelada*",
     "",
-    `O pedido *#${cleanSingleLine(input.dsliteId)}* foi cancelado pelo cliente.`,
+    `A venda vinculada à compra *${provider} #${cleanSingleLine(input.dsliteId)}* foi cancelada.`,
     "",
-    "*Não despache este pedido.*",
+    input.partialPurchase
+      ? "*Confira os itens antes de despachar.* Há outras vendas vinculadas a esta compra."
+      : "*Não despache este pedido se ele ainda não foi enviado.*",
     "",
     "*Referências*",
-    `*DSLite:* #${cleanSingleLine(input.dsliteId)}`,
+    `*${provider}:* #${cleanSingleLine(input.dsliteId)}`,
     input.mlOrderId ? `*Venda Mercado Livre:* #${cleanSingleLine(input.mlOrderId)}` : null,
     input.saleId ? `*Venda Bentevi:* #${cleanSingleLine(input.saleId)}` : null,
-    input.invoiceNumber ? `*NF-e cancelada:* ${cleanSingleLine(input.invoiceNumber)}` : null,
-    !input.invoiceNumber && input.nfeKey ? `*Chave da NF-e cancelada:* ${cleanSingleLine(input.nfeKey)}` : null,
     "",
-    "A situação fiscal já foi atualizada no Bentevi.",
+    "Confirme com o Bentevi a situação do despacho.",
   ].filter((line): line is string => line !== null && line !== undefined).join("\n");
 }
 
@@ -438,8 +439,8 @@ export function getNotificationTemplatePreviews(): NotificationTemplatePreview[]
       preview: { text: buildSupplierLabelWhatsapp({ dsliteId: "918542", labelUrl: `${appUrl}/s/etiqueta-exemplo`, invoiceNumber: "1256", nfeKey: "35260900000000000123550020000012561000012560", danfeUrl: `${appUrl}/s/danfe-exemplo`, xmlUrl: `${appUrl}/s/xml-exemplo`, mlOrderId: "2000018210665568", shipmentId: "44629850311", product: "Caixa de som portátil", quantity: 1, purchaseAmount: "R$ 1.690,00", labelSource: "Mercado Livre" }) },
     },
     {
-      id: "whatsapp-supplier-cancel", channel: "whatsapp", audience: "supplier", label: "Cancelamento ao fornecedor", trigger: "Venda cancelada após emissão fiscal",
-      preview: { text: buildSupplierCancellationWhatsapp({ dsliteId: "918542", mlOrderId: "2000018210665568", saleId: "8210665568", invoiceNumber: "1256" }) },
+      id: "whatsapp-supplier-cancel", channel: "whatsapp", audience: "supplier", label: "Cancelamento ao fornecedor", trigger: "Venda cancelada com compra vinculada",
+      preview: { text: buildSupplierCancellationWhatsapp({ dsliteId: "918542", mlOrderId: "2000018210665568", saleId: "8210665568" }) },
     },
     {
       id: "whatsapp-test", channel: "whatsapp", audience: "internal", label: "Teste do canal", trigger: "Teste administrativo explícito",
