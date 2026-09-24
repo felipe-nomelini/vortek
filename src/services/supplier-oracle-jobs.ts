@@ -67,10 +67,10 @@ async function processResumeEffect(client: Client, settlementId: string, item: {
     return next;
   }
   const { data: order, error: orderError } = await client.from('pedidos')
-    .select('id,ml_order_id,situacao,dslite_etiqueta_enviada,dslite_label_source')
+    .select('id,ml_order_id,situacao,evolusom_order_id,dslite_etiqueta_enviada,dslite_label_source')
     .eq('id', item.pedido_id).maybeSingle();
   if (orderError || !order) throw new Error('Venda da retomada indisponível');
-  if (order.situacao === 'concretizada_ml' || order.dslite_etiqueta_enviada
+  if (order.situacao === 'concretizada_ml' || order.evolusom_order_id || order.dslite_etiqueta_enviada
     || order.dslite_label_source === 'dslite_paid_shipping'
     || isDslitePlaceholderLabelSource(order.dslite_label_source)) {
     await client.from('supplier_settlement_resume_effects').update({ status: 'skipped', updated_at: now() })

@@ -2678,6 +2678,7 @@ ml_pricing_groups: {
           compra_id: string
           pedido_id: string
           dsid_snapshot: string
+          source_snapshot: 'dslite' | 'evolusom'
           sale_number_snapshot: number
           ml_order_id_snapshot: string | null
           product_description_snapshot: string | null
@@ -2694,6 +2695,7 @@ ml_pricing_groups: {
           compra_id: string
           pedido_id: string
           dsid_snapshot: string
+          source_snapshot?: 'dslite' | 'evolusom'
           sale_number_snapshot: number
           ml_order_id_snapshot?: string | null
           product_description_snapshot?: string | null
@@ -2710,6 +2712,7 @@ ml_pricing_groups: {
           compra_id?: string
           pedido_id?: string
           dsid_snapshot?: string
+          source_snapshot?: 'dslite' | 'evolusom'
           sale_number_snapshot?: number
           ml_order_id_snapshot?: string | null
           product_description_snapshot?: string | null

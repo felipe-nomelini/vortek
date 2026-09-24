@@ -69,7 +69,11 @@ before(async () => {
       'supabase/migrations/20260916230000_oraculo_supplier_settlement_receipt.sql',
       'supabase/migrations/20260916233000_oraculo_supplier_cancellations.sql',
       'supabase/migrations/20260916233000_oraculo_supplier_cancellations.sql',
+      'supabase/migrations/20260916234500_oraculo_supplier_settlement_receipt_projection.sql',
       'supabase/migrations/20260917130000_oraculo_simplify_purchase_eligibility.sql',
+      'supabase/migrations/20260918170000_evolusom_direct_purchase.sql',
+      'supabase/migrations/20260924120000_oraculo_evolusom_direct_purchase.sql',
+      'supabase/migrations/20260924120000_oraculo_evolusom_direct_purchase.sql',
     ]) await admin.query(read(file));
   } finally { await admin.end(); }
   pool = new Pool({ connectionString, max: 5 });
@@ -87,6 +91,43 @@ test('fechamento dispensa classificação, revisão e etiqueta; preserva bloquei
   await seed();
   await query("update public.pedidos set situacao='cancelado' where dslite_id='110'");
   await assert.rejects(prepare([purchaseA]), /Venda cancelada/i);
+});
+
+test('ORC-07: lote misto DSLite/Evolusom confirma uma vez e cancelamento direto gera crédito pendente', { skip: !enabled }, async () => {
+  await seed();
+  const directSale = randomUUID();
+  const directPurchase = randomUUID();
+  await query(`insert into public.pedidos(id,numero,evolusom_order_id,ml_order_id,situacao)
+    values ($1,103,63012231,'ML-103','pendente')`, [directSale]);
+  await query(`insert into public.compras(id,dsid,evolusom_order_id,pedido_id,fornecedor_id,fornecedor_nome,
+    supplier_payment_mode,supplier_payment_status,supplier_payment_amount,produto_descricao)
+    values ($1,null,63012231,$2,'108','Teste','prepaid_pix','pending',29.99,'Compra direta')`,
+  [directPurchase, directSale]);
+  const settlement = await prepare([purchaseA, directPurchase]);
+  const items = (await query(`select source_snapshot,dsid_snapshot from public.supplier_settlement_items
+    where settlement_id=$1 order by source_snapshot`, [settlement.id])).rows;
+  assert.deepEqual(items.map((item) => [item.source_snapshot, item.dsid_snapshot]),
+    [['dslite', '110'], ['evolusom', '63012231']]);
+  assert.equal((await confirm(settlement.id)).status, 'confirmed');
+  assert.equal((await confirm(settlement.id)).replayed, true);
+  assert.equal(Number((await query("select count(*) total from public.jobs where tipo='supplier_settlement_postprocess'")).rows[0].total), 1);
+  await query("update public.pedidos set situacao='cancelado' where id=$1", [directSale]);
+  const cancellation = await record(directPurchase, directSale, 'not_dispatched', { proof: 'cancelled_history' });
+  assert.equal(cancellation.classification, 'paid_pre_dispatch');
+  assert.equal(Number((await query("select count(*) total from public.supplier_balance_movements where movement_type='cancellation_credit' and status='pending'")).rows[0].total), 1);
+});
+
+test('ORC-07: venda direta sem vínculo exato não pode ser liquidada', { skip: !enabled }, async () => {
+  await seed();
+  const directSale = randomUUID();
+  const directPurchase = randomUUID();
+  await query(`insert into public.pedidos(id,numero,evolusom_order_id,situacao)
+    values ($1,103,63012232,'pendente')`, [directSale]);
+  await query(`insert into public.compras(id,dsid,evolusom_order_id,pedido_id,fornecedor_id,
+    supplier_payment_mode,supplier_payment_status,supplier_payment_amount)
+    values ($1,null,63012231,$2,'108','prepaid_pix','pending',29.99)`, [directPurchase, directSale]);
+  await assert.rejects(prepare([directPurchase]), /Venda Evolusom não vinculada/i);
+  assert.equal(Number((await query('select count(*) total from public.supplier_settlements')).rows[0].total), 0);
 });
 
 test('ORC-06: cancelamento antes do PIX invalida o lote inteiro e libera reservas', { skip: !enabled }, async () => {

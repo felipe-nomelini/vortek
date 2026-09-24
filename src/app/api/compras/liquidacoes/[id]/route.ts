@@ -18,7 +18,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   if (error) return NextResponse.json({ error: 'Falha ao consultar liquidação' }, { status: 500 });
   if (!settlement) return NextResponse.json({ error: 'Liquidação não encontrada' }, { status: 404 });
   const { data: items, error: itemsError } = await client.from('supplier_settlement_items')
-    .select('id,compra_id,pedido_id,dsid_snapshot,sale_number_snapshot,product_description_snapshot,quantity_snapshot,gross_amount,credit_amount,pix_amount,released_at')
+    .select('id,compra_id,pedido_id,dsid_snapshot,source_snapshot,sale_number_snapshot,product_description_snapshot,quantity_snapshot,gross_amount,credit_amount,pix_amount,released_at')
     .eq('settlement_id', id).order('created_at', { ascending: true });
   if (itemsError) return NextResponse.json({ error: 'Falha ao consultar itens' }, { status: 500 });
   const [effects, postprocess, decisions, communicationMember] = await Promise.all([

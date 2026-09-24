@@ -325,8 +325,9 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     return NextResponse.json({ error: 'PIX BKR1 será confirmado somente quando a etiqueta real do Mercado Livre estiver liberada.' }, { status: 422 });
   }
 
-  if (supplierOracleWritesEnabled() && !compra.evolusom_order_id) {
-    if (requestedResumeOnly && compra.supplier_payment_status === 'paid' && !compra.supplier_settlement_id) {
+  if (supplierOracleWritesEnabled()) {
+    if (requestedResumeOnly && compra.supplier_payment_status === 'paid'
+      && !compra.supplier_settlement_id && !compra.evolusom_order_id) {
       if (!resumeDsliteFlow) {
         return NextResponse.json({ error: 'Retomada DSLite não disponível para esta compra' }, { status: 409 });
       }

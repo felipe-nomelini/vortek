@@ -36,7 +36,8 @@ export async function GET(request: Request) {
     && pixKey && sameAccount.length === 1);
 
   const purchases: Array<{
-    id: string; dsid: string; data_criacao: string; fornecedor_id: string | null;
+    id: string; dsid: string | null; evolusom_order_id: number | null; pedido_id: string | null;
+    data_criacao: string; fornecedor_id: string | null;
     supplier_payment_mode: string | null; supplier_payment_status: string | null;
     supplier_payment_amount: number | null; status: string; status_dslite: string;
     supplier_settlement_id: string | null;
@@ -44,13 +45,13 @@ export async function GET(request: Request) {
   let lastId = '';
   while (true) {
     let query = client.from('compras')
-      .select('id,dsid,data_criacao,fornecedor_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,status,status_dslite,supplier_settlement_id')
+      .select('id,dsid,evolusom_order_id,pedido_id,data_criacao,fornecedor_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,status,status_dslite,supplier_settlement_id')
       .eq('fornecedor_id', supplierDsliteId).eq('supplier_payment_mode', 'prepaid_pix')
       .eq('supplier_payment_status', 'pending').order('id', { ascending: true }).limit(BATCH_SIZE);
     if (lastId) query = query.gt('id', lastId);
     const { data, error } = await query;
     if (error) return NextResponse.json({ error: 'Falha ao consultar compras pendentes' }, { status: 500 });
-    purchases.push(...(data || []).filter((row): row is typeof row & { dsid: string } => Boolean(row.dsid)));
+    purchases.push(...(data || []));
     if (!data?.length || data.length < BATCH_SIZE) break;
     lastId = data[data.length - 1].id;
   }
@@ -58,22 +59,32 @@ export async function GET(request: Request) {
   const visible = canUseHomologationFixtures()
     ? purchases : purchases.filter((row) => !isHomologationFixtureId(row.id));
   const salesByDsliteId = new Map<string, Array<{
-    id: string; numero: number; dslite_id: string | null; situacao: string | null; snapshot_source: string | null;
+    id: string; numero: number; dslite_id: string | null; evolusom_order_id: number | null;
+    situacao: string | null; snapshot_source: string | null;
   }>>();
+  const salesById = new Map<string, {
+    id: string; numero: number; dslite_id: string | null; evolusom_order_id: number | null;
+    situacao: string | null; snapshot_source: string | null;
+  }>();
   const allocated = new Set<string>();
   const openDivergences = new Set<string>();
   for (let index = 0; index < visible.length; index += BATCH_SIZE) {
     const chunk = visible.slice(index, index + BATCH_SIZE);
     const dsids = [...new Set(chunk.map((row) => row.dsid).filter(Boolean))];
+    const directSaleIds = [...new Set(chunk.filter((row) => row.evolusom_order_id && row.pedido_id)
+      .map((row) => row.pedido_id as string))];
     const ids = chunk.map((row) => row.id);
-    const [salesResult, allocationsResult, divergenceResult] = await Promise.all([
+    const [salesResult, directSalesResult, allocationsResult, divergenceResult] = await Promise.all([
       dsids.length ? client.from('pedidos')
-        .select('id,numero,dslite_id,situacao,snapshot_source')
+        .select('id,numero,dslite_id,evolusom_order_id,situacao,snapshot_source')
         .in('dslite_id', dsids).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null') : Promise.resolve({ data: [], error: null }),
+      directSaleIds.length ? client.from('pedidos')
+        .select('id,numero,dslite_id,evolusom_order_id,situacao,snapshot_source')
+        .in('id', directSaleIds) : Promise.resolve({ data: [], error: null }),
       client.from('supplier_settlement_items').select('compra_id').in('compra_id', ids).is('released_at', null),
       client.from('supplier_cancellation_cases').select('compra_id').in('compra_id', ids).eq('status', 'open'),
     ]);
-    if (salesResult.error || allocationsResult.error || divergenceResult.error) {
+    if (salesResult.error || directSalesResult.error || allocationsResult.error || divergenceResult.error) {
       return NextResponse.json({ error: 'Falha ao consultar vínculos da elegibilidade' }, { status: 500 });
     }
     for (const sale of salesResult.data || []) {
@@ -81,12 +92,20 @@ export async function GET(request: Request) {
       const key = String(sale.dslite_id || '');
       salesByDsliteId.set(key, [...(salesByDsliteId.get(key) || []), sale]);
     }
+    for (const sale of directSalesResult.data || []) {
+      if (!canUseHomologationFixtures() && isHomologationFixtureSource(sale.snapshot_source)) continue;
+      salesById.set(sale.id, sale);
+    }
     for (const row of allocationsResult.data || []) allocated.add(row.compra_id);
     for (const row of divergenceResult.data || []) openDivergences.add(row.compra_id);
   }
 
   const rows = visible.map((purchase) => {
-    const sales = salesByDsliteId.get(String(purchase.dsid)) || [];
+    const direct = purchase.evolusom_order_id != null;
+    const directSale = purchase.pedido_id ? salesById.get(purchase.pedido_id) : null;
+    const sales = direct
+      ? directSale?.evolusom_order_id === purchase.evolusom_order_id ? [directSale] : []
+      : salesByDsliteId.get(String(purchase.dsid)) || [];
     const codes = evaluateSupplierOracleEligibility({
       purchase,
       sales,
@@ -98,7 +117,8 @@ export async function GET(request: Request) {
     const labels = oracleExclusionLabels(codes);
     return {
       compraId: purchase.id,
-      dsid: purchase.dsid,
+      dsid: String(direct ? purchase.evolusom_order_id : purchase.dsid || ''),
+      source: direct ? 'evolusom' : 'dslite',
       dataCriacao: purchase.data_criacao,
       pedidoNumero: sales.length === 1 ? sales[0].numero : null,
       valor: purchase.supplier_payment_amount,

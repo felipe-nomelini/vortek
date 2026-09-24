@@ -8,7 +8,8 @@ import { userSafeMessage } from '@/lib/user-feedback';
 import styles from './OracleSettlementDrawer.module.css';
 
 const { Text, Title } = Typography;
-type PreviewItem = { compraId: string; dsid: string; pedidoNumero: number | null; valor: number | null;
+type PreviewItem = { compraId: string; dsid: string; source?: 'dslite' | 'evolusom';
+  pedidoNumero: number | null; valor: number | null;
   reasons: Array<{ code: string; label: string }> };
 type Account = { fornecedorId: string; fornecedor: string; cnpjMasked: string; pixKeyMasked: string;
   cnpj?: string; pixKey?: string;
@@ -20,7 +21,8 @@ type Settlement = { id: string; fornecedorId: string; fornecedor: string; cnpjMa
 type Detail = { id: string; status: string; version: number; canConfirmBatch: boolean; fornecedor: string; cnpjMasked: string;
   grossAmount: number; creditAmount: number; pixAmount: number; hasReceipt: boolean;
   communicationId: string | null;
-  items: Array<{ id: string; dsid_snapshot: string; sale_number_snapshot: number; gross_amount: number;
+  items: Array<{ id: string; dsid_snapshot: string; source_snapshot?: 'dslite' | 'evolusom';
+    sale_number_snapshot: number; gross_amount: number;
     credit_amount: number; pix_amount: number }>;
   resumeEffects: Array<{ pedido_id: string; status: string; attempts: number; error_code: string | null }>;
   postprocess: { id: string; status: string } | null };
@@ -53,7 +55,8 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
 }) {
   const [messageApi, contextHolder] = message.useMessage();
   const [accounts, setAccounts] = useState<Account[]>([]);
-  const [unassigned, setUnassigned] = useState<Array<{ compraId: string; dsid: string; reasons: Array<{ label: string }> }>>([]);
+  const [unassigned, setUnassigned] = useState<Array<{ compraId: string; dsid: string;
+    source?: 'dslite' | 'evolusom'; reasons: Array<{ label: string }> }>>([]);
   const [settlements, setSettlements] = useState<Settlement[]>([]);
   const [settlementPage, setSettlementPage] = useState(1);
   const [settlementTotal, setSettlementTotal] = useState(0);
@@ -315,7 +318,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
             <Tag color="orange">{unassigned.length} pendente(s)</Tag></div>
           <Collapse ghost items={[{ key: 'unassigned', label: 'Ver compras sem fornecedor', children:
             <div className={styles.purchaseList}>{unassigned.map((item) => <div className={styles.purchaseRow} key={item.compraId}>
-              <strong>Compra DSLite #{item.dsid}</strong><Tag color="orange">Fornecedor não identificado</Tag>
+              <strong>Compra {item.source === 'evolusom' ? 'Evolusom' : 'DSLite'} #{item.dsid}</strong><Tag color="orange">Fornecedor não identificado</Tag>
             </div>)}</div> }]} />
         </Card>}
 
@@ -338,7 +341,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
               </div>
               <div className={styles.listHeading}>Prontas para o fechamento</div>
               <div className={styles.purchaseList}>{account.included.map((item) => <div className={styles.purchaseRow} key={item.compraId}>
-                <div><strong>Compra DSLite #{item.dsid}</strong><span>Venda #{item.pedidoNumero || '—'}</span></div>
+                <div><strong>Compra {item.source === 'evolusom' ? 'Evolusom' : 'DSLite'} #{item.dsid}</strong><span>Venda #{item.pedidoNumero || '—'}</span></div>
                 <strong>{formatCurrency(Number(item.valor || 0))}</strong>
               </div>)}</div>
             </> : <div className={styles.noAccountReady}>Nenhuma compra apta para fechar neste fornecedor.</div>}
@@ -347,7 +350,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
               label: <span><strong>Compras fora do fechamento</strong> <Tag color="orange">{account.excluded.length}</Tag></span>,
               children: <div className={styles.exceptionList}>{account.excluded.map((item) =>
                 <div className={styles.exceptionRow} key={item.compraId}>
-                  <strong>Compra DSLite #{item.dsid}</strong>
+                  <strong>Compra {item.source === 'evolusom' ? 'Evolusom' : 'DSLite'} #{item.dsid}</strong>
                   <span>{item.reasons[0]?.label}</span>
                 </div>)}</div> }]} />}
             {writable && account.canPrepare && account.valid && account.included.length > 0 && <div className={styles.cardAction}>
@@ -386,7 +389,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
             setIdempotencyKey(null);
           }}>
             {selected.included.map((item) => <Checkbox key={item.compraId} value={item.compraId}>
-              Compra #{item.dsid} · venda #{item.pedidoNumero || '—'} · {formatCurrency(Number(item.valor || 0))}
+              Compra {item.source === 'evolusom' ? 'Evolusom' : 'DSLite'} #{item.dsid} · venda #{item.pedidoNumero || '—'} · {formatCurrency(Number(item.valor || 0))}
             </Checkbox>)}
           </Checkbox.Group>
         </Card>
@@ -414,7 +417,7 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
           <div className={`${styles.metric} ${styles.primaryMetric}`}><span>PIX</span><strong>{formatCurrency(detail.pixAmount)}</strong></div></div>
         <Card className={styles.flowCard} title="Compras deste fechamento">
           <div className={styles.purchaseList}>{detail.items.map((item) => <div className={styles.purchaseRow} key={item.id}>
-            <div><strong>Compra #{item.dsid_snapshot}</strong><span>Venda #{item.sale_number_snapshot}</span></div>
+            <div><strong>Compra {item.source_snapshot === 'evolusom' ? 'Evolusom' : 'DSLite'} #{item.dsid_snapshot}</strong><span>Venda #{item.sale_number_snapshot}</span></div>
             <div className={styles.itemAmounts}><span>Bruto {formatCurrency(item.gross_amount)}</span><span>Crédito {formatCurrency(item.credit_amount)}</span>
               <strong>PIX {formatCurrency(item.pix_amount)}</strong></div>
           </div>)}</div>

@@ -138,6 +138,17 @@ test('retomada DSLite já satisfeita é registrada como dispensada sem chamada e
   assert.equal(tables.jobs[0].status, 'completo');
 });
 
+test('compra direta Evolusom não inicia outra criação de pedido após o PIX', async () => {
+  const { client, tables } = fakePostprocessDb(false);
+  tables.pedidos[0].evolusom_order_id = 63012231;
+  let calls = 0;
+  const worker = service(true, async () => {}, async () => { calls++; return { json: null, error: null }; });
+  await worker.processSupplierOracleQueue(client);
+  assert.equal(calls, 0);
+  assert.equal(tables.supplier_settlement_resume_effects[0].status, 'skipped');
+  assert.equal(tables.jobs[0].status, 'completo');
+});
+
 test('timeout DSLite fica incerto e não repete retomada', async () => {
   const previous = process.env.API_SECRET_KEY;
   process.env.API_SECRET_KEY = 'synthetic-test-key';

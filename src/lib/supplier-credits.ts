@@ -5,7 +5,7 @@ import { fetchMLResult } from '@/services/integration';
 import { classifySupplierDispatchHistory } from '@/lib/supplier-cancellation-dispatch.js';
 
 type DbClient = SupabaseClient<Database>;
-type Source = 'ml_webhook' | 'ml_sync' | 'dslite_sync' | 'manual_reconcile';
+type Source = 'ml_webhook' | 'ml_sync' | 'dslite_sync' | 'evolusom_sync' | 'manual_reconcile';
 type Result = { created: boolean; skipped?: string; movementId?: string | null;
   caseId?: string | null; classification?: string; status?: string };
 type HistoryEvent = { status?: string; substatus?: string | null; date?: string };
@@ -29,13 +29,16 @@ export async function createSupplierCancellationCreditCandidate(
   client: DbClient, pedidoId: string, source: Source = 'ml_sync',
 ): Promise<Result> {
   const { data: sale, error: saleError } = await client.from('pedidos')
-    .select('id,dslite_id,situacao,ml_shipment_id').eq('id', pedidoId).maybeSingle();
+    .select('id,dslite_id,evolusom_order_id,situacao,ml_shipment_id').eq('id', pedidoId).maybeSingle();
   if (saleError) throw new Error(saleError.message);
   if (!sale?.id || sale.situacao !== 'cancelado') return { created: false, skipped: 'order_not_cancelled' };
-  if (!sale.dslite_id) return { created: false, skipped: 'purchase_not_linked' };
-  const { data: purchase, error: purchaseError } = await client.from('compras')
-    .select('id,fornecedor_id,supplier_payment_mode,supplier_payment_status')
-    .eq('dsid', sale.dslite_id).maybeSingle();
+  if (!sale.dslite_id && !sale.evolusom_order_id) return { created: false, skipped: 'purchase_not_linked' };
+  let purchaseQuery = client.from('compras')
+    .select('id,fornecedor_id,supplier_payment_mode,supplier_payment_status');
+  purchaseQuery = sale.evolusom_order_id
+    ? purchaseQuery.eq('pedido_id', sale.id).eq('evolusom_order_id', sale.evolusom_order_id)
+    : purchaseQuery.eq('dsid', sale.dslite_id!);
+  const { data: purchase, error: purchaseError } = await purchaseQuery.maybeSingle();
   if (purchaseError) throw new Error(purchaseError.message);
   if (!purchase?.id) return { created: false, skipped: 'purchase_not_found' };
   if (purchase.fornecedor_id === HAYAMAX_FORNECEDOR_ID || purchase.supplier_payment_mode !== 'prepaid_pix') {
@@ -65,24 +68,38 @@ export async function createSupplierCancellationCreditCandidate(
     caseId: result.caseId || null, classification: result.classification, status: result.status };
 }
 
-export async function recordDslitePurchaseCancellation(client: DbClient, purchaseId: string): Promise<Result> {
+export async function recordSupplierPurchaseCancellation(
+  client: DbClient, purchaseId: string, source: 'dslite_sync' | 'evolusom_sync' = 'dslite_sync',
+): Promise<Result> {
   const { data: purchase, error: purchaseError } = await client.from('compras')
-    .select('id,dsid,fornecedor_id,supplier_payment_mode,status_dslite')
+    .select('id,dsid,evolusom_order_id,pedido_id,fornecedor_id,supplier_payment_mode,status,status_dslite')
     .eq('id', purchaseId).maybeSingle();
   if (purchaseError) throw new Error(purchaseError.message);
-  if (!purchase?.id || !purchase.dsid || !String(purchase.status_dslite || '').toLowerCase().includes('cancelado')) {
+  const cancelled = source === 'evolusom_sync'
+    ? Boolean(purchase?.evolusom_order_id && String(purchase.status || '').toLowerCase().includes('cancelado'))
+    : Boolean(purchase?.dsid && String(purchase.status_dslite || '').toLowerCase().includes('cancelado'));
+  if (!purchase?.id || !cancelled) {
     return { created: false, skipped: 'purchase_not_cancelled' };
   }
   if (purchase.fornecedor_id === HAYAMAX_FORNECEDOR_ID || purchase.supplier_payment_mode !== 'prepaid_pix') {
     return { created: false, skipped: 'supplier_not_applicable' };
   }
-  const { data: sales, error: saleError } = await client.from('pedidos')
-    .select('id').eq('dslite_id', purchase.dsid).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null').limit(2);
+  let sales: Array<{ id: string }> = [];
+  let saleError = null;
+  if (source !== 'evolusom_sync' || purchase.pedido_id) {
+    let saleQuery = client.from('pedidos').select('id');
+    saleQuery = source === 'evolusom_sync'
+      ? saleQuery.eq('id', purchase.pedido_id!).eq('evolusom_order_id', purchase.evolusom_order_id!)
+      : saleQuery.eq('dslite_id', purchase.dsid!).or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null');
+    const result = await saleQuery.limit(2);
+    sales = result.data || [];
+    saleError = result.error;
+  }
   if (saleError) throw new Error(saleError.message);
   const { data, error } = await client.rpc('supplier_oracle_record_cancellation', {
     p_compra_id: purchase.id, p_pedido_id: sales?.length === 1 ? sales[0].id : null,
-    p_source: 'dslite_sync', p_dispatch: 'unknown',
-    p_evidence: { source: 'dslite_purchase', proof: 'purchase_cancelled' }, p_actor: 'dslite_sync',
+    p_source: source, p_dispatch: 'unknown',
+    p_evidence: { source: source === 'dslite_sync' ? 'dslite_purchase' : 'evolusom_purchase', proof: 'purchase_cancelled' }, p_actor: source,
   });
   if (error) throw new Error(error.message);
   const result = data as { caseId?: string; classification?: string; status?: string;
@@ -90,6 +107,8 @@ export async function recordDslitePurchaseCancellation(client: DbClient, purchas
   return { created: false, skipped: result.skipped, caseId: result.caseId || null,
     classification: result.classification, status: result.status, movementId: result.movementId || null };
 }
+
+export const recordDslitePurchaseCancellation = recordSupplierPurchaseCancellation;
 
 export async function reconcileSupplierCancellationCredits(client: DbClient) {
   const pageSize = 200;

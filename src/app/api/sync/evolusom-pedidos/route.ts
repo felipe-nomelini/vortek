@@ -4,6 +4,7 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { readEvolusomMerchantOrderStatus } from '@/lib/evolusom/order-status';
 import { getEvolusomOrderStatus } from '@/services/evolusom-purchase';
 import { isEvolusomAccessError } from '@/services/evolusom';
+import { recordSupplierPurchaseCancellation } from '@/lib/supplier-credits';
 
 export const maxDuration = 300;
 
@@ -80,6 +81,15 @@ export async function POST(request: Request) {
         console.error('[sync-evolusom-pedidos] falha ao atualizar compra', orderId,
           saveError?.message || 'compra alterada durante a consulta');
         continue;
+      }
+      if (status?.toLowerCase().includes('cancelado')) {
+        try {
+          await recordSupplierPurchaseCancellation(client, purchase.id, 'evolusom_sync');
+        } catch (cause) {
+          failed += 1;
+          console.error('[sync-evolusom-pedidos] falha ao classificar cancelamento', orderId,
+            cause instanceof Error ? cause.message : String(cause));
+        }
       }
       if (status === null) continue;
       checked += 1;
