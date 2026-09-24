@@ -57,5 +57,43 @@ para anúncios existentes; não dispensa validações de criação/publicação.
 4. Encerrar somente linhas automáticas `ml_identity_gate` de itens cujo próprio
    anúncio e par estejam comprovadamente válidos. Pausas manuais permanecem.
 
-Este documento registra a regra e o método; os resultados produtivos e o SHA
-aplicado devem ser acrescentados depois do read-back real.
+## Resultado em produção
+
+O código foi validado em `dev` e promovido pelo SHA
+`94724a0840a938b7bd4e0227dc7c6dcbcb991056` para `bentevi-prod`.
+O webhook produtivo aceitou o deploy; a rota de saúde de `app.bentevi.shop`
+continuou respondendo e o tempo de vida do processo reiniciou após o envio.
+A rota de saúde não expõe o SHA executado, então o SHA do container não foi
+comprovado diretamente.
+
+- Em `192.168.1.162`, `VTK006362` passou de marca `1120727` para `BRASFORT`
+  e `VTK003638` de `Philips` para `PHILIPS WALITA`, conforme as ofertas DSLite
+  de mesmo GTIN. Foram registradas quatro equivalências exatas:
+  `Bori`/`Bo Ri`, `LESON`/`Le Son`, `New York`/`NY-F1RST` e
+  `NY-F1RST`/`Ny F1rst`. A releitura confirmou as seis mudanças.
+- No ML, foram corrigidos `MODEL` de `MLB7111645058` para
+  `Micro Ventilador Mini (Cod. 19134)`, `MODEL` de `MLB7111649036`
+  para `CT-1-BK` e `BRAND` de `MLB7597882660` para
+  `SOHOPLUS - FURUKAWA`. Cada PUT teve backup e releitura imediata;
+  preço, quantidade, estado, SKU e GTIN foram preservados.
+- A releitura dos 20 IDs e de todos os dez outros anúncios cadastrados nos
+  mesmos 19 produtos classificou os 20 próprios como seguros. Entre os dez
+  associados, oito ficaram seguros e dois têm marca diferente na ficha de
+  catálogo do ML. A busca oficial por SKU e a relação dos pares foram
+  conferidas; 17 dos 19 grupos tiveram vínculo completo.
+- Foram encerrados 18 bloqueios ativos criados por `ml_identity_gate`.
+  Permaneceram dois bloqueios automáticos: `MLB7111545754` / `VTK003638`,
+  cujo catálogo associado `MLB7149369808` usa `BRAND=Philips` em vez de
+  `PHILIPS WALITA`; e `MLB6573107140` / `VTK006362`, cujo catálogo
+  `MLB4621152043` está encerrado com `BRAND=1120727` em vez de `BRASFORT`.
+  As próprias fichas de catálogo `MLB38516321` e `MLB47710319` contêm
+  esses valores, portanto a correção exige tratamento no catálogo do ML.
+  Não foram criadas equivalências para essas marcas diferentes.
+- Após a liberação, os 59 IDs distintos dos grupos de identidade e capacidade
+  mantiveram estado e quantidade remotos. Os 44 sem capacidade continuaram
+  pausados com quantidade zero. Nenhuma pausa manual foi removida.
+
+Os testes direcionados (52 casos), `npm run validate`, `npm run build`,
+`npm run check:build-secrets` e `git diff --check` passaram. O teste
+`m2m-cfl-02-consumers.test.js` continua falhando por fixture preexistente
+sem mock de `@/lib/ml/brand-equivalences`; não foi tratado como aprovação.
