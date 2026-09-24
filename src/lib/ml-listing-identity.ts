@@ -59,6 +59,27 @@ function hasExactModelCodeMention(localValue: string, remoteValue: string): bool
   return false;
 }
 
+/** Rótulos do ML podem acrescentar descrição ao modelo da DSLite sem trocar o produto. */
+function hasGroundedModelMention(localValue: string, remoteValue: string): boolean {
+  const local = normalizeText(localValue).replace(/estereo/g, 'stereo');
+  const remote = normalizeText(remoteValue).replace(/estereo/g, 'stereo');
+  if (/\b(?:ou|or)\b/.test(remote)) return false;
+  const compact = (value: string) => value.replace(/[^a-z0-9]/g, '');
+  const localCompact = compact(local);
+  const remoteCompact = compact(remote);
+  const codes = [...local.matchAll(/\b[a-z]{1,5}(?:[-.][a-z]{1,3})?[-.]?\d{2,}\b/g)]
+    .map(match => compact(match[0])).filter(code => code.length >= 4);
+  if (codes.length) return codes.some(code => new RegExp(`${code}(?!\\d)`).test(remoteCompact));
+  if (localCompact.length >= 3 && !/\d/.test(localCompact) && remoteCompact.includes(localCompact)) return true;
+  const stopwords = new Set(['cabo', 'para', 'de', 'do', 'da', 'em', 'com', 'modelo', 'tipo']);
+  const tokens = (value: string) => (value.match(/[a-z]+|\d+/g) || [])
+    .map(token => /^\d+$/.test(token) ? String(Number(token)) : token)
+    .filter(token => !stopwords.has(token));
+  const left = tokens(local);
+  const right = new Set(tokens(remote));
+  return left.length >= 2 && left.every(token => right.has(token));
+}
+
 export function brandKey(value: unknown): string { return normalizeText(value); }
 
 /** Pares aprovados formam grupos; sem equivalência por semelhança textual. */
@@ -239,11 +260,15 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
       const modelCodeVerified = field === 'MODEL' && !modelNormalizedByExactCatalog
         && exactSku && exactGtin && exactBrand && Boolean(fact?.value)
         && rawValues.length === 1 && hasExactModelCodeMention(fact!.value!, rawValues[0]);
+      const modelPhraseVerified = field === 'MODEL' && !modelNormalizedByExactCatalog && !modelCodeVerified
+        && exactSku && exactGtin && exactBrand && Boolean(fact?.value)
+        && rawValues.length === 1 && hasGroundedModelMention(fact!.value!, rawValues[0]);
       const uncertainVoltage = ['VOLTAGE', 'NOMINAL_VOLTAGE'].includes(field) && [local, remote].every(value => ['120v', '127v'].includes(value));
-      status = modelNormalizedByExactCatalog || modelCodeVerified ? 'SEM_CONFLITO'
+      status = modelNormalizedByExactCatalog || modelCodeVerified || modelPhraseVerified ? 'SEM_CONFLITO'
         : uncertainVoltage || field === 'SELLER_SKU' ? 'INCONCLUSIVO' : 'CONFLITO_CONFIRMADO';
       reason = modelNormalizedByExactCatalog ? 'MODELO_NORMALIZADO_PELO_CATALOGO_COM_GTIN_EXATO'
         : modelCodeVerified ? 'MODELO_CODIGO_LITERAL_CONFIRMADO_COM_SKU_GTIN_MARCA'
+          : modelPhraseVerified ? 'MODELO_DSLITE_PRESENTE_NO_ROTULO_COM_SKU_GTIN_MARCA'
         : uncertainVoltage ? 'EQUIVALENCIA_NAO_COMPROVADA'
           : field === 'SELLER_SKU' ? 'SKU_VINCULO_NAO_COMPROVADO'
             : PACK_FIELDS.includes(field) ? 'CONFLITO_EMBALAGEM_QUANTIDADE' : 'IDENTIDADE_DIVERGENTE';
@@ -283,8 +308,8 @@ export function isMlIdentityComplete(assessment: MlListingIdentityAssessment): b
  * material confirmado. A criação de anúncio continua usando isMlIdentityComplete.
  */
 export function isMlExistingListingIdentitySafe(assessment: MlListingIdentityAssessment): boolean {
-  if (hasConfirmedMlExistingListingIdentityConflict(assessment)) return false;
   if (assessment.existingListingValidation) return assessment.existingListingValidation.status === 'verified';
+  if (hasConfirmedMlExistingListingIdentityConflict(assessment)) return false;
   const coherent = (field: string) => assessment.comparisons.some(
     comparison => comparison.field === field && comparison.status === 'SEM_CONFLITO',
   );
@@ -295,6 +320,7 @@ export function isMlExistingListingIdentitySafe(assessment: MlListingIdentityAss
 }
 
 export function hasConfirmedMlExistingListingIdentityConflict(assessment: MlListingIdentityAssessment): boolean {
+  if (assessment.existingListingValidation?.status === 'verified') return false;
   return assessment.comparisons.some(comparison => EXISTING_LISTING_COMMERCIAL_FIELDS.has(comparison.field)
     && comparison.status === 'CONFLITO_CONFIRMADO');
 }

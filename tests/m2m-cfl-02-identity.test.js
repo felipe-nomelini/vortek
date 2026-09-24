@@ -201,6 +201,15 @@ test('código de modelo diferente ou sem âncoras exatas permanece bloqueado', (
   assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
 });
 
+test('modelo descritivo que preserva a expressão DSLite com SKU, GTIN e marca exatos é coerente', () => {
+  const input = fixture();
+  input.facts.MODEL.value = 'Picker Crystal';
+  setRemote(input, 'MODEL', 'Palheta Grl Picker Crystal 0,62 Mm R18-008 10un');
+  assert.equal(get(evaluate(input), 'MODEL').status, 'SEM_CONFLITO');
+  setRemote(input, 'GTIN', '7898705600000');
+  assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
+});
+
 test('atributo opcional sem valor local ou remoto não bloqueia a identidade', () => {
   const input = fixture();
   input.context.categoryAttributes.push({ id: 'MPN' });
@@ -281,6 +290,34 @@ test('kit usa composição e unidade comercial do componente, não quantidade co
   assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', p, [], operational, kit), '6');
   kit.components[0].produto.descricao = '';
   assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', p, [], operational, kit), null);
+});
+
+test('kit de cartelas calcula pilhas finais somente quando composição e título concordam', () => {
+  const parent = product({ nome: '15 Baterias CR2032 (3 Cart. c/ 5 Un. Cada)', descricao: '', gtin: '' });
+  const component = product({ id: 'C1', nome: 'Pilha CR2032 (C/5 Pilhas)', descricao: '', gtin: '041333038865' });
+  const kit = { status: 'ready', components: [{ quantidade: 3, produto: component, nestedKit: false }] };
+  assert.equal(critical.resolveMlCriticalFacts(parent, [], operational, kit).facts.UNITS_PER_PACK.value, '15');
+  assert.equal(critical.resolveMlCriticalFacts(parent, [], operational, kit).facts.UNITS_PER_PACK.ambiguous, false);
+  parent.nome = '12 Baterias CR2032 (3 Cart. c/ 5 Un. Cada)';
+  assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', parent, [], operational, kit), null);
+});
+
+test('kit de catálogo com duas cartelas de duas pilhas mantém total quatro', () => {
+  const parent = product({ nome: '4 Pilhas Duracell (2 Cart. c/ 2 Un.)', descricao: '', gtin: '' });
+  const component = product({ id: 'C1', nome: 'Pilha Duracell (C/2 Pilhas)', descricao: '', gtin: '041333001074' });
+  const kit = { status: 'ready', components: [{ quantidade: 2, produto: component, nestedKit: false }] };
+  const attributes = [
+    { id: 'SELLER_SKU', value_name: parent.sku }, { id: 'GTIN', value_name: component.gtin },
+    { id: 'BRAND', value_name: parent.marca }, { id: 'SALE_FORMAT', value_name: 'Unidade' },
+    { id: 'UNITS_PER_PACK', value_name: '1' }, { id: 'PACKS_NUMBER', value_name: '2' },
+  ];
+  const item = { id: 'MLB1', title: '4 Pilhas Duracell (2 Cart. c/ 2 Un.)', catalog_listing: true,
+    seller_custom_field: parent.sku, attributes };
+  const context = { categoryAttributes: attributes.map(({ id }) => ({ id })), kit,
+    remoteEvidence: proof('mercado_livre', 'MLB1') };
+  assert.equal(identity.isMlExistingListingIdentitySafe(critical.assessMlProductIdentity(item, parent, [], operational, context)), true);
+  item.title = '2 Pilhas Duracell';
+  assert.equal(identity.isMlExistingListingIdentitySafe(critical.assessMlProductIdentity(item, parent, [], operational, context)), false);
 });
 
 test('kit composto permanece pendente sem prova da composição remota, mesmo com total igual', () => {

@@ -1,6 +1,6 @@
 import { resolvePreferredOfferForProduct } from '@/lib/preferred-offer';
 import { extractStrictVoltage, normalizeVoltageValue } from '@/lib/ml-voltage';
-import { assessMlListingIdentity, extractStrictProductDiameter, hasConfirmedMlExistingListingIdentityConflict, isMlExistingListingIdentitySafe, normalizeMlIdentityValue, isMlIdentityAttribute } from '@/lib/ml-listing-identity';
+import { assessMlListingIdentity, extractStrictProductDiameter, isMlExistingListingIdentitySafe, normalizeMlIdentityValue, isMlIdentityAttribute } from '@/lib/ml-listing-identity';
 import type { MlExistingListingValidation, MlIdentityContext, MlIdentityFacts, MlIdentityAttribute, MlListingIdentityAssessment } from '@/lib/ml-listing-identity';
 import type { ConflictEvidence } from '@/types/commercial-conflicts';
 import { filterOperationalDropshippingSupplierOffers } from '@/lib/dslite/supplier-policy';
@@ -63,10 +63,10 @@ function rowFacts(row: any, source: ConflictEvidence['source']): MlIdentityFacts
   };
   set('BRAND', row?.marca); set('GTIN', row?.gtin);
   const text = clean([row?.nome, row?.descricao].filter(Boolean).join(' ; ').replace(/[\r\n]+/g, ';'));
-  const labels = 'marca|modelo|part number|mpn|cor|tamanho|voltagem|tensao|formato de venda|apresentacao|conteudo(?: da embalagem)?';
+  const labels = 'marca|modelo|part number|mpn|cor|cores|tamanho|voltagem|tensao|formato de venda|apresentacao|conteudo(?: da embalagem)?|codigo do fabricante|idade recomendada|ferragens|composicao do kit|comprimento|conectores|espessura|material|diametro|conexoes';
   for (const [field, label] of [['MODEL', 'modelo'], ['MPN', 'part number|mpn'], ['COLOR', 'cor']] as const) {
     const values = [...new Set(Array.from(text.matchAll(new RegExp(
-      `\\b(?:${label})\\s*:\\s*(.+?)(?=\\s+(?:-|•)\\s+|\\s+\\b(?:${labels})\\s*:|[;|]|$)`,
+      `\\b(?:${label})\\s*:\\s*(.+?)(?=\\s+•\\s+|\\s+-\\s+(?=[a-z]{3,}\\s*:)|\\s+\\b(?:${labels})\\s*:|[;|]|$)`,
       'g',
     ))).map(match => match[1].trim()))];
     if (values.length) set(field, values.length === 1 ? values[0] : null, values.length > 1);
@@ -86,6 +86,9 @@ function rowFacts(row: any, source: ConflictEvidence['source']): MlIdentityFacts
   const diameters = [...new Set(Array.from(text.matchAll(/diametro\s*:\s*(\d+(?:[.,]\d+)?\s*(?:mm|cm|m))\b/g)).map(match => normalizeMlIdentityValue('DIAMETER', match[1])))];
   set('DIAMETER', diameters.length === 1 ? diameters[0] : diameters.length > 1 ? null : (/\bventilador\b/.test(clean(row?.nome)) ? extractStrictProductDiameter(row.nome) : null), diameters.length > 1);
   const units = uniqueNumbers(text, /\b(?:kit\s+(?:com\s+)?|com\s+|conteudo(?: da embalagem)?\s*:\s*)(\d+)\s*(?:unidades?|pecas?|pilhas?|baterias?)\b/g);
+  const packUnits = uniqueNumbers(clean(row?.nome), /\b(?:c\s*\/\s*|com\s+)(\d+)\s*(?:unidades?|un\.?|pilhas?|baterias?)\b/g);
+  const namedUnits = uniqueNumbers(clean(row?.nome), /\b(\d+)\s*(?:unidades?|pilhas?|baterias?)\b/g);
+  units.push(...packUnits, ...namedUnits);
   const explicitUnit = /\b(?:formato de venda|apresentacao)\s*:\s*unidade\b/.test(text);
   if (explicitUnit) units.push(1);
   const distinct = [...new Set(units)];
@@ -121,6 +124,8 @@ export function resolveMlCriticalFacts(produto: any, offers: any[] = [], operati
     // Total só quando todos os componentes explicitam sua unidade comercial.
     const sum = componentsComplete ? componentFacts.reduce((sum, row) => sum + row.quantity * Number(row.facts.UNITS_PER_PACK.value), 0) : null;
     const total = sum !== null && Number.isSafeInteger(sum) && sum > 0 ? sum : null;
+    const namedTotal = clean(produto?.nome).match(/^(\d+)\s+(?:pilhas?|baterias?)\b/);
+    const totalCorroborated = total !== null && Number(namedTotal?.[1]) === total;
     const evidence = componentFacts.flatMap(row => row.facts.UNITS_PER_PACK?.evidence || []);
     for (const [field, value] of [['UNITS_PER_PACK', total === null ? null : String(total)], ['SALE_FORMAT', total === null ? null : total > 1 ? 'Kit' : 'Unidade']] as const) {
       const previous = facts[field];
@@ -128,7 +133,7 @@ export function resolveMlCriticalFacts(produto: any, offers: any[] = [], operati
       facts[field] = {
         value,
         evidence: [...(previous?.evidence || []), ...evidence],
-        ambiguous: Boolean(previous?.ambiguous || (previous?.value && value && normalizeMlIdentityValue(field, previous.value) !== normalizeMlIdentityValue(field, value))),
+        ambiguous: !totalCorroborated && Boolean(previous?.ambiguous || (previous?.value && value && normalizeMlIdentityValue(field, previous.value) !== normalizeMlIdentityValue(field, value))),
       };
     }
     // Um kit composto não herda marca/modelo/GTIN ou formato de um componente arbitrário.
@@ -170,6 +175,8 @@ function kitExistingListingValidation(
   assessment: MlListingIdentityAssessment,
   facts: MlIdentityFacts,
   kit: MlIdentityKit,
+  item: any,
+  produto: any,
   brandEquivalences?: BrandEquivalences,
 ): MlExistingListingValidation {
   const comparisons: MlExistingListingValidation['comparisons'] = [];
@@ -182,7 +189,15 @@ function kitExistingListingValidation(
     if (!matches) reasons.push(reason);
   };
 
-  if (hasConfirmedMlExistingListingIdentityConflict(assessment)) return {
+  const materialConflicts = assessment.comparisons.filter(row => row.status === 'CONFLITO_CONFIRMADO'
+    && ['SELLER_SKU', 'GTIN', 'BRAND', 'MPN', 'PART_NUMBER', 'PACKS_NUMBER', 'PACKAGES_NUMBER', 'PACKAGING_BOXES_NUMBER'].includes(row.field));
+  const remoteModel = normalizedRemoteValues(assessment, 'MODEL')[0];
+  const sourceName = clean([produto?.nome, kit.components[0]?.produto?.nome, facts.MODEL?.value,
+    kit.components[0] ? rowFacts(kit.components[0].produto, 'product').MODEL?.value : null]
+    .filter(Boolean).join(' ')).replace(/[^a-z0-9]/g, '');
+  if (remoteModel && assessment.comparisons.some(row => row.field === 'MODEL' && row.status === 'CONFLITO_CONFIRMADO')
+    && !sourceName.includes(remoteModel.replace(/[^a-z0-9]/g, ''))) materialConflicts.push(assessment.comparisons.find(row => row.field === 'MODEL')!);
+  if (materialConflicts.length) return {
     status: 'conflict', anchor: null, reasons: ['CONFLITO_COMERCIAL_CONFIRMADO'], comparisons,
   };
   if (kit.status !== 'ready') return {
@@ -212,15 +227,27 @@ function kitExistingListingValidation(
       && equivalentBrandKey(localBrand.value, brandEquivalences) === remoteBrands[0]),
     brandsAgree ? 'MARCA_NAO_COHERENTE' : 'MARCAS_LOCAIS_CONTRADITORIAS');
 
-  const saleFormats = normalizedRemoteValues(assessment, 'SALE_FORMAT');
-  compare('SALE_FORMAT', 'Kit', saleFormats, saleFormats.length === 1 && saleFormats[0] === 'pack',
-    'FORMATO_DE_VENDA_DO_KIT_NAO_COMPROVADO');
   const units = normalizedRemoteValues(assessment, 'UNITS_PER_PACK');
-  const quantity = String(component.quantidade);
-  compare('UNITS_PER_PACK', quantity, units, units.length === 1 && units[0] === quantity,
+  const componentUnits = validFact(componentFacts.UNITS_PER_PACK) ? Number(componentFacts.UNITS_PER_PACK.value) : null;
+  const productTotal = validFact(facts.UNITS_PER_PACK) ? Number(facts.UNITS_PER_PACK.value) : null;
+  const namedTotal = Number(clean(produto?.nome).match(/^(\d+)\s+(?:pilhas?|baterias?)\b/)?.[1]);
+  const total = componentUnits !== null ? component.quantidade * componentUnits
+    : namedTotal === component.quantidade || productTotal === component.quantidade ? component.quantidade : null;
+  const titleTotal = Number(clean(item?.title).match(/^(\d+)\s+(?:pilhas?|baterias?)\b/)?.[1]);
+  const remoteIsSingleCatalogBundle = item?.catalog_listing === true && total !== null
+    && titleTotal === total && units.length === 1 && units[0] === '1';
+  const saleFormats = normalizedRemoteValues(assessment, 'SALE_FORMAT');
+  compare('SALE_FORMAT', 'Kit', saleFormats,
+    saleFormats.length === 1 && (saleFormats[0] === 'pack' || (remoteIsSingleCatalogBundle && saleFormats[0] === 'unit')),
+    'FORMATO_DE_VENDA_DO_KIT_NAO_COMPROVADO');
+  compare('UNITS_PER_PACK', total === null ? null : String(total), units,
+    total !== null && units.length === 1 && (units[0] === String(total) || remoteIsSingleCatalogBundle),
     'QUANTIDADE_DO_KIT_DIVERGENTE');
   const packs = normalizedRemoteValues(assessment, 'PACKS_NUMBER');
-  compare('PACKS_NUMBER', '1', packs, packs.length === 0 || (packs.length === 1 && packs[0] === '1'),
+  compare('PACKS_NUMBER', remoteIsSingleCatalogBundle ? String(component.quantidade) : '1', packs,
+    remoteIsSingleCatalogBundle
+      ? packs.length === 1 && packs[0] === String(component.quantidade)
+      : packs.length === 0 || (packs.length === 1 && packs[0] === '1'),
     'NUMERO_DE_PACKS_DIVERGENTE');
 
   const productAnchor = isMlExistingListingIdentitySafe(assessment);
@@ -266,7 +293,7 @@ export function assessMlProductIdentity(item: any, produto: any, offers: any[] =
   }
   const assessment = assessMlListingIdentity(item, facts, context || { categoryAttributes: null, remoteEvidence: null });
   if (context?.kit && context.kit.status !== 'not_kit') {
-    assessment.existingListingValidation = kitExistingListingValidation(assessment, facts, context.kit, context.brandEquivalences);
+    assessment.existingListingValidation = kitExistingListingValidation(assessment, facts, context.kit, item, produto, context.brandEquivalences);
   }
   return assessment;
 }
