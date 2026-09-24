@@ -355,13 +355,13 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 
 ### ORC-07 — Ativação controlada
 
-- [ ] Confirmar que a flag privada criada na ORC-03 segue desligada e ativá-la somente após os gates.
+- [x] Confirmar no processo produtivo que escrita e lote estão habilitados.
 - [ ] Redirecionar a confirmação individual web/API mobile para o mesmo núcleo antes de ligar a flag; eliminar o writer financeiro antigo sem alterar o contrato público.
 - [ ] Publicar mantendo o fluxo atual como padrão.
 - [x] Fazer smoke sem pagamentos fictícios.
-- [ ] Ativar para um fechamento real pequeno e acompanhado.
+- [x] Liberar o lote para todos os fornecedores, conforme decisão explícita do responsável em 24/09/2026.
 - [ ] Conferir banco, compra, venda, crédito, job, DSLite e mensagem.
-- [ ] Tornar lote o padrão somente depois do aceite do canário.
+- [x] Tornar o lote o padrão produtivo, sem etapa de fornecedor único conforme a decisão de 24/09/2026.
 - [ ] Manter confirmação individual como exceção identificada.
 - [ ] Monitorar os primeiros sete dias e pelo menos um ciclo completo.
 
@@ -376,6 +376,8 @@ A rota individual existente se tornará um adaptador de liquidação com um item
 **Publicação técnica de 24/09/2026:** o SHA funcional `3552e35620b8c2f11ce2a019c398b814077b6c6f` foi enviado a `dev` e promovido por fast-forward a `bentevi-prod`, sem mover `main`. O preflight SQL autenticado diretamente na `.162` identificou PostgreSQL 17.6, migration anterior `20260922200000`, funções iguais à versão esperada do repositório, RLS e guards ativos, RPCs restritas a `service_role`, zero liquidações/itens/jobs ativos e 20 compras PIX pendentes, duas diretas. Os três fornecedores tinham CNPJ válido, PIX e telefone presentes e conta financeira sem duplicidade. Backup verificável das definições e metadados alterados: `/tmp/bentevi-orc07-preflight-bc7QfV/preflight.json`, SHA-256 `5942f063442267dd897748d62530ceccba586cc7c81875b42ff3c44c4ae73e48`. A migration `20260924120000`, SHA-256 `bba8f819c066ae1c5e139600ac4874cc3865860878a6085e1ef4fad8b8af9832`, foi aplicada em transação na `.162`; read-back confirmou registry, coluna/restrições e funções com suporte à origem Evolusom, mantendo `anon`/`authenticated` sem execução das RPCs financeiras. O webhook Easypanel aceitou o deploy HTTP `200`. O chunk novo de Compras `072w554893bgi.js` foi servido em `app.bentevi.shop` com SHA-256 idêntico ao build local (`eefe2a820bec6cf4d1f120df7f55e1ffa2cbcf8431907c7b1853b5e4abe9a28e`), e o processo reiniciou. Saúde e login responderam `200`, Compras `307` sem sessão, APIs de leitura e escrita negaram acesso anônimo com `401`. Read-back após o deploy: zero liquidações, itens, jobs, compras alocadas e divergências abertas; 20 PIX pendentes. **Aceite operacional ainda pendente:** a flag privada e o SHA do processo não foram lidos diretamente do Easypanel; nenhum canário autenticado, PIX, comprovante, mensagem ou retomada real foi executado. O lote não foi habilitado nesta publicação.
 
 **Decisão de liberação geral em 24/09/2026:** o responsável solicitou que o fechamento seja disponibilizado imediatamente aos três fornecedores elegíveis, sem limitar o uso inicial a um fornecedor. A configuração padrão do Bentevi produtivo passa a habilitar a escrita e o lote; `ORACULO_SETTLEMENT_WRITES_ENABLED=false` e `ORACULO_SETTLEMENT_BATCH_MODE=disabled` continuam como bloqueios explícitos. As permissões, a validação dos vínculos e valores, a prevenção de pagamento duplicado e a confirmação de que o PIX foi feito no banco permanecem obrigatórias. Esta decisão dispensa a etapa de fornecedor único, mas não constitui comprovação de um primeiro pagamento real nem aceite operacional dos efeitos posteriores.
+
+**Liberação geral publicada em 24/09/2026:** SHA funcional `fd3f7fc5e29becf04639fa9b31145e09ad041370` enviado a `dev` e promovido por fast-forward a `bentevi-prod`; nenhuma migration adicional foi necessária. Passaram 51 testes dirigidos (26 integrações PostgreSQL sem ambiente de teste foram ignoradas), `npm run validate`, `npm run build`, verificação de secrets e `git diff --check` com Node 22. O webhook Easypanel aceitou HTTP `200`; após o reinício, `/api/ops/health` retornou `supplier_settlement.writes_enabled=true` e `batch_mode=enabled`. O chunk novo de Compras `0n51mfv7kqtfu.js` foi servido com SHA-256 igual ao build local (`f7fb70867aea6472effe33c09932041d5cd164aee18e26510555dbfbe244d62d`). Login `200`, Compras `307` sem sessão e APIs protegidas `401` sem sessão. Read-back na `.162`: zero liquidações, itens, jobs e compras alocadas; 20 PIX pendentes. **O uso está liberado para perfis autorizados**, mas ainda não há comprovação de um primeiro PIX real, de mensagem/retomada posterior nem aceite dos sete dias de operação. A Bentevi registra a liquidação; o PIX é executado no banco fora da aplicação.
 
 ### ORC-08 — Dashboard resumido
 
