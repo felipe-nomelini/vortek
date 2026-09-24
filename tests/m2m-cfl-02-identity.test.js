@@ -169,6 +169,38 @@ test('catálogo pode normalizar modelo quando o GTIN exato preserva a identidade
   assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
 });
 
+test('anúncio comum aceita código literal do modelo dentro do rótulo editorial com SKU, GTIN e marca exatos', () => {
+  const input = fixture();
+  input.facts.MODEL.value = 'MCB-03';
+  setRemote(input, 'MODEL', 'Cabo Para Balanceado MCB-03 3 Metros');
+  const result = evaluate(input);
+  assert.equal(get(result, 'MODEL').status, 'SEM_CONFLITO');
+  assert.equal(get(result, 'MODEL').reason, 'MODELO_CODIGO_LITERAL_CONFIRMADO_COM_SKU_GTIN_MARCA');
+
+  input.facts.MODEL.value = 'WPD8D';
+  setRemote(input, 'MODEL', 'WPD-8D');
+  assert.equal(get(evaluate(input), 'MODEL').status, 'SEM_CONFLITO');
+});
+
+test('código de modelo diferente ou sem âncoras exatas permanece bloqueado', () => {
+  const input = fixture();
+  input.facts.MODEL.value = 'MCB-03';
+  setRemote(input, 'MODEL', 'Cabo Para Balanceado MCB-01 3 Metros');
+  assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
+
+  setRemote(input, 'MODEL', 'Cabo Para Balanceado MCB-03 3 Metros');
+  setRemote(input, 'GTIN', '7898705600000');
+  assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
+
+  setRemote(input, 'GTIN', '7898705602659');
+  setRemote(input, 'BRAND', 'Marca B');
+  assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
+
+  setRemote(input, 'BRAND', 'Marca A');
+  setRemote(input, 'MODEL', 'MCB-03 ou MCB-01');
+  assert.equal(get(evaluate(input), 'MODEL').status, 'CONFLITO_CONFIRMADO');
+});
+
 test('atributo opcional sem valor local ou remoto não bloqueia a identidade', () => {
   const input = fixture();
   input.context.categoryAttributes.push({ id: 'MPN' });

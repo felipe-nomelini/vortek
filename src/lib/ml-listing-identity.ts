@@ -41,6 +41,24 @@ const EXISTING_LISTING_COMMERCIAL_FIELDS = new Set([
 export const isMlIdentityAttribute = (id: string) => [...IDENTITY_FIELDS, ...PACK_FIELDS].includes(id);
 const normalizeText = (value: unknown) => String(value ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ');
 
+/** O ML às vezes grava uma descrição no MODEL; aceita somente o código literal completo no texto. */
+function hasExactModelCodeMention(localValue: string, remoteValue: string): boolean {
+  const tokens = (value: string) => normalizeText(value).match(/[a-z0-9]+/g) || [];
+  const localTokens = tokens(localValue);
+  if (localTokens.length === 0 || localTokens.length > 3) return false;
+  const code = localTokens.join('');
+  if (code.length < 5 || !/[a-z]/.test(code) || !/\d/.test(code)) return false;
+  const remoteTokens = tokens(remoteValue);
+  const prefix = code.match(/^[a-z]+/)?.[0] || '';
+  if (prefix.length < 2 || remoteTokens.filter(token => token.startsWith(prefix)).length !== 1) return false;
+  for (let start = 0; start < remoteTokens.length; start++) {
+    for (let count = 1; count <= 3 && start + count <= remoteTokens.length; count++) {
+      if (remoteTokens.slice(start, start + count).join('') === code) return true;
+    }
+  }
+  return false;
+}
+
 export function brandKey(value: unknown): string { return normalizeText(value); }
 
 /** Pares aprovados formam grupos; sem equivalência por semelhança textual. */
@@ -181,10 +199,22 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
   const remoteGtins = readMlIdentityAttribute(attributes, 'GTIN', definitions)
     .map(value => normalizeMlIdentityValue('GTIN', value))
     .filter((value): value is string => Boolean(value));
-  const exactCatalogGtin = item?.catalog_listing === true
-    && Boolean(localGtin)
+  const exactGtin = Boolean(localGtin)
     && new Set(remoteGtins).size === 1
     && remoteGtins[0] === localGtin;
+  const exactCatalogGtin = item?.catalog_listing === true && exactGtin;
+  const remoteSkus = [
+    ...readMlIdentityAttribute(attributes, 'SELLER_SKU', definitions),
+    ...(!variations.length && item?.seller_custom_field ? [String(item.seller_custom_field)] : []),
+  ].map(normalizeText).filter(Boolean);
+  const exactSku = Boolean(facts.SELLER_SKU?.value)
+    && new Set(remoteSkus).size === 1
+    && remoteSkus[0] === normalizeText(facts.SELLER_SKU.value);
+  const remoteBrands = readMlIdentityAttribute(attributes, 'BRAND', definitions)
+    .map(value => equivalentBrandKey(value, context.brandEquivalences)).filter(Boolean);
+  const exactBrand = Boolean(facts.BRAND?.value && !facts.BRAND.ambiguous && facts.BRAND.evidence.length)
+    && new Set(remoteBrands).size === 1
+    && remoteBrands[0] === equivalentBrandKey(facts.BRAND!.value, context.brandEquivalences);
   for (const field of fields) {
     const fact = facts[field];
     const rawValues = readMlIdentityAttribute(attributes, field, definitions);
@@ -206,10 +236,14 @@ export function assessMlListingIdentity(item: any, facts: MlIdentityFacts, conte
       // O produto de catálogo pode substituir o modelo enviado pelo rótulo
       // editorial da ficha oficial. O GTIN exato continua sendo a âncora forte.
       const modelNormalizedByExactCatalog = field === 'MODEL' && exactCatalogGtin;
+      const modelCodeVerified = field === 'MODEL' && !modelNormalizedByExactCatalog
+        && exactSku && exactGtin && exactBrand && Boolean(fact?.value)
+        && rawValues.length === 1 && hasExactModelCodeMention(fact!.value!, rawValues[0]);
       const uncertainVoltage = ['VOLTAGE', 'NOMINAL_VOLTAGE'].includes(field) && [local, remote].every(value => ['120v', '127v'].includes(value));
-      status = modelNormalizedByExactCatalog ? 'SEM_CONFLITO'
+      status = modelNormalizedByExactCatalog || modelCodeVerified ? 'SEM_CONFLITO'
         : uncertainVoltage || field === 'SELLER_SKU' ? 'INCONCLUSIVO' : 'CONFLITO_CONFIRMADO';
       reason = modelNormalizedByExactCatalog ? 'MODELO_NORMALIZADO_PELO_CATALOGO_COM_GTIN_EXATO'
+        : modelCodeVerified ? 'MODELO_CODIGO_LITERAL_CONFIRMADO_COM_SKU_GTIN_MARCA'
         : uncertainVoltage ? 'EQUIVALENCIA_NAO_COMPROVADA'
           : field === 'SELLER_SKU' ? 'SKU_VINCULO_NAO_COMPROVADO'
             : PACK_FIELDS.includes(field) ? 'CONFLITO_EMBALAGEM_QUANTIDADE' : 'IDENTIDADE_DIVERGENTE';
