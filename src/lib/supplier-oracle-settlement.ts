@@ -9,13 +9,16 @@ export type SupplierOracleTransition = {
 };
 
 export function supplierOracleWritesEnabled(): boolean {
-  return process.env.ORACULO_SETTLEMENT_WRITES_ENABLED === 'true';
+  if (process.env.ORACULO_SETTLEMENT_WRITES_ENABLED === 'false') return false;
+  return process.env.NODE_ENV === 'production'
+    || process.env.ORACULO_SETTLEMENT_WRITES_ENABLED === 'true';
 }
 
 export function supplierOracleBatchMode(): 'disabled' | 'canary' | 'enabled' {
   if (!supplierOracleWritesEnabled()) return 'disabled';
   const mode = process.env.ORACULO_SETTLEMENT_BATCH_MODE;
-  return mode === 'canary' || mode === 'enabled' ? mode : 'disabled';
+  if (mode === 'disabled' || mode === 'canary' || mode === 'enabled') return mode;
+  return process.env.NODE_ENV === 'production' ? 'enabled' : 'disabled';
 }
 
 export function supplierOracleBatchAllowed(supplierId: string): boolean {

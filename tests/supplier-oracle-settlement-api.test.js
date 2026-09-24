@@ -106,7 +106,7 @@ test('lote fica fechado mesmo com o núcleo individual ativado', async () => {
   assert.equal(confirm.calls.some(([kind]) => kind === 'rpc'), false);
 });
 
-test('modo canário só libera o fornecedor escolhido; sem configuração o lote fica fechado', () => {
+test('em desenvolvimento o lote fica fechado sem configuração e o modo limitado seleciona um fornecedor', () => {
   const prior = {
     writes: process.env.ORACULO_SETTLEMENT_WRITES_ENABLED,
     mode: process.env.ORACULO_SETTLEMENT_BATCH_MODE,
@@ -128,6 +128,35 @@ test('modo canário só libera o fornecedor escolhido; sem configuração o lote
       ORACULO_SETTLEMENT_BATCH_MODE: prior.mode,
       ORACULO_SETTLEMENT_CANARY_SUPPLIER_ID: prior.supplier,
     })) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+});
+
+test('produção libera o fechamento a todos por padrão e conserva o bloqueio explícito', () => {
+  const prior = {
+    NODE_ENV: process.env.NODE_ENV,
+    ORACULO_SETTLEMENT_WRITES_ENABLED: process.env.ORACULO_SETTLEMENT_WRITES_ENABLED,
+    ORACULO_SETTLEMENT_BATCH_MODE: process.env.ORACULO_SETTLEMENT_BATCH_MODE,
+  };
+  try {
+    process.env.NODE_ENV = 'production';
+    delete process.env.ORACULO_SETTLEMENT_WRITES_ENABLED;
+    delete process.env.ORACULO_SETTLEMENT_BATCH_MODE;
+    assert.equal(service.supplierOracleWritesEnabled(), true);
+    assert.equal(service.supplierOracleBatchMode(), 'enabled');
+    assert.equal(service.supplierOracleBatchAllowed('108'), true);
+    assert.equal(service.supplierOracleBatchAllowed('133'), true);
+    assert.equal(service.supplierOracleBatchAllowed('97'), true);
+    process.env.ORACULO_SETTLEMENT_BATCH_MODE = 'disabled';
+    assert.equal(service.supplierOracleBatchAllowed('108'), false);
+    delete process.env.ORACULO_SETTLEMENT_BATCH_MODE;
+    process.env.ORACULO_SETTLEMENT_WRITES_ENABLED = 'false';
+    assert.equal(service.supplierOracleWritesEnabled(), false);
+    assert.equal(service.supplierOracleBatchMode(), 'disabled');
+  } finally {
+    for (const [key, value] of Object.entries(prior)) {
       if (value === undefined) delete process.env[key];
       else process.env[key] = value;
     }

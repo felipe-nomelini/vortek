@@ -280,14 +280,14 @@ export default function OracleSettlementDrawer({ open, onClose, canOperate }: {
         options={[{ label: 'Visão de hoje', value: 'today' }, { label: `Liquidações registradas (${settlementTotal})`, value: 'history' }]} />}
 
       {!writesEnabled && <Alert type="info" showIcon message="Fechamento consolidado em modo de leitura"
-        description="Você pode revisar compras e valores. O preparo e a confirmação serão liberados na ORC-07; a Bentevi não executa o PIX no banco." />}
+        description="Você pode revisar compras e valores. O fechamento está temporariamente indisponível; a Bentevi não executa o PIX no banco." />}
       {writesEnabled && !canOperate && <Alert type="info" showIcon message="Consulta disponível para seu perfil"
         description="Ações de fechamento exigem permissão de pagamento." />}
       {writesEnabled && canOperate && <Alert type="warning" showIcon message="O PIX é feito fora da Bentevi"
         description="Prepare e confira a liquidação antes de registrar aqui a transferência feita no banco." />}
       {writesEnabled && batchMode === 'disabled' && <Alert type="info" showIcon message="Fechamento em lote ainda não liberado"
-        description="A confirmação individual usa o novo núcleo; o lote será liberado após o canário acompanhado." />}
-      {writesEnabled && batchMode === 'canary' && <Alert type="info" showIcon message="Canário de liquidação ativo"
+        description="A confirmação individual está disponível; o fechamento em lote está temporariamente indisponível." />}
+      {writesEnabled && batchMode === 'canary' && <Alert type="info" showIcon message="Liberação limitada a um fornecedor"
         description="Somente o fornecedor selecionado para o primeiro fechamento pode preparar um lote." />}
       {error && <Alert type="error" showIcon message={error} />}
       {loading && !accounts.length && <div className={styles.loading}><Spin tip="Carregando liquidações" /></div>}

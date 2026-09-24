@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
   const { fornecedorId, compraIds, creditoCentavos, chaveIdempotencia } = parsed.data;
   if (!supplierOracleBatchAllowed(fornecedorId)) return NextResponse.json({ error: supplierOracleBatchMode() === 'canary'
-    ? 'Fornecedor fora do canário de liquidação' : 'Pagamento em lote ainda não ativado' }, { status: 403 });
+    ? 'Fornecedor não habilitado para liquidação' : 'Pagamento em lote ainda não ativado' }, { status: 403 });
   const { data, error } = await createServiceClient().rpc('supplier_oracle_prepare', {
     p_supplier_id: fornecedorId,
     p_compra_ids: compraIds,

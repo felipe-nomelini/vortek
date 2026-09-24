@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { getMLAuthDiagnostics } from '@/services/integration';
+import { supplierOracleBatchMode, supplierOracleWritesEnabled } from '@/lib/supplier-oracle-settlement';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -80,6 +81,10 @@ export async function GET() {
       running_jobs: runningJobs,
       ml_auth: mlAuth,
       fiscal_config: fiscalConfig,
+      supplier_settlement: {
+        writes_enabled: supplierOracleWritesEnabled(),
+        batch_mode: supplierOracleBatchMode(),
+      },
     },
     {
       headers: {
