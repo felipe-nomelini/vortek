@@ -18,6 +18,13 @@ test('identidade do fornecedor prevalece sobre GTIN e preserva produto inativo',
   }), { productId: 'legacy', productActive: false, gtinConflict: false });
 });
 
+test('sincronização do cabo 229965 mantém a oferta no componente por metro', () => {
+  assert.deepEqual(resolveEvolusomOfferProduct({
+    existingOffer: { produto_id: 'cabo-por-metro', product: { ativo: true } },
+    gtinProducts: [{ id: 'kit-10-metros', ativo: true }, { id: 'cabo-por-metro', ativo: true }],
+  }), { productId: 'cabo-por-metro', productActive: true, gtinConflict: false });
+});
+
 test('GTIN único vincula o produto existente; GTIN ambíguo bloqueia o vínculo', () => {
   assert.deepEqual(resolveEvolusomOfferProduct({
     gtinProducts: [{ id: 'inactive', ativo: false }],

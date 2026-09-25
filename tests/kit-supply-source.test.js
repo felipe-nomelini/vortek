@@ -37,6 +37,29 @@ test('kit usa exclusivamente a oferta do fornecedor configurado', () => {
   assert.equal(result.source.cost, 482.88);
 });
 
+test('cabo por metro: trinta metros rendem três kits de dez e custo de R$ 599', () => {
+  const input = {
+    ...base,
+    kit: { produto_id: 'kit', fornecedor_dslite_id: '133', sku_origem: '229965', ativo: true },
+    components: [{ kit_produto_id: 'kit', componente_produto_id: 'component', quantidade: 10 }],
+    componentProducts: [{ id: 'component', sku: 'VTK026507', nome: 'Cabo SAS - metro',
+      descricao: 'Unidade de medida: metro', ativo: true }],
+    offers: [{ id: 'offer', produto_id: 'component', dslite_fornecedor_id: '133',
+      dslite_produto_id: '229965', custo: 59.9, estoque: 30, ativo: true }],
+    operationalSupplierIds: new Set(['133']),
+  };
+  for (const [meters, expectedKits] of [[30, 3], [20, 2], [0, 0]]) {
+    const result = subject.resolveKitSupplySourceFromRows({ ...input,
+      offers: [{ ...input.offers[0], estoque: meters }] });
+    assert.equal(result.kind, 'ready');
+    assert.equal(result.source.stock, expectedKits);
+    assert.equal(result.source.cost, 599);
+    assert.equal(result.source.componentQuantity, 10);
+    assert.equal(result.source.componentUnit, 'M');
+    assert.equal(result.source.offer.dslite_produto_id, '229965');
+  }
+});
+
 test('kit de oito pilhas usa quatro cartelas e acompanha mudança de custo da oferta', () => {
   const input = {
     ...base,

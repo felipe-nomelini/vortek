@@ -63,9 +63,9 @@ test('nota de venda usa o SKU Bentevi mesmo quando a oferta tem outro código no
   assert.equal(result.payload.Produtos[0].CodProdutoServico, 'VTK021855');
 });
 
-test('nota de kit usa o SKU Bentevi e expande a quantidade do componente', async () => {
+test('nota do kit de 10 metros usa o SKU Bentevi e fatura 10 metros pelo total da venda', async () => {
   const pedido = {
-    id: 'pedido-kit', numero: 124, total: 190.62, billing_nome: 'Cliente Teste',
+    id: 'pedido-kit', numero: 124, total: 982.52, billing_nome: 'Cliente Teste',
     billing_documento: '07778845938', snapshot_incompleto: false,
     billing_endereco: {
       city_name: 'Curitiba', zip_code: '80000000', state_id: 'PR', cod_municipio: '4106902',
@@ -74,8 +74,8 @@ test('nota de kit usa o SKU Bentevi e expande a quantidade do componente', async
   };
   const rows = {
     pedidos: [pedido],
-    pedido_itens: [{ seller_sku: 'VTK016131', titulo: 'Kit de quatro baterias', quantidade: 1,
-      valor_unitario: 190.62, valor_total_bruto: 190.62, ncm: '85065010' }],
+    pedido_itens: [{ seller_sku: 'VTK019036', titulo: 'Kit 10 metros cabo SAS 28 vias', quantidade: 1,
+      valor_unitario: 982.52, valor_total_bruto: 982.52, ncm: '85444900' }],
     empresa: { cnpj: '33482950000230' },
   };
   const client = { from(table) {
@@ -97,17 +97,21 @@ test('nota de kit usa o SKU Bentevi e expande a quantidade do componente', async
     expectedCfopByUf: () => 6120,
     resolveModalidadeFreteFromSnapshot: () => ({ value: 2, expectedOnly: 2, source: 'snapshot', degraded: false }),
     resolveSimpleKitOrderPlan: async () => ({ kind: 'ready', plan: {
-      componentQuantity: 4, componentDsliteProductId: '2068',
-      componentTitle: 'Bateria Panasonic', componentNcm: '85065010', componentGtin: null,
+      componentQuantity: 10, componentDsliteProductId: '229965',
+      componentUnit: 'M',
+      componentTitle: 'Cabo Santo Angelo SAS 28 Vias - metro', componentNcm: '85444900', componentGtin: '7899028808070',
     } }),
-    resolveProdutoValorTotalBruto: () => 190.62,
+    resolveProdutoValorTotalBruto: () => 982.52,
     normalizeBrasilNfeProductName: (value) => value,
     normalizeBrasilNfeClientName: (value) => value,
   });
   const result = await build({ client, pedidoId: pedido.id });
   assert.equal(result.ok, true);
-  assert.equal(result.payload.Produtos[0].CodProdutoServico, 'VTK016131');
-  assert.equal(result.payload.Produtos[0].Quantidade, 4);
+  assert.equal(result.payload.Produtos[0].CodProdutoServico, 'VTK019036');
+  assert.equal(result.payload.Produtos[0].Quantidade, 10);
+  assert.equal(result.payload.Produtos[0].UnidadeComercial, 'M');
+  assert.equal(result.payload.Produtos[0].ValorUnitario, 98.252);
+  assert.equal(result.payload.Produtos[0].ValorTotal, 982.52);
 });
 
 function loadKitSources(items, plans) {

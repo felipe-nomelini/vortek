@@ -302,6 +302,29 @@ test('kit de cartelas calcula pilhas finais somente quando composição e títul
   assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', parent, [], operational, kit), null);
 });
 
+test('kit de cabo vendido por metro comprova dez metros e mantém modelo SAS separado das vias', () => {
+  const parent = product({ sku: 'VTK019036', nome: 'Kit 10 Metros Cabo Multicabo Santo Angelo SAS 28 Vias',
+    descricao: 'Modelo: SAS; 28 vias; Kit com 10 metros no total', marca: 'SANTO ANGELO', gtin: '' });
+  const component = product({ id: 'C1', nome: 'Cabo Multicabo Santo Angelo SAS 28 Vias - metro',
+    descricao: 'Modelo: SAS; 28 vias; Apresentacao: Unidade; Unidade de medida: metro',
+    marca: 'SANTO ANGELO', gtin: '7899028808070' });
+  const kit = { status: 'ready', components: [{ quantidade: 10, produto: component, nestedKit: false }] };
+  const attributes = [
+    { id: 'SELLER_SKU', value_name: parent.sku }, { id: 'GTIN', value_name: component.gtin },
+    { id: 'BRAND', value_name: parent.marca }, { id: 'MODEL', value_name: 'SAS' },
+    { id: 'SALE_FORMAT', value_name: 'Kit' }, { id: 'UNITS_PER_PACK', value_name: '10' },
+    { id: 'CABLE_LENGTH', value_name: '10 m' },
+  ];
+  const assessment = critical.assessMlProductIdentity({ id: 'MLB5200075913',
+    title: parent.nome, seller_custom_field: parent.sku, attributes }, parent, [], operational,
+    { categoryAttributes: attributes.map(({ id }) => ({ id })), kit,
+      remoteEvidence: proof('mercado_livre', 'MLB5200075913') });
+  assert.equal(critical.resolveTrustedMlCriticalValue('UNITS_PER_PACK', parent, [], operational, kit), '10');
+  assert.equal(identity.isMlExistingListingIdentitySafe(assessment), true);
+  assert.equal(assessment.existingListingValidation.status, 'verified');
+  assert.equal(get(assessment, 'MODEL').status, 'SEM_CONFLITO');
+});
+
 test('kit de catálogo com duas cartelas de duas pilhas mantém total quatro', () => {
   const parent = product({ nome: '4 Pilhas Duracell (2 Cart. c/ 2 Un.)', descricao: '', gtin: '' });
   const component = product({ id: 'C1', nome: 'Pilha Duracell (C/2 Pilhas)', descricao: '', gtin: '041333001074' });

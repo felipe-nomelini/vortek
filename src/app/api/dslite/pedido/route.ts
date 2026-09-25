@@ -1546,7 +1546,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
       ),
       NCM: String(kitPlan?.kind === "ready" ? kitPlan.plan.componentNcm || it.ncm || "" : it.ncm || ""),
       CFOP: Number(cfopEsperado),
-      UnidadeComercial: "UN",
+      UnidadeComercial: kitPlan?.kind === "ready" ? kitPlan.plan.componentUnit || "UN" : "UN",
       Quantidade: quantidade,
       ValorUnitario: quantidade > 0 ? Number((valorTotal / quantidade).toFixed(4)) : 0,
       ValorTotal: valorTotal,

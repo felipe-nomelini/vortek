@@ -19,6 +19,7 @@ type ComponentProductRow = {
   id?: string | null;
   sku?: string | null;
   nome?: string | null;
+  descricao?: string | null;
   ncm?: string | null;
   gtin?: string | null;
   ativo?: boolean | null;
@@ -50,6 +51,7 @@ export type ReadyKitSupplySource = {
   componentProductId: string;
   componentSku: string;
   componentTitle: string;
+  componentUnit: 'M' | 'UN';
   componentNcm: string | null;
   componentGtin: string | null;
   componentQuantity: number;
@@ -173,6 +175,7 @@ export function resolveKitSupplySourceFromRows(params: {
       componentProductId,
       componentSku: String(componentProduct.sku || '').trim(),
       componentTitle: String(componentProduct.nome || componentProduct.sku || '').trim(),
+      componentUnit: /\bunidade de medida\s*:\s*metro\b/i.test(String(componentProduct.descricao || '')) ? 'M' : 'UN',
       componentNcm: String(componentProduct.ncm || '').trim() || null,
       componentGtin: String(componentProduct.gtin || '').trim() || null,
       componentQuantity,
@@ -236,7 +239,7 @@ export async function loadKitSupplySources(
     components.map((component) => String(component.componente_produto_id || '')).filter(Boolean),
   ));
   const [componentProducts, nestedKits, offers, operationalSupplierIds] = await Promise.all([
-    selectInChunks(client, 'produtos', 'id,sku,nome,ncm,gtin,ativo', 'id', componentIds),
+    selectInChunks(client, 'produtos', 'id,sku,nome,descricao,ncm,gtin,ativo', 'id', componentIds),
     selectInChunks(client, 'produto_kits', 'produto_id', 'produto_id', componentIds),
     selectInChunks(
       client,

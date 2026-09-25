@@ -15,6 +15,7 @@ export type SimpleKitOrderPlan = {
   componentProductId: string;
   componentDsliteProductId: string;
   componentTitle: string;
+  componentUnit: 'M' | 'UN';
   componentQuantity: number;
   componentNcm: string | null;
   componentGtin: string | null;
@@ -70,6 +71,7 @@ export async function resolveSimpleKitOrderPlan(
       componentProductId: source.componentProductId,
       componentDsliteProductId: String(source.offer.dslite_produto_id),
       componentTitle: source.componentTitle,
+      componentUnit: source.componentUnit,
       componentQuantity: source.componentQuantity,
       componentNcm: source.componentNcm,
       componentGtin: source.componentGtin,

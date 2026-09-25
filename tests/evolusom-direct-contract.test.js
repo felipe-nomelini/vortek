@@ -152,6 +152,18 @@ test('pedido triangular contém NF, etiqueta genérica, rastreio, custo PR e SKU
   });
   assert.equal(withLocalSku.itens[0].cod_produto, '380381');
   assert.equal(withLocalSku.itens[0].preco_cliente_final, 679.9);
+  const cableXml = xml.replace('<cProd>141111</cProd>', '<cProd>VTK019036</cProd>')
+    .replaceAll('679.90', '982.52').replace('<vUnCom>982.52</vUnCom>', '<vUnCom>98.2520</vUnCom>');
+  const cable = module.exports.buildEvolusomTriangularPayload({
+    orderCode: 126, orderedAt: '2026-09-21T14:55:41.000Z', companyCnpj: '33.482.950/0002-30',
+    xml: cableXml, email: null, phone: null, trackingNumber: 'AB123BR',
+    labelUrl: payload.transporte.urletiqueta, danfeUrl: payload.nfe.url,
+    products: [{ sku: '229965', invoiceSku: 'VTK019036', quantity: 10, cost: 59.9, offerId: 'offer-cable' }],
+  });
+  assert.equal(cable.itens[0].cod_produto, '229965');
+  assert.equal(cable.itens[0].quantidade, 10);
+  assert.equal(cable.itens[0].preco_revenda * cable.itens[0].quantidade, 599);
+  assert.equal(cable.nfe.valor, 982.52);
   assert.equal(withoutContact.cliente.telefone, null);
   assert.equal(withoutContact.cliente.celular, null);
   assert.throws(() => module.exports.buildEvolusomTriangularPayload({

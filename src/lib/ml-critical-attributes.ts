@@ -85,7 +85,7 @@ function rowFacts(row: any, source: ConflictEvidence['source']): MlIdentityFacts
   }
   const diameters = [...new Set(Array.from(text.matchAll(/diametro\s*:\s*(\d+(?:[.,]\d+)?\s*(?:mm|cm|m))\b/g)).map(match => normalizeMlIdentityValue('DIAMETER', match[1])))];
   set('DIAMETER', diameters.length === 1 ? diameters[0] : diameters.length > 1 ? null : (/\bventilador\b/.test(clean(row?.nome)) ? extractStrictProductDiameter(row.nome) : null), diameters.length > 1);
-  const units = uniqueNumbers(text, /\b(?:kit\s+(?:com\s+)?|com\s+|conteudo(?: da embalagem)?\s*:\s*)(\d+)\s*(?:unidades?|pecas?|pilhas?|baterias?)\b/g);
+  const units = uniqueNumbers(text, /\b(?:kit\s+(?:com\s+)?|com\s+|conteudo(?: da embalagem)?\s*:\s*)(\d+)\s*(?:unidades?|pecas?|pilhas?|baterias?|metros?)\b/g);
   const packUnits = uniqueNumbers(clean(row?.nome), /\b(?:c\s*\/\s*|com\s+)(\d+)\s*(?:unidades?|un\.?|pilhas?|baterias?)\b/g);
   const namedUnits = uniqueNumbers(clean(row?.nome), /\b(\d+)\s*(?:unidades?|pilhas?|baterias?)\b/g);
   units.push(...packUnits, ...namedUnits);
@@ -124,7 +124,7 @@ export function resolveMlCriticalFacts(produto: any, offers: any[] = [], operati
     // Total só quando todos os componentes explicitam sua unidade comercial.
     const sum = componentsComplete ? componentFacts.reduce((sum, row) => sum + row.quantity * Number(row.facts.UNITS_PER_PACK.value), 0) : null;
     const total = sum !== null && Number.isSafeInteger(sum) && sum > 0 ? sum : null;
-    const namedTotal = clean(produto?.nome).match(/^(\d+)\s+(?:pilhas?|baterias?)\b/);
+    const namedTotal = clean(produto?.nome).match(/^(?:kit\s+)?(\d+)\s+(?:pilhas?|baterias?|metros?)\b/);
     const totalCorroborated = total !== null && Number(namedTotal?.[1]) === total;
     const evidence = componentFacts.flatMap(row => row.facts.UNITS_PER_PACK?.evidence || []);
     for (const [field, value] of [['UNITS_PER_PACK', total === null ? null : String(total)], ['SALE_FORMAT', total === null ? null : total > 1 ? 'Kit' : 'Unidade']] as const) {
