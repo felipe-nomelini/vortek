@@ -125,7 +125,11 @@ function assertOriginal(s) {
   assert(s.listing?.produto_id === PARENT && Number(s.listing.preco_ml) === 982.52, 'Vínculo ou preço local inesperado');
   assert(s.orders.length === 0, 'Pedido local encontrado');
   assertSellerItem(s.remote);
-  assert(s.remote.status === 'active', 'Anúncio deve estar ativo antes da pausa');
+  assert(['active', 'paused'].includes(s.remote.status), 'Status ML inesperado');
+  if (s.remote.status === 'paused') {
+    assert(s.listing.status === 'pausado' && s.parent.ml_status === 'pausado',
+      'Pausa parcial não corresponde ao reparo');
+  }
 }
 async function nextSku() {
   const result = await db.from('produtos').select('sku').like('sku', 'VTK%').order('sku', { ascending: false }).limit(1000);
@@ -146,15 +150,25 @@ async function apply() {
   const acquired = [];
   try {
     for (const domain of domains) { await acquire(domain, owner); acquired.push(domain); }
-    await ml(`/items/${ITEM}`, token, 'PUT', { status: 'paused' });
+    if (before.remote.status === 'active') await ml(`/items/${ITEM}`, token, 'PUT', { status: 'paused' });
     const paused = await item(token);
     assert(paused.status === 'paused', 'Pausa ML não confirmada');
     assertSellerItem(paused);
-    await write('anuncios_ml', 'update', { status: 'pausado' }, 'ml_item_id', ITEM);
-    await write('produtos', 'update', { ml_status: 'pausado' }, 'id', PARENT);
+    if (before.remote.status === 'active') {
+      await write('anuncios_ml', 'update', { status: 'pausado' }, 'ml_item_id', ITEM);
+      await write('produtos', 'update', { ml_status: 'pausado' }, 'id', PARENT);
+    }
 
     const childSku = await nextSku();
     const parent = before.parent;
+    // A identidade DSLite é única em produtos; liberá-la no pai antes do INSERT.
+    await write('produtos', 'update', {
+      nome: TITLE, descricao: PARENT_DESCRIPTION, gtin: '',
+      estoque: Math.floor(Number(before.offer.estoque) / 10),
+      custo: Math.round(Number(before.offer.custo) * 1000) / 100,
+      dslite_fornecedor_id: null, dslite_produto_id: null,
+      dslite_ultima_sync: null, oferta_preferencial_id: null,
+    }, 'id', PARENT);
     const child = {
       id: COMPONENT, sku: childSku, nome: 'Cabo Multicabo Santo Angelo SAS 28 Vias - metro',
       descricao: COMPONENT_DESCRIPTION, marca: parent.marca, gtin: parent.gtin,
@@ -169,13 +183,6 @@ async function apply() {
     await write('produtos', 'insert', child);
     await write('produto_fornecedor_ofertas', 'update', { produto_id: COMPONENT }, 'id', OFFER);
     await write('produtos', 'update', { oferta_preferencial_id: OFFER }, 'id', COMPONENT);
-    await write('produtos', 'update', {
-      nome: TITLE, descricao: PARENT_DESCRIPTION, gtin: '',
-      estoque: Math.floor(Number(before.offer.estoque) / 10),
-      custo: Math.round(Number(before.offer.custo) * 1000) / 100,
-      dslite_fornecedor_id: null, dslite_produto_id: null,
-      dslite_ultima_sync: null, oferta_preferencial_id: null,
-    }, 'id', PARENT);
     await write('produto_kits', 'insert', { produto_id: PARENT, fornecedor_dslite_id: SUPPLIER,
       sku_origem: SUPPLIER_PRODUCT, ativo: true });
     await write('produto_kit_componentes', 'insert', { kit_produto_id: PARENT,
