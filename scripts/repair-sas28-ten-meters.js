@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-// Reparo operacional de uma única oferta. Executar --apply, conferir a sincronização
-// de anúncios e então executar --finish. Falhas deixam o anúncio pausado.
+// Reparo operacional de uma única oferta. Executar --apply, --publish,
+// conferir a sincronização de anúncios e então executar --finish.
 const fs = require('node:fs');
 const { randomUUID } = require('node:crypto');
 const { createClient } = require('@supabase/supabase-js');
@@ -36,7 +36,9 @@ const REMOTE_DESCRIPTION = [
 ].join('\n');
 
 const mode = process.argv[2] || '--inspect';
-if (!['--inspect', '--apply', '--finish'].includes(mode)) throw new Error('Use --inspect, --apply ou --finish');
+if (!['--inspect', '--apply', '--publish', '--finish'].includes(mode)) {
+  throw new Error('Use --inspect, --apply, --publish ou --finish');
+}
 const url = process.env.SUPABASE_SERVICE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!url || !key || new URL(url).hostname !== '192.168.1.162') {
@@ -188,19 +190,12 @@ async function apply() {
     await write('produto_kit_componentes', 'insert', { kit_produto_id: PARENT,
       componente_produto_id: COMPONENT, quantidade: 10 });
 
-    await ml(`/items/${ITEM}`, token, 'PUT', { title: TITLE,
-      available_quantity: Math.floor(Number(before.offer.estoque) / 10),
-      attributes: [{ id: 'CABLE_LENGTH', value_name: '10 m' }] });
-    await ml(`/items/${ITEM}/description?api_version=2`, token, 'PUT', { plain_text: REMOTE_DESCRIPTION });
-    await write('anuncios_ml', 'update', { titulo: TITLE, status: 'pausado' }, 'ml_item_id', ITEM);
-    const after = await state(token);
-    assertRepaired(after);
-    console.log(`Reparo aplicado. Componente ${childSku}; estoque ${after.parent.estoque} kits; custo R$ ${after.parent.custo}. Anúncio pausado.`);
+    console.log(`Cadastro corrigido. Componente ${childSku}; anúncio pausado. Execute --publish.`);
   } finally {
     for (const domain of acquired.reverse()) await release(domain, owner);
   }
 }
-function assertRepaired(s) {
+function assertDbRepaired(s) {
   assert(s.parent?.sku === SKU && s.parent.ml_item_id === ITEM && s.parent.gtin === ''
     && Number(s.parent.custom_price) === 982.52, 'Pai ou preço de referência incorreto');
   assert(s.parent.nome === TITLE && s.parent.descricao === PARENT_DESCRIPTION, 'Descrição local incorreta');
@@ -215,16 +210,56 @@ function assertRepaired(s) {
   assert(Number(s.component.estoque) === Number(s.offer.estoque)
     && Number(s.parent.estoque) === Math.floor(Number(s.offer.estoque) / 10)
     && Number(s.parent.custo) === Math.round(Number(s.offer.custo) * 1000) / 100, 'Estoque/custo incorretos');
+  assert(s.orders.length === 0, 'Pedido local encontrado');
+  assert(s.listing?.produto_id === PARENT && Number(s.listing.preco_ml) === 982.52, 'Vínculo/preço local incorreto');
+}
+function assertRepaired(s) {
+  assertDbRepaired(s);
   assertSellerItem(s.remote);
-  assert(s.remote.status === 'paused' && s.remote.title === TITLE
+  assert(s.remote.status === 'paused' && s.remote.title === TITLE && s.remote.family_name === TITLE
     && Number(s.remote.available_quantity) === Number(s.parent.estoque)
     && attr(s.remote, 'CABLE_LENGTH') === '10 m'
     && attr(s.remote, 'SALE_FORMAT') === 'Kit'
     && attr(s.remote, 'UNITS_PER_PACK') === '10'
     && attr(s.remote, 'MODEL') === 'SAS', 'Anúncio ML incorreto');
   assert(s.description.plain_text === REMOTE_DESCRIPTION, 'Descrição ML incorreta');
-  assert(s.orders.length === 0, 'Pedido local encontrado');
-  assert(s.listing?.produto_id === PARENT && Number(s.listing.preco_ml) === 982.52, 'Vínculo/preço local incorreto');
+}
+async function publish() {
+  const token = await mlToken();
+  const before = await state(token);
+  assertDbRepaired(before);
+  assertSellerItem(before.remote);
+  assert(before.remote.status === 'paused' && before.remote.sub_status?.includes('paused_by_seller'),
+    'Anúncio não está pausado pelo vendedor');
+  const up = String(before.remote.user_product_id || '');
+  assert(up, 'User Product ausente');
+  const linked = await ml(`/users/3294514937/items/search?user_product_id=${encodeURIComponent(up)}`, token);
+  assert(linked.paging?.total === 1 && linked.results?.[0] === ITEM,
+    'family_name afetaria outro anúncio; interrompido');
+  backup(before);
+  if (before.remote.family_name !== TITLE) {
+    await ml(`/items/${ITEM}`, token, 'PUT', { family_name: TITLE });
+  }
+  const current = await item(token);
+  if (attr(current, 'CABLE_LENGTH') !== '10 m' || Number(current.available_quantity) !== Number(before.parent.estoque)) {
+    await ml(`/items/${ITEM}`, token, 'PUT', {
+      available_quantity: Number(before.parent.estoque),
+      attributes: [{ id: 'CABLE_LENGTH', value_name: '10 m' }],
+    });
+  }
+  if (before.description.plain_text !== REMOTE_DESCRIPTION) {
+    await ml(`/items/${ITEM}/description?api_version=2`, token, 'PUT', { plain_text: REMOTE_DESCRIPTION });
+  }
+  const after = await state(token);
+  assertDbRepaired(after);
+  assert(after.remote.family_name === TITLE, 'family_name ainda não atualizado');
+  if (after.remote.title !== TITLE) {
+    console.log('family_name atualizado; título ainda em propagação no Mercado Livre. Reexecute --publish após sincronizar.');
+    return;
+  }
+  await write('anuncios_ml', 'update', { titulo: TITLE, status: 'pausado' }, 'ml_item_id', ITEM);
+  assertRepaired(await state(token));
+  console.log(`Anúncio corrigido e pausado: ${TITLE}; ${after.remote.available_quantity} kits a R$ ${after.remote.price}.`);
 }
 async function finish() {
   const token = await mlToken();
@@ -242,7 +277,7 @@ async function finish() {
   console.log(`Anúncio ${ITEM} reativado com ${active.available_quantity} kits a R$ ${active.price}.`);
 }
 
-(mode === '--finish' ? finish() : apply()).catch(error => {
+(mode === '--finish' ? finish() : mode === '--publish' ? publish() : apply()).catch(error => {
   console.error(error.message);
   process.exitCode = 1;
 });
