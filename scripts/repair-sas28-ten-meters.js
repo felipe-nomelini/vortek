@@ -233,22 +233,13 @@ async function publish() {
   assert(before.remote.status === 'paused' && before.remote.sub_status?.includes('paused_by_seller'),
     'Anúncio não está pausado pelo vendedor');
   const up = String(before.remote.user_product_id || '');
-  const familyId = String(before.remote.family_id || '');
-  assert(up === 'MLBU5137977550' && familyId === '8478358628789842', 'Família ML inesperada');
-  const family = await ml(`/user-products-families/${familyId}`, token);
-  assert(family.user_id === 3294514937 && family.family_id === Number(familyId), 'Família de outro vendedor');
-  const variants = await ml(`/user-products-families/${familyId}/user-products`, token);
-  assert(variants.user_products_ids?.length === 1 && variants.user_products_ids[0] === up,
-    'Mudança da família afetaria outra variante; interrompido');
+  assert(up === 'MLBU5137977550', 'User Product inesperado');
   const linked = await ml(`/users/3294514937/items/search?user_product_id=${encodeURIComponent(up)}`, token);
   assert(linked.paging?.total === 1 && linked.results?.[0] === ITEM,
     'family_name afetaria outro anúncio; interrompido');
   backup(before);
-  if (family.family_name !== REMOTE_TITLE) {
-    await ml(`/user-products-families/${familyId}`, token, 'PUT', { family_name: TITLE });
-  }
-  const current = await item(token);
-  if (attr(current, 'CABLE_LENGTH') !== '10 m' || Number(current.available_quantity) !== Number(before.parent.estoque)) {
+  if (attr(before.remote, 'CABLE_LENGTH') !== '10 m'
+    || Number(before.remote.available_quantity) !== Number(before.parent.estoque)) {
     await ml(`/items/${ITEM}`, token, 'PUT', {
       available_quantity: Number(before.parent.estoque),
       attributes: [{ id: 'CABLE_LENGTH', value_name: '10 m' }],
@@ -257,10 +248,24 @@ async function publish() {
   if (before.description.plain_text !== REMOTE_DESCRIPTION) {
     await ml(`/items/${ITEM}/description?api_version=2`, token, 'PUT', { plain_text: REMOTE_DESCRIPTION });
   }
+  const current = await item(token);
+  const familyId = String(current.family_id || '');
+  assert(familyId && current.user_product_id === up, 'Família ML não estabilizada');
+  const family = await ml(`/user-products-families/${familyId}`, token);
+  assert(family.user_id === 3294514937 && family.family_id === Number(familyId), 'Família de outro vendedor');
+  const variants = await ml(`/user-products-families/${familyId}/user-products`, token);
+  assert(variants.user_products_ids?.length === 1 && variants.user_products_ids[0] === up,
+    'Mudança da família afetaria outra variante; interrompido');
+  if (family.family_name !== REMOTE_TITLE) {
+    await ml(`/user-products-families/${familyId}`, token, 'PUT', { family_name: TITLE });
+  }
   const after = await state(token);
   assertDbRepaired(after);
   const updatedFamily = await ml(`/user-products-families/${familyId}`, token);
-  assert(updatedFamily.family_name === REMOTE_TITLE, 'family_name ainda não atualizado');
+  if (updatedFamily.family_name !== REMOTE_TITLE) {
+    console.log('Nome da família em propagação no Mercado Livre. Reexecute --publish após sincronizar.');
+    return;
+  }
   if (after.remote.title !== REMOTE_TITLE || after.remote.family_name !== REMOTE_TITLE) {
     console.log('family_name atualizado; título ainda em propagação no Mercado Livre. Reexecute --publish após sincronizar.');
     return;
