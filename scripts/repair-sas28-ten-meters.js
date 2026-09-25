@@ -232,13 +232,19 @@ async function publish() {
   assert(before.remote.status === 'paused' && before.remote.sub_status?.includes('paused_by_seller'),
     'Anúncio não está pausado pelo vendedor');
   const up = String(before.remote.user_product_id || '');
-  assert(up, 'User Product ausente');
+  const familyId = String(before.remote.family_id || '');
+  assert(up === 'MLBU5137977550' && familyId === '8478358628789842', 'Família ML inesperada');
+  const family = await ml(`/user-products-families/${familyId}`, token);
+  assert(family.user_id === 3294514937 && family.family_id === Number(familyId), 'Família de outro vendedor');
+  const variants = await ml(`/user-products-families/${familyId}/user-products`, token);
+  assert(variants.user_products_ids?.length === 1 && variants.user_products_ids[0] === up,
+    'Mudança da família afetaria outra variante; interrompido');
   const linked = await ml(`/users/3294514937/items/search?user_product_id=${encodeURIComponent(up)}`, token);
   assert(linked.paging?.total === 1 && linked.results?.[0] === ITEM,
     'family_name afetaria outro anúncio; interrompido');
   backup(before);
-  if (before.remote.family_name !== TITLE) {
-    await ml(`/items/${ITEM}`, token, 'PUT', { family_name: TITLE });
+  if (family.family_name !== TITLE) {
+    await ml(`/user-products-families/${familyId}`, token, 'PUT', { family_name: TITLE });
   }
   const current = await item(token);
   if (attr(current, 'CABLE_LENGTH') !== '10 m' || Number(current.available_quantity) !== Number(before.parent.estoque)) {
@@ -252,8 +258,9 @@ async function publish() {
   }
   const after = await state(token);
   assertDbRepaired(after);
-  assert(after.remote.family_name === TITLE, 'family_name ainda não atualizado');
-  if (after.remote.title !== TITLE) {
+  const updatedFamily = await ml(`/user-products-families/${familyId}`, token);
+  assert(updatedFamily.family_name === TITLE, 'family_name ainda não atualizado');
+  if (after.remote.title !== TITLE || after.remote.family_name !== TITLE) {
     console.log('family_name atualizado; título ainda em propagação no Mercado Livre. Reexecute --publish após sincronizar.');
     return;
   }
