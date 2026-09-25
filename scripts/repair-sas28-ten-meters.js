@@ -15,6 +15,7 @@ const SUPPLIER = '133';
 const SUPPLIER_PRODUCT = '229965';
 const SKU = 'VTK019036';
 const TITLE = 'Kit 10 Metros Cabo Multicabo Santo Angelo SAS 28 Vias';
+const REMOTE_TITLE = 'Kit 10 Metros Cabo Multicabo Santo Angelo Sas 28 Vias';
 const PARENT_DESCRIPTION = [
   'Kit com 10 metros no total de cabo multicabo Santo Angelo SAS de 28 vias.',
   'Modelo: SAS; 28 vias; condutor: 0,20 mm²; isolamento: polietileno;',
@@ -216,7 +217,7 @@ function assertDbRepaired(s) {
 function assertRepaired(s) {
   assertDbRepaired(s);
   assertSellerItem(s.remote);
-  assert(s.remote.status === 'paused' && s.remote.title === TITLE && s.remote.family_name === TITLE
+  assert(s.remote.status === 'paused' && s.remote.title === REMOTE_TITLE && s.remote.family_name === REMOTE_TITLE
     && Number(s.remote.available_quantity) === Number(s.parent.estoque)
     && attr(s.remote, 'CABLE_LENGTH') === '10 m'
     && attr(s.remote, 'SALE_FORMAT') === 'Kit'
@@ -243,7 +244,7 @@ async function publish() {
   assert(linked.paging?.total === 1 && linked.results?.[0] === ITEM,
     'family_name afetaria outro anúncio; interrompido');
   backup(before);
-  if (family.family_name !== TITLE) {
+  if (family.family_name !== REMOTE_TITLE) {
     await ml(`/user-products-families/${familyId}`, token, 'PUT', { family_name: TITLE });
   }
   const current = await item(token);
@@ -259,14 +260,14 @@ async function publish() {
   const after = await state(token);
   assertDbRepaired(after);
   const updatedFamily = await ml(`/user-products-families/${familyId}`, token);
-  assert(updatedFamily.family_name === TITLE, 'family_name ainda não atualizado');
-  if (after.remote.title !== TITLE || after.remote.family_name !== TITLE) {
+  assert(updatedFamily.family_name === REMOTE_TITLE, 'family_name ainda não atualizado');
+  if (after.remote.title !== REMOTE_TITLE || after.remote.family_name !== REMOTE_TITLE) {
     console.log('family_name atualizado; título ainda em propagação no Mercado Livre. Reexecute --publish após sincronizar.');
     return;
   }
-  await write('anuncios_ml', 'update', { titulo: TITLE, status: 'pausado' }, 'ml_item_id', ITEM);
+  await write('anuncios_ml', 'update', { titulo: REMOTE_TITLE, status: 'pausado' }, 'ml_item_id', ITEM);
   assertRepaired(await state(token));
-  console.log(`Anúncio corrigido e pausado: ${TITLE}; ${after.remote.available_quantity} kits a R$ ${after.remote.price}.`);
+  console.log(`Anúncio corrigido e pausado: ${REMOTE_TITLE}; ${after.remote.available_quantity} kits a R$ ${after.remote.price}.`);
 }
 async function finish() {
   const token = await mlToken();
